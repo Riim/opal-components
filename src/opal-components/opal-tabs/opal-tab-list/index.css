@@ -1,0 +1,7 @@
+.opal-tab-list {
+	display: block;
+	padding: 0 30px;
+	border-bottom: 1px solid hsl(0,0%,90%);
+	white-space: nowrap;
+	font-size: 0;
+}

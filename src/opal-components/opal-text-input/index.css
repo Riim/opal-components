@@ -1,0 +1,49 @@
+.opal-text-input {
+	position: relative;
+	display: inline-block;
+	width: 400px;
+	vertical-align: middle;
+}
+	.opal-text-input__control {
+		box-sizing: border-box;
+		padding: 6px 14px;
+		width: 100%;
+		border: 1px solid hsl(0,0%,68%);
+		border-top-color: hsl(0,0%,66%);
+		border-bottom-color: hsl(0,0%,78%);
+		background: #fff;
+		box-shadow: inset 0 1px rgba(0,0,0,.1);
+		color: #000;
+		text-shadow: none;
+		font: 16px/24px Verdana, Geneva, sans-serif;
+		font-weight: normal;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-text-size-adjust: 100%;
+		-ms-text-size-adjust: 100%;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+.opal-text-input__control:hover {
+	border-color: hsl(0,0%,58%);
+	border-top-color: hsl(0,0%,56%);
+	border-bottom-color: hsl(0,0%,68%);
+}
+
+.opal-text-input__control:focus {
+	outline: none;
+	border-color: hsl(208,100%,60%);
+}
+
+.opal-text-input[disabled] {
+	opacity: .5;
+	pointer-events: none;
+}
+	.opal-text-input[disabled] .opal-text-input__control {
+		background: hsl(0,0%,90%);
+	}
+
+.opal-group__content > .opal-text-input:not(:first-child),
+.opal-group__content > *:not(:first-child) .opal-text-input {
+	margin-right: -1px;
+}

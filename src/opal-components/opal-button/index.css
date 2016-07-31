@@ -1,0 +1,126 @@
+.opal-button {
+}
+
+.opal-button:not([type=clean]) {
+	& {
+		display: inline-block;
+		vertical-align: middle;
+	}
+		& .opal-button__control {
+			position: relative;
+			display: block;
+			box-sizing: border-box;
+			padding: 7px 23px;
+			width: 100%;
+			border: 0;
+			border-radius: 3px;
+			background: hsl(208,18%,40%);
+			color: #fff;
+			text-align: center;
+			text-decoration: none;
+			text-shadow: none;
+			font: 16px/24px Verdana, Geneva, sans-serif;
+			font-weight: normal;
+			cursor: pointer;
+			transition: background .1s;
+			user-select: none;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-text-size-adjust: 100%;
+			-ms-text-size-adjust: 100%;
+			-webkit-tap-highlight-color: transparent;
+		}
+			& .opal-button__control::-moz-focus-inner {
+				padding: 0;
+				border: 0;
+			}
+
+			& .opal-button__content {
+				position: relative;
+				display: block;
+			}
+
+	& .opal-button__control:hover {
+		background: hsl(208,24%,46%);
+	}
+
+	& .opal-button__control:focus {
+		outline: none;
+	}
+		@nest
+		body:not(._no-focus-highlight) & .opal-button__control:focus::after {
+			position: absolute;
+			top: 2px;
+			right: 2px;
+			bottom: 2px;
+			left: 2px;
+			border: 1px solid rgba(255,255,255,.8);
+			border-radius: inherit;
+			content: '';
+			pointer-events: none;
+		}
+
+	& .opal-button__control:active,
+	&[checked] .opal-button__control {
+		background: hsl(208,6%,28%);
+	}
+
+	&[size=s] .opal-button__control {
+		padding: 4px 13px;
+		font-size: 14px;
+		line-height: 21px;
+	}
+
+	&[disabled] {
+		opacity: .5;
+		pointer-events: none;
+	}
+		&[disabled] .opal-button__control {
+			cursor: default;
+		}
+
+	@nest
+	.opal-group__content > &:not(:first-child) .opal-button__control,
+	.opal-group__content > *:not(:first-child) & .opal-button__control {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		box-shadow: inset 1px 0 rgba(0,0,0,.4);
+	}
+
+	@nest
+	.opal-group__content > &:not(:last-child) .opal-button__control,
+	.opal-group__content > *:not(:last-child) & .opal-button__control {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+}
+
+.opal-button[type=action][type=action] {
+	& .opal-button__control {
+		background: hsl(208,94%,54%);
+	}
+
+	& .opal-button__control:hover {
+		background: hsl(208,100%,60%);
+	}
+
+	& .opal-button__control:active,
+	&[checked] .opal-button__control {
+		background: hsl(208,82%,42%);
+	}
+}
+
+.opal-button[type=danger][type=danger] {
+	& .opal-button__control {
+		background: hsl(350,90%,60%);
+	}
+
+	& .opal-button__control:hover {
+		background: hsl(350,96%,66%);
+	}
+
+	& .opal-button__control:active,
+	&[checked] .opal-button__control {
+		background: hsl(350,78%,48%);
+	}
+}

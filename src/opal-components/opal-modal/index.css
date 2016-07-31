@@ -1,0 +1,96 @@
+.opal-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	display: none;
+	overflow: auto;
+	box-sizing: border-box;
+	padding: 30px 60px;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.6);
+	text-align: center;
+	white-space: nowrap;
+	cursor: default;
+}
+	.opal-modal::before {
+		display: inline-block;
+		width: 0;
+		height: 100%;
+		content: '';
+		vertical-align: middle;
+	}
+
+	.opal-modal__window {
+		display: inline-block;
+		padding: 30px;
+		border-radius: 3px;
+		background: #fff;
+		box-shadow: 0 0 20px rgba(0,0,0,.3);
+		vertical-align: middle;
+		text-align: left;
+		white-space: normal;
+	}
+		.opal-modal__btn-close {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			box-sizing: content-box;
+			padding: 10px;
+			width: 25px;
+			height: 25px;
+			border: 0;
+			background: none;
+			cursor: pointer;
+		}
+			.opal-modal__btn-close::before,
+			.opal-modal__btn-close::after {
+				position: absolute;
+				top: 21px;
+				left: 10px;
+				width: 25px;
+				height: 3px;
+				border-radius: 2px;
+				background: hsl(0,0%,90%);
+				content: '';
+				transition: background .1s;
+				transform: rotate(45deg);
+			}
+
+			.opal-modal__btn-close::after {
+				transform: rotate(-45deg);
+			}
+
+		.opal-modal__btn-close:hover::before,
+		.opal-modal__btn-close:hover::after,
+		.opal-modal__window:hover .opal-modal__btn-close:hover::before,
+		.opal-modal__window:hover .opal-modal__btn-close:hover::after {
+			background: #fff;
+		}
+
+		.opal-modal__btn-close:active::before,
+		.opal-modal__btn-close:active::after,
+		.opal-modal__window:hover .opal-modal__btn-close:active::before,
+		.opal-modal__window:hover .opal-modal__btn-close:active::after {
+			background: hsl(0,0%,70%);
+		}
+
+	.opal-modal__window:hover .opal-modal__btn-close::before,
+	.opal-modal__window:hover .opal-modal__btn-close::after {
+		background: hsl(0,0%,80%);
+	}
+
+		.opal-modal__content {
+			position: relative;
+			display: block;
+		}
+
+.opal-modal[opened] {
+	display: block;
+}
+
+.opal-modal._overlapped {
+	left: 100%;
+	overflow: visible;
+}

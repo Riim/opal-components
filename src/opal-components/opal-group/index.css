@@ -1,0 +1,9 @@
+.opal-group {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	white-space: nowrap;
+	font-size: 0;
+}
+	.opal-group__content {
+	}

@@ -1,0 +1,142 @@
+require('./index.css');
+
+let cellx = require('cellx');
+let { Component } = require('rionite');
+
+module.exports = Component.extend('opal-button', {
+	Static: {
+		props: {
+			type: String,
+			controlType: String,
+			size: 'm',
+			href: String,
+			checkable: false,
+			checked: false,
+			focused: false,
+			tabIndex: 0,
+			disabled: false
+		},
+
+		template: require('./index.html'),
+
+		assets: {
+			control: {
+				'on-focusin'() {
+					this.props.focused = true;
+					this.emit('focusin');
+				},
+
+				'on-focusout'() {
+					this.props.focused = false;
+					this.emit('focusout');
+				},
+
+				'on-click'() {
+					if (!this.props.disabled) {
+						if (this.props.checkable) {
+							this.emit(this.toggle() ? 'check' : 'uncheck');
+						}
+
+						this.emit('click');
+					}
+				}
+			}
+		}
+	},
+
+	initialize() {
+		cellx.define(this, {
+			_tabIndex() {
+				return this.props.disabled ? -1 : this.props.tabIndex;
+			}
+		});
+	},
+
+	ready() {
+		if (this.props.focused) {
+			this.focus();
+		}
+	},
+
+	elementAttributeChanged(name, oldValue, value) {
+		if (name == 'focused') {
+			this[value ? 'focus' : 'blur']();
+		}
+	},
+
+	/**
+	 * @type {boolean}
+	 */
+	get checked() {
+		return this.props.checked;
+	},
+	set checked(checked) {
+		this.props.checked = checked;
+	},
+
+	/**
+	 * @typesign () -> boolean;
+	 */
+	check() {
+		if (!this.props.checked) {
+			this.props.checked = true;
+			return true;
+		}
+
+		return false;
+	},
+
+	/**
+	 * @typesign () -> boolean;
+	 */
+	uncheck() {
+		if (this.props.checked) {
+			this.props.checked = false;
+			return true;
+		}
+
+		return false;
+	},
+
+	/**
+	 * @typesign (value?: boolean) -> boolean;
+	 */
+	toggle(value) {
+		if (value !== void 0) {
+			return (this.props.checked = !!value);
+		}
+		return (this.props.checked = !this.props.checked);
+	},
+
+	/**
+	 * @typesign () -> OpalComponents.OpalButton;
+	 */
+	focus() {
+		this.control.focus();
+		return this;
+	},
+
+	/**
+	 * @typesign () -> OpalComponents.OpalButton;
+	 */
+	blur() {
+		this.control.blur();
+		return this;
+	},
+
+	/**
+	 * @typesign () -> OpalComponents.OpalButton;
+	 */
+	enable() {
+		this.props.disabled = false;
+		return this;
+	},
+
+	/**
+	 * @typesign () -> OpalComponents.OpalButton;
+	 */
+	disable() {
+		this.props.disabled = true;
+		return this;
+	}
+});

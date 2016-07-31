@@ -1,0 +1,14 @@
+.opal-filtered-list {
+}
+	.opal-filtered-list__tf-query-wrapper {
+		display: block;
+		margin-bottom: 15px;
+	}
+		.opal-text-input.opal-filtered-list__tf-query {
+			width: 100%;
+		}
+
+	.opal-filtered-list__list-wrapper {
+	}
+		.opal-filtered-list__list {
+		}

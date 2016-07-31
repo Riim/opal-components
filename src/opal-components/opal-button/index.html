@@ -1,0 +1,10 @@
+<template is="rt-if-then" if="props.href">
+	<a class="opal-button__control" href="{props.href}" tabindex="{_tabIndex}">
+		<rt-content class="opal-button__content"/>
+	</a>
+</template>
+<template is="rt-if-else" if="props.href">
+	<button class="opal-button__control" type="{props.controlType}" tabindex="{_tabIndex}">
+		<rt-content class="opal-button__content"/>
+	</button>
+</template>

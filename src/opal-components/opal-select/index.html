@@ -1,0 +1,15 @@
+<rt-content select=".opal-select__button">
+	<opal-button class="opal-select__button" type="{props.type}" size="{props.size}" checkable
+			tab-index="{props.tabIndex}" disabled="{props.disabled}">
+		<template is="rt-if-then" if="props.text">{props.text}</template>
+		<template is="rt-if-else" if="props.text">{selectedOptionsText}</template>
+		<svg viewBox="0 0 24 13" class="opal-select__icon-chevron-down"><use
+				xlink:href="#opal-select__icon-chevron-down"></use></svg>
+	</opal-button>
+</rt-content>
+
+<rt-content select=".opal-select__menu">
+	<opal-dropdown class="opal-select__menu" auto-closing>
+		<rt-content select="opal-select-option"/>
+	</opal-dropdown>
+</rt-content>

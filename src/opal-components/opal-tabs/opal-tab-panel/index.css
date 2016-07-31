@@ -1,0 +1,9 @@
+.opal-tab-panel {
+	position: relative;
+	display: none;
+	padding: 30px;
+}
+
+.opal-tab-panel[shown] {
+	display: block;
+}

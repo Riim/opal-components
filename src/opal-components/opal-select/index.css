@@ -1,0 +1,17 @@
+.opal-select {
+	position: relative;
+	display: inline-block;
+}
+	.opal-select__icon-chevron-down {
+		display: inline-block;
+		margin-left: .25em;
+		width: 13px;
+		height: 13px;
+		vertical-align: middle;
+		transition: transform .1s linear;
+		fill: currentColor;
+	}
+
+.opal-select__button[checked] .opal-select__icon-chevron-down {
+	transform: scaleY(-1);
+}
