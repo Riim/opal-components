@@ -10,7 +10,7 @@ module.exports = Component.extend('opal-popover', {
 			autoClosing: false
 		},
 
-		template: require('./index.html')
+		template: '<span class="opal-popover__arrow"></span><rt-content class="opal-popover__content"></rt-content>'
 	},
 
 	ready() {

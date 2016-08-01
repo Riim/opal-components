@@ -274,7 +274,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 6 */
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"opal-checkbox__label\"> <input class=\"opal-checkbox__input\" type=\"checkbox\"> <span class=\"opal-checkbox__control\" tabindex=\"{_tabIndex}\"></span> <rt-content class=\"opal-checkbox__content\"> </rt-content></label>"
+	module.exports = "<label class=\"opal-checkbox__label\"> <input class=\"opal-checkbox__input\" type=\"checkbox\"> <span class=\"opal-checkbox__control\" tabindex=\"{_tabIndex}\"></span> <rt-content class=\"opal-checkbox__content\"></rt-content> </label>"
 
 /***/ }
 /******/ ])

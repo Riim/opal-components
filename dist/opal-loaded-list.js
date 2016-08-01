@@ -262,7 +262,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 12 */
 /***/ function(module, exports) {
 
-	module.exports = "{{block not_found }} <div class=\"opal-loaded-list__not-found\" shown=\"{notFoundShown}\"> <span class=\"opal-loaded-list__not-found-message\">{{i18n.notFoundMessage}}</span> </div> {{/block}} {{block list }} <div class=\"opal-loaded-list__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"{props.itemAs} of list\" strip=\"\"> <rt-content class=\"opal-loaded-list__list-item\" get-context=\"_getContentContext\"> </rt-content></template> {{/block}} </div> {{/block}} {{block loader }} <opal-loader class=\"opal-loaded-list__loader\" shown=\"{loaderShown}\"> {{/block}}</opal-loader>"
+	module.exports = "{{block not_found }} <div class=\"opal-loaded-list__not-found\" shown=\"{notFoundShown}\"> <span class=\"opal-loaded-list__not-found-message\">{{i18n.notFoundMessage}}</span> </div> {{/block}} {{block list }} <div class=\"opal-loaded-list__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"{props.itemAs} of list\" strip=\"\"> <rt-content class=\"opal-loaded-list__list-item\" get-context=\"_getContentContext\"></rt-content> </template> {{/block}} </div> {{/block}} {{block loader }} <opal-loader class=\"opal-loaded-list__loader\" shown=\"{loaderShown}\"></opal-loader> {{/block}}"
 
 /***/ }
 /******/ ])

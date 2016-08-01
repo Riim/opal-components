@@ -72,7 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				autoClosing: false
 			},
 
-			template: '<rt-content class="opal-dropdown__content"/>'
+			template: '<rt-content class="opal-dropdown__content"></rt-content>'
 		},
 
 		ready: function ready() {

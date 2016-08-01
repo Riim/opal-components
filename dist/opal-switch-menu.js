@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(32);
+	__webpack_require__(31);
 
 	var _require = __webpack_require__(3);
 
@@ -66,7 +66,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = Component.extend('opal-switch-menu', {
 		Static: {
-			template: '<rt-content class="opal-switch-menu__content"/>',
+			template: '<rt-content class="opal-switch-menu__content"></rt-content>',
 
 			assets: {
 				':component': {
@@ -100,7 +100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 32:
+/***/ 31:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

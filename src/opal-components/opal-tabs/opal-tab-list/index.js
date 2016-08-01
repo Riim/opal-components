@@ -5,6 +5,6 @@ let { Component } = require('rionite');
 
 module.exports = Component.extend('opal-tab-list', {
 	Static: {
-		template: '<rt-content class="opal-tab-list__content"/>'
+		template: '<rt-content class="opal-tab-list__content"></rt-content>'
 	}
 });

@@ -66,7 +66,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = Component.extend('opal-group', {
 		Static: {
-			template: '<rt-content class="opal-group__content"/>'
+			template: '<rt-content class="opal-group__content"></rt-content>'
 		}
 	});
 

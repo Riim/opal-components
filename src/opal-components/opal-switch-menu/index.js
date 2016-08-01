@@ -4,7 +4,7 @@ let { Component } = require('rionite');
 
 module.exports = Component.extend('opal-switch-menu', {
 	Static: {
-		template: '<rt-content class="opal-switch-menu__content"/>',
+		template: '<rt-content class="opal-switch-menu__content"></rt-content>',
 
 		assets: {
 			':component': {

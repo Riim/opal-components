@@ -72,7 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				autoClosing: false
 			},
 
-			template: __webpack_require__(17)
+			template: '<span class="opal-popover__arrow"></span><rt-content class="opal-popover__content"></rt-content>'
 		},
 
 		ready: function ready() {
@@ -190,13 +190,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return null;
 	    })(document);
 
-
-/***/ },
-
-/***/ 17:
-/***/ function(module, exports) {
-
-	module.exports = "<span class=\"opal-popover__arrow\"></span> <rt-content class=\"opal-popover__content\"></rt-content>"
 
 /***/ }
 

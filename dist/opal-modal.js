@@ -246,7 +246,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 15:
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"opal-modal__window\"> <button class=\"opal-modal__btn-close\"></button> <rt-content class=\"opal-modal__content\"> </rt-content></span>"
+	module.exports = "<span class=\"opal-modal__window\"> <button class=\"opal-modal__btn-close\"></button> <rt-content class=\"opal-modal__content\"></rt-content> </span>"
 
 /***/ }
 

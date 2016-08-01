@@ -57,8 +57,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(44);
-	__webpack_require__(47);
+	__webpack_require__(43);
+	__webpack_require__(46);
 
 	var _require = __webpack_require__(3);
 
@@ -71,7 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				valid: true
 			},
 
-			template: '<rt-content class="opal-validator__content"/>',
+			template: '<rt-content class="opal-validator__content"></rt-content>',
 
 			assets: {
 				input: {
@@ -137,12 +137,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 44:
+/***/ 43:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(45);
+	__webpack_require__(44);
 
 	var _require = __webpack_require__(3);
 
@@ -158,7 +158,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				popoverFrom: 'right'
 			},
 
-			template: __webpack_require__(46),
+			template: __webpack_require__(45),
 
 			assets: {
 				messagePopover: {}
@@ -175,7 +175,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 45:
+/***/ 44:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -193,14 +193,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 46:
+/***/ 45:
 /***/ function(module, exports) {
 
-	module.exports = "<ips-popover class=\"opal-validator-rule__message-popover\" from=\"{props.popoverFrom}\"> <rt-content class=\"opal-validator-rule__content\"> </rt-content></ips-popover>"
+	module.exports = "<ips-popover class=\"opal-validator-rule__message-popover\" from=\"{props.popoverFrom}\"> <rt-content class=\"opal-validator-rule__content\"></rt-content> </ips-popover>"
 
 /***/ },
 
-/***/ 47:
+/***/ 46:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

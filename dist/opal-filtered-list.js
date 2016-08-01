@@ -115,7 +115,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "{{block query }} <rt-content class=\"opal-filtered-list__tf-query-wrapper\" select=\".opal-filtered-list__tf-query\"> {{block tf_query }} <opal-text-input class=\"opal-filtered-list__tf-query\"> {{/block}} </opal-text-input></rt-content> {{/block}} {{block list }} <rt-content class=\"opal-filtered-list__list-wrapper\" select=\".opal-filtered-list__list\"> {{/block}}</rt-content>"
+	module.exports = "{{block query }} <rt-content class=\"opal-filtered-list__tf-query-wrapper\" select=\".opal-filtered-list__tf-query\"> {{block tf_query }} <opal-text-input class=\"opal-filtered-list__tf-query\"> {{/block}} </opal-text-input></rt-content> {{/block}} {{block list }} <rt-content class=\"opal-filtered-list__list-wrapper\" select=\".opal-filtered-list__list\"></rt-content> {{/block}}"
 
 /***/ }
 /******/ ])

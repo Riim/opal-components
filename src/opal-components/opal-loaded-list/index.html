@@ -7,11 +7,11 @@
 	<div class="opal-loaded-list__list">
 		{{block list_inner }}
 			<template is="rt-repeat" for="{props.itemAs} of list" strip>
-				<rt-content class="opal-loaded-list__list-item" get-context="_getContentContext"/>
+				<rt-content class="opal-loaded-list__list-item" get-context="_getContentContext"></rt-content>
 			</template>
 		{{/block}}
 	</div>
 {{/block}}
 {{block loader }}
-	<opal-loader class="opal-loaded-list__loader" shown="{loaderShown}"/>
+	<opal-loader class="opal-loaded-list__loader" shown="{loaderShown}"></opal-loader>
 {{/block}}

@@ -11,7 +11,7 @@ module.exports = Component.extend('opal-dropdown', {
 			autoClosing: false
 		},
 
-		template: '<rt-content class="opal-dropdown__content"/>'
+		template: '<rt-content class="opal-dropdown__content"></rt-content>'
 	},
 
 	ready() {

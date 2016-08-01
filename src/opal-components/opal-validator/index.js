@@ -9,7 +9,7 @@ module.exports = Component.extend('opal-validator', {
 			valid: true
 		},
 
-		template: '<rt-content class="opal-validator__content"/>',
+		template: '<rt-content class="opal-validator__content"></rt-content>',
 
 		assets: {
 			input: {

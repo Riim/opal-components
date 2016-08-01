@@ -8,6 +8,6 @@ module.exports = Component.extend('opal-tab-panel', {
 			shown: false
 		},
 
-		template: '<rt-content class="opal-tab-panel__content"/>'
+		template: '<rt-content class="opal-tab-panel__content"></rt-content>'
 	}
 });
