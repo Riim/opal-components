@@ -66,6 +66,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = Component.extend('opal-switch-menu', {
 		Static: {
+			template: '<rt-content class="opal-switch-menu__content"/>',
+
 			assets: {
 				':component': {
 					'on-check': function onCheck(_ref) {
@@ -106,7 +108,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-switch-menu{position:relative;display:inline-block;vertical-align:middle;white-space:nowrap;font-size:0}.opal-switch-menu .opal-button:not(:first-child){margin-left:-1px}.opal-switch-menu .opal-button:not(:first-child) .opal-button__control,.opal-switch-menu .opal-button:not(:first-child) .opal-button__control::before{border-top-left-radius:0;border-bottom-left-radius:0}.opal-switch-menu .opal-button:not(:last-child) .opal-button__control,.opal-switch-menu .opal-button:not(:last-child) .opal-button__control::before{border-top-right-radius:0;border-bottom-right-radius:0}";
+	            style.textContent = ".opal-switch-menu{position:relative;display:inline-block;vertical-align:middle;white-space:nowrap;font-size:0}.opal-switch-menu__content .opal-button:not(:first-child){margin-left:-1px}.opal-switch-menu__content .opal-button:not(:first-child) .opal-button__control,.opal-switch-menu__content .opal-button:not(:first-child) .opal-button__control::before{border-top-left-radius:0;border-bottom-left-radius:0}.opal-switch-menu__content .opal-button:not(:last-child) .opal-button__control,.opal-switch-menu__content .opal-button:not(:last-child) .opal-button__control::before{border-top-right-radius:0;border-bottom-right-radius:0}";
 	            head.appendChild(style);
 	            return style;
 	        }

@@ -403,6 +403,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 		_focusOptions: function _focusOptions() {
+			var multiple = this.props.multiple;
 			var options = this.options;
 			var optionForFocus = void 0;
 
@@ -410,7 +411,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				var option = options[i];
 
 				if (!option.props.disabled) {
-					if (option.selected) {
+					if (multiple || !option.selected) {
 						optionForFocus = option;
 						break;
 					}

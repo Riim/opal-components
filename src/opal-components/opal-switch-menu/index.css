@@ -5,18 +5,20 @@
 	white-space: nowrap;
 	font-size: 0;
 }
-	.opal-switch-menu .opal-button:not(:first-child) {
-		margin-left: -1px;
+	.opal-switch-menu__content {
 	}
+		.opal-switch-menu__content .opal-button:not(:first-child) {
+			margin-left: -1px;
+		}
 
-	.opal-switch-menu .opal-button:not(:first-child) .opal-button__control,
-	.opal-switch-menu .opal-button:not(:first-child) .opal-button__control::before {
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
-	}
+		.opal-switch-menu__content .opal-button:not(:first-child) .opal-button__control,
+		.opal-switch-menu__content .opal-button:not(:first-child) .opal-button__control::before {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
 
-	.opal-switch-menu .opal-button:not(:last-child) .opal-button__control,
-	.opal-switch-menu .opal-button:not(:last-child) .opal-button__control::before {
-		border-top-right-radius: 0;
-		border-bottom-right-radius: 0;
-	}
+		.opal-switch-menu__content .opal-button:not(:last-child) .opal-button__control,
+		.opal-switch-menu__content .opal-button:not(:last-child) .opal-button__control::before {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}

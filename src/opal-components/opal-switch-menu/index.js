@@ -4,6 +4,8 @@ let { Component } = require('rionite');
 
 module.exports = Component.extend('opal-switch-menu', {
 	Static: {
+		template: '<rt-content class="opal-switch-menu__content"/>',
+
 		assets: {
 			':component': {
 				'on-check'({ target: checkedButton }) {

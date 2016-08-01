@@ -332,6 +332,7 @@ module.exports = Component.extend('opal-select', {
 	},
 
 	_focusOptions() {
+		let multiple = this.props.multiple;
 		let options = this.options;
 		let optionForFocus;
 
@@ -339,7 +340,7 @@ module.exports = Component.extend('opal-select', {
 			let option = options[i];
 
 			if (!option.props.disabled) {
-				if (option.selected) {
+				if (multiple || !option.selected) {
 					optionForFocus = option;
 					break;
 				}
