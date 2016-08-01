@@ -1,14 +1,17 @@
-require('./opal-tab-list');
-require('./opal-tab-panel');
 require('./index.css');
 
 let { Component } = require('rionite');
+let OpalTabList = require('./opal-tab-list');
+let OpalTabPanel = require('./opal-tab-panel');
 
 let indexOf = Array.prototype.indexOf;
 let forEach = Array.prototype.forEach;
 
 module.exports = Component.extend('opal-tabs', {
 	Static: {
+		OpalTabList,
+		OpalTabPanel,
+
 		template: require('./index.html'),
 
 		assets: {

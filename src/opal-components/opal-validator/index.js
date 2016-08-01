@@ -1,10 +1,12 @@
-require('./opal-validator-rule');
 require('./index.css');
 
 let { Component } = require('rionite');
+let OpalValidatorRule = require('./opal-validator-rule');
 
 module.exports = Component.extend('opal-validator', {
 	Static: {
+		OpalValidatorRule,
+
 		props: {
 			valid: true
 		},

@@ -1,7 +1,7 @@
-require('./opal-route');
 require('./index.css');
 
 let { Component, utils: { hyphenize, escapeHTML } } = require('rionite');
+let OpalRoute = require('./opal-route');
 let escapeRegExp = require('./escapeRegExp');
 let PathNodeType = require('./PathNodeType');
 let parsePath = require('./parsePath');
@@ -10,6 +10,10 @@ let createObject = Object.create;
 let forEach = Array.prototype.forEach;
 
 module.exports = Component.extend('opal-router', {
+	Static: {
+		OpalRoute
+	},
+
 	_route: null,
 	_componentElement: null,
 

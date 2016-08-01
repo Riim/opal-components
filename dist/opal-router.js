@@ -59,7 +59,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 	__webpack_require__(17);
-	__webpack_require__(18);
 
 	var _require = __webpack_require__(3);
 
@@ -68,6 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var hyphenize = _require$utils.hyphenize;
 	var escapeHTML = _require$utils.escapeHTML;
 
+	var OpalRoute = __webpack_require__(18);
 	var escapeRegExp = __webpack_require__(19);
 	var PathNodeType = __webpack_require__(20);
 	var parsePath = __webpack_require__(21);
@@ -76,6 +76,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var forEach = Array.prototype.forEach;
 
 	module.exports = Component.extend('opal-router', {
+		Static: {
+			OpalRoute: OpalRoute
+		},
+
 		_route: null,
 		_componentElement: null,
 
@@ -239,6 +243,23 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 15 */,
 /* 16 */,
 /* 17 */
+/***/ function(module, exports) {
+
+	module.exports = (function(d) {
+	        var head = d.head || d.getElementsByTagName('head')[0];
+	        if (head) {
+	            var style = d.createElement('style');
+	            style.type = 'text/css';
+	            style.textContent = ".opal-router{display:block}";
+	            head.appendChild(style);
+	            return style;
+	        }
+	        return null;
+	    })(document);
+
+
+/***/ },
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -256,23 +277,6 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		}
 	});
-
-/***/ },
-/* 18 */
-/***/ function(module, exports) {
-
-	module.exports = (function(d) {
-	        var head = d.head || d.getElementsByTagName('head')[0];
-	        if (head) {
-	            var style = d.createElement('style');
-	            style.type = 'text/css';
-	            style.textContent = ".opal-router{display:block}";
-	            head.appendChild(style);
-	            return style;
-	        }
-	        return null;
-	    })(document);
-
 
 /***/ },
 /* 19 */

@@ -58,15 +58,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	__webpack_require__(43);
-	__webpack_require__(46);
 
 	var _require = __webpack_require__(3);
 
 	var Component = _require.Component;
 
+	var OpalValidatorRule = __webpack_require__(44);
 
 	module.exports = Component.extend('opal-validator', {
 		Static: {
+			OpalValidatorRule: OpalValidatorRule,
+
 			props: {
 				valid: true
 			},
@@ -138,11 +140,29 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ },
 
 /***/ 43:
+/***/ function(module, exports) {
+
+	module.exports = (function(d) {
+	        var head = d.head || d.getElementsByTagName('head')[0];
+	        if (head) {
+	            var style = d.createElement('style');
+	            style.type = 'text/css';
+	            style.textContent = ".opal-validator{position:relative;display:inline-block}.opal-validator[valid=no] .opal-validator__input .opal-text-input__control{border-color:#cf1002}";
+	            head.appendChild(style);
+	            return style;
+	        }
+	        return null;
+	    })(document);
+
+
+/***/ },
+
+/***/ 44:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(44);
+	__webpack_require__(45);
 
 	var _require = __webpack_require__(3);
 
@@ -158,7 +178,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				popoverFrom: 'right'
 			},
 
-			template: __webpack_require__(45),
+			template: __webpack_require__(46),
 
 			assets: {
 				messagePopover: {}
@@ -175,7 +195,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 44:
+/***/ 45:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -193,28 +213,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 45:
-/***/ function(module, exports) {
-
-	module.exports = "<ips-popover class=\"opal-validator-rule__message-popover\" from=\"{props.popoverFrom}\"> <rt-content class=\"opal-validator-rule__content\"></rt-content> </ips-popover>"
-
-/***/ },
-
 /***/ 46:
 /***/ function(module, exports) {
 
-	module.exports = (function(d) {
-	        var head = d.head || d.getElementsByTagName('head')[0];
-	        if (head) {
-	            var style = d.createElement('style');
-	            style.type = 'text/css';
-	            style.textContent = ".opal-validator{position:relative;display:inline-block}.opal-validator[valid=no] .opal-validator__input .opal-text-input__control{border-color:#cf1002}";
-	            head.appendChild(style);
-	            return style;
-	        }
-	        return null;
-	    })(document);
-
+	module.exports = "<ips-popover class=\"opal-validator-rule__message-popover\" from=\"{props.popoverFrom}\"> <rt-content class=\"opal-validator-rule__content\"></rt-content> </ips-popover>"
 
 /***/ }
 

@@ -1,15 +1,17 @@
-require('./opal-select-option');
 require('./index.css');
 require('./opal-select__icon-chevron-down.svg');
 
 let { utils: { nextTick }, cellx } = require('cellx');
 let { Component } = require('rionite');
+let OpalSelectOption = require('./opal-select-option');
 let isEqualArray = require('./isEqualArray');
 
 let map = Array.prototype.map;
 
 module.exports = Component.extend('opal-select', {
 	Static: {
+		OpalSelectOption,
+
 		props: {
 			type: String,
 			size: 'm',
