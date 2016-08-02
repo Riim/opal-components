@@ -23,6 +23,39 @@
 	<script src="dist/opal-router.js"></script>
 	<script src="dist/opal-code-listing.js"></script>
 	<script src="dist/focusHighlightController.js"></script>
+	<script>
+
+var items = [];
+
+for (var i = 0, l = 1000; i < l; i++) {
+	items[i] = { id: i.toString(), value: i };
+}
+
+var dataProvider1 = {
+	getNext: function(count, after, query) {
+		if (count === void 0) {
+			count = 50;
+		}
+
+		var filteredItems = query ? items.filter(function(item) {
+			return item.value.toString().indexOf(query) != -1;
+		}) : items;
+		var from = after ? filteredItems.findIndex(function(item) {
+			return item.id == after;
+		}) + 1 : 0;
+
+		return new Promise(function(resolve) {
+			setTimeout(function() {
+				resolve({
+					items: filteredItems.slice(from, from + count),
+					total: filteredItems.length
+				});
+			}, 500);
+		});
+	}
+};
+
+	</script>
 
 	<style>
 
@@ -31,6 +64,7 @@ html, body {
 	color: hsl(0,0%,20%);
 	font-size: 16px;
 	font-family: Helvetica, Arial, sans-serif;
+	line-height: 1.5;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
@@ -55,7 +89,12 @@ body {
 		<opal-button type="danger">Button</opal-button>
 		<opal-button type="action" checkable checked>Button</opal-button>
 		<opal-button disabled>Button</opal-button>
-		<opal-button type="action" disabled>Button</opal-button><br><br>
+		<opal-button type="action" disabled>Button</opal-button>
+	</div>
+</opal-code-listing>
+
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
 		<opal-button size="s">Button</opal-button>
 		<opal-button type="action" size="s">Button</opal-button>
 		<opal-button type="danger" size="s">Button</opal-button>
@@ -176,20 +215,20 @@ body {
 <opal-code-listing>
 	<div class="opal-code-listing__markup">
 		<opal-select placeholder="Select">
-			<opal-select-option selected>Option 1</opal-select-option>
-			<opal-select-option>Option 2</opal-select-option>
-			<opal-select-option>Option 3</opal-select-option>
-			<opal-select-option disabled>Option 4 (disabled)</opal-select-option>
-			<opal-select-option>Option 5</opal-select-option>
-			<opal-select-option disabled>Option 6 (disabled)</opal-select-option>
+			<opal-select-option text="Option 1" selected></opal-select-option>
+			<opal-select-option text="Option 2"></opal-select-option>
+			<opal-select-option text="Option 3"></opal-select-option>
+			<opal-select-option text="Option 4 (disabled)" disabled></opal-select-option>
+			<opal-select-option text="Option 5"></opal-select-option>
+			<opal-select-option text="Option 6 (disabled)" disabled></opal-select-option>
 		</opal-select>
 
 		<opal-select placeholder="Select" multiple>
-			<opal-select-option selected>Option 1</opal-select-option>
-			<opal-select-option selected>Option 2</opal-select-option>
-			<opal-select-option>Option 3</opal-select-option>
-			<opal-select-option>Option 4</opal-select-option>
-			<opal-select-option>Option 5</opal-select-option>
+			<opal-select-option text="Option 1" selected></opal-select-option>
+			<opal-select-option text="Option 2" selected></opal-select-option>
+			<opal-select-option text="Option 3"></opal-select-option>
+			<opal-select-option text="Option 4"></opal-select-option>
+			<opal-select-option text="Option 5"></opal-select-option>
 		</opal-select>
 	</div>
 </opal-code-listing>
@@ -201,17 +240,17 @@ body {
 		<opal-group>
 			<opal-select placeholder="Select">
 				<opal-popover class="opal-select__menu" from="bottom" auto-closing>
-					<opal-select-option>Option 1</opal-select-option>
-					<opal-select-option>Option 2</opal-select-option>
-					<opal-select-option>Option 3</opal-select-option>
+					<opal-select-option text="Option 1"></opal-select-option>
+					<opal-select-option text="Option 2"></opal-select-option>
+					<opal-select-option text="Option 3"></opal-select-option>
 				</opal-popover>
 			</opal-select>
 
 			<opal-select type="action" placeholder="Select">
 				<opal-popover class="opal-select__menu" auto-closing>
-					<opal-select-option>Option 1</opal-select-option>
-					<opal-select-option>Option 2</opal-select-option>
-					<opal-select-option>Option 3</opal-select-option>
+					<opal-select-option text="Option 1"></opal-select-option>
+					<opal-select-option text="Option 2"></opal-select-option>
+					<opal-select-option text="Option 3"></opal-select-option>
 				</opal-popover>
 			</opal-select>
 		</opal-group>
@@ -224,6 +263,46 @@ body {
 	<div class="opal-code-listing__markup">
 		<opal-loader shown></opal-loader><br>
 		<opal-loader size="s" shown></opal-loader>
+	</div>
+</opal-code-listing>
+
+<h1>opal-filtered-list</h1>
+
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<opal-filtered-list>
+			<opal-loaded-list class="opal-filtered-list__list" provider="dataProvider1">
+				{$item.value}
+			</opal-loaded-list>
+		</opal-filtered-list>
+	</div>
+</opal-code-listing>
+
+<h1>opal-select + opal-filtered-list</h1>
+
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<opal-select>
+			<opal-popover class="opal-select__menu" from="bottom" auto-closing>
+				<opal-filtered-list class="opal-select__filtered-list">
+					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__list"
+							provider="dataProvider1">
+						<opal-select-option text="{$item.value}"></opal-select-option>
+					</opal-loaded-list>
+				</opal-filtered-list>
+			</opal-popover>
+		</opal-select>
+
+		<opal-select multiple>
+			<opal-popover class="opal-select__menu" from="bottom" auto-closing>
+				<opal-filtered-list class="opal-select__filtered-list">
+					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__list"
+							provider="dataProvider1">
+						<opal-select-option text="{$item.value}"></opal-select-option>
+					</opal-loaded-list>
+				</opal-filtered-list>
+			</opal-popover>
+		</opal-select>
 	</div>
 </opal-code-listing>
 

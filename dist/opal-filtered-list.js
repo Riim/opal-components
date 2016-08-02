@@ -80,6 +80,10 @@ return /******/ (function(modules) { // webpackBootstrap
 					selector: '&__list'
 				}
 			}
+		},
+
+		focus: function focus() {
+			this.tfQuery.focus();
 		}
 	});
 
@@ -100,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-filtered-list__tf-query-wrapper{display:block;margin-bottom:15px}.opal-text-input.opal-filtered-list__tf-query{width:100%}";
+	            style.textContent = ".opal-filtered-list__tf-query-wrapper{display:block;margin-bottom:15px}.opal-text-input.opal-filtered-list__tf-query{display:block;width:auto}.opal-select .opal-popover{padding-top:16px;padding-bottom:12px;min-width:240px}.opal-select .opal-popover .opal-filtered-list__tf-query-wrapper{margin-bottom:12px}.opal-select .opal-popover .opal-filtered-list__tf-query{margin:0 10px}.opal-select .opal-popover .opal-loaded-list{height:360px}";
 	            head.appendChild(style);
 	            return style;
 	        }

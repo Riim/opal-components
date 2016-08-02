@@ -59,14 +59,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(26);
 	__webpack_require__(27);
 
-	var _require = __webpack_require__(2);
+	var cellx = __webpack_require__(2);
 
-	var nextTick = _require.utils.nextTick;
-	var cellx = _require.cellx;
+	var _require = __webpack_require__(3);
 
-	var _require2 = __webpack_require__(3);
-
-	var Component = _require2.Component;
+	var Component = _require.Component;
+	var RtRepeat = _require.components.RtRepeat;
 
 	var OpalSelectOption = __webpack_require__(28);
 	var isEqualArray = __webpack_require__(31);
@@ -109,32 +107,72 @@ return /******/ (function(modules) { // webpackBootstrap
 					'on-close': function onClose() {
 						this.close();
 					},
-					'on-change': function onChange() {
+					'on-change': function onChange(evt) {
+						if (!(evt.target instanceof RtRepeat)) {
+							return;
+						}
+
 						this._options.pull();
+						this._updateOptions();
 					},
 					'on-select': function onSelect(_ref) {
 						var selectedOption = _ref.target;
 
-						if (!this.props.multiple) {
-							this.selectedOptions.forEach(function (option) {
-								if (option != selectedOption) {
-									option.deselect();
-								}
-							});
+						if (!(selectedOption instanceof OpalSelectOption)) {
+							return;
+						}
+
+						if (this.props.multiple) {
+							var value = this.value;
+
+							if (value.push(selectedOption.value) == 1) {
+								this.text = selectedOption.text;
+							} else {
+								this.text += ', ' + selectedOption.text;
+							}
+						} else {
+							this.value = selectedOption.value;
+							this.text = selectedOption.text;
+
+							this._updateOptions();
 
 							this.close();
 							this.focus();
 						}
 					},
-					'on-deselect': function onDeselect(evt) {
-						if (!this.props.multiple) {
-							evt.target.select();
+					'on-deselect': function onDeselect(_ref2) {
+						var deselectedOption = _ref2.target;
+
+						if (!(deselectedOption instanceof OpalSelectOption)) {
+							return;
+						}
+
+						if (this.props.multiple) {
+							var value = this.value;
+							var index = value.indexOf(deselectedOption.value);
+
+							value.splice(index, 1);
+
+							if (value.length) {
+								if (index) {
+									this.text = index == value.length ? this.text.slice(0, -(deselectedOption.text.length + 2)) : this.text.split(', ' + deselectedOption.text + ', ').join(', ');
+								} else {
+									this.text = this.text.slice(deselectedOption.text.length + 2);
+								}
+							} else {
+								this.text = this.props.placeholder;
+							}
+						} else {
+							deselectedOption.select();
 
 							this.close();
 							this.focus();
 						}
 					}
-				}
+				},
+
+				filteredList: {},
+				loadedList: {}
 			}
 		},
 
@@ -150,37 +188,45 @@ return /******/ (function(modules) { // webpackBootstrap
 					}) : [];
 					return oldOptions && isEqualArray(options, oldOptions) ? oldOptions : options;
 				},
-				selectedOptions: function selectedOptions(push, fail, oldOptions) {
-					var options = this.options.filter(function (option) {
-						return option.selected;
-					});
-					return oldOptions && isEqualArray(options, oldOptions) ? oldOptions : options;
-				},
-				value: function value() {
-					var selectedOptions = this.selectedOptions;
 
-					if (this.props.multiple) {
-						return selectedOptions.map(function (option) {
-							return option.value;
-						});
-					}
-					return selectedOptions.length ? selectedOptions[0].value : void 0;
-				},
-				selectedOptionsText: function selectedOptionsText() {
-					return this.selectedOptions.map(function (option) {
-						return option.text.trim();
-					}).join(', ') || this.props.placeholder;
-				}
+
+				value: void 0,
+				text: void 0
 			});
 		},
 		ready: function ready() {
-			var _this = this;
-
 			this.optionElements = this.element.getElementsByClassName('opal-select-option');
 
-			nextTick(function () {
-				_this._options.pull();
-			});
+			var props = this.props;
+
+			if (props.multiple) {
+				var selectedOptions = this.options.reduce(function (selectedOptions, option) {
+					if (option.selected) {
+						selectedOptions.push(option);
+					}
+
+					return selectedOptions;
+				}, []);
+
+				this.value = selectedOptions.map(function (option) {
+					return option.value;
+				});
+				this.text = selectedOptions.map(function (option) {
+					return option.text;
+				}).join(', ') || props.placeholder;
+			} else {
+				var selectedOption = this.options.find(function (option) {
+					return option.selected;
+				});
+
+				if (selectedOption) {
+					this.value = selectedOption.value;
+					this.text = selectedOption.text;
+				} else {
+					this.value = null;
+					this.text = props.placeholder;
+				}
+			}
 		},
 		elementAttached: function elementAttached() {
 			this.listenTo(this, 'change:value', this._onValueChange);
@@ -196,6 +242,15 @@ return /******/ (function(modules) { // webpackBootstrap
 				value: evt.value
 			});
 		},
+		_updateOptions: function _updateOptions() {
+			var value = this.value;
+
+			this.options.forEach(this.props.multiple ? function (option) {
+				option.selected = value && value.indexOf(option.value) != -1;
+			} : function (option) {
+				option.selected = option.value == value;
+			});
+		},
 
 
 		/**
@@ -208,7 +263,19 @@ return /******/ (function(modules) { // webpackBootstrap
 				this.button.check();
 				this.menu.open();
 
-				this._focusOptions();
+				var loadedList = this.loadedList;
+
+				if (loadedList) {
+					loadedList.checkLoading();
+				}
+
+				var filteredList = this.filteredList;
+
+				if (filteredList) {
+					filteredList.focus();
+				} else {
+					this._focusOptions();
+				}
 
 				this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
 
@@ -510,6 +577,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			props: {
 				value: String,
+				text: String,
 				selected: false,
 				focused: false,
 				tabIndex: 0,
@@ -529,24 +597,29 @@ return /******/ (function(modules) { // webpackBootstrap
 					'on-click': function onClick() {
 						this._click();
 					}
-				},
-
-				content: {}
+				}
 			}
 		},
 
 		_focused: false,
 
 		initialize: function initialize() {
+			var props = this.props;
+			var text = props.text;
+
+			if (text === void 0) {
+				throw new TypeError('"text" property is required');
+			}
+
 			cellx.define(this, {
 				_tabIndex: function _tabIndex() {
-					return this.props.disabled ? -1 : this.props.tabIndex;
+					return props.disabled ? -1 : props.tabIndex;
 				}
 			});
 		},
 		ready: function ready() {
-			if (!this.props.value) {
-				this.props.value = this.content.element.innerHTML;
+			if (this.props.value === void 0) {
+				this.props.value = this.props.text;
 			}
 		},
 		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
@@ -572,7 +645,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @type {string}
 	  */
 		get value() {
-			return this.props.value;
+			var props = this.props;
+			return props.value === void 0 ? props.text : props.value;
 		},
 		set value(value) {
 			this.props.value = value;
@@ -582,7 +656,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @type {string}
 	  */
 		get text() {
-			return this.content ? this.content.element.innerHTML.replace(/<[^>]+>/g, '') : '';
+			return this.props.text.trim().replace(',', ' ');
+		},
+		set text(text) {
+			this.props.text = text;
 		},
 
 		/**
@@ -701,7 +778,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 30 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"opal-select-option__control\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-select-option__content\"></rt-content> </span>"
+	module.exports = "<span class=\"opal-select-option__control\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-select-option__content\">{props.text}</rt-content> </span>"
 
 /***/ },
 /* 31 */
@@ -732,7 +809,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 32 */
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content select=\".opal-select__button\"> <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> <template is=\"rt-if-then\" if=\"props.text\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\">{selectedOptionsText}</template> <svg viewBox=\"0 0 24 13\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-select__icon-chevron-down\"></use></svg> </opal-button> </rt-content> <rt-content select=\".opal-select__menu\"> <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> <rt-content select=\"opal-select-option\"></rt-content> </opal-dropdown> </rt-content>"
+	module.exports = "<rt-content select=\".opal-select__button\"> <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> <template is=\"rt-if-then\" if=\"props.text\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\">{text}</template> <svg viewBox=\"0 0 24 13\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-select__icon-chevron-down\"></use></svg> </opal-button> </rt-content> <rt-content select=\".opal-select__menu\"> <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> <rt-content select=\"opal-select-option\"></rt-content> </opal-dropdown> </rt-content>"
 
 /***/ }
 /******/ ])

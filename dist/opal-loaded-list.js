@@ -103,7 +103,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		_lastAppliedQuery: void 0,
 
 		initialize: function initialize() {
-			this.dataProvider = this.ownerComponent[this.props.provider];
+			this.dataProvider = (this.ownerComponent || window)[this.props.provider];
 
 			cellx.define(this, {
 				list: cellx.list(),
@@ -112,6 +112,9 @@ return /******/ (function(modules) { // webpackBootstrap
 				loadingCheckPlanned: false,
 				loading: false,
 
+				empty: function empty() {
+					return !this.list.length;
+				},
 				notFoundShown: function notFoundShown() {
 					return this.total === 0 && !this.loadingCheckPlanned && !this.loading;
 				},
@@ -246,7 +249,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-loaded-list{position:relative;display:block;overflow-y:auto;height:500px}.opal-loaded-list__not-found{position:absolute;top:0;right:0;bottom:0;left:0;display:none;text-align:center;white-space:nowrap}.opal-loaded-list__not-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-loaded-list__not-found-message{color:gray;vertical-align:middle;white-space:normal}.opal-loaded-list__not-found[shown]{display:inline-block}.opal-loaded-list__list-item{display:block}";
+	            style.textContent = ".opal-loaded-list{position:relative;display:block;overflow-y:auto;height:500px}.opal-loaded-list__not-found{position:absolute;top:0;right:0;bottom:0;left:0;display:none;text-align:center;white-space:nowrap}.opal-loaded-list__not-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-loaded-list__not-found-message{color:gray;vertical-align:middle;white-space:normal}.opal-loaded-list__not-found[shown]{display:inline-block}.opal-loaded-list__list-item{display:block}.opal-loaded-list__loader[align-center]{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -259,7 +262,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 16:
 /***/ function(module, exports) {
 
-	module.exports = "{{block not_found }} <div class=\"opal-loaded-list__not-found\" shown=\"{notFoundShown}\"> <span class=\"opal-loaded-list__not-found-message\">{{i18n.notFoundMessage}}</span> </div> {{/block}} {{block list }} <div class=\"opal-loaded-list__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"{props.itemAs} of list\" strip=\"\"> <rt-content class=\"opal-loaded-list__list-item\" get-context=\"_getContentContext\"></rt-content> </template> {{/block}} </div> {{/block}} {{block loader }} <opal-loader class=\"opal-loaded-list__loader\" shown=\"{loaderShown}\"></opal-loader> {{/block}}"
+	module.exports = "{{block list }} <div class=\"opal-loaded-list__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"{props.itemAs} of list\" strip=\"\"> <rt-content class=\"opal-loaded-list__list-item\" get-context=\"_getContentContext\"></rt-content> </template> {{/block}} </div> {{/block}} {{block loader }} <opal-loader class=\"opal-loaded-list__loader\" shown=\"{loaderShown}\" align-center=\"{empty}\"></opal-loader> {{/block}} {{block not_found }} <div class=\"opal-loaded-list__not-found\" shown=\"{notFoundShown}\"> <span class=\"opal-loaded-list__not-found-message\">{{i18n.notFoundMessage}}</span> </div> {{/block}}"
 
 /***/ }
 

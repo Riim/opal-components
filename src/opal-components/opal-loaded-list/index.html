@@ -1,8 +1,3 @@
-{{block not_found }}
-	<div class="opal-loaded-list__not-found" shown="{notFoundShown}">
-		<span class="opal-loaded-list__not-found-message">{{i18n.notFoundMessage}}</span>
-	</div>
-{{/block}}
 {{block list }}
 	<div class="opal-loaded-list__list">
 		{{block list_inner }}
@@ -12,6 +7,13 @@
 		{{/block}}
 	</div>
 {{/block}}
+
 {{block loader }}
-	<opal-loader class="opal-loaded-list__loader" shown="{loaderShown}"></opal-loader>
+	<opal-loader class="opal-loaded-list__loader" shown="{loaderShown}" align-center="{empty}"></opal-loader>
+{{/block}}
+
+{{block not_found }}
+	<div class="opal-loaded-list__not-found" shown="{notFoundShown}">
+		<span class="opal-loaded-list__not-found-message">{{i18n.notFoundMessage}}</span>
+	</div>
 {{/block}}

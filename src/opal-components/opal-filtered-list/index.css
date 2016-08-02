@@ -5,10 +5,28 @@
 		margin-bottom: 15px;
 	}
 		.opal-text-input.opal-filtered-list__tf-query {
-			width: 100%;
+			display: block;
+			width: auto;
 		}
 
 	.opal-filtered-list__list-wrapper {
 	}
 		.opal-filtered-list__list {
 		}
+
+.opal-select .opal-popover {
+	padding-top: 16px;
+	padding-bottom: 12px;
+	min-width: 240px;
+
+	& .opal-filtered-list__tf-query-wrapper {
+		margin-bottom: 12px;
+	}
+		& .opal-filtered-list__tf-query {
+			margin: 0 10px;
+		}
+
+	& .opal-loaded-list {
+		height: 360px;
+	}
+}

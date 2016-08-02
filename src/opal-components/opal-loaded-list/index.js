@@ -35,7 +35,7 @@ module.exports = Component.extend('opal-loaded-list', {
 	_lastAppliedQuery: void 0,
 
 	initialize() {
-		this.dataProvider = this.ownerComponent[this.props.provider];
+		this.dataProvider = (this.ownerComponent || window)[this.props.provider];
 
 		cellx.define(this, {
 			list: cellx.list(),
@@ -43,6 +43,10 @@ module.exports = Component.extend('opal-loaded-list', {
 
 			loadingCheckPlanned: false,
 			loading: false,
+
+			empty() {
+				return !this.list.length;
+			},
 
 			notFoundShown() {
 				return this.total === 0 && !this.loadingCheckPlanned && !this.loading;

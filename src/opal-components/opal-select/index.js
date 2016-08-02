@@ -1,8 +1,8 @@
 require('./index.css');
 require('./opal-select__icon-chevron-down.svg');
 
-let { utils: { nextTick }, cellx } = require('cellx');
-let { Component } = require('rionite');
+let cellx = require('cellx');
+let { Component, components: { RtRepeat } } = require('rionite');
 let OpalSelectOption = require('./opal-select-option');
 let isEqualArray = require('./isEqualArray');
 
@@ -47,32 +47,79 @@ module.exports = Component.extend('opal-select', {
 					this.close();
 				},
 
-				'on-change'() {
+				'on-change'(evt) {
+					if (!(evt.target instanceof RtRepeat)) {
+						return;
+					}
+
 					this._options.pull();
+					this._updateOptions();
 				},
 
 				'on-select'({ target: selectedOption }) {
-					if (!this.props.multiple) {
-						this.selectedOptions.forEach(option => {
-							if (option != selectedOption) {
-								option.deselect();
-							}
-						});
+					if (!(selectedOption instanceof OpalSelectOption)) {
+						return;
+					}
+
+					if (this.props.multiple) {
+						let value = this.value;
+
+						if (value.push(selectedOption.value) == 1) {
+							this.text = selectedOption.text;
+						} else {
+							this.text += ', ' + selectedOption.text;
+						}
+					} else {
+						this.value = selectedOption.value;
+						this.text = selectedOption.text;
+
+						this._updateOptions();
 
 						this.close();
 						this.focus();
 					}
 				},
 
-				'on-deselect'(evt) {
-					if (!this.props.multiple) {
-						evt.target.select();
+				'on-deselect'({ target: deselectedOption }) {
+					if (!(deselectedOption instanceof OpalSelectOption)) {
+						return;
+					}
+
+					if (this.props.multiple) {
+						let value = this.value;
+						let index = value.indexOf(deselectedOption.value);
+
+						value.splice(index, 1);
+
+						if (value.length) {
+							if (index) {
+								this.text = index == value.length ?
+									this.text.slice(
+										0,
+										-(deselectedOption.text.length + 2)
+									) :
+									this.text
+										.split(`, ${ deselectedOption.text }, `)
+										.join(', ');
+							} else {
+								this.text = this.text.slice(
+									deselectedOption.text.length + 2
+								);
+							}
+						} else {
+							this.text = this.props.placeholder;
+						}
+					} else {
+						deselectedOption.select();
 
 						this.close();
 						this.focus();
 					}
 				}
-			}
+			},
+
+			filteredList: {},
+			loadedList: {}
 		}
 	},
 
@@ -87,32 +134,39 @@ module.exports = Component.extend('opal-select', {
 				return oldOptions && isEqualArray(options, oldOptions) ? oldOptions : options;
 			},
 
-			selectedOptions(push, fail, oldOptions) {
-				let options = this.options.filter(option => option.selected);
-				return oldOptions && isEqualArray(options, oldOptions) ? oldOptions : options;
-			},
-
-			value() {
-				let selectedOptions = this.selectedOptions;
-
-				if (this.props.multiple) {
-					return selectedOptions.map(option => option.value);
-				}
-				return selectedOptions.length ? selectedOptions[0].value : void 0;
-			},
-
-			selectedOptionsText() {
-				return this.selectedOptions.map(option => option.text.trim()).join(', ') || this.props.placeholder;
-			}
+			value: void 0,
+			text: void 0
 		});
 	},
 
 	ready() {
 		this.optionElements = this.element.getElementsByClassName('opal-select-option');
 
-		nextTick(() => {
-			this._options.pull();
-		});
+		let props = this.props;
+
+		if (props.multiple) {
+			let selectedOptions = this.options.reduce((selectedOptions, option) => {
+				if (option.selected) {
+					selectedOptions.push(option);
+				}
+
+				return selectedOptions;
+			}, []);
+
+			this.value = selectedOptions.map(option => option.value);
+			this.text = selectedOptions.map(option => option.text).join(', ') ||
+				props.placeholder;
+		} else {
+			let selectedOption = this.options.find(option => option.selected);
+
+			if (selectedOption) {
+				this.value = selectedOption.value;
+				this.text = selectedOption.text;
+			} else {
+				this.value = null;
+				this.text = props.placeholder;
+			}
+		}
 	},
 
 	elementAttached() {
@@ -132,6 +186,16 @@ module.exports = Component.extend('opal-select', {
 		});
 	},
 
+	_updateOptions() {
+		let value = this.value;
+
+		this.options.forEach(this.props.multiple ? option => {
+			option.selected = value && value.indexOf(option.value) != -1;
+		} : option => {
+			option.selected = option.value == value;
+		});
+	},
+
 	/**
 	 * @typesign () -> boolean;
 	 */
@@ -142,7 +206,19 @@ module.exports = Component.extend('opal-select', {
 			this.button.check();
 			this.menu.open();
 
-			this._focusOptions();
+			let loadedList = this.loadedList;
+
+			if (loadedList) {
+				loadedList.checkLoading();
+			}
+
+			let filteredList = this.filteredList;
+
+			if (filteredList) {
+				filteredList.focus();
+			} else {
+				this._focusOptions();
+			}
 
 			this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
 

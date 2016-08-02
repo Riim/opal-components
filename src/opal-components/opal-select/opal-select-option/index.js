@@ -7,6 +7,7 @@ module.exports = Component.extend('opal-select-option', {
 	Static: {
 		props: {
 			value: String,
+			text: String,
 			selected: false,
 			focused: false,
 			tabIndex: 0,
@@ -28,25 +29,30 @@ module.exports = Component.extend('opal-select-option', {
 				'on-click'() {
 					this._click();
 				}
-			},
-
-			content: {}
+			}
 		}
 	},
 
 	_focused: false,
 
 	initialize() {
+		let props = this.props;
+		let text = props.text;
+
+		if (text === void 0) {
+			throw new TypeError('"text" property is required');
+		}
+
 		cellx.define(this, {
 			_tabIndex() {
-				return this.props.disabled ? -1 : this.props.tabIndex;
+				return props.disabled ? -1 : props.tabIndex;
 			}
 		});
 	},
 
 	ready() {
-		if (!this.props.value) {
-			this.props.value = this.content.element.innerHTML;
+		if (this.props.value === void 0) {
+			this.props.value = this.props.text;
 		}
 	},
 
@@ -74,7 +80,8 @@ module.exports = Component.extend('opal-select-option', {
 	 * @type {string}
 	 */
 	get value() {
-		return this.props.value;
+		let props = this.props;
+		return props.value === void 0 ? props.text : props.value;
 	},
 	set value(value) {
 		this.props.value = value;
@@ -84,7 +91,10 @@ module.exports = Component.extend('opal-select-option', {
 	 * @type {string}
 	 */
 	get text() {
-		return this.content ? this.content.element.innerHTML.replace(/<[^>]+>/g, '') : '';
+		return this.props.text.trim().replace(',', ' ');
+	},
+	set text(text) {
+		this.props.text = text;
 	},
 
 	/**

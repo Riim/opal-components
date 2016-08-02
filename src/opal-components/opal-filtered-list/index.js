@@ -17,5 +17,9 @@ module.exports = Component.extend('opal-filtered-list', {
 				selector: '&__list'
 			}
 		}
+	},
+
+	focus() {
+		this.tfQuery.focus();
 	}
 });
