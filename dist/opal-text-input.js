@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(41);
+	__webpack_require__(45);
 
 	var _require = __webpack_require__(3);
 
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(42),
+			template: __webpack_require__(46),
 
 			assets: {
 				control: {
@@ -181,7 +181,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 41:
+/***/ 45:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -199,7 +199,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 42:
+/***/ 46:
 /***/ function(module, exports) {
 
 	module.exports = "<input class=\"opal-text-input__control\" type=\"{props.controlType}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\">"

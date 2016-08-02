@@ -56,8 +56,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(22);
-	__webpack_require__(23);
+	__webpack_require__(26);
+	__webpack_require__(27);
 
 	var _require = __webpack_require__(2);
 
@@ -68,8 +68,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Component = _require2.Component;
 
-	var OpalSelectOption = __webpack_require__(24);
-	var isEqualArray = __webpack_require__(27);
+	var OpalSelectOption = __webpack_require__(28);
+	var isEqualArray = __webpack_require__(31);
 
 	var map = Array.prototype.map;
 
@@ -88,7 +88,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(28),
+			template: __webpack_require__(32),
 
 			assets: {
 				button: {
@@ -465,7 +465,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 19 */,
 /* 20 */,
 /* 21 */,
-/* 22 */
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -482,18 +486,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 23 */
+/* 27 */
 /***/ function(module, exports) {
 
 	(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 24 13\" id=\"opal-select__icon-chevron-down\"><path d=\"M11.5 12.6c-.3 0-.5-.1-.7-.3L.3 1.9C-.1 1.5-.1.8.3.3c.4-.4 1.1-.4 1.6 0l9.7 9.7L21.3.3c.4-.4 1.1-.4 1.6 0 .4.4.4 1.1 0 1.6L12.3 12.3c-.2.2-.5.3-.8.3z\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ },
-/* 24 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(25);
+	__webpack_require__(29);
 
 	var cellx = __webpack_require__(2);
 
@@ -512,7 +516,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(26),
+			template: __webpack_require__(30),
 
 			assets: {
 				control: {
@@ -677,7 +681,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 25 */
+/* 29 */
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -685,7 +689,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-select-option{display:block}.opal-select-option__control{position:relative;display:block;padding:7px 22px;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-select-option__content{position:relative;display:block}.opal-select-option__control:hover{background:#e6e6e6}.opal-select-option__control:focus{outline:none}body:not(._no-focus-highlight) .opal-select-option__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-select-option__control:active{background:#ccc}.opal-select-option[selected] .opal-select-option__control{color:#0d87f2}.opal-select-option[disabled]{opacity:.5;pointer-events:none}.opal-select-option[disabled] .opal-select-option__control{cursor:default}";
+	            style.textContent = ".opal-select-option{display:block}.opal-select-option__control{position:relative;display:block;padding:7px 22px;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-select-option__content{position:relative;display:block}.opal-select-option__control:hover{background:#e6e6e6}.opal-select-option__control:focus{outline:none}.opal-select-option__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-select-option__control:active{background:#ccc}.opal-select-option[selected] .opal-select-option__control{color:#0d87f2}.opal-select-option[disabled]{opacity:.5;pointer-events:none}.opal-select-option[disabled] .opal-select-option__control{cursor:default}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -694,13 +698,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 26 */
+/* 30 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"opal-select-option__control\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-select-option__content\"></rt-content> </span>"
 
 /***/ },
-/* 27 */
+/* 31 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -725,7 +729,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = isEqualArray;
 
 /***/ },
-/* 28 */
+/* 32 */
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content select=\".opal-select__button\"> <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> <template is=\"rt-if-then\" if=\"props.text\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\">{selectedOptionsText}</template> <svg viewBox=\"0 0 24 13\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-select__icon-chevron-down\"></use></svg> </opal-button> </rt-content> <rt-content select=\".opal-select__menu\"> <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> <rt-content select=\"opal-select-option\"></rt-content> </opal-dropdown> </rt-content>"

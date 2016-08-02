@@ -50,13 +50,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(11);
+	__webpack_require__(15);
 
 	var _require = __webpack_require__(2);
 
@@ -86,7 +87,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				notFoundMessage: getText.t('Ничего не найдено')
 			},
 
-			template: Rionite.template(__webpack_require__(12)),
+			template: Rionite.template(__webpack_require__(16)),
 
 			assets: {
 				loader: {}
@@ -222,27 +223,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 1 */,
-/* 2 */
+
+/***/ 2:
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ },
-/* 3 */
+
+/***/ 3:
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */
+
+/***/ 15:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -259,12 +255,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 12 */
+
+/***/ 16:
 /***/ function(module, exports) {
 
 	module.exports = "{{block not_found }} <div class=\"opal-loaded-list__not-found\" shown=\"{notFoundShown}\"> <span class=\"opal-loaded-list__not-found-message\">{{i18n.notFoundMessage}}</span> </div> {{/block}} {{block list }} <div class=\"opal-loaded-list__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"{props.itemAs} of list\" strip=\"\"> <rt-content class=\"opal-loaded-list__list-item\" get-context=\"_getContentContext\"></rt-content> </template> {{/block}} </div> {{/block}} {{block loader }} <opal-loader class=\"opal-loaded-list__loader\" shown=\"{loaderShown}\"></opal-loader> {{/block}}"
 
 /***/ }
-/******/ ])
+
+/******/ })
 });
 ;

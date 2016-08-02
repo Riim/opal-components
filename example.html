@@ -21,6 +21,8 @@
 	<script src="dist/opal-loaded-list.js"></script>
 	<script src="dist/opal-filtered-list.js"></script>
 	<script src="dist/opal-router.js"></script>
+	<script src="dist/opal-code-listing.js"></script>
+	<script src="dist/focusHighlightController.js"></script>
 
 	<style>
 
@@ -36,162 +38,194 @@ html, body {
 	-webkit-tap-highlight-color: transparent;
 }
 
+body {
+	padding: 50px;
+}
+
 	</style>
 </head>
 <body>
 
 <h1>opal-button</h1>
 
-<p>
-	<opal-button>Button</opal-button>
-	<opal-button type="action">Button</opal-button>
-	<opal-button type="danger">Button</opal-button>
-	<opal-button type="action" checkable checked>Button</opal-button>
-	<opal-button disabled>Button</opal-button>
-	<opal-button type="action" disabled>Button</opal-button><br><br>
-	<opal-button size="s">Button</opal-button>
-	<opal-button type="action" size="s">Button</opal-button>
-	<opal-button type="danger" size="s">Button</opal-button>
-</p>
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<opal-button>Button</opal-button>
+		<opal-button type="action">Button</opal-button>
+		<opal-button type="danger">Button</opal-button>
+		<opal-button type="action" checkable checked>Button</opal-button>
+		<opal-button disabled>Button</opal-button>
+		<opal-button type="action" disabled>Button</opal-button><br><br>
+		<opal-button size="s">Button</opal-button>
+		<opal-button type="action" size="s">Button</opal-button>
+		<opal-button type="danger" size="s">Button</opal-button>
+	</div>
+</opal-code-listing>
 
 <h1>opal-text-input</h1>
 
-<p>
-	<opal-text-input value="Value" placeholder="Placeholder"></opal-text-input><br><br>
-	<opal-text-input value="Value" disabled></opal-text-input><br><br>
-	<opal-text-input placeholder="Placeholder" disabled></opal-text-input>
-</p>
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<opal-text-input value="Value" placeholder="Placeholder"></opal-text-input><br><br>
+		<opal-text-input value="Value" disabled></opal-text-input><br><br>
+		<opal-text-input placeholder="Placeholder" disabled></opal-text-input>
+	</div>
+</opal-code-listing>
 
 <h1>opal-button + opal-group</h1>
 
-<p>
-	<opal-group>
-		<opal-button>Button</opal-button>
-		<opal-button checkable>Button</opal-button>
-		<opal-button type="action" checkable>Button</opal-button>
-		<opal-button type="action">Button</opal-button>
-		<opal-button checkable>Button</opal-button>
-	</opal-group>
-</p>
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<opal-group>
+			<opal-button>Button</opal-button>
+			<opal-button checkable>Button</opal-button>
+			<opal-button type="action" checkable>Button</opal-button>
+			<opal-button type="action">Button</opal-button>
+			<opal-button checkable>Button</opal-button>
+		</opal-group>
+	</div>
+</opal-code-listing>
 
 <h1>opal-button + opal-text-input + opal-group</h1>
 
-<p>
-	<opal-group>
-		<opal-button>Button</opal-button>
-		<opal-text-input value="Value" placeholder="Placeholder"></opal-text-input>
-		<opal-button type="action">Button</opal-button>
-	</opal-group>
-</p>
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<opal-group>
+			<opal-button>Button</opal-button>
+			<opal-text-input value="Value" placeholder="Placeholder"></opal-text-input>
+			<opal-button type="action">Button</opal-button>
+		</opal-group>
+	</div>
+</opal-code-listing>
 
 <h1>opal-checkbox</h1>
 
-<p>
-	<opal-checkbox>Label</opal-checkbox>
-	<opal-checkbox checked>Label</opal-checkbox>
-	<opal-checkbox indeterminate>Label</opal-checkbox><br><br>
-	<opal-checkbox disabled>Label</opal-checkbox>
-	<opal-checkbox checked disabled>Label</opal-checkbox>
-	<opal-checkbox indeterminate disabled>Label</opal-checkbox>
-</p>
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<opal-checkbox>Label</opal-checkbox>
+		<opal-checkbox checked>Label</opal-checkbox>
+		<opal-checkbox indeterminate>Label</opal-checkbox><br><br>
+		<opal-checkbox disabled>Label</opal-checkbox>
+		<opal-checkbox checked disabled>Label</opal-checkbox>
+		<opal-checkbox indeterminate disabled>Label</opal-checkbox>
+	</div>
+</opal-code-listing>
 
 <h1>opal-switch</h1>
 
-<p>
-	<opal-switch>Label</opal-switch>
-	<opal-switch checked>Label</opal-switch><br><br>
-	<opal-switch disabled>Label</opal-switch>
-	<opal-switch checked disabled>Label</opal-switch>
-</p>
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<opal-switch>Label</opal-switch>
+		<opal-switch checked>Label</opal-switch><br><br>
+		<opal-switch disabled>Label</opal-switch>
+		<opal-switch checked disabled>Label</opal-switch>
+	</div>
+</opal-code-listing>
 
 <h1>opal-switch-menu</h1>
 
-<p>
-	<opal-switch-menu>
-		<opal-button checkable checked>Option 1</opal-button>
-		<opal-button checkable>Option 2</opal-button>
-		<opal-button checkable>Option 3</opal-button>
-	</opal-switch-menu>
-</p>
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<opal-switch-menu>
+			<opal-button checkable checked>Option 1</opal-button>
+			<opal-button checkable>Option 2</opal-button>
+			<opal-button checkable>Option 3</opal-button>
+		</opal-switch-menu>
+	</div>
+</opal-code-listing>
 
 <h1>opal-tabs</h1>
 
-<p>
-	<opal-tabs>
-		<opal-tab selected>Foo</opal-tab>
-		<opal-tab>Bar</opal-tab>
-		<opal-tab>Baz</opal-tab>
-		<opal-tab-panel>Hello from Foo</opal-tab-panel>
-		<opal-tab-panel>Hello from Bar</opal-tab-panel>
-		<opal-tab-panel>Hello from Baz</opal-tab-panel>
-	</opal-tabs>
-</p>
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<opal-tabs>
+			<opal-tab selected>Foo</opal-tab>
+			<opal-tab>Bar</opal-tab>
+			<opal-tab>Baz</opal-tab>
+			<opal-tab-panel>Hello from Foo</opal-tab-panel>
+			<opal-tab-panel>Hello from Bar</opal-tab-panel>
+			<opal-tab-panel>Hello from Baz</opal-tab-panel>
+		</opal-tabs>
+	</div>
+</opal-code-listing>
 
 <h1>opal-popover</h1>
 
-<div style="position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;">
-	<opal-popover opened>Popover</opal-popover>
-	<opal-popover from="bottom" opened>Popover</opal-popover>
-	<opal-popover from="left" opened>Popover</opal-popover>
-	<opal-popover from="top" opened>Popover</opal-popover>
-</div>
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<div style="position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;">
+			<opal-popover opened>Popover</opal-popover>
+			<opal-popover from="bottom" opened>Popover</opal-popover>
+			<opal-popover from="left" opened>Popover</opal-popover>
+			<opal-popover from="top" opened>Popover</opal-popover>
+		</div>
+	</div>
+</opal-code-listing>
 
 <h1>opal-modal</h1>
 
-<p>
-	<opal-modal id="modal1">Modal</opal-modal>
-	<opal-button onclick="document.getElementById('modal1').$c.open();">Open</opal-button>
-</p>
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<opal-modal id="modal1">Modal</opal-modal>
+		<opal-button onclick="document.getElementById('modal1').$c.open();">Open</opal-button>
+	</div>
+</opal-code-listing>
 
 <h1>opal-select</h1>
 
-<p>
-	<opal-select placeholder="Select">
-		<opal-select-option selected>Option 1</opal-select-option>
-		<opal-select-option>Option 2</opal-select-option>
-		<opal-select-option>Option 3</opal-select-option>
-		<opal-select-option disabled>Option 4 (disabled)</opal-select-option>
-		<opal-select-option>Option 5</opal-select-option>
-		<opal-select-option disabled>Option 6 (disabled)</opal-select-option>
-	</opal-select>
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<opal-select placeholder="Select">
+			<opal-select-option selected>Option 1</opal-select-option>
+			<opal-select-option>Option 2</opal-select-option>
+			<opal-select-option>Option 3</opal-select-option>
+			<opal-select-option disabled>Option 4 (disabled)</opal-select-option>
+			<opal-select-option>Option 5</opal-select-option>
+			<opal-select-option disabled>Option 6 (disabled)</opal-select-option>
+		</opal-select>
 
-	<opal-select placeholder="Select" multiple>
-		<opal-select-option selected>Option 1</opal-select-option>
-		<opal-select-option selected>Option 2</opal-select-option>
-		<opal-select-option>Option 3</opal-select-option>
-		<opal-select-option>Option 4</opal-select-option>
-		<opal-select-option>Option 5</opal-select-option>
-	</opal-select>
-</p>
+		<opal-select placeholder="Select" multiple>
+			<opal-select-option selected>Option 1</opal-select-option>
+			<opal-select-option selected>Option 2</opal-select-option>
+			<opal-select-option>Option 3</opal-select-option>
+			<opal-select-option>Option 4</opal-select-option>
+			<opal-select-option>Option 5</opal-select-option>
+		</opal-select>
+	</div>
+</opal-code-listing>
 
 <h1>opal-select + opal-popover + opal-group</h1>
 
-<p>
-	<opal-group>
-		<opal-select placeholder="Select">
-			<opal-popover class="opal-select__menu" from="bottom" auto-closing>
-				<opal-select-option>Option 1</opal-select-option>
-				<opal-select-option>Option 2</opal-select-option>
-				<opal-select-option>Option 3</opal-select-option>
-			</opal-popover>
-		</opal-select>
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<opal-group>
+			<opal-select placeholder="Select">
+				<opal-popover class="opal-select__menu" from="bottom" auto-closing>
+					<opal-select-option>Option 1</opal-select-option>
+					<opal-select-option>Option 2</opal-select-option>
+					<opal-select-option>Option 3</opal-select-option>
+				</opal-popover>
+			</opal-select>
 
-		<opal-select type="action" placeholder="Select">
-			<opal-popover class="opal-select__menu" auto-closing>
-				<opal-select-option>Option 1</opal-select-option>
-				<opal-select-option>Option 2</opal-select-option>
-				<opal-select-option>Option 3</opal-select-option>
-			</opal-popover>
-		</opal-select>
-	</opal-group>
-</p>
+			<opal-select type="action" placeholder="Select">
+				<opal-popover class="opal-select__menu" auto-closing>
+					<opal-select-option>Option 1</opal-select-option>
+					<opal-select-option>Option 2</opal-select-option>
+					<opal-select-option>Option 3</opal-select-option>
+				</opal-popover>
+			</opal-select>
+		</opal-group>
+	</div>
+</opal-code-listing>
 
 <h1>opal-loader</h1>
 
-<p>
-	<opal-loader shown></opal-loader><br>
-	<opal-loader size="s" shown></opal-loader>
-</p>
+<opal-code-listing>
+	<div class="opal-code-listing__markup">
+		<opal-loader shown></opal-loader><br>
+		<opal-loader size="s" shown></opal-loader>
+	</div>
+</opal-code-listing>
 
 </body>
 </html>

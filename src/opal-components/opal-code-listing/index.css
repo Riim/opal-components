@@ -1,0 +1,36 @@
+.opal-code-listing {
+	display: block;
+	margin-bottom: 30px;
+}
+	.opal-code-listing__content {
+		display: block;
+		padding: 30px;
+		border: 2px solid #232829;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		background: #fff;
+	}
+		.opal-code-listing__markup {
+		}
+
+	.opal-code-listing__code-wrapper {
+		overflow: auto;
+		margin: 0;
+		padding: 1em;
+		border-bottom-right-radius: 3px;
+		border-bottom-left-radius: 3px;
+		background: #232829;
+		color: #f8f8f2;
+		white-space: pre;
+		word-spacing: normal;
+		word-wrap: normal;
+		word-break: normal;
+		tab-size: 4;
+		hyphens: none;
+		font-weight: bold;
+		font-size: 18px;
+		font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+		line-height: 1.5;
+	}
+		.opal-code-listing__code {
+		}

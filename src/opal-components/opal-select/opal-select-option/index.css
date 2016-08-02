@@ -32,7 +32,7 @@
 .opal-select-option__control:focus {
 	outline: none;
 }
-	body:not(._no-focus-highlight) .opal-select-option__control:focus::after {
+	.opal-select-option__control:focus::after {
 		position: absolute;
 		top: 2px;
 		right: 2px;

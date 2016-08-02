@@ -15,10 +15,14 @@ var plugins = [
 ];
 
 module.exports = {
+	watch: argv.dev,
+
 	entry: glob.sync('src/opal-components/*/index.js').reduce(function(entries, p) {
 		entries[p.split(path.sep).slice(-2)[0]] = path.join(__dirname, p);
 		return entries;
-	}, {}),
+	}, {
+		focusHighlightController: path.join(__dirname, 'src/opal-components/focusHighlightController.js')
+	}),
 
 	output: {
 		path: path.join(__dirname, 'dist'),

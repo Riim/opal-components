@@ -50,15 +50,16 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	__webpack_require__(17);
+	__webpack_require__(21);
 
 	var _require = __webpack_require__(3);
 
@@ -67,10 +68,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var hyphenize = _require$utils.hyphenize;
 	var escapeHTML = _require$utils.escapeHTML;
 
-	var OpalRoute = __webpack_require__(18);
-	var escapeRegExp = __webpack_require__(19);
-	var PathNodeType = __webpack_require__(20);
-	var parsePath = __webpack_require__(21);
+	var OpalRoute = __webpack_require__(22);
+	var escapeRegExp = __webpack_require__(23);
+	var PathNodeType = __webpack_require__(24);
+	var parsePath = __webpack_require__(25);
 
 	var createObject = Object.create;
 	var forEach = Array.prototype.forEach;
@@ -221,28 +222,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */
+
+/***/ 3:
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */
+
+/***/ 21:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -259,7 +247,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 18 */
+
+/***/ 22:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -279,7 +268,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 19 */
+
+/***/ 23:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -296,7 +286,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = escapeRegExp;
 
 /***/ },
-/* 20 */
+
+/***/ 24:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -308,12 +299,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 21 */
+
+/***/ 25:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var PathNodeType = __webpack_require__(20);
+	var PathNodeType = __webpack_require__(24);
 
 	var reName = /[a-z][0-9a-z]*/i;
 
@@ -467,6 +459,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = parsePath;
 
 /***/ }
-/******/ ])
+
+/******/ })
 });
 ;

@@ -50,13 +50,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(8);
+	__webpack_require__(12);
 
 	var _require = __webpack_require__(3);
 
@@ -66,7 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = Component.extend('opal-filtered-list', {
 		Static: {
-			template: Rionite.template(__webpack_require__(9)),
+			template: Rionite.template(__webpack_require__(13)),
 
 			assets: {
 				tfQuery: {
@@ -83,19 +84,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */
+
+/***/ 3:
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */
+
+/***/ 12:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -112,12 +109,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 9 */
+
+/***/ 13:
 /***/ function(module, exports) {
 
 	module.exports = "{{block query }} <rt-content class=\"opal-filtered-list__tf-query-wrapper\" select=\".opal-filtered-list__tf-query\"> {{block tf_query }} <opal-text-input class=\"opal-filtered-list__tf-query\"> {{/block}} </opal-text-input></rt-content> {{/block}} {{block list }} <rt-content class=\"opal-filtered-list__list-wrapper\" select=\".opal-filtered-list__list\"></rt-content> {{/block}}"
 
 /***/ }
-/******/ ])
+
+/******/ })
 });
 ;

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"));
+		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite"], factory);
+		define([], factory);
 	else if(typeof exports === 'object')
-		exports["opal-group"] = factory(require("rionite"));
+		exports["focusHighlightController"] = factory();
 	else
-		root["opal-group"] = factory(root["rionite"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
+		root["focusHighlightController"] = factory();
+})(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -50,53 +50,33 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
-/***/ function(module, exports, __webpack_require__) {
+/******/ ([
+/* 0 */
+/***/ function(module, exports) {
 
 	'use strict';
 
-	__webpack_require__(14);
+	document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
+		document.removeEventListener('DOMContentLoaded', onDOMContentLoaded);
 
-	var _require = __webpack_require__(3);
+		var body = document.body;
 
-	var Component = _require.Component;
+		body.classList.add('_no-focus-highlight');
 
+		document.addEventListener('keydown', function (evt) {
+			if (evt.which == 9 /* Tab */) {
+					body.classList.remove('_no-focus-highlight');
+				}
+		});
 
-	module.exports = Component.extend('opal-group', {
-		Static: {
-			template: '<rt-content class="opal-group__content"></rt-content>'
-		}
+		document.addEventListener('click', function () {
+			if (document.activeElement == body) {
+				body.classList.add('_no-focus-highlight');
+			}
+		});
 	});
 
-/***/ },
-
-/***/ 3:
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
-
-/***/ },
-
-/***/ 14:
-/***/ function(module, exports) {
-
-	module.exports = (function(d) {
-	        var head = d.head || d.getElementsByTagName('head')[0];
-	        if (head) {
-	            var style = d.createElement('style');
-	            style.type = 'text/css';
-	            style.textContent = ".opal-group{position:relative;display:inline-block;vertical-align:middle;white-space:nowrap;font-size:0}";
-	            head.appendChild(style);
-	            return style;
-	        }
-	        return null;
-	    })(document);
-
-
 /***/ }
-
-/******/ })
+/******/ ])
 });
 ;
