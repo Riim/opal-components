@@ -1,8 +1,8 @@
 require('./index.css');
 require('./opal-select__icon-chevron-down.svg');
 
-let cellx = require('cellx');
-let { Component, components: { RtRepeat } } = require('rionite');
+let { utils: { nextTick }, cellx } = require('cellx');
+let { Component, template, components: { RtRepeat } } = require('rionite');
 let OpalSelectOption = require('./opal-select-option');
 let isEqualArray = require('./isEqualArray');
 
@@ -23,7 +23,7 @@ module.exports = Component.extend('opal-select', {
 			disabled: false
 		},
 
-		template: require('./index.html'),
+		template: template(require('./index.html')),
 
 		assets: {
 			button: {
@@ -94,17 +94,10 @@ module.exports = Component.extend('opal-select', {
 						if (value.length) {
 							if (index) {
 								this.text = index == value.length ?
-									this.text.slice(
-										0,
-										-(deselectedOption.text.length + 2)
-									) :
-									this.text
-										.split(`, ${ deselectedOption.text }, `)
-										.join(', ');
+									this.text.slice(0, -(deselectedOption.text.length + 2)) :
+									this.text.split(`, ${ deselectedOption.text },`).join(',');
 							} else {
-								this.text = this.text.slice(
-									deselectedOption.text.length + 2
-								);
+								this.text = this.text.slice(deselectedOption.text.length + 2);
 							}
 						} else {
 							this.text = this.props.placeholder;
@@ -145,17 +138,10 @@ module.exports = Component.extend('opal-select', {
 		let props = this.props;
 
 		if (props.multiple) {
-			let selectedOptions = this.options.reduce((selectedOptions, option) => {
-				if (option.selected) {
-					selectedOptions.push(option);
-				}
-
-				return selectedOptions;
-			}, []);
+			let selectedOptions = this.options.filter(option => option.selected);
 
 			this.value = selectedOptions.map(option => option.value);
-			this.text = selectedOptions.map(option => option.text).join(', ') ||
-				props.placeholder;
+			this.text = selectedOptions.map(option => option.text).join(', ') || props.placeholder;
 		} else {
 			let selectedOption = this.options.find(option => option.selected);
 
@@ -206,16 +192,14 @@ module.exports = Component.extend('opal-select', {
 			this.button.check();
 			this.menu.open();
 
-			let loadedList = this.loadedList;
-
-			if (loadedList) {
-				loadedList.checkLoading();
+			if (this.loadedList) {
+				nextTick(() => {
+					this.loadedList.checkLoading();
+				});
 			}
 
-			let filteredList = this.filteredList;
-
-			if (filteredList) {
-				filteredList.focus();
+			if (this.filteredList) {
+				this.filteredList.focus();
 			} else {
 				this._focusOptions();
 			}

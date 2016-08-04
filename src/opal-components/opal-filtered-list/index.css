@@ -13,20 +13,3 @@
 	}
 		.opal-filtered-list__list {
 		}
-
-.opal-select .opal-popover {
-	padding-top: 16px;
-	padding-bottom: 12px;
-	min-width: 240px;
-
-	& .opal-filtered-list__tf-query-wrapper {
-		margin-bottom: 12px;
-	}
-		& .opal-filtered-list__tf-query {
-			margin: 0 10px;
-		}
-
-	& .opal-loaded-list {
-		height: 360px;
-	}
-}

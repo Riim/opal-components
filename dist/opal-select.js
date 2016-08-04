@@ -59,12 +59,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(26);
 	__webpack_require__(27);
 
-	var cellx = __webpack_require__(2);
+	var _require = __webpack_require__(2);
 
-	var _require = __webpack_require__(3);
+	var nextTick = _require.utils.nextTick;
+	var cellx = _require.cellx;
 
-	var Component = _require.Component;
-	var RtRepeat = _require.components.RtRepeat;
+	var _require2 = __webpack_require__(3);
+
+	var Component = _require2.Component;
+	var template = _require2.template;
+	var RtRepeat = _require2.components.RtRepeat;
 
 	var OpalSelectOption = __webpack_require__(28);
 	var isEqualArray = __webpack_require__(31);
@@ -86,7 +90,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(32),
+			template: template(__webpack_require__(32)),
 
 			assets: {
 				button: {
@@ -155,7 +159,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 							if (value.length) {
 								if (index) {
-									this.text = index == value.length ? this.text.slice(0, -(deselectedOption.text.length + 2)) : this.text.split(', ' + deselectedOption.text + ', ').join(', ');
+									this.text = index == value.length ? this.text.slice(0, -(deselectedOption.text.length + 2)) : this.text.split(', ' + deselectedOption.text + ',').join(',');
 								} else {
 									this.text = this.text.slice(deselectedOption.text.length + 2);
 								}
@@ -200,13 +204,9 @@ return /******/ (function(modules) { // webpackBootstrap
 			var props = this.props;
 
 			if (props.multiple) {
-				var selectedOptions = this.options.reduce(function (selectedOptions, option) {
-					if (option.selected) {
-						selectedOptions.push(option);
-					}
-
-					return selectedOptions;
-				}, []);
+				var selectedOptions = this.options.filter(function (option) {
+					return option.selected;
+				});
 
 				this.value = selectedOptions.map(function (option) {
 					return option.value;
@@ -257,22 +257,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> boolean;
 	  */
 		open: function open() {
+			var _this = this;
+
 			if (!this._opened) {
 				this._opened = true;
 
 				this.button.check();
 				this.menu.open();
 
-				var loadedList = this.loadedList;
-
-				if (loadedList) {
-					loadedList.checkLoading();
+				if (this.loadedList) {
+					nextTick(function () {
+						_this.loadedList.checkLoading();
+					});
 				}
 
-				var filteredList = this.filteredList;
-
-				if (filteredList) {
-					filteredList.focus();
+				if (this.filteredList) {
+					this.filteredList.focus();
 				} else {
 					this._focusOptions();
 				}
@@ -544,7 +544,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-select{position:relative;display:inline-block}.opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:13px;height:13px;vertical-align:middle;transition:-webkit-transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;fill:currentColor}.opal-select__button[checked] .opal-select__icon-chevron-down{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}";
+	            style.textContent = ".opal-select{position:relative;display:inline-block}.opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:13px;height:13px;vertical-align:middle;transition:-webkit-transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;fill:currentColor}.opal-select__button[checked] .opal-select__icon-chevron-down{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-popover{min-width:200px}.opal-select .opal-filtered-list__tf-query-wrapper{margin:10px}.opal-select .opal-loaded-list{height:360px}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -656,7 +656,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @type {string}
 	  */
 		get text() {
-			return this.props.text.trim().replace(',', ' ');
+			return this.props.text.trim().replace(',', ' ') || ' ';
 		},
 		set text(text) {
 			this.props.text = text;
@@ -809,7 +809,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 32 */
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content select=\".opal-select__button\"> <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> <template is=\"rt-if-then\" if=\"props.text\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\">{text}</template> <svg viewBox=\"0 0 24 13\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-select__icon-chevron-down\"></use></svg> </opal-button> </rt-content> <rt-content select=\".opal-select__menu\"> <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> <rt-content select=\"opal-select-option\"></rt-content> </opal-dropdown> </rt-content>"
+	module.exports = "<rt-content select=\".opal-select__button\"> <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> <template is=\"rt-if-then\" if=\"props.text\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\">{text}</template> {{block icon_chevron_down }} <svg viewBox=\"0 0 24 13\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-select__icon-chevron-down\"></use></svg> {{/block}} </opal-button> </rt-content> <rt-content select=\".opal-select__menu\"> <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> <rt-content select=\".opal-select__menu-inner\"> <span class=\"opal-select__menu-inner\"> {{block options }} <rt-content select=\"opal-select-option\"></rt-content> {{/block}} </span> </rt-content> </opal-dropdown> </rt-content>"
 
 /***/ }
 /******/ ])
