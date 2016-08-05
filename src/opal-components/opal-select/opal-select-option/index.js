@@ -91,7 +91,7 @@ module.exports = Component.extend('opal-select-option', {
 	 * @type {string}
 	 */
 	get text() {
-		return this.props.text.trim().replace(',', ' ') || ' ';
+		return this.props.text.trim() || ' ';
 	},
 	set text(text) {
 		this.props.text = text;

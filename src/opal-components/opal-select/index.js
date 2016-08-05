@@ -53,7 +53,14 @@ module.exports = Component.extend('opal-select', {
 					}
 
 					this._options.pull();
-					this._updateOptions();
+
+					let value = this.value;
+
+					this.options.forEach(this.props.multiple ? option => {
+						option.selected = value.contains(option.value);
+					} : option => {
+						option.selected = value !== null && option.value == value;
+					});
 				},
 
 				'on-select'({ target: selectedOption }) {
@@ -62,18 +69,24 @@ module.exports = Component.extend('opal-select', {
 					}
 
 					if (this.props.multiple) {
-						let value = this.value;
-
-						if (value.push(selectedOption.value) == 1) {
-							this.text = selectedOption.text;
-						} else {
-							this.text += ', ' + selectedOption.text;
-						}
+						this.value.add(selectedOption.value);
+						this.selectedTexts.add(selectedOption.text);
 					} else {
 						this.value = selectedOption.value;
-						this.text = selectedOption.text;
 
-						this._updateOptions();
+						let selectedTexts = this.selectedTexts;
+
+						if (selectedTexts.length) {
+							selectedTexts.set(0, selectedOption.text);
+						} else {
+							selectedTexts.add(selectedOption.text);
+						}
+
+						this.options.forEach(option => {
+							if (option != selectedOption) {
+								option.select = false;
+							}
+						});
 
 						this.close();
 						this.focus();
@@ -86,22 +99,10 @@ module.exports = Component.extend('opal-select', {
 					}
 
 					if (this.props.multiple) {
-						let value = this.value;
-						let index = value.indexOf(deselectedOption.value);
+						let index = this.value.indexOf(deselectedOption.value);
 
-						value.splice(index, 1);
-
-						if (value.length) {
-							if (index) {
-								this.text = index == value.length ?
-									this.text.slice(0, -(deselectedOption.text.length + 2)) :
-									this.text.split(`, ${ deselectedOption.text },`).join(',');
-							} else {
-								this.text = this.text.slice(deselectedOption.text.length + 2);
-							}
-						} else {
-							this.text = this.props.placeholder;
-						}
+						this.value.removeAt(index);
+						this.selectedTexts.removeAt(index);
 					} else {
 						deselectedOption.select();
 
@@ -128,7 +129,13 @@ module.exports = Component.extend('opal-select', {
 			},
 
 			value: void 0,
-			text: void 0
+
+			selectedTexts: void 0,
+
+			text: function() {
+				let selectedTexts = this.selectedTexts;
+				return selectedTexts && selectedTexts.join(', ') || this.props.placeholder;
+			}
 		});
 	},
 
@@ -140,17 +147,17 @@ module.exports = Component.extend('opal-select', {
 		if (props.multiple) {
 			let selectedOptions = this.options.filter(option => option.selected);
 
-			this.value = selectedOptions.map(option => option.value);
-			this.text = selectedOptions.map(option => option.text).join(', ') || props.placeholder;
+			this.value = cellx.list(selectedOptions.map(option => option.value));
+			this.selectedTexts = cellx.list(selectedOptions.map(option => option.text));
 		} else {
 			let selectedOption = this.options.find(option => option.selected);
 
 			if (selectedOption) {
 				this.value = selectedOption.value;
-				this.text = selectedOption.text;
+				this.selectedTexts = cellx.list([selectedOption.text]);
 			} else {
 				this.value = null;
-				this.text = props.placeholder;
+				this.selectedTexts = cellx.list();
 			}
 		}
 	},
@@ -169,16 +176,6 @@ module.exports = Component.extend('opal-select', {
 		this.emit({
 			type: 'change',
 			value: evt.value
-		});
-	},
-
-	_updateOptions() {
-		let value = this.value;
-
-		this.options.forEach(this.props.multiple ? option => {
-			option.selected = value && value.indexOf(option.value) != -1;
-		} : option => {
-			option.selected = option.value == value;
 		});
 	},
 

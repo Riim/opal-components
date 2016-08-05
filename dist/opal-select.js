@@ -117,7 +117,14 @@ return /******/ (function(modules) { // webpackBootstrap
 						}
 
 						this._options.pull();
-						this._updateOptions();
+
+						var value = this.value;
+
+						this.options.forEach(this.props.multiple ? function (option) {
+							option.selected = value.contains(option.value);
+						} : function (option) {
+							option.selected = value !== null && option.value == value;
+						});
 					},
 					'on-select': function onSelect(_ref) {
 						var selectedOption = _ref.target;
@@ -127,18 +134,24 @@ return /******/ (function(modules) { // webpackBootstrap
 						}
 
 						if (this.props.multiple) {
-							var value = this.value;
-
-							if (value.push(selectedOption.value) == 1) {
-								this.text = selectedOption.text;
-							} else {
-								this.text += ', ' + selectedOption.text;
-							}
+							this.value.add(selectedOption.value);
+							this.selectedTexts.add(selectedOption.text);
 						} else {
 							this.value = selectedOption.value;
-							this.text = selectedOption.text;
 
-							this._updateOptions();
+							var selectedTexts = this.selectedTexts;
+
+							if (selectedTexts.length) {
+								selectedTexts.set(0, selectedOption.text);
+							} else {
+								selectedTexts.add(selectedOption.text);
+							}
+
+							this.options.forEach(function (option) {
+								if (option != selectedOption) {
+									option.select = false;
+								}
+							});
 
 							this.close();
 							this.focus();
@@ -152,20 +165,10 @@ return /******/ (function(modules) { // webpackBootstrap
 						}
 
 						if (this.props.multiple) {
-							var value = this.value;
-							var index = value.indexOf(deselectedOption.value);
+							var index = this.value.indexOf(deselectedOption.value);
 
-							value.splice(index, 1);
-
-							if (value.length) {
-								if (index) {
-									this.text = index == value.length ? this.text.slice(0, -(deselectedOption.text.length + 2)) : this.text.split(', ' + deselectedOption.text + ',').join(',');
-								} else {
-									this.text = this.text.slice(deselectedOption.text.length + 2);
-								}
-							} else {
-								this.text = this.props.placeholder;
-							}
+							this.value.removeAt(index);
+							this.selectedTexts.removeAt(index);
 						} else {
 							deselectedOption.select();
 
@@ -195,7 +198,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 				value: void 0,
-				text: void 0
+
+				selectedTexts: void 0,
+
+				text: function text() {
+					var selectedTexts = this.selectedTexts;
+					return selectedTexts && selectedTexts.join(', ') || this.props.placeholder;
+				}
 			});
 		},
 		ready: function ready() {
@@ -208,12 +217,12 @@ return /******/ (function(modules) { // webpackBootstrap
 					return option.selected;
 				});
 
-				this.value = selectedOptions.map(function (option) {
+				this.value = cellx.list(selectedOptions.map(function (option) {
 					return option.value;
-				});
-				this.text = selectedOptions.map(function (option) {
+				}));
+				this.selectedTexts = cellx.list(selectedOptions.map(function (option) {
 					return option.text;
-				}).join(', ') || props.placeholder;
+				}));
 			} else {
 				var selectedOption = this.options.find(function (option) {
 					return option.selected;
@@ -221,10 +230,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				if (selectedOption) {
 					this.value = selectedOption.value;
-					this.text = selectedOption.text;
+					this.selectedTexts = cellx.list([selectedOption.text]);
 				} else {
 					this.value = null;
-					this.text = props.placeholder;
+					this.selectedTexts = cellx.list();
 				}
 			}
 		},
@@ -240,15 +249,6 @@ return /******/ (function(modules) { // webpackBootstrap
 			this.emit({
 				type: 'change',
 				value: evt.value
-			});
-		},
-		_updateOptions: function _updateOptions() {
-			var value = this.value;
-
-			this.options.forEach(this.props.multiple ? function (option) {
-				option.selected = value && value.indexOf(option.value) != -1;
-			} : function (option) {
-				option.selected = option.value == value;
 			});
 		},
 
@@ -656,7 +656,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @type {string}
 	  */
 		get text() {
-			return this.props.text.trim().replace(',', ' ') || ' ';
+			return this.props.text.trim() || ' ';
 		},
 		set text(text) {
 			this.props.text = text;
