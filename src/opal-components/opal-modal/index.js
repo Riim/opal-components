@@ -124,7 +124,7 @@ module.exports = Component.extend('opal-modal', {
 		this.props.opened = true;
 		openedModals.unshift(this);
 
-		this.btnClose.focus();
+		this.assets.btnClose.focus();
 
 		this.emit('open');
 	},
@@ -141,7 +141,7 @@ module.exports = Component.extend('opal-modal', {
 
 		if (openedModals.length) {
 			openedModals[0].element.classList.remove('_overlapped');
-			openedModals[0].btnClose.focus();
+			openedModals[0].assets.btnClose.focus();
 		} else {
 			documentListening.stop();
 

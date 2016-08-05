@@ -89,7 +89,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						this.emit('focusout');
 					},
 					'on-input': function onInput(evt) {
-						this.props.value = this.control.value;
+						this.props.value = evt.target.value;
 						this.emit({ type: 'input', originalEvent: evt });
 					},
 					'on-change': function onChange(evt) {
@@ -109,7 +109,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 
 		ready: function ready() {
-			this.control.value = this.props.value;
+			this.assets.control.value = this.props.value;
 
 			if (this.props.focused) {
 				this.focus();
@@ -117,8 +117,10 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
 			if (name == 'value') {
-				if (this.control.value != value) {
-					this.control.value = value;
+				var control = this.assets.control;
+
+				if (control.value != value) {
+					control.value = value;
 				}
 			} else if (name == 'focused') {
 				this[value ? 'focus' : 'blur']();
@@ -130,17 +132,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @type {string}
 	  */
 		get value() {
-			return this.control.value;
+			return this.assets.control.value;
 		},
 		set value(value) {
-			this.control.value = value;
+			this.assets.control.value = value;
 		},
 
 		/**
 	  * @typesign () -> OpalComponents.OpalTextInput;
 	  */
 		focus: function focus() {
-			this.control.focus();
+			this.assets.control.focus();
 			return this;
 		},
 
@@ -149,7 +151,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> OpalComponents.OpalTextInput;
 	  */
 		blur: function blur() {
-			this.control.blur();
+			this.assets.control.blur();
 			return this;
 		},
 

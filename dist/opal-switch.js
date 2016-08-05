@@ -79,8 +79,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			assets: {
 				input: {
-					'on-change': function onChange() {
-						this.emit((this.props.checked = this.input.checked) ? 'check' : 'uncheck');
+					'on-change': function onChange(evt) {
+						this.emit((this.props.checked = evt.target.checked) ? 'check' : 'uncheck');
 						this.emit('change');
 					}
 				},
@@ -109,7 +109,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		ready: function ready() {
 			if (this.props.checked) {
-				this.input.checked = true;
+				this.assets.input.checked = true;
 			}
 
 			if (this.props.focused) {
@@ -118,7 +118,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
 			if (name == 'checked') {
-				this.input.checked = value;
+				this.assets.input.checked = value;
 			} else if (name == 'focused') {
 				this[value ? 'focus' : 'blur']();
 			}
@@ -179,7 +179,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (!this._focused) {
 				this._focused = true;
 
-				this.control.focus();
+				this.assets.control.focus();
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 			}
 
@@ -194,7 +194,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (this._focused) {
 				this._focused = false;
 
-				this.control.blur();
+				this.assets.control.blur();
 				this._documentKeyDownListening.stop();
 			}
 

@@ -9,9 +9,7 @@ module.exports = Component.extend('opal-code-listing', {
 		template: require('./index.html'),
 
 		assets: {
-			elCode: {
-				selector: '&__code'
-			}
+			code: {}
 		}
 	},
 
@@ -34,6 +32,6 @@ module.exports = Component.extend('opal-code-listing', {
 	},
 
 	ready() {
-		this.elCode.innerHTML = this.highlightedCode;
+		this.assets.code.innerHTML = this.highlightedCode;
 	}
 });

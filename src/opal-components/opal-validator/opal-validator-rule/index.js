@@ -19,10 +19,10 @@ module.exports = Component.extend('opal-validator-rule', {
 	},
 
 	showMessage() {
-		this.messagePopover.open();
+		this.assets.messagePopover.open();
 	},
 
 	hideMessage() {
-		this.messagePopover.close();
+		this.assets.messagePopover.close();
 	}
 });

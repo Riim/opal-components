@@ -174,7 +174,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> OpalComponents.OpalButton;
 	  */
 		focus: function focus() {
-			this.control.focus();
+			this.assets.control.focus();
 			return this;
 		},
 
@@ -183,7 +183,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> OpalComponents.OpalButton;
 	  */
 		blur: function blur() {
-			this.control.blur();
+			this.assets.control.blur();
 			return this;
 		},
 

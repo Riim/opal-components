@@ -70,9 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			template: __webpack_require__(10),
 
 			assets: {
-				elCode: {
-					selector: '&__code'
-				}
+				code: {}
 			}
 		},
 
@@ -93,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			this.highlightedCode = Prism.highlight(code, Prism.languages.html);
 		},
 		ready: function ready() {
-			this.elCode.innerHTML = this.highlightedCode;
+			this.assets.code.innerHTML = this.highlightedCode;
 		}
 	});
 

@@ -29,7 +29,7 @@ module.exports = Component.extend('opal-text-input', {
 				},
 
 				'on-input'(evt) {
-					this.props.value = this.control.value;
+					this.props.value = evt.target.value;
 					this.emit({ type: 'input', originalEvent: evt });
 				},
 
@@ -53,7 +53,7 @@ module.exports = Component.extend('opal-text-input', {
 	},
 
 	ready() {
-		this.control.value = this.props.value;
+		this.assets.control.value = this.props.value;
 
 		if (this.props.focused) {
 			this.focus();
@@ -62,8 +62,10 @@ module.exports = Component.extend('opal-text-input', {
 
 	elementAttributeChanged(name, oldValue, value) {
 		if (name == 'value') {
-			if (this.control.value != value) {
-				this.control.value = value;
+			let control = this.assets.control;
+
+			if (control.value != value) {
+				control.value = value;
 			}
 		} else if (name == 'focused') {
 			this[value ? 'focus' : 'blur']();
@@ -74,17 +76,17 @@ module.exports = Component.extend('opal-text-input', {
 	 * @type {string}
 	 */
 	get value() {
-		return this.control.value;
+		return this.assets.control.value;
 	},
 	set value(value) {
-		this.control.value = value;
+		this.assets.control.value = value;
 	},
 
 	/**
 	 * @typesign () -> OpalComponents.OpalTextInput;
 	 */
 	focus() {
-		this.control.focus();
+		this.assets.control.focus();
 		return this;
 	},
 
@@ -92,7 +94,7 @@ module.exports = Component.extend('opal-text-input', {
 	 * @typesign () -> OpalComponents.OpalTextInput;
 	 */
 	blur() {
-		this.control.blur();
+		this.assets.control.blur();
 		return this;
 	},
 

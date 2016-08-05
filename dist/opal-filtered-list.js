@@ -72,18 +72,16 @@ return /******/ (function(modules) { // webpackBootstrap
 			assets: {
 				tfQuery: {
 					'on-input': function onInput(evt) {
-						this.loadedList.props.query = evt.target.value;
+						this.assets.loadedList.props.query = evt.target.value;
 					}
 				},
 
-				loadedList: {
-					selector: '&__list'
-				}
+				loadedList: {}
 			}
 		},
 
 		focus: function focus() {
-			this.tfQuery.focus();
+			this.assets.tfQuery.focus();
 		}
 	});
 
@@ -117,7 +115,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 13:
 /***/ function(module, exports) {
 
-	module.exports = "{{block query }} <rt-content class=\"opal-filtered-list__tf-query-wrapper\" select=\".opal-filtered-list__tf-query\"> {{block tf_query }} <opal-text-input class=\"opal-filtered-list__tf-query\"> {{/block}} </opal-text-input></rt-content> {{/block}} {{block list }} <rt-content class=\"opal-filtered-list__list-wrapper\" select=\".opal-filtered-list__list\"></rt-content> {{/block}}"
+	module.exports = "{{block query }} <rt-content class=\"opal-filtered-list__tf-query-wrapper\" select=\".opal-filtered-list__tf-query\"> {{block tf_query }} <opal-text-input class=\"opal-filtered-list__tf-query\"> {{/block}} </opal-text-input></rt-content> {{/block}} {{block list }} <rt-content class=\"opal-filtered-list__loaded-list-wrapper\" select=\".opal-filtered-list__loaded-list\"></rt-content> {{/block}}"
 
 /***/ }
 

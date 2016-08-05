@@ -112,7 +112,7 @@ module.exports = Component.extend('opal-button', {
 	 * @typesign () -> OpalComponents.OpalButton;
 	 */
 	focus() {
-		this.control.focus();
+		this.assets.control.focus();
 		return this;
 	},
 
@@ -120,7 +120,7 @@ module.exports = Component.extend('opal-button', {
 	 * @typesign () -> OpalComponents.OpalButton;
 	 */
 	blur() {
-		this.control.blur();
+		this.assets.control.blur();
 		return this;
 	},
 

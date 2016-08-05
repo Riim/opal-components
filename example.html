@@ -271,7 +271,7 @@ body {
 <opal-code-listing>
 	<div class="opal-code-listing__markup">
 		<opal-filtered-list>
-			<opal-loaded-list class="opal-filtered-list__list" provider="dataProvider1">
+			<opal-loaded-list class="opal-filtered-list__loaded-list" provider="dataProvider1">
 				{$item.value}
 			</opal-loaded-list>
 		</opal-filtered-list>
@@ -284,7 +284,8 @@ body {
 	<div class="opal-code-listing__markup">
 		<opal-select>
 			<opal-filtered-list class="opal-select__menu-inner opal-select__filtered-list">
-				<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__list" provider="dataProvider1">
+				<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
+						provider="dataProvider1">
 					<opal-select-option text="{$item.value}"></opal-select-option>
 				</opal-loaded-list>
 			</opal-filtered-list>
@@ -309,7 +310,7 @@ body {
 		<opal-select>
 			<opal-popover class="opal-select__menu" from="bottom" auto-closing>
 				<opal-filtered-list class="opal-select__filtered-list">
-					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__list"
+					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
 							provider="dataProvider1">
 						<opal-select-option text="{$item.value}"></opal-select-option>
 					</opal-loaded-list>
@@ -320,7 +321,7 @@ body {
 		<opal-select multiple>
 			<opal-popover class="opal-select__menu" from="bottom" auto-closing>
 				<opal-filtered-list class="opal-select__filtered-list">
-					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__list"
+					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
 							provider="dataProvider1">
 						<opal-select-option text="{$item.value}"></opal-select-option>
 					</opal-loaded-list>

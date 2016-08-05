@@ -56,6 +56,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 	__webpack_require__(26);
 	__webpack_require__(27);
 
@@ -102,8 +104,8 @@ return /******/ (function(modules) { // webpackBootstrap
 						this.props.focused = false;
 						this.emit('focusout');
 					},
-					'on-click': function onClick() {
-						this[this.button.checked ? 'open' : 'close']();
+					'on-click': function onClick(evt) {
+						this[evt.target.checked ? 'open' : 'close']();
 					}
 				},
 
@@ -260,30 +262,38 @@ return /******/ (function(modules) { // webpackBootstrap
 			var _this = this;
 
 			if (!this._opened) {
-				this._opened = true;
+				var _ret = function () {
+					_this._opened = true;
 
-				this.button.check();
-				this.menu.open();
+					var assets = _this.assets;
 
-				if (this.loadedList) {
-					nextTick(function () {
-						_this.loadedList.checkLoading();
-					});
-				}
+					assets.button.check();
+					assets.menu.open();
 
-				if (this.filteredList) {
-					this.filteredList.focus();
-				} else {
-					this._focusOptions();
-				}
+					if (assets.loadedList) {
+						nextTick(function () {
+							assets.loadedList.checkLoading();
+						});
+					}
 
-				this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+					if (assets.filteredList) {
+						assets.filteredList.focus();
+					} else {
+						_this._focusOptions();
+					}
 
-				if (!this._focused) {
-					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-				}
+					_this._documentFocusInListening = _this.listenTo(document, 'focusin', _this._onDocumentFocusIn);
 
-				return true;
+					if (!_this._focused) {
+						_this._documentKeyDownListening = _this.listenTo(document, 'keydown', _this._onDocumentKeyDown);
+					}
+
+					return {
+						v: true
+					};
+				}();
+
+				if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
 			}
 
 			return false;
@@ -297,8 +307,8 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (this._opened) {
 				this._opened = false;
 
-				this.button.uncheck();
-				this.menu.close();
+				this.assets.button.uncheck();
+				this.assets.menu.close();
 
 				this._documentFocusInListening.stop();
 
@@ -348,7 +358,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (!this._focused) {
 				this._focused = true;
 
-				this.button.focus();
+				this.assets.button.focus();
 
 				if (!this._opened) {
 					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
@@ -366,7 +376,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (this._focused) {
 				this._focused = false;
 
-				this.button.blur();
+				this.assets.button.blur();
 
 				if (!this._opened) {
 					this._documentKeyDownListening.stop();
@@ -544,7 +554,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-select{position:relative;display:inline-block}.opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:13px;height:13px;vertical-align:middle;transition:-webkit-transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;fill:currentColor}.opal-select__button[checked] .opal-select__icon-chevron-down{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-popover{min-width:200px}.opal-select .opal-filtered-list__tf-query-wrapper{margin:10px}.opal-select .opal-loaded-list{height:360px}";
+	            style.textContent = ".opal-select{position:relative;display:inline-block}.opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:13px;height:13px;vertical-align:middle;transition:-webkit-transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;fill:currentColor}.opal-select__button[checked] .opal-select__icon-chevron-down{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-popover{min-width:100px}.opal-select .opal-filtered-list__tf-query-wrapper{margin:10px}.opal-select .opal-loaded-list{height:360px}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -716,7 +726,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (!this._focused) {
 				this._focused = true;
 
-				this.control.focus();
+				this.assets.control.focus();
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 			}
 
@@ -731,7 +741,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (this._focused) {
 				this._focused = false;
 
-				this.control.blur();
+				this.assets.control.blur();
 				this._documentKeyDownListening.stop();
 			}
 

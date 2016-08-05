@@ -47,7 +47,7 @@ module.exports = Component.extend('opal-validator', {
 	 * @typesign (rules: Array<OpalComponents.OpalValidatorRule>) -> boolean;
 	 */
 	_validate(rules) {
-		let value = this.input.value;
+		let value = this.assets.input.value;
 		let failedRule = null;
 
 		rules.forEach(rule => {

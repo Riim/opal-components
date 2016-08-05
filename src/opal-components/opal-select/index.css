@@ -23,7 +23,7 @@
 		.opal-select__menu-inner {
 		}
 			.opal-select .opal-popover {
-				min-width: 200px;
+				min-width: 100px;
 			}
 				.opal-select .opal-filtered-list__tf-query-wrapper {
 					margin: 10px;

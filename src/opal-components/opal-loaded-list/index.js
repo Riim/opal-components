@@ -121,7 +121,7 @@ module.exports = Component.extend('opal-loaded-list', {
 
 		let elRect = this.element.getBoundingClientRect();
 
-		if (!elRect.height || elRect.bottom < this.loader.element.getBoundingClientRect().top) {
+		if (!elRect.height || elRect.bottom < this.assets.loader.element.getBoundingClientRect().top) {
 			return;
 		}
 

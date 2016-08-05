@@ -16,8 +16,8 @@ module.exports = Component.extend('opal-switch', {
 
 		assets: {
 			input: {
-				'on-change'() {
-					this.emit((this.props.checked = this.input.checked) ? 'check' : 'uncheck');
+				'on-change'(evt) {
+					this.emit((this.props.checked = evt.target.checked) ? 'check' : 'uncheck');
 					this.emit('change');
 				}
 			},
@@ -48,7 +48,7 @@ module.exports = Component.extend('opal-switch', {
 
 	ready() {
 		if (this.props.checked) {
-			this.input.checked = true;
+			this.assets.input.checked = true;
 		}
 
 		if (this.props.focused) {
@@ -58,7 +58,7 @@ module.exports = Component.extend('opal-switch', {
 
 	elementAttributeChanged(name, oldValue, value) {
 		if (name == 'checked') {
-			this.input.checked = value;
+			this.assets.input.checked = value;
 		} else if (name == 'focused') {
 			this[value ? 'focus' : 'blur']();
 		}
@@ -115,7 +115,7 @@ module.exports = Component.extend('opal-switch', {
 		if (!this._focused) {
 			this._focused = true;
 
-			this.control.focus();
+			this.assets.control.focus();
 			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 		}
 
@@ -129,7 +129,7 @@ module.exports = Component.extend('opal-switch', {
 		if (this._focused) {
 			this._focused = false;
 
-			this.control.blur();
+			this.assets.control.blur();
 			this._documentKeyDownListening.stop();
 		}
 

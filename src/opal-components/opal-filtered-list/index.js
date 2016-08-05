@@ -9,17 +9,15 @@ module.exports = Component.extend('opal-filtered-list', {
 		assets: {
 			tfQuery: {
 				'on-input'(evt) {
-					this.loadedList.props.query = evt.target.value;
+					this.assets.loadedList.props.query = evt.target.value;
 				}
 			},
 
-			loadedList: {
-				selector: '&__list'
-			}
+			loadedList: {}
 		}
 	},
 
 	focus() {
-		this.tfQuery.focus();
+		this.assets.tfQuery.focus();
 	}
 });

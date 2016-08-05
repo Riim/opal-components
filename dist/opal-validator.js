@@ -109,7 +109,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign (rules: Array<OpalComponents.OpalValidatorRule>) -> boolean;
 	  */
 		_validate: function _validate(rules) {
-			var value = this.input.value;
+			var value = this.assets.input.value;
 			var failedRule = null;
 
 			rules.forEach(function (rule) {
@@ -186,10 +186,10 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 
 		showMessage: function showMessage() {
-			this.messagePopover.open();
+			this.assets.messagePopover.open();
 		},
 		hideMessage: function hideMessage() {
-			this.messagePopover.close();
+			this.assets.messagePopover.close();
 		}
 	});
 

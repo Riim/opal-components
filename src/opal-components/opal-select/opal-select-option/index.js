@@ -148,7 +148,7 @@ module.exports = Component.extend('opal-select-option', {
 		if (!this._focused) {
 			this._focused = true;
 
-			this.control.focus();
+			this.assets.control.focus();
 			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 		}
 
@@ -162,7 +162,7 @@ module.exports = Component.extend('opal-select-option', {
 		if (this._focused) {
 			this._focused = false;
 
-			this.control.blur();
+			this.assets.control.blur();
 			this._documentKeyDownListening.stop();
 		}
 

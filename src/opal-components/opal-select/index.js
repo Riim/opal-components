@@ -37,8 +37,8 @@ module.exports = Component.extend('opal-select', {
 					this.emit('focusout');
 				},
 
-				'on-click'() {
-					this[this.button.checked ? 'open' : 'close']();
+				'on-click'(evt) {
+					this[evt.target.checked ? 'open' : 'close']();
 				}
 			},
 
@@ -186,17 +186,19 @@ module.exports = Component.extend('opal-select', {
 		if (!this._opened) {
 			this._opened = true;
 
-			this.button.check();
-			this.menu.open();
+			let assets = this.assets;
 
-			if (this.loadedList) {
+			assets.button.check();
+			assets.menu.open();
+
+			if (assets.loadedList) {
 				nextTick(() => {
-					this.loadedList.checkLoading();
+					assets.loadedList.checkLoading();
 				});
 			}
 
-			if (this.filteredList) {
-				this.filteredList.focus();
+			if (assets.filteredList) {
+				assets.filteredList.focus();
 			} else {
 				this._focusOptions();
 			}
@@ -220,8 +222,8 @@ module.exports = Component.extend('opal-select', {
 		if (this._opened) {
 			this._opened = false;
 
-			this.button.uncheck();
-			this.menu.close();
+			this.assets.button.uncheck();
+			this.assets.menu.close();
 
 			this._documentFocusInListening.stop();
 
@@ -270,7 +272,7 @@ module.exports = Component.extend('opal-select', {
 		if (!this._focused) {
 			this._focused = true;
 
-			this.button.focus();
+			this.assets.button.focus();
 
 			if (!this._opened) {
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
@@ -287,7 +289,7 @@ module.exports = Component.extend('opal-select', {
 		if (this._focused) {
 			this._focused = false;
 
-			this.button.blur();
+			this.assets.button.blur();
 
 			if (!this._opened) {
 				this._documentKeyDownListening.stop();
