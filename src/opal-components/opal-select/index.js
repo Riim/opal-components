@@ -61,6 +61,8 @@ module.exports = Component.extend('opal-select', {
 					} : option => {
 						option.selected = value !== null && option.value == value;
 					});
+
+					return false;
 				},
 
 				'on-select'({ target: selectedOption }) {

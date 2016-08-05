@@ -127,6 +127,8 @@ return /******/ (function(modules) { // webpackBootstrap
 						} : function (option) {
 							option.selected = value !== null && option.value == value;
 						});
+
+						return false;
 					},
 					'on-select': function onSelect(_ref) {
 						var selectedOption = _ref.target;
