@@ -151,7 +151,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 							this.options.forEach(function (option) {
 								if (option != selectedOption) {
-									option.select = false;
+									option.selected = false;
 								}
 							});
 

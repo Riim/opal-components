@@ -84,7 +84,7 @@ module.exports = Component.extend('opal-select', {
 
 						this.options.forEach(option => {
 							if (option != selectedOption) {
-								option.select = false;
+								option.selected = false;
 							}
 						});
 
