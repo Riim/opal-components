@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -20,13 +20,13 @@
   "homepage": "https://github.com/Riim/opal-components#readme",
   "devDependencies": {
     "autoprefixer": "^6.4.0",
-    "babel-core": "^6.13.1",
+    "babel-core": "^6.13.2",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.4",
     "babel-plugin-syntax-flow": "^6.13.0",
     "babel-plugin-transform-flow-strip-types": "^6.8.0",
-    "babel-preset-es2015": "^6.13.1",
-    "cellx": "^1.6.28",
+    "babel-preset-es2015": "^6.13.2",
+    "cellx": "^1.6.30",
     "collapse-html-whitespaces-loader": "^0.1.2",
     "eslint": "^3.2.2",
     "eslint-loader": "^1.5.0",
@@ -45,7 +45,7 @@
     "raw-loader": "^0.5.1",
     "require-dir": "^0.3.0",
     "rimraf": "^2.5.4",
-    "rionite": "^0.11.37",
+    "rionite": "^0.11.39",
     "run-sequence": "^1.2.2",
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.0.2",
@@ -53,7 +53,7 @@
     "yargs": "^4.8.1"
   },
   "peerDependencies": {
-    "cellx": "^1.6.28",
-    "rionite": "^0.11.37"
+    "cellx": "^1.6.30",
+    "rionite": "^0.11.39"
   }
 }

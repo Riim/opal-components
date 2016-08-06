@@ -68,6 +68,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require2 = __webpack_require__(3);
 
+	var IndexedList = _require2.IndexedList;
 	var Component = _require2.Component;
 	var template = _require2.template;
 	var RtRepeat = _require2.components.RtRepeat;
@@ -84,6 +85,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			props: {
 				type: String,
 				size: 'm',
+				model: String,
 				text: String,
 				placeholder: '—',
 				multiple: false,
@@ -119,14 +121,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						}
 
 						this._options.pull();
-
-						var value = this.value;
-
-						this.options.forEach(this.props.multiple ? function (option) {
-							option.selected = value.contains(option.value);
-						} : function (option) {
-							option.selected = value !== null && option.value == value;
-						});
+						this._updateOptions();
 
 						return false;
 					},
@@ -137,18 +132,19 @@ return /******/ (function(modules) { // webpackBootstrap
 							return;
 						}
 
+						var model = this.model;
+						var item = {
+							value: selectedOption.value,
+							text: selectedOption.text
+						};
+
 						if (this.props.multiple) {
-							this.value.add(selectedOption.value);
-							this.selectedTexts.add(selectedOption.text);
+							model.add(item);
 						} else {
-							this.value = selectedOption.value;
-
-							var selectedTexts = this.selectedTexts;
-
-							if (selectedTexts.length) {
-								selectedTexts.set(0, selectedOption.text);
+							if (model.length) {
+								model.set(0, item);
 							} else {
-								selectedTexts.add(selectedOption.text);
+								model.add(item);
 							}
 
 							this.options.forEach(function (option) {
@@ -169,10 +165,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						}
 
 						if (this.props.multiple) {
-							var index = this.value.indexOf(deselectedOption.value);
-
-							this.value.removeAt(index);
-							this.selectedTexts.removeAt(index);
+							this.model.remove(this.model.get(deselectedOption.value, 'value'));
 						} else {
 							deselectedOption.select();
 
@@ -187,11 +180,27 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 
+		model: null,
+
 		_opened: false,
 		_focused: false,
 
 		initialize: function initialize() {
+			var model = this.props.model;
+
+			if (model) {
+				model = (this.ownerComponent || window)[model];
+
+				if (!model) {
+					throw new TypeError('model is required');
+				}
+			} else {
+				model = new IndexedList(null, { indexes: ['value'] });
+			}
+
 			cellx.define(this, {
+				model: model,
+
 				options: function options(push, fail, oldOptions) {
 					var optionElements = this.optionElements;
 					var options = optionElements ? map.call(optionElements, function (option) {
@@ -201,58 +210,61 @@ return /******/ (function(modules) { // webpackBootstrap
 				},
 
 
-				value: void 0,
-
-				selectedTexts: void 0,
-
 				text: function text() {
-					var selectedTexts = this.selectedTexts;
-					return selectedTexts && selectedTexts.join(', ') || this.props.placeholder;
+					return this.model.map(function (item) {
+						return item.text;
+					}).join(', ') || this.props.placeholder;
 				}
 			});
 		},
 		ready: function ready() {
 			this.optionElements = this.element.getElementsByClassName('opal-select-option');
 
-			var props = this.props;
-
-			if (props.multiple) {
-				var selectedOptions = this.options.filter(function (option) {
-					return option.selected;
-				});
-
-				this.value = cellx.list(selectedOptions.map(function (option) {
-					return option.value;
-				}));
-				this.selectedTexts = cellx.list(selectedOptions.map(function (option) {
-					return option.text;
-				}));
+			if (this.props.model) {
+				this._updateOptions();
 			} else {
-				var selectedOption = this.options.find(function (option) {
-					return option.selected;
-				});
+				var selectedOptions = void 0;
 
-				if (selectedOption) {
-					this.value = selectedOption.value;
-					this.selectedTexts = cellx.list([selectedOption.text]);
+				if (this.props.multiple) {
+					selectedOptions = this.options.filter(function (option) {
+						return option.selected;
+					});
 				} else {
-					this.value = null;
-					this.selectedTexts = cellx.list();
+					var selectedOption = this.options.find(function (option) {
+						return option.selected;
+					});
+					selectedOptions = selectedOption ? [selectedOption] : [];
+				}
+
+				if (selectedOptions.length) {
+					this.model.addRange(selectedOptions.map(function (option) {
+						return {
+							value: option.value,
+							text: option.text
+						};
+					}));
 				}
 			}
 		},
 		elementAttached: function elementAttached() {
-			this.listenTo(this, 'change:value', this._onValueChange);
+			this.listenTo(this.model, 'change', this._onModelChange);
 		},
 		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
 			if (name == 'focused') {
 				this[value ? 'focus' : 'blur']();
 			}
 		},
-		_onValueChange: function _onValueChange(evt) {
+		_onModelChange: function _onModelChange(evt) {
 			this.emit({
 				type: 'change',
 				value: evt.value
+			});
+		},
+		_updateOptions: function _updateOptions() {
+			var model = this.model;
+
+			this.options.forEach(function (option) {
+				option.selected = model.contains(option.value, 'value');
 			});
 		},
 
@@ -556,7 +568,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-select{position:relative;display:inline-block}.opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:13px;height:13px;vertical-align:middle;transition:-webkit-transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;fill:currentColor}.opal-select__button[checked] .opal-select__icon-chevron-down{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-popover{min-width:100px}.opal-select .opal-filtered-list__tf-query-wrapper{margin:10px}.opal-select .opal-loaded-list{height:360px}";
+	            style.textContent = ".opal-select{position:relative;display:inline-block}.opal-select__button{min-width:100%}.opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:13px;height:13px;vertical-align:middle;transition:-webkit-transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;fill:currentColor}.opal-select__button[checked] .opal-select__icon-chevron-down{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-popover{min-width:100px}.opal-select .opal-filtered-list__tf-query-wrapper{margin:10px}.opal-select .opal-loaded-list{height:360px}";
 	            head.appendChild(style);
 	            return style;
 	        }

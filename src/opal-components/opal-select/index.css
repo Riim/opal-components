@@ -3,6 +3,7 @@
 	display: inline-block;
 }
 	.opal-select__button {
+		min-width: 100%;
 	}
 		.opal-select__icon-chevron-down {
 			display: inline-block;

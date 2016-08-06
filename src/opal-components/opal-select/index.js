@@ -2,7 +2,7 @@ require('./index.css');
 require('./opal-select__icon-chevron-down.svg');
 
 let { utils: { nextTick }, cellx } = require('cellx');
-let { Component, template, components: { RtRepeat } } = require('rionite');
+let { IndexedList, Component, template, components: { RtRepeat } } = require('rionite');
 let OpalSelectOption = require('./opal-select-option');
 let isEqualArray = require('./isEqualArray');
 
@@ -15,6 +15,7 @@ module.exports = Component.extend('opal-select', {
 		props: {
 			type: String,
 			size: 'm',
+			model: String,
 			text: String,
 			placeholder: '—',
 			multiple: false,
@@ -53,14 +54,7 @@ module.exports = Component.extend('opal-select', {
 					}
 
 					this._options.pull();
-
-					let value = this.value;
-
-					this.options.forEach(this.props.multiple ? option => {
-						option.selected = value.contains(option.value);
-					} : option => {
-						option.selected = value !== null && option.value == value;
-					});
+					this._updateOptions();
 
 					return false;
 				},
@@ -70,18 +64,19 @@ module.exports = Component.extend('opal-select', {
 						return;
 					}
 
+					let model = this.model;
+					let item = {
+						value: selectedOption.value,
+						text: selectedOption.text
+					};
+
 					if (this.props.multiple) {
-						this.value.add(selectedOption.value);
-						this.selectedTexts.add(selectedOption.text);
+						model.add(item);
 					} else {
-						this.value = selectedOption.value;
-
-						let selectedTexts = this.selectedTexts;
-
-						if (selectedTexts.length) {
-							selectedTexts.set(0, selectedOption.text);
+						if (model.length) {
+							model.set(0, item);
 						} else {
-							selectedTexts.add(selectedOption.text);
+							model.add(item);
 						}
 
 						this.options.forEach(option => {
@@ -101,10 +96,7 @@ module.exports = Component.extend('opal-select', {
 					}
 
 					if (this.props.multiple) {
-						let index = this.value.indexOf(deselectedOption.value);
-
-						this.value.removeAt(index);
-						this.selectedTexts.removeAt(index);
+						this.model.remove(this.model.get(deselectedOption.value, 'value'));
 					} else {
 						deselectedOption.select();
 
@@ -119,24 +111,35 @@ module.exports = Component.extend('opal-select', {
 		}
 	},
 
+	model: null,
+
 	_opened: false,
 	_focused: false,
 
 	initialize() {
+		let model = this.props.model;
+
+		if (model) {
+			model = (this.ownerComponent || window)[model];
+
+			if (!model) {
+				throw new TypeError('model is required');
+			}
+		} else {
+			model = new IndexedList(null, { indexes: ['value'] });
+		}
+
 		cellx.define(this, {
+			model,
+
 			options(push, fail, oldOptions) {
 				let optionElements = this.optionElements;
 				let options = optionElements ? map.call(optionElements, option => option.$c) : [];
 				return oldOptions && isEqualArray(options, oldOptions) ? oldOptions : options;
 			},
 
-			value: void 0,
-
-			selectedTexts: void 0,
-
 			text: function() {
-				let selectedTexts = this.selectedTexts;
-				return selectedTexts && selectedTexts.join(', ') || this.props.placeholder;
+				return this.model.map(item => item.text).join(', ') || this.props.placeholder;
 			}
 		});
 	},
@@ -144,28 +147,29 @@ module.exports = Component.extend('opal-select', {
 	ready() {
 		this.optionElements = this.element.getElementsByClassName('opal-select-option');
 
-		let props = this.props;
-
-		if (props.multiple) {
-			let selectedOptions = this.options.filter(option => option.selected);
-
-			this.value = cellx.list(selectedOptions.map(option => option.value));
-			this.selectedTexts = cellx.list(selectedOptions.map(option => option.text));
+		if (this.props.model) {
+			this._updateOptions();
 		} else {
-			let selectedOption = this.options.find(option => option.selected);
+			let selectedOptions;
 
-			if (selectedOption) {
-				this.value = selectedOption.value;
-				this.selectedTexts = cellx.list([selectedOption.text]);
+			if (this.props.multiple) {
+				selectedOptions = this.options.filter(option => option.selected);
 			} else {
-				this.value = null;
-				this.selectedTexts = cellx.list();
+				let selectedOption = this.options.find(option => option.selected);
+				selectedOptions = selectedOption ? [selectedOption] : [];
+			}
+
+			if (selectedOptions.length) {
+				this.model.addRange(selectedOptions.map(option => ({
+					value: option.value,
+					text: option.text
+				})));
 			}
 		}
 	},
 
 	elementAttached() {
-		this.listenTo(this, 'change:value', this._onValueChange);
+		this.listenTo(this.model, 'change', this._onModelChange);
 	},
 
 	elementAttributeChanged(name, oldValue, value) {
@@ -174,10 +178,18 @@ module.exports = Component.extend('opal-select', {
 		}
 	},
 
-	_onValueChange(evt) {
+	_onModelChange(evt) {
 		this.emit({
 			type: 'change',
 			value: evt.value
+		});
+	},
+
+	_updateOptions() {
+		let model = this.model;
+
+		this.options.forEach(option => {
+			option.selected = model.contains(option.value, 'value');
 		});
 	},
 
