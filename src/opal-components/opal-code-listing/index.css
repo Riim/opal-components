@@ -2,25 +2,12 @@
 	display: block;
 	margin-bottom: 30px;
 }
-	.opal-code-listing__content {
-		display: block;
-		padding: 30px;
-		border: 2px solid #232829;
-		border-top-left-radius: 3px;
-		border-top-right-radius: 3px;
-		background: #fff;
-	}
-		.opal-code-listing__markup {
-		}
-
-	.opal-code-listing__code-wrapper {
+	.opal-code-listing__html-code-wrapper,
+	.opal-code-listing__js-code-wrapper {
 		overflow: auto;
 		margin: 0;
-		padding: 1em;
-		border-bottom-right-radius: 3px;
-		border-bottom-left-radius: 3px;
-		background: #232829;
-		color: #f8f8f2;
+		color: #000;
+		text-align: left;
 		white-space: pre;
 		word-spacing: normal;
 		word-wrap: normal;
@@ -28,9 +15,34 @@
 		tab-size: 4;
 		hyphens: none;
 		font-weight: bold;
-		font-size: 18px;
+		font-size: 16px;
 		font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 		line-height: 1.5;
 	}
-		.opal-code-listing__code {
+		.opal-code-listing__html-code,
+		.opal-code-listing__js-code {
+		}
+
+	.opal-code-listing__example-html-wrapper {
+		position: relative;
+		display: block;
+		padding: 29px;
+		border: 1px solid hsl(0,0%,86%);
+		border-radius: 3px;
+		background: #fff;
+	}
+		.opal-code-listing__example-html-wrapper::before {
+			position: absolute;
+			top: 0;
+			left: 29px;
+			padding: 0 10px;
+			border: 1px solid hsl(0,0%,86%);
+			border-radius: 3px;
+			background: hsl(0,0%,96%);
+			content: 'Result';
+			font: 14px/28px Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+			transform: translateY(-50%);
+		}
+
+		.opal-code-listing__example-html {
 		}

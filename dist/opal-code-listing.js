@@ -65,33 +65,47 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Prism = __webpack_require__(9);
 
+	function prepareCode(code, html) {
+		code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
+
+		var tabs = code.match(/^\t*[^\t\r\n]/gm);
+		var stripTabCount = tabs.slice(1).reduce(function (stripTabCount, tabs) {
+			return Math.min(stripTabCount, tabs.length);
+		}, tabs[0].length) - 1;
+
+		if (stripTabCount) {
+			code = code.replace(RegExp('^\\t{' + stripTabCount + '}(.)', 'gm'), '$1');
+		}
+
+		if (html) {
+			code = code.replace(/(\s[\-\w]+)=""(?=[^<]*>)/g, '$1');
+		}
+
+		return code;
+	}
+
 	module.exports = Component.extend('opal-code-listing', {
 		Static: {
 			template: __webpack_require__(10),
 
 			assets: {
-				code: {}
+				htmlCode: {},
+				jsCode: {}
 			}
 		},
 
 		initialize: function initialize() {
-			var code = this.$('&__markup').innerHTML;
-			var tabs = code.match(/^\t*[^\t\r\n]/gm);
+			this.highlightedHTMLCode = Prism.highlight(prepareCode(this.$('&__example-html').innerHTML, true), Prism.languages.html);
 
-			var stripTabCount = tabs.slice(1).reduce(function (stripTabCount, tabs) {
-				return Math.min(stripTabCount, tabs.length);
-			}, tabs[0].length) - 1;
+			var exampleJSCode = this.$('&__example-js');
 
-			if (stripTabCount) {
-				code = code.replace(RegExp('^\\t{' + stripTabCount + '}(.)', 'gm'), '$1');
+			if (exampleJSCode) {
+				this.highlightedJSCode = Prism.highlight(prepareCode(exampleJSCode.textContent), Prism.languages.javascript);
 			}
-
-			code = code.trim().replace(/(\s[\-\w]+)=""(?=[^<]*>)/g, '$1');
-
-			this.highlightedCode = Prism.highlight(code, Prism.languages.html);
 		},
 		ready: function ready() {
-			this.assets.code.innerHTML = this.highlightedCode;
+			this.assets.htmlCode.innerHTML = this.highlightedHTMLCode;
+			this.assets.jsCode.innerHTML = this.highlightedJSCode || '';
 		}
 	});
 
@@ -115,7 +129,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-code-listing{display:block;margin-bottom:30px}.opal-code-listing__content{display:block;padding:30px;border:2px solid #232829;border-top-left-radius:3px;border-top-right-radius:3px;background:#fff}.opal-code-listing__code-wrapper{overflow:auto;margin:0;padding:1em;border-bottom-right-radius:3px;border-bottom-left-radius:3px;background:#232829;color:#f8f8f2;white-space:pre;word-spacing:normal;word-wrap:normal;word-break:normal;-moz-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;font-weight:700;font-size:18px;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;line-height:1.5}";
+	            style.textContent = ".opal-code-listing{display:block;margin-bottom:30px}.opal-code-listing__html-code-wrapper,.opal-code-listing__js-code-wrapper{overflow:auto;margin:0;color:#000;text-align:left;white-space:pre;word-spacing:normal;word-wrap:normal;word-break:normal;-moz-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;font-weight:700;font-size:16px;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;line-height:1.5}.opal-code-listing__example-html-wrapper{position:relative;display:block;padding:29px;border:1px solid #dbdbdb;border-radius:3px;background:#fff}.opal-code-listing__example-html-wrapper::before{position:absolute;top:0;left:29px;padding:0 10px;border:1px solid #dbdbdb;border-radius:3px;background:#f5f5f5;content:'Result';font:14px/28px Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -132,7 +146,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = "code[class*=language-],pre[class*=language-]{font-family:Consolas,Menlo,Monaco,\"Andale Mono WT\",\"Andale Mono\",\"Lucida Console\",\"Lucida Sans Typewriter\",\"DejaVu Sans Mono\",\"Bitstream Vera Sans Mono\",\"Liberation Mono\",\"Nimbus Mono L\",\"Courier New\",Courier,monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;background:#1c2624;color:#5c8a7e}pre[class*=language-]::-moz-selection,pre[class*=language-] ::-moz-selection,code[class*=language-]::-moz-selection,code[class*=language-] ::-moz-selection{text-shadow:none;background:#627a74}pre[class*=language-]::selection,pre[class*=language-] ::selection,code[class*=language-]::selection,code[class*=language-] ::selection{text-shadow:none;background:#627a74}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em}.token.punctuation,.token.comment,.token.prolog,.token.doctype,.token.cdata{color:#b2c2be}.token.namespace{opacity:.7}.token.tag,.token.operator,.token.number{color:#10cef4}.token.property,.token.function{color:#73ab9d}.token.tag-id,.token.selector,.token.atrule-id{color:#ebfffa}code.language-javascript,.token.attr-name{color:#4dffd2}code.language-css,code.language-scss,.token.boolean,.token.string,.token.entity,.token.url,.language-css .token.string,.language-scss .token.string,.style .token.string,.token.attr-value,.token.keyword,.token.control,.token.directive,.token.unit,.token.statement,.token.regex,.token.atrule{color:#66b8ff}.token.placeholder,.token.variable{color:#38dafa}.token.deleted{text-decoration:line-through}.token.inserted{border-bottom:1px dotted #ebfffa;text-decoration:none}.token.italic{font-style:italic}.token.important,.token.bold{font-weight:700}.token.important{color:#008060}.token.entity{cursor:help}pre>code.highlight{outline:.4em solid #008060;outline-offset:.4em}";
+	            style.textContent = ".token.comment,.token.prolog,.token.doctype,.token.cdata{color:#666}.token.punctuation{color:#999}.namespace{opacity:.7}.token.property,.token.tag,.token.boolean,.token.number,.token.constant,.token.symbol,.token.deleted{color:#ab175e}.token.selector,.token.attr-name,.token.string,.token.char,.token.builtin,.token.inserted{color:#0083b3}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string{background:rgba(255,255,255,.5);color:#a68059}.token.atrule,.token.attr-value,.token.keyword{color:#723dc2}.token.function{color:#dd4b68}.token.regex,.token.important,.token.variable{color:#f09c00}.token.important,.token.bold{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -931,7 +945,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content class=\"opal-code-listing__content\" select=\".opal-code-listing__markup\"></rt-content> <pre class=\"opal-code-listing__code-wrapper\"><code class=\"opal-code-listing__code\"></code></pre>"
+	module.exports = "<opal-tabs> <opal-tab>HTML</opal-tab> <opal-tab-panel> <pre class=\"opal-code-listing__html-code-wrapper\"><code class=\"opal-code-listing__html-code\"></code></pre> </opal-tab-panel> <opal-tab>JS</opal-tab> <opal-tab-panel> <pre class=\"opal-code-listing__js-code-wrapper\"><code class=\"opal-code-listing__js-code\"></code></pre> </opal-tab-panel> </opal-tabs> <rt-content class=\"opal-code-listing__example-html-wrapper\" select=\".opal-code-listing__example-html\"></rt-content> <rt-content class=\"opal-code-listing__example-js-wrapper\" select=\".opal-code-listing__example-js\"></rt-content>"
 
 /***/ }
 /******/ ])

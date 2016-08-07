@@ -8,7 +8,7 @@ let createObject = Object.create;
 module.exports = Component.extend('opal-loaded-list', {
 	Static: {
 		props: {
-			provider: String,
+			dataProvider: String,
 			nextCount: 100,
 			query: String,
 			itemAs: '$item',
@@ -35,7 +35,7 @@ module.exports = Component.extend('opal-loaded-list', {
 	_lastAppliedQuery: void 0,
 
 	initialize() {
-		this.dataProvider = (this.ownerComponent || window)[this.props.provider];
+		this.dataProvider = (this.ownerComponent || window)[this.props.dataProvider];
 
 		cellx.define(this, {
 			list: cellx.list(),

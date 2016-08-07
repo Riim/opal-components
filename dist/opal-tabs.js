@@ -201,7 +201,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-tab-list{display:block;padding:0 30px;border-bottom:1px solid #e6e6e6;white-space:nowrap;font-size:0}";
+	            style.textContent = ".opal-tab-list{display:block;padding:0 30px;border-bottom:1px solid #dbdbdb;white-space:nowrap;font-size:0}";
 	            head.appendChild(style);
 	            return style;
 	        }

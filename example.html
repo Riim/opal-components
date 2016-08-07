@@ -25,6 +25,8 @@
 	<script src="dist/focusHighlightController.js"></script>
 	<script>
 
+function require() {}
+
 var items = [];
 
 for (var i = 0, l = 1000; i < l; i++) {
@@ -83,7 +85,7 @@ body {
 <h1>opal-button</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-button>Button</opal-button>
 		<opal-button type="action">Button</opal-button>
 		<opal-button type="danger">Button</opal-button>
@@ -91,30 +93,39 @@ body {
 		<opal-button disabled>Button</opal-button>
 		<opal-button type="action" disabled>Button</opal-button>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-button');
+	</script>
 </opal-code-listing>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-button size="s">Button</opal-button>
 		<opal-button type="action" size="s">Button</opal-button>
 		<opal-button type="danger" size="s">Button</opal-button>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-button');
+	</script>
 </opal-code-listing>
 
 <h1>opal-text-input</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-text-input value="Value" placeholder="Placeholder"></opal-text-input><br><br>
 		<opal-text-input value="Value" disabled></opal-text-input><br><br>
 		<opal-text-input placeholder="Placeholder" disabled></opal-text-input>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-text-input');
+	</script>
 </opal-code-listing>
 
 <h1>opal-button + opal-group</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-group>
 			<opal-button>Button</opal-button>
 			<opal-button checkable>Button</opal-button>
@@ -123,24 +134,33 @@ body {
 			<opal-button checkable>Button</opal-button>
 		</opal-group>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-button');
+		require('opal-components/dist/opal-group');
+	</script>
 </opal-code-listing>
 
 <h1>opal-button + opal-text-input + opal-group</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-group>
 			<opal-button>Button</opal-button>
 			<opal-text-input value="Value" placeholder="Placeholder"></opal-text-input>
 			<opal-button type="action">Button</opal-button>
 		</opal-group>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-button');
+		require('opal-components/dist/opal-text-input');
+		require('opal-components/dist/opal-group');
+	</script>
 </opal-code-listing>
 
 <h1>opal-checkbox</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-checkbox>Label</opal-checkbox>
 		<opal-checkbox checked>Label</opal-checkbox>
 		<opal-checkbox indeterminate>Label</opal-checkbox><br><br>
@@ -148,35 +168,45 @@ body {
 		<opal-checkbox checked disabled>Label</opal-checkbox>
 		<opal-checkbox indeterminate disabled>Label</opal-checkbox>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-checkbox');
+	</script>
 </opal-code-listing>
 
 <h1>opal-switch</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-switch>Label</opal-switch>
 		<opal-switch checked>Label</opal-switch><br><br>
 		<opal-switch disabled>Label</opal-switch>
 		<opal-switch checked disabled>Label</opal-switch>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-switch');
+	</script>
 </opal-code-listing>
 
 <h1>opal-switch-menu</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-switch-menu>
 			<opal-button checkable checked>Option 1</opal-button>
 			<opal-button checkable>Option 2</opal-button>
 			<opal-button checkable>Option 3</opal-button>
 		</opal-switch-menu>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-button');
+		require('opal-components/dist/opal-switch-menu');
+	</script>
 </opal-code-listing>
 
 <h1>opal-tabs</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-tabs>
 			<opal-tab selected>Foo</opal-tab>
 			<opal-tab>Bar</opal-tab>
@@ -186,12 +216,15 @@ body {
 			<opal-tab-panel>Hello from Baz</opal-tab-panel>
 		</opal-tabs>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-tabs');
+	</script>
 </opal-code-listing>
 
 <h1>opal-popover</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<div style="position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;">
 			<opal-popover opened>Popover</opal-popover>
 			<opal-popover from="bottom" opened>Popover</opal-popover>
@@ -199,21 +232,28 @@ body {
 			<opal-popover from="top" opened>Popover</opal-popover>
 		</div>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-popover');
+	</script>
 </opal-code-listing>
 
 <h1>opal-modal</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-modal id="modal1">Modal</opal-modal>
 		<opal-button onclick="document.getElementById('modal1').$c.open();">Open</opal-button>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-button');
+		require('opal-components/dist/opal-modal');
+	</script>
 </opal-code-listing>
 
 <h1>opal-select</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-select placeholder="Select">
 			<opal-select-option text="Option 1" selected></opal-select-option>
 			<opal-select-option text="Option 2"></opal-select-option>
@@ -231,12 +271,17 @@ body {
 			<opal-select-option text="Option 5"></opal-select-option>
 		</opal-select>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-button');
+		require('opal-components/dist/opal-dropdown');
+		require('opal-components/dist/opal-select');
+	</script>
 </opal-code-listing>
 
 <h1>opal-select + opal-popover + opal-group</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-group>
 			<opal-select placeholder="Select">
 				<opal-popover class="opal-select__menu" from="bottom" auto-closing>
@@ -255,37 +300,50 @@ body {
 			</opal-select>
 		</opal-group>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-button');
+		require('opal-components/dist/opal-popover');
+		require('opal-components/dist/opal-select');
+	</script>
 </opal-code-listing>
 
 <h1>opal-loader</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-loader shown></opal-loader><br>
 		<opal-loader size="s" shown></opal-loader>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-loader');
+	</script>
 </opal-code-listing>
 
 <h1>opal-filtered-list</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-filtered-list>
-			<opal-loaded-list class="opal-filtered-list__loaded-list" provider="dataProvider1">
+			<opal-loaded-list class="opal-filtered-list__loaded-list" data-provider="dataProvider1">
 				{$item.value}
 			</opal-loaded-list>
 		</opal-filtered-list>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-loader');
+		require('opal-components/dist/opal-loaded-list');
+		require('opal-components/dist/opal-filtered-list');
+	</script>
 </opal-code-listing>
 
 <h1>opal-select + opal-filtered-list</h1>
 
 <opal-code-listing>
-	<div class="opal-code-listing__markup">
+	<div class="opal-code-listing__example-html">
 		<opal-select>
 			<opal-filtered-list class="opal-select__menu-inner opal-select__filtered-list">
 				<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
-						provider="dataProvider1">
+						data-provider="dataProvider1">
 					<opal-select-option text="{$item.value}"></opal-select-option>
 				</opal-loaded-list>
 			</opal-filtered-list>
@@ -293,7 +351,7 @@ body {
 
 		<opal-select>
 			<opal-popover class="opal-select__menu" from="bottom" auto-closing>
-				<opal-loaded-list class="opal-select__loaded-list" provider="dataProvider1">
+				<opal-loaded-list class="opal-select__loaded-list" data-provider="dataProvider1">
 					<opal-select-option text="{$item.value}"></opal-select-option>
 				</opal-loaded-list>
 			</opal-popover>
@@ -301,7 +359,7 @@ body {
 
 		<opal-select multiple>
 			<opal-popover class="opal-select__menu" from="bottom" auto-closing>
-				<opal-loaded-list class="opal-select__loaded-list" provider="dataProvider1">
+				<opal-loaded-list class="opal-select__loaded-list" data-provider="dataProvider1">
 					<opal-select-option text="{$item.value}"></opal-select-option>
 				</opal-loaded-list>
 			</opal-popover>
@@ -311,7 +369,7 @@ body {
 			<opal-popover class="opal-select__menu" from="bottom" auto-closing>
 				<opal-filtered-list class="opal-select__filtered-list">
 					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
-							provider="dataProvider1">
+							data-provider="dataProvider1">
 						<opal-select-option text="{$item.value}"></opal-select-option>
 					</opal-loaded-list>
 				</opal-filtered-list>
@@ -322,13 +380,21 @@ body {
 			<opal-popover class="opal-select__menu" from="bottom" auto-closing>
 				<opal-filtered-list class="opal-select__filtered-list">
 					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
-							provider="dataProvider1">
+							data-provider="dataProvider1">
 						<opal-select-option text="{$item.value}"></opal-select-option>
 					</opal-loaded-list>
 				</opal-filtered-list>
 			</opal-popover>
 		</opal-select>
 	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-button');
+		require('opal-components/dist/opal-popover');
+		require('opal-components/dist/opal-select');
+		require('opal-components/dist/opal-loader');
+		require('opal-components/dist/opal-loaded-list');
+		require('opal-components/dist/opal-filtered-list');
+	</script>
 </opal-code-listing>
 
 </body>
