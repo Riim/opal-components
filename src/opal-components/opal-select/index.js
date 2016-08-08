@@ -15,7 +15,7 @@ module.exports = Component.extend('opal-select', {
 		props: {
 			type: String,
 			size: 'm',
-			model: String,
+			viewModel: String,
 			text: String,
 			placeholder: '—',
 			multiple: false,
@@ -64,19 +64,19 @@ module.exports = Component.extend('opal-select', {
 						return;
 					}
 
-					let model = this.model;
+					let vm = this.viewModel;
 					let item = {
 						value: selectedOption.value,
 						text: selectedOption.text
 					};
 
 					if (this.props.multiple) {
-						model.add(item);
+						vm.add(item);
 					} else {
-						if (model.length) {
-							model.set(0, item);
+						if (vm.length) {
+							vm.set(0, item);
 						} else {
-							model.add(item);
+							vm.add(item);
 						}
 
 						this.options.forEach(option => {
@@ -96,7 +96,7 @@ module.exports = Component.extend('opal-select', {
 					}
 
 					if (this.props.multiple) {
-						this.model.remove(this.model.get(deselectedOption.value, 'value'));
+						this.viewModel.remove(this.viewModel.get(deselectedOption.value, 'value'));
 					} else {
 						deselectedOption.select();
 
@@ -111,26 +111,24 @@ module.exports = Component.extend('opal-select', {
 		}
 	},
 
-	model: null,
-
 	_opened: false,
 	_focused: false,
 
 	initialize() {
-		let model = this.props.model;
+		let vm = this.props.viewModel;
 
-		if (model) {
-			model = (this.ownerComponent || window)[model];
+		if (vm) {
+			vm = (this.ownerComponent || window)[vm];
 
-			if (!model) {
-				throw new TypeError('model is required');
+			if (!vm) {
+				throw new TypeError('viewModel is required');
 			}
 		} else {
-			model = new IndexedList(null, { indexes: ['value'] });
+			vm = new IndexedList(null, { indexes: ['value'] });
 		}
 
 		cellx.define(this, {
-			model,
+			viewModel: vm,
 
 			options(push, fail, oldOptions) {
 				let optionElements = this.optionElements;
@@ -139,7 +137,7 @@ module.exports = Component.extend('opal-select', {
 			},
 
 			text: function() {
-				return this.model.map(item => item.text).join(', ') || this.props.placeholder;
+				return this.viewModel.map(item => item.text).join(', ') || this.props.placeholder;
 			}
 		});
 	},
@@ -147,7 +145,7 @@ module.exports = Component.extend('opal-select', {
 	ready() {
 		this.optionElements = this.element.getElementsByClassName('opal-select-option');
 
-		if (this.props.model) {
+		if (this.props.viewModel) {
 			this._updateOptions();
 		} else {
 			let selectedOptions;
@@ -160,7 +158,7 @@ module.exports = Component.extend('opal-select', {
 			}
 
 			if (selectedOptions.length) {
-				this.model.addRange(selectedOptions.map(option => ({
+				this.viewModel.addRange(selectedOptions.map(option => ({
 					value: option.value,
 					text: option.text
 				})));
@@ -169,7 +167,7 @@ module.exports = Component.extend('opal-select', {
 	},
 
 	elementAttached() {
-		this.listenTo(this.model, 'change', this._onModelChange);
+		this.listenTo(this.viewModel, 'change', this._onViewModelChange);
 	},
 
 	elementAttributeChanged(name, oldValue, value) {
@@ -178,7 +176,7 @@ module.exports = Component.extend('opal-select', {
 		}
 	},
 
-	_onModelChange(evt) {
+	_onViewModelChange(evt) {
 		this.emit({
 			type: 'change',
 			value: evt.value
@@ -186,10 +184,10 @@ module.exports = Component.extend('opal-select', {
 	},
 
 	_updateOptions() {
-		let model = this.model;
+		let vm = this.viewModel;
 
 		this.options.forEach(option => {
-			option.selected = model.contains(option.value, 'value');
+			option.selected = vm.contains(option.value, 'value');
 		});
 	},
 

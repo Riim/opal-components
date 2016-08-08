@@ -85,7 +85,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			props: {
 				type: String,
 				size: 'm',
-				model: String,
+				viewModel: String,
 				text: String,
 				placeholder: '—',
 				multiple: false,
@@ -132,19 +132,19 @@ return /******/ (function(modules) { // webpackBootstrap
 							return;
 						}
 
-						var model = this.model;
+						var vm = this.viewModel;
 						var item = {
 							value: selectedOption.value,
 							text: selectedOption.text
 						};
 
 						if (this.props.multiple) {
-							model.add(item);
+							vm.add(item);
 						} else {
-							if (model.length) {
-								model.set(0, item);
+							if (vm.length) {
+								vm.set(0, item);
 							} else {
-								model.add(item);
+								vm.add(item);
 							}
 
 							this.options.forEach(function (option) {
@@ -165,7 +165,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						}
 
 						if (this.props.multiple) {
-							this.model.remove(this.model.get(deselectedOption.value, 'value'));
+							this.viewModel.remove(this.viewModel.get(deselectedOption.value, 'value'));
 						} else {
 							deselectedOption.select();
 
@@ -180,26 +180,24 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 
-		model: null,
-
 		_opened: false,
 		_focused: false,
 
 		initialize: function initialize() {
-			var model = this.props.model;
+			var vm = this.props.viewModel;
 
-			if (model) {
-				model = (this.ownerComponent || window)[model];
+			if (vm) {
+				vm = (this.ownerComponent || window)[vm];
 
-				if (!model) {
-					throw new TypeError('model is required');
+				if (!vm) {
+					throw new TypeError('viewModel is required');
 				}
 			} else {
-				model = new IndexedList(null, { indexes: ['value'] });
+				vm = new IndexedList(null, { indexes: ['value'] });
 			}
 
 			cellx.define(this, {
-				model: model,
+				viewModel: vm,
 
 				options: function options(push, fail, oldOptions) {
 					var optionElements = this.optionElements;
@@ -211,7 +209,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 				text: function text() {
-					return this.model.map(function (item) {
+					return this.viewModel.map(function (item) {
 						return item.text;
 					}).join(', ') || this.props.placeholder;
 				}
@@ -220,7 +218,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		ready: function ready() {
 			this.optionElements = this.element.getElementsByClassName('opal-select-option');
 
-			if (this.props.model) {
+			if (this.props.viewModel) {
 				this._updateOptions();
 			} else {
 				var selectedOptions = void 0;
@@ -237,7 +235,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 
 				if (selectedOptions.length) {
-					this.model.addRange(selectedOptions.map(function (option) {
+					this.viewModel.addRange(selectedOptions.map(function (option) {
 						return {
 							value: option.value,
 							text: option.text
@@ -247,24 +245,24 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 		elementAttached: function elementAttached() {
-			this.listenTo(this.model, 'change', this._onModelChange);
+			this.listenTo(this.viewModel, 'change', this._onViewModelChange);
 		},
 		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
 			if (name == 'focused') {
 				this[value ? 'focus' : 'blur']();
 			}
 		},
-		_onModelChange: function _onModelChange(evt) {
+		_onViewModelChange: function _onViewModelChange(evt) {
 			this.emit({
 				type: 'change',
 				value: evt.value
 			});
 		},
 		_updateOptions: function _updateOptions() {
-			var model = this.model;
+			var vm = this.viewModel;
 
 			this.options.forEach(function (option) {
-				option.selected = model.contains(option.value, 'value');
+				option.selected = vm.contains(option.value, 'value');
 			});
 		},
 
