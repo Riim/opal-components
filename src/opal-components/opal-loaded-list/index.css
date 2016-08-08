@@ -1,16 +1,16 @@
 .opal-loaded-list {
 	position: relative;
 	display: block;
+	overflow-x: hidden;
 	overflow-y: auto;
 	height: 500px;
 }
 	.opal-loaded-list__not-found {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
 		display: none;
+		box-sizing: border-box;
+		padding: 10px;
+		width: 100%;
+		height: 100%;
 		text-align: center;
 		white-space: nowrap;
 	}
@@ -23,9 +23,9 @@
 		}
 
 		.opal-loaded-list__not-found-message {
+			display: inline-block;
 			color: hsl(0,0%,50%);
 			vertical-align: middle;
-			white-space: normal;
 		}
 
 	.opal-loaded-list__not-found[shown] {
