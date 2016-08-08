@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Component.extend('opal-loaded-list', {
 		Static: {
 			props: {
-				dataProvider: String,
+				dataprovider: String,
 				nextCount: 100,
 				query: String,
 				itemAs: '$item',
@@ -103,7 +103,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		_lastAppliedQuery: void 0,
 
 		initialize: function initialize() {
-			this.dataProvider = (this.ownerComponent || window)[this.props.dataProvider];
+			this.dataprovider = (this.ownerComponent || window)[this.props.dataprovider];
 
 			cellx.define(this, {
 				list: cellx.list(),
@@ -203,7 +203,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			this.loading = true;
 
-			this.dataProvider.getNext(props.nextCount, list.length ? list.get(-1).id : void 0, query).then(this._requestCallback = this.registerCallback(function (data) {
+			this.dataprovider.getNext(props.nextCount, list.length ? list.get(-1).id : void 0, query).then(this._requestCallback = this.registerCallback(function (data) {
 				_this3.loading = false;
 
 				_this3.total = data.total;
