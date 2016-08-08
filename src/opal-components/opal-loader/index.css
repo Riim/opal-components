@@ -36,7 +36,7 @@
 	.opal-loader::after {
 		width: 26px;
 		height: 26px;
-		border-color: hsl(348,94%,60%);
+		border-color: hsl(348,92%,58%);
 		border-bottom-color: transparent;
 		animation-direction: reverse;
 	}

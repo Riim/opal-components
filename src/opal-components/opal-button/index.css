@@ -112,15 +112,15 @@
 
 .opal-button[type=danger][type=danger] {
 	& .opal-button__control {
-		background: hsl(348,94%,60%);
+		background: hsl(348,92%,58%);
 	}
 
 	& .opal-button__control:hover {
-		background: hsl(348,100%,66%);
+		background: hsl(348,98%,64%);
 	}
 
 	& .opal-button__control:active,
 	&[checked] .opal-button__control {
-		background: hsl(348,82%,48%);
+		background: hsl(348,80%,46%);
 	}
 }
