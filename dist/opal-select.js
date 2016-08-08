@@ -147,12 +147,6 @@ return /******/ (function(modules) { // webpackBootstrap
 								vm.add(item);
 							}
 
-							this.options.forEach(function (option) {
-								if (option != selectedOption) {
-									option.selected = false;
-								}
-							});
-
 							this.close();
 							this.focus();
 						}
@@ -253,6 +247,8 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 		_onViewModelChange: function _onViewModelChange(evt) {
+			this._updateOptions();
+
 			this.emit({
 				type: 'change',
 				value: evt.value

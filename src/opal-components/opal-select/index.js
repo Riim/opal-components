@@ -79,12 +79,6 @@ module.exports = Component.extend('opal-select', {
 							vm.add(item);
 						}
 
-						this.options.forEach(option => {
-							if (option != selectedOption) {
-								option.selected = false;
-							}
-						});
-
 						this.close();
 						this.focus();
 					}
@@ -177,6 +171,8 @@ module.exports = Component.extend('opal-select', {
 	},
 
 	_onViewModelChange(evt) {
+		this._updateOptions();
+
 		this.emit({
 			type: 'change',
 			value: evt.value
