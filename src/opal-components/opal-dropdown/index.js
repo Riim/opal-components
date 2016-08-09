@@ -54,10 +54,7 @@ module.exports = Component.extend('opal-dropdown', {
 	 * @typesign (value?: boolean) -> boolean;
 	 */
 	toggle(value) {
-		if (value !== void 0) {
-			return (this.props.opened = !!value);
-		}
-		return (this.props.opened = !this.props.opened);
+		return (this.props.opened = value === void 0 ? !this.props.opened : value);
 	},
 
 	_open() {

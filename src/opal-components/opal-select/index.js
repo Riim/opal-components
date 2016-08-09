@@ -4,7 +4,6 @@ require('./opal-select__icon-chevron-down.svg');
 let { utils: { nextTick }, cellx } = require('cellx');
 let { IndexedList, Component, template, components: { RtRepeat } } = require('rionite');
 let OpalSelectOption = require('./opal-select-option');
-let isEqualArray = require('./isEqualArray');
 
 let map = Array.prototype.map;
 
@@ -15,6 +14,7 @@ module.exports = Component.extend('opal-select', {
 		props: {
 			type: String,
 			size: 'm',
+			value: Object,
 			viewModel: String,
 			text: String,
 			placeholder: '—',
@@ -124,13 +124,11 @@ module.exports = Component.extend('opal-select', {
 		cellx.define(this, {
 			viewModel: vm,
 
-			options(push, fail, oldOptions) {
-				let optionElements = this.optionElements;
-				let options = optionElements ? map.call(optionElements, option => option.$c) : [];
-				return oldOptions && isEqualArray(options, oldOptions) ? oldOptions : options;
+			options() {
+				return this.optionElements ? map.call(this.optionElements, option => option.$c) : [];
 			},
 
-			text: function() {
+			text() {
 				return this.viewModel.map(item => item.text).join(', ') || this.props.placeholder;
 			}
 		});
@@ -139,16 +137,37 @@ module.exports = Component.extend('opal-select', {
 	ready() {
 		this.optionElements = this.element.getElementsByClassName('opal-select-option');
 
-		if (this.props.viewModel) {
+		let props = this.props;
+
+		if (props.viewModel) {
 			this._updateOptions();
 		} else {
+			let value = props.value;
 			let selectedOptions;
 
-			if (this.props.multiple) {
-				selectedOptions = this.options.filter(option => option.selected);
+			if (value) {
+				if (!Array.isArray(value)) {
+					throw new TypeError('value must be an array');
+				}
+
+				if (value.length) {
+					if (props.multiple) {
+						selectedOptions = this.options.filter(option => value.indexOf(option.value) != -1);
+					} else {
+						value = value[0];
+						let selectedOption = this.options.find(option => option.value == value);
+						selectedOptions = selectedOption ? [selectedOption] : [];
+					}
+				} else {
+					selectedOptions = [];
+				}
 			} else {
-				let selectedOption = this.options.find(option => option.selected);
-				selectedOptions = selectedOption ? [selectedOption] : [];
+				if (props.multiple) {
+					selectedOptions = this.options.filter(option => option.selected);
+				} else {
+					let selectedOption = this.options.find(option => option.selected);
+					selectedOptions = selectedOption ? [selectedOption] : [];
+				}
 			}
 
 			if (selectedOptions.length) {
@@ -157,16 +176,85 @@ module.exports = Component.extend('opal-select', {
 					text: option.text
 				})));
 			}
+
+			if (value) {
+				this._updateOptions();
+			}
 		}
 	},
 
 	elementAttached() {
+		this.listenTo(this.props, 'change:value', this._onPropsValueChange);
 		this.listenTo(this.viewModel, 'change', this._onViewModelChange);
 	},
 
 	elementAttributeChanged(name, oldValue, value) {
 		if (name == 'focused') {
 			this[value ? 'focus' : 'blur']();
+		}
+	},
+
+	_onPropsValueChange({ value: { 1: value } }) {
+		let vm = this.viewModel;
+
+		if (value) {
+			if (!Array.isArray(value)) {
+				throw new TypeError('value must be an array');
+			}
+
+			if (value.length) {
+				if (this.props.multiple) {
+					this.options.forEach(option => {
+						let optionValue = option.value;
+
+						if (value.indexOf(optionValue) != -1) {
+							if (!vm.contains(optionValue, 'value')) {
+								vm.add({
+									value: optionValue,
+									text: option.text
+								});
+							}
+						} else {
+							let item = vm.get(optionValue, 'value');
+
+							if (item) {
+								vm.remove(item);
+							}
+						}
+					});
+				} else {
+					let vmLength = vm.length;
+
+					value = value[0];
+
+					if (!vmLength || value != vm.get(0).value) {
+						if (!this.options.some(option => {
+							let optionValue = option.value;
+
+							if (optionValue == value) {
+								let item = {
+									value: optionValue,
+									text: option.text
+								};
+
+								if (vmLength) {
+									vm.set(0, item);
+								} else {
+									vm.add(item);
+								}
+
+								return true;
+							}
+						}) && vmLength) {
+							vm.clear();
+						}
+					}
+				}
+			} else {
+				vm.clear();
+			}
+		} else {
+			vm.clear();
 		}
 	},
 
@@ -322,7 +410,6 @@ module.exports = Component.extend('opal-select', {
 
 				break;
 			}
-
 			case 38/* Up */: {
 				evt.preventDefault();
 
@@ -356,7 +443,6 @@ module.exports = Component.extend('opal-select', {
 
 				break;
 			}
-
 			case 40/* Down */: {
 				evt.preventDefault();
 
@@ -390,7 +476,6 @@ module.exports = Component.extend('opal-select', {
 
 				break;
 			}
-
 			case 27/* Esc */: {
 				evt.preventDefault();
 				this.close();
@@ -401,7 +486,6 @@ module.exports = Component.extend('opal-select', {
 	},
 
 	_focusOptions() {
-		let multiple = this.props.multiple;
 		let options = this.options;
 		let optionForFocus;
 
@@ -409,7 +493,7 @@ module.exports = Component.extend('opal-select', {
 			let option = options[i];
 
 			if (!option.props.disabled) {
-				if (multiple || !option.selected) {
+				if (option.selected) {
 					optionForFocus = option;
 					break;
 				}

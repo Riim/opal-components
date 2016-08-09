@@ -57,14 +57,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(36);
+	__webpack_require__(40);
 
 	var _require = __webpack_require__(3);
 
 	var Component = _require.Component;
 
-	var OpalTabList = __webpack_require__(37);
-	var OpalTabPanel = __webpack_require__(42);
+	var OpalTabList = __webpack_require__(41);
+	var OpalTabPanel = __webpack_require__(46);
 
 	var indexOf = Array.prototype.indexOf;
 	var forEach = Array.prototype.forEach;
@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			OpalTabList: OpalTabList,
 			OpalTabPanel: OpalTabPanel,
 
-			template: __webpack_require__(44),
+			template: __webpack_require__(48),
 
 			assets: {
 				tabList: {
@@ -153,7 +153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 36:
+/***/ 40:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -171,18 +171,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 37:
+/***/ 41:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(38);
+	__webpack_require__(42);
 
 	var _require = __webpack_require__(3);
 
 	var Component = _require.Component;
 
-	var OpalTab = __webpack_require__(39);
+	var OpalTab = __webpack_require__(43);
 
 	module.exports = Component.extend('opal-tab-list', {
 		Static: {
@@ -193,7 +193,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 38:
+/***/ 42:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -211,12 +211,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 39:
+/***/ 43:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(40);
+	__webpack_require__(44);
 
 	var cellx = __webpack_require__(2);
 
@@ -234,7 +234,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(41),
+			template: __webpack_require__(45),
 
 			assets: {
 				control: {
@@ -324,10 +324,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign (value?: boolean) -> boolean;
 	  */
 		toggle: function toggle(value) {
-			if (value !== void 0) {
-				return this.props.selected = !!value;
-			}
-			return this.props.selected = !this.props.selected;
+			return this.props.selected = value === void 0 ? !this.props.selected : value;
 		},
 
 
@@ -381,7 +378,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 40:
+/***/ 44:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -399,19 +396,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 41:
+/***/ 45:
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"opal-tab__control\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-tab__content\"></rt-content> </span>"
 
 /***/ },
 
-/***/ 42:
+/***/ 46:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(43);
+	__webpack_require__(47);
 
 	var _require = __webpack_require__(3);
 
@@ -430,7 +427,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 43:
+/***/ 47:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -448,7 +445,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 44:
+/***/ 48:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content select=\"opal-tab-list\"> <opal-tab-list> <rt-content class=\"opal-tabs__tabs\" select=\"opal-tab\"></rt-content> </opal-tab-list> </rt-content> <rt-content class=\"opal-tabs__panels\" select=\"opal-tab-panel\"></rt-content>"

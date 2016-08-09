@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(18);
+	__webpack_require__(23);
 
 	var _require = __webpack_require__(3);
 
@@ -95,7 +95,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				opened: false
 			},
 
-			template: __webpack_require__(19),
+			template: __webpack_require__(24),
 
 			assets: {
 				':element': {
@@ -159,10 +159,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign (value?: boolean) -> boolean;
 	  */
 		toggle: function toggle(value) {
-			if (value !== void 0) {
-				return this.props.opened = !!value;
-			}
-			return this.props.opened = !this.props.opened;
+			return this.props.opened = value === void 0 ? !this.props.opened : value;
 		},
 		_open: function _open() {
 			if (openedModals.length) {
@@ -225,7 +222,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 18:
+/***/ 23:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -243,7 +240,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 19:
+/***/ 24:
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"opal-modal__window\"> <button class=\"opal-modal__btn-close\"></button> <rt-content class=\"opal-modal__content\"></rt-content> </span>"

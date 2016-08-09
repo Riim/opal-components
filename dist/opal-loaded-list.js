@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(15);
+	__webpack_require__(20);
 
 	var _require = __webpack_require__(2);
 
@@ -87,7 +87,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				notFoundMessage: getText.t('Ничего не найдено')
 			},
 
-			template: Rionite.template(__webpack_require__(16)),
+			template: Rionite.template(__webpack_require__(21)),
 
 			assets: {
 				loader: {}
@@ -124,12 +124,10 @@ return /******/ (function(modules) { // webpackBootstrap
 			});
 		},
 		elementAttached: function elementAttached() {
-			var props = this.props;
-
 			this.listenTo(this.element, 'scroll', this._onScroll);
-			this.listenTo(props, 'change:query', this._onQueryChange);
+			this.listenTo(this.props, 'change:query', this._onQueryChange);
 
-			if (props.preloading) {
+			if (this.props.preloading) {
 				this._load();
 			} else {
 				this.checkLoading();
@@ -197,13 +195,12 @@ return /******/ (function(modules) { // webpackBootstrap
 				this._requestCallback.cancel();
 			}
 
-			var props = this.props;
 			var list = this.list;
-			var query = this._lastRequestedQuery = props.query;
+			var query = this._lastRequestedQuery = this.props.query;
 
 			this.loading = true;
 
-			this.dataprovider.getNext(props.nextCount, list.length ? list.get(-1).id : void 0, query).then(this._requestCallback = this.registerCallback(function (data) {
+			this.dataprovider.getNext(this.props.nextCount, list.length ? list.get(-1).id : void 0, query).then(this._requestCallback = this.registerCallback(function (data) {
 				_this3.loading = false;
 
 				_this3.total = data.total;
@@ -241,7 +238,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 15:
+/***/ 20:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -259,7 +256,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 16:
+/***/ 21:
 /***/ function(module, exports) {
 
 	module.exports = "{{block list }} <div class=\"opal-loaded-list__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"{props.itemAs} of list\" strip=\"\"> <rt-content class=\"opal-loaded-list__list-item\" get-context=\"_getContentContext\"></rt-content> </template> {{/block}} </div> {{/block}} {{block loader }} <opal-loader class=\"opal-loaded-list__loader\" shown=\"{loaderShown}\" align-center=\"{empty}\"></opal-loader> {{/block}} {{block not_found }} <div class=\"opal-loaded-list__not-found\" shown=\"{notFoundShown}\"><span class=\"opal-loaded-list__not-found-message\">{{i18n.notFoundMessage}}</span></div> {{/block}}"

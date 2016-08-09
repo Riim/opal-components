@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(20);
+	__webpack_require__(25);
 
 	var _require = __webpack_require__(3);
 
@@ -117,10 +117,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign (value?: boolean) -> boolean;
 	  */
 		toggle: function toggle(value) {
-			if (value !== void 0) {
-				return this.props.opened = !!value;
-			}
-			return this.props.opened = !this.props.opened;
+			return this.props.opened = value === void 0 ? !this.props.opened : value;
 		},
 		_open: function _open() {
 			var _this = this;
@@ -175,7 +172,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 20:
+/***/ 25:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

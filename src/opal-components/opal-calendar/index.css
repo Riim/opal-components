@@ -1,0 +1,171 @@
+.opal-calendar {
+	display: block;
+	width: 300px;
+	border: 1px solid hsl(0,0%,86%);
+	border-radius: 3px;
+	background: #fff;
+	color: #000;
+	text-shadow: none;
+	font: 16px/24px Verdana, Geneva, sans-serif;
+	font-weight: normal;
+}
+	.opal-calendar__header {
+		position: relative;
+		padding: 8px 44px;
+		text-align: center;
+	}
+		.opal-calendar__btn-prev-month,
+		.opal-calendar__btn-next-month {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			padding: 0;
+			width: 30px;
+			height: 30px;
+			border: 0;
+			border-radius: 50%;
+			background: none;
+			cursor: pointer;
+		}
+
+		.opal-calendar__btn-prev-month {
+			left: 8px;
+		}
+
+		.opal-calendar__btn-next-month {
+			right: 8px;
+		}
+
+		.opal-calendar__btn-prev-month:hover,
+		.opal-calendar__btn-next-month:hover {
+			background: hsl(0,0%,90%);
+		}
+
+		.opal-calendar__btn-prev-month:focus,
+		.opal-calendar__btn-next-month:focus {
+			outline: none;
+		}
+			body:not(._no-focus-highlight) .opal-calendar__btn-prev-month:focus::after,
+			body:not(._no-focus-highlight) .opal-calendar__btn-next-month:focus::after {
+				position: absolute;
+				top: 2px;
+				right: 2px;
+				bottom: 2px;
+				left: 2px;
+				border-radius: inherit;
+				box-shadow: inset 0 0 0 1px hsl(208,100%,60%);
+				content: '';
+				pointer-events: none;
+			}
+
+		.opal-calendar__btn-prev-month:active,
+		.opal-calendar__btn-next-month:active {
+			background: hsl(0,0%,80%);
+		}
+
+		.opal-calendar__btn-prev-month[disabled],
+		.opal-calendar__btn-next-month[disabled] {
+			background: none;
+			color: #000;
+			opacity: .3;
+			cursor: default;
+		}
+			.opal-calendar__icon-arrow-left,
+			.opal-calendar__icon-arrow-right {
+				display: block;
+				margin: auto;
+				width: 16px;
+				height: 16px;
+				fill: currentColor;
+			}
+
+			.opal-calendar__icon-arrow-right {
+				transform: scaleX(-1);
+			}
+
+		.opal-calendar__s-month {
+		}
+
+		.opal-calendar__s-year {
+		}
+
+	.opal-calendar__body {
+		padding: 0 8px 8px;
+		text-align: center;
+		cursor: default;
+		user-select: none;
+	}
+		.opal-calendar__week-days,
+		.opal-calendar__days {
+			width: 100%;
+			border-spacing: 0;
+			border-collapse: separate;
+		}
+			.opal-calendar__week-days-row,
+			.opal-calendar__days-row {
+			}
+				.opal-calendar__week-day,
+				.opal-calendar__day {
+					padding: 3px 7px;
+					width: 14.286%;
+					border: 1px solid transparent;
+				}
+
+		.opal-calendar__week-days {
+		}
+			.opal-calendar__week-days-row {
+			}
+				.opal-calendar__week-day {
+				}
+
+		.opal-calendar__days {
+		}
+			.opal-calendar__days-row {
+			}
+				.opal-calendar__day {
+					position: relative;
+					border-radius: 3px;
+					cursor: pointer;
+				}
+
+				.opal-calendar__day:hover {
+					background: hsl(0,0%,90%);
+				}
+
+				.opal-calendar__day:focus {
+					outline: none;
+				}
+					body:not(._no-focus-highlight) .opal-calendar__day:focus::after {
+						position: absolute;
+						top: 2px;
+						right: 2px;
+						bottom: 2px;
+						left: 2px;
+						border-radius: inherit;
+						box-shadow: inset 0 0 0 1px hsl(208,100%,60%);
+						content: '';
+						pointer-events: none;
+					}
+
+				.opal-calendar__day:active {
+					background: hsl(0,0%,80%);
+				}
+
+				.opal-calendar__day[not-in-current-month] {
+					color: hsl(0,0%,65%);
+				}
+
+				.opal-calendar__day[today] {
+					text-decoration: underline;
+				}
+
+				.opal-calendar__day[selected] {
+					color: hsl(208,90%,50%);
+				}
+
+				.opal-calendar__day[disabled] {
+					background: none;
+					color: hsl(0,0%,90%);
+					cursor: default;
+				}

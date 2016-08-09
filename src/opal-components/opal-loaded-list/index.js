@@ -59,12 +59,10 @@ module.exports = Component.extend('opal-loaded-list', {
 	},
 
 	elementAttached() {
-		let props = this.props;
-
 		this.listenTo(this.element, 'scroll', this._onScroll);
-		this.listenTo(props, 'change:query', this._onQueryChange);
+		this.listenTo(this.props, 'change:query', this._onQueryChange);
 
-		if (props.preloading) {
+		if (this.props.preloading) {
 			this._load();
 		} else {
 			this.checkLoading();
@@ -133,13 +131,12 @@ module.exports = Component.extend('opal-loaded-list', {
 			this._requestCallback.cancel();
 		}
 
-		let props = this.props;
 		let list = this.list;
-		let query = this._lastRequestedQuery = props.query;
+		let query = this._lastRequestedQuery = this.props.query;
 
 		this.loading = true;
 
-		this.dataprovider.getNext(props.nextCount, list.length ? list.get(-1).id : void 0, query).then(
+		this.dataprovider.getNext(this.props.nextCount, list.length ? list.get(-1).id : void 0, query).then(
 			this._requestCallback = this.registerCallback(data => {
 				this.loading = false;
 

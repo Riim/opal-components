@@ -59,7 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	__webpack_require__(21);
+	__webpack_require__(26);
 
 	var _require = __webpack_require__(3);
 
@@ -68,10 +68,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var hyphenize = _require$utils.hyphenize;
 	var escapeHTML = _require$utils.escapeHTML;
 
-	var OpalRoute = __webpack_require__(22);
-	var escapeRegExp = __webpack_require__(23);
-	var PathNodeType = __webpack_require__(24);
-	var parsePath = __webpack_require__(25);
+	var OpalRoute = __webpack_require__(27);
+	var escapeRegExp = __webpack_require__(28);
+	var PathNodeType = __webpack_require__(29);
+	var parsePath = __webpack_require__(30);
 
 	var createObject = Object.create;
 	var forEach = Array.prototype.forEach;
@@ -230,7 +230,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 21:
+/***/ 26:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -248,7 +248,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 22:
+/***/ 27:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -269,7 +269,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 23:
+/***/ 28:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -287,7 +287,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 24:
+/***/ 29:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -300,12 +300,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 25:
+/***/ 30:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var PathNodeType = __webpack_require__(24);
+	var PathNodeType = __webpack_require__(29);
 
 	var reName = /[a-z][0-9a-z]*/i;
 

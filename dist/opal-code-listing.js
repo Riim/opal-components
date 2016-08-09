@@ -56,14 +56,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(7);
-	__webpack_require__(8);
+	__webpack_require__(12);
+	__webpack_require__(13);
 
 	var _require = __webpack_require__(3);
 
 	var Component = _require.Component;
 
-	var Prism = __webpack_require__(9);
+	var Prism = __webpack_require__(14);
 
 	function prepareCode(code, html) {
 		code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
@@ -86,7 +86,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = Component.extend('opal-code-listing', {
 		Static: {
-			template: __webpack_require__(10),
+			template: __webpack_require__(15),
 
 			assets: {
 				htmlCode: {},
@@ -121,7 +121,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 4 */,
 /* 5 */,
 /* 6 */,
-/* 7 */
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -138,7 +143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 8 */
+/* 13 */
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -155,7 +160,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 9 */
+/* 14 */
 /***/ function(module, exports) {
 
 	
@@ -942,7 +947,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 10 */
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = "<opal-tabs> <opal-tab>HTML</opal-tab> <opal-tab-panel> <pre class=\"opal-code-listing__html-code-wrapper\"><code class=\"opal-code-listing__html-code\"></code></pre> </opal-tab-panel> <opal-tab>JS</opal-tab> <opal-tab-panel> <pre class=\"opal-code-listing__js-code-wrapper\"><code class=\"opal-code-listing__js-code\"></code></pre> </opal-tab-panel> </opal-tabs> <rt-content class=\"opal-code-listing__example-html-wrapper\" select=\".opal-code-listing__example-html\"></rt-content> <rt-content class=\"opal-code-listing__example-js-wrapper\" select=\".opal-code-listing__example-js\"></rt-content>"

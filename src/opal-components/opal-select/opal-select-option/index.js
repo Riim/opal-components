@@ -36,8 +36,7 @@ module.exports = Component.extend('opal-select-option', {
 	_focused: false,
 
 	initialize() {
-		let props = this.props;
-		let text = props.text;
+		let text = this.props.text;
 
 		if (text === void 0) {
 			throw new TypeError('"text" property is required');
@@ -45,14 +44,16 @@ module.exports = Component.extend('opal-select-option', {
 
 		cellx.define(this, {
 			_tabIndex() {
-				return props.disabled ? -1 : props.tabIndex;
+				return this.props.disabled ? -1 : this.props.tabIndex;
 			}
 		});
 	},
 
 	ready() {
-		if (this.props.value === void 0) {
-			this.props.value = this.props.text;
+		let props = this.props;
+
+		if (props.value === void 0) {
+			props.value = props.text;
 		}
 	},
 
@@ -135,10 +136,7 @@ module.exports = Component.extend('opal-select-option', {
 	 * @typesign (value?: boolean) -> boolean;
 	 */
 	toggle(value) {
-		if (value !== void 0) {
-			return (this.props.selected = !!value);
-		}
-		return (this.props.selected = !this.props.selected);
+		return (this.props.selected = value === void 0 ? !this.props.selected : value);
 	},
 
 	/**

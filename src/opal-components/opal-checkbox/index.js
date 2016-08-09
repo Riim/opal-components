@@ -48,12 +48,14 @@ module.exports = Component.extend('opal-checkbox', {
 	},
 
 	ready() {
-		if (this.props.checked) {
-			this.props.indeterminate = false;
+		let props = this.props;
+
+		if (props.checked) {
+			props.indeterminate = false;
 			this.assets.input.checked = true;
 		}
 
-		if (this.props.focused) {
+		if (props.focused) {
 			this.focus();
 		}
 	},
@@ -112,10 +114,7 @@ module.exports = Component.extend('opal-checkbox', {
 	 * @typesign (value?: boolean) -> boolean;
 	 */
 	toggle(value) {
-		if (value !== void 0) {
-			return (this.props.checked = !!value);
-		}
-		return (this.props.checked = !this.props.checked);
+		return (this.props.checked = value === void 0 ? !this.props.checked : value);
 	},
 
 	/**
@@ -150,8 +149,10 @@ module.exports = Component.extend('opal-checkbox', {
 		if (evt.which == 13/* Enter */ || evt.which == 32/* Space */) {
 			evt.preventDefault();
 
-			if (!this.props.disabled) {
-				this.emit((this.props.checked = !this.props.checked) ? 'check' : 'uncheck');
+			let props = this.props;
+
+			if (!props.disabled) {
+				this.emit((props.checked = !props.checked) ? 'check' : 'uncheck');
 				this.emit('change');
 			}
 		}

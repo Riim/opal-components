@@ -56,7 +56,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(5);
+	__webpack_require__(10);
 
 	var cellx = __webpack_require__(2);
 
@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(6),
+			template: __webpack_require__(11),
 
 			assets: {
 				input: {
@@ -108,12 +108,14 @@ return /******/ (function(modules) { // webpackBootstrap
 			});
 		},
 		ready: function ready() {
-			if (this.props.checked) {
-				this.props.indeterminate = false;
+			var props = this.props;
+
+			if (props.checked) {
+				props.indeterminate = false;
 				this.assets.input.checked = true;
 			}
 
-			if (this.props.focused) {
+			if (props.focused) {
 				this.focus();
 			}
 		},
@@ -174,10 +176,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign (value?: boolean) -> boolean;
 	  */
 		toggle: function toggle(value) {
-			if (value !== void 0) {
-				return this.props.checked = !!value;
-			}
-			return this.props.checked = !this.props.checked;
+			return this.props.checked = value === void 0 ? !this.props.checked : value;
 		},
 
 
@@ -213,8 +212,10 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
 					evt.preventDefault();
 
-					if (!this.props.disabled) {
-						this.emit((this.props.checked = !this.props.checked) ? 'check' : 'uncheck');
+					var props = this.props;
+
+					if (!props.disabled) {
+						this.emit((props.checked = !props.checked) ? 'check' : 'uncheck');
 						this.emit('change');
 					}
 				}
@@ -254,7 +255,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 4 */,
-/* 5 */
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -271,7 +277,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 6 */
+/* 11 */
 /***/ function(module, exports) {
 
 	module.exports = "<label class=\"opal-checkbox__label\"> <input class=\"opal-checkbox__input\" type=\"checkbox\"> <span class=\"opal-checkbox__control\" tabindex=\"{_tabIndex}\"></span> <rt-content class=\"opal-checkbox__content\"></rt-content> </label>"

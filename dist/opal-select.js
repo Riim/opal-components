@@ -50,16 +50,17 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	__webpack_require__(26);
-	__webpack_require__(27);
+	__webpack_require__(31);
+	__webpack_require__(32);
 
 	var _require = __webpack_require__(2);
 
@@ -73,8 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var template = _require2.template;
 	var RtRepeat = _require2.components.RtRepeat;
 
-	var OpalSelectOption = __webpack_require__(28);
-	var isEqualArray = __webpack_require__(31);
+	var OpalSelectOption = __webpack_require__(33);
 
 	var map = Array.prototype.map;
 
@@ -85,6 +85,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			props: {
 				type: String,
 				size: 'm',
+				value: Object,
 				viewModel: String,
 				text: String,
 				placeholder: '—',
@@ -94,7 +95,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: template(__webpack_require__(32)),
+			template: template(__webpack_require__(36)),
 
 			assets: {
 				button: {
@@ -193,15 +194,11 @@ return /******/ (function(modules) { // webpackBootstrap
 			cellx.define(this, {
 				viewModel: vm,
 
-				options: function options(push, fail, oldOptions) {
-					var optionElements = this.optionElements;
-					var options = optionElements ? map.call(optionElements, function (option) {
+				options: function options() {
+					return this.optionElements ? map.call(this.optionElements, function (option) {
 						return option.$c;
 					}) : [];
-					return oldOptions && isEqualArray(options, oldOptions) ? oldOptions : options;
 				},
-
-
 				text: function text() {
 					return this.viewModel.map(function (item) {
 						return item.text;
@@ -210,40 +207,143 @@ return /******/ (function(modules) { // webpackBootstrap
 			});
 		},
 		ready: function ready() {
+			var _this = this;
+
 			this.optionElements = this.element.getElementsByClassName('opal-select-option');
 
-			if (this.props.viewModel) {
+			var props = this.props;
+
+			if (props.viewModel) {
 				this._updateOptions();
 			} else {
-				var selectedOptions = void 0;
+				(function () {
+					var value = props.value;
+					var selectedOptions = void 0;
 
-				if (this.props.multiple) {
-					selectedOptions = this.options.filter(function (option) {
-						return option.selected;
-					});
-				} else {
-					var selectedOption = this.options.find(function (option) {
-						return option.selected;
-					});
-					selectedOptions = selectedOption ? [selectedOption] : [];
-				}
+					if (value) {
+						if (!Array.isArray(value)) {
+							throw new TypeError('value must be an array');
+						}
 
-				if (selectedOptions.length) {
-					this.viewModel.addRange(selectedOptions.map(function (option) {
-						return {
-							value: option.value,
-							text: option.text
-						};
-					}));
-				}
+						if (value.length) {
+							if (props.multiple) {
+								selectedOptions = _this.options.filter(function (option) {
+									return value.indexOf(option.value) != -1;
+								});
+							} else {
+								value = value[0];
+								var selectedOption = _this.options.find(function (option) {
+									return option.value == value;
+								});
+								selectedOptions = selectedOption ? [selectedOption] : [];
+							}
+						} else {
+							selectedOptions = [];
+						}
+					} else {
+						if (props.multiple) {
+							selectedOptions = _this.options.filter(function (option) {
+								return option.selected;
+							});
+						} else {
+							var _selectedOption = _this.options.find(function (option) {
+								return option.selected;
+							});
+							selectedOptions = _selectedOption ? [_selectedOption] : [];
+						}
+					}
+
+					if (selectedOptions.length) {
+						_this.viewModel.addRange(selectedOptions.map(function (option) {
+							return {
+								value: option.value,
+								text: option.text
+							};
+						}));
+					}
+
+					if (value) {
+						_this._updateOptions();
+					}
+				})();
 			}
 		},
 		elementAttached: function elementAttached() {
+			this.listenTo(this.props, 'change:value', this._onPropsValueChange);
 			this.listenTo(this.viewModel, 'change', this._onViewModelChange);
 		},
 		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
 			if (name == 'focused') {
 				this[value ? 'focus' : 'blur']();
+			}
+		},
+		_onPropsValueChange: function _onPropsValueChange(_ref3) {
+			var _this2 = this;
+
+			var value = _ref3.value[1];
+
+			var vm = this.viewModel;
+
+			if (value) {
+				if (!Array.isArray(value)) {
+					throw new TypeError('value must be an array');
+				}
+
+				if (value.length) {
+					if (this.props.multiple) {
+						this.options.forEach(function (option) {
+							var optionValue = option.value;
+
+							if (value.indexOf(optionValue) != -1) {
+								if (!vm.contains(optionValue, 'value')) {
+									vm.add({
+										value: optionValue,
+										text: option.text
+									});
+								}
+							} else {
+								var item = vm.get(optionValue, 'value');
+
+								if (item) {
+									vm.remove(item);
+								}
+							}
+						});
+					} else {
+						(function () {
+							var vmLength = vm.length;
+
+							value = value[0];
+
+							if (!vmLength || value != vm.get(0).value) {
+								if (!_this2.options.some(function (option) {
+									var optionValue = option.value;
+
+									if (optionValue == value) {
+										var item = {
+											value: optionValue,
+											text: option.text
+										};
+
+										if (vmLength) {
+											vm.set(0, item);
+										} else {
+											vm.add(item);
+										}
+
+										return true;
+									}
+								}) && vmLength) {
+									vm.clear();
+								}
+							}
+						})();
+					}
+				} else {
+					vm.clear();
+				}
+			} else {
+				vm.clear();
 			}
 		},
 		_onViewModelChange: function _onViewModelChange(evt) {
@@ -267,13 +367,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> boolean;
 	  */
 		open: function open() {
-			var _this = this;
+			var _this3 = this;
 
 			if (!this._opened) {
-				var _ret = function () {
-					_this._opened = true;
+				var _ret3 = function () {
+					_this3._opened = true;
 
-					var assets = _this.assets;
+					var assets = _this3.assets;
 
 					assets.button.check();
 					assets.menu.open();
@@ -287,13 +387,13 @@ return /******/ (function(modules) { // webpackBootstrap
 					if (assets.filteredList) {
 						assets.filteredList.focus();
 					} else {
-						_this._focusOptions();
+						_this3._focusOptions();
 					}
 
-					_this._documentFocusInListening = _this.listenTo(document, 'focusin', _this._onDocumentFocusIn);
+					_this3._documentFocusInListening = _this3.listenTo(document, 'focusin', _this3._onDocumentFocusIn);
 
-					if (!_this._focused) {
-						_this._documentKeyDownListening = _this.listenTo(document, 'keydown', _this._onDocumentKeyDown);
+					if (!_this3._focused) {
+						_this3._documentKeyDownListening = _this3.listenTo(document, 'keydown', _this3._onDocumentKeyDown);
 					}
 
 					return {
@@ -301,7 +401,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					};
 				}();
 
-				if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+				if ((typeof _ret3 === 'undefined' ? 'undefined' : _typeof(_ret3)) === "object") return _ret3.v;
 			}
 
 			return false;
@@ -409,7 +509,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						break;
 					}
-
 				case 38 /* Up */:
 					{
 						evt.preventDefault();
@@ -444,7 +543,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						break;
 					}
-
 				case 40 /* Down */:
 					{
 						evt.preventDefault();
@@ -479,7 +577,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						break;
 					}
-
 				case 27 /* Esc */:
 					{
 						evt.preventDefault();
@@ -490,7 +587,6 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 		_focusOptions: function _focusOptions() {
-			var multiple = this.props.multiple;
 			var options = this.options;
 			var optionForFocus = void 0;
 
@@ -498,7 +594,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				var option = options[i];
 
 				if (!option.props.disabled) {
-					if (multiple || !option.selected) {
+					if (option.selected) {
 						optionForFocus = option;
 						break;
 					}
@@ -519,42 +615,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 1 */,
-/* 2 */
+
+/***/ 2:
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ },
-/* 3 */
+
+/***/ 3:
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */
+
+/***/ 31:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -571,18 +647,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 27 */
+
+/***/ 32:
 /***/ function(module, exports) {
 
 	(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 24 13\" id=\"opal-select__icon-chevron-down\"><path d=\"M11.5 12.6c-.3 0-.5-.1-.7-.3L.3 1.9C-.1 1.5-.1.8.3.3c.4-.4 1.1-.4 1.6 0l9.7 9.7L21.3.3c.4-.4 1.1-.4 1.6 0 .4.4.4 1.1 0 1.6L12.3 12.3c-.2.2-.5.3-.8.3z\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ },
-/* 28 */
+
+/***/ 33:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(29);
+	__webpack_require__(34);
 
 	var cellx = __webpack_require__(2);
 
@@ -602,7 +680,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(30),
+			template: __webpack_require__(35),
 
 			assets: {
 				control: {
@@ -622,8 +700,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		_focused: false,
 
 		initialize: function initialize() {
-			var props = this.props;
-			var text = props.text;
+			var text = this.props.text;
 
 			if (text === void 0) {
 				throw new TypeError('"text" property is required');
@@ -631,13 +708,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			cellx.define(this, {
 				_tabIndex: function _tabIndex() {
-					return props.disabled ? -1 : props.tabIndex;
+					return this.props.disabled ? -1 : this.props.tabIndex;
 				}
 			});
 		},
 		ready: function ready() {
-			if (this.props.value === void 0) {
-				this.props.value = this.props.text;
+			var props = this.props;
+
+			if (props.value === void 0) {
+				props.value = props.text;
 			}
 		},
 		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
@@ -720,10 +799,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign (value?: boolean) -> boolean;
 	  */
 		toggle: function toggle(value) {
-			if (value !== void 0) {
-				return this.props.selected = !!value;
-			}
-			return this.props.selected = !this.props.selected;
+			return this.props.selected = value === void 0 ? !this.props.selected : value;
 		},
 
 
@@ -776,7 +852,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 29 */
+
+/***/ 34:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -793,43 +870,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 30 */
+
+/***/ 35:
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"opal-select-option__control\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-select-option__content\">{props.text}</rt-content> </span>"
 
 /***/ },
-/* 31 */
-/***/ function(module, exports) {
 
-	"use strict";
-
-	function isEqualArray(a, b) {
-		var aLen = a.length;
-		var bLen = b.length;
-
-		if (aLen != bLen) {
-			return false;
-		}
-
-		for (var i = 0; i < aLen; i++) {
-			if (a[i] !== b[i]) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	module.exports = isEqualArray;
-
-/***/ },
-/* 32 */
+/***/ 36:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content select=\".opal-select__button\"> {{block button }} <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> <template is=\"rt-if-then\" if=\"props.text\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\">{text}</template> {{block icon_chevron_down }} <svg viewBox=\"0 0 24 13\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-select__icon-chevron-down\"></use></svg> {{/block}} </opal-button> {{/block}} </rt-content> <rt-content select=\".opal-select__menu\"> <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> <rt-content select=\".opal-select__menu-inner\"> <span class=\"opal-select__menu-inner\"> {{block options }} <rt-content select=\"opal-select-option\"></rt-content> {{/block}} </span> </rt-content> </opal-dropdown> </rt-content>"
 
 /***/ }
-/******/ ])
+
+/******/ })
 });
 ;
