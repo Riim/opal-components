@@ -452,7 +452,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				node = node.parentNode;
 
-				if (node == el) {
+				if (!node || node == el) {
 					break;
 				}
 			}

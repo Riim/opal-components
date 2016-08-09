@@ -144,19 +144,14 @@ return /******/ (function(modules) { // webpackBootstrap
 			var el = this.element;
 
 			for (var node = evt.target;;) {
-				if (node == docEl) {
-					this.close();
-					break;
-				}
-
-				if (node.tagName == 'A') {
+				if (node == docEl || node.tagName == 'A') {
 					this.close();
 					break;
 				}
 
 				node = node.parentNode;
 
-				if (node == el) {
+				if (!node || node == el) {
 					break;
 				}
 			}

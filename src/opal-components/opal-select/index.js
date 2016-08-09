@@ -355,7 +355,7 @@ module.exports = Component.extend('opal-select', {
 
 			node = node.parentNode;
 
-			if (node == el) {
+			if (!node || node == el) {
 				break;
 			}
 		}

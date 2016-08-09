@@ -81,19 +81,14 @@ module.exports = Component.extend('opal-popover', {
 		let el = this.element;
 
 		for (let node = evt.target; ;) {
-			if (node == docEl) {
-				this.close();
-				break;
-			}
-
-			if (node.tagName == 'A') {
+			if (node == docEl || node.tagName == 'A') {
 				this.close();
 				break;
 			}
 
 			node = node.parentNode;
 
-			if (node == el) {
+			if (!node || node == el) {
 				break;
 			}
 		}
