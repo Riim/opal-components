@@ -1,8 +1,10 @@
 .opal-validator {
 	position: relative;
 	display: inline-block;
-}
 
-.opal-validator[valid=no] .opal-validator__input .opal-text-input__control {
-	border-color: hsl(4,98%,41%);
+	/* States */
+
+	&[valid=no] .opal-validator__input .opal-text-input__control {
+		border-color: hsl(0,100%,50%);
+	}
 }

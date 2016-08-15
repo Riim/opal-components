@@ -17,8 +17,12 @@ module.exports = Component.extend('opal-router', {
 	_route: null,
 	_componentElement: null,
 
+	initialize() {
+		this._routes = [];
+	},
+
 	ready() {
-		let routes = this._routes = [];
+		let routes = this._routes;
 
 		forEach.call(this.element.querySelectorAll('opal-route'), routeEl => {
 			let path = routeEl.$c.props.path;

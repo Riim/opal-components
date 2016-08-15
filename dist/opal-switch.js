@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(37);
+	__webpack_require__(42);
 
 	var cellx = __webpack_require__(2);
 
@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(38),
+			template: __webpack_require__(43),
 
 			assets: {
 				input: {
@@ -245,7 +245,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 37:
+/***/ 42:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -253,7 +253,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-switch{position:relative;display:inline-block}.opal-switch__input{display:none}.opal-switch__control{position:relative;display:inline-block;margin:1px 3px 3px;width:30px;height:14px;border-radius:7px;background:#d6d6d6;vertical-align:middle;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-switch__handle{position:absolute;top:-3px;left:-3px;width:20px;height:20px;border-radius:50%;background:#546778;content:'';transition:background .1s,-webkit-transform .1s;transition:background .1s,transform .1s;transition:background .1s,transform .1s,-webkit-transform .1s}.opal-switch__label:hover .opal-switch__handle{background:#597791}.opal-switch__control:focus{outline:none}body:not(._no-focus-highlight) .opal-switch__control:focus .opal-switch__handle::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:50%;content:''}.opal-switch[checked] .opal-switch__handle{background:#1b91f8;-webkit-transform:translateX(16px);-ms-transform:translateX(16px);transform:translateX(16px)}.opal-switch[checked] .opal-switch__label:hover .opal-switch__handle{background:#33a0ff}.opal-switch[disabled]{opacity:.5;pointer-events:none}";
+	            style.textContent = ".opal-switch{position:relative;display:inline-block}.opal-switch .opal-switch__input{display:none}.opal-switch .opal-switch__control{position:relative;display:inline-block;margin:1px 3px 3px;width:30px;height:14px;border-radius:7px;background:#d6d6d6;vertical-align:middle;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-switch .opal-switch__handle{position:absolute;top:-3px;left:-3px;width:20px;height:20px;border-radius:50%;background:#546778;content:'';transition:background .1s,-webkit-transform .1s;transition:background .1s,transform .1s;transition:background .1s,transform .1s,-webkit-transform .1s}.opal-switch .opal-switch__label:hover .opal-switch__handle{background:#597791}.opal-switch .opal-switch__control:focus{outline:none}body:not(._no-focus-highlight) .opal-switch .opal-switch__control:focus .opal-switch__handle::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:50%;content:''}.opal-switch[checked] .opal-switch__handle{background:#1b91f8;-webkit-transform:translateX(16px);-ms-transform:translateX(16px);transform:translateX(16px)}.opal-switch[checked] .opal-switch__label:hover .opal-switch__handle{background:#33a0ff}.opal-switch[disabled]{opacity:.5;pointer-events:none}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -263,7 +263,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 38:
+/***/ 43:
 /***/ function(module, exports) {
 
 	module.exports = "<label class=\"opal-switch__label\"> <input class=\"opal-switch__input\" type=\"checkbox\"> <span class=\"opal-switch__control\" tabindex=\"{_tabIndex}\"><span class=\"opal-switch__handle\"></span></span> <rt-content class=\"opal-switch__content\"></rt-content> </label>"

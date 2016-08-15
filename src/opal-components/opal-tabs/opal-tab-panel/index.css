@@ -2,8 +2,10 @@
 	position: relative;
 	display: none;
 	padding: 30px;
-}
 
-.opal-tab-panel[shown] {
-	display: block;
+	/* States */
+
+	&[shown] {
+		display: block;
+	}
 }

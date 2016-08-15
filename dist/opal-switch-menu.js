@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(39);
+	__webpack_require__(44);
 
 	var _require = __webpack_require__(3);
 
@@ -100,7 +100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 39:
+/***/ 44:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -108,7 +108,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-switch-menu{position:relative;display:inline-block;vertical-align:middle;white-space:nowrap;font-size:0}.opal-switch-menu__content .opal-button:not(:first-child){margin-left:-1px}.opal-switch-menu__content .opal-button:not(:first-child) .opal-button__control,.opal-switch-menu__content .opal-button:not(:first-child) .opal-button__control::before{border-top-left-radius:0;border-bottom-left-radius:0}.opal-switch-menu__content .opal-button:not(:last-child) .opal-button__control,.opal-switch-menu__content .opal-button:not(:last-child) .opal-button__control::before{border-top-right-radius:0;border-bottom-right-radius:0}";
+	            style.textContent = ".opal-switch-menu{position:relative;display:inline-block;vertical-align:middle;white-space:nowrap;font-size:0}.opal-switch-menu .opal-button:not(:first-child) .opal-button__control{border-top-left-radius:0;border-bottom-left-radius:0;box-shadow:inset 1px 0 rgba(0,0,0,.4)}.opal-switch-menu .opal-button:not(:last-child) .opal-button__control{border-top-right-radius:0;border-bottom-right-radius:0}";
 	            head.appendChild(style);
 	            return style;
 	        }

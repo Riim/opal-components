@@ -4,8 +4,26 @@
 	overflow-x: hidden;
 	overflow-y: auto;
 	height: 500px;
-}
-	.opal-loaded-list__not-found {
+
+	& .opal-loaded-list__list {
+	}
+		& .opal-loaded-list__list-item {
+			display: block;
+		}
+
+	& .opal-loaded-list__loader {
+	}
+
+	& .opal-loaded-list__loader[align-center] {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+	}
+
+	& .opal-loaded-list__not-found {
 		display: none;
 		box-sizing: border-box;
 		padding: 10px;
@@ -14,7 +32,7 @@
 		text-align: center;
 		white-space: nowrap;
 	}
-		.opal-loaded-list__not-found::before {
+		& .opal-loaded-list__not-found::before {
 			display: inline-block;
 			width: 0;
 			height: 100%;
@@ -22,30 +40,13 @@
 			vertical-align: middle;
 		}
 
-		.opal-loaded-list__not-found-message {
+		& .opal-loaded-list__not-found-message {
 			display: inline-block;
 			color: hsl(0,0%,50%);
 			vertical-align: middle;
 		}
 
-	.opal-loaded-list__not-found[shown] {
+	& .opal-loaded-list__not-found[shown] {
 		display: inline-block;
 	}
-
-	.opal-loaded-list__list {
-	}
-		.opal-loaded-list__list-item {
-			display: block;
-		}
-
-	.opal-loaded-list__loader {
-	}
-
-	.opal-loaded-list__loader[align-center] {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		margin: auto;
-	}
+}

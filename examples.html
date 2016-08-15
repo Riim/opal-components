@@ -94,11 +94,40 @@ body {
 <opal-code-listing>
 	<div class="opal-code-listing__example-html">
 		<opal-text-input value="Value" placeholder="Placeholder"></opal-text-input><br><br>
+		<opal-text-input valid="no"></opal-text-input><br><br>
+		<opal-text-input valid></opal-text-input><br><br>
 		<opal-text-input value="Value" disabled></opal-text-input><br><br>
 		<opal-text-input placeholder="Placeholder" disabled></opal-text-input>
 	</div>
 	<script class="opal-code-listing__example-js">
 		require('opal-components/dist/opal-text-input');
+	</script>
+</opal-code-listing>
+
+<h1>opal-input-mask</h1>
+
+<opal-code-listing>
+	<div class="opal-code-listing__example-html">
+		<opal-input-mask mask="99/99/9999">
+			<opal-text-input class="opal-input-mask__input" placeholder="dd/mm/yyyy"></opal-text-input>
+		</opal-input-mask>
+
+		<br><br>
+
+		<opal-input-mask mask="+7 (999) 999-9999? доб. 9999">
+			<opal-text-input class="opal-input-mask__input" placeholder="Телефон"></opal-text-input>
+		</opal-input-mask>
+
+		<br><br>
+
+		<opal-input-mask mask="#ffffff" placeholder=".">
+			<opal-input-mask-definition mask-char="f" regex="/[0-9a-f]/i"></opal-input-mask-definition>
+			<opal-text-input class="opal-input-mask__input" placeholder="Цвет"></opal-text-input>
+		</opal-input-mask>
+	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-text-input');
+		require('opal-components/dist/opal-input-mask');
 	</script>
 </opal-code-listing>
 
@@ -392,6 +421,7 @@ body {
 <script src="node_modules/rionite/dist/Rionite-with-polyfills.js"></script>
 <script src="dist/opal-button.js"></script>
 <script src="dist/opal-text-input.js"></script>
+<script src="dist/opal-input-mask.js"></script>
 <script src="dist/opal-group.js"></script>
 <script src="dist/opal-checkbox.js"></script>
 <script src="dist/opal-switch.js"></script>

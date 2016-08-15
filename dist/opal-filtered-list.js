@@ -102,7 +102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-filtered-list__tf-query-wrapper{display:block;margin-bottom:15px}.opal-text-input.opal-filtered-list__tf-query{display:block;width:auto}";
+	            style.textContent = ".opal-filtered-list .opal-filtered-list__tf-query-wrapper{display:block;margin-bottom:15px}.opal-filtered-list .opal-filtered-list__tf-query{display:block;width:auto}";
 	            head.appendChild(style);
 	            return style;
 	        }

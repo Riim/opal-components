@@ -4,21 +4,20 @@
 	vertical-align: middle;
 	white-space: nowrap;
 	font-size: 0;
-}
-	.opal-switch-menu__content {
+
+	& .opal-switch-menu__content {
 	}
-		.opal-switch-menu__content .opal-button:not(:first-child) {
-			margin-left: -1px;
-		}
 
-		.opal-switch-menu__content .opal-button:not(:first-child) .opal-button__control,
-		.opal-switch-menu__content .opal-button:not(:first-child) .opal-button__control::before {
-			border-top-left-radius: 0;
-			border-bottom-left-radius: 0;
-		}
+	/* Combinations */
 
-		.opal-switch-menu__content .opal-button:not(:last-child) .opal-button__control,
-		.opal-switch-menu__content .opal-button:not(:last-child) .opal-button__control::before {
-			border-top-right-radius: 0;
-			border-bottom-right-radius: 0;
-		}
+	& .opal-button:not(:first-child) .opal-button__control {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		box-shadow: inset 1px 0 rgba(0,0,0,.4);
+	}
+
+	& .opal-button:not(:last-child) .opal-button__control {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+}

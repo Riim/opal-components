@@ -30,28 +30,25 @@ module.exports = Component.extend('opal-code-listing', {
 
 		assets: {
 			htmlCode: {},
-			jsCode: {}
-		}
-	},
-
-	initialize() {
-		this.highlightedHTMLCode = Prism.highlight(
-			prepareCode(this.$('&__example-html').innerHTML, true),
-			Prism.languages.html
-		);
-
-		let exampleJSCode = this.$('&__example-js');
-
-		if (exampleJSCode) {
-			this.highlightedJSCode = Prism.highlight(
-				prepareCode(exampleJSCode.textContent),
-				Prism.languages.javascript
-			);
+			jsCode: {},
+			exampleHtml: {},
+			exampleJs: {}
 		}
 	},
 
 	ready() {
-		this.assets.htmlCode.innerHTML = this.highlightedHTMLCode;
-		this.assets.jsCode.innerHTML = this.highlightedJSCode || '';
+		let assets = this.assets;
+
+		assets.htmlCode.innerHTML = Prism.highlight(
+			prepareCode(assets.exampleHtml.innerHTML, true),
+			Prism.languages.html
+		);
+
+		if (assets.exampleJs) {
+			assets.jsCode.innerHTML = Prism.highlight(
+				prepareCode(assets.exampleJs.textContent),
+				Prism.languages.javascript
+			) || '';
+		}
 	}
 });

@@ -57,13 +57,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(51);
+	__webpack_require__(56);
 
 	var _require = __webpack_require__(3);
 
 	var Component = _require.Component;
 
-	var OpalValidatorRule = __webpack_require__(52);
+	var OpalValidatorRule = __webpack_require__(57);
 
 	module.exports = Component.extend('opal-validator', {
 		Static: {
@@ -139,7 +139,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 51:
+/***/ 56:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -147,7 +147,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-validator{position:relative;display:inline-block}.opal-validator[valid=no] .opal-validator__input .opal-text-input__control{border-color:#cf1002}";
+	            style.textContent = ".opal-validator{position:relative;display:inline-block}.opal-validator[valid=no] .opal-validator__input .opal-text-input__control{border-color:red}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -157,12 +157,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 52:
+/***/ 57:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(53);
+	__webpack_require__(58);
 
 	var _require = __webpack_require__(3);
 
@@ -178,24 +178,24 @@ return /******/ (function(modules) { // webpackBootstrap
 				popoverFrom: 'right'
 			},
 
-			template: __webpack_require__(54),
+			template: __webpack_require__(59),
 
 			assets: {
-				messagePopover: {}
+				popover: {}
 			}
 		},
 
 		showMessage: function showMessage() {
-			this.assets.messagePopover.open();
+			this.assets.popover.open();
 		},
 		hideMessage: function hideMessage() {
-			this.assets.messagePopover.close();
+			this.assets.popover.close();
 		}
 	});
 
 /***/ },
 
-/***/ 53:
+/***/ 58:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -203,7 +203,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-validator-rule{display:block}.opal-validator-rule__content{display:block;width:240px;text-align:center}";
+	            style.textContent = ".opal-validator-rule{display:block}.opal-validator-rule .opal-validator-rule__content{display:block;width:240px;text-align:center}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -213,10 +213,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 54:
+/***/ 59:
 /***/ function(module, exports) {
 
-	module.exports = "<ips-popover class=\"opal-validator-rule__message-popover\" from=\"{props.popoverFrom}\"> <rt-content class=\"opal-validator-rule__content\"></rt-content> </ips-popover>"
+	module.exports = "<ips-popover class=\"opal-validator-rule__popover\" from=\"{props.popoverFrom}\"> <rt-content class=\"opal-validator-rule__content\"></rt-content> </ips-popover>"
 
 /***/ }
 

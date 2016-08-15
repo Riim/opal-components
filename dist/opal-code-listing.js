@@ -90,22 +90,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			assets: {
 				htmlCode: {},
-				jsCode: {}
+				jsCode: {},
+				exampleHtml: {},
+				exampleJs: {}
 			}
 		},
 
-		initialize: function initialize() {
-			this.highlightedHTMLCode = Prism.highlight(prepareCode(this.$('&__example-html').innerHTML, true), Prism.languages.html);
-
-			var exampleJSCode = this.$('&__example-js');
-
-			if (exampleJSCode) {
-				this.highlightedJSCode = Prism.highlight(prepareCode(exampleJSCode.textContent), Prism.languages.javascript);
-			}
-		},
 		ready: function ready() {
-			this.assets.htmlCode.innerHTML = this.highlightedHTMLCode;
-			this.assets.jsCode.innerHTML = this.highlightedJSCode || '';
+			var assets = this.assets;
+
+			assets.htmlCode.innerHTML = Prism.highlight(prepareCode(assets.exampleHtml.innerHTML, true), Prism.languages.html);
+
+			if (assets.exampleJs) {
+				assets.jsCode.innerHTML = Prism.highlight(prepareCode(assets.exampleJs.textContent), Prism.languages.javascript) || '';
+			}
 		}
 	});
 
@@ -134,7 +132,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-code-listing{display:block;margin-bottom:30px}.opal-code-listing__html-code-wrapper,.opal-code-listing__js-code-wrapper{overflow:auto;margin:0;color:#000;text-align:left;white-space:pre;word-spacing:normal;word-wrap:normal;word-break:normal;-moz-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;font-weight:700;font-size:16px;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;line-height:1.5}.opal-code-listing__example-html-wrapper{position:relative;display:block;padding:29px;border:1px solid #dbdbdb;border-radius:3px;background:#fff}.opal-code-listing__example-html-wrapper::before{position:absolute;top:0;left:29px;padding:0 10px;border:1px solid #dbdbdb;border-radius:3px;background:#f5f5f5;content:'Result';font:14px/28px Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}";
+	            style.textContent = ".opal-code-listing{display:block;margin-bottom:30px}.opal-code-listing .opal-code-listing__html-code-wrapper,.opal-code-listing .opal-code-listing__js-code-wrapper{overflow:auto;margin:0;color:#000;text-align:left;white-space:pre;word-spacing:normal;word-wrap:normal;word-break:normal;-moz-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;font-weight:700;font-size:16px;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;line-height:1.5}.opal-code-listing .opal-code-listing__example-html-wrapper{position:relative;display:block;padding:29px;border:1px solid #dbdbdb;border-radius:3px;background:#fff}.opal-code-listing .opal-code-listing__example-html-wrapper::before{position:absolute;top:0;left:29px;padding:0 10px;border:1px solid #dbdbdb;border-radius:3px;background:#f5f5f5;content:'Result';font:14px/28px Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}";
 	            head.appendChild(style);
 	            return style;
 	        }

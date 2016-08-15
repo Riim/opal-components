@@ -1,15 +1,15 @@
 .opal-filtered-list {
-}
-	.opal-filtered-list__tf-query-wrapper {
+	& .opal-filtered-list__tf-query-wrapper {
 		display: block;
 		margin-bottom: 15px;
 	}
-		.opal-text-input.opal-filtered-list__tf-query {
+		& .opal-filtered-list__tf-query {
 			display: block;
 			width: auto;
 		}
 
-	.opal-filtered-list__loaded-list-wrapper {
+	& .opal-filtered-list__loaded-list-wrapper {
 	}
-		.opal-filtered-list__loaded-list {
+		& .opal-filtered-list__loaded-list {
 		}
+}

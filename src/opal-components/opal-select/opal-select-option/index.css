@@ -1,7 +1,7 @@
 .opal-select-option {
 	display: block;
-}
-	.opal-select-option__control {
+
+	& .opal-select-option__control {
 		position: relative;
 		display: block;
 		padding: 7px 22px;
@@ -20,41 +20,44 @@
 		-ms-text-size-adjust: 100%;
 		-webkit-tap-highlight-color: transparent;
 	}
-		.opal-select-option__content {
+		& .opal-select-option__content {
 			position: relative;
 			display: block;
 		}
 
-.opal-select-option__control:hover {
-	background: hsl(0,0%,90%);
-}
+	/* States */
 
-.opal-select-option__control:focus {
-	outline: none;
-}
-	.opal-select-option__control:focus::after {
-		position: absolute;
-		top: 2px;
-		right: 2px;
-		bottom: 2px;
-		left: 2px;
-		box-shadow: inset 0 0 0 1px hsl(208,100%,60%);
-		content: '';
+	& .opal-select-option__control:hover {
+		background: hsl(0,0%,90%);
+	}
+
+	& .opal-select-option__control:focus {
+		outline: none;
+	}
+		& .opal-select-option__control:focus::after {
+			position: absolute;
+			top: 2px;
+			right: 2px;
+			bottom: 2px;
+			left: 2px;
+			box-shadow: inset 0 0 0 1px hsl(208,100%,60%);
+			content: '';
+			pointer-events: none;
+		}
+
+	& .opal-select-option__control:active {
+		background: hsl(0,0%,80%);
+	}
+
+	&[selected] .opal-select-option__control {
+		color: hsl(208,90%,50%);
+	}
+
+	&[disabled] {
+		opacity: .5;
 		pointer-events: none;
 	}
-
-.opal-select-option__control:active {
-	background: hsl(0,0%,80%);
+		&[disabled] .opal-select-option__control {
+			cursor: default;
+		}
 }
-
-.opal-select-option[selected] .opal-select-option__control {
-	color: hsl(208,90%,50%);
-}
-
-.opal-select-option[disabled] {
-	opacity: .5;
-	pointer-events: none;
-}
-	.opal-select-option[disabled] .opal-select-option__control {
-		cursor: default;
-	}

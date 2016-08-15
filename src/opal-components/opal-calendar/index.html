@@ -5,13 +5,13 @@
 	</button>
 
 	<opal-select class="opal-calendar__s-month" size="s" value="['{shownMonth}']">
-		<template class="opal-select__menu-inner" is="rt-repeat" for="month of constructor.i18n.months">
+		<template is="rt-repeat" class="opal-select__menu-inner" for="month of constructor.i18n.months">
 			<opal-select-option value="{$index}" text="{month}"></opal-select-option>
 		</template>
 	</opal-select>
 
 	<opal-select class="opal-calendar__s-year" size="s" value="['{shownYear}']">
-		<template class="opal-select__menu-inner" is="rt-repeat" for="year of years">
+		<template is="rt-repeat" class="opal-select__menu-inner" for="year of years">
 			<opal-select-option value="{year}" text="{year}"></opal-select-option>
 		</template>
 	</opal-select>
@@ -42,7 +42,7 @@
 						disabled="{day.disabled}"
 						tabindex="{day.tabIndex}"
 						data-date="{day.date}"
-						 rt-click="_onDayClick">{day.value}</td>
+						rt-click="_onDayClick">{day.value}</td>
 				</template>
 			</tr>
 		</template>

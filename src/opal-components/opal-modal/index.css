@@ -13,8 +13,8 @@
 	text-align: center;
 	white-space: nowrap;
 	cursor: default;
-}
-	.opal-modal::before {
+
+	&::before {
 		display: inline-block;
 		width: 0;
 		height: 100%;
@@ -22,7 +22,7 @@
 		vertical-align: middle;
 	}
 
-	.opal-modal__window {
+	& .opal-modal__window {
 		display: inline-block;
 		padding: 30px;
 		border-radius: 3px;
@@ -32,7 +32,7 @@
 		text-align: left;
 		white-space: normal;
 	}
-		.opal-modal__btn-close {
+		& .opal-modal__btn-close {
 			position: absolute;
 			top: 20px;
 			right: 20px;
@@ -44,8 +44,8 @@
 			background: none;
 			cursor: pointer;
 		}
-			.opal-modal__btn-close::before,
-			.opal-modal__btn-close::after {
+			& .opal-modal__btn-close::before,
+			& .opal-modal__btn-close::after {
 				position: absolute;
 				top: 21px;
 				left: 10px;
@@ -58,39 +58,42 @@
 				transform: rotate(45deg);
 			}
 
-			.opal-modal__btn-close::after {
+			& .opal-modal__btn-close::after {
 				transform: rotate(-45deg);
 			}
 
-		.opal-modal__btn-close:hover::before,
-		.opal-modal__btn-close:hover::after,
-		.opal-modal__window:hover .opal-modal__btn-close:hover::before,
-		.opal-modal__window:hover .opal-modal__btn-close:hover::after {
+		& .opal-modal__window:hover .opal-modal__btn-close::before,
+		& .opal-modal__window:hover .opal-modal__btn-close::after {
+			background: hsl(0,0%,80%);
+		}
+
+		& .opal-modal__btn-close:hover::before,
+		& .opal-modal__btn-close:hover::after,
+		& .opal-modal__window:hover .opal-modal__btn-close:hover::before,
+		& .opal-modal__window:hover .opal-modal__btn-close:hover::after {
 			background: #fff;
 		}
 
-		.opal-modal__btn-close:active::before,
-		.opal-modal__btn-close:active::after,
-		.opal-modal__window:hover .opal-modal__btn-close:active::before,
-		.opal-modal__window:hover .opal-modal__btn-close:active::after {
+		& .opal-modal__btn-close:active::before,
+		& .opal-modal__btn-close:active::after,
+		& .opal-modal__window:hover .opal-modal__btn-close:active::before,
+		& .opal-modal__window:hover .opal-modal__btn-close:active::after {
 			background: hsl(0,0%,70%);
 		}
 
-	.opal-modal__window:hover .opal-modal__btn-close::before,
-	.opal-modal__window:hover .opal-modal__btn-close::after {
-		background: hsl(0,0%,80%);
-	}
-
-		.opal-modal__content {
+		& .opal-modal__content {
 			position: relative;
 			display: block;
 		}
 
-.opal-modal[opened] {
-	display: block;
-}
+	/* States */
 
-.opal-modal._overlapped {
-	left: 100%;
-	overflow: visible;
+	&[opened] {
+		display: block;
+	}
+
+	&._overlapped {
+		left: 100%;
+		overflow: visible;
+	}
 }

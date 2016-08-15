@@ -59,7 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	__webpack_require__(26);
+	__webpack_require__(31);
 
 	var _require = __webpack_require__(3);
 
@@ -68,10 +68,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var hyphenize = _require$utils.hyphenize;
 	var escapeHTML = _require$utils.escapeHTML;
 
-	var OpalRoute = __webpack_require__(27);
-	var escapeRegExp = __webpack_require__(28);
-	var PathNodeType = __webpack_require__(29);
-	var parsePath = __webpack_require__(30);
+	var OpalRoute = __webpack_require__(32);
+	var escapeRegExp = __webpack_require__(33);
+	var PathNodeType = __webpack_require__(34);
+	var parsePath = __webpack_require__(35);
 
 	var createObject = Object.create;
 	var forEach = Array.prototype.forEach;
@@ -84,8 +84,11 @@ return /******/ (function(modules) { // webpackBootstrap
 		_route: null,
 		_componentElement: null,
 
+		initialize: function initialize() {
+			this._routes = [];
+		},
 		ready: function ready() {
-			var routes = this._routes = [];
+			var routes = this._routes;
 
 			forEach.call(this.element.querySelectorAll('opal-route'), function (routeEl) {
 				var path = routeEl.$c.props.path;
@@ -230,7 +233,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 26:
+/***/ 31:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -248,7 +251,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 27:
+/***/ 32:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -269,7 +272,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 28:
+/***/ 33:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -287,7 +290,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 29:
+/***/ 34:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -300,12 +303,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 30:
+/***/ 35:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var PathNodeType = __webpack_require__(29);
+	var PathNodeType = __webpack_require__(34);
 
 	var reName = /[a-z][0-9a-z]*/i;
 

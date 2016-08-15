@@ -3,8 +3,8 @@
 	display: inline-block;
 	width: 400px;
 	vertical-align: middle;
-}
-	.opal-text-input__control {
+
+	& .opal-text-input__control {
 		box-sizing: border-box;
 		padding: 6px 11px;
 		width: 100%;
@@ -24,26 +24,40 @@
 		-webkit-tap-highlight-color: transparent;
 	}
 
-.opal-text-input__control:hover {
-	border-color: hsl(0,0%,58%);
-	border-top-color: hsl(0,0%,56%);
-	border-bottom-color: hsl(0,0%,68%);
-}
+	/* States */
 
-.opal-text-input__control:focus {
-	outline: none;
-	border-color: hsl(208,100%,60%);
-}
-
-.opal-text-input[disabled] {
-	opacity: .5;
-	pointer-events: none;
-}
-	.opal-text-input[disabled] .opal-text-input__control {
-		background: hsl(0,0%,90%);
+	& .opal-text-input__control:hover {
+		border-color: hsl(0,0%,58%);
+		border-top-color: hsl(0,0%,56%);
+		border-bottom-color: hsl(0,0%,68%);
 	}
 
-.opal-group__content > .opal-text-input:not(:first-child),
-.opal-group__content > *:not(:first-child) .opal-text-input {
-	margin-right: -1px;
+	& .opal-text-input__control:focus {
+		outline: none;
+		border-color: hsl(208,100%,60%);
+	}
+
+	&[valid] .opal-text-input__control {
+		border-color: hsl(120,90%,35%);
+	}
+
+	&[valid=no] .opal-text-input__control {
+		border-color: hsl(0,100%,50%);
+	}
+
+	&[disabled] {
+		opacity: .5;
+		pointer-events: none;
+	}
+		&[disabled] .opal-text-input__control {
+			background: hsl(0,0%,90%);
+		}
+
+	/* Combinations */
+
+	@nest
+	.opal-group .opal-group__content > &:not(:first-child),
+	.opal-group .opal-group__content > *:not(:first-child) & {
+		margin-right: -1px;
+	}
 }

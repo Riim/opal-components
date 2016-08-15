@@ -1,7 +1,7 @@
 .opal-tab {
 	display: inline-block;
-}
-	.opal-tab__control {
+
+	& .opal-tab__control {
 		position: relative;
 		display: block;
 		padding: 5px 22px;
@@ -22,42 +22,46 @@
 		-ms-text-size-adjust: 100%;
 		-webkit-tap-highlight-color: transparent;
 	}
-		.opal-tab__content {
+		& .opal-tab__content {
 			position: relative;
 			display: block;
 		}
 
-.opal-tab__control:hover {
-	background: hsl(0,0%,90%);
-}
+	/* States */
 
-.opal-tab__control:focus {
-	outline: none;
-}
-	body:not(._no-focus-highlight) .opal-tab__control:focus::after {
-		position: absolute;
-		top: 2px;
-		right: 2px;
-		bottom: 2px;
-		left: 2px;
-		border-radius: inherit;
-		box-shadow: inset 0 0 0 1px hsl(208,100%,60%);
-		content: '';
+	& .opal-tab__control:hover {
+		background: hsl(0,0%,90%);
+	}
+
+	& .opal-tab__control:focus {
+		outline: none;
+	}
+		@nest
+		body:not(._no-focus-highlight) & .opal-tab__control:focus::after {
+			position: absolute;
+			top: 2px;
+			right: 2px;
+			bottom: 2px;
+			left: 2px;
+			border-radius: inherit;
+			box-shadow: inset 0 0 0 1px hsl(208,100%,60%);
+			content: '';
+			pointer-events: none;
+		}
+
+	& .opal-tab__control:active {
+		background: hsl(0,0%,80%);
+	}
+
+	&[selected] .opal-tab__control {
+		box-shadow: 0 3px hsl(208,94%,54%);
+	}
+
+	&[disabled] {
+		opacity: .5;
 		pointer-events: none;
 	}
-
-.opal-tab__control:active {
-	background: hsl(0,0%,80%);
+		&[disabled] .opal-tab__control {
+			cursor: default;
+		}
 }
-
-.opal-tab[selected] .opal-tab__control {
-	box-shadow: 0 3px hsl(208,94%,54%);
-}
-
-.opal-tab[disabled] {
-	opacity: .5;
-	pointer-events: none;
-}
-	.opal-tab[disabled] .opal-tab__control {
-		cursor: default;
-	}

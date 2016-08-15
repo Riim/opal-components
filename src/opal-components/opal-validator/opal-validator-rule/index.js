@@ -14,15 +14,15 @@ module.exports = Component.extend('opal-validator-rule', {
 		template: require('./index.html'),
 
 		assets: {
-			messagePopover: {}
+			popover: {}
 		}
 	},
 
 	showMessage() {
-		this.assets.messagePopover.open();
+		this.assets.popover.open();
 	},
 
 	hideMessage() {
-		this.assets.messagePopover.close();
+		this.assets.popover.close();
 	}
 });
