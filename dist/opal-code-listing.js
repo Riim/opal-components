@@ -90,20 +90,22 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			assets: {
 				htmlCode: {},
-				jsCode: {},
-				exampleHtml: {},
-				exampleJs: {}
+				jsCode: {}
 			}
 		},
 
-		ready: function ready() {
-			var assets = this.assets;
+		initialize: function initialize() {
+			this.highlightedHTMLCode = Prism.highlight(prepareCode(this.$('&__example-html').innerHTML, true), Prism.languages.html);
 
-			assets.htmlCode.innerHTML = Prism.highlight(prepareCode(assets.exampleHtml.innerHTML, true), Prism.languages.html);
+			var exampleJS = this.$('&__example-js');
 
-			if (assets.exampleJs) {
-				assets.jsCode.innerHTML = Prism.highlight(prepareCode(assets.exampleJs.textContent), Prism.languages.javascript) || '';
+			if (exampleJS) {
+				this.highlightedJSCode = Prism.highlight(prepareCode(exampleJS.textContent), Prism.languages.javascript);
 			}
+		},
+		ready: function ready() {
+			this.assets.htmlCode.innerHTML = this.highlightedHTMLCode;
+			this.assets.jsCode.innerHTML = this.highlightedJSCode || '';
 		}
 	});
 
