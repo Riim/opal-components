@@ -93,7 +93,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			this.failedRule = null;
 		},
 		ready: function ready() {
-			this.assets.rules = this.$$('opal-validator-rule');
+			this.assets.rules = this.$$('.opal-validator-rule');
 		},
 
 

@@ -33,7 +33,7 @@ module.exports = Component.extend('opal-validator', {
 	},
 
 	ready() {
-		this.assets.rules = this.$$('opal-validator-rule');
+		this.assets.rules = this.$$('.opal-validator-rule');
 	},
 
 	/**
