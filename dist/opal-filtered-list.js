@@ -102,7 +102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-filtered-list .opal-filtered-list__tf-query-wrapper{display:block;margin-bottom:15px}.opal-filtered-list .opal-filtered-list__tf-query{display:block;width:auto}";
+	            style.textContent = ".opal-filtered-list .opal-filtered-list__query-input-wrapper{display:block;margin-bottom:15px}.opal-filtered-list .opal-filtered-list__query-input{display:block;width:auto}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -115,7 +115,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 20:
 /***/ function(module, exports) {
 
-	module.exports = "{{block query }} <rt-content class=\"opal-filtered-list__tf-query-wrapper\" select=\".opal-filtered-list__tf-query\"> {{block tf_query }} <opal-text-input class=\"opal-filtered-list__tf-query\"></opal-text-input> {{/block}} </rt-content> {{/block}} {{block list }} <rt-content class=\"opal-filtered-list__loaded-list-wrapper\" select=\".opal-filtered-list__loaded-list\"></rt-content> {{/block}}"
+	module.exports = "{{block query }} <rt-content class=\"opal-filtered-list__query-input-wrapper\" select=\".opal-filtered-list__query-input\"> {{block query_input }} <opal-text-input class=\"opal-filtered-list__query-input\"></opal-text-input> {{/block}} </rt-content> {{/block}} {{block list }} <rt-content class=\"opal-filtered-list__loaded-list-wrapper\" select=\".opal-filtered-list__loaded-list\"></rt-content> {{/block}}"
 
 /***/ }
 

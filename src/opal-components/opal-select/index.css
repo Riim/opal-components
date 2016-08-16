@@ -31,7 +31,7 @@
 		min-width: 100px;
 	}
 
-	& .opal-filtered-list .opal-filtered-list__tf-query-wrapper {
+	& .opal-filtered-list .opal-filtered-list__query-input-wrapper {
 		margin: 10px;
 	}
 

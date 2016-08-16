@@ -1,9 +1,9 @@
 .opal-filtered-list {
-	& .opal-filtered-list__tf-query-wrapper {
+	& .opal-filtered-list__query-input-wrapper {
 		display: block;
 		margin-bottom: 15px;
 	}
-		& .opal-filtered-list__tf-query {
+		& .opal-filtered-list__query-input {
 			display: block;
 			width: auto;
 		}
