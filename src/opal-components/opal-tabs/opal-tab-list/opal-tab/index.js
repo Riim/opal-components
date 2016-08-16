@@ -15,7 +15,7 @@ module.exports = Component.extend('opal-tab', {
 		template: require('./index.html'),
 
 		assets: {
-			control: {
+			button: {
 				'on-focusin'() {
 					this.props.focused = true;
 				},
@@ -115,7 +115,7 @@ module.exports = Component.extend('opal-tab', {
 		if (!this._focused) {
 			this._focused = true;
 
-			this.assets.control.focus();
+			this.assets.button.focus();
 			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 		}
 
@@ -129,7 +129,7 @@ module.exports = Component.extend('opal-tab', {
 		if (this._focused) {
 			this._focused = false;
 
-			this.assets.control.blur();
+			this.assets.button.blur();
 			this._documentKeyDownListening.stop();
 		}
 

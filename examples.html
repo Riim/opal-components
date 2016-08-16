@@ -94,7 +94,7 @@ body {
 <opal-code-listing>
 	<div class="opal-code-listing__example-html">
 		<opal-text-input value="Value" placeholder="Placeholder"></opal-text-input><br><br>
-		<opal-text-input valid="no"></opal-text-input><br><br>
+		<opal-text-input placeholder="Placeholder" valid="no"></opal-text-input><br><br>
 		<opal-text-input valid></opal-text-input><br><br>
 		<opal-text-input value="Value" disabled></opal-text-input><br><br>
 		<opal-text-input placeholder="Placeholder" disabled></opal-text-input>
@@ -236,9 +236,9 @@ body {
 	<div class="opal-code-listing__example-html">
 		<div style="position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;">
 			<opal-popover opened>Popover</opal-popover>
-			<opal-popover from="bottom" opened>Popover</opal-popover>
-			<opal-popover from="left" opened>Popover</opal-popover>
-			<opal-popover from="top" opened>Popover</opal-popover>
+			<opal-popover to="bottom" opened>Popover</opal-popover>
+			<opal-popover to="left" opened>Popover</opal-popover>
+			<opal-popover to="top" opened>Popover</opal-popover>
 		</div>
 	</div>
 	<script class="opal-code-listing__example-js">
@@ -293,7 +293,7 @@ body {
 	<div class="opal-code-listing__example-html">
 		<opal-group>
 			<opal-select placeholder="Select">
-				<opal-popover class="opal-select__menu" from="bottom" auto-closing>
+				<opal-popover class="opal-select__menu" to="bottom" auto-closing>
 					<opal-select-option text="Option 1"></opal-select-option>
 					<opal-select-option text="Option 2"></opal-select-option>
 					<opal-select-option text="Option 3"></opal-select-option>
@@ -324,6 +324,20 @@ body {
 	</div>
 	<script class="opal-code-listing__example-js">
 		require('opal-components/dist/opal-calendar');
+	</script>
+</opal-code-listing>
+
+<h1>opal-date-input</h1>
+
+<opal-code-listing>
+	<div class="opal-code-listing__example-html">
+		<opal-date-input></opal-date-input>
+	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-text-input');
+		require('opal-components/dist/opal-input-mask');
+		require('opal-components/dist/opal-calendar');
+		require('opal-components/dist/opal-date-input');
 	</script>
 </opal-code-listing>
 
@@ -370,7 +384,7 @@ body {
 		</opal-select>
 
 		<opal-select>
-			<opal-popover class="opal-select__menu" from="bottom" auto-closing>
+			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
 				<opal-loaded-list class="opal-select__loaded-list" dataprovider="dataProvider1">
 					<opal-select-option text="{$item.value}"></opal-select-option>
 				</opal-loaded-list>
@@ -378,7 +392,7 @@ body {
 		</opal-select>
 
 		<opal-select multiple>
-			<opal-popover class="opal-select__menu" from="bottom" auto-closing>
+			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
 				<opal-loaded-list class="opal-select__loaded-list" dataprovider="dataProvider1">
 					<opal-select-option text="{$item.value}"></opal-select-option>
 				</opal-loaded-list>
@@ -386,7 +400,7 @@ body {
 		</opal-select>
 
 		<opal-select>
-			<opal-popover class="opal-select__menu" from="bottom" auto-closing>
+			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
 				<opal-filtered-list class="opal-select__filtered-list">
 					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
 							dataprovider="dataProvider1">
@@ -397,7 +411,7 @@ body {
 		</opal-select>
 
 		<opal-select multiple>
-			<opal-popover class="opal-select__menu" from="bottom" auto-closing>
+			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
 				<opal-filtered-list class="opal-select__filtered-list">
 					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
 							dataprovider="dataProvider1">
@@ -433,6 +447,7 @@ body {
 <script src="dist/opal-select.js"></script>
 <script src="dist/opal-validator.js"></script>
 <script src="dist/opal-calendar.js"></script>
+<script src="dist/opal-date-input.js"></script>
 <script src="dist/opal-loader.js"></script>
 <script src="dist/opal-loaded-list.js"></script>
 <script src="dist/opal-filtered-list.js"></script>

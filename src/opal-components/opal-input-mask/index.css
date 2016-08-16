@@ -1,5 +1,5 @@
 .opal-input-mask {
-	& .opal-input-mask__input .opal-text-input__control {
+	& .opal-input-mask__input .opal-text-input__input {
 		font-family: 'Lucida Console', Monaco, monospace;
 	}
 }

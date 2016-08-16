@@ -5,7 +5,7 @@ let { Component } = require('rionite');
 module.exports = Component.extend('opal-text-input', {
 	Static: {
 		props: {
-			controlType: 'text',
+			inputType: 'text',
 			size: 'm',
 			value: '',
 			placeholder: '',
@@ -17,7 +17,7 @@ module.exports = Component.extend('opal-text-input', {
 		template: require('./index.html'),
 
 		assets: {
-			control: {
+			input: {
 				'on-focusin'() {
 					this.props.focused = true;
 					this.emit('focusin');
@@ -53,7 +53,7 @@ module.exports = Component.extend('opal-text-input', {
 	},
 
 	ready() {
-		this.assets.control.value = this.props.value;
+		this.assets.input.value = this.props.value;
 
 		if (this.props.focused) {
 			this.focus();
@@ -62,10 +62,10 @@ module.exports = Component.extend('opal-text-input', {
 
 	elementAttributeChanged(name, oldValue, value) {
 		if (name == 'value') {
-			let control = this.assets.control;
+			let input = this.assets.input;
 
-			if (control.value != value) {
-				control.value = value;
+			if (input.value != value) {
+				input.value = value;
 			}
 		} else if (name == 'focused') {
 			this[value ? 'focus' : 'blur']();
@@ -76,17 +76,17 @@ module.exports = Component.extend('opal-text-input', {
 	 * @type {string}
 	 */
 	get value() {
-		return this.assets.control.value;
+		return this.assets.input.value;
 	},
 	set value(value) {
-		this.assets.control.value = value;
+		this.assets.input.value = value;
 	},
 
 	/**
 	 * @typesign () -> OpalComponents.OpalTextInput;
 	 */
 	focus() {
-		this.assets.control.focus();
+		this.assets.input.focus();
 		return this;
 	},
 
@@ -94,7 +94,7 @@ module.exports = Component.extend('opal-text-input', {
 	 * @typesign () -> OpalComponents.OpalTextInput;
 	 */
 	blur() {
-		this.assets.control.blur();
+		this.assets.input.blur();
 		return this;
 	},
 

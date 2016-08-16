@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(28);
+	__webpack_require__(30);
 
 	var _require = __webpack_require__(3);
 
@@ -95,7 +95,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				opened: false
 			},
 
-			template: __webpack_require__(29),
+			template: __webpack_require__(31),
 
 			assets: {
 				':element': {
@@ -222,7 +222,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 28:
+/***/ 30:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -240,7 +240,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 29:
+/***/ 31:
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"opal-modal__window\"> <button class=\"opal-modal__btn-close\"></button> <rt-content class=\"opal-modal__content\"></rt-content> </span>"

@@ -33,14 +33,14 @@ module.exports = Component.extend('opal-validator', {
 	},
 
 	ready() {
-		this.rules = this.$$('opal-validator-rule');
+		this.assets.rules = this.$$('opal-validator-rule');
 	},
 
 	/**
 	 * @typesign () -> boolean;
 	 */
 	validate() {
-		return this._validate(this.rules);
+		return this._validate(this.assets.rules);
 	},
 
 	/**
@@ -53,13 +53,12 @@ module.exports = Component.extend('opal-validator', {
 		rules.forEach(rule => {
 			let ruleProps = rule.props;
 
-			if (
-				!failedRule && (
-					ruleProps.required && !value ||
-						ruleProps.minLength && value.length < ruleProps.minLength ||
-						ruleProps.pattern && !ruleProps.pattern.test(value)
-				)
-			) {
+			if (!failedRule && (
+				ruleProps.required && !value ||
+					ruleProps.minLength && value.length < ruleProps.minLength ||
+					ruleProps.regex && !ruleProps.regex.test(value) ||
+					ruleProps.test && !this.ownerComponent[ruleProps.test](value)
+			)) {
 				failedRule = rule;
 				rule.showMessage();
 			} else {
@@ -67,8 +66,8 @@ module.exports = Component.extend('opal-validator', {
 			}
 		});
 
-		this.failedRule = failedRule;
 		this.props.valid = !failedRule;
+		this.failedRule = failedRule;
 
 		return !failedRule;
 	}

@@ -60,8 +60,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Code based on [jquery.maskedinput](https://github.com/digitalBush/jquery.maskedinput).
 	 */
 
-	__webpack_require__(20);
 	__webpack_require__(22);
+	__webpack_require__(24);
 
 	var cellx = __webpack_require__(2);
 
@@ -69,7 +69,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Component = _require.Component;
 
-	var defaultDefinitions = __webpack_require__(23);
+	var defaultDefinitions = __webpack_require__(25);
 
 	var forEach = Array.prototype.forEach;
 
@@ -86,7 +86,11 @@ return /******/ (function(modules) { // webpackBootstrap
 				placeholder: defaultPlaceholder
 			},
 
-			template: __webpack_require__(24)
+			template: __webpack_require__(26),
+
+			assets: {
+				input: {}
+			}
 		},
 
 		_focusText: void 0,
@@ -100,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			this._placeholder = this.props.placeholder.charAt(0) || defaultPlaceholder;
 		},
 		ready: function ready() {
-			this.assets.input = this.$('&__input').assets.control;
+			this._input = this.assets.input.assets.input;
 
 			var definitions = this._definitions;
 
@@ -139,7 +143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			});
 		},
 		elementAttached: function elementAttached() {
-			this.listenTo(this.assets.input, {
+			this.listenTo(this._input, {
 				focusin: this._onInputFocusIn,
 				focusout: this._onInputFocusOut,
 				keydown: this._onInputKeyDown,
@@ -152,7 +156,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		_onInputFocusIn: function _onInputFocusIn() {
 			var _this = this;
 
-			this._focusText = this.assets.input.value;
+			this._focusText = this._input.value;
 
 			var index = this._checkValue();
 			this._writeBuffer();
@@ -168,14 +172,14 @@ return /******/ (function(modules) { // webpackBootstrap
 		_onInputFocusOut: function _onInputFocusOut() {
 			this._checkValue();
 
-			var input = this.assets.input;
+			var input = this._input;
 
 			if (input.value != this._focusText) {
-				this.emit('change');
+				this.assets.input.emit('change');
 			}
 		},
 		_onInputKeyDown: function _onInputKeyDown(evt) {
-			var input = this.assets.input;
+			var input = this._input;
 			var key = evt.which;
 
 			// Backspace, delete, and escape get special treatment
@@ -203,7 +207,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		_onInputKeyPress: function _onInputKeyPress(evt) {
 			var tests = this._tests;
 			var bufferLength = this._buffer.length;
-			var input = this.assets.input;
+			var input = this._input;
 			var start = input.selectionStart;
 			var end = input.selectionEnd;
 			var key = evt.which;
@@ -255,7 +259,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			var tests = this._tests;
 			var buffer = this._buffer;
 			var bufferLength = buffer.length;
-			var input = this.assets.input;
+			var input = this._input;
 			var value = input.value;
 			var valueLength = value.length;
 			var index = 0;
@@ -361,7 +365,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			return index;
 		},
 		_writeBuffer: function _writeBuffer() {
-			this.assets.input.value = this._buffer.join('');
+			this._input.value = this._buffer.join('');
 		},
 		_clearBuffer: function _clearBuffer(start, end) {
 			var placeholder = this._placeholder;
@@ -381,7 +385,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		_setInputSelection: function _setInputSelection(start) {
 			var end = arguments.length <= 1 || arguments[1] === undefined ? start : arguments[1];
 
-			this.assets.input.setSelectionRange(start, end);
+			this._input.setSelectionRange(start, end);
 		}
 	});
 
@@ -415,12 +419,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 17 */,
 /* 18 */,
 /* 19 */,
-/* 20 */
+/* 20 */,
+/* 21 */,
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(21);
+	__webpack_require__(23);
 
 	var _require = __webpack_require__(3);
 
@@ -437,7 +443,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 21 */
+/* 23 */
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -454,7 +460,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 22 */
+/* 24 */
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -462,7 +468,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-input-mask .opal-input-mask__input .opal-text-input__control{font-family:'Lucida Console',Monaco,monospace}";
+	            style.textContent = ".opal-input-mask .opal-input-mask__input .opal-text-input__input{font-family:'Lucida Console',Monaco,monospace}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -471,7 +477,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 23 */
+/* 25 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -483,7 +489,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	defaultDefinitions['*'] = /[0-9a-zA-Z]/;
 
 /***/ },
-/* 24 */
+/* 26 */
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content class=\"opal-input-mask__content\"></rt-content>"

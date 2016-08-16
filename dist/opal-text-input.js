@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(54);
+	__webpack_require__(56);
 
 	var _require = __webpack_require__(3);
 
@@ -67,7 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Component.extend('opal-text-input', {
 		Static: {
 			props: {
-				controlType: 'text',
+				inputType: 'text',
 				size: 'm',
 				value: '',
 				placeholder: '',
@@ -76,10 +76,10 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(55),
+			template: __webpack_require__(57),
 
 			assets: {
-				control: {
+				input: {
 					'on-focusin': function onFocusin() {
 						this.props.focused = true;
 						this.emit('focusin');
@@ -109,7 +109,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 
 		ready: function ready() {
-			this.assets.control.value = this.props.value;
+			this.assets.input.value = this.props.value;
 
 			if (this.props.focused) {
 				this.focus();
@@ -117,10 +117,10 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
 			if (name == 'value') {
-				var control = this.assets.control;
+				var input = this.assets.input;
 
-				if (control.value != value) {
-					control.value = value;
+				if (input.value != value) {
+					input.value = value;
 				}
 			} else if (name == 'focused') {
 				this[value ? 'focus' : 'blur']();
@@ -132,17 +132,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @type {string}
 	  */
 		get value() {
-			return this.assets.control.value;
+			return this.assets.input.value;
 		},
 		set value(value) {
-			this.assets.control.value = value;
+			this.assets.input.value = value;
 		},
 
 		/**
 	  * @typesign () -> OpalComponents.OpalTextInput;
 	  */
 		focus: function focus() {
-			this.assets.control.focus();
+			this.assets.input.focus();
 			return this;
 		},
 
@@ -151,7 +151,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> OpalComponents.OpalTextInput;
 	  */
 		blur: function blur() {
-			this.assets.control.blur();
+			this.assets.input.blur();
 			return this;
 		},
 
@@ -183,7 +183,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 54:
+/***/ 56:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -191,7 +191,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-text-input{position:relative;display:inline-block;width:400px;vertical-align:middle}.opal-text-input .opal-text-input__control{box-sizing:border-box;padding:6px 11px;width:100%;border:1px solid #adadad;border-top-color:#a8a8a8;border-bottom-color:#c7c7c7;background:#fff;box-shadow:inset 0 1px rgba(0,0,0,.1);color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-text-input .opal-text-input__control:hover{border-color:#949494;border-top-color:#8f8f8f;border-bottom-color:#adadad}.opal-text-input .opal-text-input__control:focus{outline:none;border-color:#33a0ff}.opal-text-input[valid] .opal-text-input__control{border-color:#09aa09}.opal-text-input[valid=no] .opal-text-input__control{border-color:red}.opal-text-input[disabled]{opacity:.5;pointer-events:none}.opal-text-input[disabled] .opal-text-input__control{background:#e6e6e6}.opal-group .opal-group__content>.opal-text-input:not(:first-child),.opal-group .opal-group__content>:not(:first-child) .opal-text-input{margin-right:-1px}";
+	            style.textContent = ".opal-text-input{position:relative;display:inline-block;width:400px;vertical-align:middle}.opal-text-input .opal-text-input__input{box-sizing:border-box;padding:6px 11px;width:100%;border:1px solid #adadad;border-top-color:#a8a8a8;border-bottom-color:#c7c7c7;background:#fff;box-shadow:inset 0 1px rgba(0,0,0,.1);color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-text-input .opal-text-input__input:hover{border-color:#949494;border-top-color:#8f8f8f;border-bottom-color:#adadad}.opal-text-input .opal-text-input__input:focus{outline:none;border-color:#33a0ff}.opal-text-input[valid] .opal-text-input__input{border-color:#09aa09}.opal-text-input[valid=no] .opal-text-input__input{border-color:red}.opal-text-input[disabled]{opacity:.5;pointer-events:none}.opal-text-input[disabled] .opal-text-input__input{background:#e6e6e6}.opal-group .opal-group__content>.opal-text-input:not(:first-child),.opal-group .opal-group__content>:not(:first-child) .opal-text-input{margin-right:-1px}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -201,10 +201,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 55:
+/***/ 57:
 /***/ function(module, exports) {
 
-	module.exports = "<input class=\"opal-text-input__control\" type=\"{props.controlType}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\">"
+	module.exports = "<input class=\"opal-text-input__input\" type=\"{props.inputType}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\">"
 
 /***/ }
 

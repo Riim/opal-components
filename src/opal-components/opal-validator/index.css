@@ -4,7 +4,7 @@
 
 	/* States */
 
-	&[valid=no] .opal-validator__input .opal-text-input__control {
+	&[valid=no] .opal-validator__input .opal-text-input__input {
 		border-color: hsl(0,100%,50%);
 	}
 }

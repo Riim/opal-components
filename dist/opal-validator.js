@@ -57,13 +57,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(56);
+	__webpack_require__(58);
 
 	var _require = __webpack_require__(3);
 
 	var Component = _require.Component;
 
-	var OpalValidatorRule = __webpack_require__(57);
+	var OpalValidatorRule = __webpack_require__(59);
 
 	module.exports = Component.extend('opal-validator', {
 		Static: {
@@ -93,7 +93,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			this.failedRule = null;
 		},
 		ready: function ready() {
-			this.rules = this.$$('opal-validator-rule');
+			this.assets.rules = this.$$('opal-validator-rule');
 		},
 
 
@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> boolean;
 	  */
 		validate: function validate() {
-			return this._validate(this.rules);
+			return this._validate(this.assets.rules);
 		},
 
 
@@ -109,13 +109,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign (rules: Array<OpalComponents.OpalValidatorRule>) -> boolean;
 	  */
 		_validate: function _validate(rules) {
+			var _this = this;
+
 			var value = this.assets.input.value;
 			var failedRule = null;
 
 			rules.forEach(function (rule) {
 				var ruleProps = rule.props;
 
-				if (!failedRule && (ruleProps.required && !value || ruleProps.minLength && value.length < ruleProps.minLength || ruleProps.pattern && !ruleProps.pattern.test(value))) {
+				if (!failedRule && (ruleProps.required && !value || ruleProps.minLength && value.length < ruleProps.minLength || ruleProps.regex && !ruleProps.regex.test(value) || ruleProps.test && !_this.ownerComponent[ruleProps.test](value))) {
 					failedRule = rule;
 					rule.showMessage();
 				} else {
@@ -123,8 +125,8 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 			});
 
-			this.failedRule = failedRule;
 			this.props.valid = !failedRule;
+			this.failedRule = failedRule;
 
 			return !failedRule;
 		}
@@ -139,7 +141,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 56:
+/***/ 58:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -147,7 +149,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-validator{position:relative;display:inline-block}.opal-validator[valid=no] .opal-validator__input .opal-text-input__control{border-color:red}";
+	            style.textContent = ".opal-validator{position:relative;display:inline-block}.opal-validator[valid=no] .opal-validator__input .opal-text-input__input{border-color:red}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -157,12 +159,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 57:
+/***/ 59:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(58);
+	__webpack_require__(60);
 
 	var _require = __webpack_require__(3);
 
@@ -174,11 +176,12 @@ return /******/ (function(modules) { // webpackBootstrap
 			props: {
 				required: false,
 				minLength: Number,
-				pattern: Object,
-				popoverFrom: 'right'
+				regex: Object,
+				test: String,
+				popoverTo: 'right'
 			},
 
-			template: __webpack_require__(59),
+			template: __webpack_require__(61),
 
 			assets: {
 				popover: {}
@@ -195,7 +198,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 58:
+/***/ 60:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -213,10 +216,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 59:
+/***/ 61:
 /***/ function(module, exports) {
 
-	module.exports = "<ips-popover class=\"opal-validator-rule__popover\" from=\"{props.popoverFrom}\"> <rt-content class=\"opal-validator-rule__content\"></rt-content> </ips-popover>"
+	module.exports = "<opal-popover class=\"opal-validator-rule__popover\" to=\"{props.popoverTo}\"> <rt-content class=\"opal-validator-rule__content\"></rt-content> </opal-popover>"
 
 /***/ }
 

@@ -57,14 +57,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(45);
+	__webpack_require__(47);
 
 	var _require = __webpack_require__(3);
 
 	var Component = _require.Component;
 
-	var OpalTabList = __webpack_require__(46);
-	var OpalTabPanel = __webpack_require__(51);
+	var OpalTabList = __webpack_require__(48);
+	var OpalTabPanel = __webpack_require__(53);
 
 	var indexOf = Array.prototype.indexOf;
 	var forEach = Array.prototype.forEach;
@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			OpalTabList: OpalTabList,
 			OpalTabPanel: OpalTabPanel,
 
-			template: __webpack_require__(53),
+			template: __webpack_require__(55),
 
 			assets: {
 				tabList: {
@@ -153,7 +153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 45:
+/***/ 47:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -171,18 +171,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 46:
+/***/ 48:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(47);
+	__webpack_require__(49);
 
 	var _require = __webpack_require__(3);
 
 	var Component = _require.Component;
 
-	var OpalTab = __webpack_require__(48);
+	var OpalTab = __webpack_require__(50);
 
 	module.exports = Component.extend('opal-tab-list', {
 		Static: {
@@ -193,7 +193,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 47:
+/***/ 49:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -211,12 +211,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 48:
+/***/ 50:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(49);
+	__webpack_require__(51);
 
 	var cellx = __webpack_require__(2);
 
@@ -234,10 +234,10 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(50),
+			template: __webpack_require__(52),
 
 			assets: {
-				control: {
+				button: {
 					'on-focusin': function onFocusin() {
 						this.props.focused = true;
 					},
@@ -335,7 +335,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (!this._focused) {
 				this._focused = true;
 
-				this.assets.control.focus();
+				this.assets.button.focus();
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 			}
 
@@ -350,7 +350,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (this._focused) {
 				this._focused = false;
 
-				this.assets.control.blur();
+				this.assets.button.blur();
 				this._documentKeyDownListening.stop();
 			}
 
@@ -378,7 +378,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 49:
+/***/ 51:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -386,7 +386,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-tab{display:inline-block}.opal-tab .opal-tab__control{position:relative;display:block;padding:5px 22px;border-top-left-radius:3px;border-top-right-radius:3px;background:#fff;color:#000;text-align:center;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-tab .opal-tab__content{position:relative;display:block}.opal-tab .opal-tab__control:hover{background:#e6e6e6}.opal-tab .opal-tab__control:focus{outline:none}body:not(._no-focus-highlight) .opal-tab .opal-tab__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-tab .opal-tab__control:active{background:#ccc}.opal-tab[selected] .opal-tab__control{box-shadow:0 3px #1b91f8}.opal-tab[disabled]{opacity:.5;pointer-events:none}.opal-tab[disabled] .opal-tab__control{cursor:default}";
+	            style.textContent = ".opal-tab{display:inline-block}.opal-tab .opal-tab__button{position:relative;display:block;padding:5px 22px;border-top-left-radius:3px;border-top-right-radius:3px;background:#fff;color:#000;text-align:center;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-tab .opal-tab__content{position:relative;display:block}.opal-tab .opal-tab__button:hover{background:#e6e6e6}.opal-tab .opal-tab__button:focus{outline:none}body:not(._no-focus-highlight) .opal-tab .opal-tab__button:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-tab .opal-tab__button:active{background:#ccc}.opal-tab[selected] .opal-tab__button{box-shadow:0 3px #1b91f8}.opal-tab[disabled]{opacity:.5;pointer-events:none}.opal-tab[disabled] .opal-tab__button{cursor:default}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -396,19 +396,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 50:
+/***/ 52:
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"opal-tab__control\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-tab__content\"></rt-content> </span>"
+	module.exports = "<span class=\"opal-tab__button\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-tab__content\"></rt-content> </span>"
 
 /***/ },
 
-/***/ 51:
+/***/ 53:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(52);
+	__webpack_require__(54);
 
 	var _require = __webpack_require__(3);
 
@@ -427,7 +427,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 52:
+/***/ 54:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -445,7 +445,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 53:
+/***/ 55:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content select=\"opal-tab-list\"> <opal-tab-list> <rt-content class=\"opal-tabs__tabs\" select=\"opal-tab\"></rt-content> </opal-tab-list> </rt-content> <rt-content class=\"opal-tabs__panels\" select=\"opal-tab-panel\"></rt-content>"

@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["opal-loader"] = factory(require("rionite"));
+		exports["opal-date-input"] = factory(require("rionite"));
 	else
-		root["opal-loader"] = factory(root["rionite"]);
+		root["opal-date-input"] = factory(root["rionite"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -57,19 +57,32 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(29);
+	__webpack_require__(16);
 
 	var _require = __webpack_require__(3);
 
 	var Component = _require.Component;
 
 
-	module.exports = Component.extend('opal-loader', {
+	module.exports = Component.extend('opal-date-input', {
 		Static: {
-			props: {
-				size: 'm',
-				shown: false
+			template: __webpack_require__(17),
+
+			assets: {
+				//
 			}
+		},
+
+		_isExistDate: function _isExistDate(date) {
+			date = date.split('/');
+
+			var day = parseInt(date[0], 10);
+			var month = parseInt(date[1], 10) - 1;
+			var year = parseInt(date[2], 10);
+
+			date = new Date(year, month, day);
+
+			return day == date.getDate() && month == date.getMonth() && year == date.getFullYear();
 		}
 	});
 
@@ -82,7 +95,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 29:
+/***/ 16:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -90,13 +103,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = "@-webkit-keyframes opal-loader-animation{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes opal-loader-animation{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.opal-loader{position:relative;display:none;margin:10px auto;width:38px;height:38px;background:rgba(255,255,255,.5)}.opal-loader::before,.opal-loader::after{position:absolute;top:0;right:0;bottom:0;left:0;box-sizing:border-box;margin:auto;width:100%;height:100%;border:3px solid #1b91f8;border-top-color:transparent;border-radius:50%;content:'';-webkit-animation:opal-loader-animation 1.2s infinite linear;animation:opal-loader-animation 1.2s infinite linear}.opal-loader::after{width:26px;height:26px;border-color:#f63159;border-bottom-color:transparent;-webkit-animation-direction:reverse;animation-direction:reverse}.opal-loader[size=s]{margin:6px auto;width:20px;height:20px}.opal-loader[size=s]::before{border-width:2px}.opal-loader[size=s]::after{content:none}.opal-loader[shown]{display:block}";
+	            style.textContent = ".opal-date-input{position:relative;display:inline-block}";
 	            head.appendChild(style);
 	            return style;
 	        }
 	        return null;
 	    })(document);
 
+
+/***/ },
+
+/***/ 17:
+/***/ function(module, exports) {
+
+	module.exports = "<opal-validator> <opal-validator-rule test=\"_isExistDate\">Несуществующая дата</opal-validator-rule> <opal-input-mask mask=\"99/99/9999\"> <opal-text-input class=\"opal-date-input__input opal-validator__input opal-input-mask__input\" placeholder=\"dd/mm/yyyy\"></opal-text-input> </opal-input-mask> </opal-validator> <opal-dropdown class=\"opal-date-input__calendar-menu\"> <opal-calendar class=\"opal-date-input__calendar\"></opal-calendar> </opal-dropdown>"
 
 /***/ }
 

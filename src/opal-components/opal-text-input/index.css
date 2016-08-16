@@ -4,7 +4,7 @@
 	width: 400px;
 	vertical-align: middle;
 
-	& .opal-text-input__control {
+	& .opal-text-input__input {
 		box-sizing: border-box;
 		padding: 6px 11px;
 		width: 100%;
@@ -26,22 +26,22 @@
 
 	/* States */
 
-	& .opal-text-input__control:hover {
+	& .opal-text-input__input:hover {
 		border-color: hsl(0,0%,58%);
 		border-top-color: hsl(0,0%,56%);
 		border-bottom-color: hsl(0,0%,68%);
 	}
 
-	& .opal-text-input__control:focus {
+	& .opal-text-input__input:focus {
 		outline: none;
 		border-color: hsl(208,100%,60%);
 	}
 
-	&[valid] .opal-text-input__control {
+	&[valid] .opal-text-input__input {
 		border-color: hsl(120,90%,35%);
 	}
 
-	&[valid=no] .opal-text-input__control {
+	&[valid=no] .opal-text-input__input {
 		border-color: hsl(0,100%,50%);
 	}
 
@@ -49,7 +49,7 @@
 		opacity: .5;
 		pointer-events: none;
 	}
-		&[disabled] .opal-text-input__control {
+		&[disabled] .opal-text-input__input {
 			background: hsl(0,0%,90%);
 		}
 

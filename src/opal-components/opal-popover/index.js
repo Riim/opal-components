@@ -5,7 +5,7 @@ let { Component } = require('rionite');
 module.exports = Component.extend('opal-popover', {
 	Static: {
 		props: {
-			from: 'right',
+			to: 'right',
 			opened: false,
 			autoClosing: false
 		},

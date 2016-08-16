@@ -1,7 +1,7 @@
 .opal-tab {
 	display: inline-block;
 
-	& .opal-tab__control {
+	& .opal-tab__button {
 		position: relative;
 		display: block;
 		padding: 5px 22px;
@@ -29,15 +29,15 @@
 
 	/* States */
 
-	& .opal-tab__control:hover {
+	& .opal-tab__button:hover {
 		background: hsl(0,0%,90%);
 	}
 
-	& .opal-tab__control:focus {
+	& .opal-tab__button:focus {
 		outline: none;
 	}
 		@nest
-		body:not(._no-focus-highlight) & .opal-tab__control:focus::after {
+		body:not(._no-focus-highlight) & .opal-tab__button:focus::after {
 			position: absolute;
 			top: 2px;
 			right: 2px;
@@ -49,11 +49,11 @@
 			pointer-events: none;
 		}
 
-	& .opal-tab__control:active {
+	& .opal-tab__button:active {
 		background: hsl(0,0%,80%);
 	}
 
-	&[selected] .opal-tab__control {
+	&[selected] .opal-tab__button {
 		box-shadow: 0 3px hsl(208,94%,54%);
 	}
 
@@ -61,7 +61,7 @@
 		opacity: .5;
 		pointer-events: none;
 	}
-		&[disabled] .opal-tab__control {
+		&[disabled] .opal-tab__button {
 			cursor: default;
 		}
 }

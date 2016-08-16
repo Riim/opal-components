@@ -7,8 +7,9 @@ module.exports = Component.extend('opal-validator-rule', {
 		props: {
 			required: false,
 			minLength: Number,
-			pattern: Object,
-			popoverFrom: 'right'
+			regex: Object,
+			test: String,
+			popoverTo: 'right'
 		},
 
 		template: require('./index.html'),

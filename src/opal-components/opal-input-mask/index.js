@@ -24,7 +24,11 @@ module.exports = Component.extend('opal-input-mask', {
 			placeholder: defaultPlaceholder
 		},
 
-		template: require('./index.html')
+		template: require('./index.html'),
+
+		assets: {
+			input: {}
+		}
 	},
 
 	_focusText: void 0,
@@ -39,7 +43,7 @@ module.exports = Component.extend('opal-input-mask', {
 	},
 
 	ready() {
-		this.assets.input = this.$('&__input').assets.control;
+		this._input = this.assets.input.assets.input;
 
 		let definitions = this._definitions;
 
@@ -74,7 +78,7 @@ module.exports = Component.extend('opal-input-mask', {
 	},
 
 	elementAttached() {
-		this.listenTo(this.assets.input, {
+		this.listenTo(this._input, {
 			focusin: this._onInputFocusIn,
 			focusout: this._onInputFocusOut,
 			keydown: this._onInputKeyDown,
@@ -86,7 +90,7 @@ module.exports = Component.extend('opal-input-mask', {
 	},
 
 	_onInputFocusIn() {
-		this._focusText = this.assets.input.value;
+		this._focusText = this._input.value;
 
 		let index = this._checkValue();
 		this._writeBuffer();
@@ -103,15 +107,15 @@ module.exports = Component.extend('opal-input-mask', {
 	_onInputFocusOut() {
 		this._checkValue();
 
-		let input = this.assets.input;
+		let input = this._input;
 
 		if (input.value != this._focusText) {
-			this.emit('change');
+			this.assets.input.emit('change');
 		}
 	},
 
 	_onInputKeyDown(evt) {
-		let input = this.assets.input;
+		let input = this._input;
 		let key = evt.which;
 
 		// Backspace, delete, and escape get special treatment
@@ -139,7 +143,7 @@ module.exports = Component.extend('opal-input-mask', {
 	_onInputKeyPress(evt) {
 		let tests = this._tests;
 		let bufferLength = this._buffer.length;
-		let input = this.assets.input;
+		let input = this._input;
 		let start = input.selectionStart;
 		let end = input.selectionEnd;
 		let key = evt.which;
@@ -190,7 +194,7 @@ module.exports = Component.extend('opal-input-mask', {
 		let tests = this._tests;
 		let buffer = this._buffer;
 		let bufferLength = buffer.length;
-		let input = this.assets.input;
+		let input = this._input;
 		let value = input.value;
 		let valueLength = value.length;
 		let index = 0;
@@ -301,7 +305,7 @@ module.exports = Component.extend('opal-input-mask', {
 	},
 
 	_writeBuffer() {
-		this.assets.input.value = this._buffer.join('');
+		this._input.value = this._buffer.join('');
 	},
 
 	_clearBuffer(start, end) {
@@ -321,6 +325,6 @@ module.exports = Component.extend('opal-input-mask', {
 	},
 
 	_setInputSelection(start, end = start) {
-		this.assets.input.setSelectionRange(start, end);
+		this._input.setSelectionRange(start, end);
 	}
 });
