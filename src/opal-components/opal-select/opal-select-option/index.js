@@ -39,7 +39,7 @@ module.exports = Component.extend('opal-select-option', {
 		let text = this.props.text;
 
 		if (text === void 0) {
-			throw new TypeError('"text" property is required');
+			throw new TypeError('Property "text" is required');
 		}
 
 		cellx.define(this, {

@@ -1,0 +1,93 @@
+.opal-sign-button {
+	display: inline-block;
+	vertical-align: middle;
+
+	& .opal-sign-button__control {
+		position: relative;
+		display: block;
+		cursor: pointer;
+		user-select: none;
+	}
+		& .opal-sign-button__sign {
+			position: relative;
+			display: inline-block;
+			box-sizing: border-box;
+			margin: 1px 3px 3px;
+			width: 28px;
+			height: 28px;
+			border: 2px solid;
+			border-radius: 50%;
+			vertical-align: middle;
+		}
+			& .opal-sign-button__sign::before,
+			& .opal-sign-button__sign::after {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				margin: auto;
+				width: 12px;
+				height: 2px;
+			}
+
+			& .opal-sign-button__sign::after {
+				transform: rotate(90deg);
+			}
+
+		& .opal-sign-button__content {
+		}
+
+	/* States */
+
+	&[sign=plus] {
+		& .opal-sign-button__sign {
+			border-color: hsl(208,94%,54%);
+		}
+
+		& .opal-sign-button__sign::before,
+		& .opal-sign-button__sign::after {
+			background: hsl(208,94%,54%);
+			content: '';
+		}
+	}
+
+	&[sign=minus] {
+		& .opal-sign-button__sign {
+			border-color: hsl(348,92%,58%);
+		}
+
+		& .opal-sign-button__sign::before {
+			background: hsl(348,92%,58%);
+			content: '';
+		}
+	}
+
+	& .opal-sign-button__control:focus {
+		outline: none;
+	}
+		@nest
+		body:not(._no-focus-highlight) & .opal-sign-button__control:focus::after {
+			position: absolute;
+			top: -2px;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			border: 1px solid hsl(208,100%,60%);
+			border-radius: 3px;
+			content: '';
+			pointer-events: none;
+		}
+
+	& .opal-sign-button__control:active {
+		top: 1px;
+	}
+
+	&[disabled] {
+		opacity: .5;
+		pointer-events: none;
+	}
+		&[disabled] .opal-sign-button__control {
+			cursor: default;
+		}
+}

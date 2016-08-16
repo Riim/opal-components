@@ -703,7 +703,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			var text = this.props.text;
 
 			if (text === void 0) {
-				throw new TypeError('"text" property is required');
+				throw new TypeError('Property "text" is required');
 			}
 
 			cellx.define(this, {

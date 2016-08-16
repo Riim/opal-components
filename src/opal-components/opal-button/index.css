@@ -41,31 +41,6 @@
 
 	/* States */
 
-	& .opal-button__control:hover {
-		background: hsl(208,24%,46%);
-	}
-
-	& .opal-button__control:focus {
-		outline: none;
-	}
-		@nest
-		body:not(._no-focus-highlight) & .opal-button__control:focus::after {
-			position: absolute;
-			top: 2px;
-			right: 2px;
-			bottom: 2px;
-			left: 2px;
-			border: 1px solid rgba(255,255,255,.8);
-			border-radius: inherit;
-			content: '';
-			pointer-events: none;
-		}
-
-	& .opal-button__control:active,
-	&[checked] .opal-button__control {
-		background: hsl(208,6%,28%);
-	}
-
 	&[type=action] {
 		& .opal-button__control {
 			background: hsl(208,94%,54%);
@@ -100,6 +75,31 @@
 		padding: 4px 13px;
 		font-size: 14px;
 		line-height: 21px;
+	}
+
+	& .opal-button__control:hover {
+		background: hsl(208,24%,46%);
+	}
+
+	& .opal-button__control:focus {
+		outline: none;
+	}
+		@nest
+		body:not(._no-focus-highlight) & .opal-button__control:focus::after {
+			position: absolute;
+			top: 2px;
+			right: 2px;
+			bottom: 2px;
+			left: 2px;
+			border: 1px solid rgba(255,255,255,.8);
+			border-radius: inherit;
+			content: '';
+			pointer-events: none;
+		}
+
+	& .opal-button__control:active,
+	&[checked] .opal-button__control {
+		background: hsl(208,6%,28%);
 	}
 
 	&[disabled] {
