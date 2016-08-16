@@ -11,6 +11,7 @@
 		border: 1px solid hsl(0,0%,68%);
 		border-top-color: hsl(0,0%,66%);
 		border-bottom-color: hsl(0,0%,78%);
+		border-radius: 3px;
 		background: #fff;
 		box-shadow: inset 0 1px rgba(0,0,0,.1);
 		color: #000;
@@ -59,5 +60,19 @@
 	.opal-group .opal-group__content > &:not(:first-child),
 	.opal-group .opal-group__content > *:not(:first-child) & {
 		margin-right: -1px;
+	}
+
+	@nest
+	.opal-group__content &:not(:first-child) .opal-text-input__input,
+	.opal-group__content *:not(:first-child) & .opal-text-input__input {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+
+	@nest
+	.opal-group__content &:not(:last-child) .opal-text-input__input,
+	.opal-group__content *:not(:last-child) & .opal-text-input__input {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
 	}
 }

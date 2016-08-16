@@ -1,12 +1,21 @@
-<opal-validator>
-	<opal-validator-rule test="_isExistDate">Несуществующая дата</opal-validator-rule>
+{{block validation }}
+	<opal-validator>
+		<opal-validator-rule test="_isExistDate"
+				popover-to="{props.popoverTo}">Несуществующая дата</opal-validator-rule>
 
-	<opal-input-mask mask="99/99/9999">
-		<opal-text-input class="opal-date-input__input opal-validator__input opal-input-mask__input"
-				placeholder="dd/mm/yyyy"></opal-text-input>
-	</opal-input-mask>
-</opal-validator>
+		<opal-input-mask mask="99/99/9999">
+			{{block input }}
+				<opal-text-input class="opal-date-input__input opal-validator__input opal-input-mask__input"
+						placeholder="dd/mm/yyyy"></opal-text-input>
+			{{/block}}
+		</opal-input-mask>
+	</opal-validator>
+{{/block}}
 
-<opal-dropdown class="opal-date-input__calendar-menu">
-	<opal-calendar class="opal-date-input__calendar"></opal-calendar>
-</opal-dropdown>
+{{block calendar_menu }}
+	<opal-dropdown class="opal-date-input__calendar-menu" auto-closing>
+		{{block calendar }}
+			<opal-calendar class="opal-date-input__calendar"></opal-calendar>
+		{{/block}}
+	</opal-dropdown>
+{{/block}}

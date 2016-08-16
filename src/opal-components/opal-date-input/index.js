@@ -1,13 +1,35 @@
 require('./index.css');
 
-let { Component } = require('rionite');
+let { Component, template } = require('rionite');
 
 module.exports = Component.extend('opal-date-input', {
 	Static: {
-		template: require('./index.html'),
+		props: {
+			popoverTo: 'right'
+		},
+
+		template: template(require('./index.html')),
 
 		assets: {
-			//
+			input: {
+				'on-focusin'() {
+					if (!this._documentMouseUpListening) {
+						this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
+					}
+				}
+			},
+
+			calendarMenu: {},
+			calendar: {}
+		}
+	},
+
+	_onDocumentMouseUp() {
+		this._documentMouseUpListening.stop();
+		this._documentMouseUpListening = null;
+
+		if (this.assets.input.assets.input == document.activeElement) {
+			this.assets.calendarMenu.open();
 		}
 	},
 
