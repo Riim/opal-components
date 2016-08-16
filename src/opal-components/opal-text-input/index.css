@@ -3,6 +3,7 @@
 	display: inline-block;
 	width: 400px;
 	vertical-align: middle;
+	line-height: normal;
 
 	& .opal-text-input__input {
 		box-sizing: border-box;
