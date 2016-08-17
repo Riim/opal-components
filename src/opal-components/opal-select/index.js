@@ -17,7 +17,7 @@ module.exports = Component.extend('opal-select', {
 			value: Object,
 			viewModel: String,
 			text: String,
-			placeholder: '—',
+			placeholder: 'Не выбрано',
 			multiple: false,
 			focused: false,
 			tabIndex: 0,

@@ -88,7 +88,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				value: Object,
 				viewModel: String,
 				text: String,
-				placeholder: '—',
+				placeholder: 'Не выбрано',
 				multiple: false,
 				focused: false,
 				tabIndex: 0,

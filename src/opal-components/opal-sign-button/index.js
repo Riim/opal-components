@@ -7,6 +7,8 @@ module.exports = Component.extend('opal-sign-button', {
 	Static: {
 		props: {
 			sign: String,
+			checkable: false,
+			checked: false,
 			focused: false,
 			tabIndex: 0,
 			disabled: false
@@ -28,6 +30,10 @@ module.exports = Component.extend('opal-sign-button', {
 
 				'on-click'() {
 					if (!this.props.disabled) {
+						if (this.props.checkable) {
+							this.emit(this.toggle() ? 'check' : 'uncheck');
+						}
+
 						this.emit('click');
 					}
 				}
@@ -57,6 +63,47 @@ module.exports = Component.extend('opal-sign-button', {
 		if (name == 'focused') {
 			this[value ? 'focus' : 'blur']();
 		}
+	},
+
+	/**
+	 * @type {boolean}
+	 */
+	get checked() {
+		return this.props.checked;
+	},
+	set checked(checked) {
+		this.props.checked = checked;
+	},
+
+	/**
+	 * @typesign () -> boolean;
+	 */
+	check() {
+		if (!this.props.checked) {
+			this.props.checked = true;
+			return true;
+		}
+
+		return false;
+	},
+
+	/**
+	 * @typesign () -> boolean;
+	 */
+	uncheck() {
+		if (this.props.checked) {
+			this.props.checked = false;
+			return true;
+		}
+
+		return false;
+	},
+
+	/**
+	 * @typesign (value?: boolean) -> boolean;
+	 */
+	toggle(value) {
+		return (this.props.checked = value === void 0 ? !this.props.checked : value);
 	},
 
 	/**

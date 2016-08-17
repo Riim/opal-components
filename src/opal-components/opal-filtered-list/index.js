@@ -7,7 +7,7 @@ module.exports = Component.extend('opal-filtered-list', {
 		template: Rionite.template(require('./index.html')),
 
 		assets: {
-			tfQuery: {
+			queryInput: {
 				'on-input'(evt) {
 					this.assets.loadedList.props.query = evt.target.value;
 				}
@@ -18,6 +18,6 @@ module.exports = Component.extend('opal-filtered-list', {
 	},
 
 	focus() {
-		this.assets.tfQuery.focus();
+		this.assets.queryInput.focus();
 	}
 });

@@ -1,0 +1,107 @@
+.opal-tag-select {
+	display: block;
+
+	&::after {
+		display: table;
+		clear: both;
+		content: '';
+	}
+
+	& .opal-tag-select__tag {
+		position: relative;
+		display: inline-block;
+		float: left;
+		margin: 2px 38px 2px 0;
+		padding: 0 10px 0 16px;
+		border-top-left-radius: 16px;
+		border-bottom-left-radius: 16px;
+		background: hsl(208,26%,48%);
+		color: #fff;
+		line-height: 32px;
+		transition: background .1s;
+	}
+		& .opal-tag-select__btn-remove-tag {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 100%;
+			display: block;
+			padding: 0;
+			width: 32px;
+			border: 0;
+			border-top-right-radius: 16px;
+			border-bottom-right-radius: 16px;
+			background: hsl(208,16%,38%);
+			box-shadow: inset 1px 0 rgba(0,0,0,.4);
+			cursor: pointer;
+		}
+			& .opal-tag-select__btn-remove-tag::before {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				margin: auto;
+				width: 12px;
+				height: 2px;
+				background: #fff;
+				content: '';
+			}
+
+		& .opal-tag-select__btn-remove-tag:hover {
+			background: hsl(208,26%,48%);
+		}
+
+		& .opal-tag-select__btn-remove-tag:focus {
+			outline: none;
+		}
+			@nest
+			body:not(._no-focus-highlight) & .opal-tag-select__btn-remove-tag:focus::after {
+				position: absolute;
+				top: 2px;
+				right: 2px;
+				bottom: 2px;
+				left: 2px;
+				border: 1px solid rgba(255,255,255,.8);
+				border-radius: inherit;
+				content: '';
+				pointer-events: none;
+			}
+
+		& .opal-tag-select__btn-remove-tag:active {
+			background: hsl(208,6%,28%);
+		}
+
+	& .opal-tag-select__placeholder {
+		display: inline-block;
+		float: left;
+		margin-right: 6px;
+		line-height: 36px;
+	}
+
+	& .opal-tag-select__select {
+		float: left;
+		margin: 3px 0;
+	}
+		& .opal-tag-select__btn-plus {
+		}
+
+	/* States */
+
+	&[type=action] {
+		& .opal-tag-select__tag {
+			background: hsl(208,100%,48%);
+		}
+			& .opal-tag-select__btn-remove-tag {
+				background: hsl(208,90%,38%);
+			}
+
+			& .opal-tag-select__btn-remove-tag:hover {
+				background: hsl(208,100%,48%);
+			}
+
+			& .opal-tag-select__btn-remove-tag:active {
+				background: hsl(208,80%,28%);
+			}
+	}
+}

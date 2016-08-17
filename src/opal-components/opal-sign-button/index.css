@@ -42,25 +42,43 @@
 
 	&[sign=plus] {
 		& .opal-sign-button__sign {
-			border-color: hsl(208,94%,54%);
+			border-color: hsl(208,86%,46%);
 		}
 
 		& .opal-sign-button__sign::before,
 		& .opal-sign-button__sign::after {
-			background: hsl(208,94%,54%);
+			background: hsl(208,86%,46%);
 			content: '';
 		}
 	}
 
 	&[sign=minus] {
 		& .opal-sign-button__sign {
-			border-color: hsl(348,92%,58%);
+			border-color: hsl(348,84%,50%);
 		}
 
 		& .opal-sign-button__sign::before {
-			background: hsl(348,92%,58%);
+			background: hsl(348,84%,50%);
 			content: '';
 		}
+	}
+
+	&[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign {
+		border-color: hsl(208,100%,60%);
+	}
+
+	&[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::before,
+	&[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::after {
+		background: hsl(208,100%,60%);
+	}
+
+	&[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign {
+		border-color: hsl(348,98%,64%);
+	}
+
+	&[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::before,
+	&[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::after {
+		background: hsl(348,98%,64%);
 	}
 
 	& .opal-sign-button__control:focus {
@@ -79,7 +97,8 @@
 			pointer-events: none;
 		}
 
-	& .opal-sign-button__control:active {
+	& .opal-sign-button__control:active,
+	&[checked] .opal-sign-button__control {
 		top: 1px;
 	}
 

@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			template: Rionite.template(__webpack_require__(20)),
 
 			assets: {
-				tfQuery: {
+				queryInput: {
 					'on-input': function onInput(evt) {
 						this.assets.loadedList.props.query = evt.target.value;
 					}
@@ -81,7 +81,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 
 		focus: function focus() {
-			this.assets.tfQuery.focus();
+			this.assets.queryInput.focus();
 		}
 	});
 
