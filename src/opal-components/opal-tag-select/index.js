@@ -19,19 +19,13 @@ module.exports = Component.extend('opal-tag-select', {
 		assets: {
 			':element': {
 				'on-click'(evt) {
-					let el = this.element;
+					let node = evt.target;
 
-					for (let node = evt.target; ; node = node.parentNode) {
-						if (node == el) {
-							break;
-						}
-
-						if (
-							node.nodeType == 1 &&
-								node.classList.contains(this._prepareSelector('&__btn-remove-tag').slice(1))
-						) {
-							this.viewModel.remove(this.viewModel.get(node.dataset.tagValue, 'value'));
-						}
+					if (
+						node != this.element && node.nodeType == 1 &&
+							node.classList.contains(this._prepareSelector('&__btn-remove-tag').slice(1))
+					) {
+						this.viewModel.remove(this.viewModel.get(node.dataset.tagValue, 'value'));
 					}
 				}
 			},
