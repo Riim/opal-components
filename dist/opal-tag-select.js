@@ -64,6 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _require = __webpack_require__(3);
 
 	var Component = _require.Component;
+	var template = _require.template;
 
 
 	module.exports = Component.extend('opal-tag-select', {
@@ -77,7 +78,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(59),
+			template: template(__webpack_require__(59)),
 
 			assets: {
 				':element': {
