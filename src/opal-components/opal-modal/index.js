@@ -13,7 +13,7 @@ function onDocumentFocusIn() {
 
 		for (let node = document.activeElement.parentNode; node != modalEl; node = node.parentNode) {
 			if (node == body) {
-				openedModals[0].btnClose.focus();
+				openedModals[0].assets.btnClose.focus();
 				break;
 			}
 		}
