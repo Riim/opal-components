@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["cellx", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["opal-sign-button"] = factory(require("cellx"), require("rionite"));
+		exports["opal-radio-group"] = factory(require("cellx"), require("rionite"));
 	else
-		root["opal-sign-button"] = factory(root["cellx"], root["rionite"]);
+		root["opal-radio-group"] = factory(root["cellx"], root["rionite"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -57,7 +57,63 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(48);
+	var _require = __webpack_require__(3);
+
+	var Component = _require.Component;
+
+	var OpalRadioButton = __webpack_require__(33);
+
+	var forEach = Array.prototype.forEach;
+
+	module.exports = Component.extend('opal-radio-group', {
+		Static: {
+			OpalRadioButton: OpalRadioButton,
+
+			assets: {
+				':component': {
+					'on-check': function onCheck(_ref) {
+						var checkedButton = _ref.target;
+
+						forEach.call(this.buttons, function (btn) {
+							if (btn.$c != checkedButton) {
+								btn.$c.uncheck();
+							}
+						});
+					},
+					'on-uncheck': function onUncheck(evt) {
+						evt.target.check();
+					}
+				}
+			}
+		},
+
+		ready: function ready() {
+			this.buttons = this.element.getElementsByClassName('opal-radio-button');
+		}
+	});
+
+/***/ },
+
+/***/ 2:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+
+/***/ },
+
+/***/ 3:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+
+/***/ },
+
+/***/ 33:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(34);
 
 	var cellx = __webpack_require__(2);
 
@@ -66,20 +122,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Component = _require.Component;
 
 
-	module.exports = Component.extend('opal-sign-button', {
+	module.exports = Component.extend('opal-radio-button', {
 		Static: {
 			props: {
-				sign: String,
-				checkable: false,
 				checked: false,
 				focused: false,
 				tabIndex: 0,
 				disabled: false
 			},
 
-			template: __webpack_require__(49),
+			template: __webpack_require__(35),
 
 			assets: {
+				input: {
+					'on-change': function onChange(evt) {
+						this.emit((this.props.checked = evt.target.checked) ? 'check' : 'uncheck');
+						this.emit('change');
+					}
+				},
+
 				control: {
 					'on-focusin': function onFocusin() {
 						this.props.focused = true;
@@ -88,25 +149,14 @@ return /******/ (function(modules) { // webpackBootstrap
 					'on-focusout': function onFocusout() {
 						this.props.focused = false;
 						this.emit('focusout');
-					},
-					'on-click': function onClick() {
-						if (!this.props.disabled) {
-							if (this.props.checkable) {
-								this.emit(this.toggle() ? 'check' : 'uncheck');
-							}
-
-							this.emit('click');
-						}
 					}
 				}
 			}
 		},
 
-		initialize: function initialize() {
-			if (!this.props.sign) {
-				throw new TypeError('Property "sign" is required');
-			}
+		_focused: false,
 
+		initialize: function initialize() {
 			cellx.define(this, {
 				_tabIndex: function _tabIndex() {
 					return this.props.disabled ? -1 : this.props.tabIndex;
@@ -114,12 +164,20 @@ return /******/ (function(modules) { // webpackBootstrap
 			});
 		},
 		ready: function ready() {
-			if (this.props.focused) {
+			var props = this.props;
+
+			if (props.checked) {
+				this.assets.input.checked = true;
+			}
+
+			if (props.focused) {
 				this.focus();
 			}
 		},
 		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
-			if (name == 'focused') {
+			if (name == 'checked') {
+				this.assets.input.checked = value;
+			} else if (name == 'focused') {
 				this[value ? 'focus' : 'blur']();
 			}
 		},
@@ -170,25 +228,49 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 		/**
-	  * @typesign () -> OpalComponents.OpalSignButton;
+	  * @typesign () -> OpalComponents.OpalRadioButton;
 	  */
 		focus: function focus() {
-			this.assets.control.focus();
+			if (!this._focused) {
+				this._focused = true;
+
+				this.assets.control.focus();
+				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+			}
+
 			return this;
 		},
 
 
 		/**
-	  * @typesign () -> OpalComponents.OpalSignButton;
+	  * @typesign () -> OpalComponents.OpalRadioButton;
 	  */
 		blur: function blur() {
-			this.assets.control.blur();
+			if (this._focused) {
+				this._focused = false;
+
+				this.assets.control.blur();
+				this._documentKeyDownListening.stop();
+			}
+
 			return this;
+		},
+		_onDocumentKeyDown: function _onDocumentKeyDown(evt) {
+			if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
+					evt.preventDefault();
+
+					var props = this.props;
+
+					if (!props.disabled) {
+						this.emit((props.checked = !props.checked) ? 'check' : 'uncheck');
+						this.emit('change');
+					}
+				}
 		},
 
 
 		/**
-	  * @typesign () -> OpalComponents.OpalSignButton;
+	  * @typesign () -> OpalComponents.OpalRadioButton;
 	  */
 		enable: function enable() {
 			this.props.disabled = false;
@@ -197,7 +279,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 		/**
-	  * @typesign () -> OpalComponents.OpalSignButton;
+	  * @typesign () -> OpalComponents.OpalRadioButton;
 	  */
 		disable: function disable() {
 			this.props.disabled = true;
@@ -207,21 +289,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 2:
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
-
-/***/ },
-
-/***/ 3:
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
-
-/***/ },
-
-/***/ 48:
+/***/ 34:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -229,7 +297,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-sign-button{display:inline-block;vertical-align:middle}.opal-sign-button .opal-sign-button__control{position:relative;display:block;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-sign-button .opal-sign-button__sign{position:relative;display:inline-block;box-sizing:border-box;margin:1px 3px 3px;width:28px;height:28px;border:2px solid;border-radius:50%;vertical-align:middle;transition:background .1s}.opal-sign-button .opal-sign-button__sign::before,.opal-sign-button .opal-sign-button__sign::after{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;transition:background .1s}.opal-sign-button .opal-sign-button__sign::after{-webkit-transform:rotate(90deg);-ms-transform:rotate(90deg);transform:rotate(90deg)}.opal-sign-button[sign=plus] .opal-sign-button__sign{border-color:#107cda}.opal-sign-button[sign=plus] .opal-sign-button__sign::before,.opal-sign-button[sign=plus] .opal-sign-button__sign::after{background:#107cda;content:''}.opal-sign-button[sign=minus] .opal-sign-button__sign{border-color:#eb143f}.opal-sign-button[sign=minus] .opal-sign-button__sign::before{background:#eb143f;content:''}.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign{border-color:#33a0ff}.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::before,.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::after{background:#33a0ff}.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign{border-color:#fd496d}.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::before,.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::after{background:#fd496d}.opal-sign-button .opal-sign-button__control:focus{outline:none}body:not(._no-focus-highlight) .opal-sign-button .opal-sign-button__control:focus::after{position:absolute;top:-2px;right:0;bottom:0;left:0;border:1px solid #33a0ff;border-radius:3px;content:'';pointer-events:none}.opal-sign-button .opal-sign-button__control:active,.opal-sign-button[checked] .opal-sign-button__control{top:1px}.opal-sign-button[disabled]{opacity:.5;pointer-events:none}.opal-sign-button[disabled] .opal-sign-button__control{cursor:default}";
+	            style.textContent = ".opal-radio-button{position:relative;display:inline-block}.opal-radio-button .opal-radio-button__input{display:none}.opal-radio-button .opal-radio-button__control{position:relative;display:inline-block;box-sizing:border-box;margin-top:-2px;width:22px;height:22px;border:2px solid #a3a3a3;border-radius:50%;background:#fff;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-radio-button .opal-radio-button__label:hover .opal-radio-button__control{border-color:#8a8a8a}.opal-radio-button .opal-radio-button__control:focus,.opal-radio-button .opal-radio-button__label:hover .opal-radio-button__control:focus{outline:none;border-color:#33a0ff}.opal-radio-button[checked] .opal-radio-button__control::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:10px;height:10px;border-radius:50%;background:#000;content:''}.opal-radio-button[disabled]{opacity:.5;pointer-events:none}.opal-radio-button[disabled] .opal-radio-button__control{background:#e6e6e6}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -239,10 +307,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 49:
+/***/ 35:
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"opal-sign-button__control\" tabindex=\"{_tabIndex}\"> <span class=\"opal-sign-button__sign\"></span> <rt-content class=\"opal-sign-button__content\"></rt-content> </span>"
+	module.exports = "<label class=\"opal-radio-button__label\"> <input class=\"opal-radio-button__input\" type=\"checkbox\"> <span class=\"opal-radio-button__control\" tabindex=\"{_tabIndex}\"></span> <rt-content class=\"opal-radio-button__content\"></rt-content> </label>"
 
 /***/ }
 

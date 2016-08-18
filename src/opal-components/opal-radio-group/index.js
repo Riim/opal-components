@@ -1,12 +1,11 @@
-require('./index.css');
-
 let { Component } = require('rionite');
+let OpalRadioButton = require('./opal-radio-Button');
 
 let forEach = Array.prototype.forEach;
 
-module.exports = Component.extend('opal-switch-menu', {
+module.exports = Component.extend('opal-radio-group', {
 	Static: {
-		template: '<rt-content class="opal-switch-menu__content"></rt-content>',
+		OpalRadioButton,
 
 		assets: {
 			':component': {
@@ -26,6 +25,6 @@ module.exports = Component.extend('opal-switch-menu', {
 	},
 
 	ready() {
-		this.buttons = this.element.getElementsByClassName('opal-button');
+		this.buttons = this.element.getElementsByClassName('opal-radio-button');
 	}
 });

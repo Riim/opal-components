@@ -1,0 +1,61 @@
+.opal-radio-button {
+	position: relative;
+	display: inline-block;
+
+	& .opal-radio-button__label {
+	}
+		& .opal-radio-button__input {
+			display: none;
+		}
+
+		& .opal-radio-button__control {
+			position: relative;
+			display: inline-block;
+			box-sizing: border-box;
+			margin-top: -2px;
+			width: 22px;
+			height: 22px;
+			border: 2px solid hsl(0,0%,64%);
+			border-radius: 50%;
+			background: #fff;
+			vertical-align: middle;
+			user-select: none;
+		}
+
+		& .opal-radio-button__content {
+		}
+
+	/* States */
+
+	& .opal-radio-button__label:hover .opal-radio-button__control {
+		border-color: hsl(0,0%,54%);
+	}
+
+	& .opal-radio-button__control:focus,
+	& .opal-radio-button__label:hover .opal-radio-button__control:focus {
+		outline: none;
+		border-color: hsl(208,100%,60%);
+	}
+
+	&[checked] .opal-radio-button__control::before {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: #000;
+		content: '';
+	}
+
+	&[disabled] {
+		opacity: .5;
+		pointer-events: none;
+	}
+		&[disabled] .opal-radio-button__control {
+			background: hsl(0,0%,90%);
+		}
+}

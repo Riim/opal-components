@@ -57,12 +57,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(49);
+	__webpack_require__(52);
 
 	var _require = __webpack_require__(3);
 
 	var Component = _require.Component;
 
+
+	var forEach = Array.prototype.forEach;
 
 	module.exports = Component.extend('opal-switch-menu', {
 		Static: {
@@ -73,9 +75,9 @@ return /******/ (function(modules) { // webpackBootstrap
 					'on-check': function onCheck(_ref) {
 						var checkedButton = _ref.target;
 
-						this.buttons.forEach(function (btn) {
-							if (btn != checkedButton) {
-								btn.uncheck();
+						forEach.call(this.buttons, function (btn) {
+							if (btn.$c != checkedButton) {
+								btn.$c.uncheck();
 							}
 						});
 					},
@@ -87,7 +89,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 
 		ready: function ready() {
-			this.buttons = this.$$('.opal-button');
+			this.buttons = this.element.getElementsByClassName('opal-button');
 		}
 	});
 
@@ -100,7 +102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 49:
+/***/ 52:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
