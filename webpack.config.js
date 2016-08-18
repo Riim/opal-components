@@ -31,7 +31,7 @@ module.exports = {
 		libraryTarget: 'umd'
 	},
 
-	externals: ['cellx', 'rionite'],
+	externals: ['cellx', 'cellx-indexed-collections', 'rionite'],
 
 	module: {
 		preLoaders: [

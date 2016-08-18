@@ -2,7 +2,8 @@ require('./index.css');
 require('./opal-select__icon-chevron-down.svg');
 
 let { utils: { nextTick }, cellx } = require('cellx');
-let { IndexedList, Component, template, components: { RtRepeat } } = require('rionite');
+let { IndexedList } = require('cellx-indexed-collections');
+let { Component, template, components: { RtRepeat } } = require('rionite');
 let OpalSelectOption = require('./opal-select-option');
 
 let map = Array.prototype.map;

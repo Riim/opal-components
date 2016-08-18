@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("rionite"));
+		module.exports = factory(require("cellx"), require("rionite"), require("cellx-indexed-collections"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "rionite"], factory);
+		define(["cellx", "rionite", "cellx-indexed-collections"], factory);
 	else if(typeof exports === 'object')
-		exports["opal-select"] = factory(require("cellx"), require("rionite"));
+		exports["opal-select"] = factory(require("cellx"), require("rionite"), require("cellx-indexed-collections"));
 	else
-		root["opal-select"] = factory(root["cellx"], root["rionite"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
+		root["opal-select"] = factory(root["cellx"], root["rionite"], root["cellx-indexed-collections"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_40__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -67,14 +67,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	var nextTick = _require.utils.nextTick;
 	var cellx = _require.cellx;
 
-	var _require2 = __webpack_require__(3);
+	var _require2 = __webpack_require__(40);
 
 	var IndexedList = _require2.IndexedList;
-	var Component = _require2.Component;
-	var template = _require2.template;
-	var RtRepeat = _require2.components.RtRepeat;
 
-	var OpalSelectOption = __webpack_require__(40);
+	var _require3 = __webpack_require__(3);
+
+	var Component = _require3.Component;
+	var template = _require3.template;
+	var RtRepeat = _require3.components.RtRepeat;
+
+	var OpalSelectOption = __webpack_require__(41);
 
 	var map = Array.prototype.map;
 
@@ -95,7 +98,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: template(__webpack_require__(43)),
+			template: template(__webpack_require__(44)),
 
 			assets: {
 				button: {
@@ -656,11 +659,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ },
 
 /***/ 40:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_40__;
+
+/***/ },
+
+/***/ 41:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(41);
+	__webpack_require__(42);
 
 	var cellx = __webpack_require__(2);
 
@@ -680,7 +690,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(42),
+			template: __webpack_require__(43),
 
 			assets: {
 				control: {
@@ -853,7 +863,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 41:
+/***/ 42:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -871,14 +881,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 42:
+/***/ 43:
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"opal-select-option__control\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-select-option__content\">{props.text}</rt-content> </span>"
 
 /***/ },
 
-/***/ 43:
+/***/ 44:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content select=\".opal-select__button\"> {{block button }} <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> <template is=\"rt-if-then\" if=\"props.text\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\">{text}</template> {{block icon_chevron_down }} <svg viewBox=\"0 0 24 13\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-select__icon-chevron-down\"></use></svg> {{/block}} </opal-button> {{/block}} </rt-content> <rt-content select=\".opal-select__menu\"> <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> <rt-content select=\".opal-select__menu-inner\"> <span class=\"opal-select__menu-inner\"> {{block options }} <rt-content select=\"opal-select-option\"></rt-content> {{/block}} </span> </rt-content> </opal-dropdown> </rt-content>"
