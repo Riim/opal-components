@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(62);
+	__webpack_require__(67);
 
 	var cellx = __webpack_require__(2);
 
@@ -78,7 +78,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: template(__webpack_require__(63)),
+			template: template(__webpack_require__(68)),
 
 			assets: {
 				':element': {
@@ -133,7 +133,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 62:
+/***/ 67:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -141,7 +141,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-tag-select{display:block}.opal-tag-select::after{display:table;clear:both;content:''}.opal-tag-select .opal-tag-select__tag{position:relative;display:inline-block;float:left;margin:2px 38px 2px 0;padding:0 10px 0 16px;border-top-left-radius:16px;border-bottom-left-radius:16px;background:#5b7d9a;color:#fff;line-height:32px;transition:background .1s}.opal-tag-select .opal-tag-select__btn-remove-tag{position:absolute;top:0;bottom:0;left:100%;display:block;padding:0;width:32px;border:0;border-top-right-radius:16px;border-bottom-right-radius:16px;background:#516270;box-shadow:inset 1px 0 rgba(0,0,0,.4);cursor:pointer}.opal-tag-select .opal-tag-select__btn-remove-tag::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;background:#fff;content:''}.opal-tag-select .opal-tag-select__btn-remove-tag:hover{background:#5b7d9a}.opal-tag-select .opal-tag-select__btn-remove-tag:focus{outline:none}body:not(._no-focus-highlight) .opal-tag-select .opal-tag-select__btn-remove-tag:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:inherit;content:'';pointer-events:none}.opal-tag-select .opal-tag-select__btn-remove-tag:active{background:#43484c}.opal-tag-select .opal-tag-select__placeholder{display:inline-block;float:left;margin-right:6px;line-height:36px}.opal-tag-select .opal-tag-select__select{float:left;margin:3px 0}.opal-tag-select[type=action] .opal-tag-select__tag{background:#0083f5}.opal-tag-select[type=action] .opal-tag-select__btn-remove-tag{background:#0a67b8}.opal-tag-select[type=action] .opal-tag-select__btn-remove-tag:hover{background:#0083f5}.opal-tag-select[type=action] .opal-tag-select__btn-remove-tag:active{background:#0e4b81}";
+	            style.textContent = ".opal-tag-select{display:block}.opal-tag-select::after{display:table;clear:both;content:''}.opal-tag-select .opal-tag-select__tag{position:relative;display:inline-block;float:left;margin:2px 38px 2px 0;padding:0 10px 0 16px;border-top-left-radius:16px;border-bottom-left-radius:16px;background:#5b7d9a;color:#fff;line-height:32px;transition:background .1s}.opal-tag-select .opal-tag-select__btn-remove-tag{position:absolute;top:0;bottom:0;left:100%;display:block;padding:0;width:32px;border:0;border-top-right-radius:16px;border-bottom-right-radius:16px;background:#516270;box-shadow:inset 1px 0 rgba(0,0,0,.4);cursor:pointer}.opal-tag-select .opal-tag-select__btn-remove-tag::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;background:#fff;content:''}.opal-tag-select .opal-tag-select__btn-remove-tag:hover{background:#5b7d9a}.opal-tag-select .opal-tag-select__btn-remove-tag:focus{outline:none}body:not(._no-focus-highlight) .opal-tag-select .opal-tag-select__btn-remove-tag:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:inherit;content:'';pointer-events:none}.opal-tag-select .opal-tag-select__btn-remove-tag:active{background:#43484c}.opal-tag-select .opal-tag-select__placeholder{display:inline-block;float:left;margin-right:6px;line-height:36px}.opal-tag-select .opal-tag-select__select{float:left;margin-top:3px}.opal-tag-select[type=action] .opal-tag-select__tag{background:#0083f5}.opal-tag-select[type=action] .opal-tag-select__btn-remove-tag{background:#0a67b8}.opal-tag-select[type=action] .opal-tag-select__btn-remove-tag:hover{background:#0083f5}.opal-tag-select[type=action] .opal-tag-select__btn-remove-tag:active{background:#0e4b81}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -151,7 +151,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 63:
+/***/ 68:
 /***/ function(module, exports) {
 
 	module.exports = "<template is=\"rt-if-then\" if=\"viewModel?.length\"> <template is=\"rt-repeat\" for=\"tag of viewModel\"> <span class=\"opal-tag-select__tag\" data-value=\"{tag.value}\">{tag.text}<button class=\"opal-tag-select__btn-remove-tag\" data-tag-value=\"{tag.value}\"></button></span> </template> </template> <template is=\"rt-if-then\" if=\"placeholderShown\"> <span class=\"opal-tag-select__placeholder\">{props.placeholder}</span> </template> {{block select }} <opal-select class=\"opal-tag-select__select\" view-model=\"{props.viewModel}\" multiple=\"\"> {{block select_button }} <opal-sign-button class=\"opal-tag-select__select-button opal-select__button\" sign=\"plus\" checkable=\"\"></opal-sign-button> {{/block}} {{block menu }} <opal-popover class=\"opal-select__menu\" to=\"{props.popoverTo}\" auto-closing=\"\"> <opal-filtered-list class=\"opal-select__filtered-list\"> <opal-loaded-list class=\"opal-select__loaded-list opal-filtered-list__loaded-list\" dataprovider=\"{props.dataprovider}\"> <opal-select-option text=\"{$item.value}\"></opal-select-option> </opal-loaded-list> </opal-filtered-list> </opal-popover> {{/block}} </opal-select> {{/block}}"

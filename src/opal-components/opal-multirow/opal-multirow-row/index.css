@@ -1,0 +1,37 @@
+.opal-multirow-row {
+	display: block;
+
+	&::after {
+		display: table;
+		clear: both;
+		content: '';
+	}
+
+	& .opal-multirow-row__content {
+		float: left;
+		margin-right: 3px;
+		margin-bottom: 19px;
+	}
+
+	& .opal-multirow-row__btn-remove-row,
+	& .opal-multirow-row__btn-add-row {
+		display: none;
+		float: left;
+		margin-top: 4px;
+		margin-left: 6px;
+	}
+
+	& .opal-multirow-row__btn-remove-row {
+	}
+
+	& .opal-multirow-row__btn-add-row {
+	}
+
+	@nest
+	.opal-multirow__preset-rows[not-last-row] & .opal-multirow-row__btn-remove-row,
+	.opal-multirow__new-rows[not-last-row] & .opal-multirow-row__btn-remove-row,
+	.opal-multirow__preset-rows[no-new-rows] &:last-child .opal-multirow-row__btn-add-row,
+	.opal-multirow__new-rows rt-content:last-child & .opal-multirow-row__btn-add-row {
+		display: block;
+	}
+}

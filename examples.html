@@ -483,6 +483,37 @@ body {
 	</script>
 </opal-code-listing>
 
+<h1>opal-multirow</h1>
+
+<opal-code-listing>
+	<div class="opal-code-listing__example-html">
+		<opal-multirow>
+			<opal-multirow-row>
+				<opal-text-input></opal-text-input>
+			</opal-multirow-row>
+		</opal-multirow>
+
+		<br><br>
+
+		<opal-multirow>
+			<opal-multirow-row preset>
+				<opal-text-input value="Value"></opal-text-input>
+			</opal-multirow-row>
+			<opal-multirow-row preset>
+				<opal-text-input value="Value" valid="no"></opal-text-input>
+			</opal-multirow-row>
+			<opal-multirow-row>
+				<opal-text-input></opal-text-input>
+			</opal-multirow-row>
+		</opal-multirow>
+	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-text-input');
+		require('opal-components/dist/opal-sign-button');
+		require('opal-components/dist/opal-multirow');
+	</script>
+</opal-code-listing>
+
 <script src="node_modules/cellx/dist/cellx.js"></script>
 <script src="node_modules/cellx-indexed-collections/dist/cellx-indexed-collections.js"></script>
 <script src="node_modules/rionite/dist/Rionite-with-polyfills.js"></script>
@@ -507,6 +538,7 @@ body {
 <script src="dist/opal-loaded-list.js"></script>
 <script src="dist/opal-filtered-list.js"></script>
 <script src="dist/opal-tag-select.js"></script>
+<script src="dist/opal-multirow.js"></script>
 <script src="dist/opal-router.js"></script>
 <script src="dist/opal-code-listing.js"></script>
 <script src="dist/focusHighlightController.js"></script>
