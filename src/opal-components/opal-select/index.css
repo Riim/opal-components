@@ -8,11 +8,16 @@
 		& .opal-select__icon-chevron-down {
 			display: inline-block;
 			margin-left: .25em;
-			width: 13px;
-			height: 13px;
+			width: 14px;
+			height: 14px;
 			vertical-align: middle;
 			transition: transform .1s linear;
 			fill: currentColor;
+		}
+
+		& .opal-select__button[size=s] .opal-select__icon-chevron-down {
+			width: 12px;
+			height: 12px;
 		}
 
 	& .opal-select__button[checked] .opal-select__icon-chevron-down {
