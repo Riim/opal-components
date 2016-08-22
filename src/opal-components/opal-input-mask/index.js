@@ -3,15 +3,12 @@
  */
 
 require('./opal-input-mask-definition');
-require('./index.css');
 
 let cellx = require('cellx');
 let { Component } = require('rionite');
 let defaultDefinitions = require('./defaultDefinitions');
 
 let forEach = Array.prototype.forEach;
-
-let defaultPlaceholder = '_';
 
 let iPhone = /iphone/i.test(navigator.userAgent);
 
@@ -20,8 +17,7 @@ module.exports = Component.extend('opal-input-mask', {
 		defaultDefinitions,
 
 		props: {
-			mask: String,
-			placeholder: defaultPlaceholder
+			mask: String
 		},
 
 		template: require('./index.html'),
@@ -39,7 +35,6 @@ module.exports = Component.extend('opal-input-mask', {
 		}
 
 		this._definitions = Object.create(this.constructor.defaultDefinitions);
-		this._placeholder = this.props.placeholder.charAt(0) || defaultPlaceholder;
 	},
 
 	ready() {
@@ -72,12 +67,12 @@ module.exports = Component.extend('opal-input-mask', {
 			}
 		});
 
-		let placeholder = this._placeholder;
-
-		this._buffer = this._mask.map(chr => definitions[chr] ? placeholder : chr);
+		this._initBuffer();
 	},
 
 	elementAttached() {
+		this.listenTo(this, 'change:_mask', this._onMaskChange);
+
 		this.listenTo(this._input, {
 			focusin: this._onInputFocusIn,
 			focusout: this._onInputFocusOut,
@@ -87,6 +82,14 @@ module.exports = Component.extend('opal-input-mask', {
 		});
 
 		this._checkValue();
+	},
+
+	_onMaskChange() {
+		this._initBuffer();
+
+		setTimeout(() => {
+			this._checkValue();
+		}, 1);
 	},
 
 	_onInputFocusIn() {
@@ -126,8 +129,12 @@ module.exports = Component.extend('opal-input-mask', {
 			let end = input.selectionEnd;
 
 			if (start == end) {
-				start = key != 46 ? this._prevTestIndex(start) : (end = this._nextTestIndex(start - 1));
-				end = key == 46 ? this._nextTestIndex(end) : end;
+				if (key == 46) {
+					start = this._nextTestIndex(start - 1);
+					end = this._nextTestIndex(start);
+				} else {
+					start = this._prevTestIndex(start);
+				}
 			}
 
 			this._clearBuffer(start, end);
@@ -188,9 +195,13 @@ module.exports = Component.extend('opal-input-mask', {
 		}, 1);
 	},
 
+	_initBuffer() {
+		let definitions = this._definitions;
+		this._buffer = this._mask.map(chr => definitions[chr] ? null : chr);
+	},
+
 	_checkValue(allowNotCompleted) {
 		let partialIndex = this._partialIndex;
-		let placeholder = this._placeholder;
 		let tests = this._tests;
 		let buffer = this._buffer;
 		let bufferLength = buffer.length;
@@ -202,7 +213,7 @@ module.exports = Component.extend('opal-input-mask', {
 
 		for (let j = 0; index < bufferLength; index++) {
 			if (tests[index]) {
-				buffer[index] = placeholder;
+				buffer[index] = null;
 
 				while (j++ < valueLength) {
 					let chr = value.charAt(j - 1);
@@ -246,7 +257,6 @@ module.exports = Component.extend('opal-input-mask', {
 			return;
 		}
 
-		let placeholder = this._placeholder;
 		let tests = this._tests;
 		let buffer = this._buffer;
 
@@ -256,8 +266,7 @@ module.exports = Component.extend('opal-input-mask', {
 			if (test) {
 				if (j < l && test.test(buffer[j])) {
 					buffer[i] = buffer[j];
-					buffer[j] = placeholder;
-
+					buffer[j] = null;
 					j = this._nextTestIndex(j);
 				} else {
 					break;
@@ -273,14 +282,14 @@ module.exports = Component.extend('opal-input-mask', {
 	_shiftRight(index) {
 		let tests = this._tests;
 		let buffer = this._buffer;
-		let chr = this._placeholder;
+		let chr = null;
 
-		for (let i = index, l = buffer.length; i < l; i++) {
-			if (tests[i]) {
-				let j = this._nextTestIndex(i);
-				let nextChr = buffer[i];
+		for (let l = buffer.length; index < l; index++) {
+			if (tests[index]) {
+				let nextChr = buffer[index];
+				buffer[index] = chr;
 
-				buffer[i] = chr;
+				let j = this._nextTestIndex(index);
 
 				if (j < l && tests[j].test(nextChr)) {
 					chr = nextChr;
@@ -293,8 +302,7 @@ module.exports = Component.extend('opal-input-mask', {
 
 	_nextTestIndex(index) {
 		let tests = this._tests;
-		let testLength = tests.length;
-		while (++index < testLength && !tests[index]) {}
+		for (let l = tests.length; ++index < l && !tests[index];) {}
 		return index;
 	},
 
@@ -305,11 +313,12 @@ module.exports = Component.extend('opal-input-mask', {
 	},
 
 	_writeBuffer() {
-		this._input.value = this._buffer.join('');
+		let buffer = this._buffer;
+		let toIndex = buffer.indexOf(null);
+		this._input.value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
 	},
 
 	_clearBuffer(start, end) {
-		let placeholder = this._placeholder;
 		let tests = this._tests;
 		let buffer = this._buffer;
 
@@ -319,7 +328,7 @@ module.exports = Component.extend('opal-input-mask', {
 
 		for (let i = start; i < end; i++) {
 			if (tests[i]) {
-				buffer[i] = placeholder;
+				buffer[i] = null;
 			}
 		}
 	},

@@ -50,8 +50,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61,7 +62,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 	__webpack_require__(22);
-	__webpack_require__(24);
 
 	var cellx = __webpack_require__(2);
 
@@ -69,11 +69,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Component = _require.Component;
 
-	var defaultDefinitions = __webpack_require__(25);
+	var defaultDefinitions = __webpack_require__(24);
 
 	var forEach = Array.prototype.forEach;
-
-	var defaultPlaceholder = '_';
 
 	var iPhone = /iphone/i.test(navigator.userAgent);
 
@@ -82,11 +80,10 @@ return /******/ (function(modules) { // webpackBootstrap
 			defaultDefinitions: defaultDefinitions,
 
 			props: {
-				mask: String,
-				placeholder: defaultPlaceholder
+				mask: String
 			},
 
-			template: __webpack_require__(26),
+			template: __webpack_require__(25),
 
 			assets: {
 				input: {}
@@ -101,7 +98,6 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 
 			this._definitions = Object.create(this.constructor.defaultDefinitions);
-			this._placeholder = this.props.placeholder.charAt(0) || defaultPlaceholder;
 		},
 		ready: function ready() {
 			this._input = this.assets.input.assets.input;
@@ -136,13 +132,11 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 			});
 
-			var placeholder = this._placeholder;
-
-			this._buffer = this._mask.map(function (chr) {
-				return definitions[chr] ? placeholder : chr;
-			});
+			this._initBuffer();
 		},
 		elementAttached: function elementAttached() {
+			this.listenTo(this, 'change:_mask', this._onMaskChange);
+
 			this.listenTo(this._input, {
 				focusin: this._onInputFocusIn,
 				focusout: this._onInputFocusOut,
@@ -153,8 +147,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			this._checkValue();
 		},
-		_onInputFocusIn: function _onInputFocusIn() {
+		_onMaskChange: function _onMaskChange() {
 			var _this = this;
+
+			this._initBuffer();
+
+			setTimeout(function () {
+				_this._checkValue();
+			}, 1);
+		},
+		_onInputFocusIn: function _onInputFocusIn() {
+			var _this2 = this;
 
 			this._focusText = this._input.value;
 
@@ -162,10 +165,10 @@ return /******/ (function(modules) { // webpackBootstrap
 			this._writeBuffer();
 
 			setTimeout(function () {
-				if (index == _this._buffer.length) {
-					_this._setInputSelection(0, index);
+				if (index == _this2._buffer.length) {
+					_this2._setInputSelection(0, index);
 				} else {
-					_this._setInputSelection(index);
+					_this2._setInputSelection(index);
 				}
 			}, 1);
 		},
@@ -190,8 +193,12 @@ return /******/ (function(modules) { // webpackBootstrap
 				var end = input.selectionEnd;
 
 				if (start == end) {
-					start = key != 46 ? this._prevTestIndex(start) : end = this._nextTestIndex(start - 1);
-					end = key == 46 ? this._nextTestIndex(end) : end;
+					if (key == 46) {
+						start = this._nextTestIndex(start - 1);
+						end = this._nextTestIndex(start);
+					} else {
+						start = this._prevTestIndex(start);
+					}
 				}
 
 				this._clearBuffer(start, end);
@@ -247,15 +254,20 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 		_onInputInput: function _onInputInput() {
-			var _this2 = this;
+			var _this3 = this;
 
 			setTimeout(function () {
-				_this2._setInputSelection(_this2._checkValue(true));
+				_this3._setInputSelection(_this3._checkValue(true));
 			}, 1);
+		},
+		_initBuffer: function _initBuffer() {
+			var definitions = this._definitions;
+			this._buffer = this._mask.map(function (chr) {
+				return definitions[chr] ? null : chr;
+			});
 		},
 		_checkValue: function _checkValue(allowNotCompleted) {
 			var partialIndex = this._partialIndex;
-			var placeholder = this._placeholder;
 			var tests = this._tests;
 			var buffer = this._buffer;
 			var bufferLength = buffer.length;
@@ -267,7 +279,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			for (var j = 0; index < bufferLength; index++) {
 				if (tests[index]) {
-					buffer[index] = placeholder;
+					buffer[index] = null;
 
 					while (j++ < valueLength) {
 						var chr = value.charAt(j - 1);
@@ -310,7 +322,6 @@ return /******/ (function(modules) { // webpackBootstrap
 				return;
 			}
 
-			var placeholder = this._placeholder;
 			var tests = this._tests;
 			var buffer = this._buffer;
 
@@ -320,8 +331,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				if (test) {
 					if (j < l && test.test(buffer[j])) {
 						buffer[i] = buffer[j];
-						buffer[j] = placeholder;
-
+						buffer[j] = null;
 						j = this._nextTestIndex(j);
 					} else {
 						break;
@@ -336,14 +346,14 @@ return /******/ (function(modules) { // webpackBootstrap
 		_shiftRight: function _shiftRight(index) {
 			var tests = this._tests;
 			var buffer = this._buffer;
-			var chr = this._placeholder;
+			var chr = null;
 
-			for (var i = index, l = buffer.length; i < l; i++) {
-				if (tests[i]) {
-					var j = this._nextTestIndex(i);
-					var nextChr = buffer[i];
+			for (var l = buffer.length; index < l; index++) {
+				if (tests[index]) {
+					var nextChr = buffer[index];
+					buffer[index] = chr;
 
-					buffer[i] = chr;
+					var j = this._nextTestIndex(index);
 
 					if (j < l && tests[j].test(nextChr)) {
 						chr = nextChr;
@@ -355,8 +365,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		_nextTestIndex: function _nextTestIndex(index) {
 			var tests = this._tests;
-			var testLength = tests.length;
-			while (++index < testLength && !tests[index]) {}
+			for (var l = tests.length; ++index < l && !tests[index];) {}
 			return index;
 		},
 		_prevTestIndex: function _prevTestIndex(index) {
@@ -365,10 +374,11 @@ return /******/ (function(modules) { // webpackBootstrap
 			return index;
 		},
 		_writeBuffer: function _writeBuffer() {
-			this._input.value = this._buffer.join('');
+			var buffer = this._buffer;
+			var toIndex = buffer.indexOf(null);
+			this._input.value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
 		},
 		_clearBuffer: function _clearBuffer(start, end) {
-			var placeholder = this._placeholder;
 			var tests = this._tests;
 			var buffer = this._buffer;
 
@@ -378,7 +388,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			for (var i = start; i < end; i++) {
 				if (tests[i]) {
-					buffer[i] = placeholder;
+					buffer[i] = null;
 				}
 			}
 		},
@@ -390,38 +400,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 1 */,
-/* 2 */
+
+/***/ 2:
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ },
-/* 3 */
+
+/***/ 3:
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */
+
+/***/ 22:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -443,7 +437,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 23 */
+
+/***/ 23:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -460,24 +455,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 24 */
-/***/ function(module, exports) {
 
-	module.exports = (function(d) {
-	        var head = d.head || d.getElementsByTagName('head')[0];
-	        if (head) {
-	            var style = d.createElement('style');
-	            style.type = 'text/css';
-	            style.textContent = ".opal-input-mask .opal-input-mask__input .opal-text-input__input{font-family:'Lucida Console',Monaco,monospace}";
-	            head.appendChild(style);
-	            return style;
-	        }
-	        return null;
-	    })(document);
-
-
-/***/ },
-/* 25 */
+/***/ 24:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -489,12 +468,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	defaultDefinitions['*'] = /[0-9a-zA-Z]/;
 
 /***/ },
-/* 26 */
+
+/***/ 25:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content class=\"opal-input-mask__content\"></rt-content>"
 
 /***/ }
-/******/ ])
+
+/******/ })
 });
 ;

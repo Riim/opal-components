@@ -7,7 +7,7 @@
 		exports["opal-multirow"] = factory(require("cellx"), require("rionite"), require("cellx-indexed-collections"));
 	else
 		root["opal-multirow"] = factory(root["cellx"], root["rionite"], root["cellx-indexed-collections"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_33__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_32__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -57,14 +57,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(32);
+	__webpack_require__(31);
 
 	var _require = __webpack_require__(2);
 
 	var nextUID = _require.utils.nextUID;
 	var cellx = _require.cellx;
 
-	var _require2 = __webpack_require__(33);
+	var _require2 = __webpack_require__(32);
 
 	var IndexedList = _require2.IndexedList;
 
@@ -72,13 +72,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Component = _require3.Component;
 
-	var OpalMultirowRow = __webpack_require__(34);
+	var OpalMultirowRow = __webpack_require__(33);
 
 	module.exports = Component.extend('opal-multirow', {
 		Static: {
 			OpalMultirowRow: OpalMultirowRow,
 
-			template: __webpack_require__(37),
+			template: __webpack_require__(36),
 
 			assets: {
 				':component': {
@@ -144,7 +144,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 32:
+/***/ 31:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -162,19 +162,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 33:
+/***/ 32:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_33__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_32__;
 
 /***/ },
 
-/***/ 34:
+/***/ 33:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(35);
+	__webpack_require__(34);
 
 	var _require = __webpack_require__(3);
 
@@ -187,7 +187,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				preset: false
 			},
 
-			template: __webpack_require__(36),
+			template: __webpack_require__(35),
 
 			assets: {
 				btnRemoveRow: {
@@ -213,7 +213,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 35:
+/***/ 34:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -231,14 +231,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 36:
+/***/ 35:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content class=\"opal-multirow-row__content\"></rt-content> <opal-sign-button class=\"opal-multirow-row__btn-remove-row\" sign=\"minus\"></opal-sign-button> <opal-sign-button class=\"opal-multirow-row__btn-add-row\" sign=\"plus\"></opal-sign-button>"
 
 /***/ },
 
-/***/ 37:
+/***/ 36:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content class=\"opal-multirow__preset-rows\" select=\"opal-multirow-row[preset]\" no-new-rows=\"{_noNewRows}\" not-last-row=\"{_notLastRow}\"></rt-content> <div class=\"opal-multirow__new-rows\" no-preset-rows=\"{_noPresetRows}\" not-last-row=\"{_notLastRow}\"> <template is=\"rt-repeat\" for=\"row of _newRows\" track-by=\"key\"> <rt-content select=\"opal-multirow-row:not([preset])\" data-key=\"{row.key}\"></rt-content> </template> </div>"
