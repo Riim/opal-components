@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("rionite"));
+		module.exports = factory(require("rionite"), require("cellx"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "rionite"], factory);
+		define(["rionite", "cellx"], factory);
 	else if(typeof exports === 'object')
-		exports["opal-sign-button"] = factory(require("cellx"), require("rionite"));
+		exports["opal-sign-button"] = factory(require("rionite"), require("cellx"));
 	else
-		root["opal-sign-button"] = factory(root["cellx"], root["rionite"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
+		root["opal-sign-button"] = factory(root["rionite"], root["cellx"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -57,11 +57,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(52);
+	__webpack_require__(61);
 
 	var cellx = __webpack_require__(2);
 
-	var _require = __webpack_require__(3);
+	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 
@@ -77,7 +77,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(53),
+			template: __webpack_require__(34),
 
 			assets: {
 				control: {
@@ -207,6 +207,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
+/***/ 1:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ },
+
 /***/ 2:
 /***/ function(module, exports) {
 
@@ -214,14 +221,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 3:
+/***/ 34:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+	module.exports = "<span class=\"opal-sign-button__control\" tabindex=\"{_tabIndex}\"> <span class=\"opal-sign-button__sign\"></span> <rt-content class=\"opal-sign-button__content\"></rt-content> </span>"
 
 /***/ },
 
-/***/ 52:
+/***/ 61:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -236,13 +243,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return null;
 	    })(document);
 
-
-/***/ },
-
-/***/ 53:
-/***/ function(module, exports) {
-
-	module.exports = "<span class=\"opal-sign-button__control\" tabindex=\"{_tabIndex}\"> <span class=\"opal-sign-button__sign\"></span> <rt-content class=\"opal-sign-button__content\"></rt-content> </span>"
 
 /***/ }
 

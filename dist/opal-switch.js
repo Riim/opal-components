@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("rionite"));
+		module.exports = factory(require("rionite"), require("cellx"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "rionite"], factory);
+		define(["rionite", "cellx"], factory);
 	else if(typeof exports === 'object')
-		exports["opal-switch"] = factory(require("cellx"), require("rionite"));
+		exports["opal-switch"] = factory(require("rionite"), require("cellx"));
 	else
-		root["opal-switch"] = factory(root["cellx"], root["rionite"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
+		root["opal-switch"] = factory(root["rionite"], root["cellx"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -57,11 +57,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(54);
+	__webpack_require__(63);
 
 	var cellx = __webpack_require__(2);
 
-	var _require = __webpack_require__(3);
+	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 
@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(55),
+			template: __webpack_require__(35),
 
 			assets: {
 				input: {
@@ -231,6 +231,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
+/***/ 1:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ },
+
 /***/ 2:
 /***/ function(module, exports) {
 
@@ -238,14 +245,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 3:
+/***/ 35:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+	module.exports = "<label class=\"opal-switch__label\"> <input class=\"opal-switch__input\" type=\"checkbox\"> <span class=\"opal-switch__control\" tabindex=\"{_tabIndex}\"><span class=\"opal-switch__handle\"></span></span> <rt-content class=\"opal-switch__content\"></rt-content> </label>"
 
 /***/ },
 
-/***/ 54:
+/***/ 63:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -260,13 +267,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return null;
 	    })(document);
 
-
-/***/ },
-
-/***/ 55:
-/***/ function(module, exports) {
-
-	module.exports = "<label class=\"opal-switch__label\"> <input class=\"opal-switch__input\" type=\"checkbox\"> <span class=\"opal-switch__control\" tabindex=\"{_tabIndex}\"><span class=\"opal-switch__handle\"></span></span> <rt-content class=\"opal-switch__content\"></rt-content> </label>"
 
 /***/ }
 

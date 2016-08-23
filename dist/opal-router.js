@@ -7,7 +7,7 @@
 		exports["opal-router"] = factory(require("rionite"));
 	else
 		root["opal-router"] = factory(root["rionite"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -59,19 +59,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	__webpack_require__(41);
+	__webpack_require__(58);
 
-	var _require = __webpack_require__(3);
+	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 	var _require$utils = _require.utils;
 	var hyphenize = _require$utils.hyphenize;
 	var escapeHTML = _require$utils.escapeHTML;
 
-	var OpalRoute = __webpack_require__(42);
-	var escapeRegExp = __webpack_require__(43);
-	var PathNodeType = __webpack_require__(44);
-	var parsePath = __webpack_require__(45);
+	var OpalRoute = __webpack_require__(12);
+	var escapeRegExp = __webpack_require__(11);
+	var PathNodeType = __webpack_require__(4);
+	var parsePath = __webpack_require__(13);
 
 	var createObject = Object.create;
 	var forEach = Array.prototype.forEach;
@@ -226,53 +226,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 3:
+/***/ 1:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ },
 
-/***/ 41:
+/***/ 4:
 /***/ function(module, exports) {
 
-	module.exports = (function(d) {
-	        var head = d.head || d.getElementsByTagName('head')[0];
-	        if (head) {
-	            var style = d.createElement('style');
-	            style.type = 'text/css';
-	            style.textContent = ".opal-router{display:block}";
-	            head.appendChild(style);
-	            return style;
-	        }
-	        return null;
-	    })(document);
+	"use strict";
 
+	module.exports = {
+		NORMAL: 0,
+		OPTIONAL: 1,
+		INSERT: 2
+	};
 
 /***/ },
 
-/***/ 42:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _require = __webpack_require__(3);
-
-	var Component = _require.Component;
-
-
-	module.exports = Component.extend('opal-route', {
-		Static: {
-			props: {
-				path: String,
-				component: String
-			}
-		}
-	});
-
-/***/ },
-
-/***/ 43:
+/***/ 11:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -290,25 +264,33 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 44:
-/***/ function(module, exports) {
-
-	"use strict";
-
-	module.exports = {
-		NORMAL: 0,
-		OPTIONAL: 1,
-		INSERT: 2
-	};
-
-/***/ },
-
-/***/ 45:
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var PathNodeType = __webpack_require__(44);
+	var _require = __webpack_require__(1);
+
+	var Component = _require.Component;
+
+
+	module.exports = Component.extend('opal-route', {
+		Static: {
+			props: {
+				path: String,
+				component: String
+			}
+		}
+	});
+
+/***/ },
+
+/***/ 13:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var PathNodeType = __webpack_require__(4);
 
 	var reName = /[a-z][0-9a-z]*/i;
 
@@ -460,6 +442,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	module.exports = parsePath;
+
+/***/ },
+
+/***/ 58:
+/***/ function(module, exports) {
+
+	module.exports = (function(d) {
+	        var head = d.head || d.getElementsByTagName('head')[0];
+	        if (head) {
+	            var style = d.createElement('style');
+	            style.type = 'text/css';
+	            style.textContent = ".opal-router{display:block}";
+	            head.appendChild(style);
+	            return style;
+	        }
+	        return null;
+	    })(document);
+
 
 /***/ }
 

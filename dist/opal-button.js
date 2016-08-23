@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("rionite"));
+		module.exports = factory(require("rionite"), require("cellx"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "rionite"], factory);
+		define(["rionite", "cellx"], factory);
 	else if(typeof exports === 'object')
-		exports["opal-button"] = factory(require("cellx"), require("rionite"));
+		exports["opal-button"] = factory(require("rionite"), require("cellx"));
 	else
-		root["opal-button"] = factory(root["cellx"], root["rionite"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
+		root["opal-button"] = factory(root["rionite"], root["cellx"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -50,17 +50,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(1);
+	__webpack_require__(41);
 
 	var cellx = __webpack_require__(2);
 
-	var _require = __webpack_require__(3);
+	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 
@@ -79,7 +80,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(4),
+			template: __webpack_require__(20),
 
 			assets: {
 				control: {
@@ -204,7 +205,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 1 */
+
+/***/ 1:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ },
+
+/***/ 2:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+
+/***/ },
+
+/***/ 20:
+/***/ function(module, exports) {
+
+	module.exports = "<template is=\"rt-if-then\" if=\"props.href\"> <a class=\"opal-button__control\" href=\"{props.href}\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-button__content\"></rt-content> </a> </template> <template is=\"rt-if-else\" if=\"props.href\"> <button class=\"opal-button__control\" type=\"{props.controlType}\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-button__content\"></rt-content> </button> </template>"
+
+/***/ },
+
+/***/ 41:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -220,25 +243,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    })(document);
 
 
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	module.exports = "<template is=\"rt-if-then\" if=\"props.href\"> <a class=\"opal-button__control\" href=\"{props.href}\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-button__content\"></rt-content> </a> </template> <template is=\"rt-if-else\" if=\"props.href\"> <button class=\"opal-button__control\" type=\"{props.controlType}\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-button__content\"></rt-content> </button> </template>"
-
 /***/ }
-/******/ ])
+
+/******/ })
 });
 ;

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("rionite"), require("cellx-indexed-collections"));
+		module.exports = factory(require("rionite"), require("cellx"), require("cellx-indexed-collections"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "rionite", "cellx-indexed-collections"], factory);
+		define(["rionite", "cellx", "cellx-indexed-collections"], factory);
 	else if(typeof exports === 'object')
-		exports["opal-multirow"] = factory(require("cellx"), require("rionite"), require("cellx-indexed-collections"));
+		exports["opal-multirow"] = factory(require("rionite"), require("cellx"), require("cellx-indexed-collections"));
 	else
-		root["opal-multirow"] = factory(root["cellx"], root["rionite"], root["cellx-indexed-collections"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_32__) {
+		root["opal-multirow"] = factory(root["rionite"], root["cellx"], root["cellx-indexed-collections"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -57,28 +57,28 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(31);
+	__webpack_require__(54);
 
 	var _require = __webpack_require__(2);
 
 	var nextUID = _require.utils.nextUID;
 	var cellx = _require.cellx;
 
-	var _require2 = __webpack_require__(32);
+	var _require2 = __webpack_require__(3);
 
 	var IndexedList = _require2.IndexedList;
 
-	var _require3 = __webpack_require__(3);
+	var _require3 = __webpack_require__(1);
 
 	var Component = _require3.Component;
 
-	var OpalMultirowRow = __webpack_require__(33);
+	var OpalMultirowRow = __webpack_require__(9);
 
 	module.exports = Component.extend('opal-multirow', {
 		Static: {
 			OpalMultirowRow: OpalMultirowRow,
 
-			template: __webpack_require__(36),
+			template: __webpack_require__(29),
 
 			assets: {
 				':component': {
@@ -130,6 +130,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
+/***/ 1:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ },
+
 /***/ 2:
 /***/ function(module, exports) {
 
@@ -144,39 +151,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 31:
-/***/ function(module, exports) {
-
-	module.exports = (function(d) {
-	        var head = d.head || d.getElementsByTagName('head')[0];
-	        if (head) {
-	            var style = d.createElement('style');
-	            style.type = 'text/css';
-	            style.textContent = "";
-	            head.appendChild(style);
-	            return style;
-	        }
-	        return null;
-	    })(document);
-
-
-/***/ },
-
-/***/ 32:
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_32__;
-
-/***/ },
-
-/***/ 33:
+/***/ 9:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(34);
+	__webpack_require__(55);
 
-	var _require = __webpack_require__(3);
+	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 
@@ -187,7 +169,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				preset: false
 			},
 
-			template: __webpack_require__(35),
+			template: __webpack_require__(30),
 
 			assets: {
 				btnRemoveRow: {
@@ -213,7 +195,39 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 34:
+/***/ 29:
+/***/ function(module, exports) {
+
+	module.exports = "<rt-content class=\"opal-multirow__preset-rows\" select=\"opal-multirow-row[preset]\" no-new-rows=\"{_noNewRows}\" not-last-row=\"{_notLastRow}\"></rt-content> <div class=\"opal-multirow__new-rows\" no-preset-rows=\"{_noPresetRows}\" not-last-row=\"{_notLastRow}\"> <template is=\"rt-repeat\" for=\"row of _newRows\" track-by=\"key\"> <rt-content select=\"opal-multirow-row:not([preset])\" data-key=\"{row.key}\"></rt-content> </template> </div>"
+
+/***/ },
+
+/***/ 30:
+/***/ function(module, exports) {
+
+	module.exports = "<rt-content class=\"opal-multirow-row__content\"></rt-content> <opal-sign-button class=\"opal-multirow-row__btn-remove-row\" sign=\"minus\"></opal-sign-button> <opal-sign-button class=\"opal-multirow-row__btn-add-row\" sign=\"plus\"></opal-sign-button>"
+
+/***/ },
+
+/***/ 54:
+/***/ function(module, exports) {
+
+	module.exports = (function(d) {
+	        var head = d.head || d.getElementsByTagName('head')[0];
+	        if (head) {
+	            var style = d.createElement('style');
+	            style.type = 'text/css';
+	            style.textContent = "";
+	            head.appendChild(style);
+	            return style;
+	        }
+	        return null;
+	    })(document);
+
+
+/***/ },
+
+/***/ 55:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -228,20 +242,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return null;
 	    })(document);
 
-
-/***/ },
-
-/***/ 35:
-/***/ function(module, exports) {
-
-	module.exports = "<rt-content class=\"opal-multirow-row__content\"></rt-content> <opal-sign-button class=\"opal-multirow-row__btn-remove-row\" sign=\"minus\"></opal-sign-button> <opal-sign-button class=\"opal-multirow-row__btn-add-row\" sign=\"plus\"></opal-sign-button>"
-
-/***/ },
-
-/***/ 36:
-/***/ function(module, exports) {
-
-	module.exports = "<rt-content class=\"opal-multirow__preset-rows\" select=\"opal-multirow-row[preset]\" no-new-rows=\"{_noNewRows}\" not-last-row=\"{_notLastRow}\"></rt-content> <div class=\"opal-multirow__new-rows\" no-preset-rows=\"{_noPresetRows}\" not-last-row=\"{_notLastRow}\"> <template is=\"rt-repeat\" for=\"row of _newRows\" track-by=\"key\"> <rt-content select=\"opal-multirow-row:not([preset])\" data-key=\"{row.key}\"></rt-content> </template> </div>"
 
 /***/ }
 

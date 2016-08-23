@@ -9,14 +9,14 @@ var autoprefixer = require('autoprefixer');
 var csso = require('postcss-csso');
 
 var plugins = [
+	new webpack.optimize.OccurrenceOrderPlugin(true),
+
 	new webpack.DefinePlugin({
 		'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-	}),
+	})
 ];
 
 module.exports = {
-	watch: argv.dev,
-
 	entry: glob.sync('src/opal-components/*/index.js').reduce(function(entries, p) {
 		entries[p.split(path.sep).slice(-2)[0]] = path.join(__dirname, p);
 		return entries;
@@ -30,8 +30,6 @@ module.exports = {
 		library: '[name]',
 		libraryTarget: 'umd'
 	},
-
-	externals: ['cellx', 'cellx-indexed-collections', 'rionite'],
 
 	module: {
 		preLoaders: [
@@ -70,6 +68,10 @@ module.exports = {
 		]
 	},
 
+	externals: ['cellx', 'cellx-indexed-collections', 'rionite'],
+
+	watch: argv.dev,
+
 	node: {
 		console: false,
 		global: false,
@@ -89,6 +91,8 @@ module.exports = {
 			csso({ restructure: false })
 		];
 	},
+
+	recordsPath: 'build/paths.json',
 
 	plugins: plugins
 };

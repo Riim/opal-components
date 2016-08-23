@@ -7,7 +7,7 @@
 		exports["opal-validator"] = factory(require("rionite"));
 	else
 		root["opal-validator"] = factory(root["rionite"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -59,11 +59,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(70);
 
-	var _require = __webpack_require__(3);
+	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 
-	var OpalValidatorRule = __webpack_require__(71);
+	var OpalValidatorRule = __webpack_require__(18);
 
 	module.exports = Component.extend('opal-validator', {
 		Static: {
@@ -134,10 +134,56 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 3:
+/***/ 1:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ },
+
+/***/ 18:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(71);
+
+	var _require = __webpack_require__(1);
+
+	var Component = _require.Component;
+
+
+	module.exports = Component.extend('opal-validator-rule', {
+		Static: {
+			props: {
+				required: false,
+				minLength: Number,
+				regex: Object,
+				test: String,
+				popoverTo: 'right'
+			},
+
+			template: __webpack_require__(40),
+
+			assets: {
+				popover: {}
+			}
+		},
+
+		showMessage: function showMessage() {
+			this.assets.popover.open();
+		},
+		hideMessage: function hideMessage() {
+			this.assets.popover.close();
+		}
+	});
+
+/***/ },
+
+/***/ 40:
+/***/ function(module, exports) {
+
+	module.exports = "<opal-popover class=\"opal-validator-rule__popover\" to=\"{props.popoverTo}\"> <rt-content class=\"opal-validator-rule__content\"></rt-content> </opal-popover>"
 
 /***/ },
 
@@ -160,45 +206,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ },
 
 /***/ 71:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(72);
-
-	var _require = __webpack_require__(3);
-
-	var Component = _require.Component;
-
-
-	module.exports = Component.extend('opal-validator-rule', {
-		Static: {
-			props: {
-				required: false,
-				minLength: Number,
-				regex: Object,
-				test: String,
-				popoverTo: 'right'
-			},
-
-			template: __webpack_require__(73),
-
-			assets: {
-				popover: {}
-			}
-		},
-
-		showMessage: function showMessage() {
-			this.assets.popover.open();
-		},
-		hideMessage: function hideMessage() {
-			this.assets.popover.close();
-		}
-	});
-
-/***/ },
-
-/***/ 72:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -213,13 +220,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return null;
 	    })(document);
 
-
-/***/ },
-
-/***/ 73:
-/***/ function(module, exports) {
-
-	module.exports = "<opal-popover class=\"opal-validator-rule__popover\" to=\"{props.popoverTo}\"> <rt-content class=\"opal-validator-rule__content\"></rt-content> </opal-popover>"
 
 /***/ }
 

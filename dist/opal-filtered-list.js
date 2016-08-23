@@ -7,7 +7,7 @@
 		exports["opal-filtered-list"] = factory(require("rionite"));
 	else
 		root["opal-filtered-list"] = factory(root["rionite"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -57,9 +57,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(19);
+	__webpack_require__(48);
 
-	var _require = __webpack_require__(3);
+	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 	var Rionite = _require.Rionite;
@@ -67,7 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = Component.extend('opal-filtered-list', {
 		Static: {
-			template: Rionite.template(__webpack_require__(20)),
+			template: Rionite.template(__webpack_require__(25)),
 
 			assets: {
 				queryInput: {
@@ -87,14 +87,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 3:
+/***/ 1:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ },
 
-/***/ 19:
+/***/ 25:
+/***/ function(module, exports) {
+
+	module.exports = "{{block query }} <rt-content class=\"opal-filtered-list__query-input-wrapper\" select=\".opal-filtered-list__query-input\"> {{block query_input }} <opal-text-input class=\"opal-filtered-list__query-input\"></opal-text-input> {{/block}} </rt-content> {{/block}} {{block list }} <rt-content class=\"opal-filtered-list__loaded-list-wrapper\" select=\".opal-filtered-list__loaded-list\"></rt-content> {{/block}}"
+
+/***/ },
+
+/***/ 48:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -109,13 +116,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return null;
 	    })(document);
 
-
-/***/ },
-
-/***/ 20:
-/***/ function(module, exports) {
-
-	module.exports = "{{block query }} <rt-content class=\"opal-filtered-list__query-input-wrapper\" select=\".opal-filtered-list__query-input\"> {{block query_input }} <opal-text-input class=\"opal-filtered-list__query-input\"></opal-text-input> {{/block}} </rt-content> {{/block}} {{block list }} <rt-content class=\"opal-filtered-list__loaded-list-wrapper\" select=\".opal-filtered-list__loaded-list\"></rt-content> {{/block}}"
 
 /***/ }
 

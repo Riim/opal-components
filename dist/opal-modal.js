@@ -7,7 +7,7 @@
 		exports["opal-modal"] = factory(require("rionite"));
 	else
 		root["opal-modal"] = factory(root["rionite"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -57,9 +57,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(29);
+	__webpack_require__(53);
 
-	var _require = __webpack_require__(3);
+	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 
@@ -95,7 +95,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				opened: false
 			},
 
-			template: __webpack_require__(30),
+			template: __webpack_require__(28),
 
 			assets: {
 				':element': {
@@ -215,14 +215,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 3:
+/***/ 1:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ },
 
-/***/ 29:
+/***/ 28:
+/***/ function(module, exports) {
+
+	module.exports = "<span class=\"opal-modal__window\"> <button class=\"opal-modal__btn-close\"></button> <rt-content class=\"opal-modal__content\"></rt-content> </span>"
+
+/***/ },
+
+/***/ 53:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -237,13 +244,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return null;
 	    })(document);
 
-
-/***/ },
-
-/***/ 30:
-/***/ function(module, exports) {
-
-	module.exports = "<span class=\"opal-modal__window\"> <button class=\"opal-modal__btn-close\"></button> <rt-content class=\"opal-modal__content\"></rt-content> </span>"
 
 /***/ }
 

@@ -7,7 +7,7 @@
 		exports["opal-code-listing"] = factory(require("rionite"));
 	else
 		root["opal-code-listing"] = factory(root["rionite"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -50,20 +50,21 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(12);
-	__webpack_require__(13);
+	__webpack_require__(44);
+	__webpack_require__(45);
 
-	var _require = __webpack_require__(3);
+	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 
-	var Prism = __webpack_require__(14);
+	var Prism = __webpack_require__(19);
 
 	function prepareCode(code, html) {
 		code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
@@ -86,7 +87,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = Component.extend('opal-code-listing', {
 		Static: {
-			template: __webpack_require__(15),
+			template: __webpack_require__(23),
 
 			assets: {
 				htmlCode: {},
@@ -110,57 +111,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */
+
+/***/ 1:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */
-/***/ function(module, exports) {
 
-	module.exports = (function(d) {
-	        var head = d.head || d.getElementsByTagName('head')[0];
-	        if (head) {
-	            var style = d.createElement('style');
-	            style.type = 'text/css';
-	            style.textContent = ".opal-code-listing{display:block;margin-bottom:30px}.opal-code-listing .opal-code-listing__html-code-wrapper,.opal-code-listing .opal-code-listing__js-code-wrapper{overflow:auto;margin:0;color:#000;text-align:left;white-space:pre;word-spacing:normal;word-wrap:normal;word-break:normal;-moz-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;font-weight:700;font-size:16px;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;line-height:1.5}.opal-code-listing .opal-code-listing__example-html-wrapper{position:relative;display:block;padding:29px;border:1px solid #dbdbdb;border-radius:3px;background:#fff}.opal-code-listing .opal-code-listing__example-html-wrapper::before{position:absolute;top:0;left:29px;padding:0 10px;border:1px solid #dbdbdb;border-radius:3px;background:#f5f5f5;content:'Result';font:14px/28px Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}";
-	            head.appendChild(style);
-	            return style;
-	        }
-	        return null;
-	    })(document);
-
-
-/***/ },
-/* 13 */
-/***/ function(module, exports) {
-
-	module.exports = (function(d) {
-	        var head = d.head || d.getElementsByTagName('head')[0];
-	        if (head) {
-	            var style = d.createElement('style');
-	            style.type = 'text/css';
-	            style.textContent = ".token.comment,.token.prolog,.token.doctype,.token.cdata{color:#666}.token.punctuation{color:#999}.namespace{opacity:.7}.token.property,.token.tag,.token.boolean,.token.number,.token.constant,.token.symbol,.token.deleted{color:#ab175e}.token.selector,.token.attr-name,.token.string,.token.char,.token.builtin,.token.inserted{color:#0083b3}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string{background:rgba(255,255,255,.5);color:#a68059}.token.atrule,.token.attr-value,.token.keyword{color:#723dc2}.token.function{color:#dd4b68}.token.regex,.token.important,.token.variable{color:#f09c00}.token.important,.token.bold{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}";
-	            head.appendChild(style);
-	            return style;
-	        }
-	        return null;
-	    })(document);
-
-
-/***/ },
-/* 14 */
+/***/ 19:
 /***/ function(module, exports) {
 
 	
@@ -947,12 +906,50 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 15 */
+
+/***/ 23:
 /***/ function(module, exports) {
 
 	module.exports = "<opal-tabs> <opal-tab>HTML</opal-tab> <opal-tab-panel> <pre class=\"opal-code-listing__html-code-wrapper\"><code class=\"opal-code-listing__html-code\"></code></pre> </opal-tab-panel> <opal-tab>JS</opal-tab> <opal-tab-panel> <pre class=\"opal-code-listing__js-code-wrapper\"><code class=\"opal-code-listing__js-code\"></code></pre> </opal-tab-panel> </opal-tabs> <rt-content class=\"opal-code-listing__example-html-wrapper\" select=\".opal-code-listing__example-html\"></rt-content> <rt-content class=\"opal-code-listing__example-js-wrapper\" select=\".opal-code-listing__example-js\"></rt-content>"
 
+/***/ },
+
+/***/ 44:
+/***/ function(module, exports) {
+
+	module.exports = (function(d) {
+	        var head = d.head || d.getElementsByTagName('head')[0];
+	        if (head) {
+	            var style = d.createElement('style');
+	            style.type = 'text/css';
+	            style.textContent = ".opal-code-listing{display:block;margin-bottom:30px}.opal-code-listing .opal-code-listing__html-code-wrapper,.opal-code-listing .opal-code-listing__js-code-wrapper{overflow:auto;margin:0;color:#000;text-align:left;white-space:pre;word-spacing:normal;word-wrap:normal;word-break:normal;-moz-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;font-weight:700;font-size:16px;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;line-height:1.5}.opal-code-listing .opal-code-listing__example-html-wrapper{position:relative;display:block;padding:29px;border:1px solid #dbdbdb;border-radius:3px;background:#fff}.opal-code-listing .opal-code-listing__example-html-wrapper::before{position:absolute;top:0;left:29px;padding:0 10px;border:1px solid #dbdbdb;border-radius:3px;background:#f5f5f5;content:'Result';font:14px/28px Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}";
+	            head.appendChild(style);
+	            return style;
+	        }
+	        return null;
+	    })(document);
+
+
+/***/ },
+
+/***/ 45:
+/***/ function(module, exports) {
+
+	module.exports = (function(d) {
+	        var head = d.head || d.getElementsByTagName('head')[0];
+	        if (head) {
+	            var style = d.createElement('style');
+	            style.type = 'text/css';
+	            style.textContent = ".token.comment,.token.prolog,.token.doctype,.token.cdata{color:#666}.token.punctuation{color:#999}.namespace{opacity:.7}.token.property,.token.tag,.token.boolean,.token.number,.token.constant,.token.symbol,.token.deleted{color:#ab175e}.token.selector,.token.attr-name,.token.string,.token.char,.token.builtin,.token.inserted{color:#0083b3}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string{background:rgba(255,255,255,.5);color:#a68059}.token.atrule,.token.attr-value,.token.keyword{color:#723dc2}.token.function{color:#dd4b68}.token.regex,.token.important,.token.variable{color:#f09c00}.token.important,.token.bold{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}";
+	            head.appendChild(style);
+	            return style;
+	        }
+	        return null;
+	    })(document);
+
+
 /***/ }
-/******/ ])
+
+/******/ })
 });
 ;

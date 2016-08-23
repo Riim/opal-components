@@ -7,7 +7,7 @@
 		exports["opal-date-input"] = factory(require("rionite"));
 	else
 		root["opal-date-input"] = factory(root["rionite"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -57,9 +57,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(16);
+	__webpack_require__(46);
 
-	var _require = __webpack_require__(3);
+	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 	var template = _require.template;
@@ -71,7 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				popoverTo: 'right'
 			},
 
-			template: template(__webpack_require__(17)),
+			template: template(__webpack_require__(24)),
 
 			assets: {
 				input: {
@@ -110,14 +110,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 3:
+/***/ 1:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ },
 
-/***/ 16:
+/***/ 24:
+/***/ function(module, exports) {
+
+	module.exports = "{{block validation }} <opal-validator> <opal-validator-rule test=\"_isExistDate\" popover-to=\"{props.popoverTo}\">Несуществующая дата</opal-validator-rule> <opal-input-mask mask=\"99/99/9999\"> {{block input }} <opal-text-input class=\"opal-date-input__input opal-validator__input opal-input-mask__input\" placeholder=\"dd/mm/yyyy\"></opal-text-input> {{/block}} </opal-input-mask> </opal-validator> {{/block}} {{block calendar_menu }} <opal-dropdown class=\"opal-date-input__calendar-menu\" auto-closing=\"\"> {{block calendar }} <opal-calendar class=\"opal-date-input__calendar\"></opal-calendar> {{/block}} </opal-dropdown> {{/block}}"
+
+/***/ },
+
+/***/ 46:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -132,13 +139,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return null;
 	    })(document);
 
-
-/***/ },
-
-/***/ 17:
-/***/ function(module, exports) {
-
-	module.exports = "{{block validation }} <opal-validator> <opal-validator-rule test=\"_isExistDate\" popover-to=\"{props.popoverTo}\">Несуществующая дата</opal-validator-rule> <opal-input-mask mask=\"99/99/9999\"> {{block input }} <opal-text-input class=\"opal-date-input__input opal-validator__input opal-input-mask__input\" placeholder=\"dd/mm/yyyy\"></opal-text-input> {{/block}} </opal-input-mask> </opal-validator> {{/block}} {{block calendar_menu }} <opal-dropdown class=\"opal-date-input__calendar-menu\" auto-closing=\"\"> {{block calendar }} <opal-calendar class=\"opal-date-input__calendar\"></opal-calendar> {{/block}} </opal-dropdown> {{/block}}"
 
 /***/ }
 
