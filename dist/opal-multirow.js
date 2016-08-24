@@ -71,6 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _require3 = __webpack_require__(1);
 
 	var Component = _require3.Component;
+	var template = _require3.template;
 
 	var OpalMultirowRow = __webpack_require__(9);
 
@@ -78,7 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			OpalMultirowRow: OpalMultirowRow,
 
-			template: __webpack_require__(29),
+			template: template(__webpack_require__(29)),
 
 			assets: {
 				':component': {
@@ -199,7 +200,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 29:
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content class=\"opal-multirow__preset-rows\" select=\"opal-multirow-row[preset]\" no-new-rows=\"{_noNewRows}\" not-last-row=\"{_notLastRow}\"></rt-content> <div class=\"opal-multirow__new-rows\" no-preset-rows=\"{_noPresetRows}\" not-last-row=\"{_notLastRow}\"> <template is=\"rt-repeat\" for=\"row of _newRows\" track-by=\"key\"> <rt-content select=\"opal-multirow-row:not([preset])\" data-key=\"{row.key}\"></rt-content> </template> </div>"
+	module.exports = "{{block preset_rows }} <rt-content class=\"opal-multirow__preset-rows\" select=\"opal-multirow-row[preset]\" no-new-rows=\"{_noNewRows}\" not-last-row=\"{_notLastRow}\"></rt-content> {{/block}} <div class=\"opal-multirow__new-rows\" no-preset-rows=\"{_noPresetRows}\" not-last-row=\"{_notLastRow}\"> <template is=\"rt-repeat\" for=\"row of _newRows\" track-by=\"key\"> {{block row }} <rt-content select=\"opal-multirow-row:not([preset])\" data-key=\"{row.key}\"></rt-content> {{/block}} </template> </div>"
 
 /***/ },
 

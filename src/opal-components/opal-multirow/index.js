@@ -2,14 +2,14 @@ require('./index.css');
 
 let { utils: { nextUID }, cellx } = require('cellx');
 let { IndexedList } = require('cellx-indexed-collections');
-let { Component } = require('rionite');
+let { Component, template } = require('rionite');
 let OpalMultirowRow = require('./opal-multirow-row');
 
 module.exports = Component.extend('opal-multirow', {
 	Static: {
 		OpalMultirowRow,
 
-		template: require('./index.html'),
+		template: template(require('./index.html')),
 
 		assets: {
 			':component': {
