@@ -68,6 +68,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			props: {
 				inputType: 'text',
+				multiline: false,
 				size: 'm',
 				value: '',
 				placeholder: '',
@@ -186,7 +187,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 39:
 /***/ function(module, exports) {
 
-	module.exports = "<input class=\"opal-text-input__input\" type=\"{props.inputType}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\">"
+	module.exports = "<template is=\"rt-if-then\" if=\"props.multiline\"> <textarea class=\"opal-text-input__input\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\"></textarea> </template> <template is=\"rt-if-else\" if=\"props.multiline\"> <input class=\"opal-text-input__input\" type=\"{props.inputType}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> </template>"
 
 /***/ },
 

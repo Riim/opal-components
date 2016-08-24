@@ -6,6 +6,7 @@ module.exports = Component.extend('opal-text-input', {
 	Static: {
 		props: {
 			inputType: 'text',
+			multiline: false,
 			size: 'm',
 			value: '',
 			placeholder: '',
