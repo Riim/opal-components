@@ -161,6 +161,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
+	var template = _require.template;
 
 
 	module.exports = Component.extend('opal-multirow-row', {
@@ -169,7 +170,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				preset: false
 			},
 
-			template: __webpack_require__(30),
+			template: template(__webpack_require__(30)),
 
 			assets: {
 				btnRemoveRow: {
@@ -205,7 +206,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 30:
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content class=\"opal-multirow-row__content\"></rt-content> <opal-sign-button class=\"opal-multirow-row__btn-remove-row\" sign=\"minus\"></opal-sign-button> <opal-sign-button class=\"opal-multirow-row__btn-add-row\" sign=\"plus\"></opal-sign-button>"
+	module.exports = "<rt-content class=\"opal-multirow-row__content\"></rt-content> {{block buttons }} <opal-sign-button class=\"opal-multirow-row__btn-remove-row\" sign=\"minus\"></opal-sign-button> <opal-sign-button class=\"opal-multirow-row__btn-add-row\" sign=\"plus\"></opal-sign-button> {{/block}}"
 
 /***/ },
 

@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.1.42",
+  "version": "0.1.44",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -37,7 +37,7 @@
     "gulp-sizereport": "^1.2.0",
     "gulp-uglify": "^2.0.0",
     "postcss-color-function": "^2.0.1",
-    "postcss-css-variables": "^0.5.1",
+    "postcss-css-variables": "^0.5.2",
     "postcss-csso": "^1.1.2",
     "postcss-loader": "^0.10.1",
     "postcss-nesting": "^2.3.1",
