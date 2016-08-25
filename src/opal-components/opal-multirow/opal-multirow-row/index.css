@@ -1,5 +1,6 @@
 .opal-multirow-row {
 	display: block;
+    white-space: nowrap;
 
 	&::after {
 		display: table;
@@ -8,17 +9,15 @@
 	}
 
 	& .opal-multirow-row__content {
-		float: left;
-		margin-right: 3px;
+		display: inline-block;
 		margin-bottom: 19px;
+		padding-right: 3px;
 	}
 
 	& .opal-multirow-row__btn-remove-row,
 	& .opal-multirow-row__btn-add-row {
 		display: none;
-		float: left;
-		margin-top: 4px;
-		margin-left: 6px;
+		margin-top: 2px;
 	}
 
 	& .opal-multirow-row__btn-remove-row {
@@ -38,6 +37,6 @@
 	.opal-multirow__new-rows[not-last-row] & .opal-multirow-row__btn-remove-row,
 	.opal-multirow__preset-rows[no-new-rows] &:last-child .opal-multirow-row__btn-add-row,
 	.opal-multirow__new-rows rt-content:last-child & .opal-multirow-row__btn-add-row {
-		display: block;
+		display: inline-block;
 	}
 }
