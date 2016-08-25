@@ -24,6 +24,10 @@
 		line-height: 32px;
 		transition: background .1s;
 	}
+
+	& .opal-tag-select__tag:first-child {
+		margin-left: 0;
+	}
 		& .opal-tag-select__btn-remove-tag {
 			position: absolute;
 			top: 0;
