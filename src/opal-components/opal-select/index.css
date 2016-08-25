@@ -1,6 +1,7 @@
 .opal-select {
 	position: relative;
 	display: inline-block;
+	line-height: normal;
 
 	& .opal-select__button {
 		min-width: 100%;
