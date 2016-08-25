@@ -1,5 +1,5 @@
 .opal-tag-select {
-	display: block;
+	display: inline-block;
 
 	&::after {
 		display: table;
@@ -10,13 +10,17 @@
 	& .opal-tag-select__tag {
 		position: relative;
 		display: inline-block;
-		float: left;
-		margin: 2px 38px 2px 0;
+		margin: 1px 32px 3px 3px;
 		padding: 0 10px 0 16px;
 		border-top-left-radius: 16px;
 		border-bottom-left-radius: 16px;
 		background: hsl(208,26%,48%);
 		color: #fff;
+		vertical-align: middle;
+		text-decoration: none;
+		text-shadow: none;
+		font: 16px/24px Verdana, Geneva, sans-serif;
+		font-weight: normal;
 		line-height: 32px;
 		transition: background .1s;
 	}
@@ -74,14 +78,10 @@
 
 	& .opal-tag-select__placeholder {
 		display: inline-block;
-		float: left;
-		margin-right: 6px;
 		line-height: 36px;
 	}
 
 	& .opal-tag-select__select {
-		float: left;
-		margin-top: 3px;
 	}
 		& .opal-tag-select__select-button {
 		}

@@ -5,8 +5,6 @@
 	& .opal-sign-button__control {
 		position: relative;
 		display: block;
-		margin-top: -2px;
-		padding-top: 2px;
 		line-height: normal;
 		cursor: pointer;
 		user-select: none;
@@ -92,7 +90,7 @@
 		@nest
 		body:not(._no-focus-highlight) & .opal-sign-button__control:focus::after {
 			position: absolute;
-			top: 0;
+			top: -2px;
 			right: 0;
 			bottom: 0;
 			left: 0;
