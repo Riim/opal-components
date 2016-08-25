@@ -117,7 +117,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			rules.forEach(function (rule) {
 				var ruleProps = rule.props;
 
-				if (!failedRule && (ruleProps.required && !value || ruleProps.minLength && value.length < ruleProps.minLength || ruleProps.regex && !ruleProps.regex.test(value) || ruleProps.test && !_this.ownerComponent[ruleProps.test](value))) {
+				if (!failedRule && (ruleProps.required && !value.trim() || ruleProps.minLength && value.trim().length < ruleProps.minLength || ruleProps.regex && !ruleProps.regex.test(value) || ruleProps.test && !_this.ownerComponent[ruleProps.test](value))) {
 					failedRule = rule;
 					rule.showMessage();
 				} else {
