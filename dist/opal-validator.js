@@ -213,7 +213,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-validator-rule{display:block}.opal-validator-rule .opal-validator-rule__content{display:block;width:240px;text-align:center}";
+	            style.textContent = ".opal-validator-rule{display:block}.opal-validator-rule .opal-validator-rule__content{display:block;width:240px;text-align:center;line-height:24px}";
 	            head.appendChild(style);
 	            return style;
 	        }
