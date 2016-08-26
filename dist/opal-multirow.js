@@ -84,6 +84,8 @@ return /******/ (function(modules) { // webpackBootstrap
 			assets: {
 				':component': {
 					'on-remove-row-click': function onRemoveRowClick(_ref) {
+						var _this = this;
+
 						var row = _ref.target;
 
 						if (row.props.preset) {
@@ -92,9 +94,21 @@ return /******/ (function(modules) { // webpackBootstrap
 						} else {
 							this._newRows.remove(this._newRows.get(row.parentComponent.element.dataset.key, 'key'));
 						}
+
+						setTimeout(function () {
+							_this.emit('remove-row');
+							_this.emit('change');
+						}, 1);
 					},
 					'on-add-row-click': function onAddRowClick() {
+						var _this2 = this;
+
 						this._newRows.add({ key: nextUID() });
+
+						setTimeout(function () {
+							_this2.emit('add-row');
+							_this2.emit('change');
+						}, 1);
 					}
 				},
 

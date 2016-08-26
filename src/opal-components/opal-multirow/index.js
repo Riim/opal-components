@@ -20,10 +20,20 @@ module.exports = Component.extend('opal-multirow', {
 					} else {
 						this._newRows.remove(this._newRows.get(row.parentComponent.element.dataset.key, 'key'));
 					}
+
+					setTimeout(() => {
+						this.emit('remove-row');
+						this.emit('change');
+					}, 1);
 				},
 
 				'on-add-row-click'() {
 					this._newRows.add({ key: nextUID() });
+
+					setTimeout(() => {
+						this.emit('add-row');
+						this.emit('change');
+					}, 1);
 				}
 			},
 
