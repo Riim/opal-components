@@ -55,7 +55,7 @@ module.exports = Component.extend('opal-validator', {
 
 			if (!failedRule && (
 				ruleProps.required && !value.trim() ||
-					ruleProps.minLength && value.trim().length < ruleProps.minLength ||
+					ruleProps.minLength && (value = value.trim()) && value.length < ruleProps.minLength ||
 					ruleProps.regex && !ruleProps.regex.test(value) ||
 					ruleProps.test && !this.ownerComponent[ruleProps.test](value)
 			)) {
