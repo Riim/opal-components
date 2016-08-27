@@ -61,7 +61,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require = __webpack_require__(2);
 
-	var nextUID = _require.utils.nextUID;
+	var nextUID = _require.Utils.nextUID;
 	var cellx = _require.cellx;
 
 	var _require2 = __webpack_require__(3);

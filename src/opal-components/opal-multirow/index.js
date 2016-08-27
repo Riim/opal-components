@@ -1,6 +1,6 @@
 require('./index.css');
 
-let { utils: { nextUID }, cellx } = require('cellx');
+let { Utils: { nextUID }, cellx } = require('cellx');
 let { IndexedList } = require('cellx-indexed-collections');
 let { Component, template } = require('rionite');
 let OpalMultirowRow = require('./opal-multirow-row');

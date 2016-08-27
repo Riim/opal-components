@@ -61,7 +61,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require = __webpack_require__(2);
 
-	var mixin = _require.utils.mixin;
+	var mixin = _require.Utils.mixin;
 	var cellx = _require.cellx;
 
 	var _require2 = __webpack_require__(1);

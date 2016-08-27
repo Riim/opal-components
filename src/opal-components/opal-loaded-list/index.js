@@ -1,6 +1,6 @@
 require('./index.css');
 
-let { utils: { mixin }, cellx } = require('cellx');
+let { Utils: { mixin }, cellx } = require('cellx');
 let { Component, getText, Rionite } = require('rionite');
 
 let createObject = Object.create;

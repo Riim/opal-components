@@ -1,4 +1,4 @@
-let { utils: { createClass } } = require('cellx');
+let { Utils: { createClass } } = require('cellx');
 
 let items = [];
 

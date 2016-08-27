@@ -1,6 +1,6 @@
 require('./index.css');
 
-let { Component, utils: { hyphenize, escapeHTML } } = require('rionite');
+let { Component, Utils: { hyphenize, escapeHTML } } = require('rionite');
 let OpalRoute = require('./opal-route');
 let escapeRegExp = require('./escapeRegExp');
 let PathNodeType = require('./PathNodeType');

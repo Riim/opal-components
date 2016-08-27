@@ -64,9 +64,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
-	var _require$utils = _require.utils;
-	var hyphenize = _require$utils.hyphenize;
-	var escapeHTML = _require$utils.escapeHTML;
+	var _require$Utils = _require.Utils;
+	var hyphenize = _require$Utils.hyphenize;
+	var escapeHTML = _require$Utils.escapeHTML;
 
 	var OpalRoute = __webpack_require__(12);
 	var escapeRegExp = __webpack_require__(11);

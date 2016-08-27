@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require = __webpack_require__(2);
 
-	var nextTick = _require.utils.nextTick;
+	var nextTick = _require.Utils.nextTick;
 	var cellx = _require.cellx;
 
 	var _require2 = __webpack_require__(3);
@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Component = _require3.Component;
 	var template = _require3.template;
-	var RtRepeat = _require3.components.RtRepeat;
+	var RtRepeat = _require3.Components.RtRepeat;
 
 	var OpalSelectOption = __webpack_require__(14);
 
