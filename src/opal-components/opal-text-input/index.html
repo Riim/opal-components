@@ -6,3 +6,7 @@
 	<input class="opal-text-input__input" type="{props.inputType}" placeholder="{props.placeholder}"
 			tabindex="{props.tabIndex}" disabled="{props.disabled}">
 </template>
+
+<template is="rt-if-then" if="props.clearable">
+	<button class="opal-text-input__btn-clear"></button>
+</template>

@@ -10,6 +10,7 @@ module.exports = Component.extend('opal-text-input', {
 			size: 'm',
 			value: '',
 			placeholder: '',
+			clearable: false,
 			focused: false,
 			tabIndex: 0,
 			disabled: false
@@ -48,6 +49,13 @@ module.exports = Component.extend('opal-text-input', {
 
 				'on-keyup'(evt) {
 					this.emit({ type: 'keyup', originalEvent: evt });
+				}
+			},
+
+			btnClear: {
+				'on-click'(evt) {
+					this.props.value = '';
+					this.emit({ type: 'change', originalEvent: evt });
 				}
 			}
 		}

@@ -26,9 +26,63 @@
 		-webkit-tap-highlight-color: transparent;
 	}
 
+	& .opal-text-input__btn-clear {
+		position: absolute;
+		top: 0;
+		right: 10px;
+		bottom: 0;
+		margin: auto;
+		padding: 0;
+		width: 23px;
+		height: 23px;
+		border: 0;
+		border: 1px solid transparent;
+		border-radius: 3px;
+		background: transparent;
+		opacity: .5;
+		cursor: pointer;
+		transition: opacity .1s;
+	}
+		& .opal-text-input__btn-clear::before,
+		& .opal-text-input__btn-clear::after {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			width: 19px;
+			height: 1px;
+			background: #000;
+			content: '';
+			transform: rotate(45deg);
+		}
+
+		& .opal-text-input__btn-clear::after {
+			transform: rotate(-45deg);
+		}
+
+	& .opal-text-input__btn-clear:hover {
+		background: hsl(0,0%,90%);
+		opacity: 1;
+	}
+
+	& .opal-text-input__btn-clear:focus {
+		outline: none;
+	}
+		@nest
+		body:not(._no-focus-highlight) & .opal-text-input__btn-clear:focus {
+			border-color: hsl(208,100%,60%);
+			opacity: 1;
+		}
+
+	& .opal-text-input__btn-clear:active {
+		background: hsl(0,0%,80%);
+	}
+
 	/* States */
 
-	& .opal-text-input__input:hover {
+	&:hover .opal-text-input__input {
 		border-color: hsl(0,0%,58%);
 		border-top-color: hsl(0,0%,56%);
 		border-bottom-color: hsl(0,0%,68%);
