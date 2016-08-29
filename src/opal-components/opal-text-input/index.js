@@ -1,5 +1,6 @@
 require('./index.css');
 
+let cellx = require('cellx');
 let { Component } = require('rionite');
 
 module.exports = Component.extend('opal-text-input', {
@@ -59,6 +60,14 @@ module.exports = Component.extend('opal-text-input', {
 				}
 			}
 		}
+	},
+
+	initialize() {
+		cellx.define(this, {
+			notEmpty() {
+				return !!this.props.value;
+			}
+		});
 	},
 
 	ready() {

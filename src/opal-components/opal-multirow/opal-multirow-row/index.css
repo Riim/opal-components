@@ -16,8 +16,9 @@
 
 	& .opal-multirow-row__btn-remove-row,
 	& .opal-multirow-row__btn-add-row {
+		position: relative;
+		top: 1px;
 		display: none;
-		margin-top: 2px;
 	}
 
 	& .opal-multirow-row__btn-remove-row {

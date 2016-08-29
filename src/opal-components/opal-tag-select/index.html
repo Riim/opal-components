@@ -1,9 +1,13 @@
-<template is="rt-if-then" if="viewModel?.length">
-	<template is="rt-repeat" for="tag of viewModel">
-		<span class="opal-tag-select__tag" data-value="{tag.value}">{tag.text}<button
-				class="opal-tag-select__btn-remove-tag"
-				data-tag-value="{tag.value}"></button><!-- no whitespace --></span></template>
-</template>
+<span class="opal-tag-select__font">
+	<template is="rt-if-then" if="viewModel?.length">
+		<template is="rt-repeat" for="tag of viewModel">
+			<span class="opal-tag-select__tag" data-value="{tag.value}">{tag.text}<button
+					class="opal-tag-select__btn-remove-tag"
+					data-tag-value="{tag.value}"></button></span>
+		</template>
+	</template>
+</span>
+
 <template is="rt-if-then" if="placeholderShown">
 	<span class="opal-tag-select__placeholder">{props.placeholder}</span>
 </template>

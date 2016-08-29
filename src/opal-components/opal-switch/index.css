@@ -10,8 +10,9 @@
 
 		& .opal-switch__control {
 			position: relative;
+			top: -1px;
 			display: inline-block;
-			margin: 1px 3px 3px;
+			margin: 3px;
 			width: 30px;
 			height: 14px;
 			border-radius: 7px;

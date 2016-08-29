@@ -10,9 +10,9 @@
 
 		& .opal-radio-button__control {
 			position: relative;
+			top: -1px;
 			display: inline-block;
 			box-sizing: border-box;
-			margin-top: -2px;
 			width: 22px;
 			height: 22px;
 			border: 2px solid hsl(0,0%,64%);
