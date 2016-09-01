@@ -52,7 +52,7 @@
 			bottom: 0;
 			left: 0;
 			margin: auto;
-			width: 19px;
+			width: 18px;
 			height: 1px;
 			background: #000;
 			content: '';
@@ -83,6 +83,16 @@
 
 	& .opal-text-input__btn-clear:active {
 		background: hsl(0,0%,80%);
+	}
+
+	& .opal-text-input__loader,
+	& .opal-text-input__loader[size=s] {
+		position: absolute;
+		top: 0;
+		right: 12px;
+		bottom: 0;
+		margin: auto;
+		pointer-events: none;
 	}
 
 	/* States */

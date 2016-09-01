@@ -1,7 +1,7 @@
 require('./index.css');
 
 let cellx = require('cellx');
-let { Component, template } = require('rionite');
+let { Component, getText, template } = require('rionite');
 
 module.exports = Component.extend('opal-tag-select', {
 	Static: {
@@ -9,7 +9,7 @@ module.exports = Component.extend('opal-tag-select', {
 			type: String,
 			dataprovider: String,
 			viewModel: String,
-			placeholder: 'Не выбрано',
+			placeholder: getText.t('Не выбрано'),
 			popoverTo: 'bottom',
 			disabled: false
 		},

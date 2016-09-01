@@ -7,7 +7,7 @@ for (let i = 0, l = 1000; i < l; i++) {
 }
 
 module.exports = createClass({
-	getNext(count = 50, after, query) {
+	getNextItems(count = 50, after, query) {
 		let filteredItems = query ? items.filter(item => item.value.toString().indexOf(query) != -1) : items;
 		let from = after ? filteredItems.findIndex(item => item.id == after) + 1 : 0;
 

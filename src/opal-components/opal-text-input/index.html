@@ -8,5 +8,9 @@
 </template>
 
 <template is="rt-if-then" if="props.clearable">
-	<button class="opal-text-input__btn-clear" shown="{notEmpty}"></button>
+	<button class="opal-text-input__btn-clear" shown="{btnClearShown}"></button>
+</template>
+
+<template is="rt-if-then" if="props.loading">
+	<opal-loader class="opal-text-input__loader" size="s" shown></opal-loader>
 </template>

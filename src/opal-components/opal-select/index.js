@@ -3,7 +3,7 @@ require('./opal-select__icon-chevron-down.svg');
 
 let { Utils: { nextTick }, cellx } = require('cellx');
 let { IndexedList } = require('cellx-indexed-collections');
-let { Component, template, Components: { RtRepeat } } = require('rionite');
+let { Component, getText, template, Components: { RtRepeat } } = require('rionite');
 let OpalSelectOption = require('./opal-select-option');
 
 let map = Array.prototype.map;
@@ -18,7 +18,7 @@ module.exports = Component.extend('opal-select', {
 			value: Object,
 			viewModel: String,
 			text: String,
-			placeholder: 'Не выбрано',
+			placeholder: getText.t('Не выбрано'),
 			multiple: false,
 			focused: false,
 			tabIndex: 0,

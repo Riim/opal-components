@@ -68,7 +68,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Component = _require2.Component;
 	var getText = _require2.getText;
-	var Rionite = _require2.Rionite;
+	var template = _require2.template;
 
 
 	var createObject = Object.create;
@@ -87,7 +87,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				notFoundMessage: getText.t('Ничего не найдено')
 			},
 
-			template: Rionite.template(__webpack_require__(27)),
+			template: template(__webpack_require__(27)),
 
 			assets: {
 				loader: {}
@@ -109,14 +109,14 @@ return /******/ (function(modules) { // webpackBootstrap
 				list: cellx.list(),
 				total: void 0,
 
-				loadingCheckPlanned: false,
+				_loadingCheckPlanned: false,
 				loading: false,
 
 				empty: function empty() {
 					return !this.list.length;
 				},
 				notFoundShown: function notFoundShown() {
-					return this.total === 0 && !this.loadingCheckPlanned && !this.loading;
+					return this.total === 0 && !this._loadingCheckPlanned && !this.loading;
 				},
 				loaderShown: function loaderShown() {
 					return this.total === void 0 || this.list.length < this.total || this.loading;
@@ -139,14 +139,14 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (!this._scrolling) {
 				this._scrolling = true;
 
-				if (this.loadingCheckPlanned) {
+				if (this._loadingCheckPlanned) {
 					this._loadingCheckTimeout.clear();
 				} else {
-					this.loadingCheckPlanned = true;
+					this._loadingCheckPlanned = true;
 				}
 
 				this._loadingCheckTimeout = this.setTimeout(function () {
-					_this.loadingCheckPlanned = false;
+					_this._loadingCheckPlanned = false;
 					_this.checkLoading();
 
 					_this._scrolling = false;
@@ -156,10 +156,10 @@ return /******/ (function(modules) { // webpackBootstrap
 		_onQueryChange: function _onQueryChange() {
 			var _this2 = this;
 
-			if (this.loadingCheckPlanned) {
+			if (this._loadingCheckPlanned) {
 				this._loadingCheckTimeout.clear();
 			} else {
-				if (this._requestCallback) {
+				if (this.loading) {
 					this._requestCallback.cancel();
 					this.loading = false;
 				}
@@ -167,11 +167,11 @@ return /******/ (function(modules) { // webpackBootstrap
 				this.list.clear();
 				this.total = void 0;
 
-				this.loadingCheckPlanned = true;
+				this._loadingCheckPlanned = true;
 			}
 
 			this._loadingCheckTimeout = this.setTimeout(function () {
-				_this2.loadingCheckPlanned = false;
+				_this2._loadingCheckPlanned = false;
 				_this2.checkLoading();
 			}, 300);
 		},
@@ -191,7 +191,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		_load: function _load() {
 			var _this3 = this;
 
-			if (this._requestCallback) {
+			if (this.loading) {
 				this._requestCallback.cancel();
 			}
 
@@ -200,7 +200,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			this.loading = true;
 
-			this.dataprovider.getNext(this.props.nextCount, list.length ? list.get(-1).id : void 0, query).then(this._requestCallback = this.registerCallback(function (data) {
+			this.dataprovider.getNextItems(this.props.nextCount, list.length ? list.get(-1).id : void 0, query).then(this._requestCallback = this.registerCallback(function (data) {
 				_this3.loading = false;
 
 				_this3.total = data.total;

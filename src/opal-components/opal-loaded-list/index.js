@@ -1,7 +1,7 @@
 require('./index.css');
 
 let { Utils: { mixin }, cellx } = require('cellx');
-let { Component, getText, Rionite } = require('rionite');
+let { Component, getText, template } = require('rionite');
 
 let createObject = Object.create;
 
@@ -19,7 +19,7 @@ module.exports = Component.extend('opal-loaded-list', {
 			notFoundMessage: getText.t('Ничего не найдено')
 		},
 
-		template: Rionite.template(require('./index.html')),
+		template: template(require('./index.html')),
 
 		assets: {
 			loader: {}
@@ -41,7 +41,7 @@ module.exports = Component.extend('opal-loaded-list', {
 			list: cellx.list(),
 			total: void 0,
 
-			loadingCheckPlanned: false,
+			_loadingCheckPlanned: false,
 			loading: false,
 
 			empty() {
@@ -49,7 +49,7 @@ module.exports = Component.extend('opal-loaded-list', {
 			},
 
 			notFoundShown() {
-				return this.total === 0 && !this.loadingCheckPlanned && !this.loading;
+				return this.total === 0 && !this._loadingCheckPlanned && !this.loading;
 			},
 
 			loaderShown() {
@@ -73,14 +73,14 @@ module.exports = Component.extend('opal-loaded-list', {
 		if (!this._scrolling) {
 			this._scrolling = true;
 
-			if (this.loadingCheckPlanned) {
+			if (this._loadingCheckPlanned) {
 				this._loadingCheckTimeout.clear();
 			} else {
-				this.loadingCheckPlanned = true;
+				this._loadingCheckPlanned = true;
 			}
 
 			this._loadingCheckTimeout = this.setTimeout(() => {
-				this.loadingCheckPlanned = false;
+				this._loadingCheckPlanned = false;
 				this.checkLoading();
 
 				this._scrolling = false;
@@ -89,10 +89,10 @@ module.exports = Component.extend('opal-loaded-list', {
 	},
 
 	_onQueryChange() {
-		if (this.loadingCheckPlanned) {
+		if (this._loadingCheckPlanned) {
 			this._loadingCheckTimeout.clear();
 		} else {
-			if (this._requestCallback) {
+			if (this.loading) {
 				this._requestCallback.cancel();
 				this.loading = false;
 			}
@@ -100,11 +100,11 @@ module.exports = Component.extend('opal-loaded-list', {
 			this.list.clear();
 			this.total = void 0;
 
-			this.loadingCheckPlanned = true;
+			this._loadingCheckPlanned = true;
 		}
 
 		this._loadingCheckTimeout = this.setTimeout(() => {
-			this.loadingCheckPlanned = false;
+			this._loadingCheckPlanned = false;
 			this.checkLoading();
 		}, 300);
 	},
@@ -127,7 +127,7 @@ module.exports = Component.extend('opal-loaded-list', {
 	},
 
 	_load() {
-		if (this._requestCallback) {
+		if (this.loading) {
 			this._requestCallback.cancel();
 		}
 
@@ -136,7 +136,7 @@ module.exports = Component.extend('opal-loaded-list', {
 
 		this.loading = true;
 
-		this.dataprovider.getNext(this.props.nextCount, list.length ? list.get(-1).id : void 0, query).then(
+		this.dataprovider.getNextItems(this.props.nextCount, list.length ? list.get(-1).id : void 0, query).then(
 			this._requestCallback = this.registerCallback(data => {
 				this.loading = false;
 

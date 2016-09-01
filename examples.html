@@ -7,35 +7,67 @@
 
 function require() {}
 
-var items = [];
+var dataProvider1 = (function() {
+	var items = [];
 
-for (var i = 0, l = 1000; i < l; i++) {
-	items[i] = { id: i.toString(), value: i };
-}
-
-var dataProvider1 = {
-	getNext: function(count, after, query) {
-		if (count === void 0) {
-			count = 50;
-		}
-
-		var filteredItems = query ? items.filter(function(item) {
-			return item.value.toString().indexOf(query) != -1;
-		}) : items;
-		var from = after ? filteredItems.findIndex(function(item) {
-			return item.id == after;
-		}) + 1 : 0;
-
-		return new Promise(function(resolve) {
-			setTimeout(function() {
-				resolve({
-					items: filteredItems.slice(from, from + count),
-					total: filteredItems.length
-				});
-			}, 500);
-		});
+	for (var i = 0, l = 1000; i < l; i++) {
+		items[i] = { id: i.toString(), text: i.toString() };
 	}
-};
+
+	return {
+		getNextItems: function(count, after, query) {
+			if (count === void 0) {
+				count = 50;
+			}
+
+			var filteredItems = query ? items.filter(function(item) {
+				return item.text.indexOf(query) != -1;
+			}) : items;
+			var from = after ? filteredItems.findIndex(function(item) {
+				return item.id == after;
+			}) + 1 : 0;
+
+			return new Promise(function(resolve) {
+				setTimeout(function() {
+					resolve({
+						items: filteredItems.slice(from, from + count),
+						total: filteredItems.length
+					});
+				}, 500);
+			});
+		}
+	};
+})();
+
+var dataProvider2 = (function() {
+	var items = [
+		{ id: '0', name: 'Shanghai' }, { id: '1', name: 'Karachi' }, { id: '2', name: 'Beijing' },
+		{ id: '3', name: 'Delhi' }, { id: '4', name: 'Lagos' }, { id: '5', name: 'Tianjin' },
+		{ id: '6', name: 'Istanbul' }, { id: '7', name: 'Tokyo' }, { id: '8', name: 'Guangzhou' },
+		{ id: '9', name: 'Mumbai' }, { id: '10', name: 'Moscow' }, { id: '11', name: 'São Paulo' },
+		{ id: '12', name: 'Shenzhen' }, { id: '13', name: 'Jakarta' }, { id: '14', name: 'Lahore' },
+		{ id: '15', name: 'Seoul' }, { id: '16', name: 'Kinshasa' }, { id: '17', name: 'Cairo' },
+		{ id: '18', name: 'Mexico City' }, { id: '19', name: 'Lima' }
+	];
+
+	return {
+		getItems: function(query) {
+			var filteredItems = query ? items.filter(function(item) {
+				return item.name.toLowerCase().indexOf(query.toLowerCase()) != -1;
+			}) : items;
+
+			return new Promise(function(resolve) {
+				setTimeout(function() {
+					resolve({
+						items: filteredItems.map(function(item) {
+							return { id: item.id, text: item.name };
+						})
+					});
+				}, 500);
+			});
+		}
+	};
+})();
 
 	</script>
 
@@ -113,6 +145,7 @@ body {
 		<opal-text-input value="Value" disabled></opal-text-input><br><br>
 		<opal-text-input placeholder="Placeholder" disabled></opal-text-input><br><br>
 		<opal-text-input value="Value" placeholder="Placeholder" clearable></opal-text-input><br><br>
+		<opal-text-input value="Value" placeholder="Placeholder" loading></opal-text-input><br><br>
 		<opal-text-input multiline placeholder="Placeholder"></opal-text-input>
 	</div>
 	<script class="opal-code-listing__example-js">
@@ -393,7 +426,7 @@ body {
 	<div class="opal-code-listing__example-html">
 		<opal-filtered-list>
 			<opal-loaded-list class="opal-filtered-list__loaded-list" dataprovider="dataProvider1">
-				{$item.value}
+				{$item.text}
 			</opal-loaded-list>
 		</opal-filtered-list>
 	</div>
@@ -409,18 +442,20 @@ body {
 <opal-code-listing>
 	<div class="opal-code-listing__example-html">
 		<opal-select>
-			<opal-filtered-list class="opal-select__menu-inner opal-select__filtered-list">
-				<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
-						dataprovider="dataProvider1">
-					<opal-select-option text="{$item.value}"></opal-select-option>
-				</opal-loaded-list>
-			</opal-filtered-list>
+			<opal-dropdown class="opal-select__menu" auto-height="no" auto-closing>
+				<opal-filtered-list class="opal-select__menu-inner opal-select__filtered-list">
+					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
+							dataprovider="dataProvider1">
+						<opal-select-option text="{$item.text}"></opal-select-option>
+					</opal-loaded-list>
+				</opal-filtered-list>
+			</opal-dropdown>
 		</opal-select>
 
 		<opal-select>
 			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
 				<opal-loaded-list class="opal-select__loaded-list" dataprovider="dataProvider1">
-					<opal-select-option text="{$item.value}"></opal-select-option>
+					<opal-select-option text="{$item.text}"></opal-select-option>
 				</opal-loaded-list>
 			</opal-popover>
 		</opal-select>
@@ -428,7 +463,7 @@ body {
 		<opal-select multiple>
 			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
 				<opal-loaded-list class="opal-select__loaded-list" dataprovider="dataProvider1">
-					<opal-select-option text="{$item.value}"></opal-select-option>
+					<opal-select-option text="{$item.text}"></opal-select-option>
 				</opal-loaded-list>
 			</opal-popover>
 		</opal-select>
@@ -438,7 +473,7 @@ body {
 				<opal-filtered-list class="opal-select__filtered-list">
 					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
 							dataprovider="dataProvider1">
-						<opal-select-option text="{$item.value}"></opal-select-option>
+						<opal-select-option text="{$item.text}"></opal-select-option>
 					</opal-loaded-list>
 				</opal-filtered-list>
 			</opal-popover>
@@ -449,7 +484,7 @@ body {
 				<opal-filtered-list class="opal-select__filtered-list">
 					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
 							dataprovider="dataProvider1">
-						<opal-select-option text="{$item.value}"></opal-select-option>
+						<opal-select-option text="{$item.text}"></opal-select-option>
 					</opal-loaded-list>
 				</opal-filtered-list>
 			</opal-popover>
@@ -463,6 +498,22 @@ body {
 		require('opal-components/dist/opal-loader');
 		require('opal-components/dist/opal-loaded-list');
 		require('opal-components/dist/opal-filtered-list');
+	</script>
+</opal-code-listing>
+
+<h1>opal-autosuggestion</h1>
+
+<opal-code-listing>
+	<div class="opal-code-listing__example-html">
+		<opal-autosuggestion dataprovider="dataProvider2"></opal-autosuggestion>
+	</div>
+	<script class="opal-code-listing__example-js">
+		require('cellx-indexed-collections');
+		require('opal-components/dist/opal-dropdown');
+		require('opal-components/dist/opal-loader');
+		require('opal-components/dist/opal-loaded-list');
+		require('opal-components/dist/opal-filtered-list');
+		require('opal-components/dist/opal-autosuggestion');
 	</script>
 </opal-code-listing>
 
@@ -539,6 +590,7 @@ body {
 <script src="dist/opal-loader.js"></script>
 <script src="dist/opal-loaded-list.js"></script>
 <script src="dist/opal-filtered-list.js"></script>
+<script src="dist/opal-autosuggestion.js"></script>
 <script src="dist/opal-tag-select.js"></script>
 <script src="dist/opal-multirow.js"></script>
 <script src="dist/opal-router.js"></script>

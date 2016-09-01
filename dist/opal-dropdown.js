@@ -70,6 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			props: {
 				opened: false,
+				autoHeight: true,
 				autoClosing: false
 			},
 
@@ -139,7 +140,6 @@ return /******/ (function(modules) { // webpackBootstrap
 			var container = el.offsetParent;
 
 			var docElClientWidth = docEl.clientWidth;
-			var docElClientHeight = docEl.clientHeight;
 			var containerClientRect = container.getBoundingClientRect();
 			var elClientRect = el.getBoundingClientRect();
 
@@ -152,23 +152,26 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 			}
 
-			var margin = elClientRect.top - containerClientRect.bottom;
-			var excess = elClientRect.bottom + margin - docElClientHeight;
+			if (this.props.autoHeight) {
+				var docElClientHeight = docEl.clientHeight;
+				var margin = elClientRect.top - containerClientRect.bottom;
+				var excess = elClientRect.bottom + margin - docElClientHeight;
 
-			if (excess > 0) {
-				var diff = containerClientRect.top - (docElClientHeight - containerClientRect.bottom);
+				if (excess > 0) {
+					var diff = containerClientRect.top - (docElClientHeight - containerClientRect.bottom);
 
-				if (diff > 0) {
-					elStyle.top = '';
-					elStyle.bottom = '100%';
+					if (diff > 0) {
+						elStyle.top = '';
+						elStyle.bottom = '100%';
 
-					excess -= diff;
+						excess -= diff;
 
-					if (excess > 0) {
+						if (excess > 0) {
+							elStyle.maxHeight = el.offsetHeight - excess + 'px';
+						}
+					} else {
 						elStyle.maxHeight = el.offsetHeight - excess + 'px';
 					}
-				} else {
-					elStyle.maxHeight = el.offsetHeight - excess + 'px';
 				}
 			}
 

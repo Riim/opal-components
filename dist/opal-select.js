@@ -74,6 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _require3 = __webpack_require__(1);
 
 	var Component = _require3.Component;
+	var getText = _require3.getText;
 	var template = _require3.template;
 	var RtRepeat = _require3.Components.RtRepeat;
 
@@ -91,7 +92,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				value: Object,
 				viewModel: String,
 				text: String,
-				placeholder: 'Не выбрано',
+				placeholder: getText.t('Не выбрано'),
 				multiple: false,
 				focused: false,
 				tabIndex: 0,

@@ -12,6 +12,7 @@ module.exports = Component.extend('opal-text-input', {
 			value: '',
 			placeholder: '',
 			clearable: false,
+			loading: false,
 			focused: false,
 			tabIndex: 0,
 			disabled: false
@@ -56,6 +57,8 @@ module.exports = Component.extend('opal-text-input', {
 			btnClear: {
 				'on-click'(evt) {
 					this.props.value = '';
+					this.assets.input.focus();
+
 					this.emit({ type: 'change', originalEvent: evt });
 				}
 			}
@@ -64,8 +67,8 @@ module.exports = Component.extend('opal-text-input', {
 
 	initialize() {
 		cellx.define(this, {
-			notEmpty() {
-				return !!this.props.value;
+			btnClearShown() {
+				return !!this.props.value && !this.props.loading;
 			}
 		});
 	},

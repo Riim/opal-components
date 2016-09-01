@@ -1,0 +1,39 @@
+.opal-autosuggestion {
+	position: relative;
+	display: inline-block;
+
+	& .opal-autosuggestion__input {
+	}
+
+	& .opal-autosuggestion__menu {
+	}
+		& .opal-autosuggestion__list {
+		}
+			& .opal-autosuggestion__list-item {
+				position: relative;
+				padding: 7px 22px;
+				background: #fff;
+				color: #000;
+				text-align: left;
+				text-shadow: none;
+				white-space: nowrap;
+				font: 16px/24px Verdana, Geneva, sans-serif;
+				font-weight: normal;
+				cursor: pointer;
+				user-select: none;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				-webkit-text-size-adjust: 100%;
+				-ms-text-size-adjust: 100%;
+				-webkit-tap-highlight-color: transparent;
+			}
+
+			& .opal-autosuggestion__list-item:hover,
+			& .opal-autosuggestion__list-item[focused] {
+				background: hsl(0,0%,90%);
+			}
+
+			& .opal-autosuggestion__list-item:active {
+				background: hsl(0,0%,80%);
+			}
+}

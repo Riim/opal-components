@@ -8,6 +8,7 @@ module.exports = Component.extend('opal-dropdown', {
 	Static: {
 		props: {
 			opened: false,
+			autoHeight: true,
 			autoClosing: false
 		},
 
@@ -74,7 +75,6 @@ module.exports = Component.extend('opal-dropdown', {
 		let container = el.offsetParent;
 
 		let docElClientWidth = docEl.clientWidth;
-		let docElClientHeight = docEl.clientHeight;
 		let containerClientRect = container.getBoundingClientRect();
 		let elClientRect = el.getBoundingClientRect();
 
@@ -87,23 +87,26 @@ module.exports = Component.extend('opal-dropdown', {
 			}
 		}
 
-		let margin = elClientRect.top - containerClientRect.bottom;
-		let excess = elClientRect.bottom + margin - docElClientHeight;
+		if (this.props.autoHeight) {
+			let docElClientHeight = docEl.clientHeight;
+			let margin = elClientRect.top - containerClientRect.bottom;
+			let excess = elClientRect.bottom + margin - docElClientHeight;
 
-		if (excess > 0) {
-			let diff = containerClientRect.top - (docElClientHeight - containerClientRect.bottom);
+			if (excess > 0) {
+				let diff = containerClientRect.top - (docElClientHeight - containerClientRect.bottom);
 
-			if (diff > 0) {
-				elStyle.top = '';
-				elStyle.bottom = '100%';
+				if (diff > 0) {
+					elStyle.top = '';
+					elStyle.bottom = '100%';
 
-				excess -= diff;
+					excess -= diff;
 
-				if (excess > 0) {
+					if (excess > 0) {
+						elStyle.maxHeight = el.offsetHeight - excess + 'px';
+					}
+				} else {
 					elStyle.maxHeight = el.offsetHeight - excess + 'px';
 				}
-			} else {
-				elStyle.maxHeight = el.offsetHeight - excess + 'px';
 			}
 		}
 
