@@ -23,6 +23,8 @@ module.exports = Component.extend('opal-autosuggestion', {
 				},
 
 				'on-input'(evt) {
+					this.closeMenu();
+
 					let needLoading = evt.target.value.length >= this.props.minLength;
 
 					if (this._loadingPlanned) {

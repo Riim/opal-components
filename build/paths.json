@@ -1,5 +1,5 @@
 {
-  "nextFreeModuleId": 76,
+  "nextFreeModuleId": 78,
   "modules": {
     "byIdentifier": {
       "external \"rionite\"": 1,
@@ -102,10 +102,13 @@
       "node_modules/babel-loader/index.js?{\"presets\":[\"es2015\"],\"plugins\":[\"syntax-flow\",\"transform-flow-strip-types\"]}!node_modules/eslint-loader/index.js!src/opal-components/opal-validator/index.js": 0,
       "node_modules/raw-loader/index.js!node_modules/collapse-html-whitespaces-loader/index.js!src/opal-components/opal-autosuggestion/index.html": 74,
       "node_modules/simple-css-loader/index.js!node_modules/postcss-loader/index.js!src/opal-components/opal-autosuggestion/index.css": 75,
-      "node_modules/babel-loader/index.js?{\"presets\":[\"es2015\"],\"plugins\":[\"syntax-flow\",\"transform-flow-strip-types\"]}!node_modules/eslint-loader/index.js!src/opal-components/opal-autosuggestion/index.js": 0
+      "node_modules/babel-loader/index.js?{\"presets\":[\"es2015\"],\"plugins\":[\"syntax-flow\",\"transform-flow-strip-types\"]}!node_modules/eslint-loader/index.js!src/opal-components/opal-autosuggestion/index.js": 0,
+      "node_modules/raw-loader/index.js!node_modules/collapse-html-whitespaces-loader/index.js!src/opal-components/opal-slider/index.html": 76,
+      "node_modules/simple-css-loader/index.js!node_modules/postcss-loader/index.js!src/opal-components/opal-slider/index.css": 77,
+      "node_modules/babel-loader/index.js?{\"presets\":[\"es2015\"],\"plugins\":[\"syntax-flow\",\"transform-flow-strip-types\"]}!node_modules/eslint-loader/index.js!src/opal-components/opal-slider/index.js": 0
     }
   },
-  "nextFreeChunkId": 26,
+  "nextFreeChunkId": 27,
   "chunks": {
     "byName": {
       "opal-tabs": 0,
@@ -133,7 +136,8 @@
       "opal-group": 22,
       "opal-dropdown": 23,
       "focusHighlightController": 24,
-      "opal-autosuggestion": 25
+      "opal-autosuggestion": 25,
+      "opal-slider": 26
     },
     "byBlocks": {}
   }

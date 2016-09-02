@@ -92,6 +92,8 @@ return /******/ (function(modules) { // webpackBootstrap
 					'on-input': function onInput(evt) {
 						var _this = this;
 
+						this.closeMenu();
+
 						var needLoading = evt.target.value.length >= this.props.minLength;
 
 						if (this._loadingPlanned) {
