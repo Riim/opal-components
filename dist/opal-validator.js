@@ -108,12 +108,13 @@ return /******/ (function(modules) { // webpackBootstrap
 			var _this = this;
 
 			var value = this.assets.input.value;
+			var trimmedValue = value.trim();
 			var failedRule = null;
 
 			rules.forEach(function (rule) {
 				var ruleProps = rule.props;
 
-				if (!failedRule && (ruleProps.required && !value.trim() || ruleProps.minLength && (value = value.trim()) && value.length < ruleProps.minLength || ruleProps.regex && !ruleProps.regex.test(value) || ruleProps.test && !_this.ownerComponent[ruleProps.test](value))) {
+				if (!failedRule && (trimmedValue ? ruleProps.minLength && trimmedValue.length < ruleProps.minLength || ruleProps.regex && !ruleProps.regex.test(value) || ruleProps.test && !_this.ownerComponent[ruleProps.test](value) : ruleProps.required)) {
 					failedRule = rule;
 					rule.showMessage();
 				} else {

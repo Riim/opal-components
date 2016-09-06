@@ -43,16 +43,18 @@ module.exports = Component.extend('opal-validator', {
 	 */
 	_validate(rules) {
 		let value = this.assets.input.value;
+		let trimmedValue = value.trim();
 		let failedRule = null;
 
 		rules.forEach(rule => {
 			let ruleProps = rule.props;
 
 			if (!failedRule && (
-				ruleProps.required && !value.trim() ||
-					ruleProps.minLength && (value = value.trim()) && value.length < ruleProps.minLength ||
-					ruleProps.regex && !ruleProps.regex.test(value) ||
-					ruleProps.test && !this.ownerComponent[ruleProps.test](value)
+				trimmedValue ?
+					ruleProps.minLength && trimmedValue.length < ruleProps.minLength ||
+						ruleProps.regex && !ruleProps.regex.test(value) ||
+						ruleProps.test && !this.ownerComponent[ruleProps.test](value) :
+					ruleProps.required
 			)) {
 				failedRule = rule;
 				rule.showMessage();

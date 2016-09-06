@@ -4,13 +4,4 @@
 
 	& .opal-date-input__input {
 	}
-
-	& .opal-date-input__calendar-menu {
-		overflow: visible;
-		padding: 0;
-		min-width: auto;
-	}
-		& .opal-date-input__calendar {
-			border: 0;
-		}
 }
