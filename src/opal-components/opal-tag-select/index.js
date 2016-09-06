@@ -7,8 +7,8 @@ module.exports = Component.extend('opal-tag-select', {
 	Static: {
 		props: {
 			type: String,
-			dataprovider: String,
-			viewModel: String,
+			dataprovider: { type: String, required: true, readonly: true },
+			viewModel: { type: String, readonly: true },
 			placeholder: getText.t('Не выбрано'),
 			popoverTo: 'bottom',
 			disabled: false
@@ -36,11 +36,6 @@ module.exports = Component.extend('opal-tag-select', {
 
 	initialize() {
 		let dataprovider = this.props.dataprovider;
-
-		if (!dataprovider) {
-			throw new TypeError('Property "dataprovider" is required');
-		}
-
 		this[dataprovider] = (this.ownerComponent || window)[dataprovider];
 
 		cellx.define(this, {

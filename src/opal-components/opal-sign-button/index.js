@@ -6,7 +6,7 @@ let { Component } = require('rionite');
 module.exports = Component.extend('opal-sign-button', {
 	Static: {
 		props: {
-			sign: String,
+			sign: { type: String, required: true },
 			checkable: false,
 			checked: false,
 			focused: false,
@@ -42,10 +42,6 @@ module.exports = Component.extend('opal-sign-button', {
 	},
 
 	initialize() {
-		if (!this.props.sign) {
-			throw new TypeError('Property "sign" is required');
-		}
-
 		cellx.define(this, {
 			_tabIndex() {
 				return this.props.disabled ? -1 : this.props.tabIndex;

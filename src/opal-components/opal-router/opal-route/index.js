@@ -3,8 +3,8 @@ let { Component } = require('rionite');
 module.exports = Component.extend('opal-route', {
 	Static: {
 		props: {
-			path: String,
-			component: String
+			path: { type: String, required: true, readonly: true },
+			component: { type: String, required: true, readonly: true }
 		}
 	}
 });

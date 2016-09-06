@@ -16,10 +16,10 @@ module.exports = Component.extend('opal-select', {
 			type: String,
 			size: 'm',
 			value: Object,
-			viewModel: String,
+			viewModel: { type: String, readonly: true },
 			text: String,
 			placeholder: getText.t('Не выбрано'),
-			multiple: false,
+			multiple: { default: false, readonly: true },
 			focused: false,
 			tabIndex: 0,
 			disabled: false
@@ -116,7 +116,7 @@ module.exports = Component.extend('opal-select', {
 			vm = (this.ownerComponent || window)[vm];
 
 			if (!vm) {
-				throw new TypeError('viewModel is required');
+				throw new TypeError('viewModel is not defined');
 			}
 		} else {
 			vm = new IndexedList(null, { indexes: ['value'] });

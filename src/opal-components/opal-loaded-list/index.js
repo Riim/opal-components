@@ -8,11 +8,11 @@ let createObject = Object.create;
 module.exports = Component.extend('opal-loaded-list', {
 	Static: {
 		props: {
-			dataprovider: String,
+			dataprovider: { type: String, required: true, readonly: true },
 			nextCount: 100,
 			query: String,
-			itemAs: '$item',
-			preloading: false
+			itemAs: { default: '$item', readonly: true },
+			preloading: { default: false, readonly: true }
 		},
 
 		i18n: {

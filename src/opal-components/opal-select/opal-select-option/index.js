@@ -7,7 +7,7 @@ module.exports = Component.extend('opal-select-option', {
 	Static: {
 		props: {
 			value: String,
-			text: String,
+			text: { type: String, required: true },
 			selected: false,
 			focused: false,
 			tabIndex: 0,
@@ -36,12 +36,6 @@ module.exports = Component.extend('opal-select-option', {
 	_focused: false,
 
 	initialize() {
-		let text = this.props.text;
-
-		if (text === void 0) {
-			throw new TypeError('Property "text" is required');
-		}
-
 		cellx.define(this, {
 			_tabIndex() {
 				return this.props.disabled ? -1 : this.props.tabIndex;

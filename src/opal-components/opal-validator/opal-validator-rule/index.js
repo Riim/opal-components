@@ -5,10 +5,10 @@ let { Component } = require('rionite');
 module.exports = Component.extend('opal-validator-rule', {
 	Static: {
 		props: {
-			required: false,
-			minLength: Number,
-			regex: Object,
-			test: String,
+			required: { default: false, readonly: true },
+			minLength: { type: Number, readonly: true },
+			regex: { type: Object, readonly: true },
+			test: { type: String, readonly: true },
 			popoverTo: 'right'
 		},
 

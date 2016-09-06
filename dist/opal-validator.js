@@ -69,10 +69,6 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			OpalValidatorRule: OpalValidatorRule,
 
-			props: {
-				valid: true
-			},
-
 			template: '<rt-content class="opal-validator__content"></rt-content>',
 
 			assets: {
@@ -89,9 +85,9 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 
-		initialize: function initialize() {
-			this.failedRule = null;
-		},
+		valid: false,
+		failedRule: null,
+
 		ready: function ready() {
 			this.assets.rules = this.$$('.opal-validator-rule');
 		},
@@ -125,8 +121,14 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 			});
 
-			this.props.valid = !failedRule;
+			this.valid = !failedRule;
 			this.failedRule = failedRule;
+
+			if (failedRule) {
+				this.element.setAttribute('valid', 'no');
+			} else {
+				this.element.removeAttribute('valid');
+			}
 
 			return !failedRule;
 		}
@@ -156,10 +158,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Component.extend('opal-validator-rule', {
 		Static: {
 			props: {
-				required: false,
-				minLength: Number,
-				regex: Object,
-				test: String,
+				required: { default: false, readonly: true },
+				minLength: { type: Number, readonly: true },
+				regex: { type: Object, readonly: true },
+				test: { type: String, readonly: true },
 				popoverTo: 'right'
 			},
 

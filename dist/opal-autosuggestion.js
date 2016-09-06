@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Component.extend('opal-autosuggestion', {
 		Static: {
 			props: {
-				dataprovider: String,
+				dataprovider: { type: String, required: true, readonly: true },
 				minLength: 3
 			},
 

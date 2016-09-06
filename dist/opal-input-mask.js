@@ -80,7 +80,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			defaultDefinitions: defaultDefinitions,
 
 			props: {
-				mask: String
+				mask: { type: String, required: true }
 			},
 
 			template: __webpack_require__(26),
@@ -93,10 +93,6 @@ return /******/ (function(modules) { // webpackBootstrap
 		_focusText: void 0,
 
 		initialize: function initialize() {
-			if (!this.props.mask) {
-				throw new TypeError('Property "mask" is required');
-			}
-
 			this._definitions = Object.create(this.constructor.defaultDefinitions);
 		},
 		ready: function ready() {
@@ -443,8 +439,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Component.extend('opal-input-mask-definition', {
 		Static: {
 			props: {
-				maskChar: String,
-				regex: Object
+				maskChar: { type: String, required: true, readonly: true },
+				regex: { type: Object, required: true, readonly: true }
 			}
 		}
 	});

@@ -182,7 +182,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Component.extend('opal-multirow-row', {
 		Static: {
 			props: {
-				preset: false
+				preset: { default: false, readonly: true }
 			},
 
 			template: template(__webpack_require__(30)),
@@ -199,12 +199,6 @@ return /******/ (function(modules) { // webpackBootstrap
 						this.emit('add-row-click');
 					}
 				}
-			}
-		},
-
-		elementAttributeChanged: function elementAttributeChanged(name) {
-			if (name == 'preset') {
-				throw new TypeError('Property "preset" cannot be changed');
 			}
 		}
 	});

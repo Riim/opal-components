@@ -90,10 +90,10 @@ return /******/ (function(modules) { // webpackBootstrap
 				type: String,
 				size: 'm',
 				value: Object,
-				viewModel: String,
+				viewModel: { type: String, readonly: true },
 				text: String,
 				placeholder: getText.t('Не выбрано'),
-				multiple: false,
+				multiple: { default: false, readonly: true },
 				focused: false,
 				tabIndex: 0,
 				disabled: false
@@ -189,7 +189,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				vm = (this.ownerComponent || window)[vm];
 
 				if (!vm) {
-					throw new TypeError('viewModel is required');
+					throw new TypeError('viewModel is not defined');
 				}
 			} else {
 				vm = new IndexedList(null, { indexes: ['value'] });
@@ -659,7 +659,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			props: {
 				value: String,
-				text: String,
+				text: { type: String, required: true },
 				selected: false,
 				focused: false,
 				tabIndex: 0,
@@ -686,12 +686,6 @@ return /******/ (function(modules) { // webpackBootstrap
 		_focused: false,
 
 		initialize: function initialize() {
-			var text = this.props.text;
-
-			if (text === void 0) {
-				throw new TypeError('Property "text" is required');
-			}
-
 			cellx.define(this, {
 				_tabIndex: function _tabIndex() {
 					return this.props.disabled ? -1 : this.props.tabIndex;

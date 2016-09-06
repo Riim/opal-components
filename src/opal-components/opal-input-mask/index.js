@@ -17,7 +17,7 @@ module.exports = Component.extend('opal-input-mask', {
 		defaultDefinitions,
 
 		props: {
-			mask: String
+			mask: { type: String, required: true }
 		},
 
 		template: require('./index.html'),
@@ -30,10 +30,6 @@ module.exports = Component.extend('opal-input-mask', {
 	_focusText: void 0,
 
 	initialize() {
-		if (!this.props.mask) {
-			throw new TypeError('Property "mask" is required');
-		}
-
 		this._definitions = Object.create(this.constructor.defaultDefinitions);
 	},
 

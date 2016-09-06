@@ -7,10 +7,6 @@ module.exports = Component.extend('opal-validator', {
 	Static: {
 		OpalValidatorRule,
 
-		props: {
-			valid: true
-		},
-
 		template: '<rt-content class="opal-validator__content"></rt-content>',
 
 		assets: {
@@ -28,9 +24,8 @@ module.exports = Component.extend('opal-validator', {
 		}
 	},
 
-	initialize() {
-		this.failedRule = null;
-	},
+	valid: false,
+	failedRule: null,
 
 	ready() {
 		this.assets.rules = this.$$('.opal-validator-rule');
@@ -66,8 +61,14 @@ module.exports = Component.extend('opal-validator', {
 			}
 		});
 
-		this.props.valid = !failedRule;
+		this.valid = !failedRule;
 		this.failedRule = failedRule;
+
+		if (failedRule) {
+			this.element.setAttribute('valid', 'no');
+		} else {
+			this.element.removeAttribute('valid');
+		}
 
 		return !failedRule;
 	}
