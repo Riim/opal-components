@@ -66,9 +66,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require2 = __webpack_require__(1);
 
-	var Component = _require2.Component;
 	var getText = _require2.getText;
-	var template = _require2.template;
+	var Template = _require2.Template;
+	var Component = _require2.Component;
 
 
 	module.exports = Component.extend('opal-autosuggestion', {
@@ -82,7 +82,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				inputPlaceholder: getText.t('начните вводить для поиска')
 			},
 
-			template: template(__webpack_require__(74)),
+			template: new Template(__webpack_require__(74)),
 
 			assets: {
 				input: {

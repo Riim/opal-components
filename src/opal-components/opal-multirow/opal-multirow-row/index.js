@@ -1,6 +1,6 @@
 require('./index.css');
 
-let { Component, template } = require('rionite');
+let { Template, Component } = require('rionite');
 
 module.exports = Component.extend('opal-multirow-row', {
 	Static: {
@@ -8,7 +8,7 @@ module.exports = Component.extend('opal-multirow-row', {
 			preset: { default: false, readonly: true }
 		},
 
-		template: template(require('./index.html')),
+		template: new Template(require('./index.html')),
 
 		assets: {
 			btnRemoveRow: {

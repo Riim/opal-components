@@ -73,9 +73,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require3 = __webpack_require__(1);
 
-	var Component = _require3.Component;
 	var getText = _require3.getText;
-	var template = _require3.template;
+	var Template = _require3.Template;
+	var Component = _require3.Component;
 	var RtRepeat = _require3.Components.RtRepeat;
 
 	var OpalSelectOption = __webpack_require__(14);
@@ -99,7 +99,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: template(__webpack_require__(32)),
+			template: new Template(__webpack_require__(32)),
 
 			assets: {
 				button: {

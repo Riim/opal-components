@@ -61,8 +61,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require = __webpack_require__(1);
 
+	var Template = _require.Template;
 	var Component = _require.Component;
-	var template = _require.template;
 
 	var isExistDate = __webpack_require__(78);
 
@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				popoverTo: 'right'
 			},
 
-			template: template(__webpack_require__(24)),
+			template: new Template(__webpack_require__(24)),
 
 			assets: {
 				input: {}

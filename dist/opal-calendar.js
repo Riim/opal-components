@@ -64,8 +64,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require = __webpack_require__(1);
 
+	var Template = _require.Template;
 	var Component = _require.Component;
-	var template = _require.template;
 
 	var parseDate = __webpack_require__(6);
 	var formatDate = __webpack_require__(5);
@@ -87,7 +87,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				sundayFirst: false
 			},
 
-			template: template(__webpack_require__(21)),
+			template: new Template(__webpack_require__(21)),
 
 			assets: {
 				btnPrevMonth: {

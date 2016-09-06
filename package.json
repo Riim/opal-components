@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.1.73",
+  "version": "0.1.75",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -46,16 +46,11 @@
     "raw-loader": "^0.5.1",
     "require-dir": "^0.3.0",
     "rimraf": "^2.5.4",
-    "rionite": "^0.12.17",
+    "rionite": "^0.12.23",
     "run-sequence": "^1.2.2",
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.0.2",
     "webpack": "^1.13.2",
     "yargs": "^5.0.0"
-  },
-  "peerDependencies": {
-    "cellx": "^1.6.39",
-    "cellx-indexed-collections": "^1.0.0",
-    "rionite": "^0.12.17"
   }
 }

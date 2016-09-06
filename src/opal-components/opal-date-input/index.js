@@ -1,6 +1,6 @@
 require('./index.css');
 
-let { Component, template } = require('rionite');
+let { Template, Component } = require('rionite');
 let isExistDate = require('./isExistDate');
 
 module.exports = Component.extend('opal-date-input', {
@@ -11,7 +11,7 @@ module.exports = Component.extend('opal-date-input', {
 			popoverTo: 'right'
 		},
 
-		template: template(require('./index.html')),
+		template: new Template(require('./index.html')),
 
 		assets: {
 			input: {}

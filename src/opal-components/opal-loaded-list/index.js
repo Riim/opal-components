@@ -1,7 +1,7 @@
 require('./index.css');
 
 let { Utils: { mixin }, cellx } = require('cellx');
-let { Component, getText, template } = require('rionite');
+let { getText, Template, Component } = require('rionite');
 
 let createObject = Object.create;
 
@@ -19,7 +19,7 @@ module.exports = Component.extend('opal-loaded-list', {
 			notFoundMessage: getText.t('Ничего не найдено')
 		},
 
-		template: template(require('./index.html')),
+		template: new Template(require('./index.html')),
 
 		assets: {
 			loader: {}

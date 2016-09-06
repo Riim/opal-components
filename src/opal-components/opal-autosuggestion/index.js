@@ -1,7 +1,7 @@
 require('./index.css');
 
 let { Cell, cellx } = require('cellx');
-let { Component, getText, template } = require('rionite');
+let { getText, Template, Component } = require('rionite');
 
 module.exports = Component.extend('opal-autosuggestion', {
 	Static: {
@@ -14,7 +14,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 			inputPlaceholder: getText.t('начните вводить для поиска')
 		},
 
-		template: template(require('./index.html')),
+		template: new Template(require('./index.html')),
 
 		assets: {
 			input: {
