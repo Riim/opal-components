@@ -69,6 +69,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Component.extend('opal-date-input', {
 		Static: {
 			props: {
+				mask: '99/99/9999',
+				placeholder: 'dd/mm/yyyy',
 				popoverTo: 'right'
 			},
 
@@ -94,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 24:
 /***/ function(module, exports) {
 
-	module.exports = "{{block validation }} <opal-validator> <opal-validator-rule test=\"isExistDate\" popover-to=\"{props.popoverTo}\">Несуществующая дата</opal-validator-rule> {{block input_mask }} <opal-input-mask mask=\"99/99/9999\"> {{block input }} <opal-text-input class=\"opal-date-input__input opal-validator__input opal-input-mask__input\" placeholder=\"dd/mm/yyyy\"></opal-text-input> {{/block}} </opal-input-mask> {{/block}} </opal-validator> {{/block}}"
+	module.exports = "{{block validation }} <opal-validator> <opal-validator-rule test=\"isExistDate\" popover-to=\"{props.popoverTo}\">Несуществующая дата</opal-validator-rule> {{block input_mask }} <opal-input-mask mask=\"{props.mask}\"> {{block input }} <opal-text-input class=\"opal-date-input__input opal-validator__input opal-input-mask__input\" placeholder=\"{props.placeholder}\"></opal-text-input> {{/block}} </opal-input-mask> {{/block}} </opal-validator> {{/block}}"
 
 /***/ },
 
