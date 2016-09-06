@@ -40,4 +40,10 @@
 	.opal-multirow__new-rows rt-content:last-child & .opal-multirow-row__btn-add-row {
 		display: inline-block;
 	}
+
+	/* Combinations */
+
+	& .opal-popover {
+		white-space: normal;
+	}
 }
