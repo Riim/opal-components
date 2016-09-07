@@ -34,23 +34,23 @@ module.exports = Component.extend('opal-text-input', {
 
 				'on-input'(evt) {
 					this.props.value = evt.target.value;
-					this.emit({ type: 'input', originalEvent: evt });
+					this.emit({ type: 'input', initialEvent: evt });
 				},
 
 				'on-change'(evt) {
-					this.emit({ type: 'change', originalEvent: evt });
+					this.emit({ type: 'change', initialEvent: evt });
 				},
 
 				'on-keydown'(evt) {
-					this.emit({ type: 'keydown', originalEvent: evt });
+					this.emit({ type: 'keydown', initialEvent: evt });
 				},
 
 				'on-keypress'(evt) {
-					this.emit({ type: 'keypress', originalEvent: evt });
+					this.emit({ type: 'keypress', initialEvent: evt });
 				},
 
 				'on-keyup'(evt) {
-					this.emit({ type: 'keyup', originalEvent: evt });
+					this.emit({ type: 'keyup', initialEvent: evt });
 				}
 			},
 
@@ -59,7 +59,7 @@ module.exports = Component.extend('opal-text-input', {
 					this.props.value = '';
 					this.assets.input.focus();
 
-					this.emit({ type: 'change', originalEvent: evt });
+					this.emit({ type: 'change', initialEvent: evt });
 				}
 			}
 		}

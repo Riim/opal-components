@@ -242,9 +242,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						this._setInputSelection(next, next);
 
+						this.assets.input.emit({ type: 'input', initialEvent: evt });
+
 						if (next >= bufferLength) {
 							this.emit('complete');
 						}
+					} else if (start != end) {
+						this.assets.input.emit({ type: 'input', initialEvent: evt });
 					}
 				}
 			}

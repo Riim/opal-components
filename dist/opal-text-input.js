@@ -95,19 +95,19 @@ return /******/ (function(modules) { // webpackBootstrap
 					},
 					'on-input': function onInput(evt) {
 						this.props.value = evt.target.value;
-						this.emit({ type: 'input', originalEvent: evt });
+						this.emit({ type: 'input', initialEvent: evt });
 					},
 					'on-change': function onChange(evt) {
-						this.emit({ type: 'change', originalEvent: evt });
+						this.emit({ type: 'change', initialEvent: evt });
 					},
 					'on-keydown': function onKeydown(evt) {
-						this.emit({ type: 'keydown', originalEvent: evt });
+						this.emit({ type: 'keydown', initialEvent: evt });
 					},
 					'on-keypress': function onKeypress(evt) {
-						this.emit({ type: 'keypress', originalEvent: evt });
+						this.emit({ type: 'keypress', initialEvent: evt });
 					},
 					'on-keyup': function onKeyup(evt) {
-						this.emit({ type: 'keyup', originalEvent: evt });
+						this.emit({ type: 'keyup', initialEvent: evt });
 					}
 				},
 
@@ -116,7 +116,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						this.props.value = '';
 						this.assets.input.focus();
 
-						this.emit({ type: 'change', originalEvent: evt });
+						this.emit({ type: 'change', initialEvent: evt });
 					}
 				}
 			}
