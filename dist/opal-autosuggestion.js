@@ -288,7 +288,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 74:
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content select=\".opal-autosuggestion__input\"> <opal-text-input class=\"opal-autosuggestion__input\" placeholder=\"{{i18n.inputPlaceholder}}\" loading=\"{loaderShown}\"></opal-text-input> </rt-content> {{block menu }} <opal-dropdown class=\"opal-autosuggestion__menu\"> {{block list }} <div class=\"opal-autosuggestion__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"item of list\" strip=\"\"> <div class=\"opal-autosuggestion__list-item\" data-id=\"{item.id}\" data-text=\"{item.text}\" rt-click=\"_onListItemClick\">{item.text}</div> </template> {{/block}} </div> {{/block}} </opal-dropdown> {{/block}}"
+	module.exports = "<rt-content select=\".opal-autosuggestion__input\"> {{block input }} <opal-text-input class=\"opal-autosuggestion__input\" placeholder=\"{{i18n.inputPlaceholder}}\" loading=\"{loaderShown}\"></opal-text-input> {{/block}} </rt-content> {{block menu }} <opal-dropdown class=\"opal-autosuggestion__menu\"> {{block list }} <div class=\"opal-autosuggestion__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"item of list\" strip=\"\"> <div class=\"opal-autosuggestion__list-item\" data-id=\"{item.id}\" data-text=\"{item.text}\" rt-click=\"_onListItemClick\">{item.text}</div> </template> {{/block}} </div> {{/block}} </opal-dropdown> {{/block}}"
 
 /***/ },
 
