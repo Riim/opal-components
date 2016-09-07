@@ -1,5 +1,5 @@
 function isExistDate(date) {
-	date = date.split('/');
+	date = date.match(/\d+/g);
 
 	let day = parseInt(date[0], 10);
 	let month = parseInt(date[1], 10) - 1;

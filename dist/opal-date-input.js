@@ -128,10 +128,10 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 78:
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 
 	function isExistDate(date) {
-		date = date.split('/');
+		date = date.match(/\d+/g);
 
 		var day = parseInt(date[0], 10);
 		var month = parseInt(date[1], 10) - 1;
