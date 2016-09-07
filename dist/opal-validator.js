@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"));
+		module.exports = factory(require("rionite"), require("cellx"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite"], factory);
+		define(["rionite", "cellx"], factory);
 	else if(typeof exports === 'object')
-		exports["opal-validator"] = factory(require("rionite"));
+		exports["opal-validator"] = factory(require("rionite"), require("cellx"));
 	else
-		root["opal-validator"] = factory(root["rionite"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
+		root["opal-validator"] = factory(root["rionite"], root["cellx"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -59,6 +59,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(70);
 
+	var cellx = __webpack_require__(2);
+
 	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
@@ -85,9 +87,15 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 
-		valid: false,
-		failedRule: null,
+		initialize: function initialize() {
+			cellx.define(this, {
+				failedRule: null,
 
+				valid: function valid() {
+					return !this.failedRule;
+				}
+			});
+		},
 		ready: function ready() {
 			this.assets.rules = this.$$('.opal-validator-rule');
 		},
@@ -122,7 +130,6 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 			});
 
-			this.valid = !failedRule;
 			this.failedRule = failedRule;
 
 			if (failedRule) {
@@ -141,6 +148,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ },
+
+/***/ 2:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ },
 

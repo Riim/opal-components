@@ -1,5 +1,6 @@
 require('./index.css');
 
+let cellx = require('cellx');
 let { Component } = require('rionite');
 let OpalValidatorRule = require('./opal-validator-rule');
 
@@ -24,8 +25,15 @@ module.exports = Component.extend('opal-validator', {
 		}
 	},
 
-	valid: false,
-	failedRule: null,
+	initialize() {
+		cellx.define(this, {
+			failedRule: null,
+
+			valid() {
+				return !this.failedRule;
+			}
+		});
+	},
 
 	ready() {
 		this.assets.rules = this.$$('.opal-validator-rule');
@@ -63,7 +71,6 @@ module.exports = Component.extend('opal-validator', {
 			}
 		});
 
-		this.valid = !failedRule;
 		this.failedRule = failedRule;
 
 		if (failedRule) {
