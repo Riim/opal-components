@@ -85,6 +85,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 		this.listenTo(this.list, 'change', this._onListChange);
 		this.listenTo(this.assets.input.assets.input, 'click', this._onInputClick);
 		this.listenTo(this.assets.menu.props, 'change:opened', this._onMenuOpenedChange);
+		this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 	},
 
 	_load() {
@@ -122,6 +123,10 @@ module.exports = Component.extend('opal-autosuggestion', {
 			this._documentKeyDownListening.stop();
 			this._documentMouseUpListening.stop();
 		}
+	},
+
+	_onLoaderShownChange(evt) {
+		this.assets.input.props.loading = evt.value;
 	},
 
 	_onDocumentFocusIn() {

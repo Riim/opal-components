@@ -152,6 +152,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			this.listenTo(this.list, 'change', this._onListChange);
 			this.listenTo(this.assets.input.assets.input, 'click', this._onInputClick);
 			this.listenTo(this.assets.menu.props, 'change:opened', this._onMenuOpenedChange);
+			this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 		},
 		_load: function _load() {
 			var _this2 = this;
@@ -187,6 +188,9 @@ return /******/ (function(modules) { // webpackBootstrap
 				this._documentKeyDownListening.stop();
 				this._documentMouseUpListening.stop();
 			}
+		},
+		_onLoaderShownChange: function _onLoaderShownChange(evt) {
+			this.assets.input.props.loading = evt.value;
 		},
 		_onDocumentFocusIn: function _onDocumentFocusIn() {
 			if (document.activeElement != this.assets.input.assets.input) {
@@ -288,7 +292,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 74:
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content select=\".opal-autosuggestion__input\"> {{block input }} <opal-text-input class=\"opal-autosuggestion__input\" placeholder=\"{{i18n.inputPlaceholder}}\" loading=\"{loaderShown}\"></opal-text-input> {{/block}} </rt-content> {{block menu }} <opal-dropdown class=\"opal-autosuggestion__menu\"> {{block list }} <div class=\"opal-autosuggestion__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"item of list\" strip=\"\"> <div class=\"opal-autosuggestion__list-item\" data-id=\"{item.id}\" data-text=\"{item.text}\" rt-click=\"_onListItemClick\">{item.text}</div> </template> {{/block}} </div> {{/block}} </opal-dropdown> {{/block}}"
+	module.exports = "<rt-content select=\".opal-autosuggestion__input\"> {{block input }} <opal-text-input class=\"opal-autosuggestion__input\" placeholder=\"{{i18n.inputPlaceholder}}\"></opal-text-input> {{/block}} </rt-content> {{block menu }} <opal-dropdown class=\"opal-autosuggestion__menu\"> {{block list }} <div class=\"opal-autosuggestion__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"item of list\" strip=\"\"> <div class=\"opal-autosuggestion__list-item\" data-id=\"{item.id}\" data-text=\"{item.text}\" rt-click=\"_onListItemClick\">{item.text}</div> </template> {{/block}} </div> {{/block}} </opal-dropdown> {{/block}}"
 
 /***/ },
 
