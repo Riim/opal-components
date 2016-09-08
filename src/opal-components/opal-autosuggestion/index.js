@@ -28,6 +28,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 					let needLoading = evt.target.value.length >= this.props.minLength;
 
 					if (this._loadingPlanned) {
+						this._loadingPlanned = false;
 						this._loadingTimeout.clear();
 					} else {
 						if (this.loading) {
@@ -36,13 +37,11 @@ module.exports = Component.extend('opal-autosuggestion', {
 						}
 
 						this.list.clear();
-
-						if (needLoading) {
-							this._loadingPlanned = true;
-						}
 					}
 
 					if (needLoading) {
+						this._loadingPlanned = true;
+
 						this._loadingTimeout = this.setTimeout(() => {
 							this._loadingPlanned = false;
 							this._load();
