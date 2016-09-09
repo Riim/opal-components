@@ -92,6 +92,11 @@ return /******/ (function(modules) { // webpackBootstrap
 					'on-input': function onInput(evt) {
 						var _this = this;
 
+						if (this.selectedItem) {
+							this.selectedItem = null;
+							this.emit({ type: 'change', initialEvent: evt });
+						}
+
 						this.closeMenu();
 
 						var needLoading = evt.target.value.length >= this.props.minLength;
@@ -141,7 +146,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				loaderShown: function loaderShown() {
 					return this._loadingPlanned || this.loading;
-				}
+				},
+
+
+				selectedItem: null
 			});
 		},
 		ready: function ready() {
@@ -256,11 +264,19 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		_onListItemClick: function _onListItemClick(evt, target) {
 			var input = this.assets.input;
+			var selectedItem = this.selectedItem;
+			var id = target.dataset.id;
+			var text = target.dataset.text;
 
-			input.value = target.dataset.text;
+			input.value = text;
 			input.focus();
 
 			this.closeMenu();
+
+			if (!selectedItem || selectedItem.id != id) {
+				this.selectedItem = { id: id, text: text };
+				this.emit({ type: 'change', initialEvent: evt });
+			}
 		},
 		openMenu: function openMenu() {
 			if (this.list.length) {

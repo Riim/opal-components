@@ -23,6 +23,11 @@ module.exports = Component.extend('opal-autosuggestion', {
 				},
 
 				'on-input'(evt) {
+					if (this.selectedItem) {
+						this.selectedItem = null;
+						this.emit({ type: 'change', initialEvent: evt });
+					}
+
 					this.closeMenu();
 
 					let needLoading = evt.target.value.length >= this.props.minLength;
@@ -72,7 +77,9 @@ module.exports = Component.extend('opal-autosuggestion', {
 
 			loaderShown() {
 				return this._loadingPlanned || this.loading;
-			}
+			},
+
+			selectedItem: null
 		});
 	},
 
@@ -193,11 +200,19 @@ module.exports = Component.extend('opal-autosuggestion', {
 
 	_onListItemClick(evt, target) {
 		let input = this.assets.input;
+		let selectedItem = this.selectedItem;
+		let id = target.dataset.id;
+		let text = target.dataset.text;
 
-		input.value = target.dataset.text;
+		input.value = text;
 		input.focus();
 
 		this.closeMenu();
+
+		if (!selectedItem || selectedItem.id != id) {
+			this.selectedItem = { id, text };
+			this.emit({ type: 'change', initialEvent: evt });
+		}
 	},
 
 	openMenu() {
