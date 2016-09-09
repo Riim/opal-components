@@ -7,10 +7,10 @@
 			tabindex="{props.tabIndex}" disabled="{props.disabled}">
 </template>
 
-<template is="rt-if-then" if="props.clearable">
+<template is="rt-if-then" if="props.clearable" rt-silent>
 	<button class="opal-text-input__btn-clear" shown="{btnClearShown}"></button>
 </template>
 
-<template is="rt-if-then" if="props.loading">
+<template is="rt-if-then" if="props.loading" rt-silent>
 	<opal-loader class="opal-text-input__loader" size="s" shown></opal-loader>
 </template>

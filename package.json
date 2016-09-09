@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.1.82",
+  "version": "0.1.84",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -46,7 +46,7 @@
     "raw-loader": "^0.5.1",
     "require-dir": "^0.3.0",
     "rimraf": "^2.5.4",
-    "rionite": "^0.12.24",
+    "rionite": "^0.12.26",
     "run-sequence": "^1.2.2",
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.0.2",
