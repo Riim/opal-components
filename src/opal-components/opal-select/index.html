@@ -2,8 +2,8 @@
 	{{block button }}
 		<opal-button class="opal-select__button" type="{props.type}" size="{props.size}" checkable
 				tab-index="{props.tabIndex}" disabled="{props.disabled}">
-			<template is="rt-if-then" if="props.text">{props.text}</template>
-			<template is="rt-if-else" if="props.text">{text}</template>
+			<template is="rt-if-then" if="props.text" rt-silent>{props.text}</template>
+			<template is="rt-if-else" if="props.text" rt-silent>{text}</template>
 			{{block icon_chevron_down }}
 				<svg viewBox="0 0 32 18" class="opal-select__icon-chevron-down"><use
 						xlink:href="#opal-select__icon-chevron-down"></use></svg>

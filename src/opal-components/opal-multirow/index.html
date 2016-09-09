@@ -4,7 +4,7 @@
 {{/block}}
 
 <div class="opal-multirow__new-rows" no-preset-rows="{_noPresetRows}" not-last-row="{_notLastRow}">
-	<template is="rt-repeat" for="row of _newRows" track-by="key">
+	<template is="rt-repeat" for="row of _newRows" track-by="key" rt-silent>
 		{{block row }}
 			<rt-content select="opal-multirow-row:not([preset])" data-key="{row.key}"></rt-content>
 		{{/block}}
