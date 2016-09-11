@@ -62,7 +62,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _require = __webpack_require__(1);
 
 	var getText = _require.getText;
-	var Template = _require.Template;
+	var ComponentTemplate = _require.ComponentTemplate;
 	var Component = _require.Component;
 
 	var isExistDate = __webpack_require__(78);
@@ -81,7 +81,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				isRequiredField: getText.t('Поле обязательно для заполнения')
 			},
 
-			template: new Template(__webpack_require__(24)),
+			template: new ComponentTemplate(__webpack_require__(24)),
 
 			assets: {
 				input: {}

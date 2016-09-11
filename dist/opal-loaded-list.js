@@ -67,7 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _require2 = __webpack_require__(1);
 
 	var getText = _require2.getText;
-	var Template = _require2.Template;
+	var ComponentTemplate = _require2.ComponentTemplate;
 	var Component = _require2.Component;
 
 
@@ -87,7 +87,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				notFoundMessage: getText.t('Ничего не найдено')
 			},
 
-			template: new Template(__webpack_require__(27)),
+			template: new ComponentTemplate(__webpack_require__(27)),
 
 			assets: {
 				loader: {}

@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require3 = __webpack_require__(1);
 
-	var Template = _require3.Template;
+	var ComponentTemplate = _require3.ComponentTemplate;
 	var Component = _require3.Component;
 
 	var OpalMultirowRow = __webpack_require__(9);
@@ -79,7 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			OpalMultirowRow: OpalMultirowRow,
 
-			template: new Template(__webpack_require__(29)),
+			template: new ComponentTemplate(__webpack_require__(29)),
 
 			assets: {
 				':component': {
@@ -175,7 +175,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require = __webpack_require__(1);
 
-	var Template = _require.Template;
+	var ComponentTemplate = _require.ComponentTemplate;
 	var Component = _require.Component;
 
 
@@ -185,7 +185,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				preset: { default: false, readonly: true }
 			},
 
-			template: new Template(__webpack_require__(30)),
+			template: new ComponentTemplate(__webpack_require__(30)),
 
 			assets: {
 				btnRemoveRow: {

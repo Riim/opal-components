@@ -67,9 +67,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _require2 = __webpack_require__(1);
 
 	var getText = _require2.getText;
-	var Template = _require2.Template;
+	var ComponentTemplate = _require2.ComponentTemplate;
 	var Component = _require2.Component;
 
+
+	function toComparable(str) {
+		return str.trim().replace(/\s+/g, ' ').toLowerCase();
+	}
 
 	module.exports = Component.extend('opal-autosuggestion', {
 		Static: {
@@ -82,38 +86,29 @@ return /******/ (function(modules) { // webpackBootstrap
 				inputPlaceholder: getText.t('начните вводить для поиска')
 			},
 
-			template: new Template(__webpack_require__(74)),
+			template: new ComponentTemplate(__webpack_require__(74)),
 
 			assets: {
 				input: {
 					'on-focusin': function onFocusin() {
 						this.openMenu();
 					},
+					'on-focusout': function onFocusout() {
+						this._cancelLoading();
+
+						if (!this.assets.menu.props.opened) {
+							this._setSelectedItemOfList();
+						}
+					},
 					'on-input': function onInput(evt) {
 						var _this = this;
 
-						if (this.selectedItem) {
-							this.selectedItem = null;
-							this.emit({ type: 'change', initialEvent: evt });
-						}
-
 						this.closeMenu();
 
-						var needLoading = evt.target.value.length >= this.props.minLength;
+						this._cancelLoading();
+						this.list.clear();
 
-						if (this._loadingPlanned) {
-							this._loadingPlanned = false;
-							this._loadingTimeout.clear();
-						} else {
-							if (this.loading) {
-								this._requestCallback.cancel();
-								this.loading = false;
-							}
-
-							this.list.clear();
-						}
-
-						if (needLoading) {
+						if (evt.target.value.length >= this.props.minLength) {
 							this._loadingPlanned = true;
 
 							this._loadingTimeout = this.setTimeout(function () {
@@ -156,9 +151,9 @@ return /******/ (function(modules) { // webpackBootstrap
 			this._listItems = this.assets.list.getElementsByClassName('opal-autosuggestion__list-item');
 		},
 		elementAttached: function elementAttached() {
-			this.listenTo(this.list, 'change', this._onListChange);
 			this.listenTo(this.assets.input.assets.input, 'click', this._onInputClick);
 			this.listenTo(this.assets.menu.props, 'change:opened', this._onMenuOpenedChange);
+			this.listenTo(this.list, 'change', this._onListChange);
 			this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 		},
 		_load: function _load() {
@@ -169,8 +164,10 @@ return /******/ (function(modules) { // webpackBootstrap
 			this.dataprovider.getItems(this.assets.input.value).then(this._requestCallback = this.registerCallback(function (data) {
 				_this2.loading = false;
 
-				if (data.items.length) {
-					_this2.list.addRange(data.items);
+				var items = data.items;
+
+				if (items.length) {
+					_this2.list.addRange(items);
 
 					Cell.afterRelease(function () {
 						var focusedListItem = _this2._focusedListItem = _this2._listItems[0];
@@ -178,9 +175,6 @@ return /******/ (function(modules) { // webpackBootstrap
 					});
 				}
 			}));
-		},
-		_onListChange: function _onListChange() {
-			this.openMenu();
 		},
 		_onInputClick: function _onInputClick() {
 			this.openMenu();
@@ -196,12 +190,16 @@ return /******/ (function(modules) { // webpackBootstrap
 				this._documentMouseUpListening.stop();
 			}
 		},
+		_onListChange: function _onListChange() {
+			this.openMenu();
+		},
 		_onLoaderShownChange: function _onLoaderShownChange(evt) {
 			this.assets.input.props.loading = evt.value;
 		},
 		_onDocumentFocusIn: function _onDocumentFocusIn() {
 			if (document.activeElement != this.assets.input.assets.input) {
 				this.closeMenu();
+				this._setSelectedItemOfList();
 			}
 		},
 		_onDocumentKeyDown: function _onDocumentKeyDown(evt) {
@@ -235,11 +233,16 @@ return /******/ (function(modules) { // webpackBootstrap
 							evt.preventDefault();
 
 							var input = this.assets.input;
+							var focusedListItemDataSet = _focusedListItem.dataset;
 
-							input.value = _focusedListItem.dataset.text;
-							input.focus();
+							input.value = focusedListItemDataSet.text;
 
 							this.closeMenu();
+
+							this._setSelectedItem({
+								id: focusedListItemDataSet.id,
+								text: focusedListItemDataSet.text
+							});
 						}
 
 						break;
@@ -247,8 +250,8 @@ return /******/ (function(modules) { // webpackBootstrap
 				case 27 /* Esc */:
 					{
 						evt.preventDefault();
-						this.assets.input.focus();
 						this.closeMenu();
+						this._setSelectedItemOfList();
 						break;
 					}
 			}
@@ -259,24 +262,23 @@ return /******/ (function(modules) { // webpackBootstrap
 			setTimeout(function () {
 				if (document.activeElement != _this3.assets.input.assets.input) {
 					_this3.closeMenu();
+					_this3._setSelectedItemOfList();
 				}
 			}, 1);
 		},
-		_onListItemClick: function _onListItemClick(evt, target) {
+		_onListItemClick: function _onListItemClick(evt, listItem) {
 			var input = this.assets.input;
-			var selectedItem = this.selectedItem;
-			var id = target.dataset.id;
-			var text = target.dataset.text;
+			var listItemDataSet = listItem.dataset;
 
-			input.value = text;
+			input.value = listItemDataSet.text;
 			input.focus();
 
 			this.closeMenu();
 
-			if (!selectedItem || selectedItem.id != id) {
-				this.selectedItem = { id: id, text: text };
-				this.emit({ type: 'change', initialEvent: evt });
-			}
+			this._setSelectedItem({
+				id: listItemDataSet.id,
+				text: listItemDataSet.text
+			});
 		},
 		openMenu: function openMenu() {
 			if (this.list.length) {
@@ -285,6 +287,27 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		closeMenu: function closeMenu() {
 			this.assets.menu.close();
+		},
+		_cancelLoading: function _cancelLoading() {
+			if (this._loadingPlanned) {
+				this._loadingPlanned = false;
+				this._loadingTimeout.clear();
+			} else if (this.loading) {
+				this._requestCallback.cancel();
+				this.loading = false;
+			}
+		},
+		_setSelectedItemOfList: function _setSelectedItemOfList() {
+			var comparableQuery = toComparable(this.assets.input.value);
+			this._setSelectedItem(this.list.find(function (item) {
+				return toComparable(item.text) == comparableQuery;
+			}) || null);
+		},
+		_setSelectedItem: function _setSelectedItem(selectedItem) {
+			if (selectedItem ? !this.selectedItem || this.selectedItem.id != selectedItem.id : this.selectedItem) {
+				this.selectedItem = selectedItem;
+				this.emit('change');
+			}
 		}
 	});
 
@@ -307,7 +330,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 74:
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content select=\".opal-autosuggestion__input\"> {{block input }} <opal-text-input class=\"opal-autosuggestion__input\" placeholder=\"{{i18n.inputPlaceholder}}\"></opal-text-input> {{/block}} </rt-content> {{block menu }} <opal-dropdown class=\"opal-autosuggestion__menu\"> {{block list }} <div class=\"opal-autosuggestion__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"item of list\" strip=\"\"> <div class=\"opal-autosuggestion__list-item\" data-id=\"{item.id}\" data-text=\"{item.text}\" rt-click=\"_onListItemClick\">{item.text}</div> </template> {{/block}} </div> {{/block}} </opal-dropdown> {{/block}}"
+	module.exports = "<rt-content select=\".opal-autosuggestion__input\"> {{block input }} <opal-text-input class=\"opal-autosuggestion__input\" placeholder=\"{{i18n.inputPlaceholder}}\"></opal-text-input> {{/block}} </rt-content> {{block menu }} <opal-dropdown class=\"opal-autosuggestion__menu\"> {{block list }} <div class=\"opal-autosuggestion__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"item of list\" strip=\"\" rt-silent=\"\"> <div class=\"opal-autosuggestion__list-item\" data-id=\"{item.id}\" data-text=\"{item.text}\" rt-click=\"_onListItemClick\">{item.text}</div> </template> {{/block}} </div> {{/block}} </opal-dropdown> {{/block}}"
 
 /***/ },
 

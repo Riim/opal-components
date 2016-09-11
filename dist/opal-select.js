@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _require3 = __webpack_require__(1);
 
 	var getText = _require3.getText;
-	var Template = _require3.Template;
+	var ComponentTemplate = _require3.ComponentTemplate;
 	var Component = _require3.Component;
 	var RtRepeat = _require3.Components.RtRepeat;
 
@@ -99,7 +99,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: new Template(__webpack_require__(32)),
+			template: new ComponentTemplate(__webpack_require__(32)),
 
 			assets: {
 				button: {

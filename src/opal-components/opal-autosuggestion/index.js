@@ -1,7 +1,11 @@
 require('./index.css');
 
 let { Cell, cellx } = require('cellx');
-let { getText, Template, Component } = require('rionite');
+let { getText, ComponentTemplate, Component } = require('rionite');
+
+function toComparable(str) {
+	return str.trim().replace(/\s+/g, ' ').toLowerCase();
+}
 
 module.exports = Component.extend('opal-autosuggestion', {
 	Static: {
@@ -14,7 +18,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 			inputPlaceholder: getText.t('начните вводить для поиска')
 		},
 
-		template: new Template(require('./index.html')),
+		template: new ComponentTemplate(require('./index.html')),
 
 		assets: {
 			input: {
@@ -22,29 +26,21 @@ module.exports = Component.extend('opal-autosuggestion', {
 					this.openMenu();
 				},
 
-				'on-input'(evt) {
-					if (this.selectedItem) {
-						this.selectedItem = null;
-						this.emit({ type: 'change', initialEvent: evt });
-					}
+				'on-focusout'() {
+					this._cancelLoading();
 
+					if (!this.assets.menu.props.opened) {
+						this._setSelectedItemOfList();
+					}
+				},
+
+				'on-input'(evt) {
 					this.closeMenu();
 
-					let needLoading = evt.target.value.length >= this.props.minLength;
+					this._cancelLoading();
+					this.list.clear();
 
-					if (this._loadingPlanned) {
-						this._loadingPlanned = false;
-						this._loadingTimeout.clear();
-					} else {
-						if (this.loading) {
-							this._requestCallback.cancel();
-							this.loading = false;
-						}
-
-						this.list.clear();
-					}
-
-					if (needLoading) {
+					if (evt.target.value.length >= this.props.minLength) {
 						this._loadingPlanned = true;
 
 						this._loadingTimeout = this.setTimeout(() => {
@@ -88,9 +84,9 @@ module.exports = Component.extend('opal-autosuggestion', {
 	},
 
 	elementAttached() {
-		this.listenTo(this.list, 'change', this._onListChange);
 		this.listenTo(this.assets.input.assets.input, 'click', this._onInputClick);
 		this.listenTo(this.assets.menu.props, 'change:opened', this._onMenuOpenedChange);
+		this.listenTo(this.list, 'change', this._onListChange);
 		this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 	},
 
@@ -100,8 +96,10 @@ module.exports = Component.extend('opal-autosuggestion', {
 		this.dataprovider.getItems(this.assets.input.value).then(this._requestCallback = this.registerCallback(data => {
 			this.loading = false;
 
-			if (data.items.length) {
-				this.list.addRange(data.items);
+			let items = data.items;
+
+			if (items.length) {
+				this.list.addRange(items);
 
 				Cell.afterRelease(() => {
 					let focusedListItem = this._focusedListItem = this._listItems[0];
@@ -109,10 +107,6 @@ module.exports = Component.extend('opal-autosuggestion', {
 				});
 			}
 		}));
-	},
-
-	_onListChange() {
-		this.openMenu();
 	},
 
 	_onInputClick() {
@@ -131,6 +125,10 @@ module.exports = Component.extend('opal-autosuggestion', {
 		}
 	},
 
+	_onListChange() {
+		this.openMenu();
+	},
+
 	_onLoaderShownChange(evt) {
 		this.assets.input.props.loading = evt.value;
 	},
@@ -138,6 +136,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 	_onDocumentFocusIn() {
 		if (document.activeElement != this.assets.input.assets.input) {
 			this.closeMenu();
+			this._setSelectedItemOfList();
 		}
 	},
 
@@ -172,19 +171,24 @@ module.exports = Component.extend('opal-autosuggestion', {
 					evt.preventDefault();
 
 					let input = this.assets.input;
+					let focusedListItemDataSet = focusedListItem.dataset;
 
-					input.value = focusedListItem.dataset.text;
-					input.focus();
+					input.value = focusedListItemDataSet.text;
 
 					this.closeMenu();
+
+					this._setSelectedItem({
+						id: focusedListItemDataSet.id,
+						text: focusedListItemDataSet.text
+					});
 				}
 
 				break;
 			}
 			case 27/* Esc */: {
 				evt.preventDefault();
-				this.assets.input.focus();
 				this.closeMenu();
+				this._setSelectedItemOfList();
 				break;
 			}
 		}
@@ -194,25 +198,24 @@ module.exports = Component.extend('opal-autosuggestion', {
 		setTimeout(() => {
 			if (document.activeElement != this.assets.input.assets.input) {
 				this.closeMenu();
+				this._setSelectedItemOfList();
 			}
 		}, 1);
 	},
 
-	_onListItemClick(evt, target) {
+	_onListItemClick(evt, listItem) {
 		let input = this.assets.input;
-		let selectedItem = this.selectedItem;
-		let id = target.dataset.id;
-		let text = target.dataset.text;
+		let listItemDataSet = listItem.dataset;
 
-		input.value = text;
+		input.value = listItemDataSet.text;
 		input.focus();
 
 		this.closeMenu();
 
-		if (!selectedItem || selectedItem.id != id) {
-			this.selectedItem = { id, text };
-			this.emit({ type: 'change', initialEvent: evt });
-		}
+		this._setSelectedItem({
+			id: listItemDataSet.id,
+			text: listItemDataSet.text
+		});
 	},
 
 	openMenu() {
@@ -223,5 +226,31 @@ module.exports = Component.extend('opal-autosuggestion', {
 
 	closeMenu() {
 		this.assets.menu.close();
+	},
+
+	_cancelLoading() {
+		if (this._loadingPlanned) {
+			this._loadingPlanned = false;
+			this._loadingTimeout.clear();
+		} else if (this.loading) {
+			this._requestCallback.cancel();
+			this.loading = false;
+		}
+	},
+
+	_setSelectedItemOfList() {
+		let comparableQuery = toComparable(this.assets.input.value);
+		this._setSelectedItem(this.list.find(item => toComparable(item.text) == comparableQuery) || null);
+	},
+
+	_setSelectedItem(selectedItem) {
+		if (
+			selectedItem ?
+				!this.selectedItem || this.selectedItem.id != selectedItem.id :
+				this.selectedItem
+		) {
+			this.selectedItem = selectedItem;
+			this.emit('change');
+		}
 	}
 });

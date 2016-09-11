@@ -9,7 +9,7 @@
 		{{block list }}
 			<div class="opal-autosuggestion__list">
 				{{block list_inner }}
-					<template is="rt-repeat" for="item of list" strip>
+					<template is="rt-repeat" for="item of list" strip rt-silent>
 						<div class="opal-autosuggestion__list-item" data-id="{item.id}" data-text="{item.text}"
 								rt-click="_onListItemClick">{item.text}</div>
 					</template>

@@ -61,13 +61,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require = __webpack_require__(1);
 
-	var Template = _require.Template;
+	var ComponentTemplate = _require.ComponentTemplate;
 	var Component = _require.Component;
 
 
 	module.exports = Component.extend('opal-filtered-list', {
 		Static: {
-			template: new Template(__webpack_require__(25)),
+			template: new ComponentTemplate(__webpack_require__(25)),
 
 			assets: {
 				queryInput: {

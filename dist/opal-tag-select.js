@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _require = __webpack_require__(1);
 
 	var getText = _require.getText;
-	var Template = _require.Template;
+	var ComponentTemplate = _require.ComponentTemplate;
 	var Component = _require.Component;
 
 
@@ -79,7 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: new Template(__webpack_require__(38)),
+			template: new ComponentTemplate(__webpack_require__(38)),
 
 			assets: {
 				':element': {

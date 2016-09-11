@@ -1,6 +1,6 @@
 require('./index.css');
 
-let { getText, Template, Component } = require('rionite');
+let { getText, ComponentTemplate, Component } = require('rionite');
 let isExistDate = require('./isExistDate');
 
 module.exports = Component.extend('opal-date-input', {
@@ -17,7 +17,7 @@ module.exports = Component.extend('opal-date-input', {
 			isRequiredField: getText.t('Поле обязательно для заполнения')
 		},
 
-		template: new Template(require('./index.html')),
+		template: new ComponentTemplate(require('./index.html')),
 
 		assets: {
 			input: {}

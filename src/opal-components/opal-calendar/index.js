@@ -2,7 +2,7 @@ require('./index.css');
 require('./opal-calendar__icon-arrow-left.svg');
 
 let cellx = require('cellx');
-let { Template, Component } = require('rionite');
+let { ComponentTemplate, Component } = require('rionite');
 let parseDate = require('./parseDate');
 let formatDate = require('./formatDate');
 
@@ -27,7 +27,7 @@ module.exports = Component.extend('opal-calendar', {
 			sundayFirst: false
 		},
 
-		template: new Template(require('./index.html')),
+		template: new ComponentTemplate(require('./index.html')),
 
 		assets: {
 			btnPrevMonth: {

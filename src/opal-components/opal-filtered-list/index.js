@@ -1,10 +1,10 @@
 require('./index.css');
 
-let { Template, Component } = require('rionite');
+let { ComponentTemplate, Component } = require('rionite');
 
 module.exports = Component.extend('opal-filtered-list', {
 	Static: {
-		template: new Template(require('./index.html')),
+		template: new ComponentTemplate(require('./index.html')),
 
 		assets: {
 			queryInput: {
