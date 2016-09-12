@@ -240,7 +240,7 @@ return /******/ (function(modules) { // webpackBootstrap
 							this.closeMenu();
 
 							this._setSelectedItem({
-								id: focusedListItemDataSet.id,
+								value: focusedListItemDataSet.value,
 								text: focusedListItemDataSet.text
 							});
 						}
@@ -276,7 +276,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			this.closeMenu();
 
 			this._setSelectedItem({
-				id: listItemDataSet.id,
+				value: listItemDataSet.value,
 				text: listItemDataSet.text
 			});
 		},
@@ -304,7 +304,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			}) || null);
 		},
 		_setSelectedItem: function _setSelectedItem(selectedItem) {
-			if (selectedItem ? !this.selectedItem || this.selectedItem.id != selectedItem.id : this.selectedItem) {
+			if (selectedItem ? !this.selectedItem || this.selectedItem.value != selectedItem.value : this.selectedItem) {
 				this.selectedItem = selectedItem;
 				this.emit('change');
 			}
@@ -330,7 +330,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 74:
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content select=\".opal-autosuggestion__input\"> {{block input }} <opal-text-input class=\"opal-autosuggestion__input\" placeholder=\"{{i18n.inputPlaceholder}}\"></opal-text-input> {{/block}} </rt-content> {{block menu }} <opal-dropdown class=\"opal-autosuggestion__menu\"> {{block list }} <div class=\"opal-autosuggestion__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"item of list\" strip=\"\" rt-silent=\"\"> <div class=\"opal-autosuggestion__list-item\" data-id=\"{item.id}\" data-text=\"{item.text}\" rt-click=\"_onListItemClick\">{item.text}</div> </template> {{/block}} </div> {{/block}} </opal-dropdown> {{/block}}"
+	module.exports = "<rt-content select=\".opal-autosuggestion__input\"> {{block input }} <opal-text-input class=\"opal-autosuggestion__input\" placeholder=\"{{i18n.inputPlaceholder}}\"></opal-text-input> {{/block}} </rt-content> {{block menu }} <opal-dropdown class=\"opal-autosuggestion__menu\"> {{block list }} <div class=\"opal-autosuggestion__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"item of list\" strip=\"\" rt-silent=\"\"> <div class=\"opal-autosuggestion__list-item\" data-value=\"{item.value}\" data-text=\"{item.text}\" rt-click=\"_onListItemClick\">{item.text}</div> </template> {{/block}} </div> {{/block}} </opal-dropdown> {{/block}}"
 
 /***/ },
 

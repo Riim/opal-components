@@ -11,7 +11,7 @@ var dataProvider1 = (function() {
 	var items = [];
 
 	for (var i = 0, l = 1000; i < l; i++) {
-		items[i] = { id: i.toString(), text: i.toString() };
+		items[i] = { value: i.toString(), text: i.toString() };
 	}
 
 	return {
@@ -24,7 +24,7 @@ var dataProvider1 = (function() {
 				return item.text.indexOf(query) != -1;
 			}) : items;
 			var from = after ? filteredItems.findIndex(function(item) {
-				return item.id == after;
+				return item.value == after;
 			}) + 1 : 0;
 
 			return new Promise(function(resolve) {
@@ -60,7 +60,7 @@ var dataProvider2 = (function() {
 				setTimeout(function() {
 					resolve({
 						items: filteredItems.map(function(item) {
-							return { id: item.id, text: item.name };
+							return { value: item.id, text: item.name };
 						})
 					});
 				}, 500);

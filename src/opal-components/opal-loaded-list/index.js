@@ -136,7 +136,7 @@ module.exports = Component.extend('opal-loaded-list', {
 
 		this.loading = true;
 
-		this.dataprovider.getNextItems(this.props.nextCount, list.length ? list.get(-1).id : void 0, query).then(
+		this.dataprovider.getNextItems(this.props.nextCount, list.length ? list.get(-1).value : void 0, query).then(
 			this._requestCallback = this.registerCallback(data => {
 				this.loading = false;
 

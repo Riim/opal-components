@@ -178,7 +178,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 					this.closeMenu();
 
 					this._setSelectedItem({
-						id: focusedListItemDataSet.id,
+						value: focusedListItemDataSet.value,
 						text: focusedListItemDataSet.text
 					});
 				}
@@ -213,7 +213,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 		this.closeMenu();
 
 		this._setSelectedItem({
-			id: listItemDataSet.id,
+			value: listItemDataSet.value,
 			text: listItemDataSet.text
 		});
 	},
@@ -246,7 +246,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 	_setSelectedItem(selectedItem) {
 		if (
 			selectedItem ?
-				!this.selectedItem || this.selectedItem.id != selectedItem.id :
+				!this.selectedItem || this.selectedItem.value != selectedItem.value :
 				this.selectedItem
 		) {
 			this.selectedItem = selectedItem;
