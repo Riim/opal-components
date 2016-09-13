@@ -200,7 +200,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			this.loading = true;
 
-			this.dataprovider.getNextItems(this.props.nextCount, list.length ? list.get(-1).value : void 0, query).then(this._requestCallback = this.registerCallback(function (data) {
+			this.dataprovider.getItems(this.props.nextCount, list.length ? list.get(-1).value : void 0, query).then(this._requestCallback = this.registerCallback(function (data) {
 				_this3.loading = false;
 
 				_this3.total = data.total;
