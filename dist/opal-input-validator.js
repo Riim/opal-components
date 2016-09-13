@@ -130,13 +130,13 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 			});
 
-			if (failedRule ^ this.failedRule) {
+			if (!!failedRule ^ !!this.failedRule) {
 				if (failedRule) {
 					this.element.setAttribute('valid', 'no');
 					this.emit('input-validation-error');
 				} else {
 					this.element.removeAttribute('valid');
-					this.emit('input-validation-success');
+					this.emit('input-validation-valid');
 				}
 			}
 
