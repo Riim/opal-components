@@ -130,7 +130,11 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 			});
 
-			if (!!failedRule ^ !!this.failedRule) {
+			var oldFailedRule = this.failedRule;
+
+			this.failedRule = failedRule;
+
+			if (!!failedRule ^ !!oldFailedRule) {
 				if (failedRule) {
 					this.element.setAttribute('valid', 'no');
 					this.emit('input-validation-error');
@@ -139,8 +143,6 @@ return /******/ (function(modules) { // webpackBootstrap
 					this.emit('input-validation-valid');
 				}
 			}
-
-			this.failedRule = failedRule;
 
 			return !failedRule;
 		}

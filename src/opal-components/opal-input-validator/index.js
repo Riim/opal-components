@@ -71,7 +71,11 @@ module.exports = Component.extend('opal-input-validator', {
 			}
 		});
 
-		if (!!failedRule ^ !!this.failedRule) {
+		let oldFailedRule = this.failedRule;
+
+		this.failedRule = failedRule;
+
+		if (!!failedRule ^ !!oldFailedRule) {
 			if (failedRule) {
 				this.element.setAttribute('valid', 'no');
 				this.emit('input-validation-error');
@@ -80,8 +84,6 @@ module.exports = Component.extend('opal-input-validator', {
 				this.emit('input-validation-valid');
 			}
 		}
-
-		this.failedRule = failedRule;
 
 		return !failedRule;
 	}
