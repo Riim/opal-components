@@ -61,7 +61,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Component = _require.Component;
 
-	var OpalRadioButton = __webpack_require__(10);
+	var OpalRadioButton = __webpack_require__(12);
 
 	var forEach = Array.prototype.forEach;
 
@@ -108,12 +108,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 10:
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(57);
+	__webpack_require__(63);
 
 	var cellx = __webpack_require__(2);
 
@@ -131,7 +131,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(31),
+			template: __webpack_require__(34),
 
 			assets: {
 				input: {
@@ -289,14 +289,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 31:
+/***/ 34:
 /***/ function(module, exports) {
 
 	module.exports = "<label class=\"opal-radio-button__label\"> <input class=\"opal-radio-button__input\" type=\"checkbox\"> <span class=\"opal-radio-button__control\" tabindex=\"{_tabIndex}\"></span> <rt-content class=\"opal-radio-button__content\"></rt-content> </label>"
 
 /***/ },
 
-/***/ 57:
+/***/ 63:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

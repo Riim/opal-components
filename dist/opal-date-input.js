@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(46);
+	__webpack_require__(50);
 
 	var _require = __webpack_require__(1);
 
@@ -65,7 +65,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var ComponentTemplate = _require.ComponentTemplate;
 	var Component = _require.Component;
 
-	var isExistDate = __webpack_require__(78);
+	var isExistDate = __webpack_require__(7);
 
 	module.exports = Component.extend('opal-date-input', {
 		Static: {
@@ -81,7 +81,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				isRequiredField: getText.t('Поле обязательно для заполнения')
 			},
 
-			template: new ComponentTemplate(__webpack_require__(24)),
+			template: new ComponentTemplate(__webpack_require__(26)),
 
 			assets: {
 				input: {}
@@ -100,32 +100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 24:
-/***/ function(module, exports) {
-
-	module.exports = "{{block validation }} <opal-validator> {{block validation_rules }} <template is=\"rt-if-then\" if=\"props.required\" rt-silent=\"\"> <opal-validator-rule required=\"\" popover-to=\"{props.popoverTo}\">{{i18n.isRequiredField}}</opal-validator-rule> </template> <opal-validator-rule test=\"isExistDate\" popover-to=\"{props.popoverTo}\">{{i18n.nonExistentDate}}</opal-validator-rule> {{/block}} {{block input_mask }} <opal-input-mask mask=\"{props.mask}\"> {{block input }} <opal-text-input class=\"opal-date-input__input opal-validator__input opal-input-mask__input\" placeholder=\"{props.placeholder}\"></opal-text-input> {{/block}} </opal-input-mask> {{/block}} </opal-validator> {{/block}}"
-
-/***/ },
-
-/***/ 46:
-/***/ function(module, exports) {
-
-	module.exports = (function(d) {
-	        var head = d.head || d.getElementsByTagName('head')[0];
-	        if (head) {
-	            var style = d.createElement('style');
-	            style.type = 'text/css';
-	            style.textContent = ".opal-date-input{position:relative;display:inline-block}";
-	            head.appendChild(style);
-	            return style;
-	        }
-	        return null;
-	    })(document);
-
-
-/***/ },
-
-/***/ 78:
+/***/ 7:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -143,6 +118,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	module.exports = isExistDate;
+
+/***/ },
+
+/***/ 26:
+/***/ function(module, exports) {
+
+	module.exports = "{{block validation }} <opal-input-validator> {{block validation_rules }} <template is=\"rt-if-then\" if=\"props.required\" rt-silent=\"\"> <opal-input-validator-rule required=\"\" popover-to=\"{props.popoverTo}\">{{i18n.isRequiredField}}</opal-input-validator-rule> </template> <opal-input-validator-rule test=\"isExistDate\" popover-to=\"{props.popoverTo}\">{{i18n.nonExistentDate}}</opal-input-validator-rule> {{/block}} {{block input_mask }} <opal-input-mask mask=\"{props.mask}\"> {{block input }} <opal-text-input class=\"opal-date-input__input opal-input-validator__input opal-input-mask__input\" placeholder=\"{props.placeholder}\"></opal-text-input> {{/block}} </opal-input-mask> {{/block}} </opal-input-validator> {{/block}}"
+
+/***/ },
+
+/***/ 50:
+/***/ function(module, exports) {
+
+	module.exports = (function(d) {
+	        var head = d.head || d.getElementsByTagName('head')[0];
+	        if (head) {
+	            var style = d.createElement('style');
+	            style.type = 'text/css';
+	            style.textContent = ".opal-date-input{position:relative;display:inline-block}";
+	            head.appendChild(style);
+	            return style;
+	        }
+	        return null;
+	    })(document);
+
 
 /***/ }
 

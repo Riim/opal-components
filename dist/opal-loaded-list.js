@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(51);
+	__webpack_require__(57);
 
 	var _require = __webpack_require__(2);
 
@@ -87,7 +87,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				notFoundMessage: getText.t('Ничего не найдено')
 			},
 
-			template: new ComponentTemplate(__webpack_require__(27)),
+			template: new ComponentTemplate(__webpack_require__(30)),
 
 			assets: {
 				loader: {}
@@ -238,14 +238,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 27:
+/***/ 30:
 /***/ function(module, exports) {
 
 	module.exports = "{{block list }} <div class=\"opal-loaded-list__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"{props.itemAs} of list\" strip=\"\"> <rt-content class=\"opal-loaded-list__list-item\" get-context=\"_getContentContext\"></rt-content> </template> {{/block}} </div> {{/block}} {{block loader }} <opal-loader class=\"opal-loaded-list__loader\" shown=\"{loaderShown}\" align-center=\"{empty}\"></opal-loader> {{/block}} {{block not_found }} <div class=\"opal-loaded-list__not-found\" shown=\"{notFoundShown}\"><span class=\"opal-loaded-list__not-found-message\">{{i18n.notFoundMessage}}</span></div> {{/block}}"
 
 /***/ },
 
-/***/ 51:
+/***/ 57:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

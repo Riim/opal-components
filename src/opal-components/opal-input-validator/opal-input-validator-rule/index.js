@@ -2,7 +2,7 @@ require('./index.css');
 
 let { Component } = require('rionite');
 
-module.exports = Component.extend('opal-validator-rule', {
+module.exports = Component.extend('opal-input-validator-rule', {
 	Static: {
 		props: {
 			required: { default: false, readonly: true },

@@ -2,13 +2,13 @@ require('./index.css');
 
 let cellx = require('cellx');
 let { Component } = require('rionite');
-let OpalValidatorRule = require('./opal-validator-rule');
+let OpalInputValidatorRule = require('./opal-input-validator-rule');
 
-module.exports = Component.extend('opal-validator', {
+module.exports = Component.extend('opal-input-validator', {
 	Static: {
-		OpalValidatorRule,
+		OpalInputValidatorRule,
 
-		template: '<rt-content class="opal-validator__content"></rt-content>',
+		template: '<rt-content class="opal-input-validator__content"></rt-content>',
 
 		assets: {
 			input: {
@@ -36,7 +36,7 @@ module.exports = Component.extend('opal-validator', {
 	},
 
 	ready() {
-		this.assets.rules = this.$$('.opal-validator-rule');
+		this.assets.rules = this.$$('.opal-input-validator-rule');
 	},
 
 	/**
@@ -47,7 +47,7 @@ module.exports = Component.extend('opal-validator', {
 	},
 
 	/**
-	 * @typesign (rules: Array<OpalComponents.OpalValidatorRule>) -> boolean;
+	 * @typesign (rules: Array<OpalComponents.OpalInputValidatorRule>) -> boolean;
 	 */
 	_validate(rules) {
 		let value = this.assets.input.value;
@@ -71,13 +71,17 @@ module.exports = Component.extend('opal-validator', {
 			}
 		});
 
-		this.failedRule = failedRule;
-
-		if (failedRule) {
-			this.element.setAttribute('valid', 'no');
-		} else {
-			this.element.removeAttribute('valid');
+		if (failedRule ^ this.failedRule) {
+			if (failedRule) {
+				this.element.setAttribute('valid', 'no');
+				this.emit('input-validation-error');
+			} else {
+				this.element.removeAttribute('valid');
+				this.emit('input-validation-success');
+			}
 		}
+
+		this.failedRule = failedRule;
 
 		return !failedRule;
 	}

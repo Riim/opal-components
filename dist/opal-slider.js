@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(77);
+	__webpack_require__(68);
 
 	var cellx = __webpack_require__(2);
 
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				range: Object
 			},
 
-			template: __webpack_require__(76),
+			template: __webpack_require__(38),
 
 			assets: {
 				firstInput: {
@@ -154,14 +154,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 76:
+/***/ 38:
 /***/ function(module, exports) {
 
 	module.exports = "<template is=\"rt-if-then\" if=\"props.range\"> <div class=\"opal-slider__first-input-wrapper3\"> <div class=\"opal-slider__first-input-wrapper2\" style=\"width: {_firstInputWidth}%;\"> <div class=\"opal-slider__first-input-wrapper\"> <input class=\"opal-slider__first-input\" type=\"range\" min=\"{props.min}\" max=\"{props.max}\" step=\"{props.step}\" value=\"{props.range[0]}\"> </div> </div> </div> <div class=\"opal-slider__second-input-wrapper\"> <input class=\"opal-slider__second-input\" type=\"range\" min=\"{props.min}\" max=\"{props.max}\" step=\"{props.step}\" value=\"{props.range[1]}\"> </div> </template> <template is=\"rt-if-else\" if=\"props.range\"> <input class=\"opal-slider__input\" type=\"range\" min=\"{props.min}\" max=\"{props.max}\" step=\"{props.step}\" value=\"{props.value}\"> </template>"
 
 /***/ },
 
-/***/ 77:
+/***/ 68:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

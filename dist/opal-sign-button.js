@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(61);
+	__webpack_require__(67);
 
 	var cellx = __webpack_require__(2);
 
@@ -77,7 +77,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(34),
+			template: __webpack_require__(37),
 
 			assets: {
 				control: {
@@ -217,14 +217,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 34:
+/***/ 37:
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"opal-sign-button__control\" tabindex=\"{_tabIndex}\"> <span class=\"opal-sign-button__sign\"></span> <rt-content class=\"opal-sign-button__content\"></rt-content> </span>"
 
 /***/ },
 
-/***/ 61:
+/***/ 67:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

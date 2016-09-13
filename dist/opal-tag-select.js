@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(68);
+	__webpack_require__(75);
 
 	var cellx = __webpack_require__(2);
 
@@ -79,7 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: new ComponentTemplate(__webpack_require__(38)),
+			template: new ComponentTemplate(__webpack_require__(42)),
 
 			assets: {
 				':element': {
@@ -129,14 +129,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 38:
+/***/ 42:
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"opal-tag-select__tags\"> <template is=\"rt-if-then\" if=\"viewModel?.length\"> <template is=\"rt-repeat\" for=\"tag of viewModel\"> <span class=\"opal-tag-select__tag\" data-value=\"{tag.value}\">{tag.text}<button class=\"opal-tag-select__btn-remove-tag\" data-tag-value=\"{tag.value}\"></button></span> </template> </template> </span> <template is=\"rt-if-then\" if=\"placeholderShown\" rt-silent=\"\"> <span class=\"opal-tag-select__placeholder\">{props.placeholder}</span> </template> {{block select }} <opal-select class=\"opal-tag-select__select\" view-model=\"{props.viewModel}\" multiple=\"\"> {{block select_button }} <opal-sign-button class=\"opal-tag-select__select-button opal-select__button\" sign=\"plus\" checkable=\"\"></opal-sign-button> {{/block}} {{block menu }} <opal-popover class=\"opal-select__menu\" to=\"{props.popoverTo}\" auto-closing=\"\"> <opal-filtered-list class=\"opal-select__filtered-list\"> <opal-loaded-list class=\"opal-select__loaded-list opal-filtered-list__loaded-list\" dataprovider=\"{props.dataprovider}\"> <opal-select-option value=\"{$item.value}\" text=\"{$item.text}\"></opal-select-option> </opal-loaded-list> </opal-filtered-list> </opal-popover> {{/block}} </opal-select> {{/block}}"
 
 /***/ },
 
-/***/ 68:
+/***/ 75:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

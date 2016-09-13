@@ -59,7 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	__webpack_require__(58);
+	__webpack_require__(64);
 
 	var _require = __webpack_require__(1);
 
@@ -68,10 +68,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var hyphenize = _require$Utils.hyphenize;
 	var escapeHTML = _require$Utils.escapeHTML;
 
-	var OpalRoute = __webpack_require__(12);
-	var escapeRegExp = __webpack_require__(11);
+	var OpalRoute = __webpack_require__(14);
+	var escapeRegExp = __webpack_require__(13);
 	var PathNodeType = __webpack_require__(4);
-	var parsePath = __webpack_require__(13);
+	var parsePath = __webpack_require__(15);
 
 	var createObject = Object.create;
 	var forEach = Array.prototype.forEach;
@@ -246,7 +246,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 11:
+/***/ 13:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -264,7 +264,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 12:
+/***/ 14:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -285,7 +285,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 13:
+/***/ 15:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -445,7 +445,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 58:
+/***/ 64:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

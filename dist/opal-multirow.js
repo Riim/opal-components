@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(54);
+	__webpack_require__(60);
 
 	var _require = __webpack_require__(2);
 
@@ -73,13 +73,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	var ComponentTemplate = _require3.ComponentTemplate;
 	var Component = _require3.Component;
 
-	var OpalMultirowRow = __webpack_require__(9);
+	var OpalMultirowRow = __webpack_require__(11);
 
 	module.exports = Component.extend('opal-multirow', {
 		Static: {
 			OpalMultirowRow: OpalMultirowRow,
 
-			template: new ComponentTemplate(__webpack_require__(29)),
+			template: new ComponentTemplate(__webpack_require__(32)),
 
 			assets: {
 				':component': {
@@ -166,12 +166,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 9:
+/***/ 11:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(55);
+	__webpack_require__(61);
 
 	var _require = __webpack_require__(1);
 
@@ -185,7 +185,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				preset: { default: false, readonly: true }
 			},
 
-			template: new ComponentTemplate(__webpack_require__(30)),
+			template: new ComponentTemplate(__webpack_require__(33)),
 
 			assets: {
 				btnRemoveRow: {
@@ -205,21 +205,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 29:
+/***/ 32:
 /***/ function(module, exports) {
 
 	module.exports = "{{block preset_rows }} <rt-content class=\"opal-multirow__preset-rows\" select=\"opal-multirow-row[preset]\" no-new-rows=\"{_noNewRows}\" not-last-row=\"{_notLastRow}\"></rt-content> {{/block}} <div class=\"opal-multirow__new-rows\" no-preset-rows=\"{_noPresetRows}\" not-last-row=\"{_notLastRow}\"> <template is=\"rt-repeat\" for=\"row of _newRows\" track-by=\"key\" rt-silent=\"\"> {{block row }} <rt-content select=\"opal-multirow-row:not([preset])\" data-key=\"{row.key}\"></rt-content> {{/block}} </template> </div>"
 
 /***/ },
 
-/***/ 30:
+/***/ 33:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content class=\"opal-multirow-row__content\"></rt-content> {{block buttons }} <opal-sign-button class=\"opal-multirow-row__btn-remove-row\" sign=\"minus\"></opal-sign-button> <opal-sign-button class=\"opal-multirow-row__btn-add-row\" sign=\"plus\"></opal-sign-button> {{/block}}"
 
 /***/ },
 
-/***/ 54:
+/***/ 60:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -237,7 +237,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 55:
+/***/ 61:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

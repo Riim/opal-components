@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(75);
+	__webpack_require__(44);
 
 	var _require = __webpack_require__(2);
 
@@ -86,7 +86,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				inputPlaceholder: getText.t('начните вводить для поиска')
 			},
 
-			template: new ComponentTemplate(__webpack_require__(74)),
+			template: new ComponentTemplate(__webpack_require__(21)),
 
 			assets: {
 				input: {
@@ -327,14 +327,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 74:
+/***/ 21:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content select=\".opal-autosuggestion__input\"> {{block input }} <opal-text-input class=\"opal-autosuggestion__input\" placeholder=\"{{i18n.inputPlaceholder}}\"></opal-text-input> {{/block}} </rt-content> {{block menu }} <opal-dropdown class=\"opal-autosuggestion__menu\"> {{block list }} <div class=\"opal-autosuggestion__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"item of list\" strip=\"\" rt-silent=\"\"> <div class=\"opal-autosuggestion__list-item\" data-value=\"{item.value}\" data-text=\"{item.text}\" rt-click=\"_onListItemClick\">{item.text}</div> </template> {{/block}} </div> {{/block}} </opal-dropdown> {{/block}}"
 
 /***/ },
 
-/***/ 75:
+/***/ 44:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

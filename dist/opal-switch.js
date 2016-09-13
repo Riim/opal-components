@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(63);
+	__webpack_require__(70);
 
 	var cellx = __webpack_require__(2);
 
@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(35),
+			template: __webpack_require__(39),
 
 			assets: {
 				input: {
@@ -245,14 +245,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 35:
+/***/ 39:
 /***/ function(module, exports) {
 
 	module.exports = "<label class=\"opal-switch__label\"> <input class=\"opal-switch__input\" type=\"checkbox\"> <span class=\"opal-switch__control\" tabindex=\"{_tabIndex}\"><span class=\"opal-switch__thumb\"></span></span> <rt-content class=\"opal-switch__content\"></rt-content> </label>"
 
 /***/ },
 
-/***/ 63:
+/***/ 70:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

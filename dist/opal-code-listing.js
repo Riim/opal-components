@@ -57,14 +57,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(44);
-	__webpack_require__(45);
+	__webpack_require__(48);
+	__webpack_require__(49);
 
 	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 
-	var Prism = __webpack_require__(19);
+	var Prism = __webpack_require__(20);
 
 	function prepareCode(code, html) {
 		code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
@@ -87,7 +87,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = Component.extend('opal-code-listing', {
 		Static: {
-			template: __webpack_require__(23),
+			template: __webpack_require__(25),
 
 			assets: {
 				htmlCode: {},
@@ -119,7 +119,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 19:
+/***/ 20:
 /***/ function(module, exports) {
 
 	
@@ -907,14 +907,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 23:
+/***/ 25:
 /***/ function(module, exports) {
 
 	module.exports = "<opal-tabs> <opal-tab>HTML</opal-tab> <opal-tab-panel> <pre class=\"opal-code-listing__html-code-wrapper\"><code class=\"opal-code-listing__html-code\"></code></pre> </opal-tab-panel> <opal-tab>JS</opal-tab> <opal-tab-panel> <pre class=\"opal-code-listing__js-code-wrapper\"><code class=\"opal-code-listing__js-code\"></code></pre> </opal-tab-panel> </opal-tabs> <rt-content class=\"opal-code-listing__example-html-wrapper\" select=\".opal-code-listing__example-html\"></rt-content> <rt-content class=\"opal-code-listing__example-js-wrapper\" select=\".opal-code-listing__example-js\"></rt-content>"
 
 /***/ },
 
-/***/ 44:
+/***/ 48:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -932,7 +932,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 45:
+/***/ 49:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

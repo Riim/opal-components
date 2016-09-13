@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["rionite", "cellx"], factory);
 	else if(typeof exports === 'object')
-		exports["opal-validator"] = factory(require("rionite"), require("cellx"));
+		exports["opal-input-validator"] = factory(require("rionite"), require("cellx"));
 	else
-		root["opal-validator"] = factory(root["rionite"], root["cellx"]);
+		root["opal-input-validator"] = factory(root["rionite"], root["cellx"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(70);
+	__webpack_require__(55);
 
 	var cellx = __webpack_require__(2);
 
@@ -65,13 +65,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Component = _require.Component;
 
-	var OpalValidatorRule = __webpack_require__(18);
+	var OpalInputValidatorRule = __webpack_require__(10);
 
-	module.exports = Component.extend('opal-validator', {
+	module.exports = Component.extend('opal-input-validator', {
 		Static: {
-			OpalValidatorRule: OpalValidatorRule,
+			OpalInputValidatorRule: OpalInputValidatorRule,
 
-			template: '<rt-content class="opal-validator__content"></rt-content>',
+			template: '<rt-content class="opal-input-validator__content"></rt-content>',
 
 			assets: {
 				input: {
@@ -97,7 +97,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			});
 		},
 		ready: function ready() {
-			this.assets.rules = this.$$('.opal-validator-rule');
+			this.assets.rules = this.$$('.opal-input-validator-rule');
 		},
 
 
@@ -110,7 +110,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 		/**
-	  * @typesign (rules: Array<OpalComponents.OpalValidatorRule>) -> boolean;
+	  * @typesign (rules: Array<OpalComponents.OpalInputValidatorRule>) -> boolean;
 	  */
 		_validate: function _validate(rules) {
 			var _this = this;
@@ -130,13 +130,17 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 			});
 
-			this.failedRule = failedRule;
-
-			if (failedRule) {
-				this.element.setAttribute('valid', 'no');
-			} else {
-				this.element.removeAttribute('valid');
+			if (failedRule ^ this.failedRule) {
+				if (failedRule) {
+					this.element.setAttribute('valid', 'no');
+					this.emit('input-validation-error');
+				} else {
+					this.element.removeAttribute('valid');
+					this.emit('input-validation-success');
+				}
 			}
+
+			this.failedRule = failedRule;
 
 			return !failedRule;
 		}
@@ -158,19 +162,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 18:
+/***/ 10:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(71);
+	__webpack_require__(56);
 
 	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 
 
-	module.exports = Component.extend('opal-validator-rule', {
+	module.exports = Component.extend('opal-input-validator-rule', {
 		Static: {
 			props: {
 				required: { default: false, readonly: true },
@@ -180,7 +184,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				popoverTo: 'right'
 			},
 
-			template: __webpack_require__(40),
+			template: __webpack_require__(29),
 
 			assets: {
 				popover: {}
@@ -197,14 +201,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 40:
+/***/ 29:
 /***/ function(module, exports) {
 
-	module.exports = "<opal-popover class=\"opal-validator-rule__popover\" to=\"{props.popoverTo}\"> <rt-content class=\"opal-validator-rule__content\"></rt-content> </opal-popover>"
+	module.exports = "<opal-popover class=\"opal-input-validator-rule__popover\" to=\"{props.popoverTo}\"> <rt-content class=\"opal-input-validator-rule__content\"></rt-content> </opal-popover>"
 
 /***/ },
 
-/***/ 70:
+/***/ 55:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -212,7 +216,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-validator{position:relative;display:inline-block}.opal-validator[valid=no] .opal-validator__input .opal-text-input__input{border-color:red}";
+	            style.textContent = ".opal-input-validator{position:relative;display:inline-block}.opal-input-validator[valid=no] .opal-input-validator__input .opal-text-input__input{border-color:red}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -222,7 +226,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 71:
+/***/ 56:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -230,7 +234,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-validator-rule{display:block}.opal-validator-rule .opal-validator-rule__content{display:block;width:240px;text-align:center}";
+	            style.textContent = ".opal-input-validator-rule{display:block}.opal-input-validator-rule .opal-input-validator-rule__content{display:block;width:240px;text-align:center}";
 	            head.appendChild(style);
 	            return style;
 	        }

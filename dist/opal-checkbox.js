@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(43);
+	__webpack_require__(47);
 
 	var cellx = __webpack_require__(2);
 
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(22),
+			template: __webpack_require__(24),
 
 			assets: {
 				input: {
@@ -257,14 +257,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 22:
+/***/ 24:
 /***/ function(module, exports) {
 
 	module.exports = "<label class=\"opal-checkbox__label\"> <input class=\"opal-checkbox__input\" type=\"checkbox\"> <span class=\"opal-checkbox__control\" tabindex=\"{_tabIndex}\"></span> <rt-content class=\"opal-checkbox__content\"></rt-content> </label>"
 
 /***/ },
 
-/***/ 43:
+/***/ 47:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
