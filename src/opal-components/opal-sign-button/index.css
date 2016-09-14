@@ -90,9 +90,9 @@
 		@nest
 		body:not(._no-focus-highlight) & .opal-sign-button__control:focus::after {
 			position: absolute;
-			top: -2px;
+			top: -1px;
 			right: 0;
-			bottom: 0;
+			bottom: 1px;
 			left: 0;
 			border: 1px solid hsl(208,100%,60%);
 			border-radius: 3px;
