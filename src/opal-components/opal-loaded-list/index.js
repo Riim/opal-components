@@ -9,7 +9,7 @@ module.exports = Component.extend('opal-loaded-list', {
 	Static: {
 		props: {
 			dataprovider: { type: String, required: true, readonly: true },
-			nextCount: 100,
+			count: 100,
 			query: String,
 			itemAs: { default: '$item', readonly: true },
 			preloading: { default: false, readonly: true }
@@ -35,7 +35,7 @@ module.exports = Component.extend('opal-loaded-list', {
 	_lastAppliedQuery: void 0,
 
 	initialize() {
-		this.dataprovider = (this.ownerComponent || window)[this.props.dataprovider];
+		this.dataProvider = (this.ownerComponent || window)[this.props.dataprovider];
 
 		cellx.define(this, {
 			list: cellx.list(),
@@ -131,21 +131,30 @@ module.exports = Component.extend('opal-loaded-list', {
 			this._requestCallback.cancel();
 		}
 
-		let list = this.list;
 		let query = this._lastRequestedQuery = this.props.query;
+		let dataProvider = this.dataProvider;
+		let args = [query];
+
+		if (dataProvider.getItems.length >= 2) {
+			let last = this.list.get(-1);
+			args.unshift(this.props.count, last && last.value);
+		}
 
 		this.loading = true;
 
-		this.dataprovider.getItems(this.props.nextCount, list.length ? list.get(-1).value : void 0, query).then(
+		dataProvider.getItems.apply(dataProvider, args).then(
 			this._requestCallback = this.registerCallback(data => {
 				this.loading = false;
 
-				this.total = data.total;
+				let items = data.items;
+				let total = data.total;
+
+				this.total = total !== void 0 ? total : items.length;
 
 				if (query === this._lastAppliedQuery) {
-					list.addRange(data.items);
+					this.list.addRange(items);
 				} else {
-					list.clear().addRange(data.items);
+					this.list.clear().addRange(items);
 					this._lastAppliedQuery = query;
 				}
 

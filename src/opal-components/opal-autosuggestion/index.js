@@ -64,7 +64,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 	_focusedListItem: null,
 
 	initialize() {
-		this.dataprovider = (this.ownerComponent || window)[this.props.dataprovider];
+		this.dataProvider = (this.ownerComponent || window)[this.props.dataprovider];
 
 		cellx.define(this, {
 			list: cellx.list(),
@@ -94,8 +94,8 @@ module.exports = Component.extend('opal-autosuggestion', {
 	_load() {
 		this.loading = true;
 
-		this.dataprovider.getItems(this.props.count, this.assets.input.value)
-			.then(this._requestCallback = this.registerCallback(data => {
+		this.dataProvider.getItems(this.props.count, this.assets.input.value).then(
+			this._requestCallback = this.registerCallback(data => {
 				this.loading = false;
 
 				let items = data.items;
@@ -108,7 +108,8 @@ module.exports = Component.extend('opal-autosuggestion', {
 						focusedListItem.setAttribute('focused', '');
 					});
 				}
-			}));
+			})
+		);
 	},
 
 	_onInputClick() {

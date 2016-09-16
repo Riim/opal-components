@@ -97,9 +97,6 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 
 		initialize: function initialize() {
-			var dataprovider = this.props.dataprovider;
-			this[dataprovider] = (this.ownerComponent || window)[dataprovider];
-
 			cellx.define(this, {
 				viewModel: null,
 

@@ -77,7 +77,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			props: {
 				dataprovider: { type: String, required: true, readonly: true },
-				nextCount: 100,
+				count: 100,
 				query: String,
 				itemAs: { default: '$item', readonly: true },
 				preloading: { default: false, readonly: true }
@@ -103,7 +103,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		_lastAppliedQuery: void 0,
 
 		initialize: function initialize() {
-			this.dataprovider = (this.ownerComponent || window)[this.props.dataprovider];
+			this.dataProvider = (this.ownerComponent || window)[this.props.dataprovider];
 
 			cellx.define(this, {
 				list: cellx.list(),
@@ -195,20 +195,29 @@ return /******/ (function(modules) { // webpackBootstrap
 				this._requestCallback.cancel();
 			}
 
-			var list = this.list;
 			var query = this._lastRequestedQuery = this.props.query;
+			var dataProvider = this.dataProvider;
+			var args = [query];
+
+			if (dataProvider.getItems.length >= 2) {
+				var last = this.list.get(-1);
+				args.unshift(this.props.count, last && last.value);
+			}
 
 			this.loading = true;
 
-			this.dataprovider.getItems(this.props.nextCount, list.length ? list.get(-1).value : void 0, query).then(this._requestCallback = this.registerCallback(function (data) {
+			dataProvider.getItems.apply(dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {
 				_this3.loading = false;
 
-				_this3.total = data.total;
+				var items = data.items;
+				var total = data.total;
+
+				_this3.total = total !== void 0 ? total : items.length;
 
 				if (query === _this3._lastAppliedQuery) {
-					list.addRange(data.items);
+					_this3.list.addRange(items);
 				} else {
-					list.clear().addRange(data.items);
+					_this3.list.clear().addRange(items);
 					_this3._lastAppliedQuery = query;
 				}
 

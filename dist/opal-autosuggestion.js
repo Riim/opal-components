@@ -132,7 +132,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		_focusedListItem: null,
 
 		initialize: function initialize() {
-			this.dataprovider = (this.ownerComponent || window)[this.props.dataprovider];
+			this.dataProvider = (this.ownerComponent || window)[this.props.dataprovider];
 
 			cellx.define(this, {
 				list: cellx.list(),
@@ -162,7 +162,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			this.loading = true;
 
-			this.dataprovider.getItems(this.props.count, this.assets.input.value).then(this._requestCallback = this.registerCallback(function (data) {
+			this.dataProvider.getItems(this.props.count, this.assets.input.value).then(this._requestCallback = this.registerCallback(function (data) {
 				_this2.loading = false;
 
 				var items = data.items;
