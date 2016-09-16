@@ -145,7 +145,7 @@ module.exports = Component.extend('opal-input-mask', {
 
 	_onInputKeyPress(evt) {
 		let tests = this._tests;
-		let bufferLength = this._buffer.length;
+		let bufferLen = this._buffer.length;
 		let input = this._input;
 		let start = input.selectionStart;
 		let end = input.selectionEnd;
@@ -165,7 +165,7 @@ module.exports = Component.extend('opal-input-mask', {
 
 			let next = this._nextTestIndex(start - 1);
 
-			if (next < bufferLength) {
+			if (next < bufferLen) {
 				let chr = String.fromCharCode(key);
 
 				if (tests[next].test(chr)) {
@@ -179,7 +179,7 @@ module.exports = Component.extend('opal-input-mask', {
 
 					this.assets.input.emit({ type: 'input', initialEvent: evt });
 
-					if (next >= bufferLength) {
+					if (next >= bufferLen) {
 						this.emit('complete');
 					}
 				} else if (start != end) {
@@ -204,18 +204,18 @@ module.exports = Component.extend('opal-input-mask', {
 		let partialIndex = this._partialIndex;
 		let tests = this._tests;
 		let buffer = this._buffer;
-		let bufferLength = buffer.length;
+		let bufferLen = buffer.length;
 		let input = this._input;
 		let value = input.value;
-		let valueLength = value.length;
+		let valueLen = value.length;
 		let index = 0;
 		let lastMatchIndex = -1;
 
-		for (let j = 0; index < bufferLength; index++) {
+		for (let j = 0; index < bufferLen; index++) {
 			if (tests[index]) {
 				buffer[index] = null;
 
-				while (j++ < valueLength) {
+				while (j++ < valueLen) {
 					let chr = value.charAt(j - 1);
 
 					if (tests[index].test(chr)) {
@@ -225,8 +225,8 @@ module.exports = Component.extend('opal-input-mask', {
 					}
 				}
 
-				if (j > valueLength) {
-					this._clearBuffer(index + 1, bufferLength);
+				if (j > valueLen) {
+					this._clearBuffer(index + 1, bufferLen);
 					break;
 				}
 			} else {
@@ -244,7 +244,7 @@ module.exports = Component.extend('opal-input-mask', {
 			this._writeBuffer();
 		} else if (lastMatchIndex + 1 < partialIndex) {
 			input.value = '';
-			this._clearBuffer(0, bufferLength);
+			this._clearBuffer(0, bufferLen);
 		} else {
 			input.value = buffer.slice(0, lastMatchIndex + 1).join('');
 		}

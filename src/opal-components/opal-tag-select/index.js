@@ -35,6 +35,9 @@ module.exports = Component.extend('opal-tag-select', {
 	},
 
 	initialize() {
+		let dataProvider = this.props.dataprovider;		
+		this[dataProvider] = (this.ownerComponent || window)[dataProvider];
+
 		cellx.define(this, {
 			viewModel: null,
 

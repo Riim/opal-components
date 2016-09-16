@@ -224,11 +224,11 @@ module.exports = Component.extend('opal-select', {
 						}
 					});
 				} else {
-					let vmLength = vm.length;
+					let vmLen = vm.length;
 
 					value = value[0];
 
-					if (!vmLength || value != vm.get(0).value) {
+					if (!vmLen || value != vm.get(0).value) {
 						if (!this.options.some(option => {
 							let optionValue = option.value;
 
@@ -238,7 +238,7 @@ module.exports = Component.extend('opal-select', {
 									text: option.text
 								};
 
-								if (vmLength) {
+								if (vmLen) {
 									vm.set(0, item);
 								} else {
 									vm.add(item);
@@ -246,7 +246,7 @@ module.exports = Component.extend('opal-select', {
 
 								return true;
 							}
-						}) && vmLength) {
+						}) && vmLen) {
 							vm.clear();
 						}
 					}

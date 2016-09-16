@@ -315,11 +315,11 @@ return /******/ (function(modules) { // webpackBootstrap
 						});
 					} else {
 						(function () {
-							var vmLength = vm.length;
+							var vmLen = vm.length;
 
 							value = value[0];
 
-							if (!vmLength || value != vm.get(0).value) {
+							if (!vmLen || value != vm.get(0).value) {
 								if (!_this2.options.some(function (option) {
 									var optionValue = option.value;
 
@@ -329,7 +329,7 @@ return /******/ (function(modules) { // webpackBootstrap
 											text: option.text
 										};
 
-										if (vmLength) {
+										if (vmLen) {
 											vm.set(0, item);
 										} else {
 											vm.add(item);
@@ -337,7 +337,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 										return true;
 									}
-								}) && vmLength) {
+								}) && vmLen) {
 									vm.clear();
 								}
 							}

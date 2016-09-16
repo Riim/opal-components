@@ -209,7 +209,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		_onInputKeyPress: function _onInputKeyPress(evt) {
 			var tests = this._tests;
-			var bufferLength = this._buffer.length;
+			var bufferLen = this._buffer.length;
 			var input = this._input;
 			var start = input.selectionStart;
 			var end = input.selectionEnd;
@@ -230,7 +230,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				var next = this._nextTestIndex(start - 1);
 
-				if (next < bufferLength) {
+				if (next < bufferLen) {
 					var chr = String.fromCharCode(key);
 
 					if (tests[next].test(chr)) {
@@ -244,7 +244,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						this.assets.input.emit({ type: 'input', initialEvent: evt });
 
-						if (next >= bufferLength) {
+						if (next >= bufferLen) {
 							this.emit('complete');
 						}
 					} else if (start != end) {
@@ -270,18 +270,18 @@ return /******/ (function(modules) { // webpackBootstrap
 			var partialIndex = this._partialIndex;
 			var tests = this._tests;
 			var buffer = this._buffer;
-			var bufferLength = buffer.length;
+			var bufferLen = buffer.length;
 			var input = this._input;
 			var value = input.value;
-			var valueLength = value.length;
+			var valueLen = value.length;
 			var index = 0;
 			var lastMatchIndex = -1;
 
-			for (var j = 0; index < bufferLength; index++) {
+			for (var j = 0; index < bufferLen; index++) {
 				if (tests[index]) {
 					buffer[index] = null;
 
-					while (j++ < valueLength) {
+					while (j++ < valueLen) {
 						var chr = value.charAt(j - 1);
 
 						if (tests[index].test(chr)) {
@@ -291,8 +291,8 @@ return /******/ (function(modules) { // webpackBootstrap
 						}
 					}
 
-					if (j > valueLength) {
-						this._clearBuffer(index + 1, bufferLength);
+					if (j > valueLen) {
+						this._clearBuffer(index + 1, bufferLen);
 						break;
 					}
 				} else {
@@ -310,7 +310,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				this._writeBuffer();
 			} else if (lastMatchIndex + 1 < partialIndex) {
 				input.value = '';
-				this._clearBuffer(0, bufferLength);
+				this._clearBuffer(0, bufferLen);
 			} else {
 				input.value = buffer.slice(0, lastMatchIndex + 1).join('');
 			}
