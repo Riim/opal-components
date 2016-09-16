@@ -197,9 +197,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			var query = this._lastRequestedQuery = this.props.query;
 			var dataProvider = this.dataProvider;
+			var infinite = dataProvider.getItems.length >= 2;
 			var args = [query];
 
-			if (dataProvider.getItems.length >= 2) {
+			if (infinite) {
 				var last = this.list.get(-1);
 				args.unshift(this.props.count, last && last.value);
 			}
@@ -210,9 +211,8 @@ return /******/ (function(modules) { // webpackBootstrap
 				_this3.loading = false;
 
 				var items = data.items;
-				var total = data.total;
 
-				_this3.total = total !== void 0 ? total : items.length;
+				_this3.total = infinite && data.total !== void 0 ? data.total : items.length;
 
 				if (query === _this3._lastAppliedQuery) {
 					_this3.list.addRange(items);

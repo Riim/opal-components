@@ -133,9 +133,10 @@ module.exports = Component.extend('opal-loaded-list', {
 
 		let query = this._lastRequestedQuery = this.props.query;
 		let dataProvider = this.dataProvider;
+		let infinite = dataProvider.getItems.length >= 2;
 		let args = [query];
 
-		if (dataProvider.getItems.length >= 2) {
+		if (infinite) {
 			let last = this.list.get(-1);
 			args.unshift(this.props.count, last && last.value);
 		}
@@ -147,9 +148,8 @@ module.exports = Component.extend('opal-loaded-list', {
 				this.loading = false;
 
 				let items = data.items;
-				let total = data.total;
 
-				this.total = total !== void 0 ? total : items.length;
+				this.total = infinite && data.total !== void 0 ? data.total : items.length;
 
 				if (query === this._lastAppliedQuery) {
 					this.list.addRange(items);
