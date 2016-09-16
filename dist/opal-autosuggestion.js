@@ -162,7 +162,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			this.loading = true;
 
-			this.dataProvider.getItems(this.props.count, this.assets.input.value).then(this._requestCallback = this.registerCallback(function (data) {
+			var dataProvider = this.dataProvider;
+			var args = [this.assets.input.value];
+
+			if (dataProvider.getItems.length >= 2) {
+				args.unshift(this.props.count);
+			}
+
+			dataProvider.getItems.apply(dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {
 				_this2.loading = false;
 
 				var items = data.items;

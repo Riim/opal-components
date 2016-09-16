@@ -94,7 +94,14 @@ module.exports = Component.extend('opal-autosuggestion', {
 	_load() {
 		this.loading = true;
 
-		this.dataProvider.getItems(this.props.count, this.assets.input.value).then(
+		let dataProvider = this.dataProvider;
+		let args = [this.assets.input.value];
+
+		if (dataProvider.getItems.length >= 2) {
+			args.unshift(this.props.count);
+		}
+
+		dataProvider.getItems.apply(dataProvider, args).then(
 			this._requestCallback = this.registerCallback(data => {
 				this.loading = false;
 
