@@ -79,7 +79,8 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			props: {
 				dataprovider: { type: String, required: true, readonly: true },
-				minLength: 3
+				minQueryLength: 3,
+				count: 5
 			},
 
 			i18n: {
@@ -108,7 +109,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						this._cancelLoading();
 						this.list.clear();
 
-						if (evt.target.value.length >= this.props.minLength) {
+						if (evt.target.value.length >= this.props.minQueryLength) {
 							this._loadingPlanned = true;
 
 							this._loadingTimeout = this.setTimeout(function () {
@@ -161,7 +162,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			this.loading = true;
 
-			this.dataprovider.getItems(this.assets.input.value).then(this._requestCallback = this.registerCallback(function (data) {
+			this.dataprovider.getItems(this.props.count, this.assets.input.value).then(this._requestCallback = this.registerCallback(function (data) {
 				_this2.loading = false;
 
 				var items = data.items;

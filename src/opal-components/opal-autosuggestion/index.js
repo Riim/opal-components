@@ -11,7 +11,8 @@ module.exports = Component.extend('opal-autosuggestion', {
 	Static: {
 		props: {
 			dataprovider: { type: String, required: true, readonly: true },
-			minLength: 3
+			minQueryLength: 3,
+			count: 5
 		},
 
 		i18n: {
@@ -40,7 +41,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 					this._cancelLoading();
 					this.list.clear();
 
-					if (evt.target.value.length >= this.props.minLength) {
+					if (evt.target.value.length >= this.props.minQueryLength) {
 						this._loadingPlanned = true;
 
 						this._loadingTimeout = this.setTimeout(() => {
@@ -93,20 +94,21 @@ module.exports = Component.extend('opal-autosuggestion', {
 	_load() {
 		this.loading = true;
 
-		this.dataprovider.getItems(this.assets.input.value).then(this._requestCallback = this.registerCallback(data => {
-			this.loading = false;
+		this.dataprovider.getItems(this.props.count, this.assets.input.value)
+			.then(this._requestCallback = this.registerCallback(data => {
+				this.loading = false;
 
-			let items = data.items;
+				let items = data.items;
 
-			if (items.length) {
-				this.list.addRange(items);
+				if (items.length) {
+					this.list.addRange(items);
 
-				Cell.afterRelease(() => {
-					let focusedListItem = this._focusedListItem = this._listItems[0];
-					focusedListItem.setAttribute('focused', '');
-				});
-			}
-		}));
+					Cell.afterRelease(() => {
+						let focusedListItem = this._focusedListItem = this._listItems[0];
+						focusedListItem.setAttribute('focused', '');
+					});
+				}
+			}));
 	},
 
 	_onInputClick() {
