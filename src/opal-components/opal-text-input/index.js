@@ -9,6 +9,7 @@ module.exports = Component.extend('opal-text-input', {
 			inputType: 'text',
 			multiline: false,
 			size: 'm',
+			rows: 5,
 			value: '',
 			placeholder: '',
 			clearable: false,
