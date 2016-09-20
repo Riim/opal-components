@@ -73,7 +73,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	var PathNodeType = __webpack_require__(4);
 	var parsePath = __webpack_require__(15);
 
-	var createObject = Object.create;
 	var forEach = Array.prototype.forEach;
 
 	module.exports = Component.extend('opal-router', {
@@ -162,7 +161,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					var state = route.properties.reduce(function (state, prop, index) {
 						state[prop.name] = prop.optional ? !!match[index + 1] : match[index + 1];
 						return state;
-					}, createObject(null));
+					}, Object.create(null));
 
 					if (route === _this._route) {
 						var componentEl = _this._componentElement;
@@ -170,9 +169,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						for (var _i = attrs.length; _i;) {
 							var attr = attrs.item(--_i);
+							var name = attr.name;
 
-							if (!(attr.name in state)) {
-								componentEl.removeAttribute(attr.name);
+							if (name != 'class' && !(name in state)) {
+								componentEl.removeAttribute(name);
 							}
 						}
 

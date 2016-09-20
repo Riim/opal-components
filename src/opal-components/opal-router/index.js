@@ -6,7 +6,6 @@ let escapeRegExp = require('./escapeRegExp');
 let PathNodeType = require('./PathNodeType');
 let parsePath = require('./parsePath');
 
-let createObject = Object.create;
 let forEach = Array.prototype.forEach;
 
 module.exports = Component.extend('opal-router', {
@@ -95,7 +94,7 @@ module.exports = Component.extend('opal-router', {
 				let state = route.properties.reduce((state, prop, index) => {
 					state[prop.name] = prop.optional ? !!match[index + 1] : match[index + 1];
 					return state;
-				}, createObject(null));
+				}, Object.create(null));
 
 				if (route === this._route) {
 					let componentEl = this._componentElement;
@@ -103,9 +102,10 @@ module.exports = Component.extend('opal-router', {
 
 					for (let i = attrs.length; i;) {
 						let attr = attrs.item(--i);
+						let name = attr.name;
 
-						if (!(attr.name in state)) {
-							componentEl.removeAttribute(attr.name);
+						if (name != 'class' && !(name in state)) {
+							componentEl.removeAttribute(name);
 						}
 					}
 

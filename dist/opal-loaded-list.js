@@ -71,8 +71,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Component = _require2.Component;
 
 
-	var createObject = Object.create;
-
 	module.exports = Component.extend('opal-loaded-list', {
 		Static: {
 			props: {
@@ -227,7 +225,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			}));
 		},
 		_getContentContext: function _getContentContext(content) {
-			return mixin(createObject(this.props.context), content.props.context);
+			return mixin(Object.create(this.props.context), content.props.context);
 		}
 	});
 

@@ -3,8 +3,6 @@ require('./index.css');
 let { Utils: { mixin }, cellx } = require('cellx');
 let { getText, ComponentTemplate, Component } = require('rionite');
 
-let createObject = Object.create;
-
 module.exports = Component.extend('opal-loaded-list', {
 	Static: {
 		props: {
@@ -166,6 +164,6 @@ module.exports = Component.extend('opal-loaded-list', {
 	},
 
 	_getContentContext(content) {
-		return mixin(createObject(this.props.context), content.props.context);
+		return mixin(Object.create(this.props.context), content.props.context);
 	}
 });
