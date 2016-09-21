@@ -135,8 +135,7 @@ module.exports = Component.extend('opal-loaded-list', {
 		let args = [query];
 
 		if (infinite) {
-			let last = this.list.get(-1);
-			args.unshift(this.props.count, last && last.value);
+			args.unshift(this.props.count, this.list.length ? this.list.get(-1).value : null);
 		}
 
 		this.loading = true;

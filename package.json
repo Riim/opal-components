@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.1.109",
+  "version": "0.1.110",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "collapse-html-whitespaces-loader": "^0.1.2",
     "eslint": "^3.5.0",
     "eslint-loader": "^1.5.0",
-    "glob": "^7.0.6",
+    "glob": "^7.1.0",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-sizereport": "^1.2.0",

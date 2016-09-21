@@ -199,8 +199,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			var args = [query];
 
 			if (infinite) {
-				var last = this.list.get(-1);
-				args.unshift(this.props.count, last && last.value);
+				args.unshift(this.props.count, this.list.length ? this.list.get(-1).value : null);
 			}
 
 			this.loading = true;
