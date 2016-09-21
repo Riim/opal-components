@@ -21,12 +21,14 @@
 
 		{{block menu }}
 			<opal-popover class="opal-select__menu" to="{props.popoverTo}" auto-closing>
-				<opal-filtered-list class="opal-select__filtered-list">
-					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
-							dataprovider="{props.dataprovider}">
-						<opal-select-option value="{$item.value}" text="{$item.text}"></opal-select-option>
-					</opal-loaded-list>
-				</opal-filtered-list>
+				<rt-content select=".opal-tag-select__menu-inner">
+					<opal-filtered-list class="opal-tag-select__menu-inner opal-select__filtered-list">
+						<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
+								dataprovider="{props.dataprovider}">
+							<opal-select-option value="{$item.value}" text="{$item.text}"></opal-select-option>
+						</opal-loaded-list>
+					</opal-filtered-list>
+				</rt-content>
 			</opal-popover>
 		{{/block}}
 	</opal-select>
