@@ -72,7 +72,8 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			props: {
 				type: String,
-				dataprovider: { type: String, required: true, readonly: true },
+				// необязательный, так как может указываться на передаваемом opal-loaded-list
+				dataprovider: { type: String, readonly: true },
 				viewModel: { type: String, readonly: true },
 				placeholder: getText.t('Не выбрано'),
 				popoverTo: 'bottom',
@@ -98,7 +99,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 		initialize: function initialize() {
 			var dataProvider = this.props.dataprovider;
-			this[dataProvider] = (this.ownerComponent || window)[dataProvider];
+
+			if (dataProvider) {
+				this[dataProvider] = (this.ownerComponent || window)[dataProvider];
+			}
 
 			cellx.define(this, {
 				viewModel: null,
