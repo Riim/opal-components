@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(50);
+	__webpack_require__(51);
 
 	var _require = __webpack_require__(1);
 
@@ -81,7 +81,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				isRequiredField: getText.t('Поле обязательно для заполнения')
 			},
 
-			template: new ComponentTemplate(__webpack_require__(26)),
+			template: new ComponentTemplate(__webpack_require__(27)),
 
 			assets: {
 				input: {}
@@ -121,14 +121,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 26:
+/***/ 27:
 /***/ function(module, exports) {
 
 	module.exports = "{{block validation }} <opal-input-validator> {{block validation_rules }} <template is=\"rt-if-then\" if=\"props.required\" rt-silent=\"\"> <opal-input-validator-rule required=\"\" popover-to=\"{props.popoverTo}\">{{i18n.isRequiredField}}</opal-input-validator-rule> </template> <opal-input-validator-rule test=\"isExistDate\" popover-to=\"{props.popoverTo}\">{{i18n.nonExistentDate}}</opal-input-validator-rule> {{/block}} {{block input_mask }} <opal-input-mask mask=\"{props.mask}\"> {{block input }} <opal-text-input class=\"opal-date-input__input opal-input-validator__input opal-input-mask__input\" placeholder=\"{props.placeholder}\"></opal-text-input> {{/block}} </opal-input-mask> {{/block}} </opal-input-validator> {{/block}}"
 
 /***/ },
 
-/***/ 50:
+/***/ 51:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

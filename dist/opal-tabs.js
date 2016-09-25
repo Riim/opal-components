@@ -57,14 +57,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(71);
+	__webpack_require__(72);
 
 	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 
-	var OpalTabList = __webpack_require__(17);
-	var OpalTabPanel = __webpack_require__(19);
+	var OpalTabList = __webpack_require__(18);
+	var OpalTabPanel = __webpack_require__(20);
 
 	var indexOf = Array.prototype.indexOf;
 	var forEach = Array.prototype.forEach;
@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			OpalTabList: OpalTabList,
 			OpalTabPanel: OpalTabPanel,
 
-			template: __webpack_require__(40),
+			template: __webpack_require__(41),
 
 			assets: {
 				tabList: {
@@ -153,18 +153,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 17:
+/***/ 18:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(72);
+	__webpack_require__(73);
 
 	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 
-	var OpalTab = __webpack_require__(18);
+	var OpalTab = __webpack_require__(19);
 
 	module.exports = Component.extend('opal-tab-list', {
 		Static: {
@@ -175,12 +175,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 18:
+/***/ 19:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(73);
+	__webpack_require__(74);
 
 	var cellx = __webpack_require__(2);
 
@@ -198,7 +198,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(41),
+			template: __webpack_require__(42),
 
 			assets: {
 				button: {
@@ -342,12 +342,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 19:
+/***/ 20:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(74);
+	__webpack_require__(75);
 
 	var _require = __webpack_require__(1);
 
@@ -366,21 +366,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 40:
+/***/ 41:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content select=\"opal-tab-list\"> <opal-tab-list> <rt-content class=\"opal-tabs__tabs\" select=\"opal-tab\"></rt-content> </opal-tab-list> </rt-content> <rt-content class=\"opal-tabs__panels\" select=\"opal-tab-panel\"></rt-content>"
 
 /***/ },
 
-/***/ 41:
+/***/ 42:
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"opal-tab__button\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-tab__content\"></rt-content> </span>"
 
 /***/ },
 
-/***/ 71:
+/***/ 72:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -398,7 +398,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 72:
+/***/ 73:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -416,7 +416,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 73:
+/***/ 74:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -434,7 +434,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 74:
+/***/ 75:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

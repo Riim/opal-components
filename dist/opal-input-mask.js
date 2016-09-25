@@ -83,7 +83,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				mask: { type: String, required: true }
 			},
 
-			template: __webpack_require__(28),
+			template: __webpack_require__(29),
 
 			assets: {
 				input: {}
@@ -433,7 +433,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(54);
+	__webpack_require__(55);
 
 	var _require = __webpack_require__(1);
 
@@ -451,14 +451,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 28:
+/***/ 29:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content class=\"opal-input-mask__content\"></rt-content>"
 
 /***/ },
 
-/***/ 54:
+/***/ 55:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

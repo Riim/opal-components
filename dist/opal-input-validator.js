@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(55);
+	__webpack_require__(56);
 
 	var cellx = __webpack_require__(2);
 
@@ -169,7 +169,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(56);
+	__webpack_require__(57);
 
 	var _require = __webpack_require__(1);
 
@@ -186,7 +186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				popoverTo: 'right'
 			},
 
-			template: __webpack_require__(29),
+			template: __webpack_require__(30),
 
 			assets: {
 				popover: {}
@@ -203,14 +203,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 29:
+/***/ 30:
 /***/ function(module, exports) {
 
 	module.exports = "<opal-popover class=\"opal-input-validator-rule__popover\" to=\"{props.popoverTo}\"> <rt-content class=\"opal-input-validator-rule__content\"></rt-content> </opal-popover>"
 
 /***/ },
 
-/***/ 55:
+/***/ 56:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -228,7 +228,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 56:
+/***/ 57:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

@@ -5,6 +5,7 @@ let { Utils: { nextTick }, cellx } = require('cellx');
 let { IndexedList } = require('cellx-indexed-collections');
 let { getText, ComponentTemplate, Component, Components: { RtRepeat } } = require('rionite');
 let OpalSelectOption = require('./opal-select-option');
+let isEqualArray = require('./isEqualArray');
 
 let map = Array.prototype.map;
 
@@ -82,6 +83,8 @@ module.exports = Component.extend('opal-select', {
 
 						this.close();
 						this.focus();
+
+						this.emit('change');
 					}
 				},
 
@@ -97,6 +100,8 @@ module.exports = Component.extend('opal-select', {
 
 						this.close();
 						this.focus();
+
+						this.emit('change');
 					}
 				}
 			},
@@ -108,6 +113,8 @@ module.exports = Component.extend('opal-select', {
 
 	_opened: false,
 	_focused: false,
+
+	_valueWhenOpened: null,
 
 	initialize() {
 		let vm = this.props.viewModel;
@@ -259,13 +266,8 @@ module.exports = Component.extend('opal-select', {
 		}
 	},
 
-	_onViewModelChange(evt) {
+	_onViewModelChange() {
 		this._updateOptions();
-
-		this.emit({
-			type: 'change',
-			value: evt.value
-		});
 	},
 
 	_updateOptions() {
@@ -282,6 +284,7 @@ module.exports = Component.extend('opal-select', {
 	open() {
 		if (!this._opened) {
 			this._opened = true;
+			this._valueWhenOpened = this.viewModel.map(item => item.value);
 
 			let assets = this.assets;
 
@@ -326,6 +329,10 @@ module.exports = Component.extend('opal-select', {
 
 			if (!this._focused) {
 				this._documentKeyDownListening.stop();
+			}
+
+			if (this.props.multiple && !isEqualArray(this.viewModel.map(item => item.value), this._valueWhenOpened)) {
+				this.emit('change');
 			}
 
 			return true;

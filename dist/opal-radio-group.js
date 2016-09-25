@@ -113,7 +113,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(63);
+	__webpack_require__(64);
 
 	var cellx = __webpack_require__(2);
 
@@ -131,7 +131,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(34),
+			template: __webpack_require__(35),
 
 			assets: {
 				input: {
@@ -289,14 +289,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 34:
+/***/ 35:
 /***/ function(module, exports) {
 
 	module.exports = "<label class=\"opal-radio-button__label\"> <input class=\"opal-radio-button__input\" type=\"checkbox\"> <span class=\"opal-radio-button__control\" tabindex=\"{_tabIndex}\"></span> <rt-content class=\"opal-radio-button__content\"></rt-content> </label>"
 
 /***/ },
 
-/***/ 63:
+/***/ 64:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

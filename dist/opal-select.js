@@ -59,8 +59,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	__webpack_require__(65);
-	__webpack_require__(78);
+	__webpack_require__(66);
+	__webpack_require__(79);
 
 	var _require = __webpack_require__(2);
 
@@ -78,7 +78,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Component = _require3.Component;
 	var RtRepeat = _require3.Components.RtRepeat;
 
-	var OpalSelectOption = __webpack_require__(16);
+	var OpalSelectOption = __webpack_require__(17);
+	var isEqualArray = __webpack_require__(16);
 
 	var map = Array.prototype.map;
 
@@ -99,7 +100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: new ComponentTemplate(__webpack_require__(35)),
+			template: new ComponentTemplate(__webpack_require__(36)),
 
 			assets: {
 				button: {
@@ -154,6 +155,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 							this.close();
 							this.focus();
+
+							this.emit('change');
 						}
 					},
 					'on-deselect': function onDeselect(_ref2) {
@@ -170,6 +173,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 							this.close();
 							this.focus();
+
+							this.emit('change');
 						}
 					}
 				},
@@ -181,6 +186,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 		_opened: false,
 		_focused: false,
+
+		_valueWhenOpened: null,
 
 		initialize: function initialize() {
 			var vm = this.props.viewModel;
@@ -350,13 +357,8 @@ return /******/ (function(modules) { // webpackBootstrap
 				vm.clear();
 			}
 		},
-		_onViewModelChange: function _onViewModelChange(evt) {
+		_onViewModelChange: function _onViewModelChange() {
 			this._updateOptions();
-
-			this.emit({
-				type: 'change',
-				value: evt.value
-			});
 		},
 		_updateOptions: function _updateOptions() {
 			var vm = this.viewModel;
@@ -376,6 +378,9 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (!this._opened) {
 				var _ret3 = function () {
 					_this3._opened = true;
+					_this3._valueWhenOpened = _this3.viewModel.map(function (item) {
+						return item.value;
+					});
 
 					var assets = _this3.assets;
 
@@ -426,6 +431,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				if (!this._focused) {
 					this._documentKeyDownListening.stop();
+				}
+
+				if (this.props.multiple && !isEqualArray(this.viewModel.map(function (item) {
+					return item.value;
+				}), this._valueWhenOpened)) {
+					this.emit('change');
 				}
 
 				return true;
@@ -642,11 +653,36 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ },
 
 /***/ 16:
+/***/ function(module, exports) {
+
+	"use strict";
+
+	function isEqualArray(arr1, arr2) {
+		var len = arr1.length;
+
+		if (len != arr2.length) {
+			return false;
+		}
+
+		for (var i = 0; i < len; i++) {
+			if (arr1[i] !== arr2[i]) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	module.exports = isEqualArray;
+
+/***/ },
+
+/***/ 17:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(66);
+	__webpack_require__(67);
 
 	var cellx = __webpack_require__(2);
 
@@ -666,7 +702,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(36),
+			template: __webpack_require__(37),
 
 			assets: {
 				control: {
@@ -833,21 +869,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 35:
+/***/ 36:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content select=\".opal-select__button\"> {{block button }} <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> <template is=\"rt-if-then\" if=\"props.text\" rt-silent=\"\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\" rt-silent=\"\">{text}</template> {{block icon_chevron_down }} <svg viewBox=\"0 0 32 18\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-select__icon-chevron-down\"></use></svg> {{/block}} </opal-button> {{/block}} </rt-content> <rt-content select=\".opal-select__menu\"> <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> <rt-content select=\".opal-select__menu-inner\"> <span class=\"opal-select__menu-inner\"> {{block options }} <rt-content select=\"opal-select-option\"></rt-content> {{/block}} </span> </rt-content> </opal-dropdown> </rt-content>"
 
 /***/ },
 
-/***/ 36:
+/***/ 37:
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"opal-select-option__control\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-select-option__content\">{props.text}</rt-content> </span>"
 
 /***/ },
 
-/***/ 65:
+/***/ 66:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -855,7 +891,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-select{position:relative;display:inline-block;line-height:normal}.opal-select .opal-select__button{min-width:100%}.opal-select .opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:14px;height:14px;vertical-align:middle;transition:-webkit-transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;fill:currentColor}.opal-select .opal-select__button[size=s] .opal-select__icon-chevron-down{width:12px;height:12px}.opal-select .opal-select__button[checked] .opal-select__icon-chevron-down{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-popover{padding:6px 0;min-width:100px}.opal-select .opal-filtered-list .opal-filtered-list__query-input-wrapper{margin:10px}.opal-select .opal-loaded-list{height:300px}";
+	            style.textContent = ".opal-select{position:relative;display:inline-block;line-height:normal}.opal-select .opal-select__button{min-width:100%}.opal-select .opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:14px;height:14px;vertical-align:middle;transition:transform .1s linear;fill:currentColor}.opal-select .opal-select__button[size=s] .opal-select__icon-chevron-down{width:12px;height:12px}.opal-select .opal-select__button[checked] .opal-select__icon-chevron-down{-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-popover{padding:6px 0;min-width:100px}.opal-select .opal-filtered-list .opal-filtered-list__query-input-wrapper{margin:10px}.opal-select .opal-loaded-list{height:300px}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -865,7 +901,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 66:
+/***/ 67:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -883,7 +919,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 78:
+/***/ 79:
 /***/ function(module, exports) {
 
 	(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 18\" id=\"opal-select__icon-chevron-down\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 2l14 14L30 2\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();

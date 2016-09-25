@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(52);
+	__webpack_require__(53);
 
 	var _require = __webpack_require__(1);
 
@@ -67,7 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = Component.extend('opal-filtered-list', {
 		Static: {
-			template: new ComponentTemplate(__webpack_require__(27)),
+			template: new ComponentTemplate(__webpack_require__(28)),
 
 			assets: {
 				queryInput: {
@@ -94,14 +94,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 27:
+/***/ 28:
 /***/ function(module, exports) {
 
 	module.exports = "{{block query }} <rt-content class=\"opal-filtered-list__query-input-wrapper\" select=\".opal-filtered-list__query-input\"> {{block query_input }} <opal-text-input class=\"opal-filtered-list__query-input\"></opal-text-input> {{/block}} </rt-content> {{/block}} {{block list }} <rt-content class=\"opal-filtered-list__loaded-list-wrapper\" select=\".opal-filtered-list__loaded-list\"></rt-content> {{/block}}"
 
 /***/ },
 
-/***/ 52:
+/***/ 53:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

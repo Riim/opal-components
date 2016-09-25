@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(45);
+	__webpack_require__(46);
 
 	var cellx = __webpack_require__(2);
 
@@ -80,7 +80,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				disabled: false
 			},
 
-			template: __webpack_require__(22),
+			template: __webpack_require__(23),
 
 			assets: {
 				control: {
@@ -220,14 +220,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 22:
+/***/ 23:
 /***/ function(module, exports) {
 
 	module.exports = "<template is=\"rt-if-then\" if=\"props.href\" rt-silent=\"\"> <a class=\"opal-button__control\" href=\"{props.href}\" tabindex=\"{_tabIndex}\"><rt-content class=\"opal-button__content\"></rt-content></a> </template> <template is=\"rt-if-else\" if=\"props.href\" rt-silent=\"\"> <button class=\"opal-button__control\" type=\"{props.controlType}\" tabindex=\"{_tabIndex}\"><rt-content class=\"opal-button__content\"></rt-content></button> </template>"
 
 /***/ },
 
-/***/ 45:
+/***/ 46:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

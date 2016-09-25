@@ -57,14 +57,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(48);
 	__webpack_require__(49);
+	__webpack_require__(50);
 
 	var _require = __webpack_require__(1);
 
 	var Component = _require.Component;
 
-	var Prism = __webpack_require__(20);
+	var Prism = __webpack_require__(21);
 
 	function prepareCode(code, html) {
 		code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
@@ -87,7 +87,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = Component.extend('opal-code-listing', {
 		Static: {
-			template: __webpack_require__(25),
+			template: __webpack_require__(26),
 
 			assets: {
 				htmlCode: {},
@@ -119,7 +119,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 20:
+/***/ 21:
 /***/ function(module, exports) {
 
 	
@@ -907,14 +907,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 25:
+/***/ 26:
 /***/ function(module, exports) {
 
 	module.exports = "<opal-tabs> <opal-tab>HTML</opal-tab> <opal-tab-panel> <pre class=\"opal-code-listing__html-code-wrapper\"><code class=\"opal-code-listing__html-code\"></code></pre> </opal-tab-panel> <opal-tab>JS</opal-tab> <opal-tab-panel> <pre class=\"opal-code-listing__js-code-wrapper\"><code class=\"opal-code-listing__js-code\"></code></pre> </opal-tab-panel> </opal-tabs> <rt-content class=\"opal-code-listing__example-html-wrapper\" select=\".opal-code-listing__example-html\"></rt-content> <rt-content class=\"opal-code-listing__example-js-wrapper\" select=\".opal-code-listing__example-js\"></rt-content>"
 
 /***/ },
 
-/***/ 48:
+/***/ 49:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -922,7 +922,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-code-listing{display:block;margin-bottom:30px}.opal-code-listing .opal-code-listing__html-code-wrapper,.opal-code-listing .opal-code-listing__js-code-wrapper{overflow:auto;margin:0;color:#000;text-align:left;white-space:pre;word-spacing:normal;word-wrap:normal;word-break:normal;-moz-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;font-weight:700;font-size:16px;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;line-height:1.5}.opal-code-listing .opal-code-listing__example-html-wrapper{position:relative;display:block;padding:29px;border:1px solid #dbdbdb;border-radius:3px;background:#fff}.opal-code-listing .opal-code-listing__example-html-wrapper::before{position:absolute;top:0;left:29px;padding:0 10px;border:1px solid #dbdbdb;border-radius:3px;background:#f5f5f5;content:'Result';font:14px/28px Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}";
+	            style.textContent = ".opal-code-listing{display:block;margin-bottom:30px}.opal-code-listing .opal-code-listing__html-code-wrapper,.opal-code-listing .opal-code-listing__js-code-wrapper{overflow:auto;margin:0;color:#000;text-align:left;white-space:pre;word-spacing:normal;word-wrap:normal;word-break:normal;-moz-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;font-weight:700;font-size:16px;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;line-height:1.5}.opal-code-listing .opal-code-listing__example-html-wrapper{position:relative;display:block;padding:29px;border:1px solid #dbdbdb;border-radius:3px;background:#fff}.opal-code-listing .opal-code-listing__example-html-wrapper::before{position:absolute;top:0;left:29px;padding:0 10px;border:1px solid #dbdbdb;border-radius:3px;background:#f5f5f5;content:'Result';font:14px/28px Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;-ms-transform:translateY(-50%);transform:translateY(-50%)}";
 	            head.appendChild(style);
 	            return style;
 	        }
@@ -932,7 +932,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 49:
+/***/ 50:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
