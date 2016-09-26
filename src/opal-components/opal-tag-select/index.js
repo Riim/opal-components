@@ -9,6 +9,7 @@ module.exports = Component.extend('opal-tag-select', {
 			type: String,
 			// необязательный, так как может указываться на передаваемом opal-loaded-list
 			dataprovider: { type: String, readonly: true },
+			value: Object,
 			viewModel: { type: String, readonly: true },
 			placeholder: getText.t('Не выбрано'),
 			popoverTo: 'bottom',
