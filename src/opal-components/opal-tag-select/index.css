@@ -110,4 +110,21 @@
 				background: hsl(208,80%,28%);
 			}
 	}
+
+	&[type=danger] {
+		& .opal-tag-select__tag {
+			background: hsl(348,96%,52%);
+		}
+			& .opal-tag-select__btn-remove-tag {
+				background: hsl(348,86%,42%);
+			}
+
+			& .opal-tag-select__btn-remove-tag:hover {
+				background: hsl(348,96%,52%);
+			}
+
+			& .opal-tag-select__btn-remove-tag:active {
+				background: hsl(348,76%,32%);
+			}
+	}
 }
