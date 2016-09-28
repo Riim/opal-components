@@ -127,3 +127,13 @@
 		border-bottom-right-radius: 0;
 	}
 }
+
+.opal-button[type=clean] {
+	& .opal-button__control {
+		padding: 0;
+		border: 0;
+		background: transparent;
+		cursor: pointer;
+		user-select: none;
+	}
+}
