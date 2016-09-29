@@ -32,6 +32,12 @@ module.exports = Component.extend('opal-tag-select', {
 				}
 			},
 
+			placeholder: {
+				'on-click'() {
+					this.assets.select.toggle();
+				}
+			},
+
 			select: {}
 		}
 	},

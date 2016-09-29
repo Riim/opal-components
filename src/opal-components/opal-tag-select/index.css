@@ -85,6 +85,7 @@
 	& .opal-tag-select__placeholder {
 		display: inline-block;
 		line-height: 36px;
+		cursor: pointer;
 	}
 
 	& .opal-tag-select__select {
