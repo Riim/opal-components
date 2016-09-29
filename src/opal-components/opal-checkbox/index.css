@@ -3,6 +3,9 @@
 	display: inline-block;
 
 	& .opal-checkbox__label {
+		white-space: nowrap;
+		cursor: pointer;
+		user-select: none;
 	}
 		& .opal-checkbox__input {
 			display: none;

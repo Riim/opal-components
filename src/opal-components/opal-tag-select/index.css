@@ -1,15 +1,7 @@
 .opal-tag-select {
 	display: inline-block;
 
-	&::after {
-		display: table;
-		clear: both;
-		content: '';
-	}
-
 	& .opal-tag-select__tags {
-		font: 16px/32px Verdana, Geneva, sans-serif;
-		font-weight: normal;
 	}
 		& .opal-tag-select__tag {
 			position: relative;
@@ -24,11 +16,8 @@
 			vertical-align: middle;
 			text-decoration: none;
 			text-shadow: none;
-			transition: background .1s;
-		}
-
-		& .opal-tag-select__tag:last-child {
-			margin-right: 32px;
+			font: 16px/32px Verdana, Geneva, sans-serif;
+			font-weight: normal;
 		}
 			& .opal-tag-select__btn-remove-tag {
 				position: absolute;
@@ -44,6 +33,7 @@
 				background: hsl(208,16%,38%);
 				box-shadow: inset 1px 0 rgba(0,0,0,.4);
 				cursor: pointer;
+				transition: background .1s;
 			}
 				& .opal-tag-select__btn-remove-tag::before {
 					position: absolute;
@@ -82,16 +72,18 @@
 				background: hsl(208,6%,28%);
 			}
 
-	& .opal-tag-select__placeholder {
-		display: inline-block;
-		line-height: 36px;
+	& .opal-tag-select__control {
+		white-space: nowrap;
 		cursor: pointer;
+		user-select: none;
 	}
-
-	& .opal-tag-select__select {
-	}
-		& .opal-tag-select__select-button {
+		& .opal-tag-select__placeholder {
 		}
+
+		& .opal-tag-select__select {
+		}
+			& .opal-tag-select__select-button {
+			}
 
 	/* States */
 

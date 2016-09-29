@@ -32,9 +32,17 @@ module.exports = Component.extend('opal-tag-select', {
 				}
 			},
 
-			placeholder: {
-				'on-click'() {
-					this.assets.select.toggle();
+			control: {
+				'on-click'(evt, control) {
+					let select = this.assets.select;
+					let selectEl = select.element;
+
+					for (let node = evt.target; node != selectEl; node = node.parentNode) {
+						if (node == control) {
+							select.toggle();
+							break;
+						}
+					}
 				}
 			},
 

@@ -1,10 +1,9 @@
 .opal-sign-button {
+	position: relative;
 	display: inline-block;
-	vertical-align: middle;
 
 	& .opal-sign-button__control {
-		position: relative;
-		display: block;
+		white-space: nowrap;
 		cursor: pointer;
 		user-select: none;
 	}
@@ -100,9 +99,9 @@
 			pointer-events: none;
 		}
 
-	& .opal-sign-button__control:active,
-	&[checked] .opal-sign-button__control {
-		top: 1px;
+	& .opal-sign-button__control:active .opal-sign-button__sign,
+	&[checked] .opal-sign-button__control .opal-sign-button__sign {
+		top: 0;
 	}
 
 	&[disabled] {

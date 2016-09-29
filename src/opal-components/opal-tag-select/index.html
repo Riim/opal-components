@@ -8,28 +8,30 @@
 	</template>
 </span>
 
-<template is="rt-if-then" if="placeholderShown" rt-silent>
-	<span class="opal-tag-select__placeholder">{props.placeholder}</span>
-</template>
+<span class="opal-tag-select__control">
+	<template is="rt-if-then" if="placeholderShown" rt-silent>
+		<span class="opal-tag-select__placeholder">{props.placeholder}</span>
+	</template>
 
-{{block select }}
-	<opal-select class="opal-tag-select__select" value="{props.value}" view-model="{props.viewModel}" multiple>
-		{{block select_button }}
-			<opal-sign-button class="opal-tag-select__select-button opal-select__button" sign="plus"
-					checkable></opal-sign-button>
-		{{/block}}
+	{{block select }}
+		<opal-select class="opal-tag-select__select" value="{props.value}" view-model="{props.viewModel}" multiple>
+			{{block select_button }}
+				<opal-sign-button class="opal-tag-select__select-button opal-select__button" sign="plus"
+						checkable></opal-sign-button>
+			{{/block}}
 
-		{{block menu }}
-			<opal-popover class="opal-select__menu" to="{props.popoverTo}" auto-closing>
-				<rt-content select=".opal-tag-select__menu-inner">
-					<opal-filtered-list class="opal-tag-select__menu-inner opal-select__filtered-list">
-						<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
-								dataprovider="{props.dataprovider}">
-							<opal-select-option value="{$item.value}" text="{$item.text}"></opal-select-option>
-						</opal-loaded-list>
-					</opal-filtered-list>
-				</rt-content>
-			</opal-popover>
-		{{/block}}
-	</opal-select>
-{{/block}}
+			{{block menu }}
+				<opal-popover class="opal-select__menu" to="{props.popoverTo}" auto-closing>
+					<rt-content select=".opal-tag-select__menu-inner">
+						<opal-filtered-list class="opal-tag-select__menu-inner opal-select__filtered-list">
+							<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
+									dataprovider="{props.dataprovider}">
+								<opal-select-option value="{$item.value}" text="{$item.text}"></opal-select-option>
+							</opal-loaded-list>
+						</opal-filtered-list>
+					</rt-content>
+				</opal-popover>
+			{{/block}}
+		</opal-select>
+	{{/block}}
+</span>
