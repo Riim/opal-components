@@ -3,9 +3,6 @@
 	display: inline-block;
 
 	& .opal-switch__label {
-		white-space: nowrap;
-		cursor: pointer;
-		user-select: none;
 	}
 		& .opal-switch__input {
 			display: none;

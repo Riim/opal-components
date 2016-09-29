@@ -3,9 +3,6 @@
 	display: inline-block;
 
 	& .opal-radio-button__label {
-		white-space: nowrap;
-		cursor: pointer;
-		user-select: none;
 	}
 		& .opal-radio-button__input {
 			display: none;
