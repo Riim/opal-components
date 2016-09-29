@@ -72,6 +72,16 @@
 				background: hsl(208,6%,28%);
 			}
 
+		& .opal-tag-select__tag[disabled] {
+			margin-right: 3px;
+			padding-right: 16px;
+			border-top-right-radius: 16px;
+			border-bottom-right-radius: 16px;
+		}
+			& .opal-tag-select__tag[disabled] .opal-tag-select__btn-remove-tag {
+				display: none;
+			}
+
 	& .opal-tag-select__control {
 		white-space: nowrap;
 		cursor: pointer;

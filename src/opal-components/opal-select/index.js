@@ -274,7 +274,14 @@ module.exports = Component.extend('opal-select', {
 		let vm = this.viewModel;
 
 		this.options.forEach(option => {
-			option.selected = vm.contains(option.value, 'value');
+			let item = vm.get(option.value, 'value');
+
+			if (item) {
+				option.selected = true;
+				option.disabled = item.disabled;
+			} else {
+				option.selected = false;
+			}
 		});
 	},
 

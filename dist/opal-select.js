@@ -364,7 +364,14 @@ return /******/ (function(modules) { // webpackBootstrap
 			var vm = this.viewModel;
 
 			this.options.forEach(function (option) {
-				option.selected = vm.contains(option.value, 'value');
+				var item = vm.get(option.value, 'value');
+
+				if (item) {
+					option.selected = true;
+					option.disabled = item.disabled;
+				} else {
+					option.selected = false;
+				}
 			});
 		},
 
@@ -783,6 +790,16 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		set selected(selected) {
 			this.props.selected = selected;
+		},
+
+		/**
+	  * @type {boolean}
+	  */
+		get disabled() {
+			return this.props.disabled;
+		},
+		set disabled(disabled) {
+			this.props.disabled = disabled;
 		},
 
 		/**

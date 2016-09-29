@@ -103,6 +103,16 @@ module.exports = Component.extend('opal-select-option', {
 	},
 
 	/**
+	 * @type {boolean}
+	 */
+	get disabled() {
+		return this.props.disabled;
+	},
+	set disabled(disabled) {
+		this.props.disabled = disabled;
+	},
+
+	/**
 	 * @typesign () -> boolean;
 	 */
 	select() {

@@ -3,6 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title></title>
+
+	<script src="node_modules/cellx/dist/cellx.js"></script>
+	<script src="node_modules/cellx-indexed-collections/dist/cellx-indexed-collections.js"></script>
+	<script>
+
+window['cellx-indexed-collections'] = cellxIndexedCollections;
+
+	</script>
+	<script src="node_modules/rionite/dist/Rionite-with-polyfills.js"></script>
+
 	<script>
 
 function require() {}
@@ -67,6 +77,13 @@ var dataProvider2 = (function() {
 			});
 		}
 	};
+})();
+
+var selectViewModel1 = (function() {
+	return new cellxIndexedCollections.IndexedList([
+		{ value: '1', text: '1', disabled: true },
+		{ value: '2', text: '2', disabled: true }
+	], { indexes: ['value'] });
 })();
 
 	</script>
@@ -474,7 +491,7 @@ body {
 			</opal-popover>
 		</opal-select>
 
-		<opal-select multiple>
+		<opal-select view-model="selectViewModel1" multiple>
 			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
 				<opal-loaded-list class="opal-select__loaded-list" dataprovider="dataProvider1">
 					<opal-select-option text="{$item.text}"></opal-select-option>
@@ -537,7 +554,7 @@ body {
 	<div class="opal-code-listing__example-html">
 		<opal-tag-select dataprovider="dataProvider1" placeholder=""></opal-tag-select>
 		<opal-tag-select type="action" dataprovider="dataProvider1"></opal-tag-select>
-		<opal-tag-select type="danger" dataprovider="dataProvider1"></opal-tag-select>
+		<opal-tag-select type="danger" dataprovider="dataProvider1" view-model="selectViewModel1"></opal-tag-select>
 	</div>
 	<script class="opal-code-listing__example-js">
 		require('cellx-indexed-collections');
@@ -582,12 +599,6 @@ body {
 	</script>
 </opal-code-listing>
 
-<script src="node_modules/cellx/dist/cellx.js"></script>
-<script src="node_modules/cellx-indexed-collections/dist/cellx-indexed-collections.js"></script>
-<script>
-window['cellx-indexed-collections'] = cellxIndexedCollections;
-</script>
-<script src="node_modules/rionite/dist/Rionite-with-polyfills.js"></script>
 <script src="dist/opal-button.js"></script>
 <script src="dist/opal-sign-button.js"></script>
 <script src="dist/opal-text-input.js"></script>
