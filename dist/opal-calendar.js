@@ -370,7 +370,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	function parseDate(date) {
-		var format = arguments.length <= 1 || arguments[1] === undefined ? 'dd/mm/yyyy' : arguments[1];
+		var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'dd/mm/yyyy';
 
 		date = date.match(/\d+/g);
 

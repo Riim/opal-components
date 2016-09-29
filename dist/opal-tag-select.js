@@ -100,7 +100,14 @@ return /******/ (function(modules) { // webpackBootstrap
 					}
 				},
 
-				select: {}
+				select: {
+					'on-select': function onSelect() {
+						this.assets.select.close();
+					},
+					'on-deselect': function onDeselect() {
+						this.assets.select.close();
+					}
+				}
 			}
 		},
 

@@ -393,7 +393,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 		_setInputSelection: function _setInputSelection(start) {
-			var end = arguments.length <= 1 || arguments[1] === undefined ? start : arguments[1];
+			var end = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : start;
 
 			this._input.setSelectionRange(start, end);
 		}

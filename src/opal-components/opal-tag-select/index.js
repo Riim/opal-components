@@ -38,7 +38,15 @@ module.exports = Component.extend('opal-tag-select', {
 				}
 			},
 
-			select: {}
+			select: {
+				'on-select'() {
+					this.assets.select.close();
+				},
+
+				'on-deselect'() {
+					this.assets.select.close();
+				}
+			}
 		}
 	},
 
