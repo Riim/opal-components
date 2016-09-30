@@ -47,6 +47,10 @@ module.exports = Component.extend('opal-text-input', {
 				},
 
 				'on-keypress'(evt) {
+					if (evt.which == 13/* Enter */) {
+						this.emit('confirminput');
+					}
+
 					this.emit({ type: 'keypress', initialEvent: evt });
 				},
 
@@ -102,6 +106,14 @@ module.exports = Component.extend('opal-text-input', {
 	},
 	set value(value) {
 		this.assets.input.value = value;
+	},
+
+	/**
+	 * @typesign () -> OpalComponents.OpalTextInput;
+	 */
+	clear() {
+		this.value = '';
+		return this;
 	},
 
 	/**

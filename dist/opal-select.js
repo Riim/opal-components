@@ -95,6 +95,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				text: String,
 				placeholder: getText.t('Не выбрано'),
 				multiple: { default: false, readonly: true },
+				producing: false,
 				focused: false,
 				tabIndex: 0,
 				disabled: false
@@ -121,6 +122,38 @@ return /******/ (function(modules) { // webpackBootstrap
 					'on-close': function onClose() {
 						this.close();
 					},
+					'on-confirminput': function onConfirminput(_ref) {
+						var textInput = _ref.target;
+
+						if (!this.props.producing) {
+							return;
+						}
+
+						var vm = this.viewModel;
+						var textInputValue = textInput.value;
+						var item = {
+							value: textInputValue,
+							text: textInputValue
+						};
+
+						textInput.clear();
+						this.assets.loadedList.props.query = '';
+
+						if (this.props.multiple) {
+							vm.add(item);
+						} else {
+							if (vm.length) {
+								vm.set(0, item);
+							} else {
+								vm.add(item);
+							}
+
+							this.close();
+							this.focus();
+
+							this.emit('change');
+						}
+					},
 					'on-change': function onChange(evt) {
 						if (!(evt.target instanceof RtRepeat)) {
 							return;
@@ -131,8 +164,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						return false;
 					},
-					'on-select': function onSelect(_ref) {
-						var selectedOption = _ref.target;
+					'on-select': function onSelect(_ref2) {
+						var selectedOption = _ref2.target;
 
 						if (!(selectedOption instanceof OpalSelectOption)) {
 							return;
@@ -159,8 +192,8 @@ return /******/ (function(modules) { // webpackBootstrap
 							this.emit('change');
 						}
 					},
-					'on-deselect': function onDeselect(_ref2) {
-						var deselectedOption = _ref2.target;
+					'on-deselect': function onDeselect(_ref3) {
+						var deselectedOption = _ref3.target;
 
 						if (!(deselectedOption instanceof OpalSelectOption)) {
 							return;
@@ -288,10 +321,10 @@ return /******/ (function(modules) { // webpackBootstrap
 				this[value ? 'focus' : 'blur']();
 			}
 		},
-		_onPropsValueChange: function _onPropsValueChange(_ref3) {
+		_onPropsValueChange: function _onPropsValueChange(_ref4) {
 			var _this2 = this;
 
-			var value = _ref3.value[1];
+			var value = _ref4.value[1];
 
 			var vm = this.viewModel;
 

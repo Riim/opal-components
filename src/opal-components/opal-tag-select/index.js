@@ -12,6 +12,7 @@ module.exports = Component.extend('opal-tag-select', {
 			value: Object,
 			viewModel: { type: String, readonly: true },
 			placeholder: getText.t('Не выбрано'),
+			producing: false,
 			popoverTo: 'bottom',
 			disabled: false
 		},
@@ -47,6 +48,15 @@ module.exports = Component.extend('opal-tag-select', {
 			},
 
 			select: {
+				'on-confirminput'() {
+					if (this.assets.select.props.producing) {
+						this.assets.select.close();
+					}
+				},
+
+				// не соединять on-select и on-deselect в on-change,
+				// тк on-change на opal-select[multiple] генерируется только при закрытии,
+				// а здесь как раз закрыть и нужно
 				'on-select'() {
 					this.assets.select.close();
 				},

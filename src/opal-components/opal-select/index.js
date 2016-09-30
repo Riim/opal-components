@@ -21,6 +21,7 @@ module.exports = Component.extend('opal-select', {
 			text: String,
 			placeholder: getText.t('Не выбрано'),
 			multiple: { default: false, readonly: true },
+			producing: false,
 			focused: false,
 			tabIndex: 0,
 			disabled: false
@@ -48,6 +49,37 @@ module.exports = Component.extend('opal-select', {
 			menu: {
 				'on-close'() {
 					this.close();
+				},
+
+				'on-confirminput'({ target: textInput }) {
+					if (!this.props.producing) {
+						return;
+					}
+
+					let vm = this.viewModel;
+					let textInputValue = textInput.value;
+					let item = {
+						value: textInputValue,
+						text: textInputValue
+					};
+
+					textInput.clear();
+					this.assets.loadedList.props.query = '';
+
+					if (this.props.multiple) {
+						vm.add(item);
+					} else {
+						if (vm.length) {
+							vm.set(0, item);
+						} else {
+							vm.add(item);
+						}
+
+						this.close();
+						this.focus();
+
+						this.emit('change');
+					}
 				},
 
 				'on-change'(evt) {

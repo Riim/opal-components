@@ -105,6 +105,10 @@ return /******/ (function(modules) { // webpackBootstrap
 						this.emit({ type: 'keydown', initialEvent: evt });
 					},
 					'on-keypress': function onKeypress(evt) {
+						if (evt.which == 13 /* Enter */) {
+								this.emit('confirminput');
+							}
+
 						this.emit({ type: 'keypress', initialEvent: evt });
 					},
 					'on-keyup': function onKeyup(evt) {
@@ -159,6 +163,15 @@ return /******/ (function(modules) { // webpackBootstrap
 		set value(value) {
 			this.assets.input.value = value;
 		},
+
+		/**
+	  * @typesign () -> OpalComponents.OpalTextInput;
+	  */
+		clear: function clear() {
+			this.value = '';
+			return this;
+		},
+
 
 		/**
 	  * @typesign () -> OpalComponents.OpalTextInput;
