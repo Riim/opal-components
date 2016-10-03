@@ -38,4 +38,11 @@
 			& .opal-autosuggestion__list-item:active {
 				background: hsl(0,0%,80%);
 			}
+
+	/* Combinations */
+
+	@nest
+	.opal-input-validator & {
+		display: block;
+	}
 }

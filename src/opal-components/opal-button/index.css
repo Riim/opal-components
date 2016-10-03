@@ -126,6 +126,19 @@
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
 	}
+
+	@nest
+	.opal-switch-menu &:not(:first-child) .opal-button__control {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		box-shadow: inset 1px 0 rgba(0,0,0,.4);
+	}
+
+	@nest
+	.opal-switch-menu &:not(:last-child) .opal-button__control {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
 }
 
 .opal-button[type=clean] {
