@@ -1,8 +1,10 @@
 .opal-autosuggestion {
 	position: relative;
 	display: inline-block;
+	vertical-align: middle;
 
 	& .opal-autosuggestion__input {
+		display: block;
 	}
 
 	& .opal-autosuggestion__menu {

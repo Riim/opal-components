@@ -1,6 +1,11 @@
 .opal-input-validator {
 	position: relative;
 	display: inline-block;
+	vertical-align: middle;
+
+	& .opal-text-input__input {
+		display: block;
+	}
 
 	/* States */
 

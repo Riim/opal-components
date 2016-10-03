@@ -227,7 +227,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = "";
+	            style.textContent = ".opal-multirow{display:block}";
 	            head.appendChild(style);
 	            return style;
 	        }

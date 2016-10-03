@@ -1,7 +1,9 @@
 .opal-date-input {
 	position: relative;
 	display: inline-block;
+	vertical-align: middle;
 
 	& .opal-date-input__input {
+		display: block;
 	}
 }

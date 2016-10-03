@@ -1,9 +1,10 @@
 .opal-select {
 	position: relative;
 	display: inline-block;
-	line-height: normal;
+	vertical-align: middle;
 
 	& .opal-select__button {
+		display: block;
 		min-width: 100%;
 	}
 		& .opal-select__icon-chevron-down {
