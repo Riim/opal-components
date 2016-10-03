@@ -3,7 +3,7 @@
 	display: inline-block;
 	vertical-align: middle;
 
-	& .opal-text-input__input {
+	& .opal-input-validator__input {
 		display: block;
 	}
 
