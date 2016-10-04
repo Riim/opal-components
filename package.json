@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.1.129",
+  "version": "0.1.132",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
   "homepage": "https://github.com/Riim/opal-components#readme",
   "devDependencies": {
     "autoprefixer": "^6.5.0",
-    "babel-core": "^6.16.0",
+    "babel-core": "^6.17.0",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-syntax-flow": "^6.13.0",
@@ -29,7 +29,7 @@
     "cellx": "^1.6.54",
     "cellx-indexed-collections": "^1.0.4",
     "collapse-html-whitespaces-loader": "^0.1.2",
-    "eslint": "^3.6.1",
+    "eslint": "^3.7.1",
     "eslint-loader": "^1.5.0",
     "glob": "^7.1.0",
     "gulp": "^3.9.1",
@@ -51,6 +51,6 @@
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.0.2",
     "webpack": "^1.13.2",
-    "yargs": "^5.0.0"
+    "yargs": "^6.0.0"
   }
 }

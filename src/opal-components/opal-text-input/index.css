@@ -109,6 +109,10 @@
 		border-color: hsl(208,100%,60%);
 	}
 
+	&[multiline]:not([auto-height=no]) .opal-text-input__input {
+		overflow-y: hidden;
+	}
+
 	&[valid] .opal-text-input__input {
 		border-color: hsl(120,90%,35%);
 	}

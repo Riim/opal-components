@@ -10,6 +10,7 @@ module.exports = Component.extend('opal-text-input', {
 			multiline: false,
 			size: 'm',
 			rows: 5,
+			autoHeight: true,
 			value: '',
 			placeholder: '',
 			clearable: false,
@@ -43,6 +44,12 @@ module.exports = Component.extend('opal-text-input', {
 				},
 
 				'on-keydown'(evt) {
+					if (this.props.multiline && this.props.autoHeight) {
+						setTimeout(() => {
+							this._fixHeight();
+						}, 10);
+					}
+
 					this.emit({ type: 'keydown', initialEvent: evt });
 				},
 
@@ -55,6 +62,10 @@ module.exports = Component.extend('opal-text-input', {
 				},
 
 				'on-keyup'(evt) {
+					if (this.props.multiline && this.props.autoHeight) {
+						this._fixHeight();
+					}
+
 					this.emit({ type: 'keyup', initialEvent: evt });
 				}
 			},
@@ -95,6 +106,14 @@ module.exports = Component.extend('opal-text-input', {
 			}
 		} else if (name == 'focused') {
 			this[value ? 'focus' : 'blur']();
+		}
+	},
+
+	_fixHeight() {
+		let input = this.assets.input;
+
+		if (input.scrollHeight > input.clientHeight) {
+			input.style.height = input.offsetHeight + input.scrollHeight - input.clientHeight + 'px';
 		}
 	},
 
