@@ -12,7 +12,7 @@ module.exports = Component.extend('opal-tag-select', {
 			value: Object,
 			viewModel: { type: String, readonly: true },
 			placeholder: getText.t('Не выбрано'),
-			producing: false,
+			allowInput: false,
 			popoverTo: 'bottom',
 			disabled: false
 		},
@@ -49,7 +49,7 @@ module.exports = Component.extend('opal-tag-select', {
 
 			select: {
 				'on-confirminput'() {
-					if (this.assets.select.props.producing) {
+					if (this.assets.select.props.allowInput) {
 						this.assets.select.close();
 					}
 				},

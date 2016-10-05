@@ -95,7 +95,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				text: String,
 				placeholder: getText.t('Не выбрано'),
 				multiple: { default: false, readonly: true },
-				producing: false,
+				allowInput: false,
 				focused: false,
 				tabIndex: 0,
 				disabled: false
@@ -125,7 +125,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					'on-confirminput': function onConfirminput(_ref) {
 						var textInput = _ref.target;
 
-						if (!this.props.producing) {
+						if (!this.props.allowInput) {
 							return;
 						}
 

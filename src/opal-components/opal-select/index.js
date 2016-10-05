@@ -21,7 +21,7 @@ module.exports = Component.extend('opal-select', {
 			text: String,
 			placeholder: getText.t('Не выбрано'),
 			multiple: { default: false, readonly: true },
-			producing: false,
+			allowInput: false,
 			focused: false,
 			tabIndex: 0,
 			disabled: false
@@ -52,7 +52,7 @@ module.exports = Component.extend('opal-select', {
 				},
 
 				'on-confirminput'({ target: textInput }) {
-					if (!this.props.producing) {
+					if (!this.props.allowInput) {
 						return;
 					}
 
