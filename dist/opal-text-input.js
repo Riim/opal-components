@@ -75,6 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				rows: 5,
 				autoHeight: true,
 				value: '',
+				storeKey: String,
 				placeholder: '',
 				clearable: false,
 				loading: false,
@@ -96,10 +97,16 @@ return /******/ (function(modules) { // webpackBootstrap
 						this.emit('focusout');
 					},
 					'on-input': function onInput(evt) {
-						this.props.value = evt.target.value;
+						this.value = evt.target.value;
 						this.emit({ type: 'input', initialEvent: evt });
 					},
 					'on-change': function onChange(evt) {
+						var storeKey = this.props.storeKey;
+
+						if (storeKey) {
+							localStorage.setItem(storeKey, evt.target.value);
+						}
+
 						this.emit({ type: 'change', initialEvent: evt });
 					},
 					'on-keydown': function onKeydown(evt) {
@@ -131,7 +138,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				btnClear: {
 					'on-click': function onClick(evt) {
-						this.props.value = '';
+						this.value = '';
 						this.assets.input.focus();
 
 						this.emit({ type: 'change', initialEvent: evt });
@@ -148,9 +155,20 @@ return /******/ (function(modules) { // webpackBootstrap
 			});
 		},
 		ready: function ready() {
-			this.assets.input.value = this.props.value;
+			var props = this.props;
+			var value = props.value;
 
-			if (this.props.focused) {
+			if (value) {
+				this.assets.input.value = value;
+			} else {
+				var storeKey = props.storeKey;
+
+				if (storeKey) {
+					props.value = localStorage.getItem(storeKey) || '';
+				}
+			}
+
+			if (props.focused) {
 				this.focus();
 			}
 		},
@@ -178,10 +196,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @type {string}
 	  */
 		get value() {
-			return this.assets.input.value;
+			return this.props.value;
 		},
 		set value(value) {
-			this.assets.input.value = value;
+			this.props.value = value;
 		},
 
 		/**

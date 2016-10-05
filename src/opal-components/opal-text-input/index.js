@@ -12,6 +12,7 @@ module.exports = Component.extend('opal-text-input', {
 			rows: 5,
 			autoHeight: true,
 			value: '',
+			storeKey: String,
 			placeholder: '',
 			clearable: false,
 			loading: false,
@@ -35,11 +36,17 @@ module.exports = Component.extend('opal-text-input', {
 				},
 
 				'on-input'(evt) {
-					this.props.value = evt.target.value;
+					this.value = evt.target.value;
 					this.emit({ type: 'input', initialEvent: evt });
 				},
 
 				'on-change'(evt) {
+					let storeKey = this.props.storeKey;
+
+					if (storeKey) {
+						localStorage.setItem(storeKey, evt.target.value);
+					}
+
 					this.emit({ type: 'change', initialEvent: evt });
 				},
 
@@ -72,7 +79,7 @@ module.exports = Component.extend('opal-text-input', {
 
 			btnClear: {
 				'on-click'(evt) {
-					this.props.value = '';
+					this.value = '';
 					this.assets.input.focus();
 
 					this.emit({ type: 'change', initialEvent: evt });
@@ -90,9 +97,20 @@ module.exports = Component.extend('opal-text-input', {
 	},
 
 	ready() {
-		this.assets.input.value = this.props.value;
+		let props = this.props;
+		let value = props.value;
 
-		if (this.props.focused) {
+		if (value) {
+			this.assets.input.value = value;
+		} else {
+			let storeKey = props.storeKey;
+
+			if (storeKey) {
+				props.value = localStorage.getItem(storeKey) || '';
+			}
+		}
+
+		if (props.focused) {
 			this.focus();
 		}
 	},
@@ -121,10 +139,10 @@ module.exports = Component.extend('opal-text-input', {
 	 * @type {string}
 	 */
 	get value() {
-		return this.assets.input.value;
+		return this.props.value;
 	},
 	set value(value) {
-		this.assets.input.value = value;
+		this.props.value = value;
 	},
 
 	/**
