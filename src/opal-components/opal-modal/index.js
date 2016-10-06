@@ -1,6 +1,6 @@
 require('./index.css');
 
-let { Component } = require('rionite');
+let { ComponentTemplate, Component } = require('rionite');
 
 let openedModals = [];
 let documentListening;
@@ -33,7 +33,7 @@ module.exports = Component.extend('opal-modal', {
 			opened: false
 		},
 
-		template: require('./index.html'),
+		template: new ComponentTemplate(require('./index.html')),
 
 		assets: {
 			':element': {

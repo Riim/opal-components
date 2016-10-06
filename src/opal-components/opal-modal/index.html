@@ -1,7 +1,15 @@
-<span class="opal-modal__window">
-	<span class="opal-modal__btn-close-wrapper">
-		<button class="opal-modal__btn-close"></button>
-	</span>
+{{block window }}
+	<div class="opal-modal__window">
+		{{block btn_close }}
+			<rt-content select=".opal-modal__btn-close">
+				<span class="opal-modal__btn-close-wrapper">
+					<button class="opal-modal__btn-close"></button>
+				</span>
+			</rt-content>
+		{{/block}}
 
-	<rt-content class="opal-modal__content"></rt-content>
-</span>
+		{{block content }}
+			<rt-content class="opal-modal__content">{{block content_inner }}{{/block}}</rt-content>
+		{{/block}}
+	</div>
+{{/block}}

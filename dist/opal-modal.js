@@ -61,6 +61,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require = __webpack_require__(1);
 
+	var ComponentTemplate = _require.ComponentTemplate;
 	var Component = _require.Component;
 
 
@@ -95,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				opened: false
 			},
 
-			template: __webpack_require__(32),
+			template: new ComponentTemplate(__webpack_require__(32)),
 
 			assets: {
 				':element': {
@@ -225,7 +226,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 32:
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"opal-modal__window\"> <span class=\"opal-modal__btn-close-wrapper\"> <button class=\"opal-modal__btn-close\"></button> </span> <rt-content class=\"opal-modal__content\"></rt-content> </span>"
+	module.exports = "{{block window }} <div class=\"opal-modal__window\"> {{block btn_close }} <rt-content select=\".opal-modal__btn-close\"> <span class=\"opal-modal__btn-close-wrapper\"> <button class=\"opal-modal__btn-close\"></button> </span> </rt-content> {{/block}} {{block content }} <rt-content class=\"opal-modal__content\">{{block content_inner }}{{/block}}</rt-content> {{/block}} </div> {{/block}}"
 
 /***/ },
 
