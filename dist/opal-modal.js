@@ -101,8 +101,20 @@ return /******/ (function(modules) { // webpackBootstrap
 			assets: {
 				':element': {
 					'on-click': function onClick(evt) {
-						if (evt.target == this.element) {
-							this.props.opened = false;
+						var el = this.element;
+						var windowEl = this.assets.window;
+
+						for (var node = evt.target; node != windowEl;) {
+							if (node == el) {
+								this.close();
+								break;
+							}
+
+							node = node.parentNode;
+
+							if (!node) {
+								break;
+							}
 						}
 					}
 				},

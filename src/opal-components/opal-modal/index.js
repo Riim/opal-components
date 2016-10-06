@@ -38,8 +38,20 @@ module.exports = Component.extend('opal-modal', {
 		assets: {
 			':element': {
 				'on-click'(evt) {
-					if (evt.target == this.element) {
-						this.props.opened = false;
+					let el = this.element;
+					let windowEl = this.assets.window;
+
+					for (let node = evt.target; node != windowEl;) {
+						if (node == el) {
+							this.close();
+							break;
+						}
+
+						node = node.parentNode;
+
+						if (!node) {
+							break;
+						}
 					}
 				}
 			},
