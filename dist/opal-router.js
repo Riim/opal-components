@@ -57,8 +57,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 	__webpack_require__(65);
 
 	var _require = __webpack_require__(1);
@@ -199,7 +197,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			for (var i = 0, l = routes.length; i < l; i++) {
 				var _ret = _loop(i, l);
 
-				if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+				if (typeof _ret === "object") return _ret.v;
 			}
 
 			if (this._route) {

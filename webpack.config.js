@@ -46,10 +46,10 @@ module.exports = {
 				exclude: /(?:node_modules|bower_components)/,
 				loader: 'babel',
 				query: {
-					presets: ['es2015'],
+					presets: ['@riim/babel-preset'],
 					plugins: [
 						'syntax-flow',
-						'transform-flow-strip-types'
+						'transform-flow-comments'
 					]
 				}
 			},

@@ -57,8 +57,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 	__webpack_require__(66);
 	__webpack_require__(79);
 
@@ -450,7 +448,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					};
 				}();
 
-				if ((typeof _ret3 === 'undefined' ? 'undefined' : _typeof(_ret3)) === "object") return _ret3.v;
+				if (typeof _ret3 === "object") return _ret3.v;
 			}
 
 			return false;
