@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.1.142",
+  "version": "0.1.143",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "collapse-html-whitespaces-loader": "^0.1.2",
     "eslint": "^3.7.1",
     "eslint-loader": "^1.5.0",
-    "glob": "^7.1.0",
+    "glob": "^7.1.1",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-sizereport": "^1.2.0",
@@ -46,7 +46,7 @@
     "raw-loader": "^0.5.1",
     "require-dir": "^0.3.1",
     "rimraf": "^2.5.4",
-    "rionite": "^0.12.41",
+    "rionite": "^0.12.42",
     "run-sequence": "^1.2.2",
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.0.2",
