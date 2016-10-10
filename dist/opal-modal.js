@@ -119,6 +119,8 @@ return /******/ (function(modules) { // webpackBootstrap
 					}
 				},
 
+				window: {},
+
 				btnClose: {
 					'on-click': function onClick() {
 						this.props.opened = false;

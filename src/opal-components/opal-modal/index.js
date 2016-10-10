@@ -56,6 +56,8 @@ module.exports = Component.extend('opal-modal', {
 				}
 			},
 
+			window: {},
+
 			btnClose: {
 				'on-click'() {
 					this.props.opened = false;
