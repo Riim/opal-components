@@ -218,7 +218,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-input-validator{position:relative;display:inline-block;vertical-align:middle}.opal-input-validator .opal-input-validator__input{display:block}.opal-input-validator[valid=no] .opal-input-validator__input .opal-text-input__input{border-color:red}";
+	            style.textContent = ".opal-input-validator{position:relative;display:inline-block;vertical-align:middle;line-height:0}.opal-input-validator .opal-input-validator__input{display:block}.opal-input-validator[valid=no] .opal-input-validator__input .opal-text-input__input{border-color:red}";
 	            head.appendChild(style);
 	            return style;
 	        }

@@ -1,5 +1,6 @@
 .opal-tag-select {
 	display: inline-block;
+	line-height: 0;
 
 	& .opal-tag-select__tags {
 	}
@@ -83,6 +84,7 @@
 			}
 
 	& .opal-tag-select__control {
+		display: inline-block;
 		white-space: nowrap;
 		cursor: pointer;
 		user-select: none;

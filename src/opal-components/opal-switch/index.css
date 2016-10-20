@@ -1,6 +1,7 @@
 .opal-switch {
 	position: relative;
 	display: inline-block;
+	line-height: 0;
 
 	& .opal-switch__label {
 	}

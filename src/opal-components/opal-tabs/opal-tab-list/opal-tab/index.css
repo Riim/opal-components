@@ -1,5 +1,6 @@
 .opal-tab {
 	display: inline-block;
+	line-height: 0;
 
 	& .opal-tab__button {
 		position: relative;

@@ -1,6 +1,7 @@
 .opal-checkbox {
 	position: relative;
 	display: inline-block;
+	line-height: 0;
 
 	& .opal-checkbox__label {
 	}
