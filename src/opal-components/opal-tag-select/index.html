@@ -2,8 +2,8 @@
 	<template is="rt-if-then" if="viewModel?.length">
 		<template is="rt-repeat" for="tag of viewModel">
 			<span class="opal-tag-select__tag" data-value="{tag.value}" disabled={tag.disabled}>{tag.text}<button
-					class="opal-tag-select__btn-remove-tag"
-					data-tag-value="{tag.value}"></button></span>
+					class="opal-tag-select__btn-remove-tag" data-tag-value="{tag.value}"
+					rt-click="_onBtnRemoveTagClick"></button></span>
 		</template>
 	</template>
 </span>

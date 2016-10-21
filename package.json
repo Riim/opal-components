@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.1.145",
+  "version": "0.1.146",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -26,8 +26,8 @@
     "babel-loader": "^6.2.5",
     "babel-plugin-syntax-flow": "^6.13.0",
     "babel-plugin-transform-flow-comments": "^6.17.0",
-    "cellx": "^1.6.55",
-    "cellx-indexed-collections": "^1.0.4",
+    "cellx": "^1.6.56",
+    "cellx-indexed-collections": "^1.0.5",
     "collapse-html-whitespaces-loader": "^0.1.2",
     "eslint": "^3.8.1",
     "eslint-loader": "^1.6.0",
@@ -39,7 +39,7 @@
     "postcss-color-function": "^2.0.1",
     "postcss-css-variables": "^0.6.0",
     "postcss-csso": "^1.1.2",
-    "postcss-loader": "^0.13.0",
+    "postcss-loader": "^1.0.0",
     "postcss-nesting": "^2.3.1",
     "prismjs": "^1.5.1",
     "pump": "^1.0.1",
@@ -51,6 +51,6 @@
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.0.2",
     "webpack": "^1.13.2",
-    "yargs": "^6.2.0"
+    "yargs": "^6.3.0"
   }
 }
