@@ -64,7 +64,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 	_focusedListItem: null,
 
 	initialize() {
-		this.dataProvider = (this.ownerComponent || window)[this.props.dataprovider];
+		this.dataProvider = Function(`return this.${ this.props.dataprovider };`).call(this.ownerComponent || window);
 
 		cellx.define(this, {
 			list: cellx.list(),

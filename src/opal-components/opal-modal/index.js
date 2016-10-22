@@ -8,15 +8,8 @@ let documentListening;
 function onDocumentFocusIn() {
 	let body = document.body;
 
-	if (document.activeElement != body) {
-		let modalEl = openedModals[0].element;
-
-		for (let node = document.activeElement.parentNode; node != modalEl; node = node.parentNode) {
-			if (node == body) {
-				openedModals[0].assets.btnClose.focus();
-				break;
-			}
-		}
+	if (document.activeElement != body && !openedModals[0].element.contains(document.activeElement.parentNode)) {
+		openedModals[0].assets.btnClose.focus();
 	}
 }
 

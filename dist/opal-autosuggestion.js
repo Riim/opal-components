@@ -132,7 +132,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		_focusedListItem: null,
 
 		initialize: function initialize() {
-			this.dataProvider = (this.ownerComponent || window)[this.props.dataprovider];
+			this.dataProvider = Function('return this.' + this.props.dataprovider + ';').call(this.ownerComponent || window);
 
 			cellx.define(this, {
 				list: cellx.list(),

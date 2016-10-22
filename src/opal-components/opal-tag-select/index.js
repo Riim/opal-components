@@ -57,26 +57,21 @@ module.exports = Component.extend('opal-tag-select', {
 
 	initialize() {
 		let dataProvider = this.props.dataprovider;
-		if (dataProvider) {
-			this[dataProvider] = (this.ownerComponent || window)[dataProvider];
-		}
-
 		let vm = this.props.viewModel;
-		if (vm) {
-			this[vm] = (this.ownerComponent || window)[vm];
-		}
+
+		this._dataProviderParam = dataProvider && 'dataProvider';
+		this._viewModelParam = vm && 'viewModel';
+
+		let context = this.ownerComponent || window;
 
 		cellx.define(this, {
-			viewModel: null,
+			dataProvider: dataProvider && Function(`return this.${ dataProvider };`).call(context),
+			viewModel: vm && Function(`return this.${ vm };`).call(context),
 
 			placeholderShown() {
 				return !!this.props.placeholder && (!this.viewModel || !this.viewModel.length);
 			}
 		});
-	},
-
-	ready() {
-		this.viewModel = this.assets.select.viewModel;
 	},
 
 	_onBtnRemoveTagClick(evt, btn) {

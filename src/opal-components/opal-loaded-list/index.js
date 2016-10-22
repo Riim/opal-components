@@ -33,7 +33,7 @@ module.exports = Component.extend('opal-loaded-list', {
 	_lastAppliedQuery: void 0,
 
 	initialize() {
-		this.dataProvider = (this.ownerComponent || window)[this.props.dataprovider];
+		this.dataProvider = Function(`return this.${ this.props.dataprovider };`).call(this.ownerComponent || window);
 
 		cellx.define(this, {
 			list: cellx.list(),

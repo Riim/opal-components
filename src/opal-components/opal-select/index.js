@@ -152,7 +152,7 @@ module.exports = Component.extend('opal-select', {
 		let vm = this.props.viewModel;
 
 		if (vm) {
-			vm = (this.ownerComponent || window)[vm];
+			vm = Function(`return this.${ vm };`).call(this.ownerComponent || window);
 
 			if (!vm) {
 				throw new TypeError('viewModel is not defined');
@@ -391,20 +391,8 @@ module.exports = Component.extend('opal-select', {
 	},
 
 	_onDocumentFocusIn(evt) {
-		let body = document.body;
-		let el = this.element;
-
-		for (let node = evt.target; ;) {
-			if (node == body) {
-				this.close();
-				break;
-			}
-
-			node = node.parentNode;
-
-			if (!node || node == el) {
-				break;
-			}
+		if (!this.element.contains(evt.target.parentNode)) {
+			this.close();
 		}
 	},
 

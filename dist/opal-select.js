@@ -224,7 +224,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			var vm = this.props.viewModel;
 
 			if (vm) {
-				vm = (this.ownerComponent || window)[vm];
+				vm = Function('return this.' + vm + ';').call(this.ownerComponent || window);
 
 				if (!vm) {
 					throw new TypeError('viewModel is not defined');
@@ -494,20 +494,8 @@ return /******/ (function(modules) { // webpackBootstrap
 			return this.open() || !this.close();
 		},
 		_onDocumentFocusIn: function _onDocumentFocusIn(evt) {
-			var body = document.body;
-			var el = this.element;
-
-			for (var node = evt.target;;) {
-				if (node == body) {
-					this.close();
-					break;
-				}
-
-				node = node.parentNode;
-
-				if (!node || node == el) {
-					break;
-				}
+			if (!this.element.contains(evt.target.parentNode)) {
+				this.close();
 			}
 		},
 
