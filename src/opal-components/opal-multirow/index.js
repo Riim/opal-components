@@ -15,7 +15,7 @@ module.exports = Component.extend('opal-multirow', {
 			':component': {
 				'on-remove-row-click'({ target: row }) {
 					if (row.props.preset) {
-						this.assets.presetRows.element.removeChild(row.element);
+						this.assets.presetRowsContainer.element.removeChild(row.element);
 						this._presetRowCount--;
 					} else {
 						this._newRows.remove(this._newRows.get(row.parentComponent.element.dataset.key, 'key'));
@@ -37,7 +37,7 @@ module.exports = Component.extend('opal-multirow', {
 				}
 			},
 
-			presetRows: {}
+			presetRowsContainer: {}
 		}
 	},
 
@@ -46,15 +46,15 @@ module.exports = Component.extend('opal-multirow', {
 			_presetRowCount: 0,
 			_newRows: new IndexedList(null, { indexes: ['key'] }),
 
-			_noPresetRows() {
+			_notHavePresetRows() {
 				return !this._presetRowCount;
 			},
 
-			_noNewRows() {
+			_notHaveNewRows() {
 				return !this._newRows.length;
 			},
 
-			_notLastRow() {
+			_notSingleRow() {
 				return this._presetRowCount + this._newRows.length != 1;
 			}
 		});

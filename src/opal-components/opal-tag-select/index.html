@@ -23,8 +23,8 @@
 
 			{{block menu }}
 				<opal-popover class="opal-select__menu" to="{props.popoverTo}" auto-closing>
-					<rt-content select=".opal-tag-select__menu-inner">
-						<opal-filtered-list class="opal-tag-select__menu-inner opal-select__filtered-list">
+					<rt-content select=".opal-tag-select__menu-content">
+						<opal-filtered-list class="opal-tag-select__menu-content opal-select__filtered-list">
 							<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
 									dataprovider="{_dataProviderParam}">
 								<opal-select-option value="{$item.value}" text="{$item.text}"></opal-select-option>

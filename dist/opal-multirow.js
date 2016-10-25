@@ -89,7 +89,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						var row = _ref.target;
 
 						if (row.props.preset) {
-							this.assets.presetRows.element.removeChild(row.element);
+							this.assets.presetRowsContainer.element.removeChild(row.element);
 							this._presetRowCount--;
 						} else {
 							this._newRows.remove(this._newRows.get(row.parentComponent.element.dataset.key, 'key'));
@@ -112,7 +112,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					}
 				},
 
-				presetRows: {}
+				presetRowsContainer: {}
 			}
 		},
 
@@ -121,13 +121,13 @@ return /******/ (function(modules) { // webpackBootstrap
 				_presetRowCount: 0,
 				_newRows: new IndexedList(null, { indexes: ['key'] }),
 
-				_noPresetRows: function _noPresetRows() {
+				_notHavePresetRows: function _notHavePresetRows() {
 					return !this._presetRowCount;
 				},
-				_noNewRows: function _noNewRows() {
+				_notHaveNewRows: function _notHaveNewRows() {
 					return !this._newRows.length;
 				},
-				_notLastRow: function _notLastRow() {
+				_notSingleRow: function _notSingleRow() {
 					return this._presetRowCount + this._newRows.length != 1;
 				}
 			});
@@ -208,7 +208,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 33:
 /***/ function(module, exports) {
 
-	module.exports = "{{block preset_rows }} <rt-content class=\"opal-multirow__preset-rows\" select=\"opal-multirow-row[preset], .opal-multirow__preset-rows\" no-new-rows=\"{_noNewRows}\" not-last-row=\"{_notLastRow}\"></rt-content> {{/block}} <div class=\"opal-multirow__new-rows\" no-preset-rows=\"{_noPresetRows}\" not-last-row=\"{_notLastRow}\"> <template is=\"rt-repeat\" for=\"row of _newRows\" track-by=\"key\" rt-silent=\"\"> {{block row }} <rt-content select=\"opal-multirow-row:not([preset])\" data-key=\"{row.key}\"></rt-content> {{/block}} </template> </div>"
+	module.exports = "{{block preset_rows }} <rt-content class=\"opal-multirow__preset-rows-container\" select=\"opal-multirow-row[preset], .opal-multirow__preset-rows\" not-have-new-rows=\"{_notHaveNewRows}\" not-single-row=\"{_notSingleRow}\"></rt-content> {{/block}} <div class=\"opal-multirow__new-rows-container\" not-have-preset-rows=\"{_notHavePresetRows}\" not-single-row=\"{_notSingleRow}\"> <template is=\"rt-repeat\" for=\"row of _newRows\" track-by=\"key\" rt-silent=\"\"> {{block row }} <rt-content select=\"opal-multirow-row:not([preset])\" data-key=\"{row.key}\"></rt-content> {{/block}} </template> </div>"
 
 /***/ },
 
@@ -245,7 +245,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-multirow-row{display:block;white-space:nowrap}.opal-multirow-row::after{display:table;clear:both;content:''}.opal-multirow-row .opal-multirow-row__content{display:inline-block;margin-bottom:19px;padding-right:6px}.opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow-row .opal-multirow-row__btn-add-row{position:relative;top:1px;display:none}.opal-multirow__preset-rows[no-new-rows] .opal-multirow-row:last-child .opal-multirow-row__content,.opal-multirow__new-rows rt-content:last-child .opal-multirow-row .opal-multirow-row__content{margin-bottom:0}.opal-multirow__preset-rows[not-last-row] .opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow__new-rows[not-last-row] .opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow__preset-rows[no-new-rows] .opal-multirow-row:last-child .opal-multirow-row__btn-add-row,.opal-multirow__new-rows rt-content:last-child .opal-multirow-row .opal-multirow-row__btn-add-row{display:inline-block}.opal-multirow-row .opal-popover{white-space:normal}";
+	            style.textContent = ".opal-multirow-row{display:block;white-space:nowrap}.opal-multirow-row::after{display:table;clear:both;content:''}.opal-multirow-row .opal-multirow-row__content{display:inline-block;margin-bottom:19px;padding-right:6px}.opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow-row .opal-multirow-row__btn-add-row{position:relative;top:1px;display:none}.opal-multirow__preset-rows-container[not-have-new-rows] .opal-multirow-row:last-child .opal-multirow-row__content,.opal-multirow__new-rows-container rt-content:last-child .opal-multirow-row .opal-multirow-row__content{margin-bottom:0}.opal-multirow__preset-rows-container[not-single-row] .opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow__new-rows-container[not-single-row] .opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow__preset-rows-container[not-have-new-rows] .opal-multirow-row:last-child .opal-multirow-row__btn-add-row,.opal-multirow__new-rows-container rt-content:last-child .opal-multirow-row .opal-multirow-row__btn-add-row{display:inline-block}.opal-multirow-row .opal-popover{white-space:normal}";
 	            head.appendChild(style);
 	            return style;
 	        }
