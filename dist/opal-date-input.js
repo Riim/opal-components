@@ -71,6 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			props: {
 				mask: '99/99/9999',
+				value: String,
 				placeholder: 'dd/mm/yyyy',
 				required: false,
 				popoverTo: 'right'
@@ -124,7 +125,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 27:
 /***/ function(module, exports) {
 
-	module.exports = "{{block validation }} <opal-input-validator> {{block validation_rules }} <template is=\"rt-if-then\" if=\"props.required\" rt-silent=\"\"> <opal-input-validator-rule required=\"\" popover-to=\"{props.popoverTo}\">{{i18n.isRequiredField}}</opal-input-validator-rule> </template> <opal-input-validator-rule test=\"isExistDate\" popover-to=\"{props.popoverTo}\">{{i18n.nonExistentDate}}</opal-input-validator-rule> {{/block}} {{block input_mask }} <opal-input-mask mask=\"{props.mask}\"> {{block input }} <opal-text-input class=\"opal-date-input__input opal-input-validator__input opal-input-mask__input\" placeholder=\"{props.placeholder}\"></opal-text-input> {{/block}} </opal-input-mask> {{/block}} </opal-input-validator> {{/block}}"
+	module.exports = "{{block validation }} <opal-input-validator> {{block validation_rules }} <template is=\"rt-if-then\" if=\"props.required\" rt-silent=\"\"> <opal-input-validator-rule required=\"\" popover-to=\"{props.popoverTo}\">{{i18n.isRequiredField}}</opal-input-validator-rule> </template> <opal-input-validator-rule test=\"isExistDate\" popover-to=\"{props.popoverTo}\">{{i18n.nonExistentDate}}</opal-input-validator-rule> {{/block}} {{block input_mask }} <opal-input-mask mask=\"{props.mask}\"> {{block input }} <opal-text-input class=\"opal-date-input__input opal-input-validator__input opal-input-mask__input\" value=\"{props.value}\" placeholder=\"{props.placeholder}\"></opal-text-input> {{/block}} </opal-input-mask> {{/block}} </opal-input-validator> {{/block}}"
 
 /***/ },
 

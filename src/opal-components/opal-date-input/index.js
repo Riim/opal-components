@@ -7,6 +7,7 @@ module.exports = Component.extend('opal-date-input', {
 	Static: {
 		props: {
 			mask: '99/99/9999',
+			value: String,
 			placeholder: 'dd/mm/yyyy',
 			required: false,
 			popoverTo: 'right'
