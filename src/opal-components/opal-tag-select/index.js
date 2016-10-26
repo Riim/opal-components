@@ -19,10 +19,10 @@ module.exports = Component.extend('opal-tag-select', {
 
 		template: new ComponentTemplate(require('./index.html')),
 
-		assets: {
+		events: {
 			control: {
-				'on-click'(evt, control) {
-					let select = this.assets.select;
+				click(evt, control) {
+					let select = this.$('select');
 					let selectEl = select.element;
 
 					for (let node = evt.target; node != selectEl; node = node.parentNode) {
@@ -35,21 +35,23 @@ module.exports = Component.extend('opal-tag-select', {
 			},
 
 			select: {
-				'on-confirminput'() {
-					if (this.assets.select.props.allowInput) {
-						this.assets.select.close();
+				confirminput() {
+					let select = this.$('select');
+
+					if (select.props.allowInput) {
+						select.close();
 					}
 				},
 
 				// не соединять on-select и on-deselect в on-change,
 				// тк on-change на opal-select[multiple] генерируется только при закрытии,
 				// а здесь как раз закрыть и нужно
-				'on-select'() {
-					this.assets.select.close();
+				select() {
+					this.$('select').close();
 				},
 
-				'on-deselect'() {
-					this.assets.select.close();
+				deselect() {
+					this.$('select').close();
 				}
 			}
 		}

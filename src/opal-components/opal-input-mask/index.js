@@ -20,11 +20,7 @@ module.exports = Component.extend('opal-input-mask', {
 			mask: { type: String, required: true }
 		},
 
-		template: require('./index.html'),
-
-		assets: {
-			input: {}
-		}
+		template: require('./index.html')
 	},
 
 	_focusText: void 0,
@@ -34,7 +30,7 @@ module.exports = Component.extend('opal-input-mask', {
 	},
 
 	ready() {
-		this._input = this.assets.input.assets.input;
+		this._input = this.$('input').$('input');
 
 		let definitions = this._definitions;
 
@@ -109,7 +105,7 @@ module.exports = Component.extend('opal-input-mask', {
 		let input = this._input;
 
 		if (input.value != this._focusText) {
-			this.assets.input.emit('change');
+			this.$('input').emit('change');
 		}
 	},
 
@@ -177,13 +173,13 @@ module.exports = Component.extend('opal-input-mask', {
 
 					this._setInputSelection(next, next);
 
-					this.assets.input.emit({ type: 'input', initialEvent: evt });
+					this.$('input').emit({ type: 'input', initialEvent: evt });
 
 					if (next >= bufferLen) {
 						this.emit('complete');
 					}
 				} else if (start != end) {
-					this.assets.input.emit({ type: 'input', initialEvent: evt });
+					this.$('input').emit({ type: 'input', initialEvent: evt });
 				}
 			}
 		}

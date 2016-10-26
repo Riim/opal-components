@@ -67,20 +67,22 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var OpalInputValidatorRule = __webpack_require__(10);
 
+	var map = Array.prototype.map;
+
 	module.exports = Component.extend('opal-input-validator', {
 		Static: {
 			OpalInputValidatorRule: OpalInputValidatorRule,
 
 			template: '<rt-content class="opal-input-validator__content"></rt-content>',
 
-			assets: {
+			events: {
 				input: {
-					'on-input': function onInput() {
+					input: function input() {
 						if (this.failedRule) {
 							this._validate([this.failedRule]);
 						}
 					},
-					'on-change': function onChange() {
+					change: function change() {
 						this.validate();
 					}
 				}
@@ -97,7 +99,9 @@ return /******/ (function(modules) { // webpackBootstrap
 			});
 		},
 		ready: function ready() {
-			this.assets.rules = this.$$('.opal-input-validator-rule');
+			this._rules = map.call(this.element.getElementsByClassName('opal-input-validator-rule'), function (ruleEl) {
+				return ruleEl.$c;
+			});
 		},
 
 
@@ -105,7 +109,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> boolean;
 	  */
 		validate: function validate() {
-			return this._validate(this.assets.rules);
+			return this._validate(this._rules);
 		},
 
 
@@ -115,7 +119,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		_validate: function _validate(rules) {
 			var _this = this;
 
-			var value = this.assets.input.value;
+			var value = this.$('input').value;
 			var trimmedValue = value.trim();
 			var failedRule = null;
 
@@ -186,18 +190,14 @@ return /******/ (function(modules) { // webpackBootstrap
 				popoverTo: 'right'
 			},
 
-			template: __webpack_require__(30),
-
-			assets: {
-				popover: {}
-			}
+			template: __webpack_require__(30)
 		},
 
 		showMessage: function showMessage() {
-			this.assets.popover.open();
+			this.$('popover').open();
 		},
 		hideMessage: function hideMessage() {
-			this.assets.popover.close();
+			this.$('popover').close();
 		}
 	});
 

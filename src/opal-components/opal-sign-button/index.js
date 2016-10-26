@@ -16,19 +16,19 @@ module.exports = Component.extend('opal-sign-button', {
 
 		template: require('./index.html'),
 
-		assets: {
+		events: {
 			control: {
-				'on-focusin'() {
+				focusin() {
 					this.props.focused = true;
 					this.emit('focusin');
 				},
 
-				'on-focusout'() {
+				focusout() {
 					this.props.focused = false;
 					this.emit('focusout');
 				},
 
-				'on-click'() {
+				click() {
 					if (!this.props.disabled) {
 						if (this.props.checkable) {
 							this.emit(this.toggle() ? 'check' : 'uncheck');
@@ -106,7 +106,7 @@ module.exports = Component.extend('opal-sign-button', {
 	 * @typesign () -> OpalComponents.OpalSignButton;
 	 */
 	focus() {
-		this.assets.control.focus();
+		this.$('control').focus();
 		return this;
 	},
 
@@ -114,7 +114,7 @@ module.exports = Component.extend('opal-sign-button', {
 	 * @typesign () -> OpalComponents.OpalSignButton;
 	 */
 	blur() {
-		this.assets.control.blur();
+		this.$('control').blur();
 		return this;
 	},
 

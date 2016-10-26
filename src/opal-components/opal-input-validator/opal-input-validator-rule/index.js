@@ -12,18 +12,14 @@ module.exports = Component.extend('opal-input-validator-rule', {
 			popoverTo: 'right'
 		},
 
-		template: require('./index.html'),
-
-		assets: {
-			popover: {}
-		}
+		template: require('./index.html')
 	},
 
 	showMessage() {
-		this.assets.popover.open();
+		this.$('popover').open();
 	},
 
 	hideMessage() {
-		this.assets.popover.close();
+		this.$('popover').close();
 	}
 });

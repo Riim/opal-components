@@ -6,18 +6,16 @@ module.exports = Component.extend('opal-filtered-list', {
 	Static: {
 		template: new ComponentTemplate(require('./index.html')),
 
-		assets: {
-			queryInput: {
-				'on-input'(evt) {
-					this.assets.loadedList.props.query = evt.target.value;
+		events: {
+			'query-input': {
+				input(evt) {
+					this.$('loaded-list').props.query = evt.target.value;
 				}
-			},
-
-			loadedList: {}
+			}
 		}
 	},
 
 	focus() {
-		this.assets.queryInput.focus();
+		this.$('query-input').focus();
 	}
 });

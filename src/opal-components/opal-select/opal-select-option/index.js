@@ -16,17 +16,17 @@ module.exports = Component.extend('opal-select-option', {
 
 		template: require('./index.html'),
 
-		assets: {
+		events: {
 			control: {
-				'on-focusin'() {
+				focusin() {
 					this.props.focused = true;
 				},
 
-				'on-focusout'() {
+				focusout() {
 					this.props.focused = false;
 				},
 
-				'on-click'() {
+				click() {
 					this._click();
 				}
 			}
@@ -150,7 +150,7 @@ module.exports = Component.extend('opal-select-option', {
 		if (!this._focused) {
 			this._focused = true;
 
-			this.assets.control.focus();
+			this.$('control').focus();
 			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 		}
 
@@ -164,7 +164,7 @@ module.exports = Component.extend('opal-select-option', {
 		if (this._focused) {
 			this._focused = false;
 
-			this.assets.control.blur();
+			this.$('control').blur();
 			this._documentKeyDownListening.stop();
 		}
 

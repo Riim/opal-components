@@ -82,17 +82,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			template: __webpack_require__(23),
 
-			assets: {
+			events: {
 				control: {
-					'on-focusin': function onFocusin() {
+					focusin: function focusin() {
 						this.props.focused = true;
 						this.emit('focusin');
 					},
-					'on-focusout': function onFocusout() {
+					focusout: function focusout() {
 						this.props.focused = false;
 						this.emit('focusout');
 					},
-					'on-click': function onClick() {
+					click: function click() {
 						if (!this.props.disabled) {
 							if (this.props.checkable) {
 								this.emit(this.toggle() ? 'check' : 'uncheck');
@@ -172,7 +172,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> OpalComponents.OpalButton;
 	  */
 		focus: function focus() {
-			this.assets.control.focus();
+			this.$('control').focus();
 			return this;
 		},
 
@@ -181,7 +181,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> OpalComponents.OpalButton;
 	  */
 		blur: function blur() {
-			this.assets.control.blur();
+			this.$('control').blur();
 			return this;
 		},
 

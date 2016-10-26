@@ -87,26 +87,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = Component.extend('opal-code-listing', {
 		Static: {
-			template: __webpack_require__(26),
-
-			assets: {
-				htmlCode: {},
-				jsCode: {}
-			}
+			template: __webpack_require__(26)
 		},
 
 		initialize: function initialize() {
-			this.highlightedHTMLCode = Prism.highlight(prepareCode(this.$('&__example-html').innerHTML, true), Prism.languages.html);
+			this.highlightedHTMLCode = Prism.highlight(prepareCode(this.$('example-html').innerHTML, true), Prism.languages.html);
 
-			var exampleJS = this.$('&__example-js');
+			var exampleJS = this.$('example-js');
 
 			if (exampleJS) {
 				this.highlightedJSCode = Prism.highlight(prepareCode(exampleJS.textContent), Prism.languages.javascript);
 			}
 		},
 		ready: function ready() {
-			this.assets.htmlCode.innerHTML = this.highlightedHTMLCode;
-			this.assets.jsCode.innerHTML = this.highlightedJSCode || '';
+			this.$('html-code').innerHTML = this.highlightedHTMLCode;
+			this.$('js-code').innerHTML = this.highlightedJSCode || '';
 		}
 	});
 

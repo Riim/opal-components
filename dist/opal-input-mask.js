@@ -83,11 +83,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				mask: { type: String, required: true }
 			},
 
-			template: __webpack_require__(29),
-
-			assets: {
-				input: {}
-			}
+			template: __webpack_require__(29)
 		},
 
 		_focusText: void 0,
@@ -96,7 +92,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			this._definitions = Object.create(this.constructor.defaultDefinitions);
 		},
 		ready: function ready() {
-			this._input = this.assets.input.assets.input;
+			this._input = this.$('input').$('input');
 
 			var definitions = this._definitions;
 
@@ -174,7 +170,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			var input = this._input;
 
 			if (input.value != this._focusText) {
-				this.assets.input.emit('change');
+				this.$('input').emit('change');
 			}
 		},
 		_onInputKeyDown: function _onInputKeyDown(evt) {
@@ -242,13 +238,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						this._setInputSelection(next, next);
 
-						this.assets.input.emit({ type: 'input', initialEvent: evt });
+						this.$('input').emit({ type: 'input', initialEvent: evt });
 
 						if (next >= bufferLen) {
 							this.emit('complete');
 						}
 					} else if (start != end) {
-						this.assets.input.emit({ type: 'input', initialEvent: evt });
+						this.$('input').emit({ type: 'input', initialEvent: evt });
 					}
 				}
 			}

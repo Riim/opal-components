@@ -69,9 +69,9 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			OpalRadioButton: OpalRadioButton,
 
-			assets: {
+			events: {
 				':component': {
-					'on-check': function onCheck(_ref) {
+					check: function check(_ref) {
 						var checkedButton = _ref.target;
 
 						forEach.call(this.buttons, function (btn) {
@@ -80,7 +80,7 @@ return /******/ (function(modules) { // webpackBootstrap
 							}
 						});
 					},
-					'on-uncheck': function onUncheck(evt) {
+					uncheck: function uncheck(evt) {
 						evt.target.check();
 					}
 				}
@@ -133,20 +133,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			template: __webpack_require__(35),
 
-			assets: {
+			events: {
 				input: {
-					'on-change': function onChange(evt) {
+					change: function change(evt) {
 						this.emit((this.props.checked = evt.target.checked) ? 'check' : 'uncheck');
 						this.emit('change');
 					}
 				},
 
 				control: {
-					'on-focusin': function onFocusin() {
+					focusin: function focusin() {
 						this.props.focused = true;
 						this.emit('focusin');
 					},
-					'on-focusout': function onFocusout() {
+					focusout: function focusout() {
 						this.props.focused = false;
 						this.emit('focusout');
 					}
@@ -167,7 +167,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			var props = this.props;
 
 			if (props.checked) {
-				this.assets.input.checked = true;
+				this.$('input').checked = true;
 			}
 
 			if (props.focused) {
@@ -176,7 +176,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
 			if (name == 'checked') {
-				this.assets.input.checked = value;
+				this.$('input').checked = value;
 			} else if (name == 'focused') {
 				this[value ? 'focus' : 'blur']();
 			}
@@ -234,7 +234,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (!this._focused) {
 				this._focused = true;
 
-				this.assets.control.focus();
+				this.$('control').focus();
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 			}
 
@@ -249,7 +249,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (this._focused) {
 				this._focused = false;
 
-				this.assets.control.blur();
+				this.$('control').blur();
 				this._documentKeyDownListening.stop();
 			}
 

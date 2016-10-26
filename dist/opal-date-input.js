@@ -82,11 +82,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				isRequiredField: getText.t('Поле обязательно для заполнения')
 			},
 
-			template: new ComponentTemplate(__webpack_require__(27)),
-
-			assets: {
-				input: {}
-			}
+			template: new ComponentTemplate(__webpack_require__(27))
 		},
 
 		isExistDate: isExistDate

@@ -15,10 +15,10 @@ module.exports = Component.extend('opal-slider', {
 
 		template: require('./index.html'),
 
-		assets: {
-			firstInput: {
-				'on-input'(evt) {
-					let secondInput = this.assets.secondInput;
+		events: {
+			'first-input': {
+				input(evt) {
+					let secondInput = this.$('second-input');
 					let value = this._firstInputValue = +evt.target.value;
 
 					if (+secondInput.value < value) {
@@ -27,18 +27,16 @@ module.exports = Component.extend('opal-slider', {
 				}
 			},
 
-			secondInput: {
-				'on-input'(evt) {
-					let firstInput = this.assets.firstInput;
+			'second-input': {
+				input(evt) {
+					let firstInput = this.$('first-input');
 					let value = this._secondInputValue = +evt.target.value;
 
 					if (+firstInput.value > value) {
 						firstInput.value = this._firstInputValue = value;
 					}
 				}
-			},
-
-			input: {}
+			}
 		}
 	},
 
@@ -63,13 +61,13 @@ module.exports = Component.extend('opal-slider', {
 	},
 
 	get value() {
-		return this.props.range ? [this._firstInputValue, this._secondInputValue] : +this.assets.input.value;
+		return this.props.range ? [this._firstInputValue, this._secondInputValue] : +this.$('input').value;
 	},
 
 	set value(value) {
 		if (this.props.range) {
-			this.assets.firstInput.value = this._firstInputValue = value[0];
-			this.assets.secondInput.value = this._secondInputValue = value[1];
+			this.$('first-input').value = this._firstInputValue = value[0];
+			this.$('second-input').value = this._secondInputValue = value[1];
 		} else {
 			this.input.value = value;
 		}

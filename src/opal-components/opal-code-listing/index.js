@@ -26,21 +26,16 @@ function prepareCode(code, html) {
 
 module.exports = Component.extend('opal-code-listing', {
 	Static: {
-		template: require('./index.html'),
-
-		assets: {
-			htmlCode: {},
-			jsCode: {}
-		}
+		template: require('./index.html')
 	},
 
 	initialize() {
 		this.highlightedHTMLCode = Prism.highlight(
-			prepareCode(this.$('&__example-html').innerHTML, true),
+			prepareCode(this.$('example-html').innerHTML, true),
 			Prism.languages.html
 		);
 
-		let exampleJS = this.$('&__example-js');
+		let exampleJS = this.$('example-js');
 
 		if (exampleJS) {
 			this.highlightedJSCode = Prism.highlight(
@@ -51,7 +46,7 @@ module.exports = Component.extend('opal-code-listing', {
 	},
 
 	ready() {
-		this.assets.htmlCode.innerHTML = this.highlightedHTMLCode;
-		this.assets.jsCode.innerHTML = this.highlightedJSCode || '';
+		this.$('html-code').innerHTML = this.highlightedHTMLCode;
+		this.$('js-code').innerHTML = this.highlightedJSCode || '';
 	}
 });

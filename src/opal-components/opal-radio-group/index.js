@@ -7,9 +7,9 @@ module.exports = Component.extend('opal-radio-group', {
 	Static: {
 		OpalRadioButton,
 
-		assets: {
+		events: {
 			':component': {
-				'on-check'({ target: checkedButton }) {
+				check({ target: checkedButton }) {
 					forEach.call(this.buttons, btn => {
 						if (btn.$c != checkedButton) {
 							btn.$c.uncheck();
@@ -17,7 +17,7 @@ module.exports = Component.extend('opal-radio-group', {
 					});
 				},
 
-				'on-uncheck'(evt) {
+				uncheck(evt) {
 					evt.target.check();
 				}
 			}

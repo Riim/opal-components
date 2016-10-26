@@ -5,17 +5,19 @@ let { IndexedList } = require('cellx-indexed-collections');
 let { ComponentTemplate, Component } = require('rionite');
 let OpalMultirowRow = require('./opal-multirow-row');
 
+let filter = Array.prototype.filter;
+
 module.exports = Component.extend('opal-multirow', {
 	Static: {
 		OpalMultirowRow,
 
 		template: new ComponentTemplate(require('./index.html')),
 
-		assets: {
+		events: {
 			':component': {
-				'on-remove-row-click'({ target: row }) {
+				'remove-row-click'({ target: row }) {
 					if (row.props.preset) {
-						this.assets.presetRowsContainer.element.removeChild(row.element);
+						this.$('presetRowsContainer').element.removeChild(row.element);
 						this._presetRowCount--;
 					} else {
 						this._newRows.remove(this._newRows.get(row.parentComponent.element.dataset.key, 'key'));
@@ -27,7 +29,7 @@ module.exports = Component.extend('opal-multirow', {
 					}, 1);
 				},
 
-				'on-add-row-click'() {
+				'add-row-click'() {
 					this._newRows.add({ key: nextUID() });
 
 					setTimeout(() => {
@@ -35,9 +37,7 @@ module.exports = Component.extend('opal-multirow', {
 						this.emit('change');
 					}, 1);
 				}
-			},
-
-			presetRowsContainer: {}
+			}
 		}
 	},
 
@@ -61,9 +61,10 @@ module.exports = Component.extend('opal-multirow', {
 	},
 
 	ready() {
-		let presetRowCount = this._presetRowCount = this.$$('.opal-multirow-row')
-			.filter(row => row.props.preset)
-			.length;
+		let presetRowCount = this._presetRowCount = filter.call(
+			this.element.getElementsByClassName('opal-multirow-row'),
+			rowEl => rowEl.$c.props.preset
+		).length;
 
 		if (!presetRowCount) {
 			this._newRows.add({ key: nextUID() });

@@ -70,9 +70,9 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			template: '<rt-content class="opal-switch-menu__content"></rt-content>',
 
-			assets: {
+			events: {
 				':component': {
-					'on-check': function onCheck(_ref) {
+					check: function check(_ref) {
 						var checkedButton = _ref.target;
 
 						forEach.call(this.buttons, function (btn) {
@@ -81,7 +81,7 @@ return /******/ (function(modules) { // webpackBootstrap
 							}
 						});
 					},
-					'on-uncheck': function onUncheck(evt) {
+					uncheck: function uncheck(evt) {
 						evt.target.check();
 					}
 				}

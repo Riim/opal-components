@@ -15,21 +15,21 @@ module.exports = Component.extend('opal-checkbox', {
 
 		template: require('./index.html'),
 
-		assets: {
+		events: {
 			input: {
-				'on-change'(evt) {
+				change(evt) {
 					this.emit((this.props.checked = evt.target.checked) ? 'check' : 'uncheck');
 					this.emit('change');
 				}
 			},
 
 			control: {
-				'on-focusin'() {
+				focusin() {
 					this.props.focused = true;
 					this.emit('focusin');
 				},
 
-				'on-focusout'() {
+				focusout() {
 					this.props.focused = false;
 					this.emit('focusout');
 				}
@@ -52,7 +52,7 @@ module.exports = Component.extend('opal-checkbox', {
 
 		if (props.checked) {
 			props.indeterminate = false;
-			this.assets.input.checked = true;
+			this.$('input').checked = true;
 		}
 
 		if (props.focused) {
@@ -66,7 +66,7 @@ module.exports = Component.extend('opal-checkbox', {
 				this.props.indeterminate = false;
 			}
 
-			this.assets.input.checked = value;
+			this.$('input').checked = value;
 		} else if (name == 'indeterminate') {
 			if (value) {
 				this.props.checked = false;
@@ -124,7 +124,7 @@ module.exports = Component.extend('opal-checkbox', {
 		if (!this._focused) {
 			this._focused = true;
 
-			this.assets.control.focus();
+			this.$('control').focus();
 			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 		}
 
@@ -138,7 +138,7 @@ module.exports = Component.extend('opal-checkbox', {
 		if (this._focused) {
 			this._focused = false;
 
-			this.assets.control.blur();
+			this.$('control').blur();
 			this._documentKeyDownListening.stop();
 		}
 

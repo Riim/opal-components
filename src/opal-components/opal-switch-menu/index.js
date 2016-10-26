@@ -8,9 +8,9 @@ module.exports = Component.extend('opal-switch-menu', {
 	Static: {
 		template: '<rt-content class="opal-switch-menu__content"></rt-content>',
 
-		assets: {
+		events: {
 			':component': {
-				'on-check'({ target: checkedButton }) {
+				check({ target: checkedButton }) {
 					forEach.call(this.buttons, btn => {
 						if (btn.$c != checkedButton) {
 							btn.$c.uncheck();
@@ -18,7 +18,7 @@ module.exports = Component.extend('opal-switch-menu', {
 					});
 				},
 
-				'on-uncheck'(evt) {
+				uncheck(evt) {
 					evt.target.check();
 				}
 			}

@@ -86,21 +86,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			template: __webpack_require__(44),
 
-			assets: {
+			events: {
 				input: {
-					'on-focusin': function onFocusin() {
+					focusin: function focusin() {
 						this.props.focused = true;
 						this.emit('focusin');
 					},
-					'on-focusout': function onFocusout() {
+					focusout: function focusout() {
 						this.props.focused = false;
 						this.emit('focusout');
 					},
-					'on-input': function onInput(evt) {
+					input: function input(evt) {
 						this.value = evt.target.value;
 						this.emit({ type: 'input', initialEvent: evt });
 					},
-					'on-change': function onChange(evt) {
+					change: function change(evt) {
 						var storeKey = this.props.storeKey;
 
 						if (storeKey) {
@@ -109,7 +109,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						this.emit({ type: 'change', initialEvent: evt });
 					},
-					'on-keydown': function onKeydown(evt) {
+					keydown: function keydown(evt) {
 						var _this = this;
 
 						if (this.props.multiline && this.props.autoHeight) {
@@ -120,14 +120,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						this.emit({ type: 'keydown', initialEvent: evt });
 					},
-					'on-keypress': function onKeypress(evt) {
+					keypress: function keypress(evt) {
 						if (evt.which == 13 /* Enter */) {
 								this.emit('confirminput');
 							}
 
 						this.emit({ type: 'keypress', initialEvent: evt });
 					},
-					'on-keyup': function onKeyup(evt) {
+					keyup: function keyup(evt) {
 						if (this.props.multiline && this.props.autoHeight) {
 							this._fixHeight();
 						}
@@ -136,10 +136,10 @@ return /******/ (function(modules) { // webpackBootstrap
 					}
 				},
 
-				btnClear: {
-					'on-click': function onClick(evt) {
+				'btn-clear': {
+					click: function click(evt) {
 						this.value = '';
-						this.assets.input.focus();
+						this.$('input').focus();
 
 						this.emit({ type: 'change', initialEvent: evt });
 					}
@@ -159,7 +159,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			var value = props.value;
 
 			if (value) {
-				this.assets.input.value = value;
+				this.$('input').value = value;
 			} else {
 				var storeKey = props.storeKey;
 
@@ -174,7 +174,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
 			if (name == 'value') {
-				var input = this.assets.input;
+				var input = this.$('input');
 
 				if (input.value != value) {
 					input.value = value;
@@ -184,7 +184,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 		_fixHeight: function _fixHeight() {
-			var input = this.assets.input;
+			var input = this.$('input');
 
 			if (input.scrollHeight > input.clientHeight) {
 				input.style.height = input.offsetHeight + input.scrollHeight - input.clientHeight + 'px';
@@ -215,7 +215,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> OpalComponents.OpalTextInput;
 	  */
 		focus: function focus() {
-			this.assets.input.focus();
+			this.$('input').focus();
 			return this;
 		},
 
@@ -224,7 +224,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> OpalComponents.OpalTextInput;
 	  */
 		blur: function blur() {
-			this.assets.input.blur();
+			this.$('input').blur();
 			return this;
 		},
 

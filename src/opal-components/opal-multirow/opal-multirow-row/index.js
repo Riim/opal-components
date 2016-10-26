@@ -10,15 +10,15 @@ module.exports = Component.extend('opal-multirow-row', {
 
 		template: new ComponentTemplate(require('./index.html')),
 
-		assets: {
-			btnRemoveRow: {
-				'on-click'() {
+		events: {
+			'btn-remove-row': {
+				click() {
 					this.emit('remove-row-click');
 				}
 			},
 
-			btnAddRow: {
-				'on-click'() {
+			'btn-add-row': {
+				click() {
 					this.emit('add-row-click');
 				}
 			}

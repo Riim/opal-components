@@ -9,7 +9,7 @@ function onDocumentFocusIn() {
 	let body = document.body;
 
 	if (document.activeElement != body && !openedModals[0].element.contains(document.activeElement.parentNode)) {
-		openedModals[0].assets.btnClose.focus();
+		openedModals[0].$('btn-close').focus();
 	}
 }
 
@@ -28,11 +28,11 @@ module.exports = Component.extend('opal-modal', {
 
 		template: new ComponentTemplate(require('./index.html')),
 
-		assets: {
+		events: {
 			':element': {
-				'on-click'(evt) {
+				click(evt) {
 					let el = this.element;
-					let windowEl = this.assets.window;
+					let windowEl = this.$('window');
 
 					for (let node = evt.target; node != windowEl;) {
 						if (node == el) {
@@ -49,10 +49,8 @@ module.exports = Component.extend('opal-modal', {
 				}
 			},
 
-			window: {},
-
-			btnClose: {
-				'on-click'() {
+			'btn-close': {
+				click() {
 					this.props.opened = false;
 				}
 			}
@@ -128,7 +126,7 @@ module.exports = Component.extend('opal-modal', {
 		this.props.opened = true;
 		openedModals.unshift(this);
 
-		this.assets.btnClose.focus();
+		this.$('btn-close').focus();
 
 		this.emit('open');
 	},
@@ -145,7 +143,7 @@ module.exports = Component.extend('opal-modal', {
 
 		if (openedModals.length) {
 			openedModals[0].element.classList.remove('_overlapped');
-			openedModals[0].assets.btnClose.focus();
+			openedModals[0].$('btn-close').focus();
 		} else {
 			documentListening.stop();
 

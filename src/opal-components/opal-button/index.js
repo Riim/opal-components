@@ -19,19 +19,19 @@ module.exports = Component.extend('opal-button', {
 
 		template: require('./index.html'),
 
-		assets: {
+		events: {
 			control: {
-				'on-focusin'() {
+				focusin() {
 					this.props.focused = true;
 					this.emit('focusin');
 				},
 
-				'on-focusout'() {
+				focusout() {
 					this.props.focused = false;
 					this.emit('focusout');
 				},
 
-				'on-click'() {
+				click() {
 					if (!this.props.disabled) {
 						if (this.props.checkable) {
 							this.emit(this.toggle() ? 'check' : 'uncheck');
@@ -109,7 +109,7 @@ module.exports = Component.extend('opal-button', {
 	 * @typesign () -> OpalComponents.OpalButton;
 	 */
 	focus() {
-		this.assets.control.focus();
+		this.$('control').focus();
 		return this;
 	},
 
@@ -117,7 +117,7 @@ module.exports = Component.extend('opal-button', {
 	 * @typesign () -> OpalComponents.OpalButton;
 	 */
 	blur() {
-		this.assets.control.blur();
+		this.$('control').blur();
 		return this;
 	},
 

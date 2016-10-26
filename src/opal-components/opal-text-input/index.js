@@ -23,24 +23,24 @@ module.exports = Component.extend('opal-text-input', {
 
 		template: require('./index.html'),
 
-		assets: {
+		events: {
 			input: {
-				'on-focusin'() {
+				focusin() {
 					this.props.focused = true;
 					this.emit('focusin');
 				},
 
-				'on-focusout'() {
+				focusout() {
 					this.props.focused = false;
 					this.emit('focusout');
 				},
 
-				'on-input'(evt) {
+				input(evt) {
 					this.value = evt.target.value;
 					this.emit({ type: 'input', initialEvent: evt });
 				},
 
-				'on-change'(evt) {
+				change(evt) {
 					let storeKey = this.props.storeKey;
 
 					if (storeKey) {
@@ -50,7 +50,7 @@ module.exports = Component.extend('opal-text-input', {
 					this.emit({ type: 'change', initialEvent: evt });
 				},
 
-				'on-keydown'(evt) {
+				keydown(evt) {
 					if (this.props.multiline && this.props.autoHeight) {
 						setTimeout(() => {
 							this._fixHeight();
@@ -60,7 +60,7 @@ module.exports = Component.extend('opal-text-input', {
 					this.emit({ type: 'keydown', initialEvent: evt });
 				},
 
-				'on-keypress'(evt) {
+				keypress(evt) {
 					if (evt.which == 13/* Enter */) {
 						this.emit('confirminput');
 					}
@@ -68,7 +68,7 @@ module.exports = Component.extend('opal-text-input', {
 					this.emit({ type: 'keypress', initialEvent: evt });
 				},
 
-				'on-keyup'(evt) {
+				keyup(evt) {
 					if (this.props.multiline && this.props.autoHeight) {
 						this._fixHeight();
 					}
@@ -77,10 +77,10 @@ module.exports = Component.extend('opal-text-input', {
 				}
 			},
 
-			btnClear: {
-				'on-click'(evt) {
+			'btn-clear': {
+				click(evt) {
 					this.value = '';
-					this.assets.input.focus();
+					this.$('input').focus();
 
 					this.emit({ type: 'change', initialEvent: evt });
 				}
@@ -101,7 +101,7 @@ module.exports = Component.extend('opal-text-input', {
 		let value = props.value;
 
 		if (value) {
-			this.assets.input.value = value;
+			this.$('input').value = value;
 		} else {
 			let storeKey = props.storeKey;
 
@@ -117,7 +117,7 @@ module.exports = Component.extend('opal-text-input', {
 
 	elementAttributeChanged(name, oldValue, value) {
 		if (name == 'value') {
-			let input = this.assets.input;
+			let input = this.$('input');
 
 			if (input.value != value) {
 				input.value = value;
@@ -128,7 +128,7 @@ module.exports = Component.extend('opal-text-input', {
 	},
 
 	_fixHeight() {
-		let input = this.assets.input;
+		let input = this.$('input');
 
 		if (input.scrollHeight > input.clientHeight) {
 			input.style.height = input.offsetHeight + input.scrollHeight - input.clientHeight + 'px';
@@ -157,7 +157,7 @@ module.exports = Component.extend('opal-text-input', {
 	 * @typesign () -> OpalComponents.OpalTextInput;
 	 */
 	focus() {
-		this.assets.input.focus();
+		this.$('input').focus();
 		return this;
 	},
 
@@ -165,7 +165,7 @@ module.exports = Component.extend('opal-text-input', {
 	 * @typesign () -> OpalComponents.OpalTextInput;
 	 */
 	blur() {
-		this.assets.input.blur();
+		this.$('input').blur();
 		return this;
 	},
 

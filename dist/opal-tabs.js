@@ -74,32 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			OpalTabList: OpalTabList,
 			OpalTabPanel: OpalTabPanel,
 
-			template: __webpack_require__(41),
-
-			assets: {
-				tabList: {
-					selector: '.opal-tab-list',
-
-					'on-select': function onSelect(_ref) {
-						var tab = _ref.target;
-
-						var selectedTab = this._selectedTab;
-
-						if (selectedTab) {
-							this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$c.props.shown = false;
-							selectedTab.deselect();
-						}
-
-						this.tabPanels[indexOf.call(this.tabs, tab.element)].$c.props.shown = true;
-						this._selectedTab = tab;
-					},
-					'on-deselect': function onDeselect(_ref2) {
-						var tab = _ref2.target;
-
-						tab.select();
-					}
-				}
-			}
+			template: __webpack_require__(41)
 		},
 
 		_selectedTab: null,
@@ -113,8 +88,8 @@ return /******/ (function(modules) { // webpackBootstrap
 			var selectedTab = void 0;
 			var selectedTabIndex = void 0;
 
-			forEach.call(tabs, function (_ref3, index) {
-				var tab = _ref3.$c;
+			forEach.call(tabs, function (_ref, index) {
+				var tab = _ref.$c;
 
 				if (tab.selected) {
 					if (selectedTab) {
@@ -134,6 +109,30 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 
 			tabPanels[selectedTabIndex].$c.props.shown = true;
+		},
+		elementAttached: function elementAttached() {
+			this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0], {
+				select: this._onTabListSelect,
+				deselect: this._onTabListDeselect
+			});
+		},
+		_onTabListSelect: function _onTabListSelect(_ref2) {
+			var tab = _ref2.target;
+
+			var selectedTab = this._selectedTab;
+
+			if (selectedTab) {
+				this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$c.props.shown = false;
+				selectedTab.deselect();
+			}
+
+			this.tabPanels[indexOf.call(this.tabs, tab.element)].$c.props.shown = true;
+			this._selectedTab = tab;
+		},
+		_onTabListDeselect: function _onTabListDeselect(_ref3) {
+			var tab = _ref3.target;
+
+			tab.select();
 		}
 	});
 
@@ -200,15 +199,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			template: __webpack_require__(42),
 
-			assets: {
+			events: {
 				button: {
-					'on-focusin': function onFocusin() {
+					focusin: function focusin() {
 						this.props.focused = true;
 					},
-					'on-focusout': function onFocusout() {
+					focusout: function focusout() {
 						this.props.focused = false;
 					},
-					'on-click': function onClick() {
+					click: function click() {
 						this._click();
 					}
 				}
@@ -299,7 +298,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (!this._focused) {
 				this._focused = true;
 
-				this.assets.button.focus();
+				this.$('button').focus();
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 			}
 
@@ -314,7 +313,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (this._focused) {
 				this._focused = false;
 
-				this.assets.button.blur();
+				this.$('button').blur();
 				this._documentKeyDownListening.stop();
 			}
 

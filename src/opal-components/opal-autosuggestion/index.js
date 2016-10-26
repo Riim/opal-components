@@ -21,21 +21,21 @@ module.exports = Component.extend('opal-autosuggestion', {
 
 		template: new ComponentTemplate(require('./index.html')),
 
-		assets: {
+		events: {
 			input: {
-				'on-focusin'() {
+				focusin() {
 					this.openMenu();
 				},
 
-				'on-focusout'() {
+				focusout() {
 					this._cancelLoading();
 
-					if (!this.assets.menu.props.opened) {
+					if (!this.$('menu').props.opened) {
 						this._setSelectedItemOfList();
 					}
 				},
 
-				'on-input'(evt) {
+				input(evt) {
 					this.closeMenu();
 
 					this._cancelLoading();
@@ -50,10 +50,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 						}, 300);
 					}
 				}
-			},
-
-			menu: {},
-			list: {}
+			}
 		}
 	},
 
@@ -81,12 +78,12 @@ module.exports = Component.extend('opal-autosuggestion', {
 	},
 
 	ready() {
-		this._listItems = this.assets.list.getElementsByClassName('opal-autosuggestion__list-item');
+		this._listItems = this.$('list').getElementsByClassName('opal-autosuggestion__list-item');
 	},
 
 	elementAttached() {
-		this.listenTo(this.assets.input.assets.input, 'click', this._onInputClick);
-		this.listenTo(this.assets.menu.props, 'change:opened', this._onMenuOpenedChange);
+		this.listenTo(this.$('input').$('input'), 'click', this._onInputClick);
+		this.listenTo(this.$('menu').props, 'change:opened', this._onMenuOpenedChange);
 		this.listenTo(this.list, 'change', this._onListChange);
 		this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 	},
@@ -95,7 +92,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 		this.loading = true;
 
 		let dataProvider = this.dataProvider;
-		let args = [this.assets.input.value];
+		let args = [this.$('input').value];
 
 		if (dataProvider.getItems.length >= 2) {
 			args.unshift(this.props.count);
@@ -140,11 +137,11 @@ module.exports = Component.extend('opal-autosuggestion', {
 	},
 
 	_onLoaderShownChange(evt) {
-		this.assets.input.props.loading = evt.value;
+		this.$('input').props.loading = evt.value;
 	},
 
 	_onDocumentFocusIn() {
-		if (document.activeElement != this.assets.input.assets.input) {
+		if (document.activeElement != this.$('input').$('input')) {
 			this.closeMenu();
 			this._setSelectedItemOfList();
 		}
@@ -180,10 +177,9 @@ module.exports = Component.extend('opal-autosuggestion', {
 				if (focusedListItem) {
 					evt.preventDefault();
 
-					let input = this.assets.input;
 					let focusedListItemDataSet = focusedListItem.dataset;
 
-					input.value = focusedListItemDataSet.text;
+					this.$('input').value = focusedListItemDataSet.text;
 
 					this.closeMenu();
 
@@ -206,7 +202,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 
 	_onDocumentMouseUp() {
 		setTimeout(() => {
-			if (document.activeElement != this.assets.input.assets.input) {
+			if (document.activeElement != this.$('input').$('input')) {
 				this.closeMenu();
 				this._setSelectedItemOfList();
 			}
@@ -214,7 +210,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 	},
 
 	_onListItemClick(evt, listItem) {
-		let input = this.assets.input;
+		let input = this.$('input');
 		let listItemDataSet = listItem.dataset;
 
 		input.value = listItemDataSet.text;
@@ -230,12 +226,12 @@ module.exports = Component.extend('opal-autosuggestion', {
 
 	openMenu() {
 		if (this.list.length) {
-			this.assets.menu.open();
+			this.$('menu').open();
 		}
 	},
 
 	closeMenu() {
-		this.assets.menu.close();
+		this.$('menu').close();
 	},
 
 	_cancelLoading() {
@@ -249,7 +245,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 	},
 
 	_setSelectedItemOfList() {
-		let comparableQuery = toComparable(this.assets.input.value);
+		let comparableQuery = toComparable(this.$('input').value);
 		this._setSelectedItem(this.list.find(item => toComparable(item.text) == comparableQuery) || null);
 	},
 

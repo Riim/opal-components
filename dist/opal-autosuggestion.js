@@ -89,19 +89,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			template: new ComponentTemplate(__webpack_require__(22)),
 
-			assets: {
+			events: {
 				input: {
-					'on-focusin': function onFocusin() {
+					focusin: function focusin() {
 						this.openMenu();
 					},
-					'on-focusout': function onFocusout() {
+					focusout: function focusout() {
 						this._cancelLoading();
 
-						if (!this.assets.menu.props.opened) {
+						if (!this.$('menu').props.opened) {
 							this._setSelectedItemOfList();
 						}
 					},
-					'on-input': function onInput(evt) {
+					input: function input(evt) {
 						var _this = this;
 
 						this.closeMenu();
@@ -118,10 +118,7 @@ return /******/ (function(modules) { // webpackBootstrap
 							}, 300);
 						}
 					}
-				},
-
-				menu: {},
-				list: {}
+				}
 			}
 		},
 
@@ -149,11 +146,11 @@ return /******/ (function(modules) { // webpackBootstrap
 			});
 		},
 		ready: function ready() {
-			this._listItems = this.assets.list.getElementsByClassName('opal-autosuggestion__list-item');
+			this._listItems = this.$('list').getElementsByClassName('opal-autosuggestion__list-item');
 		},
 		elementAttached: function elementAttached() {
-			this.listenTo(this.assets.input.assets.input, 'click', this._onInputClick);
-			this.listenTo(this.assets.menu.props, 'change:opened', this._onMenuOpenedChange);
+			this.listenTo(this.$('input').$('input'), 'click', this._onInputClick);
+			this.listenTo(this.$('menu').props, 'change:opened', this._onMenuOpenedChange);
 			this.listenTo(this.list, 'change', this._onListChange);
 			this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 		},
@@ -163,7 +160,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			this.loading = true;
 
 			var dataProvider = this.dataProvider;
-			var args = [this.assets.input.value];
+			var args = [this.$('input').value];
 
 			if (dataProvider.getItems.length >= 2) {
 				args.unshift(this.props.count);
@@ -202,10 +199,10 @@ return /******/ (function(modules) { // webpackBootstrap
 			this.openMenu();
 		},
 		_onLoaderShownChange: function _onLoaderShownChange(evt) {
-			this.assets.input.props.loading = evt.value;
+			this.$('input').props.loading = evt.value;
 		},
 		_onDocumentFocusIn: function _onDocumentFocusIn() {
-			if (document.activeElement != this.assets.input.assets.input) {
+			if (document.activeElement != this.$('input').$('input')) {
 				this.closeMenu();
 				this._setSelectedItemOfList();
 			}
@@ -240,10 +237,9 @@ return /******/ (function(modules) { // webpackBootstrap
 						if (_focusedListItem) {
 							evt.preventDefault();
 
-							var input = this.assets.input;
 							var focusedListItemDataSet = _focusedListItem.dataset;
 
-							input.value = focusedListItemDataSet.text;
+							this.$('input').value = focusedListItemDataSet.text;
 
 							this.closeMenu();
 
@@ -268,14 +264,14 @@ return /******/ (function(modules) { // webpackBootstrap
 			var _this3 = this;
 
 			setTimeout(function () {
-				if (document.activeElement != _this3.assets.input.assets.input) {
+				if (document.activeElement != _this3.$('input').$('input')) {
 					_this3.closeMenu();
 					_this3._setSelectedItemOfList();
 				}
 			}, 1);
 		},
 		_onListItemClick: function _onListItemClick(evt, listItem) {
-			var input = this.assets.input;
+			var input = this.$('input');
 			var listItemDataSet = listItem.dataset;
 
 			input.value = listItemDataSet.text;
@@ -290,11 +286,11 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		openMenu: function openMenu() {
 			if (this.list.length) {
-				this.assets.menu.open();
+				this.$('menu').open();
 			}
 		},
 		closeMenu: function closeMenu() {
-			this.assets.menu.close();
+			this.$('menu').close();
 		},
 		_cancelLoading: function _cancelLoading() {
 			if (this._loadingPlanned) {
@@ -306,7 +302,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 		_setSelectedItemOfList: function _setSelectedItemOfList() {
-			var comparableQuery = toComparable(this.assets.input.value);
+			var comparableQuery = toComparable(this.$('input').value);
 			this._setSelectedItem(this.list.find(function (item) {
 				return toComparable(item.text) == comparableQuery;
 			}) || null);

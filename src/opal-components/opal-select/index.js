@@ -29,29 +29,29 @@ module.exports = Component.extend('opal-select', {
 
 		template: new ComponentTemplate(require('./index.html')),
 
-		assets: {
+		events: {
 			button: {
-				'on-focusin'() {
+				focusin() {
 					this.props.focused = true;
 					this.emit('focusin');
 				},
 
-				'on-focusout'() {
+				focusout() {
 					this.props.focused = false;
 					this.emit('focusout');
 				},
 
-				'on-click'(evt) {
+				click(evt) {
 					this[evt.target.checked ? 'open' : 'close']();
 				}
 			},
 
 			menu: {
-				'on-close'() {
+				close() {
 					this.close();
 				},
 
-				'on-confirminput'({ target: textInput }) {
+				confirminput({ target: textInput }) {
 					if (!this.props.allowInput) {
 						return;
 					}
@@ -64,7 +64,7 @@ module.exports = Component.extend('opal-select', {
 					};
 
 					textInput.clear();
-					this.assets.loadedList.props.query = '';
+					this.$('loaded-list').props.query = '';
 
 					if (this.props.multiple) {
 						vm.add(item);
@@ -82,7 +82,7 @@ module.exports = Component.extend('opal-select', {
 					}
 				},
 
-				'on-change'(evt) {
+				change(evt) {
 					if (!(evt.target instanceof RtRepeat)) {
 						return;
 					}
@@ -93,7 +93,7 @@ module.exports = Component.extend('opal-select', {
 					return false;
 				},
 
-				'on-select'({ target: selectedOption }) {
+				select({ target: selectedOption }) {
 					if (!(selectedOption instanceof OpalSelectOption)) {
 						return;
 					}
@@ -120,7 +120,7 @@ module.exports = Component.extend('opal-select', {
 					}
 				},
 
-				'on-deselect'({ target: deselectedOption }) {
+				deselect({ target: deselectedOption }) {
 					if (!(deselectedOption instanceof OpalSelectOption)) {
 						return;
 					}
@@ -136,10 +136,7 @@ module.exports = Component.extend('opal-select', {
 						this.emit('change');
 					}
 				}
-			},
-
-			filteredList: {},
-			loadedList: {}
+			}
 		}
 	},
 
@@ -325,19 +322,21 @@ module.exports = Component.extend('opal-select', {
 			this._opened = true;
 			this._valueWhenOpened = this.viewModel.map(item => item.value);
 
-			let assets = this.assets;
+			this.$('button').check();
+			this.$('menu').open();
 
-			assets.button.check();
-			assets.menu.open();
+			let loadedList = this.$('loaded-list');
 
-			if (assets.loadedList) {
+			if (loadedList) {
 				nextTick(() => {
-					assets.loadedList.checkLoading();
+					loadedList.checkLoading();
 				});
 			}
 
-			if (assets.filteredList) {
-				assets.filteredList.focus();
+			let filteredList = this.$('filtered-list');
+
+			if (filteredList) {
+				filteredList.focus();
 			} else {
 				this._focusOptions();
 			}
@@ -361,8 +360,8 @@ module.exports = Component.extend('opal-select', {
 		if (this._opened) {
 			this._opened = false;
 
-			this.assets.button.uncheck();
-			this.assets.menu.close();
+			this.$('button').uncheck();
+			this.$('menu').close();
 
 			this._documentFocusInListening.stop();
 
@@ -403,7 +402,7 @@ module.exports = Component.extend('opal-select', {
 		if (!this._focused) {
 			this._focused = true;
 
-			this.assets.button.focus();
+			this.$('button').focus();
 
 			if (!this._opened) {
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
@@ -420,7 +419,7 @@ module.exports = Component.extend('opal-select', {
 		if (this._focused) {
 			this._focused = false;
 
-			this.assets.button.blur();
+			this.$('button').blur();
 
 			if (!this._opened) {
 				this._documentKeyDownListening.stop();

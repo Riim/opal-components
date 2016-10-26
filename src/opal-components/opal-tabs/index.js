@@ -12,29 +12,7 @@ module.exports = Component.extend('opal-tabs', {
 		OpalTabList,
 		OpalTabPanel,
 
-		template: require('./index.html'),
-
-		assets: {
-			tabList: {
-				selector: '.opal-tab-list',
-
-				'on-select'({ target: tab }) {
-					let selectedTab = this._selectedTab;
-
-					if (selectedTab) {
-						this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$c.props.shown = false;
-						selectedTab.deselect();
-					}
-
-					this.tabPanels[indexOf.call(this.tabs, tab.element)].$c.props.shown = true;
-					this._selectedTab = tab;
-				},
-
-				'on-deselect'({ target: tab }) {
-					tab.select();
-				}
-			}
-		}
+		template: require('./index.html')
 	},
 
 	_selectedTab: null,
@@ -65,5 +43,28 @@ module.exports = Component.extend('opal-tabs', {
 		}
 
 		tabPanels[selectedTabIndex].$c.props.shown = true;
+	},
+
+	elementAttached() {
+		this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0], {
+			select: this._onTabListSelect,
+			deselect: this._onTabListDeselect
+		});
+	},
+
+	_onTabListSelect({ target: tab }) {
+		let selectedTab = this._selectedTab;
+
+		if (selectedTab) {
+			this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$c.props.shown = false;
+			selectedTab.deselect();
+		}
+
+		this.tabPanels[indexOf.call(this.tabs, tab.element)].$c.props.shown = true;
+		this._selectedTab = tab;
+	},
+
+	_onTabListDeselect({ target: tab }) {
+		tab.select();
 	}
 });

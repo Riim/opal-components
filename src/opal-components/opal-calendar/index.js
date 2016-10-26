@@ -29,9 +29,9 @@ module.exports = Component.extend('opal-calendar', {
 
 		template: new ComponentTemplate(require('./index.html')),
 
-		assets: {
-			btnPrevMonth: {
-				'on-click'() {
+		events: {
+			'btn-prev-month': {
+				click() {
 					if (this.shownMonth) {
 						this.shownMonth--;
 					} else {
@@ -41,8 +41,8 @@ module.exports = Component.extend('opal-calendar', {
 				}
 			},
 
-			btnNextMonth: {
-				'on-click'() {
+			'btn-next-month': {
+				click() {
 					if (this.shownMonth == 11) {
 						this.shownYear++;
 						this.shownMonth = 0;
@@ -52,26 +52,26 @@ module.exports = Component.extend('opal-calendar', {
 				}
 			},
 
-			sMonth: {
-				'on-select'(evt) {
+			's-month': {
+				select(evt) {
 					this.shownMonth = +evt.target.value;
 				}
 			},
 
-			sYear: {
-				'on-select'(evt) {
+			's-year': {
+				select(evt) {
 					this.shownYear = +evt.target.value;
 				}
 			},
 
 			days: {
-				'on-focusin'() {
+				focusin() {
 					if (document.activeElement.dataset.date && !this._documentKeyDownListening) {
 						this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 					}
 				},
 
-				'on-focusout'() {
+				focusout() {
 					setTimeout(() => {
 						if (!document.activeElement.classList.contains('opal-calendar__day')) {
 							this._documentKeyDownListening.stop();
@@ -273,7 +273,7 @@ module.exports = Component.extend('opal-calendar', {
 			return;
 		}
 
-		let selectedDayEl = this.assets.days.querySelector('[selected]');
+		let selectedDayEl = this.$('days').querySelector('[selected]');
 
 		if (selectedDayEl) {
 			selectedDayEl.removeAttribute('selected');

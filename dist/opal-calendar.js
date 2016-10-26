@@ -89,9 +89,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			template: new ComponentTemplate(__webpack_require__(24)),
 
-			assets: {
-				btnPrevMonth: {
-					'on-click': function onClick() {
+			events: {
+				'btn-prev-month': {
+					click: function click() {
 						if (this.shownMonth) {
 							this.shownMonth--;
 						} else {
@@ -101,8 +101,8 @@ return /******/ (function(modules) { // webpackBootstrap
 					}
 				},
 
-				btnNextMonth: {
-					'on-click': function onClick() {
+				'btn-next-month': {
+					click: function click() {
 						if (this.shownMonth == 11) {
 							this.shownYear++;
 							this.shownMonth = 0;
@@ -112,25 +112,25 @@ return /******/ (function(modules) { // webpackBootstrap
 					}
 				},
 
-				sMonth: {
-					'on-select': function onSelect(evt) {
+				's-month': {
+					select: function select(evt) {
 						this.shownMonth = +evt.target.value;
 					}
 				},
 
-				sYear: {
-					'on-select': function onSelect(evt) {
+				's-year': {
+					select: function select(evt) {
 						this.shownYear = +evt.target.value;
 					}
 				},
 
 				days: {
-					'on-focusin': function onFocusin() {
+					focusin: function focusin() {
 						if (document.activeElement.dataset.date && !this._documentKeyDownListening) {
 							this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 						}
 					},
-					'on-focusout': function onFocusout() {
+					focusout: function focusout() {
 						var _this = this;
 
 						setTimeout(function () {
@@ -313,7 +313,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				return;
 			}
 
-			var selectedDayEl = this.assets.days.querySelector('[selected]');
+			var selectedDayEl = this.$('days').querySelector('[selected]');
 
 			if (selectedDayEl) {
 				selectedDayEl.removeAttribute('selected');

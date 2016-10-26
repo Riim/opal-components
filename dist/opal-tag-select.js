@@ -84,10 +84,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			template: new ComponentTemplate(__webpack_require__(43)),
 
-			assets: {
+			events: {
 				control: {
-					'on-click': function onClick(evt, control) {
-						var select = this.assets.select;
+					click: function click(evt, control) {
+						var select = this.$('select');
 						var selectEl = select.element;
 
 						for (var node = evt.target; node != selectEl; node = node.parentNode) {
@@ -100,9 +100,11 @@ return /******/ (function(modules) { // webpackBootstrap
 				},
 
 				select: {
-					'on-confirminput': function onConfirminput() {
-						if (this.assets.select.props.allowInput) {
-							this.assets.select.close();
+					confirminput: function confirminput() {
+						var select = this.$('select');
+
+						if (select.props.allowInput) {
+							select.close();
 						}
 					},
 
@@ -110,11 +112,11 @@ return /******/ (function(modules) { // webpackBootstrap
 					// не соединять on-select и on-deselect в on-change,
 					// тк on-change на opal-select[multiple] генерируется только при закрытии,
 					// а здесь как раз закрыть и нужно
-					'on-select': function onSelect() {
-						this.assets.select.close();
+					select: function select() {
+						this.$('select').close();
 					},
-					'on-deselect': function onDeselect() {
-						this.assets.select.close();
+					deselect: function deselect() {
+						this.$('select').close();
 					}
 				}
 			}

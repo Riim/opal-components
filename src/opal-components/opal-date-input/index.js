@@ -18,11 +18,7 @@ module.exports = Component.extend('opal-date-input', {
 			isRequiredField: getText.t('Поле обязательно для заполнения')
 		},
 
-		template: new ComponentTemplate(require('./index.html')),
-
-		assets: {
-			input: {}
-		}
+		template: new ComponentTemplate(require('./index.html'))
 	},
 
 	isExistDate

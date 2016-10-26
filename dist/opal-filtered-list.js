@@ -69,19 +69,17 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			template: new ComponentTemplate(__webpack_require__(28)),
 
-			assets: {
-				queryInput: {
-					'on-input': function onInput(evt) {
-						this.assets.loadedList.props.query = evt.target.value;
+			events: {
+				'query-input': {
+					input: function input(evt) {
+						this.$('loaded-list').props.query = evt.target.value;
 					}
-				},
-
-				loadedList: {}
+				}
 			}
 		},
 
 		focus: function focus() {
-			this.assets.queryInput.focus();
+			this.$('query-input').focus();
 		}
 	});
 

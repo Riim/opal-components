@@ -78,10 +78,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			template: __webpack_require__(39),
 
-			assets: {
-				firstInput: {
-					'on-input': function onInput(evt) {
-						var secondInput = this.assets.secondInput;
+			events: {
+				'first-input': {
+					input: function input(evt) {
+						var secondInput = this.$('second-input');
 						var value = this._firstInputValue = +evt.target.value;
 
 						if (+secondInput.value < value) {
@@ -90,18 +90,16 @@ return /******/ (function(modules) { // webpackBootstrap
 					}
 				},
 
-				secondInput: {
-					'on-input': function onInput(evt) {
-						var firstInput = this.assets.firstInput;
+				'second-input': {
+					input: function input(evt) {
+						var firstInput = this.$('first-input');
 						var value = this._secondInputValue = +evt.target.value;
 
 						if (+firstInput.value > value) {
 							firstInput.value = this._firstInputValue = value;
 						}
 					}
-				},
-
-				input: {}
+				}
 			}
 		},
 
@@ -125,13 +123,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 		get value() {
-			return this.props.range ? [this._firstInputValue, this._secondInputValue] : +this.assets.input.value;
+			return this.props.range ? [this._firstInputValue, this._secondInputValue] : +this.$('input').value;
 		},
 
 		set value(value) {
 			if (this.props.range) {
-				this.assets.firstInput.value = this._firstInputValue = value[0];
-				this.assets.secondInput.value = this._secondInputValue = value[1];
+				this.$('first-input').value = this._firstInputValue = value[0];
+				this.$('second-input').value = this._secondInputValue = value[1];
 			} else {
 				this.input.value = value;
 			}

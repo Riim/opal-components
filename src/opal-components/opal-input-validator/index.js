@@ -4,21 +4,23 @@ let cellx = require('cellx');
 let { Component } = require('rionite');
 let OpalInputValidatorRule = require('./opal-input-validator-rule');
 
+let map = Array.prototype.map;
+
 module.exports = Component.extend('opal-input-validator', {
 	Static: {
 		OpalInputValidatorRule,
 
 		template: '<rt-content class="opal-input-validator__content"></rt-content>',
 
-		assets: {
+		events: {
 			input: {
-				'on-input'() {
+				input() {
 					if (this.failedRule) {
 						this._validate([this.failedRule]);
 					}
 				},
 
-				'on-change'() {
+				change() {
 					this.validate();
 				}
 			}
@@ -36,21 +38,24 @@ module.exports = Component.extend('opal-input-validator', {
 	},
 
 	ready() {
-		this.assets.rules = this.$$('.opal-input-validator-rule');
+		this._rules = map.call(
+			this.element.getElementsByClassName('opal-input-validator-rule'),
+			ruleEl => ruleEl.$c
+		);
 	},
 
 	/**
 	 * @typesign () -> boolean;
 	 */
 	validate() {
-		return this._validate(this.assets.rules);
+		return this._validate(this._rules);
 	},
 
 	/**
 	 * @typesign (rules: Array<OpalComponents.OpalInputValidatorRule>) -> boolean;
 	 */
 	_validate(rules) {
-		let value = this.assets.input.value;
+		let value = this.$('input').value;
 		let trimmedValue = value.trim();
 		let failedRule = null;
 

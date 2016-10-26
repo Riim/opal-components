@@ -101,26 +101,26 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			template: new ComponentTemplate(__webpack_require__(36)),
 
-			assets: {
+			events: {
 				button: {
-					'on-focusin': function onFocusin() {
+					focusin: function focusin() {
 						this.props.focused = true;
 						this.emit('focusin');
 					},
-					'on-focusout': function onFocusout() {
+					focusout: function focusout() {
 						this.props.focused = false;
 						this.emit('focusout');
 					},
-					'on-click': function onClick(evt) {
+					click: function click(evt) {
 						this[evt.target.checked ? 'open' : 'close']();
 					}
 				},
 
 				menu: {
-					'on-close': function onClose() {
+					close: function close() {
 						this.close();
 					},
-					'on-confirminput': function onConfirminput(_ref) {
+					confirminput: function confirminput(_ref) {
 						var textInput = _ref.target;
 
 						if (!this.props.allowInput) {
@@ -135,7 +135,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						};
 
 						textInput.clear();
-						this.assets.loadedList.props.query = '';
+						this.$('loaded-list').props.query = '';
 
 						if (this.props.multiple) {
 							vm.add(item);
@@ -152,7 +152,7 @@ return /******/ (function(modules) { // webpackBootstrap
 							this.emit('change');
 						}
 					},
-					'on-change': function onChange(evt) {
+					change: function change(evt) {
 						if (!(evt.target instanceof RtRepeat)) {
 							return;
 						}
@@ -162,7 +162,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						return false;
 					},
-					'on-select': function onSelect(_ref2) {
+					select: function select(_ref2) {
 						var selectedOption = _ref2.target;
 
 						if (!(selectedOption instanceof OpalSelectOption)) {
@@ -190,7 +190,7 @@ return /******/ (function(modules) { // webpackBootstrap
 							this.emit('change');
 						}
 					},
-					'on-deselect': function onDeselect(_ref3) {
+					deselect: function deselect(_ref3) {
 						var deselectedOption = _ref3.target;
 
 						if (!(deselectedOption instanceof OpalSelectOption)) {
@@ -208,10 +208,7 @@ return /******/ (function(modules) { // webpackBootstrap
 							this.emit('change');
 						}
 					}
-				},
-
-				filteredList: {},
-				loadedList: {}
+				}
 			}
 		},
 
@@ -420,19 +417,21 @@ return /******/ (function(modules) { // webpackBootstrap
 						return item.value;
 					});
 
-					var assets = _this3.assets;
+					_this3.$('button').check();
+					_this3.$('menu').open();
 
-					assets.button.check();
-					assets.menu.open();
+					var loadedList = _this3.$('loaded-list');
 
-					if (assets.loadedList) {
+					if (loadedList) {
 						nextTick(function () {
-							assets.loadedList.checkLoading();
+							loadedList.checkLoading();
 						});
 					}
 
-					if (assets.filteredList) {
-						assets.filteredList.focus();
+					var filteredList = _this3.$('filtered-list');
+
+					if (filteredList) {
+						filteredList.focus();
 					} else {
 						_this3._focusOptions();
 					}
@@ -462,8 +461,8 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (this._opened) {
 				this._opened = false;
 
-				this.assets.button.uncheck();
-				this.assets.menu.close();
+				this.$('button').uncheck();
+				this.$('menu').close();
 
 				this._documentFocusInListening.stop();
 
@@ -507,7 +506,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (!this._focused) {
 				this._focused = true;
 
-				this.assets.button.focus();
+				this.$('button').focus();
 
 				if (!this._opened) {
 					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
@@ -525,7 +524,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (this._focused) {
 				this._focused = false;
 
-				this.assets.button.blur();
+				this.$('button').blur();
 
 				if (!this._opened) {
 					this._documentKeyDownListening.stop();
@@ -730,15 +729,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			template: __webpack_require__(37),
 
-			assets: {
+			events: {
 				control: {
-					'on-focusin': function onFocusin() {
+					focusin: function focusin() {
 						this.props.focused = true;
 					},
-					'on-focusout': function onFocusout() {
+					focusout: function focusout() {
 						this.props.focused = false;
 					},
-					'on-click': function onClick() {
+					click: function click() {
 						this._click();
 					}
 				}
@@ -862,7 +861,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (!this._focused) {
 				this._focused = true;
 
-				this.assets.control.focus();
+				this.$('control').focus();
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 			}
 
@@ -877,7 +876,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (this._focused) {
 				this._focused = false;
 
-				this.assets.control.blur();
+				this.$('control').blur();
 				this._documentKeyDownListening.stop();
 			}
 

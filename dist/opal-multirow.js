@@ -75,21 +75,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var OpalMultirowRow = __webpack_require__(11);
 
+	var filter = Array.prototype.filter;
+
 	module.exports = Component.extend('opal-multirow', {
 		Static: {
 			OpalMultirowRow: OpalMultirowRow,
 
 			template: new ComponentTemplate(__webpack_require__(33)),
 
-			assets: {
+			events: {
 				':component': {
-					'on-remove-row-click': function onRemoveRowClick(_ref) {
+					'remove-row-click': function removeRowClick(_ref) {
 						var _this = this;
 
 						var row = _ref.target;
 
 						if (row.props.preset) {
-							this.assets.presetRowsContainer.element.removeChild(row.element);
+							this.$('presetRowsContainer').element.removeChild(row.element);
 							this._presetRowCount--;
 						} else {
 							this._newRows.remove(this._newRows.get(row.parentComponent.element.dataset.key, 'key'));
@@ -100,7 +102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 							_this.emit('change');
 						}, 1);
 					},
-					'on-add-row-click': function onAddRowClick() {
+					'add-row-click': function addRowClick() {
 						var _this2 = this;
 
 						this._newRows.add({ key: nextUID() });
@@ -110,9 +112,7 @@ return /******/ (function(modules) { // webpackBootstrap
 							_this2.emit('change');
 						}, 1);
 					}
-				},
-
-				presetRowsContainer: {}
+				}
 			}
 		},
 
@@ -133,8 +133,8 @@ return /******/ (function(modules) { // webpackBootstrap
 			});
 		},
 		ready: function ready() {
-			var presetRowCount = this._presetRowCount = this.$$('.opal-multirow-row').filter(function (row) {
-				return row.props.preset;
+			var presetRowCount = this._presetRowCount = filter.call(this.element.getElementsByClassName('opal-multirow-row'), function (rowEl) {
+				return rowEl.$c.props.preset;
 			}).length;
 
 			if (!presetRowCount) {
@@ -187,15 +187,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			template: new ComponentTemplate(__webpack_require__(34)),
 
-			assets: {
-				btnRemoveRow: {
-					'on-click': function onClick() {
+			events: {
+				'btn-remove-row': {
+					click: function click() {
 						this.emit('remove-row-click');
 					}
 				},
 
-				btnAddRow: {
-					'on-click': function onClick() {
+				'btn-add-row': {
+					click: function click() {
 						this.emit('add-row-click');
 					}
 				}

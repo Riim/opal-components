@@ -17,11 +17,7 @@ module.exports = Component.extend('opal-loaded-list', {
 			notFoundMessage: getText.t('Ничего не найдено')
 		},
 
-		template: new ComponentTemplate(require('./index.html')),
-
-		assets: {
-			loader: {}
-		}
+		template: new ComponentTemplate(require('./index.html'))
 	},
 
 	_scrolling: false,
@@ -117,7 +113,7 @@ module.exports = Component.extend('opal-loaded-list', {
 
 		let elRect = this.element.getBoundingClientRect();
 
-		if (!elRect.height || elRect.bottom < this.assets.loader.element.getBoundingClientRect().top) {
+		if (!elRect.height || elRect.bottom < this.$('loader').element.getBoundingClientRect().top) {
 			return;
 		}
 

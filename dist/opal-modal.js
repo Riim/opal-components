@@ -72,7 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		var body = document.body;
 
 		if (document.activeElement != body && !openedModals[0].element.contains(document.activeElement.parentNode)) {
-			openedModals[0].assets.btnClose.focus();
+			openedModals[0].$('btn-close').focus();
 		}
 	}
 
@@ -91,11 +91,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			template: new ComponentTemplate(__webpack_require__(32)),
 
-			assets: {
+			events: {
 				':element': {
-					'on-click': function onClick(evt) {
+					click: function click(evt) {
 						var el = this.element;
-						var windowEl = this.assets.window;
+						var windowEl = this.$('window');
 
 						for (var node = evt.target; node != windowEl;) {
 							if (node == el) {
@@ -112,10 +112,8 @@ return /******/ (function(modules) { // webpackBootstrap
 					}
 				},
 
-				window: {},
-
-				btnClose: {
-					'on-click': function onClick() {
+				'btn-close': {
+					click: function click() {
 						this.props.opened = false;
 					}
 				}
@@ -191,7 +189,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			this.props.opened = true;
 			openedModals.unshift(this);
 
-			this.assets.btnClose.focus();
+			this.$('btn-close').focus();
 
 			this.emit('open');
 		},
@@ -207,7 +205,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			if (openedModals.length) {
 				openedModals[0].element.classList.remove('_overlapped');
-				openedModals[0].assets.btnClose.focus();
+				openedModals[0].$('btn-close').focus();
 			} else {
 				documentListening.stop();
 

@@ -85,11 +85,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				notFoundMessage: getText.t('Ничего не найдено')
 			},
 
-			template: new ComponentTemplate(__webpack_require__(31)),
-
-			assets: {
-				loader: {}
-			}
+			template: new ComponentTemplate(__webpack_require__(31))
 		},
 
 		_scrolling: false,
@@ -180,7 +176,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			var elRect = this.element.getBoundingClientRect();
 
-			if (!elRect.height || elRect.bottom < this.assets.loader.element.getBoundingClientRect().top) {
+			if (!elRect.height || elRect.bottom < this.$('loader').element.getBoundingClientRect().top) {
 				return;
 			}
 
