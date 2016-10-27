@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						var row = _ref.target;
 
 						if (row.props.preset) {
-							this.$('presetRowsContainer').element.removeChild(row.element);
+							this.$('preset-rows-container').element.removeChild(row.element);
 							this._presetRowCount--;
 						} else {
 							this._newRows.remove(this._newRows.get(row.parentComponent.element.dataset.key, 'key'));

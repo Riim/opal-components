@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.1.152",
+  "version": "0.1.153",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -22,8 +22,8 @@
     "@riim/babel-preset": "^1.0.0",
     "autoprefixer": "^6.5.1",
     "babel-core": "^6.18.0",
-    "babel-eslint": "^7.0.0",
-    "babel-loader": "^6.2.5",
+    "babel-eslint": "^7.1.0",
+    "babel-loader": "^6.2.7",
     "babel-plugin-syntax-flow": "^6.18.0",
     "babel-plugin-transform-flow-comments": "^6.17.0",
     "cellx": "^1.6.56",
@@ -46,7 +46,7 @@
     "raw-loader": "^0.5.1",
     "require-dir": "^0.3.1",
     "rimraf": "^2.5.4",
-    "rionite": "^0.13.2",
+    "rionite": "^0.14.3",
     "run-sequence": "^1.2.2",
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.0.2",
