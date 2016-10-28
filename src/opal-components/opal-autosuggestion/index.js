@@ -11,6 +11,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 	Static: {
 		props: {
 			dataprovider: { type: String, required: true, readonly: true },
+			selectedItem: Object,
 			minQueryLength: 3,
 			count: 5
 		},
@@ -36,6 +37,8 @@ module.exports = Component.extend('opal-autosuggestion', {
 				},
 
 				input(evt) {
+					this._wasInputAfterSelecting = true;
+
 					this.closeMenu();
 
 					this._cancelLoading();
@@ -53,6 +56,8 @@ module.exports = Component.extend('opal-autosuggestion', {
 			}
 		}
 	},
+
+	_wasInputAfterSelecting: false,
 
 	_loadingTimeout: null,
 	_requestCallback: null,
@@ -73,7 +78,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 				return this._loadingPlanned || this.loading;
 			},
 
-			selectedItem: null
+			selectedItem: this.props.selectedItem
 		});
 	},
 
@@ -86,6 +91,13 @@ module.exports = Component.extend('opal-autosuggestion', {
 		this.listenTo(this.$('menu').props, 'change:opened', this._onMenuOpenedChange);
 		this.listenTo(this.list, 'change', this._onListChange);
 		this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
+	},
+
+	elementAttributeChanged(name, oldValue, value) {
+		if (name == 'selected-item') {
+			this.selectedItem = value;
+			this.$('input').value = value ? value.text : '';
+		}
 	},
 
 	_load() {
@@ -121,7 +133,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 	},
 
 	_onMenuOpenedChange(evt) {
-		if (evt.value[1]) {
+		if (evt.value) {
 			this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
 			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 			this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
@@ -245,8 +257,10 @@ module.exports = Component.extend('opal-autosuggestion', {
 	},
 
 	_setSelectedItemOfList() {
-		let comparableQuery = toComparable(this.$('input').value);
-		this._setSelectedItem(this.list.find(item => toComparable(item.text) == comparableQuery) || null);
+		if (this._wasInputAfterSelecting) {
+			let comparableQuery = toComparable(this.$('input').value);
+			this._setSelectedItem(this.list.find(item => toComparable(item.text) == comparableQuery) || null);
+		}
 	},
 
 	_setSelectedItem(selectedItem) {
@@ -255,6 +269,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 				!this.selectedItem || this.selectedItem.value != selectedItem.value :
 				this.selectedItem
 		) {
+			this._wasInputAfterSelecting = false;
 			this.selectedItem = selectedItem;
 			this.emit('change');
 		}

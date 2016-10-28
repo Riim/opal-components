@@ -79,6 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			props: {
 				dataprovider: { type: String, required: true, readonly: true },
+				selectedItem: Object,
 				minQueryLength: 3,
 				count: 5
 			},
@@ -104,6 +105,8 @@ return /******/ (function(modules) { // webpackBootstrap
 					input: function input(evt) {
 						var _this = this;
 
+						this._wasInputAfterSelecting = true;
+
 						this.closeMenu();
 
 						this._cancelLoading();
@@ -121,6 +124,8 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 			}
 		},
+
+		_wasInputAfterSelecting: false,
 
 		_loadingTimeout: null,
 		_requestCallback: null,
@@ -142,7 +147,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				},
 
 
-				selectedItem: null
+				selectedItem: this.props.selectedItem
 			});
 		},
 		ready: function ready() {
@@ -153,6 +158,12 @@ return /******/ (function(modules) { // webpackBootstrap
 			this.listenTo(this.$('menu').props, 'change:opened', this._onMenuOpenedChange);
 			this.listenTo(this.list, 'change', this._onListChange);
 			this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
+		},
+		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
+			if (name == 'selected-item') {
+				this.selectedItem = value;
+				this.$('input').value = value ? value.text : '';
+			}
 		},
 		_load: function _load() {
 			var _this2 = this;
@@ -185,7 +196,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			this.openMenu();
 		},
 		_onMenuOpenedChange: function _onMenuOpenedChange(evt) {
-			if (evt.value[1]) {
+			if (evt.value) {
 				this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 				this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
@@ -302,13 +313,20 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 		_setSelectedItemOfList: function _setSelectedItemOfList() {
-			var comparableQuery = toComparable(this.$('input').value);
-			this._setSelectedItem(this.list.find(function (item) {
-				return toComparable(item.text) == comparableQuery;
-			}) || null);
+			var _this4 = this;
+
+			if (this._wasInputAfterSelecting) {
+				(function () {
+					var comparableQuery = toComparable(_this4.$('input').value);
+					_this4._setSelectedItem(_this4.list.find(function (item) {
+						return toComparable(item.text) == comparableQuery;
+					}) || null);
+				})();
+			}
 		},
 		_setSelectedItem: function _setSelectedItem(selectedItem) {
 			if (selectedItem ? !this.selectedItem || this.selectedItem.value != selectedItem.value : this.selectedItem) {
+				this._wasInputAfterSelecting = false;
 				this.selectedItem = selectedItem;
 				this.emit('change');
 			}
@@ -334,7 +352,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 22:
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content select=\".opal-autosuggestion__input\"> {{block input }} <opal-text-input class=\"opal-autosuggestion__input\" placeholder=\"{{i18n.inputPlaceholder}}\"></opal-text-input> {{/block}} </rt-content> {{block menu }} <opal-dropdown class=\"opal-autosuggestion__menu\"> {{block list }} <div class=\"opal-autosuggestion__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"item of list\" strip=\"\" rt-silent=\"\"> <div class=\"opal-autosuggestion__list-item\" data-value=\"{item.value}\" data-text=\"{item.text}\" rt-click=\"_onListItemClick\">{item.text}</div> </template> {{/block}} </div> {{/block}} </opal-dropdown> {{/block}}"
+	module.exports = "<rt-content select=\".opal-autosuggestion__input\"> {{block input }} <opal-text-input class=\"opal-autosuggestion__input\" value=\"{props.selectedItem?.text}\" placeholder=\"{{i18n.inputPlaceholder}}\" loading=\"{loaderShown}\"></opal-text-input> {{/block}} </rt-content> {{block menu }} <opal-dropdown class=\"opal-autosuggestion__menu\"> {{block list }} <div class=\"opal-autosuggestion__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"item of list\" strip=\"\" rt-silent=\"\"> <div class=\"opal-autosuggestion__list-item\" data-value=\"{item.value}\" data-text=\"{item.text}\" rt-click=\"_onListItemClick\">{item.text}</div> </template> {{/block}} </div> {{/block}} </opal-dropdown> {{/block}}"
 
 /***/ },
 
