@@ -136,6 +136,25 @@ module.exports = Component.extend('opal-select', {
 						this.emit('change');
 					}
 				}
+			},
+
+			'loaded-list': {
+				loaded() {
+					setTimeout(() => {
+						let filteredList = this.$('filtered-list');
+
+						if (filteredList) {
+							if (document.activeElement == filteredList.$('query-input').$('input')) {
+								this._focusOptions();
+								filteredList.focus();
+							} else {
+								this._focusOptions();
+							}
+						} else {
+							this._focusOptions();
+						}
+					}, 1);
+				}
 			}
 		}
 	},
