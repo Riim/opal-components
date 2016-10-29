@@ -217,6 +217,8 @@ return /******/ (function(modules) { // webpackBootstrap
 				setTimeout(function () {
 					_this3.checkLoading();
 				}, 1);
+
+				_this3.emit('loaded');
 			}));
 		},
 		_getContentContext: function _getContentContext(content) {

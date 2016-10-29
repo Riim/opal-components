@@ -154,6 +154,8 @@ module.exports = Component.extend('opal-loaded-list', {
 				setTimeout(() => {
 					this.checkLoading();
 				}, 1);
+
+				this.emit('loaded');
 			})
 		);
 	},
