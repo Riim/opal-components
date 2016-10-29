@@ -35,7 +35,7 @@ module.exports = Component.extend('opal-input-mask', {
 		let definitions = this._definitions;
 
 		forEach.call(this.element.querySelectorAll('opal-input-mask-definition'), inputMaskDefinition => {
-			let props = inputMaskDefinition.$c.props;			
+			let props = inputMaskDefinition.$c.props;
 			definitions[props.maskChar] = props.regex;
 		});
 
@@ -269,7 +269,7 @@ module.exports = Component.extend('opal-input-mask', {
 		let buffer = this._buffer;
 
 		for (let i = start, j = this._nextTestIndex(end), l = buffer.length; i < l; i++) {
-			let test = tests[i]; 
+			let test = tests[i];
 
 			if (test) {
 				if (j < l && test.test(buffer[j])) {
