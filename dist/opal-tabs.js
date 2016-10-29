@@ -111,7 +111,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			tabPanels[selectedTabIndex].$c.props.shown = true;
 		},
 		elementAttached: function elementAttached() {
-			this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0], {
+			this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0].$c, {
 				select: this._onTabListSelect,
 				deselect: this._onTabListDeselect
 			});

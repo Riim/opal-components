@@ -46,7 +46,7 @@ module.exports = Component.extend('opal-tabs', {
 	},
 
 	elementAttached() {
-		this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0], {
+		this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0].$c, {
 			select: this._onTabListSelect,
 			deselect: this._onTabListDeselect
 		});
