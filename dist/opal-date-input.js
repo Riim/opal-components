@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				mask: '99/99/9999',
 				value: String,
 				placeholder: 'dd/mm/yyyy',
-				required: false,
+				required: { default: false, readonly: true },
 				popoverTo: 'right'
 			},
 
@@ -108,6 +108,10 @@ return /******/ (function(modules) { // webpackBootstrap
 		var day = parseInt(date[0], 10);
 		var month = parseInt(date[1], 10) - 1;
 		var year = parseInt(date[2], 10);
+
+		if (year < 100) {
+			year += 1900;
+		}
 
 		date = new Date(year, month, day);
 

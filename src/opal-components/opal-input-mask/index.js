@@ -102,9 +102,7 @@ module.exports = Component.extend('opal-input-mask', {
 	_onInputFocusOut() {
 		this._checkValue();
 
-		let input = this._input;
-
-		if (input.value != this._focusText) {
+		if (this._input.value != this._focusText) {
 			this.$('input').emit('change');
 		}
 	},
@@ -129,13 +127,25 @@ module.exports = Component.extend('opal-input-mask', {
 				}
 			}
 
+			let value = input.value;
+
 			this._clearBuffer(start, end);
 			this._shiftLeft(start, end - 1);
+
+			if (value != input.value) {
+				let inputComponent = this.$('input');
+				inputComponent.constructor.events.input.input.call(inputComponent, evt);
+			}
 		} else if (key == 27) { // Escape
 			evt.preventDefault();
 
-			input.value = this._focusText;
-			this._setInputSelection(0, this._checkValue());
+			if (input.value != this._focusText) {
+				input.value = this._focusText;
+				this._setInputSelection(0, this._checkValue());
+
+				let inputComponent = this.$('input');
+				inputComponent.constructor.events.input.input.call(inputComponent, evt);
+			}
 		}
 	},
 
@@ -173,13 +183,15 @@ module.exports = Component.extend('opal-input-mask', {
 
 					this._setInputSelection(next, next);
 
-					this.$('input').emit({ type: 'input', initialEvent: evt });
+					let inputComponent = this.$('input');
+					inputComponent.constructor.events.input.input.call(inputComponent, evt);
 
 					if (next >= bufferLen) {
 						this.emit('complete');
 					}
 				} else if (start != end) {
-					this.$('input').emit({ type: 'input', initialEvent: evt });
+					let inputComponent = this.$('input');
+					inputComponent.constructor.events.input.input.call(inputComponent, evt);
 				}
 			}
 		}

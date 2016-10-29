@@ -5,6 +5,10 @@ function isExistDate(date) {
 	let month = parseInt(date[1], 10) - 1;
 	let year = parseInt(date[2], 10);
 
+	if (year < 100) {
+		year += 1900;
+	}
+
 	date = new Date(year, month, day);
 
 	return day == date.getDate() && month == date.getMonth() && year == date.getFullYear();

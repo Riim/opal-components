@@ -167,9 +167,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		_onInputFocusOut: function _onInputFocusOut() {
 			this._checkValue();
 
-			var input = this._input;
-
-			if (input.value != this._focusText) {
+			if (this._input.value != this._focusText) {
 				this.$('input').emit('change');
 			}
 		},
@@ -193,14 +191,26 @@ return /******/ (function(modules) { // webpackBootstrap
 					}
 				}
 
+				var value = input.value;
+
 				this._clearBuffer(start, end);
 				this._shiftLeft(start, end - 1);
+
+				if (value != input.value) {
+					var inputComponent = this.$('input');
+					inputComponent.constructor.events.input.input.call(inputComponent, evt);
+				}
 			} else if (key == 27) {
 				// Escape
 				evt.preventDefault();
 
-				input.value = this._focusText;
-				this._setInputSelection(0, this._checkValue());
+				if (input.value != this._focusText) {
+					input.value = this._focusText;
+					this._setInputSelection(0, this._checkValue());
+
+					var _inputComponent = this.$('input');
+					_inputComponent.constructor.events.input.input.call(_inputComponent, evt);
+				}
 			}
 		},
 		_onInputKeyPress: function _onInputKeyPress(evt) {
@@ -238,13 +248,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						this._setInputSelection(next, next);
 
-						this.$('input').emit({ type: 'input', initialEvent: evt });
+						var inputComponent = this.$('input');
+						inputComponent.constructor.events.input.input.call(inputComponent, evt);
 
 						if (next >= bufferLen) {
 							this.emit('complete');
 						}
 					} else if (start != end) {
-						this.$('input').emit({ type: 'input', initialEvent: evt });
+						var _inputComponent2 = this.$('input');
+						_inputComponent2.constructor.events.input.input.call(_inputComponent2, evt);
 					}
 				}
 			}
