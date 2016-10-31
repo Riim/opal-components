@@ -140,6 +140,9 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 			});
 		},
+		ready: function ready() {
+			this.viewModel = this.$('select').viewModel;
+		},
 		_onBtnRemoveTagClick: function _onBtnRemoveTagClick(evt, btn) {
 			this.viewModel.remove(this.viewModel.get(btn.dataset.tagValue, 'value'));
 		}
