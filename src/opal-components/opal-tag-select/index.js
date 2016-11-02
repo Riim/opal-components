@@ -82,5 +82,6 @@ module.exports = Component.extend('opal-tag-select', {
 
 	_onBtnRemoveTagClick(evt, btn) {
 		this.viewModel.remove(this.viewModel.get(btn.dataset.tagValue, 'value'));
+		this.emit('change');
 	}
 });
