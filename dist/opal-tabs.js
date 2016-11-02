@@ -214,8 +214,6 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 
-		_focused: false,
-
 		initialize: function initialize() {
 			cellx.define(this, {
 				_tabIndex: function _tabIndex() {
@@ -230,7 +228,13 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
 			if (name == 'focused') {
-				this[value ? 'focus' : 'blur']();
+				if (value) {
+					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+					this.focus();
+				} else {
+					this._documentKeyDownListening.stop();
+					this.blur();
+				}
 			}
 		},
 		_onDocumentKeyDown: function _onDocumentKeyDown(evt) {
@@ -295,13 +299,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> OpalComponents.OpalTab;
 	  */
 		focus: function focus() {
-			if (!this._focused) {
-				this._focused = true;
-
-				this.$('button').focus();
-				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-			}
-
+			this.$('button').focus();
 			return this;
 		},
 
@@ -310,13 +308,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> OpalComponents.OpalTab;
 	  */
 		blur: function blur() {
-			if (this._focused) {
-				this._focused = false;
-
-				this.$('button').blur();
-				this._documentKeyDownListening.stop();
-			}
-
+			this.$('button').blur();
 			return this;
 		},
 

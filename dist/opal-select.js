@@ -234,7 +234,6 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 
 		_opened: false,
-		_focused: false,
 
 		_valueWhenOpened: null,
 
@@ -334,7 +333,19 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
 			if (name == 'focused') {
-				this[value ? 'focus' : 'blur']();
+				if (value) {
+					if (!this._opened) {
+						this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+					}
+
+					this.focus();
+				} else {
+					if (!this._opened) {
+						this._documentKeyDownListening.stop();
+					}
+
+					this.blur();
+				}
 			}
 		},
 		_onPropsValueChange: function _onPropsValueChange(_ref4) {
@@ -459,7 +470,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 					_this4._documentFocusInListening = _this4.listenTo(document, 'focusin', _this4._onDocumentFocusIn);
 
-					if (!_this4._focused) {
+					if (!_this4.props.focused) {
 						_this4._documentKeyDownListening = _this4.listenTo(document, 'keydown', _this4._onDocumentKeyDown);
 					}
 
@@ -487,7 +498,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				this._documentFocusInListening.stop();
 
-				if (!this._focused) {
+				if (!this.props.focused) {
 					this._documentKeyDownListening.stop();
 				}
 
@@ -524,16 +535,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> OpalComponents.OpalSelect;
 	  */
 		focus: function focus() {
-			if (!this._focused) {
-				this._focused = true;
-
-				this.$('button').focus();
-
-				if (!this._opened) {
-					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-				}
-			}
-
+			this.$('button').focus();
 			return this;
 		},
 
@@ -542,16 +544,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> OpalComponents.OpalSelect;
 	  */
 		blur: function blur() {
-			if (this._focused) {
-				this._focused = false;
-
-				this.$('button').blur();
-
-				if (!this._opened) {
-					this._documentKeyDownListening.stop();
-				}
-			}
-
+			this.$('button').blur();
 			return this;
 		},
 		_onDocumentKeyDown: function _onDocumentKeyDown(evt) {
@@ -765,8 +758,6 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 
-		_focused: false,
-
 		initialize: function initialize() {
 			cellx.define(this, {
 				_tabIndex: function _tabIndex() {
@@ -783,7 +774,13 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
 			if (name == 'focused') {
-				this[value ? 'focus' : 'blur']();
+				if (value) {
+					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+					this.focus();
+				} else {
+					this._documentKeyDownListening.stop();
+					this.blur();
+				}
 			}
 		},
 		_onDocumentKeyDown: function _onDocumentKeyDown(evt) {
@@ -879,13 +876,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> OpalComponents.OpalSelectOption;
 	  */
 		focus: function focus() {
-			if (!this._focused) {
-				this._focused = true;
-
-				this.$('control').focus();
-				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-			}
-
+			this.$('control').focus();
 			return this;
 		},
 
@@ -894,13 +885,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> OpalComponents.OpalSelectOption;
 	  */
 		blur: function blur() {
-			if (this._focused) {
-				this._focused = false;
-
-				this.$('control').blur();
-				this._documentKeyDownListening.stop();
-			}
-
+			this.$('control').blur();
 			return this;
 		},
 

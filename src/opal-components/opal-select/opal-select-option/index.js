@@ -33,8 +33,6 @@ module.exports = Component.extend('opal-select-option', {
 		}
 	},
 
-	_focused: false,
-
 	initialize() {
 		cellx.define(this, {
 			_tabIndex() {
@@ -53,7 +51,13 @@ module.exports = Component.extend('opal-select-option', {
 
 	elementAttributeChanged(name, oldValue, value) {
 		if (name == 'focused') {
-			this[value ? 'focus' : 'blur']();
+			if (value) {
+				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+				this.focus();
+			} else {
+				this._documentKeyDownListening.stop();
+				this.blur();
+			}
 		}
 	},
 
@@ -147,13 +151,7 @@ module.exports = Component.extend('opal-select-option', {
 	 * @typesign () -> OpalComponents.OpalSelectOption;
 	 */
 	focus() {
-		if (!this._focused) {
-			this._focused = true;
-
-			this.$('control').focus();
-			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-		}
-
+		this.$('control').focus();
 		return this;
 	},
 
@@ -161,13 +159,7 @@ module.exports = Component.extend('opal-select-option', {
 	 * @typesign () -> OpalComponents.OpalSelectOption;
 	 */
 	blur() {
-		if (this._focused) {
-			this._focused = false;
-
-			this.$('control').blur();
-			this._documentKeyDownListening.stop();
-		}
-
+		this.$('control').blur();
 		return this;
 	},
 

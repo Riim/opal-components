@@ -31,8 +31,6 @@ module.exports = Component.extend('opal-tab', {
 		}
 	},
 
-	_focused: false,
-
 	initialize() {
 		cellx.define(this, {
 			_tabIndex() {
@@ -49,7 +47,13 @@ module.exports = Component.extend('opal-tab', {
 
 	elementAttributeChanged(name, oldValue, value) {
 		if (name == 'focused') {
-			this[value ? 'focus' : 'blur']();
+			if (value) {
+				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+				this.focus();
+			} else {
+				this._documentKeyDownListening.stop();
+				this.blur();
+			}
 		}
 	},
 
@@ -112,13 +116,7 @@ module.exports = Component.extend('opal-tab', {
 	 * @typesign () -> OpalComponents.OpalTab;
 	 */
 	focus() {
-		if (!this._focused) {
-			this._focused = true;
-
-			this.$('button').focus();
-			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-		}
-
+		this.$('button').focus();
 		return this;
 	},
 
@@ -126,13 +124,7 @@ module.exports = Component.extend('opal-tab', {
 	 * @typesign () -> OpalComponents.OpalTab;
 	 */
 	blur() {
-		if (this._focused) {
-			this._focused = false;
-
-			this.$('button').blur();
-			this._documentKeyDownListening.stop();
-		}
-
+		this.$('button').blur();
 		return this;
 	},
 

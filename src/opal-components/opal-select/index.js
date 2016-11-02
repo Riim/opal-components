@@ -160,7 +160,6 @@ module.exports = Component.extend('opal-select', {
 	},
 
 	_opened: false,
-	_focused: false,
 
 	_valueWhenOpened: null,
 
@@ -246,7 +245,19 @@ module.exports = Component.extend('opal-select', {
 
 	elementAttributeChanged(name, oldValue, value) {
 		if (name == 'focused') {
-			this[value ? 'focus' : 'blur']();
+			if (value) {
+				if (!this._opened) {
+					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+				}
+
+				this.focus();
+			} else {
+				if (!this._opened) {
+					this._documentKeyDownListening.stop();
+				}
+
+				this.blur();
+			}
 		}
 	},
 
@@ -362,7 +373,7 @@ module.exports = Component.extend('opal-select', {
 
 			this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
 
-			if (!this._focused) {
+			if (!this.props.focused) {
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 			}
 
@@ -384,7 +395,7 @@ module.exports = Component.extend('opal-select', {
 
 			this._documentFocusInListening.stop();
 
-			if (!this._focused) {
+			if (!this.props.focused) {
 				this._documentKeyDownListening.stop();
 			}
 
@@ -418,16 +429,7 @@ module.exports = Component.extend('opal-select', {
 	 * @typesign () -> OpalComponents.OpalSelect;
 	 */
 	focus() {
-		if (!this._focused) {
-			this._focused = true;
-
-			this.$('button').focus();
-
-			if (!this._opened) {
-				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-			}
-		}
-
+		this.$('button').focus();
 		return this;
 	},
 
@@ -435,16 +437,7 @@ module.exports = Component.extend('opal-select', {
 	 * @typesign () -> OpalComponents.OpalSelect;
 	 */
 	blur() {
-		if (this._focused) {
-			this._focused = false;
-
-			this.$('button').blur();
-
-			if (!this._opened) {
-				this._documentKeyDownListening.stop();
-			}
-		}
-
+		this.$('button').blur();
 		return this;
 	},
 

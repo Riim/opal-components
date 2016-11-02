@@ -37,8 +37,6 @@ module.exports = Component.extend('opal-checkbox', {
 		}
 	},
 
-	_focused: false,
-
 	initialize() {
 		cellx.define(this, {
 			_tabIndex() {
@@ -72,7 +70,13 @@ module.exports = Component.extend('opal-checkbox', {
 				this.props.checked = false;
 			}
 		} else if (name == 'focused') {
-			this[value ? 'focus' : 'blur']();
+			if (value) {
+				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+				this.focus();
+			} else {
+				this._documentKeyDownListening.stop();
+				this.blur();
+			}
 		}
 	},
 
@@ -121,13 +125,7 @@ module.exports = Component.extend('opal-checkbox', {
 	 * @typesign () -> OpalComponents.OpalCheckbox;
 	 */
 	focus() {
-		if (!this._focused) {
-			this._focused = true;
-
-			this.$('control').focus();
-			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-		}
-
+		this.$('control').focus();
 		return this;
 	},
 
@@ -135,13 +133,7 @@ module.exports = Component.extend('opal-checkbox', {
 	 * @typesign () -> OpalComponents.OpalCheckbox;
 	 */
 	blur() {
-		if (this._focused) {
-			this._focused = false;
-
-			this.$('control').blur();
-			this._documentKeyDownListening.stop();
-		}
-
+		this.$('control').blur();
 		return this;
 	},
 
