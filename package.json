@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.1.164",
+  "version": "0.1.165",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   "devDependencies": {
     "@riim/babel-preset": "^1.0.0",
     "autoprefixer": "^6.5.1",
-    "babel-core": "^6.18.0",
+    "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.7",
     "babel-plugin-syntax-flow": "^6.18.0",
@@ -29,8 +29,8 @@
     "cellx": "^1.6.56",
     "cellx-indexed-collections": "^1.0.5",
     "collapse-html-whitespaces-loader": "^0.1.2",
-    "eslint": "^3.9.0",
-    "eslint-loader": "^1.6.0",
+    "eslint": "^3.9.1",
+    "eslint-loader": "^1.6.1",
     "glob": "^7.1.1",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
