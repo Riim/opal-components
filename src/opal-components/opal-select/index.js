@@ -132,8 +132,6 @@ module.exports = Component.extend('opal-select', {
 
 						this.close();
 						this.focus();
-
-						this.emit('change');
 					}
 				}
 			},

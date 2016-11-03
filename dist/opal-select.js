@@ -204,8 +204,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 							this.close();
 							this.focus();
-
-							this.emit('change');
 						}
 					}
 				},
