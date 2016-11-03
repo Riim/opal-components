@@ -148,6 +148,7 @@
 		border: 0;
 		background: transparent;
 		color: inherit;
+		font-size: inherit;
 		cursor: pointer;
 		user-select: none;
 	}
