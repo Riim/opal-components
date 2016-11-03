@@ -92,7 +92,13 @@ module.exports = Component.extend('opal-router', {
 
 			if (match) {
 				let state = route.properties.reduce((state, prop, index) => {
-					state[prop.name] = prop.optional ? !!match[index + 1] : match[index + 1];
+					if (prop.optional) {
+						state[prop.name] = !!match[index + 1];
+					} else {
+						let value = match[index + 1];
+						state[prop.name] = value && decodeURIComponent(value);
+					}
+
 					return state;
 				}, Object.create(null));
 

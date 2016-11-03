@@ -157,7 +157,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				if (match) {
 					var state = route.properties.reduce(function (state, prop, index) {
-						state[prop.name] = prop.optional ? !!match[index + 1] : match[index + 1];
+						if (prop.optional) {
+							state[prop.name] = !!match[index + 1];
+						} else {
+							var value = match[index + 1];
+							state[prop.name] = value && decodeURIComponent(value);
+						}
+
 						return state;
 					}, Object.create(null));
 
@@ -390,7 +396,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			while (chr) {
 				if (chr == '?') {
-					if (!reName.test(name)) {
+					if (!reName.test(name) || name == 'class') {
 						raiseError('Invalid name "' + name + '"', optionalNodeNameAt);
 					}
 
@@ -418,7 +424,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			while (chr) {
 				if (chr == ']') {
-					if (!reName.test(name)) {
+					if (!reName.test(name) || name == 'class') {
 						raiseError('Invalid name "' + name + '"', insertAt + 1);
 					}
 

@@ -100,7 +100,7 @@ function parsePath(path) {
 
 		while (chr) {
 			if (chr == '?') {
-				if (!reName.test(name)) {
+				if (!reName.test(name) || name == 'class') {
 					raiseError('Invalid name "' + name + '"', optionalNodeNameAt);
 				}
 
@@ -128,7 +128,7 @@ function parsePath(path) {
 
 		while (chr) {
 			if (chr == ']') {
-				if (!reName.test(name)) {
+				if (!reName.test(name) || name == 'class') {
 					raiseError('Invalid name "' + name + '"', insertAt + 1);
 				}
 
