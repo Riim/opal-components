@@ -97,7 +97,13 @@ return /******/ (function(modules) { // webpackBootstrap
 		_lastAppliedQuery: void 0,
 
 		initialize: function initialize() {
-			this.dataProvider = Function('return this.' + this.props.dataprovider + ';').call(this.ownerComponent || window);
+			var dataProvider = Function('return this.' + this.props.dataprovider + ';').call(this.ownerComponent || window);
+
+			if (!dataProvider) {
+				throw new TypeError('dataProvider is not defined');
+			}
+
+			this.dataProvider = dataProvider;
 
 			cellx.define(this, {
 				list: cellx.list(),

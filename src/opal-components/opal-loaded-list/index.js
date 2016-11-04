@@ -29,7 +29,13 @@ module.exports = Component.extend('opal-loaded-list', {
 	_lastAppliedQuery: void 0,
 
 	initialize() {
-		this.dataProvider = Function(`return this.${ this.props.dataprovider };`).call(this.ownerComponent || window);
+		let dataProvider = Function(`return this.${ this.props.dataprovider };`).call(this.ownerComponent || window);
+
+		if (!dataProvider) {
+			throw new TypeError('dataProvider is not defined');
+		}
+
+		this.dataProvider = dataProvider;
 
 		cellx.define(this, {
 			list: cellx.list(),
