@@ -79,6 +79,16 @@ var dataProvider2 = (function() {
 	};
 })();
 
+var model1 = cellx.define({}, 'list', function() {
+	return null;
+});
+
+var dataList1 = cellx.list([
+	{ value: '1', text: '1' },
+	{ value: '2', text: '2' },
+	{ value: '3', text: '3' }
+]);
+
 var selectViewModel1 = (function() {
 	return new cellxIndexedCollections.IndexedList([
 		{ value: '1', text: '1', disabled: true },
@@ -374,12 +384,15 @@ body {
 			<opal-select-option text="Option 4"></opal-select-option>
 			<opal-select-option text="Option 5"></opal-select-option>
 		</opal-select>
+
+		<opal-select datalist="dataList1" placeholder="Select" multiple></opal-select>
 	</div>
 	<script class="opal-code-listing__example-js">
 		require('cellx-indexed-collections');
 		require('opal-components/dist/opal-button');
 		require('opal-components/dist/opal-dropdown');
 		require('opal-components/dist/opal-select');
+		require('opal-components/dist/opal-loader');
 	</script>
 </opal-code-listing>
 

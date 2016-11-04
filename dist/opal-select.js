@@ -88,6 +88,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			props: {
 				type: String,
 				size: 'm',
+				datalist: String,
 				value: Object,
 				viewModel: { type: String, readonly: true },
 				text: String,
@@ -236,6 +237,21 @@ return /******/ (function(modules) { // webpackBootstrap
 		_valueWhenOpened: null,
 
 		initialize: function initialize() {
+			var _this2 = this;
+
+			var dataList = this.props.datalist;
+
+			if (dataList) {
+				(function () {
+					var context = _this2.ownerComponent || window;
+					var getDataList = Function('return this.' + dataList + ';');
+
+					cellx.define(_this2, 'dataList', function () {
+						return getDataList.call(context);
+					});
+				})();
+			}
+
 			var vm = this.props.viewModel;
 
 			if (vm) {
@@ -264,7 +280,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			});
 		},
 		ready: function ready() {
-			var _this2 = this;
+			var _this3 = this;
 
 			this.optionElements = this.element.getElementsByClassName('opal-select-option');
 
@@ -284,12 +300,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						if (value.length) {
 							if (props.multiple) {
-								selectedOptions = _this2.options.filter(function (option) {
+								selectedOptions = _this3.options.filter(function (option) {
 									return value.indexOf(option.value) != -1;
 								});
 							} else {
 								value = value[0];
-								var selectedOption = _this2.options.find(function (option) {
+								var selectedOption = _this3.options.find(function (option) {
 									return option.value == value;
 								});
 								selectedOptions = selectedOption ? [selectedOption] : [];
@@ -299,11 +315,11 @@ return /******/ (function(modules) { // webpackBootstrap
 						}
 					} else {
 						if (props.multiple) {
-							selectedOptions = _this2.options.filter(function (option) {
+							selectedOptions = _this3.options.filter(function (option) {
 								return option.selected;
 							});
 						} else {
-							var _selectedOption = _this2.options.find(function (option) {
+							var _selectedOption = _this3.options.find(function (option) {
 								return option.selected;
 							});
 							selectedOptions = _selectedOption ? [_selectedOption] : [];
@@ -311,7 +327,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					}
 
 					if (selectedOptions.length) {
-						_this2.viewModel.addRange(selectedOptions.map(function (option) {
+						_this3.viewModel.addRange(selectedOptions.map(function (option) {
 							return {
 								value: option.value,
 								text: option.text
@@ -320,7 +336,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					}
 
 					if (value) {
-						_this2._updateOptions();
+						_this3._updateOptions();
 					}
 				})();
 			}
@@ -347,7 +363,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 		_onPropsValueChange: function _onPropsValueChange(_ref4) {
-			var _this3 = this;
+			var _this4 = this;
 
 			var value = _ref4.value[1];
 
@@ -385,7 +401,7 @@ return /******/ (function(modules) { // webpackBootstrap
 							value = value[0];
 
 							if (!vmLen || value != vm.get(0).value) {
-								if (!_this3.options.some(function (option) {
+								if (!_this4.options.some(function (option) {
 									var optionValue = option.value;
 
 									if (optionValue == value) {
@@ -438,19 +454,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> boolean;
 	  */
 		open: function open() {
-			var _this4 = this;
+			var _this5 = this;
 
 			if (!this._opened) {
-				var _ret3 = function () {
-					_this4._opened = true;
-					_this4._valueWhenOpened = _this4.viewModel.map(function (item) {
+				var _ret4 = function () {
+					_this5._opened = true;
+					_this5._valueWhenOpened = _this5.viewModel.map(function (item) {
 						return item.value;
 					});
 
-					_this4.$('button').check();
-					_this4.$('menu').open();
+					_this5.$('button').check();
+					_this5.$('menu').open();
 
-					var loadedList = _this4.$('loaded-list');
+					var loadedList = _this5.$('loaded-list');
 
 					if (loadedList) {
 						nextTick(function () {
@@ -458,18 +474,18 @@ return /******/ (function(modules) { // webpackBootstrap
 						});
 					}
 
-					var filteredList = _this4.$('filtered-list');
+					var filteredList = _this5.$('filtered-list');
 
 					if (filteredList) {
 						filteredList.focus();
 					} else {
-						_this4._focusOptions();
+						_this5._focusOptions();
 					}
 
-					_this4._documentFocusInListening = _this4.listenTo(document, 'focusin', _this4._onDocumentFocusIn);
+					_this5._documentFocusInListening = _this5.listenTo(document, 'focusin', _this5._onDocumentFocusIn);
 
-					if (!_this4.props.focused) {
-						_this4._documentKeyDownListening = _this4.listenTo(document, 'keydown', _this4._onDocumentKeyDown);
+					if (!_this5.props.focused) {
+						_this5._documentKeyDownListening = _this5.listenTo(document, 'keydown', _this5._onDocumentKeyDown);
 					}
 
 					return {
@@ -477,7 +493,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					};
 				}();
 
-				if (typeof _ret3 === "object") return _ret3.v;
+				if (typeof _ret4 === "object") return _ret4.v;
 			}
 
 			return false;
@@ -911,7 +927,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 36:
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content select=\".opal-select__button\"> {{block button }} <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> <template is=\"rt-if-then\" if=\"props.text\" rt-silent=\"\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\" rt-silent=\"\">{text}</template> {{block icon_chevron_down }} <svg viewBox=\"0 0 32 18\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-select__icon-chevron-down\"></use></svg> {{/block}} </opal-button> {{/block}} </rt-content> <rt-content select=\".opal-select__menu\"> <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> <rt-content select=\".opal-select__menu-content\"> <span class=\"opal-select__menu-content\"> {{block options }} <rt-content select=\"opal-select-option\"></rt-content> {{/block}} </span> </rt-content> </opal-dropdown> </rt-content>"
+	module.exports = "<rt-content select=\".opal-select__button\"> {{block button }} <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> <template is=\"rt-if-then\" if=\"props.text\" rt-silent=\"\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\" rt-silent=\"\">{text}</template> {{block icon_chevron_down }} <svg viewBox=\"0 0 32 18\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-select__icon-chevron-down\"></use></svg> {{/block}} </opal-button> {{/block}} </rt-content> <rt-content select=\".opal-select__menu\"> <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> <rt-content select=\".opal-select__menu-content\"> <template is=\"rt-if-then\" if=\"props.datalist\"> <template is=\"rt-if-then\" if=\"dataList?.length\"> <template is=\"rt-repeat\" for=\"item of dataList\"> {{block option }} <opal-select-option value=\"{item.value}\" text=\"{item.text}\"></opal-select-option> {{/block}} </template> </template> <template is=\"rt-if-else\" if=\"dataList?.length\" rt-silent=\"\"> {{block loader }} <opal-loader shown=\"\"></opal-loader> {{/block}} </template> </template> <template is=\"rt-if-else\" if=\"props.datalist\"> <span class=\"opal-select__menu-content\"> {{block options }} <rt-content select=\"opal-select-option\"></rt-content> {{/block}} </span> </template> </rt-content> </opal-dropdown> </rt-content>"
 
 /***/ },
 

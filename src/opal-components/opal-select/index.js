@@ -16,6 +16,7 @@ module.exports = Component.extend('opal-select', {
 		props: {
 			type: String,
 			size: 'm',
+			datalist: String,
 			value: Object,
 			viewModel: { type: String, readonly: true },
 			text: String,
@@ -162,6 +163,17 @@ module.exports = Component.extend('opal-select', {
 	_valueWhenOpened: null,
 
 	initialize() {
+		let dataList = this.props.datalist;
+
+		if (dataList) {
+			let context = this.ownerComponent || window;
+			let getDataList = Function(`return this.${ dataList };`);
+
+			cellx.define(this, 'dataList', function() {
+				return getDataList.call(context);
+			});
+		}
+
 		let vm = this.props.viewModel;
 
 		if (vm) {
