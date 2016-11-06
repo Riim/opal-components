@@ -62,7 +62,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require = __webpack_require__(2);
 
-	var nextTick = _require.Utils.nextTick;
+	var _require$Utils = _require.Utils;
+	var nextUID = _require$Utils.nextUID;
+	var nextTick = _require$Utils.nextTick;
 	var cellx = _require.cellx;
 
 	var _require2 = __webpack_require__(3);
@@ -88,7 +90,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			props: {
 				type: String,
 				size: 'm',
-				datalist: String,
+				datalist: { type: String, readonly: true },
 				value: Object,
 				viewModel: { type: String, readonly: true },
 				text: String,
@@ -128,15 +130,32 @@ return /******/ (function(modules) { // webpackBootstrap
 							return;
 						}
 
-						var vm = this.viewModel;
-						var textInputValue = textInput.value;
 						var item = {
-							value: textInputValue,
-							text: textInputValue
+							value: '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID(),
+							text: textInput.value
 						};
 
+						var dataList = this.dataList;
+
+						if (dataList) {
+							dataList.add(item);
+						}
+
 						textInput.clear();
-						this.$('loaded-list').props.query = '';
+
+						var loadedList = this.loadedList;
+
+						if (loadedList === void 0) {
+							loadedList = this.loadedList = this.$('loaded-list');
+						}
+
+						if (loadedList) {
+							loadedList.props.query = '';
+						}
+
+						this.emit('input');
+
+						var vm = this.viewModel;
 
 						if (this.props.multiple) {
 							vm.add(item);
@@ -231,6 +250,10 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 			}
 		},
+
+		newInput: void 0,
+		filteredList: void 0,
+		loadedList: void 0,
 
 		_opened: false,
 
@@ -474,10 +497,27 @@ return /******/ (function(modules) { // webpackBootstrap
 						});
 					}
 
-					var filteredList = _this5.$('filtered-list');
+					var newInput = _this5.newInput;
+					var filteredList = _this5.filteredList;
 
-					if (filteredList) {
-						filteredList.focus();
+					if (filteredList === void 0) {
+						filteredList = _this5.filteredList = _this5.$('filtered-list');
+					}
+
+					var focusable = newInput || filteredList;
+
+					if (!focusable && _this5.dataList) {
+						newInput = _this5.newInput = _this5.$('new-input');
+
+						if (newInput) {
+							focusable = newInput;
+						}
+					}
+
+					if (focusable) {
+						setTimeout(function () {
+							focusable.focus();
+						}, 1);
 					} else {
 						_this5._focusOptions();
 					}
@@ -927,7 +967,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 36:
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content select=\".opal-select__button\"> {{block button }} <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> <template is=\"rt-if-then\" if=\"props.text\" rt-silent=\"\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\" rt-silent=\"\">{text}</template> {{block icon_chevron_down }} <svg viewBox=\"0 0 32 18\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-select__icon-chevron-down\"></use></svg> {{/block}} </opal-button> {{/block}} </rt-content> <rt-content select=\".opal-select__menu\"> <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> <rt-content select=\".opal-select__menu-content\"> <template is=\"rt-if-then\" if=\"props.datalist\"> <template is=\"rt-if-then\" if=\"dataList?.length\"> <template is=\"rt-repeat\" for=\"item of dataList\"> {{block option }} <opal-select-option value=\"{item.value}\" text=\"{item.text}\"></opal-select-option> {{/block}} </template> </template> <template is=\"rt-if-else\" if=\"dataList?.length\" rt-silent=\"\"> {{block loader }} <opal-loader shown=\"\"></opal-loader> {{/block}} </template> </template> <template is=\"rt-if-else\" if=\"props.datalist\"> <span class=\"opal-select__menu-content\"> {{block options }} <rt-content select=\"opal-select-option\"></rt-content> {{/block}} </span> </template> </rt-content> </opal-dropdown> </rt-content>"
+	module.exports = "<rt-content select=\".opal-select__button\"> {{block button }} <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> <template is=\"rt-if-then\" if=\"props.text\" rt-silent=\"\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\" rt-silent=\"\">{text}</template> {{block icon_chevron_down }} <svg viewBox=\"0 0 32 18\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-select__icon-chevron-down\"></use></svg> {{/block}} </opal-button> {{/block}} </rt-content> <rt-content select=\".opal-select__menu\"> <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> <rt-content select=\".opal-select__menu-content\"> <template is=\"rt-if-then\" if=\"props.datalist\"> <div class=\"opal-select__menu-content\"> <template is=\"rt-if-then\" if=\"dataList?.length\"> <template is=\"rt-repeat\" for=\"item of dataList\"> {{block option }} <opal-select-option value=\"{item.value}\" text=\"{item.text}\"></opal-select-option> {{/block}} </template> {{block new }} <rt-content class=\"opal-select__new-input-container\" select=\".opal-select__new-input\">{{block new_input }}{{/block}}</rt-content> {{/block}} </template> <template is=\"rt-if-else\" if=\"dataList?.length\" rt-silent=\"\"> {{block loader }} <opal-loader shown=\"\"></opal-loader> {{/block}} </template> </div> </template> <template is=\"rt-if-else\" if=\"props.datalist\"> <div class=\"opal-select__menu-content\"> {{block options }} <rt-content select=\"opal-select-option\"></rt-content> {{/block}} </div> </template> </rt-content> </opal-dropdown> </rt-content>"
 
 /***/ },
 
@@ -946,7 +986,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-select{position:relative;display:inline-block;vertical-align:middle;line-height:0}.opal-select .opal-select__button{display:block;min-width:100%}.opal-select .opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:14px;height:14px;vertical-align:middle;transition:transform .1s linear;fill:currentColor}.opal-select .opal-select__button[size=s] .opal-select__icon-chevron-down{width:12px;height:12px}.opal-select .opal-select__button[checked] .opal-select__icon-chevron-down{-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-popover{padding:6px 0;min-width:100px}.opal-select .opal-filtered-list .opal-filtered-list__query-input-wrapper{margin:10px}.opal-select .opal-loaded-list{height:300px}";
+	            style.textContent = ".opal-select{position:relative;display:inline-block;vertical-align:middle;line-height:0}.opal-select .opal-select__button{display:block;min-width:100%}.opal-select .opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:14px;height:14px;vertical-align:middle;transition:transform .1s linear;fill:currentColor}.opal-select .opal-select__button[size=s] .opal-select__icon-chevron-down{width:12px;height:12px}.opal-select .opal-select__button[checked] .opal-select__icon-chevron-down{-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-select__new-input{margin:10px;width:auto}.opal-select .opal-popover{padding:6px 0;min-width:100px}.opal-select .opal-filtered-list .opal-filtered-list__query-input{margin:10px}.opal-select .opal-loaded-list{height:300px}";
 	            head.appendChild(style);
 	            return style;
 	        }

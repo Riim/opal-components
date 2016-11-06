@@ -1,7 +1,7 @@
 require('./index.css');
 require('./opal-select__icon-chevron-down.svg');
 
-let { Utils: { nextTick }, cellx } = require('cellx');
+let { Utils: { nextUID, nextTick }, cellx } = require('cellx');
 let { IndexedList } = require('cellx-indexed-collections');
 let { getText, ComponentTemplate, Component, Components: { RtRepeat } } = require('rionite');
 let OpalSelectOption = require('./opal-select-option');
@@ -16,7 +16,7 @@ module.exports = Component.extend('opal-select', {
 		props: {
 			type: String,
 			size: 'm',
-			datalist: String,
+			datalist: { type: String, readonly: true },
 			value: Object,
 			viewModel: { type: String, readonly: true },
 			text: String,
@@ -57,15 +57,32 @@ module.exports = Component.extend('opal-select', {
 						return;
 					}
 
-					let vm = this.viewModel;
-					let textInputValue = textInput.value;
 					let item = {
-						value: textInputValue,
-						text: textInputValue
+						value: '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID(),
+						text: textInput.value
 					};
 
+					let dataList = this.dataList;
+
+					if (dataList) {
+						dataList.add(item);
+					}
+
 					textInput.clear();
-					this.$('loaded-list').props.query = '';
+
+					let loadedList = this.loadedList;
+
+					if (loadedList === void 0) {
+						loadedList = this.loadedList = this.$('loaded-list');
+					}
+
+					if (loadedList) {
+						loadedList.props.query = '';
+					}
+
+					this.emit('input');
+
+					let vm = this.viewModel;
 
 					if (this.props.multiple) {
 						vm.add(item);
@@ -157,6 +174,10 @@ module.exports = Component.extend('opal-select', {
 			}
 		}
 	},
+
+	newInput: void 0,
+	filteredList: void 0,
+	loadedList: void 0,
 
 	_opened: false,
 
@@ -373,10 +394,27 @@ module.exports = Component.extend('opal-select', {
 				});
 			}
 
-			let filteredList = this.$('filtered-list');
+			let newInput = this.newInput;
+			let filteredList = this.filteredList;
 
-			if (filteredList) {
-				filteredList.focus();
+			if (filteredList === void 0) {
+				filteredList = this.filteredList = this.$('filtered-list');
+			}
+
+			let focusable = newInput || filteredList;
+
+			if (!focusable && this.dataList) {
+				newInput = this.newInput = this.$('new-input');
+
+				if (newInput) {
+					focusable = newInput;
+				}
+			}
+
+			if (focusable) {
+				setTimeout(() => {
+					focusable.focus();
+				}, 1);
 			} else {
 				this._focusOptions();
 			}

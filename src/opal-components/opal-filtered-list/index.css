@@ -1,5 +1,5 @@
 .opal-filtered-list {
-	& .opal-filtered-list__query-input-wrapper {
+	& .opal-filtered-list__query-input-container {
 		display: block;
 		margin-bottom: 15px;
 	}
@@ -8,7 +8,7 @@
 			width: auto;
 		}
 
-	& .opal-filtered-list__loaded-list-wrapper {
+	& .opal-filtered-list__loaded-list-container {
 	}
 		& .opal-filtered-list__loaded-list {
 		}

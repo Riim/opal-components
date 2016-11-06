@@ -95,7 +95,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 28:
 /***/ function(module, exports) {
 
-	module.exports = "{{block query }} <rt-content class=\"opal-filtered-list__query-input-wrapper\" select=\".opal-filtered-list__query-input\"> {{block query_input }} <opal-text-input class=\"opal-filtered-list__query-input\"></opal-text-input> {{/block}} </rt-content> {{/block}} {{block list }} <rt-content class=\"opal-filtered-list__loaded-list-wrapper\" select=\".opal-filtered-list__loaded-list\"></rt-content> {{/block}}"
+	module.exports = "{{block query }} <rt-content class=\"opal-filtered-list__query-input-container\" select=\".opal-filtered-list__query-input\"> {{block query_input }} <opal-text-input class=\"opal-filtered-list__query-input\"></opal-text-input> {{/block}} </rt-content> {{/block}} {{block list }} <rt-content class=\"opal-filtered-list__loaded-list-container\" select=\".opal-filtered-list__loaded-list\"></rt-content> {{/block}}"
 
 /***/ },
 
@@ -107,7 +107,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-filtered-list .opal-filtered-list__query-input-wrapper{display:block;margin-bottom:15px}.opal-filtered-list .opal-filtered-list__query-input{display:block;width:auto}";
+	            style.textContent = ".opal-filtered-list .opal-filtered-list__query-input-container{display:block;margin-bottom:15px}.opal-filtered-list .opal-filtered-list__query-input{display:block;width:auto}";
 	            head.appendChild(style);
 	            return style;
 	        }

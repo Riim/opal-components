@@ -23,7 +23,7 @@
 		& .opal-code-listing__js-code {
 		}
 
-	& .opal-code-listing__example-html-wrapper {
+	& .opal-code-listing__example-html-container {
 		position: relative;
 		display: block;
 		padding: 29px;
@@ -32,9 +32,9 @@
 		background: #fff;
 	}
 
-	& .opal-code-listing__example-js-wrapper {
+	& .opal-code-listing__example-js-container {
 	}
-		& .opal-code-listing__example-html-wrapper::before {
+		& .opal-code-listing__example-html-container::before {
 			position: absolute;
 			top: 0;
 			left: 29px;
