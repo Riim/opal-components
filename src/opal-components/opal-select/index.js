@@ -175,7 +175,6 @@ module.exports = Component.extend('opal-select', {
 		}
 	},
 
-	newInput: void 0,
 	filteredList: void 0,
 	loadedList: void 0,
 
@@ -379,82 +378,69 @@ module.exports = Component.extend('opal-select', {
 	 * @typesign () -> boolean;
 	 */
 	open() {
-		if (!this._opened) {
-			this._opened = true;
-			this._valueWhenOpened = this.viewModel.map(item => item.value);
-
-			this.$('button').check();
-			this.$('menu').open();
-
-			let loadedList = this.$('loaded-list');
-
-			if (loadedList) {
-				nextTick(() => {
-					loadedList.checkLoading();
-				});
-			}
-
-			let newInput = this.newInput;
-			let filteredList = this.filteredList;
-
-			if (filteredList === void 0) {
-				filteredList = this.filteredList = this.$('filtered-list');
-			}
-
-			let focusable = newInput || filteredList;
-
-			if (!focusable && this.dataList) {
-				newInput = this.newInput = this.$('new-input');
-
-				if (newInput) {
-					focusable = newInput;
-				}
-			}
-
-			if (focusable) {
-				setTimeout(() => {
-					focusable.focus();
-				}, 1);
-			} else {
-				this._focusOptions();
-			}
-
-			this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
-
-			if (!this.props.focused) {
-				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-			}
-
-			return true;
+		if (this._opened) {
+			return false;
 		}
 
-		return false;
+		this._opened = true;
+		this._valueWhenOpened = this.viewModel.map(item => item.value);
+
+		this.$('button').check();
+		this.$('menu').open();
+
+		let loadedList = this.$('loaded-list');
+
+		if (loadedList) {
+			nextTick(() => {
+				loadedList.checkLoading();
+			});
+		}
+
+		let filteredList = this.filteredList;
+
+		if (filteredList === void 0) {
+			filteredList = this.filteredList = this.$('filtered-list');
+		}
+
+		if (filteredList) {
+			filteredList.focus();
+		} else {
+			this._focusOptions();
+		}
+
+		this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+
+		if (!this.props.focused) {
+			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+		}
+
+		return true;
 	},
 
 	/**
 	 * @typesign () -> boolean;
 	 */
 	close() {
-		if (this._opened) {
-			this._opened = false;
-
-			this.$('button').uncheck();
-			this.$('menu').close();
-
-			this._documentFocusInListening.stop();
-
-			if (!this.props.focused) {
-				this._documentKeyDownListening.stop();
-			}
-
-			if (this.props.multiple && !isEqualArray(this.viewModel.map(item => item.value), this._valueWhenOpened)) {
-				this.emit('change');
-			}
-
-			return true;
+		if (!this._opened) {
+			return false;
 		}
 
-		return false;
+		this._opened = false;
+
+		this.$('button').uncheck();
+		this.$('menu').close();
+
+		this._documentFocusInListening.stop();
+
+		if (!this.props.focused) {
+			this._documentKeyDownListening.stop();
+		}
+
+		if (this.props.multiple && !isEqualArray(this.viewModel.map(item => item.value), this._valueWhenOpened)) {
+			this.emit('change');
+		}
+
+		return true;
 	},
 
 	/**

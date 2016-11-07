@@ -251,7 +251,6 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 
-		newInput: void 0,
 		filteredList: void 0,
 		loadedList: void 0,
 
@@ -477,66 +476,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> boolean;
 	  */
 		open: function open() {
-			var _this5 = this;
-
-			if (!this._opened) {
-				var _ret4 = function () {
-					_this5._opened = true;
-					_this5._valueWhenOpened = _this5.viewModel.map(function (item) {
-						return item.value;
-					});
-
-					_this5.$('button').check();
-					_this5.$('menu').open();
-
-					var loadedList = _this5.$('loaded-list');
-
-					if (loadedList) {
-						nextTick(function () {
-							loadedList.checkLoading();
-						});
-					}
-
-					var newInput = _this5.newInput;
-					var filteredList = _this5.filteredList;
-
-					if (filteredList === void 0) {
-						filteredList = _this5.filteredList = _this5.$('filtered-list');
-					}
-
-					var focusable = newInput || filteredList;
-
-					if (!focusable && _this5.dataList) {
-						newInput = _this5.newInput = _this5.$('new-input');
-
-						if (newInput) {
-							focusable = newInput;
-						}
-					}
-
-					if (focusable) {
-						setTimeout(function () {
-							focusable.focus();
-						}, 1);
-					} else {
-						_this5._focusOptions();
-					}
-
-					_this5._documentFocusInListening = _this5.listenTo(document, 'focusin', _this5._onDocumentFocusIn);
-
-					if (!_this5.props.focused) {
-						_this5._documentKeyDownListening = _this5.listenTo(document, 'keydown', _this5._onDocumentKeyDown);
-					}
-
-					return {
-						v: true
-					};
-				}();
-
-				if (typeof _ret4 === "object") return _ret4.v;
+			if (this._opened) {
+				return false;
 			}
 
-			return false;
+			this._opened = true;
+			this._valueWhenOpened = this.viewModel.map(function (item) {
+				return item.value;
+			});
+
+			this.$('button').check();
+			this.$('menu').open();
+
+			var loadedList = this.$('loaded-list');
+
+			if (loadedList) {
+				nextTick(function () {
+					loadedList.checkLoading();
+				});
+			}
+
+			var filteredList = this.filteredList;
+
+			if (filteredList === void 0) {
+				filteredList = this.filteredList = this.$('filtered-list');
+			}
+
+			if (filteredList) {
+				filteredList.focus();
+			} else {
+				this._focusOptions();
+			}
+
+			this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+
+			if (!this.props.focused) {
+				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+			}
+
+			return true;
 		},
 
 
@@ -544,28 +522,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> boolean;
 	  */
 		close: function close() {
-			if (this._opened) {
-				this._opened = false;
-
-				this.$('button').uncheck();
-				this.$('menu').close();
-
-				this._documentFocusInListening.stop();
-
-				if (!this.props.focused) {
-					this._documentKeyDownListening.stop();
-				}
-
-				if (this.props.multiple && !isEqualArray(this.viewModel.map(function (item) {
-					return item.value;
-				}), this._valueWhenOpened)) {
-					this.emit('change');
-				}
-
-				return true;
+			if (!this._opened) {
+				return false;
 			}
 
-			return false;
+			this._opened = false;
+
+			this.$('button').uncheck();
+			this.$('menu').close();
+
+			this._documentFocusInListening.stop();
+
+			if (!this.props.focused) {
+				this._documentKeyDownListening.stop();
+			}
+
+			if (this.props.multiple && !isEqualArray(this.viewModel.map(function (item) {
+				return item.value;
+			}), this._valueWhenOpened)) {
+				this.emit('change');
+			}
+
+			return true;
 		},
 
 

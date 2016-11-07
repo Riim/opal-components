@@ -93,12 +93,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> boolean;
 	  */
 		open: function open() {
-			if (!this.props.opened) {
-				this.props.opened = true;
-				return true;
+			if (this.props.opened) {
+				return false;
 			}
 
-			return false;
+			this.props.opened = true;
+			return true;
 		},
 
 
@@ -106,12 +106,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> boolean;
 	  */
 		close: function close() {
-			if (this.props.opened) {
-				this.props.opened = false;
-				return true;
+			if (!this.props.opened) {
+				return false;
 			}
 
-			return false;
+			this.props.opened = false;
+			return true;
 		},
 
 

@@ -77,24 +77,24 @@ module.exports = Component.extend('opal-modal', {
 	 * @typesign () -> boolean;
 	 */
 	open() {
-		if (!this.props.opened) {
-			this.props.opened = true;
-			return true;
+		if (this.props.opened) {
+			return false;
 		}
 
-		return false;
+		this.props.opened = true;
+		return true;
 	},
 
 	/**
 	 * @typesign () -> boolean;
 	 */
 	close() {
-		if (this.props.opened) {
-			this.props.opened = false;
-			return true;
+		if (!this.props.opened) {
+			return false;
 		}
 
-		return false;
+		this.props.opened = false;
+		return true;
 	},
 
 	/**
