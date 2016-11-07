@@ -76,7 +76,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	var getText = _require3.getText;
 	var ComponentTemplate = _require3.ComponentTemplate;
 	var Component = _require3.Component;
-	var RtRepeat = _require3.Components.RtRepeat;
+	var _require3$Components = _require3.Components;
+	var RtIfThen = _require3$Components.RtIfThen;
+	var RtRepeat = _require3$Components.RtRepeat;
 
 	var OpalSelectOption = __webpack_require__(17);
 	var isEqualArray = __webpack_require__(16);
@@ -173,7 +175,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						}
 					},
 					change: function change(evt) {
-						if (!(evt.target instanceof RtRepeat)) {
+						if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
 							return;
 						}
 
@@ -387,7 +389,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		_onPropsValueChange: function _onPropsValueChange(_ref4) {
 			var _this4 = this;
 
-			var value = _ref4.value[1];
+			var value = _ref4.value;
 
 			var vm = this.viewModel;
 

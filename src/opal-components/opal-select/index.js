@@ -3,7 +3,7 @@ require('./opal-select__icon-chevron-down.svg');
 
 let { Utils: { nextUID, nextTick }, cellx } = require('cellx');
 let { IndexedList } = require('cellx-indexed-collections');
-let { getText, ComponentTemplate, Component, Components: { RtRepeat } } = require('rionite');
+let { getText, ComponentTemplate, Component, Components: { RtIfThen, RtRepeat } } = require('rionite');
 let OpalSelectOption = require('./opal-select-option');
 let isEqualArray = require('./isEqualArray');
 
@@ -101,7 +101,7 @@ module.exports = Component.extend('opal-select', {
 				},
 
 				change(evt) {
-					if (!(evt.target instanceof RtRepeat)) {
+					if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
 						return;
 					}
 
@@ -291,7 +291,7 @@ module.exports = Component.extend('opal-select', {
 		}
 	},
 
-	_onPropsValueChange({ value: { 1: value } }) {
+	_onPropsValueChange({ value }) {
 		let vm = this.viewModel;
 
 		if (value) {
