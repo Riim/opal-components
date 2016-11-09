@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.1.183",
+  "version": "0.1.184",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -26,7 +26,7 @@
     "babel-loader": "^6.2.7",
     "babel-plugin-syntax-flow": "^6.18.0",
     "babel-plugin-transform-flow-comments": "^6.17.0",
-    "cellx": "^1.6.60",
+    "cellx": "^1.6.61",
     "cellx-indexed-collections": "^1.0.5",
     "collapse-html-whitespaces-loader": "^0.1.2",
     "eslint": "^3.9.1",

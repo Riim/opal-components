@@ -14,8 +14,8 @@
 	</template>
 
 	{{block select }}
-		<opal-select class="opal-tag-select__select" value="{props.value}" view-model="{_viewModelParam}" multiple
-				allow-input="{props.allowInput}">
+		<opal-select class="opal-tag-select__select" datalist="{_dataListParam}" value="{props.value}"
+				view-model="{_viewModelParam}" multiple allow-input="{props.allowInput}">
 			{{block select_button }}
 				<opal-sign-button class="opal-tag-select__select-button opal-select__button" sign="plus"
 						checkable></opal-sign-button>

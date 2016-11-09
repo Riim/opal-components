@@ -72,6 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		Static: {
 			props: {
 				type: String,
+				datalist: String,
 				// необязательный, так как может указываться на передаваемом opal-loaded-list
 				dataprovider: { type: String, readonly: true },
 				value: Object,
@@ -123,15 +124,27 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 
 		initialize: function initialize() {
-			var dataProvider = this.props.dataprovider;
-			var vm = this.props.viewModel;
+			var props = this.props;
+			var dataList = props.datalist;
+			var dataProvider = props.dataprovider;
+			var vm = props.viewModel;
 
+			this._dataListParam = dataList && 'dataList';
 			this._dataProviderParam = dataProvider && 'dataProvider';
 			this._viewModelParam = vm && 'viewModel';
+
+			var getDataList = void 0;
+
+			if (dataList) {
+				getDataList = Function('return this.' + dataList + ';');
+			}
 
 			var context = this.ownerComponent || window;
 
 			cellx.define(this, {
+				dataList: dataList && function () {
+					return getDataList.call(context);
+				},
 				dataProvider: dataProvider && Function('return this.' + dataProvider + ';').call(context),
 				viewModel: vm && Function('return this.' + vm + ';').call(context),
 
@@ -141,6 +154,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			});
 		},
 		ready: function ready() {
+			this.dataList = this.$('select').dataList;
 			this.viewModel = this.$('select').viewModel;
 		},
 		_onBtnRemoveTagClick: function _onBtnRemoveTagClick(evt, btn) {
@@ -168,7 +182,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 43:
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"opal-tag-select__tags\"> <template is=\"rt-if-then\" if=\"viewModel?.length\" rt-silent=\"\"> <template is=\"rt-repeat\" for=\"tag of viewModel\" rt-silent=\"\"> <span class=\"opal-tag-select__tag\" data-value=\"{tag.value}\" disabled=\"{tag.disabled}\">{tag.text}<button class=\"opal-tag-select__btn-remove-tag\" data-tag-value=\"{tag.value}\" rt-click=\"_onBtnRemoveTagClick\"></button></span> </template> </template> </span> <span class=\"opal-tag-select__control\"> <template is=\"rt-if-then\" if=\"placeholderShown\" rt-silent=\"\"> <span class=\"opal-tag-select__placeholder\">{props.placeholder}</span> </template> {{block select }} <opal-select class=\"opal-tag-select__select\" value=\"{props.value}\" view-model=\"{_viewModelParam}\" multiple=\"\" allow-input=\"{props.allowInput}\"> {{block select_button }} <opal-sign-button class=\"opal-tag-select__select-button opal-select__button\" sign=\"plus\" checkable=\"\"></opal-sign-button> {{/block}} {{block menu }} <opal-popover class=\"opal-select__menu\" to=\"{props.popoverTo}\" auto-closing=\"\"> <rt-content select=\".opal-tag-select__menu-content\"> <opal-filtered-list class=\"opal-tag-select__menu-content opal-select__filtered-list\"> <opal-loaded-list class=\"opal-select__loaded-list opal-filtered-list__loaded-list\" dataprovider=\"{_dataProviderParam}\"> <opal-select-option value=\"{$item.value}\" text=\"{$item.text}\"></opal-select-option> </opal-loaded-list> </opal-filtered-list> </rt-content> </opal-popover> {{/block}} </opal-select> {{/block}} </span>"
+	module.exports = "<span class=\"opal-tag-select__tags\"> <template is=\"rt-if-then\" if=\"viewModel?.length\" rt-silent=\"\"> <template is=\"rt-repeat\" for=\"tag of viewModel\" rt-silent=\"\"> <span class=\"opal-tag-select__tag\" data-value=\"{tag.value}\" disabled=\"{tag.disabled}\">{tag.text}<button class=\"opal-tag-select__btn-remove-tag\" data-tag-value=\"{tag.value}\" rt-click=\"_onBtnRemoveTagClick\"></button></span> </template> </template> </span> <span class=\"opal-tag-select__control\"> <template is=\"rt-if-then\" if=\"placeholderShown\" rt-silent=\"\"> <span class=\"opal-tag-select__placeholder\">{props.placeholder}</span> </template> {{block select }} <opal-select class=\"opal-tag-select__select\" datalist=\"{_dataListParam}\" value=\"{props.value}\" view-model=\"{_viewModelParam}\" multiple=\"\" allow-input=\"{props.allowInput}\"> {{block select_button }} <opal-sign-button class=\"opal-tag-select__select-button opal-select__button\" sign=\"plus\" checkable=\"\"></opal-sign-button> {{/block}} {{block menu }} <opal-popover class=\"opal-select__menu\" to=\"{props.popoverTo}\" auto-closing=\"\"> <rt-content select=\".opal-tag-select__menu-content\"> <opal-filtered-list class=\"opal-tag-select__menu-content opal-select__filtered-list\"> <opal-loaded-list class=\"opal-select__loaded-list opal-filtered-list__loaded-list\" dataprovider=\"{_dataProviderParam}\"> <opal-select-option value=\"{$item.value}\" text=\"{$item.text}\"></opal-select-option> </opal-loaded-list> </opal-filtered-list> </rt-content> </opal-popover> {{/block}} </opal-select> {{/block}} </span>"
 
 /***/ },
 

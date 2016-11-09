@@ -7,6 +7,7 @@ module.exports = Component.extend('opal-tag-select', {
 	Static: {
 		props: {
 			type: String,
+			datalist: String,
 			// необязательный, так как может указываться на передаваемом opal-loaded-list
 			dataprovider: { type: String, readonly: true },
 			value: Object,
@@ -58,15 +59,25 @@ module.exports = Component.extend('opal-tag-select', {
 	},
 
 	initialize() {
-		let dataProvider = this.props.dataprovider;
-		let vm = this.props.viewModel;
+		let props = this.props;
+		let dataList = props.datalist;
+		let dataProvider = props.dataprovider;
+		let vm = props.viewModel;
 
+		this._dataListParam = dataList && 'dataList';
 		this._dataProviderParam = dataProvider && 'dataProvider';
 		this._viewModelParam = vm && 'viewModel';
+
+		let getDataList;
+
+		if (dataList) {
+			getDataList = Function(`return this.${ dataList };`);
+		}
 
 		let context = this.ownerComponent || window;
 
 		cellx.define(this, {
+			dataList: dataList && function() { return getDataList.call(context); },
 			dataProvider: dataProvider && Function(`return this.${ dataProvider };`).call(context),
 			viewModel: vm && Function(`return this.${ vm };`).call(context),
 
@@ -77,6 +88,7 @@ module.exports = Component.extend('opal-tag-select', {
 	},
 
 	ready() {
+		this.dataList = this.$('select').dataList;
 		this.viewModel = this.$('select').viewModel;
 	},
 
