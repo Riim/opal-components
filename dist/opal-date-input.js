@@ -137,7 +137,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-date-input{position:relative;display:inline-block;vertical-align:middle;line-height:0}.opal-date-input .opal-popover{line-height:1.5}.opal-date-input .opal-date-input__input{display:block}";
+	            style.textContent = ".opal-date-input{position:relative;display:inline-block;vertical-align:middle;line-height:0}.opal-date-input .opal-date-input__input{display:block}";
 	            head.appendChild(style);
 	            return style;
 	        }

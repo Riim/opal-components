@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.1.184",
+  "version": "0.1.185",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -20,14 +20,12 @@
   "homepage": "https://github.com/Riim/opal-components#readme",
   "devDependencies": {
     "@riim/babel-preset": "^1.0.0",
-    "autoprefixer": "^6.5.2",
+    "autoprefixer": "^6.5.3",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.7",
     "babel-plugin-syntax-flow": "^6.18.0",
     "babel-plugin-transform-flow-comments": "^6.17.0",
-    "cellx": "^1.6.61",
-    "cellx-indexed-collections": "^1.0.5",
     "collapse-html-whitespaces-loader": "^0.1.2",
     "eslint": "^3.9.1",
     "eslint-loader": "^1.6.1",
@@ -39,18 +37,22 @@
     "postcss-color-function": "^2.0.1",
     "postcss-css-variables": "^0.6.0",
     "postcss-csso": "^1.1.2",
-    "postcss-loader": "^1.1.0",
+    "postcss-loader": "^1.1.1",
     "postcss-nesting": "^2.3.1",
     "prismjs": "^1.5.1",
     "pump": "^1.0.1",
     "raw-loader": "^0.5.1",
     "require-dir": "^0.3.1",
     "rimraf": "^2.5.4",
-    "rionite": "^0.14.9",
     "run-sequence": "^1.2.2",
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.0.2",
     "webpack": "^1.13.3",
     "yargs": "^6.3.0"
+  },
+  "dependencies": {
+    "cellx": "^1.6.64",
+    "cellx-indexed-collections": "^1.0.5",
+    "rionite": "^0.14.9"
   }
 }

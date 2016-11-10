@@ -232,7 +232,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-dropdown{position:absolute;z-index:100;display:none;overflow-x:hidden;overflow-y:auto;box-sizing:border-box;margin:2px 0;padding:6px 0;min-width:100%;border:1px solid #ccc;border-radius:3px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}.opal-dropdown .opal-dropdown__content{position:relative;display:block}";
+	            style.textContent = ".opal-dropdown{position:absolute;z-index:100;display:none;overflow-x:hidden;overflow-y:auto;box-sizing:border-box;margin:2px 0;padding:6px 0;min-width:100%;border:1px solid #ccc;border-radius:3px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);line-height:1.5;cursor:default}.opal-dropdown .opal-dropdown__content{position:relative;display:block}";
 	            head.appendChild(style);
 	            return style;
 	        }
