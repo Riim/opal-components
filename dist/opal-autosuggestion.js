@@ -213,7 +213,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			this.$('input').props.loading = evt.value;
 		},
 		_onDocumentFocusIn: function _onDocumentFocusIn() {
-			if (document.activeElement != this.$('input').$('input')) {
+			if (document.activeElement != document.body && !this.element.contains(document.activeElement.parentNode)) {
 				this.closeMenu();
 				this._setSelectedItemOfList();
 			}

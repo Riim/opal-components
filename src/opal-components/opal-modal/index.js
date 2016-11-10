@@ -6,9 +6,10 @@ let openedModals = [];
 let documentListening;
 
 function onDocumentFocusIn() {
-	let body = document.body;
-
-	if (document.activeElement != body && !openedModals[0].element.contains(document.activeElement.parentNode)) {
+	if (
+		document.activeElement != document.body &&
+			!openedModals[0].element.contains(document.activeElement.parentNode)
+	) {
 		openedModals[0].$('btn-close').focus();
 	}
 }

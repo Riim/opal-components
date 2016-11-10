@@ -153,7 +153,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 	},
 
 	_onDocumentFocusIn() {
-		if (document.activeElement != this.$('input').$('input')) {
+		if (document.activeElement != document.body && !this.element.contains(document.activeElement.parentNode)) {
 			this.closeMenu();
 			this._setSelectedItemOfList();
 		}

@@ -69,9 +69,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var documentListening = void 0;
 
 	function onDocumentFocusIn() {
-		var body = document.body;
-
-		if (document.activeElement != body && !openedModals[0].element.contains(document.activeElement.parentNode)) {
+		if (document.activeElement != document.body && !openedModals[0].element.contains(document.activeElement.parentNode)) {
 			openedModals[0].$('btn-close').focus();
 		}
 	}
