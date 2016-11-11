@@ -34,6 +34,7 @@
 			& .opal-select__new-input-container {
 			}
 				& .opal-select__new-input {
+					display: block;
 					margin: 10px;
 					width: auto;
 				}
