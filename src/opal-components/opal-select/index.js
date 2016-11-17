@@ -19,6 +19,7 @@ module.exports = Component.extend('opal-select', {
 			datalist: { type: String, readonly: true },
 			value: Object,
 			viewModel: { type: String, readonly: true },
+			viewModelItemSchema: { default: { value: 'value', text: 'text', disabled: 'disabled' }, readonly: true },
 			text: String,
 			placeholder: getText.t('Не выбрано'),
 			multiple: { default: false, readonly: true },
@@ -57,15 +58,13 @@ module.exports = Component.extend('opal-select', {
 						return;
 					}
 
-					let item = {
-						value: '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID(),
-						text: textInput.value
-					};
+					let itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
+					let itemText = textInput.value;
 
 					let dataList = this.dataList;
 
 					if (dataList) {
-						dataList.add(item);
+						dataList.add({ value: itemValue, text: itemText });
 					}
 
 					textInput.clear();
@@ -83,14 +82,18 @@ module.exports = Component.extend('opal-select', {
 					this.emit('input');
 
 					let vm = this.viewModel;
+					let vmItem = {
+						[this._viewModelItemValueFieldName]: itemValue,
+						[this._viewModelItemTextFieldName]: itemText
+					};
 
 					if (this.props.multiple) {
-						vm.add(item);
+						vm.add(vmItem);
 					} else {
 						if (vm.length) {
-							vm.set(0, item);
+							vm.set(0, vmItem);
 						} else {
-							vm.add(item);
+							vm.add(vmItem);
 						}
 
 						this.close();
@@ -117,18 +120,18 @@ module.exports = Component.extend('opal-select', {
 					}
 
 					let vm = this.viewModel;
-					let item = {
-						value: selectedOption.value,
-						text: selectedOption.text
+					let vmItem = {
+						[this._viewModelItemValueFieldName]: selectedOption.value,
+						[this._viewModelItemTextFieldName]: selectedOption.text
 					};
 
 					if (this.props.multiple) {
-						vm.add(item);
+						vm.add(vmItem);
 					} else {
 						if (vm.length) {
-							vm.set(0, item);
+							vm.set(0, vmItem);
 						} else {
-							vm.add(item);
+							vm.add(vmItem);
 						}
 
 						this.close();
@@ -144,7 +147,9 @@ module.exports = Component.extend('opal-select', {
 					}
 
 					if (this.props.multiple) {
-						this.viewModel.remove(this.viewModel.get(deselectedOption.value, 'value'));
+						this.viewModel.remove(
+							this.viewModel.get(deselectedOption.value, this._viewModelItemValueFieldName)
+						);
 					} else {
 						deselectedOption.select();
 
@@ -183,7 +188,8 @@ module.exports = Component.extend('opal-select', {
 	_valueWhenOpened: null,
 
 	initialize() {
-		let dataList = this.props.datalist;
+		let props = this.props;
+		let dataList = props.datalist;
 
 		if (dataList) {
 			let context = this.ownerComponent || window;
@@ -194,7 +200,8 @@ module.exports = Component.extend('opal-select', {
 			});
 		}
 
-		let vm = this.props.viewModel;
+		let vm = props.viewModel;
+		let vmItemSchema = props.viewModelItemSchema;
 
 		if (vm) {
 			vm = Function(`return this.${ vm };`).call(this.ownerComponent || window);
@@ -203,18 +210,23 @@ module.exports = Component.extend('opal-select', {
 				throw new TypeError('viewModel is not defined');
 			}
 		} else {
-			vm = new IndexedList(null, { indexes: ['value'] });
+			vm = new IndexedList(null, { indexes: [vmItemSchema.value] });
 		}
 
-		cellx.define(this, {
-			viewModel: vm,
+		cellx.define(this, 'viewModel', vm);
 
+		this._viewModelItemValueFieldName = vmItemSchema.value;
+		this._viewModelItemTextFieldName = vmItemSchema.text;
+		this._viewModelItemDisabledFieldName = vmItemSchema.disabled;
+
+		cellx.define(this, {
 			options() {
 				return this.optionElements ? map.call(this.optionElements, option => option.$c) : [];
 			},
 
 			text() {
-				return this.viewModel.map(item => item.text).join(', ') || this.props.placeholder;
+				return this.viewModel.map(item => item[this._viewModelItemTextFieldName]).join(', ') ||
+					this.props.placeholder;
 			}
 		});
 	},
@@ -257,8 +269,8 @@ module.exports = Component.extend('opal-select', {
 
 			if (selectedOptions.length) {
 				this.viewModel.addRange(selectedOptions.map(option => ({
-					value: option.value,
-					text: option.text
+					[this._viewModelItemValueFieldName]: option.value,
+					[this._viewModelItemTextFieldName]: option.text
 				})));
 			}
 
@@ -300,19 +312,22 @@ module.exports = Component.extend('opal-select', {
 			}
 
 			if (value.length) {
+				let vmItemValueFieldName = this._viewModelItemValueFieldName;
+				let vmItemTextFieldName = this._viewModelItemTextFieldName;
+
 				if (this.props.multiple) {
 					this.options.forEach(option => {
 						let optionValue = option.value;
 
 						if (value.indexOf(optionValue) != -1) {
-							if (!vm.contains(optionValue, 'value')) {
+							if (!vm.contains(optionValue, vmItemValueFieldName)) {
 								vm.add({
-									value: optionValue,
-									text: option.text
+									[vmItemValueFieldName]: optionValue,
+									[vmItemTextFieldName]: option.text
 								});
 							}
 						} else {
-							let item = vm.get(optionValue, 'value');
+							let item = vm.get(optionValue, vmItemValueFieldName);
 
 							if (item) {
 								vm.remove(item);
@@ -320,29 +335,19 @@ module.exports = Component.extend('opal-select', {
 						}
 					});
 				} else {
-					let vmLen = vm.length;
-
 					value = value[0];
 
-					if (!vmLen || value != vm.get(0).value) {
+					if (!vm.length || value != vm.get(0)[vmItemValueFieldName]) {
 						if (!this.options.some(option => {
-							let optionValue = option.value;
-
-							if (optionValue == value) {
-								let item = {
-									value: optionValue,
-									text: option.text
-								};
-
-								if (vmLen) {
-									vm.set(0, item);
-								} else {
-									vm.add(item);
-								}
+							if (option.value == value) {
+								vm.set(0, {
+									[vmItemValueFieldName]: value,
+									[vmItemTextFieldName]: option.text
+								});
 
 								return true;
 							}
-						}) && vmLen) {
+						}) && vm.length) {
 							vm.clear();
 						}
 					}
@@ -363,11 +368,11 @@ module.exports = Component.extend('opal-select', {
 		let vm = this.viewModel;
 
 		this.options.forEach(option => {
-			let item = vm.get(option.value, 'value');
+			let item = vm.get(option.value, this._viewModelItemValueFieldName);
 
 			if (item) {
 				option.selected = true;
-				option.disabled = item.disabled;
+				option.disabled = item[this._viewModelItemDisabledFieldName];
 			} else {
 				option.selected = false;
 			}
@@ -383,7 +388,8 @@ module.exports = Component.extend('opal-select', {
 		}
 
 		this._opened = true;
-		this._valueWhenOpened = this.viewModel.map(item => item.value);
+
+		this._valueWhenOpened = this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
 
 		this.$('button').check();
 		this.$('menu').open();
@@ -436,8 +442,13 @@ module.exports = Component.extend('opal-select', {
 			this._documentKeyDownListening.stop();
 		}
 
-		if (this.props.multiple && !isEqualArray(this.viewModel.map(item => item.value), this._valueWhenOpened)) {
-			this.emit('change');
+		if (this.props.multiple) {
+			if (!isEqualArray(
+				this.viewModel.map(item => item[this._viewModelItemValueFieldName]),
+				this._valueWhenOpened
+			)) {
+				this.emit('change');
+			}
 		}
 
 		return true;

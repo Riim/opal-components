@@ -20,7 +20,8 @@
 					<template is="rt-if-then" if="dataList?.length">
 						<template is="rt-repeat" for="item of dataList">
 							{{block option }}
-								<opal-select-option value="{item.value}" text="{item.text}"></opal-select-option>
+								<opal-select-option value="{item |key(_viewModelItemValueFieldName) }"
+										text="{item |key(_viewModelItemTextFieldName) }"></opal-select-option>
 							{{/block}}
 						</template>
 						{{block new }}

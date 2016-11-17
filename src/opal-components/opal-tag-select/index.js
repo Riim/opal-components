@@ -7,11 +7,12 @@ module.exports = Component.extend('opal-tag-select', {
 	Static: {
 		props: {
 			type: String,
-			datalist: String,
+			datalist: { type: String, readonly: true },
 			// необязательный, так как может указываться на передаваемом opal-loaded-list
 			dataprovider: { type: String, readonly: true },
 			value: Object,
 			viewModel: { type: String, readonly: true },
+			viewModelItemSchema: { default: { value: 'value', text: 'text', disabled: 'disabled' }, readonly: true },
 			placeholder: getText.t('Не выбрано'),
 			allowInput: false,
 			popoverTo: 'bottom',
@@ -85,6 +86,12 @@ module.exports = Component.extend('opal-tag-select', {
 				return !!this.props.placeholder && (!this.viewModel || !this.viewModel.length);
 			}
 		});
+
+		let vmItemSchema = props.viewModelItemSchema;
+
+		this._viewModelItemValueFieldName = vmItemSchema.value;
+		this._viewModelItemTextFieldName = vmItemSchema.text;
+		this._viewModelItemDisabledFieldName = vmItemSchema.disabled;
 	},
 
 	ready() {
@@ -93,7 +100,7 @@ module.exports = Component.extend('opal-tag-select', {
 	},
 
 	_onBtnRemoveTagClick(evt, btn) {
-		this.viewModel.remove(this.viewModel.get(btn.dataset.tagValue, 'value'));
+		this.viewModel.remove(this.viewModel.get(btn.dataset.tagValue, this._viewModelItemValueFieldName));
 		this.emit('change');
 	}
 });

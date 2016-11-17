@@ -1,9 +1,12 @@
 <span class="opal-tag-select__tags">
 	<template is="rt-if-then" if="viewModel?.length" rt-silent>
 		<template is="rt-repeat" for="tag of viewModel" rt-silent>
-			<span class="opal-tag-select__tag" data-value="{tag.value}" disabled={tag.disabled}>{tag.text}<button
-					class="opal-tag-select__btn-remove-tag" data-tag-value="{tag.value}"
-					rt-click="_onBtnRemoveTagClick"></button></span>
+			<span class="opal-tag-select__tag" data-value="{tag |key(_viewModelItemValueFieldName) }"
+					disabled="{tag |key(_viewModelItemDisabledFieldName) }">{
+					tag |key(_viewModelItemTextFieldName) }<button
+							class="opal-tag-select__btn-remove-tag"
+							data-tag-value="{tag |key(_viewModelItemValueFieldName) }"
+							rt-click="_onBtnRemoveTagClick"></button></span>
 		</template>
 	</template>
 </span>
@@ -15,7 +18,8 @@
 
 	{{block select }}
 		<opal-select class="opal-tag-select__select" datalist="{_dataListParam}" value="{props.value}"
-				view-model="{_viewModelParam}" multiple allow-input="{props.allowInput}">
+				view-model="{_viewModelParam}" view-model-item-schema="{props.viewModelItemSchema |json }" multiple
+				allow-input="{props.allowInput}">
 			{{block select_button }}
 				<opal-sign-button class="opal-tag-select__select-button opal-select__button" sign="plus"
 						checkable></opal-sign-button>

@@ -95,6 +95,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				datalist: { type: String, readonly: true },
 				value: Object,
 				viewModel: { type: String, readonly: true },
+				viewModelItemSchema: { default: { value: 'value', text: 'text', disabled: 'disabled' }, readonly: true },
 				text: String,
 				placeholder: getText.t('Не выбрано'),
 				multiple: { default: false, readonly: true },
@@ -126,21 +127,21 @@ return /******/ (function(modules) { // webpackBootstrap
 						this.close();
 					},
 					confirminput: function confirminput(_ref) {
+						var _vmItem;
+
 						var textInput = _ref.target;
 
 						if (!this.props.allowInput) {
 							return;
 						}
 
-						var item = {
-							value: '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID(),
-							text: textInput.value
-						};
+						var itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
+						var itemText = textInput.value;
 
 						var dataList = this.dataList;
 
 						if (dataList) {
-							dataList.add(item);
+							dataList.add({ value: itemValue, text: itemText });
 						}
 
 						textInput.clear();
@@ -158,14 +159,15 @@ return /******/ (function(modules) { // webpackBootstrap
 						this.emit('input');
 
 						var vm = this.viewModel;
+						var vmItem = (_vmItem = {}, _vmItem[this._viewModelItemValueFieldName] = itemValue, _vmItem[this._viewModelItemTextFieldName] = itemText, _vmItem);
 
 						if (this.props.multiple) {
-							vm.add(item);
+							vm.add(vmItem);
 						} else {
 							if (vm.length) {
-								vm.set(0, item);
+								vm.set(0, vmItem);
 							} else {
-								vm.add(item);
+								vm.add(vmItem);
 							}
 
 							this.close();
@@ -185,6 +187,8 @@ return /******/ (function(modules) { // webpackBootstrap
 						return false;
 					},
 					select: function select(_ref2) {
+						var _vmItem2;
+
 						var selectedOption = _ref2.target;
 
 						if (!(selectedOption instanceof OpalSelectOption)) {
@@ -192,18 +196,15 @@ return /******/ (function(modules) { // webpackBootstrap
 						}
 
 						var vm = this.viewModel;
-						var item = {
-							value: selectedOption.value,
-							text: selectedOption.text
-						};
+						var vmItem = (_vmItem2 = {}, _vmItem2[this._viewModelItemValueFieldName] = selectedOption.value, _vmItem2[this._viewModelItemTextFieldName] = selectedOption.text, _vmItem2);
 
 						if (this.props.multiple) {
-							vm.add(item);
+							vm.add(vmItem);
 						} else {
 							if (vm.length) {
-								vm.set(0, item);
+								vm.set(0, vmItem);
 							} else {
-								vm.add(item);
+								vm.add(vmItem);
 							}
 
 							this.close();
@@ -220,7 +221,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						}
 
 						if (this.props.multiple) {
-							this.viewModel.remove(this.viewModel.get(deselectedOption.value, 'value'));
+							this.viewModel.remove(this.viewModel.get(deselectedOption.value, this._viewModelItemValueFieldName));
 						} else {
 							deselectedOption.select();
 
@@ -263,7 +264,8 @@ return /******/ (function(modules) { // webpackBootstrap
 		initialize: function initialize() {
 			var _this2 = this;
 
-			var dataList = this.props.datalist;
+			var props = this.props;
+			var dataList = props.datalist;
 
 			if (dataList) {
 				(function () {
@@ -276,7 +278,8 @@ return /******/ (function(modules) { // webpackBootstrap
 				})();
 			}
 
-			var vm = this.props.viewModel;
+			var vm = props.viewModel;
+			var vmItemSchema = props.viewModelItemSchema;
 
 			if (vm) {
 				vm = Function('return this.' + vm + ';').call(this.ownerComponent || window);
@@ -285,26 +288,32 @@ return /******/ (function(modules) { // webpackBootstrap
 					throw new TypeError('viewModel is not defined');
 				}
 			} else {
-				vm = new IndexedList(null, { indexes: ['value'] });
+				vm = new IndexedList(null, { indexes: [vmItemSchema.value] });
 			}
 
-			cellx.define(this, {
-				viewModel: vm,
+			cellx.define(this, 'viewModel', vm);
 
+			this._viewModelItemValueFieldName = vmItemSchema.value;
+			this._viewModelItemTextFieldName = vmItemSchema.text;
+			this._viewModelItemDisabledFieldName = vmItemSchema.disabled;
+
+			cellx.define(this, {
 				options: function options() {
 					return this.optionElements ? map.call(this.optionElements, function (option) {
 						return option.$c;
 					}) : [];
 				},
 				text: function text() {
+					var _this3 = this;
+
 					return this.viewModel.map(function (item) {
-						return item.text;
+						return item[_this3._viewModelItemTextFieldName];
 					}).join(', ') || this.props.placeholder;
 				}
 			});
 		},
 		ready: function ready() {
-			var _this3 = this;
+			var _this4 = this;
 
 			this.optionElements = this.element.getElementsByClassName('opal-select-option');
 
@@ -324,12 +333,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						if (value.length) {
 							if (props.multiple) {
-								selectedOptions = _this3.options.filter(function (option) {
+								selectedOptions = _this4.options.filter(function (option) {
 									return value.indexOf(option.value) != -1;
 								});
 							} else {
 								value = value[0];
-								var selectedOption = _this3.options.find(function (option) {
+								var selectedOption = _this4.options.find(function (option) {
 									return option.value == value;
 								});
 								selectedOptions = selectedOption ? [selectedOption] : [];
@@ -339,11 +348,11 @@ return /******/ (function(modules) { // webpackBootstrap
 						}
 					} else {
 						if (props.multiple) {
-							selectedOptions = _this3.options.filter(function (option) {
+							selectedOptions = _this4.options.filter(function (option) {
 								return option.selected;
 							});
 						} else {
-							var _selectedOption = _this3.options.find(function (option) {
+							var _selectedOption = _this4.options.find(function (option) {
 								return option.selected;
 							});
 							selectedOptions = _selectedOption ? [_selectedOption] : [];
@@ -351,16 +360,15 @@ return /******/ (function(modules) { // webpackBootstrap
 					}
 
 					if (selectedOptions.length) {
-						_this3.viewModel.addRange(selectedOptions.map(function (option) {
-							return {
-								value: option.value,
-								text: option.text
-							};
+						_this4.viewModel.addRange(selectedOptions.map(function (option) {
+							var _ref4;
+
+							return _ref4 = {}, _ref4[_this4._viewModelItemValueFieldName] = option.value, _ref4[_this4._viewModelItemTextFieldName] = option.text, _ref4;
 						}));
 					}
 
 					if (value) {
-						_this3._updateOptions();
+						_this4._updateOptions();
 					}
 				})();
 			}
@@ -386,10 +394,10 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 			}
 		},
-		_onPropsValueChange: function _onPropsValueChange(_ref4) {
-			var _this4 = this;
+		_onPropsValueChange: function _onPropsValueChange(_ref5) {
+			var _this5 = this;
 
-			var value = _ref4.value;
+			var value = _ref5.value;
 
 			var vm = this.viewModel;
 
@@ -399,55 +407,46 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 
 				if (value.length) {
-					if (this.props.multiple) {
-						this.options.forEach(function (option) {
-							var optionValue = option.value;
+					(function () {
+						var vmItemValueFieldName = _this5._viewModelItemValueFieldName;
+						var vmItemTextFieldName = _this5._viewModelItemTextFieldName;
 
-							if (value.indexOf(optionValue) != -1) {
-								if (!vm.contains(optionValue, 'value')) {
-									vm.add({
-										value: optionValue,
-										text: option.text
-									});
+						if (_this5.props.multiple) {
+							_this5.options.forEach(function (option) {
+								var optionValue = option.value;
+
+								if (value.indexOf(optionValue) != -1) {
+									if (!vm.contains(optionValue, vmItemValueFieldName)) {
+										var _vm$add;
+
+										vm.add((_vm$add = {}, _vm$add[vmItemValueFieldName] = optionValue, _vm$add[vmItemTextFieldName] = option.text, _vm$add));
+									}
+								} else {
+									var item = vm.get(optionValue, vmItemValueFieldName);
+
+									if (item) {
+										vm.remove(item);
+									}
 								}
-							} else {
-								var item = vm.get(optionValue, 'value');
-
-								if (item) {
-									vm.remove(item);
-								}
-							}
-						});
-					} else {
-						(function () {
-							var vmLen = vm.length;
-
+							});
+						} else {
 							value = value[0];
 
-							if (!vmLen || value != vm.get(0).value) {
-								if (!_this4.options.some(function (option) {
-									var optionValue = option.value;
+							if (!vm.length || value != vm.get(0)[vmItemValueFieldName]) {
+								if (!_this5.options.some(function (option) {
+									if (option.value == value) {
+										var _vm$set;
 
-									if (optionValue == value) {
-										var item = {
-											value: optionValue,
-											text: option.text
-										};
-
-										if (vmLen) {
-											vm.set(0, item);
-										} else {
-											vm.add(item);
-										}
+										vm.set(0, (_vm$set = {}, _vm$set[vmItemValueFieldName] = value, _vm$set[vmItemTextFieldName] = option.text, _vm$set));
 
 										return true;
 									}
-								}) && vmLen) {
+								}) && vm.length) {
 									vm.clear();
 								}
 							}
-						})();
-					}
+						}
+					})();
 				} else {
 					vm.clear();
 				}
@@ -459,14 +458,16 @@ return /******/ (function(modules) { // webpackBootstrap
 			this._updateOptions();
 		},
 		_updateOptions: function _updateOptions() {
+			var _this6 = this;
+
 			var vm = this.viewModel;
 
 			this.options.forEach(function (option) {
-				var item = vm.get(option.value, 'value');
+				var item = vm.get(option.value, _this6._viewModelItemValueFieldName);
 
 				if (item) {
 					option.selected = true;
-					option.disabled = item.disabled;
+					option.disabled = item[_this6._viewModelItemDisabledFieldName];
 				} else {
 					option.selected = false;
 				}
@@ -478,13 +479,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> boolean;
 	  */
 		open: function open() {
+			var _this7 = this;
+
 			if (this._opened) {
 				return false;
 			}
 
 			this._opened = true;
+
 			this._valueWhenOpened = this.viewModel.map(function (item) {
-				return item.value;
+				return item[_this7._viewModelItemValueFieldName];
 			});
 
 			this.$('button').check();
@@ -524,6 +528,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign () -> boolean;
 	  */
 		close: function close() {
+			var _this8 = this;
+
 			if (!this._opened) {
 				return false;
 			}
@@ -539,10 +545,12 @@ return /******/ (function(modules) { // webpackBootstrap
 				this._documentKeyDownListening.stop();
 			}
 
-			if (this.props.multiple && !isEqualArray(this.viewModel.map(function (item) {
-				return item.value;
-			}), this._valueWhenOpened)) {
-				this.emit('change');
+			if (this.props.multiple) {
+				if (!isEqualArray(this.viewModel.map(function (item) {
+					return item[_this8._viewModelItemValueFieldName];
+				}), this._valueWhenOpened)) {
+					this.emit('change');
+				}
 			}
 
 			return true;
@@ -947,7 +955,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 36:
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content select=\".opal-select__button\"> {{block button }} <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> <template is=\"rt-if-then\" if=\"props.text\" rt-silent=\"\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\" rt-silent=\"\">{text}</template> {{block icon_chevron_down }} <svg viewBox=\"0 0 32 18\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-select__icon-chevron-down\"></use></svg> {{/block}} </opal-button> {{/block}} </rt-content> <rt-content select=\".opal-select__menu\"> <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> <rt-content select=\".opal-select__menu-content\"> <template is=\"rt-if-then\" if=\"props.datalist\"> <div class=\"opal-select__menu-content\"> <template is=\"rt-if-then\" if=\"dataList?.length\"> <template is=\"rt-repeat\" for=\"item of dataList\"> {{block option }} <opal-select-option value=\"{item.value}\" text=\"{item.text}\"></opal-select-option> {{/block}} </template> {{block new }} <rt-content class=\"opal-select__new-input-container\" select=\".opal-select__new-input\">{{block new_input }}{{/block}}</rt-content> {{/block}} </template> <template is=\"rt-if-else\" if=\"dataList?.length\" rt-silent=\"\"> {{block loader }} <opal-loader shown=\"\"></opal-loader> {{/block}} </template> </div> </template> <template is=\"rt-if-else\" if=\"props.datalist\"> <div class=\"opal-select__menu-content\"> {{block options }} <rt-content select=\"opal-select-option\"></rt-content> {{/block}} </div> </template> </rt-content> </opal-dropdown> </rt-content>"
+	module.exports = "<rt-content select=\".opal-select__button\"> {{block button }} <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> <template is=\"rt-if-then\" if=\"props.text\" rt-silent=\"\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\" rt-silent=\"\">{text}</template> {{block icon_chevron_down }} <svg viewBox=\"0 0 32 18\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-select__icon-chevron-down\"></use></svg> {{/block}} </opal-button> {{/block}} </rt-content> <rt-content select=\".opal-select__menu\"> <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> <rt-content select=\".opal-select__menu-content\"> <template is=\"rt-if-then\" if=\"props.datalist\"> <div class=\"opal-select__menu-content\"> <template is=\"rt-if-then\" if=\"dataList?.length\"> <template is=\"rt-repeat\" for=\"item of dataList\"> {{block option }} <opal-select-option value=\"{item |key(_viewModelItemValueFieldName) }\" text=\"{item |key(_viewModelItemTextFieldName) }\"></opal-select-option> {{/block}} </template> {{block new }} <rt-content class=\"opal-select__new-input-container\" select=\".opal-select__new-input\">{{block new_input }}{{/block}}</rt-content> {{/block}} </template> <template is=\"rt-if-else\" if=\"dataList?.length\" rt-silent=\"\"> {{block loader }} <opal-loader shown=\"\"></opal-loader> {{/block}} </template> </div> </template> <template is=\"rt-if-else\" if=\"props.datalist\"> <div class=\"opal-select__menu-content\"> {{block options }} <rt-content select=\"opal-select-option\"></rt-content> {{/block}} </div> </template> </rt-content> </opal-dropdown> </rt-content>"
 
 /***/ },
 
