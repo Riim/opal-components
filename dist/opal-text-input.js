@@ -74,6 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				size: 'm',
 				rows: 5,
 				autoHeight: true,
+				inputName: String,
 				value: '',
 				storeKey: String,
 				placeholder: '',
@@ -266,7 +267,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 44:
 /***/ function(module, exports) {
 
-	module.exports = "<template is=\"rt-if-then\" if=\"props.multiline\"> <textarea class=\"opal-text-input__input\" rows=\"{props.rows}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\"></textarea> </template> <template is=\"rt-if-else\" if=\"props.multiline\"> <input class=\"opal-text-input__input\" type=\"{props.inputType}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> </template> <template is=\"rt-if-then\" if=\"props.clearable\" rt-silent=\"\"> <button class=\"opal-text-input__btn-clear\" shown=\"{btnClearShown}\"></button> </template> <template is=\"rt-if-then\" if=\"props.loading\" rt-silent=\"\"> <opal-loader class=\"opal-text-input__loader\" size=\"s\" shown=\"\"></opal-loader> </template>"
+	module.exports = "<template is=\"rt-if-then\" if=\"props.multiline\"> <textarea class=\"opal-text-input__input\" rows=\"{props.rows}\" name=\"{props.inputName}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\"></textarea> </template> <template is=\"rt-if-else\" if=\"props.multiline\"> <input class=\"opal-text-input__input\" type=\"{props.inputType}\" name=\"{props.inputName}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> </template> <template is=\"rt-if-then\" if=\"props.clearable\" rt-silent=\"\"> <button class=\"opal-text-input__btn-clear\" shown=\"{btnClearShown}\"></button> </template> <template is=\"rt-if-then\" if=\"props.loading\" rt-silent=\"\"> <opal-loader class=\"opal-text-input__loader\" size=\"s\" shown=\"\"></opal-loader> </template>"
 
 /***/ },
 

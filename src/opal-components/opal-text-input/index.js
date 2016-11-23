@@ -11,6 +11,7 @@ module.exports = Component.extend('opal-text-input', {
 			size: 'm',
 			rows: 5,
 			autoHeight: true,
+			inputName: String,
 			value: '',
 			storeKey: String,
 			placeholder: '',

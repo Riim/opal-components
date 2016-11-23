@@ -9,6 +9,7 @@ module.exports = Component.extend('opal-button', {
 			type: String,
 			controlType: String,
 			size: 'm',
+			inputName: String,
 			href: String,
 			checkable: false,
 			checked: false,

@@ -72,6 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				type: String,
 				controlType: String,
 				size: 'm',
+				inputName: String,
 				href: String,
 				checkable: false,
 				checked: false,
@@ -223,7 +224,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 23:
 /***/ function(module, exports) {
 
-	module.exports = "<template is=\"rt-if-then\" if=\"props.href\" rt-silent=\"\"> <a class=\"opal-button__control\" href=\"{props.href}\" tabindex=\"{_tabIndex}\"><rt-content class=\"opal-button__content\"></rt-content></a> </template> <template is=\"rt-if-else\" if=\"props.href\" rt-silent=\"\"> <button class=\"opal-button__control\" type=\"{props.controlType}\" tabindex=\"{_tabIndex}\"><rt-content class=\"opal-button__content\"></rt-content></button> </template>"
+	module.exports = "<template is=\"rt-if-then\" if=\"props.href\" rt-silent=\"\"> <a class=\"opal-button__control\" href=\"{props.href}\" tabindex=\"{_tabIndex}\"><rt-content class=\"opal-button__content\"></rt-content></a> </template> <template is=\"rt-if-else\" if=\"props.href\" rt-silent=\"\"> <button class=\"opal-button__control\" type=\"{props.controlType}\" name=\"{props.inputName}\" tabindex=\"{_tabIndex}\"><rt-content class=\"opal-button__content\"></rt-content></button> </template>"
 
 /***/ },
 
