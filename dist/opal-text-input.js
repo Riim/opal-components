@@ -135,15 +135,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						this.emit({ type: 'keyup', initialEvent: evt });
 					}
-				},
-
-				'btn-clear': {
-					click: function click(evt) {
-						this.value = '';
-						this.$('input').focus();
-
-						this.emit({ type: 'change', initialEvent: evt });
-					}
 				}
 			}
 		},
@@ -183,6 +174,14 @@ return /******/ (function(modules) { // webpackBootstrap
 			} else if (name == 'focused') {
 				this[value ? 'focus' : 'blur']();
 			}
+		},
+		_onBtnClearClick: function _onBtnClearClick(evt) {
+			evt.preventDefault();
+
+			this.value = '';
+			this.$('input').focus();
+
+			this.emit({ type: 'change', initialEvent: evt });
 		},
 		_fixHeight: function _fixHeight() {
 			var input = this.$('input');
@@ -267,7 +266,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 44:
 /***/ function(module, exports) {
 
-	module.exports = "<template is=\"rt-if-then\" if=\"props.multiline\"> <textarea class=\"opal-text-input__input\" rows=\"{props.rows}\" name=\"{props.inputName}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\"></textarea> </template> <template is=\"rt-if-else\" if=\"props.multiline\"> <input class=\"opal-text-input__input\" type=\"{props.inputType}\" name=\"{props.inputName}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> </template> <template is=\"rt-if-then\" if=\"props.clearable\" rt-silent=\"\"> <button class=\"opal-text-input__btn-clear\" shown=\"{btnClearShown}\"></button> </template> <template is=\"rt-if-then\" if=\"props.loading\" rt-silent=\"\"> <opal-loader class=\"opal-text-input__loader\" size=\"s\" shown=\"\"></opal-loader> </template>"
+	module.exports = "<template is=\"rt-if-then\" if=\"props.multiline\"> <textarea class=\"opal-text-input__input\" rows=\"{props.rows}\" name=\"{props.inputName}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\"></textarea> </template> <template is=\"rt-if-else\" if=\"props.multiline\"> <input class=\"opal-text-input__input\" type=\"{props.inputType}\" name=\"{props.inputName}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> </template> <template is=\"rt-if-then\" if=\"props.clearable\" rt-silent=\"\"> <button class=\"opal-text-input__btn-clear\" shown=\"{btnClearShown}\" rt-click=\"_onBtnClearClick\"></button> </template> <template is=\"rt-if-then\" if=\"props.loading\" rt-silent=\"\"> <opal-loader class=\"opal-text-input__loader\" size=\"s\" shown=\"\"></opal-loader> </template>"
 
 /***/ },
 

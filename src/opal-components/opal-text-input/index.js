@@ -76,15 +76,6 @@ module.exports = Component.extend('opal-text-input', {
 
 					this.emit({ type: 'keyup', initialEvent: evt });
 				}
-			},
-
-			'btn-clear': {
-				click(evt) {
-					this.value = '';
-					this.$('input').focus();
-
-					this.emit({ type: 'change', initialEvent: evt });
-				}
 			}
 		}
 	},
@@ -126,6 +117,15 @@ module.exports = Component.extend('opal-text-input', {
 		} else if (name == 'focused') {
 			this[value ? 'focus' : 'blur']();
 		}
+	},
+
+	_onBtnClearClick(evt) {
+		evt.preventDefault();
+
+		this.value = '';
+		this.$('input').focus();
+
+		this.emit({ type: 'change', initialEvent: evt });
 	},
 
 	_fixHeight() {

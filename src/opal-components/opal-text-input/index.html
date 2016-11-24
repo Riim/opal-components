@@ -8,7 +8,7 @@
 </template>
 
 <template is="rt-if-then" if="props.clearable" rt-silent>
-	<button class="opal-text-input__btn-clear" shown="{btnClearShown}"></button>
+	<button class="opal-text-input__btn-clear" shown="{btnClearShown}" rt-click="_onBtnClearClick"></button>
 </template>
 
 <template is="rt-if-then" if="props.loading" rt-silent>
