@@ -44,6 +44,7 @@ module.exports = Component.extend('opal-select', {
 				},
 
 				click(evt) {
+					(evt.originalEvent || evt).preventDefault();
 					this[evt.target.checked ? 'open' : 'close']();
 				}
 			},
