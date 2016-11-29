@@ -186,7 +186,7 @@ module.exports = Component.extend('opal-select', {
 
 	_opened: false,
 
-	_valueWhenOpened: null,
+	_valueAtOpening: null,
 
 	initialize() {
 		let props = this.props;
@@ -390,7 +390,13 @@ module.exports = Component.extend('opal-select', {
 
 		this._opened = true;
 
-		this._valueWhenOpened = this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
+		this._valueAtOpening = this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
+
+		this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+
+		if (!this.props.focused) {
+			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+		}
 
 		this.$('button').check();
 		this.$('menu').open();
@@ -415,12 +421,6 @@ module.exports = Component.extend('opal-select', {
 			this._focusOptions();
 		}
 
-		this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
-
-		if (!this.props.focused) {
-			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-		}
-
 		return true;
 	},
 
@@ -434,19 +434,19 @@ module.exports = Component.extend('opal-select', {
 
 		this._opened = false;
 
-		this.$('button').uncheck();
-		this.$('menu').close();
-
 		this._documentFocusInListening.stop();
 
 		if (!this.props.focused) {
 			this._documentKeyDownListening.stop();
 		}
 
+		this.$('button').uncheck();
+		this.$('menu').close();
+
 		if (this.props.multiple) {
 			if (!isEqualArray(
 				this.viewModel.map(item => item[this._viewModelItemValueFieldName]),
-				this._valueWhenOpened
+				this._valueAtOpening
 			)) {
 				this.emit('change');
 			}

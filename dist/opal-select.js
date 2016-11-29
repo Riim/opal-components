@@ -260,7 +260,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 		_opened: false,
 
-		_valueWhenOpened: null,
+		_valueAtOpening: null,
 
 		initialize: function initialize() {
 			var _this2 = this;
@@ -488,9 +488,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			this._opened = true;
 
-			this._valueWhenOpened = this.viewModel.map(function (item) {
+			this._valueAtOpening = this.viewModel.map(function (item) {
 				return item[_this7._viewModelItemValueFieldName];
 			});
+
+			this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+
+			if (!this.props.focused) {
+				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+			}
 
 			this.$('button').check();
 			this.$('menu').open();
@@ -515,12 +521,6 @@ return /******/ (function(modules) { // webpackBootstrap
 				this._focusOptions();
 			}
 
-			this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
-
-			if (!this.props.focused) {
-				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-			}
-
 			return true;
 		},
 
@@ -537,19 +537,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			this._opened = false;
 
-			this.$('button').uncheck();
-			this.$('menu').close();
-
 			this._documentFocusInListening.stop();
 
 			if (!this.props.focused) {
 				this._documentKeyDownListening.stop();
 			}
 
+			this.$('button').uncheck();
+			this.$('menu').close();
+
 			if (this.props.multiple) {
 				if (!isEqualArray(this.viewModel.map(function (item) {
 					return item[_this8._viewModelItemValueFieldName];
-				}), this._valueWhenOpened)) {
+				}), this._valueAtOpening)) {
 					this.emit('change');
 				}
 			}
