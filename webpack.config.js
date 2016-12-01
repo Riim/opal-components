@@ -21,7 +21,7 @@ module.exports = {
 		entries[p.split(path.sep).slice(-2)[0]] = path.join(__dirname, p);
 		return entries;
 	}, {
-		focusHighlightController: path.join(__dirname, 'src/opal-components/focusHighlightController.js')
+		focusHighlightController: path.join(__dirname, 'src/focusHighlightController.js')
 	}),
 
 	output: {

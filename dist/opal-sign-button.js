@@ -81,21 +81,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			events: {
 				control: {
-					focusin: function focusin() {
+					focusin: function focusin(evt) {
 						this.props.focused = true;
-						this.emit('focusin');
+						this.emit({ type: 'focusin', originalEvent: evt });
 					},
-					focusout: function focusout() {
+					focusout: function focusout(evt) {
 						this.props.focused = false;
-						this.emit('focusout');
+						this.emit({ type: 'focusout', originalEvent: evt });
 					},
-					click: function click() {
+					click: function click(evt) {
 						if (!this.props.disabled) {
 							if (this.props.checkable) {
 								this.emit(this.toggle() ? 'check' : 'uncheck');
 							}
 
-							this.emit('click');
+							this.emit({ type: 'click', originalEvent: evt });
 						}
 					}
 				}

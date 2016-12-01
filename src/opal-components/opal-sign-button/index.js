@@ -18,23 +18,23 @@ module.exports = Component.extend('opal-sign-button', {
 
 		events: {
 			control: {
-				focusin() {
+				focusin(evt) {
 					this.props.focused = true;
-					this.emit('focusin');
+					this.emit({ type: 'focusin', originalEvent: evt });
 				},
 
-				focusout() {
+				focusout(evt) {
 					this.props.focused = false;
-					this.emit('focusout');
+					this.emit({ type: 'focusout', originalEvent: evt });
 				},
 
-				click() {
+				click(evt) {
 					if (!this.props.disabled) {
 						if (this.props.checkable) {
 							this.emit(this.toggle() ? 'check' : 'uncheck');
 						}
 
-						this.emit('click');
+						this.emit({ type: 'click', originalEvent: evt });
 					}
 				}
 			}

@@ -81,7 +81,7 @@
       "node_modules/simple-css-loader/index.js!node_modules/postcss-loader/index.js!src/opal-components/opal-text-input/index.css": 77,
       "node_modules/simple-svg-loader/index.js!src/opal-components/opal-calendar/opal-calendar__icon-arrow-left.svg": 78,
       "node_modules/simple-svg-loader/index.js!src/opal-components/opal-select/opal-select__icon-chevron-down.svg": 79,
-      "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/opal-components/focusHighlightController.js": 0,
+      "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/focusHighlightController.js": 0,
       "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/opal-components/opal-autosuggestion/index.js": 0,
       "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/opal-components/opal-button/index.js": 0,
       "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/opal-components/opal-calendar/index.js": 0,
