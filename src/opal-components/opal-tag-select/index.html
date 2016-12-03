@@ -1,5 +1,5 @@
 <span class="opal-tag-select__tags">
-	<template is="rt-if-then" if="viewModel?.length" rt-silent>
+	<template is="rt-if-then" if="viewModel.length" rt-silent>
 		<template is="rt-repeat" for="tag of viewModel" track-by="{_viewModelItemValueFieldName}" strip rt-silent>
 			<span class="opal-tag-select__tag" data-value="{tag |key(_viewModelItemValueFieldName) }"
 					disabled="{tag |key(_viewModelItemDisabledFieldName) }">{
@@ -30,7 +30,7 @@
 					<rt-content select=".opal-tag-select__menu-content">
 						<template is="rt-if-then" if="props.datalist">
 							<div class="opal-select__menu-content">
-								<template is="rt-if-then" if="dataList?.length">
+								<template is="rt-if-then" if="dataList.length">
 									<template is="rt-repeat" for="item of dataList">
 										{{block select_option }}
 											<opal-select-option value="{item.value}" text="{item.text}"></opal-select-option>
@@ -41,7 +41,7 @@
 												select=".opal-select__new-input">{{block new_input }}{{/block}}</rt-content>
 									{{/block}}
 								</template>
-								<template is="rt-if-else" if="dataList?.length" rt-silent>
+								<template is="rt-if-else" if="dataList.length" rt-silent>
 									{{block select_loader }}
 										<opal-loader shown></opal-loader>
 									{{/block}}

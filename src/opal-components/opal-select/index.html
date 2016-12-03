@@ -21,7 +21,7 @@
 				<rt-content select=".opal-select__menu-content">
 					<template is="rt-if-then" if="props.datalist">
 						<div class="opal-select__menu-content">
-							<template is="rt-if-then" if="dataList?.length">
+							<template is="rt-if-then" if="dataList.length">
 								<template is="rt-repeat" for="item of dataList">
 									{{block option }}
 										<opal-select-option value="{item |key(_viewModelItemValueFieldName) }"
@@ -33,7 +33,7 @@
 											select=".opal-select__new-input">{{block new_input }}{{/block}}</rt-content>
 								{{/block}}
 							</template>
-							<template is="rt-if-else" if="dataList?.length" rt-silent>
+							<template is="rt-if-else" if="dataList.length" rt-silent>
 								{{block loader }}
 									<opal-loader shown></opal-loader>
 								{{/block}}

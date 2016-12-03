@@ -21,6 +21,7 @@
   "devDependencies": {
     "@riim/babel-preset": "^1.0.0",
     "autoprefixer": "^6.5.3",
+    "awesome-typescript-loader": "^3.0.0-beta.9",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.8",
@@ -47,12 +48,13 @@
     "run-sequence": "^1.2.2",
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.0.2",
+    "typescript": "^2.1.1",
     "webpack": "^1.13.3",
-    "yargs": "^6.4.0"
+    "yargs": "^6.5.0"
   },
   "dependencies": {
     "cellx": "^1.6.82",
     "cellx-indexed-collections": "^1.0.7",
-    "rionite": "^0.15.10"
+    "rionite": "^0.16.1"
   }
 }
