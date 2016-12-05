@@ -59,17 +59,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(45);
 
-	var _require = __webpack_require__(2);
+	var _require = __webpack_require__(2),
+	    Cell = _require.Cell,
+	    cellx = _require.cellx;
 
-	var Cell = _require.Cell;
-	var cellx = _require.cellx;
-
-	var _require2 = __webpack_require__(1);
-
-	var getText = _require2.getText;
-	var ComponentTemplate = _require2.ComponentTemplate;
-	var Component = _require2.Component;
-
+	var _require2 = __webpack_require__(1),
+	    getText = _require2.getText,
+	    ComponentTemplate = _require2.ComponentTemplate,
+	    Component = _require2.Component;
 
 	function toComparable(str) {
 		return str.trim().replace(/\s+/g, ' ').toLowerCase();
@@ -352,7 +349,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 22:
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content select=\".opal-autosuggestion__input\"> {{block input }} <opal-text-input class=\"opal-autosuggestion__input\" value=\"{props.selectedItem?.text}\" placeholder=\"{{i18n.inputPlaceholder}}\" loading=\"{loaderShown}\"></opal-text-input> {{/block}} </rt-content> {{block menu }} <opal-dropdown class=\"opal-autosuggestion__menu\"> {{block list }} <div class=\"opal-autosuggestion__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"item of list\" strip=\"\" rt-silent=\"\"> <div class=\"opal-autosuggestion__list-item\" data-value=\"{item.value}\" data-text=\"{item.text}\" rt-click=\"_onListItemClick\">{item.text}</div> </template> {{/block}} </div> {{/block}} </opal-dropdown> {{/block}}"
+	module.exports = "<rt-content select=\".opal-autosuggestion__input\"> {{block input }} <opal-text-input class=\"opal-autosuggestion__input\" value=\"{props.selectedItem.text}\" placeholder=\"{{i18n.inputPlaceholder}}\" loading=\"{loaderShown}\"></opal-text-input> {{/block}} </rt-content> {{block menu }} <opal-dropdown class=\"opal-autosuggestion__menu\"> {{block list }} <div class=\"opal-autosuggestion__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"item of list\" strip=\"\" rt-silent=\"\"> <div class=\"opal-autosuggestion__list-item\" data-value=\"{item.value}\" data-text=\"{item.text}\" rt-click=\"_onListItemClick\">{item.text}</div> </template> {{/block}} </div> {{/block}} </opal-dropdown> {{/block}}"
 
 /***/ },
 

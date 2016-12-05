@@ -59,19 +59,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(61);
 
-	var _require = __webpack_require__(2);
+	var _require = __webpack_require__(2),
+	    nextUID = _require.Utils.nextUID,
+	    cellx = _require.cellx;
 
-	var nextUID = _require.Utils.nextUID;
-	var cellx = _require.cellx;
+	var _require2 = __webpack_require__(3),
+	    IndexedList = _require2.IndexedList;
 
-	var _require2 = __webpack_require__(3);
-
-	var IndexedList = _require2.IndexedList;
-
-	var _require3 = __webpack_require__(1);
-
-	var ComponentTemplate = _require3.ComponentTemplate;
-	var Component = _require3.Component;
+	var _require3 = __webpack_require__(1),
+	    ComponentTemplate = _require3.ComponentTemplate,
+	    Component = _require3.Component;
 
 	var OpalMultirowRow = __webpack_require__(11);
 
@@ -173,11 +170,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(62);
 
-	var _require = __webpack_require__(1);
-
-	var ComponentTemplate = _require.ComponentTemplate;
-	var Component = _require.Component;
-
+	var _require = __webpack_require__(1),
+	    ComponentTemplate = _require.ComponentTemplate,
+	    Component = _require.Component;
 
 	module.exports = Component.extend('opal-multirow-row', {
 		Static: {

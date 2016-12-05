@@ -65,9 +65,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var cellx = __webpack_require__(2);
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
+	var _require = __webpack_require__(1),
+	    Component = _require.Component;
 
 	var defaultDefinitions = __webpack_require__(8);
 
@@ -443,10 +442,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(55);
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
-
+	var _require = __webpack_require__(1),
+	    Component = _require.Component;
 
 	module.exports = Component.extend('opal-input-mask-definition', {
 		Static: {

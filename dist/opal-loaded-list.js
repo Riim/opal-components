@@ -59,17 +59,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(58);
 
-	var _require = __webpack_require__(2);
+	var _require = __webpack_require__(2),
+	    mixin = _require.Utils.mixin,
+	    cellx = _require.cellx;
 
-	var mixin = _require.Utils.mixin;
-	var cellx = _require.cellx;
-
-	var _require2 = __webpack_require__(1);
-
-	var getText = _require2.getText;
-	var ComponentTemplate = _require2.ComponentTemplate;
-	var Component = _require2.Component;
-
+	var _require2 = __webpack_require__(1),
+	    getText = _require2.getText,
+	    ComponentTemplate = _require2.ComponentTemplate,
+	    Component = _require2.Component;
 
 	module.exports = Component.extend('opal-loaded-list', {
 		Static: {

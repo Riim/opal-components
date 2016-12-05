@@ -57,9 +57,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
+	var _require = __webpack_require__(1),
+	    Component = _require.Component;
 
 	var OpalRadioButton = __webpack_require__(12);
 
@@ -117,10 +116,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var cellx = __webpack_require__(2);
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
-
+	var _require = __webpack_require__(1),
+	    Component = _require.Component;
 
 	module.exports = Component.extend('opal-radio-button', {
 		Static: {

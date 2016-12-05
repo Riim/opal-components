@@ -60,9 +60,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(49);
 	__webpack_require__(50);
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
+	var _require = __webpack_require__(1),
+	    Component = _require.Component;
 
 	var Prism = __webpack_require__(21);
 

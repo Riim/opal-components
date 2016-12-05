@@ -59,12 +59,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(65);
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
-	var _require$Utils = _require.Utils;
-	var hyphenize = _require$Utils.hyphenize;
-	var escapeHTML = _require$Utils.escapeHTML;
+	var _require = __webpack_require__(1),
+	    Component = _require.Component,
+	    _require$Utils = _require.Utils,
+	    hyphenize = _require$Utils.hyphenize,
+	    escapeHTML = _require$Utils.escapeHTML;
 
 	var OpalRoute = __webpack_require__(14);
 	var escapeRegExp = __webpack_require__(13);
@@ -273,10 +272,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
-
+	var _require = __webpack_require__(1),
+	    Component = _require.Component;
 
 	module.exports = Component.extend('opal-route', {
 		Static: {

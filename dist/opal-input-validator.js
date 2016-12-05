@@ -61,9 +61,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var cellx = __webpack_require__(2);
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
+	var _require = __webpack_require__(1),
+	    Component = _require.Component;
 
 	var OpalInputValidatorRule = __webpack_require__(10);
 
@@ -175,10 +174,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(57);
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
-
+	var _require = __webpack_require__(1),
+	    Component = _require.Component;
 
 	module.exports = Component.extend('opal-input-validator-rule', {
 		Static: {

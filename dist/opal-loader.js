@@ -59,10 +59,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(59);
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
-
+	var _require = __webpack_require__(1),
+	    Component = _require.Component;
 
 	module.exports = Component.extend('opal-loader', {
 		Static: {

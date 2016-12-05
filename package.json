@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.1.204",
+  "version": "0.1.205",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -38,7 +38,7 @@
     "postcss-color-function": "^2.0.1",
     "postcss-css-variables": "^0.6.0",
     "postcss-csso": "^1.1.2",
-    "postcss-loader": "^1.1.1",
+    "postcss-loader": "^1.2.0",
     "postcss-nesting": "^2.3.1",
     "prismjs": "^1.5.1",
     "pump": "^1.0.1",
@@ -53,7 +53,7 @@
     "yargs": "^6.5.0"
   },
   "dependencies": {
-    "cellx": "^1.6.82",
+    "cellx": "^1.6.84",
     "cellx-indexed-collections": "^1.0.7",
     "rionite": "^0.16.1"
   }

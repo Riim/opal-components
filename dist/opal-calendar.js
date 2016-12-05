@@ -62,10 +62,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var cellx = __webpack_require__(2);
 
-	var _require = __webpack_require__(1);
-
-	var ComponentTemplate = _require.ComponentTemplate;
-	var Component = _require.Component;
+	var _require = __webpack_require__(1),
+	    ComponentTemplate = _require.ComponentTemplate,
+	    Component = _require.Component;
 
 	var parseDate = __webpack_require__(6);
 	var formatDate = __webpack_require__(5);
@@ -414,7 +413,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 78:
 /***/ function(module, exports) {
 
-	(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 28\" id=\"opal-calendar__icon-arrow-left\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M14 2L2 14l12 12M2 14h28\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+	(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 28\" id=\"opal-calendar__icon-arrow-left\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M14 2L2 14l12 12M2 14h28\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }
 

@@ -59,10 +59,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(70);
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
-
+	var _require = __webpack_require__(1),
+	    Component = _require.Component;
 
 	var forEach = Array.prototype.forEach;
 

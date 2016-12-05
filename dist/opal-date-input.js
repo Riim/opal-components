@@ -59,11 +59,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(51);
 
-	var _require = __webpack_require__(1);
-
-	var getText = _require.getText;
-	var ComponentTemplate = _require.ComponentTemplate;
-	var Component = _require.Component;
+	var _require = __webpack_require__(1),
+	    getText = _require.getText,
+	    ComponentTemplate = _require.ComponentTemplate,
+	    Component = _require.Component;
 
 	var isExistDate = __webpack_require__(7);
 

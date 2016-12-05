@@ -59,9 +59,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(72);
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
+	var _require = __webpack_require__(1),
+	    Component = _require.Component;
 
 	var OpalTabList = __webpack_require__(18);
 	var OpalTabPanel = __webpack_require__(20);
@@ -159,9 +158,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(73);
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
+	var _require = __webpack_require__(1),
+	    Component = _require.Component;
 
 	var OpalTab = __webpack_require__(19);
 
@@ -183,10 +181,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var cellx = __webpack_require__(2);
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
-
+	var _require = __webpack_require__(1),
+	    Component = _require.Component;
 
 	module.exports = Component.extend('opal-tab', {
 		Static: {
@@ -340,10 +336,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(75);
 
-	var _require = __webpack_require__(1);
-
-	var Component = _require.Component;
-
+	var _require = __webpack_require__(1),
+	    Component = _require.Component;
 
 	module.exports = Component.extend('opal-tab-panel', {
 		Static: {
