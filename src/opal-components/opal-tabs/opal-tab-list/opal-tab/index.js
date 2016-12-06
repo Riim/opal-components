@@ -109,7 +109,7 @@ module.exports = Component.extend('opal-tab', {
 	 * @typesign (value?: boolean) -> boolean;
 	 */
 	toggle(value) {
-		return (this.props.selected = value === void 0 ? !this.props.selected : value);
+		return (this.props.selected = value === undefined ? !this.props.selected : value);
 	},
 
 	/**

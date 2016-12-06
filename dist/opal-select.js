@@ -146,7 +146,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 						var loadedList = this.loadedList;
 
-						if (loadedList === void 0) {
+						if (loadedList === undefined) {
 							loadedList = this.loadedList = this.$('loaded-list');
 						}
 
@@ -252,8 +252,8 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 
-		filteredList: void 0,
-		loadedList: void 0,
+		filteredList: undefined,
+		loadedList: undefined,
 
 		_opened: false,
 
@@ -508,7 +508,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			var filteredList = this.filteredList;
 
-			if (filteredList === void 0) {
+			if (filteredList === undefined) {
 				filteredList = this.filteredList = this.$('filtered-list');
 			}
 
@@ -559,7 +559,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign (value?: boolean) -> boolean;
 	  */
 		toggle: function toggle(value) {
-			if (value !== void 0) {
+			if (value !== undefined) {
 				return value ? this.open() : !this.close();
 			}
 			return this.open() || !this.close();
@@ -806,7 +806,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		ready: function ready() {
 			var props = this.props;
 
-			if (props.value === void 0) {
+			if (props.value === undefined) {
 				props.value = props.text;
 			}
 		},
@@ -840,7 +840,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  */
 		get value() {
 			var props = this.props;
-			return props.value === void 0 ? props.text : props.value;
+			return props.value === undefined ? props.text : props.value;
 		},
 		set value(value) {
 			this.props.value = value;
@@ -906,7 +906,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign (value?: boolean) -> boolean;
 	  */
 		toggle: function toggle(value) {
-			return this.props.selected = value === void 0 ? !this.props.selected : value;
+			return this.props.selected = value === undefined ? !this.props.selected : value;
 		},
 
 

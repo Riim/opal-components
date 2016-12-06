@@ -167,7 +167,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign (value?: boolean) -> boolean;
 	  */
 		toggle: function toggle(value) {
-			return this.props.checked = value === void 0 ? !this.props.checked : value;
+			return this.props.checked = value === undefined ? !this.props.checked : value;
 		},
 
 

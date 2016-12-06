@@ -103,7 +103,7 @@ module.exports = Component.extend('opal-button', {
 	 * @typesign (value?: boolean) -> boolean;
 	 */
 	toggle(value) {
-		return (this.props.checked = value === void 0 ? !this.props.checked : value);
+		return (this.props.checked = value === undefined ? !this.props.checked : value);
 	},
 
 	/**

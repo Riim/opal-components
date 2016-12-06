@@ -115,7 +115,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  * @typesign (value?: boolean) -> boolean;
 	  */
 		toggle: function toggle(value) {
-			return this.props.opened = value === void 0 ? !this.props.opened : value;
+			return this.props.opened = value === undefined ? !this.props.opened : value;
 		},
 		_open: function _open() {
 			var _this = this;

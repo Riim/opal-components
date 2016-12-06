@@ -85,7 +85,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			template: __webpack_require__(29)
 		},
 
-		_focusText: void 0,
+		_focusText: undefined,
 
 		initialize: function initialize() {
 			this._definitions = Object.create(this.constructor.defaultDefinitions);

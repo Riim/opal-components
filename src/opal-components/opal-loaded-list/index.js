@@ -25,8 +25,8 @@ module.exports = Component.extend('opal-loaded-list', {
 	_loadingCheckTimeout: null,
 	_requestCallback: null,
 
-	_lastRequestedQuery: void 0,
-	_lastAppliedQuery: void 0,
+	_lastRequestedQuery: undefined,
+	_lastAppliedQuery: undefined,
 
 	initialize() {
 		let dataProvider = Function(`return this.${ this.props.dataprovider };`).call(this.ownerComponent || window);
@@ -39,7 +39,7 @@ module.exports = Component.extend('opal-loaded-list', {
 
 		cellx.define(this, {
 			list: cellx.list(),
-			total: void 0,
+			total: undefined,
 
 			_loadingCheckPlanned: false,
 			loading: false,
@@ -53,7 +53,7 @@ module.exports = Component.extend('opal-loaded-list', {
 			},
 
 			loaderShown() {
-				return this.total === void 0 || this.list.length < this.total || this.loading;
+				return this.total === undefined || this.list.length < this.total || this.loading;
 			}
 		});
 	},
@@ -98,7 +98,7 @@ module.exports = Component.extend('opal-loaded-list', {
 			}
 
 			this.list.clear();
-			this.total = void 0;
+			this.total = undefined;
 
 			this._loadingCheckPlanned = true;
 		}
@@ -112,7 +112,7 @@ module.exports = Component.extend('opal-loaded-list', {
 	checkLoading() {
 		if (
 			this.props.query === this._lastRequestedQuery &&
-				(this.loading || this.total !== void 0 && this.list.length == this.total)
+				(this.loading || this.total !== undefined && this.list.length == this.total)
 		) {
 			return;
 		}
@@ -148,7 +148,7 @@ module.exports = Component.extend('opal-loaded-list', {
 
 				let items = data.items;
 
-				this.total = infinite && data.total !== void 0 ? data.total : items.length;
+				this.total = infinite && data.total !== undefined ? data.total : items.length;
 
 				if (query === this._lastAppliedQuery) {
 					this.list.addRange(items);

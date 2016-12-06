@@ -3,6 +3,7 @@ require('./index.css');
 let { Component } = require('rionite');
 
 let forEach = Array.prototype.forEach;
+let find = Array.prototype.find;
 
 module.exports = Component.extend('opal-switch-menu', {
 	Static: {
@@ -17,6 +18,8 @@ module.exports = Component.extend('opal-switch-menu', {
 						}
 					});
 
+					this._checkedButton = checkedButton;
+
 					this.emit('change');
 				},
 
@@ -27,7 +30,26 @@ module.exports = Component.extend('opal-switch-menu', {
 		}
 	},
 
+	_checkedButton: undefined,
+
+	get checkedButton() {
+		if (this._checkedButton !== undefined) {
+			return this._checkedButton;
+		}
+
+		return (this._checkedButton = find.call(this.buttons, button => button.$c.checked) || null);
+	},
+
 	ready() {
 		this.buttons = this.element.getElementsByClassName('opal-button');
+	},
+
+	clear() {
+		let checkedButton = this._checkedButton;
+
+		if (checkedButton) {
+			checkedButton.uncheck();
+			this._checkedButton = null;
+		}
 	}
 });

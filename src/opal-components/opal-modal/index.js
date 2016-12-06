@@ -102,7 +102,7 @@ module.exports = Component.extend('opal-modal', {
 	 * @typesign (value?: boolean) -> boolean;
 	 */
 	toggle(value) {
-		return (this.props.opened = value === void 0 ? !this.props.opened : value);
+		return (this.props.opened = value === undefined ? !this.props.opened : value);
 	},
 
 	_open() {

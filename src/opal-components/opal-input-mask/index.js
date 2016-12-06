@@ -23,7 +23,7 @@ module.exports = Component.extend('opal-input-mask', {
 		template: require('./index.html')
 	},
 
-	_focusText: void 0,
+	_focusText: undefined,
 
 	initialize() {
 		this._definitions = Object.create(this.constructor.defaultDefinitions);

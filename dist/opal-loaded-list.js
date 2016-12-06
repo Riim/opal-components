@@ -90,8 +90,8 @@ return /******/ (function(modules) { // webpackBootstrap
 		_loadingCheckTimeout: null,
 		_requestCallback: null,
 
-		_lastRequestedQuery: void 0,
-		_lastAppliedQuery: void 0,
+		_lastRequestedQuery: undefined,
+		_lastAppliedQuery: undefined,
 
 		initialize: function initialize() {
 			var dataProvider = Function('return this.' + this.props.dataprovider + ';').call(this.ownerComponent || window);
@@ -104,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			cellx.define(this, {
 				list: cellx.list(),
-				total: void 0,
+				total: undefined,
 
 				_loadingCheckPlanned: false,
 				loading: false,
@@ -116,7 +116,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					return this.total === 0 && !this._loadingCheckPlanned && !this.loading;
 				},
 				loaderShown: function loaderShown() {
-					return this.total === void 0 || this.list.length < this.total || this.loading;
+					return this.total === undefined || this.list.length < this.total || this.loading;
 				}
 			});
 		},
@@ -162,7 +162,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				}
 
 				this.list.clear();
-				this.total = void 0;
+				this.total = undefined;
 
 				this._loadingCheckPlanned = true;
 			}
@@ -173,7 +173,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			}, 300);
 		},
 		checkLoading: function checkLoading() {
-			if (this.props.query === this._lastRequestedQuery && (this.loading || this.total !== void 0 && this.list.length == this.total)) {
+			if (this.props.query === this._lastRequestedQuery && (this.loading || this.total !== undefined && this.list.length == this.total)) {
 				return;
 			}
 
@@ -208,7 +208,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				var items = data.items;
 
-				_this3.total = infinite && data.total !== void 0 ? data.total : items.length;
+				_this3.total = infinite && data.total !== undefined ? data.total : items.length;
 
 				if (query === _this3._lastAppliedQuery) {
 					_this3.list.addRange(items);
