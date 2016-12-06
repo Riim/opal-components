@@ -78,6 +78,8 @@ return /******/ (function(modules) { // webpackBootstrap
 								btn.$c.uncheck();
 							}
 						});
+
+						this.emit('change');
 					},
 					uncheck: function uncheck(evt) {
 						evt.target.check();

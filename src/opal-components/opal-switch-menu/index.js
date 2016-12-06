@@ -16,6 +16,8 @@ module.exports = Component.extend('opal-switch-menu', {
 							btn.$c.uncheck();
 						}
 					});
+
+					this.emit('change');
 				},
 
 				uncheck(evt) {
