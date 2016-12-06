@@ -55,7 +55,7 @@ module.exports = Component.extend('opal-text-input', {
 					if (this.props.multiline && this.props.autoHeight) {
 						setTimeout(() => {
 							this._fixHeight();
-						}, 10);
+						}, 1);
 					}
 
 					this.emit({ type: 'keydown', initialEvent: evt });
@@ -70,10 +70,6 @@ module.exports = Component.extend('opal-text-input', {
 				},
 
 				keyup(evt) {
-					if (this.props.multiline && this.props.autoHeight) {
-						this._fixHeight();
-					}
-
 					this.emit({ type: 'keyup', initialEvent: evt });
 				}
 			}
@@ -91,9 +87,12 @@ module.exports = Component.extend('opal-text-input', {
 	ready() {
 		let props = this.props;
 		let value = props.value;
+		let input = this.$('input');
+
+		this._initialHeight = input.offsetHeight + input.scrollHeight - input.clientHeight;
 
 		if (value) {
-			this.$('input').value = value;
+			input.value = value;
 		} else {
 			let storeKey = props.storeKey;
 
@@ -101,6 +100,8 @@ module.exports = Component.extend('opal-text-input', {
 				props.value = localStorage.getItem(storeKey) || '';
 			}
 		}
+
+		this._fixHeight();
 
 		if (props.focused) {
 			this.focus();
@@ -130,10 +131,10 @@ module.exports = Component.extend('opal-text-input', {
 
 	_fixHeight() {
 		let input = this.$('input');
+		let lineHeight = parseInt(getComputedStyle(input).lineHeight, 10);
 
-		if (input.scrollHeight > input.clientHeight) {
-			input.style.height = input.offsetHeight + input.scrollHeight - input.clientHeight + 'px';
-		}
+		input.style.height = this._initialHeight - lineHeight + 'px';
+		input.style.height = input.offsetHeight + input.scrollHeight - input.clientHeight + lineHeight + 'px';
 	},
 
 	/**

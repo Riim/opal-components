@@ -114,7 +114,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						if (this.props.multiline && this.props.autoHeight) {
 							setTimeout(function () {
 								_this._fixHeight();
-							}, 10);
+							}, 1);
 						}
 
 						this.emit({ type: 'keydown', initialEvent: evt });
@@ -127,10 +127,6 @@ return /******/ (function(modules) { // webpackBootstrap
 						this.emit({ type: 'keypress', initialEvent: evt });
 					},
 					keyup: function keyup(evt) {
-						if (this.props.multiline && this.props.autoHeight) {
-							this._fixHeight();
-						}
-
 						this.emit({ type: 'keyup', initialEvent: evt });
 					}
 				}
@@ -147,9 +143,12 @@ return /******/ (function(modules) { // webpackBootstrap
 		ready: function ready() {
 			var props = this.props;
 			var value = props.value;
+			var input = this.$('input');
+
+			this._initialHeight = input.offsetHeight + input.scrollHeight - input.clientHeight;
 
 			if (value) {
-				this.$('input').value = value;
+				input.value = value;
 			} else {
 				var storeKey = props.storeKey;
 
@@ -157,6 +156,8 @@ return /******/ (function(modules) { // webpackBootstrap
 					props.value = localStorage.getItem(storeKey) || '';
 				}
 			}
+
+			this._fixHeight();
 
 			if (props.focused) {
 				this.focus();
@@ -183,10 +184,10 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		_fixHeight: function _fixHeight() {
 			var input = this.$('input');
+			var lineHeight = parseInt(getComputedStyle(input).lineHeight, 10);
 
-			if (input.scrollHeight > input.clientHeight) {
-				input.style.height = input.offsetHeight + input.scrollHeight - input.clientHeight + 'px';
-			}
+			input.style.height = this._initialHeight - lineHeight + 'px';
+			input.style.height = input.offsetHeight + input.scrollHeight - input.clientHeight + lineHeight + 'px';
 		},
 
 
