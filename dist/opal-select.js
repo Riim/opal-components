@@ -71,11 +71,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require3 = __webpack_require__(1),
 	    getText = _require3.getText,
-	    ComponentTemplate = _require3.ComponentTemplate,
 	    Component = _require3.Component,
 	    _require3$Components = _require3.Components,
 	    RtIfThen = _require3$Components.RtIfThen,
-	    RtRepeat = _require3$Components.RtRepeat;
+	    RtRepeat = _require3$Components.RtRepeat,
+	    ComponentTemplate = _require3.ComponentTemplate;
 
 	var OpalSelectOption = __webpack_require__(17);
 	var isEqualArray = __webpack_require__(16);

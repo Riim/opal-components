@@ -2,7 +2,7 @@ require('./index.css');
 
 let { Utils: { nextUID }, cellx } = require('cellx');
 let { IndexedList } = require('cellx-indexed-collections');
-let { ComponentTemplate, Component } = require('rionite');
+let { Component, ComponentTemplate } = require('rionite');
 let OpalMultirowRow = require('./opal-multirow-row');
 
 let filter = Array.prototype.filter;

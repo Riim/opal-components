@@ -60,8 +60,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(60);
 
 	var _require = __webpack_require__(1),
-	    ComponentTemplate = _require.ComponentTemplate,
-	    Component = _require.Component;
+	    Component = _require.Component,
+	    ComponentTemplate = _require.ComponentTemplate;
 
 	var openedModals = [];
 	var documentListening = void 0;

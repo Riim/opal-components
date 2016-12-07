@@ -1,6 +1,6 @@
 require('./index.css');
 
-let { getText, ComponentTemplate, Component } = require('rionite');
+let { getText, Component, ComponentTemplate } = require('rionite');
 let isExistDate = require('./isExistDate');
 
 module.exports = Component.extend('opal-date-input', {

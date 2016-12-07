@@ -1,6 +1,6 @@
 require('./index.css');
 
-let { ComponentTemplate, Component } = require('rionite');
+let { Component, ComponentTemplate } = require('rionite');
 
 module.exports = Component.extend('opal-multirow-row', {
 	Static: {

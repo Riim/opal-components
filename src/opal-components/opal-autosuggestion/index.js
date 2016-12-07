@@ -1,7 +1,7 @@
 require('./index.css');
 
 let { Cell, cellx } = require('cellx');
-let { getText, ComponentTemplate, Component } = require('rionite');
+let { getText, Component, ComponentTemplate } = require('rionite');
 
 function toComparable(str) {
 	return str.trim().replace(/\s+/g, ' ').toLowerCase();

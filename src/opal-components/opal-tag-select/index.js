@@ -1,7 +1,7 @@
 require('./index.css');
 
 let cellx = require('cellx');
-let { getText, ComponentTemplate, Component } = require('rionite');
+let { getText, Component, ComponentTemplate } = require('rionite');
 
 module.exports = Component.extend('opal-tag-select', {
 	Static: {

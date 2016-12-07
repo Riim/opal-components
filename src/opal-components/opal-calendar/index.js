@@ -2,7 +2,7 @@ require('./index.css');
 require('./opal-calendar__icon-arrow-left.svg');
 
 let cellx = require('cellx');
-let { ComponentTemplate, Component } = require('rionite');
+let { Component, ComponentTemplate } = require('rionite');
 let parseDate = require('./parseDate');
 let formatDate = require('./formatDate');
 

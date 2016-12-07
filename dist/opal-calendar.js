@@ -63,8 +63,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cellx = __webpack_require__(2);
 
 	var _require = __webpack_require__(1),
-	    ComponentTemplate = _require.ComponentTemplate,
-	    Component = _require.Component;
+	    Component = _require.Component,
+	    ComponentTemplate = _require.ComponentTemplate;
 
 	var parseDate = __webpack_require__(6);
 	var formatDate = __webpack_require__(5);

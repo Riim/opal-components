@@ -65,8 +65,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require2 = __webpack_require__(1),
 	    getText = _require2.getText,
-	    ComponentTemplate = _require2.ComponentTemplate,
-	    Component = _require2.Component;
+	    Component = _require2.Component,
+	    ComponentTemplate = _require2.ComponentTemplate;
 
 	function toComparable(str) {
 		return str.trim().replace(/\s+/g, ' ').toLowerCase();
