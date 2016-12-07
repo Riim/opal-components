@@ -107,7 +107,10 @@
       "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/opal-components/opal-switch/index.js": 0,
       "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/opal-components/opal-tabs/index.js": 0,
       "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/opal-components/opal-tag-select/index.js": 0,
-      "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/opal-components/opal-text-input/index.js": 0
+      "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/opal-components/opal-text-input/index.js": 0,
+      "node_modules/awesome-typescript-loader/dist/entry.js!src/opal-components/opal-button/index.ts": 0,
+      "node_modules/awesome-typescript-loader/dist/entry.js!src/opal-components/opal-text-input/index.ts": 0,
+      "node_modules/awesome-typescript-loader/dist/entry.js!src/opal-components/opal-slider/index.ts": 0
     }
   },
   "nextFreeChunkId": 27,

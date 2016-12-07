@@ -55,84 +55,98 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(69);
+	var cellx_1 = __webpack_require__(2);
+	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(39);
+	var OpalSlider = (function (_super) {
+	    __extends(OpalSlider, _super);
+	    function OpalSlider() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalSlider.prototype.initialize = function () {
+	        var props = this.props;
+	        var range = props['range'];
+	        if (range) {
+	            cellx_1.define(this, {
+	                _firstInputValue: range[0],
+	                _secondInputValue: range[1],
+	                _firstInputWidth: function () {
+	                    var min = props['min'];
+	                    var all = props['max'] - min;
+	                    return Math.round((((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) / 2) * 1e5) / 1e3;
+	                }
+	            });
+	        }
+	    };
+	    Object.defineProperty(OpalSlider.prototype, "value", {
+	        get: function () {
+	            return this.props['range'] ?
+	                [this._firstInputValue, this._secondInputValue] :
+	                +this.$('input').value;
+	        },
+	        set: function (value) {
+	            if (this.props['range']) {
+	                this.$('first-input').value = this._firstInputValue = value[0];
+	                this.$('second-input').value = this._secondInputValue = value[1];
+	            }
+	            else {
+	                this.$('input').value = value;
+	            }
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return OpalSlider;
+	}(rionite_1.Component));
+	OpalSlider = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-slider',
+	        props: {
+	            min: 0,
+	            max: 100,
+	            step: 1,
+	            value: 0,
+	            range: Object
+	        },
+	        template: template,
+	        events: {
+	            'first-input': {
+	                input: function (evt) {
+	                    var secondInput = this.$('second-input');
+	                    var value = this._firstInputValue = +evt.target.value;
+	                    if (+secondInput.value < value) {
+	                        secondInput.value = this._secondInputValue = value;
+	                    }
+	                }
+	            },
+	            'second-input': {
+	                input: function (evt) {
+	                    var firstInput = this.$('first-input');
+	                    var value = this._secondInputValue = +evt.target.value;
+	                    if (+firstInput.value > value) {
+	                        firstInput.value = this._firstInputValue = value;
+	                    }
+	                }
+	            }
+	        }
+	    })
+	], OpalSlider);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalSlider;
 
-	var cellx = __webpack_require__(2);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	module.exports = Component.extend('opal-slider', {
-		Static: {
-			props: {
-				min: 0,
-				max: 100,
-				step: 1,
-				value: 0,
-				range: Object
-			},
-
-			template: __webpack_require__(39),
-
-			events: {
-				'first-input': {
-					input: function input(evt) {
-						var secondInput = this.$('second-input');
-						var value = this._firstInputValue = +evt.target.value;
-
-						if (+secondInput.value < value) {
-							secondInput.value = this._secondInputValue = value;
-						}
-					}
-				},
-
-				'second-input': {
-					input: function input(evt) {
-						var firstInput = this.$('first-input');
-						var value = this._secondInputValue = +evt.target.value;
-
-						if (+firstInput.value > value) {
-							firstInput.value = this._firstInputValue = value;
-						}
-					}
-				}
-			}
-		},
-
-		initialize: function initialize() {
-			var props = this.props;
-
-			if (props.range) {
-				cellx.define(this, {
-					_firstInputValue: props.range[0],
-					_secondInputValue: props.range[1],
-
-					_firstInputWidth: function _firstInputWidth() {
-						var min = this.props.min;
-						var all = this.props.max - min;
-
-						return Math.round(((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) / 2 * 1e5) / 1e3;
-					}
-				});
-			}
-		},
-
-
-		get value() {
-			return this.props.range ? [this._firstInputValue, this._secondInputValue] : +this.$('input').value;
-		},
-
-		set value(value) {
-			if (this.props.range) {
-				this.$('first-input').value = this._firstInputValue = value[0];
-				this.$('second-input').value = this._secondInputValue = value[1];
-			} else {
-				this.input.value = value;
-			}
-		}
-	});
 
 /***/ },
 
@@ -153,7 +167,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 39:
 /***/ function(module, exports) {
 
-	module.exports = "<template is=\"rt-if-then\" if=\"props.range\"> <div class=\"opal-slider__first-input-wrapper3\"> <div class=\"opal-slider__first-input-wrapper2\" style=\"width: {_firstInputWidth}%;\"> <div class=\"opal-slider__first-input-wrapper\"> <input class=\"opal-slider__first-input\" type=\"range\" min=\"{props.min}\" max=\"{props.max}\" step=\"{props.step}\" value=\"{props.range[0]}\"> </div> </div> </div> <div class=\"opal-slider__second-input-wrapper\"> <input class=\"opal-slider__second-input\" type=\"range\" min=\"{props.min}\" max=\"{props.max}\" step=\"{props.step}\" value=\"{props.range[1]}\"> </div> </template> <template is=\"rt-if-else\" if=\"props.range\"> <input class=\"opal-slider__input\" type=\"range\" min=\"{props.min}\" max=\"{props.max}\" step=\"{props.step}\" value=\"{props.value}\"> </template>"
+	module.exports = "<template is=\"rt-if-then\" if=\"props.range\"> <div class=\"opal-slider__first-input-wrapper3\"> <div class=\"opal-slider__first-input-wrapper2\" style=\"width: {_firstInputWidth}%;\"> <div class=\"opal-slider__first-input-wrapper\"> <input class=\"opal-slider__first-input\" type=\"range\" min=\"{props.min}\" max=\"{props.max}\" step=\"{props.step}\" value=\"{props.range.0}\"> </div> </div> </div> <div class=\"opal-slider__second-input-wrapper\"> <input class=\"opal-slider__second-input\" type=\"range\" min=\"{props.min}\" max=\"{props.max}\" step=\"{props.step}\" value=\"{props.range.1}\"> </div> </template> <template is=\"rt-if-else\" if=\"props.range\"> <input class=\"opal-slider__input\" type=\"range\" min=\"{props.min}\" max=\"{props.max}\" step=\"{props.step}\" value=\"{props.value}\"> </template>"
 
 /***/ },
 

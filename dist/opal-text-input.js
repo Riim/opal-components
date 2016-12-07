@@ -55,196 +55,174 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(77);
+	var cellx_1 = __webpack_require__(2);
+	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(44);
+	var OpalTextInput = (function (_super) {
+	    __extends(OpalTextInput, _super);
+	    function OpalTextInput() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalTextInput.prototype.initialize = function () {
+	        cellx_1.define(this, {
+	            btnClearShown: function () {
+	                return !!this.props['value'] && !this.props['loading'];
+	            }
+	        });
+	    };
+	    OpalTextInput.prototype.ready = function () {
+	        var props = this.props;
+	        var value = props['value'];
+	        var input = this.$('input');
+	        this._initialHeight = input.offsetHeight + input.scrollHeight - input.clientHeight;
+	        if (value) {
+	            input.value = value;
+	        }
+	        else {
+	            var storeKey = props['store-key'];
+	            if (storeKey) {
+	                props['value'] = localStorage.getItem(storeKey) || '';
+	            }
+	        }
+	        this._fixHeight();
+	        if (props['focused']) {
+	            this.focus();
+	        }
+	    };
+	    OpalTextInput.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	        if (name == 'value') {
+	            var input = this.$('input');
+	            if (input.value != value) {
+	                input.value = value;
+	            }
+	        }
+	        else if (name == 'focused') {
+	            this[value ? 'focus' : 'blur']();
+	        }
+	    };
+	    OpalTextInput.prototype._onBtnClearClick = function (evt) {
+	        evt.preventDefault();
+	        this.value = '';
+	        this.$('input').focus();
+	        this.emit({ type: 'change', initialEvent: evt });
+	    };
+	    OpalTextInput.prototype._fixHeight = function () {
+	        var input = this.$('input');
+	        var lineHeight = parseInt(getComputedStyle(input).lineHeight, 10);
+	        input.style.height = this._initialHeight - lineHeight + 'px';
+	        input.style.height = input.offsetHeight + input.scrollHeight - input.clientHeight + lineHeight + 'px';
+	    };
+	    Object.defineProperty(OpalTextInput.prototype, "value", {
+	        get: function () {
+	            return this.props['value'];
+	        },
+	        set: function (value) {
+	            this.props['value'] = value;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    OpalTextInput.prototype.clear = function () {
+	        this.value = '';
+	        return this;
+	    };
+	    OpalTextInput.prototype.focus = function () {
+	        this.$('input').focus();
+	        return this;
+	    };
+	    OpalTextInput.prototype.blur = function () {
+	        this.$('input').blur();
+	        return this;
+	    };
+	    OpalTextInput.prototype.enable = function () {
+	        this.props['disabled'] = false;
+	        return this;
+	    };
+	    OpalTextInput.prototype.disable = function () {
+	        this.props['disabled'] = true;
+	        return this;
+	    };
+	    return OpalTextInput;
+	}(rionite_1.Component));
+	OpalTextInput = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-text-input',
+	        props: {
+	            inputType: 'text',
+	            multiline: false,
+	            size: 'm',
+	            rows: 5,
+	            autoHeight: true,
+	            inputName: String,
+	            value: '',
+	            storeKey: String,
+	            placeholder: '',
+	            clearable: false,
+	            loading: false,
+	            focused: false,
+	            tabIndex: 0,
+	            disabled: false
+	        },
+	        template: template,
+	        events: {
+	            input: {
+	                focusin: function () {
+	                    this.props['focused'] = true;
+	                    this.emit('focusin');
+	                },
+	                focusout: function () {
+	                    this.props['focused'] = false;
+	                    this.emit('focusout');
+	                },
+	                input: function (evt) {
+	                    this.value = evt.target.value;
+	                    this.emit({ type: 'input', initialEvent: evt });
+	                },
+	                change: function (evt) {
+	                    var storeKey = this.props['store-key'];
+	                    if (storeKey) {
+	                        localStorage.setItem(storeKey, evt.target.value);
+	                    }
+	                    this.emit({ type: 'change', initialEvent: evt });
+	                },
+	                keydown: function (evt) {
+	                    var _this = this;
+	                    if (this.props['multiline'] && this.props['auto-height']) {
+	                        setTimeout(function () {
+	                            _this._fixHeight();
+	                        }, 1);
+	                    }
+	                    this.emit({ type: 'keydown', initialEvent: evt });
+	                },
+	                keypress: function (evt) {
+	                    if (evt.which == 13 /* Enter */) {
+	                        this.emit('confirminput');
+	                    }
+	                    this.emit({ type: 'keypress', initialEvent: evt });
+	                },
+	                keyup: function (evt) {
+	                    this.emit({ type: 'keyup', initialEvent: evt });
+	                }
+	            }
+	        }
+	    })
+	], OpalTextInput);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalTextInput;
 
-	var cellx = __webpack_require__(2);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	module.exports = Component.extend('opal-text-input', {
-		Static: {
-			props: {
-				inputType: 'text',
-				multiline: false,
-				size: 'm',
-				rows: 5,
-				autoHeight: true,
-				inputName: String,
-				value: '',
-				storeKey: String,
-				placeholder: '',
-				clearable: false,
-				loading: false,
-				focused: false,
-				tabIndex: 0,
-				disabled: false
-			},
-
-			template: __webpack_require__(44),
-
-			events: {
-				input: {
-					focusin: function focusin() {
-						this.props.focused = true;
-						this.emit('focusin');
-					},
-					focusout: function focusout() {
-						this.props.focused = false;
-						this.emit('focusout');
-					},
-					input: function input(evt) {
-						this.value = evt.target.value;
-						this.emit({ type: 'input', initialEvent: evt });
-					},
-					change: function change(evt) {
-						var storeKey = this.props.storeKey;
-
-						if (storeKey) {
-							localStorage.setItem(storeKey, evt.target.value);
-						}
-
-						this.emit({ type: 'change', initialEvent: evt });
-					},
-					keydown: function keydown(evt) {
-						var _this = this;
-
-						if (this.props.multiline && this.props.autoHeight) {
-							setTimeout(function () {
-								_this._fixHeight();
-							}, 1);
-						}
-
-						this.emit({ type: 'keydown', initialEvent: evt });
-					},
-					keypress: function keypress(evt) {
-						if (evt.which == 13 /* Enter */) {
-								this.emit('confirminput');
-							}
-
-						this.emit({ type: 'keypress', initialEvent: evt });
-					},
-					keyup: function keyup(evt) {
-						this.emit({ type: 'keyup', initialEvent: evt });
-					}
-				}
-			}
-		},
-
-		initialize: function initialize() {
-			cellx.define(this, {
-				btnClearShown: function btnClearShown() {
-					return !!this.props.value && !this.props.loading;
-				}
-			});
-		},
-		ready: function ready() {
-			var props = this.props;
-			var value = props.value;
-			var input = this.$('input');
-
-			this._initialHeight = input.offsetHeight + input.scrollHeight - input.clientHeight;
-
-			if (value) {
-				input.value = value;
-			} else {
-				var storeKey = props.storeKey;
-
-				if (storeKey) {
-					props.value = localStorage.getItem(storeKey) || '';
-				}
-			}
-
-			this._fixHeight();
-
-			if (props.focused) {
-				this.focus();
-			}
-		},
-		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
-			if (name == 'value') {
-				var input = this.$('input');
-
-				if (input.value != value) {
-					input.value = value;
-				}
-			} else if (name == 'focused') {
-				this[value ? 'focus' : 'blur']();
-			}
-		},
-		_onBtnClearClick: function _onBtnClearClick(evt) {
-			evt.preventDefault();
-
-			this.value = '';
-			this.$('input').focus();
-
-			this.emit({ type: 'change', initialEvent: evt });
-		},
-		_fixHeight: function _fixHeight() {
-			var input = this.$('input');
-			var lineHeight = parseInt(getComputedStyle(input).lineHeight, 10);
-
-			input.style.height = this._initialHeight - lineHeight + 'px';
-			input.style.height = input.offsetHeight + input.scrollHeight - input.clientHeight + lineHeight + 'px';
-		},
-
-
-		/**
-	  * @type {string}
-	  */
-		get value() {
-			return this.props.value;
-		},
-		set value(value) {
-			this.props.value = value;
-		},
-
-		/**
-	  * @typesign () -> OpalComponents.OpalTextInput;
-	  */
-		clear: function clear() {
-			this.value = '';
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalTextInput;
-	  */
-		focus: function focus() {
-			this.$('input').focus();
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalTextInput;
-	  */
-		blur: function blur() {
-			this.$('input').blur();
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalTextInput;
-	  */
-		enable: function enable() {
-			this.props.disabled = false;
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalTextInput;
-	  */
-		disable: function disable() {
-			this.props.disabled = true;
-			return this;
-		}
-	});
 
 /***/ },
 
