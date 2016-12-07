@@ -105,7 +105,9 @@ export default class OpalTextInput extends Component {
 			}
 		}
 
-		this._fixHeight();
+		if (this.props['multiline'] && this.props['auto-height']) {
+			this._fixHeight();
+		}
 
 		if (props['focused']) {
 			this.focus();

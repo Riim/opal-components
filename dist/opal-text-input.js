@@ -97,7 +97,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                props['value'] = localStorage.getItem(storeKey) || '';
 	            }
 	        }
-	        this._fixHeight();
+	        if (this.props['multiline'] && this.props['auto-height']) {
+	            this._fixHeight();
+	        }
 	        if (props['focused']) {
 	            this.focus();
 	        }
