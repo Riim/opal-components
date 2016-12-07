@@ -44,6 +44,7 @@ import template = require('./index.html');
 export default class OpalSlider extends Component {
 	_firstInputValue: number;
 	_secondInputValue: number;
+	_firstInputWidth: number;
 
 	initialize(): void {
 		let props = this.props;

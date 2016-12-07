@@ -55,169 +55,145 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(71);
+	var cellx_1 = __webpack_require__(2);
+	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(40);
+	var OpalSwitch = (function (_super) {
+	    __extends(OpalSwitch, _super);
+	    function OpalSwitch() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalSwitch.prototype.initialize = function () {
+	        cellx_1.define(this, {
+	            _tabIndex: function () {
+	                return this.props['disabled'] ? -1 : this.props['tab-index'];
+	            }
+	        });
+	    };
+	    OpalSwitch.prototype.ready = function () {
+	        if (this.props['checked']) {
+	            this.$('input').checked = true;
+	        }
+	        if (this.props['focused']) {
+	            this.focus();
+	        }
+	    };
+	    OpalSwitch.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	        if (name == 'checked') {
+	            this.$('input').checked = value;
+	        }
+	        else if (name == 'focused') {
+	            if (value) {
+	                this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	                this.focus();
+	            }
+	            else {
+	                this._documentKeyDownListening.stop();
+	                this.blur();
+	            }
+	        }
+	    };
+	    Object.defineProperty(OpalSwitch.prototype, "checked", {
+	        get: function () {
+	            return this.props['checked'];
+	        },
+	        set: function (checked) {
+	            this.props['checked'] = checked;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    OpalSwitch.prototype.check = function () {
+	        if (!this.props['checked']) {
+	            this.props['checked'] = true;
+	            return true;
+	        }
+	        return false;
+	    };
+	    OpalSwitch.prototype.uncheck = function () {
+	        if (this.props['checked']) {
+	            this.props['checked'] = false;
+	            return true;
+	        }
+	        return false;
+	    };
+	    OpalSwitch.prototype.toggle = function (value) {
+	        return (this.props['checked'] = value === undefined ? !this.props['checked'] : value);
+	    };
+	    OpalSwitch.prototype.focus = function () {
+	        this.$('control').focus();
+	        return this;
+	    };
+	    OpalSwitch.prototype.blur = function () {
+	        this.$('control').blur();
+	        return this;
+	    };
+	    OpalSwitch.prototype._onDocumentKeyDown = function (evt) {
+	        if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
+	            evt.preventDefault();
+	            var props = this.props;
+	            if (!props['disabled']) {
+	                this.emit((props['checked'] = !props['checked']) ? 'check' : 'uncheck');
+	                this.emit('change');
+	            }
+	        }
+	    };
+	    OpalSwitch.prototype.enable = function () {
+	        this.props['disabled'] = false;
+	        return this;
+	    };
+	    OpalSwitch.prototype.disable = function () {
+	        this.props['disabled'] = true;
+	        return this;
+	    };
+	    return OpalSwitch;
+	}(rionite_1.Component));
+	OpalSwitch = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-switch',
+	        props: {
+	            checked: false,
+	            focused: false,
+	            tabIndex: 0,
+	            disabled: false
+	        },
+	        template: template,
+	        events: {
+	            input: {
+	                change: function (evt) {
+	                    this.emit((this.props['checked'] = evt.target['checked']) ? 'check' : 'uncheck');
+	                    this.emit('change');
+	                }
+	            },
+	            control: {
+	                focusin: function () {
+	                    this.props['focused'] = true;
+	                    this.emit('focusin');
+	                },
+	                focusout: function () {
+	                    this.props['focused'] = false;
+	                    this.emit('focusout');
+	                }
+	            }
+	        }
+	    })
+	], OpalSwitch);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalSwitch;
 
-	var cellx = __webpack_require__(2);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	module.exports = Component.extend('opal-switch', {
-		Static: {
-			props: {
-				checked: false,
-				focused: false,
-				tabIndex: 0,
-				disabled: false
-			},
-
-			template: __webpack_require__(40),
-
-			events: {
-				input: {
-					change: function change(evt) {
-						this.emit((this.props.checked = evt.target.checked) ? 'check' : 'uncheck');
-						this.emit('change');
-					}
-				},
-
-				control: {
-					focusin: function focusin() {
-						this.props.focused = true;
-						this.emit('focusin');
-					},
-					focusout: function focusout() {
-						this.props.focused = false;
-						this.emit('focusout');
-					}
-				}
-			}
-		},
-
-		initialize: function initialize() {
-			cellx.define(this, {
-				_tabIndex: function _tabIndex() {
-					return this.props.disabled ? -1 : this.props.tabIndex;
-				}
-			});
-		},
-		ready: function ready() {
-			if (this.props.checked) {
-				this.$('input').checked = true;
-			}
-
-			if (this.props.focused) {
-				this.focus();
-			}
-		},
-		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
-			if (name == 'checked') {
-				this.$('input').checked = value;
-			} else if (name == 'focused') {
-				if (value) {
-					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-					this.focus();
-				} else {
-					this._documentKeyDownListening.stop();
-					this.blur();
-				}
-			}
-		},
-
-
-		/**
-	  * @type {boolean}
-	  */
-		get checked() {
-			return this.props.checked;
-		},
-		set checked(checked) {
-			this.props.checked = checked;
-		},
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		check: function check() {
-			if (!this.props.checked) {
-				this.props.checked = true;
-				return true;
-			}
-
-			return false;
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		uncheck: function uncheck() {
-			if (this.props.checked) {
-				this.props.checked = false;
-				return true;
-			}
-
-			return false;
-		},
-
-
-		/**
-	  * @typesign (value?: boolean) -> boolean;
-	  */
-		toggle: function toggle(value) {
-			return this.props.checked = value === undefined ? !this.props.checked : value;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalSwitch;
-	  */
-		focus: function focus() {
-			this.$('control').focus();
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalSwitch;
-	  */
-		blur: function blur() {
-			this.$('control').blur();
-			return this;
-		},
-		_onDocumentKeyDown: function _onDocumentKeyDown(evt) {
-			if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
-					evt.preventDefault();
-
-					var props = this.props;
-
-					if (!props.disabled) {
-						this.emit((props.checked = !props.checked) ? 'check' : 'uncheck');
-						this.emit('change');
-					}
-				}
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalSwitch;
-	  */
-		enable: function enable() {
-			this.props.disabled = false;
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalSwitch;
-	  */
-		disable: function disable() {
-			this.props.disabled = true;
-			return this;
-		}
-	});
 
 /***/ },
 

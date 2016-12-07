@@ -73,6 +73,10 @@ module.exports = {
 		]
 	},
 
+	resolve: {
+		extensions: ['.ts', '.tsx', '.js', '.jsx', '']
+	},
+
 	externals: ['cellx', 'cellx-indexed-collections', 'rionite'],
 
 	watch: argv.dev,

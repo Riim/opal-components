@@ -66,8 +66,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Component = _require.Component,
 	    ComponentTemplate = _require.ComponentTemplate;
 
-	var parseDate = __webpack_require__(6);
-	var formatDate = __webpack_require__(5);
+	var parseDate = __webpack_require__(7);
+	var formatDate = __webpack_require__(6);
 
 	module.exports = Component.extend('opal-calendar', {
 		Static: {
@@ -342,7 +342,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 5:
+/***/ 6:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -363,7 +363,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 6:
+/***/ 7:
 /***/ function(module, exports) {
 
 	'use strict';

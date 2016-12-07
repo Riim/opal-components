@@ -55,101 +55,99 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(56);
-
-	var cellx = __webpack_require__(2);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	var OpalInputValidatorRule = __webpack_require__(10);
-
+	var cellx_1 = __webpack_require__(2);
+	var rionite_1 = __webpack_require__(1);
+	var opal_input_validator_rule_1 = __webpack_require__(5);
 	var map = Array.prototype.map;
+	var OpalInputValidator = (function (_super) {
+	    __extends(OpalInputValidator, _super);
+	    function OpalInputValidator() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalInputValidator.prototype.initialize = function () {
+	        cellx_1.define(this, {
+	            failedRule: null,
+	            valid: function () {
+	                return !this.failedRule;
+	            }
+	        });
+	    };
+	    OpalInputValidator.prototype.ready = function () {
+	        this._rules = map.call(this.element.getElementsByClassName('opal-input-validator-rule'), function (ruleEl) { return ruleEl.$c; });
+	    };
+	    OpalInputValidator.prototype.validate = function () {
+	        return this._validate(this._rules);
+	    };
+	    OpalInputValidator.prototype._validate = function (rules) {
+	        var _this = this;
+	        var value = this.$('input').value;
+	        var trimmedValue = value.trim();
+	        var failedRule;
+	        rules.forEach(function (rule) {
+	            var ruleProps = rule.props;
+	            if (!failedRule && (trimmedValue ?
+	                ruleProps['min-length'] && trimmedValue.length < ruleProps['min-length'] ||
+	                    ruleProps['regex'] && !ruleProps['regex'].test(value) ||
+	                    ruleProps['test'] && !_this.ownerComponent[ruleProps['test']](value) :
+	                ruleProps['required'])) {
+	                failedRule = rule;
+	                rule.showMessage();
+	            }
+	            else {
+	                rule.hideMessage();
+	            }
+	        });
+	        var oldFailedRule = this.failedRule;
+	        this.failedRule = failedRule || null;
+	        if (+!!failedRule ^ +!!oldFailedRule) {
+	            if (failedRule) {
+	                this.element.setAttribute('valid', 'no');
+	                this.emit('input-validation-error');
+	            }
+	            else {
+	                this.element.removeAttribute('valid');
+	                this.emit('input-validation-valid');
+	            }
+	        }
+	        return !failedRule;
+	    };
+	    return OpalInputValidator;
+	}(rionite_1.Component));
+	OpalInputValidator.OpalInputValidatorRule = opal_input_validator_rule_1.default;
+	OpalInputValidator = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-input-validator',
+	        template: '<rt-content class="opal-input-validator__content"></rt-content>',
+	        events: {
+	            input: {
+	                input: function () {
+	                    if (this.failedRule) {
+	                        this._validate([this.failedRule]);
+	                    }
+	                },
+	                change: function () {
+	                    this.validate();
+	                }
+	            }
+	        }
+	    })
+	], OpalInputValidator);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalInputValidator;
 
-	module.exports = Component.extend('opal-input-validator', {
-		Static: {
-			OpalInputValidatorRule: OpalInputValidatorRule,
-
-			template: '<rt-content class="opal-input-validator__content"></rt-content>',
-
-			events: {
-				input: {
-					input: function input() {
-						if (this.failedRule) {
-							this._validate([this.failedRule]);
-						}
-					},
-					change: function change() {
-						this.validate();
-					}
-				}
-			}
-		},
-
-		initialize: function initialize() {
-			cellx.define(this, {
-				failedRule: null,
-
-				valid: function valid() {
-					return !this.failedRule;
-				}
-			});
-		},
-		ready: function ready() {
-			this._rules = map.call(this.element.getElementsByClassName('opal-input-validator-rule'), function (ruleEl) {
-				return ruleEl.$c;
-			});
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		validate: function validate() {
-			return this._validate(this._rules);
-		},
-
-
-		/**
-	  * @typesign (rules: Array<OpalComponents.OpalInputValidatorRule>) -> boolean;
-	  */
-		_validate: function _validate(rules) {
-			var _this = this;
-
-			var value = this.$('input').value;
-			var trimmedValue = value.trim();
-			var failedRule = null;
-
-			rules.forEach(function (rule) {
-				var ruleProps = rule.props;
-
-				if (!failedRule && (trimmedValue ? ruleProps.minLength && trimmedValue.length < ruleProps.minLength || ruleProps.regex && !ruleProps.regex.test(value) || ruleProps.test && !_this.ownerComponent[ruleProps.test](value) : ruleProps.required)) {
-					failedRule = rule;
-					rule.showMessage();
-				} else {
-					rule.hideMessage();
-				}
-			});
-
-			var oldFailedRule = this.failedRule;
-
-			this.failedRule = failedRule;
-
-			if (!!failedRule ^ !!oldFailedRule) {
-				if (failedRule) {
-					this.element.setAttribute('valid', 'no');
-					this.emit('input-validation-error');
-				} else {
-					this.element.removeAttribute('valid');
-					this.emit('input-validation-valid');
-				}
-			}
-
-			return !failedRule;
-		}
-	});
 
 /***/ },
 
@@ -167,36 +165,53 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 10:
+/***/ 5:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(57);
+	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(30);
+	var OpalInputValidatorRule = (function (_super) {
+	    __extends(OpalInputValidatorRule, _super);
+	    function OpalInputValidatorRule() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalInputValidatorRule.prototype.showMessage = function () {
+	        this.$('popover').open();
+	    };
+	    OpalInputValidatorRule.prototype.hideMessage = function () {
+	        this.$('popover').close();
+	    };
+	    return OpalInputValidatorRule;
+	}(rionite_1.Component));
+	OpalInputValidatorRule = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-input-validator-rule',
+	        props: {
+	            required: { default: false, readonly: true },
+	            minLength: { type: Number, readonly: true },
+	            regex: { type: Object, readonly: true },
+	            test: { type: String, readonly: true },
+	            popoverTo: 'right'
+	        },
+	        template: template
+	    })
+	], OpalInputValidatorRule);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalInputValidatorRule;
 
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	module.exports = Component.extend('opal-input-validator-rule', {
-		Static: {
-			props: {
-				required: { default: false, readonly: true },
-				minLength: { type: Number, readonly: true },
-				regex: { type: Object, readonly: true },
-				test: { type: String, readonly: true },
-				popoverTo: 'right'
-			},
-
-			template: __webpack_require__(30)
-		},
-
-		showMessage: function showMessage() {
-			this.$('popover').open();
-		},
-		hideMessage: function hideMessage() {
-			this.$('popover').close();
-		}
-	});
 
 /***/ },
 

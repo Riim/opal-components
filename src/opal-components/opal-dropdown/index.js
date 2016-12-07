@@ -137,7 +137,7 @@ module.exports = Component.extend('opal-dropdown', {
 		let docEl = document.documentElement;
 		let el = this.element;
 
-		for (let node = evt.target; ;) {
+		for (let node = evt.target; node != el;) {
 			if (node == docEl || node.tagName == 'A') {
 				this.close();
 				break;
@@ -145,7 +145,7 @@ module.exports = Component.extend('opal-dropdown', {
 
 			node = node.parentNode;
 
-			if (!node || node == el) {
+			if (!node) {
 				break;
 			}
 		}

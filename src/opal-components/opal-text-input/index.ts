@@ -28,12 +28,12 @@ import template = require('./index.html');
 
 	events: {
 		input: {
-			focusin(this: OpalTextInput): void {
+			focusin(): void {
 				this.props['focused'] = true;
 				this.emit('focusin');
 			},
 
-			focusout(this: OpalTextInput): void {
+			focusout(): void {
 				this.props['focused'] = false;
 				this.emit('focusout');
 			},
@@ -43,7 +43,7 @@ import template = require('./index.html');
 				this.emit({ type: 'input', initialEvent: evt });
 			},
 
-			change(this: OpalTextInput, evt: Event): void {
+			change(evt: Event): void {
 				let storeKey = this.props['store-key'];
 
 				if (storeKey) {
@@ -63,7 +63,7 @@ import template = require('./index.html');
 				this.emit({ type: 'keydown', initialEvent: evt });
 			},
 
-			keypress(this: OpalTextInput, evt: KeyboardEvent): void {
+			keypress(evt: KeyboardEvent): void {
 				if (evt.which == 13/* Enter */) {
 					this.emit('confirminput');
 				}
@@ -71,18 +71,20 @@ import template = require('./index.html');
 				this.emit({ type: 'keypress', initialEvent: evt });
 			},
 
-			keyup(this: OpalTextInput, evt: Event): void {
+			keyup(evt: Event): void {
 				this.emit({ type: 'keyup', initialEvent: evt });
 			}
 		}
 	}
 })
 export default class OpalTextInput extends Component {
+	btnClearShown: boolean;
+
 	_initialHeight: number;
 
 	initialize(): void {
 		define(this, {
-			btnClearShown(this: OpalTextInput) {
+			btnClearShown(this: OpalTextInput): boolean {
 				return !!this.props['value'] && !this.props['loading'];
 			}
 		});

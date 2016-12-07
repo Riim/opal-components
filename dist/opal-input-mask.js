@@ -61,14 +61,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Code based on [jquery.maskedinput](https://github.com/digitalBush/jquery.maskedinput).
 	 */
 
-	__webpack_require__(9);
+	__webpack_require__(10);
 
 	var cellx = __webpack_require__(2);
 
 	var _require = __webpack_require__(1),
 	    Component = _require.Component;
 
-	var defaultDefinitions = __webpack_require__(8);
+	var defaultDefinitions = __webpack_require__(9);
 
 	var forEach = Array.prototype.forEach;
 
@@ -422,7 +422,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 8:
+/***/ 9:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -435,7 +435,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 9:
+/***/ 10:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

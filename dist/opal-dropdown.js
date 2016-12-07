@@ -198,7 +198,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			var docEl = document.documentElement;
 			var el = this.element;
 
-			for (var node = evt.target;;) {
+			for (var node = evt.target; node != el;) {
 				if (node == docEl || node.tagName == 'A') {
 					this.close();
 					break;
@@ -206,7 +206,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 				node = node.parentNode;
 
-				if (!node || node == el) {
+				if (!node) {
 					break;
 				}
 			}

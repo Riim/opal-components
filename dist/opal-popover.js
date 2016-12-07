@@ -55,106 +55,99 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(63);
+	var rionite_1 = __webpack_require__(1);
+	var OpalPopover = (function (_super) {
+	    __extends(OpalPopover, _super);
+	    function OpalPopover() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalPopover.prototype.ready = function () {
+	        if (this.props['opened']) {
+	            this._open();
+	        }
+	    };
+	    OpalPopover.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	        if (name == 'opened') {
+	            this[value ? '_open' : '_close']();
+	        }
+	    };
+	    OpalPopover.prototype.open = function () {
+	        if (this.props['opened']) {
+	            return false;
+	        }
+	        this.props['opened'] = true;
+	        return true;
+	    };
+	    OpalPopover.prototype.close = function () {
+	        if (!this.props['opened']) {
+	            return false;
+	        }
+	        this.props['opened'] = false;
+	        return true;
+	    };
+	    OpalPopover.prototype.toggle = function (value) {
+	        return (this.props['opened'] = value === undefined ? !this.props['opened'] : value);
+	    };
+	    OpalPopover.prototype._open = function () {
+	        var _this = this;
+	        if (this.props['auto-closing']) {
+	            setTimeout(function () {
+	                if (_this.props['opened']) {
+	                    _this._documentClickListening = _this.listenTo(document, 'click', _this._onDocumentClick);
+	                }
+	            }, 1);
+	        }
+	        this.emit('open');
+	    };
+	    OpalPopover.prototype._close = function () {
+	        if (this._documentClickListening) {
+	            this._documentClickListening.stop();
+	        }
+	        this.emit('close');
+	    };
+	    OpalPopover.prototype._onDocumentClick = function (evt) {
+	        var docEl = document.documentElement;
+	        var el = this.element;
+	        for (var node = evt.target; node != el;) {
+	            if (node == docEl || node.tagName == 'A') {
+	                this.close();
+	                break;
+	            }
+	            node = node.parentNode;
+	            if (!node) {
+	                break;
+	            }
+	        }
+	    };
+	    return OpalPopover;
+	}(rionite_1.Component));
+	OpalPopover = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-popover',
+	        props: {
+	            to: 'right',
+	            opened: false,
+	            autoClosing: false
+	        },
+	        template: '<span class="opal-popover__arrow"></span><rt-content class="opal-popover__content"></rt-content>'
+	    })
+	], OpalPopover);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalPopover;
 
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	module.exports = Component.extend('opal-popover', {
-		Static: {
-			props: {
-				to: 'right',
-				opened: false,
-				autoClosing: false
-			},
-
-			template: '<span class="opal-popover__arrow"></span><rt-content class="opal-popover__content"></rt-content>'
-		},
-
-		ready: function ready() {
-			if (this.props.opened) {
-				this._open();
-			}
-		},
-		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
-			if (name == 'opened') {
-				this[value ? '_open' : '_close']();
-			}
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		open: function open() {
-			if (this.props.opened) {
-				return false;
-			}
-
-			this.props.opened = true;
-			return true;
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		close: function close() {
-			if (!this.props.opened) {
-				return false;
-			}
-
-			this.props.opened = false;
-			return true;
-		},
-
-
-		/**
-	  * @typesign (value?: boolean) -> boolean;
-	  */
-		toggle: function toggle(value) {
-			return this.props.opened = value === undefined ? !this.props.opened : value;
-		},
-		_open: function _open() {
-			var _this = this;
-
-			if (this.props.autoClosing) {
-				setTimeout(function () {
-					if (_this.props.opened) {
-						_this._documentClickListening = _this.listenTo(document, 'click', _this._onDocumentClick);
-					}
-				}, 1);
-			}
-
-			this.emit('open');
-		},
-		_close: function _close() {
-			if (this._documentClickListening) {
-				this._documentClickListening.stop();
-			}
-
-			this.emit('close');
-		},
-		_onDocumentClick: function _onDocumentClick(evt) {
-			var docEl = document.documentElement;
-			var el = this.element;
-
-			for (var node = evt.target;;) {
-				if (node == docEl || node.tagName == 'A') {
-					this.close();
-					break;
-				}
-
-				node = node.parentNode;
-
-				if (!node || node == el) {
-					break;
-				}
-			}
-		}
-	});
 
 /***/ },
 
