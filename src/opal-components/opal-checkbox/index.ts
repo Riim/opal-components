@@ -5,10 +5,11 @@ import { IListening, Component, d } from 'rionite';
 import template = require('./index.html');
 
 @d.Component({
-	elementIs: 'opal-switch',
+	elementIs: 'opal-checkbox',
 
 	props: {
 		checked: false,
+		indeterminate: false,
 		focused: false,
 		tabIndex: 0,
 		disabled: false
@@ -18,51 +19,62 @@ import template = require('./index.html');
 
 	events: {
 		input: {
-			change(evt: Event) {
-				this.emit((this.props['checked'] = evt.target['checked']) ? 'check' : 'uncheck');
+			change(evt: Event): void {
+				this.emit((this.props['checked'] = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
 				this.emit('change');
 			}
 		},
 
 		control: {
-			focusin() {
+			focusin(): void {
 				this.props['focused'] = true;
 				this.emit('focusin');
 			},
 
-			focusout() {
+			focusout(): void {
 				this.props['focused'] = false;
 				this.emit('focusout');
 			}
 		}
 	}
 })
-export default class OpalSwitch extends Component {
+export default class OpalCheckbox extends Component {
 	_tabIndex: number;
 
 	_documentKeyDownListening: IListening;
 
-	initialize() {
+	initialize(): void {
 		define(this, {
-			_tabIndex(this: OpalSwitch): number {
+			_tabIndex(this: OpalCheckbox): number {
 				return this.props['disabled'] ? -1 : this.props['tab-index'];
 			}
 		});
 	}
 
-	ready() {
-		if (this.props['checked']) {
+	ready(): void {
+		let props = this.props;
+
+		if (props['checked']) {
+			props['indeterminate'] = false;
 			(this.$('input') as HTMLInputElement).checked = true;
 		}
 
-		if (this.props['focused']) {
+		if (props['focused']) {
 			this.focus();
 		}
 	}
 
 	elementAttributeChanged(name: string, oldValue: any, value: any): void {
 		if (name == 'checked') {
+			if (value) {
+				this.props['indeterminate'] = false;
+			}
+
 			(this.$('input') as HTMLInputElement).checked = value;
+		} else if (name == 'indeterminate') {
+			if (value) {
+				this.props['checked'] = false;
+			}
 		} else if (name == 'focused') {
 			if (value) {
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
@@ -103,12 +115,12 @@ export default class OpalSwitch extends Component {
 		return (this.props['checked'] = value === undefined ? !this.props['checked'] : value);
 	}
 
-	focus(): OpalSwitch {
+	focus(): OpalCheckbox {
 		(this.$('control') as HTMLElement).focus();
 		return this;
 	}
 
-	blur(): OpalSwitch {
+	blur(): OpalCheckbox {
 		(this.$('control') as HTMLElement).blur();
 		return this;
 	}
@@ -126,12 +138,12 @@ export default class OpalSwitch extends Component {
 		}
 	}
 
-	enable(): OpalSwitch {
+	enable(): OpalCheckbox {
 		this.props['disabled'] = false;
 		return this;
 	}
 
-	disable(): OpalSwitch {
+	disable(): OpalCheckbox {
 		this.props['disabled'] = true;
 		return this;
 	}

@@ -51,7 +51,7 @@ export default class OpalButton extends Component {
 
 	initialize(): void {
 		define(this, {
-			_tabIndex() {
+			_tabIndex(this: OpalButton): number {
 				return this.props['disabled'] ? -1 : this.props['tab-index'];
 			}
 		});

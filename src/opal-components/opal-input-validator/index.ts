@@ -38,7 +38,7 @@ export default class OpalInputValidator extends Component {
 		define(this, {
 			failedRule: null,
 
-			valid() {
+			valid(this: OpalInputValidator): boolean {
 				return !this.failedRule;
 			}
 		});

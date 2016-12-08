@@ -1,13 +1,15 @@
 import './index.css';
 
 import { define } from 'cellx';
-import { IListening, Component, d } from 'rionite';
+import { Component, d } from 'rionite';
 import template = require('./index.html');
 
 @d.Component({
-	elementIs: 'opal-switch',
+	elementIs: 'opal-sign-button',
 
 	props: {
+		sign: { type: String, required: true },
+		checkable: false,
 		checked: false,
 		focused: false,
 		tabIndex: 0,
@@ -17,60 +19,49 @@ import template = require('./index.html');
 	template,
 
 	events: {
-		input: {
-			change(evt: Event) {
-				this.emit((this.props['checked'] = evt.target['checked']) ? 'check' : 'uncheck');
-				this.emit('change');
-			}
-		},
-
 		control: {
-			focusin() {
+			focusin(evt: Event): void {
 				this.props['focused'] = true;
-				this.emit('focusin');
+				this.emit({ type: 'focusin', originalEvent: evt });
 			},
 
-			focusout() {
+			focusout(evt: Event): void {
 				this.props['focused'] = false;
-				this.emit('focusout');
+				this.emit({ type: 'focusout', originalEvent: evt });
+			},
+
+			click(this: OpalSignButton, evt: Event): void {
+				if (!this.props['disabled']) {
+					if (this.props['checkable']) {
+						this.emit(this.toggle() ? 'check' : 'uncheck');
+					}
+
+					this.emit({ type: 'click', originalEvent: evt });
+				}
 			}
 		}
 	}
 })
-export default class OpalSwitch extends Component {
+export default class OpalSignButton extends Component {
 	_tabIndex: number;
 
-	_documentKeyDownListening: IListening;
-
-	initialize() {
+	initialize(): void {
 		define(this, {
-			_tabIndex(this: OpalSwitch): number {
+			_tabIndex(this: OpalSignButton): number {
 				return this.props['disabled'] ? -1 : this.props['tab-index'];
 			}
 		});
 	}
 
-	ready() {
-		if (this.props['checked']) {
-			(this.$('input') as HTMLInputElement).checked = true;
-		}
-
+	ready(): void {
 		if (this.props['focused']) {
 			this.focus();
 		}
 	}
 
 	elementAttributeChanged(name: string, oldValue: any, value: any): void {
-		if (name == 'checked') {
-			(this.$('input') as HTMLInputElement).checked = value;
-		} else if (name == 'focused') {
-			if (value) {
-				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-				this.focus();
-			} else {
-				this._documentKeyDownListening.stop();
-				this.blur();
-			}
+		if (name == 'focused') {
+			this[value ? 'focus' : 'blur']();
 		}
 	}
 
@@ -103,35 +94,22 @@ export default class OpalSwitch extends Component {
 		return (this.props['checked'] = value === undefined ? !this.props['checked'] : value);
 	}
 
-	focus(): OpalSwitch {
+	focus(): OpalSignButton {
 		(this.$('control') as HTMLElement).focus();
 		return this;
 	}
 
-	blur(): OpalSwitch {
+	blur(): OpalSignButton {
 		(this.$('control') as HTMLElement).blur();
 		return this;
 	}
 
-	_onDocumentKeyDown(evt: KeyboardEvent): void {
-		if (evt.which == 13/* Enter */ || evt.which == 32/* Space */) {
-			evt.preventDefault();
-
-			let props = this.props;
-
-			if (!props['disabled']) {
-				this.emit((props['checked'] = !props['checked']) ? 'check' : 'uncheck');
-				this.emit('change');
-			}
-		}
-	}
-
-	enable(): OpalSwitch {
+	enable(): OpalSignButton {
 		this.props['disabled'] = false;
 		return this;
 	}
 
-	disable(): OpalSwitch {
+	disable(): OpalSignButton {
 		this.props['disabled'] = true;
 		return this;
 	}

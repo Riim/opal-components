@@ -55,149 +55,126 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(68);
+	var cellx_1 = __webpack_require__(2);
+	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(38);
+	var OpalSignButton = (function (_super) {
+	    __extends(OpalSignButton, _super);
+	    function OpalSignButton() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalSignButton.prototype.initialize = function () {
+	        cellx_1.define(this, {
+	            _tabIndex: function () {
+	                return this.props['disabled'] ? -1 : this.props['tab-index'];
+	            }
+	        });
+	    };
+	    OpalSignButton.prototype.ready = function () {
+	        if (this.props['focused']) {
+	            this.focus();
+	        }
+	    };
+	    OpalSignButton.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	        if (name == 'focused') {
+	            this[value ? 'focus' : 'blur']();
+	        }
+	    };
+	    Object.defineProperty(OpalSignButton.prototype, "checked", {
+	        get: function () {
+	            return this.props['checked'];
+	        },
+	        set: function (checked) {
+	            this.props['checked'] = checked;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    OpalSignButton.prototype.check = function () {
+	        if (!this.props['checked']) {
+	            this.props['checked'] = true;
+	            return true;
+	        }
+	        return false;
+	    };
+	    OpalSignButton.prototype.uncheck = function () {
+	        if (this.props['checked']) {
+	            this.props['checked'] = false;
+	            return true;
+	        }
+	        return false;
+	    };
+	    OpalSignButton.prototype.toggle = function (value) {
+	        return (this.props['checked'] = value === undefined ? !this.props['checked'] : value);
+	    };
+	    OpalSignButton.prototype.focus = function () {
+	        this.$('control').focus();
+	        return this;
+	    };
+	    OpalSignButton.prototype.blur = function () {
+	        this.$('control').blur();
+	        return this;
+	    };
+	    OpalSignButton.prototype.enable = function () {
+	        this.props['disabled'] = false;
+	        return this;
+	    };
+	    OpalSignButton.prototype.disable = function () {
+	        this.props['disabled'] = true;
+	        return this;
+	    };
+	    return OpalSignButton;
+	}(rionite_1.Component));
+	OpalSignButton = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-sign-button',
+	        props: {
+	            sign: { type: String, required: true },
+	            checkable: false,
+	            checked: false,
+	            focused: false,
+	            tabIndex: 0,
+	            disabled: false
+	        },
+	        template: template,
+	        events: {
+	            control: {
+	                focusin: function (evt) {
+	                    this.props['focused'] = true;
+	                    this.emit({ type: 'focusin', originalEvent: evt });
+	                },
+	                focusout: function (evt) {
+	                    this.props['focused'] = false;
+	                    this.emit({ type: 'focusout', originalEvent: evt });
+	                },
+	                click: function (evt) {
+	                    if (!this.props['disabled']) {
+	                        if (this.props['checkable']) {
+	                            this.emit(this.toggle() ? 'check' : 'uncheck');
+	                        }
+	                        this.emit({ type: 'click', originalEvent: evt });
+	                    }
+	                }
+	            }
+	        }
+	    })
+	], OpalSignButton);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalSignButton;
 
-	var cellx = __webpack_require__(2);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	module.exports = Component.extend('opal-sign-button', {
-		Static: {
-			props: {
-				sign: { type: String, required: true },
-				checkable: false,
-				checked: false,
-				focused: false,
-				tabIndex: 0,
-				disabled: false
-			},
-
-			template: __webpack_require__(38),
-
-			events: {
-				control: {
-					focusin: function focusin(evt) {
-						this.props.focused = true;
-						this.emit({ type: 'focusin', originalEvent: evt });
-					},
-					focusout: function focusout(evt) {
-						this.props.focused = false;
-						this.emit({ type: 'focusout', originalEvent: evt });
-					},
-					click: function click(evt) {
-						if (!this.props.disabled) {
-							if (this.props.checkable) {
-								this.emit(this.toggle() ? 'check' : 'uncheck');
-							}
-
-							this.emit({ type: 'click', originalEvent: evt });
-						}
-					}
-				}
-			}
-		},
-
-		initialize: function initialize() {
-			cellx.define(this, {
-				_tabIndex: function _tabIndex() {
-					return this.props.disabled ? -1 : this.props.tabIndex;
-				}
-			});
-		},
-		ready: function ready() {
-			if (this.props.focused) {
-				this.focus();
-			}
-		},
-		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
-			if (name == 'focused') {
-				this[value ? 'focus' : 'blur']();
-			}
-		},
-
-
-		/**
-	  * @type {boolean}
-	  */
-		get checked() {
-			return this.props.checked;
-		},
-		set checked(checked) {
-			this.props.checked = checked;
-		},
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		check: function check() {
-			if (!this.props.checked) {
-				this.props.checked = true;
-				return true;
-			}
-
-			return false;
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		uncheck: function uncheck() {
-			if (this.props.checked) {
-				this.props.checked = false;
-				return true;
-			}
-
-			return false;
-		},
-
-
-		/**
-	  * @typesign (value?: boolean) -> boolean;
-	  */
-		toggle: function toggle(value) {
-			return this.props.checked = value === undefined ? !this.props.checked : value;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalSignButton;
-	  */
-		focus: function focus() {
-			this.$('control').focus();
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalSignButton;
-	  */
-		blur: function blur() {
-			this.$('control').blur();
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalSignButton;
-	  */
-		enable: function enable() {
-			this.props.disabled = false;
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalSignButton;
-	  */
-		disable: function disable() {
-			this.props.disabled = true;
-			return this;
-		}
-	});
 
 /***/ },
 

@@ -1,64 +1,58 @@
-require('./index.css');
+import './index.css';
 
-let { Component } = require('rionite');
+import { IListening, Component, d } from 'rionite';
 
-let openedDropdowns = [];
+let openedDropdowns: Array<OpalDropdown> = [];
 
-module.exports = Component.extend('opal-dropdown', {
-	Static: {
-		props: {
-			opened: false,
-			autoHeight: true,
-			autoClosing: false
-		},
+@d.Component({
+	elementIs: 'opal-dropdown',
 
-		template: '<rt-content class="opal-dropdown__content"></rt-content>'
+	props: {
+		opened: false,
+		autoHeight: true,
+		autoClosing: false
 	},
 
-	ready() {
-		if (this.props.opened) {
+	template: '<rt-content class="opal-dropdown__content"></rt-content>'
+})
+export default class OpalDropdown extends Component {
+	_documentClickListening: IListening;
+
+	ready(): void {
+		if (this.props['opened']) {
 			this._open();
 		}
-	},
+	}
 
-	elementAttributeChanged(name, oldValue, value) {
+	elementAttributeChanged(name: string, oldValue: any, value: any): void {
 		if (name == 'opened') {
 			this[value ? '_open' : '_close']();
 		}
-	},
+	}
 
-	/**
-	 * @typesign () -> boolean;
-	 */
-	open() {
-		if (this.props.opened) {
+	open(): boolean {
+		if (this.props['opened']) {
 			return false;
 		}
 
-		this.props.opened = true;
+		this.props['opened'] = true;
 		return true;
-	},
+	}
 
-	/**
-	 * @typesign () -> boolean;
-	 */
-	close() {
-		if (!this.props.opened) {
+	close(): boolean {
+		if (!this.props['opened']) {
 			return false;
 		}
 
-		this.props.opened = false;
+		this.props['opened'] = false;
 		return true;
-	},
+	}
 
-	/**
-	 * @typesign (value?: boolean) -> boolean;
-	 */
-	toggle(value) {
-		return (this.props.opened = value === undefined ? !this.props.opened : value);
-	},
+	toggle(value?: boolean): boolean {
+		return (this.props['opened'] = value === undefined ? !this.props['opened'] : value);
+	}
 
-	_open() {
+	_open(): void {
 		openedDropdowns.push(this);
 
 		let el = this.element;
@@ -87,7 +81,7 @@ module.exports = Component.extend('opal-dropdown', {
 			}
 		}
 
-		if (this.props.autoHeight) {
+		if (this.props['auto-height']) {
 			let docElClientHeight = docEl.clientHeight;
 			let margin = elClientRect.top - containerClientRect.bottom;
 			let excess = elClientRect.bottom + margin - docElClientHeight;
@@ -110,18 +104,18 @@ module.exports = Component.extend('opal-dropdown', {
 			}
 		}
 
-		if (this.props.autoClosing) {
+		if (this.props['auto-height']) {
 			setTimeout(() => {
-				if (this.props.opened) {
+				if (this.props['opened']) {
 					this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
 				}
 			}, 1);
 		}
 
 		this.emit('open');
-	},
+	}
 
-	_close() {
+	_close(): void {
 		openedDropdowns.splice(openedDropdowns.indexOf(this), 1);
 
 		this.element.style.display = '';
@@ -131,23 +125,23 @@ module.exports = Component.extend('opal-dropdown', {
 		}
 
 		this.emit('close');
-	},
+	}
 
-	_onDocumentClick(evt) {
+	_onDocumentClick(evt: Event): void {
 		let docEl = document.documentElement;
 		let el = this.element;
 
-		for (let node = evt.target; node != el;) {
+		for (let node = evt.target as HTMLElement; node != el;) {
 			if (node == docEl || node.tagName == 'A') {
 				this.close();
 				break;
 			}
 
-			node = node.parentNode;
+			node = node.parentNode as HTMLElement;
 
 			if (!node) {
 				break;
 			}
 		}
 	}
-});
+}

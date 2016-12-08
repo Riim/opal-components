@@ -110,8 +110,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 					// не соединять on-select и on-deselect в on-change,
-					// тк on-change на opal-select[multiple] генерируется только при закрытии,
-					// а здесь как раз закрыть и нужно
+					// тк on-change на opal-select[multiple] генерируется только при закрытии
 					select: function select() {
 						this.$('select').close();
 					},

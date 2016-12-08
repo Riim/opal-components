@@ -55,7 +55,7 @@ export default class OpalSlider extends Component {
 				_firstInputValue: range[0],
 				_secondInputValue: range[1],
 
-				_firstInputWidth() {
+				_firstInputWidth(this: OpalSlider): number {
 					let min = props['min'];
 					let all = props['max'] - min;
 

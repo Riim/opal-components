@@ -55,163 +55,144 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(52);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
+	var rionite_1 = __webpack_require__(1);
 	var openedDropdowns = [];
+	var OpalDropdown = (function (_super) {
+	    __extends(OpalDropdown, _super);
+	    function OpalDropdown() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalDropdown.prototype.ready = function () {
+	        if (this.props['opened']) {
+	            this._open();
+	        }
+	    };
+	    OpalDropdown.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	        if (name == 'opened') {
+	            this[value ? '_open' : '_close']();
+	        }
+	    };
+	    OpalDropdown.prototype.open = function () {
+	        if (this.props['opened']) {
+	            return false;
+	        }
+	        this.props['opened'] = true;
+	        return true;
+	    };
+	    OpalDropdown.prototype.close = function () {
+	        if (!this.props['opened']) {
+	            return false;
+	        }
+	        this.props['opened'] = false;
+	        return true;
+	    };
+	    OpalDropdown.prototype.toggle = function (value) {
+	        return (this.props['opened'] = value === undefined ? !this.props['opened'] : value);
+	    };
+	    OpalDropdown.prototype._open = function () {
+	        var _this = this;
+	        openedDropdowns.push(this);
+	        var el = this.element;
+	        var elStyle = el.style;
+	        elStyle.top = '100%';
+	        elStyle.right = '';
+	        elStyle.bottom = '';
+	        elStyle.left = '0';
+	        elStyle.display = 'block';
+	        elStyle.maxHeight = '';
+	        var docEl = document.documentElement;
+	        var container = el.offsetParent;
+	        var docElClientWidth = docEl.clientWidth;
+	        var containerClientRect = container.getBoundingClientRect();
+	        var elClientRect = el.getBoundingClientRect();
+	        if (elClientRect.right > docElClientWidth) {
+	            if (containerClientRect.right - el.offsetWidth >= 0) {
+	                elStyle.right = '0';
+	                elStyle.left = '';
+	            }
+	            else {
+	                elStyle.left = Math.max(-containerClientRect.left, docElClientWidth - elClientRect.right) + 'px';
+	            }
+	        }
+	        if (this.props['auto-height']) {
+	            var docElClientHeight = docEl.clientHeight;
+	            var margin = elClientRect.top - containerClientRect.bottom;
+	            var excess = elClientRect.bottom + margin - docElClientHeight;
+	            if (excess > 0) {
+	                var diff = containerClientRect.top - (docElClientHeight - containerClientRect.bottom);
+	                if (diff > 0) {
+	                    elStyle.top = '';
+	                    elStyle.bottom = '100%';
+	                    excess -= diff;
+	                    if (excess > 0) {
+	                        elStyle.maxHeight = el.offsetHeight - excess + 'px';
+	                    }
+	                }
+	                else {
+	                    elStyle.maxHeight = el.offsetHeight - excess + 'px';
+	                }
+	            }
+	        }
+	        if (this.props['auto-height']) {
+	            setTimeout(function () {
+	                if (_this.props['opened']) {
+	                    _this._documentClickListening = _this.listenTo(document, 'click', _this._onDocumentClick);
+	                }
+	            }, 1);
+	        }
+	        this.emit('open');
+	    };
+	    OpalDropdown.prototype._close = function () {
+	        openedDropdowns.splice(openedDropdowns.indexOf(this), 1);
+	        this.element.style.display = '';
+	        if (this._documentClickListening) {
+	            this._documentClickListening.stop();
+	        }
+	        this.emit('close');
+	    };
+	    OpalDropdown.prototype._onDocumentClick = function (evt) {
+	        var docEl = document.documentElement;
+	        var el = this.element;
+	        for (var node = evt.target; node != el;) {
+	            if (node == docEl || node.tagName == 'A') {
+	                this.close();
+	                break;
+	            }
+	            node = node.parentNode;
+	            if (!node) {
+	                break;
+	            }
+	        }
+	    };
+	    return OpalDropdown;
+	}(rionite_1.Component));
+	OpalDropdown = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-dropdown',
+	        props: {
+	            opened: false,
+	            autoHeight: true,
+	            autoClosing: false
+	        },
+	        template: '<rt-content class="opal-dropdown__content"></rt-content>'
+	    })
+	], OpalDropdown);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalDropdown;
 
-	module.exports = Component.extend('opal-dropdown', {
-		Static: {
-			props: {
-				opened: false,
-				autoHeight: true,
-				autoClosing: false
-			},
-
-			template: '<rt-content class="opal-dropdown__content"></rt-content>'
-		},
-
-		ready: function ready() {
-			if (this.props.opened) {
-				this._open();
-			}
-		},
-		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
-			if (name == 'opened') {
-				this[value ? '_open' : '_close']();
-			}
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		open: function open() {
-			if (this.props.opened) {
-				return false;
-			}
-
-			this.props.opened = true;
-			return true;
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		close: function close() {
-			if (!this.props.opened) {
-				return false;
-			}
-
-			this.props.opened = false;
-			return true;
-		},
-
-
-		/**
-	  * @typesign (value?: boolean) -> boolean;
-	  */
-		toggle: function toggle(value) {
-			return this.props.opened = value === undefined ? !this.props.opened : value;
-		},
-		_open: function _open() {
-			var _this = this;
-
-			openedDropdowns.push(this);
-
-			var el = this.element;
-			var elStyle = el.style;
-
-			elStyle.top = '100%';
-			elStyle.right = '';
-			elStyle.bottom = '';
-			elStyle.left = '0';
-			elStyle.display = 'block';
-			elStyle.maxHeight = '';
-
-			var docEl = document.documentElement;
-			var container = el.offsetParent;
-
-			var docElClientWidth = docEl.clientWidth;
-			var containerClientRect = container.getBoundingClientRect();
-			var elClientRect = el.getBoundingClientRect();
-
-			if (elClientRect.right > docElClientWidth) {
-				if (containerClientRect.right - el.offsetWidth >= 0) {
-					elStyle.right = '0';
-					elStyle.left = '';
-				} else {
-					elStyle.left = Math.max(-containerClientRect.left, docElClientWidth - elClientRect.right) + 'px';
-				}
-			}
-
-			if (this.props.autoHeight) {
-				var docElClientHeight = docEl.clientHeight;
-				var margin = elClientRect.top - containerClientRect.bottom;
-				var excess = elClientRect.bottom + margin - docElClientHeight;
-
-				if (excess > 0) {
-					var diff = containerClientRect.top - (docElClientHeight - containerClientRect.bottom);
-
-					if (diff > 0) {
-						elStyle.top = '';
-						elStyle.bottom = '100%';
-
-						excess -= diff;
-
-						if (excess > 0) {
-							elStyle.maxHeight = el.offsetHeight - excess + 'px';
-						}
-					} else {
-						elStyle.maxHeight = el.offsetHeight - excess + 'px';
-					}
-				}
-			}
-
-			if (this.props.autoClosing) {
-				setTimeout(function () {
-					if (_this.props.opened) {
-						_this._documentClickListening = _this.listenTo(document, 'click', _this._onDocumentClick);
-					}
-				}, 1);
-			}
-
-			this.emit('open');
-		},
-		_close: function _close() {
-			openedDropdowns.splice(openedDropdowns.indexOf(this), 1);
-
-			this.element.style.display = '';
-
-			if (this._documentClickListening) {
-				this._documentClickListening.stop();
-			}
-
-			this.emit('close');
-		},
-		_onDocumentClick: function _onDocumentClick(evt) {
-			var docEl = document.documentElement;
-			var el = this.element;
-
-			for (var node = evt.target; node != el;) {
-				if (node == docEl || node.tagName == 'A') {
-					this.close();
-					break;
-				}
-
-				node = node.parentNode;
-
-				if (!node) {
-					break;
-				}
-			}
-		}
-	});
 
 /***/ },
 

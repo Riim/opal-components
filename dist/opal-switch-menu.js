@@ -55,66 +55,75 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(70);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
+	var rionite_1 = __webpack_require__(1);
 	var forEach = Array.prototype.forEach;
 	var find = Array.prototype.find;
+	var OpalSwitchMenu = (function (_super) {
+	    __extends(OpalSwitchMenu, _super);
+	    function OpalSwitchMenu() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    Object.defineProperty(OpalSwitchMenu.prototype, "checkedButton", {
+	        get: function () {
+	            if (this._checkedButton !== undefined) {
+	                return this._checkedButton;
+	            }
+	            return (this._checkedButton = find.call(this.buttons, function (button) { return button.$c.checked; }) || null);
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    OpalSwitchMenu.prototype.ready = function () {
+	        this.buttons = this.element.getElementsByClassName('opal-button');
+	    };
+	    OpalSwitchMenu.prototype.clear = function () {
+	        var checkedButton = this._checkedButton;
+	        if (checkedButton) {
+	            checkedButton.uncheck();
+	            this._checkedButton = null;
+	        }
+	    };
+	    return OpalSwitchMenu;
+	}(rionite_1.Component));
+	OpalSwitchMenu = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-switch-menu',
+	        template: '<rt-content class="opal-switch-menu__content"></rt-content>',
+	        events: {
+	            ':component': {
+	                check: function (evt) {
+	                    var checkedButton = evt.target;
+	                    forEach.call(this.buttons, function (btn) {
+	                        if (btn.$c != checkedButton) {
+	                            btn.$c.uncheck();
+	                        }
+	                    });
+	                    this._checkedButton = checkedButton;
+	                    this.emit('change');
+	                },
+	                uncheck: function (evt) {
+	                    evt.target.check();
+	                }
+	            }
+	        }
+	    })
+	], OpalSwitchMenu);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalSwitchMenu;
 
-	module.exports = Component.extend('opal-switch-menu', {
-		Static: {
-			template: '<rt-content class="opal-switch-menu__content"></rt-content>',
-
-			events: {
-				':component': {
-					check: function check(_ref) {
-						var checkedButton = _ref.target;
-
-						forEach.call(this.buttons, function (btn) {
-							if (btn.$c != checkedButton) {
-								btn.$c.uncheck();
-							}
-						});
-
-						this._checkedButton = checkedButton;
-
-						this.emit('change');
-					},
-					uncheck: function uncheck(evt) {
-						evt.target.check();
-					}
-				}
-			}
-		},
-
-		_checkedButton: undefined,
-
-		get checkedButton() {
-			if (this._checkedButton !== undefined) {
-				return this._checkedButton;
-			}
-
-			return this._checkedButton = find.call(this.buttons, function (button) {
-				return button.$c.checked;
-			}) || null;
-		},
-
-		ready: function ready() {
-			this.buttons = this.element.getElementsByClassName('opal-button');
-		},
-		clear: function clear() {
-			var checkedButton = this._checkedButton;
-
-			if (checkedButton) {
-				checkedButton.uncheck();
-				this._checkedButton = null;
-			}
-		}
-	});
 
 /***/ },
 

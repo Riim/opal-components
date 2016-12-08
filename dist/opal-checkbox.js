@@ -55,181 +55,156 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(48);
+	var cellx_1 = __webpack_require__(2);
+	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(25);
+	var OpalCheckbox = (function (_super) {
+	    __extends(OpalCheckbox, _super);
+	    function OpalCheckbox() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalCheckbox.prototype.initialize = function () {
+	        cellx_1.define(this, {
+	            _tabIndex: function () {
+	                return this.props['disabled'] ? -1 : this.props['tab-index'];
+	            }
+	        });
+	    };
+	    OpalCheckbox.prototype.ready = function () {
+	        var props = this.props;
+	        if (props['checked']) {
+	            props['indeterminate'] = false;
+	            this.$('input').checked = true;
+	        }
+	        if (props['focused']) {
+	            this.focus();
+	        }
+	    };
+	    OpalCheckbox.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	        if (name == 'checked') {
+	            if (value) {
+	                this.props['indeterminate'] = false;
+	            }
+	            this.$('input').checked = value;
+	        }
+	        else if (name == 'indeterminate') {
+	            if (value) {
+	                this.props['checked'] = false;
+	            }
+	        }
+	        else if (name == 'focused') {
+	            if (value) {
+	                this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	                this.focus();
+	            }
+	            else {
+	                this._documentKeyDownListening.stop();
+	                this.blur();
+	            }
+	        }
+	    };
+	    Object.defineProperty(OpalCheckbox.prototype, "checked", {
+	        get: function () {
+	            return this.props['checked'];
+	        },
+	        set: function (checked) {
+	            this.props['checked'] = checked;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    OpalCheckbox.prototype.check = function () {
+	        if (!this.props['checked']) {
+	            this.props['checked'] = true;
+	            return true;
+	        }
+	        return false;
+	    };
+	    OpalCheckbox.prototype.uncheck = function () {
+	        if (this.props['checked']) {
+	            this.props['checked'] = false;
+	            return true;
+	        }
+	        return false;
+	    };
+	    OpalCheckbox.prototype.toggle = function (value) {
+	        return (this.props['checked'] = value === undefined ? !this.props['checked'] : value);
+	    };
+	    OpalCheckbox.prototype.focus = function () {
+	        this.$('control').focus();
+	        return this;
+	    };
+	    OpalCheckbox.prototype.blur = function () {
+	        this.$('control').blur();
+	        return this;
+	    };
+	    OpalCheckbox.prototype._onDocumentKeyDown = function (evt) {
+	        if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
+	            evt.preventDefault();
+	            var props = this.props;
+	            if (!props['disabled']) {
+	                this.emit((props['checked'] = !props['checked']) ? 'check' : 'uncheck');
+	                this.emit('change');
+	            }
+	        }
+	    };
+	    OpalCheckbox.prototype.enable = function () {
+	        this.props['disabled'] = false;
+	        return this;
+	    };
+	    OpalCheckbox.prototype.disable = function () {
+	        this.props['disabled'] = true;
+	        return this;
+	    };
+	    return OpalCheckbox;
+	}(rionite_1.Component));
+	OpalCheckbox = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-checkbox',
+	        props: {
+	            checked: false,
+	            indeterminate: false,
+	            focused: false,
+	            tabIndex: 0,
+	            disabled: false
+	        },
+	        template: template,
+	        events: {
+	            input: {
+	                change: function (evt) {
+	                    this.emit((this.props['checked'] = evt.target.checked) ? 'check' : 'uncheck');
+	                    this.emit('change');
+	                }
+	            },
+	            control: {
+	                focusin: function () {
+	                    this.props['focused'] = true;
+	                    this.emit('focusin');
+	                },
+	                focusout: function () {
+	                    this.props['focused'] = false;
+	                    this.emit('focusout');
+	                }
+	            }
+	        }
+	    })
+	], OpalCheckbox);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalCheckbox;
 
-	var cellx = __webpack_require__(2);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	module.exports = Component.extend('opal-checkbox', {
-		Static: {
-			props: {
-				checked: false,
-				indeterminate: false,
-				focused: false,
-				tabIndex: 0,
-				disabled: false
-			},
-
-			template: __webpack_require__(25),
-
-			events: {
-				input: {
-					change: function change(evt) {
-						this.emit((this.props.checked = evt.target.checked) ? 'check' : 'uncheck');
-						this.emit('change');
-					}
-				},
-
-				control: {
-					focusin: function focusin() {
-						this.props.focused = true;
-						this.emit('focusin');
-					},
-					focusout: function focusout() {
-						this.props.focused = false;
-						this.emit('focusout');
-					}
-				}
-			}
-		},
-
-		initialize: function initialize() {
-			cellx.define(this, {
-				_tabIndex: function _tabIndex() {
-					return this.props.disabled ? -1 : this.props.tabIndex;
-				}
-			});
-		},
-		ready: function ready() {
-			var props = this.props;
-
-			if (props.checked) {
-				props.indeterminate = false;
-				this.$('input').checked = true;
-			}
-
-			if (props.focused) {
-				this.focus();
-			}
-		},
-		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
-			if (name == 'checked') {
-				if (value) {
-					this.props.indeterminate = false;
-				}
-
-				this.$('input').checked = value;
-			} else if (name == 'indeterminate') {
-				if (value) {
-					this.props.checked = false;
-				}
-			} else if (name == 'focused') {
-				if (value) {
-					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-					this.focus();
-				} else {
-					this._documentKeyDownListening.stop();
-					this.blur();
-				}
-			}
-		},
-
-
-		/**
-	  * @type {boolean}
-	  */
-		get checked() {
-			return this.props.checked;
-		},
-		set checked(checked) {
-			this.props.checked = checked;
-		},
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		check: function check() {
-			if (!this.props.checked) {
-				this.props.checked = true;
-				return true;
-			}
-
-			return false;
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		uncheck: function uncheck() {
-			if (this.props.checked) {
-				this.props.checked = false;
-				return true;
-			}
-
-			return false;
-		},
-
-
-		/**
-	  * @typesign (value?: boolean) -> boolean;
-	  */
-		toggle: function toggle(value) {
-			return this.props.checked = value === undefined ? !this.props.checked : value;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalCheckbox;
-	  */
-		focus: function focus() {
-			this.$('control').focus();
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalCheckbox;
-	  */
-		blur: function blur() {
-			this.$('control').blur();
-			return this;
-		},
-		_onDocumentKeyDown: function _onDocumentKeyDown(evt) {
-			if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
-					evt.preventDefault();
-
-					var props = this.props;
-
-					if (!props.disabled) {
-						this.emit((props.checked = !props.checked) ? 'check' : 'uncheck');
-						this.emit('change');
-					}
-				}
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalCheckbox;
-	  */
-		enable: function enable() {
-			this.props.disabled = false;
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalCheckbox;
-	  */
-		disable: function disable() {
-			this.props.disabled = true;
-			return this;
-		}
-	});
 
 /***/ },
 
