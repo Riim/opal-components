@@ -55,85 +55,94 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(72);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	var OpalTabList = __webpack_require__(18);
-	var OpalTabPanel = __webpack_require__(20);
-
+	var rionite_1 = __webpack_require__(1);
+	var opal_tab_list_1 = __webpack_require__(5);
+	var opal_tab_panel_1 = __webpack_require__(7);
+	var template = __webpack_require__(41);
+	var opal_tab_list_2 = __webpack_require__(5);
+	exports.OpalTab = opal_tab_list_2.OpalTab;
+	exports.OpalTabList = opal_tab_list_2.default;
+	var opal_tab_panel_2 = __webpack_require__(7);
+	exports.OpalTabPanel = opal_tab_panel_2.default;
 	var indexOf = Array.prototype.indexOf;
 	var forEach = Array.prototype.forEach;
+	var OpalTabs = (function (_super) {
+	    __extends(OpalTabs, _super);
+	    function OpalTabs() {
+	        var _this = _super.apply(this, arguments) || this;
+	        _this._selectedTab = null;
+	        return _this;
+	    }
+	    OpalTabs.prototype.ready = function () {
+	        var _this = this;
+	        var tabs = this.tabs = this.element.getElementsByClassName('opal-tab');
+	        var tabPanels = this.tabPanels = this.element.getElementsByClassName('opal-tab-panel');
+	        var selectedTab;
+	        var selectedTabIndex;
+	        forEach.call(tabs, function (tabEl, index) {
+	            var tab = tabEl.$c;
+	            if (tab.selected) {
+	                if (selectedTab) {
+	                    tab.deselect();
+	                }
+	                else {
+	                    selectedTab = _this._selectedTab = tab;
+	                    selectedTabIndex = index;
+	                }
+	            }
+	        });
+	        if (selectedTab) {
+	            selectedTab = this._selectedTab = tabs[0].$c;
+	            selectedTabIndex = 0;
+	            selectedTab.select();
+	        }
+	        tabPanels[selectedTabIndex].$c.props['shown'] = true;
+	    };
+	    OpalTabs.prototype.elementAttached = function () {
+	        this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0].$c, {
+	            select: this._onTabListSelect,
+	            deselect: this._onTabListDeselect
+	        });
+	    };
+	    OpalTabs.prototype._onTabListSelect = function (evt) {
+	        var tab = evt.target;
+	        var selectedTab = this._selectedTab;
+	        if (selectedTab) {
+	            this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$c.props['shown'] = false;
+	            selectedTab.deselect();
+	        }
+	        this.tabPanels[indexOf.call(this.tabs, tab.element)].$c.props['shown'] = true;
+	        this._selectedTab = tab;
+	    };
+	    OpalTabs.prototype._onTabListDeselect = function (evt) {
+	        evt.target.select();
+	    };
+	    return OpalTabs;
+	}(rionite_1.Component));
+	OpalTabs.OpalTabList = opal_tab_list_1.default;
+	OpalTabs.OpalTabPanel = opal_tab_panel_1.default;
+	OpalTabs = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-tabs',
+	        template: template
+	    })
+	], OpalTabs);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalTabs;
 
-	module.exports = Component.extend('opal-tabs', {
-		Static: {
-			OpalTabList: OpalTabList,
-			OpalTabPanel: OpalTabPanel,
-
-			template: __webpack_require__(41)
-		},
-
-		_selectedTab: null,
-
-		ready: function ready() {
-			var _this = this;
-
-			var tabs = this.tabs = this.element.getElementsByClassName('opal-tab');
-			var tabPanels = this.tabPanels = this.element.getElementsByClassName('opal-tab-panel');
-
-			var selectedTab = void 0;
-			var selectedTabIndex = void 0;
-
-			forEach.call(tabs, function (_ref, index) {
-				var tab = _ref.$c;
-
-				if (tab.selected) {
-					if (selectedTab) {
-						tab.deselect();
-					} else {
-						selectedTab = _this._selectedTab = tab;
-						selectedTabIndex = index;
-					}
-				}
-			});
-
-			if (!selectedTab) {
-				selectedTab = this._selectedTab = tabs[0].$c;
-				selectedTabIndex = 0;
-
-				selectedTab.select();
-			}
-
-			tabPanels[selectedTabIndex].$c.props.shown = true;
-		},
-		elementAttached: function elementAttached() {
-			this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0].$c, {
-				select: this._onTabListSelect,
-				deselect: this._onTabListDeselect
-			});
-		},
-		_onTabListSelect: function _onTabListSelect(_ref2) {
-			var tab = _ref2.target;
-
-			var selectedTab = this._selectedTab;
-
-			if (selectedTab) {
-				this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$c.props.shown = false;
-				selectedTab.deselect();
-			}
-
-			this.tabPanels[indexOf.call(this.tabs, tab.element)].$c.props.shown = true;
-			this._selectedTab = tab;
-		},
-		_onTabListDeselect: function _onTabListDeselect(_ref3) {
-			var tab = _ref3.target;
-
-			tab.select();
-		}
-	});
 
 /***/ },
 
@@ -151,203 +160,217 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 18:
+/***/ 5:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(73);
+	var rionite_1 = __webpack_require__(1);
+	var opal_tab_1 = __webpack_require__(6);
+	var opal_tab_2 = __webpack_require__(6);
+	exports.OpalTab = opal_tab_2.default;
+	var OpalTabList = (function (_super) {
+	    __extends(OpalTabList, _super);
+	    function OpalTabList() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    return OpalTabList;
+	}(rionite_1.Component));
+	OpalTabList.OpalTab = opal_tab_1.default;
+	OpalTabList = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-tab-list',
+	        template: '<rt-content class="opal-tab-list__content"></rt-content>'
+	    })
+	], OpalTabList);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalTabList;
 
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	var OpalTab = __webpack_require__(19);
-
-	module.exports = Component.extend('opal-tab-list', {
-		Static: {
-			OpalTab: OpalTab,
-			template: '<rt-content class="opal-tab-list__content"></rt-content>'
-		}
-	});
 
 /***/ },
 
-/***/ 19:
+/***/ 6:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(74);
+	var cellx_1 = __webpack_require__(2);
+	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(42);
+	var OpalTab = (function (_super) {
+	    __extends(OpalTab, _super);
+	    function OpalTab() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalTab.prototype.initialize = function () {
+	        cellx_1.define(this, {
+	            _tabIndex: function () {
+	                return this.props['disabled'] ? -1 : this.props['tab-index'];
+	            }
+	        });
+	    };
+	    OpalTab.prototype.ready = function () {
+	        if (this.props['focused']) {
+	            this.focus();
+	        }
+	    };
+	    OpalTab.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	        if (name == 'focused') {
+	            if (value) {
+	                this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	                this.focus();
+	            }
+	            else {
+	                this._documentKeyDownListening.stop();
+	                this.blur();
+	            }
+	        }
+	    };
+	    OpalTab.prototype._onDocumentKeyDown = function (evt) {
+	        if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
+	            evt.preventDefault();
+	            if (!this.props['disabled']) {
+	                this._click();
+	            }
+	        }
+	    };
+	    OpalTab.prototype._click = function () {
+	        this.emit(this.toggle() ? 'select' : 'deselect');
+	    };
+	    Object.defineProperty(OpalTab.prototype, "selected", {
+	        get: function () {
+	            return this.props['selected'];
+	        },
+	        set: function (selected) {
+	            this.props['selected'] = selected;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    OpalTab.prototype.select = function () {
+	        if (!this.props['selected']) {
+	            this.props['selected'] = true;
+	            return true;
+	        }
+	        return false;
+	    };
+	    OpalTab.prototype.deselect = function () {
+	        if (this.props['selected']) {
+	            this.props['selected'] = false;
+	            return true;
+	        }
+	        return false;
+	    };
+	    OpalTab.prototype.toggle = function (value) {
+	        return (this.props['selected'] = value === undefined ? !this.props['selected'] : value);
+	    };
+	    OpalTab.prototype.focus = function () {
+	        this.$('button').focus();
+	        return this;
+	    };
+	    OpalTab.prototype.blur = function () {
+	        this.$('button').blur();
+	        return this;
+	    };
+	    OpalTab.prototype.enable = function () {
+	        this.props['disabled'] = false;
+	        return this;
+	    };
+	    OpalTab.prototype.disable = function () {
+	        this.props['disabled'] = true;
+	        return this;
+	    };
+	    return OpalTab;
+	}(rionite_1.Component));
+	OpalTab = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-tab',
+	        props: {
+	            selected: false,
+	            focused: false,
+	            tabIndex: 0,
+	            disabled: false
+	        },
+	        template: template,
+	        events: {
+	            button: {
+	                focusin: function () {
+	                    this.props['focused'] = true;
+	                },
+	                focusout: function () {
+	                    this.props['focused'] = false;
+	                },
+	                click: function () {
+	                    this._click();
+	                }
+	            }
+	        }
+	    })
+	], OpalTab);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalTab;
 
-	var cellx = __webpack_require__(2);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	module.exports = Component.extend('opal-tab', {
-		Static: {
-			props: {
-				selected: false,
-				focused: false,
-				tabIndex: 0,
-				disabled: false
-			},
-
-			template: __webpack_require__(42),
-
-			events: {
-				button: {
-					focusin: function focusin() {
-						this.props.focused = true;
-					},
-					focusout: function focusout() {
-						this.props.focused = false;
-					},
-					click: function click() {
-						this._click();
-					}
-				}
-			}
-		},
-
-		initialize: function initialize() {
-			cellx.define(this, {
-				_tabIndex: function _tabIndex() {
-					return this.props.disabled ? -1 : this.props.tabIndex;
-				}
-			});
-		},
-		ready: function ready() {
-			if (this.props.focused) {
-				this.focus();
-			}
-		},
-		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
-			if (name == 'focused') {
-				if (value) {
-					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-					this.focus();
-				} else {
-					this._documentKeyDownListening.stop();
-					this.blur();
-				}
-			}
-		},
-		_onDocumentKeyDown: function _onDocumentKeyDown(evt) {
-			if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
-					evt.preventDefault();
-
-					if (!this.props.disabled) {
-						this._click();
-					}
-				}
-		},
-		_click: function _click() {
-			this.emit(this.toggle() ? 'select' : 'deselect');
-		},
-
-
-		/**
-	  * @type {boolean}
-	  */
-		get selected() {
-			return this.props.selected;
-		},
-		set selected(selected) {
-			this.props.selected = selected;
-		},
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		select: function select() {
-			if (!this.props.selected) {
-				this.props.selected = true;
-				return true;
-			}
-
-			return false;
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		deselect: function deselect() {
-			if (this.props.selected) {
-				this.props.selected = false;
-				return true;
-			}
-
-			return false;
-		},
-
-
-		/**
-	  * @typesign (value?: boolean) -> boolean;
-	  */
-		toggle: function toggle(value) {
-			return this.props.selected = value === undefined ? !this.props.selected : value;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalTab;
-	  */
-		focus: function focus() {
-			this.$('button').focus();
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalTab;
-	  */
-		blur: function blur() {
-			this.$('button').blur();
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalTab;
-	  */
-		enable: function enable() {
-			this.props.disabled = false;
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalTab;
-	  */
-		disable: function disable() {
-			this.props.disabled = true;
-			return this;
-		}
-	});
 
 /***/ },
 
-/***/ 20:
+/***/ 7:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(75);
+	var rionite_1 = __webpack_require__(1);
+	var OpalTabPanel = (function (_super) {
+	    __extends(OpalTabPanel, _super);
+	    function OpalTabPanel() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    return OpalTabPanel;
+	}(rionite_1.Component));
+	OpalTabPanel = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-tab-panel',
+	        props: {
+	            shown: false
+	        },
+	        template: '<rt-content class="opal-tab-panel__content"></rt-content>'
+	    })
+	], OpalTabPanel);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalTabPanel;
 
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	module.exports = Component.extend('opal-tab-panel', {
-		Static: {
-			props: {
-				shown: false
-			},
-
-			template: '<rt-content class="opal-tab-panel__content"></rt-content>'
-		}
-	});
 
 /***/ },
 

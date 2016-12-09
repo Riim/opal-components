@@ -55,165 +55,147 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(60);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component,
-	    ComponentTemplate = _require.ComponentTemplate;
-
+	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(32);
 	var openedModals = [];
-	var documentListening = void 0;
-
+	var documentListening;
 	function onDocumentFocusIn() {
-		if (document.activeElement != document.body && !openedModals[0].element.contains(document.activeElement.parentNode)) {
-			openedModals[0].$('btn-close').focus();
-		}
+	    if (document.activeElement != document.body &&
+	        !openedModals[0].element.contains(document.activeElement.parentNode)) {
+	        openedModals[0].$('btn-close').focus();
+	    }
 	}
-
 	function onDocumentKeyUp(evt) {
-		if (evt.keyCode == 27 /* Esc */) {
-				evt.preventDefault();
-				openedModals[0].close();
-			}
+	    if (evt.keyCode == 27 /* Esc */) {
+	        evt.preventDefault();
+	        openedModals[0].close();
+	    }
 	}
+	var OpalModal = (function (_super) {
+	    __extends(OpalModal, _super);
+	    function OpalModal() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalModal.prototype.ready = function () {
+	        if (this.props['opened']) {
+	            this._open();
+	        }
+	    };
+	    OpalModal.prototype.elementDetached = function () {
+	        this.close();
+	    };
+	    OpalModal.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	        if (name == 'opened') {
+	            this[value ? '_open' : '_close']();
+	        }
+	    };
+	    OpalModal.prototype.open = function () {
+	        if (this.props['opened']) {
+	            return false;
+	        }
+	        this.props['opened'] = true;
+	        return true;
+	    };
+	    OpalModal.prototype.close = function () {
+	        if (!this.props['opened']) {
+	            return false;
+	        }
+	        this.props['opened'] = false;
+	        return true;
+	    };
+	    OpalModal.prototype.toggle = function (value) {
+	        return (this.props['opened'] = value === undefined ? !this.props['opened'] : value);
+	    };
+	    OpalModal.prototype._open = function () {
+	        if (openedModals.length) {
+	            openedModals[0].element.classList.add('_overlapped');
+	        }
+	        else {
+	            documentListening = this.listenTo(document, {
+	                focusin: onDocumentFocusIn,
+	                keyup: onDocumentKeyUp
+	            });
+	            var body = document.body;
+	            var initialBodyWidth = body.offsetWidth;
+	            body.style.overflow = 'hidden';
+	            if (initialBodyWidth < body.offsetWidth) {
+	                body.style.marginRight = body.offsetWidth - initialBodyWidth + 'px';
+	            }
+	        }
+	        this.props['opened'] = true;
+	        openedModals.unshift(this);
+	        this.$('btn-close').focus();
+	        this.emit('open');
+	    };
+	    OpalModal.prototype._close = function () {
+	        var index = openedModals.indexOf(this);
+	        if (index) {
+	            openedModals[index - 1].close();
+	        }
+	        this.props['opened'] = false;
+	        openedModals.shift();
+	        if (openedModals.length) {
+	            openedModals[0].element.classList.remove('_overlapped');
+	            openedModals[0].$('btn-close').focus();
+	        }
+	        else {
+	            documentListening.stop();
+	            var bodyStyle = document.body.style;
+	            bodyStyle.overflow = '';
+	            bodyStyle.marginRight = '';
+	        }
+	        this.emit('close');
+	    };
+	    return OpalModal;
+	}(rionite_1.Component));
+	OpalModal = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-modal',
+	        props: {
+	            opened: false
+	        },
+	        template: new rionite_1.ComponentTemplate(template),
+	        events: {
+	            ':element': {
+	                click: function (evt) {
+	                    var el = this.element;
+	                    var windowEl = this.$('window');
+	                    for (var node = evt.target; node != windowEl;) {
+	                        if (node == el) {
+	                            this.close();
+	                            break;
+	                        }
+	                        node = node.parentNode;
+	                        if (!node) {
+	                            break;
+	                        }
+	                    }
+	                }
+	            },
+	            'btn-close': {
+	                click: function () {
+	                    this.props['opened'] = false;
+	                }
+	            }
+	        }
+	    })
+	], OpalModal);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalModal;
 
-	module.exports = Component.extend('opal-modal', {
-		Static: {
-			props: {
-				opened: false
-			},
-
-			template: new ComponentTemplate(__webpack_require__(32)),
-
-			events: {
-				':element': {
-					click: function click(evt) {
-						var el = this.element;
-						var windowEl = this.$('window');
-
-						for (var node = evt.target; node != windowEl;) {
-							if (node == el) {
-								this.close();
-								break;
-							}
-
-							node = node.parentNode;
-
-							if (!node) {
-								break;
-							}
-						}
-					}
-				},
-
-				'btn-close': {
-					click: function click() {
-						this.props.opened = false;
-					}
-				}
-			}
-		},
-
-		ready: function ready() {
-			if (this.props.opened) {
-				this._open();
-			}
-		},
-		elementDetached: function elementDetached() {
-			this.close();
-		},
-		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
-			if (name == 'opened') {
-				this[value ? '_open' : '_close']();
-			}
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		open: function open() {
-			if (this.props.opened) {
-				return false;
-			}
-
-			this.props.opened = true;
-			return true;
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		close: function close() {
-			if (!this.props.opened) {
-				return false;
-			}
-
-			this.props.opened = false;
-			return true;
-		},
-
-
-		/**
-	  * @typesign (value?: boolean) -> boolean;
-	  */
-		toggle: function toggle(value) {
-			return this.props.opened = value === undefined ? !this.props.opened : value;
-		},
-		_open: function _open() {
-			if (openedModals.length) {
-				openedModals[0].element.classList.add('_overlapped');
-			} else {
-				documentListening = this.listenTo(document, {
-					focusin: onDocumentFocusIn,
-					keyup: onDocumentKeyUp
-				});
-
-				var body = document.body;
-				var initialBodyWidth = body.offsetWidth;
-
-				body.style.overflow = 'hidden';
-
-				if (initialBodyWidth < body.offsetWidth) {
-					body.style.marginRight = body.offsetWidth - initialBodyWidth + 'px';
-				}
-			}
-
-			this.props.opened = true;
-			openedModals.unshift(this);
-
-			this.$('btn-close').focus();
-
-			this.emit('open');
-		},
-		_close: function _close() {
-			var index = openedModals.indexOf(this);
-
-			if (index) {
-				openedModals[index - 1].close();
-			}
-
-			this.props.opened = false;
-			openedModals.shift();
-
-			if (openedModals.length) {
-				openedModals[0].element.classList.remove('_overlapped');
-				openedModals[0].$('btn-close').focus();
-			} else {
-				documentListening.stop();
-
-				var bodyStyle = document.body.style;
-
-				bodyStyle.overflow = '';
-				bodyStyle.marginRight = '';
-			}
-
-			this.emit('close');
-		}
-	});
 
 /***/ },
 

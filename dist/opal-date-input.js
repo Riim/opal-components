@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Component = _require.Component,
 	    ComponentTemplate = _require.ComponentTemplate;
 
-	var isExistDate = __webpack_require__(8);
+	var isExistDate = __webpack_require__(11);
 
 	module.exports = Component.extend('opal-date-input', {
 		Static: {
@@ -96,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 8:
+/***/ 11:
 /***/ function(module, exports) {
 
 	"use strict";

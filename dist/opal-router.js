@@ -65,10 +65,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    hyphenize = _require$Utils.hyphenize,
 	    escapeHTML = _require$Utils.escapeHTML;
 
-	var OpalRoute = __webpack_require__(14);
-	var escapeRegExp = __webpack_require__(13);
-	var PathNodeType = __webpack_require__(4);
-	var parsePath = __webpack_require__(15);
+	var OpalRoute = __webpack_require__(17);
+	var escapeRegExp = __webpack_require__(16);
+	var PathNodeType = __webpack_require__(8);
+	var parsePath = __webpack_require__(18);
 
 	var forEach = Array.prototype.forEach;
 
@@ -236,7 +236,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 4:
+/***/ 8:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -249,7 +249,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 13:
+/***/ 16:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -267,7 +267,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 14:
+/***/ 17:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -286,12 +286,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 15:
+/***/ 18:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var PathNodeType = __webpack_require__(4);
+	var PathNodeType = __webpack_require__(8);
 
 	var reName = /[a-z][0-9a-z]*/i;
 

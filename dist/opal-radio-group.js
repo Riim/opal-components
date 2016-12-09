@@ -60,7 +60,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _require = __webpack_require__(1),
 	    Component = _require.Component;
 
-	var OpalRadioButton = __webpack_require__(12);
+	var OpalRadioButton = __webpack_require__(15);
 
 	var forEach = Array.prototype.forEach;
 
@@ -107,7 +107,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 12:
+/***/ 15:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
