@@ -18,15 +18,15 @@ import template = require('./index.html');
 
 	events: {
 		button: {
-			focusin(): void {
+			focusin() {
 				this.props['focused'] = true;
 			},
 
-			focusout(): void {
+			focusout() {
 				this.props['focused'] = false;
 			},
 
-			click(this: OpalTab): void {
+			click(this: OpalTab) {
 				this._click();
 			}
 		}
@@ -45,13 +45,13 @@ export default class OpalTab extends Component {
 		});
 	}
 
-	ready(): void {
+	ready() {
 		if (this.props['focused']) {
 			this.focus();
 		}
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any): void {
+	elementAttributeChanged(name: string, oldValue: any, value: any) {
 		if (name == 'focused') {
 			if (value) {
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
@@ -63,7 +63,7 @@ export default class OpalTab extends Component {
 		}
 	}
 
-	_onDocumentKeyDown(evt: KeyboardEvent): void {
+	_onDocumentKeyDown(evt: KeyboardEvent) {
 		if (evt.which == 13/* Enter */ || evt.which == 32/* Space */) {
 			evt.preventDefault();
 
@@ -73,7 +73,7 @@ export default class OpalTab extends Component {
 		}
 	}
 
-	_click(): void {
+	_click() {
 		this.emit(this.toggle() ? 'select' : 'deselect');
 	}
 

@@ -13,7 +13,7 @@ let find = (Array.prototype as any).find;
 
 	events: {
 		':component': {
-			check(this: OpalSwitchMenu, evt: IEvent): void {
+			check(this: OpalSwitchMenu, evt: IEvent) {
 				let checkedButton = evt.target as OpalButton;
 
 				forEach.call(this.buttons, (btn: IComponentElement) => {
@@ -27,7 +27,7 @@ let find = (Array.prototype as any).find;
 				this.emit('change');
 			},
 
-			uncheck(evt: IEvent): void {
+			uncheck(evt: IEvent) {
 				(evt.target as OpalButton).check();
 			}
 		}
@@ -48,11 +48,11 @@ export default class OpalSwitchMenu extends Component {
 		);
 	}
 
-	ready(): void {
+	ready() {
 		this.buttons = this.element.getElementsByClassName('opal-button') as NodeListOf<HTMLElement>;
 	}
 
-	clear(): void {
+	clear() {
 		let checkedButton = this._checkedButton;
 
 		if (checkedButton) {

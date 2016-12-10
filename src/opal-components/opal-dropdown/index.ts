@@ -18,13 +18,13 @@ let openedDropdowns: Array<OpalDropdown> = [];
 export default class OpalDropdown extends Component {
 	_documentClickListening: IListening;
 
-	ready(): void {
+	ready() {
 		if (this.props['opened']) {
 			this._open();
 		}
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any): void {
+	elementAttributeChanged(name: string, oldValue: any, value: any) {
 		if (name == 'opened') {
 			this[value ? '_open' : '_close']();
 		}
@@ -52,7 +52,7 @@ export default class OpalDropdown extends Component {
 		return (this.props['opened'] = value === undefined ? !this.props['opened'] : value);
 	}
 
-	_open(): void {
+	_open() {
 		openedDropdowns.push(this);
 
 		let el = this.element;
@@ -115,7 +115,7 @@ export default class OpalDropdown extends Component {
 		this.emit('open');
 	}
 
-	_close(): void {
+	_close() {
 		openedDropdowns.splice(openedDropdowns.indexOf(this), 1);
 
 		this.element.style.display = '';
@@ -127,7 +127,7 @@ export default class OpalDropdown extends Component {
 		this.emit('close');
 	}
 
-	_onDocumentClick(evt: Event): void {
+	_onDocumentClick(evt: Event) {
 		let docEl = document.documentElement;
 		let el = this.element;
 

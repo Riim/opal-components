@@ -28,22 +28,22 @@ import template = require('./index.html');
 
 	events: {
 		input: {
-			focusin(): void {
+			focusin() {
 				this.props['focused'] = true;
 				this.emit('focusin');
 			},
 
-			focusout(): void {
+			focusout() {
 				this.props['focused'] = false;
 				this.emit('focusout');
 			},
 
-			input(this: OpalTextInput, evt: Event): void {
+			input(this: OpalTextInput, evt: Event) {
 				this.value = (evt.target as HTMLInputElement).value;
 				this.emit({ type: 'input', initialEvent: evt });
 			},
 
-			change(evt: Event): void {
+			change(evt: Event) {
 				let storeKey = this.props['store-key'];
 
 				if (storeKey) {
@@ -53,7 +53,7 @@ import template = require('./index.html');
 				this.emit({ type: 'change', initialEvent: evt });
 			},
 
-			keydown(this: OpalTextInput, evt: Event): void {
+			keydown(this: OpalTextInput, evt: Event) {
 				if (this.props['multiline'] && this.props['auto-height']) {
 					setTimeout(() => {
 						this._fixHeight();
@@ -63,7 +63,7 @@ import template = require('./index.html');
 				this.emit({ type: 'keydown', initialEvent: evt });
 			},
 
-			keypress(evt: KeyboardEvent): void {
+			keypress(evt: KeyboardEvent) {
 				if (evt.which == 13/* Enter */) {
 					this.emit('confirminput');
 				}
@@ -71,7 +71,7 @@ import template = require('./index.html');
 				this.emit({ type: 'keypress', initialEvent: evt });
 			},
 
-			keyup(evt: Event): void {
+			keyup(evt: Event) {
 				this.emit({ type: 'keyup', initialEvent: evt });
 			}
 		}
@@ -82,7 +82,7 @@ export default class OpalTextInput extends Component {
 
 	_initialHeight: number;
 
-	initialize(): void {
+	initialize() {
 		define(this, {
 			btnClearShown(this: OpalTextInput): boolean {
 				return !!this.props['value'] && !this.props['loading'];
@@ -90,7 +90,7 @@ export default class OpalTextInput extends Component {
 		});
 	}
 
-	ready(): void {
+	ready() {
 		let props = this.props;
 		let value = props['value'];
 		let input = this.$('input') as HTMLInputElement;
@@ -116,7 +116,7 @@ export default class OpalTextInput extends Component {
 		}
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any): void {
+	elementAttributeChanged(name: string, oldValue: any, value: any) {
 		if (name == 'value') {
 			let input = this.$('input') as HTMLInputElement;
 
@@ -128,7 +128,7 @@ export default class OpalTextInput extends Component {
 		}
 	}
 
-	_onBtnClearClick(evt: Event): void {
+	_onBtnClearClick(evt: Event) {
 		evt.preventDefault();
 
 		this.value = '';
@@ -137,7 +137,7 @@ export default class OpalTextInput extends Component {
 		this.emit({ type: 'change', initialEvent: evt });
 	}
 
-	_fixHeight(): void {
+	_fixHeight() {
 		let input = this.$('input') as HTMLTextAreaElement;
 		let lineHeight = parseInt(getComputedStyle(input).lineHeight as string, 10);
 

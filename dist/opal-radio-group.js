@@ -55,41 +55,57 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	var OpalRadioButton = __webpack_require__(15);
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var rionite_1 = __webpack_require__(1);
+	var opal_radio_button_1 = __webpack_require__(5);
+	var opal_radio_button_2 = __webpack_require__(5);
+	exports.OpalRadioButton = opal_radio_button_2.default;
 	var forEach = Array.prototype.forEach;
+	var OpalRadioGroup = (function (_super) {
+	    __extends(OpalRadioGroup, _super);
+	    function OpalRadioGroup() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalRadioGroup.prototype.ready = function () {
+	        this.buttons = this.element.getElementsByClassName('opal-radio-button');
+	    };
+	    return OpalRadioGroup;
+	}(rionite_1.Component));
+	OpalRadioGroup.OpalRadioButton = opal_radio_button_1.default;
+	OpalRadioGroup = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-radio-group',
+	        events: {
+	            ':component': {
+	                check: function (evt) {
+	                    var checkedButton = evt.target;
+	                    forEach.call(this.buttons, function (btn) {
+	                        if (btn.$c != checkedButton) {
+	                            btn.$c.uncheck();
+	                        }
+	                    });
+	                },
+	                uncheck: function (evt) {
+	                    evt.target.check();
+	                }
+	            }
+	        }
+	    })
+	], OpalRadioGroup);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalRadioGroup;
 
-	module.exports = Component.extend('opal-radio-group', {
-		Static: {
-			OpalRadioButton: OpalRadioButton,
-
-			events: {
-				':component': {
-					check: function check(_ref) {
-						var checkedButton = _ref.target;
-
-						forEach.call(this.buttons, function (btn) {
-							if (btn.$c != checkedButton) {
-								btn.$c.uncheck();
-							}
-						});
-					},
-					uncheck: function uncheck(evt) {
-						evt.target.check();
-					}
-				}
-			}
-		},
-
-		ready: function ready() {
-			this.buttons = this.element.getElementsByClassName('opal-radio-button');
-		}
-	});
 
 /***/ },
 
@@ -107,174 +123,149 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 15:
+/***/ 5:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(64);
+	var cellx_1 = __webpack_require__(2);
+	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(35);
+	var OpalRadioButton = (function (_super) {
+	    __extends(OpalRadioButton, _super);
+	    function OpalRadioButton() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalRadioButton.prototype.initialize = function () {
+	        cellx_1.define(this, {
+	            _tabIndex: function () {
+	                return this.props['disabled'] ? -1 : this.props['tab-index'];
+	            }
+	        });
+	    };
+	    OpalRadioButton.prototype.ready = function () {
+	        var props = this.props;
+	        if (props['checked']) {
+	            this.$('input').checked = true;
+	        }
+	        if (props['focused']) {
+	            this.focus();
+	        }
+	    };
+	    OpalRadioButton.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	        if (name == 'checked') {
+	            this.$('input').checked = value;
+	        }
+	        else if (name == 'focused') {
+	            if (value) {
+	                this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	                this.focus();
+	            }
+	            else {
+	                this._documentKeyDownListening.stop();
+	                this.blur();
+	            }
+	        }
+	    };
+	    Object.defineProperty(OpalRadioButton.prototype, "checked", {
+	        get: function () {
+	            return this.props['checked'];
+	        },
+	        set: function (checked) {
+	            this.props['checked'] = checked;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    OpalRadioButton.prototype.check = function () {
+	        if (!this.props['checked']) {
+	            this.props['checked'] = true;
+	            return true;
+	        }
+	        return false;
+	    };
+	    OpalRadioButton.prototype.uncheck = function () {
+	        if (this.props['checked']) {
+	            this.props['checked'] = false;
+	            return true;
+	        }
+	        return false;
+	    };
+	    OpalRadioButton.prototype.toggle = function (value) {
+	        return (this.props['checked'] = value === undefined ? !this.props['checked'] : value);
+	    };
+	    OpalRadioButton.prototype.focus = function () {
+	        this.$('control').focus();
+	        return this;
+	    };
+	    OpalRadioButton.prototype.blur = function () {
+	        this.$('control').blur();
+	        return this;
+	    };
+	    OpalRadioButton.prototype._onDocumentKeyDown = function (evt) {
+	        if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
+	            evt.preventDefault();
+	            var props = this.props;
+	            if (!props['disabled']) {
+	                this.emit((props['checked'] = !props['checked']) ? 'check' : 'uncheck');
+	                this.emit('change');
+	            }
+	        }
+	    };
+	    OpalRadioButton.prototype.enable = function () {
+	        this.props['disabled'] = false;
+	        return this;
+	    };
+	    OpalRadioButton.prototype.disable = function () {
+	        this.props['disabled'] = true;
+	        return this;
+	    };
+	    return OpalRadioButton;
+	}(rionite_1.Component));
+	OpalRadioButton = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-radio-button',
+	        props: {
+	            checked: false,
+	            focused: false,
+	            tabIndex: 0,
+	            disabled: false
+	        },
+	        template: template,
+	        events: {
+	            input: {
+	                change: function (evt) {
+	                    this.emit((this.props['checked'] = evt.target.checked) ? 'check' : 'uncheck');
+	                    this.emit('change');
+	                }
+	            },
+	            control: {
+	                focusin: function () {
+	                    this.props['focused'] = true;
+	                    this.emit('focusin');
+	                },
+	                focusout: function () {
+	                    this.props['focused'] = false;
+	                    this.emit('focusout');
+	                }
+	            }
+	        }
+	    })
+	], OpalRadioButton);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalRadioButton;
 
-	var cellx = __webpack_require__(2);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	module.exports = Component.extend('opal-radio-button', {
-		Static: {
-			props: {
-				checked: false,
-				focused: false,
-				tabIndex: 0,
-				disabled: false
-			},
-
-			template: __webpack_require__(35),
-
-			events: {
-				input: {
-					change: function change(evt) {
-						this.emit((this.props.checked = evt.target.checked) ? 'check' : 'uncheck');
-						this.emit('change');
-					}
-				},
-
-				control: {
-					focusin: function focusin() {
-						this.props.focused = true;
-						this.emit('focusin');
-					},
-					focusout: function focusout() {
-						this.props.focused = false;
-						this.emit('focusout');
-					}
-				}
-			}
-		},
-
-		initialize: function initialize() {
-			cellx.define(this, {
-				_tabIndex: function _tabIndex() {
-					return this.props.disabled ? -1 : this.props.tabIndex;
-				}
-			});
-		},
-		ready: function ready() {
-			var props = this.props;
-
-			if (props.checked) {
-				this.$('input').checked = true;
-			}
-
-			if (props.focused) {
-				this.focus();
-			}
-		},
-		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
-			if (name == 'checked') {
-				this.$('input').checked = value;
-			} else if (name == 'focused') {
-				if (value) {
-					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-					this.focus();
-				} else {
-					this._documentKeyDownListening.stop();
-					this.blur();
-				}
-			}
-		},
-
-
-		/**
-	  * @type {boolean}
-	  */
-		get checked() {
-			return this.props.checked;
-		},
-		set checked(checked) {
-			this.props.checked = checked;
-		},
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		check: function check() {
-			if (!this.props.checked) {
-				this.props.checked = true;
-				return true;
-			}
-
-			return false;
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		uncheck: function uncheck() {
-			if (this.props.checked) {
-				this.props.checked = false;
-				return true;
-			}
-
-			return false;
-		},
-
-
-		/**
-	  * @typesign (value?: boolean) -> boolean;
-	  */
-		toggle: function toggle(value) {
-			return this.props.checked = value === undefined ? !this.props.checked : value;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalRadioButton;
-	  */
-		focus: function focus() {
-			this.$('control').focus();
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalRadioButton;
-	  */
-		blur: function blur() {
-			this.$('control').blur();
-			return this;
-		},
-		_onDocumentKeyDown: function _onDocumentKeyDown(evt) {
-			if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
-					evt.preventDefault();
-
-					var props = this.props;
-
-					if (!props.disabled) {
-						this.emit((props.checked = !props.checked) ? 'check' : 'uncheck');
-						this.emit('change');
-					}
-				}
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalRadioButton;
-	  */
-		enable: function enable() {
-			this.props.disabled = false;
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalRadioButton;
-	  */
-		disable: function disable() {
-			this.props.disabled = true;
-			return this;
-		}
-	});
 
 /***/ },
 

@@ -67,7 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var OpalRoute = __webpack_require__(17);
 	var escapeRegExp = __webpack_require__(16);
-	var PathNodeType = __webpack_require__(8);
+	var PathNodeType = __webpack_require__(9);
 	var parsePath = __webpack_require__(18);
 
 	var forEach = Array.prototype.forEach;
@@ -236,7 +236,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 8:
+/***/ 9:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -291,7 +291,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var PathNodeType = __webpack_require__(8);
+	var PathNodeType = __webpack_require__(9);
 
 	var reName = /[a-z][0-9a-z]*/i;
 

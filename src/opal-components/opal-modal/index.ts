@@ -6,7 +6,7 @@ import template = require('./index.html');
 let openedModals: Array<OpalModal> = [];
 let documentListening: IListening;
 
-function onDocumentFocusIn(): void {
+function onDocumentFocusIn() {
 	if (
 		document.activeElement != document.body &&
 			!openedModals[0].element.contains(document.activeElement.parentNode as HTMLElement)
@@ -15,7 +15,7 @@ function onDocumentFocusIn(): void {
 	}
 }
 
-function onDocumentKeyUp(evt: KeyboardEvent): void {
+function onDocumentKeyUp(evt: KeyboardEvent) {
 	if (evt.keyCode == 27/* Esc */) {
 		evt.preventDefault();
 		openedModals[0].close();
@@ -33,7 +33,7 @@ function onDocumentKeyUp(evt: KeyboardEvent): void {
 
 	events: {
 		':element': {
-			click(this: OpalModal, evt: Event): void {
+			click(this: OpalModal, evt: Event) {
 				let el = this.element;
 				let windowEl = this.$('window');
 
@@ -53,24 +53,24 @@ function onDocumentKeyUp(evt: KeyboardEvent): void {
 		},
 
 		'btn-close': {
-			click(): void {
+			click() {
 				this.props['opened'] = false;
 			}
 		}
 	}
 })
 export default class OpalModal extends Component {
-	ready(): void {
+	ready() {
 		if (this.props['opened']) {
 			this._open();
 		}
 	}
 
-	elementDetached(): void {
+	elementDetached() {
 		this.close();
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any): void {
+	elementAttributeChanged(name: string, oldValue: any, value: any) {
 		if (name == 'opened') {
 			this[value ? '_open' : '_close']();
 		}
@@ -98,7 +98,7 @@ export default class OpalModal extends Component {
 		return (this.props['opened'] = value === undefined ? !this.props['opened'] : value);
 	}
 
-	_open(): void {
+	_open() {
 		if (openedModals.length) {
 			openedModals[0].element.classList.add('_overlapped');
 		} else {
@@ -125,7 +125,7 @@ export default class OpalModal extends Component {
 		this.emit('open');
 	}
 
-	_close(): void {
+	_close() {
 		let index = openedModals.indexOf(this);
 
 		if (index) {

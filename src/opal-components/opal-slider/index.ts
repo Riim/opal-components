@@ -19,7 +19,7 @@ import template = require('./index.html');
 
 	events: {
 		'first-input': {
-			input(this: OpalSlider, evt: Event): void {
+			input(this: OpalSlider, evt: Event) {
 				let secondInput = this.$('second-input') as HTMLInputElement;
 				let value = this._firstInputValue = +(evt.target as HTMLInputElement).value;
 
@@ -30,7 +30,7 @@ import template = require('./index.html');
 		},
 
 		'second-input': {
-			input(this: OpalSlider, evt: Event): void {
+			input(this: OpalSlider, evt: Event) {
 				let firstInput = this.$('first-input') as HTMLInputElement;
 				let value = this._secondInputValue = +(evt.target as HTMLInputElement).value;
 
@@ -46,7 +46,7 @@ export default class OpalSlider extends Component {
 	_secondInputValue: number;
 	_firstInputWidth: number;
 
-	initialize(): void {
+	initialize() {
 		let props = this.props;
 		let range = props['range'];
 

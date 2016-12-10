@@ -26,7 +26,7 @@ export default class OpalTabs extends Component {
 
 	_selectedTab: OpalTab | null = null;
 
-	ready(): void {
+	ready() {
 		let tabs = this.tabs = this.element.getElementsByClassName('opal-tab') as NodeListOf<IComponentElement>;
 		let tabPanels = this.tabPanels = this.element.getElementsByClassName('opal-tab-panel') as
 			NodeListOf<IComponentElement>;
@@ -34,7 +34,7 @@ export default class OpalTabs extends Component {
 		let selectedTab: OpalTab | undefined;
 		let selectedTabIndex: number | undefined;
 
-		forEach.call(tabs, (tabEl: IComponentElement, index: number): void => {
+		forEach.call(tabs, (tabEl: IComponentElement, index: number) => {
 			let tab = tabEl.$c as OpalTab;
 
 			if (tab.selected) {
@@ -47,7 +47,7 @@ export default class OpalTabs extends Component {
 			}
 		});
 
-		if (selectedTab) {
+		if (!selectedTab) {
 			selectedTab = this._selectedTab = tabs[0].$c as OpalTab;
 			selectedTabIndex = 0;
 
@@ -57,14 +57,14 @@ export default class OpalTabs extends Component {
 		tabPanels[selectedTabIndex as number].$c.props['shown'] = true;
 	}
 
-	elementAttached(): void {
+	elementAttached() {
 		this.listenTo((this.element.getElementsByClassName('opal-tab-list')[0] as IComponentElement).$c, {
 			select: this._onTabListSelect,
 			deselect: this._onTabListDeselect
 		});
 	}
 
-	_onTabListSelect(evt: IEvent): void {
+	_onTabListSelect(evt: IEvent) {
 		let tab = evt.target as OpalTab;
 		let selectedTab = this._selectedTab;
 
@@ -77,7 +77,7 @@ export default class OpalTabs extends Component {
 		this._selectedTab = tab;
 	}
 
-	_onTabListDeselect(evt: IEvent): void {
+	_onTabListDeselect(evt: IEvent) {
 		(evt.target as OpalTab).select();
 	}
 }

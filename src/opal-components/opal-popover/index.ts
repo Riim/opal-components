@@ -16,13 +16,13 @@ import { IListening, Component, d } from 'rionite';
 export default class OpalPopover extends Component {
 	_documentClickListening: IListening;
 
-	ready(): void {
+	ready() {
 		if (this.props['opened']) {
 			this._open();
 		}
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any): void {
+	elementAttributeChanged(name: string, oldValue: any, value: any) {
 		if (name == 'opened') {
 			this[value ? '_open' : '_close']();
 		}
@@ -50,7 +50,7 @@ export default class OpalPopover extends Component {
 		return (this.props['opened'] = value === undefined ? !this.props['opened'] : value);
 	}
 
-	_open(): void {
+	_open() {
 		if (this.props['auto-closing']) {
 			setTimeout(() => {
 				if (this.props['opened']) {
@@ -62,7 +62,7 @@ export default class OpalPopover extends Component {
 		this.emit('open');
 	}
 
-	_close(): void {
+	_close() {
 		if (this._documentClickListening) {
 			this._documentClickListening.stop();
 		}
@@ -70,7 +70,7 @@ export default class OpalPopover extends Component {
 		this.emit('close');
 	}
 
-	_onDocumentClick(evt: Event): void {
+	_onDocumentClick(evt: Event) {
 		let docEl = document.documentElement;
 		let el = this.element;
 

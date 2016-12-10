@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Component = _require3.Component,
 	    ComponentTemplate = _require3.ComponentTemplate;
 
-	var OpalMultirowRow = __webpack_require__(14);
+	var OpalMultirowRow = __webpack_require__(15);
 
 	var filter = Array.prototype.filter;
 
@@ -163,7 +163,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 14:
+/***/ 15:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

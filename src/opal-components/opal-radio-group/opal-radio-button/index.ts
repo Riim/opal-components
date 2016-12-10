@@ -5,7 +5,7 @@ import { IListening, Component, d } from 'rionite';
 import template = require('./index.html');
 
 @d.Component({
-	elementIs: 'opal-switch',
+	elementIs: 'opal-radio-button',
 
 	props: {
 		checked: false,
@@ -19,7 +19,7 @@ import template = require('./index.html');
 	events: {
 		input: {
 			change(evt: Event) {
-				this.emit((this.props['checked'] = evt.target['checked']) ? 'check' : 'uncheck');
+				this.emit((this.props['checked'] = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
 				this.emit('change');
 			}
 		},
@@ -37,25 +37,27 @@ import template = require('./index.html');
 		}
 	}
 })
-export default class OpalSwitch extends Component {
+export default class OpalRadioButton extends Component {
 	_tabIndex: number;
 
 	_documentKeyDownListening: IListening;
 
 	initialize() {
 		define(this, {
-			_tabIndex(this: OpalSwitch): number {
+			_tabIndex(this: OpalRadioButton): number {
 				return this.props['disabled'] ? -1 : this.props['tab-index'];
 			}
 		});
 	}
 
 	ready() {
-		if (this.props['checked']) {
+		let props = this.props;
+
+		if (props['checked']) {
 			(this.$('input') as HTMLInputElement).checked = true;
 		}
 
-		if (this.props['focused']) {
+		if (props['focused']) {
 			this.focus();
 		}
 	}
@@ -103,12 +105,12 @@ export default class OpalSwitch extends Component {
 		return (this.props['checked'] = value === undefined ? !this.props['checked'] : value);
 	}
 
-	focus(): OpalSwitch {
+	focus(): OpalRadioButton {
 		(this.$('control') as HTMLElement).focus();
 		return this;
 	}
 
-	blur(): OpalSwitch {
+	blur(): OpalRadioButton {
 		(this.$('control') as HTMLElement).blur();
 		return this;
 	}
@@ -126,12 +128,12 @@ export default class OpalSwitch extends Component {
 		}
 	}
 
-	enable(): OpalSwitch {
+	enable(): OpalRadioButton {
 		this.props['disabled'] = false;
 		return this;
 	}
 
-	disable(): OpalSwitch {
+	disable(): OpalRadioButton {
 		this.props['disabled'] = true;
 		return this;
 	}

@@ -69,13 +69,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	__webpack_require__(72);
 	var rionite_1 = __webpack_require__(1);
-	var opal_tab_list_1 = __webpack_require__(5);
-	var opal_tab_panel_1 = __webpack_require__(7);
+	var opal_tab_list_1 = __webpack_require__(6);
+	var opal_tab_panel_1 = __webpack_require__(8);
 	var template = __webpack_require__(41);
-	var opal_tab_list_2 = __webpack_require__(5);
+	var opal_tab_list_2 = __webpack_require__(6);
 	exports.OpalTab = opal_tab_list_2.OpalTab;
 	exports.OpalTabList = opal_tab_list_2.default;
-	var opal_tab_panel_2 = __webpack_require__(7);
+	var opal_tab_panel_2 = __webpack_require__(8);
 	exports.OpalTabPanel = opal_tab_panel_2.default;
 	var indexOf = Array.prototype.indexOf;
 	var forEach = Array.prototype.forEach;
@@ -104,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	        });
-	        if (selectedTab) {
+	        if (!selectedTab) {
 	            selectedTab = this._selectedTab = tabs[0].$c;
 	            selectedTabIndex = 0;
 	            selectedTab.select();
@@ -160,7 +160,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 5:
+/***/ 6:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -177,8 +177,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	__webpack_require__(73);
 	var rionite_1 = __webpack_require__(1);
-	var opal_tab_1 = __webpack_require__(6);
-	var opal_tab_2 = __webpack_require__(6);
+	var opal_tab_1 = __webpack_require__(7);
+	var opal_tab_2 = __webpack_require__(7);
 	exports.OpalTab = opal_tab_2.default;
 	var OpalTabList = (function (_super) {
 	    __extends(OpalTabList, _super);
@@ -200,7 +200,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 6:
+/***/ 7:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -335,7 +335,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 7:
+/***/ 8:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

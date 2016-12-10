@@ -19,19 +19,19 @@ import template = require('./index.html');
 
 	events: {
 		input: {
-			change(evt: Event): void {
+			change(evt: Event) {
 				this.emit((this.props['checked'] = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
 				this.emit('change');
 			}
 		},
 
 		control: {
-			focusin(): void {
+			focusin() {
 				this.props['focused'] = true;
 				this.emit('focusin');
 			},
 
-			focusout(): void {
+			focusout() {
 				this.props['focused'] = false;
 				this.emit('focusout');
 			}
@@ -43,7 +43,7 @@ export default class OpalCheckbox extends Component {
 
 	_documentKeyDownListening: IListening;
 
-	initialize(): void {
+	initialize() {
 		define(this, {
 			_tabIndex(this: OpalCheckbox): number {
 				return this.props['disabled'] ? -1 : this.props['tab-index'];
@@ -51,7 +51,7 @@ export default class OpalCheckbox extends Component {
 		});
 	}
 
-	ready(): void {
+	ready() {
 		let props = this.props;
 
 		if (props['checked']) {
@@ -64,7 +64,7 @@ export default class OpalCheckbox extends Component {
 		}
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any): void {
+	elementAttributeChanged(name: string, oldValue: any, value: any) {
 		if (name == 'checked') {
 			if (value) {
 				this.props['indeterminate'] = false;
@@ -125,7 +125,7 @@ export default class OpalCheckbox extends Component {
 		return this;
 	}
 
-	_onDocumentKeyDown(evt: KeyboardEvent): void {
+	_onDocumentKeyDown(evt: KeyboardEvent) {
 		if (evt.which == 13/* Enter */ || evt.which == 32/* Space */) {
 			evt.preventDefault();
 

@@ -36,7 +36,7 @@ export default class OpalInputValidator extends Component {
 
 	_rules: Array<OpalInputValidatorRule>;
 
-	initialize(): void {
+	initialize() {
 		define(this, {
 			failedRule: null,
 
@@ -46,7 +46,7 @@ export default class OpalInputValidator extends Component {
 		});
 	}
 
-	ready(): void {
+	ready() {
 		this._rules = map.call(
 			this.element.getElementsByClassName('opal-input-validator-rule'),
 			(ruleEl: IComponentElement) => ruleEl.$c

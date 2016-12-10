@@ -24,17 +24,17 @@ import template = require('./index.html');
 
 	events: {
 		control: {
-			focusin(evt: Event): void {
+			focusin(evt: Event) {
 				this.props['focused'] = true;
 				this.emit({ type: 'focusin', originalEvent: evt });
 			},
 
-			focusout(evt: Event): void {
+			focusout(evt: Event) {
 				this.props['focused'] = false;
 				this.emit({ type: 'focusout', originalEvent: evt });
 			},
 
-			click(this: OpalButton, evt: Event): void {
+			click(this: OpalButton, evt: Event) {
 				if (!this.props['disabled']) {
 					if (this.props['checkable']) {
 						this.emit(this.toggle() ? 'check' : 'uncheck');
@@ -49,7 +49,7 @@ import template = require('./index.html');
 export default class OpalButton extends Component {
 	_tabIndex: number;
 
-	initialize(): void {
+	initialize() {
 		define(this, {
 			_tabIndex(this: OpalButton): number {
 				return this.props['disabled'] ? -1 : this.props['tab-index'];
@@ -57,13 +57,13 @@ export default class OpalButton extends Component {
 		});
 	}
 
-	ready(): void {
+	ready() {
 		if (this.props['focused']) {
 			this.focus();
 		}
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any): void {
+	elementAttributeChanged(name: string, oldValue: any, value: any) {
 		if (name == 'focused') {
 			this[value ? 'focus' : 'blur']();
 		}
