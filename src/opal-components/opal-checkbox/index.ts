@@ -1,7 +1,7 @@
 import './index.css';
 
 import { define } from 'cellx';
-import { IListening, Component, d } from 'rionite';
+import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.html');
 
 @d.Component({
@@ -41,7 +41,7 @@ import template = require('./index.html');
 export default class OpalCheckbox extends Component {
 	_tabIndex: number;
 
-	_documentKeyDownListening: IListening;
+	_documentKeyDownListening: IDisposableListening;
 
 	initialize() {
 		define(this, {

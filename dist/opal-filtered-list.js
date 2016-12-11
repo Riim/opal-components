@@ -55,31 +55,47 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(53);
+	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(28);
+	var OpalFilteredList = (function (_super) {
+	    __extends(OpalFilteredList, _super);
+	    function OpalFilteredList() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalFilteredList.prototype.focus = function () {
+	        this.$('query-input').focus();
+	    };
+	    return OpalFilteredList;
+	}(rionite_1.Component));
+	OpalFilteredList = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-filtered-list',
+	        template: new rionite_1.ComponentTemplate(template),
+	        events: {
+	            'query-input': {
+	                input: function (evt) {
+	                    this.$('loaded-list').props['query'] = evt.target.value;
+	                }
+	            }
+	        }
+	    })
+	], OpalFilteredList);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalFilteredList;
 
-	var _require = __webpack_require__(1),
-	    ComponentTemplate = _require.ComponentTemplate,
-	    Component = _require.Component;
-
-	module.exports = Component.extend('opal-filtered-list', {
-		Static: {
-			template: new ComponentTemplate(__webpack_require__(28)),
-
-			events: {
-				'query-input': {
-					input: function input(evt) {
-						this.$('loaded-list').props.query = evt.target.value;
-					}
-				}
-			}
-		},
-
-		focus: function focus() {
-			this.$('query-input').focus();
-		}
-	});
 
 /***/ },
 

@@ -55,179 +55,164 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(58);
+	var cellx_1 = __webpack_require__(2);
+	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(31);
+	var mixin = cellx_1.Utils.mixin;
+	var OpalLoadedList = (function (_super) {
+	    __extends(OpalLoadedList, _super);
+	    function OpalLoadedList() {
+	        var _this = _super.apply(this, arguments) || this;
+	        _this._scrolling = false;
+	        return _this;
+	    }
+	    OpalLoadedList.prototype.initialize = function () {
+	        var dataProvider = Function("return this." + this.props['dataprovider'] + ";").call(this.ownerComponent || window);
+	        if (!dataProvider) {
+	            throw new TypeError('dataProvider is not defined');
+	        }
+	        this.dataProvider = dataProvider;
+	        cellx_1.define(this, {
+	            list: new cellx_1.ObservableList(),
+	            total: undefined,
+	            _loadingCheckPlanned: false,
+	            loading: false,
+	            empty: function () {
+	                return !this.list.length;
+	            },
+	            notFoundShown: function () {
+	                return this.total === 0 && !this._loadingCheckPlanned && !this.loading;
+	            },
+	            loaderShown: function () {
+	                return this.total === undefined || this.list.length < this.total || this.loading;
+	            }
+	        });
+	    };
+	    OpalLoadedList.prototype.elementAttached = function () {
+	        this.listenTo(this.element, 'scroll', this._onScroll);
+	        this.listenTo(this.props, 'change:query', this._onQueryChange);
+	        if (this.props['preloading']) {
+	            this._load();
+	        }
+	        else {
+	            this.checkLoading();
+	        }
+	    };
+	    OpalLoadedList.prototype._onScroll = function () {
+	        var _this = this;
+	        if (!this._scrolling) {
+	            this._scrolling = true;
+	            if (this._loadingCheckPlanned) {
+	                this._loadingCheckTimeout.clear();
+	            }
+	            else {
+	                this._loadingCheckPlanned = true;
+	            }
+	            this._loadingCheckTimeout = this.setTimeout(function () {
+	                _this._scrolling = false;
+	                _this._loadingCheckPlanned = false;
+	                _this.checkLoading();
+	            }, 150);
+	        }
+	    };
+	    OpalLoadedList.prototype._onQueryChange = function () {
+	        var _this = this;
+	        if (this._loadingCheckPlanned) {
+	            this._loadingCheckTimeout.clear();
+	        }
+	        else {
+	            if (this.loading) {
+	                this._requestCallback.cancel();
+	                this.loading = false;
+	            }
+	            this.list.clear();
+	            this.total = undefined;
+	            this._loadingCheckPlanned = true;
+	        }
+	        this._loadingCheckTimeout = this.setTimeout(function () {
+	            _this._scrolling = false;
+	            _this._loadingCheckPlanned = false;
+	            _this.checkLoading();
+	        }, 300);
+	    };
+	    OpalLoadedList.prototype.checkLoading = function () {
+	        if (this.props['query'] === this._lastRequestedQuery &&
+	            (this.loading || this.total !== undefined && this.list.length == this.total)) {
+	            return;
+	        }
+	        var elRect = this.element.getBoundingClientRect();
+	        if (!elRect.height || elRect.bottom < this.$('loader').element.getBoundingClientRect().top) {
+	            return;
+	        }
+	        this._load();
+	    };
+	    OpalLoadedList.prototype._load = function () {
+	        if (this.loading) {
+	            this._requestCallback.cancel();
+	        }
+	        var query = this._lastRequestedQuery = this.props['query'];
+	        var dataProvider = this.dataProvider;
+	        var infinite = dataProvider.getItems.length >= 2;
+	        var args = [query];
+	        if (infinite) {
+	            args.unshift(this.props['count'], this.list.length ? this.list.get(-1).value : null);
+	        }
+	        this.loading = true;
+	        dataProvider.getItems.apply(dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {
+	            var _this = this;
+	            this.loading = false;
+	            var items = data.items;
+	            this.total = infinite && data.total !== undefined ? data.total : items.length;
+	            if (query === this._lastLoadedQuery) {
+	                this.list.addRange(items);
+	            }
+	            else {
+	                this.list.clear().addRange(items);
+	                this._lastLoadedQuery = query;
+	            }
+	            setTimeout(function () {
+	                _this.checkLoading();
+	            }, 1);
+	            this.emit('loaded');
+	        }));
+	    };
+	    OpalLoadedList.prototype._getContentContext = function (content) {
+	        return mixin(Object.create(this.props.context), content.props.context);
+	    };
+	    return OpalLoadedList;
+	}(rionite_1.Component));
+	OpalLoadedList = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-loaded-list',
+	        props: {
+	            dataprovider: { type: String, required: true, readonly: true },
+	            count: 100,
+	            query: String,
+	            itemAs: { default: '$item', readonly: true },
+	            preloading: { default: false, readonly: true }
+	        },
+	        i18n: {
+	            notFoundMessage: rionite_1.getText.t('Ничего не найдено')
+	        },
+	        template: new rionite_1.ComponentTemplate(template)
+	    })
+	], OpalLoadedList);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalLoadedList;
 
-	var _require = __webpack_require__(2),
-	    mixin = _require.Utils.mixin,
-	    cellx = _require.cellx;
-
-	var _require2 = __webpack_require__(1),
-	    getText = _require2.getText,
-	    ComponentTemplate = _require2.ComponentTemplate,
-	    Component = _require2.Component;
-
-	module.exports = Component.extend('opal-loaded-list', {
-		Static: {
-			props: {
-				dataprovider: { type: String, required: true, readonly: true },
-				count: 100,
-				query: String,
-				itemAs: { default: '$item', readonly: true },
-				preloading: { default: false, readonly: true }
-			},
-
-			i18n: {
-				notFoundMessage: getText.t('Ничего не найдено')
-			},
-
-			template: new ComponentTemplate(__webpack_require__(31))
-		},
-
-		_scrolling: false,
-
-		_loadingCheckTimeout: null,
-		_requestCallback: null,
-
-		_lastRequestedQuery: undefined,
-		_lastAppliedQuery: undefined,
-
-		initialize: function initialize() {
-			var dataProvider = Function('return this.' + this.props.dataprovider + ';').call(this.ownerComponent || window);
-
-			if (!dataProvider) {
-				throw new TypeError('dataProvider is not defined');
-			}
-
-			this.dataProvider = dataProvider;
-
-			cellx.define(this, {
-				list: cellx.list(),
-				total: undefined,
-
-				_loadingCheckPlanned: false,
-				loading: false,
-
-				empty: function empty() {
-					return !this.list.length;
-				},
-				notFoundShown: function notFoundShown() {
-					return this.total === 0 && !this._loadingCheckPlanned && !this.loading;
-				},
-				loaderShown: function loaderShown() {
-					return this.total === undefined || this.list.length < this.total || this.loading;
-				}
-			});
-		},
-		elementAttached: function elementAttached() {
-			this.listenTo(this.element, 'scroll', this._onScroll);
-			this.listenTo(this.props, 'change:query', this._onQueryChange);
-
-			if (this.props.preloading) {
-				this._load();
-			} else {
-				this.checkLoading();
-			}
-		},
-		_onScroll: function _onScroll() {
-			var _this = this;
-
-			if (!this._scrolling) {
-				this._scrolling = true;
-
-				if (this._loadingCheckPlanned) {
-					this._loadingCheckTimeout.clear();
-				} else {
-					this._loadingCheckPlanned = true;
-				}
-
-				this._loadingCheckTimeout = this.setTimeout(function () {
-					_this._loadingCheckPlanned = false;
-					_this.checkLoading();
-
-					_this._scrolling = false;
-				}, 150);
-			}
-		},
-		_onQueryChange: function _onQueryChange() {
-			var _this2 = this;
-
-			if (this._loadingCheckPlanned) {
-				this._loadingCheckTimeout.clear();
-			} else {
-				if (this.loading) {
-					this._requestCallback.cancel();
-					this.loading = false;
-				}
-
-				this.list.clear();
-				this.total = undefined;
-
-				this._loadingCheckPlanned = true;
-			}
-
-			this._loadingCheckTimeout = this.setTimeout(function () {
-				_this2._loadingCheckPlanned = false;
-				_this2.checkLoading();
-			}, 300);
-		},
-		checkLoading: function checkLoading() {
-			if (this.props.query === this._lastRequestedQuery && (this.loading || this.total !== undefined && this.list.length == this.total)) {
-				return;
-			}
-
-			var elRect = this.element.getBoundingClientRect();
-
-			if (!elRect.height || elRect.bottom < this.$('loader').element.getBoundingClientRect().top) {
-				return;
-			}
-
-			this._load();
-		},
-		_load: function _load() {
-			var _this3 = this;
-
-			if (this.loading) {
-				this._requestCallback.cancel();
-			}
-
-			var query = this._lastRequestedQuery = this.props.query;
-			var dataProvider = this.dataProvider;
-			var infinite = dataProvider.getItems.length >= 2;
-			var args = [query];
-
-			if (infinite) {
-				args.unshift(this.props.count, this.list.length ? this.list.get(-1).value : null);
-			}
-
-			this.loading = true;
-
-			dataProvider.getItems.apply(dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {
-				_this3.loading = false;
-
-				var items = data.items;
-
-				_this3.total = infinite && data.total !== undefined ? data.total : items.length;
-
-				if (query === _this3._lastAppliedQuery) {
-					_this3.list.addRange(items);
-				} else {
-					_this3.list.clear().addRange(items);
-					_this3._lastAppliedQuery = query;
-				}
-
-				setTimeout(function () {
-					_this3.checkLoading();
-				}, 1);
-
-				_this3.emit('loaded');
-			}));
-		},
-		_getContentContext: function _getContentContext(content) {
-			return mixin(Object.create(this.props.context), content.props.context);
-		}
-	});
 
 /***/ },
 

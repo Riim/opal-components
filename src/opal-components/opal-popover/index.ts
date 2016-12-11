@@ -1,6 +1,6 @@
 import './index.css';
 
-import { IListening, Component, d } from 'rionite';
+import { IDisposableListening, Component, d } from 'rionite';
 
 @d.Component({
 	elementIs: 'opal-popover',
@@ -14,7 +14,7 @@ import { IListening, Component, d } from 'rionite';
 	template: '<span class="opal-popover__arrow"></span><rt-content class="opal-popover__content"></rt-content>'
 })
 export default class OpalPopover extends Component {
-	_documentClickListening: IListening;
+	_documentClickListening: IDisposableListening;
 
 	ready() {
 		if (this.props['opened']) {

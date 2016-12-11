@@ -1,6 +1,6 @@
 import './index.css';
 
-import { IListening, Component, d } from 'rionite';
+import { IDisposableListening, Component, d } from 'rionite';
 
 let openedDropdowns: Array<OpalDropdown> = [];
 
@@ -16,7 +16,7 @@ let openedDropdowns: Array<OpalDropdown> = [];
 	template: '<rt-content class="opal-dropdown__content"></rt-content>'
 })
 export default class OpalDropdown extends Component {
-	_documentClickListening: IListening;
+	_documentClickListening: IDisposableListening;
 
 	ready() {
 		if (this.props['opened']) {

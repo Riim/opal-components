@@ -1,10 +1,10 @@
 import './index.css';
 
-import { IListening, Component, d, ComponentTemplate } from 'rionite';
+import { IDisposableListening, Component, d, ComponentTemplate } from 'rionite';
 import template = require('./index.html');
 
 let openedModals: Array<OpalModal> = [];
-let documentListening: IListening;
+let documentListening: IDisposableListening;
 
 function onDocumentFocusIn() {
 	if (
