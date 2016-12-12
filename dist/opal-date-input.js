@@ -55,37 +55,51 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(51);
+	var rionite_1 = __webpack_require__(1);
+	var isExistDate_1 = __webpack_require__(10);
+	var template = __webpack_require__(27);
+	var OpalDateInput = (function (_super) {
+	    __extends(OpalDateInput, _super);
+	    function OpalDateInput() {
+	        var _this = _super.apply(this, arguments) || this;
+	        _this.isExistDate = isExistDate_1.default;
+	        return _this;
+	    }
+	    return OpalDateInput;
+	}(rionite_1.Component));
+	OpalDateInput = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-date-input',
+	        props: {
+	            mask: '99/99/9999',
+	            value: String,
+	            placeholder: 'dd/mm/yyyy',
+	            required: { default: false, readonly: true },
+	            popoverTo: 'right'
+	        },
+	        i18n: {
+	            nonExistentDate: rionite_1.getText.t('Несуществующая дата'),
+	            isRequiredField: rionite_1.getText.t('Поле обязательно для заполнения')
+	        },
+	        template: new rionite_1.ComponentTemplate(template)
+	    })
+	], OpalDateInput);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalDateInput;
 
-	var _require = __webpack_require__(1),
-	    getText = _require.getText,
-	    Component = _require.Component,
-	    ComponentTemplate = _require.ComponentTemplate;
-
-	var isExistDate = __webpack_require__(13);
-
-	module.exports = Component.extend('opal-date-input', {
-		Static: {
-			props: {
-				mask: '99/99/9999',
-				value: String,
-				placeholder: 'dd/mm/yyyy',
-				required: { default: false, readonly: true },
-				popoverTo: 'right'
-			},
-
-			i18n: {
-				nonExistentDate: getText.t('Несуществующая дата'),
-				isRequiredField: getText.t('Поле обязательно для заполнения')
-			},
-
-			template: new ComponentTemplate(__webpack_require__(27))
-		},
-
-		isExistDate: isExistDate
-	});
 
 /***/ },
 
@@ -96,28 +110,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 13:
+/***/ 10:
 /***/ function(module, exports) {
 
 	"use strict";
-
 	function isExistDate(date) {
-		date = date.match(/\d+/g);
-
-		var day = parseInt(date[0], 10);
-		var month = parseInt(date[1], 10) - 1;
-		var year = parseInt(date[2], 10);
-
-		if (year < 100) {
-			year += 1900;
-		}
-
-		date = new Date(year, month, day);
-
-		return day == date.getDate() && month == date.getMonth() && year == date.getFullYear();
+	    var match = date.match(/\d+/g);
+	    if (!match) {
+	        return false;
+	    }
+	    var day = parseInt(match[0], 10);
+	    var month = parseInt(match[1], 10) - 1;
+	    var year = parseInt(match[2], 10);
+	    if (year < 100) {
+	        year += 1900;
+	    }
+	    var d = new Date(year, month, day);
+	    return day == d.getDate() && month == d.getMonth() && year == d.getFullYear();
 	}
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = isExistDate;
 
-	module.exports = isExistDate;
 
 /***/ },
 
