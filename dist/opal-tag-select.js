@@ -55,117 +55,116 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(76);
+	var cellx_1 = __webpack_require__(2);
+	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(43);
+	var OpalTagSelect = (function (_super) {
+	    __extends(OpalTagSelect, _super);
+	    function OpalTagSelect() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalTagSelect.prototype.initialize = function () {
+	        var props = this.props;
+	        var dataList = props['datalist'];
+	        var dataProvider = props['dataprovider'];
+	        var vm = props['view-model'];
+	        this._dataListParam = (dataList && 'dataList');
+	        this._dataProviderParam = (dataProvider && 'dataProvider');
+	        this._viewModelParam = (vm && 'viewModel');
+	        var getDataList;
+	        if (dataList) {
+	            getDataList = Function("return this." + dataList + ";");
+	        }
+	        var context = this.ownerComponent || window;
+	        cellx_1.define(this, {
+	            dataList: dataList && function () { return getDataList.call(context); },
+	            dataProvider: dataProvider && Function("return this." + dataProvider + ";").call(context),
+	            viewModel: vm && Function("return this." + vm + ";").call(context),
+	            placeholderShown: function () {
+	                return !!this.props['placeholder'] && (!this.viewModel || !this.viewModel.length);
+	            }
+	        });
+	        var vmItemSchema = props['view-model-item-schema'];
+	        this._viewModelItemValueFieldName = vmItemSchema.value;
+	        this._viewModelItemTextFieldName = vmItemSchema.text;
+	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled;
+	    };
+	    OpalTagSelect.prototype.ready = function () {
+	        var select = this.$('select');
+	        this.dataList = select.dataList;
+	        this.viewModel = select.viewModel;
+	    };
+	    OpalTagSelect.prototype._onBtnRemoveTagClick = function (evt, btn) {
+	        this.viewModel.remove(this.viewModel.get(btn.dataset['tagValue'], this._viewModelItemValueFieldName));
+	        this.emit('change');
+	    };
+	    return OpalTagSelect;
+	}(rionite_1.Component));
+	OpalTagSelect = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-tag-select',
+	        props: {
+	            type: String,
+	            datalist: { type: String, readonly: true },
+	            // необязательный, так как может указываться на передаваемом opal-loaded-list
+	            dataprovider: { type: String, readonly: true },
+	            value: Object,
+	            viewModel: { type: String, readonly: true },
+	            viewModelItemSchema: { default: { value: 'value', text: 'text', disabled: 'disabled' }, readonly: true },
+	            placeholder: rionite_1.getText.t('Не выбрано'),
+	            allowInput: false,
+	            popoverTo: 'bottom',
+	            disabled: false
+	        },
+	        template: new rionite_1.ComponentTemplate(template),
+	        events: {
+	            control: {
+	                click: function (evt, control) {
+	                    var select = this.$('select');
+	                    var selectEl = select.element;
+	                    for (var node = evt.target; node != selectEl; node = node.parentNode) {
+	                        if (node == control) {
+	                            select.toggle();
+	                            break;
+	                        }
+	                    }
+	                }
+	            },
+	            select: {
+	                confirminput: function () {
+	                    var select = this.$('select');
+	                    if (select.props['allow-input']) {
+	                        select.close();
+	                    }
+	                },
+	                // не соединять on-select и on-deselect в on-change,
+	                // тк on-change на opal-select[multiple] генерируется только при закрытии
+	                select: function () {
+	                    this.$('select').close();
+	                },
+	                deselect: function () {
+	                    this.$('select').close();
+	                }
+	            }
+	        }
+	    })
+	], OpalTagSelect);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalTagSelect;
 
-	var cellx = __webpack_require__(2);
-
-	var _require = __webpack_require__(1),
-	    getText = _require.getText,
-	    Component = _require.Component,
-	    ComponentTemplate = _require.ComponentTemplate;
-
-	module.exports = Component.extend('opal-tag-select', {
-		Static: {
-			props: {
-				type: String,
-				datalist: { type: String, readonly: true },
-				// необязательный, так как может указываться на передаваемом opal-loaded-list
-				dataprovider: { type: String, readonly: true },
-				value: Object,
-				viewModel: { type: String, readonly: true },
-				viewModelItemSchema: { default: { value: 'value', text: 'text', disabled: 'disabled' }, readonly: true },
-				placeholder: getText.t('Не выбрано'),
-				allowInput: false,
-				popoverTo: 'bottom',
-				disabled: false
-			},
-
-			template: new ComponentTemplate(__webpack_require__(43)),
-
-			events: {
-				control: {
-					click: function click(evt, control) {
-						var select = this.$('select');
-						var selectEl = select.element;
-
-						for (var node = evt.target; node != selectEl; node = node.parentNode) {
-							if (node == control) {
-								select.toggle();
-								break;
-							}
-						}
-					}
-				},
-
-				select: {
-					confirminput: function confirminput() {
-						var select = this.$('select');
-
-						if (select.props.allowInput) {
-							select.close();
-						}
-					},
-
-
-					// не соединять on-select и on-deselect в on-change,
-					// тк on-change на opal-select[multiple] генерируется только при закрытии
-					select: function select() {
-						this.$('select').close();
-					},
-					deselect: function deselect() {
-						this.$('select').close();
-					}
-				}
-			}
-		},
-
-		initialize: function initialize() {
-			var props = this.props;
-			var dataList = props.datalist;
-			var dataProvider = props.dataprovider;
-			var vm = props.viewModel;
-
-			this._dataListParam = dataList && 'dataList';
-			this._dataProviderParam = dataProvider && 'dataProvider';
-			this._viewModelParam = vm && 'viewModel';
-
-			var getDataList = void 0;
-
-			if (dataList) {
-				getDataList = Function('return this.' + dataList + ';');
-			}
-
-			var context = this.ownerComponent || window;
-
-			cellx.define(this, {
-				dataList: dataList && function () {
-					return getDataList.call(context);
-				},
-				dataProvider: dataProvider && Function('return this.' + dataProvider + ';').call(context),
-				viewModel: vm && Function('return this.' + vm + ';').call(context),
-
-				placeholderShown: function placeholderShown() {
-					return !!this.props.placeholder && (!this.viewModel || !this.viewModel.length);
-				}
-			});
-
-			var vmItemSchema = props.viewModelItemSchema;
-
-			this._viewModelItemValueFieldName = vmItemSchema.value;
-			this._viewModelItemTextFieldName = vmItemSchema.text;
-			this._viewModelItemDisabledFieldName = vmItemSchema.disabled;
-		},
-		ready: function ready() {
-			this.dataList = this.$('select').dataList;
-			this.viewModel = this.$('select').viewModel;
-		},
-		_onBtnRemoveTagClick: function _onBtnRemoveTagClick(evt, btn) {
-			this.viewModel.remove(this.viewModel.get(btn.dataset.tagValue, this._viewModelItemValueFieldName));
-			this.emit('change');
-		}
-	});
 
 /***/ },
 

@@ -18,6 +18,9 @@ let { RtIfThen, RtRepeat } = Components;
 
 let map = Array.prototype.map;
 
+export type TDataList = IndexedList<{ value: string, text: string }>;
+export type TViewModel = IndexedList<Object>;
+
 @d.Component({
 	elementIs: 'opal-select',
 
@@ -201,8 +204,8 @@ let map = Array.prototype.map;
 export default class OpalSelect extends Component {
 	static OpalSelectOption = OpalSelectOption;
 
-	dataList: IndexedList<{ value: string, text: string }>;
-	viewModel: IndexedList<Object>;
+	dataList: TDataList;
+	viewModel: TViewModel;
 
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
