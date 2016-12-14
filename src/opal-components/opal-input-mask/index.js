@@ -4,8 +4,8 @@
 
 let cellx = require('cellx');
 let { Component } = require('rionite');
-let OpalInputMaskDefinition = require('./opal-input-mask-definition');
-let defaultDefinitions = require('./defaultDefinitions');
+let OpalInputMaskDefinition = require('./opal-input-mask-definition').default;
+let defaultDefinitions = require('./defaultDefinitions').default;
 
 let forEach = Array.prototype.forEach;
 

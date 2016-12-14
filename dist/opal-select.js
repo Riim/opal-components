@@ -72,8 +72,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cellx_1 = __webpack_require__(2);
 	var cellx_indexed_collections_1 = __webpack_require__(3);
 	var rionite_1 = __webpack_require__(1);
-	var opal_select_option_1 = __webpack_require__(13);
-	var isEqualArray_1 = __webpack_require__(12);
+	var opal_select_option_1 = __webpack_require__(15);
+	var isEqualArray_1 = __webpack_require__(14);
 	var template = __webpack_require__(36);
 	var nextUID = cellx_1.Utils.nextUID, nextTick = cellx_1.Utils.nextTick;
 	var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
@@ -628,7 +628,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 12:
+/***/ 14:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -650,7 +650,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 13:
+/***/ 15:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

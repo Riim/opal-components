@@ -66,8 +66,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _require = __webpack_require__(1),
 	    Component = _require.Component;
 
-	var OpalInputMaskDefinition = __webpack_require__(17);
-	var defaultDefinitions = __webpack_require__(16);
+	var OpalInputMaskDefinition = __webpack_require__(12).default;
+	var defaultDefinitions = __webpack_require__(11).default;
 
 	var forEach = Array.prototype.forEach;
 
@@ -423,37 +423,56 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 16:
+/***/ 11:
 /***/ function(module, exports) {
 
-	'use strict';
-
-	var defaultDefinitions = module.exports = Object.create(null);
-
+	"use strict";
+	var defaultDefinitions = Object.create(null);
 	defaultDefinitions['9'] = /\d/;
-	defaultDefinitions['z'] = /[a-zA-Z]/; // eslint-disable-line dot-notation
+	defaultDefinitions['z'] = /[a-zA-Z]/;
 	defaultDefinitions['*'] = /[0-9a-zA-Z]/;
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = defaultDefinitions;
+
 
 /***/ },
 
-/***/ 17:
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(55);
+	var rionite_1 = __webpack_require__(1);
+	var OpalInputMaskDefinition = (function (_super) {
+	    __extends(OpalInputMaskDefinition, _super);
+	    function OpalInputMaskDefinition() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    return OpalInputMaskDefinition;
+	}(rionite_1.Component));
+	OpalInputMaskDefinition = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-input-mask-definition',
+	        props: {
+	            maskChar: { type: String, required: true, readonly: true },
+	            regex: { type: Object, required: true, readonly: true }
+	        }
+	    })
+	], OpalInputMaskDefinition);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalInputMaskDefinition;
 
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	module.exports = Component.extend('opal-input-mask-definition', {
-		Static: {
-			props: {
-				maskChar: { type: String, required: true, readonly: true },
-				regex: { type: Object, required: true, readonly: true }
-			}
-		}
-	});
 
 /***/ },
 
