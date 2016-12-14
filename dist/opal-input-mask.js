@@ -61,14 +61,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Code based on [jquery.maskedinput](https://github.com/digitalBush/jquery.maskedinput).
 	 */
 
-	__webpack_require__(15);
-
 	var cellx = __webpack_require__(2);
 
 	var _require = __webpack_require__(1),
 	    Component = _require.Component;
 
-	var defaultDefinitions = __webpack_require__(14);
+	var OpalInputMaskDefinition = __webpack_require__(17);
+	var defaultDefinitions = __webpack_require__(16);
 
 	var forEach = Array.prototype.forEach;
 
@@ -76,6 +75,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = Component.extend('opal-input-mask', {
 		Static: {
+			OpalInputMaskDefinition: OpalInputMaskDefinition,
+
 			defaultDefinitions: defaultDefinitions,
 
 			props: {
@@ -422,7 +423,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 14:
+/***/ 16:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -435,7 +436,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 15:
+/***/ 17:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

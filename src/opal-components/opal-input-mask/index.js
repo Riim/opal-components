@@ -2,10 +2,9 @@
  * Code based on [jquery.maskedinput](https://github.com/digitalBush/jquery.maskedinput).
  */
 
-require('./opal-input-mask-definition');
-
 let cellx = require('cellx');
 let { Component } = require('rionite');
+let OpalInputMaskDefinition = require('./opal-input-mask-definition');
 let defaultDefinitions = require('./defaultDefinitions');
 
 let forEach = Array.prototype.forEach;
@@ -14,6 +13,8 @@ let iPhone = /iphone/i.test(navigator.userAgent);
 
 module.exports = Component.extend('opal-input-mask', {
 	Static: {
+		OpalInputMaskDefinition,
+
 		defaultDefinitions,
 
 		props: {

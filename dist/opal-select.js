@@ -55,658 +55,554 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(66);
 	__webpack_require__(79);
-
-	var _require = __webpack_require__(2),
-	    _require$Utils = _require.Utils,
-	    nextUID = _require$Utils.nextUID,
-	    nextTick = _require$Utils.nextTick,
-	    cellx = _require.cellx;
-
-	var _require2 = __webpack_require__(3),
-	    IndexedList = _require2.IndexedList;
-
-	var _require3 = __webpack_require__(1),
-	    getText = _require3.getText,
-	    Component = _require3.Component,
-	    _require3$Components = _require3.Components,
-	    RtIfThen = _require3$Components.RtIfThen,
-	    RtRepeat = _require3$Components.RtRepeat,
-	    ComponentTemplate = _require3.ComponentTemplate;
-
-	var OpalSelectOption = __webpack_require__(20);
-	var isEqualArray = __webpack_require__(19);
-
+	var cellx_1 = __webpack_require__(2);
+	var cellx_indexed_collections_1 = __webpack_require__(3);
+	var rionite_1 = __webpack_require__(1);
+	var opal_select_option_1 = __webpack_require__(13);
+	var isEqualArray_1 = __webpack_require__(12);
+	var template = __webpack_require__(36);
+	var nextUID = cellx_1.Utils.nextUID, nextTick = cellx_1.Utils.nextTick;
+	var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
 	var map = Array.prototype.map;
+	var OpalSelect = (function (_super) {
+	    __extends(OpalSelect, _super);
+	    function OpalSelect() {
+	        var _this = _super.apply(this, arguments) || this;
+	        _this._opened = false;
+	        return _this;
+	    }
+	    OpalSelect.prototype.initialize = function () {
+	        var props = this.props;
+	        var dataList = props['datalist'];
+	        if (dataList) {
+	            var context_1 = this.ownerComponent || window;
+	            var getDataList_1 = Function("return this." + dataList + ";");
+	            cellx_1.define(this, 'dataList', function () {
+	                return getDataList_1.call(context_1);
+	            });
+	        }
+	        var vm = props['view-model'];
+	        var vmItemSchema = props['view-model-item-schema'];
+	        if (vm) {
+	            vm = Function("return this." + vm + ";").call(this.ownerComponent || window);
+	            if (!vm) {
+	                throw new TypeError('viewModel is not defined');
+	            }
+	        }
+	        else {
+	            vm = new cellx_indexed_collections_1.IndexedList(undefined, { indexes: [vmItemSchema.value] });
+	        }
+	        cellx_1.define(this, 'viewModel', vm);
+	        this._viewModelItemValueFieldName = vmItemSchema.value;
+	        this._viewModelItemTextFieldName = vmItemSchema.text;
+	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled;
+	        cellx_1.define(this, {
+	            options: function () {
+	                return this.optionElements ?
+	                    map.call(this.optionElements, function (option) { return option.$c; }) :
+	                    [];
+	            },
+	            text: function () {
+	                var _this = this;
+	                return this.viewModel.map(function (item) { return item[_this._viewModelItemTextFieldName]; }).join(', ') ||
+	                    this.props['placeholder'];
+	            }
+	        });
+	    };
+	    OpalSelect.prototype.ready = function () {
+	        var _this = this;
+	        this.optionElements = this.element.getElementsByClassName('opal-select-option');
+	        var props = this.props;
+	        if (props['view-model']) {
+	            this._updateOptions();
+	        }
+	        else {
+	            var value_1 = props['value'];
+	            var selectedOptions = void 0;
+	            if (value_1) {
+	                if (!Array.isArray(value_1)) {
+	                    throw new TypeError('value must be an array');
+	                }
+	                if (value_1.length) {
+	                    if (props['multiple']) {
+	                        selectedOptions = this.options.filter(function (option) { return value_1.indexOf(option.value) != -1; });
+	                    }
+	                    else {
+	                        value_1 = value_1[0];
+	                        var selectedOption = this.options
+	                            .find(function (option) { return option.value == value_1; });
+	                        selectedOptions = selectedOption ? [selectedOption] : [];
+	                    }
+	                }
+	                else {
+	                    selectedOptions = [];
+	                }
+	            }
+	            else {
+	                if (props['multiple']) {
+	                    selectedOptions = this.options.filter(function (option) { return option.selected; });
+	                }
+	                else {
+	                    var selectedOption = this.options.find(function (option) { return option.selected; });
+	                    selectedOptions = selectedOption ? [selectedOption] : [];
+	                }
+	            }
+	            if (selectedOptions.length) {
+	                this.viewModel.addRange(selectedOptions.map(function (option) {
+	                    return (_a = {},
+	                        _a[_this._viewModelItemValueFieldName] = option.value,
+	                        _a[_this._viewModelItemTextFieldName] = option.text,
+	                        _a);
+	                    var _a;
+	                }));
+	            }
+	            if (value_1) {
+	                this._updateOptions();
+	            }
+	        }
+	    };
+	    OpalSelect.prototype.elementAttached = function () {
+	        this.listenTo(this.props, 'change:value', this._onPropsValueChange);
+	        this.listenTo(this.viewModel, 'change', this._onViewModelChange);
+	    };
+	    OpalSelect.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	        if (name == 'focused') {
+	            if (value) {
+	                if (!this._opened) {
+	                    this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	                }
+	                this.focus();
+	            }
+	            else {
+	                if (!this._opened) {
+	                    this._documentKeyDownListening.stop();
+	                }
+	                this.blur();
+	            }
+	        }
+	    };
+	    OpalSelect.prototype._onPropsValueChange = function (evt) {
+	        var vm = this.viewModel;
+	        var value = evt['value'];
+	        if (value) {
+	            if (!Array.isArray(value)) {
+	                throw new TypeError('value must be an array');
+	            }
+	            if (value.length) {
+	                var vmItemValueFieldName_1 = this._viewModelItemValueFieldName;
+	                var vmItemTextFieldName_1 = this._viewModelItemTextFieldName;
+	                if (this.props['multiple']) {
+	                    this.options.forEach(function (option) {
+	                        var optionValue = option.value;
+	                        if (value.indexOf(optionValue) != -1) {
+	                            if (!vm.contains(optionValue, vmItemValueFieldName_1)) {
+	                                vm.add((_a = {},
+	                                    _a[vmItemValueFieldName_1] = optionValue,
+	                                    _a[vmItemTextFieldName_1] = option.text,
+	                                    _a));
+	                            }
+	                        }
+	                        else {
+	                            var item = vm.get(optionValue, vmItemValueFieldName_1);
+	                            if (item) {
+	                                vm.remove(item);
+	                            }
+	                        }
+	                        var _a;
+	                    });
+	                }
+	                else {
+	                    value = value[0];
+	                    if (!vm.length || value != vm.get(0)[vmItemValueFieldName_1]) {
+	                        if (!this.options.some(function (option) {
+	                            if (option.value != value) {
+	                                return false;
+	                            }
+	                            vm.set(0, (_a = {},
+	                                _a[vmItemValueFieldName_1] = value,
+	                                _a[vmItemTextFieldName_1] = option.text,
+	                                _a));
+	                            return true;
+	                            var _a;
+	                        }) && vm.length) {
+	                            vm.clear();
+	                        }
+	                    }
+	                }
+	            }
+	            else {
+	                vm.clear();
+	            }
+	        }
+	        else {
+	            vm.clear();
+	        }
+	    };
+	    OpalSelect.prototype._onViewModelChange = function () {
+	        this._updateOptions();
+	    };
+	    OpalSelect.prototype._updateOptions = function () {
+	        var _this = this;
+	        var vm = this.viewModel;
+	        this.options.forEach(function (option) {
+	            var item = vm.get(option.value, _this._viewModelItemValueFieldName);
+	            if (item) {
+	                option.selected = true;
+	                option.disabled = item[_this._viewModelItemDisabledFieldName];
+	            }
+	            else {
+	                option.selected = false;
+	            }
+	        });
+	    };
+	    OpalSelect.prototype.open = function () {
+	        var _this = this;
+	        if (this._opened) {
+	            return false;
+	        }
+	        this._opened = true;
+	        this._valueAtOpening = this.viewModel.map(function (item) { return item[_this._viewModelItemValueFieldName]; });
+	        this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+	        if (!this.props['focused']) {
+	            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	        }
+	        this.$('button').check();
+	        this.$('menu').open();
+	        var loadedList = this.$('loaded-list');
+	        if (loadedList) {
+	            nextTick(function () {
+	                loadedList.checkLoading();
+	            });
+	        }
+	        var filteredList = this.filteredList;
+	        if (filteredList === undefined) {
+	            filteredList = this.filteredList = this.$('filtered-list');
+	        }
+	        if (filteredList) {
+	            filteredList.focus();
+	        }
+	        else {
+	            this._focusOptions();
+	        }
+	        return true;
+	    };
+	    OpalSelect.prototype.close = function () {
+	        var _this = this;
+	        if (!this._opened) {
+	            return false;
+	        }
+	        this._opened = false;
+	        this._documentFocusInListening.stop();
+	        if (!this.props['focused']) {
+	            this._documentKeyDownListening.stop();
+	        }
+	        this.$('button').uncheck();
+	        this.$('menu').close();
+	        if (this.props['multiple']) {
+	            if (!isEqualArray_1.default(this.viewModel.map(function (item) { return item[_this._viewModelItemValueFieldName]; }), this._valueAtOpening)) {
+	                this.emit('change');
+	            }
+	        }
+	        return true;
+	    };
+	    OpalSelect.prototype.toggle = function (value) {
+	        if (value !== undefined) {
+	            return value ? this.open() : !this.close();
+	        }
+	        return this.open() || !this.close();
+	    };
+	    OpalSelect.prototype._onDocumentFocusIn = function (evt) {
+	        if (!this.element.contains(evt.target.parentNode)) {
+	            this.close();
+	        }
+	    };
+	    OpalSelect.prototype.focus = function () {
+	        this.$('button').focus();
+	        return this;
+	    };
+	    OpalSelect.prototype.blur = function () {
+	        this.$('button').blur();
+	        return this;
+	    };
+	    OpalSelect.prototype._onDocumentKeyDown = function (evt) {
+	        switch (evt.which) {
+	            case 32 /* Space */: {
+	                evt.preventDefault();
+	                if (this._opened) {
+	                    if (this.props['focused']) {
+	                        this.close();
+	                    }
+	                }
+	                else {
+	                    this.open();
+	                }
+	                break;
+	            }
+	            case 38 /* Up */: {
+	                evt.preventDefault();
+	                if (this._opened) {
+	                    if (document.activeElement == document.body) {
+	                        if (this._focusOptions()) {
+	                            document.body.classList.remove('_no-focus-highlight');
+	                        }
+	                    }
+	                    else {
+	                        var options = this.options;
+	                        for (var i = 1, l = options.length; i < l; i++) {
+	                            if (options[i].props['focused']) {
+	                                do {
+	                                    var option = options[--i];
+	                                    if (!option.props['disabled']) {
+	                                        document.body.classList.remove('_no-focus-highlight');
+	                                        option.focus();
+	                                        break;
+	                                    }
+	                                } while (i);
+	                                break;
+	                            }
+	                        }
+	                    }
+	                }
+	                else {
+	                    this.open();
+	                }
+	                break;
+	            }
+	            case 40 /* Down */: {
+	                evt.preventDefault();
+	                if (this._opened) {
+	                    if (document.activeElement == document.body) {
+	                        if (this._focusOptions()) {
+	                            document.body.classList.remove('_no-focus-highlight');
+	                        }
+	                    }
+	                    else {
+	                        var options = this.options;
+	                        for (var i = 0, l = options.length - 1; i < l; i++) {
+	                            if (options[i].props['focused']) {
+	                                do {
+	                                    var option = options[++i];
+	                                    if (!option.props['disabled']) {
+	                                        document.body.classList.remove('_no-focus-highlight');
+	                                        option.focus();
+	                                        break;
+	                                    }
+	                                } while (i < l);
+	                                break;
+	                            }
+	                        }
+	                    }
+	                }
+	                else {
+	                    this.open();
+	                }
+	                break;
+	            }
+	            case 27 /* Esc */: {
+	                evt.preventDefault();
+	                this.close();
+	                this.focus();
+	                break;
+	            }
+	        }
+	    };
+	    OpalSelect.prototype._focusOptions = function () {
+	        var options = this.options;
+	        var optionForFocus;
+	        for (var i = 0, l = options.length; i < l; i++) {
+	            var option = options[i];
+	            if (!option.props['disabled']) {
+	                if (option.selected) {
+	                    optionForFocus = option;
+	                    break;
+	                }
+	                if (!optionForFocus) {
+	                    optionForFocus = option;
+	                }
+	            }
+	        }
+	        if (optionForFocus) {
+	            optionForFocus.focus();
+	            return true;
+	        }
+	        return false;
+	    };
+	    return OpalSelect;
+	}(rionite_1.Component));
+	OpalSelect.OpalSelectOption = opal_select_option_1.default;
+	OpalSelect = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-select',
+	        props: {
+	            type: String,
+	            size: 'm',
+	            datalist: { type: String, readonly: true },
+	            value: Object,
+	            viewModel: { type: String, readonly: true },
+	            viewModelItemSchema: { default: { value: 'value', text: 'text', disabled: 'disabled' }, readonly: true },
+	            text: String,
+	            placeholder: rionite_1.getText.t('Не выбрано'),
+	            multiple: { default: false, readonly: true },
+	            allowInput: false,
+	            focused: false,
+	            tabIndex: 0,
+	            disabled: false
+	        },
+	        template: new rionite_1.ComponentTemplate(template),
+	        events: {
+	            button: {
+	                focusin: function () {
+	                    this.props['focused'] = true;
+	                    this.emit('focusin');
+	                },
+	                focusout: function () {
+	                    this.props['focused'] = false;
+	                    this.emit('focusout');
+	                },
+	                click: function (evt) {
+	                    (evt['originalEvent'] || evt).preventDefault();
+	                    if (evt.target.checked) {
+	                        this.open();
+	                    }
+	                    else {
+	                        this.close();
+	                    }
+	                }
+	            },
+	            menu: {
+	                close: function () {
+	                    this.close();
+	                },
+	                confirminput: function (evt) {
+	                    if (!this.props['allow-input']) {
+	                        return;
+	                    }
+	                    var textInput = evt.target;
+	                    var itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
+	                    var itemText = textInput.value;
+	                    var dataList = this.dataList;
+	                    if (dataList) {
+	                        dataList.add({ value: itemValue, text: itemText });
+	                    }
+	                    textInput.clear();
+	                    var loadedList = this.loadedList;
+	                    if (loadedList === undefined) {
+	                        loadedList = this.loadedList = this.$('loaded-list');
+	                    }
+	                    if (loadedList) {
+	                        loadedList.props['query'] = '';
+	                    }
+	                    this.emit('input');
+	                    var vm = this.viewModel;
+	                    var vmItem = (_a = {},
+	                        _a[this._viewModelItemValueFieldName] = itemValue,
+	                        _a[this._viewModelItemTextFieldName] = itemText,
+	                        _a);
+	                    if (this.props['multiple']) {
+	                        vm.add(vmItem);
+	                    }
+	                    else {
+	                        if (vm.length) {
+	                            vm.set(0, vmItem);
+	                        }
+	                        else {
+	                            vm.add(vmItem);
+	                        }
+	                        this.close();
+	                        this.focus();
+	                        this.emit('change');
+	                    }
+	                    var _a;
+	                },
+	                change: function (evt) {
+	                    if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
+	                        return;
+	                    }
+	                    this._options.pull();
+	                    this._updateOptions();
+	                    return false;
+	                },
+	                select: function (_a) {
+	                    var selectedOption = _a.target;
+	                    if (!(selectedOption instanceof opal_select_option_1.default)) {
+	                        return;
+	                    }
+	                    var vm = this.viewModel;
+	                    var vmItem = (_b = {},
+	                        _b[this._viewModelItemValueFieldName] = selectedOption.value,
+	                        _b[this._viewModelItemTextFieldName] = selectedOption.text,
+	                        _b);
+	                    if (this.props['multiple']) {
+	                        vm.add(vmItem);
+	                    }
+	                    else {
+	                        if (vm.length) {
+	                            vm.set(0, vmItem);
+	                        }
+	                        else {
+	                            vm.add(vmItem);
+	                        }
+	                        this.close();
+	                        this.focus();
+	                        this.emit('change');
+	                    }
+	                    var _b;
+	                },
+	                deselect: function (_a) {
+	                    var deselectedOption = _a.target;
+	                    if (!(deselectedOption instanceof opal_select_option_1.default)) {
+	                        return;
+	                    }
+	                    if (this.props['multiple']) {
+	                        this.viewModel.remove(this.viewModel.get(deselectedOption.value, this._viewModelItemValueFieldName));
+	                    }
+	                    else {
+	                        deselectedOption.select();
+	                        this.close();
+	                        this.focus();
+	                    }
+	                }
+	            },
+	            'loaded-list': {
+	                loaded: function () {
+	                    var _this = this;
+	                    setTimeout(function () {
+	                        var filteredList = _this.$('filtered-list');
+	                        if (filteredList) {
+	                            if (document.activeElement == filteredList.$('query-input').$('input')) {
+	                                _this._focusOptions();
+	                                filteredList.focus();
+	                            }
+	                            else {
+	                                _this._focusOptions();
+	                            }
+	                        }
+	                        else {
+	                            _this._focusOptions();
+	                        }
+	                    }, 1);
+	                }
+	            }
+	        }
+	    })
+	], OpalSelect);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalSelect;
 
-	module.exports = Component.extend('opal-select', {
-		Static: {
-			OpalSelectOption: OpalSelectOption,
-
-			props: {
-				type: String,
-				size: 'm',
-				datalist: { type: String, readonly: true },
-				value: Object,
-				viewModel: { type: String, readonly: true },
-				viewModelItemSchema: { default: { value: 'value', text: 'text', disabled: 'disabled' }, readonly: true },
-				text: String,
-				placeholder: getText.t('Не выбрано'),
-				multiple: { default: false, readonly: true },
-				allowInput: false,
-				focused: false,
-				tabIndex: 0,
-				disabled: false
-			},
-
-			template: new ComponentTemplate(__webpack_require__(36)),
-
-			events: {
-				button: {
-					focusin: function focusin() {
-						this.props.focused = true;
-						this.emit('focusin');
-					},
-					focusout: function focusout() {
-						this.props.focused = false;
-						this.emit('focusout');
-					},
-					click: function click(evt) {
-						(evt.originalEvent || evt).preventDefault();
-						this[evt.target.checked ? 'open' : 'close']();
-					}
-				},
-
-				menu: {
-					close: function close() {
-						this.close();
-					},
-					confirminput: function confirminput(_ref) {
-						var _vmItem;
-
-						var textInput = _ref.target;
-
-						if (!this.props.allowInput) {
-							return;
-						}
-
-						var itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
-						var itemText = textInput.value;
-
-						var dataList = this.dataList;
-
-						if (dataList) {
-							dataList.add({ value: itemValue, text: itemText });
-						}
-
-						textInput.clear();
-
-						var loadedList = this.loadedList;
-
-						if (loadedList === undefined) {
-							loadedList = this.loadedList = this.$('loaded-list');
-						}
-
-						if (loadedList) {
-							loadedList.props.query = '';
-						}
-
-						this.emit('input');
-
-						var vm = this.viewModel;
-						var vmItem = (_vmItem = {}, _vmItem[this._viewModelItemValueFieldName] = itemValue, _vmItem[this._viewModelItemTextFieldName] = itemText, _vmItem);
-
-						if (this.props.multiple) {
-							vm.add(vmItem);
-						} else {
-							if (vm.length) {
-								vm.set(0, vmItem);
-							} else {
-								vm.add(vmItem);
-							}
-
-							this.close();
-							this.focus();
-
-							this.emit('change');
-						}
-					},
-					change: function change(evt) {
-						if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
-							return;
-						}
-
-						this._options.pull();
-						this._updateOptions();
-
-						return false;
-					},
-					select: function select(_ref2) {
-						var _vmItem2;
-
-						var selectedOption = _ref2.target;
-
-						if (!(selectedOption instanceof OpalSelectOption)) {
-							return;
-						}
-
-						var vm = this.viewModel;
-						var vmItem = (_vmItem2 = {}, _vmItem2[this._viewModelItemValueFieldName] = selectedOption.value, _vmItem2[this._viewModelItemTextFieldName] = selectedOption.text, _vmItem2);
-
-						if (this.props.multiple) {
-							vm.add(vmItem);
-						} else {
-							if (vm.length) {
-								vm.set(0, vmItem);
-							} else {
-								vm.add(vmItem);
-							}
-
-							this.close();
-							this.focus();
-
-							this.emit('change');
-						}
-					},
-					deselect: function deselect(_ref3) {
-						var deselectedOption = _ref3.target;
-
-						if (!(deselectedOption instanceof OpalSelectOption)) {
-							return;
-						}
-
-						if (this.props.multiple) {
-							this.viewModel.remove(this.viewModel.get(deselectedOption.value, this._viewModelItemValueFieldName));
-						} else {
-							deselectedOption.select();
-
-							this.close();
-							this.focus();
-						}
-					}
-				},
-
-				'loaded-list': {
-					loaded: function loaded() {
-						var _this = this;
-
-						setTimeout(function () {
-							var filteredList = _this.$('filtered-list');
-
-							if (filteredList) {
-								if (document.activeElement == filteredList.$('query-input').$('input')) {
-									_this._focusOptions();
-									filteredList.focus();
-								} else {
-									_this._focusOptions();
-								}
-							} else {
-								_this._focusOptions();
-							}
-						}, 1);
-					}
-				}
-			}
-		},
-
-		filteredList: undefined,
-		loadedList: undefined,
-
-		_opened: false,
-
-		_valueAtOpening: null,
-
-		initialize: function initialize() {
-			var _this2 = this;
-
-			var props = this.props;
-			var dataList = props.datalist;
-
-			if (dataList) {
-				(function () {
-					var context = _this2.ownerComponent || window;
-					var getDataList = Function('return this.' + dataList + ';');
-
-					cellx.define(_this2, 'dataList', function () {
-						return getDataList.call(context);
-					});
-				})();
-			}
-
-			var vm = props.viewModel;
-			var vmItemSchema = props.viewModelItemSchema;
-
-			if (vm) {
-				vm = Function('return this.' + vm + ';').call(this.ownerComponent || window);
-
-				if (!vm) {
-					throw new TypeError('viewModel is not defined');
-				}
-			} else {
-				vm = new IndexedList(null, { indexes: [vmItemSchema.value] });
-			}
-
-			cellx.define(this, 'viewModel', vm);
-
-			this._viewModelItemValueFieldName = vmItemSchema.value;
-			this._viewModelItemTextFieldName = vmItemSchema.text;
-			this._viewModelItemDisabledFieldName = vmItemSchema.disabled;
-
-			cellx.define(this, {
-				options: function options() {
-					return this.optionElements ? map.call(this.optionElements, function (option) {
-						return option.$c;
-					}) : [];
-				},
-				text: function text() {
-					var _this3 = this;
-
-					return this.viewModel.map(function (item) {
-						return item[_this3._viewModelItemTextFieldName];
-					}).join(', ') || this.props.placeholder;
-				}
-			});
-		},
-		ready: function ready() {
-			var _this4 = this;
-
-			this.optionElements = this.element.getElementsByClassName('opal-select-option');
-
-			var props = this.props;
-
-			if (props.viewModel) {
-				this._updateOptions();
-			} else {
-				(function () {
-					var value = props.value;
-					var selectedOptions = void 0;
-
-					if (value) {
-						if (!Array.isArray(value)) {
-							throw new TypeError('value must be an array');
-						}
-
-						if (value.length) {
-							if (props.multiple) {
-								selectedOptions = _this4.options.filter(function (option) {
-									return value.indexOf(option.value) != -1;
-								});
-							} else {
-								value = value[0];
-								var selectedOption = _this4.options.find(function (option) {
-									return option.value == value;
-								});
-								selectedOptions = selectedOption ? [selectedOption] : [];
-							}
-						} else {
-							selectedOptions = [];
-						}
-					} else {
-						if (props.multiple) {
-							selectedOptions = _this4.options.filter(function (option) {
-								return option.selected;
-							});
-						} else {
-							var _selectedOption = _this4.options.find(function (option) {
-								return option.selected;
-							});
-							selectedOptions = _selectedOption ? [_selectedOption] : [];
-						}
-					}
-
-					if (selectedOptions.length) {
-						_this4.viewModel.addRange(selectedOptions.map(function (option) {
-							var _ref4;
-
-							return _ref4 = {}, _ref4[_this4._viewModelItemValueFieldName] = option.value, _ref4[_this4._viewModelItemTextFieldName] = option.text, _ref4;
-						}));
-					}
-
-					if (value) {
-						_this4._updateOptions();
-					}
-				})();
-			}
-		},
-		elementAttached: function elementAttached() {
-			this.listenTo(this.props, 'change:value', this._onPropsValueChange);
-			this.listenTo(this.viewModel, 'change', this._onViewModelChange);
-		},
-		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
-			if (name == 'focused') {
-				if (value) {
-					if (!this._opened) {
-						this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-					}
-
-					this.focus();
-				} else {
-					if (!this._opened) {
-						this._documentKeyDownListening.stop();
-					}
-
-					this.blur();
-				}
-			}
-		},
-		_onPropsValueChange: function _onPropsValueChange(_ref5) {
-			var _this5 = this;
-
-			var value = _ref5.value;
-
-			var vm = this.viewModel;
-
-			if (value) {
-				if (!Array.isArray(value)) {
-					throw new TypeError('value must be an array');
-				}
-
-				if (value.length) {
-					(function () {
-						var vmItemValueFieldName = _this5._viewModelItemValueFieldName;
-						var vmItemTextFieldName = _this5._viewModelItemTextFieldName;
-
-						if (_this5.props.multiple) {
-							_this5.options.forEach(function (option) {
-								var optionValue = option.value;
-
-								if (value.indexOf(optionValue) != -1) {
-									if (!vm.contains(optionValue, vmItemValueFieldName)) {
-										var _vm$add;
-
-										vm.add((_vm$add = {}, _vm$add[vmItemValueFieldName] = optionValue, _vm$add[vmItemTextFieldName] = option.text, _vm$add));
-									}
-								} else {
-									var item = vm.get(optionValue, vmItemValueFieldName);
-
-									if (item) {
-										vm.remove(item);
-									}
-								}
-							});
-						} else {
-							value = value[0];
-
-							if (!vm.length || value != vm.get(0)[vmItemValueFieldName]) {
-								if (!_this5.options.some(function (option) {
-									if (option.value == value) {
-										var _vm$set;
-
-										vm.set(0, (_vm$set = {}, _vm$set[vmItemValueFieldName] = value, _vm$set[vmItemTextFieldName] = option.text, _vm$set));
-
-										return true;
-									}
-								}) && vm.length) {
-									vm.clear();
-								}
-							}
-						}
-					})();
-				} else {
-					vm.clear();
-				}
-			} else {
-				vm.clear();
-			}
-		},
-		_onViewModelChange: function _onViewModelChange() {
-			this._updateOptions();
-		},
-		_updateOptions: function _updateOptions() {
-			var _this6 = this;
-
-			var vm = this.viewModel;
-
-			this.options.forEach(function (option) {
-				var item = vm.get(option.value, _this6._viewModelItemValueFieldName);
-
-				if (item) {
-					option.selected = true;
-					option.disabled = item[_this6._viewModelItemDisabledFieldName];
-				} else {
-					option.selected = false;
-				}
-			});
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		open: function open() {
-			var _this7 = this;
-
-			if (this._opened) {
-				return false;
-			}
-
-			this._opened = true;
-
-			this._valueAtOpening = this.viewModel.map(function (item) {
-				return item[_this7._viewModelItemValueFieldName];
-			});
-
-			this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
-
-			if (!this.props.focused) {
-				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-			}
-
-			this.$('button').check();
-			this.$('menu').open();
-
-			var loadedList = this.$('loaded-list');
-
-			if (loadedList) {
-				nextTick(function () {
-					loadedList.checkLoading();
-				});
-			}
-
-			var filteredList = this.filteredList;
-
-			if (filteredList === undefined) {
-				filteredList = this.filteredList = this.$('filtered-list');
-			}
-
-			if (filteredList) {
-				filteredList.focus();
-			} else {
-				this._focusOptions();
-			}
-
-			return true;
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		close: function close() {
-			var _this8 = this;
-
-			if (!this._opened) {
-				return false;
-			}
-
-			this._opened = false;
-
-			this._documentFocusInListening.stop();
-
-			if (!this.props.focused) {
-				this._documentKeyDownListening.stop();
-			}
-
-			this.$('button').uncheck();
-			this.$('menu').close();
-
-			if (this.props.multiple) {
-				if (!isEqualArray(this.viewModel.map(function (item) {
-					return item[_this8._viewModelItemValueFieldName];
-				}), this._valueAtOpening)) {
-					this.emit('change');
-				}
-			}
-
-			return true;
-		},
-
-
-		/**
-	  * @typesign (value?: boolean) -> boolean;
-	  */
-		toggle: function toggle(value) {
-			if (value !== undefined) {
-				return value ? this.open() : !this.close();
-			}
-			return this.open() || !this.close();
-		},
-		_onDocumentFocusIn: function _onDocumentFocusIn(evt) {
-			if (!this.element.contains(evt.target.parentNode)) {
-				this.close();
-			}
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalSelect;
-	  */
-		focus: function focus() {
-			this.$('button').focus();
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalSelect;
-	  */
-		blur: function blur() {
-			this.$('button').blur();
-			return this;
-		},
-		_onDocumentKeyDown: function _onDocumentKeyDown(evt) {
-			switch (evt.which) {
-				case 32 /* Space */:
-					{
-						evt.preventDefault();
-
-						if (this._opened) {
-							if (this._focused) {
-								this.close();
-							}
-						} else {
-							this.open();
-						}
-
-						break;
-					}
-				case 38 /* Up */:
-					{
-						evt.preventDefault();
-
-						if (this._opened) {
-							if (document.activeElement == document.body) {
-								if (this._focusOptions()) {
-									document.body.classList.remove('_no-focus-highlight');
-								}
-							} else {
-								var options = this.options;
-
-								for (var i = 1, l = options.length; i < l; i++) {
-									if (options[i].props.focused) {
-										do {
-											var option = options[--i];
-
-											if (!option.props.disabled) {
-												document.body.classList.remove('_no-focus-highlight');
-												option.focus();
-												break;
-											}
-										} while (i);
-
-										break;
-									}
-								}
-							}
-						} else {
-							this.open();
-						}
-
-						break;
-					}
-				case 40 /* Down */:
-					{
-						evt.preventDefault();
-
-						if (this._opened) {
-							if (document.activeElement == document.body) {
-								if (this._focusOptions()) {
-									document.body.classList.remove('_no-focus-highlight');
-								}
-							} else {
-								var _options = this.options;
-
-								for (var _i = 0, _l = _options.length - 1; _i < _l; _i++) {
-									if (_options[_i].props.focused) {
-										do {
-											var _option = _options[++_i];
-
-											if (!_option.props.disabled) {
-												document.body.classList.remove('_no-focus-highlight');
-												_option.focus();
-												break;
-											}
-										} while (_i < _l);
-
-										break;
-									}
-								}
-							}
-						} else {
-							this.open();
-						}
-
-						break;
-					}
-				case 27 /* Esc */:
-					{
-						evt.preventDefault();
-						this.close();
-						this.focus();
-						break;
-					}
-			}
-		},
-		_focusOptions: function _focusOptions() {
-			var options = this.options;
-			var optionForFocus = void 0;
-
-			for (var i = 0, l = options.length; i < l; i++) {
-				var option = options[i];
-
-				if (!option.props.disabled) {
-					if (option.selected) {
-						optionForFocus = option;
-						break;
-					}
-
-					if (!optionForFocus) {
-						optionForFocus = option;
-					}
-				}
-			}
-
-			if (optionForFocus) {
-				optionForFocus.focus();
-				return true;
-			}
-
-			return false;
-		}
-	});
 
 /***/ },
 
@@ -731,220 +627,194 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 19:
+/***/ 12:
 /***/ function(module, exports) {
 
 	"use strict";
-
 	function isEqualArray(arr1, arr2) {
-		var len = arr1.length;
-
-		if (len != arr2.length) {
-			return false;
-		}
-
-		for (var i = 0; i < len; i++) {
-			if (arr1[i] !== arr2[i]) {
-				return false;
-			}
-		}
-
-		return true;
+	    var len = arr1.length;
+	    if (len != arr2.length) {
+	        return false;
+	    }
+	    for (var i = 0; i < len; i++) {
+	        if (arr1[i] !== arr2[i]) {
+	            return false;
+	        }
+	    }
+	    return true;
 	}
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = isEqualArray;
 
-	module.exports = isEqualArray;
 
 /***/ },
 
-/***/ 20:
+/***/ 13:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(67);
+	var cellx_1 = __webpack_require__(2);
+	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(37);
+	var OpalSelectOption = (function (_super) {
+	    __extends(OpalSelectOption, _super);
+	    function OpalSelectOption() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalSelectOption.prototype.initialize = function () {
+	        cellx_1.define(this, {
+	            _tabIndex: function () {
+	                return this.props['disabled'] ? -1 : this.props['tab-index'];
+	            }
+	        });
+	    };
+	    OpalSelectOption.prototype.ready = function () {
+	        var props = this.props;
+	        if (props['value'] === undefined) {
+	            props['value'] = props['text'];
+	        }
+	    };
+	    OpalSelectOption.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	        if (name == 'focused') {
+	            if (value) {
+	                this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	                this.focus();
+	            }
+	            else {
+	                this._documentKeyDownListening.stop();
+	                this.blur();
+	            }
+	        }
+	    };
+	    OpalSelectOption.prototype._onDocumentKeyDown = function (evt) {
+	        if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
+	            evt.preventDefault();
+	            if (!this.props['disabled']) {
+	                this._click();
+	            }
+	        }
+	    };
+	    OpalSelectOption.prototype._click = function () {
+	        this.emit(this.toggle() ? 'select' : 'deselect');
+	    };
+	    Object.defineProperty(OpalSelectOption.prototype, "value", {
+	        get: function () {
+	            var props = this.props;
+	            return props['value'] === undefined ? props['text'] : props['value'];
+	        },
+	        set: function (value) {
+	            this.props['value'] = value;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(OpalSelectOption.prototype, "text", {
+	        get: function () {
+	            return this.props['text'].trim() || ' ';
+	        },
+	        set: function (text) {
+	            this.props['text'] = text;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(OpalSelectOption.prototype, "selected", {
+	        get: function () {
+	            return this.props['selected'];
+	        },
+	        set: function (selected) {
+	            this.props['selected'] = selected;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(OpalSelectOption.prototype, "disabled", {
+	        get: function () {
+	            return this.props['disabled'];
+	        },
+	        set: function (disabled) {
+	            this.props['disabled'] = disabled;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    OpalSelectOption.prototype.select = function () {
+	        if (!this.props['selected']) {
+	            this.props['selected'] = true;
+	            return true;
+	        }
+	        return false;
+	    };
+	    OpalSelectOption.prototype.deselect = function () {
+	        if (this.props['selected']) {
+	            this.props['selected'] = false;
+	            return true;
+	        }
+	        return false;
+	    };
+	    OpalSelectOption.prototype.toggle = function (value) {
+	        return (this.props['selected'] = value === undefined ? !this.props['selected'] : value);
+	    };
+	    OpalSelectOption.prototype.focus = function () {
+	        this.$('control').focus();
+	        return this;
+	    };
+	    OpalSelectOption.prototype.blur = function () {
+	        this.$('control').blur();
+	        return this;
+	    };
+	    OpalSelectOption.prototype.enable = function () {
+	        this.props['disabled'] = false;
+	        return this;
+	    };
+	    OpalSelectOption.prototype.disable = function () {
+	        this.props['disabled'] = true;
+	        return this;
+	    };
+	    return OpalSelectOption;
+	}(rionite_1.Component));
+	OpalSelectOption = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-select-option',
+	        props: {
+	            value: String,
+	            text: { type: String, required: true },
+	            selected: false,
+	            focused: false,
+	            tabIndex: 0,
+	            disabled: false
+	        },
+	        template: template,
+	        events: {
+	            control: {
+	                focusin: function () {
+	                    this.props['focused'] = true;
+	                },
+	                focusout: function () {
+	                    this.props['focused'] = false;
+	                },
+	                click: function () {
+	                    this._click();
+	                }
+	            }
+	        }
+	    })
+	], OpalSelectOption);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalSelectOption;
 
-	var cellx = __webpack_require__(2);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	module.exports = Component.extend('opal-select-option', {
-		Static: {
-			props: {
-				value: String,
-				text: { type: String, required: true },
-				selected: false,
-				focused: false,
-				tabIndex: 0,
-				disabled: false
-			},
-
-			template: __webpack_require__(37),
-
-			events: {
-				control: {
-					focusin: function focusin() {
-						this.props.focused = true;
-					},
-					focusout: function focusout() {
-						this.props.focused = false;
-					},
-					click: function click() {
-						this._click();
-					}
-				}
-			}
-		},
-
-		initialize: function initialize() {
-			cellx.define(this, {
-				_tabIndex: function _tabIndex() {
-					return this.props.disabled ? -1 : this.props.tabIndex;
-				}
-			});
-		},
-		ready: function ready() {
-			var props = this.props;
-
-			if (props.value === undefined) {
-				props.value = props.text;
-			}
-		},
-		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
-			if (name == 'focused') {
-				if (value) {
-					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-					this.focus();
-				} else {
-					this._documentKeyDownListening.stop();
-					this.blur();
-				}
-			}
-		},
-		_onDocumentKeyDown: function _onDocumentKeyDown(evt) {
-			if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
-					evt.preventDefault();
-
-					if (!this.props.disabled) {
-						this._click();
-					}
-				}
-		},
-		_click: function _click() {
-			this.emit(this.toggle() ? 'select' : 'deselect');
-		},
-
-
-		/**
-	  * @type {string}
-	  */
-		get value() {
-			var props = this.props;
-			return props.value === undefined ? props.text : props.value;
-		},
-		set value(value) {
-			this.props.value = value;
-		},
-
-		/**
-	  * @type {string}
-	  */
-		get text() {
-			return this.props.text.trim() || ' ';
-		},
-		set text(text) {
-			this.props.text = text;
-		},
-
-		/**
-	  * @type {boolean}
-	  */
-		get selected() {
-			return this.props.selected;
-		},
-		set selected(selected) {
-			this.props.selected = selected;
-		},
-
-		/**
-	  * @type {boolean}
-	  */
-		get disabled() {
-			return this.props.disabled;
-		},
-		set disabled(disabled) {
-			this.props.disabled = disabled;
-		},
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		select: function select() {
-			if (!this.props.selected) {
-				this.props.selected = true;
-				return true;
-			}
-
-			return false;
-		},
-
-
-		/**
-	  * @typesign () -> boolean;
-	  */
-		deselect: function deselect() {
-			if (this.props.selected) {
-				this.props.selected = false;
-				return true;
-			}
-
-			return false;
-		},
-
-
-		/**
-	  * @typesign (value?: boolean) -> boolean;
-	  */
-		toggle: function toggle(value) {
-			return this.props.selected = value === undefined ? !this.props.selected : value;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalSelectOption;
-	  */
-		focus: function focus() {
-			this.$('control').focus();
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalSelectOption;
-	  */
-		blur: function blur() {
-			this.$('control').blur();
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalSelectOption;
-	  */
-		enable: function enable() {
-			this.props.disabled = false;
-			return this;
-		},
-
-
-		/**
-	  * @typesign () -> OpalComponents.OpalSelectOption;
-	  */
-		disable: function disable() {
-			this.props.disabled = true;
-			return this;
-		}
-	});
 
 /***/ },
 

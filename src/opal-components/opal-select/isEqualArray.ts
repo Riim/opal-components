@@ -1,4 +1,4 @@
-function isEqualArray(arr1, arr2) {
+export default function isEqualArray(arr1: Array<any>, arr2: Array<any>): boolean {
 	let len = arr1.length;
 
 	if (len != arr2.length) {
@@ -13,5 +13,3 @@ function isEqualArray(arr1, arr2) {
 
 	return true;
 }
-
-module.exports = isEqualArray;
