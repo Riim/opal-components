@@ -78,6 +78,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var nextUID = cellx_1.Utils.nextUID, nextTick = cellx_1.Utils.nextTick;
 	var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
 	var map = Array.prototype.map;
+	var defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 	var OpalSelect = (function (_super) {
 	    __extends(OpalSelect, _super);
 	    function OpalSelect() {
@@ -107,9 +108,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            vm = new cellx_indexed_collections_1.IndexedList(undefined, { indexes: [vmItemSchema.value] });
 	        }
 	        cellx_1.define(this, 'viewModel', vm);
-	        this._viewModelItemValueFieldName = vmItemSchema.value;
-	        this._viewModelItemTextFieldName = vmItemSchema.text;
-	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled;
+	        this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
+	        this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
+	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
 	        cellx_1.define(this, {
 	            options: function () {
 	                return this.optionElements ?
@@ -453,7 +454,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            datalist: { type: String, readonly: true },
 	            value: Object,
 	            viewModel: { type: String, readonly: true },
-	            viewModelItemSchema: { default: { value: 'value', text: 'text', disabled: 'disabled' }, readonly: true },
+	            viewModelItemSchema: { default: defaultVMItemSchema, readonly: true },
 	            text: String,
 	            placeholder: rionite_1.getText.t('Не выбрано'),
 	            multiple: { default: false, readonly: true },

@@ -21,6 +21,8 @@ let map = Array.prototype.map;
 export type TDataList = IndexedList<{ value: string, text: string }>;
 export type TViewModel = IndexedList<Object>;
 
+let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
+
 @d.Component({
 	elementIs: 'opal-select',
 
@@ -30,7 +32,7 @@ export type TViewModel = IndexedList<Object>;
 		datalist: { type: String, readonly: true },
 		value: Object,
 		viewModel: { type: String, readonly: true },
-		viewModelItemSchema: { default: { value: 'value', text: 'text', disabled: 'disabled' }, readonly: true },
+		viewModelItemSchema: { default: defaultVMItemSchema, readonly: true },
 		text: String,
 		placeholder: getText.t('Не выбрано'),
 		multiple: { default: false, readonly: true },
@@ -252,9 +254,9 @@ export default class OpalSelect extends Component {
 
 		define(this, 'viewModel', vm);
 
-		this._viewModelItemValueFieldName = vmItemSchema.value;
-		this._viewModelItemTextFieldName = vmItemSchema.text;
-		this._viewModelItemDisabledFieldName = vmItemSchema.disabled;
+		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
+		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
+		this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
 
 		define(this, {
 			options(this: OpalSelect): Array<OpalSelectOption> {

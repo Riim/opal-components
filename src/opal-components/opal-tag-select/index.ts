@@ -6,6 +6,8 @@ import { TDataList, TViewModel, default as OpalSelect } from '../opal-select';
 import { IDataProvider } from '../opal-loaded-list';
 import template = require('./index.html');
 
+let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
+
 @d.Component({
 	elementIs: 'opal-tag-select',
 
@@ -16,7 +18,7 @@ import template = require('./index.html');
 		dataprovider: { type: String, readonly: true },
 		value: Object,
 		viewModel: { type: String, readonly: true },
-		viewModelItemSchema: { default: { value: 'value', text: 'text', disabled: 'disabled' }, readonly: true },
+		viewModelItemSchema: { default: defaultVMItemSchema, readonly: true },
 		placeholder: getText.t('Не выбрано'),
 		allowInput: false,
 		popoverTo: 'bottom',
@@ -106,9 +108,9 @@ export default class OpalTagSelect extends Component {
 
 		let vmItemSchema = props['view-model-item-schema'];
 
-		this._viewModelItemValueFieldName = vmItemSchema.value;
-		this._viewModelItemTextFieldName = vmItemSchema.text;
-		this._viewModelItemDisabledFieldName = vmItemSchema.disabled;
+		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
+		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
+		this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
 	}
 
 	ready() {

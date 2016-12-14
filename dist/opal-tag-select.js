@@ -71,6 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
 	var template = __webpack_require__(43);
+	var defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 	var OpalTagSelect = (function (_super) {
 	    __extends(OpalTagSelect, _super);
 	    function OpalTagSelect() {
@@ -98,9 +99,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        });
 	        var vmItemSchema = props['view-model-item-schema'];
-	        this._viewModelItemValueFieldName = vmItemSchema.value;
-	        this._viewModelItemTextFieldName = vmItemSchema.text;
-	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled;
+	        this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
+	        this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
+	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
 	    };
 	    OpalTagSelect.prototype.ready = function () {
 	        var select = this.$('select');
@@ -123,7 +124,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            dataprovider: { type: String, readonly: true },
 	            value: Object,
 	            viewModel: { type: String, readonly: true },
-	            viewModelItemSchema: { default: { value: 'value', text: 'text', disabled: 'disabled' }, readonly: true },
+	            viewModelItemSchema: { default: defaultVMItemSchema, readonly: true },
 	            placeholder: rionite_1.getText.t('Не выбрано'),
 	            allowInput: false,
 	            popoverTo: 'bottom',
