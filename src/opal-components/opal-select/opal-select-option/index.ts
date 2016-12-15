@@ -4,7 +4,7 @@ import { define } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.html');
 
-@d.Component({
+@d.Component<OpalSelectOption>({
 	elementIs: 'opal-select-option',
 
 	props: {
@@ -28,7 +28,7 @@ import template = require('./index.html');
 				this.props['focused'] = false;
 			},
 
-			click(this: OpalSelectOption) {
+			click() {
 				this._click();
 			}
 		}

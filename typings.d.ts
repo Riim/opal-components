@@ -1,4 +1,4 @@
 declare module "*.html" {
-    let template: string;
-    export = template;
+    let html: string;
+    export = html;
 }

@@ -4,7 +4,7 @@ import { define } from 'cellx';
 import { Component, d } from 'rionite';
 import template = require('./index.html');
 
-@d.Component({
+@d.Component<OpalSlider>({
 	elementIs: 'opal-slider',
 
 	props: {
@@ -19,7 +19,7 @@ import template = require('./index.html');
 
 	events: {
 		'first-input': {
-			input(this: OpalSlider, evt: Event) {
+			input(evt: Event) {
 				let secondInput = this.$('second-input') as HTMLInputElement;
 				let value = this._firstInputValue = +(evt.target as HTMLInputElement).value;
 
@@ -30,7 +30,7 @@ import template = require('./index.html');
 		},
 
 		'second-input': {
-			input(this: OpalSlider, evt: Event) {
+			input(evt: Event) {
 				let firstInput = this.$('first-input') as HTMLInputElement;
 				let value = this._secondInputValue = +(evt.target as HTMLInputElement).value;
 

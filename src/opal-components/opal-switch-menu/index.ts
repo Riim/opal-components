@@ -7,13 +7,13 @@ import OpalButton from '../opal-button';
 let forEach = Array.prototype.forEach;
 let find = (Array.prototype as any).find;
 
-@d.Component({
+@d.Component<OpalSwitchMenu>({
 	elementIs: 'opal-switch-menu',
 	template: '<rt-content class="opal-switch-menu__content"></rt-content>',
 
 	events: {
 		':component': {
-			check(this: OpalSwitchMenu, evt: IEvent) {
+			check(evt: IEvent) {
 				let checkedButton = evt.target as OpalButton;
 
 				forEach.call(this.buttons, (btn: IComponentElement) => {

@@ -9,19 +9,19 @@ export { default as OpalInputValidatorRule } from './opal-input-validator-rule';
 
 let map = Array.prototype.map;
 
-@d.Component({
+@d.Component<OpalInputValidator>({
 	elementIs: 'opal-input-validator',
 	template: '<rt-content class="opal-input-validator__content"></rt-content>',
 
 	events: {
 		input: {
-			input(this: OpalInputValidator) {
+			input() {
 				if (this.failedRule) {
 					this._validate([this.failedRule]);
 				}
 			},
 
-			change(this: OpalInputValidator) {
+			change() {
 				this.validate();
 			}
 		}

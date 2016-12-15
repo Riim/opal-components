@@ -25,8 +25,8 @@ module.exports = {
 	}),
 
 	output: {
-		path: path.join(__dirname, 'dist'),
 		filename: '[name].js',
+		path: path.join(__dirname, 'dist'),
 		library: '[name]',
 		libraryTarget: 'umd'
 	},
@@ -54,9 +54,9 @@ module.exports = {
 				}
 			},
 			{
- 					test: /\.ts$/,
- 					exclude: /(?:node_modules|bower_components)/,
- 					loader: 'awesome-typescript-loader'
+ 				test: /\.ts$/,
+ 				exclude: /(?:node_modules|bower_components)/,
+ 				loader: 'awesome-typescript-loader'
  			},
 			{
 				test: /\.html$/,

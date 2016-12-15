@@ -4,7 +4,7 @@ import { define } from 'cellx';
 import { Component, d } from 'rionite';
 import template = require('./index.html');
 
-@d.Component({
+@d.Component<OpalButton>({
 	elementIs: 'opal-button',
 
 	props: {
@@ -34,7 +34,7 @@ import template = require('./index.html');
 				this.emit({ type: 'focusout', originalEvent: evt });
 			},
 
-			click(this: OpalButton, evt: Event) {
+			click(evt: Event) {
 				if (!this.props['disabled']) {
 					if (this.props['checkable']) {
 						this.emit(this.toggle() ? 'check' : 'uncheck');

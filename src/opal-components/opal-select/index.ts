@@ -1,7 +1,7 @@
 import './index.css';
 import './opal-select__icon-chevron-down.svg';
 
-import { IEvent, Utils, define } from 'cellx';
+import { IEvent, define, Utils } from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
 import { IDisposableListening, getText, IComponentElement, Component, d, Components, ComponentTemplate } from 'rionite';
 import OpalButton from '../opal-button';
@@ -23,7 +23,7 @@ export type TViewModel = IndexedList<Object>;
 
 let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 
-@d.Component({
+@d.Component<OpalSelect>({
 	elementIs: 'opal-select',
 
 	props: {
@@ -56,7 +56,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				this.emit('focusout');
 			},
 
-			click(this: OpalSelect, evt: IEvent) {
+			click(evt: IEvent) {
 				(evt['originalEvent'] || evt).preventDefault();
 
 				if ((evt.target as OpalButton).checked) {
@@ -68,11 +68,11 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		},
 
 		menu: {
-			close(this: OpalSelect) {
+			close() {
 				this.close();
 			},
 
-			confirminput(this: OpalSelect, evt: IEvent) {
+			confirminput(evt: IEvent) {
 				if (!this.props['allow-input']) {
 					return;
 				}
@@ -124,7 +124,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				}
 			},
 
-			change(this: OpalSelect, evt: IEvent) {
+			change(evt: IEvent) {
 				if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
 					return;
 				}
@@ -135,7 +135,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				return false;
 			},
 
-			select(this: OpalSelect, { target: selectedOption }) {
+			select({ target: selectedOption }) {
 				if (!(selectedOption instanceof OpalSelectOption)) {
 					return;
 				}
@@ -162,7 +162,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				}
 			},
 
-			deselect(this: OpalSelect, { target: deselectedOption }) {
+			deselect({ target: deselectedOption }) {
 				if (!(deselectedOption instanceof OpalSelectOption)) {
 					return;
 				}
@@ -181,7 +181,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		},
 
 		'loaded-list': {
-			loaded(this: OpalSelect) {
+			loaded() {
 				setTimeout(() => {
 					let filteredList = this.$('filtered-list') as OpalFilteredList;
 

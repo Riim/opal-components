@@ -4,7 +4,7 @@ import { define } from 'cellx';
 import { Component, d } from 'rionite';
 import template = require('./index.html');
 
-@d.Component({
+@d.Component<OpalTextInput>({
 	elementIs: 'opal-text-input',
 
 	props: {
@@ -38,7 +38,7 @@ import template = require('./index.html');
 				this.emit('focusout');
 			},
 
-			input(this: OpalTextInput, evt: Event) {
+			input(evt: Event) {
 				this.value = (evt.target as HTMLInputElement).value;
 				this.emit({ type: 'input', initialEvent: evt });
 			},
@@ -53,7 +53,7 @@ import template = require('./index.html');
 				this.emit({ type: 'change', initialEvent: evt });
 			},
 
-			keydown(this: OpalTextInput, evt: Event) {
+			keydown(evt: Event) {
 				if (this.props['multiline'] && this.props['auto-height']) {
 					setTimeout(() => {
 						this._fixHeight();

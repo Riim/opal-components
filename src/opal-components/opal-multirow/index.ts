@@ -10,14 +10,14 @@ let nextUID = Utils.nextUID;
 
 let filter = Array.prototype.filter;
 
-@d.Component({
+@d.Component<OpalMultirow>({
 	elementIs: 'opal-multirow',
 
 	template: new ComponentTemplate(template),
 
 	events: {
 		':component': {
-			'remove-row-click'(this: OpalMultirow, evt: IEvent) {
+			'remove-row-click'(evt: IEvent) {
 				let row = evt.target as OpalMultirowRow;
 
 				if (row.props['preset']) {
@@ -35,7 +35,7 @@ let filter = Array.prototype.filter;
 				}, 1);
 			},
 
-			'add-row-click'(this: OpalMultirow) {
+			'add-row-click'() {
 				this._newRows.add({ key: nextUID() });
 
 				setTimeout(() => {

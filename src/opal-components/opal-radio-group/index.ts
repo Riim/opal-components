@@ -6,12 +6,12 @@ export { default as OpalRadioButton } from './opal-radio-button';
 
 let forEach = Array.prototype.forEach;
 
-@d.Component({
+@d.Component<OpalRadioGroup>({
 	elementIs: 'opal-radio-group',
 
 	events: {
 		':component': {
-			check(this: OpalRadioGroup, evt: IEvent) {
+			check(evt: IEvent) {
 				let checkedButton = evt.target;
 
 				forEach.call(this.buttons, (btn: IComponentElement) => {

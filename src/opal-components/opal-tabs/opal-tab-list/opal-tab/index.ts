@@ -4,7 +4,7 @@ import { define } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.html');
 
-@d.Component({
+@d.Component<OpalTab>({
 	elementIs: 'opal-tab',
 
 	props: {
@@ -26,7 +26,7 @@ import template = require('./index.html');
 				this.props['focused'] = false;
 			},
 
-			click(this: OpalTab) {
+			click() {
 				this._click();
 			}
 		}

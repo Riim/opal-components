@@ -22,7 +22,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 	}
 }
 
-@d.Component({
+@d.Component<OpalModal>({
 	elementIs: 'opal-modal',
 
 	props: {
@@ -33,7 +33,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 
 	events: {
 		':element': {
-			click(this: OpalModal, evt: Event) {
+			click(evt: Event) {
 				let el = this.element;
 				let windowEl = this.$('window');
 
