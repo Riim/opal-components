@@ -55,54 +55,62 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(49);
 	__webpack_require__(50);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
+	var rionite_1 = __webpack_require__(1);
 	var Prism = __webpack_require__(21);
-
-	function prepareCode(code, html) {
-		code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
-
-		var tabs = code.match(/^\t*[^\t\r\n]/gm);
-		var stripTabCount = tabs.slice(1).reduce(function (stripTabCount, tabs) {
-			return Math.min(stripTabCount, tabs.length);
-		}, tabs[0].length) - 1;
-
-		if (stripTabCount) {
-			code = code.replace(RegExp('^\\t{' + stripTabCount + '}(.)', 'gm'), '$1');
-		}
-
-		if (html) {
-			code = code.replace(/(\s[\-\w]+)=""(?=[^<]*>)/g, '$1');
-		}
-
-		return code;
+	var template = __webpack_require__(26);
+	function prepareCode(code, isHtml) {
+	    code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
+	    var tabs = code.match(/^\t*[^\t\r\n]/gm);
+	    var stripTabCount = tabs.slice(1).reduce(function (stripTabCount, tabs) { return Math.min(stripTabCount, tabs.length); }, tabs[0].length) - 1;
+	    if (stripTabCount) {
+	        code = code.replace(RegExp("^\\t{" + stripTabCount + "}(.)", 'gm'), '$1');
+	    }
+	    if (isHtml) {
+	        code = code.replace(/(\s[\-\w]+)=""(?=[^<]*>)/g, '$1');
+	    }
+	    return code;
 	}
+	var OpalCodeListing = (function (_super) {
+	    __extends(OpalCodeListing, _super);
+	    function OpalCodeListing() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    OpalCodeListing.prototype.initialize = function () {
+	        this.highlightedHTMLCode = Prism.highlight(prepareCode(this.$('example-html').innerHTML, true), Prism.languages['html']);
+	        var exampleJS = this.$('example-js');
+	        if (exampleJS) {
+	            this.highlightedJSCode = Prism.highlight(prepareCode(exampleJS.textContent || ''), Prism.languages['javascript']);
+	        }
+	    };
+	    OpalCodeListing.prototype.ready = function () {
+	        this.$('html-code').innerHTML = this.highlightedHTMLCode;
+	        this.$('js-code').innerHTML = this.highlightedJSCode || '';
+	    };
+	    return OpalCodeListing;
+	}(rionite_1.Component));
+	OpalCodeListing = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-code-listing',
+	        template: template
+	    })
+	], OpalCodeListing);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalCodeListing;
 
-	module.exports = Component.extend('opal-code-listing', {
-		Static: {
-			template: __webpack_require__(26)
-		},
-
-		initialize: function initialize() {
-			this.highlightedHTMLCode = Prism.highlight(prepareCode(this.$('example-html').innerHTML, true), Prism.languages.html);
-
-			var exampleJS = this.$('example-js');
-
-			if (exampleJS) {
-				this.highlightedJSCode = Prism.highlight(prepareCode(exampleJS.textContent), Prism.languages.javascript);
-			}
-		},
-		ready: function ready() {
-			this.$('html-code').innerHTML = this.highlightedHTMLCode;
-			this.$('js-code').innerHTML = this.highlightedJSCode || '';
-		}
-	});
 
 /***/ },
 

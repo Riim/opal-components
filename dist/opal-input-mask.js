@@ -58,7 +58,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	/**
-	 * Code based on [jquery.maskedinput](https://github.com/digitalBush/jquery.maskedinput).
+	 * Based on [jquery.maskedinput](https://github.com/digitalBush/jquery.maskedinput).
 	 */
 
 	var cellx = __webpack_require__(2);

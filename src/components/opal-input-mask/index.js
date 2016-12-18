@@ -1,5 +1,5 @@
 /**
- * Code based on [jquery.maskedinput](https://github.com/digitalBush/jquery.maskedinput).
+ * Based on [jquery.maskedinput](https://github.com/digitalBush/jquery.maskedinput).
  */
 
 let cellx = require('cellx');

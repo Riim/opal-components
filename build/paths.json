@@ -83,6 +83,7 @@
       "node_modules/simple-svg-loader/index.js!src/assets/icons/opal-components__icon-chevron-down.svg": 79,
       "node_modules/awesome-typescript-loader/dist/entry.js!src/components/opal-button/index.ts": 0,
       "node_modules/awesome-typescript-loader/dist/entry.js!src/components/opal-checkbox/index.ts": 0,
+      "node_modules/awesome-typescript-loader/dist/entry.js!src/components/opal-code-listing/index.ts": 0,
       "node_modules/awesome-typescript-loader/dist/entry.js!src/components/opal-date-input/index.ts": 0,
       "node_modules/awesome-typescript-loader/dist/entry.js!src/components/opal-dropdown/index.ts": 0,
       "node_modules/awesome-typescript-loader/dist/entry.js!src/components/opal-filtered-list/index.ts": 0,
@@ -105,7 +106,6 @@
       "node_modules/awesome-typescript-loader/dist/entry.js!src/components/opal-text-input/index.ts": 0,
       "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/components/opal-autosuggestion/index.js": 0,
       "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/components/opal-calendar/index.js": 0,
-      "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/components/opal-code-listing/index.js": 0,
       "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/components/opal-input-mask/index.js": 0,
       "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/focusHighlightController.js": 0
     }
@@ -120,8 +120,8 @@
       "opal-router": 4,
       "opal-input-validator": 5,
       "opal-input-mask": 6,
-      "opal-code-listing": 7,
-      "opal-radio-group": 8,
+      "opal-radio-group": 7,
+      "opal-code-listing": 8,
       "opal-autosuggestion": 9,
       "opal-text-input": 10,
       "opal-tag-select": 11,
