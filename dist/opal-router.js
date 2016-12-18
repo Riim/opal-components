@@ -55,177 +55,160 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(65);
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component,
-	    _require$Utils = _require.Utils,
-	    hyphenize = _require$Utils.hyphenize,
-	    escapeHTML = _require$Utils.escapeHTML;
-
-	var OpalRoute = __webpack_require__(19);
-	var escapeRegExp = __webpack_require__(18);
-	var PathNodeType = __webpack_require__(9);
-	var parsePath = __webpack_require__(20);
-
+	var rionite_1 = __webpack_require__(1);
+	var opal_route_1 = __webpack_require__(7);
+	var PathNodeType_1 = __webpack_require__(6);
+	var parsePath_1 = __webpack_require__(16);
+	var escapeRegExp_1 = __webpack_require__(15);
+	var opal_route_2 = __webpack_require__(7);
+	exports.OpalRoute = opal_route_2.default;
+	var hyphenize = rionite_1.Utils.hyphenize;
+	var escapeHTML = rionite_1.Utils.escapeHTML;
 	var forEach = Array.prototype.forEach;
+	var OpalRouter = (function (_super) {
+	    __extends(OpalRouter, _super);
+	    function OpalRouter() {
+	        var _this = _super.apply(this, arguments) || this;
+	        _this._route = null;
+	        _this._componentElement = null;
+	        return _this;
+	    }
+	    OpalRouter.prototype.initialize = function () {
+	        this._routes = [];
+	    };
+	    OpalRouter.prototype.ready = function () {
+	        var routes = this._routes;
+	        forEach.call(this.element.querySelectorAll('opal-route'), function (routeEl) {
+	            var path = routeEl.$c.props['path'];
+	            var rePath = [];
+	            var props = [];
+	            (function processPath(path) {
+	                for (var _i = 0, path_1 = path; _i < path_1.length; _i++) {
+	                    var node = path_1[_i];
+	                    switch (node.type) {
+	                        case PathNodeType_1.default.SIMPLE: {
+	                            rePath.push(escapeRegExp_1.default(node.value).replace('\\*', '.*?'));
+	                            break;
+	                        }
+	                        case PathNodeType_1.default.OPTIONAL: {
+	                            rePath.push('(');
+	                            props.push({ name: node.name, optional: true });
+	                            processPath(node.childNodes);
+	                            rePath.push(')?');
+	                            break;
+	                        }
+	                        case PathNodeType_1.default.INSERT: {
+	                            rePath.push('([^\\/]+)');
+	                            props.push({ name: node.name, optional: false });
+	                            break;
+	                        }
+	                    }
+	                }
+	            })(parsePath_1.default(path));
+	            rePath = rePath.join('');
+	            routes.push({
+	                path: path,
+	                rePath: RegExp("^" + rePath + (rePath.charAt(rePath.length - 1) == '\/' ? '?' : '\/?') + "$"),
+	                properties: props,
+	                componentName: routeEl.$c.props['component']
+	            });
+	        });
+	    };
+	    OpalRouter.prototype.elementAttached = function () {
+	        this._update();
+	        this.listenTo(window, 'popstate', this._onWindowPopState);
+	    };
+	    OpalRouter.prototype.elementDetached = function () {
+	        this._clear();
+	    };
+	    OpalRouter.prototype._onWindowPopState = function () {
+	        this._update();
+	    };
+	    OpalRouter.prototype._update = function () {
+	        var path = location.hash.slice(1) || '/';
+	        var _loop_1 = function (route) {
+	            var match = path.match(route.rePath);
+	            if (!match) {
+	                return "continue";
+	            }
+	            var state = route.properties.reduce(function (state, prop, index) {
+	                if (prop.optional) {
+	                    state[prop.name] = !!match[index + 1];
+	                }
+	                else {
+	                    var value = match[index + 1];
+	                    state[prop.name] = value && decodeURIComponent(value);
+	                }
+	                return state;
+	            }, Object.create(null));
+	            if (route === this_1._route) {
+	                var componentEl = this_1._componentElement;
+	                var attrs = componentEl.attributes;
+	                for (var i = attrs.length; i;) {
+	                    var name_1 = attrs.item(--i).name;
+	                    if (name_1 != 'class' && !(name_1 in state)) {
+	                        componentEl.removeAttribute(name_1);
+	                    }
+	                }
+	                this_1._applyState(state);
+	            }
+	            else {
+	                this_1._clear();
+	                this_1._route = route;
+	                var componentEl = this_1._componentElement = document.createElement(route.componentName);
+	                componentEl.$c.ownerComponent = this_1;
+	                this_1._applyState(state);
+	                this_1.element.appendChild(componentEl);
+	            }
+	            return { value: void 0 };
+	        };
+	        var this_1 = this;
+	        for (var _i = 0, _a = this._routes; _i < _a.length; _i++) {
+	            var route = _a[_i];
+	            var state_1 = _loop_1(route);
+	            if (typeof state_1 === "object")
+	                return state_1.value;
+	        }
+	        this._clear();
+	    };
+	    OpalRouter.prototype._applyState = function (state) {
+	        var componentEl = this._componentElement;
+	        for (var name_2 in state) {
+	            var value = state[name_2];
+	            componentEl.setAttribute(hyphenize(name_2), "" + (value === false ? 'no' : (value === true ? 'yes' : escapeHTML(value))));
+	        }
+	    };
+	    OpalRouter.prototype._clear = function () {
+	        if (this._route) {
+	            this._route = null;
+	            this.element.removeChild(this._componentElement);
+	            this._componentElement = null;
+	        }
+	    };
+	    return OpalRouter;
+	}(rionite_1.Component));
+	OpalRouter.OpalRoute = opal_route_1.default;
+	OpalRouter = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-router'
+	    })
+	], OpalRouter);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalRouter;
 
-	module.exports = Component.extend('opal-router', {
-		Static: {
-			OpalRoute: OpalRoute
-		},
-
-		_route: null,
-		_componentElement: null,
-
-		initialize: function initialize() {
-			this._routes = [];
-		},
-		ready: function ready() {
-			var routes = this._routes;
-
-			forEach.call(this.element.querySelectorAll('opal-route'), function (routeEl) {
-				var path = routeEl.$c.props.path;
-				var pathSchema = parsePath(path);
-				var rePath = [];
-				var props = [];
-
-				(function processPathSchema(pathSchema) {
-					for (var i = 0, l = pathSchema.length; i < l; i++) {
-						var node = pathSchema[i];
-
-						switch (node.type) {
-							case PathNodeType.NORMAL:
-								{
-									rePath.push(escapeRegExp(node.value).replace('\\*', '.*?'));
-									break;
-								}
-							case PathNodeType.OPTIONAL:
-								{
-									rePath.push('(');
-									props.push({ name: node.name, optional: true });
-									processPathSchema(node.childNodes);
-									rePath.push(')?');
-									break;
-								}
-							case PathNodeType.INSERT:
-								{
-									rePath.push('([^\\/]+)');
-									props.push({ name: node.name, optional: false });
-									break;
-								}
-						}
-					}
-				})(pathSchema);
-
-				rePath = rePath.join('');
-				rePath += rePath.charAt(rePath.length - 1) == '\/' ? '?' : '\/?';
-
-				routes.push({
-					path: path,
-					rePath: RegExp('^' + rePath + '$'),
-					properties: props,
-					componentName: routeEl.$c.props.component
-				});
-			});
-		},
-		elementAttached: function elementAttached() {
-			this._update();
-			this.listenTo(window, 'popstate', this._onWindowPopState);
-		},
-		elementDetached: function elementDetached() {
-			if (this._route) {
-				this._route = null;
-				this._clear();
-			}
-		},
-		_onWindowPopState: function _onWindowPopState() {
-			this._update();
-		},
-		_update: function _update() {
-			var _this = this;
-
-			var routes = this._routes;
-			var path = location.hash.slice(1) || '/';
-
-			var _loop = function _loop(i, l) {
-				var route = routes[i];
-				var match = path.match(route.rePath);
-
-				if (match) {
-					var state = route.properties.reduce(function (state, prop, index) {
-						if (prop.optional) {
-							state[prop.name] = !!match[index + 1];
-						} else {
-							var value = match[index + 1];
-							state[prop.name] = value && decodeURIComponent(value);
-						}
-
-						return state;
-					}, Object.create(null));
-
-					if (route === _this._route) {
-						var componentEl = _this._componentElement;
-						var attrs = componentEl.attributes;
-
-						for (var _i = attrs.length; _i;) {
-							var attr = attrs.item(--_i);
-							var name = attr.name;
-
-							if (name != 'class' && !(name in state)) {
-								componentEl.removeAttribute(name);
-							}
-						}
-
-						_this._applyState(state);
-					} else {
-						_this._clear();
-
-						_this._route = route;
-
-						var _componentEl = _this._componentElement = document.createElement(route.componentName);
-
-						_componentEl.$c.ownerComponent = _this;
-						_this._applyState(state);
-
-						_this.element.appendChild(_componentEl);
-					}
-
-					return {
-						v: void 0
-					};
-				}
-			};
-
-			for (var i = 0, l = routes.length; i < l; i++) {
-				var _ret = _loop(i, l);
-
-				if (typeof _ret === "object") return _ret.v;
-			}
-
-			if (this._route) {
-				this._route = null;
-				this._clear();
-			}
-		},
-		_applyState: function _applyState(state) {
-			var componentEl = this._componentElement;
-
-			for (var name in state) {
-				var value = state[name];
-
-				componentEl.setAttribute(hyphenize(name), '' + (value === false ? 'no' : value === true ? 'yes' : escapeHTML(value)));
-			}
-		},
-		_clear: function _clear() {
-			if (this._componentElement) {
-				this.element.removeChild(this._componentElement);
-				this._componentElement = null;
-			}
-		}
-	});
 
 /***/ },
 
@@ -236,211 +219,227 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 9:
+/***/ 6:
 /***/ function(module, exports) {
 
 	"use strict";
+	var PathNodeType;
+	(function (PathNodeType) {
+	    PathNodeType[PathNodeType["SIMPLE"] = 0] = "SIMPLE";
+	    PathNodeType[PathNodeType["OPTIONAL"] = 1] = "OPTIONAL";
+	    PathNodeType[PathNodeType["INSERT"] = 2] = "INSERT";
+	})(PathNodeType || (PathNodeType = {}));
+	;
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = PathNodeType;
 
-	module.exports = {
-		NORMAL: 0,
-		OPTIONAL: 1,
-		INSERT: 2
-	};
 
 /***/ },
 
-/***/ 18:
+/***/ 7:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var rionite_1 = __webpack_require__(1);
+	var OpalRoute = (function (_super) {
+	    __extends(OpalRoute, _super);
+	    function OpalRoute() {
+	        return _super.apply(this, arguments) || this;
+	    }
+	    return OpalRoute;
+	}(rionite_1.Component));
+	OpalRoute = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-route',
+	        props: {
+	            path: { type: String, required: true, readonly: true },
+	            component: { type: String, required: true, readonly: true }
+	        }
+	    })
+	], OpalRoute);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalRoute;
+
+
+/***/ },
+
+/***/ 15:
 /***/ function(module, exports) {
 
-	'use strict';
-
+	"use strict";
 	var reEscapableChars = /([?+|$(){}[^.\-\]\/\\*])/g;
-
-	/**
-	 * @typesign (str: string) -> string;
-	 */
-	module.exports = function escapeRegExp(str) {
-	  return str.replace(reEscapableChars, '\\$1');
-	};
-
-/***/ },
-
-/***/ 19:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _require = __webpack_require__(1),
-	    Component = _require.Component;
-
-	module.exports = Component.extend('opal-route', {
-		Static: {
-			props: {
-				path: { type: String, required: true, readonly: true },
-				component: { type: String, required: true, readonly: true }
-			}
-		}
-	});
-
-/***/ },
-
-/***/ 20:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var PathNodeType = __webpack_require__(9);
-
-	var reName = /[a-z][0-9a-z]*/i;
-
-	function parsePath(path) {
-		var ctx = PathNodeType.NORMAL;
-
-		var at = 0;
-		var chr = path[0];
-
-		return readPath();
-
-		function raiseError(msg, at) {
-			throw {
-				name: 'SyntaxError',
-				message: msg,
-				at: at,
-				path: path
-			};
-		}
-
-		function next(c) {
-			if (c && c != chr) {
-				raiseError('Expected "' + c + '" instead of "' + chr + '"', at);
-			}
-
-			chr = path[++at];
-			return chr;
-		}
-
-		function readPath() {
-			var path = [];
-
-			while (chr) {
-				if (chr == '(') {
-					path.push(readOptionalNode());
-				} else if (chr == '[') {
-					path.push(readInsert());
-				} else {
-					path.push(readNormalNode());
-				}
-			}
-
-			return path;
-		}
-
-		function readNormalNode() {
-			var value = chr;
-
-			while (next()) {
-				if (chr == '(' || chr == '[' || ctx == PathNodeType.OPTIONAL && chr == ')') {
-					break;
-				}
-
-				value += chr;
-			}
-
-			return {
-				type: PathNodeType.NORMAL,
-				value: value
-			};
-		}
-
-		function readOptionalNode() {
-			var optionalNodeAt = at;
-
-			next('(');
-
-			var name = readOptionalNodeName();
-			var childNodes = [];
-
-			var prevCtx = ctx;
-			ctx = PathNodeType.OPTIONAL;
-
-			while (chr) {
-				if (chr == ')') {
-					next();
-					ctx = prevCtx;
-
-					return {
-						type: PathNodeType.OPTIONAL,
-						name: name,
-						childNodes: childNodes
-					};
-				} else if (chr == '(') {
-					childNodes.push(readOptionalNode());
-				} else if (chr == '[') {
-					childNodes.push(readInsert());
-				} else {
-					childNodes.push(readNormalNode());
-				}
-			}
-
-			raiseError('Missing ")" in compound statement', optionalNodeAt);
-		}
-
-		function readOptionalNodeName() {
-			var optionalNodeNameAt = at;
-			var name = '';
-
-			while (chr) {
-				if (chr == '?') {
-					if (!reName.test(name) || name == 'class') {
-						raiseError('Invalid name "' + name + '"', optionalNodeNameAt);
-					}
-
-					next();
-
-					return name;
-				} else {
-					name += chr;
-					next();
-				}
-			}
-
-			raiseError('Invalid path "' + path + '"', 0);
-		}
-
-		function readInsert() {
-			var insertAt = at;
-
-			next('[');
-
-			var name = '';
-
-			var prevCtx = ctx;
-			ctx = PathNodeType.INSERT;
-
-			while (chr) {
-				if (chr == ']') {
-					if (!reName.test(name) || name == 'class') {
-						raiseError('Invalid name "' + name + '"', insertAt + 1);
-					}
-
-					next();
-					ctx = prevCtx;
-
-					return {
-						type: PathNodeType.INSERT,
-						name: name
-					};
-				} else {
-					name += chr;
-					next();
-				}
-			}
-
-			raiseError('Missing "]" in compound statement', insertAt);
-		}
+	function escapeRegExp(str) {
+	    return str.replace(reEscapableChars, '\\$1');
 	}
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = escapeRegExp;
 
-	module.exports = parsePath;
+
+/***/ },
+
+/***/ 16:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var PathNodeType_1 = __webpack_require__(6);
+	var reName = /[a-z][0-9a-z]*/i;
+	function parsePath(path) {
+	    var ctx = PathNodeType_1.default.SIMPLE;
+	    var at = 0;
+	    var chr = path[0];
+	    return readPath();
+	    function next(c) {
+	        if (c && c != chr) {
+	            throw {
+	                name: 'SyntaxError',
+	                message: "Expected \"" + c + "\" instead of \"" + chr + "\"",
+	                at: at,
+	                path: path
+	            };
+	        }
+	        chr = path[++at];
+	        return chr;
+	    }
+	    function readPath() {
+	        var path = [];
+	        while (chr) {
+	            if (chr == '(') {
+	                path.push(readOptionalNode());
+	            }
+	            else if (chr == '[') {
+	                path.push(readInsert());
+	            }
+	            else {
+	                path.push(readSimpleNode());
+	            }
+	        }
+	        return path;
+	    }
+	    function readSimpleNode() {
+	        var value = chr;
+	        while (next()) {
+	            if (chr == '(' || chr == '[' || ctx == PathNodeType_1.default.OPTIONAL && chr == ')') {
+	                break;
+	            }
+	            value += chr;
+	        }
+	        return {
+	            type: PathNodeType_1.default.SIMPLE,
+	            value: value
+	        };
+	    }
+	    function readOptionalNode() {
+	        var optionalNodeAt = at;
+	        next('(');
+	        var name = readOptionalNodeName();
+	        var childNodes = [];
+	        var prevCtx = ctx;
+	        ctx = PathNodeType_1.default.OPTIONAL;
+	        while (chr) {
+	            if (chr == ')') {
+	                next();
+	                ctx = prevCtx;
+	                return {
+	                    type: PathNodeType_1.default.OPTIONAL,
+	                    name: name,
+	                    childNodes: childNodes
+	                };
+	            }
+	            else if (chr == '(') {
+	                childNodes.push(readOptionalNode());
+	            }
+	            else if (chr == '[') {
+	                childNodes.push(readInsert());
+	            }
+	            else {
+	                childNodes.push(readSimpleNode());
+	            }
+	        }
+	        throw {
+	            name: 'SyntaxError',
+	            message: 'Missing ")" in compound statement',
+	            at: optionalNodeAt,
+	            path: path
+	        };
+	    }
+	    function readOptionalNodeName() {
+	        var optionalNodeNameAt = at;
+	        var name = '';
+	        while (chr) {
+	            if (chr == '?') {
+	                if (!reName.test(name) || name == 'class') {
+	                    throw {
+	                        name: 'SyntaxError',
+	                        message: "Invalid name \"" + name + "\"",
+	                        at: optionalNodeNameAt,
+	                        path: path
+	                    };
+	                }
+	                next();
+	                return name;
+	            }
+	            else {
+	                name += chr;
+	                next();
+	            }
+	        }
+	        throw {
+	            name: 'SyntaxError',
+	            message: 'Missing "?" in compound statement',
+	            at: optionalNodeNameAt,
+	            path: path
+	        };
+	    }
+	    function readInsert() {
+	        var insertAt = at;
+	        next('[');
+	        var name = '';
+	        var prevCtx = ctx;
+	        ctx = PathNodeType_1.default.INSERT;
+	        while (chr) {
+	            if (chr == ']') {
+	                if (!reName.test(name) || name == 'class') {
+	                    throw {
+	                        name: 'SyntaxError',
+	                        message: "Invalid name \"" + name + "\"",
+	                        at: insertAt + 1,
+	                        path: path
+	                    };
+	                }
+	                next();
+	                ctx = prevCtx;
+	                return {
+	                    type: PathNodeType_1.default.INSERT,
+	                    name: name
+	                };
+	            }
+	            else {
+	                name += chr;
+	                next();
+	            }
+	        }
+	        throw {
+	            name: 'SyntaxError',
+	            message: 'Missing "]" in compound statement',
+	            at: insertAt,
+	            path: path
+	        };
+	    }
+	}
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = parsePath;
+
 
 /***/ },
 

@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.16.16",
+  "version": "0.16.17",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -55,6 +55,6 @@
   "dependencies": {
     "cellx": "^1.6.84",
     "cellx-indexed-collections": "^1.0.8",
-    "rionite": "^0.16.23"
+    "rionite": "^0.16.24"
   }
 }

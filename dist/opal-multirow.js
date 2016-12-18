@@ -71,7 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cellx_1 = __webpack_require__(2);
 	var cellx_indexed_collections_1 = __webpack_require__(3);
 	var rionite_1 = __webpack_require__(1);
-	var opal_multirow_row_1 = __webpack_require__(13);
+	var opal_multirow_row_1 = __webpack_require__(14);
 	var template = __webpack_require__(33);
 	var nextUID = cellx_1.Utils.nextUID;
 	var filter = Array.prototype.filter;
@@ -164,7 +164,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 13:
+/***/ 14:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

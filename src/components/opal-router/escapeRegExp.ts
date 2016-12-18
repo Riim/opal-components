@@ -1,8 +1,5 @@
 let reEscapableChars = /([?+|$(){}[^.\-\]\/\\*])/g;
 
-/**
- * @typesign (str: string) -> string;
- */
-module.exports = function escapeRegExp(str) {
+export default function escapeRegExp(str: string): string {
 	return str.replace(reEscapableChars, '\\$1');
-};
+}
