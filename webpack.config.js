@@ -17,7 +17,7 @@ var plugins = [
 ];
 
 module.exports = {
-	entry: glob.sync('src/opal-components/*/index.@(ts|js)').reduce(function(entries, p) {
+	entry: glob.sync('src/components/*/index.@(ts|js)').reduce(function(entries, p) {
 		entries[p.split(path.sep).slice(-2)[0]] = path.join(__dirname, p);
 		return entries;
 	}, {

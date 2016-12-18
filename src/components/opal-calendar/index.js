@@ -1,5 +1,5 @@
 require('./index.css');
-require('./opal-calendar__icon-arrow-left.svg');
+require('../../assets/icons/opal-components__icon-arrow-left.svg');
 
 let cellx = require('cellx');
 let { Component, ComponentTemplate } = require('rionite');

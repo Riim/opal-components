@@ -1,5 +1,5 @@
 import './index.css';
-import './opal-select__icon-chevron-down.svg';
+import '../../assets/icons/opal-components__icon-chevron-down.svg';
 
 import { IEvent, define, Utils } from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
