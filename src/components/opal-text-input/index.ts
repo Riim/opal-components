@@ -72,6 +72,10 @@ import template = require('./index.html');
 			},
 
 			keyup(evt: Event) {
+				if (this.props['multiline'] && this.props['auto-height']) {
+					this._fixHeight();
+				}
+
 				this.emit({ type: 'keyup', initialEvent: evt });
 			}
 		}

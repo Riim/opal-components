@@ -216,6 +216,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.emit({ type: 'keypress', initialEvent: evt });
 	                },
 	                keyup: function (evt) {
+	                    if (this.props['multiline'] && this.props['auto-height']) {
+	                        this._fixHeight();
+	                    }
 	                    this.emit({ type: 'keyup', initialEvent: evt });
 	                }
 	            }
