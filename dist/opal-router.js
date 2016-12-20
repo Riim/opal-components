@@ -71,8 +71,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var rionite_1 = __webpack_require__(1);
 	var opal_route_1 = __webpack_require__(7);
 	var PathNodeType_1 = __webpack_require__(6);
-	var parsePath_1 = __webpack_require__(16);
-	var escapeRegExp_1 = __webpack_require__(15);
+	var parsePath_1 = __webpack_require__(19);
+	var escapeRegExp_1 = __webpack_require__(18);
 	var opal_route_2 = __webpack_require__(7);
 	exports.OpalRoute = opal_route_2.default;
 	var hyphenize = rionite_1.Utils.hyphenize;
@@ -274,7 +274,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 15:
+/***/ 18:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -288,7 +288,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 16:
+/***/ 19:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

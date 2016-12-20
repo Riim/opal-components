@@ -13,6 +13,8 @@ import OpalSelectOption from './opal-select-option';
 import isEqualArray from './isEqualArray';
 import template = require('./index.html');
 
+export { default as OpalSelectOption } from './opal-select-option';
+
 let { nextUID, nextTick } = Utils;
 let { RtIfThen, RtRepeat } = Components;
 

@@ -66,8 +66,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _require = __webpack_require__(1),
 	    Component = _require.Component;
 
-	var OpalInputMaskDefinition = __webpack_require__(13).default;
-	var defaultDefinitions = __webpack_require__(12).default;
+	var OpalInputMaskDefinition = __webpack_require__(16).default;
+	var defaultDefinitions = __webpack_require__(15).default;
 
 	var forEach = Array.prototype.forEach;
 
@@ -423,7 +423,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 12:
+/***/ 15:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -437,7 +437,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 13:
+/***/ 16:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

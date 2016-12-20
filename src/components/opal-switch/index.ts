@@ -19,7 +19,7 @@ import template = require('./index.html');
 	events: {
 		input: {
 			change(evt: Event) {
-				this.emit((this.props['checked'] = evt.target['checked']) ? 'check' : 'uncheck');
+				this.emit((this.props['checked'] = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
 				this.emit('change');
 			}
 		},

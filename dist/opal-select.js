@@ -72,9 +72,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cellx_1 = __webpack_require__(2);
 	var cellx_indexed_collections_1 = __webpack_require__(3);
 	var rionite_1 = __webpack_require__(1);
-	var opal_select_option_1 = __webpack_require__(18);
-	var isEqualArray_1 = __webpack_require__(17);
+	var opal_select_option_1 = __webpack_require__(8);
+	var isEqualArray_1 = __webpack_require__(20);
 	var template = __webpack_require__(36);
+	var opal_select_option_2 = __webpack_require__(8);
+	exports.OpalSelectOption = opal_select_option_2.default;
 	var nextUID = cellx_1.Utils.nextUID, nextTick = cellx_1.Utils.nextTick;
 	var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
 	var map = Array.prototype.map;
@@ -628,29 +630,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 17:
-/***/ function(module, exports) {
-
-	"use strict";
-	function isEqualArray(arr1, arr2) {
-	    var len = arr1.length;
-	    if (len != arr2.length) {
-	        return false;
-	    }
-	    for (var i = 0; i < len; i++) {
-	        if (arr1[i] !== arr2[i]) {
-	            return false;
-	        }
-	    }
-	    return true;
-	}
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = isEqualArray;
-
-
-/***/ },
-
-/***/ 18:
+/***/ 8:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -815,6 +795,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	], OpalSelectOption);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = OpalSelectOption;
+
+
+/***/ },
+
+/***/ 20:
+/***/ function(module, exports) {
+
+	"use strict";
+	function isEqualArray(arr1, arr2) {
+	    var len = arr1.length;
+	    if (len != arr2.length) {
+	        return false;
+	    }
+	    for (var i = 0; i < len; i++) {
+	        if (arr1[i] !== arr2[i]) {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = isEqualArray;
 
 
 /***/ },

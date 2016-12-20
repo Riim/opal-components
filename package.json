@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.16.19",
+  "version": "0.16.20",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -40,7 +40,7 @@
     "postcss-csso": "^1.1.2",
     "postcss-loader": "^1.2.1",
     "postcss-nesting": "^2.3.1",
-    "pump": "^1.0.1",
+    "pump": "^1.0.2",
     "raw-loader": "^0.5.1",
     "require-dir": "^0.3.1",
     "rimraf": "^2.5.4",
@@ -52,9 +52,9 @@
     "yargs": "^6.5.0"
   },
   "dependencies": {
-    "cellx": "^1.6.84",
+    "cellx": "^1.6.87",
     "cellx-indexed-collections": "^1.0.8",
     "prismjs": "^1.6.0",
-    "rionite": "^0.16.24"
+    "rionite": "^0.16.25"
   }
 }

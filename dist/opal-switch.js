@@ -174,7 +174,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        events: {
 	            input: {
 	                change: function (evt) {
-	                    this.emit((this.props['checked'] = evt.target['checked']) ? 'check' : 'uncheck');
+	                    this.emit((this.props['checked'] = evt.target.checked) ? 'check' : 'uncheck');
 	                    this.emit('change');
 	                }
 	            },
