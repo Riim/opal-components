@@ -1,7 +1,7 @@
 import './index.css';
 
 import { getText, Component, d, ComponentTemplate } from 'rionite';
-import isExistDate from './isExistDate';
+import dateExists from 'date-exists';
 import template = require('./index.html');
 
 @d.Component({
@@ -23,5 +23,5 @@ import template = require('./index.html');
 	template: new ComponentTemplate(template)
 })
 export default class OpalDateInput extends Component {
-	isExistDate = isExistDate;
+	dateExists = dateExists;
 }

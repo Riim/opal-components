@@ -69,13 +69,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	__webpack_require__(51);
 	var rionite_1 = __webpack_require__(1);
-	var isExistDate_1 = __webpack_require__(14);
+	var date_exists_1 = __webpack_require__(20);
 	var template = __webpack_require__(27);
 	var OpalDateInput = (function (_super) {
 	    __extends(OpalDateInput, _super);
 	    function OpalDateInput() {
 	        var _this = _super.apply(this, arguments) || this;
-	        _this.isExistDate = isExistDate_1.default;
+	        _this.dateExists = date_exists_1.default;
 	        return _this;
 	    }
 	    return OpalDateInput;
@@ -110,26 +110,26 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 14:
+/***/ 20:
 /***/ function(module, exports) {
 
 	"use strict";
-	function isExistDate(date) {
+	function dateExists(date) {
 	    var match = date.match(/\d+/g);
 	    if (!match) {
 	        return false;
 	    }
-	    var day = parseInt(match[0], 10);
-	    var month = parseInt(match[1], 10) - 1;
-	    var year = parseInt(match[2], 10);
+	    var day = +match[0];
+	    var month = +match[1] - 1;
+	    var year = +match[2];
 	    if (year < 100) {
-	        year += 1900;
+	        year += year < 50 ? 2000 : 1900;
 	    }
 	    var d = new Date(year, month, day);
 	    return day == d.getDate() && month == d.getMonth() && year == d.getFullYear();
 	}
 	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = isExistDate;
+	exports.default = dateExists;
 
 
 /***/ },
@@ -137,7 +137,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 27:
 /***/ function(module, exports) {
 
-	module.exports = "{{block validation }} <opal-input-validator> {{block validation_rules }} <template is=\"rt-if-then\" if=\"props.required\" rt-silent=\"\"> <opal-input-validator-rule required=\"\" popover-to=\"{props.popoverTo}\">{{i18n.isRequiredField}}</opal-input-validator-rule> </template> <opal-input-validator-rule test=\"isExistDate\" popover-to=\"{props.popoverTo}\">{{i18n.nonExistentDate}}</opal-input-validator-rule> {{/block}} {{block input_mask }} <opal-input-mask mask=\"{props.mask}\"> {{block input }} <opal-text-input class=\"opal-date-input__input opal-input-validator__input opal-input-mask__input\" value=\"{props.value}\" placeholder=\"{props.placeholder}\"></opal-text-input> {{/block}} </opal-input-mask> {{/block}} </opal-input-validator> {{/block}}"
+	module.exports = "{{block validation }} <opal-input-validator> {{block validation_rules }} <template is=\"rt-if-then\" if=\"props.required\" rt-silent=\"\"> <opal-input-validator-rule required=\"\" popover-to=\"{props.popoverTo}\">{{i18n.isRequiredField}}</opal-input-validator-rule> </template> <opal-input-validator-rule test=\"dateExists\" popover-to=\"{props.popoverTo}\">{{i18n.nonExistentDate}}</opal-input-validator-rule> {{/block}} {{block input_mask }} <opal-input-mask mask=\"{props.mask}\"> {{block input }} <opal-text-input class=\"opal-date-input__input opal-input-validator__input opal-input-mask__input\" value=\"{props.value}\" placeholder=\"{props.placeholder}\"></opal-text-input> {{/block}} </opal-input-mask> {{/block}} </opal-input-validator> {{/block}}"
 
 /***/ },
 
