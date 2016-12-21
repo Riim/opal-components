@@ -103,7 +103,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalPopover.prototype._open = function () {
 	        var _this = this;
-	        if (this.props['auto-closing']) {
+	        if (this.props['autoClosing']) {
 	            setTimeout(function () {
 	                if (_this.props['opened']) {
 	                    _this._documentClickListening = _this.listenTo(document, 'click', _this._onDocumentClick);

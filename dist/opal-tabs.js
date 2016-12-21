@@ -227,7 +227,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalTab.prototype.initialize = function () {
 	        cellx_1.define(this, {
 	            _tabIndex: function () {
-	                return this.props['disabled'] ? -1 : this.props['tab-index'];
+	                return this.props['disabled'] ? -1 : this.props['tabIndex'];
 	            }
 	        });
 	    };

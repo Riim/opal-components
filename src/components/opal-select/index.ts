@@ -75,7 +75,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 			},
 
 			confirminput(evt: IEvent) {
-				if (!this.props['allow-input']) {
+				if (!this.props['allowInput']) {
 					return;
 				}
 
@@ -241,8 +241,8 @@ export default class OpalSelect extends Component {
 			});
 		}
 
-		let vm = props['view-model'];
-		let vmItemSchema = props['view-model-item-schema'];
+		let vm = props['viewModel'];
+		let vmItemSchema = props['viewModelItemSchema'];
 
 		if (vm) {
 			vm = Function(`return this.${ vm };`).call(this.ownerComponent || window);
@@ -280,7 +280,7 @@ export default class OpalSelect extends Component {
 
 		let props = this.props;
 
-		if (props['view-model']) {
+		if (props['viewModel']) {
 			this._updateOptions();
 		} else {
 			let value = props['value'];

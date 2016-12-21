@@ -51,7 +51,7 @@ export default class OpalPopover extends Component {
 	}
 
 	_open() {
-		if (this.props['auto-closing']) {
+		if (this.props['autoClosing']) {
 			setTimeout(() => {
 				if (this.props['opened']) {
 					this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);

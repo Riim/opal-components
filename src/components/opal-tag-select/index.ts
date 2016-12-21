@@ -46,7 +46,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 			confirminput() {
 				let select = this.$('select') as OpalSelect;
 
-				if (select.props['allow-input']) {
+				if (select.props['allowInput']) {
 					select.close();
 				}
 			},
@@ -82,7 +82,7 @@ export default class OpalTagSelect extends Component {
 		let props = this.props;
 		let dataList: string | undefined = props['datalist'];
 		let dataProvider: string | undefined = props['dataprovider'];
-		let vm: string | undefined = props['view-model'];
+		let vm: string | undefined = props['viewModel'];
 
 		this._dataListParam = (dataList && 'dataList') as string;
 		this._dataProviderParam = (dataProvider && 'dataProvider') as string;
@@ -106,7 +106,7 @@ export default class OpalTagSelect extends Component {
 			}
 		});
 
-		let vmItemSchema = props['view-model-item-schema'];
+		let vmItemSchema = props['viewModelItemSchema'];
 
 		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;

@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        rules.forEach(function (rule) {
 	            var ruleProps = rule.props;
 	            if (!failedRule && (trimmedValue ?
-	                ruleProps['min-length'] && trimmedValue.length < ruleProps['min-length'] ||
+	                ruleProps['minLength'] && trimmedValue.length < ruleProps['minLength'] ||
 	                    ruleProps['regex'] && !ruleProps['regex'].test(value) ||
 	                    ruleProps['test'] && !_this.ownerComponent[ruleProps['test']](value) :
 	                ruleProps['required'])) {

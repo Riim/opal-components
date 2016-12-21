@@ -28,7 +28,8 @@ export type TDays = Array<TWeekDays>;
 	props: {
 		fromDate: String,
 		toDate: String,
-		selectedDate: String
+		value: String,
+		dateDelimiter: { default: '/', readonly: true }
 	},
 
 	i18n: {
@@ -110,7 +111,7 @@ export default class OpalCalendar extends Component {
 	toYear: number;
 	years: Array<number>;
 
-	selectedDate: Date | null;
+	value: Date | null;
 
 	shownYear: number;
 	shownMonth: number;
@@ -128,6 +129,8 @@ export default class OpalCalendar extends Component {
 		let i18n = (this.constructor as typeof OpalCalendar).i18n;
 		let sundayFirst = i18n['sundayFirst'];
 
+		let dateDelimiter = this.props['dateDelimiter'];
+
 		this.weekDays = sundayFirst ? i18n['weekDays'] : i18n['weekDays'].slice(1).concat(i18n['weekDays'][0]);
 		this.weekDaysShort = sundayFirst ?
 			i18n['weekDaysShort'] :
@@ -135,10 +138,10 @@ export default class OpalCalendar extends Component {
 
 		define(this, {
 			fromDate(this: OpalCalendar) {
-				let fromDate: string | undefined = this.props['from-date'];
+				let fromDate: string | undefined = this.props['fromDate'];
 
 				if (fromDate) {
-					return parseDate(fromDate);
+					return parseDate(fromDate, dateDelimiter);
 				}
 
 				let now = new Date();
@@ -146,10 +149,10 @@ export default class OpalCalendar extends Component {
 			},
 
 			toDate(this: OpalCalendar) {
-				let toDate: string | undefined = this.props['to-date'];
+				let toDate: string | undefined = this.props['toDate'];
 
 				if (toDate) {
-					return parseDate(toDate);
+					return parseDate(toDate, dateDelimiter);
 				}
 
 				let now = new Date();
@@ -174,9 +177,9 @@ export default class OpalCalendar extends Component {
 				return years;
 			},
 
-			selectedDate(this: OpalCalendar) {
-				let selectedDate = this.props['selected-date'];
-				return selectedDate ? parseDate(selectedDate) : null;
+			value(this: OpalCalendar) {
+				let value = this.props['value'];
+				return value ? parseDate(value, dateDelimiter) : null;
 			}
 		});
 
@@ -187,15 +190,15 @@ export default class OpalCalendar extends Component {
 			throw new TypeError('"fromDate" must be less than or equal to "toDate"');
 		}
 
-		let selectedDate = this.selectedDate;
+		let value = this.value;
 		let shownDate: Date;
 
-		if (selectedDate) {
-			if (isNaN(+selectedDate)) {
-				throw new TypeError('Invalid "selectedDate"');
+		if (value) {
+			if (isNaN(+value)) {
+				throw new TypeError('Invalid "value"');
 			}
 
-			shownDate = selectedDate;
+			shownDate = value;
 
 			if (shownDate < fromDate || shownDate > toDate) {
 				throw new RangeError(
@@ -223,7 +226,7 @@ export default class OpalCalendar extends Component {
 				let fromDate = this.fromDate;
 				let toDate = this.toDate;
 
-				let selectedDate = this.selectedDate;
+				let value = this.value;
 
 				let shownYear = this.shownYear;
 				let shownMonth = this.shownMonth;
@@ -242,10 +245,10 @@ export default class OpalCalendar extends Component {
 				let selectedMonth: number;
 				let selectedDay: number;
 
-				if (selectedDate) {
-					selectedYear = selectedDate.getFullYear();
-					selectedMonth = selectedDate.getMonth();
-					selectedDay = selectedDate.getDate();
+				if (value) {
+					selectedYear = value.getFullYear();
+					selectedMonth = value.getMonth();
+					selectedDay = value.getDate();
 				}
 
 				let lastPrevMonthDay = new Date(shownYear, shownMonth, 0).getDate();
@@ -264,10 +267,10 @@ export default class OpalCalendar extends Component {
 					let disabled = date < fromDate || date > toDate;
 
 					weekDays.push({
-						date: formatDate(year, month, day),
+						date: formatDate(year, month, day, dateDelimiter),
 						value: day,
 						today: year == nowYear && month == nowMonth && day == nowDay,
-						selected: !!selectedDate && year == selectedYear && month == selectedMonth &&
+						selected: !!value && year == selectedYear && month == selectedMonth &&
 							day == selectedDay,
 						notInCurrentMonth,
 						disabled,
@@ -275,11 +278,11 @@ export default class OpalCalendar extends Component {
 					});
 				}
 
-				for (let index = firstMonthDayWeekDayIndex; index;) {
+				for (let i = firstMonthDayWeekDayIndex; i;) {
 					pushDay(
 						shownYear - +!shownMonth,
 						shownMonth ? shownMonth - 1 : 11,
-						lastPrevMonthDay - (--index),
+						lastPrevMonthDay - (--i),
 						true
 					);
 				}
@@ -326,6 +329,8 @@ export default class OpalCalendar extends Component {
 		dayEl.setAttribute('selected', '');
 
 		this._currentlyDateSelect = true;
-		this.props['selected-date'] = dayEl.dataset['date'];
+		this.props['value'] = dayEl.dataset['date'];
+
+		this.emit('change');
 	}
 }

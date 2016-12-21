@@ -92,12 +92,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            input.value = value;
 	        }
 	        else {
-	            var storeKey = props['store-key'];
+	            var storeKey = props['storeKey'];
 	            if (storeKey) {
 	                props['value'] = localStorage.getItem(storeKey) || '';
 	            }
 	        }
-	        if (this.props['multiline'] && this.props['auto-height']) {
+	        if (this.props['multiline'] && this.props['autoHeight']) {
 	            this._fixHeight();
 	        }
 	        if (props['focused']) {
@@ -194,7 +194,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.emit({ type: 'input', initialEvent: evt });
 	                },
 	                change: function (evt) {
-	                    var storeKey = this.props['store-key'];
+	                    var storeKey = this.props['storeKey'];
 	                    if (storeKey) {
 	                        localStorage.setItem(storeKey, evt.target.value);
 	                    }
@@ -202,7 +202,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                },
 	                keydown: function (evt) {
 	                    var _this = this;
-	                    if (this.props['multiline'] && this.props['auto-height']) {
+	                    if (this.props['multiline'] && this.props['autoHeight']) {
 	                        setTimeout(function () {
 	                            _this._fixHeight();
 	                        }, 1);
@@ -216,7 +216,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.emit({ type: 'keypress', initialEvent: evt });
 	                },
 	                keyup: function (evt) {
-	                    if (this.props['multiline'] && this.props['auto-height']) {
+	                    if (this.props['multiline'] && this.props['autoHeight']) {
 	                        this._fixHeight();
 	                    }
 	                    this.emit({ type: 'keyup', initialEvent: evt });

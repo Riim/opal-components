@@ -1,5 +1,5 @@
 {{block validation }}
-	<opal-input-validator>
+	<opal-input-validator class="opal-date-input__input-validator">
 		{{block validation_rules }}
 			<template is="rt-if-then" if="props.required" rt-silent>
 				<opal-input-validator-rule required
@@ -8,6 +8,9 @@
 
 			<opal-input-validator-rule test="dateExists"
 					popover-to="{props.popoverTo}">{{i18n.nonExistentDate}}</opal-input-validator-rule>
+
+			<opal-input-validator-rule test="dateInRange"
+					popover-to="{props.popoverTo}">{{i18n.invalidDateRange}}</opal-input-validator-rule>
 		{{/block}}
 
 		{{block input_mask }}
@@ -19,4 +22,12 @@
 			</opal-input-mask>
 		{{/block}}
 	</opal-input-validator>
+{{/block}}
+
+{{block calendar_menu }}
+	<opal-dropdown class="opal-date-input__calendar-menu" auto-closing>
+		{{block calendar }}
+			<opal-calendar class="opal-date-input__calendar" date-delimiter="."></opal-calendar>
+		{{/block}}
+	</opal-dropdown>
 {{/block}}

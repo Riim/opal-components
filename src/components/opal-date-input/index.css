@@ -7,4 +7,13 @@
 	& .opal-date-input__input {
 		display: block;
 	}
+
+	& .opal-date-input__calendar-menu {
+		overflow: visible;
+		padding: 0;
+		min-width: auto;
+	}
+		& .opal-date-input__calendar {
+			border: 0;
+		}
 }

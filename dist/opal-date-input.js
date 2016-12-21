@@ -78,23 +78,63 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _this.dateExists = date_exists_1.default;
 	        return _this;
 	    }
+	    OpalDateInput.prototype.dateInRange = function (date) {
+	        var calendar = this.$('calendar');
+	        var match = date.match(/\d+/g);
+	        var day = +match[0];
+	        var month = +match[1] - 1;
+	        var year = +match[2];
+	        if (year < 100) {
+	            year += year < 50 ? 2000 : 1900;
+	        }
+	        var d = new Date(year, month, day);
+	        return d >= calendar.fromDate && d <= calendar.toDate;
+	    };
+	    OpalDateInput.prototype._onDocumentMouseUp = function () {
+	        this._documentMouseUpListening.stop();
+	        this._documentMouseUpListening = null;
+	        if (this.$('input').$('input') == document.activeElement) {
+	            this.$('calendar-menu').open();
+	        }
+	    };
 	    return OpalDateInput;
 	}(rionite_1.Component));
 	OpalDateInput = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-date-input',
 	        props: {
-	            mask: '99/99/9999',
+	            mask: '99.99.9999',
 	            value: String,
-	            placeholder: 'dd/mm/yyyy',
+	            placeholder: 'dd.mm.yyyy',
 	            required: { default: false, readonly: true },
 	            popoverTo: 'right'
 	        },
 	        i18n: {
+	            isRequiredField: rionite_1.getText.t('Поле обязательно для заполнения'),
 	            nonExistentDate: rionite_1.getText.t('Несуществующая дата'),
-	            isRequiredField: rionite_1.getText.t('Поле обязательно для заполнения')
+	            invalidDateRange: rionite_1.getText.t('Дата вне допустимого диапазона')
 	        },
-	        template: new rionite_1.ComponentTemplate(template)
+	        template: new rionite_1.ComponentTemplate(template),
+	        events: {
+	            input: {
+	                focusin: function () {
+	                    if (!this._documentMouseUpListening) {
+	                        this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
+	                    }
+	                },
+	                change: function (evt) {
+	                    if (this.$('input-validator').valid) {
+	                        this.$('calendar').props['value'] = evt.target.value;
+	                    }
+	                }
+	            },
+	            'calendar-menu': {
+	                change: function (evt) {
+	                    this.$('input').value = this.$('calendar').props['value'];
+	                    this.$('calendar-menu').close();
+	                }
+	            }
+	        }
 	    })
 	], OpalDateInput);
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -137,7 +177,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 27:
 /***/ function(module, exports) {
 
-	module.exports = "{{block validation }} <opal-input-validator> {{block validation_rules }} <template is=\"rt-if-then\" if=\"props.required\" rt-silent=\"\"> <opal-input-validator-rule required=\"\" popover-to=\"{props.popoverTo}\">{{i18n.isRequiredField}}</opal-input-validator-rule> </template> <opal-input-validator-rule test=\"dateExists\" popover-to=\"{props.popoverTo}\">{{i18n.nonExistentDate}}</opal-input-validator-rule> {{/block}} {{block input_mask }} <opal-input-mask mask=\"{props.mask}\"> {{block input }} <opal-text-input class=\"opal-date-input__input opal-input-validator__input opal-input-mask__input\" value=\"{props.value}\" placeholder=\"{props.placeholder}\"></opal-text-input> {{/block}} </opal-input-mask> {{/block}} </opal-input-validator> {{/block}}"
+	module.exports = "{{block validation }} <opal-input-validator class=\"opal-date-input__input-validator\"> {{block validation_rules }} <template is=\"rt-if-then\" if=\"props.required\" rt-silent=\"\"> <opal-input-validator-rule required=\"\" popover-to=\"{props.popoverTo}\">{{i18n.isRequiredField}}</opal-input-validator-rule> </template> <opal-input-validator-rule test=\"dateExists\" popover-to=\"{props.popoverTo}\">{{i18n.nonExistentDate}}</opal-input-validator-rule> <opal-input-validator-rule test=\"dateInRange\" popover-to=\"{props.popoverTo}\">{{i18n.invalidDateRange}}</opal-input-validator-rule> {{/block}} {{block input_mask }} <opal-input-mask mask=\"{props.mask}\"> {{block input }} <opal-text-input class=\"opal-date-input__input opal-input-validator__input opal-input-mask__input\" value=\"{props.value}\" placeholder=\"{props.placeholder}\"></opal-text-input> {{/block}} </opal-input-mask> {{/block}} </opal-input-validator> {{/block}} {{block calendar_menu }} <opal-dropdown class=\"opal-date-input__calendar-menu\" auto-closing=\"\"> {{block calendar }} <opal-calendar class=\"opal-date-input__calendar\" date-delimiter=\".\"></opal-calendar> {{/block}} </opal-dropdown> {{/block}}"
 
 /***/ },
 
@@ -149,7 +189,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-date-input{position:relative;display:inline-block;vertical-align:middle;line-height:0}.opal-date-input .opal-date-input__input{display:block}";
+	            style.textContent = ".opal-date-input{position:relative;display:inline-block;vertical-align:middle;line-height:0}.opal-date-input .opal-date-input__input{display:block}.opal-date-input .opal-date-input__calendar-menu{overflow:visible;padding:0;min-width:auto}.opal-date-input .opal-date-input__calendar{border:0}";
 	            head.appendChild(style);
 	            return style;
 	        }

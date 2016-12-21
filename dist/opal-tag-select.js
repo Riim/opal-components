@@ -81,7 +81,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var props = this.props;
 	        var dataList = props['datalist'];
 	        var dataProvider = props['dataprovider'];
-	        var vm = props['view-model'];
+	        var vm = props['viewModel'];
 	        this._dataListParam = (dataList && 'dataList');
 	        this._dataProviderParam = (dataProvider && 'dataProvider');
 	        this._viewModelParam = (vm && 'viewModel');
@@ -98,7 +98,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return !!this.props['placeholder'] && (!this.viewModel || !this.viewModel.length);
 	            }
 	        });
-	        var vmItemSchema = props['view-model-item-schema'];
+	        var vmItemSchema = props['viewModelItemSchema'];
 	        this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 	        this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
@@ -147,7 +147,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            select: {
 	                confirminput: function () {
 	                    var select = this.$('select');
-	                    if (select.props['allow-input']) {
+	                    if (select.props['allowInput']) {
 	                        select.close();
 	                    }
 	                },

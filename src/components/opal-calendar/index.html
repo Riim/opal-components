@@ -5,13 +5,13 @@
 	</button>
 
 	<opal-select class="opal-calendar__s-month" size="s" value="['{shownMonth}']">
-		<template is="rt-repeat" class="opal-select__menu-content" for="month of constructor.i18n.months">
+		<template is="rt-repeat" class="opal-select__menu-content" for="month of constructor.i18n.months" rt-silent>
 			<opal-select-option value="{$index}" text="{month}"></opal-select-option>
 		</template>
 	</opal-select>
 
 	<opal-select class="opal-calendar__s-year" size="s" value="['{shownYear}']">
-		<template is="rt-repeat" class="opal-select__menu-content" for="year of years">
+		<template is="rt-repeat" class="opal-select__menu-content" for="year of years" rt-silent>
 			<opal-select-option value="{year}" text="{year}"></opal-select-option>
 		</template>
 	</opal-select>
@@ -25,16 +25,16 @@
 <div class="opal-calendar__body">
 	<table class="opal-calendar__week-days">
 		<tr class="opal-calendar__week-days-row">
-			<template is="rt-repeat" for="weekDay of weekDaysShort">
+			<template is="rt-repeat" for="weekDay of weekDaysShort" rt-silent>
 				<td class="opal-calendar__week-day">{weekDay}</td>
 			</template>
 		</tr>
 	</table>
 
 	<table class="opal-calendar__days">
-		<template is="rt-repeat" for="weekDays of days">
+		<template is="rt-repeat" for="weekDays of days" rt-silent>
 			<tr class="opal-calendar__days-row">
-				<template is="rt-repeat" for="day of weekDays">
+				<template is="rt-repeat" for="day of weekDays" rt-silent>
 					<td class="opal-calendar__day"
 						today="{day.today}"
 						selected="{day.selected}"

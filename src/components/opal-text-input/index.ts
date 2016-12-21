@@ -44,7 +44,7 @@ import template = require('./index.html');
 			},
 
 			change(evt: Event) {
-				let storeKey = this.props['store-key'];
+				let storeKey = this.props['storeKey'];
 
 				if (storeKey) {
 					localStorage.setItem(storeKey, (evt.target as HTMLInputElement).value);
@@ -54,7 +54,7 @@ import template = require('./index.html');
 			},
 
 			keydown(evt: Event) {
-				if (this.props['multiline'] && this.props['auto-height']) {
+				if (this.props['multiline'] && this.props['autoHeight']) {
 					setTimeout(() => {
 						this._fixHeight();
 					}, 1);
@@ -72,7 +72,7 @@ import template = require('./index.html');
 			},
 
 			keyup(evt: Event) {
-				if (this.props['multiline'] && this.props['auto-height']) {
+				if (this.props['multiline'] && this.props['autoHeight']) {
 					this._fixHeight();
 				}
 
@@ -104,14 +104,14 @@ export default class OpalTextInput extends Component {
 		if (value) {
 			input.value = value;
 		} else {
-			let storeKey = props['store-key'];
+			let storeKey = props['storeKey'];
 
 			if (storeKey) {
 				props['value'] = localStorage.getItem(storeKey) || '';
 			}
 		}
 
-		if (this.props['multiline'] && this.props['auto-height']) {
+		if (this.props['multiline'] && this.props['autoHeight']) {
 			this._fixHeight();
 		}
 

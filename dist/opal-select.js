@@ -98,8 +98,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return getDataList_1.call(context_1);
 	            });
 	        }
-	        var vm = props['view-model'];
-	        var vmItemSchema = props['view-model-item-schema'];
+	        var vm = props['viewModel'];
+	        var vmItemSchema = props['viewModelItemSchema'];
 	        if (vm) {
 	            vm = Function("return this." + vm + ";").call(this.ownerComponent || window);
 	            if (!vm) {
@@ -130,7 +130,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this = this;
 	        this.optionElements = this.element.getElementsByClassName('opal-select-option');
 	        var props = this.props;
-	        if (props['view-model']) {
+	        if (props['viewModel']) {
 	            this._updateOptions();
 	        }
 	        else {
@@ -491,7 +491,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.close();
 	                },
 	                confirminput: function (evt) {
-	                    if (!this.props['allow-input']) {
+	                    if (!this.props['allowInput']) {
 	                        return;
 	                    }
 	                    var textInput = evt.target;
@@ -657,7 +657,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalSelectOption.prototype.initialize = function () {
 	        cellx_1.define(this, {
 	            _tabIndex: function () {
-	                return this.props['disabled'] ? -1 : this.props['tab-index'];
+	                return this.props['disabled'] ? -1 : this.props['tabIndex'];
 	            }
 	        });
 	    };

@@ -127,7 +127,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                elStyle.left = Math.max(-containerClientRect.left, docElClientWidth - elClientRect.right) + 'px';
 	            }
 	        }
-	        if (this.props['auto-height']) {
+	        if (this.props['autoHeight']) {
 	            var docElClientHeight = docEl.clientHeight;
 	            var margin = elClientRect.top - containerClientRect.bottom;
 	            var excess = elClientRect.bottom + margin - docElClientHeight;
@@ -146,7 +146,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	        }
-	        if (this.props['auto-height']) {
+	        if (this.props['autoHeight']) {
 	            setTimeout(function () {
 	                if (_this.props['opened']) {
 	                    _this._documentClickListening = _this.listenTo(document, 'click', _this._onDocumentClick);

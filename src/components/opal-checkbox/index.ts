@@ -46,7 +46,7 @@ export default class OpalCheckbox extends Component {
 	initialize() {
 		define(this, {
 			_tabIndex(this: OpalCheckbox): number {
-				return this.props['disabled'] ? -1 : this.props['tab-index'];
+				return this.props['disabled'] ? -1 : this.props['tabIndex'];
 			}
 		});
 	}

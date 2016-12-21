@@ -81,7 +81,7 @@ export default class OpalDropdown extends Component {
 			}
 		}
 
-		if (this.props['auto-height']) {
+		if (this.props['autoHeight']) {
 			let docElClientHeight = docEl.clientHeight;
 			let margin = elClientRect.top - containerClientRect.bottom;
 			let excess = elClientRect.bottom + margin - docElClientHeight;
@@ -104,7 +104,7 @@ export default class OpalDropdown extends Component {
 			}
 		}
 
-		if (this.props['auto-height']) {
+		if (this.props['autoHeight']) {
 			setTimeout(() => {
 				if (this.props['opened']) {
 					this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);

@@ -82,23 +82,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalCalendar.prototype.initialize = function () {
 	        var i18n = this.constructor.i18n;
 	        var sundayFirst = i18n['sundayFirst'];
+	        var dateDelimiter = this.props['dateDelimiter'];
 	        this.weekDays = sundayFirst ? i18n['weekDays'] : i18n['weekDays'].slice(1).concat(i18n['weekDays'][0]);
 	        this.weekDaysShort = sundayFirst ?
 	            i18n['weekDaysShort'] :
 	            i18n['weekDaysShort'].slice(1).concat(i18n['weekDaysShort'][0]);
 	        cellx_1.define(this, {
 	            fromDate: function () {
-	                var fromDate = this.props['from-date'];
+	                var fromDate = this.props['fromDate'];
 	                if (fromDate) {
-	                    return parseDate_1.default(fromDate);
+	                    return parseDate_1.default(fromDate, dateDelimiter);
 	                }
 	                var now = new Date();
 	                return new Date(now.getFullYear() - 100, now.getMonth(), now.getDate());
 	            },
 	            toDate: function () {
-	                var toDate = this.props['to-date'];
+	                var toDate = this.props['toDate'];
 	                if (toDate) {
-	                    return parseDate_1.default(toDate);
+	                    return parseDate_1.default(toDate, dateDelimiter);
 	                }
 	                var now = new Date();
 	                return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -116,9 +117,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	                return years;
 	            },
-	            selectedDate: function () {
-	                var selectedDate = this.props['selected-date'];
-	                return selectedDate ? parseDate_1.default(selectedDate) : null;
+	            value: function () {
+	                var value = this.props['value'];
+	                return value ? parseDate_1.default(value, dateDelimiter) : null;
 	            }
 	        });
 	        var fromDate = this.fromDate;
@@ -126,13 +127,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (fromDate > toDate) {
 	            throw new TypeError('"fromDate" must be less than or equal to "toDate"');
 	        }
-	        var selectedDate = this.selectedDate;
+	        var value = this.value;
 	        var shownDate;
-	        if (selectedDate) {
-	            if (isNaN(+selectedDate)) {
-	                throw new TypeError('Invalid "selectedDate"');
+	        if (value) {
+	            if (isNaN(+value)) {
+	                throw new TypeError('Invalid "value"');
 	            }
-	            shownDate = selectedDate;
+	            shownDate = value;
 	            if (shownDate < fromDate || shownDate > toDate) {
 	                throw new RangeError("\"shownDate\" must be " + (shownDate < fromDate ? 'greater' : 'less') + " than or equal to \"" + (shownDate < fromDate ? 'fromDate' : 'toDate') + "\"");
 	            }
@@ -152,7 +153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            days: function (push, fail, oldDays) {
 	                var fromDate = this.fromDate;
 	                var toDate = this.toDate;
-	                var selectedDate = this.selectedDate;
+	                var value = this.value;
 	                var shownYear = this.shownYear;
 	                var shownMonth = this.shownMonth;
 	                if (this._currentlyDateSelect) {
@@ -166,10 +167,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var selectedYear;
 	                var selectedMonth;
 	                var selectedDay;
-	                if (selectedDate) {
-	                    selectedYear = selectedDate.getFullYear();
-	                    selectedMonth = selectedDate.getMonth();
-	                    selectedDay = selectedDate.getDate();
+	                if (value) {
+	                    selectedYear = value.getFullYear();
+	                    selectedMonth = value.getMonth();
+	                    selectedDay = value.getDate();
 	                }
 	                var lastPrevMonthDay = new Date(shownYear, shownMonth, 0).getDate();
 	                var lastMonthDay = new Date(shownYear, shownMonth + 1, 0).getDate();
@@ -183,18 +184,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var date = new Date(year, month, day);
 	                    var disabled = date < fromDate || date > toDate;
 	                    weekDays.push({
-	                        date: formatDate_1.default(year, month, day),
+	                        date: formatDate_1.default(year, month, day, dateDelimiter),
 	                        value: day,
 	                        today: year == nowYear && month == nowMonth && day == nowDay,
-	                        selected: !!selectedDate && year == selectedYear && month == selectedMonth &&
+	                        selected: !!value && year == selectedYear && month == selectedMonth &&
 	                            day == selectedDay,
 	                        notInCurrentMonth: notInCurrentMonth,
 	                        disabled: disabled,
 	                        tabIndex: disabled ? null : 0
 	                    });
 	                }
-	                for (var index = firstMonthDayWeekDayIndex; index;) {
-	                    pushDay(shownYear - +!shownMonth, shownMonth ? shownMonth - 1 : 11, lastPrevMonthDay - (--index), true);
+	                for (var i = firstMonthDayWeekDayIndex; i;) {
+	                    pushDay(shownYear - +!shownMonth, shownMonth ? shownMonth - 1 : 11, lastPrevMonthDay - (--i), true);
 	                }
 	                for (var i = 0; i < lastMonthDay;) {
 	                    pushDay(shownYear, shownMonth, ++i, false);
@@ -228,7 +229,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        dayEl.setAttribute('selected', '');
 	        this._currentlyDateSelect = true;
-	        this.props['selected-date'] = dayEl.dataset['date'];
+	        this.props['value'] = dayEl.dataset['date'];
+	        this.emit('change');
 	    };
 	    return OpalCalendar;
 	}(rionite_1.Component));
@@ -238,7 +240,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        props: {
 	            fromDate: String,
 	            toDate: String,
-	            selectedDate: String
+	            value: String,
+	            dateDelimiter: { default: '/', readonly: true }
 	        },
 	        i18n: {
 	            previousMonth: 'Предыдущий месяц',
@@ -330,8 +333,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	"use strict";
-	function formatDate(year, month, day) {
-	    return ('0' + day).slice(-2) + '/' + ('0' + (month + 1)).slice(-2) + '/' + ('000' + year).slice(-4);
+	function formatDate(year, month, day, delimiter) {
+	    if (delimiter === void 0) { delimiter = '/'; }
+	    return ('0' + day).slice(-2) + delimiter + ('0' + (month + 1)).slice(-2) + delimiter + ('000' + year).slice(-4);
 	}
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = formatDate;
@@ -343,17 +347,10 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	"use strict";
-	function parseDate(date, format) {
-	    if (format === void 0) { format = 'dd/mm/yyyy'; }
-	    var match = date.match(/\d+/g);
-	    if (!match) {
-	        return new Date(NaN);
-	    }
-	    var d = format.match(/d{2}|m{2}|y{4}/g).reduce(function (parsedDate, item, index) {
-	        parsedDate[item] = +match[index];
-	        return parsedDate;
-	    }, {});
-	    return new Date(d['yyyy'], d['mm'] - 1, d['dd']);
+	function parseDate(date, delimiter) {
+	    if (delimiter === void 0) { delimiter = '/'; }
+	    var d = date.split(delimiter);
+	    return new Date(+d[2], +d[1] - 1, +d[0]);
 	}
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = parseDate;
@@ -364,7 +361,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 24:
 /***/ function(module, exports) {
 
-	module.exports = "<header class=\"opal-calendar__header\"> <button class=\"opal-calendar__btn-prev-month\" disabled=\"{btnPrevMonthDisabled}\"> <svg viewBox=\"0 0 32 28\" class=\"opal-calendar__icon-arrow-left\"><use xlink:href=\"#opal-components__icon-arrow-left\"></use></svg> </button> <opal-select class=\"opal-calendar__s-month\" size=\"s\" value=\"['{shownMonth}']\"> <template is=\"rt-repeat\" class=\"opal-select__menu-content\" for=\"month of constructor.i18n.months\"> <opal-select-option value=\"{$index}\" text=\"{month}\"></opal-select-option> </template> </opal-select> <opal-select class=\"opal-calendar__s-year\" size=\"s\" value=\"['{shownYear}']\"> <template is=\"rt-repeat\" class=\"opal-select__menu-content\" for=\"year of years\"> <opal-select-option value=\"{year}\" text=\"{year}\"></opal-select-option> </template> </opal-select> <button class=\"opal-calendar__btn-next-month\" disabled=\"{btnNextMonthDisabled}\"> <svg viewBox=\"0 0 32 28\" class=\"opal-calendar__icon-arrow-right\"><use xlink:href=\"#opal-components__icon-arrow-left\"></use></svg> </button> </header> <div class=\"opal-calendar__body\"> <table class=\"opal-calendar__week-days\"> <tbody><tr class=\"opal-calendar__week-days-row\"> <template is=\"rt-repeat\" for=\"weekDay of weekDaysShort\"> <td class=\"opal-calendar__week-day\">{weekDay}</td> </template> </tr> </tbody></table> <table class=\"opal-calendar__days\"> <template is=\"rt-repeat\" for=\"weekDays of days\"> <tr class=\"opal-calendar__days-row\"> <template is=\"rt-repeat\" for=\"day of weekDays\"> <td class=\"opal-calendar__day\" today=\"{day.today}\" selected=\"{day.selected}\" not-in-current-month=\"{day.notInCurrentMonth}\" disabled=\"{day.disabled}\" tabindex=\"{day.tabIndex}\" data-date=\"{day.date}\" rt-click=\"_onDayClick\">{day.value}</td> </template> </tr> </template> </table> </div>"
+	module.exports = "<header class=\"opal-calendar__header\"> <button class=\"opal-calendar__btn-prev-month\" disabled=\"{btnPrevMonthDisabled}\"> <svg viewBox=\"0 0 32 28\" class=\"opal-calendar__icon-arrow-left\"><use xlink:href=\"#opal-components__icon-arrow-left\"></use></svg> </button> <opal-select class=\"opal-calendar__s-month\" size=\"s\" value=\"['{shownMonth}']\"> <template is=\"rt-repeat\" class=\"opal-select__menu-content\" for=\"month of constructor.i18n.months\" rt-silent=\"\"> <opal-select-option value=\"{$index}\" text=\"{month}\"></opal-select-option> </template> </opal-select> <opal-select class=\"opal-calendar__s-year\" size=\"s\" value=\"['{shownYear}']\"> <template is=\"rt-repeat\" class=\"opal-select__menu-content\" for=\"year of years\" rt-silent=\"\"> <opal-select-option value=\"{year}\" text=\"{year}\"></opal-select-option> </template> </opal-select> <button class=\"opal-calendar__btn-next-month\" disabled=\"{btnNextMonthDisabled}\"> <svg viewBox=\"0 0 32 28\" class=\"opal-calendar__icon-arrow-right\"><use xlink:href=\"#opal-components__icon-arrow-left\"></use></svg> </button> </header> <div class=\"opal-calendar__body\"> <table class=\"opal-calendar__week-days\"> <tbody><tr class=\"opal-calendar__week-days-row\"> <template is=\"rt-repeat\" for=\"weekDay of weekDaysShort\" rt-silent=\"\"> <td class=\"opal-calendar__week-day\">{weekDay}</td> </template> </tr> </tbody></table> <table class=\"opal-calendar__days\"> <template is=\"rt-repeat\" for=\"weekDays of days\" rt-silent=\"\"> <tr class=\"opal-calendar__days-row\"> <template is=\"rt-repeat\" for=\"day of weekDays\" rt-silent=\"\"> <td class=\"opal-calendar__day\" today=\"{day.today}\" selected=\"{day.selected}\" not-in-current-month=\"{day.notInCurrentMonth}\" disabled=\"{day.disabled}\" tabindex=\"{day.tabIndex}\" data-date=\"{day.date}\" rt-click=\"_onDayClick\">{day.value}</td> </template> </tr> </template> </table> </div>"
 
 /***/ },
 
