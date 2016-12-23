@@ -42,9 +42,13 @@ import template = require('./index.html');
 			}
 		},
 
-		'calendar-menu': {
+		'calendar': {
 			change(evt) {
-				(this.$('input') as OpalTextInput).value = (this.$('calendar') as OpalCalendar).props['value'];
+				if (!(evt.target as Component).element.classList.contains('opal-date-input__calendar')) {
+					return;
+				}
+
+				(this.$('input') as OpalTextInput).value = (evt.target as OpalCalendar).props['value'];
 				(this.$('calendar-menu') as OpalDropdown).close();
 			}
 		}

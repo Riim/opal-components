@@ -128,9 +128,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                }
 	            },
-	            'calendar-menu': {
+	            'calendar': {
 	                change: function (evt) {
-	                    this.$('input').value = this.$('calendar').props['value'];
+	                    if (!evt.target.element.classList.contains('opal-date-input__calendar')) {
+	                        return;
+	                    }
+	                    this.$('input').value = evt.target.props['value'];
 	                    this.$('calendar-menu').close();
 	                }
 	            }
