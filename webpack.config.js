@@ -63,6 +63,10 @@ module.exports = {
 				loader: 'raw!collapse-html-whitespaces'
 			},
 			{
+				test: /\.beml$/,
+				loader: 'raw!collapse-html-whitespaces'
+			},
+			{
 				test: /\.css$/,
 				loader: 'simple-css!postcss'
 			},

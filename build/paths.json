@@ -21,7 +21,7 @@
       "node_modules/awesome-typescript-loader/dist/entry.js!src/components/opal-router/escapeRegExp.ts": 17,
       "node_modules/awesome-typescript-loader/dist/entry.js!src/components/opal-router/parsePath.ts": 18,
       "node_modules/awesome-typescript-loader/dist/entry.js!src/components/opal-select/isEqualArray.ts": 19,
-      "node_modules/date-exists/dist/date-exists.js": 20,
+      "node_modules/date-exists/dist/dateExists.js": 20,
       "node_modules/prismjs/prism.js": 21,
       "node_modules/raw-loader/index.js!node_modules/collapse-html-whitespaces-loader/index.js!src/components/opal-autosuggestion/index.html": 22,
       "node_modules/raw-loader/index.js!node_modules/collapse-html-whitespaces-loader/index.js!src/components/opal-button/index.html": 23,
