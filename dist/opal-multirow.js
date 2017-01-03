@@ -72,7 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cellx_indexed_collections_1 = __webpack_require__(3);
 	var rionite_1 = __webpack_require__(1);
 	var opal_multirow_row_1 = __webpack_require__(16);
-	var template = __webpack_require__(33);
+	var template = __webpack_require__(81);
 	var nextUID = cellx_1.Utils.nextUID;
 	var filter = Array.prototype.filter;
 	var OpalMultirow = (function (_super) {
@@ -107,7 +107,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalMultirow = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-multirow',
-	        template: new rionite_1.ComponentTemplate(template),
+	        bemlTemplate: template,
 	        events: {
 	            ':component': {
 	                'remove-row-click': function (evt) {
@@ -181,7 +181,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	__webpack_require__(62);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(34);
+	var template = __webpack_require__(82);
 	var OpalMultirowRow = (function (_super) {
 	    __extends(OpalMultirowRow, _super);
 	    function OpalMultirowRow() {
@@ -195,7 +195,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        props: {
 	            preset: { default: false, readonly: true }
 	        },
-	        template: new rionite_1.ComponentTemplate(template),
+	        bemlTemplate: template,
 	        events: {
 	            'btn-remove-row': {
 	                click: function () {
@@ -213,20 +213,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = OpalMultirowRow;
 
-
-/***/ },
-
-/***/ 33:
-/***/ function(module, exports) {
-
-	module.exports = "{{block preset_rows }} <rt-content class=\"opal-multirow__preset-rows-container\" select=\"opal-multirow-row[preset], .opal-multirow__preset-rows\" not-have-new-rows=\"{_notHaveNewRows}\" not-single-row=\"{_notSingleRow}\"></rt-content> {{/block}} <div class=\"opal-multirow__new-rows-container\" not-have-preset-rows=\"{_notHavePresetRows}\" not-single-row=\"{_notSingleRow}\"> <template is=\"rt-repeat\" for=\"row of _newRows\" track-by=\"key\" rt-silent=\"\"> {{block row }} <rt-content select=\"opal-multirow-row:not([preset])\" data-key=\"{row.key}\"></rt-content> {{/block}} </template> </div>"
-
-/***/ },
-
-/***/ 34:
-/***/ function(module, exports) {
-
-	module.exports = "<rt-content class=\"opal-multirow-row__content\"></rt-content> {{block buttons }} <opal-sign-button class=\"opal-multirow-row__btn-remove-row\" sign=\"minus\"></opal-sign-button> <opal-sign-button class=\"opal-multirow-row__btn-add-row\" sign=\"plus\"></opal-sign-button> {{/block}}"
 
 /***/ },
 
@@ -256,13 +242,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-multirow-row{display:block;white-space:nowrap}.opal-multirow-row::after{display:table;clear:both;content:''}.opal-multirow-row .opal-multirow-row__content{display:inline-block;margin-bottom:20px;padding-right:6px}.opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow-row .opal-multirow-row__btn-add-row{position:relative;top:1px;display:none}.opal-multirow__preset-rows-container[not-have-new-rows] .opal-multirow-row:last-child .opal-multirow-row__content,.opal-multirow__new-rows-container rt-content:last-child .opal-multirow-row .opal-multirow-row__content{margin-bottom:0}.opal-multirow__preset-rows-container[not-single-row] .opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow__new-rows-container[not-single-row] .opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow__preset-rows-container[not-have-new-rows] .opal-multirow-row:last-child .opal-multirow-row__btn-add-row,.opal-multirow__new-rows-container rt-content:last-child .opal-multirow-row .opal-multirow-row__btn-add-row{display:inline-block}.opal-multirow-row .opal-popover{white-space:normal}";
+	            style.textContent = ".opal-multirow-row{display:block;white-space:nowrap}.opal-multirow-row::after{display:table;clear:both;content:''}.opal-multirow-row .opal-multirow-row__content{display:inline-block;margin-bottom:20px;padding-right:6px}.opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow-row .opal-multirow-row__btn-add-row{position:relative;top:1px;display:none}.opal-multirow__preset-rows-container[not-have-new-rows] .opal-multirow-row:last-child .opal-multirow-row__content,.opal-multirow__new-rows rt-content:last-child .opal-multirow-row .opal-multirow-row__content{margin-bottom:0}.opal-multirow__preset-rows-container[not-single-row] .opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow__new-rows[not-single-row] .opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow__preset-rows-container[not-have-new-rows] .opal-multirow-row:last-child .opal-multirow-row__btn-add-row,.opal-multirow__new-rows rt-content:last-child .opal-multirow-row .opal-multirow-row__btn-add-row{display:inline-block}.opal-multirow-row .opal-popover{white-space:normal}";
 	            head.appendChild(style);
 	            return style;
 	        }
 	        return null;
 	    })(document);
 
+
+/***/ },
+
+/***/ 81:
+/***/ function(module, exports) {
+
+	module.exports = "rt-content /preset-rows-container ( select='opal-multirow-row[preset], .opal-multirow__preset-rows', not-have-new-rows={_notHaveNewRows}, not-single-row={_notSingleRow} ) div /new-rows (not-have-preset-rows={_notHavePresetRows}, not-single-row={_notSingleRow}) { template (is=rt-repeat, for=row of _newRows, track-by=key, rt-silent) { rt-content /new-row-container (select='opal-multirow-row:not([preset])', data-key={row.key}) } }"
+
+/***/ },
+
+/***/ 82:
+/***/ function(module, exports) {
+
+	module.exports = "rt-content /content ' ' opal-sign-button /btn-remove-row (sign=minus) ' ' opal-sign-button /btn-add-row (sign=plus)"
 
 /***/ }
 

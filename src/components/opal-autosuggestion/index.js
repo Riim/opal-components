@@ -1,7 +1,7 @@
 require('./index.css');
 
 let { Cell, cellx } = require('cellx');
-let { getText, Component, ComponentTemplate } = require('rionite');
+let { getText, Component } = require('rionite');
 
 function toComparable(str) {
 	return str.trim().replace(/\s+/g, ' ').toLowerCase();
@@ -20,7 +20,7 @@ module.exports = Component.extend('opal-autosuggestion', {
 			inputPlaceholder: getText.t('начните вводить для поиска')
 		},
 
-		template: new ComponentTemplate(require('./index.html')),
+		bemlTemplate: require('./index.beml'),
 
 		events: {
 			input: {

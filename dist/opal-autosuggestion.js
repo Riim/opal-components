@@ -65,8 +65,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _require2 = __webpack_require__(1),
 	    getText = _require2.getText,
-	    Component = _require2.Component,
-	    ComponentTemplate = _require2.ComponentTemplate;
+	    Component = _require2.Component;
 
 	function toComparable(str) {
 		return str.trim().replace(/\s+/g, ' ').toLowerCase();
@@ -85,7 +84,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				inputPlaceholder: getText.t('начните вводить для поиска')
 			},
 
-			template: new ComponentTemplate(__webpack_require__(22)),
+			bemlTemplate: __webpack_require__(22),
 
 			events: {
 				input: {
@@ -349,7 +348,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 22:
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content select=\".opal-autosuggestion__input\"> {{block input }} <opal-text-input class=\"opal-autosuggestion__input\" value=\"{props.selectedItem.text}\" placeholder=\"{{i18n.inputPlaceholder}}\" loading=\"{loaderShown}\"></opal-text-input> {{/block}} </rt-content> {{block menu }} <opal-dropdown class=\"opal-autosuggestion__menu\"> {{block list }} <div class=\"opal-autosuggestion__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"item of list\" strip=\"\" rt-silent=\"\"> <div class=\"opal-autosuggestion__list-item\" data-value=\"{item.value}\" data-text=\"{item.text}\" rt-click=\"_onListItemClick\">{item.text}</div> </template> {{/block}} </div> {{/block}} </opal-dropdown> {{/block}}"
+	module.exports = "rt-content (select=.opal-autosuggestion__input) { opal-text-input /input ( value={props.selectedItem.text}, placeholder={constructor.i18n.inputPlaceholder}, loading={loaderShown} ) } opal-dropdown /menu { div /list { template (is=rt-repeat, for=item of list, strip, rt-silent) { div /list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) { '{item.text}' } } } }"
 
 /***/ },
 

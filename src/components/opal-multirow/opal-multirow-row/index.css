@@ -29,15 +29,15 @@
 
 	@nest
 	.opal-multirow__preset-rows-container[not-have-new-rows] &:last-child .opal-multirow-row__content,
-	.opal-multirow__new-rows-container rt-content:last-child & .opal-multirow-row__content {
+	.opal-multirow__new-rows rt-content:last-child & .opal-multirow-row__content {
 		margin-bottom: 0;
 	}
 
 	@nest
 	.opal-multirow__preset-rows-container[not-single-row] & .opal-multirow-row__btn-remove-row,
-	.opal-multirow__new-rows-container[not-single-row] & .opal-multirow-row__btn-remove-row,
+	.opal-multirow__new-rows[not-single-row] & .opal-multirow-row__btn-remove-row,
 	.opal-multirow__preset-rows-container[not-have-new-rows] &:last-child .opal-multirow-row__btn-add-row,
-	.opal-multirow__new-rows-container rt-content:last-child & .opal-multirow-row__btn-add-row {
+	.opal-multirow__new-rows rt-content:last-child & .opal-multirow-row__btn-add-row {
 		display: inline-block;
 	}
 

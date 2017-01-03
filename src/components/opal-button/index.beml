@@ -1,0 +1,11 @@
+template (is=rt-if-then, if=props.href, rt-silent) {
+	a /control (href={props.href}, tabindex={_tabIndex}) {
+		rt-content /content
+	}
+}
+
+template (is=rt-if-else, if=props.href, rt-silent) {
+	button /control (type={props.controlType}, name={props.inputName}, tabindex={_tabIndex}) {
+		rt-content /content
+	}
+}

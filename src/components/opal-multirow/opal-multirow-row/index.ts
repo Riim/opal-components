@@ -1,7 +1,7 @@
 import './index.css';
 
-import { Component, d, ComponentTemplate } from 'rionite';
-import template = require('./index.html');
+import { Component, d } from 'rionite';
+import template = require('./index.beml');
 
 @d.Component({
 	elementIs: 'opal-multirow-row',
@@ -10,7 +10,7 @@ import template = require('./index.html');
 		preset: { default: false, readonly: true }
 	},
 
-	template: new ComponentTemplate(template),
+	bemlTemplate: template,
 
 	events: {
 		'btn-remove-row': {

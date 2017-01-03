@@ -2,9 +2,9 @@ import './index.css';
 
 import { IEvent, define, Utils } from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
-import { IComponentElement, Component, d, ComponentTemplate } from 'rionite';
+import { IComponentElement, Component, d } from 'rionite';
 import OpalMultirowRow from './opal-multirow-row';
-import template = require('./index.html');
+import template = require('./index.beml');
 
 let nextUID = Utils.nextUID;
 
@@ -13,7 +13,7 @@ let filter = Array.prototype.filter;
 @d.Component<OpalMultirow>({
 	elementIs: 'opal-multirow',
 
-	template: new ComponentTemplate(template),
+	bemlTemplate: template,
 
 	events: {
 		':component': {
