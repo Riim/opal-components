@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(46);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(42);
+	var template = __webpack_require__(22);
 	var OpalButton = (function (_super) {
 	    __extends(OpalButton, _super);
 	    function OpalButton() {
@@ -153,7 +153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            tabIndex: 0,
 	            disabled: false
 	        },
-	        bemlTemplate: template,
+	        template: template,
 	        events: {
 	            control: {
 	                focusin: function (evt) {
@@ -196,10 +196,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 42:
+/***/ 22:
 /***/ function(module, exports) {
 
-	module.exports = "template (is=rt-if-then, if=props.href, rt-silent) {\na /control (href={props.href}, tabindex={_tabIndex}) {\nrt-content /content\n}\n}\ntemplate (is=rt-if-else, if=props.href, rt-silent) {\nbutton /control (type={props.controlType}, name={props.inputName}, tabindex={_tabIndex}) {\nrt-content /content\n}\n}"
+	module.exports = "<template is=\"rt-if-then\" if=\"props.href\" rt-silent=\"\"> <a class=\"opal-button__control\" href=\"{props.href}\" tabindex=\"{_tabIndex}\"><rt-content class=\"opal-button__content\"></rt-content></a> </template> <template is=\"rt-if-else\" if=\"props.href\" rt-silent=\"\"> <button class=\"opal-button__control\" type=\"{props.controlType}\" name=\"{props.inputName}\" tabindex=\"{_tabIndex}\"><rt-content class=\"opal-button__content\"></rt-content></button> </template>"
 
 /***/ },
 

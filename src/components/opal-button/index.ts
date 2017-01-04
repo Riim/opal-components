@@ -2,7 +2,7 @@ import './index.css';
 
 import { define } from 'cellx';
 import { Component, d } from 'rionite';
-import template = require('./index.beml');
+import template = require('./index.html');
 
 @d.Component<OpalButton>({
 	elementIs: 'opal-button',
@@ -20,7 +20,7 @@ import template = require('./index.beml');
 		disabled: false
 	},
 
-	bemlTemplate: template,
+	template,
 
 	events: {
 		control: {

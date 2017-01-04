@@ -141,7 +141,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(64);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(31);
+	var template = __webpack_require__(32);
 	var OpalRadioButton = (function (_super) {
 	    __extends(OpalRadioButton, _super);
 	    function OpalRadioButton() {
@@ -269,7 +269,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 31:
+/***/ 32:
 /***/ function(module, exports) {
 
 	module.exports = "<label class=\"opal-radio-button__label\"> <input class=\"opal-radio-button__input\" type=\"checkbox\"> <span class=\"opal-radio-button__control\" tabindex=\"{_tabIndex}\"></span> <rt-content class=\"opal-radio-button__content\"></rt-content> </label>"
