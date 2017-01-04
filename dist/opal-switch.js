@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(71);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(37);
+	var template = __webpack_require__(36);
 	var OpalSwitch = (function (_super) {
 	    __extends(OpalSwitch, _super);
 	    function OpalSwitch() {
@@ -211,7 +211,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 37:
+/***/ 36:
 /***/ function(module, exports) {
 
 	module.exports = "<label class=\"opal-switch__label\"> <input class=\"opal-switch__input\" type=\"checkbox\"> <span class=\"opal-switch__control\" tabindex=\"{_tabIndex}\"><span class=\"opal-switch__thumb\"></span></span> <rt-content class=\"opal-switch__content\"></rt-content> </label>"

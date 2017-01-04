@@ -2,7 +2,7 @@ import './index.css';
 
 import { define } from 'cellx';
 import { Component, d } from 'rionite';
-import template = require('./index.html');
+import template = require('./index.beml');
 
 @d.Component<OpalButton>({
 	elementIs: 'opal-button',
@@ -12,7 +12,6 @@ import template = require('./index.html');
 		controlType: String,
 		size: 'm',
 		inputName: String,
-		href: String,
 		checkable: false,
 		checked: false,
 		focused: false,
@@ -20,7 +19,7 @@ import template = require('./index.html');
 		disabled: false
 	},
 
-	template,
+	bemlTemplate: template,
 
 	events: {
 		control: {

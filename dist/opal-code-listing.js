@@ -71,7 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(50);
 	var rionite_1 = __webpack_require__(1);
 	var Prism = __webpack_require__(21);
-	var template = __webpack_require__(25);
+	var template = __webpack_require__(24);
 	function prepareCode(code, isHtml) {
 	    code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
 	    var tabs = code.match(/^\t*[^\t\r\n]/gm);
@@ -923,7 +923,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 25:
+/***/ 24:
 /***/ function(module, exports) {
 
 	module.exports = "<opal-tabs> <opal-tab>HTML</opal-tab> <opal-tab-panel> <pre class=\"opal-code-listing__html-code-wrapper\"><code class=\"opal-code-listing__html-code\"></code></pre> </opal-tab-panel> <opal-tab>JS</opal-tab> <opal-tab-panel> <pre class=\"opal-code-listing__js-code-wrapper\"><code class=\"opal-code-listing__js-code\"></code></pre> </opal-tab-panel> </opal-tabs> <rt-content class=\"opal-code-listing__example-html-container\" select=\".opal-code-listing__example-html\"></rt-content> <rt-content class=\"opal-code-listing__example-js-container\" select=\".opal-code-listing__example-js\"></rt-content>"

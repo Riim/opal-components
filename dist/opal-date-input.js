@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(51);
 	var rionite_1 = __webpack_require__(1);
 	var date_exists_1 = __webpack_require__(20);
-	var template = __webpack_require__(26);
+	var template = __webpack_require__(25);
 	var OpalDateInput = (function (_super) {
 	    __extends(OpalDateInput, _super);
 	    function OpalDateInput() {
@@ -177,7 +177,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 26:
+/***/ 25:
 /***/ function(module, exports) {
 
 	module.exports = "{{block validation }} <opal-input-validator class=\"opal-date-input__input-validator\"> {{block validation_rules }} <template is=\"rt-if-then\" if=\"props.required\" rt-silent=\"\"> <opal-input-validator-rule required=\"\" popover-to=\"{props.popoverTo}\">{{i18n.isRequiredField}}</opal-input-validator-rule> </template> <opal-input-validator-rule test=\"dateExists\" popover-to=\"{props.popoverTo}\">{{i18n.nonExistentDate}}</opal-input-validator-rule> <opal-input-validator-rule test=\"dateInRange\" popover-to=\"{props.popoverTo}\">{{i18n.invalidDateRange}}</opal-input-validator-rule> {{/block}} {{block input_mask }} <opal-input-mask mask=\"{props.mask}\"> {{block input }} <opal-text-input class=\"opal-date-input__input opal-input-validator__input opal-input-mask__input\" value=\"{props.value}\" placeholder=\"{props.placeholder}\"></opal-text-input> {{/block}} </opal-input-mask> {{/block}} </opal-input-validator> {{/block}} {{block calendar_menu }} <opal-dropdown class=\"opal-date-input__calendar-menu\" auto-closing=\"\"> {{block calendar }} <opal-calendar class=\"opal-date-input__calendar\" date-delimiter=\".\"></opal-calendar> {{/block}} </opal-dropdown> {{/block}}"

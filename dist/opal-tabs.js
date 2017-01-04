@@ -71,7 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var rionite_1 = __webpack_require__(1);
 	var opal_tab_list_1 = __webpack_require__(9);
 	var opal_tab_panel_1 = __webpack_require__(11);
-	var template = __webpack_require__(38);
+	var template = __webpack_require__(37);
 	var opal_tab_list_2 = __webpack_require__(9);
 	exports.OpalTab = opal_tab_list_2.OpalTab;
 	exports.OpalTabList = opal_tab_list_2.default;
@@ -218,7 +218,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(74);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(39);
+	var template = __webpack_require__(38);
 	var OpalTab = (function (_super) {
 	    __extends(OpalTab, _super);
 	    function OpalTab() {
@@ -374,14 +374,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 38:
+/***/ 37:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content select=\"opal-tab-list\"> <opal-tab-list> <rt-content class=\"opal-tabs__tabs\" select=\"opal-tab\"></rt-content> </opal-tab-list> </rt-content> <rt-content class=\"opal-tabs__panels\" select=\"opal-tab-panel\"></rt-content>"
 
 /***/ },
 
-/***/ 39:
+/***/ 38:
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"opal-tab__button\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-tab__content\"></rt-content> </span>"
