@@ -72,7 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cellx_indexed_collections_1 = __webpack_require__(3);
 	var rionite_1 = __webpack_require__(1);
 	var opal_multirow_row_1 = __webpack_require__(16);
-	var template = __webpack_require__(81);
+	var template = __webpack_require__(43);
 	var nextUID = cellx_1.Utils.nextUID;
 	var filter = Array.prototype.filter;
 	var OpalMultirow = (function (_super) {
@@ -181,7 +181,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	__webpack_require__(62);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(82);
+	var template = __webpack_require__(44);
 	var OpalMultirowRow = (function (_super) {
 	    __extends(OpalMultirowRow, _super);
 	    function OpalMultirowRow() {
@@ -213,6 +213,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = OpalMultirowRow;
 
+
+/***/ },
+
+/***/ 43:
+/***/ function(module, exports) {
+
+	module.exports = "rt-content /preset-rows-container (\nselect='opal-multirow-row[preset], .opal-multirow__preset-rows',\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n)\ndiv /new-rows (not-have-preset-rows={_notHavePresetRows}, not-single-row={_notSingleRow}) {\ntemplate (is=rt-repeat, for=row of _newRows, track-by=key, rt-silent) {\nrt-content /new-row-container (select='opal-multirow-row:not([preset])', data-key={row.key})\n}\n}"
+
+/***/ },
+
+/***/ 44:
+/***/ function(module, exports) {
+
+	module.exports = "rt-content /content ' '\nopal-sign-button /btn-remove-row (sign=minus) ' '\nopal-sign-button /btn-add-row (sign=plus)"
 
 /***/ },
 
@@ -249,20 +263,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return null;
 	    })(document);
 
-
-/***/ },
-
-/***/ 81:
-/***/ function(module, exports) {
-
-	module.exports = "rt-content /preset-rows-container ( select='opal-multirow-row[preset], .opal-multirow__preset-rows', not-have-new-rows={_notHaveNewRows}, not-single-row={_notSingleRow} ) div /new-rows (not-have-preset-rows={_notHavePresetRows}, not-single-row={_notSingleRow}) { template (is=rt-repeat, for=row of _newRows, track-by=key, rt-silent) { rt-content /new-row-container (select='opal-multirow-row:not([preset])', data-key={row.key}) } }"
-
-/***/ },
-
-/***/ 82:
-/***/ function(module, exports) {
-
-	module.exports = "rt-content /content ' ' opal-sign-button /btn-remove-row (sign=minus) ' ' opal-sign-button /btn-add-row (sign=plus)"
 
 /***/ }
 

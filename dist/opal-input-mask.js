@@ -83,7 +83,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				mask: { type: String, required: true }
 			},
 
-			template: __webpack_require__(29)
+			template: __webpack_require__(27)
 		},
 
 		_focusText: undefined,
@@ -476,7 +476,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 29:
+/***/ 27:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content class=\"opal-input-mask__content\"></rt-content>"

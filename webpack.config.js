@@ -36,7 +36,7 @@ module.exports = {
 			{
 				test: /\.js$/,
 				exclude: /(?:node_modules|bower_components)/,
-				loader: 'eslint'
+				loader: 'eslint-loader'
 			}
 		],
 
@@ -44,7 +44,7 @@ module.exports = {
 			{
 				test: /\.js$/,
 				exclude: /(?:node_modules|bower_components)/,
-				loader: 'babel',
+				loader: 'babel-loader',
 				query: {
 					presets: ['@riim/babel-preset'],
 					plugins: [
@@ -60,19 +60,19 @@ module.exports = {
  			},
 			{
 				test: /\.html$/,
-				loader: 'raw!collapse-html-whitespaces'
+				loader: 'raw-loader!collapse-html-whitespaces-loader'
 			},
 			{
 				test: /\.beml$/,
-				loader: 'raw!collapse-html-whitespaces'
+				loader: 'raw-loader!collapse-line-breaks-loader!trim-lines-loader'
 			},
 			{
 				test: /\.css$/,
-				loader: 'simple-css!postcss'
+				loader: 'simple-css-loader!postcss-loader'
 			},
 			{
 				test: /\.svg$/,
-				loader: 'simple-svg'
+				loader: 'simple-svg-loader'
 			}
 		]
 	},

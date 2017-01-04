@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(46);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(80);
+	var template = __webpack_require__(42);
 	var OpalButton = (function (_super) {
 	    __extends(OpalButton, _super);
 	    function OpalButton() {
@@ -196,6 +196,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
+/***/ 42:
+/***/ function(module, exports) {
+
+	module.exports = "template (is=rt-if-then, if=props.href, rt-silent) {\na /control (href={props.href}, tabindex={_tabIndex}) {\nrt-content /content\n}\n}\ntemplate (is=rt-if-else, if=props.href, rt-silent) {\nbutton /control (type={props.controlType}, name={props.inputName}, tabindex={_tabIndex}) {\nrt-content /content\n}\n}"
+
+/***/ },
+
 /***/ 46:
 /***/ function(module, exports) {
 
@@ -211,13 +218,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return null;
 	    })(document);
 
-
-/***/ },
-
-/***/ 80:
-/***/ function(module, exports) {
-
-	module.exports = "template (is=rt-if-then, if=props.href, rt-silent) { a /control (href={props.href}, tabindex={_tabIndex}) { rt-content /content } } template (is=rt-if-else, if=props.href, rt-silent) { button /control (type={props.controlType}, name={props.inputName}, tabindex={_tabIndex}) { rt-content /content } }"
 
 /***/ }
 
