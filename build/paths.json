@@ -1,5 +1,5 @@
 {
-  "nextFreeModuleId": 80,
+  "nextFreeModuleId": 81,
   "modules": {
     "byIdentifier": {
       "external \"rionite\"": 1,
@@ -107,7 +107,8 @@
       "node_modules/awesome-typescript-loader/dist/entry.js!src/components/opal-text-input/index.ts": 0,
       "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/components/opal-autosuggestion/index.js": 0,
       "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/components/opal-input-mask/index.js": 0,
-      "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/focusHighlightController.js": 0
+      "node_modules/babel-loader/lib/index.js?{\"presets\":[\"@riim/babel-preset\"],\"plugins\":[\"syntax-flow\",\"transform-flow-comments\"]}!node_modules/eslint-loader/index.js!src/focusHighlightController.js": 0,
+      "node_modules/raw-loader/index.js!node_modules/collapse-line-breaks-loader/index.js!node_modules/trim-lines-loader/index.js!src/components/opal-input-validator/opal-input-validator-rule/index.beml": 80
     }
   },
   "nextFreeChunkId": 27,

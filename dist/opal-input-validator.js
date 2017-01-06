@@ -132,7 +132,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalInputValidator = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-input-validator',
-	        template: '<rt-content class="opal-input-validator__content"></rt-content>',
+	        bemlTemplate: 'rt-content /content',
 	        events: {
 	            input: {
 	                input: function () {
@@ -184,7 +184,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	__webpack_require__(57);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(28);
+	var template = __webpack_require__(80);
 	var OpalInputValidatorRule = (function (_super) {
 	    __extends(OpalInputValidatorRule, _super);
 	    function OpalInputValidatorRule() {
@@ -208,19 +208,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            test: { type: String, readonly: true },
 	            popoverTo: 'right'
 	        },
-	        template: template
+	        bemlTemplate: template
 	    })
 	], OpalInputValidatorRule);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = OpalInputValidatorRule;
 
-
-/***/ },
-
-/***/ 28:
-/***/ function(module, exports) {
-
-	module.exports = "<opal-popover class=\"opal-input-validator-rule__popover\" to=\"{props.popoverTo}\"> <rt-content class=\"opal-input-validator-rule__content\"></rt-content> </opal-popover>"
 
 /***/ },
 
@@ -257,6 +250,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return null;
 	    })(document);
 
+
+/***/ },
+
+/***/ 80:
+/***/ function(module, exports) {
+
+	module.exports = "opal-popover /popover (to={props.popoverTo}) {\nrt-content /content\n}"
 
 /***/ }
 

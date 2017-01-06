@@ -2,7 +2,7 @@ import './index.css';
 
 import { Component, d } from 'rionite';
 import OpalPopover from '../../opal-popover';
-import template = require('./index.html');
+import template = require('./index.beml');
 
 @d.Component({
 	elementIs: 'opal-input-validator-rule',
@@ -15,7 +15,7 @@ import template = require('./index.html');
 		popoverTo: 'right'
 	},
 
-	template
+	bemlTemplate: template
 })
 export default class OpalInputValidatorRule extends Component {
 	showMessage() {
