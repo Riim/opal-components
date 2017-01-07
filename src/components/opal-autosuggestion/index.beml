@@ -1,15 +1,15 @@
 rt-content (select=.opal-autosuggestion__input) {
-	opal-text-input /input (
+	opal-text-input/input (
 		value={props.selectedItem.text},
 		placeholder={constructor.i18n.inputPlaceholder},
 		loading={loaderShown}
 	)
 }
 
-opal-dropdown /menu {
-	div /list {
+opal-dropdown/menu {
+	div/list {
 		template (is=rt-repeat, for=item of list, strip, rt-silent) {
-			div /list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {
+			div/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {
 				'{item.text}'
 			}
 		}

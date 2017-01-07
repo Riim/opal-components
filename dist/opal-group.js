@@ -79,7 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalGroup = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-group',
-	        template: '<rt-content class="opal-group__content"></rt-content>'
+	        bemlTemplate: 'rt-content/content'
 	    })
 	], OpalGroup);
 	Object.defineProperty(exports, "__esModule", { value: true });

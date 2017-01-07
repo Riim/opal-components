@@ -219,14 +219,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 43:
 /***/ function(module, exports) {
 
-	module.exports = "rt-content /preset-rows-container (\nselect='opal-multirow-row[preset], .opal-multirow__preset-rows',\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n)\ndiv /new-rows (not-have-preset-rows={_notHavePresetRows}, not-single-row={_notSingleRow}) {\ntemplate (is=rt-repeat, for=row of _newRows, track-by=key, rt-silent) {\nrt-content /new-row-container (select='opal-multirow-row:not([preset])', data-key={row.key})\n}\n}"
+	module.exports = "rt-content/preset-rows-container (\nselect='opal-multirow-row[preset], .opal-multirow__preset-rows',\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n)\ndiv/new-rows (not-have-preset-rows={_notHavePresetRows}, not-single-row={_notSingleRow}) {\ntemplate (is=rt-repeat, for=row of _newRows, track-by=key, rt-silent) {\nrt-content/new-row-container (select='opal-multirow-row:not([preset])', data-key={row.key})\n}\n}"
 
 /***/ },
 
 /***/ 44:
 /***/ function(module, exports) {
 
-	module.exports = "rt-content /content ' '\nopal-sign-button /btn-remove-row (sign=minus) ' '\nopal-sign-button /btn-add-row (sign=plus)"
+	module.exports = "rt-content/content ' '\nopal-sign-button/btn-remove-row (sign=minus) ' '\nopal-sign-button/btn-add-row (sign=plus)"
 
 /***/ },
 

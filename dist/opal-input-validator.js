@@ -132,7 +132,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalInputValidator = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-input-validator',
-	        bemlTemplate: 'rt-content /content',
+	        bemlTemplate: 'rt-content/content',
 	        events: {
 	            input: {
 	                input: function () {
@@ -256,7 +256,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 80:
 /***/ function(module, exports) {
 
-	module.exports = "opal-popover /popover (to={props.popoverTo}) {\nrt-content /content\n}"
+	module.exports = "opal-popover/popover (to={props.popoverTo}) {\nrt-content/content\n}"
 
 /***/ }
 

@@ -348,7 +348,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 41:
 /***/ function(module, exports) {
 
-	module.exports = "rt-content (select=.opal-autosuggestion__input) {\nopal-text-input /input (\nvalue={props.selectedItem.text},\nplaceholder={constructor.i18n.inputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown /menu {\ndiv /list {\ntemplate (is=rt-repeat, for=item of list, strip, rt-silent) {\ndiv /list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\n}"
+	module.exports = "rt-content (select=.opal-autosuggestion__input) {\nopal-text-input/input (\nvalue={props.selectedItem.text},\nplaceholder={constructor.i18n.inputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\ntemplate (is=rt-repeat, for=item of list, strip, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\n}"
 
 /***/ },
 
