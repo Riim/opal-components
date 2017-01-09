@@ -209,7 +209,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 33:
 /***/ function(module, exports) {
 
-	module.exports = "div/window {\nrt-content (select=.opal-modal__btn-close) {\nspan/btn-close-wrapper {\nbutton/btn-close\n}\n}\nrt-content/content\n}"
+	module.exports = "div/window {\nspan/btn-close-wrapper {\nbutton/btn-close\n}\nrt-content/content (no-clone)\n}"
 
 /***/ },
 
