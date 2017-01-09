@@ -67,12 +67,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(61);
+	__webpack_require__(60);
 	var cellx_1 = __webpack_require__(2);
 	var cellx_indexed_collections_1 = __webpack_require__(3);
 	var rionite_1 = __webpack_require__(1);
 	var opal_multirow_row_1 = __webpack_require__(16);
-	var template = __webpack_require__(43);
+	var template = __webpack_require__(34);
 	var nextUID = cellx_1.Utils.nextUID;
 	var filter = Array.prototype.filter;
 	var OpalMultirow = (function (_super) {
@@ -179,9 +179,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(62);
+	__webpack_require__(61);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(44);
+	var template = __webpack_require__(35);
 	var OpalMultirowRow = (function (_super) {
 	    __extends(OpalMultirowRow, _super);
 	    function OpalMultirowRow() {
@@ -216,21 +216,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 43:
+/***/ 34:
 /***/ function(module, exports) {
 
 	module.exports = "rt-content/preset-rows-container (\nselect='opal-multirow-row[preset], .opal-multirow__preset-rows',\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n)\ndiv/new-rows (not-have-preset-rows={_notHavePresetRows}, not-single-row={_notSingleRow}) {\ntemplate (is=rt-repeat, for=row of _newRows, track-by=key, rt-silent) {\nrt-content/new-row-container (select='opal-multirow-row:not([preset])', data-key={row.key})\n}\n}"
 
 /***/ },
 
-/***/ 44:
+/***/ 35:
 /***/ function(module, exports) {
 
 	module.exports = "rt-content/content ' '\nopal-sign-button/btn-remove-row (sign=minus) ' '\nopal-sign-button/btn-add-row (sign=plus)"
 
 /***/ },
 
-/***/ 61:
+/***/ 60:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -248,7 +248,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 62:
+/***/ 61:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

@@ -57,7 +57,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	__webpack_require__(45);
+	__webpack_require__(44);
 
 	var _require = __webpack_require__(2),
 	    Cell = _require.Cell,
@@ -84,7 +84,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				inputPlaceholder: getText.t('начните вводить для поиска')
 			},
 
-			bemlTemplate: __webpack_require__(41),
+			bemlTemplate: __webpack_require__(30),
 
 			events: {
 				input: {
@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					input: function input(evt) {
 						var _this = this;
 
-						this._wasInputAfterSelecting = true;
+						this._inputAfterSelecting = true;
 
 						this.closeMenu();
 
@@ -121,7 +121,7 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 
-		_wasInputAfterSelecting: false,
+		_inputAfterSelecting: false,
 
 		_loadingTimeout: null,
 		_requestCallback: null,
@@ -161,33 +161,6 @@ return /******/ (function(modules) { // webpackBootstrap
 				this.$('input').value = value ? value.text : '';
 			}
 		},
-		_load: function _load() {
-			var _this2 = this;
-
-			this.loading = true;
-
-			var dataProvider = this.dataProvider;
-			var args = [this.$('input').value];
-
-			if (dataProvider.getItems.length >= 2) {
-				args.unshift(this.props.count);
-			}
-
-			dataProvider.getItems.apply(dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {
-				_this2.loading = false;
-
-				var items = data.items;
-
-				if (items.length) {
-					_this2.list.addRange(items);
-
-					Cell.afterRelease(function () {
-						var focusedListItem = _this2._focusedListItem = _this2._listItems[0];
-						focusedListItem.setAttribute('focused', '');
-					});
-				}
-			}));
-		},
 		_onInputClick: function _onInputClick() {
 			this.openMenu();
 		},
@@ -219,11 +192,11 @@ return /******/ (function(modules) { // webpackBootstrap
 				case 38 /* Up */:
 				case 40 /* Bottom */:
 					{
+						evt.preventDefault();
+
 						var focusedListItem = this._focusedListItem;
 
 						if (focusedListItem) {
-							evt.preventDefault();
-
 							var newFocusedListItem = this._focusedListItem[evt.which == 38 ? 'previousElementSibling' : 'nextElementSibling'];
 
 							if (newFocusedListItem && newFocusedListItem.tagName != 'TEMPLATE') {
@@ -239,11 +212,11 @@ return /******/ (function(modules) { // webpackBootstrap
 				case 13 /* Enter */:
 				case 39 /* Right */:
 					{
+						evt.preventDefault();
+
 						var _focusedListItem = this._focusedListItem;
 
 						if (_focusedListItem) {
-							evt.preventDefault();
-
 							var focusedListItemDataSet = _focusedListItem.dataset;
 
 							this.$('input').value = focusedListItemDataSet.text;
@@ -268,12 +241,12 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		},
 		_onDocumentMouseUp: function _onDocumentMouseUp() {
-			var _this3 = this;
+			var _this2 = this;
 
 			setTimeout(function () {
-				if (document.activeElement != _this3.$('input').$('input')) {
-					_this3.closeMenu();
-					_this3._setSelectedItemOfList();
+				if (document.activeElement != _this2.$('input').$('input')) {
+					_this2.closeMenu();
+					_this2._setSelectedItemOfList();
 				}
 			}, 1);
 		},
@@ -291,13 +264,32 @@ return /******/ (function(modules) { // webpackBootstrap
 				text: listItemDataSet.text
 			});
 		},
-		openMenu: function openMenu() {
-			if (this.list.length) {
-				this.$('menu').open();
+		_load: function _load() {
+			var _this3 = this;
+
+			this.loading = true;
+
+			var dataProvider = this.dataProvider;
+			var args = [this.$('input').value];
+
+			if (dataProvider.getItems.length >= 2) {
+				args.unshift(this.props.count);
 			}
-		},
-		closeMenu: function closeMenu() {
-			this.$('menu').close();
+
+			dataProvider.getItems.apply(dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {
+				_this3.loading = false;
+
+				var items = data.items;
+
+				if (items.length) {
+					_this3.list.addRange(items);
+
+					Cell.afterRelease(function () {
+						var focusedListItem = _this3._focusedListItem = _this3._listItems[0];
+						focusedListItem.setAttribute('focused', '');
+					});
+				}
+			}));
 		},
 		_cancelLoading: function _cancelLoading() {
 			if (this._loadingPlanned) {
@@ -308,10 +300,18 @@ return /******/ (function(modules) { // webpackBootstrap
 				this.loading = false;
 			}
 		},
+		openMenu: function openMenu() {
+			if (this.list.length) {
+				this.$('menu').open();
+			}
+		},
+		closeMenu: function closeMenu() {
+			this.$('menu').close();
+		},
 		_setSelectedItemOfList: function _setSelectedItemOfList() {
 			var _this4 = this;
 
-			if (this._wasInputAfterSelecting) {
+			if (this._inputAfterSelecting) {
 				(function () {
 					var comparableQuery = toComparable(_this4.$('input').value);
 					_this4._setSelectedItem(_this4.list.find(function (item) {
@@ -322,7 +322,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		_setSelectedItem: function _setSelectedItem(selectedItem) {
 			if (selectedItem ? !this.selectedItem || this.selectedItem.value != selectedItem.value : this.selectedItem) {
-				this._wasInputAfterSelecting = false;
+				this._inputAfterSelecting = false;
 				this.selectedItem = selectedItem;
 				this.emit('change');
 			}
@@ -345,14 +345,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 41:
+/***/ 30:
 /***/ function(module, exports) {
 
 	module.exports = "rt-content (select=.opal-autosuggestion__input) {\nopal-text-input/input (\nvalue={props.selectedItem.text},\nplaceholder={constructor.i18n.inputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\ntemplate (is=rt-repeat, for=item of list, strip, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\n}"
 
 /***/ },
 
-/***/ 45:
+/***/ 44:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

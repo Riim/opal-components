@@ -2,7 +2,7 @@ import './index.css';
 
 import { define } from 'cellx';
 import { Component, d } from 'rionite';
-import template = require('./index.html');
+import template = require('./index.beml');
 
 @d.Component<OpalSlider>({
 	elementIs: 'opal-slider',
@@ -15,7 +15,7 @@ import template = require('./index.html');
 		range: Object
 	},
 
-	template,
+	bemlTemplate: template,
 
 	events: {
 		'first-input': {

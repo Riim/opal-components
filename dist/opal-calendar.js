@@ -67,8 +67,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(47);
-	__webpack_require__(78);
+	__webpack_require__(46);
+	__webpack_require__(77);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
 	var parseDate_1 = __webpack_require__(13);
@@ -365,7 +365,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 47:
+/***/ 46:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -383,7 +383,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 78:
+/***/ 77:
 /***/ function(module, exports) {
 
 	(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 28\" id=\"opal-components__icon-arrow-left\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M14 2L2 14l12 12M2 14h28\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();

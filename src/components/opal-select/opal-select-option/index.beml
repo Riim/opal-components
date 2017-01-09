@@ -1,0 +1,3 @@
+span/control (tabindex={_tabIndex}) {
+	rt-content/content { '{props.text}' }
+}

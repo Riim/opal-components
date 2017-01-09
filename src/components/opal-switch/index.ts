@@ -2,7 +2,7 @@ import './index.css';
 
 import { define } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
-import template = require('./index.html');
+import template = require('./index.beml');
 
 @d.Component({
 	elementIs: 'opal-switch',
@@ -14,7 +14,7 @@ import template = require('./index.html');
 		disabled: false
 	},
 
-	template,
+	bemlTemplate: template,
 
 	events: {
 		input: {

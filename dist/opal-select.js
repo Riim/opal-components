@@ -67,14 +67,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(66);
-	__webpack_require__(79);
+	__webpack_require__(65);
+	__webpack_require__(78);
 	var cellx_1 = __webpack_require__(2);
 	var cellx_indexed_collections_1 = __webpack_require__(3);
 	var rionite_1 = __webpack_require__(1);
 	var opal_select_option_1 = __webpack_require__(8);
 	var isEqualArray_1 = __webpack_require__(19);
-	var template = __webpack_require__(32);
+	var template = __webpack_require__(28);
 	var opal_select_option_2 = __webpack_require__(8);
 	exports.OpalSelectOption = opal_select_option_2.default;
 	var nextUID = cellx_1.Utils.nextUID, nextTick = cellx_1.Utils.nextTick;
@@ -645,10 +645,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(67);
+	__webpack_require__(66);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(33);
+	var template = __webpack_require__(37);
 	var OpalSelectOption = (function (_super) {
 	    __extends(OpalSelectOption, _super);
 	    function OpalSelectOption() {
@@ -777,7 +777,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            tabIndex: 0,
 	            disabled: false
 	        },
-	        template: template,
+	        bemlTemplate: template,
 	        events: {
 	            control: {
 	                focusin: function () {
@@ -821,21 +821,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 32:
+/***/ 28:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content select=\".opal-select__button\"> {{block button }} <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> {{block button_inner }} <template is=\"rt-if-then\" if=\"props.text\" rt-silent=\"\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\" rt-silent=\"\">{text}</template> {{block icon_chevron_down }} <svg viewBox=\"0 0 32 18\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-components__icon-chevron-down\"></use></svg> {{/block}} {{/block}} </opal-button> {{/block}} </rt-content> <rt-content select=\".opal-select__menu\"> {{block menu }} <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> {{block menu_inner }} <rt-content select=\".opal-select__menu-content\"> <template is=\"rt-if-then\" if=\"props.datalist\"> <div class=\"opal-select__menu-content\"> <template is=\"rt-if-then\" if=\"dataList.length\"> <template is=\"rt-repeat\" for=\"item of dataList\"> {{block option }} <opal-select-option value=\"{item |key(_viewModelItemValueFieldName) }\" text=\"{item |key(_viewModelItemTextFieldName) }\"></opal-select-option> {{/block}} </template> {{block new_input_container }} <rt-content class=\"opal-select__new-input-container\" select=\".opal-select__new-input\">{{block new_input }}{{/block}}</rt-content> {{/block}} </template> <template is=\"rt-if-else\" if=\"dataList.length\" rt-silent=\"\"> {{block loader }} <opal-loader shown=\"\"></opal-loader> {{/block}} </template> </div> </template> <template is=\"rt-if-else\" if=\"props.datalist\"> <div class=\"opal-select__menu-content\"> {{block options }} <rt-content select=\"opal-select-option\"></rt-content> {{/block}} </div> </template> </rt-content> {{/block}} </opal-dropdown> {{/block}} </rt-content>"
 
 /***/ },
 
-/***/ 33:
+/***/ 37:
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"opal-select-option__control\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-select-option__content\">{props.text}</rt-content> </span>"
+	module.exports = "span/control (tabindex={_tabIndex}) {\nrt-content/content { '{props.text}' }\n}"
 
 /***/ },
 
-/***/ 66:
+/***/ 65:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -853,7 +853,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 67:
+/***/ 66:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -871,7 +871,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 79:
+/***/ 78:
 /***/ function(module, exports) {
 
 	(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 18\" id=\"opal-components__icon-chevron-down\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 2l14 14L30 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();

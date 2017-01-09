@@ -1,0 +1,5 @@
+span/control (tabindex={_tabIndex}) {
+	span/sign
+	' '
+	rt-content/content
+}

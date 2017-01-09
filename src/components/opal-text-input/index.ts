@@ -2,7 +2,7 @@ import './index.css';
 
 import { define } from 'cellx';
 import { Component, d } from 'rionite';
-import template = require('./index.html');
+import template = require('./index.beml');
 
 @d.Component<OpalTextInput>({
 	elementIs: 'opal-text-input',
@@ -24,7 +24,7 @@ import template = require('./index.html');
 		disabled: false
 	},
 
-	template,
+	bemlTemplate: template,
 
 	events: {
 		input: {

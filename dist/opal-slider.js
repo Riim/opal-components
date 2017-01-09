@@ -67,10 +67,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(69);
+	__webpack_require__(68);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(35);
+	var template = __webpack_require__(39);
 	var OpalSlider = (function (_super) {
 	    __extends(OpalSlider, _super);
 	    function OpalSlider() {
@@ -121,7 +121,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            value: 0,
 	            range: Object
 	        },
-	        template: template,
+	        bemlTemplate: template,
 	        events: {
 	            'first-input': {
 	                input: function (evt) {
@@ -164,14 +164,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 35:
+/***/ 39:
 /***/ function(module, exports) {
 
-	module.exports = "<template is=\"rt-if-then\" if=\"props.range\"> <div class=\"opal-slider__first-input-wrapper3\"> <div class=\"opal-slider__first-input-wrapper2\" style=\"width: {_firstInputWidth}%;\"> <div class=\"opal-slider__first-input-wrapper\"> <input class=\"opal-slider__first-input\" type=\"range\" min=\"{props.min}\" max=\"{props.max}\" step=\"{props.step}\" value=\"{props.range.0}\"> </div> </div> </div> <div class=\"opal-slider__second-input-wrapper\"> <input class=\"opal-slider__second-input\" type=\"range\" min=\"{props.min}\" max=\"{props.max}\" step=\"{props.step}\" value=\"{props.range.1}\"> </div> </template> <template is=\"rt-if-else\" if=\"props.range\"> <input class=\"opal-slider__input\" type=\"range\" min=\"{props.min}\" max=\"{props.max}\" step=\"{props.step}\" value=\"{props.value}\"> </template>"
+	module.exports = "template (is=rt-if-then, if=props.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%;) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={props.min},\nmax={props.max},\nstep={props.step},\nvalue={props.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={props.min}, max={props.max}, step={props.step}, value={props.range.1})\n}\n}\ntemplate (is=rt-if-else, if=props.range) {\ninput/input (type=range, min={props.min}, max={props.max}, step={props.step}, value={props.value})\n}"
 
 /***/ },
 
-/***/ 69:
+/***/ 68:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

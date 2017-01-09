@@ -1,0 +1,6 @@
+label/label {
+	input/input (type=checkbox)
+	span/control (tabindex={_tabIndex})
+	' '
+	rt-content/content
+}

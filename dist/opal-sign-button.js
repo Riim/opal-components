@@ -67,10 +67,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(68);
+	__webpack_require__(67);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(34);
+	var template = __webpack_require__(38);
 	var OpalSignButton = (function (_super) {
 	    __extends(OpalSignButton, _super);
 	    function OpalSignButton() {
@@ -149,7 +149,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            tabIndex: 0,
 	            disabled: false
 	        },
-	        template: template,
+	        bemlTemplate: template,
 	        events: {
 	            control: {
 	                focusin: function (evt) {
@@ -192,14 +192,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 34:
+/***/ 38:
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"opal-sign-button__control\" tabindex=\"{_tabIndex}\"> <span class=\"opal-sign-button__sign\"></span> <rt-content class=\"opal-sign-button__content\"></rt-content> </span>"
+	module.exports = "span/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-content/content\n}"
 
 /***/ },
 
-/***/ 68:
+/***/ 67:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

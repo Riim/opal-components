@@ -67,10 +67,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(46);
+	__webpack_require__(45);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(42);
+	var template = __webpack_require__(31);
 	var OpalButton = (function (_super) {
 	    __extends(OpalButton, _super);
 	    function OpalButton() {
@@ -195,14 +195,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 42:
+/***/ 31:
 /***/ function(module, exports) {
 
 	module.exports = "button/control (type={props.controlType}, name={props.inputName}, tabindex={_tabIndex}) {\nrt-content/content\n}"
 
 /***/ },
 
-/***/ 46:
+/***/ 45:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

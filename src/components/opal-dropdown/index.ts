@@ -13,7 +13,7 @@ let openedDropdowns: Array<OpalDropdown> = [];
 		autoClosing: false
 	},
 
-	template: '<rt-content class="opal-dropdown__content"></rt-content>'
+	bemlTemplate: 'rt-content/content'
 })
 export default class OpalDropdown extends Component {
 	_documentClickListening: IDisposableListening;
@@ -104,7 +104,7 @@ export default class OpalDropdown extends Component {
 			}
 		}
 
-		if (this.props['autoHeight']) {
+		if (this.props['autoClosing']) {
 			setTimeout(() => {
 				if (this.props['opened']) {
 					this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);

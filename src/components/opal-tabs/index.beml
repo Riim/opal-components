@@ -1,0 +1,7 @@
+rt-content (select=opal-tab-list) {
+	opal-tab-list {
+		rt-content/tabs (select=opal-tab)
+	}
+}
+
+rt-content/panels (select=opal-tab-panel)

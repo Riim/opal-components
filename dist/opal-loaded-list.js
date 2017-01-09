@@ -67,10 +67,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(58);
+	__webpack_require__(57);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(29);
+	var template = __webpack_require__(26);
 	var mixin = cellx_1.Utils.mixin;
 	var OpalLoadedList = (function (_super) {
 	    __extends(OpalLoadedList, _super);
@@ -230,14 +230,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 29:
+/***/ 26:
 /***/ function(module, exports) {
 
 	module.exports = "{{block list }} <div class=\"opal-loaded-list__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"{props.itemAs} of list\" strip=\"\"> <rt-content class=\"opal-loaded-list__list-item\" get-context=\"_getContentContext\"></rt-content> </template> {{/block}} </div> {{/block}} {{block loader }} <opal-loader class=\"opal-loaded-list__loader\" shown=\"{loaderShown}\" align-center=\"{empty}\"></opal-loader> {{/block}} {{block not_found }} <div class=\"opal-loaded-list__not-found\" shown=\"{notFoundShown}\"><span class=\"opal-loaded-list__not-found-message\">{{i18n.notFoundMessage}}</span></div> {{/block}}"
 
 /***/ },
 
-/***/ 58:
+/***/ 57:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

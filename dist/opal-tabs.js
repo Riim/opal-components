@@ -67,11 +67,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(72);
+	__webpack_require__(71);
 	var rionite_1 = __webpack_require__(1);
 	var opal_tab_list_1 = __webpack_require__(9);
 	var opal_tab_panel_1 = __webpack_require__(11);
-	var template = __webpack_require__(37);
+	var template = __webpack_require__(41);
 	var opal_tab_list_2 = __webpack_require__(9);
 	exports.OpalTab = opal_tab_list_2.OpalTab;
 	exports.OpalTabList = opal_tab_list_2.default;
@@ -137,7 +137,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalTabs = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-tabs',
-	        template: template
+	        bemlTemplate: template
 	    })
 	], OpalTabs);
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -175,7 +175,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(73);
+	__webpack_require__(72);
 	var rionite_1 = __webpack_require__(1);
 	var opal_tab_1 = __webpack_require__(10);
 	var opal_tab_2 = __webpack_require__(10);
@@ -191,7 +191,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalTabList = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-tab-list',
-	        template: '<rt-content class="opal-tab-list__content"></rt-content>'
+	        bemlTemplate: 'rt-content/content'
 	    })
 	], OpalTabList);
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -215,10 +215,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(74);
+	__webpack_require__(73);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(38);
+	var template = __webpack_require__(42);
 	var OpalTab = (function (_super) {
 	    __extends(OpalTab, _super);
 	    function OpalTab() {
@@ -313,7 +313,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            tabIndex: 0,
 	            disabled: false
 	        },
-	        template: template,
+	        bemlTemplate: template,
 	        events: {
 	            button: {
 	                focusin: function () {
@@ -350,7 +350,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(75);
+	__webpack_require__(74);
 	var rionite_1 = __webpack_require__(1);
 	var OpalTabPanel = (function (_super) {
 	    __extends(OpalTabPanel, _super);
@@ -365,7 +365,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        props: {
 	            shown: false
 	        },
-	        template: '<rt-content class="opal-tab-panel__content"></rt-content>'
+	        bemlTemplate: 'rt-content/content'
 	    })
 	], OpalTabPanel);
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -374,21 +374,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 37:
+/***/ 41:
 /***/ function(module, exports) {
 
-	module.exports = "<rt-content select=\"opal-tab-list\"> <opal-tab-list> <rt-content class=\"opal-tabs__tabs\" select=\"opal-tab\"></rt-content> </opal-tab-list> </rt-content> <rt-content class=\"opal-tabs__panels\" select=\"opal-tab-panel\"></rt-content>"
+	module.exports = "rt-content (select=opal-tab-list) {\nopal-tab-list {\nrt-content/tabs (select=opal-tab)\n}\n}\nrt-content/panels (select=opal-tab-panel)"
 
 /***/ },
 
-/***/ 38:
+/***/ 42:
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"opal-tab__button\" tabindex=\"{_tabIndex}\"> <rt-content class=\"opal-tab__content\"></rt-content> </span>"
+	module.exports = "span/button (tabindex={_tabIndex}) {\nrt-content/content\n}"
 
 /***/ },
 
-/***/ 72:
+/***/ 71:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -406,7 +406,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 73:
+/***/ 72:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -424,7 +424,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 74:
+/***/ 73:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -442,7 +442,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 75:
+/***/ 74:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

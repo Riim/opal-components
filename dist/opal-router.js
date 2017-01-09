@@ -67,7 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(65);
+	__webpack_require__(64);
 	var rionite_1 = __webpack_require__(1);
 	var opal_route_1 = __webpack_require__(7);
 	var PathNodeType_1 = __webpack_require__(6);
@@ -443,7 +443,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 65:
+/***/ 64:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

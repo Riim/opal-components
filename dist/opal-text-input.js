@@ -67,10 +67,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(77);
+	__webpack_require__(76);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(40);
+	var template = __webpack_require__(43);
 	var OpalTextInput = (function (_super) {
 	    __extends(OpalTextInput, _super);
 	    function OpalTextInput() {
@@ -178,7 +178,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            tabIndex: 0,
 	            disabled: false
 	        },
-	        template: template,
+	        bemlTemplate: template,
 	        events: {
 	            input: {
 	                focusin: function () {
@@ -245,14 +245,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 40:
+/***/ 43:
 /***/ function(module, exports) {
 
-	module.exports = "<template is=\"rt-if-then\" if=\"props.multiline\"> <textarea class=\"opal-text-input__input\" rows=\"{props.rows}\" name=\"{props.inputName}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\"></textarea> </template> <template is=\"rt-if-else\" if=\"props.multiline\"> <input class=\"opal-text-input__input\" type=\"{props.inputType}\" name=\"{props.inputName}\" placeholder=\"{props.placeholder}\" tabindex=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> </template> <template is=\"rt-if-then\" if=\"props.clearable\" rt-silent=\"\"> <button class=\"opal-text-input__btn-clear\" shown=\"{btnClearShown}\" rt-click=\"_onBtnClearClick\"></button> </template> <template is=\"rt-if-then\" if=\"props.loading\" rt-silent=\"\"> <opal-loader class=\"opal-text-input__loader\" size=\"s\" shown=\"\"></opal-loader> </template>"
+	module.exports = "template (is=rt-if-then, if=props.multiline) {\ntextarea/input (\nrows={props.rows},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\ntemplate (is=rt-if-else, if=props.multiline) {\ninput/input (\ntype={props.inputType},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\ntemplate (is=rt-if-then, if=props.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)\n}\ntemplate (is=rt-if-then, if=props.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}"
 
 /***/ },
 
-/***/ 77:
+/***/ 76:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

@@ -5,7 +5,7 @@ import { IComponentElement, Component, d } from 'rionite';
 import OpalTab from './opal-tab-list/opal-tab';
 import OpalTabList from './opal-tab-list';
 import OpalTabPanel from './opal-tab-panel';
-import template = require('./index.html');
+import template = require('./index.beml');
 
 export { OpalTab, default as OpalTabList } from './opal-tab-list';
 export { default as OpalTabPanel } from './opal-tab-panel';
@@ -15,7 +15,7 @@ let forEach = Array.prototype.forEach;
 
 @d.Component({
 	elementIs: 'opal-tabs',
-	template
+	bemlTemplate: template
 })
 export default class OpalTabs extends Component {
 	static OpalTabList = OpalTabList;

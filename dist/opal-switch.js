@@ -67,10 +67,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(71);
+	__webpack_require__(70);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(36);
+	var template = __webpack_require__(40);
 	var OpalSwitch = (function (_super) {
 	    __extends(OpalSwitch, _super);
 	    function OpalSwitch() {
@@ -170,7 +170,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            tabIndex: 0,
 	            disabled: false
 	        },
-	        template: template,
+	        bemlTemplate: template,
 	        events: {
 	            input: {
 	                change: function (evt) {
@@ -211,14 +211,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 36:
+/***/ 40:
 /***/ function(module, exports) {
 
-	module.exports = "<label class=\"opal-switch__label\"> <input class=\"opal-switch__input\" type=\"checkbox\"> <span class=\"opal-switch__control\" tabindex=\"{_tabIndex}\"><span class=\"opal-switch__thumb\"></span></span> <rt-content class=\"opal-switch__content\"></rt-content> </label>"
+	module.exports = "label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content\n}"
 
 /***/ },
 
-/***/ 71:
+/***/ 70:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

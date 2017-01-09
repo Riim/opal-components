@@ -21,7 +21,7 @@ module.exports = Component.extend('opal-input-mask', {
 			mask: { type: String, required: true }
 		},
 
-		template: require('./index.html')
+		bemlTemplate: 'rt-content/content'
 	},
 
 	_focusText: undefined,

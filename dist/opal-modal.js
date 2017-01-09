@@ -67,9 +67,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(60);
+	__webpack_require__(59);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(30);
+	var template = __webpack_require__(27);
 	var openedModals = [];
 	var documentListening;
 	function onDocumentFocusIn() {
@@ -206,14 +206,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 30:
+/***/ 27:
 /***/ function(module, exports) {
 
 	module.exports = "{{block window }} <div class=\"opal-modal__window\"> {{block btn_close }} <rt-content select=\".opal-modal__btn-close\"> <span class=\"opal-modal__btn-close-wrapper\"> <button class=\"opal-modal__btn-close\"></button> </span> </rt-content> {{/block}} {{block content }} <rt-content class=\"opal-modal__content\">{{block content_inner }}{{/block}}</rt-content> {{/block}} </div> {{/block}}"
 
 /***/ },
 
-/***/ 60:
+/***/ 59:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

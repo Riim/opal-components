@@ -1,0 +1,23 @@
+template (is=rt-if-then, if=props.range) {
+	div/first-input-wrapper3 {
+		div/first-input-wrapper2 (style=width: {_firstInputWidth}%;) {
+			div/first-input-wrapper {
+				input/first-input (
+					type=range,
+					min={props.min},
+					max={props.max},
+					step={props.step},
+					value={props.range.0}
+				)
+			}
+		}
+	}
+
+	div/second-input-wrapper {
+		input/second-input (type=range, min={props.min}, max={props.max}, step={props.step}, value={props.range.1})
+	}
+}
+
+template (is=rt-if-else, if=props.range) {
+	input/input (type=range, min={props.min}, max={props.max}, step={props.step}, value={props.value})
+}

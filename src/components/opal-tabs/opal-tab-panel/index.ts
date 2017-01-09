@@ -9,7 +9,7 @@ import { Component, d } from 'rionite';
 		shown: false
 	},
 
-	template: '<rt-content class="opal-tab-panel__content"></rt-content>'
+	bemlTemplate: 'rt-content/content'
 })
 export default class OpalTabPanel extends Component {
 }

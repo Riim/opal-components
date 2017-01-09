@@ -67,7 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(52);
+	__webpack_require__(51);
 	var rionite_1 = __webpack_require__(1);
 	var openedDropdowns = [];
 	var OpalDropdown = (function (_super) {
@@ -146,7 +146,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	        }
-	        if (this.props['autoHeight']) {
+	        if (this.props['autoClosing']) {
 	            setTimeout(function () {
 	                if (_this.props['opened']) {
 	                    _this._documentClickListening = _this.listenTo(document, 'click', _this._onDocumentClick);
@@ -187,7 +187,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            autoHeight: true,
 	            autoClosing: false
 	        },
-	        template: '<rt-content class="opal-dropdown__content"></rt-content>'
+	        bemlTemplate: 'rt-content/content'
 	    })
 	], OpalDropdown);
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -203,7 +203,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 52:
+/***/ 51:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
