@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(44);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(30);
+	var template = __webpack_require__(29);
 	function toComparable(str) {
 	    return str.trim().replace(/\s+/g, ' ').toLowerCase();
 	}
@@ -311,7 +311,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 30:
+/***/ 29:
 /***/ function(module, exports) {
 
 	module.exports = "rt-content (select=.opal-autosuggestion__input) {\nopal-text-input/input (\nvalue={props.selectedItem.text},\nplaceholder={constructor.i18n.inputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\ntemplate (is=rt-repeat, for=item of list, strip, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\n}"

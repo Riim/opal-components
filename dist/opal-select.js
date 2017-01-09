@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var rionite_1 = __webpack_require__(1);
 	var opal_select_option_1 = __webpack_require__(8);
 	var isEqualArray_1 = __webpack_require__(19);
-	var template = __webpack_require__(28);
+	var template = __webpack_require__(27);
 	var opal_select_option_2 = __webpack_require__(8);
 	exports.OpalSelectOption = opal_select_option_2.default;
 	var nextUID = cellx_1.Utils.nextUID, nextTick = cellx_1.Utils.nextTick;
@@ -821,7 +821,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 28:
+/***/ 27:
 /***/ function(module, exports) {
 
 	module.exports = "<rt-content select=\".opal-select__button\"> {{block button }} <opal-button class=\"opal-select__button\" type=\"{props.type}\" size=\"{props.size}\" checkable=\"\" tab-index=\"{props.tabIndex}\" disabled=\"{props.disabled}\"> {{block button_inner }} <template is=\"rt-if-then\" if=\"props.text\" rt-silent=\"\">{props.text}</template> <template is=\"rt-if-else\" if=\"props.text\" rt-silent=\"\">{text}</template> {{block icon_chevron_down }} <svg viewBox=\"0 0 32 18\" class=\"opal-select__icon-chevron-down\"><use xlink:href=\"#opal-components__icon-chevron-down\"></use></svg> {{/block}} {{/block}} </opal-button> {{/block}} </rt-content> <rt-content select=\".opal-select__menu\"> {{block menu }} <opal-dropdown class=\"opal-select__menu\" auto-closing=\"\"> {{block menu_inner }} <rt-content select=\".opal-select__menu-content\"> <template is=\"rt-if-then\" if=\"props.datalist\"> <div class=\"opal-select__menu-content\"> <template is=\"rt-if-then\" if=\"dataList.length\"> <template is=\"rt-repeat\" for=\"item of dataList\"> {{block option }} <opal-select-option value=\"{item |key(_viewModelItemValueFieldName) }\" text=\"{item |key(_viewModelItemTextFieldName) }\"></opal-select-option> {{/block}} </template> {{block new_input_container }} <rt-content class=\"opal-select__new-input-container\" select=\".opal-select__new-input\">{{block new_input }}{{/block}}</rt-content> {{/block}} </template> <template is=\"rt-if-else\" if=\"dataList.length\" rt-silent=\"\"> {{block loader }} <opal-loader shown=\"\"></opal-loader> {{/block}} </template> </div> </template> <template is=\"rt-if-else\" if=\"props.datalist\"> <div class=\"opal-select__menu-content\"> {{block options }} <rt-content select=\"opal-select-option\"></rt-content> {{/block}} </div> </template> </rt-content> {{/block}} </opal-dropdown> {{/block}} </rt-content>"

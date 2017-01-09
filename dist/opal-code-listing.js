@@ -71,7 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(49);
 	var rionite_1 = __webpack_require__(1);
 	var Prism = __webpack_require__(21);
-	var template = __webpack_require__(23);
+	var template = __webpack_require__(32);
 	function prepareCode(code, isHtml) {
 	    code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
 	    var tabs = code.match(/^\t*[^\t\r\n]/gm);
@@ -105,7 +105,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalCodeListing = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-code-listing',
-	        template: template
+	        bemlTemplate: template
 	    })
 	], OpalCodeListing);
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -923,10 +923,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 23:
+/***/ 32:
 /***/ function(module, exports) {
 
-	module.exports = "<opal-tabs> <opal-tab>HTML</opal-tab> <opal-tab-panel> <pre class=\"opal-code-listing__html-code-wrapper\"><code class=\"opal-code-listing__html-code\"></code></pre> </opal-tab-panel> <opal-tab>JS</opal-tab> <opal-tab-panel> <pre class=\"opal-code-listing__js-code-wrapper\"><code class=\"opal-code-listing__js-code\"></code></pre> </opal-tab-panel> </opal-tabs> <rt-content class=\"opal-code-listing__example-html-container\" select=\".opal-code-listing__example-html\"></rt-content> <rt-content class=\"opal-code-listing__example-js-container\" select=\".opal-code-listing__example-js\"></rt-content>"
+	module.exports = "opal-tabs {\nopal-tab { 'HTML' }\nopal-tab-panel {\npre/html-code-wrapper { code/html-code }\n}\nopal-tab { 'JS' }\nopal-tab-panel {\npre/js-code-wrapper { code/js-code }\n}\n}\nrt-content/example-html-container (select=.opal-code-listing__example-html)\nrt-content/example-js-container (select=.opal-code-listing__example-js)"
 
 /***/ },
 

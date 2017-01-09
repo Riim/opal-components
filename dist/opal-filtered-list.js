@@ -69,7 +69,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	__webpack_require__(52);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(25);
+	var template = __webpack_require__(24);
 	var OpalFilteredList = (function (_super) {
 	    __extends(OpalFilteredList, _super);
 	    function OpalFilteredList() {
@@ -106,7 +106,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 25:
+/***/ 24:
 /***/ function(module, exports) {
 
 	module.exports = "{{block query }} <rt-content class=\"opal-filtered-list__query-input-container\" select=\".opal-filtered-list__query-input\"> {{block query_input }} <opal-text-input class=\"opal-filtered-list__query-input\"></opal-text-input> {{/block}} </rt-content> {{/block}} {{block list }} <rt-content class=\"opal-filtered-list__loaded-list-container\" select=\".opal-filtered-list__loaded-list\"></rt-content> {{/block}}"

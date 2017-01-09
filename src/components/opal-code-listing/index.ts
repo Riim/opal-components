@@ -3,7 +3,7 @@ import './light.css';
 
 import { Component, d } from 'rionite';
 import Prism = require('prismjs');
-import template = require('./index.html');
+import template = require('./index.beml');
 
 function prepareCode(code: string, isHtml?: boolean) {
 	code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
@@ -27,7 +27,7 @@ function prepareCode(code: string, isHtml?: boolean) {
 
 @d.Component({
 	elementIs: 'opal-code-listing',
-	template
+	bemlTemplate: template
 })
 export default class OpalCodeListing extends Component {
 	highlightedHTMLCode: string;

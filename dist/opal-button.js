@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(45);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(31);
+	var template = __webpack_require__(30);
 	var OpalButton = (function (_super) {
 	    __extends(OpalButton, _super);
 	    function OpalButton() {
@@ -195,7 +195,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 31:
+/***/ 30:
 /***/ function(module, exports) {
 
 	module.exports = "button/control (type={props.controlType}, name={props.inputName}, tabindex={_tabIndex}) {\nrt-content/content\n}"
