@@ -1,12 +1,12 @@
 import './index.css';
 
-import { IDisposableListening, getText, Component, d, ComponentTemplate } from 'rionite';
+import { IDisposableListening, getText, Component, d } from 'rionite';
 import OpalTextInput from '../opal-text-input';
 import OpalDropdown from '../opal-dropdown';
 import OpalInputValidator from '../opal-input-validator';
 import OpalCalendar from '../opal-calendar';
 import dateExists from 'date-exists';
-import template = require('./index.html');
+import template = require('./index.beml');
 
 @d.Component<OpalDateInput>({
 	elementIs: 'opal-date-input',
@@ -25,7 +25,7 @@ import template = require('./index.html');
 		invalidDateRange: getText.t('Дата вне допустимого диапазона')
 	},
 
-	template: new ComponentTemplate(template),
+	bemlTemplate: template,
 
 	events: {
 		input: {
