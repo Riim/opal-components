@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(57);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(25);
+	var template = __webpack_require__(33);
 	var mixin = cellx_1.Utils.mixin;
 	var OpalLoadedList = (function (_super) {
 	    __extends(OpalLoadedList, _super);
@@ -207,7 +207,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        i18n: {
 	            notFoundMessage: rionite_1.getText.t('Ничего не найдено')
 	        },
-	        template: new rionite_1.ComponentTemplate(template)
+	        bemlTemplate: template
 	    })
 	], OpalLoadedList);
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -230,10 +230,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 25:
+/***/ 33:
 /***/ function(module, exports) {
 
-	module.exports = "{{block list }} <div class=\"opal-loaded-list__list\"> {{block list_inner }} <template is=\"rt-repeat\" for=\"{props.itemAs} of list\" strip=\"\"> <rt-content class=\"opal-loaded-list__list-item\" get-context=\"_getContentContext\"></rt-content> </template> {{/block}} </div> {{/block}} {{block loader }} <opal-loader class=\"opal-loaded-list__loader\" shown=\"{loaderShown}\" align-center=\"{empty}\"></opal-loader> {{/block}} {{block not_found }} <div class=\"opal-loaded-list__not-found\" shown=\"{notFoundShown}\"><span class=\"opal-loaded-list__not-found-message\">{{i18n.notFoundMessage}}</span></div> {{/block}}"
+	module.exports = "div/list {\ntemplate (is=rt-repeat, for={props.itemAs} of list, strip) {\nrt-content/list-item (get-context=_getContentContext)\n}\nopal-loader/loader (shown={loaderShown}, align-center={empty})\ndiv/not-found (shown={notFoundShown}) {\nspan/not-found-message { '{constructor.i18n.notFoundMessage}' }\n}\n}"
 
 /***/ },
 

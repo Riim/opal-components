@@ -1,0 +1,5 @@
+rt-content/query-input-container (select=.opal-filtered-list__query-input) {
+	opal-text-input/query-input
+}
+
+rt-content/loaded-list-container (select=.opal-filtered-list__loaded-list)

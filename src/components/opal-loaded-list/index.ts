@@ -1,8 +1,8 @@
 import './index.css';
 
 import { ObservableList, define, Utils } from 'cellx';
-import { IDisposableTimeout, IDisposableCallback, getText, Component, d, ComponentTemplate } from 'rionite';
-import template = require('./index.html');
+import { IDisposableTimeout, IDisposableCallback, getText, Component, d } from 'rionite';
+import template = require('./index.beml');
 
 let mixin = Utils.mixin;
 
@@ -31,7 +31,7 @@ export interface IDataProvider {
 		notFoundMessage: getText.t('Ничего не найдено')
 	},
 
-	template: new ComponentTemplate(template)
+	bemlTemplate: template
 })
 export default class OpalLoadedList extends Component {
 	dataProvider: IDataProvider;

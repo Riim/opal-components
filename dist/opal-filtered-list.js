@@ -69,7 +69,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	__webpack_require__(52);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(24);
+	var template = __webpack_require__(31);
 	var OpalFilteredList = (function (_super) {
 	    __extends(OpalFilteredList, _super);
 	    function OpalFilteredList() {
@@ -83,7 +83,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalFilteredList = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-filtered-list',
-	        template: new rionite_1.ComponentTemplate(template),
+	        bemlTemplate: template,
 	        events: {
 	            'query-input': {
 	                input: function (evt) {
@@ -106,10 +106,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 24:
+/***/ 31:
 /***/ function(module, exports) {
 
-	module.exports = "{{block query }} <rt-content class=\"opal-filtered-list__query-input-container\" select=\".opal-filtered-list__query-input\"> {{block query_input }} <opal-text-input class=\"opal-filtered-list__query-input\"></opal-text-input> {{/block}} </rt-content> {{/block}} {{block list }} <rt-content class=\"opal-filtered-list__loaded-list-container\" select=\".opal-filtered-list__loaded-list\"></rt-content> {{/block}}"
+	module.exports = "rt-content/query-input-container (select=.opal-filtered-list__query-input) {\nopal-text-input/query-input\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__loaded-list)"
 
 /***/ },
 

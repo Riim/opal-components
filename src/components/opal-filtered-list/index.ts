@@ -1,15 +1,15 @@
 import './index.css';
 
 import { IEvent } from 'cellx';
-import { Component, d, ComponentTemplate } from 'rionite';
+import { Component, d } from 'rionite';
 import OpalTextInput from '../opal-text-input';
 import OpalLoadedList from '../opal-loaded-list';
-import template = require('./index.html');
+import template = require('./index.beml');
 
 @d.Component({
 	elementIs: 'opal-filtered-list',
 
-	template: new ComponentTemplate(template),
+	bemlTemplate: template,
 
 	events: {
 		'query-input': {
