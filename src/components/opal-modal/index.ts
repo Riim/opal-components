@@ -1,7 +1,7 @@
 import './index.css';
 
-import { IDisposableListening, Component, d, ComponentTemplate } from 'rionite';
-import template = require('./index.html');
+import { IDisposableListening, Component, d } from 'rionite';
+import template = require('./index.beml');
 
 let openedModals: Array<OpalModal> = [];
 let documentListening: IDisposableListening;
@@ -29,7 +29,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 		opened: false
 	},
 
-	template: new ComponentTemplate(template),
+	bemlTemplate: template,
 
 	events: {
 		':element': {

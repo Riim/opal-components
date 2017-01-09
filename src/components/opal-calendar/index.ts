@@ -2,11 +2,11 @@ import './index.css';
 import '../../assets/icons/opal-components__icon-arrow-left.svg';
 
 import { IEvent, define } from 'cellx';
-import { IDisposableListening, Component, d, ComponentTemplate } from 'rionite';
+import { IDisposableListening, Component, d } from 'rionite';
 import { OpalSelectOption } from '../opal-select';
 import parseDate from './parseDate';
 import formatDate from './formatDate';
-import template = require('./index.html');
+import template = require('./index.beml');
 
 export interface IDay {
 	date: string;
@@ -45,7 +45,7 @@ export type TDays = Array<TWeekDays>;
 		sundayFirst: false
 	},
 
-	template: new ComponentTemplate(template),
+	bemlTemplate: template,
 
 	events: {
 		'btn-prev-month': {

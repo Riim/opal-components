@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var rionite_1 = __webpack_require__(1);
 	var parseDate_1 = __webpack_require__(13);
 	var formatDate_1 = __webpack_require__(12);
-	var template = __webpack_require__(22);
+	var template = __webpack_require__(26);
 	var OpalCalendar = OpalCalendar_1 = (function (_super) {
 	    __extends(OpalCalendar, _super);
 	    function OpalCalendar() {
@@ -255,7 +255,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            weekDaysShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
 	            sundayFirst: false
 	        },
-	        template: new rionite_1.ComponentTemplate(template),
+	        bemlTemplate: template,
 	        events: {
 	            'btn-prev-month': {
 	                click: function () {
@@ -358,10 +358,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 22:
+/***/ 26:
 /***/ function(module, exports) {
 
-	module.exports = "<header class=\"opal-calendar__header\"> <button class=\"opal-calendar__btn-prev-month\" disabled=\"{btnPrevMonthDisabled}\"> <svg viewBox=\"0 0 32 28\" class=\"opal-calendar__icon-arrow-left\"><use xlink:href=\"#opal-components__icon-arrow-left\"></use></svg> </button> <opal-select class=\"opal-calendar__s-month\" size=\"s\" value=\"['{shownMonth}']\"> <template is=\"rt-repeat\" class=\"opal-select__menu-content\" for=\"month of constructor.i18n.months\" rt-silent=\"\"> <opal-select-option value=\"{$index}\" text=\"{month}\"></opal-select-option> </template> </opal-select> <opal-select class=\"opal-calendar__s-year\" size=\"s\" value=\"['{shownYear}']\"> <template is=\"rt-repeat\" class=\"opal-select__menu-content\" for=\"year of years\" rt-silent=\"\"> <opal-select-option value=\"{year}\" text=\"{year}\"></opal-select-option> </template> </opal-select> <button class=\"opal-calendar__btn-next-month\" disabled=\"{btnNextMonthDisabled}\"> <svg viewBox=\"0 0 32 28\" class=\"opal-calendar__icon-arrow-right\"><use xlink:href=\"#opal-components__icon-arrow-left\"></use></svg> </button> </header> <div class=\"opal-calendar__body\"> <table class=\"opal-calendar__week-days\"> <tbody><tr class=\"opal-calendar__week-days-row\"> <template is=\"rt-repeat\" for=\"weekDay of weekDaysShort\" rt-silent=\"\"> <td class=\"opal-calendar__week-day\">{weekDay}</td> </template> </tr> </tbody></table> <table class=\"opal-calendar__days\"> <template is=\"rt-repeat\" for=\"weekDays of days\" rt-silent=\"\"> <tr class=\"opal-calendar__days-row\"> <template is=\"rt-repeat\" for=\"day of weekDays\" rt-silent=\"\"> <td class=\"opal-calendar__day\" today=\"{day.today}\" selected=\"{day.selected}\" not-in-current-month=\"{day.notInCurrentMonth}\" disabled=\"{day.disabled}\" tabindex=\"{day.tabIndex}\" data-date=\"{day.date}\" rt-click=\"_onDayClick\">{day.value}</td> </template> </tr> </template> </table> </div>"
+	module.exports = "header/header {\nbutton/btn-prev-month (disabled={btnPrevMonthDisabled}) {\nsvg/icon-arrow-left (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/s-month (size=s, value=['{shownMonth}']) {\ntemplate (class=opal-calendar__menu-content, is=rt-repeat, for=month of constructor.i18n.months, rt-silent) {\nopal-select-option (value={$index}, text={month})\n}\n}\nopal-select/s-year (size=s, value=['{shownYear}']) {\ntemplate (class=opal-calendar__menu-content, is=rt-repeat, for=year of years, rt-silent) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={btnNextMonthDisabled}) {\nsvg/icon-arrow-right (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ntable/week-days {\ntr/week-days-row {\ntemplate (is=rt-repeat, for=weekDay of weekDaysShort, rt-silent) {\ntd/week-day { '{weekDay}' }\n}\n}\n}\ntable/days {\ntemplate (is=rt-repeat, for=weekDays of days, rt-silent) {\ntr/days-row {\ntemplate (is=rt-repeat, for=day of weekDays, rt-silent) {\ntd/day (\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date},\nrt-click=_onDayClick\n)\n}\n}\n}\n}\n}"
 
 /***/ },
 

@@ -1,0 +1,49 @@
+header/header {
+	button/btn-prev-month (disabled={btnPrevMonthDisabled}) {
+		svg/icon-arrow-left (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }
+	}
+
+	opal-select/s-month (size=s, value=['{shownMonth}']) {
+		template (class=opal-calendar__menu-content, is=rt-repeat, for=month of constructor.i18n.months, rt-silent) {
+			opal-select-option (value={$index}, text={month})
+		}
+	}
+
+	opal-select/s-year (size=s, value=['{shownYear}']) {
+		template (class=opal-calendar__menu-content, is=rt-repeat, for=year of years, rt-silent) {
+			opal-select-option (value={year}, text={year})
+		}
+	}
+
+	button/btn-next-month (disabled={btnNextMonthDisabled}) {
+		svg/icon-arrow-right (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }
+	}
+}
+
+div/body {
+	table/week-days {
+		tr/week-days-row {
+			template (is=rt-repeat, for=weekDay of weekDaysShort, rt-silent) {
+				td/week-day { '{weekDay}' }
+			}
+		}
+	}
+
+	table/days {
+		template (is=rt-repeat, for=weekDays of days, rt-silent) {
+			tr/days-row {
+				template (is=rt-repeat, for=day of weekDays, rt-silent) {
+					td/day (
+						today={day.today},
+						selected={day.selected},
+						not-in-current-month={day.notInCurrentMonth},
+						disabled={day.disabled},
+						tabindex={day.tabIndex},
+						data-date={day.date},
+						rt-click=_onDayClick
+					)
+				}
+			}
+		}
+	}
+}

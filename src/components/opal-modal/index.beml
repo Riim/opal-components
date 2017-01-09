@@ -1,0 +1,9 @@
+div/window {
+	rt-content (select=.opal-modal__btn-close) {
+		span/btn-close-wrapper {
+			button/btn-close
+		}
+	}
+
+	rt-content/content
+}

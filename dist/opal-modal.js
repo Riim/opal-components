@@ -69,7 +69,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	__webpack_require__(59);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(23);
+	var template = __webpack_require__(33);
 	var openedModals = [];
 	var documentListening;
 	function onDocumentFocusIn() {
@@ -167,7 +167,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        props: {
 	            opened: false
 	        },
-	        template: new rionite_1.ComponentTemplate(template),
+	        bemlTemplate: template,
 	        events: {
 	            ':element': {
 	                click: function (evt) {
@@ -206,10 +206,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 23:
+/***/ 33:
 /***/ function(module, exports) {
 
-	module.exports = "{{block window }} <div class=\"opal-modal__window\"> {{block btn_close }} <rt-content select=\".opal-modal__btn-close\"> <span class=\"opal-modal__btn-close-wrapper\"> <button class=\"opal-modal__btn-close\"></button> </span> </rt-content> {{/block}} {{block content }} <rt-content class=\"opal-modal__content\">{{block content_inner }}{{/block}}</rt-content> {{/block}} </div> {{/block}}"
+	module.exports = "div/window {\nrt-content (select=.opal-modal__btn-close) {\nspan/btn-close-wrapper {\nbutton/btn-close\n}\n}\nrt-content/content\n}"
 
 /***/ },
 
