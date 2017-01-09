@@ -1,5 +1,6 @@
 template (is=rt-if-then, if=props.multiline) {
-	textarea/input (
+	textarea/textarea (
+		class=opal-text-input__input,
 		rows={props.rows},
 		name={props.inputName},
 		placeholder={props.placeholder},

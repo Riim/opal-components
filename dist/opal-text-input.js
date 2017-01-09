@@ -248,7 +248,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 43:
 /***/ function(module, exports) {
 
-	module.exports = "template (is=rt-if-then, if=props.multiline) {\ntextarea/input (\nrows={props.rows},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\ntemplate (is=rt-if-else, if=props.multiline) {\ninput/input (\ntype={props.inputType},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\ntemplate (is=rt-if-then, if=props.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)\n}\ntemplate (is=rt-if-then, if=props.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}"
+	module.exports = "template (is=rt-if-then, if=props.multiline) {\ntextarea/textarea (\nclass=opal-text-input__input,\nrows={props.rows},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\ntemplate (is=rt-if-else, if=props.multiline) {\ninput/input (\ntype={props.inputType},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\ntemplate (is=rt-if-then, if=props.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)\n}\ntemplate (is=rt-if-then, if=props.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}"
 
 /***/ },
 
