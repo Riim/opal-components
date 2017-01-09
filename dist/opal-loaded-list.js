@@ -168,7 +168,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var infinite = dataProvider.getItems.length >= 2;
 	        var args = [query];
 	        if (infinite) {
-	            args.unshift(this.props['count'], this.list.length ? this.list.get(-1).value : null);
+	            args.unshift(this.props['count'], this.list.length ? this.list.get(-1).value : undefined);
 	        }
 	        this.loading = true;
 	        dataProvider.getItems.apply(dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {

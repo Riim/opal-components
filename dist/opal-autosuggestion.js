@@ -55,279 +55,245 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
 	__webpack_require__(44);
-
-	var _require = __webpack_require__(2),
-	    Cell = _require.Cell,
-	    cellx = _require.cellx;
-
-	var _require2 = __webpack_require__(1),
-	    getText = _require2.getText,
-	    Component = _require2.Component;
-
+	var cellx_1 = __webpack_require__(2);
+	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(30);
 	function toComparable(str) {
-		return str.trim().replace(/\s+/g, ' ').toLowerCase();
+	    return str.trim().replace(/\s+/g, ' ').toLowerCase();
 	}
+	var OpalAutosuggestion = (function (_super) {
+	    __extends(OpalAutosuggestion, _super);
+	    function OpalAutosuggestion() {
+	        var _this = _super.apply(this, arguments) || this;
+	        _this._inputAfterSelecting = false;
+	        return _this;
+	    }
+	    OpalAutosuggestion.prototype.initialize = function () {
+	        this.dataProvider = Function("return this." + this.props['dataprovider'] + ";")
+	            .call(this.ownerComponent || window);
+	        cellx_1.define(this, {
+	            list: new cellx_1.ObservableList(),
+	            _loadingPlanned: false,
+	            loading: false,
+	            loaderShown: function () {
+	                return this._loadingPlanned || this.loading;
+	            },
+	            selectedItem: this.props['selectedItem']
+	        });
+	    };
+	    OpalAutosuggestion.prototype.ready = function () {
+	        this._listItems = this.$('list')
+	            .getElementsByClassName('opal-autosuggestion__list-item');
+	    };
+	    OpalAutosuggestion.prototype.elementAttached = function () {
+	        this.listenTo(this.$('input').$('input'), 'click', this._onInputClick);
+	        this.listenTo(this.$('menu').props, 'change:opened', this._onMenuOpenedChange);
+	        this.listenTo(this.list, 'change', this._onListChange);
+	        this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
+	    };
+	    OpalAutosuggestion.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	        if (name == 'selected-item') {
+	            this.selectedItem = value;
+	            this.$('input').value = value ? value.text : '';
+	        }
+	    };
+	    OpalAutosuggestion.prototype._onInputClick = function () {
+	        this.openMenu();
+	    };
+	    OpalAutosuggestion.prototype._onMenuOpenedChange = function (evt) {
+	        if (evt['value']) {
+	            this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+	            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	            this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
+	        }
+	        else {
+	            this._documentFocusInListening.stop();
+	            this._documentKeyDownListening.stop();
+	            this._documentMouseUpListening.stop();
+	        }
+	    };
+	    OpalAutosuggestion.prototype._onListChange = function () {
+	        this.openMenu();
+	    };
+	    OpalAutosuggestion.prototype._onLoaderShownChange = function (evt) {
+	        this.$('input').props['loading'] = evt['value'];
+	    };
+	    OpalAutosuggestion.prototype._onDocumentFocusIn = function () {
+	        if (document.activeElement != document.body && !this.element.contains(document.activeElement.parentNode)) {
+	            this.closeMenu();
+	            this._setSelectedItemOfList();
+	        }
+	    };
+	    OpalAutosuggestion.prototype._onDocumentKeyDown = function (evt) {
+	        switch (evt.which) {
+	            case 38 /* Up */:
+	            case 40 /* Bottom */: {
+	                evt.preventDefault();
+	                var focusedListItem = this._focusedListItem;
+	                if (focusedListItem) {
+	                    var newFocusedListItem = this._focusedListItem[evt.which == 38 ? 'previousElementSibling' : 'nextElementSibling'];
+	                    if (newFocusedListItem && newFocusedListItem.tagName != 'TEMPLATE') {
+	                        this._focusedListItem.removeAttribute('focused');
+	                        this._focusedListItem = newFocusedListItem;
+	                        newFocusedListItem.setAttribute('focused', '');
+	                    }
+	                }
+	                break;
+	            }
+	            case 13 /* Enter */:
+	            case 39 /* Right */: {
+	                evt.preventDefault();
+	                var focusedListItem = this._focusedListItem;
+	                if (focusedListItem) {
+	                    var focusedListItemDataSet = focusedListItem.dataset;
+	                    this.$('input').value = focusedListItemDataSet['text'];
+	                    this.closeMenu();
+	                    this._setSelectedItem({
+	                        value: focusedListItemDataSet['value'],
+	                        text: focusedListItemDataSet['text']
+	                    });
+	                }
+	                break;
+	            }
+	            case 27 /* Esc */: {
+	                evt.preventDefault();
+	                this.closeMenu();
+	                this._setSelectedItemOfList();
+	                break;
+	            }
+	        }
+	    };
+	    OpalAutosuggestion.prototype._onDocumentMouseUp = function () {
+	        var _this = this;
+	        setTimeout(function () {
+	            if (document.activeElement != _this.$('input').$('input')) {
+	                _this.closeMenu();
+	                _this._setSelectedItemOfList();
+	            }
+	        }, 1);
+	    };
+	    OpalAutosuggestion.prototype._onListItemClick = function (evt, listItem) {
+	        var input = this.$('input');
+	        var listItemDataSet = listItem.dataset;
+	        input.value = listItemDataSet['text'];
+	        input.focus();
+	        this.closeMenu();
+	        this._setSelectedItem({
+	            value: listItemDataSet['value'],
+	            text: listItemDataSet['text']
+	        });
+	    };
+	    OpalAutosuggestion.prototype._load = function () {
+	        this.loading = true;
+	        var dataProvider = this.dataProvider;
+	        var args = [this.$('input').value];
+	        if (dataProvider.getItems.length >= 2) {
+	            args.unshift(this.props['count']);
+	        }
+	        dataProvider.getItems.apply(dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {
+	            var _this = this;
+	            this.loading = false;
+	            var items = data.items;
+	            if (items.length) {
+	                this.list.addRange(items);
+	                cellx_1.Cell.afterRelease(function () {
+	                    var focusedListItem = _this._focusedListItem = _this._listItems[0];
+	                    focusedListItem.setAttribute('focused', '');
+	                });
+	            }
+	        }));
+	    };
+	    OpalAutosuggestion.prototype._cancelLoading = function () {
+	        if (this._loadingPlanned) {
+	            this._loadingPlanned = false;
+	            this._loadingTimeout.clear();
+	        }
+	        else if (this.loading) {
+	            this._requestCallback.cancel();
+	            this.loading = false;
+	        }
+	    };
+	    OpalAutosuggestion.prototype.openMenu = function () {
+	        if (this.list.length) {
+	            this.$('menu').open();
+	        }
+	    };
+	    OpalAutosuggestion.prototype.closeMenu = function () {
+	        this.$('menu').close();
+	    };
+	    OpalAutosuggestion.prototype._setSelectedItemOfList = function () {
+	        if (this._inputAfterSelecting) {
+	            var comparableQuery_1 = toComparable(this.$('input').value);
+	            this._setSelectedItem(this.list.find(function (item) { return toComparable(item.text) == comparableQuery_1; }) || null);
+	        }
+	    };
+	    OpalAutosuggestion.prototype._setSelectedItem = function (selectedItem) {
+	        if (selectedItem ? !this.selectedItem || this.selectedItem.value != selectedItem.value : this.selectedItem) {
+	            this._inputAfterSelecting = false;
+	            this.selectedItem = selectedItem;
+	            this.emit('change');
+	        }
+	    };
+	    return OpalAutosuggestion;
+	}(rionite_1.Component));
+	OpalAutosuggestion = __decorate([
+	    rionite_1.d.Component({
+	        elementIs: 'opal-autosuggestion',
+	        props: {
+	            dataprovider: { type: String, required: true, readonly: true },
+	            selectedItem: Object,
+	            minQueryLength: 3,
+	            count: 5
+	        },
+	        i18n: {
+	            inputPlaceholder: rionite_1.getText.t('начните вводить для поиска')
+	        },
+	        bemlTemplate: template,
+	        events: {
+	            input: {
+	                focusin: function () {
+	                    this.openMenu();
+	                },
+	                focusout: function () {
+	                    this._cancelLoading();
+	                    if (!this.$('menu').props['opened']) {
+	                        this._setSelectedItemOfList();
+	                    }
+	                },
+	                input: function (evt) {
+	                    var _this = this;
+	                    this._inputAfterSelecting = true;
+	                    this.closeMenu();
+	                    this._cancelLoading();
+	                    this.list.clear();
+	                    if (evt.target.value.length >= this.props['minQueryLength']) {
+	                        this._loadingPlanned = true;
+	                        this._loadingTimeout = this.setTimeout(function () {
+	                            _this._loadingPlanned = false;
+	                            _this._load();
+	                        }, 300);
+	                    }
+	                }
+	            }
+	        }
+	    })
+	], OpalAutosuggestion);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = OpalAutosuggestion;
 
-	module.exports = Component.extend('opal-autosuggestion', {
-		Static: {
-			props: {
-				dataprovider: { type: String, required: true, readonly: true },
-				selectedItem: Object,
-				minQueryLength: 3,
-				count: 5
-			},
-
-			i18n: {
-				inputPlaceholder: getText.t('начните вводить для поиска')
-			},
-
-			bemlTemplate: __webpack_require__(30),
-
-			events: {
-				input: {
-					focusin: function focusin() {
-						this.openMenu();
-					},
-					focusout: function focusout() {
-						this._cancelLoading();
-
-						if (!this.$('menu').props.opened) {
-							this._setSelectedItemOfList();
-						}
-					},
-					input: function input(evt) {
-						var _this = this;
-
-						this._inputAfterSelecting = true;
-
-						this.closeMenu();
-
-						this._cancelLoading();
-						this.list.clear();
-
-						if (evt.target.value.length >= this.props.minQueryLength) {
-							this._loadingPlanned = true;
-
-							this._loadingTimeout = this.setTimeout(function () {
-								_this._loadingPlanned = false;
-								_this._load();
-							}, 300);
-						}
-					}
-				}
-			}
-		},
-
-		_inputAfterSelecting: false,
-
-		_loadingTimeout: null,
-		_requestCallback: null,
-
-		_listItems: null,
-		_focusedListItem: null,
-
-		initialize: function initialize() {
-			this.dataProvider = Function('return this.' + this.props.dataprovider + ';').call(this.ownerComponent || window);
-
-			cellx.define(this, {
-				list: cellx.list(),
-
-				_loadingPlanned: false,
-				loading: false,
-
-				loaderShown: function loaderShown() {
-					return this._loadingPlanned || this.loading;
-				},
-
-
-				selectedItem: this.props.selectedItem
-			});
-		},
-		ready: function ready() {
-			this._listItems = this.$('list').getElementsByClassName('opal-autosuggestion__list-item');
-		},
-		elementAttached: function elementAttached() {
-			this.listenTo(this.$('input').$('input'), 'click', this._onInputClick);
-			this.listenTo(this.$('menu').props, 'change:opened', this._onMenuOpenedChange);
-			this.listenTo(this.list, 'change', this._onListChange);
-			this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
-		},
-		elementAttributeChanged: function elementAttributeChanged(name, oldValue, value) {
-			if (name == 'selected-item') {
-				this.selectedItem = value;
-				this.$('input').value = value ? value.text : '';
-			}
-		},
-		_onInputClick: function _onInputClick() {
-			this.openMenu();
-		},
-		_onMenuOpenedChange: function _onMenuOpenedChange(evt) {
-			if (evt.value) {
-				this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
-				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-				this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
-			} else {
-				this._documentFocusInListening.stop();
-				this._documentKeyDownListening.stop();
-				this._documentMouseUpListening.stop();
-			}
-		},
-		_onListChange: function _onListChange() {
-			this.openMenu();
-		},
-		_onLoaderShownChange: function _onLoaderShownChange(evt) {
-			this.$('input').props.loading = evt.value;
-		},
-		_onDocumentFocusIn: function _onDocumentFocusIn() {
-			if (document.activeElement != document.body && !this.element.contains(document.activeElement.parentNode)) {
-				this.closeMenu();
-				this._setSelectedItemOfList();
-			}
-		},
-		_onDocumentKeyDown: function _onDocumentKeyDown(evt) {
-			switch (evt.which) {
-				case 38 /* Up */:
-				case 40 /* Bottom */:
-					{
-						evt.preventDefault();
-
-						var focusedListItem = this._focusedListItem;
-
-						if (focusedListItem) {
-							var newFocusedListItem = this._focusedListItem[evt.which == 38 ? 'previousElementSibling' : 'nextElementSibling'];
-
-							if (newFocusedListItem && newFocusedListItem.tagName != 'TEMPLATE') {
-								this._focusedListItem.removeAttribute('focused');
-								this._focusedListItem = newFocusedListItem;
-
-								newFocusedListItem.setAttribute('focused', '');
-							}
-						}
-
-						break;
-					}
-				case 13 /* Enter */:
-				case 39 /* Right */:
-					{
-						evt.preventDefault();
-
-						var _focusedListItem = this._focusedListItem;
-
-						if (_focusedListItem) {
-							var focusedListItemDataSet = _focusedListItem.dataset;
-
-							this.$('input').value = focusedListItemDataSet.text;
-
-							this.closeMenu();
-
-							this._setSelectedItem({
-								value: focusedListItemDataSet.value,
-								text: focusedListItemDataSet.text
-							});
-						}
-
-						break;
-					}
-				case 27 /* Esc */:
-					{
-						evt.preventDefault();
-						this.closeMenu();
-						this._setSelectedItemOfList();
-						break;
-					}
-			}
-		},
-		_onDocumentMouseUp: function _onDocumentMouseUp() {
-			var _this2 = this;
-
-			setTimeout(function () {
-				if (document.activeElement != _this2.$('input').$('input')) {
-					_this2.closeMenu();
-					_this2._setSelectedItemOfList();
-				}
-			}, 1);
-		},
-		_onListItemClick: function _onListItemClick(evt, listItem) {
-			var input = this.$('input');
-			var listItemDataSet = listItem.dataset;
-
-			input.value = listItemDataSet.text;
-			input.focus();
-
-			this.closeMenu();
-
-			this._setSelectedItem({
-				value: listItemDataSet.value,
-				text: listItemDataSet.text
-			});
-		},
-		_load: function _load() {
-			var _this3 = this;
-
-			this.loading = true;
-
-			var dataProvider = this.dataProvider;
-			var args = [this.$('input').value];
-
-			if (dataProvider.getItems.length >= 2) {
-				args.unshift(this.props.count);
-			}
-
-			dataProvider.getItems.apply(dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {
-				_this3.loading = false;
-
-				var items = data.items;
-
-				if (items.length) {
-					_this3.list.addRange(items);
-
-					Cell.afterRelease(function () {
-						var focusedListItem = _this3._focusedListItem = _this3._listItems[0];
-						focusedListItem.setAttribute('focused', '');
-					});
-				}
-			}));
-		},
-		_cancelLoading: function _cancelLoading() {
-			if (this._loadingPlanned) {
-				this._loadingPlanned = false;
-				this._loadingTimeout.clear();
-			} else if (this.loading) {
-				this._requestCallback.cancel();
-				this.loading = false;
-			}
-		},
-		openMenu: function openMenu() {
-			if (this.list.length) {
-				this.$('menu').open();
-			}
-		},
-		closeMenu: function closeMenu() {
-			this.$('menu').close();
-		},
-		_setSelectedItemOfList: function _setSelectedItemOfList() {
-			var _this4 = this;
-
-			if (this._inputAfterSelecting) {
-				(function () {
-					var comparableQuery = toComparable(_this4.$('input').value);
-					_this4._setSelectedItem(_this4.list.find(function (item) {
-						return toComparable(item.text) == comparableQuery;
-					}) || null);
-				})();
-			}
-		},
-		_setSelectedItem: function _setSelectedItem(selectedItem) {
-			if (selectedItem ? !this.selectedItem || this.selectedItem.value != selectedItem.value : this.selectedItem) {
-				this._inputAfterSelecting = false;
-				this.selectedItem = selectedItem;
-				this.emit('change');
-			}
-		}
-	});
 
 /***/ },
 

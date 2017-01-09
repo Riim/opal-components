@@ -6,9 +6,14 @@ import template = require('./index.html');
 
 let mixin = Utils.mixin;
 
+export interface IItem {
+	value: string;
+	text: string;
+}
+
 export interface IDataProvider {
-	getItems(query?: string): PromiseLike<{ items: Array<Object>, total?: number }>;
-	getItems(count: number, after?: string, query?: string): PromiseLike<{ items: Array<Object>, total: number }>;
+	getItems(query?: string): PromiseLike<{ items: Array<IItem> }>;
+	getItems(count: number, after?: string, query?: string): PromiseLike<{ items: Array<IItem>, total?: number }>;
 }
 
 @d.Component({
@@ -31,7 +36,7 @@ export interface IDataProvider {
 export default class OpalLoadedList extends Component {
 	dataProvider: IDataProvider;
 
-	list: ObservableList<any>;
+	list: ObservableList<IItem>;
 	total: number | undefined;
 
 	_scrolling: boolean = false;
@@ -57,7 +62,7 @@ export default class OpalLoadedList extends Component {
 		this.dataProvider = dataProvider;
 
 		define(this, {
-			list: new ObservableList(),
+			list: new ObservableList<IItem>(),
 			total: undefined,
 
 			_loadingCheckPlanned: false,
@@ -156,14 +161,14 @@ export default class OpalLoadedList extends Component {
 		let args = [query];
 
 		if (infinite) {
-			args.unshift(this.props['count'], this.list.length ? this.list.get(-1).value : null);
+			args.unshift(this.props['count'], this.list.length ? this.list.get(-1).value : undefined);
 		}
 
 		this.loading = true;
 
 		dataProvider.getItems.apply(dataProvider, args).then(
 			this._requestCallback = this.registerCallback(
-				function(this: OpalLoadedList, data: { items: Array<Object>, total?: number }) {
+				function(this: OpalLoadedList, data: { items: Array<IItem>, total?: number }) {
 					this.loading = false;
 
 					let items = data.items;
