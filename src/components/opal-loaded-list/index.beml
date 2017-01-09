@@ -2,10 +2,10 @@ div/list {
 	template (is=rt-repeat, for={props.itemAs} of list, strip) {
 		rt-content/list-item (get-context=_getContentContext)
 	}
+}
 
-	opal-loader/loader (shown={loaderShown}, align-center={empty})
+opal-loader/loader (shown={loaderShown}, align-center={empty})
 
-	div/not-found (shown={notFoundShown}) {
-		span/not-found-message { '{constructor.i18n.notFoundMessage}' }
-	}
+div/not-found (shown={notFoundShown}) {
+	span/not-found-message { '{constructor.i18n.notFoundMessage}' }
 }
