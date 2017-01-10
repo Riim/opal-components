@@ -83,7 +83,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				mask: { type: String, required: true }
 			},
 
-			bemlTemplate: 'rt-content/content'
+			bemlTemplate: 'rt-content/content (no-clone)'
 		},
 
 		_focusText: undefined,

@@ -1,7 +1,7 @@
-rt-content (select=opal-tab-list) {
+rt-content (select=opal-tab-list, no-clone) {
 	opal-tab-list {
-		rt-content/tabs (select=opal-tab)
+		rt-content/tabs (select=opal-tab, no-clone)
 	}
 }
 
-rt-content/panels (select=opal-tab-panel)
+rt-content/panels (select=opal-tab-panel, no-clone)

@@ -27,7 +27,7 @@
 
 			{{block select_menu }}
 				<opal-popover class="opal-select__menu" to="{props.popoverTo}" auto-closing>
-					<rt-content select=".opal-tag-select__menu-content">
+					<rt-content select=".opal-tag-select__menu-content" no-clone>
 						<template is="rt-if-then" if="props.datalist">
 							<div class="opal-select__menu-content">
 								<template is="rt-if-then" if="dataList.length">
@@ -39,7 +39,8 @@
 									</template>
 									{{block select_new }}
 										<rt-content class="opal-select__new-input-container"
-												select=".opal-select__new-input">{{block new_input }}{{/block}}</rt-content>
+												select=".opal-select__new-input
+												">{{block new_input }}{{/block}}</rt-content>
 									{{/block}}
 								</template>
 								<template is="rt-if-else" if="dataList.length" rt-silent>

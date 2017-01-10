@@ -1,5 +1,5 @@
 span/control (tabindex={_tabIndex}) {
 	span/sign
 	' '
-	rt-content/content
+	rt-content/content (no-clone)
 }

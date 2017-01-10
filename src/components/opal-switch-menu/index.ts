@@ -9,7 +9,7 @@ let find = (Array.prototype as any).find;
 
 @d.Component<OpalSwitchMenu>({
 	elementIs: 'opal-switch-menu',
-	bemlTemplate: 'rt-content/content',
+	bemlTemplate: 'rt-content/content (no-clone)',
 
 	events: {
 		':component': {

@@ -3,7 +3,7 @@ import '../../assets/icons/opal-components__icon-chevron-down.svg';
 
 import { IEvent, define, Utils } from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
-import { IDisposableListening, getText, IComponentElement, Component, d, Components, ComponentTemplate } from 'rionite';
+import { IDisposableListening, getText, IComponentElement, Component, Components, ComponentTemplate, d } from 'rionite';
 import OpalButton from '../opal-button';
 import OpalTextInput from '../opal-text-input';
 import OpalDropdown from '../opal-dropdown';

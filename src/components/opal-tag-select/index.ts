@@ -1,7 +1,7 @@
 import './index.css';
 
 import { define } from 'cellx';
-import { getText, Component, d, ComponentTemplate } from 'rionite';
+import { getText, Component, ComponentTemplate, d } from 'rionite';
 import { TDataList, TViewModel, default as OpalSelect } from '../opal-select';
 import { IDataProvider } from '../opal-loaded-list';
 import template = require('./index.html');

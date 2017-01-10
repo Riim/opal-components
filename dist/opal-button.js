@@ -198,7 +198,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 25:
 /***/ function(module, exports) {
 
-	module.exports = "button/control (type={props.controlType}, name={props.inputName}, tabindex={_tabIndex}) {\nrt-content/content\n}"
+	module.exports = "button/control (type={props.controlType}, name={props.inputName}, tabindex={_tabIndex}) {\nrt-content/content (no-clone)\n}"
 
 /***/ },
 

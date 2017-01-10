@@ -1,5 +1,5 @@
-rt-content/query-input-container (select=.opal-filtered-list__query-input) {
+rt-content/query-input-container (select=.opal-filtered-list__query-input, no-clone) {
 	opal-text-input/query-input
 }
 
-rt-content/loaded-list-container (select=.opal-filtered-list__loaded-list)
+rt-content/loaded-list-container (select=.opal-filtered-list__loaded-list, no-clone)

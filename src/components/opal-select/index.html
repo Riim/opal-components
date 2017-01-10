@@ -1,4 +1,4 @@
-<rt-content select=".opal-select__button">
+<rt-content select=".opal-select__button" no-clone>
 	{{block button }}
 		<opal-button class="opal-select__button" type="{props.type}" size="{props.size}" checkable
 				tab-index="{props.tabIndex}" disabled="{props.disabled}">
@@ -14,11 +14,11 @@
 	{{/block}}
 </rt-content>
 
-<rt-content select=".opal-select__menu">
+<rt-content select=".opal-select__menu" no-clone>
 	{{block menu }}
 		<opal-dropdown class="opal-select__menu" auto-closing>
 			{{block menu_inner }}
-				<rt-content select=".opal-select__menu-content">
+				<rt-content select=".opal-select__menu-content" no-clone>
 					<template is="rt-if-then" if="props.datalist">
 						<div class="opal-select__menu-content">
 							<template is="rt-if-then" if="dataList.length">

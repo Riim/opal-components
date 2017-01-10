@@ -10,5 +10,5 @@ opal-tabs {
 	}
 }
 
-rt-content/example-html-container (select=.opal-code-listing__example-html)
-rt-content/example-js-container (select=.opal-code-listing__example-js)
+rt-content/example-html-container (select=.opal-code-listing__example-html, no-clone)
+rt-content/example-js-container (select=.opal-code-listing__example-js, no-clone)
