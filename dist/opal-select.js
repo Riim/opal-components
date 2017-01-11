@@ -86,6 +86,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function OpalSelect() {
 	        var _this = _super.apply(this, arguments) || this;
 	        _this._opened = false;
+	        _this._focusedAfterLoading = false;
 	        return _this;
 	    }
 	    OpalSelect.prototype.initialize = function () {
@@ -296,7 +297,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            filteredList = this.filteredList = this.$('filtered-list');
 	        }
 	        if (filteredList) {
-	            filteredList.focus();
+	            setTimeout(function () {
+	                filteredList.focus();
+	            }, 1);
 	        }
 	        else {
 	            this._focusOptions();
@@ -583,6 +586,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            'loaded-list': {
 	                loaded: function () {
 	                    var _this = this;
+	                    if (this._focusedAfterLoading) {
+	                        return;
+	                    }
+	                    this._focusedAfterLoading = true;
 	                    setTimeout(function () {
 	                        var filteredList = _this.$('filtered-list');
 	                        if (filteredList) {

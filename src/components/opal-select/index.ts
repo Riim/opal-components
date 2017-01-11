@@ -184,6 +184,12 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 		'loaded-list': {
 			loaded() {
+				if (this._focusedAfterLoading) {
+					return;
+				}
+
+				this._focusedAfterLoading = true;
+
 				setTimeout(() => {
 					let filteredList = this.$('filtered-list') as OpalFilteredList;
 
@@ -224,6 +230,8 @@ export default class OpalSelect extends Component {
 	_opened: boolean = false;
 
 	_valueAtOpening: any;
+
+	_focusedAfterLoading: boolean = false;
 
 	_documentFocusInListening: IDisposableListening;
 	_documentKeyDownListening: IDisposableListening;
@@ -462,7 +470,9 @@ export default class OpalSelect extends Component {
 		}
 
 		if (filteredList) {
-			filteredList.focus();
+			setTimeout(() => {
+				filteredList.focus();
+			}, 1);
 		} else {
 			this._focusOptions();
 		}
