@@ -82,7 +82,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalTabs = (function (_super) {
 	    __extends(OpalTabs, _super);
 	    function OpalTabs() {
-	        var _this = _super.apply(this, arguments) || this;
+	        var _this = _super !== null && _super.apply(this, arguments) || this;
 	        _this._selectedTab = null;
 	        return _this;
 	    }
@@ -183,7 +183,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalTabList = (function (_super) {
 	    __extends(OpalTabList, _super);
 	    function OpalTabList() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    return OpalTabList;
 	}(rionite_1.Component));
@@ -222,7 +222,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalTab = (function (_super) {
 	    __extends(OpalTab, _super);
 	    function OpalTab() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalTab.prototype.initialize = function () {
 	        cellx_1.define(this, {
@@ -355,7 +355,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalTabPanel = (function (_super) {
 	    __extends(OpalTabPanel, _super);
 	    function OpalTabPanel() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    return OpalTabPanel;
 	}(rionite_1.Component));

@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalRadioGroup = (function (_super) {
 	    __extends(OpalRadioGroup, _super);
 	    function OpalRadioGroup() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalRadioGroup.prototype.ready = function () {
 	        this.buttons = this.element.getElementsByClassName('opal-radio-button');
@@ -145,7 +145,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalRadioButton = (function (_super) {
 	    __extends(OpalRadioButton, _super);
 	    function OpalRadioButton() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalRadioButton.prototype.initialize = function () {
 	        cellx_1.define(this, {

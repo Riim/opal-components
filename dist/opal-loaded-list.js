@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalLoadedList = (function (_super) {
 	    __extends(OpalLoadedList, _super);
 	    function OpalLoadedList() {
-	        var _this = _super.apply(this, arguments) || this;
+	        var _this = _super !== null && _super.apply(this, arguments) || this;
 	        _this._scrolling = false;
 	        return _this;
 	    }

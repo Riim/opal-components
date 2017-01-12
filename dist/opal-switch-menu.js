@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalSwitchMenu = (function (_super) {
 	    __extends(OpalSwitchMenu, _super);
 	    function OpalSwitchMenu() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    Object.defineProperty(OpalSwitchMenu.prototype, "checkedButton", {
 	        get: function () {

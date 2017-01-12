@@ -457,7 +457,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalInputMaskDefinition = (function (_super) {
 	    __extends(OpalInputMaskDefinition, _super);
 	    function OpalInputMaskDefinition() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    return OpalInputMaskDefinition;
 	}(rionite_1.Component));

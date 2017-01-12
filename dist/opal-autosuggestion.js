@@ -77,7 +77,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalAutosuggestion = (function (_super) {
 	    __extends(OpalAutosuggestion, _super);
 	    function OpalAutosuggestion() {
-	        var _this = _super.apply(this, arguments) || this;
+	        var _this = _super !== null && _super.apply(this, arguments) || this;
 	        _this._inputAfterSelecting = false;
 	        return _this;
 	    }
@@ -246,6 +246,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.selectedItem = selectedItem;
 	            this.emit('change');
 	        }
+	    };
+	    OpalAutosuggestion.prototype.clear = function () {
+	        this._setSelectedItem(null);
+	        this.$('input').clear();
 	    };
 	    return OpalAutosuggestion;
 	}(rionite_1.Component));

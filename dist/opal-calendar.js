@@ -77,7 +77,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalCalendar = OpalCalendar_1 = (function (_super) {
 	    __extends(OpalCalendar, _super);
 	    function OpalCalendar() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalCalendar.prototype.initialize = function () {
 	        var i18n = this.constructor.i18n;

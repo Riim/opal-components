@@ -72,7 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalPopover = (function (_super) {
 	    __extends(OpalPopover, _super);
 	    function OpalPopover() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalPopover.prototype.ready = function () {
 	        if (this.props['opened']) {

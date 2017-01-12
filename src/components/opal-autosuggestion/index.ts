@@ -85,7 +85,7 @@ export default class OpalAutosuggestion extends Component {
 
 	loaderShown: boolean;
 
-	selectedItem: IItem;
+	selectedItem: IItem | null;
 	_focusedListItem: HTMLElement;
 
 	_documentFocusInListening: IDisposableListening;
@@ -294,11 +294,16 @@ export default class OpalAutosuggestion extends Component {
 		}
 	}
 
-	_setSelectedItem(selectedItem: IItem) {
+	_setSelectedItem(selectedItem: IItem | null) {
 		if (selectedItem ? !this.selectedItem || this.selectedItem.value != selectedItem.value : this.selectedItem) {
 			this._inputAfterSelecting = false;
 			this.selectedItem = selectedItem;
 			this.emit('change');
 		}
+	}
+
+	clear() {
+		this._setSelectedItem(null);
+		(this.$('input') as OpalTextInput).clear();
 	}
 }

@@ -87,7 +87,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalModal = (function (_super) {
 	    __extends(OpalModal, _super);
 	    function OpalModal() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalModal.prototype.ready = function () {
 	        if (this.props['opened']) {

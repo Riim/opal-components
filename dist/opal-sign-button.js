@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalSignButton = (function (_super) {
 	    __extends(OpalSignButton, _super);
 	    function OpalSignButton() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalSignButton.prototype.initialize = function () {
 	        cellx_1.define(this, {

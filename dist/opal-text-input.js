@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalTextInput = (function (_super) {
 	    __extends(OpalTextInput, _super);
 	    function OpalTextInput() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalTextInput.prototype.initialize = function () {
 	        cellx_1.define(this, {

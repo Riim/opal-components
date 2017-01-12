@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalTagSelect = (function (_super) {
 	    __extends(OpalTagSelect, _super);
 	    function OpalTagSelect() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalTagSelect.prototype.initialize = function () {
 	        var props = this.props;

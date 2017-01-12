@@ -77,7 +77,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalInputValidator = (function (_super) {
 	    __extends(OpalInputValidator, _super);
 	    function OpalInputValidator() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalInputValidator.prototype.initialize = function () {
 	        cellx_1.define(this, {
@@ -188,7 +188,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalInputValidatorRule = (function (_super) {
 	    __extends(OpalInputValidatorRule, _super);
 	    function OpalInputValidatorRule() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalInputValidatorRule.prototype.showMessage = function () {
 	        this.$('popover').open();

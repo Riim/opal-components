@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalFilteredList = (function (_super) {
 	    __extends(OpalFilteredList, _super);
 	    function OpalFilteredList() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalFilteredList.prototype.focus = function () {
 	        this.$('query-input').focus();

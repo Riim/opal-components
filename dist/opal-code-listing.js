@@ -87,7 +87,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalCodeListing = (function (_super) {
 	    __extends(OpalCodeListing, _super);
 	    function OpalCodeListing() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalCodeListing.prototype.initialize = function () {
 	        this.highlightedHTMLCode = Prism.highlight(prepareCode(this.$('example-html').innerHTML, true), Prism.languages['html']);

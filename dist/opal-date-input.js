@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalDateInput = (function (_super) {
 	    __extends(OpalDateInput, _super);
 	    function OpalDateInput() {
-	        var _this = _super.apply(this, arguments) || this;
+	        var _this = _super !== null && _super.apply(this, arguments) || this;
 	        _this.dateExists = date_exists_1.default;
 	        return _this;
 	    }

@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalSlider = (function (_super) {
 	    __extends(OpalSlider, _super);
 	    function OpalSlider() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalSlider.prototype.initialize = function () {
 	        var props = this.props;

@@ -72,7 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalLoader = (function (_super) {
 	    __extends(OpalLoader, _super);
 	    function OpalLoader() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    return OpalLoader;
 	}(rionite_1.Component));

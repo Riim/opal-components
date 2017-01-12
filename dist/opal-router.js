@@ -81,7 +81,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalRouter = (function (_super) {
 	    __extends(OpalRouter, _super);
 	    function OpalRouter() {
-	        var _this = _super.apply(this, arguments) || this;
+	        var _this = _super !== null && _super.apply(this, arguments) || this;
 	        _this._route = null;
 	        _this._componentElement = null;
 	        return _this;
@@ -255,7 +255,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalRoute = (function (_super) {
 	    __extends(OpalRoute, _super);
 	    function OpalRoute() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    return OpalRoute;
 	}(rionite_1.Component));

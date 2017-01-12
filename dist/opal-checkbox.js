@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalCheckbox = (function (_super) {
 	    __extends(OpalCheckbox, _super);
 	    function OpalCheckbox() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalCheckbox.prototype.initialize = function () {
 	        cellx_1.define(this, {

@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalSwitch = (function (_super) {
 	    __extends(OpalSwitch, _super);
 	    function OpalSwitch() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalSwitch.prototype.initialize = function () {
 	        cellx_1.define(this, {

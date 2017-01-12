@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalDropdown = (function (_super) {
 	    __extends(OpalDropdown, _super);
 	    function OpalDropdown() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalDropdown.prototype.ready = function () {
 	        if (this.props['opened']) {

@@ -78,7 +78,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalMultirow = (function (_super) {
 	    __extends(OpalMultirow, _super);
 	    function OpalMultirow() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalMultirow.prototype.initialize = function () {
 	        cellx_1.define(this, {
@@ -185,7 +185,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalMultirowRow = (function (_super) {
 	    __extends(OpalMultirowRow, _super);
 	    function OpalMultirowRow() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    return OpalMultirowRow;
 	}(rionite_1.Component));

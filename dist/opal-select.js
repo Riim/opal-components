@@ -84,7 +84,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalSelect = (function (_super) {
 	    __extends(OpalSelect, _super);
 	    function OpalSelect() {
-	        var _this = _super.apply(this, arguments) || this;
+	        var _this = _super !== null && _super.apply(this, arguments) || this;
 	        _this._opened = false;
 	        _this._focusedAfterLoading = false;
 	        return _this;
@@ -659,7 +659,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var OpalSelectOption = (function (_super) {
 	    __extends(OpalSelectOption, _super);
 	    function OpalSelectOption() {
-	        return _super.apply(this, arguments) || this;
+	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalSelectOption.prototype.initialize = function () {
 	        cellx_1.define(this, {
