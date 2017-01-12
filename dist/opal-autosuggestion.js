@@ -248,7 +248,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    OpalAutosuggestion.prototype.clear = function () {
-	        this._setSelectedItem(null);
+	        if (this.selectedItem) {
+	            this.selectedItem = null;
+	        }
 	        this.$('input').clear();
 	    };
 	    return OpalAutosuggestion;

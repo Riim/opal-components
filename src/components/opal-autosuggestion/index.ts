@@ -303,7 +303,10 @@ export default class OpalAutosuggestion extends Component {
 	}
 
 	clear() {
-		this._setSelectedItem(null);
+		if (this.selectedItem) {
+			this.selectedItem = null;
+		}
+
 		(this.$('input') as OpalTextInput).clear();
 	}
 }
