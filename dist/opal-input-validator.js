@@ -184,7 +184,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	__webpack_require__(56);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(31);
+	var template = __webpack_require__(30);
 	var OpalInputValidatorRule = (function (_super) {
 	    __extends(OpalInputValidatorRule, _super);
 	    function OpalInputValidatorRule() {
@@ -217,7 +217,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 31:
+/***/ 30:
 /***/ function(module, exports) {
 
 	module.exports = "opal-popover/popover (to={props.popoverTo}) {\nrt-content/content (no-clone)\n}"

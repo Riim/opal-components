@@ -3,7 +3,7 @@ import '../../assets/icons/opal-components__icon-chevron-down.svg';
 
 import { IEvent, define, Utils } from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
-import { IDisposableListening, getText, IComponentElement, Component, Components, ComponentTemplate, d } from 'rionite';
+import { IDisposableListening, getText, IComponentElement, Component, Components, d } from 'rionite';
 import OpalButton from '../opal-button';
 import OpalTextInput from '../opal-text-input';
 import OpalDropdown from '../opal-dropdown';
@@ -11,7 +11,7 @@ import OpalLoadedList from '../opal-loaded-list';
 import OpalFilteredList from '../opal-filtered-list';
 import OpalSelectOption from './opal-select-option';
 import isEqualArray from './isEqualArray';
-import template = require('./index.html');
+import template = require('./index.beml');
 
 export { default as OpalSelectOption } from './opal-select-option';
 
@@ -44,7 +44,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		disabled: false
 	},
 
-	template: new ComponentTemplate(template),
+	bemlTemplate: template,
 
 	events: {
 		button: {

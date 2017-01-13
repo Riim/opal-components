@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(57);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(32);
+	var template = __webpack_require__(31);
 	var mixin = cellx_1.Utils.mixin;
 	var OpalLoadedList = (function (_super) {
 	    __extends(OpalLoadedList, _super);
@@ -230,7 +230,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 32:
+/***/ 31:
 /***/ function(module, exports) {
 
 	module.exports = "div/list {\ntemplate (is=rt-repeat, for={props.itemAs} of list, strip) {\nrt-content/list-item (get-context=_getContentContext)\n}\n}\nopal-loader/loader (shown={loaderShown}, align-center={empty})\ndiv/not-found (shown={notFoundShown}) {\nspan/not-found-message { '{constructor.i18n.notFoundMessage}' }\n}"

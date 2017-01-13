@@ -141,7 +141,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(63);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(36);
+	var template = __webpack_require__(35);
 	var OpalRadioButton = (function (_super) {
 	    __extends(OpalRadioButton, _super);
 	    function OpalRadioButton() {
@@ -269,7 +269,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 36:
+/***/ 35:
 /***/ function(module, exports) {
 
 	module.exports = "label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content (no-clone)\n}"
