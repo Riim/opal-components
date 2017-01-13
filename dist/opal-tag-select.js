@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(75);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(22);
+	var template = __webpack_require__(42);
 	var defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 	var OpalTagSelect = (function (_super) {
 	    __extends(OpalTagSelect, _super);
@@ -130,7 +130,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            popoverTo: 'bottom',
 	            disabled: false
 	        },
-	        template: new rionite_1.ComponentTemplate(template),
+	        bemlTemplate: template,
 	        events: {
 	            control: {
 	                click: function (evt, control) {
@@ -183,10 +183,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 22:
+/***/ 42:
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"opal-tag-select__tags\"> <template is=\"rt-if-then\" if=\"viewModel.length\" rt-silent=\"\"> <template is=\"rt-repeat\" for=\"tag of viewModel\" track-by=\"{_viewModelItemValueFieldName}\" rt-silent=\"\"> <span class=\"opal-tag-select__tag\" data-value=\"{tag |key(_viewModelItemValueFieldName) }\" disabled=\"{tag |key(_viewModelItemDisabledFieldName) }\">{ tag |key(_viewModelItemTextFieldName) }<button class=\"opal-tag-select__btn-remove-tag\" data-tag-value=\"{tag |key(_viewModelItemValueFieldName) }\" rt-click=\"_onBtnRemoveTagClick\"></button></span> </template> </template> </span> <span class=\"opal-tag-select__control\"> <template is=\"rt-if-then\" if=\"placeholderShown\" rt-silent=\"\"> <span class=\"opal-tag-select__placeholder\">{props.placeholder}</span> </template> {{block select }} <opal-select class=\"opal-tag-select__select\" datalist=\"{_dataListParam}\" value=\"{props.value}\" view-model=\"{_viewModelParam}\" view-model-item-schema=\"{props.viewModelItemSchema |json }\" multiple=\"\" allow-input=\"{props.allowInput}\"> {{block select_button }} <opal-sign-button class=\"opal-tag-select__select-button opal-select__button\" sign=\"plus\" checkable=\"\"></opal-sign-button> {{/block}} {{block select_menu }} <opal-popover class=\"opal-select__menu\" to=\"{props.popoverTo}\" auto-closing=\"\"> <rt-content select=\".opal-tag-select__menu-content\" no-clone=\"\"> <template is=\"rt-if-then\" if=\"props.datalist\"> <div class=\"opal-select__menu-content\"> <template is=\"rt-if-then\" if=\"dataList.length\"> <template is=\"rt-repeat\" for=\"item of dataList\"> {{block select_option }} <opal-select-option value=\"{item.value}\" text=\"{item.text}\"></opal-select-option> {{/block}} </template> {{block select_new }} <rt-content class=\"opal-select__new-input-container\" select=\".opal-select__new-input\n\t\t\t\t\t\t\t\t\t\t\t\t\">{{block new_input }}{{/block}}</rt-content> {{/block}} </template> <template is=\"rt-if-else\" if=\"dataList.length\" rt-silent=\"\"> {{block select_loader }} <opal-loader shown=\"\"></opal-loader> {{/block}} </template> </div> </template> <template is=\"rt-if-else\" if=\"props.datalist\"> <opal-filtered-list class=\"opal-tag-select__menu-content opal-select__filtered-list\"> <opal-loaded-list class=\"opal-select__loaded-list opal-filtered-list__loaded-list\" dataprovider=\"{_dataProviderParam}\"> <opal-select-option value=\"{$item.value}\" text=\"{$item.text}\"></opal-select-option> </opal-loaded-list> </opal-filtered-list> </template> </rt-content> </opal-popover> {{/block}} </opal-select> {{/block}} </span>"
+	module.exports = "span/tags {\ntemplate (is=rt-if-then, if=viewModel.length, rt-silent) {\ntemplate (is=rt-repeat, for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (\ndata-tag-value='{tag |key(_viewModelItemValueFieldName) }',\nrt-click=_onBtnRemoveTagClick\n)\n}\n' '\n}\n}\n}\nspan/control {\ntemplate (is=rt-if-then, if=placeholderShown, rt-silent) {\nspan/placeholder { '{props.placeholder} ' }\n}\nopal-select/select (\ndatalist={_dataListParam},\nvalue={props.value},\nview-model={_viewModelParam},\nview-model-item-schema={props.viewModelItemSchema |json },\nmultiple,\nallow-input={props.allowInput}\n) {\nopal-sign-button/select-button (class=opal-select__button, sign=plus, checkable)\nopal-popover/select-menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {\nrt-content (select=.opal-tag-select__menu-content, no-clone) {\ntemplate (is=rt-if-then, if=props.datalist) {\ndiv/menu-content {\ntemplate (is=rt-if-then, if=dataList.length) {\ntemplate (is=rt-repeat, for=item of dataList) {\nopal-select-option/select-option (value={item.value}, text={item.text})\n}\nrt-content/new-input-container (select=.opal-select__new-input)\n}\ntemplate (is=rt-if-else, if=dataList.length, rt-silent) {\nopal-loader/select-menu-loader (shown)\n}\n}\n}\ntemplate (is=rt-if-else, if=props.datalist) {\nopal-filtered-list/menu-content (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider={_dataProviderParam}\n) {\nopal-select-option (value={$item.value}, text={$item.text})\n}\n}\n}\n}\n}\n}\n}"
 
 /***/ },
 

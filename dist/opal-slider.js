@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(68);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(39);
+	var template = __webpack_require__(38);
 	var OpalSlider = (function (_super) {
 	    __extends(OpalSlider, _super);
 	    function OpalSlider() {
@@ -164,7 +164,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 39:
+/***/ 38:
 /***/ function(module, exports) {
 
 	module.exports = "template (is=rt-if-then, if=props.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%;) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={props.min},\nmax={props.max},\nstep={props.step},\nvalue={props.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={props.min}, max={props.max}, step={props.step}, value={props.range.1})\n}\n}\ntemplate (is=rt-if-else, if=props.range) {\ninput/input (type=range, min={props.min}, max={props.max}, step={props.step}, value={props.value})\n}"

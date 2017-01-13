@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(47);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(26);
+	var template = __webpack_require__(25);
 	var OpalCheckbox = (function (_super) {
 	    __extends(OpalCheckbox, _super);
 	    function OpalCheckbox() {
@@ -222,7 +222,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 26:
+/***/ 25:
 /***/ function(module, exports) {
 
 	module.exports = "label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content (no-clone)\n}"

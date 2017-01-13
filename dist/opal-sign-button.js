@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(67);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(38);
+	var template = __webpack_require__(37);
 	var OpalSignButton = (function (_super) {
 	    __extends(OpalSignButton, _super);
 	    function OpalSignButton() {
@@ -192,7 +192,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 38:
+/***/ 37:
 /***/ function(module, exports) {
 
 	module.exports = "span/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-content/content (no-clone)\n}"

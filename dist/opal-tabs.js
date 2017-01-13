@@ -71,7 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var rionite_1 = __webpack_require__(1);
 	var opal_tab_list_1 = __webpack_require__(9);
 	var opal_tab_panel_1 = __webpack_require__(11);
-	var template = __webpack_require__(41);
+	var template = __webpack_require__(40);
 	var opal_tab_list_2 = __webpack_require__(9);
 	exports.OpalTab = opal_tab_list_2.OpalTab;
 	exports.OpalTabList = opal_tab_list_2.default;
@@ -218,7 +218,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(73);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(42);
+	var template = __webpack_require__(41);
 	var OpalTab = (function (_super) {
 	    __extends(OpalTab, _super);
 	    function OpalTab() {
@@ -374,14 +374,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 41:
+/***/ 40:
 /***/ function(module, exports) {
 
 	module.exports = "rt-content (select=opal-tab-list, no-clone) {\nopal-tab-list {\nrt-content/tabs (select=opal-tab, no-clone)\n}\n}\nrt-content/panels (select=opal-tab-panel, no-clone)"
 
 /***/ },
 
-/***/ 42:
+/***/ 41:
 /***/ function(module, exports) {
 
 	module.exports = "span/button (tabindex={_tabIndex}) {\nrt-content/content (no-clone)\n}"

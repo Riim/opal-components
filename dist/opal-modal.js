@@ -69,7 +69,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	__webpack_require__(59);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(32);
+	var template = __webpack_require__(31);
 	var openedModals = [];
 	var documentListening;
 	function onDocumentFocusIn() {
@@ -206,7 +206,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 32:
+/***/ 31:
 /***/ function(module, exports) {
 
 	module.exports = "div/window {\nspan/btn-close-wrapper {\nbutton/btn-close\n}\nrt-content/content (no-clone)\n}"

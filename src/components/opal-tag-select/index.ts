@@ -1,10 +1,10 @@
 import './index.css';
 
 import { define } from 'cellx';
-import { getText, Component, ComponentTemplate, d } from 'rionite';
+import { getText, Component, d } from 'rionite';
 import { TDataList, TViewModel, default as OpalSelect } from '../opal-select';
 import { IDataProvider } from '../opal-loaded-list';
-import template = require('./index.html');
+import template = require('./index.beml');
 
 let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 
@@ -25,7 +25,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		disabled: false
 	},
 
-	template: new ComponentTemplate(template),
+	bemlTemplate: template,
 
 	events: {
 		control: {

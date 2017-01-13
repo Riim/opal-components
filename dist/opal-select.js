@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var rionite_1 = __webpack_require__(1);
 	var opal_select_option_1 = __webpack_require__(8);
 	var isEqualArray_1 = __webpack_require__(19);
-	var template = __webpack_require__(36);
+	var template = __webpack_require__(35);
 	var opal_select_option_2 = __webpack_require__(8);
 	exports.OpalSelectOption = opal_select_option_2.default;
 	var nextUID = cellx_1.Utils.nextUID, nextTick = cellx_1.Utils.nextTick;
@@ -655,7 +655,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(66);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(37);
+	var template = __webpack_require__(36);
 	var OpalSelectOption = (function (_super) {
 	    __extends(OpalSelectOption, _super);
 	    function OpalSelectOption() {
@@ -828,14 +828,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 36:
+/***/ 35:
 /***/ function(module, exports) {
 
 	module.exports = "rt-content (select=.opal-select__button, no-clone) {\nopal-button/button (\ntype={props.type},\nsize={props.size},\ncheckable,\ntab-index={props.tabIndex},\ndisabled={props.disabled}\n) {\ntemplate (is=rt-if-then, if=props.text, rt-silent) { '{props.text}' }\ntemplate (is=rt-if-else, if=props.text, rt-silent) { '{text}' }\n' '\nsvg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu, no-clone) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content, no-clone) {\ntemplate (is=rt-if-then, if=props.datalist) {\ndiv/menu-content {\ntemplate (is=rt-if-then, if=dataList.length) {\ntemplate (is=rt-repeat, for=item of dataList) {\nopal-select-option/option (\nvalue='{item |key(_viewModelItemValueFieldName) }',\ntext='{item |key(_viewModelItemTextFieldName) }'\n)\n}\nrt-content/new-input-container (select=.opal-select__new-input)\n}\ntemplate (is=rt-if-else, if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\ntemplate (is=rt-if-else, if=props.datalist) {\ndiv/menu-content {\nrt-content/options (select=opal-select-option)\n}\n}\n}\n}\n}"
 
 /***/ },
 
-/***/ 37:
+/***/ 36:
 /***/ function(module, exports) {
 
 	module.exports = "span/control (tabindex={_tabIndex}) {\nrt-content/content (no-clone) { '{props.text}' }\n}"

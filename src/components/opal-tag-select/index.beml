@@ -1,0 +1,63 @@
+span/tags {
+	template (is=rt-if-then, if=viewModel.length, rt-silent) {
+		template (is=rt-repeat, for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {
+			span/tag (
+				data-value='{tag |key(_viewModelItemValueFieldName) }',
+				disabled='{tag |key(_viewModelItemDisabledFieldName) }'
+			) {
+				'{tag |key(_viewModelItemTextFieldName) }'
+				button/btn-remove-tag (
+					data-tag-value='{tag |key(_viewModelItemValueFieldName) }',
+					rt-click=_onBtnRemoveTagClick
+				)
+			}
+			' '
+		}
+	}
+}
+
+span/control {
+	template (is=rt-if-then, if=placeholderShown, rt-silent) {
+		span/placeholder { '{props.placeholder} ' }
+	}
+
+	opal-select/select (
+		datalist={_dataListParam},
+		value={props.value},
+		view-model={_viewModelParam},
+		view-model-item-schema={props.viewModelItemSchema |json },
+		multiple,
+		allow-input={props.allowInput}
+	) {
+		opal-sign-button/select-button (class=opal-select__button, sign=plus, checkable)
+
+		opal-popover/select-menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {
+			rt-content (select=.opal-tag-select__menu-content, no-clone) {
+				template (is=rt-if-then, if=props.datalist) {
+					div/menu-content {
+						template (is=rt-if-then, if=dataList.length) {
+							template (is=rt-repeat, for=item of dataList) {
+								opal-select-option/select-option (value={item.value}, text={item.text})
+							}
+
+							rt-content/new-input-container (select=.opal-select__new-input)
+						}
+						template (is=rt-if-else, if=dataList.length, rt-silent) {
+							opal-loader/select-menu-loader (shown)
+						}
+					}
+				}
+				template (is=rt-if-else, if=props.datalist) {
+					opal-filtered-list/menu-content (class=opal-select__filtered-list) {
+						opal-loaded-list (
+							class=opal-select__loaded-list opal-filtered-list__loaded-list,
+							dataprovider={_dataProviderParam}
+						) {
+							opal-select-option (value={$item.value}, text={$item.text})
+						}
+					}
+				}
+			}
+		}
+	}
+}
