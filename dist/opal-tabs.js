@@ -377,7 +377,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 40:
 /***/ function(module, exports) {
 
-	module.exports = "rt-content (select=opal-tab-list, no-clone) {\nopal-tab-list {\nrt-content/tabs (select=opal-tab, no-clone)\n}\n}\nrt-content/panels (select=opal-tab-panel, no-clone)"
+	module.exports = "rt-content/tab-list-container (select=opal-tab-list, no-clone) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab, no-clone)\n}\n}\nrt-content/panels (select=opal-tab-panel, no-clone)"
 
 /***/ },
 

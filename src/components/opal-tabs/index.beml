@@ -1,5 +1,5 @@
-rt-content (select=opal-tab-list, no-clone) {
-	opal-tab-list {
+rt-content/tab-list-container (select=opal-tab-list, no-clone) {
+	opal-tab-list/tab-list {
 		rt-content/tabs (select=opal-tab, no-clone)
 	}
 }
