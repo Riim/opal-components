@@ -17,7 +17,7 @@ rt-content (select=.opal-select__menu, no-clone) {
 	opal-dropdown/menu (auto-closing) {
 		rt-content (select=.opal-select__menu-content, no-clone) {
 			template (is=rt-if-then, if=props.datalist) {
-				div/menu-content {
+				div (class=opal-select__menu-content) {
 					template (is=rt-if-then, if=dataList.length) {
 						template (is=rt-repeat, for=item of dataList) {
 							opal-select-option/option (
@@ -34,7 +34,7 @@ rt-content (select=.opal-select__menu, no-clone) {
 				}
 			}
 			template (is=rt-if-else, if=props.datalist) {
-				div/menu-content {
+				div (class=opal-select__menu-content) {
 					rt-content/options (select=opal-select-option)
 				}
 			}

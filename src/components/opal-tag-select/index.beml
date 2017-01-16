@@ -34,7 +34,7 @@ span/control {
 		opal-popover/select-menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {
 			rt-content (select=.opal-tag-select__menu-content, no-clone) {
 				template (is=rt-if-then, if=props.datalist) {
-					div/menu-content {
+					div (class=opal-tag-select__menu-content) {
 						template (is=rt-if-then, if=dataList.length) {
 							template (is=rt-repeat, for=item of dataList) {
 								opal-select-option/select-option (value={item.value}, text={item.text})
@@ -48,8 +48,10 @@ span/control {
 					}
 				}
 				template (is=rt-if-else, if=props.datalist) {
-					opal-filtered-list/menu-content (class=opal-select__filtered-list) {
-						opal-loaded-list (
+					opal-filtered-list/menu-filtered-list (
+						class=opal-tag-select__menu-content opal-select__filtered-list
+					) {
+						opal-loaded-list/menu-loaded-list (
 							class=opal-select__loaded-list opal-filtered-list__loaded-list,
 							dataprovider={_dataProviderParam}
 						) {
