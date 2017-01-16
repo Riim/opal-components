@@ -32,15 +32,18 @@ span/control {
 		opal-sign-button/select-button (class=opal-select__button, sign=plus, checkable)
 
 		opal-popover/select-menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {
-			rt-content (select=.opal-tag-select__menu-content, no-clone) {
+			rt-content (select='.opal-select__menu-content', no-clone) {
 				template (is=rt-if-then, if=props.datalist) {
-					div (class=opal-tag-select__menu-content opal-select__menu-content) {
+					div (class=opal-select__menu-content) {
 						template (is=rt-if-then, if=dataList.length) {
 							template (is=rt-repeat, for=item of dataList) {
 								opal-select-option/_select-option1 (value={item.value}, text={item.text})
 							}
 
-							rt-content/new-input-container (select=.opal-select__new-input)
+							rt-content/new-input-container (
+								class=opal-select__new-input-container,
+								select='.opal-select__new-input'
+							)
 						}
 						template (is=rt-if-else, if=dataList.length, rt-silent) {
 							opal-loader/select-menu-loader (shown)
@@ -48,9 +51,7 @@ span/control {
 					}
 				}
 				template (is=rt-if-else, if=props.datalist) {
-					opal-filtered-list/menu-filtered-list (
-						class=opal-tag-select__menu-content opal-select__menu-content opal-select__filtered-list
-					) {
+					opal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {
 						opal-loaded-list/menu-loaded-list (
 							class=opal-select__loaded-list opal-filtered-list__loaded-list,
 							dataprovider={_dataProviderParam}
