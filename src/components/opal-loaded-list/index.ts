@@ -84,7 +84,7 @@ export default class OpalLoadedList extends Component {
 
 	elementAttached() {
 		this.listenTo(this.element, 'scroll', this._onScroll);
-		this.listenTo(this.props, 'change:query', this._onQueryChange);
+		this.listenTo(this.props['_query'], 'change', this._onQueryChange);
 
 		if (this.props['preloading']) {
 			this._load();

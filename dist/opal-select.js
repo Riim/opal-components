@@ -180,7 +180,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    OpalSelect.prototype.elementAttached = function () {
-	        this.listenTo(this.props, 'change:value', this._onPropsValueChange);
+	        this.listenTo(this.props['_value'], 'change', this._onPropsValueChange);
 	        this.listenTo(this.viewModel, 'change', this._onViewModelChange);
 	    };
 	    OpalSelect.prototype.elementAttributeChanged = function (name, oldValue, value) {

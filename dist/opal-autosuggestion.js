@@ -100,7 +100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalAutosuggestion.prototype.elementAttached = function () {
 	        this.listenTo(this.$('input').$('input'), 'click', this._onInputClick);
-	        this.listenTo(this.$('menu').props, 'change:opened', this._onMenuOpenedChange);
+	        this.listenTo(this.$('menu').props['_opened'], 'change', this._onMenuOpenedChange);
 	        this.listenTo(this.list, 'change', this._onListChange);
 	        this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 	    };

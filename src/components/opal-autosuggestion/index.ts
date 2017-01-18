@@ -117,7 +117,7 @@ export default class OpalAutosuggestion extends Component {
 
 	elementAttached() {
 		this.listenTo((this.$('input') as Component).$('input'), 'click', this._onInputClick);
-		this.listenTo((this.$('menu') as Component).props, 'change:opened', this._onMenuOpenedChange);
+		this.listenTo((this.$('menu') as Component).props['_opened'], 'change', this._onMenuOpenedChange);
 		this.listenTo(this.list, 'change', this._onListChange);
 		this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 	}

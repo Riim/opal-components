@@ -336,7 +336,7 @@ export default class OpalSelect extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo(this.props, 'change:value', this._onPropsValueChange);
+		this.listenTo(this.props['_value'], 'change', this._onPropsValueChange);
 		this.listenTo(this.viewModel, 'change', this._onViewModelChange);
 	}
 
