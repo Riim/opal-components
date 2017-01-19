@@ -40,10 +40,7 @@ span/control {
 								opal-select-option/_select-option1 (value={item.value}, text={item.text})
 							}
 
-							rt-content/new-input-container (
-								class=opal-select__new-input-container,
-								select='.opal-select__new-input'
-							)
+							rt-content (class=opal-select__new-input-container, select='.opal-select__new-input')
 						}
 						template (is=rt-if-else, if=dataList.length, rt-silent) {
 							opal-loader/select-menu-loader (shown)
