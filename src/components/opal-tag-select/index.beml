@@ -29,9 +29,9 @@ span/control {
 		multiple,
 		allow-input={props.allowInput}
 	) {
-		opal-sign-button/select-button (class=opal-select__button, sign=plus, checkable)
+		opal-sign-button/button (class=opal-select__button, sign=plus, checkable)
 
-		opal-popover/select-menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {
+		opal-popover/menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {
 			rt-content (select='.opal-select__menu-content', no-clone) {
 				template (is=rt-if-then, if=props.datalist) {
 					div (class=opal-select__menu-content) {
@@ -43,7 +43,7 @@ span/control {
 							rt-content (class=opal-select__new-input-container, select='.opal-select__new-input')
 						}
 						template (is=rt-if-else, if=dataList.length, rt-silent) {
-							opal-loader/select-menu-loader (shown)
+							opal-loader/menu-loader (shown)
 						}
 					}
 				}
