@@ -47,6 +47,68 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 	bemlTemplate: template,
 
 	events: {
+		':component': {
+			'property-value-change'(evt: IEvent) {
+				let vm = this.viewModel;
+				let value = evt['value'];
+
+				if (value) {
+					if (!Array.isArray(value)) {
+						throw new TypeError('value must be an array');
+					}
+
+					if (value.length) {
+						let vmItemValueFieldName = this._viewModelItemValueFieldName;
+						let vmItemTextFieldName = this._viewModelItemTextFieldName;
+
+						if (this.props['multiple']) {
+							this.options.forEach(option => {
+								let optionValue = option.value;
+
+								if (value.indexOf(optionValue) != -1) {
+									if (!vm.contains(optionValue, vmItemValueFieldName)) {
+										vm.add({
+											[vmItemValueFieldName]: optionValue,
+											[vmItemTextFieldName]: option.text
+										});
+									}
+								} else {
+									let item = vm.get(optionValue, vmItemValueFieldName);
+
+									if (item) {
+										vm.remove(item);
+									}
+								}
+							});
+						} else {
+							value = value[0];
+
+							if (!vm.length || value != vm.get(0)[vmItemValueFieldName]) {
+								if (!this.options.some(option => {
+									if (option.value != value) {
+										return false;
+									}
+
+									vm.set(0, {
+										[vmItemValueFieldName]: value,
+										[vmItemTextFieldName]: option.text
+									});
+
+									return true;
+								}) && vm.length) {
+									vm.clear();
+								}
+							}
+						}
+					} else {
+						vm.clear();
+					}
+				} else {
+					vm.clear();
+				}
+			}
+		},
+
 		button: {
 			focusin() {
 				this.props['focused'] = true;
@@ -336,7 +398,6 @@ export default class OpalSelect extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo(this.props['_value'], 'change', this._onPropsValueChange);
 		this.listenTo(this.viewModel, 'change', this._onViewModelChange);
 	}
 
@@ -355,66 +416,6 @@ export default class OpalSelect extends Component {
 
 				this.blur();
 			}
-		}
-	}
-
-	_onPropsValueChange(evt: IEvent) {
-		let vm = this.viewModel;
-		let value = evt['value'];
-
-		if (value) {
-			if (!Array.isArray(value)) {
-				throw new TypeError('value must be an array');
-			}
-
-			if (value.length) {
-				let vmItemValueFieldName = this._viewModelItemValueFieldName;
-				let vmItemTextFieldName = this._viewModelItemTextFieldName;
-
-				if (this.props['multiple']) {
-					this.options.forEach(option => {
-						let optionValue = option.value;
-
-						if (value.indexOf(optionValue) != -1) {
-							if (!vm.contains(optionValue, vmItemValueFieldName)) {
-								vm.add({
-									[vmItemValueFieldName]: optionValue,
-									[vmItemTextFieldName]: option.text
-								});
-							}
-						} else {
-							let item = vm.get(optionValue, vmItemValueFieldName);
-
-							if (item) {
-								vm.remove(item);
-							}
-						}
-					});
-				} else {
-					value = value[0];
-
-					if (!vm.length || value != vm.get(0)[vmItemValueFieldName]) {
-						if (!this.options.some(option => {
-							if (option.value != value) {
-								return false;
-							}
-
-							vm.set(0, {
-								[vmItemValueFieldName]: value,
-								[vmItemTextFieldName]: option.text
-							});
-
-							return true;
-						}) && vm.length) {
-							vm.clear();
-						}
-					}
-				}
-			} else {
-				vm.clear();
-			}
-		} else {
-			vm.clear();
 		}
 	}
 

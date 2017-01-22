@@ -16,7 +16,7 @@ export interface IDataProvider {
 	getItems(count: number, after?: string, query?: string): PromiseLike<{ items: Array<IItem>, total?: number }>;
 }
 
-@d.Component({
+@d.Component<OpalLoadedList>({
 	elementIs: 'opal-loaded-list',
 
 	props: {
@@ -31,7 +31,54 @@ export interface IDataProvider {
 		notFoundMessage: getText.t('Ничего не найдено')
 	},
 
-	bemlTemplate: template
+	bemlTemplate: template,
+
+	events: {
+		':component': {
+			'property-query-change'() {
+				if (this._loadingCheckPlanned) {
+					this._loadingCheckTimeout.clear();
+				} else {
+					if (this.loading) {
+						this._requestCallback.cancel();
+						this.loading = false;
+					}
+
+					this.list.clear();
+					this.total = undefined;
+
+					this._loadingCheckPlanned = true;
+				}
+
+				this._loadingCheckTimeout = this.setTimeout(() => {
+					this._scrolling = false;
+					this._loadingCheckPlanned = false;
+					this.checkLoading();
+				}, 300);
+			}
+		},
+
+		':element': {
+			scroll() {
+				if (this._scrolling) {
+					return;
+				}
+				this._scrolling = true;
+
+				if (this._loadingCheckPlanned) {
+					this._loadingCheckTimeout.clear();
+				} else {
+					this._loadingCheckPlanned = true;
+				}
+
+				this._loadingCheckTimeout = this.setTimeout(() => {
+					this._scrolling = false;
+					this._loadingCheckPlanned = false;
+					this.checkLoading();
+				}, 150);
+			}
+		}
+	}
 })
 export default class OpalLoadedList extends Component {
 	dataProvider: IDataProvider;
@@ -83,54 +130,11 @@ export default class OpalLoadedList extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo(this.element, 'scroll', this._onScroll);
-		this.listenTo(this.props['_query'], 'change', this._onQueryChange);
-
 		if (this.props['preloading']) {
 			this._load();
 		} else {
 			this.checkLoading();
 		}
-	}
-
-	_onScroll() {
-		if (!this._scrolling) {
-			this._scrolling = true;
-
-			if (this._loadingCheckPlanned) {
-				this._loadingCheckTimeout.clear();
-			} else {
-				this._loadingCheckPlanned = true;
-			}
-
-			this._loadingCheckTimeout = this.setTimeout(() => {
-				this._scrolling = false;
-				this._loadingCheckPlanned = false;
-				this.checkLoading();
-			}, 150);
-		}
-	}
-
-	_onQueryChange() {
-		if (this._loadingCheckPlanned) {
-			this._loadingCheckTimeout.clear();
-		} else {
-			if (this.loading) {
-				this._requestCallback.cancel();
-				this.loading = false;
-			}
-
-			this.list.clear();
-			this.total = undefined;
-
-			this._loadingCheckPlanned = true;
-		}
-
-		this._loadingCheckTimeout = this.setTimeout(() => {
-			this._scrolling = false;
-			this._loadingCheckPlanned = false;
-			this.checkLoading();
-		}, 300);
 	}
 
 	checkLoading() {

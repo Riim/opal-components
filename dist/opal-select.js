@@ -180,7 +180,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    OpalSelect.prototype.elementAttached = function () {
-	        this.listenTo(this.props['_value'], 'change', this._onPropsValueChange);
 	        this.listenTo(this.viewModel, 'change', this._onViewModelChange);
 	    };
 	    OpalSelect.prototype.propertyChanged = function (name, value) {
@@ -197,63 +196,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	                this.blur();
 	            }
-	        }
-	    };
-	    OpalSelect.prototype._onPropsValueChange = function (evt) {
-	        var vm = this.viewModel;
-	        var value = evt['value'];
-	        if (value) {
-	            if (!Array.isArray(value)) {
-	                throw new TypeError('value must be an array');
-	            }
-	            if (value.length) {
-	                var vmItemValueFieldName_1 = this._viewModelItemValueFieldName;
-	                var vmItemTextFieldName_1 = this._viewModelItemTextFieldName;
-	                if (this.props['multiple']) {
-	                    this.options.forEach(function (option) {
-	                        var optionValue = option.value;
-	                        if (value.indexOf(optionValue) != -1) {
-	                            if (!vm.contains(optionValue, vmItemValueFieldName_1)) {
-	                                vm.add((_a = {},
-	                                    _a[vmItemValueFieldName_1] = optionValue,
-	                                    _a[vmItemTextFieldName_1] = option.text,
-	                                    _a));
-	                            }
-	                        }
-	                        else {
-	                            var item = vm.get(optionValue, vmItemValueFieldName_1);
-	                            if (item) {
-	                                vm.remove(item);
-	                            }
-	                        }
-	                        var _a;
-	                    });
-	                }
-	                else {
-	                    value = value[0];
-	                    if (!vm.length || value != vm.get(0)[vmItemValueFieldName_1]) {
-	                        if (!this.options.some(function (option) {
-	                            if (option.value != value) {
-	                                return false;
-	                            }
-	                            vm.set(0, (_a = {},
-	                                _a[vmItemValueFieldName_1] = value,
-	                                _a[vmItemTextFieldName_1] = option.text,
-	                                _a));
-	                            return true;
-	                            var _a;
-	                        }) && vm.length) {
-	                            vm.clear();
-	                        }
-	                    }
-	                }
-	            }
-	            else {
-	                vm.clear();
-	            }
-	        }
-	        else {
-	            vm.clear();
 	        }
 	    };
 	    OpalSelect.prototype._onViewModelChange = function () {
@@ -470,6 +412,65 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        bemlTemplate: template,
 	        events: {
+	            ':component': {
+	                'property-value-change': function (evt) {
+	                    var vm = this.viewModel;
+	                    var value = evt['value'];
+	                    if (value) {
+	                        if (!Array.isArray(value)) {
+	                            throw new TypeError('value must be an array');
+	                        }
+	                        if (value.length) {
+	                            var vmItemValueFieldName_1 = this._viewModelItemValueFieldName;
+	                            var vmItemTextFieldName_1 = this._viewModelItemTextFieldName;
+	                            if (this.props['multiple']) {
+	                                this.options.forEach(function (option) {
+	                                    var optionValue = option.value;
+	                                    if (value.indexOf(optionValue) != -1) {
+	                                        if (!vm.contains(optionValue, vmItemValueFieldName_1)) {
+	                                            vm.add((_a = {},
+	                                                _a[vmItemValueFieldName_1] = optionValue,
+	                                                _a[vmItemTextFieldName_1] = option.text,
+	                                                _a));
+	                                        }
+	                                    }
+	                                    else {
+	                                        var item = vm.get(optionValue, vmItemValueFieldName_1);
+	                                        if (item) {
+	                                            vm.remove(item);
+	                                        }
+	                                    }
+	                                    var _a;
+	                                });
+	                            }
+	                            else {
+	                                value = value[0];
+	                                if (!vm.length || value != vm.get(0)[vmItemValueFieldName_1]) {
+	                                    if (!this.options.some(function (option) {
+	                                        if (option.value != value) {
+	                                            return false;
+	                                        }
+	                                        vm.set(0, (_a = {},
+	                                            _a[vmItemValueFieldName_1] = value,
+	                                            _a[vmItemTextFieldName_1] = option.text,
+	                                            _a));
+	                                        return true;
+	                                        var _a;
+	                                    }) && vm.length) {
+	                                        vm.clear();
+	                                    }
+	                                }
+	                            }
+	                        }
+	                        else {
+	                            vm.clear();
+	                        }
+	                    }
+	                    else {
+	                        vm.clear();
+	                    }
+	                }
+	            },
 	            button: {
 	                focusin: function () {
 	                    this.props['focused'] = true;

@@ -102,51 +102,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	    };
 	    OpalLoadedList.prototype.elementAttached = function () {
-	        this.listenTo(this.element, 'scroll', this._onScroll);
-	        this.listenTo(this.props['_query'], 'change', this._onQueryChange);
 	        if (this.props['preloading']) {
 	            this._load();
 	        }
 	        else {
 	            this.checkLoading();
 	        }
-	    };
-	    OpalLoadedList.prototype._onScroll = function () {
-	        var _this = this;
-	        if (!this._scrolling) {
-	            this._scrolling = true;
-	            if (this._loadingCheckPlanned) {
-	                this._loadingCheckTimeout.clear();
-	            }
-	            else {
-	                this._loadingCheckPlanned = true;
-	            }
-	            this._loadingCheckTimeout = this.setTimeout(function () {
-	                _this._scrolling = false;
-	                _this._loadingCheckPlanned = false;
-	                _this.checkLoading();
-	            }, 150);
-	        }
-	    };
-	    OpalLoadedList.prototype._onQueryChange = function () {
-	        var _this = this;
-	        if (this._loadingCheckPlanned) {
-	            this._loadingCheckTimeout.clear();
-	        }
-	        else {
-	            if (this.loading) {
-	                this._requestCallback.cancel();
-	                this.loading = false;
-	            }
-	            this.list.clear();
-	            this.total = undefined;
-	            this._loadingCheckPlanned = true;
-	        }
-	        this._loadingCheckTimeout = this.setTimeout(function () {
-	            _this._scrolling = false;
-	            _this._loadingCheckPlanned = false;
-	            _this.checkLoading();
-	        }, 300);
 	    };
 	    OpalLoadedList.prototype.checkLoading = function () {
 	        if (this.props['query'] === this._lastRequestedQuery &&
@@ -207,7 +168,51 @@ return /******/ (function(modules) { // webpackBootstrap
 	        i18n: {
 	            notFoundMessage: rionite_1.getText.t('Ничего не найдено')
 	        },
-	        bemlTemplate: template
+	        bemlTemplate: template,
+	        events: {
+	            ':component': {
+	                'property-query-change': function () {
+	                    var _this = this;
+	                    if (this._loadingCheckPlanned) {
+	                        this._loadingCheckTimeout.clear();
+	                    }
+	                    else {
+	                        if (this.loading) {
+	                            this._requestCallback.cancel();
+	                            this.loading = false;
+	                        }
+	                        this.list.clear();
+	                        this.total = undefined;
+	                        this._loadingCheckPlanned = true;
+	                    }
+	                    this._loadingCheckTimeout = this.setTimeout(function () {
+	                        _this._scrolling = false;
+	                        _this._loadingCheckPlanned = false;
+	                        _this.checkLoading();
+	                    }, 300);
+	                }
+	            },
+	            ':element': {
+	                scroll: function () {
+	                    var _this = this;
+	                    if (this._scrolling) {
+	                        return;
+	                    }
+	                    this._scrolling = true;
+	                    if (this._loadingCheckPlanned) {
+	                        this._loadingCheckTimeout.clear();
+	                    }
+	                    else {
+	                        this._loadingCheckPlanned = true;
+	                    }
+	                    this._loadingCheckTimeout = this.setTimeout(function () {
+	                        _this._scrolling = false;
+	                        _this._loadingCheckPlanned = false;
+	                        _this.checkLoading();
+	                    }, 150);
+	                }
+	            }
+	        }
 	    })
 	], OpalLoadedList);
 	Object.defineProperty(exports, "__esModule", { value: true });
