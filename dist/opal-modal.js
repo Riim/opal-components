@@ -97,7 +97,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalModal.prototype.elementDetached = function () {
 	        this.close();
 	    };
-	    OpalModal.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	    OpalModal.prototype.propertyChanged = function (name, value) {
 	        if (name == 'opened') {
 	            this[value ? '_open' : '_close']();
 	        }

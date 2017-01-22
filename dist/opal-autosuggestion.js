@@ -104,8 +104,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.listenTo(this.list, 'change', this._onListChange);
 	        this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 	    };
-	    OpalAutosuggestion.prototype.elementAttributeChanged = function (name, oldValue, value) {
-	        if (name == 'selected-item') {
+	    OpalAutosuggestion.prototype.propertyChanged = function (name, value) {
+	        if (name == 'selectedItem') {
 	            this.selectedItem = value;
 	            this.$('input').value = value ? value.text : '';
 	        }

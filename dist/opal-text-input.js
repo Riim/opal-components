@@ -104,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.focus();
 	        }
 	    };
-	    OpalTextInput.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	    OpalTextInput.prototype.propertyChanged = function (name, value) {
 	        if (name == 'value') {
 	            var input = this.$('input');
 	            if (input.value != value) {

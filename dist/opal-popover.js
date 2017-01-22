@@ -79,7 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this._open();
 	        }
 	    };
-	    OpalPopover.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	    OpalPopover.prototype.propertyChanged = function (name, value) {
 	        if (name == 'opened') {
 	            this[value ? '_open' : '_close']();
 	        }

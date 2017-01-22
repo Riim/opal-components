@@ -62,7 +62,7 @@ export default class OpalRadioButton extends Component {
 		}
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any) {
+	propertyChanged(name: string, value: any) {
 		if (name == 'checked') {
 			(this.$('input') as HTMLInputElement).checked = value;
 		} else if (name == 'focused') {

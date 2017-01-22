@@ -93,7 +93,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.focus();
 	        }
 	    };
-	    OpalCheckbox.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	    OpalCheckbox.prototype.propertyChanged = function (name, value) {
 	        if (name == 'checked') {
 	            if (value) {
 	                this.props['indeterminate'] = false;

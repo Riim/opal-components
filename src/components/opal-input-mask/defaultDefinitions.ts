@@ -1,4 +1,4 @@
-let defaultDefinitions = Object.create(null);
+let defaultDefinitions = Object.create(null) as { [chr: string]: RegExp };
 
 defaultDefinitions['9'] = /\d/;
 defaultDefinitions['z'] = /[a-zA-Z]/;

@@ -340,7 +340,7 @@ export default class OpalSelect extends Component {
 		this.listenTo(this.viewModel, 'change', this._onViewModelChange);
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any) {
+	propertyChanged(name: string, value: any) {
 		if (name == 'focused') {
 			if (value) {
 				if (!this._opened) {

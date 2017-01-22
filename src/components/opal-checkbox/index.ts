@@ -64,7 +64,7 @@ export default class OpalCheckbox extends Component {
 		}
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any) {
+	propertyChanged(name: string, value: any) {
 		if (name == 'checked') {
 			if (value) {
 				this.props['indeterminate'] = false;

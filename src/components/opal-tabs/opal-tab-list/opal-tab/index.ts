@@ -51,7 +51,7 @@ export default class OpalTab extends Component {
 		}
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any) {
+	propertyChanged(name: string, value: any) {
 		if (name == 'focused') {
 			if (value) {
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);

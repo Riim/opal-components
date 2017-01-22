@@ -163,7 +163,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.focus();
 	        }
 	    };
-	    OpalRadioButton.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	    OpalRadioButton.prototype.propertyChanged = function (name, value) {
 	        if (name == 'checked') {
 	            this.$('input').checked = value;
 	        }

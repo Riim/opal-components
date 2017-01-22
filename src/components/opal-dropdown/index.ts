@@ -24,7 +24,7 @@ export default class OpalDropdown extends Component {
 		}
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any) {
+	propertyChanged(name: string, value: any) {
 		if (name == 'opened') {
 			this[value ? '_open' : '_close']();
 		}

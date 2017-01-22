@@ -120,7 +120,7 @@ export default class OpalTextInput extends Component {
 		}
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any) {
+	propertyChanged(name: string, value: any) {
 		if (name == 'value') {
 			let input = this.$('input') as HTMLInputElement;
 

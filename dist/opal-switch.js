@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.focus();
 	        }
 	    };
-	    OpalSwitch.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	    OpalSwitch.prototype.propertyChanged = function (name, value) {
 	        if (name == 'checked') {
 	            this.$('input').checked = value;
 	        }

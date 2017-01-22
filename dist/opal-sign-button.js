@@ -88,7 +88,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.focus();
 	        }
 	    };
-	    OpalSignButton.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	    OpalSignButton.prototype.propertyChanged = function (name, value) {
 	        if (name == 'focused') {
 	            this[value ? 'focus' : 'blur']();
 	        }

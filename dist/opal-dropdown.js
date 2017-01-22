@@ -80,7 +80,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this._open();
 	        }
 	    };
-	    OpalDropdown.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	    OpalDropdown.prototype.propertyChanged = function (name, value) {
 	        if (name == 'opened') {
 	            this[value ? '_open' : '_close']();
 	        }

@@ -59,7 +59,7 @@ export default class OpalSignButton extends Component {
 		}
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any) {
+	propertyChanged(name: string, value: any) {
 		if (name == 'focused') {
 			this[value ? 'focus' : 'blur']();
 		}

@@ -236,7 +236,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.focus();
 	        }
 	    };
-	    OpalTab.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	    OpalTab.prototype.propertyChanged = function (name, value) {
 	        if (name == 'focused') {
 	            if (value) {
 	                this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);

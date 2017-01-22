@@ -122,8 +122,8 @@ export default class OpalAutosuggestion extends Component {
 		this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any) {
-		if (name == 'selected-item') {
+	propertyChanged(name: string, value: any) {
+		if (name == 'selectedItem') {
 			this.selectedItem = value;
 			(this.$('input') as OpalTextInput).value = value ? value.text : '';
 		}

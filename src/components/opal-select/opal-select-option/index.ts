@@ -50,12 +50,12 @@ export default class OpalSelectOption extends Component {
 	ready() {
 		let props = this.props;
 
-		if (props['value'] === undefined) {
+		if (props['value'] === null) {
 			props['value'] = props['text'];
 		}
 	}
 
-	elementAttributeChanged(name: string, oldValue: any, value: any) {
+	propertyChanged(name: string, value: any) {
 		if (name == 'focused') {
 			if (value) {
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
@@ -83,7 +83,7 @@ export default class OpalSelectOption extends Component {
 
 	get value(): string {
 		let props = this.props;
-		return props['value'] === undefined ? props['text'] : props['value'];
+		return props['value'] === null ? props['text'] : props['value'];
 	}
 	set value(value: string) {
 		this.props['value'] = value;

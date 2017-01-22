@@ -183,7 +183,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.listenTo(this.props['_value'], 'change', this._onPropsValueChange);
 	        this.listenTo(this.viewModel, 'change', this._onViewModelChange);
 	    };
-	    OpalSelect.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	    OpalSelect.prototype.propertyChanged = function (name, value) {
 	        if (name == 'focused') {
 	            if (value) {
 	                if (!this._opened) {
@@ -670,11 +670,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalSelectOption.prototype.ready = function () {
 	        var props = this.props;
-	        if (props['value'] === undefined) {
+	        if (props['value'] === null) {
 	            props['value'] = props['text'];
 	        }
 	    };
-	    OpalSelectOption.prototype.elementAttributeChanged = function (name, oldValue, value) {
+	    OpalSelectOption.prototype.propertyChanged = function (name, value) {
 	        if (name == 'focused') {
 	            if (value) {
 	                this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
@@ -700,7 +700,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Object.defineProperty(OpalSelectOption.prototype, "value", {
 	        get: function () {
 	            var props = this.props;
-	            return props['value'] === undefined ? props['text'] : props['value'];
+	            return props['value'] === null ? props['text'] : props['value'];
 	        },
 	        set: function (value) {
 	            this.props['value'] = value;
