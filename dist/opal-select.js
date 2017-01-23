@@ -72,10 +72,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cellx_1 = __webpack_require__(2);
 	var cellx_indexed_collections_1 = __webpack_require__(3);
 	var rionite_1 = __webpack_require__(1);
-	var opal_select_option_1 = __webpack_require__(8);
+	var opal_select_option_1 = __webpack_require__(10);
 	var isEqualArray_1 = __webpack_require__(19);
 	var template = __webpack_require__(35);
-	var opal_select_option_2 = __webpack_require__(8);
+	var opal_select_option_2 = __webpack_require__(10);
 	exports.OpalSelectOption = opal_select_option_2.default;
 	var nextUID = cellx_1.Utils.nextUID, nextTick = cellx_1.Utils.nextTick;
 	var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
@@ -638,7 +638,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 8:
+/***/ 10:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

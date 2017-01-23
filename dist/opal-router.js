@@ -69,11 +69,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	__webpack_require__(64);
 	var rionite_1 = __webpack_require__(1);
-	var opal_route_1 = __webpack_require__(7);
-	var PathNodeType_1 = __webpack_require__(6);
+	var opal_route_1 = __webpack_require__(9);
+	var PathNodeType_1 = __webpack_require__(8);
 	var parsePath_1 = __webpack_require__(18);
 	var escapeRegExp_1 = __webpack_require__(17);
-	var opal_route_2 = __webpack_require__(7);
+	var opal_route_2 = __webpack_require__(9);
 	exports.OpalRoute = opal_route_2.default;
 	var hyphenize = rionite_1.Utils.hyphenize;
 	var escapeHTML = rionite_1.Utils.escapeHTML;
@@ -219,7 +219,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 6:
+/***/ 8:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -236,7 +236,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 7:
+/***/ 9:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -292,7 +292,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var PathNodeType_1 = __webpack_require__(6);
+	var PathNodeType_1 = __webpack_require__(8);
 	var reName = /[a-z][0-9a-z]*/i;
 	function parsePath(path) {
 	    var ctx = PathNodeType_1.default.SIMPLE;

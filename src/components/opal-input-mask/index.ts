@@ -2,66 +2,85 @@
  * Based on [jquery.maskedinput](https://github.com/digitalBush/jquery.maskedinput).
  */
 
-let cellx = require('cellx');
-let { Component } = require('rionite');
-let OpalInputMaskDefinition = require('./opal-input-mask-definition').default;
-let defaultDefinitions = require('./defaultDefinitions').default;
+import { define } from 'cellx';
+import { IComponentElement, IComponentEvents, Component, d } from 'rionite';
+import OpalTextInput from '../opal-text-input';
+import OpalInputMaskDefinition from './opal-input-mask-definition';
+import defaultDefinitions from './defaultDefinitions';
+
+export { default as OpalInputMaskDefinition } from './opal-input-mask-definition';
+export { default as defaultDefinitions } from './defaultDefinitions';
 
 let forEach = Array.prototype.forEach;
 
 let iPhone = /iphone/i.test(navigator.userAgent);
 
-module.exports = Component.extend('opal-input-mask', {
-	Static: {
-		OpalInputMaskDefinition,
+@d.Component({
+	elementIs: 'opal-input-mask',
 
-		defaultDefinitions,
-
-		props: {
-			mask: { type: String, required: true }
-		},
-
-		bemlTemplate: 'rt-content/content (no-clone)'
+	props: {
+		mask: { type: String, required: true }
 	},
 
-	_focusText: undefined,
+	bemlTemplate: 'rt-content/content (no-clone)'
+})
+export default class OpalInputMask extends Component {
+	static OpalInputMaskDefinition = OpalInputMaskDefinition;
+
+	static defaultDefinitions = defaultDefinitions;
+
+	_definitions: { [chr: string]: RegExp };
+
+	_mask: Array<string>;
+	_partialIndex: number;
+	_tests: Array<RegExp | null>;
+	_firstTestIndex: number;
+
+	_buffer: Array<string | null>;
+
+	_input: HTMLInputElement;
+
+	_focusText: string;
 
 	initialize() {
-		this._definitions = Object.create(this.constructor.defaultDefinitions);
-	},
+		this._definitions = Object.create((this.constructor as typeof OpalInputMask).defaultDefinitions);
+	}
 
 	ready() {
-		this._input = this.$('input').$('input');
+		this._input = (this.$('input') as OpalTextInput).$('input') as HTMLInputElement;
 
 		let definitions = this._definitions;
 
-		forEach.call(this.element.querySelectorAll('opal-input-mask-definition'), inputMaskDefinition => {
-			let props = inputMaskDefinition.$c.props;
-			definitions[props.maskChar] = props.regex;
-		});
+		forEach.call(
+			this.element.querySelectorAll('opal-input-mask-definition'),
+			(inputMaskDefinition: IComponentElement) => {
+				let props = inputMaskDefinition.$c.props;
+				definitions[props['maskChar']] = props['regex'];
+			}
+		);
 
-		cellx.define(this, {
-			_mask() {
-				return this.props.mask.split('').filter(chr => chr != '?');
+		define(this, {
+			_mask(this: OpalInputMask): Array<string> {
+				return this.props['mask'].split('').filter((chr: string) => chr != '?');
 			},
 
-			_partialIndex() {
-				let mask = this.props.mask;
+			_partialIndex(this: OpalInputMask): number {
+				let mask = this.props['mask'];
 				let index = mask.indexOf('?');
 				return index == -1 ? mask.length : index;
 			},
 
-			_tests() {
-				return this._mask.map(chr => definitions[chr] || null);
+			_tests(this: OpalInputMask): Array<RegExp> {
+				return this._mask.map((chr: string) => definitions[chr] || null);
 			},
 
-			_firstTestIndex() {
-				return this._tests.findIndex(test => test);
+			_firstTestIndex(this: OpalInputMask): number {
+				return (this._tests as any).findIndex((test: string) => test);
 			}
 		});
 
 		this._initBuffer();
-	},
+	}
 
 	elementAttached() {
 		this.listenTo(this, 'change:_mask', this._onMaskChange);
@@ -74,21 +93,21 @@ module.exports = Component.extend('opal-input-mask', {
 			input: this._onInputInput
 		});
 
-		this._checkValue();
-	},
+		this._checkValue(false);
+	}
 
 	_onMaskChange() {
 		this._initBuffer();
 
 		setTimeout(() => {
-			this._checkValue();
+			this._checkValue(false);
 		}, 1);
-	},
+	}
 
 	_onInputFocusIn() {
 		this._focusText = this._input.value;
 
-		let index = this._checkValue();
+		let index = this._checkValue(false);
 		this._writeBuffer();
 
 		setTimeout(() => {
@@ -98,17 +117,17 @@ module.exports = Component.extend('opal-input-mask', {
 				this._setInputSelection(index);
 			}
 		}, 1);
-	},
+	}
 
 	_onInputFocusOut() {
-		this._checkValue();
+		this._checkValue(false);
 
 		if (this._input.value != this._focusText) {
-			this.$('input').emit('change');
+			(this.$('input') as OpalTextInput).emit('change');
 		}
-	},
+	}
 
-	_onInputKeyDown(evt) {
+	_onInputKeyDown(evt: KeyboardEvent) {
 		let input = this._input;
 		let key = evt.which;
 
@@ -134,23 +153,25 @@ module.exports = Component.extend('opal-input-mask', {
 			this._shiftLeft(start, end - 1);
 
 			if (value != input.value) {
-				let inputComponent = this.$('input');
-				inputComponent.constructor.events.input.input.call(inputComponent, evt);
+				let inputComponent = this.$('input') as OpalTextInput;
+				((inputComponent.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
+					['input']['input'].call(inputComponent, evt);
 			}
 		} else if (key == 27) { // Escape
 			evt.preventDefault();
 
 			if (input.value != this._focusText) {
 				input.value = this._focusText;
-				this._setInputSelection(0, this._checkValue());
+				this._setInputSelection(0, this._checkValue(false));
 
-				let inputComponent = this.$('input');
-				inputComponent.constructor.events.input.input.call(inputComponent, evt);
+				let inputComponent = this.$('input') as OpalTextInput;
+				((inputComponent.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
+					['input']['input'].call(inputComponent, evt);
 			}
 		}
-	},
+	}
 
-	_onInputKeyPress(evt) {
+	_onInputKeyPress(evt: KeyboardEvent) {
 		let tests = this._tests;
 		let bufferLen = this._buffer.length;
 		let input = this._input;
@@ -170,46 +191,48 @@ module.exports = Component.extend('opal-input-mask', {
 				this._shiftLeft(start, end - 1);
 			}
 
-			let next = this._nextTestIndex(start - 1);
+			let index = this._nextTestIndex(start - 1);
 
-			if (next < bufferLen) {
+			if (index < bufferLen) {
 				let chr = String.fromCharCode(key);
 
-				if (tests[next].test(chr)) {
-					this._shiftRight(next);
-					this._buffer[next] = chr;
+				if ((tests[index] as RegExp).test(chr)) {
+					this._shiftRight(index);
+					this._buffer[index] = chr;
 					this._writeBuffer();
 
-					next = this._nextTestIndex(next);
+					index = this._nextTestIndex(index);
 
-					this._setInputSelection(next, next);
+					this._setInputSelection(index, index);
 
-					let inputComponent = this.$('input');
-					inputComponent.constructor.events.input.input.call(inputComponent, evt);
+					let inputComponent = this.$('input') as OpalTextInput;
+					((inputComponent.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
+						['input']['input'].call(inputComponent, evt);
 
-					if (next >= bufferLen) {
+					if (index >= bufferLen) {
 						this.emit('complete');
 					}
 				} else if (start != end) {
-					let inputComponent = this.$('input');
-					inputComponent.constructor.events.input.input.call(inputComponent, evt);
+					let inputComponent = this.$('input') as OpalTextInput;
+					((inputComponent.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
+						['input']['input'].call(inputComponent, evt);
 				}
 			}
 		}
-	},
+	}
 
 	_onInputInput() {
 		setTimeout(() => {
 			this._setInputSelection(this._checkValue(true));
 		}, 1);
-	},
+	}
 
 	_initBuffer() {
 		let definitions = this._definitions;
-		this._buffer = this._mask.map(chr => definitions[chr] ? null : chr);
-	},
+		this._buffer = this._mask.map((chr: string) => definitions[chr] ? null : chr);
+	}
 
-	_checkValue(allowNotCompleted) {
+	_checkValue(allowNotCompleted: boolean): number {
 		let partialIndex = this._partialIndex;
 		let tests = this._tests;
 		let buffer = this._buffer;
@@ -227,7 +250,7 @@ module.exports = Component.extend('opal-input-mask', {
 				while (j++ < valueLen) {
 					let chr = value.charAt(j - 1);
 
-					if (tests[index].test(chr)) {
+					if ((tests[index] as RegExp).test(chr)) {
 						buffer[index] = chr;
 						lastMatchIndex = index;
 						break;
@@ -259,9 +282,9 @@ module.exports = Component.extend('opal-input-mask', {
 		}
 
 		return partialIndex ? index : this._firstTestIndex;
-	},
+	}
 
-	_shiftLeft(start, end) {
+	_shiftLeft(start: number, end: number) {
 		if (start < 0) {
 			return;
 		}
@@ -273,8 +296,10 @@ module.exports = Component.extend('opal-input-mask', {
 			let test = tests[i];
 
 			if (test) {
-				if (j < l && test.test(buffer[j])) {
-					buffer[i] = buffer[j];
+				let chr;
+
+				if (j < l && (chr = buffer[j]) && test.test(chr)) {
+					buffer[i] = chr;
 					buffer[j] = null;
 					j = this._nextTestIndex(j);
 				} else {
@@ -286,9 +311,9 @@ module.exports = Component.extend('opal-input-mask', {
 		this._writeBuffer();
 
 		this._setInputSelection(Math.max(this._firstTestIndex, start));
-	},
+	}
 
-	_shiftRight(index) {
+	_shiftRight(index: number) {
 		let tests = this._tests;
 		let buffer = this._buffer;
 		let chr = null;
@@ -300,34 +325,34 @@ module.exports = Component.extend('opal-input-mask', {
 
 				let j = this._nextTestIndex(index);
 
-				if (j < l && tests[j].test(nextChr)) {
+				if (j < l && nextChr && (tests[j] as RegExp).test(nextChr)) {
 					chr = nextChr;
 				} else {
 					break;
 				}
 			}
 		}
-	},
+	}
 
-	_nextTestIndex(index) {
+	_nextTestIndex(index: number): number {
 		let tests = this._tests;
 		for (let l = tests.length; ++index < l && !tests[index];) {}
 		return index;
-	},
+	}
 
-	_prevTestIndex(index) {
+	_prevTestIndex(index: number): number {
 		let tests = this._tests;
 		while (--index >= 0 && !tests[index]) {}
 		return index;
-	},
+	}
 
 	_writeBuffer() {
 		let buffer = this._buffer;
 		let toIndex = buffer.indexOf(null);
 		this._input.value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
-	},
+	}
 
-	_clearBuffer(start, end) {
+	_clearBuffer(start: number, end: number) {
 		let tests = this._tests;
 		let buffer = this._buffer;
 
@@ -340,9 +365,9 @@ module.exports = Component.extend('opal-input-mask', {
 				buffer[i] = null;
 			}
 		}
-	},
+	}
 
-	_setInputSelection(start, end = start) {
+	_setInputSelection(start: number, end: number = start) {
 		this._input.setSelectionRange(start, end);
 	}
-});
+}

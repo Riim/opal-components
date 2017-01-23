@@ -70,8 +70,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(55);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var opal_input_validator_rule_1 = __webpack_require__(4);
-	var opal_input_validator_rule_2 = __webpack_require__(4);
+	var opal_input_validator_rule_1 = __webpack_require__(6);
+	var opal_input_validator_rule_2 = __webpack_require__(6);
 	exports.OpalInputValidatorRule = opal_input_validator_rule_2.default;
 	var map = Array.prototype.map;
 	var OpalInputValidator = (function (_super) {
@@ -167,7 +167,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 4:
+/***/ 6:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

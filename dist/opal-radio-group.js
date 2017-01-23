@@ -68,8 +68,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	var rionite_1 = __webpack_require__(1);
-	var opal_radio_button_1 = __webpack_require__(5);
-	var opal_radio_button_2 = __webpack_require__(5);
+	var opal_radio_button_1 = __webpack_require__(7);
+	var opal_radio_button_2 = __webpack_require__(7);
 	exports.OpalRadioButton = opal_radio_button_2.default;
 	var forEach = Array.prototype.forEach;
 	var OpalRadioGroup = (function (_super) {
@@ -123,7 +123,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 5:
+/***/ 7:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

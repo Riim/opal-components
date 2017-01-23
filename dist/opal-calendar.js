@@ -71,8 +71,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(77);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var parseDate_1 = __webpack_require__(13);
-	var formatDate_1 = __webpack_require__(12);
+	var parseDate_1 = __webpack_require__(15);
+	var formatDate_1 = __webpack_require__(14);
 	var template = __webpack_require__(24);
 	var OpalCalendar = OpalCalendar_1 = (function (_super) {
 	    __extends(OpalCalendar, _super);
@@ -329,7 +329,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 12:
+/***/ 14:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -343,7 +343,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 13:
+/***/ 15:
 /***/ function(module, exports) {
 
 	"use strict";
