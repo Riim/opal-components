@@ -171,8 +171,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bemlTemplate: template,
 	        events: {
 	            ':component': {
-	                'property-query-change': function () {
+	                'property-query-change': function (evt) {
 	                    var _this = this;
+	                    if (evt.target != this) {
+	                        return;
+	                    }
 	                    if (this._loadingCheckPlanned) {
 	                        this._loadingCheckTimeout.clear();
 	                    }

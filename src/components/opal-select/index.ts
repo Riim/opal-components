@@ -49,6 +49,10 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 	events: {
 		':component': {
 			'property-value-change'(evt: IEvent) {
+				if (evt.target != this) {
+					return;
+				}
+
 				let vm = this.viewModel;
 				let value = evt['value'];
 

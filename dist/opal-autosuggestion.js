@@ -114,6 +114,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.openMenu();
 	    };
 	    OpalAutosuggestion.prototype._onMenuOpenedChange = function (evt) {
+	        if (evt.target != this.$('menu')) {
+	            return;
+	        }
 	        if (evt['value']) {
 	            this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
 	            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);

@@ -1,6 +1,6 @@
 import './index.css';
 
-import { ObservableList, define, Utils } from 'cellx';
+import { IEvent, ObservableList, define, Utils } from 'cellx';
 import { IDisposableTimeout, IDisposableCallback, getText, Component, d } from 'rionite';
 import template = require('./index.beml');
 
@@ -35,7 +35,11 @@ export interface IDataProvider {
 
 	events: {
 		':component': {
-			'property-query-change'() {
+			'property-query-change'(evt: IEvent) {
+				if (evt.target != this) {
+					return;
+				}
+
 				if (this._loadingCheckPlanned) {
 					this._loadingCheckTimeout.clear();
 				} else {

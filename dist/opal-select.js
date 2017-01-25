@@ -414,6 +414,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        events: {
 	            ':component': {
 	                'property-value-change': function (evt) {
+	                    if (evt.target != this) {
+	                        return;
+	                    }
 	                    var vm = this.viewModel;
 	                    var value = evt['value'];
 	                    if (value) {
