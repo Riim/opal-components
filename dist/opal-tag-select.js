@@ -133,14 +133,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bemlTemplate: template,
 	        events: {
 	            control: {
-	                click: function (evt, control) {
+	                click: function (evt) {
 	                    var select = this.$('select');
 	                    var selectEl = select.element;
-	                    for (var node = evt.target; node != selectEl; node = node.parentNode) {
-	                        if (node == control) {
-	                            select.toggle();
-	                            break;
-	                        }
+	                    var node = evt.target;
+	                    if (node != selectEl) {
+	                        var control = this.$('control');
+	                        do {
+	                            if (node == control) {
+	                                select.toggle();
+	                                break;
+	                            }
+	                            node = node.parentNode;
+	                        } while (node != selectEl);
 	                    }
 	                }
 	            },

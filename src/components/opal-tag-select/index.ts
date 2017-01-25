@@ -29,15 +29,22 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 	events: {
 		control: {
-			click(evt, control) {
+			click(evt: Event) {
 				let select = this.$('select') as OpalSelect;
 				let selectEl = select.element;
+				let node = evt.target as Node;
 
-				for (let node = evt.target as Node; node != selectEl; node = node.parentNode as Node) {
-					if (node == control) {
-						select.toggle();
-						break;
-					}
+				if (node != selectEl) {
+					let control = this.$('control') as HTMLElement;
+
+					do {
+						if (node == control) {
+							select.toggle();
+							break;
+						}
+
+						node = node.parentNode as Node;
+					} while (node != selectEl);
 				}
 			}
 		},
