@@ -17,7 +17,7 @@ import template = require('./index.beml');
 	bemlTemplate: template,
 
 	events: {
-		button: {
+		control: {
 			focusin() {
 				this.props['focused'] = true;
 			},
@@ -107,12 +107,12 @@ export default class OpalTab extends Component {
 	}
 
 	focus(): OpalTab {
-		(this.$('button') as HTMLElement).focus();
+		(this.$('control') as HTMLElement).focus();
 		return this;
 	}
 
 	blur(): OpalTab {
-		(this.$('button') as HTMLElement).blur();
+		(this.$('control') as HTMLElement).blur();
 		return this;
 	}
 

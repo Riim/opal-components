@@ -287,11 +287,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return (this.props['selected'] = value === undefined ? !this.props['selected'] : value);
 	    };
 	    OpalTab.prototype.focus = function () {
-	        this.$('button').focus();
+	        this.$('control').focus();
 	        return this;
 	    };
 	    OpalTab.prototype.blur = function () {
-	        this.$('button').blur();
+	        this.$('control').blur();
 	        return this;
 	    };
 	    OpalTab.prototype.enable = function () {
@@ -315,7 +315,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        bemlTemplate: template,
 	        events: {
-	            button: {
+	            control: {
 	                focusin: function () {
 	                    this.props['focused'] = true;
 	                },
@@ -384,7 +384,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 41:
 /***/ function(module, exports) {
 
-	module.exports = "span/button (tabindex={_tabIndex}) {\nrt-content/content (no-clone)\n}"
+	module.exports = "span/control (tabindex={_tabIndex}) {\nrt-content/content (no-clone)\n}"
 
 /***/ },
 
@@ -432,7 +432,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-tab{display:inline-block;line-height:0}.opal-tab .opal-tab__button{position:relative;display:block;padding:5px 22px;border-top-left-radius:3px;border-top-right-radius:3px;background:#fff;color:#000;text-align:center;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-tab .opal-tab__content{position:relative;display:block}.opal-tab .opal-tab__button:hover{background:#e6e6e6}.opal-tab .opal-tab__button:focus{outline:none}body:not(._no-focus-highlight) .opal-tab .opal-tab__button:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-tab .opal-tab__button:active{background:#ccc}.opal-tab[selected] .opal-tab__button{box-shadow:0 3px #1b91f8}.opal-tab[disabled]{opacity:.5;pointer-events:none}.opal-tab[disabled] .opal-tab__button{cursor:default}";
+	            style.textContent = ".opal-tab{display:inline-block;line-height:0}.opal-tab .opal-tab__control{position:relative;display:block;padding:5px 22px;border-top-left-radius:3px;border-top-right-radius:3px;background:#fff;color:#000;text-align:center;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-tab .opal-tab__content{position:relative;display:block}.opal-tab .opal-tab__control:hover{background:#e6e6e6}.opal-tab .opal-tab__control:focus{outline:none}body:not(._no-focus-highlight) .opal-tab .opal-tab__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-tab .opal-tab__control:active{background:#ccc}.opal-tab[selected] .opal-tab__control{box-shadow:0 3px #1b91f8}.opal-tab[disabled]{opacity:.5;pointer-events:none}.opal-tab[disabled] .opal-tab__control{cursor:default}";
 	            head.appendChild(style);
 	            return style;
 	        }
