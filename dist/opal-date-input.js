@@ -93,7 +93,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalDateInput.prototype._onDocumentMouseUp = function () {
 	        this._documentMouseUpListening.stop();
 	        this._documentMouseUpListening = null;
-	        if (this.$('input').$('input') == document.activeElement) {
+	        if (this.$('input').$('text-field') == document.activeElement) {
 	            this.$('calendar-menu').open();
 	        }
 	    };

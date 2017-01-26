@@ -27,7 +27,7 @@ import template = require('./index.beml');
 	bemlTemplate: template,
 
 	events: {
-		input: {
+		'text-field': {
 			focusin() {
 				this.props['focused'] = true;
 				this.emit('focusin');
@@ -97,12 +97,12 @@ export default class OpalTextInput extends Component {
 	ready() {
 		let props = this.props;
 		let value = props['value'];
-		let input = this.$('input') as HTMLInputElement;
+		let textField = this.$('text-field') as HTMLInputElement;
 
-		this._initialHeight = input.offsetHeight + input.scrollHeight - input.clientHeight;
+		this._initialHeight = textField.offsetHeight + textField.scrollHeight - textField.clientHeight;
 
 		if (value) {
-			input.value = value;
+			textField.value = value;
 		} else {
 			let storeKey = props['storeKey'];
 
@@ -122,10 +122,10 @@ export default class OpalTextInput extends Component {
 
 	propertyChanged(name: string, value: any) {
 		if (name == 'value') {
-			let input = this.$('input') as HTMLInputElement;
+			let textField = this.$('text-field') as HTMLInputElement;
 
-			if (input.value != value) {
-				input.value = value;
+			if (textField.value != value) {
+				textField.value = value;
 			}
 		} else if (name == 'focused') {
 			this[value ? 'focus' : 'blur']();
@@ -136,17 +136,18 @@ export default class OpalTextInput extends Component {
 		evt.preventDefault();
 
 		this.value = '';
-		(this.$('input') as HTMLInputElement).focus();
+		(this.$('text-field') as HTMLInputElement).focus();
 
 		this.emit({ type: 'change', initialEvent: evt });
 	}
 
 	_fixHeight() {
-		let input = this.$('input') as HTMLTextAreaElement;
-		let lineHeight = parseInt(getComputedStyle(input).lineHeight as string, 10);
+		let textField = this.$('text-field') as HTMLTextAreaElement;
+		let lineHeight = parseInt(getComputedStyle(textField).lineHeight as string, 10);
 
-		input.style.height = this._initialHeight - lineHeight + 'px';
-		input.style.height = input.offsetHeight + input.scrollHeight - input.clientHeight + lineHeight + 'px';
+		textField.style.height = this._initialHeight - lineHeight + 'px';
+		textField.style.height = textField.offsetHeight + textField.scrollHeight - textField.clientHeight +
+			lineHeight + 'px';
 	}
 
 	get value(): string {
@@ -162,12 +163,12 @@ export default class OpalTextInput extends Component {
 	}
 
 	focus(): OpalTextInput {
-		(this.$('input') as HTMLInputElement).focus();
+		(this.$('text-field') as HTMLInputElement).focus();
 		return this;
 	}
 
 	blur(): OpalTextInput {
-		(this.$('input') as HTMLInputElement).blur();
+		(this.$('text-field') as HTMLInputElement).blur();
 		return this;
 	}
 

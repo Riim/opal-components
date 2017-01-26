@@ -261,8 +261,8 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 					if (filteredList) {
 						if (
-							document.activeElement == (filteredList.$('query-input') as Component).$('input') as
-								HTMLElement
+							document.activeElement == (filteredList.$('query-input') as Component)
+								.$('text-field') as HTMLElement
 						) {
 							this._focusOptions();
 							filteredList.focus();

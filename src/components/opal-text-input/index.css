@@ -5,7 +5,7 @@
 	vertical-align: middle;
 	line-height: 0;
 
-	& .opal-text-input__input {
+	& .opal-text-input__text-field {
 		display: block;
 		box-sizing: border-box;
 		padding: 6px 11px;
@@ -99,26 +99,26 @@
 
 	/* States */
 
-	&:hover .opal-text-input__input {
+	&:hover .opal-text-input__text-field {
 		border-color: hsl(0,0%,58%);
 		border-top-color: hsl(0,0%,56%);
 		border-bottom-color: hsl(0,0%,68%);
 	}
 
-	& .opal-text-input__input:focus {
+	& .opal-text-input__text-field:focus {
 		outline: none;
 		border-color: hsl(208,100%,60%);
 	}
 
-	&[multiline]:not([auto-height=no]) .opal-text-input__input {
+	&[multiline]:not([auto-height=no]) .opal-text-input__text-field {
 		overflow-y: hidden;
 	}
 
-	&[valid] .opal-text-input__input {
+	&[valid] .opal-text-input__text-field {
 		border-color: hsl(120,90%,35%);
 	}
 
-	&[valid=no] .opal-text-input__input {
+	&[valid=no] .opal-text-input__text-field {
 		border-color: hsl(0,100%,50%);
 	}
 
@@ -126,7 +126,7 @@
 		opacity: .5;
 		pointer-events: none;
 	}
-		&[disabled] .opal-text-input__input {
+		&[disabled] .opal-text-input__text-field {
 			background: hsl(0,0%,90%);
 		}
 
@@ -139,15 +139,15 @@
 	}
 
 	@nest
-	.opal-group__content &:not(:first-child) .opal-text-input__input,
-	.opal-group__content *:not(:first-child) & .opal-text-input__input {
+	.opal-group__content &:not(:first-child) .opal-text-input__text-field,
+	.opal-group__content *:not(:first-child) & .opal-text-input__text-field {
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
 	}
 
 	@nest
-	.opal-group__content &:not(:last-child) .opal-text-input__input,
-	.opal-group__content *:not(:last-child) & .opal-text-input__input {
+	.opal-group__content &:not(:last-child) .opal-text-input__text-field,
+	.opal-group__content *:not(:last-child) & .opal-text-input__text-field {
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
 	}

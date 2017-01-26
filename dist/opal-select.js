@@ -597,7 +597,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    setTimeout(function () {
 	                        var filteredList = _this.$('filtered-list');
 	                        if (filteredList) {
-	                            if (document.activeElement == filteredList.$('query-input').$('input')) {
+	                            if (document.activeElement == filteredList.$('query-input')
+	                                .$('text-field')) {
 	                                _this._focusOptions();
 	                                filteredList.focus();
 	                            }

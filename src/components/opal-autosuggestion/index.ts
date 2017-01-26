@@ -116,7 +116,7 @@ export default class OpalAutosuggestion extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo((this.$('input') as Component).$('input') as HTMLElement, 'click', this._onInputClick);
+		this.listenTo((this.$('input') as Component).$('text-field') as HTMLElement, 'click', this._onTextFieldClick);
 		this.listenTo(this.$('menu') as Component, 'property-opened-change', this._onMenuOpenedChange);
 		this.listenTo(this.list, 'change', this._onListChange);
 		this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
@@ -129,7 +129,7 @@ export default class OpalAutosuggestion extends Component {
 		}
 	}
 
-	_onInputClick() {
+	_onTextFieldClick() {
 		this.openMenu();
 	}
 
@@ -219,7 +219,7 @@ export default class OpalAutosuggestion extends Component {
 
 	_onDocumentMouseUp() {
 		setTimeout(() => {
-			if (document.activeElement != (this.$('input') as Component).$('input')) {
+			if (document.activeElement != (this.$('input') as Component).$('text-field')) {
 				this.closeMenu();
 				this._setSelectedItemOfList();
 			}

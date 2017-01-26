@@ -99,7 +99,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            .getElementsByClassName('opal-autosuggestion__list-item');
 	    };
 	    OpalAutosuggestion.prototype.elementAttached = function () {
-	        this.listenTo(this.$('input').$('input'), 'click', this._onInputClick);
+	        this.listenTo(this.$('input').$('text-field'), 'click', this._onTextFieldClick);
 	        this.listenTo(this.$('menu'), 'property-opened-change', this._onMenuOpenedChange);
 	        this.listenTo(this.list, 'change', this._onListChange);
 	        this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
@@ -110,7 +110,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.$('input').value = value ? value.text : '';
 	        }
 	    };
-	    OpalAutosuggestion.prototype._onInputClick = function () {
+	    OpalAutosuggestion.prototype._onTextFieldClick = function () {
 	        this.openMenu();
 	    };
 	    OpalAutosuggestion.prototype._onMenuOpenedChange = function (evt) {
@@ -182,7 +182,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalAutosuggestion.prototype._onDocumentMouseUp = function () {
 	        var _this = this;
 	        setTimeout(function () {
-	            if (document.activeElement != _this.$('input').$('input')) {
+	            if (document.activeElement != _this.$('input').$('text-field')) {
 	                _this.closeMenu();
 	                _this._setSelectedItemOfList();
 	            }

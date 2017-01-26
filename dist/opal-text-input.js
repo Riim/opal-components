@@ -86,10 +86,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalTextInput.prototype.ready = function () {
 	        var props = this.props;
 	        var value = props['value'];
-	        var input = this.$('input');
-	        this._initialHeight = input.offsetHeight + input.scrollHeight - input.clientHeight;
+	        var textField = this.$('text-field');
+	        this._initialHeight = textField.offsetHeight + textField.scrollHeight - textField.clientHeight;
 	        if (value) {
-	            input.value = value;
+	            textField.value = value;
 	        }
 	        else {
 	            var storeKey = props['storeKey'];
@@ -106,9 +106,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalTextInput.prototype.propertyChanged = function (name, value) {
 	        if (name == 'value') {
-	            var input = this.$('input');
-	            if (input.value != value) {
-	                input.value = value;
+	            var textField = this.$('text-field');
+	            if (textField.value != value) {
+	                textField.value = value;
 	            }
 	        }
 	        else if (name == 'focused') {
@@ -118,14 +118,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalTextInput.prototype._onBtnClearClick = function (evt) {
 	        evt.preventDefault();
 	        this.value = '';
-	        this.$('input').focus();
+	        this.$('text-field').focus();
 	        this.emit({ type: 'change', initialEvent: evt });
 	    };
 	    OpalTextInput.prototype._fixHeight = function () {
-	        var input = this.$('input');
-	        var lineHeight = parseInt(getComputedStyle(input).lineHeight, 10);
-	        input.style.height = this._initialHeight - lineHeight + 'px';
-	        input.style.height = input.offsetHeight + input.scrollHeight - input.clientHeight + lineHeight + 'px';
+	        var textField = this.$('text-field');
+	        var lineHeight = parseInt(getComputedStyle(textField).lineHeight, 10);
+	        textField.style.height = this._initialHeight - lineHeight + 'px';
+	        textField.style.height = textField.offsetHeight + textField.scrollHeight - textField.clientHeight +
+	            lineHeight + 'px';
 	    };
 	    Object.defineProperty(OpalTextInput.prototype, "value", {
 	        get: function () {
@@ -142,11 +143,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this;
 	    };
 	    OpalTextInput.prototype.focus = function () {
-	        this.$('input').focus();
+	        this.$('text-field').focus();
 	        return this;
 	    };
 	    OpalTextInput.prototype.blur = function () {
-	        this.$('input').blur();
+	        this.$('text-field').blur();
 	        return this;
 	    };
 	    OpalTextInput.prototype.enable = function () {
@@ -180,7 +181,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        bemlTemplate: template,
 	        events: {
-	            input: {
+	            'text-field': {
 	                focusin: function () {
 	                    this.props['focused'] = true;
 	                    this.emit('focusin');
@@ -248,7 +249,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 43:
 /***/ function(module, exports) {
 
-	module.exports = "template (is=rt-if-then, if=props.multiline) {\ntextarea (\nclass=opal-text-input__input,\nrows={props.rows},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\ntemplate (is=rt-if-else, if=props.multiline) {\ninput (\nclass=opal-text-input__input,\ntype={props.inputType},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\ntemplate (is=rt-if-then, if=props.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)\n}\ntemplate (is=rt-if-then, if=props.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}"
+	module.exports = "template (is=rt-if-then, if=props.multiline) {\ntextarea (\nclass=opal-text-input__text-field,\nrows={props.rows},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\ntemplate (is=rt-if-else, if=props.multiline) {\ninput (\nclass=opal-text-input__text-field,\ntype={props.inputType},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\ntemplate (is=rt-if-then, if=props.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)\n}\ntemplate (is=rt-if-then, if=props.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}"
 
 /***/ },
 
@@ -260,7 +261,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-text-input{position:relative;display:inline-block;width:400px;vertical-align:middle;line-height:0}.opal-text-input .opal-text-input__input{display:block;box-sizing:border-box;padding:6px 11px;width:100%;border:1px solid #adadad;border-top-color:#a8a8a8;border-bottom-color:#c7c7c7;border-radius:3px;background:#fff;box-shadow:inset 0 1px rgba(0,0,0,.1);color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;transition:border-color .1s linear;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-text-input .opal-text-input__btn-clear{position:absolute;top:0;right:10px;bottom:0;display:none;margin:auto;padding:0;width:23px;height:23px;border:0;border:1px solid transparent;border-radius:3px;background:0 0;opacity:.5;cursor:pointer;transition:opacity .1s}.opal-text-input .opal-text-input__btn-clear::before,.opal-text-input .opal-text-input__btn-clear::after{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:18px;height:1px;background:#000;content:'';-ms-transform:rotate(45deg);transform:rotate(45deg)}.opal-text-input .opal-text-input__btn-clear::after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.opal-text-input .opal-text-input__btn-clear[shown]{display:block}.opal-text-input .opal-text-input__btn-clear:hover{background:#e6e6e6;opacity:1}.opal-text-input .opal-text-input__btn-clear:focus{outline:none}body:not(._no-focus-highlight) .opal-text-input .opal-text-input__btn-clear:focus{border-color:#33a0ff;opacity:1}.opal-text-input .opal-text-input__btn-clear:active{background:#ccc}.opal-text-input .opal-text-input__loader,.opal-text-input .opal-text-input__loader[size=s]{position:absolute;top:0;right:12px;bottom:0;margin:auto;pointer-events:none}.opal-text-input:hover .opal-text-input__input{border-color:#949494;border-top-color:#8f8f8f;border-bottom-color:#adadad}.opal-text-input .opal-text-input__input:focus{outline:none;border-color:#33a0ff}.opal-text-input[multiline]:not([auto-height=no]) .opal-text-input__input{overflow-y:hidden}.opal-text-input[valid] .opal-text-input__input{border-color:#09aa09}.opal-text-input[valid=no] .opal-text-input__input{border-color:red}.opal-text-input[disabled]{opacity:.5;pointer-events:none}.opal-text-input[disabled] .opal-text-input__input{background:#e6e6e6}.opal-group .opal-group__content>.opal-text-input:not(:first-child),.opal-group .opal-group__content>:not(:first-child) .opal-text-input{margin-right:-1px}.opal-group__content .opal-text-input:not(:first-child) .opal-text-input__input,.opal-group__content :not(:first-child) .opal-text-input .opal-text-input__input{border-top-left-radius:0;border-bottom-left-radius:0}.opal-group__content .opal-text-input:not(:last-child) .opal-text-input__input,.opal-group__content :not(:last-child) .opal-text-input .opal-text-input__input{border-top-right-radius:0;border-bottom-right-radius:0}";
+	            style.textContent = ".opal-text-input{position:relative;display:inline-block;width:400px;vertical-align:middle;line-height:0}.opal-text-input .opal-text-input__text-field{display:block;box-sizing:border-box;padding:6px 11px;width:100%;border:1px solid #adadad;border-top-color:#a8a8a8;border-bottom-color:#c7c7c7;border-radius:3px;background:#fff;box-shadow:inset 0 1px rgba(0,0,0,.1);color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;transition:border-color .1s linear;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-text-input .opal-text-input__btn-clear{position:absolute;top:0;right:10px;bottom:0;display:none;margin:auto;padding:0;width:23px;height:23px;border:0;border:1px solid transparent;border-radius:3px;background:0 0;opacity:.5;cursor:pointer;transition:opacity .1s}.opal-text-input .opal-text-input__btn-clear::before,.opal-text-input .opal-text-input__btn-clear::after{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:18px;height:1px;background:#000;content:'';-ms-transform:rotate(45deg);transform:rotate(45deg)}.opal-text-input .opal-text-input__btn-clear::after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.opal-text-input .opal-text-input__btn-clear[shown]{display:block}.opal-text-input .opal-text-input__btn-clear:hover{background:#e6e6e6;opacity:1}.opal-text-input .opal-text-input__btn-clear:focus{outline:none}body:not(._no-focus-highlight) .opal-text-input .opal-text-input__btn-clear:focus{border-color:#33a0ff;opacity:1}.opal-text-input .opal-text-input__btn-clear:active{background:#ccc}.opal-text-input .opal-text-input__loader,.opal-text-input .opal-text-input__loader[size=s]{position:absolute;top:0;right:12px;bottom:0;margin:auto;pointer-events:none}.opal-text-input:hover .opal-text-input__text-field{border-color:#949494;border-top-color:#8f8f8f;border-bottom-color:#adadad}.opal-text-input .opal-text-input__text-field:focus{outline:none;border-color:#33a0ff}.opal-text-input[multiline]:not([auto-height=no]) .opal-text-input__text-field{overflow-y:hidden}.opal-text-input[valid] .opal-text-input__text-field{border-color:#09aa09}.opal-text-input[valid=no] .opal-text-input__text-field{border-color:red}.opal-text-input[disabled]{opacity:.5;pointer-events:none}.opal-text-input[disabled] .opal-text-input__text-field{background:#e6e6e6}.opal-group .opal-group__content>.opal-text-input:not(:first-child),.opal-group .opal-group__content>:not(:first-child) .opal-text-input{margin-right:-1px}.opal-group__content .opal-text-input:not(:first-child) .opal-text-input__text-field,.opal-group__content :not(:first-child) .opal-text-input .opal-text-input__text-field{border-top-left-radius:0;border-bottom-left-radius:0}.opal-group__content .opal-text-input:not(:last-child) .opal-text-input__text-field,.opal-group__content :not(:last-child) .opal-text-input .opal-text-input__text-field{border-top-right-radius:0;border-bottom-right-radius:0}";
 	            head.appendChild(style);
 	            return style;
 	        }

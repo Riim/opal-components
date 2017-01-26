@@ -78,7 +78,7 @@ export default class OpalDateInput extends Component {
 		(this._documentMouseUpListening as IDisposableListening).stop();
 		this._documentMouseUpListening = null;
 
-		if (((this.$('input') as Component).$('input') as HTMLElement) == document.activeElement) {
+		if (((this.$('input') as Component).$('text-field') as HTMLElement) == document.activeElement) {
 			(this.$('calendar-menu') as OpalDropdown).open();
 		}
 	}
