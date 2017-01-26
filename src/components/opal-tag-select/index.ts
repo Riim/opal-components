@@ -50,7 +50,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		},
 
 		select: {
-			confirminput() {
+			'input-confirm'() {
 				let select = this.$('select') as OpalSelect;
 
 				if (select.props['allowInput']) {

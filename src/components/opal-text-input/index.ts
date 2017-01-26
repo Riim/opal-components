@@ -65,7 +65,7 @@ import template = require('./index.beml');
 
 			keypress(evt: KeyboardEvent) {
 				if (evt.which == 13/* Enter */) {
-					this.emit('confirminput');
+					this.emit('input-confirm');
 				}
 
 				this.emit({ type: 'keypress', initialEvent: evt });

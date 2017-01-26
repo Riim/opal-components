@@ -140,7 +140,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				this.close();
 			},
 
-			confirminput(evt: IEvent) {
+			'input-confirm'(evt: IEvent) {
 				if (!this.props['allowInput']) {
 					return;
 				}

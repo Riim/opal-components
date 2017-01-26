@@ -497,7 +497,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                close: function () {
 	                    this.close();
 	                },
-	                confirminput: function (evt) {
+	                'input-confirm': function (evt) {
 	                    if (!this.props['allowInput']) {
 	                        return;
 	                    }

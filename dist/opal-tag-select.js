@@ -150,7 +150,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            },
 	            select: {
-	                confirminput: function () {
+	                'input-confirm': function () {
 	                    var select = this.$('select');
 	                    if (select.props['allowInput']) {
 	                        select.close();
