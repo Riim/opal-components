@@ -110,7 +110,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bemlTemplate: template,
 	        events: {
 	            ':component': {
-	                'remove-row-click': function (evt) {
+	                '<opal-multirow-row>remove-row-click': function (evt) {
 	                    var _this = this;
 	                    var row = evt.target;
 	                    if (row.props['preset']) {
@@ -125,7 +125,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        _this.emit('change');
 	                    }, 1);
 	                },
-	                'add-row-click': function () {
+	                '<opal-multirow-row>add-row-click': function () {
 	                    var _this = this;
 	                    this._newRows.add({ key: nextUID() });
 	                    setTimeout(function () {

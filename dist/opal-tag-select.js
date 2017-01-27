@@ -150,7 +150,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            },
 	            select: {
-	                'input-confirm': function () {
+	                '<opal-text-input>input-confirm': function () {
 	                    var select = this.$('select');
 	                    if (select.props['allowInput']) {
 	                        select.close();
@@ -158,10 +158,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                },
 	                // не соединять on-select и on-deselect в on-change,
 	                // тк on-change на opal-select[multiple] генерируется только при закрытии
-	                select: function () {
+	                '<opal-select-option>select': function () {
 	                    this.$('select').close();
 	                },
-	                deselect: function () {
+	                '<opal-select-option>deselect': function () {
 	                    this.$('select').close();
 	                }
 	            }

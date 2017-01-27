@@ -11,7 +11,7 @@ let forEach = Array.prototype.forEach;
 
 	events: {
 		':component': {
-			check(evt: IEvent) {
+			'<opal-radio-button>check'(evt: IEvent) {
 				let checkedButton = evt.target;
 
 				forEach.call(this.buttons, (btn: IComponentElement) => {
@@ -21,7 +21,7 @@ let forEach = Array.prototype.forEach;
 				});
 			},
 
-			uncheck(evt: IEvent) {
+			'<opal-radio-button>uncheck'(evt: IEvent) {
 				(evt.target as OpalRadioButton).check();
 			}
 		}

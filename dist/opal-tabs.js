@@ -113,8 +113,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalTabs.prototype.elementAttached = function () {
 	        this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0].$c, {
-	            select: this._onTabListSelect,
-	            deselect: this._onTabListDeselect
+	            '<opal-tab>select': this._onTabListSelect,
+	            '<opal-tab>deselect': this._onTabListDeselect
 	        });
 	    };
 	    OpalTabs.prototype._onTabListSelect = function (evt) {

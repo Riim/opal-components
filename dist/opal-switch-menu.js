@@ -104,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bemlTemplate: 'rt-content/content (no-clone)',
 	        events: {
 	            ':component': {
-	                check: function (evt) {
+	                '<opal-button>check': function (evt) {
 	                    var checkedButton = evt.target;
 	                    forEach.call(this.buttons, function (btn) {
 	                        if (btn.$c != checkedButton) {
@@ -114,7 +114,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this._checkedButton = checkedButton;
 	                    this.emit('change');
 	                },
-	                uncheck: function (evt) {
+	                '<opal-button>uncheck': function (evt) {
 	                    evt.target.check();
 	                }
 	            }

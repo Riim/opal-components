@@ -17,7 +17,7 @@ let filter = Array.prototype.filter;
 
 	events: {
 		':component': {
-			'remove-row-click'(evt: IEvent) {
+			'<opal-multirow-row>remove-row-click'(evt: IEvent) {
 				let row = evt.target as OpalMultirowRow;
 
 				if (row.props['preset']) {
@@ -35,7 +35,7 @@ let filter = Array.prototype.filter;
 				}, 1);
 			},
 
-			'add-row-click'() {
+			'<opal-multirow-row>add-row-click'() {
 				this._newRows.add({ key: nextUID() });
 
 				setTimeout(() => {

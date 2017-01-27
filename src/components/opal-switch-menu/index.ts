@@ -13,7 +13,7 @@ let find = (Array.prototype as any).find;
 
 	events: {
 		':component': {
-			check(evt: IEvent) {
+			'<opal-button>check'(evt: IEvent) {
 				let checkedButton = evt.target as OpalButton;
 
 				forEach.call(this.buttons, (btn: IComponentElement) => {
@@ -27,7 +27,7 @@ let find = (Array.prototype as any).find;
 				this.emit('change');
 			},
 
-			uncheck(evt: IEvent) {
+			'<opal-button>uncheck'(evt: IEvent) {
 				(evt.target as OpalButton).check();
 			}
 		}

@@ -497,7 +497,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                close: function () {
 	                    this.close();
 	                },
-	                'input-confirm': function (evt) {
+	                '<opal-text-input>input-confirm': function (evt) {
 	                    if (!this.props['allowInput']) {
 	                        return;
 	                    }
@@ -538,7 +538,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                    var _a;
 	                },
-	                change: function (evt) {
+	                '<*>change': function (evt) {
 	                    if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
 	                        return;
 	                    }
@@ -546,16 +546,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this._updateOptions();
 	                    return false;
 	                },
-	                select: function (_a) {
-	                    var selectedOption = _a.target;
-	                    if (!(selectedOption instanceof opal_select_option_1.default)) {
-	                        return;
-	                    }
+	                '<opal-select-option>select': function (evt) {
 	                    var vm = this.viewModel;
-	                    var vmItem = (_b = {},
-	                        _b[this._viewModelItemValueFieldName] = selectedOption.value,
-	                        _b[this._viewModelItemTextFieldName] = selectedOption.text,
-	                        _b);
+	                    var vmItem = (_a = {},
+	                        _a[this._viewModelItemValueFieldName] = evt.target.value,
+	                        _a[this._viewModelItemTextFieldName] = evt.target.text,
+	                        _a);
 	                    if (this.props['multiple']) {
 	                        vm.add(vmItem);
 	                    }
@@ -570,18 +566,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        this.focus();
 	                        this.emit('change');
 	                    }
-	                    var _b;
+	                    var _a;
 	                },
-	                deselect: function (_a) {
-	                    var deselectedOption = _a.target;
-	                    if (!(deselectedOption instanceof opal_select_option_1.default)) {
-	                        return;
-	                    }
+	                '<opal-select-option>deselect': function (evt) {
 	                    if (this.props['multiple']) {
-	                        this.viewModel.remove(this.viewModel.get(deselectedOption.value, this._viewModelItemValueFieldName));
+	                        this.viewModel.remove(this.viewModel.get(evt.target.value, this._viewModelItemValueFieldName));
 	                    }
 	                    else {
-	                        deselectedOption.select();
+	                        evt.target.select();
 	                        this.close();
 	                        this.focus();
 	                    }

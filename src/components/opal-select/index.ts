@@ -140,7 +140,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				this.close();
 			},
 
-			'input-confirm'(evt: IEvent) {
+			'<opal-text-input>input-confirm'(evt: IEvent) {
 				if (!this.props['allowInput']) {
 					return;
 				}
@@ -192,7 +192,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				}
 			},
 
-			change(evt: IEvent) {
+			'<*>change'(evt: IEvent) {
 				if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
 					return;
 				}
@@ -203,15 +203,11 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				return false;
 			},
 
-			select({ target: selectedOption }) {
-				if (!(selectedOption instanceof OpalSelectOption)) {
-					return;
-				}
-
+			'<opal-select-option>select'(evt: IEvent) {
 				let vm = this.viewModel;
 				let vmItem = {
-					[this._viewModelItemValueFieldName]: selectedOption.value,
-					[this._viewModelItemTextFieldName]: selectedOption.text
+					[this._viewModelItemValueFieldName]: (evt.target as OpalSelectOption).value,
+					[this._viewModelItemTextFieldName]: (evt.target as OpalSelectOption).text
 				};
 
 				if (this.props['multiple']) {
@@ -230,17 +226,13 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				}
 			},
 
-			deselect({ target: deselectedOption }) {
-				if (!(deselectedOption instanceof OpalSelectOption)) {
-					return;
-				}
-
+			'<opal-select-option>deselect'(evt: IEvent) {
 				if (this.props['multiple']) {
 					this.viewModel.remove(
-						this.viewModel.get(deselectedOption.value, this._viewModelItemValueFieldName)
+						this.viewModel.get((evt.target as OpalSelectOption).value, this._viewModelItemValueFieldName)
 					);
 				} else {
-					deselectedOption.select();
+					(evt.target as OpalSelectOption).select();
 
 					this.close();
 					this.focus();

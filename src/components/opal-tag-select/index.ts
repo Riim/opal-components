@@ -50,7 +50,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		},
 
 		select: {
-			'input-confirm'() {
+			'<opal-text-input>input-confirm'() {
 				let select = this.$('select') as OpalSelect;
 
 				if (select.props['allowInput']) {
@@ -60,11 +60,11 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 			// не соединять on-select и on-deselect в on-change,
 			// тк on-change на opal-select[multiple] генерируется только при закрытии
-			select() {
+			'<opal-select-option>select'() {
 				(this.$('select') as OpalSelect).close();
 			},
 
-			deselect() {
+			'<opal-select-option>deselect'() {
 				(this.$('select') as OpalSelect).close();
 			}
 		}

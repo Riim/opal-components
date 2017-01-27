@@ -88,7 +88,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        elementIs: 'opal-radio-group',
 	        events: {
 	            ':component': {
-	                check: function (evt) {
+	                '<opal-radio-button>check': function (evt) {
 	                    var checkedButton = evt.target;
 	                    forEach.call(this.buttons, function (btn) {
 	                        if (btn.$c != checkedButton) {
@@ -96,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        }
 	                    });
 	                },
-	                uncheck: function (evt) {
+	                '<opal-radio-button>uncheck': function (evt) {
 	                    evt.target.check();
 	                }
 	            }
