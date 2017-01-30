@@ -2,5 +2,5 @@ label/label {
 	input/input (type=checkbox)
 	span/control (tabindex={_tabIndex}) { span/thumb }
 	' '
-	rt-content/content (no-clone)
+	rt-content/content (cloning=no)
 }

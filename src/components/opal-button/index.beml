@@ -1,3 +1,3 @@
 button/control (type={props.controlType}, name={props.inputName}, tabindex={_tabIndex}) {
-	rt-content/content (no-clone)
+	rt-content/content (cloning=no)
 }

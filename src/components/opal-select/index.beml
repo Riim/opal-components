@@ -1,4 +1,4 @@
-rt-content (select=.opal-select__button, no-clone) {
+rt-content (select=.opal-select__button, cloning=no) {
 	opal-button/button (
 		type={props.type},
 		size={props.size},
@@ -13,9 +13,9 @@ rt-content (select=.opal-select__button, no-clone) {
 	}
 }
 
-rt-content (select=.opal-select__menu, no-clone) {
+rt-content (select=.opal-select__menu, cloning=no) {
 	opal-dropdown/menu (auto-closing) {
-		rt-content (select=.opal-select__menu-content, no-clone) {
+		rt-content (select=.opal-select__menu-content, cloning=no) {
 			template (is=rt-if-then, if=props.datalist) {
 				div (class=opal-select__menu-content) {
 					template (is=rt-if-then, if=dataList.length) {

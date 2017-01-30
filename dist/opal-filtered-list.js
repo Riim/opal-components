@@ -109,7 +109,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 28:
 /***/ function(module, exports) {
 
-	module.exports = "rt-content/query-input-container (select=.opal-filtered-list__query-input, no-clone) {\nopal-text-input/query-input\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__loaded-list, no-clone)"
+	module.exports = "rt-content/query-input-container (select=.opal-filtered-list__query-input, cloning=no) {\nopal-text-input/query-input\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__loaded-list, cloning=no)"
 
 /***/ },
 

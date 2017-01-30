@@ -209,7 +209,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 31:
 /***/ function(module, exports) {
 
-	module.exports = "div/window {\nspan/btn-close-wrapper {\nbutton/btn-close\n}\nrt-content/content (no-clone)\n}"
+	module.exports = "div/window {\nspan/btn-close-wrapper {\nbutton/btn-close\n}\nrt-content/content (cloning=no)\n}"
 
 /***/ },
 

@@ -187,7 +187,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            autoHeight: true,
 	            autoClosing: false
 	        },
-	        bemlTemplate: 'rt-content/content (no-clone)'
+	        bemlTemplate: 'rt-content/content (cloning=no)'
 	    })
 	], OpalDropdown);
 	Object.defineProperty(exports, "__esModule", { value: true });

@@ -191,7 +191,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalTabList = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-tab-list',
-	        bemlTemplate: 'rt-content/content (no-clone)'
+	        bemlTemplate: 'rt-content/content (cloning=no)'
 	    })
 	], OpalTabList);
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -365,7 +365,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        props: {
 	            shown: false
 	        },
-	        bemlTemplate: 'rt-content/content (no-clone)'
+	        bemlTemplate: 'rt-content/content (cloning=no)'
 	    })
 	], OpalTabPanel);
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -377,14 +377,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 40:
 /***/ function(module, exports) {
 
-	module.exports = "rt-content/tab-list-container (select=opal-tab-list, no-clone) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab, no-clone)\n}\n}\nrt-content/panels (select=opal-tab-panel, no-clone)"
+	module.exports = "rt-content/tab-list-container (select=opal-tab-list, cloning=no) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab, cloning=no)\n}\n}\nrt-content/panels (select=opal-tab-panel, cloning=no)"
 
 /***/ },
 
 /***/ 41:
 /***/ function(module, exports) {
 
-	module.exports = "span/control (tabindex={_tabIndex}) {\nrt-content/content (no-clone)\n}"
+	module.exports = "span/control (tabindex={_tabIndex}) {\nrt-content/content (cloning=no)\n}"
 
 /***/ },
 

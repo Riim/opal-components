@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalSwitchMenu = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-switch-menu',
-	        bemlTemplate: 'rt-content/content (no-clone)',
+	        bemlTemplate: 'rt-content/content (cloning=no)',
 	        events: {
 	            ':component': {
 	                '<opal-button>check': function (evt) {

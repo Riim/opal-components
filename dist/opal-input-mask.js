@@ -363,7 +363,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        props: {
 	            mask: { type: String, required: true }
 	        },
-	        bemlTemplate: 'rt-content/content (no-clone)'
+	        bemlTemplate: 'rt-content/content (cloning=no)'
 	    })
 	], OpalInputMask);
 	Object.defineProperty(exports, "__esModule", { value: true });

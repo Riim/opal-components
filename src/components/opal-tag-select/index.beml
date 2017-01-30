@@ -32,7 +32,7 @@ span/control {
 		opal-sign-button/button (class=opal-select__button, sign=plus, checkable)
 
 		opal-popover/menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {
-			rt-content (select='.opal-select__menu-content', no-clone) {
+			rt-content (select='.opal-select__menu-content', cloning=no) {
 				template (is=rt-if-then, if=props.datalist) {
 					div (class=opal-select__menu-content) {
 						template (is=rt-if-then, if=dataList.length) {

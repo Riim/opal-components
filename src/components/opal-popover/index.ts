@@ -11,7 +11,7 @@ import { IDisposableListening, Component, d } from 'rionite';
 		autoClosing: false
 	},
 
-	bemlTemplate: 'span/arrow rt-content/content (no-clone)'
+	bemlTemplate: 'span/arrow rt-content/content (cloning=no)'
 })
 export default class OpalPopover extends Component {
 	_documentClickListening: IDisposableListening;

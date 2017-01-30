@@ -2,7 +2,7 @@ rt-content/preset-rows-container (
 	select='opal-multirow-row[preset], .opal-multirow__preset-rows',
 	not-have-new-rows={_notHaveNewRows},
 	not-single-row={_notSingleRow},
-	no-clone
+	cloning=no
 )
 
 div/new-rows (not-have-preset-rows={_notHavePresetRows}, not-single-row={_notSingleRow}) {

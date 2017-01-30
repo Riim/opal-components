@@ -926,7 +926,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 26:
 /***/ function(module, exports) {
 
-	module.exports = "opal-tabs {\nopal-tab { 'HTML' }\nopal-tab-panel {\npre/html-code-wrapper { code/html-code }\n}\nopal-tab { 'JS' }\nopal-tab-panel {\npre/js-code-wrapper { code/js-code }\n}\n}\nrt-content/example-html-container (select=.opal-code-listing__example-html, no-clone)\nrt-content/example-js-container (select=.opal-code-listing__example-js, no-clone)"
+	module.exports = "opal-tabs {\nopal-tab { 'HTML' }\nopal-tab-panel {\npre/html-code-wrapper { code/html-code }\n}\nopal-tab { 'JS' }\nopal-tab-panel {\npre/js-code-wrapper { code/js-code }\n}\n}\nrt-content/example-html-container (select=.opal-code-listing__example-html, cloning=no)\nrt-content/example-js-container (select=.opal-code-listing__example-js, cloning=no)"
 
 /***/ },
 

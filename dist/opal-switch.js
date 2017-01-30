@@ -214,7 +214,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 39:
 /***/ function(module, exports) {
 
-	module.exports = "label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content (no-clone)\n}"
+	module.exports = "label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content (cloning=no)\n}"
 
 /***/ },
 

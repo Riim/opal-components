@@ -142,7 +142,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            opened: false,
 	            autoClosing: false
 	        },
-	        bemlTemplate: 'span/arrow rt-content/content (no-clone)'
+	        bemlTemplate: 'span/arrow rt-content/content (cloning=no)'
 	    })
 	], OpalPopover);
 	Object.defineProperty(exports, "__esModule", { value: true });

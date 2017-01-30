@@ -9,7 +9,7 @@ import { Component, d } from 'rionite';
 		shown: false
 	},
 
-	bemlTemplate: 'rt-content/content (no-clone)'
+	bemlTemplate: 'rt-content/content (cloning=no)'
 })
 export default class OpalTabPanel extends Component {
 }

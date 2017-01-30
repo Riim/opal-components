@@ -1,4 +1,4 @@
-rt-content/content (no-clone)
+rt-content/content (cloning=no)
 ' '
 
 opal-sign-button/btn-remove-row (sign=minus)

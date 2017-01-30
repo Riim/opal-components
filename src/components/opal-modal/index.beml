@@ -3,5 +3,5 @@ div/window {
 		button/btn-close
 	}
 
-	rt-content/content (no-clone)
+	rt-content/content (cloning=no)
 }

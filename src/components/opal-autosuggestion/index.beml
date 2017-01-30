@@ -1,4 +1,4 @@
-rt-content (select=.opal-autosuggestion__input, no-clone) {
+rt-content (select=.opal-autosuggestion__input, cloning=no) {
 	opal-text-input/input (
 		value={props.selectedItem.text},
 		placeholder={constructor.i18n.inputPlaceholder},
