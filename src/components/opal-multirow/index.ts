@@ -61,10 +61,6 @@ export default class OpalMultirow extends Component {
 			_presetRowCount: 0,
 			_newRows: new IndexedList(undefined, { indexes: ['key'] }),
 
-			_notHavePresetRows(this: OpalMultirow): boolean {
-				return !this._presetRowCount;
-			},
-
 			_notHaveNewRows(this: OpalMultirow): boolean {
 				return !this._newRows.length;
 			},
