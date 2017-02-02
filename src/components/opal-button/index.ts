@@ -16,6 +16,7 @@ import template = require('./index.beml');
 		checked: false,
 		focused: false,
 		tabIndex: 0,
+		loading: false,
 		disabled: false
 	},
 
