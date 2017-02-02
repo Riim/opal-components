@@ -42,7 +42,7 @@
 
 	/* States */
 
-	&[type=action] {
+	&[type=primary] {
 		& .opal-button__control {
 			background: hsl(208,94%,54%);
 		}

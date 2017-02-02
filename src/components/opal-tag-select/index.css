@@ -98,7 +98,7 @@
 
 	/* States */
 
-	&[type=action] {
+	&[type=primary] {
 		& .opal-tag-select__tag {
 			background: hsl(208,100%,48%);
 		}
