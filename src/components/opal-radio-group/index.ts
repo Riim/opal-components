@@ -14,9 +14,9 @@ let forEach = Array.prototype.forEach;
 			'<opal-radio-button>check'(evt: IEvent) {
 				let checkedButton = evt.target;
 
-				forEach.call(this.buttons, (btn: IComponentElement) => {
-					if (btn.$c != checkedButton) {
-						(btn.$c as OpalRadioButton).uncheck();
+				forEach.call(this.buttonElements, (btnEl: IComponentElement) => {
+					if (btnEl.$c != checkedButton) {
+						(btnEl.$c as OpalRadioButton).uncheck();
 					}
 				});
 			},
@@ -30,9 +30,9 @@ let forEach = Array.prototype.forEach;
 export default class OpalRadioGroup extends Component {
 	static OpalRadioButton = OpalRadioButton;
 
-	buttons: NodeListOf<IComponentElement>;
+	buttonElements: NodeListOf<IComponentElement>;
 
 	ready() {
-		this.buttons = this.element.getElementsByClassName('opal-radio-button') as NodeListOf<IComponentElement>;
+		this.buttonElements = this.element.getElementsByClassName('opal-radio-button') as NodeListOf<IComponentElement>;
 	}
 }

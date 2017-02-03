@@ -16,9 +16,9 @@ let find = (Array.prototype as any).find;
 			'<opal-button>check'(evt: IEvent) {
 				let checkedButton = evt.target as OpalButton;
 
-				forEach.call(this.buttons, (btn: IComponentElement) => {
-					if (btn.$c != checkedButton) {
-						(btn.$c as OpalButton).uncheck();
+				forEach.call(this.buttonElements, (btnEl: IComponentElement) => {
+					if (btnEl.$c != checkedButton) {
+						(btnEl.$c as OpalButton).uncheck();
 					}
 				});
 
@@ -34,7 +34,8 @@ let find = (Array.prototype as any).find;
 	}
 })
 export default class OpalSwitchMenu extends Component {
-	buttons: NodeListOf<HTMLElement>;
+	buttonElements: NodeListOf<HTMLElement>;
+
 	_checkedButton: OpalButton | null;
 
 	get checkedButton(): OpalButton | null {
@@ -43,13 +44,33 @@ export default class OpalSwitchMenu extends Component {
 		}
 
 		return (this._checkedButton = find.call(
-			this.buttons,
-			(button: IComponentElement) => (button.$c as OpalButton).checked) || null
+			this.buttonElements,
+			(btnEl: IComponentElement) => (btnEl.$c as OpalButton).checked) || null
 		);
 	}
 
+	set checkedButton(checkedButton: OpalButton | null) {
+		if (checkedButton === this._checkedButton) {
+			return;
+		}
+
+		forEach.call(this.buttonElements, (btnEl: IComponentElement) => {
+			let btn = btnEl.$c as OpalButton;
+
+			if (btn === checkedButton) {
+				btn.check();
+			} else {
+				btn.uncheck();
+			}
+		});
+
+		this._checkedButton = checkedButton;
+
+		this.emit('change');
+	}
+
 	ready() {
-		this.buttons = this.element.getElementsByClassName('opal-button') as NodeListOf<HTMLElement>;
+		this.buttonElements = this.element.getElementsByClassName('opal-button') as NodeListOf<HTMLElement>;
 	}
 
 	clear() {

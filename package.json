@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.20.4",
+  "version": "0.20.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -49,7 +49,7 @@
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.0.2",
     "trim-lines-loader": "^0.1.0",
-    "typescript": "^2.1.5",
+    "typescript": "^2.2.0",
     "webpack": "^1.14.0",
     "yargs": "^6.6.0"
   },

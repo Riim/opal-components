@@ -56,11 +56,16 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var __extends = (this && this.__extends) || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-	};
+	var __extends = (this && this.__extends) || (function () {
+	    var extendStatics = Object.setPrototypeOf ||
+	        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+	        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+	    return function (d, b) {
+	        extendStatics(d, b);
+	        function __() { this.constructor = d; }
+	        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	    };
+	})();
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
 	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
 	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -81,13 +86,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (this._checkedButton !== undefined) {
 	                return this._checkedButton;
 	            }
-	            return (this._checkedButton = find.call(this.buttons, function (button) { return button.$c.checked; }) || null);
+	            return (this._checkedButton = find.call(this.buttonElements, function (btnEl) { return btnEl.$c.checked; }) || null);
+	        },
+	        set: function (checkedButton) {
+	            if (checkedButton === this._checkedButton) {
+	                return;
+	            }
+	            forEach.call(this.buttonElements, function (btnEl) {
+	                var btn = btnEl.$c;
+	                if (btn === checkedButton) {
+	                    btn.check();
+	                }
+	                else {
+	                    btn.uncheck();
+	                }
+	            });
+	            this._checkedButton = checkedButton;
+	            this.emit('change');
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
 	    OpalSwitchMenu.prototype.ready = function () {
-	        this.buttons = this.element.getElementsByClassName('opal-button');
+	        this.buttonElements = this.element.getElementsByClassName('opal-button');
 	    };
 	    OpalSwitchMenu.prototype.clear = function () {
 	        var checkedButton = this._checkedButton;
@@ -106,9 +127,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            ':component': {
 	                '<opal-button>check': function (evt) {
 	                    var checkedButton = evt.target;
-	                    forEach.call(this.buttons, function (btn) {
-	                        if (btn.$c != checkedButton) {
-	                            btn.$c.uncheck();
+	                    forEach.call(this.buttonElements, function (btnEl) {
+	                        if (btnEl.$c != checkedButton) {
+	                            btnEl.$c.uncheck();
 	                        }
 	                    });
 	                    this._checkedButton = checkedButton;
