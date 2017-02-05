@@ -18,6 +18,12 @@ import { Component, d } from 'rionite';
 	},
 
 	events: {
+		':component': {
+			'change:_tabIndex'() {
+				this.element.tabIndex = this._tabIndex;
+			}
+		},
+
 		':element': {
 			focusin(evt: Event) {
 				this.props['focused'] = true;
@@ -59,17 +65,12 @@ export default class OpalButton extends Component {
 
 	elementAttached() {
 		this.element.tabIndex = this._tabIndex;
-		this.listenTo(this, 'change:_tabIndex', this._onTabIndexChange);
 	}
 
 	propertyChanged(name: string, value: any) {
 		if (name == 'focused') {
 			this[value ? 'focus' : 'blur']();
 		}
-	}
-
-	_onTabIndexChange() {
-		this.element.tabIndex = this._tabIndex;
 	}
 
 	get checked(): boolean {

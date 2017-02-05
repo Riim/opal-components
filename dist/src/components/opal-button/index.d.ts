@@ -6,7 +6,6 @@ export default class OpalButton extends Component {
     ready(): void;
     elementAttached(): void;
     propertyChanged(name: string, value: any): void;
-    _onTabIndexChange(): void;
     checked: boolean;
     check(): boolean;
     uncheck(): boolean;

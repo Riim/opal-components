@@ -95,15 +95,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalButton.prototype.elementAttached = function () {
 	        this.element.tabIndex = this._tabIndex;
-	        this.listenTo(this, 'change:_tabIndex', this._onTabIndexChange);
 	    };
 	    OpalButton.prototype.propertyChanged = function (name, value) {
 	        if (name == 'focused') {
 	            this[value ? 'focus' : 'blur']();
 	        }
-	    };
-	    OpalButton.prototype._onTabIndexChange = function () {
-	        this.element.tabIndex = this._tabIndex;
 	    };
 	    Object.defineProperty(OpalButton.prototype, "checked", {
 	        get: function () {
@@ -164,6 +160,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            disabled: false
 	        },
 	        events: {
+	            ':component': {
+	                'change:_tabIndex': function () {
+	                    this.element.tabIndex = this._tabIndex;
+	                }
+	            },
 	            ':element': {
 	                focusin: function (evt) {
 	                    this.props['focused'] = true;
