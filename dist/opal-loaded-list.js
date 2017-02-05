@@ -72,10 +72,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(57);
+	__webpack_require__(56);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(30);
+	var template = __webpack_require__(29);
 	var mixin = cellx_1.Utils.mixin;
 	var OpalLoadedList = (function (_super) {
 	    __extends(OpalLoadedList, _super);
@@ -243,14 +243,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 30:
+/***/ 29:
 /***/ function(module, exports) {
 
 	module.exports = "div/list {\ntemplate (is=rt-repeat, for={props.itemAs} of list, strip) {\nrt-content/list-item (get-context=_getContentContext)\n}\n}\nopal-loader/loader (shown={loaderShown}, align-center={empty})\ndiv/not-found (shown={notFoundShown}) {\nspan/not-found-message { '{constructor.i18n.notFoundMessage}' }\n}"
 
 /***/ },
 
-/***/ 57:
+/***/ 56:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

@@ -147,7 +147,7 @@
 }
 
 @keyframes opal-button-loading-animation {
-    0% {
+	0% {
 		background-position: 0 0;
 	}
 	100% {

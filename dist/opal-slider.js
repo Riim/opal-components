@@ -72,10 +72,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(68);
+	__webpack_require__(67);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(38);
+	var template = __webpack_require__(37);
 	var OpalSlider = (function (_super) {
 	    __extends(OpalSlider, _super);
 	    function OpalSlider() {
@@ -169,14 +169,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 38:
+/***/ 37:
 /***/ function(module, exports) {
 
 	module.exports = "template (is=rt-if-then, if=props.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%;) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={props.min},\nmax={props.max},\nstep={props.step},\nvalue={props.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={props.min}, max={props.max}, step={props.step}, value={props.range.1})\n}\n}\ntemplate (is=rt-if-else, if=props.range) {\ninput/input (type=range, min={props.min}, max={props.max}, step={props.step}, value={props.value})\n}"
 
 /***/ },
 
-/***/ 68:
+/***/ 67:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

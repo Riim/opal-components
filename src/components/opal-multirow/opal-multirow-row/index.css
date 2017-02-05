@@ -1,6 +1,6 @@
 .opal-multirow-row {
 	display: block;
-    white-space: nowrap;
+	white-space: nowrap;
 
 	&::after {
 		display: table;

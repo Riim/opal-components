@@ -72,10 +72,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(70);
+	__webpack_require__(69);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(39);
+	var template = __webpack_require__(38);
 	var OpalSwitch = (function (_super) {
 	    __extends(OpalSwitch, _super);
 	    function OpalSwitch() {
@@ -216,14 +216,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 39:
+/***/ 38:
 /***/ function(module, exports) {
 
 	module.exports = "label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content (cloning=no)\n}"
 
 /***/ },
 
-/***/ 70:
+/***/ 69:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

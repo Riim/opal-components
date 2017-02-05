@@ -72,9 +72,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(52);
+	__webpack_require__(51);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(28);
+	var template = __webpack_require__(27);
 	var OpalFilteredList = (function (_super) {
 	    __extends(OpalFilteredList, _super);
 	    function OpalFilteredList() {
@@ -111,14 +111,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 28:
+/***/ 27:
 /***/ function(module, exports) {
 
 	module.exports = "rt-content/query-input-container (select=.opal-filtered-list__query-input, cloning=no) {\nopal-text-input/query-input\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__loaded-list, cloning=no)"
 
 /***/ },
 
-/***/ 52:
+/***/ 51:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

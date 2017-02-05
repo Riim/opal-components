@@ -72,9 +72,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(59);
+	__webpack_require__(58);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(31);
+	var template = __webpack_require__(30);
 	var openedModals = [];
 	var documentListening;
 	function onDocumentFocusIn() {
@@ -211,14 +211,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 31:
+/***/ 30:
 /***/ function(module, exports) {
 
 	module.exports = "div/window {\nspan/btn-close-wrapper {\nbutton/btn-close\n}\nrt-content/content (cloning=no)\n}"
 
 /***/ },
 
-/***/ 59:
+/***/ 58:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

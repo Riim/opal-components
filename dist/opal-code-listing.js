@@ -72,11 +72,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
+	__webpack_require__(47);
 	__webpack_require__(48);
-	__webpack_require__(49);
 	var rionite_1 = __webpack_require__(1);
 	var Prism = __webpack_require__(21);
-	var template = __webpack_require__(26);
+	var template = __webpack_require__(25);
 	function prepareCode(code, isHtml) {
 	    code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
 	    var tabs = code.match(/^\t*[^\t\r\n]/gm);
@@ -928,14 +928,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 26:
+/***/ 25:
 /***/ function(module, exports) {
 
 	module.exports = "opal-tabs {\nopal-tab { 'HTML' }\nopal-tab-panel {\npre/html-code-wrapper { code/html-code }\n}\nopal-tab { 'JS' }\nopal-tab-panel {\npre/js-code-wrapper { code/js-code }\n}\n}\nrt-content/example-html-container (select=.opal-code-listing__example-html, cloning=no)\nrt-content/example-js-container (select=.opal-code-listing__example-js, cloning=no)"
 
 /***/ },
 
-/***/ 48:
+/***/ 47:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -953,7 +953,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 49:
+/***/ 48:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

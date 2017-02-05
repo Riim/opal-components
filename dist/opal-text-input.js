@@ -72,10 +72,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(76);
+	__webpack_require__(75);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(43);
+	var template = __webpack_require__(42);
 	var OpalTextInput = (function (_super) {
 	    __extends(OpalTextInput, _super);
 	    function OpalTextInput() {
@@ -251,14 +251,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 43:
+/***/ 42:
 /***/ function(module, exports) {
 
 	module.exports = "template (is=rt-if-then, if=props.multiline) {\ntextarea (\nclass=opal-text-input__text-field,\nrows={props.rows},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\ntemplate (is=rt-if-else, if=props.multiline) {\ninput (\nclass=opal-text-input__text-field,\ntype={props.inputType},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\ntemplate (is=rt-if-then, if=props.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)\n}\ntemplate (is=rt-if-then, if=props.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}"
 
 /***/ },
 
-/***/ 76:
+/***/ 75:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

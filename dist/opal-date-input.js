@@ -72,10 +72,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(50);
+	__webpack_require__(49);
 	var rionite_1 = __webpack_require__(1);
 	var date_exists_1 = __webpack_require__(20);
-	var template = __webpack_require__(27);
+	var template = __webpack_require__(26);
 	var OpalDateInput = (function (_super) {
 	    __extends(OpalDateInput, _super);
 	    function OpalDateInput() {
@@ -182,14 +182,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 27:
+/***/ 26:
 /***/ function(module, exports) {
 
 	module.exports = "opal-input-validator/input-validator {\ntemplate (is=rt-if-then, if=props.required, rt-silent) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-to={props.popoverTo}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={props.popoverTo}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (test=dateInRange, popover-to={props.popoverTo}) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={props.mask}) {\nopal-text-input/input (\nclass=opal-input-validator__input opal-input-mask__input,\nvalue={props.value},\nplaceholder={props.placeholder}\n)\n}\n}\nopal-dropdown/calendar-menu (auto-closing) {\nopal-calendar/calendar (date-delimiter=.)\n}"
 
 /***/ },
 
-/***/ 50:
+/***/ 49:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

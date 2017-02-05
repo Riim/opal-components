@@ -72,11 +72,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(71);
+	__webpack_require__(70);
 	var rionite_1 = __webpack_require__(1);
 	var opal_tab_list_1 = __webpack_require__(11);
 	var opal_tab_panel_1 = __webpack_require__(13);
-	var template = __webpack_require__(40);
+	var template = __webpack_require__(39);
 	var opal_tab_list_2 = __webpack_require__(11);
 	exports.OpalTab = opal_tab_list_2.OpalTab;
 	exports.OpalTabList = opal_tab_list_2.default;
@@ -185,7 +185,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(72);
+	__webpack_require__(71);
 	var rionite_1 = __webpack_require__(1);
 	var opal_tab_1 = __webpack_require__(12);
 	var opal_tab_2 = __webpack_require__(12);
@@ -230,10 +230,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(73);
+	__webpack_require__(72);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(41);
+	var template = __webpack_require__(40);
 	var OpalTab = (function (_super) {
 	    __extends(OpalTab, _super);
 	    function OpalTab() {
@@ -370,7 +370,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(74);
+	__webpack_require__(73);
 	var rionite_1 = __webpack_require__(1);
 	var OpalTabPanel = (function (_super) {
 	    __extends(OpalTabPanel, _super);
@@ -394,21 +394,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 40:
+/***/ 39:
 /***/ function(module, exports) {
 
 	module.exports = "rt-content/tab-list-container (select=opal-tab-list, cloning=no) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab, cloning=no)\n}\n}\nrt-content/panels (select=opal-tab-panel, cloning=no)"
 
 /***/ },
 
-/***/ 41:
+/***/ 40:
 /***/ function(module, exports) {
 
 	module.exports = "span/control (tabindex={_tabIndex}) {\nrt-content/content (cloning=no)\n}"
 
 /***/ },
 
-/***/ 71:
+/***/ 70:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -426,7 +426,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 72:
+/***/ 71:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -444,7 +444,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 73:
+/***/ 72:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -462,7 +462,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 74:
+/***/ 73:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

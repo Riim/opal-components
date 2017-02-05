@@ -72,7 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(55);
+	__webpack_require__(54);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
 	var opal_input_validator_rule_1 = __webpack_require__(6);
@@ -192,9 +192,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(56);
+	__webpack_require__(55);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(29);
+	var template = __webpack_require__(28);
 	var OpalInputValidatorRule = (function (_super) {
 	    __extends(OpalInputValidatorRule, _super);
 	    function OpalInputValidatorRule() {
@@ -227,14 +227,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 29:
+/***/ 28:
 /***/ function(module, exports) {
 
 	module.exports = "opal-popover/popover (to={props.popoverTo}) {\nrt-content/content (cloning=no)\n}"
 
 /***/ },
 
-/***/ 55:
+/***/ 54:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -252,7 +252,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 56:
+/***/ 55:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {

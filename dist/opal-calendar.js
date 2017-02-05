@@ -72,13 +72,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
-	__webpack_require__(46);
-	__webpack_require__(77);
+	__webpack_require__(45);
+	__webpack_require__(76);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
 	var parseDate_1 = __webpack_require__(15);
 	var formatDate_1 = __webpack_require__(14);
-	var template = __webpack_require__(24);
+	var template = __webpack_require__(23);
 	var OpalCalendar = OpalCalendar_1 = (function (_super) {
 	    __extends(OpalCalendar, _super);
 	    function OpalCalendar() {
@@ -363,14 +363,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 24:
+/***/ 23:
 /***/ function(module, exports) {
 
 	module.exports = "header/header {\nbutton/btn-prev-month (disabled={btnPrevMonthDisabled}) {\nsvg/icon-arrow-left (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/s-month (size=s, value=['{shownMonth}']) {\ntemplate (class=opal-select__menu-content, is=rt-repeat, for=month of constructor.i18n.months, rt-silent) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/s-year (size=s, value=['{shownYear}']) {\ntemplate (class=opal-select__menu-content, is=rt-repeat, for=year of years, rt-silent) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={btnNextMonthDisabled}) {\nsvg/icon-arrow-right (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ntable/week-days {\ntr/week-days-row {\ntemplate (is=rt-repeat, for=weekDay of weekDaysShort, rt-silent) {\ntd/week-day { '{weekDay}' }\n}\n}\n}\ntable/days {\ntemplate (is=rt-repeat, for=weekDays of days, rt-silent) {\ntr/days-row {\ntemplate (is=rt-repeat, for=day of weekDays, rt-silent) {\ntd/day (\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date},\nrt-click=_onDayClick\n) { '{day.value}' }\n}\n}\n}\n}\n}"
 
 /***/ },
 
-/***/ 46:
+/***/ 45:
 /***/ function(module, exports) {
 
 	module.exports = (function(d) {
@@ -388,7 +388,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 77:
+/***/ 76:
 /***/ function(module, exports) {
 
 	(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 28\" id=\"opal-components__icon-arrow-left\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M14 2L2 14l12 12M2 14h28\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
