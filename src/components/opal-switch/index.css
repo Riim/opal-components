@@ -29,7 +29,7 @@
 				height: 20px;
 				border-radius: 50%;
 				background: hsl(208,18%,40%);
-				transition: background .1s, transform .1s;
+				transition: background .1s linear, transform .1s linear;
 			}
 
 		& .opal-switch__content {

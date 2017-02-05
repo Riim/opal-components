@@ -19,7 +19,7 @@
 			border: 2px solid;
 			border-radius: 50%;
 			vertical-align: middle;
-			transition: background .1s;
+			transition: background .1s linear;
 		}
 			& .opal-sign-button__sign::before,
 			& .opal-sign-button__sign::after {
@@ -31,7 +31,7 @@
 				margin: auto;
 				width: 12px;
 				height: 2px;
-				transition: background .1s;
+				transition: background .1s linear;
 			}
 
 			& .opal-sign-button__sign::after {

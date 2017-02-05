@@ -59,7 +59,7 @@
 					border-radius: 2px;
 					background: hsl(0,0%,90%);
 					content: '';
-					transition: background .1s;
+					transition: background .1s linear;
 					transform: rotate(45deg);
 				}
 

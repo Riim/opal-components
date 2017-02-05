@@ -43,7 +43,7 @@
 		background: transparent;
 		opacity: .5;
 		cursor: pointer;
-		transition: opacity .1s;
+		transition: opacity .1s linear;
 	}
 		& .opal-text-input__btn-clear::before,
 		& .opal-text-input__btn-clear::after {

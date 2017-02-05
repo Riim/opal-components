@@ -18,7 +18,7 @@
 	text-shadow: none;
 	font: 16px/24px Verdana, Geneva, sans-serif;
 	font-weight: normal;
-	transition: background .1s;
+	transition: background .1s linear;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;

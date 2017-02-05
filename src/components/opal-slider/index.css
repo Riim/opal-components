@@ -80,7 +80,7 @@
 						border-radius: 50%;
 						background: hsl(208,18%,40%);
 						cursor: pointer;
-						transition: background .1s;
+						transition: background .1s linear;
 						-webkit-appearance: none;
 					}
 					& .opal-slider__first-input::-moz-range-thumb {
@@ -91,7 +91,7 @@
 						border-radius: 50%;
 						background: hsl(208,18%,40%);
 						cursor: pointer;
-						transition: background .1s;
+						transition: background .1s linear;
 					}
 					& .opal-slider__first-input::-ms-thumb {
 						position: relative;
@@ -101,7 +101,7 @@
 						border-radius: 50%;
 						background: hsl(208,18%,40%);
 						cursor: pointer;
-						transition: background .1s;
+						transition: background .1s linear;
 					}
 
 					& .opal-slider__second-input::-moz-focus-outer {
@@ -132,7 +132,7 @@
 						border-radius: 50%;
 						background: hsl(208,94%,54%);
 						cursor: pointer;
-						transition: background .1s;
+						transition: background .1s linear;
 						-webkit-appearance: none;
 					}
 					& .opal-slider__second-input::-moz-range-thumb {
@@ -143,7 +143,7 @@
 						border-radius: 50%;
 						background: hsl(208,94%,54%);
 						cursor: pointer;
-						transition: background .1s;
+						transition: background .1s linear;
 					}
 					& .opal-slider__second-input::-ms-thumb {
 						position: relative;
@@ -153,7 +153,7 @@
 						border-radius: 50%;
 						background: hsl(208,94%,54%);
 						cursor: pointer;
-						transition: background .1s;
+						transition: background .1s linear;
 					}
 
 	& .opal-slider__input {
@@ -195,7 +195,7 @@
 			border-radius: 50%;
 			background: hsl(208,18%,40%);
 			cursor: pointer;
-			transition: background .1s;
+			transition: background .1s linear;
 			-webkit-appearance: none;
 		}
 
@@ -207,7 +207,7 @@
 			border-radius: 50%;
 			background: hsl(208,18%,40%);
 			cursor: pointer;
-			transition: background .1s;
+			transition: background .1s linear;
 		}
 
 		& .opal-slider__input::-ms-thumb {
@@ -218,7 +218,7 @@
 			border-radius: 50%;
 			background: hsl(208,18%,40%);
 			cursor: pointer;
-			transition: background .1s;
+			transition: background .1s linear;
 		}
 
 	/* States */

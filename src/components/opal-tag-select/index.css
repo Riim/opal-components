@@ -33,7 +33,7 @@
 				background: hsl(208,16%,38%);
 				box-shadow: inset 1px 0 rgba(0,0,0,.4);
 				cursor: pointer;
-				transition: background .1s;
+				transition: background .1s linear;
 			}
 				& .opal-tag-select__btn-remove-tag::before {
 					position: absolute;
