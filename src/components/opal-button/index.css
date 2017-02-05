@@ -66,9 +66,9 @@
 	&[loading] {
 		background-image: linear-gradient(
 			135deg,
-			rgba(255,255,255,.3) 0, rgba(255,255,255,.3) 25%,
+			rgba(255,255,255,.35) 0, rgba(255,255,255,.35) 25%,
 			transparent 25%, transparent 50%,
-			rgba(255,255,255,.3) 50%, rgba(255,255,255,.3) 75%,
+			rgba(255,255,255,.35) 50%, rgba(255,255,255,.35) 75%,
 			transparent 75%, transparent 100%
 		);
 		background-size: 30px 30px;
@@ -116,12 +116,12 @@
 		background: hsl(208,94%,54%);
 
 		&:hover {
-			background: hsl(208,100%,60%);
+			background-color: hsl(208,100%,60%);
 		}
 
 		&:active,
 		&[checked] {
-			background: hsl(208,82%,42%);
+			background-color: hsl(208,82%,42%);
 		}
 	}
 
@@ -129,12 +129,12 @@
 		background: hsl(348,92%,58%);
 
 		&:hover {
-			background: hsl(348,98%,64%);
+			background-color: hsl(348,98%,64%);
 		}
 
 		&:active,
 		&[checked] {
-			background: hsl(348,80%,46%);
+			background-color: hsl(348,80%,46%);
 		}
 	}
 
