@@ -175,6 +175,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.emit({ type: 'focusout', originalEvent: evt });
 	                },
 	                click: function (evt) {
+	                    if (this.props['disabled']) {
+	                        return;
+	                    }
 	                    if (this.props['checkable']) {
 	                        this.emit(this.toggle() ? 'check' : 'uncheck');
 	                    }

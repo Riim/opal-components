@@ -36,6 +36,10 @@ import { Component, d } from 'rionite';
 			},
 
 			click(evt: Event) {
+				if (this.props['disabled']) {
+					return;
+				}
+
 				if (this.props['checkable']) {
 					this.emit(this.toggle() ? 'check' : 'uncheck');
 				}
