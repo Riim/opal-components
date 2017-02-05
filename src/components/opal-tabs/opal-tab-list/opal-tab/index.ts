@@ -9,8 +9,8 @@ import template = require('./index.beml');
 
 	props: {
 		selected: false,
-		focused: false,
 		tabIndex: 0,
+		focused: false,
 		disabled: false
 	},
 

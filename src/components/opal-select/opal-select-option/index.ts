@@ -11,8 +11,8 @@ import template = require('./index.beml');
 		value: String,
 		text: { type: String, required: true },
 		selected: false,
-		focused: false,
 		tabIndex: 0,
+		focused: false,
 		disabled: false
 	},
 

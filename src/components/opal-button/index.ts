@@ -2,28 +2,23 @@ import './index.css';
 
 import { define } from 'cellx';
 import { Component, d } from 'rionite';
-import template = require('./index.beml');
 
 @d.Component<OpalButton>({
 	elementIs: 'opal-button',
 
 	props: {
-		type: String,
-		controlType: String,
+		viewType: 'default',
 		size: 'm',
-		inputName: String,
 		checkable: false,
 		checked: false,
-		focused: false,
-		tabIndex: 0,
 		loading: false,
+		tabIndex: 0,
+		focused: false,
 		disabled: false
 	},
 
-	bemlTemplate: template,
-
 	events: {
-		control: {
+		':element': {
 			focusin(evt: Event) {
 				this.props['focused'] = true;
 				this.emit({ type: 'focusin', originalEvent: evt });
@@ -35,13 +30,11 @@ import template = require('./index.beml');
 			},
 
 			click(evt: Event) {
-				if (!this.props['disabled']) {
-					if (this.props['checkable']) {
-						this.emit(this.toggle() ? 'check' : 'uncheck');
-					}
-
-					this.emit({ type: 'click', originalEvent: evt });
+				if (this.props['checkable']) {
+					this.emit(this.toggle() ? 'check' : 'uncheck');
 				}
+
+				this.emit({ type: 'click', originalEvent: evt });
 			}
 		}
 	}
@@ -59,14 +52,24 @@ export default class OpalButton extends Component {
 
 	ready() {
 		if (this.props['focused']) {
+			this.element.tabIndex = this._tabIndex;
 			this.focus();
 		}
+	}
+
+	elementAttached() {
+		this.element.tabIndex = this._tabIndex;
+		this.listenTo(this, 'change:_tabIndex', this._onTabIndexChange);
 	}
 
 	propertyChanged(name: string, value: any) {
 		if (name == 'focused') {
 			this[value ? 'focus' : 'blur']();
 		}
+	}
+
+	_onTabIndexChange() {
+		this.element.tabIndex = this._tabIndex;
 	}
 
 	get checked(): boolean {
@@ -99,12 +102,12 @@ export default class OpalButton extends Component {
 	}
 
 	focus(): OpalButton {
-		(this.$('control') as HTMLElement).focus();
+		this.element.focus();
 		return this;
 	}
 
 	blur(): OpalButton {
-		(this.$('control') as HTMLElement).blur();
+		this.element.blur();
 		return this;
 	}
 

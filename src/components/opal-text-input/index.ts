@@ -9,8 +9,8 @@ import template = require('./index.beml');
 
 	props: {
 		inputType: 'text',
-		multiline: false,
 		size: 'm',
+		multiline: false,
 		rows: 5,
 		autoHeight: true,
 		inputName: String,
@@ -19,8 +19,8 @@ import template = require('./index.beml');
 		placeholder: '',
 		clearable: false,
 		loading: false,
-		focused: false,
 		tabIndex: 0,
+		focused: false,
 		disabled: false
 	},
 

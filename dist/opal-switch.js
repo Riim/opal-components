@@ -171,8 +171,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        elementIs: 'opal-switch',
 	        props: {
 	            checked: false,
-	            focused: false,
 	            tabIndex: 0,
+	            focused: false,
 	            disabled: false
 	        },
 	        bemlTemplate: template,

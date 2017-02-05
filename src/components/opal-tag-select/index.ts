@@ -12,7 +12,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 	elementIs: 'opal-tag-select',
 
 	props: {
-		type: String,
+		viewType: String,
 		datalist: { type: String, readonly: true },
 		// необязательный, так как может указываться на передаваемом opal-loaded-list
 		dataprovider: { type: String, readonly: true },

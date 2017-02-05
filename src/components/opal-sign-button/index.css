@@ -1,7 +1,6 @@
 .opal-sign-button {
 	position: relative;
 	display: inline-block;
-	line-height: 0;
 
 	& .opal-sign-button__control {
 		display: inline-block;

@@ -98,7 +98,7 @@
 
 	/* States */
 
-	&[type=primary] {
+	&[view-type=primary] {
 		& .opal-tag-select__tag {
 			background: hsl(208,100%,48%);
 		}
@@ -115,7 +115,7 @@
 			}
 	}
 
-	&[type=danger] {
+	&[view-type=danger] {
 		& .opal-tag-select__tag {
 			background: hsl(348,96%,52%);
 		}

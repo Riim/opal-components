@@ -11,8 +11,8 @@ import template = require('./index.beml');
 		sign: { type: String, required: true },
 		checkable: false,
 		checked: false,
-		focused: false,
 		tabIndex: 0,
+		focused: false,
 		disabled: false
 	},
 

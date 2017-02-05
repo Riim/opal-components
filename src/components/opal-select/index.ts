@@ -29,7 +29,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 	elementIs: 'opal-select',
 
 	props: {
-		type: String,
+		viewType: String,
 		size: 'm',
 		datalist: { type: String, readonly: true },
 		value: Object,
@@ -39,8 +39,8 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		placeholder: getText.t('Не выбрано'),
 		multiple: { default: false, readonly: true },
 		allowInput: false,
-		focused: false,
 		tabIndex: 0,
+		focused: false,
 		disabled: false
 	},
 

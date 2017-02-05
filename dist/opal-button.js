@@ -75,7 +75,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(45);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(23);
 	var OpalButton = (function (_super) {
 	    __extends(OpalButton, _super);
 	    function OpalButton() {
@@ -90,13 +89,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalButton.prototype.ready = function () {
 	        if (this.props['focused']) {
+	            this.element.tabIndex = this._tabIndex;
 	            this.focus();
 	        }
+	    };
+	    OpalButton.prototype.elementAttached = function () {
+	        this.element.tabIndex = this._tabIndex;
+	        this.listenTo(this, 'change:_tabIndex', this._onTabIndexChange);
 	    };
 	    OpalButton.prototype.propertyChanged = function (name, value) {
 	        if (name == 'focused') {
 	            this[value ? 'focus' : 'blur']();
 	        }
+	    };
+	    OpalButton.prototype._onTabIndexChange = function () {
+	        this.element.tabIndex = this._tabIndex;
 	    };
 	    Object.defineProperty(OpalButton.prototype, "checked", {
 	        get: function () {
@@ -126,11 +133,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return (this.props['checked'] = value === undefined ? !this.props['checked'] : value);
 	    };
 	    OpalButton.prototype.focus = function () {
-	        this.$('control').focus();
+	        this.element.focus();
 	        return this;
 	    };
 	    OpalButton.prototype.blur = function () {
-	        this.$('control').blur();
+	        this.element.blur();
 	        return this;
 	    };
 	    OpalButton.prototype.enable = function () {
@@ -147,20 +154,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    rionite_1.d.Component({
 	        elementIs: 'opal-button',
 	        props: {
-	            type: String,
-	            controlType: String,
+	            viewType: 'default',
 	            size: 'm',
-	            inputName: String,
 	            checkable: false,
 	            checked: false,
-	            focused: false,
-	            tabIndex: 0,
 	            loading: false,
+	            tabIndex: 0,
+	            focused: false,
 	            disabled: false
 	        },
-	        bemlTemplate: template,
 	        events: {
-	            control: {
+	            ':element': {
 	                focusin: function (evt) {
 	                    this.props['focused'] = true;
 	                    this.emit({ type: 'focusin', originalEvent: evt });
@@ -170,12 +174,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.emit({ type: 'focusout', originalEvent: evt });
 	                },
 	                click: function (evt) {
-	                    if (!this.props['disabled']) {
-	                        if (this.props['checkable']) {
-	                            this.emit(this.toggle() ? 'check' : 'uncheck');
-	                        }
-	                        this.emit({ type: 'click', originalEvent: evt });
+	                    if (this.props['checkable']) {
+	                        this.emit(this.toggle() ? 'check' : 'uncheck');
 	                    }
+	                    this.emit({ type: 'click', originalEvent: evt });
 	                }
 	            }
 	        }
@@ -201,13 +203,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 23:
-/***/ function(module, exports) {
-
-	module.exports = "button/control (type={props.controlType}, name={props.inputName}, tabindex={_tabIndex}) {\nrt-content/content (cloning=no)\n}"
-
-/***/ },
-
 /***/ 45:
 /***/ function(module, exports) {
 
@@ -216,7 +211,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-button:not([type=clean]){display:inline-block;vertical-align:middle;line-height:0}.opal-button:not([type=clean]) .opal-button__control{position:relative;display:block;box-sizing:border-box;padding:7px 23px;width:100%;border:0;border-radius:3px;background:#546778;color:#fff;text-align:center;text-decoration:none;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;transition:background .1s;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-button:not([type=clean]) .opal-button__control::-moz-focus-inner{padding:0;border:0}.opal-button:not([type=clean]) .opal-button__content{position:relative;display:block}.opal-button:not([type=clean])[size=s] .opal-button__control{padding:4px 13px;font-size:14px;line-height:21px}.opal-button:not([type=clean]) .opal-button__control:hover{background:#597791}.opal-button:not([type=clean]) .opal-button__control:focus{outline:none}body:not(._no-focus-highlight) .opal-button:not([type=clean]) .opal-button__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:inherit;content:'';pointer-events:none}.opal-button:not([type=clean]) .opal-button__control:active,.opal-button:not([type=clean])[checked] .opal-button__control{background:#43484c}.opal-button:not([type=clean])[loading] .opal-button__control{background-image:linear-gradient(135deg,rgba(255,255,255,.3) 0,rgba(255,255,255,.3) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.3) 50%,rgba(255,255,255,.3) 75%,transparent 75%,transparent 100%);background-size:30px 30px;animation:opal-button-loading-animation 3s linear infinite}.opal-button:not([type=clean])[disabled]{opacity:.5;pointer-events:none}.opal-button:not([type=clean])[disabled] .opal-button__control{cursor:default}.opal-group .opal-group__content>.opal-button:not([type=clean]):not(:first-child) .opal-button__control,.opal-group .opal-group__content>:not(:first-child) .opal-button:not([type=clean]) .opal-button__control{border-top-left-radius:0;border-bottom-left-radius:0;box-shadow:inset 1px 0 rgba(0,0,0,.4)}.opal-group .opal-group__content>.opal-button:not([type=clean]):not(:last-child) .opal-button__control,.opal-group .opal-group__content>:not(:last-child) .opal-button:not([type=clean]) .opal-button__control{border-top-right-radius:0;border-bottom-right-radius:0}.opal-switch-menu .opal-button:not([type=clean]):not(:first-child) .opal-button__control{border-top-left-radius:0;border-bottom-left-radius:0;box-shadow:inset 1px 0 rgba(0,0,0,.4)}.opal-switch-menu .opal-button:not([type=clean]):not(:last-child) .opal-button__control{border-top-right-radius:0;border-bottom-right-radius:0}.opal-button[type=primary] .opal-button__control{background:#1b91f8}.opal-button[type=primary] .opal-button__control:hover{background:#33a0ff}.opal-button[type=primary] .opal-button__control:active,.opal-button[type=primary][checked] .opal-button__control{background:#1371c3}.opal-button[type=danger] .opal-button__control{background:#f63159}.opal-button[type=danger] .opal-button__control:hover{background:#fd496d}.opal-button[type=danger] .opal-button__control:active,.opal-button[type=danger][checked] .opal-button__control{background:#d3173d}.opal-button[type=clean] .opal-button__control{padding:0;border:0;background:0 0;color:inherit;font-size:inherit;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}@keyframes opal-button-loading-animation{0%{background-position:0 0}to{background-position:60px 0}}";
+	            style.textContent = ".opal-button{border:0;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-button:not([view-type=clean]){position:relative;display:inline-block;box-sizing:border-box;padding:7px 23px;border-radius:3px;background:#546778;color:#fff;vertical-align:middle;text-align:center;text-decoration:none;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;transition:background .1s;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-button:not([view-type=clean])::-moz-focus-inner{padding:0;border:0}.opal-button:not([view-type=clean])[size=s]{padding:4px 13px;font-size:14px;line-height:21px}.opal-button:not([view-type=clean]):hover{background:#597791}.opal-button:not([view-type=clean]):focus{outline:none}body:not(._no-focus-highlight) .opal-button:not([view-type=clean]):focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:inherit;content:'';pointer-events:none}.opal-button:not([view-type=clean]):active,.opal-button:not([view-type=clean])[checked]{background:#43484c}.opal-button:not([view-type=clean])[loading]{background-image:linear-gradient(135deg,rgba(255,255,255,.3) 0,rgba(255,255,255,.3) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.3) 50%,rgba(255,255,255,.3) 75%,transparent 75%,transparent 100%);background-size:30px 30px;animation:opal-button-loading-animation 3s linear infinite}.opal-button:not([view-type=clean])[disabled]{opacity:.5;pointer-events:none}.opal-group .opal-group__content>.opal-button:not([view-type=clean]):not(:first-child),.opal-group .opal-group__content>:not(:first-child) .opal-button:not([view-type=clean]){border-top-left-radius:0;border-bottom-left-radius:0;box-shadow:inset 1px 0 rgba(0,0,0,.4)}.opal-group .opal-group__content>.opal-button:not([view-type=clean]):not(:last-child),.opal-group .opal-group__content>:not(:last-child) .opal-button:not([view-type=clean]){border-top-right-radius:0;border-bottom-right-radius:0}.opal-switch-menu .opal-button:not([view-type=clean]):not(:first-child){border-top-left-radius:0;border-bottom-left-radius:0;box-shadow:inset 1px 0 rgba(0,0,0,.4)}.opal-switch-menu .opal-button:not([view-type=clean]):not(:last-child){border-top-right-radius:0;border-bottom-right-radius:0}.opal-button[view-type=primary]{background:#1b91f8}.opal-button[view-type=primary]:hover{background:#33a0ff}.opal-button[view-type=primary]:active,.opal-button[view-type=primary][checked]{background:#1371c3}.opal-button[view-type=danger]{background:#f63159}.opal-button[view-type=danger]:hover{background:#fd496d}.opal-button[view-type=danger]:active,.opal-button[view-type=danger][checked]{background:#d3173d}.opal-button[view-type=clean]{padding:0;background:0 0;color:inherit;font-size:inherit}@keyframes opal-button-loading-animation{0%{background-position:0 0}to{background-position:60px 0}}";
 	            head.appendChild(style);
 	            return style;
 	        }

@@ -1,6 +1,6 @@
 rt-content (select=.opal-select__button, cloning=no) {
 	opal-button/button (
-		type={props.type},
+		view-type={props.viewType},
 		size={props.size},
 		checkable,
 		tab-index={props.tabIndex},

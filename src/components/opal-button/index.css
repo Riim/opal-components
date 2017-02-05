@@ -1,62 +1,52 @@
 .opal-button {
+	border: 0;
+	cursor: pointer;
+	user-select: none;
 }
 
-.opal-button:not([type=clean]) {
+.opal-button:not([view-type=clean]) {
+	position: relative;
 	display: inline-block;
+	box-sizing: border-box;
+	padding: 7px 23px;
+	border-radius: 3px;
+	background: hsl(208,18%,40%);
+	color: #fff;
 	vertical-align: middle;
-	line-height: 0;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: none;
+	font: 16px/24px Verdana, Geneva, sans-serif;
+	font-weight: normal;
+	transition: background .1s;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: transparent;
 
-	& .opal-button__control {
-		position: relative;
-		display: block;
-		box-sizing: border-box;
-		padding: 7px 23px;
-		width: 100%;
+	&::-moz-focus-inner {
+		padding: 0;
 		border: 0;
-		border-radius: 3px;
-		background: hsl(208,18%,40%);
-		color: #fff;
-		text-align: center;
-		text-decoration: none;
-		text-shadow: none;
-		font: 16px/24px Verdana, Geneva, sans-serif;
-		font-weight: normal;
-		cursor: pointer;
-		transition: background .1s;
-		user-select: none;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		-webkit-text-size-adjust: 100%;
-		-ms-text-size-adjust: 100%;
-		-webkit-tap-highlight-color: transparent;
 	}
-		& .opal-button__control::-moz-focus-inner {
-			padding: 0;
-			border: 0;
-		}
-
-		& .opal-button__content {
-			position: relative;
-			display: block;
-		}
 
 	/* States */
 
-	&[size=s] .opal-button__control {
+	&[size=s] {
 		padding: 4px 13px;
 		font-size: 14px;
 		line-height: 21px;
 	}
 
-	& .opal-button__control:hover {
+	&:hover {
 		background: hsl(208,24%,46%);
 	}
 
-	& .opal-button__control:focus {
+	&:focus {
 		outline: none;
 	}
 		@nest
-		body:not(._no-focus-highlight) & .opal-button__control:focus::after {
+		body:not(._no-focus-highlight) &:focus::after {
 			position: absolute;
 			top: 2px;
 			right: 2px;
@@ -68,12 +58,12 @@
 			pointer-events: none;
 		}
 
-	& .opal-button__control:active,
-	&[checked] .opal-button__control {
+	&:active,
+	&[checked] {
 		background: hsl(208,6%,28%);
 	}
 
-	&[loading] .opal-button__control {
+	&[loading] {
 		background-image: linear-gradient(
 			135deg,
 			rgba(255,255,255,.3) 0, rgba(255,255,255,.3) 25%,
@@ -89,82 +79,70 @@
 		opacity: .5;
 		pointer-events: none;
 	}
-		&[disabled] .opal-button__control {
-			cursor: default;
-		}
 
 	/* Combinations */
 
 	@nest
-	.opal-group .opal-group__content > &:not(:first-child) .opal-button__control,
-	.opal-group .opal-group__content > *:not(:first-child) & .opal-button__control {
+	.opal-group .opal-group__content > &:not(:first-child),
+	.opal-group .opal-group__content > *:not(:first-child) & {
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
 		box-shadow: inset 1px 0 rgba(0,0,0,.4);
 	}
 
 	@nest
-	.opal-group .opal-group__content > &:not(:last-child) .opal-button__control,
-	.opal-group .opal-group__content > *:not(:last-child) & .opal-button__control {
+	.opal-group .opal-group__content > &:not(:last-child),
+	.opal-group .opal-group__content > *:not(:last-child) & {
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
 	}
 
 	@nest
-	.opal-switch-menu &:not(:first-child) .opal-button__control {
+	.opal-switch-menu &:not(:first-child) {
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
 		box-shadow: inset 1px 0 rgba(0,0,0,.4);
 	}
 
 	@nest
-	.opal-switch-menu &:not(:last-child) .opal-button__control {
+	.opal-switch-menu &:not(:last-child) {
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
 	}
 }
 
 .opal-button {
-	&[type=primary] {
-		& .opal-button__control {
-			background: hsl(208,94%,54%);
-		}
+	&[view-type=primary] {
+		background: hsl(208,94%,54%);
 
-		& .opal-button__control:hover {
+		&:hover {
 			background: hsl(208,100%,60%);
 		}
 
-		& .opal-button__control:active,
-		&[checked] .opal-button__control {
+		&:active,
+		&[checked] {
 			background: hsl(208,82%,42%);
 		}
 	}
 
-	&[type=danger] {
-		& .opal-button__control {
-			background: hsl(348,92%,58%);
-		}
+	&[view-type=danger] {
+		background: hsl(348,92%,58%);
 
-		& .opal-button__control:hover {
+		&:hover {
 			background: hsl(348,98%,64%);
 		}
 
-		& .opal-button__control:active,
-		&[checked] .opal-button__control {
+		&:active,
+		&[checked] {
 			background: hsl(348,80%,46%);
 		}
 	}
 
-	&[type=clean] {
-		& .opal-button__control {
-			padding: 0;
-			border: 0;
-			background: transparent;
-			color: inherit;
-			font-size: inherit;
-			cursor: pointer;
-			user-select: none;
-		}
+	&[view-type=clean] {
+		padding: 0;
+		background: transparent;
+		color: inherit;
+		font-size: inherit;
 	}
 }
 
