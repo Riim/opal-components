@@ -100,7 +100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalInputValidator.prototype._validate = function (rules) {
 	        var _this = this;
-	        var value = this.$('input').value;
+	        var value = this.$('text-input').value;
 	        var trimmedValue = value.trim();
 	        var failedRule;
 	        rules.forEach(function (rule) {
@@ -139,7 +139,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        elementIs: 'opal-input-validator',
 	        bemlTemplate: 'rt-content/content (cloning=no)',
 	        events: {
-	            input: {
+	            'text-input': {
 	                input: function () {
 	                    if (this.failedRule) {
 	                        this._validate([this.failedRule]);
@@ -242,7 +242,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-input-validator{position:relative;display:inline-block;vertical-align:middle}.opal-input-validator .opal-input-validator__input{display:block}.opal-input-validator[valid=no] .opal-input-validator__input .opal-text-input__input{border-color:red}";
+	            style.textContent = ".opal-input-validator{position:relative;display:inline-block;vertical-align:middle}.opal-input-validator .opal-input-validator__text-input{display:block}.opal-input-validator[valid=no] .opal-input-validator__text-input .opal-text-input__input{border-color:red}";
 	            head.appendChild(style);
 	            return style;
 	        }

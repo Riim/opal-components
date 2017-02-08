@@ -28,7 +28,7 @@ import template = require('./index.beml');
 	bemlTemplate: template,
 
 	events: {
-		input: {
+		'text-input': {
 			focusin() {
 				if (!this._documentMouseUpListening) {
 					this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
@@ -48,7 +48,7 @@ import template = require('./index.beml');
 					return;
 				}
 
-				(this.$('input') as OpalTextInput).value = (evt.target as OpalCalendar).props['value'];
+				(this.$('text-input') as OpalTextInput).value = (evt.target as OpalCalendar).props['value'];
 				(this.$('calendar-menu') as OpalDropdown).close();
 			}
 		}
@@ -78,7 +78,7 @@ export default class OpalDateInput extends Component {
 		(this._documentMouseUpListening as IDisposableListening).stop();
 		this._documentMouseUpListening = null;
 
-		if (((this.$('input') as Component).$('text-field') as HTMLElement) == document.activeElement) {
+		if (((this.$('text-input') as Component).$('text-field') as HTMLElement) == document.activeElement) {
 			(this.$('calendar-menu') as OpalDropdown).open();
 		}
 	}

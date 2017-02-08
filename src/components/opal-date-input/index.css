@@ -3,7 +3,7 @@
 	display: inline-block;
 	vertical-align: middle;
 
-	& .opal-date-input__input {
+	& .opal-date-input__text-input {
 		display: block;
 	}
 

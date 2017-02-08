@@ -155,11 +155,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            },
 	            select: {
-	                '<opal-text-input>input-confirm': function () {
-	                    var select = this.$('select');
-	                    if (select.props['allowInput']) {
-	                        select.close();
-	                    }
+	                input: function () {
+	                    this.$('select').close();
 	                },
 	                // не соединять on-select и on-deselect в on-change,
 	                // тк on-change на opal-select[multiple] генерируется только при закрытии

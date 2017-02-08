@@ -47,7 +47,7 @@ export default class OpalInputMask extends Component {
 	}
 
 	ready() {
-		this._textField = (this.$('input') as OpalTextInput).$('text-field') as HTMLInputElement;
+		this._textField = (this.$('text-input') as OpalTextInput).$('text-field') as HTMLInputElement;
 
 		let definitions = this._definitions;
 
@@ -123,7 +123,7 @@ export default class OpalInputMask extends Component {
 		this._checkValue(false);
 
 		if (this._textField.value != this._focusText) {
-			(this.$('input') as OpalTextInput).emit('change');
+			(this.$('text-input') as OpalTextInput).emit('change');
 		}
 	}
 
@@ -153,9 +153,9 @@ export default class OpalInputMask extends Component {
 			this._shiftLeft(start, end - 1);
 
 			if (value != textField.value) {
-				let input = this.$('input') as OpalTextInput;
-				((input.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
-					['text-field']['input'].call(input, evt);
+				let textInput = this.$('text-input') as OpalTextInput;
+				((textInput.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
+					['text-field']['input'].call(textInput, evt);
 			}
 		} else if (key == 27) { // Escape
 			evt.preventDefault();
@@ -164,9 +164,9 @@ export default class OpalInputMask extends Component {
 				textField.value = this._focusText;
 				this._setTextFieldSelection(0, this._checkValue(false));
 
-				let input = this.$('input') as OpalTextInput;
-				((input.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
-					['text-field']['input'].call(input, evt);
+				let textInput = this.$('text-input') as OpalTextInput;
+				((textInput.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
+					['text-field']['input'].call(textInput, evt);
 			}
 		}
 	}
@@ -205,17 +205,17 @@ export default class OpalInputMask extends Component {
 
 					this._setTextFieldSelection(index, index);
 
-					let input = this.$('input') as OpalTextInput;
-					((input.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
-						['text-field']['input'].call(input, evt);
+					let textInput = this.$('text-input') as OpalTextInput;
+					((textInput.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
+						['text-field']['input'].call(textInput, evt);
 
 					if (index >= bufferLen) {
 						this.emit('complete');
 					}
 				} else if (start != end) {
-					let input = this.$('input') as OpalTextInput;
-					((input.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
-						['text-field']['input'].call(input, evt);
+					let textInput = this.$('text-input') as OpalTextInput;
+					((textInput.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
+						['text-field']['input'].call(textInput, evt);
 				}
 			}
 		}

@@ -98,7 +98,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalDateInput.prototype._onDocumentMouseUp = function () {
 	        this._documentMouseUpListening.stop();
 	        this._documentMouseUpListening = null;
-	        if (this.$('input').$('text-field') == document.activeElement) {
+	        if (this.$('text-input').$('text-field') == document.activeElement) {
 	            this.$('calendar-menu').open();
 	        }
 	    };
@@ -121,7 +121,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        bemlTemplate: template,
 	        events: {
-	            input: {
+	            'text-input': {
 	                focusin: function () {
 	                    if (!this._documentMouseUpListening) {
 	                        this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
@@ -138,7 +138,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    if (!evt.target.element.classList.contains('opal-date-input__calendar')) {
 	                        return;
 	                    }
-	                    this.$('input').value = evt.target.props['value'];
+	                    this.$('text-input').value = evt.target.props['value'];
 	                    this.$('calendar-menu').close();
 	                }
 	            }
@@ -185,7 +185,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 26:
 /***/ function(module, exports) {
 
-	module.exports = "opal-input-validator/input-validator {\ntemplate (is=rt-if-then, if=props.required, rt-silent) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-to={props.popoverTo}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={props.popoverTo}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (test=dateInRange, popover-to={props.popoverTo}) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={props.mask}) {\nopal-text-input/input (\nclass=opal-input-validator__input opal-input-mask__input,\nvalue={props.value},\nplaceholder={props.placeholder}\n)\n}\n}\nopal-dropdown/calendar-menu (auto-closing) {\nopal-calendar/calendar (date-delimiter=.)\n}"
+	module.exports = "opal-input-validator/input-validator {\ntemplate (is=rt-if-then, if=props.required, rt-silent) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-to={props.popoverTo}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={props.popoverTo}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (test=dateInRange, popover-to={props.popoverTo}) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={props.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={props.value},\nplaceholder={props.placeholder}\n)\n}\n}\nopal-dropdown/calendar-menu (auto-closing) {\nopal-calendar/calendar (date-delimiter=.)\n}"
 
 /***/ },
 
@@ -197,7 +197,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-date-input{position:relative;display:inline-block;vertical-align:middle}.opal-date-input .opal-date-input__input{display:block}.opal-date-input .opal-date-input__calendar-menu{overflow:visible;padding:0;min-width:auto}.opal-date-input .opal-date-input__calendar{border:0}";
+	            style.textContent = ".opal-date-input{position:relative;display:inline-block;vertical-align:middle}.opal-date-input .opal-date-input__text-input{display:block}.opal-date-input .opal-date-input__calendar-menu{overflow:visible;padding:0;min-width:auto}.opal-date-input .opal-date-input__calendar{border:0}";
 	            head.appendChild(style);
 	            return style;
 	        }

@@ -104,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            .getElementsByClassName('opal-autosuggestion__list-item');
 	    };
 	    OpalAutosuggestion.prototype.elementAttached = function () {
-	        this.listenTo(this.$('input').$('text-field'), 'click', this._onTextFieldClick);
+	        this.listenTo(this.$('text-input').$('text-field'), 'click', this._onTextFieldClick);
 	        this.listenTo(this.$('menu'), 'property-opened-change', this._onMenuOpenedChange);
 	        this.listenTo(this.list, 'change', this._onListChange);
 	        this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
@@ -112,7 +112,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalAutosuggestion.prototype.propertyChanged = function (name, value) {
 	        if (name == 'selectedItem') {
 	            this.selectedItem = value;
-	            this.$('input').value = value ? value.text : '';
+	            this.$('text-input').value = value ? value.text : '';
 	        }
 	    };
 	    OpalAutosuggestion.prototype._onTextFieldClick = function () {
@@ -137,7 +137,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.openMenu();
 	    };
 	    OpalAutosuggestion.prototype._onLoaderShownChange = function (evt) {
-	        this.$('input').props['loading'] = evt['value'];
+	        this.$('text-input').props['loading'] = evt['value'];
 	    };
 	    OpalAutosuggestion.prototype._onDocumentFocusIn = function () {
 	        if (document.activeElement != document.body && !this.element.contains(document.activeElement.parentNode)) {
@@ -167,7 +167,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var focusedListItem = this._focusedListItem;
 	                if (focusedListItem) {
 	                    var focusedListItemDataSet = focusedListItem.dataset;
-	                    this.$('input').value = focusedListItemDataSet['text'];
+	                    this.$('text-input').value = focusedListItemDataSet['text'];
 	                    this.closeMenu();
 	                    this._setSelectedItem({
 	                        value: focusedListItemDataSet['value'],
@@ -187,17 +187,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalAutosuggestion.prototype._onDocumentMouseUp = function () {
 	        var _this = this;
 	        setTimeout(function () {
-	            if (document.activeElement != _this.$('input').$('text-field')) {
+	            if (document.activeElement != _this.$('text-input').$('text-field')) {
 	                _this.closeMenu();
 	                _this._setSelectedItemOfList();
 	            }
 	        }, 1);
 	    };
 	    OpalAutosuggestion.prototype._onListItemClick = function (evt, listItem) {
-	        var input = this.$('input');
+	        var textInput = this.$('text-input');
 	        var listItemDataSet = listItem.dataset;
-	        input.value = listItemDataSet['text'];
-	        input.focus();
+	        textInput.value = listItemDataSet['text'];
+	        textInput.focus();
 	        this.closeMenu();
 	        this._setSelectedItem({
 	            value: listItemDataSet['value'],
@@ -207,7 +207,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalAutosuggestion.prototype._load = function () {
 	        this.loading = true;
 	        var dataProvider = this.dataProvider;
-	        var args = [this.$('input').value];
+	        var args = [this.$('text-input').value];
 	        if (dataProvider.getItems.length >= 2) {
 	            args.unshift(this.props['count']);
 	        }
@@ -244,7 +244,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalAutosuggestion.prototype._setSelectedItemOfList = function () {
 	        if (this._inputAfterSelecting) {
-	            var comparableQuery_1 = toComparable(this.$('input').value);
+	            var comparableQuery_1 = toComparable(this.$('text-input').value);
 	            this._setSelectedItem(this.list.find(function (item) { return toComparable(item.text) == comparableQuery_1; }) || null);
 	        }
 	    };
@@ -259,7 +259,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.selectedItem) {
 	            this.selectedItem = null;
 	        }
-	        this.$('input').clear();
+	        this.$('text-input').clear();
 	    };
 	    return OpalAutosuggestion;
 	}(rionite_1.Component));
@@ -277,7 +277,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        bemlTemplate: template,
 	        events: {
-	            input: {
+	            'text-input': {
 	                focusin: function () {
 	                    this.openMenu();
 	                },
@@ -328,7 +328,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 22:
 /***/ function(module, exports) {
 
-	module.exports = "rt-content (select=.opal-autosuggestion__input, cloning=no) {\nopal-text-input/input (\nvalue={props.selectedItem.text},\nplaceholder={constructor.i18n.inputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\ntemplate (is=rt-repeat, for=item of list, strip, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\n}"
+	module.exports = "rt-content (select=.opal-autosuggestion__text-input, cloning=no) {\nopal-text-input/text-input (\nvalue={props.selectedItem.text},\nplaceholder={constructor.i18n.inputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\ntemplate (is=rt-repeat, for=item of list, strip, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\n}"
 
 /***/ },
 
@@ -340,7 +340,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-autosuggestion{position:relative;display:inline-block;vertical-align:middle}.opal-autosuggestion .opal-autosuggestion__input{display:block}.opal-autosuggestion .opal-autosuggestion__list-item{position:relative;padding:7px 22px;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-autosuggestion .opal-autosuggestion__list-item:hover,.opal-autosuggestion .opal-autosuggestion__list-item[focused]{background:#e6e6e6}.opal-autosuggestion .opal-autosuggestion__list-item:active{background:#ccc}.opal-input-validator .opal-autosuggestion{display:block}";
+	            style.textContent = ".opal-autosuggestion{position:relative;display:inline-block;vertical-align:middle}.opal-autosuggestion .opal-autosuggestion__text-input{display:block}.opal-autosuggestion .opal-autosuggestion__list-item{position:relative;padding:7px 22px;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-autosuggestion .opal-autosuggestion__list-item:hover,.opal-autosuggestion .opal-autosuggestion__list-item[focused]{background:#e6e6e6}.opal-autosuggestion .opal-autosuggestion__list-item:active{background:#ccc}.opal-input-validator .opal-autosuggestion{display:block}";
 	            head.appendChild(style);
 	            return style;
 	        }

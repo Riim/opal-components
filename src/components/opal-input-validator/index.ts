@@ -14,7 +14,7 @@ let map = Array.prototype.map;
 	bemlTemplate: 'rt-content/content (cloning=no)',
 
 	events: {
-		input: {
+		'text-input': {
 			input() {
 				if (this.failedRule) {
 					this._validate([this.failedRule]);
@@ -58,7 +58,7 @@ export default class OpalInputValidator extends Component {
 	}
 
 	_validate(rules: Array<OpalInputValidatorRule>): boolean {
-		let value = (this.$('input') as OpalTextInput).value;
+		let value = (this.$('text-input') as OpalTextInput).value;
 		let trimmedValue = value.trim();
 		let failedRule: OpalInputValidatorRule | undefined;
 

@@ -94,7 +94,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this._definitions = Object.create(this.constructor.defaultDefinitions);
 	    };
 	    OpalInputMask.prototype.ready = function () {
-	        this._textField = this.$('input').$('text-field');
+	        this._textField = this.$('text-input').$('text-field');
 	        var definitions = this._definitions;
 	        forEach.call(this.element.querySelectorAll('opal-input-mask-definition'), function (inputMaskDefinition) {
 	            var props = inputMaskDefinition.$c.props;
@@ -153,7 +153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalInputMask.prototype._onTextFieldFocusOut = function () {
 	        this._checkValue(false);
 	        if (this._textField.value != this._focusText) {
-	            this.$('input').emit('change');
+	            this.$('text-input').emit('change');
 	        }
 	    };
 	    OpalInputMask.prototype._onTextFieldKeyDown = function (evt) {
@@ -177,8 +177,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this._clearBuffer(start, end);
 	            this._shiftLeft(start, end - 1);
 	            if (value != textField.value) {
-	                var input = this.$('input');
-	                input.constructor.events['text-field']['input'].call(input, evt);
+	                var textInput = this.$('text-input');
+	                textInput.constructor.events['text-field']['input'].call(textInput, evt);
 	            }
 	        }
 	        else if (key == 27) {
@@ -186,8 +186,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (textField.value != this._focusText) {
 	                textField.value = this._focusText;
 	                this._setTextFieldSelection(0, this._checkValue(false));
-	                var input = this.$('input');
-	                input.constructor.events['text-field']['input'].call(input, evt);
+	                var textInput = this.$('text-input');
+	                textInput.constructor.events['text-field']['input'].call(textInput, evt);
 	            }
 	        }
 	    };
@@ -216,15 +216,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this._writeBuffer();
 	                    index = this._nextTestIndex(index);
 	                    this._setTextFieldSelection(index, index);
-	                    var input = this.$('input');
-	                    input.constructor.events['text-field']['input'].call(input, evt);
+	                    var textInput = this.$('text-input');
+	                    textInput.constructor.events['text-field']['input'].call(textInput, evt);
 	                    if (index >= bufferLen) {
 	                        this.emit('complete');
 	                    }
 	                }
 	                else if (start != end) {
-	                    var input = this.$('input');
-	                    input.constructor.events['text-field']['input'].call(input, evt);
+	                    var textInput = this.$('text-input');
+	                    textInput.constructor.events['text-field']['input'].call(textInput, evt);
 	                }
 	            }
 	        }

@@ -3,7 +3,7 @@
 	display: inline-block;
 	vertical-align: middle;
 
-	& .opal-autosuggestion__input {
+	& .opal-autosuggestion__text-input {
 		display: block;
 	}
 
