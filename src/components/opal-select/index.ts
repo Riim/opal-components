@@ -139,17 +139,6 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				this.close();
 			},
 
-			'<*>change'(evt: IEvent) {
-				if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
-					return;
-				}
-
-				(this as any)._options.pull();
-				this._updateOptions();
-
-				return false;
-			},
-
 			'<opal-select-option>select'(evt: IEvent) {
 				let vm = this.viewModel;
 				let vmItem = {
@@ -184,40 +173,14 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 					this.close();
 					this.focus();
 				}
-			}
-		},
+			},
 
-		'loaded-list': {
-			loaded() {
-				if (this._focusedAfterLoading) {
+			'<opal-text-input>input-confirm'(evt: IEvent) {
+				let textInput = evt.target as OpalTextInput;
+
+				if (textInput !== this.$('new-item-input')) {
 					return;
 				}
-
-				this._focusedAfterLoading = true;
-
-				setTimeout(() => {
-					let filteredList = this.$('filtered-list') as OpalFilteredList;
-
-					if (filteredList) {
-						if (
-							document.activeElement == (filteredList.$('query-input') as Component)
-								.$('text-field') as HTMLElement
-						) {
-							this._focusOptions();
-							filteredList.focus();
-						} else {
-							this._focusOptions();
-						}
-					} else {
-						this._focusOptions();
-					}
-				}, 1);
-			}
-		},
-
-		'new-item-input': {
-			'input-confirm'(evt: IEvent) {
-				let textInput = evt.target as OpalTextInput;
 
 				let itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
 				let itemText = textInput.value;
@@ -262,6 +225,45 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 					this.emit('change');
 				}
+			},
+
+			'<*>change'(evt: IEvent) {
+				if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
+					return;
+				}
+
+				(this as any)._options.pull();
+				this._updateOptions();
+
+				return false;
+			}
+		},
+
+		'loaded-list': {
+			loaded() {
+				if (this._focusedAfterLoading) {
+					return;
+				}
+
+				this._focusedAfterLoading = true;
+
+				setTimeout(() => {
+					let filteredList = this.$('filtered-list') as OpalFilteredList;
+
+					if (filteredList) {
+						if (
+							document.activeElement == (filteredList.$('query-input') as Component)
+								.$('text-field') as HTMLElement
+						) {
+							this._focusOptions();
+							filteredList.focus();
+						} else {
+							this._focusOptions();
+						}
+					} else {
+						this._focusOptions();
+					}
+				}, 1);
 			}
 		}
 	}

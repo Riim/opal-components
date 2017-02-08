@@ -501,14 +501,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                close: function () {
 	                    this.close();
 	                },
-	                '<*>change': function (evt) {
-	                    if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
-	                        return;
-	                    }
-	                    this._options.pull();
-	                    this._updateOptions();
-	                    return false;
-	                },
 	                '<opal-select-option>select': function (evt) {
 	                    var vm = this.viewModel;
 	                    var vmItem = (_a = {},
@@ -540,36 +532,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        this.close();
 	                        this.focus();
 	                    }
-	                }
-	            },
-	            'loaded-list': {
-	                loaded: function () {
-	                    var _this = this;
-	                    if (this._focusedAfterLoading) {
+	                },
+	                '<opal-text-input>input-confirm': function (evt) {
+	                    var textInput = evt.target;
+	                    if (textInput !== this.$('new-item-input')) {
 	                        return;
 	                    }
-	                    this._focusedAfterLoading = true;
-	                    setTimeout(function () {
-	                        var filteredList = _this.$('filtered-list');
-	                        if (filteredList) {
-	                            if (document.activeElement == filteredList.$('query-input')
-	                                .$('text-field')) {
-	                                _this._focusOptions();
-	                                filteredList.focus();
-	                            }
-	                            else {
-	                                _this._focusOptions();
-	                            }
-	                        }
-	                        else {
-	                            _this._focusOptions();
-	                        }
-	                    }, 1);
-	                }
-	            },
-	            'new-item-input': {
-	                'input-confirm': function (evt) {
-	                    var textInput = evt.target;
 	                    var itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
 	                    var itemText = textInput.value;
 	                    var dataList = this.dataList;
@@ -605,6 +573,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        this.emit('change');
 	                    }
 	                    var _a;
+	                },
+	                '<*>change': function (evt) {
+	                    if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
+	                        return;
+	                    }
+	                    this._options.pull();
+	                    this._updateOptions();
+	                    return false;
+	                }
+	            },
+	            'loaded-list': {
+	                loaded: function () {
+	                    var _this = this;
+	                    if (this._focusedAfterLoading) {
+	                        return;
+	                    }
+	                    this._focusedAfterLoading = true;
+	                    setTimeout(function () {
+	                        var filteredList = _this.$('filtered-list');
+	                        if (filteredList) {
+	                            if (document.activeElement == filteredList.$('query-input')
+	                                .$('text-field')) {
+	                                _this._focusOptions();
+	                                filteredList.focus();
+	                            }
+	                            else {
+	                                _this._focusOptions();
+	                            }
+	                        }
+	                        else {
+	                            _this._focusOptions();
+	                        }
+	                    }, 1);
 	                }
 	            }
 	        }

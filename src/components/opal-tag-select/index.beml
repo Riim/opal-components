@@ -53,7 +53,8 @@ span/control {
 					opal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {
 						rt-content (
 							class=opal-filtered-list__query-input-container,
-							select=.opal-filtered-list__query-input
+							select=.opal-filtered-list__query-input,
+							cloning=no
 						)
 
 						opal-loaded-list/menu-loaded-list (
