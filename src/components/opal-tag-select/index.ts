@@ -20,7 +20,6 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		viewModel: { type: String, readonly: true },
 		viewModelItemSchema: { default: defaultVMItemSchema, readonly: true },
 		placeholder: getText.t('Не выбрано'),
-		allowInput: false,
 		popoverTo: 'bottom',
 		disabled: false
 	},

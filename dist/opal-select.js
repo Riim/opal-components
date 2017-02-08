@@ -410,7 +410,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            text: String,
 	            placeholder: rionite_1.getText.t('Не выбрано'),
 	            multiple: { default: false, readonly: true },
-	            allowInput: false,
 	            tabIndex: 0,
 	            focused: false,
 	            disabled: false
@@ -502,47 +501,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                close: function () {
 	                    this.close();
 	                },
-	                '<opal-text-input>input-confirm': function (evt) {
-	                    if (!this.props['allowInput']) {
-	                        return;
-	                    }
-	                    var textInput = evt.target;
-	                    var itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
-	                    var itemText = textInput.value;
-	                    var dataList = this.dataList;
-	                    if (dataList) {
-	                        dataList.add({ value: itemValue, text: itemText });
-	                    }
-	                    textInput.clear();
-	                    var loadedList = this.loadedList;
-	                    if (loadedList === undefined) {
-	                        loadedList = this.loadedList = this.$('loaded-list');
-	                    }
-	                    if (loadedList) {
-	                        loadedList.props['query'] = '';
-	                    }
-	                    this.emit('input');
-	                    var vm = this.viewModel;
-	                    var vmItem = (_a = {},
-	                        _a[this._viewModelItemValueFieldName] = itemValue,
-	                        _a[this._viewModelItemTextFieldName] = itemText,
-	                        _a);
-	                    if (this.props['multiple']) {
-	                        vm.add(vmItem);
-	                    }
-	                    else {
-	                        if (vm.length) {
-	                            vm.set(0, vmItem);
-	                        }
-	                        else {
-	                            vm.add(vmItem);
-	                        }
-	                        this.close();
-	                        this.focus();
-	                        this.emit('change');
-	                    }
-	                    var _a;
-	                },
 	                '<*>change': function (evt) {
 	                    if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
 	                        return;
@@ -607,6 +565,46 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            _this._focusOptions();
 	                        }
 	                    }, 1);
+	                }
+	            },
+	            'new-item-input': {
+	                'input-confirm': function (evt) {
+	                    var textInput = evt.target;
+	                    var itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
+	                    var itemText = textInput.value;
+	                    var dataList = this.dataList;
+	                    if (dataList) {
+	                        dataList.add({ value: itemValue, text: itemText });
+	                    }
+	                    textInput.clear();
+	                    var loadedList = this.loadedList;
+	                    if (loadedList === undefined) {
+	                        loadedList = this.loadedList = this.$('loaded-list');
+	                    }
+	                    if (loadedList) {
+	                        loadedList.props['query'] = '';
+	                    }
+	                    this.emit('input');
+	                    var vm = this.viewModel;
+	                    var vmItem = (_a = {},
+	                        _a[this._viewModelItemValueFieldName] = itemValue,
+	                        _a[this._viewModelItemTextFieldName] = itemText,
+	                        _a);
+	                    if (this.props['multiple']) {
+	                        vm.add(vmItem);
+	                    }
+	                    else {
+	                        if (vm.length) {
+	                            vm.set(0, vmItem);
+	                        }
+	                        else {
+	                            vm.add(vmItem);
+	                        }
+	                        this.close();
+	                        this.focus();
+	                        this.emit('change');
+	                    }
+	                    var _a;
 	                }
 	            }
 	        }
@@ -838,7 +836,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 34:
 /***/ function(module, exports) {
 
-	module.exports = "rt-content (select=.opal-select__button, cloning=no) {\nopal-button/button (\nview-type={props.viewType},\nsize={props.size},\ncheckable,\ntab-index={props.tabIndex},\ndisabled={props.disabled}\n) {\ntemplate (is=rt-if-then, if=props.text, rt-silent) { '{props.text}' }\ntemplate (is=rt-if-else, if=props.text, rt-silent) { '{text}' }\n' '\nsvg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu, cloning=no) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content, cloning=no) {\ntemplate (is=rt-if-then, if=props.datalist) {\ndiv (class=opal-select__menu-content) {\ntemplate (is=rt-if-then, if=dataList.length) {\ntemplate (is=rt-repeat, for=item of dataList) {\nopal-select-option/option (\nvalue='{item |key(_viewModelItemValueFieldName) }',\ntext='{item |key(_viewModelItemTextFieldName) }'\n)\n}\nrt-content/new-input-container (select=.opal-select__new-input)\n}\ntemplate (is=rt-if-else, if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\ntemplate (is=rt-if-else, if=props.datalist) {\ndiv (class=opal-select__menu-content) {\nrt-content/options (select=opal-select-option)\n}\n}\n}\n}\n}"
+	module.exports = "rt-content (select=.opal-select__button, cloning=no) {\nopal-button/button (\nview-type={props.viewType},\nsize={props.size},\ncheckable,\ntab-index={props.tabIndex},\ndisabled={props.disabled}\n) {\ntemplate (is=rt-if-then, if=props.text, rt-silent) { '{props.text}' }\ntemplate (is=rt-if-else, if=props.text, rt-silent) { '{text}' }\n' '\nsvg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu, cloning=no) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content, cloning=no) {\ntemplate (is=rt-if-then, if=props.datalist) {\ndiv (class=opal-select__menu-content) {\ntemplate (is=rt-if-then, if=dataList.length) {\ntemplate (is=rt-repeat, for=item of dataList) {\nopal-select-option/option (\nvalue='{item |key(_viewModelItemValueFieldName) }',\ntext='{item |key(_viewModelItemTextFieldName) }'\n)\n}\nrt-content (class=opal-select__new-item-input-container, select=.opal-select__new-item-input)\n}\ntemplate (is=rt-if-else, if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\ntemplate (is=rt-if-else, if=props.datalist) {\ndiv (class=opal-select__menu-content) {\nrt-content/options (select=opal-select-option)\nrt-content (class=opal-select__new-item-input-container, select=.opal-select__new-item-input)\n}\n}\n}\n}\n}"
 
 /***/ },
 
@@ -857,7 +855,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-select{position:relative;display:inline-block;vertical-align:middle}.opal-select .opal-select__button{display:block;min-width:100%}.opal-select .opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:14px;height:14px;vertical-align:middle;transition:transform .1s linear;fill:currentColor}.opal-select .opal-select__button[size=s] .opal-select__icon-chevron-down{width:12px;height:12px}.opal-select .opal-select__button[checked] .opal-select__icon-chevron-down{-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-select__new-input{display:block;margin:10px;width:auto}.opal-select .opal-popover{padding:6px 0;min-width:100px}.opal-select .opal-filtered-list .opal-filtered-list__query-input{margin:10px}.opal-select .opal-loaded-list{height:300px}";
+	            style.textContent = ".opal-select{position:relative;display:inline-block;vertical-align:middle}.opal-select .opal-select__button{display:block;min-width:100%}.opal-select .opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:14px;height:14px;vertical-align:middle;transition:transform .1s linear;fill:currentColor}.opal-select .opal-select__button[size=s] .opal-select__icon-chevron-down{width:12px;height:12px}.opal-select .opal-select__button[checked] .opal-select__icon-chevron-down{-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-select__new-item-input{display:block;margin:10px;width:auto}.opal-select .opal-popover{padding:6px 0;min-width:100px}.opal-select .opal-filtered-list .opal-filtered-list__query-input{margin:10px}.opal-select .opal-loaded-list{height:300px}";
 	            head.appendChild(style);
 	            return style;
 	        }

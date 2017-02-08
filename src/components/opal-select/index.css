@@ -30,9 +30,9 @@
 	}
 		& .opal-select__menu-content {
 		}
-			& .opal-select__new-input-container {
+			& .opal-select__new-item-input-container {
 			}
-				& .opal-select__new-input {
+				& .opal-select__new-item-input {
 					display: block;
 					margin: 10px;
 					width: auto;

@@ -26,7 +26,7 @@ rt-content (select=.opal-select__menu, cloning=no) {
 							)
 						}
 
-						rt-content/new-input-container (select=.opal-select__new-input)
+						rt-content (class=opal-select__new-item-input-container, select=.opal-select__new-item-input)
 					}
 					template (is=rt-if-else, if=dataList.length, rt-silent) {
 						opal-loader/menu-loader (shown)
@@ -36,6 +36,7 @@ rt-content (select=.opal-select__menu, cloning=no) {
 			template (is=rt-if-else, if=props.datalist) {
 				div (class=opal-select__menu-content) {
 					rt-content/options (select=opal-select-option)
+					rt-content (class=opal-select__new-item-input-container, select=.opal-select__new-item-input)
 				}
 			}
 		}

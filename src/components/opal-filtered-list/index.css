@@ -1,10 +1,10 @@
 .opal-filtered-list {
 	& .opal-filtered-list__query-input-container {
 		display: block;
-		margin-bottom: 15px;
 	}
 		& .opal-filtered-list__query-input {
 			display: block;
+			margin-bottom: 15px;
 			width: auto;
 		}
 

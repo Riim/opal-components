@@ -26,8 +26,7 @@ span/control {
 		value={props.value},
 		view-model={_viewModelParam},
 		view-model-item-schema={props.viewModelItemSchema |json },
-		multiple,
-		allow-input={props.allowInput}
+		multiple
 	) {
 		opal-sign-button/button (class=opal-select__button, sign=plus, checkable)
 
@@ -40,7 +39,10 @@ span/control {
 								opal-select-option/_select-option1 (value={item.value}, text={item.text})
 							}
 
-							rt-content (class=opal-select__new-input-container, select='.opal-select__new-input')
+							rt-content (
+								class=opal-select__new-item-input-container,
+								select='.opal-select__new-item-input'
+							)
 						}
 						template (is=rt-if-else, if=dataList.length, rt-silent) {
 							opal-loader/menu-loader (shown)
@@ -49,6 +51,11 @@ span/control {
 				}
 				template (is=rt-if-else, if=props.datalist) {
 					opal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {
+						rt-content (
+							class=opal-filtered-list__query-input-container,
+							select=.opal-filtered-list__query-input
+						)
+
 						opal-loaded-list/menu-loaded-list (
 							class=opal-select__loaded-list opal-filtered-list__loaded-list,
 							dataprovider={_dataProviderParam}

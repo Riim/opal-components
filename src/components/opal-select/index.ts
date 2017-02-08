@@ -38,7 +38,6 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		text: String,
 		placeholder: getText.t('Не выбрано'),
 		multiple: { default: false, readonly: true },
-		allowInput: false,
 		tabIndex: 0,
 		focused: false,
 		disabled: false
@@ -140,58 +139,6 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				this.close();
 			},
 
-			'<opal-text-input>input-confirm'(evt: IEvent) {
-				if (!this.props['allowInput']) {
-					return;
-				}
-
-				let textInput = evt.target as OpalTextInput;
-
-				let itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
-				let itemText = textInput.value;
-
-				let dataList = this.dataList;
-
-				if (dataList) {
-					dataList.add({ value: itemValue, text: itemText });
-				}
-
-				textInput.clear();
-
-				let loadedList = this.loadedList;
-
-				if (loadedList === undefined) {
-					loadedList = this.loadedList = this.$('loaded-list') as OpalLoadedList;
-				}
-
-				if (loadedList) {
-					loadedList.props['query'] = '';
-				}
-
-				this.emit('input');
-
-				let vm = this.viewModel;
-				let vmItem = {
-					[this._viewModelItemValueFieldName]: itemValue,
-					[this._viewModelItemTextFieldName]: itemText
-				};
-
-				if (this.props['multiple']) {
-					vm.add(vmItem);
-				} else {
-					if (vm.length) {
-						vm.set(0, vmItem);
-					} else {
-						vm.add(vmItem);
-					}
-
-					this.close();
-					this.focus();
-
-					this.emit('change');
-				}
-			},
-
 			'<*>change'(evt: IEvent) {
 				if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
 					return;
@@ -265,6 +212,56 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 						this._focusOptions();
 					}
 				}, 1);
+			}
+		},
+
+		'new-item-input': {
+			'input-confirm'(evt: IEvent) {
+				let textInput = evt.target as OpalTextInput;
+
+				let itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
+				let itemText = textInput.value;
+
+				let dataList = this.dataList;
+
+				if (dataList) {
+					dataList.add({ value: itemValue, text: itemText });
+				}
+
+				textInput.clear();
+
+				let loadedList = this.loadedList;
+
+				if (loadedList === undefined) {
+					loadedList = this.loadedList = this.$('loaded-list') as OpalLoadedList;
+				}
+
+				if (loadedList) {
+					loadedList.props['query'] = '';
+				}
+
+				this.emit('input');
+
+				let vm = this.viewModel;
+				let vmItem = {
+					[this._viewModelItemValueFieldName]: itemValue,
+					[this._viewModelItemTextFieldName]: itemText
+				};
+
+				if (this.props['multiple']) {
+					vm.add(vmItem);
+				} else {
+					if (vm.length) {
+						vm.set(0, vmItem);
+					} else {
+						vm.add(vmItem);
+					}
+
+					this.close();
+					this.focus();
+
+					this.emit('change');
+				}
 			}
 		}
 	}

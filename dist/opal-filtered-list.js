@@ -114,7 +114,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 27:
 /***/ function(module, exports) {
 
-	module.exports = "rt-content/query-input-container (select=.opal-filtered-list__query-input, cloning=no) {\nopal-text-input/query-input\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__loaded-list, cloning=no)"
+	module.exports = "rt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input, cloning=no) {\nopal-text-input/query-input\n}\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__loaded-list, cloning=no)"
 
 /***/ },
 
@@ -126,7 +126,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-filtered-list .opal-filtered-list__query-input-container{display:block;margin-bottom:15px}.opal-filtered-list .opal-filtered-list__query-input{display:block;width:auto}";
+	            style.textContent = ".opal-filtered-list .opal-filtered-list__query-input-container{display:block}.opal-filtered-list .opal-filtered-list__query-input{display:block;margin-bottom:15px;width:auto}";
 	            head.appendChild(style);
 	            return style;
 	        }

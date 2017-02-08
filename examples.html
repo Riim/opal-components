@@ -394,8 +394,8 @@ body {
 			<opal-select-option text="Option 5"></opal-select-option>
 		</opal-select>
 
-		<opal-select datalist="model1.dataList" placeholder="Select" multiple allow-input>
-			<opal-text-input class="opal-select__new-input"></opal-text-input>
+		<opal-select datalist="model1.dataList" placeholder="Select" multiple>
+			<opal-text-input class="opal-select__new-item-input"></opal-text-input>
 		</opal-select>
 	</div>
 	<script class="opal-code-listing__example-js">
@@ -578,8 +578,9 @@ body {
 	<div class="opal-code-listing__example-html">
 		<opal-tag-select dataprovider="dataProvider1" placeholder=""></opal-tag-select>
 		<opal-tag-select view-type="primary" dataprovider="dataProvider1"></opal-tag-select>
-		<opal-tag-select view-type="danger" dataprovider="dataProvider1" view-model="selectViewModel1"
-				allow-input></opal-tag-select>
+		<opal-tag-select view-type="danger" dataprovider="dataProvider1" view-model="selectViewModel1">
+			<opal-text-input class="opal-select__new-item-input opal-filtered-list__query-input"></opal-text-input>
+		</opal-tag-select>
 	</div>
 	<script class="opal-code-listing__example-js">
 		require('cellx-indexed-collections');
