@@ -16,7 +16,7 @@ import template = require('./index.beml');
 		inputName: String,
 		value: '',
 		storeKey: String,
-		placeholder: '',
+		placeholder: String,
 		clearable: false,
 		loading: false,
 		tabIndex: 0,

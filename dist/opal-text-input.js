@@ -177,7 +177,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            inputName: String,
 	            value: '',
 	            storeKey: String,
-	            placeholder: '',
+	            placeholder: String,
 	            clearable: false,
 	            loading: false,
 	            tabIndex: 0,
