@@ -9,7 +9,7 @@
 
 	/* States */
 
-	&[valid=no] .opal-input-validator__text-input .opal-text-input__input {
-		border-color: hsl(0,100%,50%);
+	&[valid=no] .opal-input-validator__text-input .opal-text-input__text-field {
+		border-color: hsl(0,100%,48%);
 	}
 }

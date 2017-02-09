@@ -114,11 +114,11 @@
 	}
 
 	&[valid] .opal-text-input__text-field {
-		border-color: hsl(120,90%,35%);
+		border-color: hsl(120,90%,38%);
 	}
 
 	&[valid=no] .opal-text-input__text-field {
-		border-color: hsl(0,100%,50%);
+		border-color: hsl(0,100%,48%);
 	}
 
 	&[disabled] {
