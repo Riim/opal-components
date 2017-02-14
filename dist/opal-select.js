@@ -239,10 +239,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                loadedList.checkLoading();
 	            });
 	        }
-	        var filteredList = this.filteredList;
-	        if (filteredList === undefined) {
-	            filteredList = this.filteredList = this.$('filtered-list');
-	        }
+	        var filteredList = this.$('filtered-list');
 	        if (filteredList) {
 	            setTimeout(function () {
 	                filteredList.focus();
@@ -545,10 +542,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        dataList.add({ value: itemValue, text: itemText });
 	                    }
 	                    textInput.clear();
-	                    var loadedList = this.loadedList;
-	                    if (loadedList === undefined) {
-	                        loadedList = this.loadedList = this.$('loaded-list');
-	                    }
+	                    var loadedList = this.$('loaded-list');
 	                    if (loadedList) {
 	                        loadedList.props['query'] = '';
 	                    }

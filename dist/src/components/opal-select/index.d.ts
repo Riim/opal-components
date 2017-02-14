@@ -2,8 +2,6 @@ import './index.css';
 import '../../assets/icons/opal-components__icon-chevron-down.svg';
 import { IndexedList } from 'cellx-indexed-collections';
 import { IDisposableListening, IComponentElement, Component } from 'rionite';
-import OpalLoadedList from '../opal-loaded-list';
-import OpalFilteredList from '../opal-filtered-list';
 import OpalSelectOption from './opal-select-option';
 export { default as OpalSelectOption } from './opal-select-option';
 export declare type TDataList = IndexedList<{
@@ -18,8 +16,6 @@ export default class OpalSelect extends Component {
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _viewModelItemDisabledFieldName: string;
-    filteredList: OpalFilteredList;
-    loadedList: OpalLoadedList;
     optionElements: NodeListOf<IComponentElement>;
     options: Array<OpalSelectOption>;
     _opened: boolean;

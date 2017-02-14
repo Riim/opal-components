@@ -193,11 +193,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 				textInput.clear();
 
-				let loadedList = this.loadedList;
-
-				if (loadedList === undefined) {
-					loadedList = this.loadedList = this.$('loaded-list') as OpalLoadedList;
-				}
+				let loadedList = this.$('loaded-list') as OpalLoadedList;
 
 				if (loadedList) {
 					loadedList.props['query'] = '';
@@ -277,9 +273,6 @@ export default class OpalSelect extends Component {
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 	_viewModelItemDisabledFieldName: string;
-
-	filteredList: OpalFilteredList;
-	loadedList: OpalLoadedList;
 
 	optionElements: NodeListOf<IComponentElement>;
 	options: Array<OpalSelectOption>;
@@ -459,11 +452,7 @@ export default class OpalSelect extends Component {
 			});
 		}
 
-		let filteredList = this.filteredList;
-
-		if (filteredList === undefined) {
-			filteredList = this.filteredList = this.$('filtered-list') as OpalFilteredList;
-		}
+		let filteredList = this.$('filtered-list') as OpalFilteredList;
 
 		if (filteredList) {
 			setTimeout(() => {

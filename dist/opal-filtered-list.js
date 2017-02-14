@@ -81,7 +81,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalFilteredList.prototype.focus = function () {
-	        this.$('query-input').focus();
+	        var queryInput = this.$('query-input');
+	        if (queryInput) {
+	            queryInput.focus();
+	        }
 	    };
 	    return OpalFilteredList;
 	}(rionite_1.Component));

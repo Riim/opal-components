@@ -21,6 +21,10 @@ import template = require('./index.beml');
 })
 export default class OpalFilteredList extends Component {
 	focus() {
-		(this.$('query-input') as OpalTextInput).focus();
+		let queryInput = this.$('query-input') as OpalTextInput;
+
+		if (queryInput) {
+			queryInput.focus();
+		}
 	}
 }
