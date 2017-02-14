@@ -237,20 +237,19 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 		'loaded-list': {
 			loaded() {
-				if (this._focusedAfterLoading) {
+				if (this._onсeFocusedAfterLoading) {
 					return;
 				}
 
-				this._focusedAfterLoading = true;
+				this._onсeFocusedAfterLoading = true;
 
 				setTimeout(() => {
 					let filteredList = this.$('filtered-list') as OpalFilteredList;
 
 					if (filteredList) {
-						if (
-							document.activeElement == (filteredList.$('query-input') as Component)
-								.$('text-field') as HTMLElement
-						) {
+						let queryInput = filteredList.$('query-input') as Component | null;
+
+						if (queryInput && document.activeElement == queryInput.$('text-field') as HTMLElement) {
 							this._focusOptions();
 							filteredList.focus();
 						} else {
@@ -281,7 +280,7 @@ export default class OpalSelect extends Component {
 
 	_valueAtOpening: any;
 
-	_focusedAfterLoading: boolean = false;
+	_onсeFocusedAfterLoading: boolean = false;
 
 	_documentFocusInListening: IDisposableListening;
 	_documentKeyDownListening: IDisposableListening;

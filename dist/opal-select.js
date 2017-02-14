@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function OpalSelect() {
 	        var _this = _super !== null && _super.apply(this, arguments) || this;
 	        _this._opened = false;
-	        _this._focusedAfterLoading = false;
+	        _this._onсeFocusedAfterLoading = false;
 	        return _this;
 	    }
 	    OpalSelect.prototype.initialize = function () {
@@ -580,15 +580,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            'loaded-list': {
 	                loaded: function () {
 	                    var _this = this;
-	                    if (this._focusedAfterLoading) {
+	                    if (this._onсeFocusedAfterLoading) {
 	                        return;
 	                    }
-	                    this._focusedAfterLoading = true;
+	                    this._onсeFocusedAfterLoading = true;
 	                    setTimeout(function () {
 	                        var filteredList = _this.$('filtered-list');
 	                        if (filteredList) {
-	                            if (document.activeElement == filteredList.$('query-input')
-	                                .$('text-field')) {
+	                            var queryInput = filteredList.$('query-input');
+	                            if (queryInput && document.activeElement == queryInput.$('text-field')) {
 	                                _this._focusOptions();
 	                                filteredList.focus();
 	                            }
