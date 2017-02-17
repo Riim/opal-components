@@ -83,7 +83,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    __extends(OpalAutosuggestion, _super);
 	    function OpalAutosuggestion() {
 	        var _this = _super !== null && _super.apply(this, arguments) || this;
-	        _this._inputAfterSelecting = false;
+	        _this._noSelectingAfterInput = true;
 	        return _this;
 	    }
 	    OpalAutosuggestion.prototype.initialize = function () {
@@ -243,19 +243,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.$('menu').close();
 	    };
 	    OpalAutosuggestion.prototype._setSelectedItemOfList = function () {
-	        if (this._inputAfterSelecting) {
+	        if (this._noSelectingAfterInput) {
 	            var comparableQuery_1 = toComparable(this.$('text-input').value);
 	            this._setSelectedItem(this.list.find(function (item) { return toComparable(item.text) == comparableQuery_1; }) || null);
 	        }
 	    };
 	    OpalAutosuggestion.prototype._setSelectedItem = function (selectedItem) {
 	        if (selectedItem ? !this.selectedItem || this.selectedItem.value != selectedItem.value : this.selectedItem) {
-	            this._inputAfterSelecting = false;
+	            this._noSelectingAfterInput = false;
 	            this.selectedItem = selectedItem;
 	            this.emit('change');
 	        }
 	    };
 	    OpalAutosuggestion.prototype.clear = function () {
+	        this.closeMenu();
+	        this._cancelLoading();
+	        this.list.clear();
 	        if (this.selectedItem) {
 	            this.selectedItem = null;
 	        }
@@ -289,7 +292,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                },
 	                input: function (evt) {
 	                    var _this = this;
-	                    this._inputAfterSelecting = true;
+	                    this._noSelectingAfterInput = true;
 	                    this.closeMenu();
 	                    this._cancelLoading();
 	                    this.list.clear();
@@ -299,6 +302,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            _this._loadingPlanned = false;
 	                            _this._load();
 	                        }, 300);
+	                    }
+	                },
+	                change: function (evt) {
+	                    if (!evt.target.value.length) {
+	                        this.closeMenu();
+	                        this._cancelLoading();
+	                        this.list.clear();
 	                    }
 	                }
 	            }

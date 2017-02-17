@@ -51,7 +51,7 @@ function toComparable(str: string): string {
 			},
 
 			input(evt: IEvent) {
-				this._inputAfterSelecting = true;
+				this._noSelectingAfterInput = true;
 
 				this.closeMenu();
 
@@ -66,6 +66,14 @@ function toComparable(str: string): string {
 						this._load();
 					}, 300);
 				}
+			},
+
+			change(evt: IEvent) {
+				if (!(evt.target as OpalTextInput).value.length) {
+					this.closeMenu();
+					this._cancelLoading();
+					this.list.clear();
+				}
 			}
 		}
 	}
@@ -76,7 +84,7 @@ export default class OpalAutosuggestion extends Component {
 	list: ObservableList<IItem>;
 	_listItems: NodeListOf<HTMLElement>;
 
-	_inputAfterSelecting: boolean = false;
+	_noSelectingAfterInput: boolean = true;
 
 	_loadingPlanned: boolean;
 	_loadingTimeout: IDisposableTimeout;
@@ -116,7 +124,11 @@ export default class OpalAutosuggestion extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo((this.$('text-input') as Component).$('text-field') as HTMLElement, 'click', this._onTextFieldClick);
+		this.listenTo(
+			(this.$('text-input') as Component).$('text-field') as HTMLElement,
+			'click',
+			this._onTextFieldClick
+		);
 		this.listenTo(this.$('menu') as Component, 'property-opened-change', this._onMenuOpenedChange);
 		this.listenTo(this.list, 'change', this._onListChange);
 		this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
@@ -292,7 +304,7 @@ export default class OpalAutosuggestion extends Component {
 	}
 
 	_setSelectedItemOfList() {
-		if (this._inputAfterSelecting) {
+		if (this._noSelectingAfterInput) {
 			let comparableQuery = toComparable((this.$('text-input') as OpalTextInput).value);
 			this._setSelectedItem(this.list.find(item => toComparable(item.text) == comparableQuery) || null);
 		}
@@ -300,13 +312,18 @@ export default class OpalAutosuggestion extends Component {
 
 	_setSelectedItem(selectedItem: IItem | null) {
 		if (selectedItem ? !this.selectedItem || this.selectedItem.value != selectedItem.value : this.selectedItem) {
-			this._inputAfterSelecting = false;
+			this._noSelectingAfterInput = false;
 			this.selectedItem = selectedItem;
 			this.emit('change');
 		}
 	}
 
 	clear() {
+		this.closeMenu();
+
+		this._cancelLoading();
+		this.list.clear();
+
 		if (this.selectedItem) {
 			this.selectedItem = null;
 		}
