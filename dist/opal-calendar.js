@@ -80,6 +80,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var parseDate_1 = __webpack_require__(15);
 	var formatDate_1 = __webpack_require__(14);
 	var template = __webpack_require__(23);
+	function getTodayDate() {
+	    var now = new Date();
+	    return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+	}
 	var OpalCalendar = OpalCalendar_1 = (function (_super) {
 	    __extends(OpalCalendar, _super);
 	    function OpalCalendar() {
@@ -97,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            fromDate: function () {
 	                var fromDate = this.props['fromDate'];
 	                if (fromDate) {
-	                    return fromDate == 'today' ? new Date() : parseDate_1.default(fromDate, dateDelimiter);
+	                    return fromDate == 'today' ? getTodayDate() : parseDate_1.default(fromDate, dateDelimiter);
 	                }
 	                var toDate = this.props['toDate'];
 	                var date = toDate && toDate != 'today' ? parseDate_1.default(toDate, dateDelimiter) : new Date();
@@ -106,7 +110,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            toDate: function () {
 	                var toDate = this.props['toDate'];
 	                if (toDate) {
-	                    return toDate == 'today' ? new Date() : parseDate_1.default(toDate, dateDelimiter);
+	                    return toDate == 'today' ? getTodayDate() : parseDate_1.default(toDate, dateDelimiter);
 	                }
 	                var fromDate = this.props['fromDate'];
 	                var date = fromDate && fromDate != 'today' ? parseDate_1.default(fromDate, dateDelimiter) : new Date();
@@ -147,8 +151,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	        else {
-	            var now = new Date();
-	            shownDate = now < fromDate ? fromDate : (now > toDate ? toDate : now);
+	            var today = getTodayDate();
+	            shownDate = today < fromDate ? fromDate : (today > toDate ? toDate : today);
 	        }
 	        cellx_1.define(this, {
 	            shownYear: shownDate.getFullYear(),

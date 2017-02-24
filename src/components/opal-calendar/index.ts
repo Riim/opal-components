@@ -22,6 +22,11 @@ export type TWeekDays = Array<IDay>;
 
 export type TDays = Array<TWeekDays>;
 
+function getTodayDate() {
+	let now = new Date();
+	return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+}
+
 @d.Component<OpalCalendar>({
 	elementIs: 'opal-calendar',
 
@@ -141,7 +146,7 @@ export default class OpalCalendar extends Component {
 				let fromDate: string | undefined = this.props['fromDate'];
 
 				if (fromDate) {
-					return fromDate == 'today' ? new Date() : parseDate(fromDate, dateDelimiter);
+					return fromDate == 'today' ? getTodayDate() : parseDate(fromDate, dateDelimiter);
 				}
 
 				let toDate: string | undefined = this.props['toDate'];
@@ -153,7 +158,7 @@ export default class OpalCalendar extends Component {
 				let toDate: string | undefined = this.props['toDate'];
 
 				if (toDate) {
-					return toDate == 'today' ? new Date() : parseDate(toDate, dateDelimiter);
+					return toDate == 'today' ? getTodayDate() : parseDate(toDate, dateDelimiter);
 				}
 
 				let fromDate: string | undefined = this.props['fromDate'];
@@ -209,8 +214,8 @@ export default class OpalCalendar extends Component {
 				);
 			}
 		} else {
-			let now = new Date();
-			shownDate = now < fromDate ? fromDate : (now > toDate ? toDate : now);
+			let today = getTodayDate();
+			shownDate = today < fromDate ? fromDate : (today > toDate ? toDate : today);
 		}
 
 		define(this, {
