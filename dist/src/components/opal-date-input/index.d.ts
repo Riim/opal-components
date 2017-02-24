@@ -4,6 +4,10 @@ import dateExists from 'date-exists';
 export default class OpalDateInput extends Component {
     dateExists: typeof dateExists;
     dateInRange(date: string): boolean;
-    _documentMouseUpListening: IDisposableListening | null;
-    _onDocumentMouseUp(): void;
+    _documentFocusInListening: IDisposableListening;
+    _documentKeyDownListening: IDisposableListening;
+    _elementMouseUpListening: IDisposableListening | null;
+    _onDocumentFocusIn(): void;
+    _onDocumentKeyDown(evt: KeyboardEvent): void;
+    _onElementMouseUp(): void;
 }

@@ -96,9 +96,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var d = new Date(year, month, day);
 	        return d >= calendar.fromDate && d <= calendar.toDate;
 	    };
-	    OpalDateInput.prototype._onDocumentMouseUp = function () {
-	        this._documentMouseUpListening.stop();
-	        this._documentMouseUpListening = null;
+	    OpalDateInput.prototype._onDocumentFocusIn = function () {
+	        if (document.activeElement != document.body &&
+	            !this.element.contains(document.activeElement.parentNode)) {
+	            this.$('calendar-menu').close();
+	        }
+	    };
+	    OpalDateInput.prototype._onDocumentKeyDown = function (evt) {
+	        if (evt.which == 27 /* Esc */) {
+	            evt.preventDefault();
+	            this.$('calendar-menu').close();
+	        }
+	    };
+	    OpalDateInput.prototype._onElementMouseUp = function () {
+	        this._elementMouseUpListening.stop();
+	        this._elementMouseUpListening = null;
 	        if (this.$('text-input').$('text-field') == document.activeElement) {
 	            this.$('calendar-menu').open();
 	        }
@@ -126,8 +138,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        events: {
 	            'text-input': {
 	                focusin: function () {
-	                    if (!this._documentMouseUpListening) {
-	                        this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
+	                    this._elementMouseUpListening = this.listenTo(this.element, 'mouseup', this._onElementMouseUp);
+	                },
+	                focusout: function () {
+	                    if (this._elementMouseUpListening) {
+	                        this._elementMouseUpListening.stop();
+	                        this._elementMouseUpListening = null;
 	                    }
 	                },
 	                change: function (evt) {
@@ -136,13 +152,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                }
 	            },
-	            'calendar': {
+	            'calendar-menu': {
+	                open: function () {
+	                    this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+	                    this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	                },
+	                close: function () {
+	                    this._documentFocusInListening.stop();
+	                    this._documentKeyDownListening.stop();
+	                }
+	            },
+	            calendar: {
 	                change: function (evt) {
-	                    if (!evt.target.element.classList.contains('opal-date-input__calendar')) {
-	                        return;
-	                    }
-	                    this.$('text-input').value = evt.target.props['value'];
 	                    this.$('calendar-menu').close();
+	                    var textInput = this.$('text-input');
+	                    textInput.value = evt.target.props['value'];
+	                    textInput.focus();
 	                }
 	            }
 	        }
@@ -187,7 +212,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 26:
 /***/ function(module, exports) {
 
-	module.exports = "opal-input-validator/input-validator {\ntemplate (is=rt-if-then, if=props.required, rt-silent) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-to={props.popoverTo}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={props.popoverTo}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (test=dateInRange, popover-to={props.popoverTo}) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={props.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={props.value},\nplaceholder={props.placeholder}\n)\n}\n}\nopal-dropdown/calendar-menu (auto-closing) {\nopal-calendar/calendar (from-date={props.fromDate}, to-date={props.toDate}, value={props.value}, date-delimiter=.)\n}"
+	module.exports = "opal-input-validator/input-validator {\ntemplate (is=rt-if-then, if=props.required, rt-silent) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-to={props.popoverTo}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={props.popoverTo}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (test=dateInRange, popover-to={props.popoverTo}) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={props.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={props.value},\nplaceholder={props.placeholder},\nclearable\n)\n}\n}\nopal-dropdown/calendar-menu (auto-closing) {\nopal-calendar/calendar (from-date={props.fromDate}, to-date={props.toDate}, value={props.value}, date-delimiter=.)\n}"
 
 /***/ },
 

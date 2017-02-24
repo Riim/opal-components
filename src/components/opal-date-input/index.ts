@@ -32,8 +32,13 @@ import template = require('./index.beml');
 	events: {
 		'text-input': {
 			focusin() {
-				if (!this._documentMouseUpListening) {
-					this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
+				this._elementMouseUpListening = this.listenTo(this.element, 'mouseup', this._onElementMouseUp);
+			},
+
+			focusout() {
+				if (this._elementMouseUpListening) {
+					this._elementMouseUpListening.stop();
+					this._elementMouseUpListening = null;
 				}
 			},
 
@@ -44,14 +49,26 @@ import template = require('./index.beml');
 			}
 		},
 
-		'calendar': {
-			change(evt) {
-				if (!(evt.target as Component).element.classList.contains('opal-date-input__calendar')) {
-					return;
-				}
+		'calendar-menu': {
+			open() {
+				this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+			},
 
-				(this.$('text-input') as OpalTextInput).value = (evt.target as OpalCalendar).props['value'];
+			close() {
+				this._documentFocusInListening.stop();
+				this._documentKeyDownListening.stop();
+			}
+		},
+
+		calendar: {
+			change(evt) {
 				(this.$('calendar-menu') as OpalDropdown).close();
+
+				let textInput = this.$('text-input') as OpalTextInput;
+
+				textInput.value = (evt.target as OpalCalendar).props['value'];
+				textInput.focus();
 			}
 		}
 	}
@@ -74,11 +91,29 @@ export default class OpalDateInput extends Component {
 		return d >= calendar.fromDate && d <= calendar.toDate;
 	}
 
-	_documentMouseUpListening: IDisposableListening | null;
+	_documentFocusInListening: IDisposableListening;
+	_documentKeyDownListening: IDisposableListening;
+	_elementMouseUpListening: IDisposableListening | null;
 
-	_onDocumentMouseUp() {
-		(this._documentMouseUpListening as IDisposableListening).stop();
-		this._documentMouseUpListening = null;
+	_onDocumentFocusIn() {
+		if (
+			document.activeElement != document.body &&
+				!this.element.contains(document.activeElement.parentNode as Node)
+		) {
+			(this.$('calendar-menu') as OpalDropdown).close();
+		}
+	}
+
+	_onDocumentKeyDown(evt: KeyboardEvent) {
+		if (evt.which == 27/* Esc */) {
+			evt.preventDefault();
+			(this.$('calendar-menu') as OpalDropdown).close();
+		}
+	}
+
+	_onElementMouseUp() {
+		(this._elementMouseUpListening as IDisposableListening).stop();
+		this._elementMouseUpListening = null;
 
 		if (((this.$('text-input') as Component).$('text-field') as HTMLElement) == document.activeElement) {
 			(this.$('calendar-menu') as OpalDropdown).open();

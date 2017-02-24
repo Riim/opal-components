@@ -75,6 +75,20 @@ function toComparable(str: string): string {
 					this.list.clear();
 				}
 			}
+		},
+
+		menu: {
+			open() {
+				this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+				this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
+			},
+
+			close() {
+				this._documentFocusInListening.stop();
+				this._documentKeyDownListening.stop();
+				this._documentMouseUpListening.stop();
+			}
 		}
 	}
 })
@@ -129,7 +143,6 @@ export default class OpalAutosuggestion extends Component {
 			'click',
 			this._onTextFieldClick
 		);
-		this.listenTo(this.$('menu') as Component, 'property-opened-change', this._onMenuOpenedChange);
 		this.listenTo(this.list, 'change', this._onListChange);
 		this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 	}
@@ -145,22 +158,6 @@ export default class OpalAutosuggestion extends Component {
 		this.openMenu();
 	}
 
-	_onMenuOpenedChange(evt: IEvent) {
-		if (evt.target != this.$('menu')) {
-			return;
-		}
-
-		if (evt['value']) {
-			this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
-			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-			this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
-		} else {
-			this._documentFocusInListening.stop();
-			this._documentKeyDownListening.stop();
-			this._documentMouseUpListening.stop();
-		}
-	}
-
 	_onListChange() {
 		this.openMenu();
 	}
@@ -170,7 +167,10 @@ export default class OpalAutosuggestion extends Component {
 	}
 
 	_onDocumentFocusIn() {
-		if (document.activeElement != document.body && !this.element.contains(document.activeElement.parentNode as Node)) {
+		if (
+			document.activeElement != document.body &&
+				!this.element.contains(document.activeElement.parentNode as Node)
+		) {
 			this.closeMenu();
 			this._setSelectedItemOfList();
 		}

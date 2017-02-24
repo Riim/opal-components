@@ -106,7 +106,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalAutosuggestion.prototype.elementAttached = function () {
 	        this.listenTo(this.$('text-input').$('text-field'), 'click', this._onTextFieldClick);
-	        this.listenTo(this.$('menu'), 'property-opened-change', this._onMenuOpenedChange);
 	        this.listenTo(this.list, 'change', this._onListChange);
 	        this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 	    };
@@ -119,21 +118,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalAutosuggestion.prototype._onTextFieldClick = function () {
 	        this.openMenu();
 	    };
-	    OpalAutosuggestion.prototype._onMenuOpenedChange = function (evt) {
-	        if (evt.target != this.$('menu')) {
-	            return;
-	        }
-	        if (evt['value']) {
-	            this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
-	            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-	            this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
-	        }
-	        else {
-	            this._documentFocusInListening.stop();
-	            this._documentKeyDownListening.stop();
-	            this._documentMouseUpListening.stop();
-	        }
-	    };
 	    OpalAutosuggestion.prototype._onListChange = function () {
 	        this.openMenu();
 	    };
@@ -141,7 +125,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.$('text-input').props['loading'] = evt['value'];
 	    };
 	    OpalAutosuggestion.prototype._onDocumentFocusIn = function () {
-	        if (document.activeElement != document.body && !this.element.contains(document.activeElement.parentNode)) {
+	        if (document.activeElement != document.body &&
+	            !this.element.contains(document.activeElement.parentNode)) {
 	            this.closeMenu();
 	            this._setSelectedItemOfList();
 	        }
@@ -311,6 +296,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        this._cancelLoading();
 	                        this.list.clear();
 	                    }
+	                }
+	            },
+	            menu: {
+	                open: function () {
+	                    this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+	                    this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	                    this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
+	                },
+	                close: function () {
+	                    this._documentFocusInListening.stop();
+	                    this._documentKeyDownListening.stop();
+	                    this._documentMouseUpListening.stop();
 	                }
 	            }
 	        }

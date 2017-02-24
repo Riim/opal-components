@@ -33,7 +33,6 @@ export default class OpalAutosuggestion extends Component {
     elementAttached(): void;
     propertyChanged(name: string, value: any): void;
     _onTextFieldClick(): void;
-    _onMenuOpenedChange(evt: IEvent): void;
     _onListChange(): void;
     _onLoaderShownChange(evt: IEvent): void;
     _onDocumentFocusIn(): void;

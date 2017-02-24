@@ -17,7 +17,8 @@ opal-input-validator/input-validator {
 		opal-text-input/text-input (
 			class=opal-input-validator__text-input opal-input-mask__text-input,
 			value={props.value},
-			placeholder={props.placeholder}
+			placeholder={props.placeholder},
+			clearable
 		)
 	}
 }
