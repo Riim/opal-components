@@ -71,13 +71,13 @@ export type TDays = Array<TWeekDays>;
 		},
 
 		's-month': {
-			select(evt: IEvent) {
+			'<opal-select-option>select'(evt: IEvent) {
 				this.shownMonth = +(evt.target as OpalSelectOption).value;
 			}
 		},
 
 		's-year': {
-			select(evt: IEvent) {
+			'<opal-select-option>select'(evt: IEvent) {
 				this.shownYear = +(evt.target as OpalSelectOption).value;
 			}
 		},
@@ -141,22 +141,24 @@ export default class OpalCalendar extends Component {
 				let fromDate: string | undefined = this.props['fromDate'];
 
 				if (fromDate) {
-					return parseDate(fromDate, dateDelimiter);
+					return fromDate == 'today' ? new Date() : parseDate(fromDate, dateDelimiter);
 				}
 
-				let now = new Date();
-				return new Date(now.getFullYear() - 100, now.getMonth(), now.getDate());
+				let toDate: string | undefined = this.props['toDate'];
+				let date = toDate && toDate != 'today' ? parseDate(toDate, dateDelimiter) : new Date();
+				return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
 			},
 
 			toDate(this: OpalCalendar) {
 				let toDate: string | undefined = this.props['toDate'];
 
 				if (toDate) {
-					return parseDate(toDate, dateDelimiter);
+					return toDate == 'today' ? new Date() : parseDate(toDate, dateDelimiter);
 				}
 
-				let now = new Date();
-				return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+				let fromDate: string | undefined = this.props['fromDate'];
+				let date = fromDate && fromDate != 'today' ? parseDate(fromDate, dateDelimiter) : new Date();
+				return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
 			},
 
 			fromYear(this: OpalCalendar) {
@@ -207,7 +209,8 @@ export default class OpalCalendar extends Component {
 				);
 			}
 		} else {
-			shownDate = toDate;
+			let now = new Date();
+			shownDate = now < fromDate ? fromDate : (now > toDate ? toDate : now);
 		}
 
 		define(this, {

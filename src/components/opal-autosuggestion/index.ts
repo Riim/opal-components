@@ -208,13 +208,13 @@ export default class OpalAutosuggestion extends Component {
 				if (focusedListItem) {
 					let focusedListItemDataSet = focusedListItem.dataset;
 
-					(this.$('text-input') as OpalTextInput).value = focusedListItemDataSet['text'];
+					(this.$('text-input') as OpalTextInput).value = focusedListItemDataSet['text'] as string;
 
 					this.closeMenu();
 
 					this._setSelectedItem({
-						value: focusedListItemDataSet['value'],
-						text: focusedListItemDataSet['text']
+						value: focusedListItemDataSet['value'] as string,
+						text: focusedListItemDataSet['text'] as string
 					});
 				}
 
@@ -242,14 +242,14 @@ export default class OpalAutosuggestion extends Component {
 		let textInput = this.$('text-input') as OpalTextInput;
 		let listItemDataSet = listItem.dataset;
 
-		textInput.value = listItemDataSet['text'];
+		textInput.value = listItemDataSet['text'] as string;
 		textInput.focus();
 
 		this.closeMenu();
 
 		this._setSelectedItem({
-			value: listItemDataSet['value'],
-			text: listItemDataSet['text']
+			value: listItemDataSet['value'] as string,
+			text: listItemDataSet['text'] as string
 		});
 	}
 

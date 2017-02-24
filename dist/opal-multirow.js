@@ -72,6 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
+	Object.defineProperty(exports, "__esModule", { value: true });
 	__webpack_require__(59);
 	var cellx_1 = __webpack_require__(2);
 	var cellx_indexed_collections_1 = __webpack_require__(3);
@@ -139,7 +140,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    })
 	], OpalMultirow);
-	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = OpalMultirow;
 
 
@@ -186,6 +186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
+	Object.defineProperty(exports, "__esModule", { value: true });
 	__webpack_require__(60);
 	var rionite_1 = __webpack_require__(1);
 	var template = __webpack_require__(32);
@@ -217,7 +218,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    })
 	], OpalMultirowRow);
-	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = OpalMultirowRow;
 
 

@@ -12,9 +12,11 @@ import template = require('./index.beml');
 	elementIs: 'opal-date-input',
 
 	props: {
-		mask: '99.99.9999',
+		fromDate: String,
+		toDate: String,
 		value: String,
 		placeholder: 'dd.mm.yyyy',
+		mask: '99.99.9999',
 		required: { default: false, readonly: true },
 		popoverTo: 'right'
 	},

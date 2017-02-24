@@ -72,6 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
+	Object.defineProperty(exports, "__esModule", { value: true });
 	__webpack_require__(45);
 	__webpack_require__(76);
 	var cellx_1 = __webpack_require__(2);
@@ -96,18 +97,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	            fromDate: function () {
 	                var fromDate = this.props['fromDate'];
 	                if (fromDate) {
-	                    return parseDate_1.default(fromDate, dateDelimiter);
+	                    return fromDate == 'today' ? new Date() : parseDate_1.default(fromDate, dateDelimiter);
 	                }
-	                var now = new Date();
-	                return new Date(now.getFullYear() - 100, now.getMonth(), now.getDate());
+	                var toDate = this.props['toDate'];
+	                var date = toDate && toDate != 'today' ? parseDate_1.default(toDate, dateDelimiter) : new Date();
+	                return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
 	            },
 	            toDate: function () {
 	                var toDate = this.props['toDate'];
 	                if (toDate) {
-	                    return parseDate_1.default(toDate, dateDelimiter);
+	                    return toDate == 'today' ? new Date() : parseDate_1.default(toDate, dateDelimiter);
 	                }
-	                var now = new Date();
-	                return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+	                var fromDate = this.props['fromDate'];
+	                var date = fromDate && fromDate != 'today' ? parseDate_1.default(fromDate, dateDelimiter) : new Date();
+	                return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
 	            },
 	            fromYear: function () {
 	                return this.fromDate.getFullYear();
@@ -144,7 +147,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	        else {
-	            shownDate = toDate;
+	            var now = new Date();
+	            shownDate = now < fromDate ? fromDate : (now > toDate ? toDate : now);
 	        }
 	        cellx_1.define(this, {
 	            shownYear: shownDate.getFullYear(),
@@ -285,12 +289,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            },
 	            's-month': {
-	                select: function (evt) {
+	                '<opal-select-option>select': function (evt) {
 	                    this.shownMonth = +evt.target.value;
 	                }
 	            },
 	            's-year': {
-	                select: function (evt) {
+	                '<opal-select-option>select': function (evt) {
 	                    this.shownYear = +evt.target.value;
 	                }
 	            },
@@ -313,7 +317,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    })
 	], OpalCalendar);
-	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = OpalCalendar;
 	var OpalCalendar_1;
 
@@ -338,11 +341,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
 	function formatDate(year, month, day, delimiter) {
 	    if (delimiter === void 0) { delimiter = '/'; }
 	    return ('0' + day).slice(-2) + delimiter + ('0' + (month + 1)).slice(-2) + delimiter + ('000' + year).slice(-4);
 	}
-	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = formatDate;
 
 
@@ -352,12 +355,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
 	function parseDate(date, delimiter) {
 	    if (delimiter === void 0) { delimiter = '/'; }
 	    var d = date.split(delimiter);
 	    return new Date(+d[2], +d[1] - 1, +d[0]);
 	}
-	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = parseDate;
 
 

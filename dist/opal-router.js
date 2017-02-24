@@ -72,6 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
+	Object.defineProperty(exports, "__esModule", { value: true });
 	__webpack_require__(63);
 	var rionite_1 = __webpack_require__(1);
 	var opal_route_1 = __webpack_require__(9);
@@ -211,7 +212,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        elementIs: 'opal-router'
 	    })
 	], OpalRouter);
-	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = OpalRouter;
 
 
@@ -228,6 +228,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
 	var PathNodeType;
 	(function (PathNodeType) {
 	    PathNodeType[PathNodeType["SIMPLE"] = 0] = "SIMPLE";
@@ -235,7 +236,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    PathNodeType[PathNodeType["INSERT"] = 2] = "INSERT";
 	})(PathNodeType || (PathNodeType = {}));
 	;
-	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = PathNodeType;
 
 
@@ -261,6 +261,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
+	Object.defineProperty(exports, "__esModule", { value: true });
 	var rionite_1 = __webpack_require__(1);
 	var OpalRoute = (function (_super) {
 	    __extends(OpalRoute, _super);
@@ -278,7 +279,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    })
 	], OpalRoute);
-	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = OpalRoute;
 
 
@@ -288,11 +288,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
 	var reEscapableChars = /([?+|$(){}[^.\-\]\/\\*])/g;
 	function escapeRegExp(str) {
 	    return str.replace(reEscapableChars, '\\$1');
 	}
-	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = escapeRegExp;
 
 
@@ -302,6 +302,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
 	var PathNodeType_1 = __webpack_require__(8);
 	var reName = /[a-z][0-9a-z]*/i;
 	function parsePath(path) {
@@ -447,7 +448,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    }
 	}
-	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = parsePath;
 
 
