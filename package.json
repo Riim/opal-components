@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.20.26",
+  "version": "0.20.27",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   "devDependencies": {
     "@riim/babel-preset": "^1.0.0",
     "autoprefixer": "^6.7.5",
-    "awesome-typescript-loader": "^3.0.7",
+    "awesome-typescript-loader": "^3.0.8",
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.3.2",

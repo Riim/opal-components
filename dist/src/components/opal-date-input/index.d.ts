@@ -6,8 +6,10 @@ export default class OpalDateInput extends Component {
     dateInRange(date: string): boolean;
     _documentFocusInListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening;
-    _elementMouseUpListening: IDisposableListening | null;
+    _documentClickListening: IDisposableListening;
+    elementAttached(): void;
+    _onTextInputClick(): void;
     _onDocumentFocusIn(): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
-    _onElementMouseUp(): void;
+    _onDocumentClick(evt: Event): void;
 }

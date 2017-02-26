@@ -31,17 +31,6 @@ import template = require('./index.beml');
 
 	events: {
 		'text-input': {
-			focusin() {
-				this._elementMouseUpListening = this.listenTo(this.element, 'mouseup', this._onElementMouseUp);
-			},
-
-			focusout() {
-				if (this._elementMouseUpListening) {
-					this._elementMouseUpListening.stop();
-					this._elementMouseUpListening = null;
-				}
-			},
-
 			change(evt) {
 				if ((this.$('input-validator') as OpalInputValidator).valid) {
 					(this.$('calendar') as OpalCalendar).props['value'] = (evt.target as OpalTextInput).value;
@@ -53,11 +42,13 @@ import template = require('./index.beml');
 			open() {
 				this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+				this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
 			},
 
 			close() {
 				this._documentFocusInListening.stop();
 				this._documentKeyDownListening.stop();
+				this._documentClickListening.stop();
 			}
 		},
 
@@ -93,7 +84,19 @@ export default class OpalDateInput extends Component {
 
 	_documentFocusInListening: IDisposableListening;
 	_documentKeyDownListening: IDisposableListening;
-	_elementMouseUpListening: IDisposableListening | null;
+	_documentClickListening: IDisposableListening;
+
+	elementAttached() {
+		this.listenTo(
+			(this.$('text-input') as Component).element as HTMLElement,
+			'click',
+			this._onTextInputClick
+		);
+	}
+
+	_onTextInputClick() {
+		(this.$('calendar-menu') as OpalDropdown).open();
+	}
 
 	_onDocumentFocusIn() {
 		if (
@@ -111,12 +114,9 @@ export default class OpalDateInput extends Component {
 		}
 	}
 
-	_onElementMouseUp() {
-		(this._elementMouseUpListening as IDisposableListening).stop();
-		this._elementMouseUpListening = null;
-
-		if (((this.$('text-input') as Component).$('text-field') as HTMLElement) == document.activeElement) {
-			(this.$('calendar-menu') as OpalDropdown).open();
+	_onDocumentClick(evt: Event) {
+		if (!this.element.contains(evt.target as HTMLElement)) {
+			(this.$('calendar-menu') as OpalDropdown).close();
 		}
 	}
 }

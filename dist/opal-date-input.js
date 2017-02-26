@@ -96,6 +96,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var d = new Date(year, month, day);
 	        return d >= calendar.fromDate && d <= calendar.toDate;
 	    };
+	    OpalDateInput.prototype.elementAttached = function () {
+	        this.listenTo(this.$('text-input').element, 'click', this._onTextInputClick);
+	    };
+	    OpalDateInput.prototype._onTextInputClick = function () {
+	        this.$('calendar-menu').open();
+	    };
 	    OpalDateInput.prototype._onDocumentFocusIn = function () {
 	        if (document.activeElement != document.body &&
 	            !this.element.contains(document.activeElement.parentNode)) {
@@ -108,11 +114,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.$('calendar-menu').close();
 	        }
 	    };
-	    OpalDateInput.prototype._onElementMouseUp = function () {
-	        this._elementMouseUpListening.stop();
-	        this._elementMouseUpListening = null;
-	        if (this.$('text-input').$('text-field') == document.activeElement) {
-	            this.$('calendar-menu').open();
+	    OpalDateInput.prototype._onDocumentClick = function (evt) {
+	        if (!this.element.contains(evt.target)) {
+	            this.$('calendar-menu').close();
 	        }
 	    };
 	    return OpalDateInput;
@@ -137,15 +141,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bemlTemplate: template,
 	        events: {
 	            'text-input': {
-	                focusin: function () {
-	                    this._elementMouseUpListening = this.listenTo(this.element, 'mouseup', this._onElementMouseUp);
-	                },
-	                focusout: function () {
-	                    if (this._elementMouseUpListening) {
-	                        this._elementMouseUpListening.stop();
-	                        this._elementMouseUpListening = null;
-	                    }
-	                },
 	                change: function (evt) {
 	                    if (this.$('input-validator').valid) {
 	                        this.$('calendar').props['value'] = evt.target.value;
@@ -156,10 +151,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                open: function () {
 	                    this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
 	                    this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	                    this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
 	                },
 	                close: function () {
 	                    this._documentFocusInListening.stop();
 	                    this._documentKeyDownListening.stop();
+	                    this._documentClickListening.stop();
 	                }
 	            },
 	            calendar: {
@@ -212,7 +209,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 26:
 /***/ function(module, exports) {
 
-	module.exports = "opal-input-validator/input-validator {\ntemplate (is=rt-if-then, if=props.required, rt-silent) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-to={props.popoverTo}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={props.popoverTo}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (test=dateInRange, popover-to={props.popoverTo}) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={props.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={props.value},\nplaceholder={props.placeholder},\nclearable\n)\n}\n}\nopal-dropdown/calendar-menu (auto-closing) {\nopal-calendar/calendar (from-date={props.fromDate}, to-date={props.toDate}, value={props.value}, date-delimiter=.)\n}"
+	module.exports = "opal-input-validator/input-validator {\ntemplate (is=rt-if-then, if=props.required, rt-silent) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-to={props.popoverTo}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={props.popoverTo}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (test=dateInRange, popover-to={props.popoverTo}) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={props.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={props.value},\nplaceholder={props.placeholder},\nclearable\n)\n}\n}\nopal-dropdown/calendar-menu {\nopal-calendar/calendar (from-date={props.fromDate}, to-date={props.toDate}, value={props.value}, date-delimiter=.)\n}"
 
 /***/ },
 
