@@ -131,8 +131,8 @@ export default class OpalDateInput extends Component {
 			return null;
 		}
 
-		return date.getUTCFullYear() + '-' +
-			(date.getUTCMonth() + 1) + '-' +
+		return ('000' + date.getUTCFullYear()).slice(-4) + '-' +
+			('0' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
 			('0' + date.getUTCDate()).slice(-2) + 'T' +
 			('0' + (h || 0)).slice(-2) + ':' +
 			('0' + (m || 0)).slice(-2) + ':' +
