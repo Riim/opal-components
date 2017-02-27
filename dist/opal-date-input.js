@@ -126,6 +126,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	        enumerable: true,
 	        configurable: true
 	    });
+	    OpalDateInput.prototype.getISOValue = function (h, m, s, ms) {
+	        var date = this.value;
+	        if (!date) {
+	            return null;
+	        }
+	        return date.getUTCFullYear() + '-' +
+	            (date.getUTCMonth() + 1) + '-' +
+	            ('0' + date.getUTCDate()).slice(-2) + 'T' +
+	            ('0' + (h || 0)).slice(-2) + ':' +
+	            ('0' + (m || 0)).slice(-2) + ':' +
+	            ('0' + (s || 0)).slice(-2) + '.' +
+	            ('00' + (ms || 0)).slice(-3) + 'Z';
+	    };
 	    return OpalDateInput;
 	}(rionite_1.Component));
 	OpalDateInput = __decorate([

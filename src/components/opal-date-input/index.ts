@@ -123,4 +123,20 @@ export default class OpalDateInput extends Component {
 	get value() {
 		return (this.$('calendar') as OpalCalendar).value;
 	}
+
+	getISOValue(h?: number, m?: number, s?: number, ms?: number): string | null {
+		let date = this.value;
+
+		if (!date) {
+			return null;
+		}
+
+		return date.getUTCFullYear() + '-' +
+			(date.getUTCMonth() + 1) + '-' +
+			('0' + date.getUTCDate()).slice(-2) + 'T' +
+			('0' + (h || 0)).slice(-2) + ':' +
+			('0' + (m || 0)).slice(-2) + ':' +
+			('0' + (s || 0)).slice(-2) + '.' +
+			('00' + (ms || 0)).slice(-3) + 'Z';
+	}
 }
