@@ -14,4 +14,5 @@ export default class OpalDateInput extends Component {
     _onDocumentClick(evt: Event): void;
     readonly value: Date | null;
     getISOValue(h?: number, m?: number, s?: number, ms?: number): string | null;
+    validate(): boolean;
 }

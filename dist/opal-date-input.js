@@ -139,6 +139,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            ('0' + (s || 0)).slice(-2) + '.' +
 	            ('00' + (ms || 0)).slice(-3) + 'Z';
 	    };
+	    OpalDateInput.prototype.validate = function () {
+	        return this.$('input-validator').validate();
+	    };
 	    return OpalDateInput;
 	}(rionite_1.Component));
 	OpalDateInput = __decorate([

@@ -120,7 +120,7 @@ export default class OpalDateInput extends Component {
 		}
 	}
 
-	get value() {
+	get value(): Date | null {
 		return (this.$('calendar') as OpalCalendar).value;
 	}
 
@@ -138,5 +138,9 @@ export default class OpalDateInput extends Component {
 			('0' + (m || 0)).slice(-2) + ':' +
 			('0' + (s || 0)).slice(-2) + '.' +
 			('00' + (ms || 0)).slice(-3) + 'Z';
+	}
+
+	validate(): boolean {
+		return (this.$('input-validator') as OpalInputValidator).validate();
 	}
 }
