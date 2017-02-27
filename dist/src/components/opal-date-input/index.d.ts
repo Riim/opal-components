@@ -12,4 +12,5 @@ export default class OpalDateInput extends Component {
     _onDocumentFocusIn(): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _onDocumentClick(evt: Event): void;
+    readonly value: Date | null;
 }

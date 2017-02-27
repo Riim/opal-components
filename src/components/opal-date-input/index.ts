@@ -119,4 +119,8 @@ export default class OpalDateInput extends Component {
 			(this.$('calendar-menu') as OpalDropdown).close();
 		}
 	}
+
+	get value() {
+		return (this.$('calendar') as OpalCalendar).value;
+	}
 }

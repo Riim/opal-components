@@ -119,6 +119,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.$('calendar-menu').close();
 	        }
 	    };
+	    Object.defineProperty(OpalDateInput.prototype, "value", {
+	        get: function () {
+	            return this.$('calendar').value;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
 	    return OpalDateInput;
 	}(rionite_1.Component));
 	OpalDateInput = __decorate([
