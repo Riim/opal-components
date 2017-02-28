@@ -8,6 +8,10 @@ import OpalCalendar from '../opal-calendar';
 import dateExists from 'date-exists';
 import template = require('./index.beml');
 
+function pad(num: number): string {
+	return (num < 10 ? '0' : '') + num;
+}
+
 @d.Component<OpalDateInput>({
 	elementIs: 'opal-date-input',
 
@@ -131,13 +135,20 @@ export default class OpalDateInput extends Component {
 			return null;
 		}
 
+		date = new Date(date);
+
+		if (h) { date.setHours(h); }
+		if (m) { date.setMinutes(m); }
+		if (s) { date.setSeconds(s); }
+		if (ms) { date.setMilliseconds(ms); }
+
 		return ('000' + date.getUTCFullYear()).slice(-4) + '-' +
-			('0' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
-			('0' + date.getUTCDate()).slice(-2) + 'T' +
-			('0' + (h || 0)).slice(-2) + ':' +
-			('0' + (m || 0)).slice(-2) + ':' +
-			('0' + (s || 0)).slice(-2) + '.' +
-			('00' + (ms || 0)).slice(-3) + 'Z';
+			pad(date.getUTCMonth() + 1) + '-' +
+			pad(date.getUTCDate()) + 'T' +
+			pad(date.getUTCHours()) + ':' +
+			pad(date.getUTCMinutes()) + ':' +
+			pad(date.getUTCSeconds()) + '.' +
+			('00' + date.getUTCMilliseconds()).slice(-3) + 'Z';
 	}
 
 	validate(): boolean {

@@ -77,6 +77,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	var rionite_1 = __webpack_require__(1);
 	var date_exists_1 = __webpack_require__(20);
 	var template = __webpack_require__(26);
+	function pad(num) {
+	    return (num < 10 ? '0' : '') + num;
+	}
 	var OpalDateInput = (function (_super) {
 	    __extends(OpalDateInput, _super);
 	    function OpalDateInput() {
@@ -131,13 +134,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (!date) {
 	            return null;
 	        }
+	        date = new Date(date);
+	        if (h) {
+	            date.setHours(h);
+	        }
+	        if (m) {
+	            date.setMinutes(m);
+	        }
+	        if (s) {
+	            date.setSeconds(s);
+	        }
+	        if (ms) {
+	            date.setMilliseconds(ms);
+	        }
 	        return ('000' + date.getUTCFullYear()).slice(-4) + '-' +
-	            ('0' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
-	            ('0' + date.getUTCDate()).slice(-2) + 'T' +
-	            ('0' + (h || 0)).slice(-2) + ':' +
-	            ('0' + (m || 0)).slice(-2) + ':' +
-	            ('0' + (s || 0)).slice(-2) + '.' +
-	            ('00' + (ms || 0)).slice(-3) + 'Z';
+	            pad(date.getUTCMonth() + 1) + '-' +
+	            pad(date.getUTCDate()) + 'T' +
+	            pad(date.getUTCHours()) + ':' +
+	            pad(date.getUTCMinutes()) + ':' +
+	            pad(date.getUTCSeconds()) + '.' +
+	            ('00' + date.getUTCMilliseconds()).slice(-3) + 'Z';
 	    };
 	    OpalDateInput.prototype.validate = function () {
 	        return this.$('input-validator').validate();
