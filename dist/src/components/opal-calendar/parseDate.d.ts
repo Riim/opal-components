@@ -1,1 +1,1 @@
-export default function parseDate(date: string, delimiter?: string): Date;
+export default function parseDate(date: string): Date;

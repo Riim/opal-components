@@ -134,8 +134,6 @@ export default class OpalCalendar extends Component {
 		let i18n = (this.constructor as typeof OpalCalendar).i18n;
 		let sundayFirst = i18n['sundayFirst'];
 
-		let dateDelimiter = this.props['dateDelimiter'];
-
 		this.weekDays = sundayFirst ? i18n['weekDays'] : i18n['weekDays'].slice(1).concat(i18n['weekDays'][0]);
 		this.weekDaysShort = sundayFirst ?
 			i18n['weekDaysShort'] :
@@ -146,11 +144,11 @@ export default class OpalCalendar extends Component {
 				let fromDate: string | undefined = this.props['fromDate'];
 
 				if (fromDate) {
-					return fromDate == 'today' ? getTodayDate() : parseDate(fromDate, dateDelimiter);
+					return fromDate == 'today' ? getTodayDate() : parseDate(fromDate);
 				}
 
 				let toDate: string | undefined = this.props['toDate'];
-				let date = toDate && toDate != 'today' ? parseDate(toDate, dateDelimiter) : new Date();
+				let date = toDate && toDate != 'today' ? parseDate(toDate) : new Date();
 				return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
 			},
 
@@ -158,11 +156,11 @@ export default class OpalCalendar extends Component {
 				let toDate: string | undefined = this.props['toDate'];
 
 				if (toDate) {
-					return toDate == 'today' ? getTodayDate() : parseDate(toDate, dateDelimiter);
+					return toDate == 'today' ? getTodayDate() : parseDate(toDate);
 				}
 
 				let fromDate: string | undefined = this.props['fromDate'];
-				let date = fromDate && fromDate != 'today' ? parseDate(fromDate, dateDelimiter) : new Date();
+				let date = fromDate && fromDate != 'today' ? parseDate(fromDate) : new Date();
 				return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
 			},
 
@@ -186,7 +184,7 @@ export default class OpalCalendar extends Component {
 
 			value(this: OpalCalendar) {
 				let value = this.props['value'];
-				return value ? parseDate(value, dateDelimiter) : null;
+				return value ? parseDate(value) : null;
 			}
 		});
 
@@ -206,13 +204,6 @@ export default class OpalCalendar extends Component {
 			}
 
 			shownDate = value;
-
-			if (shownDate < fromDate || shownDate > toDate) {
-				throw new RangeError(
-					`"shownDate" must be ${ shownDate < fromDate ? 'greater' : 'less' } than or equal to "${
-						shownDate < fromDate ? 'fromDate' : 'toDate' }"`
-				);
-			}
 		} else {
 			let today = getTodayDate();
 			shownDate = today < fromDate ? fromDate : (today > toDate ? toDate : today);
@@ -231,6 +222,8 @@ export default class OpalCalendar extends Component {
 			},
 
 			days(this: OpalCalendar, push: any, fail: any, oldDays: TDays | undefined): TDays {
+				let dateDelimiter = this.props['dateDelimiter'];
+
 				let fromDate = this.fromDate;
 				let toDate = this.toDate;
 

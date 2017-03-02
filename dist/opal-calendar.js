@@ -92,7 +92,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalCalendar.prototype.initialize = function () {
 	        var i18n = this.constructor.i18n;
 	        var sundayFirst = i18n['sundayFirst'];
-	        var dateDelimiter = this.props['dateDelimiter'];
 	        this.weekDays = sundayFirst ? i18n['weekDays'] : i18n['weekDays'].slice(1).concat(i18n['weekDays'][0]);
 	        this.weekDaysShort = sundayFirst ?
 	            i18n['weekDaysShort'] :
@@ -101,19 +100,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	            fromDate: function () {
 	                var fromDate = this.props['fromDate'];
 	                if (fromDate) {
-	                    return fromDate == 'today' ? getTodayDate() : parseDate_1.default(fromDate, dateDelimiter);
+	                    return fromDate == 'today' ? getTodayDate() : parseDate_1.default(fromDate);
 	                }
 	                var toDate = this.props['toDate'];
-	                var date = toDate && toDate != 'today' ? parseDate_1.default(toDate, dateDelimiter) : new Date();
+	                var date = toDate && toDate != 'today' ? parseDate_1.default(toDate) : new Date();
 	                return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
 	            },
 	            toDate: function () {
 	                var toDate = this.props['toDate'];
 	                if (toDate) {
-	                    return toDate == 'today' ? getTodayDate() : parseDate_1.default(toDate, dateDelimiter);
+	                    return toDate == 'today' ? getTodayDate() : parseDate_1.default(toDate);
 	                }
 	                var fromDate = this.props['fromDate'];
-	                var date = fromDate && fromDate != 'today' ? parseDate_1.default(fromDate, dateDelimiter) : new Date();
+	                var date = fromDate && fromDate != 'today' ? parseDate_1.default(fromDate) : new Date();
 	                return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
 	            },
 	            fromYear: function () {
@@ -131,7 +130,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            value: function () {
 	                var value = this.props['value'];
-	                return value ? parseDate_1.default(value, dateDelimiter) : null;
+	                return value ? parseDate_1.default(value) : null;
 	            }
 	        });
 	        var fromDate = this.fromDate;
@@ -146,9 +145,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                throw new TypeError('Invalid "value"');
 	            }
 	            shownDate = value;
-	            if (shownDate < fromDate || shownDate > toDate) {
-	                throw new RangeError("\"shownDate\" must be " + (shownDate < fromDate ? 'greater' : 'less') + " than or equal to \"" + (shownDate < fromDate ? 'fromDate' : 'toDate') + "\"");
-	            }
 	        }
 	        else {
 	            var today = getTodayDate();
@@ -164,6 +160,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return this.shownYear == this.toYear && this.shownMonth == 11;
 	            },
 	            days: function (push, fail, oldDays) {
+	                var dateDelimiter = this.props['dateDelimiter'];
 	                var fromDate = this.fromDate;
 	                var toDate = this.toDate;
 	                var value = this.value;
@@ -360,9 +357,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
-	function parseDate(date, delimiter) {
-	    if (delimiter === void 0) { delimiter = '/'; }
-	    var d = date.split(delimiter);
+	function parseDate(date) {
+	    var d = date.match(/\d+/g);
 	    return new Date(+d[2], +d[1] - 1, +d[0]);
 	}
 	exports.default = parseDate;
@@ -385,7 +381,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-calendar{display:block;width:300px;border:1px solid #dbdbdb;border-radius:3px;background:#fff;color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400}.opal-calendar .opal-calendar__header{position:relative;padding:8px 44px;text-align:center}.opal-calendar .opal-calendar__btn-prev-month,.opal-calendar .opal-calendar__btn-next-month{position:absolute;top:0;bottom:0;margin:auto;padding:0;width:30px;height:30px;border:0;border-radius:50%;background:0 0;cursor:pointer}.opal-calendar .opal-calendar__btn-prev-month{left:8px}.opal-calendar .opal-calendar__btn-next-month{right:8px}.opal-calendar .opal-calendar__btn-prev-month:hover,.opal-calendar .opal-calendar__btn-next-month:hover{background:#e6e6e6}.opal-calendar .opal-calendar__btn-prev-month:focus,.opal-calendar .opal-calendar__btn-next-month:focus{outline:none}body:not(._no-focus-highlight) .opal-calendar .opal-calendar__btn-prev-month:focus::after,body:not(._no-focus-highlight) .opal-calendar .opal-calendar__btn-next-month:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-calendar .opal-calendar__btn-prev-month:active,.opal-calendar .opal-calendar__btn-next-month:active{background:#ccc}.opal-calendar .opal-calendar__btn-prev-month[disabled],.opal-calendar .opal-calendar__btn-next-month[disabled]{background:0 0;color:#000;opacity:.3;cursor:default}.opal-calendar .opal-calendar__icon-arrow-left,.opal-calendar .opal-calendar__icon-arrow-right{display:block;margin:auto;width:16px;height:16px;fill:currentColor}.opal-calendar .opal-calendar__icon-arrow-right{-ms-transform:scaleX(-1);transform:scaleX(-1)}.opal-calendar .opal-calendar__body{padding:0 8px 8px;text-align:center;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-calendar .opal-calendar__week-days,.opal-calendar .opal-calendar__days{width:100%;border-spacing:0;border-collapse:separate}.opal-calendar .opal-calendar__week-day,.opal-calendar .opal-calendar__day{padding:3px 7px;width:14.286%;border:1px solid transparent}.opal-calendar .opal-calendar__day{position:relative;border-radius:3px;cursor:pointer}.opal-calendar .opal-calendar__day:hover{background:#e6e6e6}.opal-calendar .opal-calendar__day:focus{outline:none}body:not(._no-focus-highlight) .opal-calendar .opal-calendar__day:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-calendar .opal-calendar__day:active{background:#ccc}.opal-calendar .opal-calendar__day[today]{text-decoration:underline}.opal-calendar .opal-calendar__day[selected],.opal-calendar .opal-calendar__day[selected][not-in-current-month]{color:#0d87f2}.opal-calendar .opal-calendar__day[not-in-current-month]{color:#a6a6a6}.opal-calendar .opal-calendar__day[disabled]{background:0 0;color:#e6e6e6;cursor:default}";
+	            style.textContent = ".opal-calendar{display:block;width:300px;border:1px solid #dbdbdb;border-radius:3px;background:#fff;color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400}.opal-calendar .opal-calendar__header{position:relative;padding:8px 44px;text-align:center}.opal-calendar .opal-calendar__btn-prev-month,.opal-calendar .opal-calendar__btn-next-month{position:absolute;top:0;bottom:0;margin:auto;padding:0;width:30px;height:30px;border:0;border-radius:50%;background:0 0;cursor:pointer}.opal-calendar .opal-calendar__btn-prev-month{left:8px}.opal-calendar .opal-calendar__btn-next-month{right:8px}.opal-calendar .opal-calendar__btn-prev-month:hover,.opal-calendar .opal-calendar__btn-next-month:hover{background:#e6e6e6}.opal-calendar .opal-calendar__btn-prev-month:focus,.opal-calendar .opal-calendar__btn-next-month:focus{outline:none}body:not(._no-focus-highlight) .opal-calendar .opal-calendar__btn-prev-month:focus::after,body:not(._no-focus-highlight) .opal-calendar .opal-calendar__btn-next-month:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-calendar .opal-calendar__btn-prev-month:active,.opal-calendar .opal-calendar__btn-next-month:active{background:#ccc}.opal-calendar .opal-calendar__btn-prev-month[disabled],.opal-calendar .opal-calendar__btn-next-month[disabled]{background:0 0;color:#000;opacity:.3;cursor:default}.opal-calendar .opal-calendar__icon-arrow-left,.opal-calendar .opal-calendar__icon-arrow-right{display:block;margin:auto;width:16px;height:16px;fill:currentColor}.opal-calendar .opal-calendar__icon-arrow-right{-ms-transform:scaleX(-1);transform:scaleX(-1)}.opal-calendar .opal-calendar__body{padding:0 8px 8px;text-align:center;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-calendar .opal-calendar__week-days,.opal-calendar .opal-calendar__days{width:100%;border-spacing:0;border-collapse:separate}.opal-calendar .opal-calendar__week-day,.opal-calendar .opal-calendar__day{padding:3px 7px;width:14.286%;border:1px solid transparent}.opal-calendar .opal-calendar__day{position:relative;border-radius:3px;cursor:pointer}.opal-calendar .opal-calendar__day:hover{background:#e6e6e6}.opal-calendar .opal-calendar__day:focus{outline:none}body:not(._no-focus-highlight) .opal-calendar .opal-calendar__day:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-calendar .opal-calendar__day:active{background:#ccc}.opal-calendar .opal-calendar__day[today]{text-decoration:underline}.opal-calendar .opal-calendar__day[not-in-current-month]{color:#a6a6a6}.opal-calendar .opal-calendar__day[disabled]{background:0 0;color:#e6e6e6;cursor:default}.opal-calendar .opal-calendar__day[selected]{color:#0d87f2}";
 	            head.appendChild(style);
 	            return style;
 	        }

@@ -160,11 +160,6 @@
 					text-decoration: underline;
 				}
 
-				& .opal-calendar__day[selected],
-				& .opal-calendar__day[selected][not-in-current-month] {
-					color: hsl(208,90%,50%);
-				}
-
 				& .opal-calendar__day[not-in-current-month] {
 					color: hsl(0,0%,65%);
 				}
@@ -173,5 +168,9 @@
 					background: none;
 					color: hsl(0,0%,90%);
 					cursor: default;
+				}
+
+				& .opal-calendar__day[selected] {
+					color: hsl(208,90%,50%);
 				}
 }
