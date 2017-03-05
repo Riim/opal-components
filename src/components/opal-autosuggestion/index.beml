@@ -8,7 +8,7 @@ rt-content (select=.opal-autosuggestion__text-input, cloning=no) {
 
 opal-dropdown/menu {
 	div/list {
-		template (is=rt-repeat, for=item of list, strip, rt-silent) {
+		template (is=rt-repeat, for=item of list, rt-silent) {
 			div/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {
 				'{item.text}'
 			}

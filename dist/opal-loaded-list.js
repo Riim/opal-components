@@ -246,7 +246,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 29:
 /***/ function(module, exports) {
 
-	module.exports = "div/list {\ntemplate (is=rt-repeat, for={props.itemAs} of list, strip) {\nrt-content/list-item (get-context=_getContentContext)\n}\n}\nopal-loader/loader (shown={loaderShown}, align-center={empty})\ndiv/not-found (shown={notFoundShown}) {\nspan/not-found-message { '{constructor.i18n.notFoundMessage}' }\n}"
+	module.exports = "div/list {\ntemplate (is=rt-repeat, for={props.itemAs} of list) {\nrt-content/list-item (get-context=_getContentContext)\n}\n}\nopal-loader/loader (shown={loaderShown}, align-center={empty})\ndiv/not-found (shown={notFoundShown}) {\nspan/not-found-message { '{constructor.i18n.notFoundMessage}' }\n}"
 
 /***/ },
 
