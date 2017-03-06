@@ -51,7 +51,7 @@ function toComparable(str: string): string {
 			},
 
 			input(evt: IEvent) {
-				this._noSelectingAfterInput = true;
+				this._isInputLast = true;
 
 				this.closeMenu();
 
@@ -98,7 +98,7 @@ export default class OpalAutosuggestion extends Component {
 	list: ObservableList<IItem>;
 	_listItems: NodeListOf<HTMLElement>;
 
-	_noSelectingAfterInput: boolean = true;
+	_isInputLast = false;
 
 	_loadingPlanned: boolean;
 	_loadingTimeout: IDisposableTimeout;
@@ -304,7 +304,7 @@ export default class OpalAutosuggestion extends Component {
 	}
 
 	_setSelectedItemOfList() {
-		if (this._noSelectingAfterInput) {
+		if (this._isInputLast) {
 			let comparableQuery = toComparable((this.$('text-input') as OpalTextInput).value);
 			this._setSelectedItem(this.list.find(item => toComparable(item.text) == comparableQuery) || null);
 		}
@@ -312,7 +312,7 @@ export default class OpalAutosuggestion extends Component {
 
 	_setSelectedItem(selectedItem: IItem | null) {
 		if (selectedItem ? !this.selectedItem || this.selectedItem.value != selectedItem.value : this.selectedItem) {
-			this._noSelectingAfterInput = false;
+			this._isInputLast = false;
 			this.selectedItem = selectedItem;
 			this.emit('change');
 		}

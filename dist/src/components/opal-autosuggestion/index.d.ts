@@ -17,7 +17,7 @@ export default class OpalAutosuggestion extends Component {
     dataProvider: IDataProvider;
     list: ObservableList<IItem>;
     _listItems: NodeListOf<HTMLElement>;
-    _noSelectingAfterInput: boolean;
+    _isInputLast: boolean;
     _loadingPlanned: boolean;
     _loadingTimeout: IDisposableTimeout;
     _requestCallback: IDisposableCallback;

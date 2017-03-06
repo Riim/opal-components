@@ -84,7 +84,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    __extends(OpalAutosuggestion, _super);
 	    function OpalAutosuggestion() {
 	        var _this = _super !== null && _super.apply(this, arguments) || this;
-	        _this._noSelectingAfterInput = true;
+	        _this._isInputLast = false;
 	        return _this;
 	    }
 	    OpalAutosuggestion.prototype.initialize = function () {
@@ -229,14 +229,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.$('menu').close();
 	    };
 	    OpalAutosuggestion.prototype._setSelectedItemOfList = function () {
-	        if (this._noSelectingAfterInput) {
+	        if (this._isInputLast) {
 	            var comparableQuery_1 = toComparable(this.$('text-input').value);
 	            this._setSelectedItem(this.list.find(function (item) { return toComparable(item.text) == comparableQuery_1; }) || null);
 	        }
 	    };
 	    OpalAutosuggestion.prototype._setSelectedItem = function (selectedItem) {
 	        if (selectedItem ? !this.selectedItem || this.selectedItem.value != selectedItem.value : this.selectedItem) {
-	            this._noSelectingAfterInput = false;
+	            this._isInputLast = false;
 	            this.selectedItem = selectedItem;
 	            this.emit('change');
 	        }
@@ -278,7 +278,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                },
 	                input: function (evt) {
 	                    var _this = this;
-	                    this._noSelectingAfterInput = true;
+	                    this._isInputLast = true;
 	                    this.closeMenu();
 	                    this._cancelLoading();
 	                    this.list.clear();
