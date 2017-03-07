@@ -102,6 +102,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this[value ? 'focus' : 'blur']();
 	        }
 	    };
+	    OpalButton.prototype._onDocumentKeyDown = function (evt) {
+	        if (evt.which == 13 /* Enter */ && !this.props['disabled']) {
+	            this.click(evt);
+	        }
+	    };
+	    OpalButton.prototype.click = function (originalEvent) {
+	        if (this.props['checkable']) {
+	            this.emit(this.toggle() ? 'check' : 'uncheck');
+	        }
+	        this.emit({ type: 'click', originalEvent: originalEvent });
+	        return this;
+	    };
 	    Object.defineProperty(OpalButton.prototype, "checked", {
 	        get: function () {
 	            return this.props['checked'];
@@ -168,21 +180,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            ':element': {
 	                focusin: function (evt) {
+	                    if (this.element.tagName.indexOf('-') > -1) {
+	                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	                    }
 	                    this.props['focused'] = true;
 	                    this.emit({ type: 'focusin', originalEvent: evt });
 	                },
 	                focusout: function (evt) {
+	                    if (this._documentKeyDownListening) {
+	                        this._documentKeyDownListening.stop();
+	                    }
 	                    this.props['focused'] = false;
 	                    this.emit({ type: 'focusout', originalEvent: evt });
 	                },
 	                click: function (evt) {
-	                    if (this.props['disabled']) {
-	                        return;
+	                    if (!this.props['disabled']) {
+	                        this.click(evt);
 	                    }
-	                    if (this.props['checkable']) {
-	                        this.emit(this.toggle() ? 'check' : 'uncheck');
-	                    }
-	                    this.emit({ type: 'click', originalEvent: evt });
 	                }
 	            }
 	        }
