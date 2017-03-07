@@ -81,7 +81,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function onDocumentFocusIn() {
 	    if (document.activeElement != document.body &&
 	        !openedModals[0].element.contains(document.activeElement.parentNode)) {
-	        (openedModals[0].$('focus') || openedModals[0].$('btn-close')).focus();
+	        openedModals[0].$('btn-close').focus();
 	    }
 	}
 	function onDocumentKeyUp(evt) {
@@ -143,7 +143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        this.props['opened'] = true;
 	        openedModals.unshift(this);
-	        (this.$('focus') || this.$('btn-close')).focus();
+	        this.focus();
 	        this.emit('open');
 	    };
 	    OpalModal.prototype._close = function () {
@@ -155,7 +155,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        openedModals.shift();
 	        if (openedModals.length) {
 	            openedModals[0].element.classList.remove('_overlapped');
-	            (openedModals[0].$('focus') || openedModals[0].$('btn-close')).focus();
+	            openedModals[0].focus();
 	        }
 	        else {
 	            documentListening.stop();
@@ -164,6 +164,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            bodyStyle.marginRight = '';
 	        }
 	        this.emit('close');
+	    };
+	    OpalModal.prototype.focus = function () {
+	        if (this == openedModals[0]) {
+	            document.body.classList.remove('_no-focus-highlight');
+	            (this.$('focus') || this.$('btn-close')).focus();
+	        }
+	        return this;
 	    };
 	    return OpalModal;
 	}(rionite_1.Component));

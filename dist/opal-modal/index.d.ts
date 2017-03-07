@@ -9,4 +9,5 @@ export default class OpalModal extends Component {
     toggle(value?: boolean): boolean;
     _open(): void;
     _close(): void;
+    focus(): OpalModal;
 }
