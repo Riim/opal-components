@@ -100,10 +100,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            selectedItem: this.props['selectedItem']
 	        });
 	    };
-	    OpalAutosuggestion.prototype.ready = function () {
-	        this._listItems = this.$('list')
-	            .getElementsByClassName('opal-autosuggestion__list-item');
-	    };
 	    OpalAutosuggestion.prototype.elementAttached = function () {
 	        this.listenTo(this.$('text-input').$('text-field'), 'click', this._onTextFieldClick);
 	        this.listenTo(this.list, 'change', this._onListChange);
@@ -138,9 +134,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                evt.preventDefault();
 	                var focusedListItem = this._focusedListItem;
 	                if (focusedListItem) {
-	                    var newFocusedListItem = this._focusedListItem[evt.which == 38 ? 'previousElementSibling' : 'nextElementSibling'];
-	                    if (newFocusedListItem && newFocusedListItem.tagName != 'TEMPLATE') {
-	                        this._focusedListItem.removeAttribute('focused');
+	                    var listItems = this.$$('list-item');
+	                    var index = listItems.indexOf(focusedListItem);
+	                    if (evt.which == 38 ? index > 0 : index < listItems.length - 1) {
+	                        var newFocusedListItem = listItems[index + (evt.which == 38 ? -1 : 1)];
+	                        focusedListItem.removeAttribute('focused');
 	                        this._focusedListItem = newFocusedListItem;
 	                        newFocusedListItem.setAttribute('focused', '');
 	                    }
@@ -170,14 +168,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	    };
-	    OpalAutosuggestion.prototype._onDocumentMouseUp = function () {
-	        var _this = this;
-	        setTimeout(function () {
-	            if (document.activeElement != _this.$('text-input').$('text-field')) {
-	                _this.closeMenu();
-	                _this._setSelectedItemOfList();
-	            }
-	        }, 1);
+	    OpalAutosuggestion.prototype._onDocumentClick = function (evt) {
+	        if (!this.element.contains(evt.target)) {
+	            this.closeMenu();
+	            this._setSelectedItemOfList();
+	        }
 	    };
 	    OpalAutosuggestion.prototype._onListItemClick = function (evt, listItem) {
 	        var textInput = this.$('text-input');
@@ -207,7 +202,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (items.length) {
 	            this.list.addRange(items);
 	            cellx_1.Cell.afterRelease(function () {
-	                var focusedListItem = _this._focusedListItem = _this._listItems[0];
+	                var focusedListItem = _this.$('list-item');
+	                _this._focusedListItem = focusedListItem;
 	                focusedListItem.setAttribute('focused', '');
 	            });
 	        }
@@ -247,6 +243,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.closeMenu();
 	        this._cancelLoading();
 	        this.list.clear();
+	        this._focusedListItem = null;
 	        if (this.selectedItem) {
 	            this.selectedItem = null;
 	        }
@@ -284,6 +281,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.closeMenu();
 	                    this._cancelLoading();
 	                    this.list.clear();
+	                    this._focusedListItem = null;
 	                    if (evt.target.value.length >= this.props['minQueryLength']) {
 	                        this._loadingPlanned = true;
 	                        this._loadingTimeout = this.setTimeout(function () {
@@ -297,6 +295,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        this.closeMenu();
 	                        this._cancelLoading();
 	                        this.list.clear();
+	                        this._focusedListItem = null;
+	                        if (this.selectedItem) {
+	                            this.selectedItem = null;
+	                        }
 	                    }
 	                }
 	            },
@@ -304,12 +306,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                open: function () {
 	                    this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
 	                    this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-	                    this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
+	                    this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
 	                },
 	                close: function () {
 	                    this._documentFocusInListening.stop();
 	                    this._documentKeyDownListening.stop();
-	                    this._documentMouseUpListening.stop();
+	                    this._documentClickListening.stop();
 	                }
 	            }
 	        }

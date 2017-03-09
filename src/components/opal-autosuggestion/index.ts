@@ -56,7 +56,9 @@ function toComparable(str: string): string {
 				this.closeMenu();
 
 				this._cancelLoading();
+
 				this.list.clear();
+				this._focusedListItem = null;
 
 				if ((evt.target as OpalTextInput).value.length >= this.props['minQueryLength']) {
 					this._loadingPlanned = true;
@@ -71,8 +73,15 @@ function toComparable(str: string): string {
 			change(evt: IEvent) {
 				if (!(evt.target as OpalTextInput).value.length) {
 					this.closeMenu();
+
 					this._cancelLoading();
+
 					this.list.clear();
+					this._focusedListItem = null;
+
+					if (this.selectedItem) {
+						this.selectedItem = null;
+					}
 				}
 			}
 		},
@@ -81,13 +90,13 @@ function toComparable(str: string): string {
 			open() {
 				this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-				this._documentMouseUpListening = this.listenTo(document, 'mouseup', this._onDocumentMouseUp);
+				this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
 			},
 
 			close() {
 				this._documentFocusInListening.stop();
 				this._documentKeyDownListening.stop();
-				this._documentMouseUpListening.stop();
+				this._documentClickListening.stop();
 			}
 		}
 	}
@@ -96,7 +105,6 @@ export default class OpalAutosuggestion extends Component {
 	dataProvider: IDataProvider;
 
 	list: ObservableList<IItem>;
-	_listItems: NodeListOf<HTMLElement>;
 
 	_isInputLast = false;
 
@@ -107,12 +115,12 @@ export default class OpalAutosuggestion extends Component {
 
 	loaderShown: boolean;
 
+	_focusedListItem: HTMLElement | null;
 	selectedItem: IItem | null;
-	_focusedListItem: HTMLElement;
 
 	_documentFocusInListening: IDisposableListening;
 	_documentKeyDownListening: IDisposableListening;
-	_documentMouseUpListening: IDisposableListening;
+	_documentClickListening: IDisposableListening;
 
 	initialize() {
 		this.dataProvider = Function(`return this.${ this.props['dataprovider'] };`)
@@ -130,11 +138,6 @@ export default class OpalAutosuggestion extends Component {
 
 			selectedItem: this.props['selectedItem']
 		});
-	}
-
-	ready() {
-		this._listItems = (this.$('list') as HTMLElement)
-			.getElementsByClassName('opal-autosuggestion__list-item') as NodeListOf<HTMLElement>;
 	}
 
 	elementAttached() {
@@ -185,12 +188,13 @@ export default class OpalAutosuggestion extends Component {
 				let focusedListItem = this._focusedListItem;
 
 				if (focusedListItem) {
-					let newFocusedListItem = this._focusedListItem[
-						evt.which == 38 ? 'previousElementSibling' : 'nextElementSibling'
-					] as HTMLElement | null;
+					let listItems = this.$$('list-item');
+					let index = listItems.indexOf(focusedListItem);
 
-					if (newFocusedListItem && newFocusedListItem.tagName != 'TEMPLATE') {
-						this._focusedListItem.removeAttribute('focused');
+					if (evt.which == 38 ? index > 0 : index < listItems.length - 1) {
+						let newFocusedListItem = listItems[index + (evt.which == 38 ? -1 : 1)] as HTMLElement;
+
+						focusedListItem.removeAttribute('focused');
 						this._focusedListItem = newFocusedListItem;
 
 						newFocusedListItem.setAttribute('focused', '');
@@ -229,13 +233,11 @@ export default class OpalAutosuggestion extends Component {
 		}
 	}
 
-	_onDocumentMouseUp() {
-		setTimeout(() => {
-			if (document.activeElement != (this.$('text-input') as Component).$('text-field')) {
-				this.closeMenu();
-				this._setSelectedItemOfList();
-			}
-		}, 1);
+	_onDocumentClick(evt: Event) {
+		if (!this.element.contains(evt.target as HTMLElement)) {
+			this.closeMenu();
+			this._setSelectedItemOfList();
+		}
 	}
 
 	_onListItemClick(evt: Event, listItem: HTMLElement) {
@@ -276,7 +278,9 @@ export default class OpalAutosuggestion extends Component {
 			this.list.addRange(items);
 
 			Cell.afterRelease(() => {
-				let focusedListItem = this._focusedListItem = this._listItems[0];
+				let focusedListItem = this.$('list-item') as HTMLElement;
+
+				this._focusedListItem = focusedListItem;
 				focusedListItem.setAttribute('focused', '');
 			});
 		}
@@ -321,7 +325,9 @@ export default class OpalAutosuggestion extends Component {
 		this.closeMenu();
 
 		this._cancelLoading();
+
 		this.list.clear();
+		this._focusedListItem = null;
 
 		if (this.selectedItem) {
 			this.selectedItem = null;
