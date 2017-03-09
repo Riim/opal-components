@@ -146,6 +146,7 @@ export default class OpalAutosuggestion extends Component {
 			'click',
 			this._onTextFieldClick
 		);
+		this.listenTo((this.$('menu') as Component).element as HTMLElement, 'mouseover', this._onMenuMouseOver);
 		this.listenTo(this.list, 'change', this._onListChange);
 		this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 	}
@@ -159,6 +160,26 @@ export default class OpalAutosuggestion extends Component {
 
 	_onTextFieldClick() {
 		this.openMenu();
+	}
+
+	_onMenuMouseOver(evt: Event) {
+		let menu = (this.$('menu') as Component).element as HTMLElement;
+		let el = evt.target as HTMLElement;
+
+		for (; !el.classList.contains('opal-autosuggestion__list-item'); el = el.parentNode as HTMLElement) {
+			if (el == menu) {
+				return;
+			}
+		}
+
+		let focusedListItem = this._focusedListItem as HTMLElement;
+
+		if (el != focusedListItem) {
+			this._focusedListItem = el;
+
+			focusedListItem.removeAttribute('focused');
+			el.setAttribute('focused', '');
+		}
 	}
 
 	_onListChange() {
@@ -194,9 +215,9 @@ export default class OpalAutosuggestion extends Component {
 					if (evt.which == 38 ? index > 0 : index < listItems.length - 1) {
 						let newFocusedListItem = listItems[index + (evt.which == 38 ? -1 : 1)] as HTMLElement;
 
-						focusedListItem.removeAttribute('focused');
 						this._focusedListItem = newFocusedListItem;
 
+						focusedListItem.removeAttribute('focused');
 						newFocusedListItem.setAttribute('focused', '');
 					}
 				}

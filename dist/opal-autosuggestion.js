@@ -102,6 +102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalAutosuggestion.prototype.elementAttached = function () {
 	        this.listenTo(this.$('text-input').$('text-field'), 'click', this._onTextFieldClick);
+	        this.listenTo(this.$('menu').element, 'mouseover', this._onMenuMouseOver);
 	        this.listenTo(this.list, 'change', this._onListChange);
 	        this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 	    };
@@ -113,6 +114,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalAutosuggestion.prototype._onTextFieldClick = function () {
 	        this.openMenu();
+	    };
+	    OpalAutosuggestion.prototype._onMenuMouseOver = function (evt) {
+	        var menu = this.$('menu').element;
+	        var el = evt.target;
+	        for (; !el.classList.contains('opal-autosuggestion__list-item'); el = el.parentNode) {
+	            if (el == menu) {
+	                return;
+	            }
+	        }
+	        var focusedListItem = this._focusedListItem;
+	        if (el != focusedListItem) {
+	            this._focusedListItem = el;
+	            focusedListItem.removeAttribute('focused');
+	            el.setAttribute('focused', '');
+	        }
 	    };
 	    OpalAutosuggestion.prototype._onListChange = function () {
 	        this.openMenu();
@@ -138,8 +154,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var index = listItems.indexOf(focusedListItem);
 	                    if (evt.which == 38 ? index > 0 : index < listItems.length - 1) {
 	                        var newFocusedListItem = listItems[index + (evt.which == 38 ? -1 : 1)];
-	                        focusedListItem.removeAttribute('focused');
 	                        this._focusedListItem = newFocusedListItem;
+	                        focusedListItem.removeAttribute('focused');
 	                        newFocusedListItem.setAttribute('focused', '');
 	                    }
 	                }
