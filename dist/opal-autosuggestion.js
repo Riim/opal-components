@@ -197,18 +197,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (dataProvider.getItems.length >= 2) {
 	            args.unshift(this.props['count']);
 	        }
-	        dataProvider.getItems.apply(dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {
-	            var _this = this;
-	            this.loading = false;
-	            var items = data.items;
-	            if (items.length) {
-	                this.list.addRange(items);
-	                cellx_1.Cell.afterRelease(function () {
-	                    var focusedListItem = _this._focusedListItem = _this._listItems[0];
-	                    focusedListItem.setAttribute('focused', '');
-	                });
-	            }
-	        }));
+	        dataProvider.getItems.apply(dataProvider, args)
+	            .then(this._requestCallback = this.registerCallback(this._itemsRequestCallback));
+	    };
+	    OpalAutosuggestion.prototype._itemsRequestCallback = function (data) {
+	        var _this = this;
+	        this.loading = false;
+	        var items = data.items;
+	        if (items.length) {
+	            this.list.addRange(items);
+	            cellx_1.Cell.afterRelease(function () {
+	                var focusedListItem = _this._focusedListItem = _this._listItems[0];
+	                focusedListItem.setAttribute('focused', '');
+	            });
+	        }
 	    };
 	    OpalAutosuggestion.prototype._cancelLoading = function () {
 	        if (this._loadingPlanned) {

@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.20.38",
+  "version": "0.20.39",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   "devDependencies": {
     "@riim/babel-preset": "^1.0.0",
     "autoprefixer": "^6.7.6",
-    "awesome-typescript-loader": "^3.1.1",
+    "awesome-typescript-loader": "^3.1.2",
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.4.0",
@@ -35,7 +35,7 @@
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-sizereport": "^1.2.0",
-    "gulp-uglify": "^2.0.0",
+    "gulp-uglify": "^2.1.0",
     "postcss-color-function": "^3.0.0",
     "postcss-css-variables": "^0.6.0",
     "postcss-csso": "^1.1.2",

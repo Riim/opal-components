@@ -263,24 +263,23 @@ export default class OpalAutosuggestion extends Component {
 			args.unshift(this.props['count']);
 		}
 
-		dataProvider.getItems.apply(dataProvider, args).then(
-			this._requestCallback = this.registerCallback(
-				function(this: OpalAutosuggestion, data: { items: Array<IItem> }) {
-					this.loading = false;
+		dataProvider.getItems.apply(dataProvider, args)
+			.then(this._requestCallback = this.registerCallback(this._itemsRequestCallback));
+	}
 
-					let items = data.items;
+	_itemsRequestCallback(data: { items: Array<IItem> }) {
+		this.loading = false;
 
-					if (items.length) {
-						this.list.addRange(items);
+		let items = data.items;
 
-						Cell.afterRelease(() => {
-							let focusedListItem = this._focusedListItem = this._listItems[0];
-							focusedListItem.setAttribute('focused', '');
-						});
-					}
-				}
-			)
-		);
+		if (items.length) {
+			this.list.addRange(items);
+
+			Cell.afterRelease(() => {
+				let focusedListItem = this._focusedListItem = this._listItems[0];
+				focusedListItem.setAttribute('focused', '');
+			});
+		}
 	}
 
 	_cancelLoading() {

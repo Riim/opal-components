@@ -40,6 +40,9 @@ export default class OpalAutosuggestion extends Component {
     _onDocumentMouseUp(): void;
     _onListItemClick(evt: Event, listItem: HTMLElement): void;
     _load(): void;
+    _itemsRequestCallback(data: {
+        items: Array<IItem>;
+    }): void;
     _cancelLoading(): void;
     openMenu(): void;
     closeMenu(): void;
