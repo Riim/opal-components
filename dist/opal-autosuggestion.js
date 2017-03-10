@@ -108,6 +108,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalAutosuggestion.prototype.propertyChanged = function (name, value) {
 	        if (name == 'selectedItem') {
+	            this._clearList();
 	            this.selectedItem = value;
 	            this.$('text-input').value = value ? value.text : '';
 	        }
@@ -251,19 +252,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalAutosuggestion.prototype._setSelectedItem = function (selectedItem) {
 	        if (selectedItem ? !this.selectedItem || this.selectedItem.value != selectedItem.value : this.selectedItem) {
 	            this._isInputLast = false;
+	            this._clearList();
 	            this.selectedItem = selectedItem;
 	            this.emit('change');
 	        }
 	    };
 	    OpalAutosuggestion.prototype.clear = function () {
-	        this.closeMenu();
-	        this._cancelLoading();
-	        this.list.clear();
-	        this._focusedListItem = null;
+	        this._clearList();
 	        if (this.selectedItem) {
 	            this.selectedItem = null;
 	        }
 	        this.$('text-input').clear();
+	    };
+	    OpalAutosuggestion.prototype._clearList = function () {
+	        this.closeMenu();
+	        this._cancelLoading();
+	        this.list.clear();
+	        this._focusedListItem = null;
 	    };
 	    return OpalAutosuggestion;
 	}(rionite_1.Component));
@@ -294,10 +299,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                input: function (evt) {
 	                    var _this = this;
 	                    this._isInputLast = true;
-	                    this.closeMenu();
-	                    this._cancelLoading();
-	                    this.list.clear();
-	                    this._focusedListItem = null;
+	                    this._clearList();
 	                    if (evt.target.value.length >= this.props['minQueryLength']) {
 	                        this._loadingPlanned = true;
 	                        this._loadingTimeout = this.setTimeout(function () {
@@ -308,10 +310,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                },
 	                change: function (evt) {
 	                    if (!evt.target.value.length) {
-	                        this.closeMenu();
-	                        this._cancelLoading();
-	                        this.list.clear();
-	                        this._focusedListItem = null;
+	                        this._clearList();
 	                        if (this.selectedItem) {
 	                            this.selectedItem = null;
 	                        }

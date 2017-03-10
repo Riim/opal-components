@@ -53,12 +53,7 @@ function toComparable(str: string): string {
 			input(evt: IEvent) {
 				this._isInputLast = true;
 
-				this.closeMenu();
-
-				this._cancelLoading();
-
-				this.list.clear();
-				this._focusedListItem = null;
+				this._clearList();
 
 				if ((evt.target as OpalTextInput).value.length >= this.props['minQueryLength']) {
 					this._loadingPlanned = true;
@@ -72,12 +67,7 @@ function toComparable(str: string): string {
 
 			change(evt: IEvent) {
 				if (!(evt.target as OpalTextInput).value.length) {
-					this.closeMenu();
-
-					this._cancelLoading();
-
-					this.list.clear();
-					this._focusedListItem = null;
+					this._clearList();
 
 					if (this.selectedItem) {
 						this.selectedItem = null;
@@ -153,6 +143,8 @@ export default class OpalAutosuggestion extends Component {
 
 	propertyChanged(name: string, value: any) {
 		if (name == 'selectedItem') {
+			this._clearList();
+
 			this.selectedItem = value;
 			(this.$('text-input') as OpalTextInput).value = value ? value.text : '';
 		}
@@ -337,23 +329,30 @@ export default class OpalAutosuggestion extends Component {
 	_setSelectedItem(selectedItem: IItem | null) {
 		if (selectedItem ? !this.selectedItem || this.selectedItem.value != selectedItem.value : this.selectedItem) {
 			this._isInputLast = false;
+
+			this._clearList();
+
 			this.selectedItem = selectedItem;
 			this.emit('change');
 		}
 	}
 
 	clear() {
-		this.closeMenu();
-
-		this._cancelLoading();
-
-		this.list.clear();
-		this._focusedListItem = null;
+		this._clearList();
 
 		if (this.selectedItem) {
 			this.selectedItem = null;
 		}
 
 		(this.$('text-input') as OpalTextInput).clear();
+	}
+
+	_clearList() {
+		this.closeMenu();
+
+		this._cancelLoading();
+
+		this.list.clear();
+		this._focusedListItem = null;
 	}
 }

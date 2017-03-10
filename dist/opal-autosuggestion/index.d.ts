@@ -48,4 +48,5 @@ export default class OpalAutosuggestion extends Component {
     _setSelectedItemOfList(): void;
     _setSelectedItem(selectedItem: IItem | null): void;
     clear(): void;
+    _clearList(): void;
 }
