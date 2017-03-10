@@ -250,12 +250,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    OpalAutosuggestion.prototype._setSelectedItem = function (selectedItem) {
-	        if (selectedItem ? !this.selectedItem || this.selectedItem.value != selectedItem.value : this.selectedItem) {
-	            this._isInputLast = false;
-	            this._clearList();
-	            this.selectedItem = selectedItem;
-	            this.emit('change');
+	        if (selectedItem) {
+	            if (this.selectedItem && this.selectedItem.value == selectedItem.value) {
+	                this._isInputLast = false;
+	                this._clearList();
+	                return;
+	            }
 	        }
+	        else if (!this.selectedItem) {
+	            return;
+	        }
+	        this._isInputLast = false;
+	        this._clearList();
+	        this.selectedItem = selectedItem;
+	        this.emit('change');
 	    };
 	    OpalAutosuggestion.prototype.clear = function () {
 	        this._clearList();
