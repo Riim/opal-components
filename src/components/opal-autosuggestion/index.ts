@@ -44,10 +44,6 @@ function toComparable(str: string): string {
 
 			focusout() {
 				this._cancelLoading();
-
-				if (!(this.$('menu') as Component).props['opened']) {
-					this._setSelectedItemOfList();
-				}
 			},
 
 			input(evt: IEvent) {
@@ -71,6 +67,7 @@ function toComparable(str: string): string {
 
 					if (this.selectedItem) {
 						this.selectedItem = null;
+						this.emit('change');
 					}
 				}
 			}

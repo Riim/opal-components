@@ -300,9 +300,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                },
 	                focusout: function () {
 	                    this._cancelLoading();
-	                    if (!this.$('menu').props['opened']) {
-	                        this._setSelectedItemOfList();
-	                    }
 	                },
 	                input: function (evt) {
 	                    var _this = this;
@@ -321,6 +318,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        this._clearList();
 	                        if (this.selectedItem) {
 	                            this.selectedItem = null;
+	                            this.emit('change');
 	                        }
 	                    }
 	                }
