@@ -7,10 +7,7 @@ let openedModals: Array<OpalModal> = [];
 let documentListening: IDisposableListening;
 
 function onDocumentFocusIn() {
-	if (
-		document.activeElement != document.body &&
-			!openedModals[0].element.contains(document.activeElement.parentNode as HTMLElement)
-	) {
+	if (!openedModals[0].element.contains(document.activeElement.parentNode as HTMLElement)) {
 		(openedModals[0].$('btn-close') as HTMLElement).focus();
 	}
 }

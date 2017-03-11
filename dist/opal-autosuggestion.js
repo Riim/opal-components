@@ -138,8 +138,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.$('text-input').props['loading'] = evt['value'];
 	    };
 	    OpalAutosuggestion.prototype._onDocumentFocusIn = function () {
-	        if (document.activeElement != document.body &&
-	            !this.element.contains(document.activeElement.parentNode)) {
+	        if (!this.element.contains(document.activeElement.parentNode)) {
 	            this.closeMenu();
 	            this._setSelectedItemOfList();
 	        }
@@ -251,17 +250,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalAutosuggestion.prototype._setSelectedItem = function (selectedItem) {
 	        if (selectedItem) {
+	            this._isInputLast = false;
+	            this._clearList();
 	            if (this.selectedItem && this.selectedItem.value == selectedItem.value) {
-	                this._isInputLast = false;
-	                this._clearList();
 	                return;
 	            }
 	        }
 	        else if (!this.selectedItem) {
 	            return;
 	        }
-	        this._isInputLast = false;
-	        this._clearList();
 	        this.selectedItem = selectedItem;
 	        this.emit('change');
 	    };
@@ -300,6 +297,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                },
 	                focusout: function () {
 	                    this._cancelLoading();
+	                    // Нужно для следующего случая:
+	                    // 1. выбираем что-то;
+	                    // 2. изменяем запрос так чтобы ничего не нашлось;
+	                    // 3. убираем фокус.
+	                    if (!this.$('menu').props['opened']) {
+	                        this._setSelectedItemOfList();
+	                    }
 	                },
 	                input: function (evt) {
 	                    var _this = this;

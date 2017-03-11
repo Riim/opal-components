@@ -106,8 +106,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.$('calendar-menu').open();
 	    };
 	    OpalDateInput.prototype._onDocumentFocusIn = function () {
-	        if (document.activeElement != document.body &&
-	            !this.element.contains(document.activeElement.parentNode)) {
+	        if (!this.element.contains(document.activeElement.parentNode)) {
 	            this.$('calendar-menu').close();
 	        }
 	    };

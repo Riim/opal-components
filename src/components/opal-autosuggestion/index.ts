@@ -44,6 +44,14 @@ function toComparable(str: string): string {
 
 			focusout() {
 				this._cancelLoading();
+
+				// Нужно для следующего случая:
+				// 1. выбираем что-то;
+				// 2. изменяем запрос так чтобы ничего не нашлось;
+				// 3. убираем фокус.
+				if (!(this.$('menu') as Component).props['opened']) {
+					this._setSelectedItemOfList();
+				}
 			},
 
 			input(evt: IEvent) {
@@ -180,10 +188,7 @@ export default class OpalAutosuggestion extends Component {
 	}
 
 	_onDocumentFocusIn() {
-		if (
-			document.activeElement != document.body &&
-				!this.element.contains(document.activeElement.parentNode as Node)
-		) {
+		if (!this.element.contains(document.activeElement.parentNode as Node)) {
 			this.closeMenu();
 			this._setSelectedItemOfList();
 		}
@@ -325,18 +330,16 @@ export default class OpalAutosuggestion extends Component {
 
 	_setSelectedItem(selectedItem: IItem | null) {
 		if (selectedItem) {
+			this._isInputLast = false;
+
+			this._clearList();
+
 			if (this.selectedItem && this.selectedItem.value == selectedItem.value) {
-				this._isInputLast = false;
-				this._clearList();
 				return;
 			}
 		} else if (!this.selectedItem) {
 			return;
 		}
-
-		this._isInputLast = false;
-
-		this._clearList();
 
 		this.selectedItem = selectedItem;
 		this.emit('change');

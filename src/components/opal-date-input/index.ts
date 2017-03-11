@@ -103,10 +103,7 @@ export default class OpalDateInput extends Component {
 	}
 
 	_onDocumentFocusIn() {
-		if (
-			document.activeElement != document.body &&
-				!this.element.contains(document.activeElement.parentNode as Node)
-		) {
+		if (!this.element.contains(document.activeElement.parentNode as Node)) {
 			(this.$('calendar-menu') as OpalDropdown).close();
 		}
 	}
