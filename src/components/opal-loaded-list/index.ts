@@ -28,7 +28,7 @@ export interface IDataProvider {
 	},
 
 	i18n: {
-		notFoundMessage: getText.t('Ничего не найдено')
+		notFound: getText.t('Ничего не найдено')
 	},
 
 	bemlTemplate: template,

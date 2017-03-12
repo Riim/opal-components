@@ -42,8 +42,8 @@
 
 		& .opal-loaded-list__not-found-message {
 			display: inline-block;
-			color: hsl(0,0%,50%);
 			vertical-align: middle;
+			opacity: .6;
 		}
 
 	& .opal-loaded-list__not-found[shown] {

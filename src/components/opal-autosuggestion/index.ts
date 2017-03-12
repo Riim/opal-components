@@ -27,11 +27,13 @@ function toComparable(str: string): string {
 		dataprovider: { type: String, required: true, readonly: true },
 		selectedItem: Object,
 		minQueryLength: 3,
-		count: 5
+		count: 5,
+		showNotFound: false
 	},
 
 	i18n: {
-		inputPlaceholder: getText.t('начните вводить для поиска')
+		inputPlaceholder: getText.t('начните вводить для поиска'),
+		notFound: getText.t('Ничего не найдено')
 	},
 
 	bemlTemplate: template,
@@ -298,6 +300,8 @@ export default class OpalAutosuggestion extends Component {
 				this._focusedListItem = focusedListItem;
 				focusedListItem.setAttribute('focused', '');
 			});
+		} else if (this.props.showNotFound) {
+			this.openMenu(true);
 		}
 	}
 
@@ -311,14 +315,17 @@ export default class OpalAutosuggestion extends Component {
 		}
 	}
 
-	openMenu() {
-		if (this.list.length) {
+	openMenu(force?: boolean): OpalAutosuggestion {
+		if (force || this.list.length) {
 			(this.$('menu') as OpalDropdown).open();
 		}
+
+		return this;
 	}
 
-	closeMenu() {
+	closeMenu(): OpalAutosuggestion {
 		(this.$('menu') as OpalDropdown).close();
+		return this;
 	}
 
 	_setSelectedItemOfList() {

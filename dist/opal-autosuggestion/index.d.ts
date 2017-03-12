@@ -43,8 +43,8 @@ export default class OpalAutosuggestion extends Component {
         items: Array<IItem>;
     }): void;
     _cancelLoading(): void;
-    openMenu(): void;
-    closeMenu(): void;
+    openMenu(force?: boolean): OpalAutosuggestion;
+    closeMenu(): OpalAutosuggestion;
     _setSelectedItemOfList(): void;
     _setSelectedItem(selectedItem: IItem | null): void;
     clear(): void;

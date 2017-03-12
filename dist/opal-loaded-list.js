@@ -172,7 +172,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            preloading: { default: false, readonly: true }
 	        },
 	        i18n: {
-	            notFoundMessage: rionite_1.getText.t('Ничего не найдено')
+	            notFound: rionite_1.getText.t('Ничего не найдено')
 	        },
 	        bemlTemplate: template,
 	        events: {
@@ -246,7 +246,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 29:
 /***/ function(module, exports) {
 
-	module.exports = "div/list {\ntemplate (is=rt-repeat, for={props.itemAs} of list) {\nrt-content/list-item (get-context=_getContentContext)\n}\n}\nopal-loader/loader (shown={loaderShown}, align-center={empty})\ndiv/not-found (shown={notFoundShown}) {\nspan/not-found-message { '{constructor.i18n.notFoundMessage}' }\n}"
+	module.exports = "div/list {\ntemplate (is=rt-repeat, for={props.itemAs} of list) {\nrt-content/list-item (get-context=_getContentContext)\n}\n}\nopal-loader/loader (shown={loaderShown}, align-center={empty})\ndiv/not-found (shown={notFoundShown}) {\nspan/not-found-message { '{constructor.i18n.notFound}' }\n}"
 
 /***/ },
 
@@ -258,7 +258,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-loaded-list{position:relative;display:block;overflow-x:hidden;overflow-y:auto;height:500px}.opal-loaded-list .opal-loaded-list__list-item{display:block}.opal-loaded-list .opal-loaded-list__loader[align-center]{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto}.opal-loaded-list .opal-loaded-list__not-found{display:none;box-sizing:border-box;padding:10px;width:100%;height:100%;text-align:center;white-space:nowrap}.opal-loaded-list .opal-loaded-list__not-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-loaded-list .opal-loaded-list__not-found-message{display:inline-block;color:gray;vertical-align:middle}.opal-loaded-list .opal-loaded-list__not-found[shown]{display:inline-block}";
+	            style.textContent = ".opal-loaded-list{position:relative;display:block;overflow-x:hidden;overflow-y:auto;height:500px}.opal-loaded-list .opal-loaded-list__list-item{display:block}.opal-loaded-list .opal-loaded-list__loader[align-center]{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto}.opal-loaded-list .opal-loaded-list__not-found{display:none;box-sizing:border-box;padding:10px;width:100%;height:100%;text-align:center;white-space:nowrap}.opal-loaded-list .opal-loaded-list__not-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-loaded-list .opal-loaded-list__not-found-message{display:inline-block;vertical-align:middle;opacity:.6}.opal-loaded-list .opal-loaded-list__not-found[shown]{display:inline-block}";
 	            head.appendChild(style);
 	            return style;
 	        }

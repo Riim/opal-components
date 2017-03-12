@@ -7,5 +7,5 @@ div/list {
 opal-loader/loader (shown={loaderShown}, align-center={empty})
 
 div/not-found (shown={notFoundShown}) {
-	span/not-found-message { '{constructor.i18n.notFoundMessage}' }
+	span/not-found-message { '{constructor.i18n.notFound}' }
 }

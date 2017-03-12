@@ -39,6 +39,18 @@
 				background: hsl(0,0%,80%);
 			}
 
+		& .opal-autosuggestion__not-found-message {
+			display: none;
+			padding: 10px;
+			text-align: center;
+			white-space: nowrap;
+			opacity: .6;
+		}
+
+		& .opal-autosuggestion__not-found-message[shown] {
+			display: block;
+		}
+
 	/* Combinations */
 
 	@nest

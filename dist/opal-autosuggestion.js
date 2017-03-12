@@ -223,6 +223,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                focusedListItem.setAttribute('focused', '');
 	            });
 	        }
+	        else if (this.props.showNotFound) {
+	            this.openMenu(true);
+	        }
 	    };
 	    OpalAutosuggestion.prototype._cancelLoading = function () {
 	        if (this._loadingPlanned) {
@@ -234,13 +237,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.loading = false;
 	        }
 	    };
-	    OpalAutosuggestion.prototype.openMenu = function () {
-	        if (this.list.length) {
+	    OpalAutosuggestion.prototype.openMenu = function (force) {
+	        if (force || this.list.length) {
 	            this.$('menu').open();
 	        }
+	        return this;
 	    };
 	    OpalAutosuggestion.prototype.closeMenu = function () {
 	        this.$('menu').close();
+	        return this;
 	    };
 	    OpalAutosuggestion.prototype._setSelectedItemOfList = function () {
 	        if (this._isInputLast) {
@@ -284,10 +289,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            dataprovider: { type: String, required: true, readonly: true },
 	            selectedItem: Object,
 	            minQueryLength: 3,
-	            count: 5
+	            count: 5,
+	            showNotFound: false
 	        },
 	        i18n: {
-	            inputPlaceholder: rionite_1.getText.t('начните вводить для поиска')
+	            inputPlaceholder: rionite_1.getText.t('начните вводить для поиска'),
+	            notFound: rionite_1.getText.t('Ничего не найдено')
 	        },
 	        bemlTemplate: template,
 	        events: {
@@ -364,7 +371,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 22:
 /***/ function(module, exports) {
 
-	module.exports = "rt-content (select=.opal-autosuggestion__text-input, cloning=no) {\nopal-text-input/text-input (\nvalue={props.selectedItem.text},\nplaceholder={constructor.i18n.inputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\ntemplate (is=rt-repeat, for=item of list, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\n}"
+	module.exports = "rt-content (select=.opal-autosuggestion__text-input, cloning=no) {\nopal-text-input/text-input (\nvalue={props.selectedItem.text},\nplaceholder={constructor.i18n.inputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\ntemplate (is=rt-repeat, for=item of list, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\nspan/not-found-message (shown={list.length |not }) { '{constructor.i18n.notFound}' }\n}"
 
 /***/ },
 
@@ -376,7 +383,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-autosuggestion{position:relative;display:inline-block;vertical-align:middle}.opal-autosuggestion .opal-autosuggestion__text-input{display:block}.opal-autosuggestion .opal-autosuggestion__list-item{position:relative;padding:7px 22px;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-autosuggestion .opal-autosuggestion__list-item:hover,.opal-autosuggestion .opal-autosuggestion__list-item[focused]{background:#e6e6e6}.opal-autosuggestion .opal-autosuggestion__list-item:active{background:#ccc}.opal-input-validator .opal-autosuggestion{display:block}";
+	            style.textContent = ".opal-autosuggestion{position:relative;display:inline-block;vertical-align:middle}.opal-autosuggestion .opal-autosuggestion__text-input{display:block}.opal-autosuggestion .opal-autosuggestion__list-item{position:relative;padding:7px 22px;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-autosuggestion .opal-autosuggestion__list-item:hover,.opal-autosuggestion .opal-autosuggestion__list-item[focused]{background:#e6e6e6}.opal-autosuggestion .opal-autosuggestion__list-item:active{background:#ccc}.opal-autosuggestion .opal-autosuggestion__not-found-message{display:none;padding:10px;text-align:center;white-space:nowrap;opacity:.6}.opal-autosuggestion .opal-autosuggestion__not-found-message[shown]{display:block}.opal-input-validator .opal-autosuggestion{display:block}";
 	            head.appendChild(style);
 	            return style;
 	        }
