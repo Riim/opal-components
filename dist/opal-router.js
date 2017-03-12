@@ -110,8 +110,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            break;
 	                        }
 	                        case PathNodeType_1.default.OPTIONAL: {
-	                            rePath.push('(');
-	                            props.push({ name: node.name, optional: true });
+	                            if (node.name) {
+	                                rePath.push('(');
+	                                props.push({ name: node.name, optional: true });
+	                            }
+	                            else {
+	                                rePath.push('(?:');
+	                            }
 	                            processPath(node.childNodes);
 	                            rePath.push(')?');
 	                            break;
@@ -353,7 +358,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function readOptionalNode() {
 	        var optionalNodeAt = at;
 	        next('(');
-	        var name = readOptionalNodeName();
+	        var name;
+	        if (chr == ':') {
+	            name = readOptionalNodeName();
+	        }
 	        var childNodes = [];
 	        var prevCtx = ctx;
 	        ctx = PathNodeType_1.default.OPTIONAL;
@@ -363,7 +371,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                ctx = prevCtx;
 	                return {
 	                    type: PathNodeType_1.default.OPTIONAL,
-	                    name: name,
+	                    name: name || null,
 	                    childNodes: childNodes
 	                };
 	            }
@@ -385,10 +393,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    }
 	    function readOptionalNodeName() {
+	        next(':');
 	        var optionalNodeNameAt = at;
 	        var name = '';
 	        while (chr) {
-	            if (chr == '?') {
+	            if (chr == ':') {
 	                if (!reName.test(name) || name == 'class') {
 	                    throw {
 	                        name: 'SyntaxError',
@@ -407,7 +416,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        throw {
 	            name: 'SyntaxError',
-	            message: 'Missing "?" in compound statement',
+	            message: 'Missing ":" in compound statement',
 	            at: optionalNodeNameAt,
 	            path: path
 	        };

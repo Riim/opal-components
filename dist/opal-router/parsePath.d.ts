@@ -5,7 +5,7 @@ export interface IPathSimpleNode {
 }
 export interface IPathOptionalNode {
     type: PathNodeType.OPTIONAL;
-    name: string;
+    name: string | null;
     childNodes: Array<TPathNode>;
 }
 export interface IPathInsertNode {

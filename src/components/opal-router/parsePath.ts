@@ -9,7 +9,7 @@ export interface IPathSimpleNode {
 
 export interface IPathOptionalNode {
 	type: PathNodeType.OPTIONAL;
-	name: string;
+	name: string | null;
 	childNodes: Array<TPathNode>;
 }
 
@@ -80,7 +80,12 @@ export default function parsePath(path: string): Array<TPathNode> {
 
 		next('(');
 
-		let name = readOptionalNodeName();
+		let name;
+
+		if (chr == ':') {
+			name = readOptionalNodeName();
+		}
+
 		let childNodes = [] as Array<TPathNode>;
 
 		let prevCtx = ctx;
@@ -93,7 +98,7 @@ export default function parsePath(path: string): Array<TPathNode> {
 
 				return {
 					type: PathNodeType.OPTIONAL,
-					name,
+					name: name || null,
 					childNodes
 				};
 			} else if (chr == '(') {
@@ -114,11 +119,13 @@ export default function parsePath(path: string): Array<TPathNode> {
 	}
 
 	function readOptionalNodeName(): string {
+		next(':');
+
 		let optionalNodeNameAt = at;
 		let name = '';
 
 		while (chr) {
-			if (chr == '?') {
+			if (chr == ':') {
 				if (!reName.test(name) || name == 'class') {
 					throw {
 						name: 'SyntaxError',
@@ -139,7 +146,7 @@ export default function parsePath(path: string): Array<TPathNode> {
 
 		throw {
 			name: 'SyntaxError',
-			message: 'Missing "?" in compound statement',
+			message: 'Missing ":" in compound statement',
 			at: optionalNodeNameAt,
 			path
 		};

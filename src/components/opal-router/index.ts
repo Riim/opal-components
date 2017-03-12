@@ -59,10 +59,17 @@ export default class OpalRouter extends Component {
 							break;
 						}
 						case PathNodeType.OPTIONAL: {
-							rePath.push('(');
-							props.push({ name: node.name, optional: true });
+							if (node.name) {
+								rePath.push('(');
+								props.push({ name: node.name, optional: true });
+							} else {
+								rePath.push('(?:');
+							}
+
 							processPath(node.childNodes);
+
 							rePath.push(')?');
+
 							break;
 						}
 						case PathNodeType.INSERT: {
