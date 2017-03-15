@@ -161,16 +161,17 @@
 				}
 
 				& .opal-calendar__day[not-in-current-month] {
-					color: hsl(0,0%,65%);
+					opacity: .45;
 				}
 
 				& .opal-calendar__day[disabled] {
 					background: none;
-					color: hsl(0,0%,90%);
+					opacity: .15;
 					cursor: default;
 				}
 
 				& .opal-calendar__day[selected] {
 					color: hsl(208,90%,50%);
+					opacity: 1;
 				}
 }
