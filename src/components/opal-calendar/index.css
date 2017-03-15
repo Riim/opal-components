@@ -72,8 +72,8 @@
 			opacity: .3;
 			cursor: default;
 		}
-			& .opal-calendar__icon-arrow-left,
-			& .opal-calendar__icon-arrow-right {
+			& .opal-calendar__btn-prev-month-icon,
+			& .opal-calendar__btn-next-month-icon {
 				display: block;
 				margin: auto;
 				width: 16px;
@@ -81,7 +81,7 @@
 				fill: currentColor;
 			}
 
-			& .opal-calendar__icon-arrow-right {
+			& .opal-calendar__btn-next-month-icon {
 				transform: scaleX(-1);
 			}
 
