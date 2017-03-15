@@ -11,9 +11,10 @@ import template = require('./index.beml');
 export interface IDay {
 	date: string;
 	value: number;
-	notInCurrentMonth: boolean;
+	weekDay: string;
 	today: boolean;
 	selected: boolean;
+	notInCurrentMonth: boolean;
 	disabled: boolean;
 	tabIndex: number | null;
 }
@@ -270,6 +271,15 @@ export default class OpalCalendar extends Component {
 					weekDays.push({
 						date: formatDate(year, month, day, dateDelimiter),
 						value: day,
+						weekDay: [
+							'sunday',
+							'monday',
+							'tuesday',
+							'wednesday',
+							'thursday',
+							'friday',
+							'saturday'
+						][date.getDay()],
 						today: year == nowYear && month == nowMonth && day == nowDay,
 						selected: !!value && year == selectedYear && month == selectedMonth &&
 							day == selectedDay,

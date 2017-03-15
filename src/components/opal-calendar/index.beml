@@ -34,6 +34,7 @@ div/body {
 			tr/days-row {
 				template (is=rt-repeat, for=day of weekDays, rt-silent) {
 					td/day (
+						week-day={day.weekDay},
 						today={day.today},
 						selected={day.selected},
 						not-in-current-month={day.notInCurrentMonth},

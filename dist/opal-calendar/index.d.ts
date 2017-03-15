@@ -4,9 +4,10 @@ import { IDisposableListening, Component } from 'rionite';
 export interface IDay {
     date: string;
     value: number;
-    notInCurrentMonth: boolean;
+    weekDay: string;
     today: boolean;
     selected: boolean;
+    notInCurrentMonth: boolean;
     disabled: boolean;
     tabIndex: number | null;
 }

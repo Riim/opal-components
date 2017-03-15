@@ -196,6 +196,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    weekDays.push({
 	                        date: formatDate_1.default(year, month, day, dateDelimiter),
 	                        value: day,
+	                        weekDay: [
+	                            'sunday',
+	                            'monday',
+	                            'tuesday',
+	                            'wednesday',
+	                            'thursday',
+	                            'friday',
+	                            'saturday'
+	                        ][date.getDay()],
 	                        today: year == nowYear && month == nowMonth && day == nowDay,
 	                        selected: !!value && year == selectedYear && month == selectedMonth &&
 	                            day == selectedDay,
@@ -369,7 +378,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 23:
 /***/ function(module, exports) {
 
-	module.exports = "header/header {\nbutton/btn-prev-month (disabled={btnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/s-month (size=s, value=['{shownMonth}']) {\ntemplate (class=opal-select__menu-content, is=rt-repeat, for=month of constructor.i18n.months, rt-silent) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/s-year (size=s, value=['{shownYear}']) {\ntemplate (class=opal-select__menu-content, is=rt-repeat, for=year of years, rt-silent) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={btnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ntable/week-days {\ntr/week-days-row {\ntemplate (is=rt-repeat, for=weekDay of weekDaysShort, rt-silent) {\ntd/week-day { '{weekDay}' }\n}\n}\n}\ntable/days {\ntemplate (is=rt-repeat, for=weekDays of days, rt-silent) {\ntr/days-row {\ntemplate (is=rt-repeat, for=day of weekDays, rt-silent) {\ntd/day (\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date},\nrt-click=_onDayClick\n) { '{day.value}' }\n}\n}\n}\n}\n}"
+	module.exports = "header/header {\nbutton/btn-prev-month (disabled={btnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/s-month (size=s, value=['{shownMonth}']) {\ntemplate (class=opal-select__menu-content, is=rt-repeat, for=month of constructor.i18n.months, rt-silent) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/s-year (size=s, value=['{shownYear}']) {\ntemplate (class=opal-select__menu-content, is=rt-repeat, for=year of years, rt-silent) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={btnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ntable/week-days {\ntr/week-days-row {\ntemplate (is=rt-repeat, for=weekDay of weekDaysShort, rt-silent) {\ntd/week-day { '{weekDay}' }\n}\n}\n}\ntable/days {\ntemplate (is=rt-repeat, for=weekDays of days, rt-silent) {\ntr/days-row {\ntemplate (is=rt-repeat, for=day of weekDays, rt-silent) {\ntd/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date},\nrt-click=_onDayClick\n) { '{day.value}' }\n}\n}\n}\n}\n}"
 
 /***/ },
 
