@@ -12,7 +12,7 @@ import template = require('./index.beml');
 		max: 100,
 		step: 1,
 		value: 0,
-		range: Object
+		range: eval
 	},
 
 	bemlTemplate: template,

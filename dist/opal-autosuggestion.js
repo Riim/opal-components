@@ -287,7 +287,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        elementIs: 'opal-autosuggestion',
 	        props: {
 	            dataprovider: { type: String, required: true, readonly: true },
-	            selectedItem: Object,
+	            selectedItem: eval,
 	            minQueryLength: 3,
 	            count: 5,
 	            showNotFound: false

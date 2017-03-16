@@ -441,7 +441,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        elementIs: 'opal-input-mask-definition',
 	        props: {
 	            maskChar: { type: String, required: true, readonly: true },
-	            regex: { type: Object, required: true, readonly: true }
+	            regex: { type: eval, required: true, readonly: true }
 	        }
 	    })
 	], OpalInputMaskDefinition);

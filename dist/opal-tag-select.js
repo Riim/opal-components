@@ -128,9 +128,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            datalist: { type: String, readonly: true },
 	            // необязательный, так как может указываться на передаваемом opal-loaded-list
 	            dataprovider: { type: String, readonly: true },
-	            value: Object,
+	            value: eval,
 	            viewModel: { type: String, readonly: true },
-	            viewModelItemSchema: { default: defaultVMItemSchema, readonly: true },
+	            viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 	            placeholder: rionite_1.getText.t('Не выбрано'),
 	            popoverTo: 'bottom',
 	            disabled: false

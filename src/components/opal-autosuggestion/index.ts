@@ -25,7 +25,7 @@ function toComparable(str: string): string {
 
 	props: {
 		dataprovider: { type: String, required: true, readonly: true },
-		selectedItem: Object,
+		selectedItem: eval,
 		minQueryLength: 3,
 		count: 5,
 		showNotFound: false
