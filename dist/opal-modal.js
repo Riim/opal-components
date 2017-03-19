@@ -143,7 +143,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.props['opened'] = true;
 	        openedModals.unshift(this);
 	        this.focus();
-	        this.emit('open');
 	    };
 	    OpalModal.prototype._close = function () {
 	        var index = openedModals.indexOf(this);
@@ -162,7 +161,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            bodyStyle.overflow = '';
 	            bodyStyle.marginRight = '';
 	        }
-	        this.emit('close');
 	    };
 	    OpalModal.prototype.focus = function () {
 	        if (this == openedModals[0]) {
@@ -200,6 +198,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            'btn-close': {
 	                click: function () {
 	                    this.props['opened'] = false;
+	                    this.emit('close');
 	                }
 	            }
 	        }

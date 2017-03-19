@@ -52,6 +52,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 		'btn-close': {
 			click() {
 				this.props['opened'] = false;
+				this.emit('close');
 			}
 		}
 	}
@@ -118,8 +119,6 @@ export default class OpalModal extends Component {
 		openedModals.unshift(this);
 
 		this.focus();
-
-		this.emit('open');
 	}
 
 	_close() {
@@ -143,8 +142,6 @@ export default class OpalModal extends Component {
 			bodyStyle.overflow = '';
 			bodyStyle.marginRight = '';
 		}
-
-		this.emit('close');
 	}
 
 	focus(): OpalModal {
