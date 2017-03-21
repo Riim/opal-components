@@ -99,8 +99,6 @@ export default class OpalTextInput extends Component {
 		let value = props['value'];
 		let textField = this.$('text-field') as HTMLInputElement;
 
-		this._initialHeight = textField.offsetHeight + textField.scrollHeight - textField.clientHeight;
-
 		if (value) {
 			textField.value = value;
 		} else {
@@ -112,7 +110,20 @@ export default class OpalTextInput extends Component {
 		}
 
 		if (this.props['multiline'] && this.props['autoHeight']) {
-			this._fixHeight();
+			let offsetHeight = textField.offsetHeight;
+
+			if (offsetHeight) {
+				this._initialHeight = offsetHeight + textField.scrollHeight - textField.clientHeight;
+				this._fixHeight();
+			} else {
+				this._initialHeight = parseInt(getComputedStyle(textField).lineHeight as string, 10) * this.props.rows +
+					parseInt(getComputedStyle(textField).borderTop as string, 10) +
+					parseInt(getComputedStyle(textField).borderBottom as string, 10) +
+					parseInt(getComputedStyle(textField).paddingTop as string, 10) +
+					parseInt(getComputedStyle(textField).paddingBottom as string, 10);
+
+				textField.style.height = this._initialHeight + 'px';
+			}
 		}
 
 		if (props['focused']) {

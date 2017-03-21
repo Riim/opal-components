@@ -93,7 +93,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var props = this.props;
 	        var value = props['value'];
 	        var textField = this.$('text-field');
-	        this._initialHeight = textField.offsetHeight + textField.scrollHeight - textField.clientHeight;
 	        if (value) {
 	            textField.value = value;
 	        }
@@ -104,7 +103,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	        if (this.props['multiline'] && this.props['autoHeight']) {
-	            this._fixHeight();
+	            var offsetHeight = textField.offsetHeight;
+	            if (offsetHeight) {
+	                this._initialHeight = offsetHeight + textField.scrollHeight - textField.clientHeight;
+	                this._fixHeight();
+	            }
+	            else {
+	                this._initialHeight = parseInt(getComputedStyle(textField).lineHeight, 10) * this.props.rows +
+	                    parseInt(getComputedStyle(textField).borderTop, 10) +
+	                    parseInt(getComputedStyle(textField).borderBottom, 10) +
+	                    parseInt(getComputedStyle(textField).paddingTop, 10) +
+	                    parseInt(getComputedStyle(textField).paddingBottom, 10);
+	                textField.style.height = this._initialHeight + 'px';
+	            }
 	        }
 	        if (props['focused']) {
 	            this.focus();

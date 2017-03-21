@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.21.1",
+  "version": "0.21.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "autoprefixer": "^6.7.7",
     "awesome-typescript-loader": "^3.1.2",
     "babel-core": "^6.24.0",
-    "babel-eslint": "^7.1.1",
+    "babel-eslint": "^7.2.0",
     "babel-loader": "^6.4.1",
     "babel-plugin-syntax-flow": "^6.18.0",
     "babel-plugin-transform-flow-comments": "^6.22.0",
@@ -35,7 +35,7 @@
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-sizereport": "^1.2.0",
-    "gulp-uglify": "^2.1.0",
+    "gulp-uglify": "^2.1.2",
     "postcss-color-function": "^3.0.0",
     "postcss-css-variables": "^0.7.0",
     "postcss-csso": "^2.0.0",
