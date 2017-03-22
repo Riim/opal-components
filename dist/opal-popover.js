@@ -116,13 +116,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }, 1);
 	        }
-	        this.emit('open');
 	    };
 	    OpalPopover.prototype._close = function () {
 	        if (this._documentClickListening) {
 	            this._documentClickListening.stop();
 	        }
-	        this.emit('close');
 	    };
 	    OpalPopover.prototype._onDocumentClick = function (evt) {
 	        var docEl = document.documentElement;
@@ -130,6 +128,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        for (var node = evt.target; node != el;) {
 	            if (node == docEl || node.tagName == 'A') {
 	                this.close();
+	                this.emit('close');
 	                break;
 	            }
 	            node = node.parentNode;

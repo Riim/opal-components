@@ -58,16 +58,12 @@ export default class OpalPopover extends Component {
 				}
 			}, 1);
 		}
-
-		this.emit('open');
 	}
 
 	_close() {
 		if (this._documentClickListening) {
 			this._documentClickListening.stop();
 		}
-
-		this.emit('close');
 	}
 
 	_onDocumentClick(evt: Event) {
@@ -77,6 +73,7 @@ export default class OpalPopover extends Component {
 		for (let node = evt.target as HTMLElement; node != el;) {
 			if (node == docEl || node.tagName == 'A') {
 				this.close();
+				this.emit('close');
 				break;
 			}
 

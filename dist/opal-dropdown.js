@@ -159,7 +159,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }, 1);
 	        }
-	        this.emit('open');
 	    };
 	    OpalDropdown.prototype._close = function () {
 	        openedDropdowns.splice(openedDropdowns.indexOf(this), 1);
@@ -167,7 +166,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this._documentClickListening) {
 	            this._documentClickListening.stop();
 	        }
-	        this.emit('close');
 	    };
 	    OpalDropdown.prototype._onDocumentClick = function (evt) {
 	        var docEl = document.documentElement;
@@ -175,6 +173,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        for (var node = evt.target; node != el;) {
 	            if (node == docEl || node.tagName == 'A') {
 	                this.close();
+	                this.emit('close');
 	                break;
 	            }
 	            node = node.parentNode;
