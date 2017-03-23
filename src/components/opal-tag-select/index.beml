@@ -22,11 +22,11 @@ span/control {
 	}
 
 	opal-select/select (
+		multiple,
 		datalist={_dataListParam},
 		value={props.value},
 		view-model={_viewModelParam},
-		view-model-item-schema={props.viewModelItemSchema |json },
-		multiple
+		view-model-item-schema={props.viewModelItemSchema |json }
 	) {
 		opal-sign-button/button (class=opal-select__button, sign=plus, checkable)
 

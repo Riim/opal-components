@@ -401,13 +401,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        props: {
 	            viewType: String,
 	            size: 'm',
+	            multiple: { default: false, readonly: true },
 	            datalist: { type: String, readonly: true },
 	            value: eval,
 	            viewModel: { type: String, readonly: true },
 	            viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 	            text: String,
 	            placeholder: rionite_1.getText.t('Не выбрано'),
-	            multiple: { default: false, readonly: true },
 	            tabIndex: 0,
 	            focused: false,
 	            disabled: false

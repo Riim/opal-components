@@ -7,13 +7,16 @@ import { IDisposableListening, Component, d } from 'rionite';
 
 	props: {
 		to: 'right',
-		opened: false,
-		autoClosing: false
+		autoDirection: true,
+		autoClosing: false,
+		opened: false
 	},
 
 	bemlTemplate: 'span/arrow rt-content/content (cloning=no)'
 })
 export default class OpalPopover extends Component {
+	_toValueAtOpen: string;
+
 	_documentClickListening: IDisposableListening;
 
 	ready() {
@@ -51,6 +54,64 @@ export default class OpalPopover extends Component {
 	}
 
 	_open() {
+		let to = this.props['to'];
+
+		this._toValueAtOpen = to;
+
+		let docEl = document.documentElement;
+
+		let containerClientRect = this.element.offsetParent.getBoundingClientRect();
+		let elClientRect = this.element.getBoundingClientRect();
+
+		switch (to) {
+			case 'left': {
+				if (
+					elClientRect.left + window.pageXOffset < 0 || (
+						elClientRect.left < 0 &&
+							containerClientRect.left < docEl.clientWidth - containerClientRect.right
+					)
+				) {
+					this.props['to'] = 'right';
+				}
+
+				break;
+			}
+			case 'top': {
+				if (
+					elClientRect.top + window.pageYOffset < 0 || (
+						elClientRect.top < 0 &&
+							containerClientRect.top < docEl.clientHeight - containerClientRect.bottom
+					)
+				) {
+					this.props['to'] = 'bottom';
+				}
+
+				break;
+			}
+			case 'right': {
+				if (
+					elClientRect.right > docEl.clientWidth &&
+						containerClientRect.left > docEl.clientWidth - containerClientRect.right &&
+						containerClientRect.left + window.pageXOffset >= elClientRect.right - containerClientRect.right
+				) {
+					this.props['to'] = 'left';
+				}
+
+				break;
+			}
+			case 'bottom': {
+				if (
+					elClientRect.bottom > docEl.clientHeight &&
+						containerClientRect.top > docEl.clientHeight - containerClientRect.bottom &&
+						containerClientRect.top + window.pageYOffset >= elClientRect.bottom - containerClientRect.bottom
+				) {
+					this.props['to'] = 'top';
+				}
+
+				break;
+			}
+		}
+
 		if (this.props['autoClosing']) {
 			setTimeout(() => {
 				if (this.props['opened']) {
@@ -61,6 +122,8 @@ export default class OpalPopover extends Component {
 	}
 
 	_close() {
+		this.props['to'] = this._toValueAtOpen;
+
 		if (this._documentClickListening) {
 			this._documentClickListening.stop();
 		}

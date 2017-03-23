@@ -349,10 +349,10 @@ body {
 <opal-code-listing>
 	<div class="opal-code-listing__example-html">
 		<div style="position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;">
-			<opal-popover opened>Popover</opal-popover>
-			<opal-popover to="bottom" opened>Popover</opal-popover>
-			<opal-popover to="left" opened>Popover</opal-popover>
-			<opal-popover to="top" opened>Popover</opal-popover>
+			<opal-popover auto-direction opened>Popover</opal-popover>
+			<opal-popover to="bottom" auto-direction opened>Popover</opal-popover>
+			<opal-popover to="left" auto-direction opened>Popover</opal-popover>
+			<opal-popover to="top" auto-direction opened>Popover</opal-popover>
 		</div>
 	</div>
 	<script class="opal-code-listing__example-js">
@@ -386,7 +386,7 @@ body {
 			<opal-select-option text="Option 6 (disabled)" disabled></opal-select-option>
 		</opal-select>
 
-		<opal-select placeholder="Select" multiple>
+		<opal-select multiple placeholder="Select">
 			<opal-select-option text="Option 1" selected></opal-select-option>
 			<opal-select-option text="Option 2" selected></opal-select-option>
 			<opal-select-option text="Option 3"></opal-select-option>
@@ -394,7 +394,7 @@ body {
 			<opal-select-option text="Option 5"></opal-select-option>
 		</opal-select>
 
-		<opal-select datalist="model1.dataList" placeholder="Select" multiple>
+		<opal-select multiple datalist="model1.dataList" placeholder="Select">
 			<opal-text-input class="opal-select__new-item-input"></opal-text-input>
 		</opal-select>
 	</div>
@@ -515,7 +515,7 @@ body {
 			</opal-popover>
 		</opal-select>
 
-		<opal-select view-model="selectViewModel1" multiple>
+		<opal-select multiple view-model="selectViewModel1">
 			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
 				<opal-loaded-list class="opal-select__loaded-list" dataprovider="dataProvider1">
 					<opal-select-option text="{$item.text}"></opal-select-option>

@@ -188,9 +188,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    rionite_1.d.Component({
 	        elementIs: 'opal-dropdown',
 	        props: {
-	            opened: false,
 	            autoHeight: true,
-	            autoClosing: false
+	            autoClosing: false,
+	            opened: false
 	        },
 	        bemlTemplate: 'rt-content/content (cloning=no)'
 	    })

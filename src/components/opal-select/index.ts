@@ -31,13 +31,13 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 	props: {
 		viewType: String,
 		size: 'm',
+		multiple: { default: false, readonly: true },
 		datalist: { type: String, readonly: true },
 		value: eval,
 		viewModel: { type: String, readonly: true },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 		text: String,
 		placeholder: getText.t('Не выбрано'),
-		multiple: { default: false, readonly: true },
 		tabIndex: 0,
 		focused: false,
 		disabled: false

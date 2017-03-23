@@ -8,9 +8,9 @@ let openedDropdowns: Array<OpalDropdown> = [];
 	elementIs: 'opal-dropdown',
 
 	props: {
-		opened: false,
 		autoHeight: true,
-		autoClosing: false
+		autoClosing: false,
+		opened: false
 	},
 
 	bemlTemplate: 'rt-content/content (cloning=no)'
