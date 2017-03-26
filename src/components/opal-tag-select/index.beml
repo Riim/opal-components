@@ -35,8 +35,8 @@ span/control {
 				template (is=rt-if-then, if=props.datalist) {
 					div (class=opal-select__menu-content) {
 						template (is=rt-if-then, if=dataList.length) {
-							template (is=rt-repeat, for=item of dataList) {
-								opal-select-option/_select-option1 (value={item.value}, text={item.text})
+							template (is=rt-repeat, for=$item of dataList) {
+								opal-select-option/select-option // доопределяется ниже
 							}
 
 							rt-content (
@@ -61,7 +61,7 @@ span/control {
 							class=opal-select__loaded-list opal-filtered-list__loaded-list,
 							dataprovider={_dataProviderParam}
 						) {
-							opal-select-option/_select-option2 (value={$item.value}, text={$item.text})
+							opal-select-option/select-option (value={$item.value}, text={$item.text})
 						}
 					}
 				}
