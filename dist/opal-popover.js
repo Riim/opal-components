@@ -109,41 +109,44 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalPopover.prototype._open = function () {
 	        var _this = this;
-	        var to = this.props['to'];
-	        this._toValueAtOpen = to;
-	        var docEl = document.documentElement;
-	        var containerClientRect = this.element.offsetParent.getBoundingClientRect();
-	        var elClientRect = this.element.getBoundingClientRect();
-	        switch (to) {
-	            case 'left': {
-	                if (elClientRect.left + window.pageXOffset < 0 || (elClientRect.left < 0 &&
-	                    containerClientRect.left < docEl.clientWidth - containerClientRect.right)) {
-	                    this.props['to'] = 'right';
+	        if (this.props['autoDirection']) {
+	            var to = this.props['to'];
+	            this._toValueAtOpen = to;
+	            var docEl = document.documentElement;
+	            var containerClientRect = this.element.offsetParent.getBoundingClientRect();
+	            var elClientRect = this.element.getBoundingClientRect();
+	            switch (to) {
+	                case 'left': {
+	                    if (elClientRect.left + window.pageXOffset < 0 || (elClientRect.left < 0 &&
+	                        containerClientRect.left < docEl.clientWidth - containerClientRect.right)) {
+	                        this.props['to'] = 'right';
+	                    }
+	                    break;
 	                }
-	                break;
-	            }
-	            case 'top': {
-	                if (elClientRect.top + window.pageYOffset < 0 || (elClientRect.top < 0 &&
-	                    containerClientRect.top < docEl.clientHeight - containerClientRect.bottom)) {
-	                    this.props['to'] = 'bottom';
+	                case 'top': {
+	                    if (elClientRect.top + window.pageYOffset < 0 || (elClientRect.top < 0 &&
+	                        containerClientRect.top < docEl.clientHeight - containerClientRect.bottom)) {
+	                        this.props['to'] = 'bottom';
+	                    }
+	                    break;
 	                }
-	                break;
-	            }
-	            case 'right': {
-	                if (elClientRect.right > docEl.clientWidth &&
-	                    containerClientRect.left > docEl.clientWidth - containerClientRect.right &&
-	                    containerClientRect.left + window.pageXOffset >= elClientRect.right - containerClientRect.right) {
-	                    this.props['to'] = 'left';
+	                case 'right': {
+	                    if (elClientRect.right > docEl.clientWidth &&
+	                        containerClientRect.left > docEl.clientWidth - containerClientRect.right &&
+	                        containerClientRect.left + window.pageXOffset >=
+	                            elClientRect.right - containerClientRect.right) {
+	                        this.props['to'] = 'left';
+	                    }
+	                    break;
 	                }
-	                break;
-	            }
-	            case 'bottom': {
-	                if (elClientRect.bottom > docEl.clientHeight &&
-	                    containerClientRect.top > docEl.clientHeight - containerClientRect.bottom &&
-	                    containerClientRect.top + window.pageYOffset >= elClientRect.bottom - containerClientRect.bottom) {
-	                    this.props['to'] = 'top';
+	                case 'bottom': {
+	                    if (elClientRect.bottom > docEl.clientHeight &&
+	                        containerClientRect.top > docEl.clientHeight - containerClientRect.bottom &&
+	                        containerClientRect.top + window.pageYOffset >= elClientRect.bottom - containerClientRect.bottom) {
+	                        this.props['to'] = 'top';
+	                    }
+	                    break;
 	                }
-	                break;
 	            }
 	        }
 	        if (this.props['autoClosing']) {
@@ -155,7 +158,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    OpalPopover.prototype._close = function () {
-	        this.props['to'] = this._toValueAtOpen;
+	        if (this.props['autoDirection']) {
+	            this.props['to'] = this._toValueAtOpen;
+	        }
 	        if (this._documentClickListening) {
 	            this._documentClickListening.stop();
 	        }
