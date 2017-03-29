@@ -2,7 +2,7 @@
  * Based on [jquery.maskedinput](https://github.com/digitalBush/jquery.maskedinput).
  */
 
-import { define } from 'cellx';
+import { Cell, define } from 'cellx';
 import { IComponentElement, IComponentEvents, Component, d } from 'rionite';
 import OpalTextInput from '../opal-text-input';
 import OpalInputMaskDefinition from './opal-input-mask-definition';
@@ -40,7 +40,7 @@ export default class OpalInputMask extends Component {
 
 	_textField: HTMLInputElement;
 
-	_focusText: string;
+	_textAtFocusing: string;
 
 	initialize() {
 		this._definitions = Object.create((this.constructor as typeof OpalInputMask).defaultDefinitions);
@@ -86,8 +86,8 @@ export default class OpalInputMask extends Component {
 		this.listenTo(this, 'change:_mask', this._onMaskChange);
 
 		this.listenTo(this._textField, {
-			focusin: this._onTextFieldFocusIn,
-			focusout: this._onTextFieldFocusOut,
+			focus: this._onTextFieldFocus,
+			blur: this._onTextFieldBlur,
 			keydown: this._onTextFieldKeyDown,
 			keypress: this._onTextFieldKeyPress,
 			input: this._onTextFieldInput
@@ -104,25 +104,16 @@ export default class OpalInputMask extends Component {
 		}, 1);
 	}
 
-	_onTextFieldFocusIn() {
-		this._focusText = this._textField.value;
-
-		let index = this._checkValue(false);
+	_onTextFieldFocus() {
+		this._setTextFieldSelection(0, this._checkValue(false));
+		this._textAtFocusing = this._textField.value;
 		this._writeBuffer();
-
-		setTimeout(() => {
-			if (index == this._buffer.length) {
-				this._setTextFieldSelection(0, index);
-			} else {
-				this._setTextFieldSelection(index);
-			}
-		}, 1);
 	}
 
-	_onTextFieldFocusOut() {
+	_onTextFieldBlur() {
 		this._checkValue(false);
 
-		if (this._textField.value != this._focusText) {
+		if (this._textField.value != this._textAtFocusing) {
 			(this.$('text-input') as OpalTextInput).emit('change');
 		}
 	}
@@ -160,11 +151,12 @@ export default class OpalInputMask extends Component {
 		} else if (key == 27) { // Escape
 			evt.preventDefault();
 
-			if (textField.value != this._focusText) {
-				textField.value = this._focusText;
+			if (textField.value != this._textAtFocusing) {
+				textField.value = this._textAtFocusing;
 				this._setTextFieldSelection(0, this._checkValue(false));
 
 				let textInput = this.$('text-input') as OpalTextInput;
+
 				((textInput.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
 					['text-field']['input'].call(textInput, evt);
 			}
@@ -237,8 +229,7 @@ export default class OpalInputMask extends Component {
 		let tests = this._tests;
 		let buffer = this._buffer;
 		let bufferLen = buffer.length;
-		let textField = this._textField;
-		let value = textField.value;
+		let value = this._textField.value;
 		let valueLen = value.length;
 		let index = 0;
 		let lastMatchIndex = -1;
@@ -274,14 +265,18 @@ export default class OpalInputMask extends Component {
 
 		if (allowNotCompleted) {
 			this._writeBuffer();
-		} else if (lastMatchIndex + 1 < partialIndex) {
-			textField.value = '';
-			this._clearBuffer(0, bufferLen);
 		} else {
-			textField.value = buffer.slice(0, lastMatchIndex + 1).join('');
+			if (lastMatchIndex + 1 < partialIndex) {
+				this._clearBuffer(0, bufferLen);
+				(this.$('text-input') as OpalTextInput).value = '';
+			} else {
+				(this.$('text-input') as OpalTextInput).value = buffer.slice(0, lastMatchIndex + 1).join('');
+			}
+
+			Cell.forceRelease();
 		}
 
-		return partialIndex ? index : this._firstTestIndex;
+		return index;
 	}
 
 	_shiftLeft(start: number, end: number) {
@@ -309,7 +304,6 @@ export default class OpalInputMask extends Component {
 		}
 
 		this._writeBuffer();
-
 		this._setTextFieldSelection(Math.max(this._firstTestIndex, start));
 	}
 
@@ -349,7 +343,8 @@ export default class OpalInputMask extends Component {
 	_writeBuffer() {
 		let buffer = this._buffer;
 		let toIndex = buffer.indexOf(null);
-		this._textField.value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
+		(this.$('text-input') as OpalTextInput).value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
+		Cell.forceRelease();
 	}
 
 	_clearBuffer(start: number, end: number) {

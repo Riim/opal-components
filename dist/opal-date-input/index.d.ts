@@ -9,7 +9,7 @@ export default class OpalDateInput extends Component {
     _documentClickListening: IDisposableListening;
     elementAttached(): void;
     _onTextInputClick(): void;
-    _onDocumentFocusIn(): void;
+    _onDocumentFocusIn(evt: Event): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _onDocumentClick(evt: Event): void;
     readonly value: Date | null;

@@ -150,10 +150,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.list.clear().addRange(items);
 	                this._lastLoadedQuery = query;
 	            }
+	            cellx_1.Cell.forceRelease();
+	            this.emit('loaded');
 	            setTimeout(function () {
 	                _this.checkLoading();
 	            }, 1);
-	            this.emit('loaded');
 	        }));
 	    };
 	    OpalLoadedList.prototype._getContentContext = function (content) {

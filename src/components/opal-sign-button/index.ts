@@ -20,14 +20,14 @@ import template = require('./index.beml');
 
 	events: {
 		control: {
-			focusin(evt: Event) {
+			focus(evt: Event) {
 				this.props['focused'] = true;
-				this.emit({ type: 'focusin', originalEvent: evt });
+				this.emit({ type: 'focus', originalEvent: evt });
 			},
 
-			focusout(evt: Event) {
+			blur(evt: Event) {
 				this.props['focused'] = false;
-				this.emit({ type: 'focusout', originalEvent: evt });
+				this.emit({ type: 'blur', originalEvent: evt });
 			},
 
 			click(evt: Event) {

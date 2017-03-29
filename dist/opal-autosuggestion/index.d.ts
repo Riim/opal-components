@@ -34,7 +34,7 @@ export default class OpalAutosuggestion extends Component {
     _onMenuMouseOver(evt: Event): void;
     _onListChange(): void;
     _onLoaderShownChange(evt: IEvent): void;
-    _onDocumentFocusIn(): void;
+    _onDocumentFocusIn(evt: Event): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _onDocumentClick(evt: Event): void;
     _onListItemClick(evt: Event, listItem: HTMLElement): void;

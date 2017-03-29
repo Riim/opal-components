@@ -199,13 +199,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bemlTemplate: template,
 	        events: {
 	            'text-field': {
-	                focusin: function () {
+	                focus: function () {
 	                    this.props['focused'] = true;
-	                    this.emit('focusin');
+	                    this.emit('focus');
 	                },
-	                focusout: function () {
+	                blur: function () {
 	                    this.props['focused'] = false;
-	                    this.emit('focusout');
+	                    this.emit('blur');
 	                },
 	                input: function (evt) {
 	                    this.value = evt.target.value;

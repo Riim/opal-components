@@ -16,7 +16,7 @@ let openedDropdowns: Array<OpalDropdown> = [];
 	bemlTemplate: 'rt-content/content (cloning=no)'
 })
 export default class OpalDropdown extends Component {
-	_documentClickListening: IDisposableListening;
+	_documentClickListening: IDisposableListening | undefined;
 
 	ready() {
 		if (this.props['opened']) {

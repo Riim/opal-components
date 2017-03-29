@@ -28,14 +28,14 @@ import template = require('./index.beml');
 
 	events: {
 		'text-field': {
-			focusin() {
+			focus() {
 				this.props['focused'] = true;
-				this.emit('focusin');
+				this.emit('focus');
 			},
 
-			focusout() {
+			blur() {
 				this.props['focused'] = false;
-				this.emit('focusout');
+				this.emit('blur');
 			},
 
 			input(evt: Event) {

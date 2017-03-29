@@ -26,14 +26,14 @@ import template = require('./index.beml');
 		},
 
 		control: {
-			focusin() {
+			focus() {
 				this.props['focused'] = true;
-				this.emit('focusin');
+				this.emit('focus');
 			},
 
-			focusout() {
+			blur() {
 				this.props['focused'] = false;
-				this.emit('focusout');
+				this.emit('blur');
 			}
 		}
 	}

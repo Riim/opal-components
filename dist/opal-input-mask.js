@@ -122,8 +122,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalInputMask.prototype.elementAttached = function () {
 	        this.listenTo(this, 'change:_mask', this._onMaskChange);
 	        this.listenTo(this._textField, {
-	            focusin: this._onTextFieldFocusIn,
-	            focusout: this._onTextFieldFocusOut,
+	            focus: this._onTextFieldFocus,
+	            blur: this._onTextFieldBlur,
 	            keydown: this._onTextFieldKeyDown,
 	            keypress: this._onTextFieldKeyPress,
 	            input: this._onTextFieldInput
@@ -137,23 +137,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _this._checkValue(false);
 	        }, 1);
 	    };
-	    OpalInputMask.prototype._onTextFieldFocusIn = function () {
-	        var _this = this;
-	        this._focusText = this._textField.value;
-	        var index = this._checkValue(false);
+	    OpalInputMask.prototype._onTextFieldFocus = function () {
+	        this._setTextFieldSelection(0, this._checkValue(false));
+	        this._textAtFocusing = this._textField.value;
 	        this._writeBuffer();
-	        setTimeout(function () {
-	            if (index == _this._buffer.length) {
-	                _this._setTextFieldSelection(0, index);
-	            }
-	            else {
-	                _this._setTextFieldSelection(index);
-	            }
-	        }, 1);
 	    };
-	    OpalInputMask.prototype._onTextFieldFocusOut = function () {
+	    OpalInputMask.prototype._onTextFieldBlur = function () {
 	        this._checkValue(false);
-	        if (this._textField.value != this._focusText) {
+	        if (this._textField.value != this._textAtFocusing) {
 	            this.$('text-input').emit('change');
 	        }
 	    };
@@ -184,8 +175,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        else if (key == 27) {
 	            evt.preventDefault();
-	            if (textField.value != this._focusText) {
-	                textField.value = this._focusText;
+	            if (textField.value != this._textAtFocusing) {
+	                textField.value = this._textAtFocusing;
 	                this._setTextFieldSelection(0, this._checkValue(false));
 	                var textInput = this.$('text-input');
 	                textInput.constructor.events['text-field']['input'].call(textInput, evt);
@@ -245,8 +236,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var tests = this._tests;
 	        var buffer = this._buffer;
 	        var bufferLen = buffer.length;
-	        var textField = this._textField;
-	        var value = textField.value;
+	        var value = this._textField.value;
 	        var valueLen = value.length;
 	        var index = 0;
 	        var lastMatchIndex = -1;
@@ -278,14 +268,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (allowNotCompleted) {
 	            this._writeBuffer();
 	        }
-	        else if (lastMatchIndex + 1 < partialIndex) {
-	            textField.value = '';
-	            this._clearBuffer(0, bufferLen);
-	        }
 	        else {
-	            textField.value = buffer.slice(0, lastMatchIndex + 1).join('');
+	            if (lastMatchIndex + 1 < partialIndex) {
+	                this._clearBuffer(0, bufferLen);
+	                this.$('text-input').value = '';
+	            }
+	            else {
+	                this.$('text-input').value = buffer.slice(0, lastMatchIndex + 1).join('');
+	            }
+	            cellx_1.Cell.forceRelease();
 	        }
-	        return partialIndex ? index : this._firstTestIndex;
+	        return index;
 	    };
 	    OpalInputMask.prototype._shiftLeft = function (start, end) {
 	        if (start < 0) {
@@ -341,7 +334,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalInputMask.prototype._writeBuffer = function () {
 	        var buffer = this._buffer;
 	        var toIndex = buffer.indexOf(null);
-	        this._textField.value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
+	        this.$('text-input').value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
+	        cellx_1.Cell.forceRelease();
 	    };
 	    OpalInputMask.prototype._clearBuffer = function (start, end) {
 	        var tests = this._tests;

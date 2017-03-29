@@ -25,22 +25,22 @@ import { IDisposableListening, Component, d } from 'rionite';
 		},
 
 		':element': {
-			focusin(evt: Event) {
+			focus(evt: Event) {
 				if (this.element.tagName.indexOf('-') > -1) {
 					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 				}
 
 				this.props['focused'] = true;
-				this.emit({ type: 'focusin', originalEvent: evt });
+				this.emit({ type: 'focus', originalEvent: evt });
 			},
 
-			focusout(evt: Event) {
+			blur(evt: Event) {
 				if (this._documentKeyDownListening) {
 					this._documentKeyDownListening.stop();
 				}
 
 				this.props['focused'] = false;
-				this.emit({ type: 'focusout', originalEvent: evt });
+				this.emit({ type: 'blur', originalEvent: evt });
 			},
 
 			click(evt: Event) {
@@ -54,7 +54,7 @@ import { IDisposableListening, Component, d } from 'rionite';
 export default class OpalButton extends Component {
 	_tabIndex: number;
 
-	_documentKeyDownListening: IDisposableListening;
+	_documentKeyDownListening: IDisposableListening | undefined;
 
 	initialize() {
 		define(this, {

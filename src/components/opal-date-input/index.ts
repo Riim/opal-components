@@ -1,5 +1,6 @@
 import './index.css';
 
+import { IEvent } from 'cellx';
 import { IDisposableListening, getText, Component, d } from 'rionite';
 import OpalTextInput from '../opal-text-input';
 import OpalDropdown from '../opal-dropdown';
@@ -43,16 +44,16 @@ function pad(num: number): string {
 		},
 
 		'calendar-menu': {
-			open() {
-				this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
-				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-				this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
-			},
-
-			close() {
-				this._documentFocusInListening.stop();
-				this._documentKeyDownListening.stop();
-				this._documentClickListening.stop();
+			'property-opened-change'(evt: IEvent) {
+				if (evt.value) {
+					this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+					this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+				} else {
+					this._documentFocusInListening.stop();
+					this._documentKeyDownListening.stop();
+					this._documentClickListening.stop();
+				}
 			}
 		},
 
@@ -102,8 +103,8 @@ export default class OpalDateInput extends Component {
 		(this.$('calendar-menu') as OpalDropdown).open();
 	}
 
-	_onDocumentFocusIn() {
-		if (!this.element.contains(document.activeElement.parentNode as Node)) {
+	_onDocumentFocusIn(evt: Event) {
+		if (!this.element.contains((evt.target as Node).parentNode as Node)) {
 			(this.$('calendar-menu') as OpalDropdown).close();
 		}
 	}

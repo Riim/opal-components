@@ -179,19 +179,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            },
 	            ':element': {
-	                focusin: function (evt) {
+	                focus: function (evt) {
 	                    if (this.element.tagName.indexOf('-') > -1) {
 	                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 	                    }
 	                    this.props['focused'] = true;
-	                    this.emit({ type: 'focusin', originalEvent: evt });
+	                    this.emit({ type: 'focus', originalEvent: evt });
 	                },
-	                focusout: function (evt) {
+	                blur: function (evt) {
 	                    if (this._documentKeyDownListening) {
 	                        this._documentKeyDownListening.stop();
 	                    }
 	                    this.props['focused'] = false;
-	                    this.emit({ type: 'focusout', originalEvent: evt });
+	                    this.emit({ type: 'blur', originalEvent: evt });
 	                },
 	                click: function (evt) {
 	                    if (!this.props['disabled']) {

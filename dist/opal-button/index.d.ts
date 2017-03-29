@@ -2,7 +2,7 @@ import './index.css';
 import { IDisposableListening, Component } from 'rionite';
 export default class OpalButton extends Component {
     _tabIndex: number;
-    _documentKeyDownListening: IDisposableListening;
+    _documentKeyDownListening: IDisposableListening | undefined;
     initialize(): void;
     ready(): void;
     elementAttached(): void;

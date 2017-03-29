@@ -191,14 +191,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalSelect.prototype.propertyChanged = function (name, value) {
 	        if (name == 'focused') {
 	            if (value) {
-	                if (!this._opened) {
+	                if (!this._documentKeyDownListening) {
 	                    this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 	                }
 	                this.focus();
 	            }
 	            else {
-	                if (!this._opened) {
+	                if (this._documentKeyDownListening) {
 	                    this._documentKeyDownListening.stop();
+	                    this._documentKeyDownListening = null;
 	                }
 	                this.blur();
 	            }
@@ -229,7 +230,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this._opened = true;
 	        this._valueAtOpening = this.viewModel.map(function (item) { return item[_this._viewModelItemValueFieldName]; });
 	        this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
-	        if (!this.props['focused']) {
+	        if (!this._documentKeyDownListening) {
 	            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 	        }
 	        this.$('button').check();
@@ -242,9 +243,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        var filteredList = this.$('filtered-list');
 	        if (filteredList) {
-	            setTimeout(function () {
-	                filteredList.focus();
-	            }, 1);
+	            filteredList.focus();
 	        }
 	        else {
 	            this._focusOptions();
@@ -258,8 +257,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        this._opened = false;
 	        this._documentFocusInListening.stop();
-	        if (!this.props['focused']) {
+	        if (this._documentKeyDownListening) {
 	            this._documentKeyDownListening.stop();
+	            this._documentKeyDownListening = null;
 	        }
 	        this.$('button').uncheck();
 	        this.$('menu').close();
@@ -477,13 +477,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            },
 	            button: {
-	                focusin: function () {
+	                focus: function () {
 	                    this.props['focused'] = true;
-	                    this.emit('focusin');
+	                    this.emit('focus');
 	                },
-	                focusout: function () {
+	                blur: function () {
 	                    this.props['focused'] = false;
-	                    this.emit('focusout');
+	                    this.emit('blur');
 	                },
 	                click: function (evt) {
 	                    (evt['originalEvent'] || evt).preventDefault();
@@ -496,8 +496,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            },
 	            menu: {
-	                close: function () {
-	                    this.close();
+	                'property-opened-change': function (evt) {
+	                    if (!evt.value) {
+	                        this.close();
+	                    }
 	                },
 	                '<opal-select-option>select': function (evt) {
 	                    var vm = this.viewModel;
@@ -585,7 +587,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        return;
 	                    }
 	                    this._onсeFocusedAfterLoading = true;
-	                    setTimeout(function () {
+	                    nextTick(function () {
 	                        var filteredList = _this.$('filtered-list');
 	                        if (filteredList) {
 	                            var queryInput = filteredList.$('query-input');
@@ -600,7 +602,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        else {
 	                            _this._focusOptions();
 	                        }
-	                    }, 1);
+	                    });
 	                }
 	            }
 	        }
@@ -788,10 +790,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bemlTemplate: template,
 	        events: {
 	            control: {
-	                focusin: function () {
+	                focus: function () {
 	                    this.props['focused'] = true;
 	                },
-	                focusout: function () {
+	                blur: function () {
 	                    this.props['focused'] = false;
 	                },
 	                click: function () {

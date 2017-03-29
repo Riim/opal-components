@@ -40,11 +40,11 @@ function toComparable(str: string): string {
 
 	events: {
 		'text-input': {
-			focusin() {
+			focus() {
 				this.openMenu();
 			},
 
-			focusout() {
+			blur() {
 				this._cancelLoading();
 
 				// Нужно для следующего случая:
@@ -84,16 +84,16 @@ function toComparable(str: string): string {
 		},
 
 		menu: {
-			open() {
-				this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
-				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-				this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
-			},
-
-			close() {
-				this._documentFocusInListening.stop();
-				this._documentKeyDownListening.stop();
-				this._documentClickListening.stop();
+			'property-opened-change'(evt: IEvent) {
+				if (evt.value) {
+					this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+					this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+				} else {
+					this._documentFocusInListening.stop();
+					this._documentKeyDownListening.stop();
+					this._documentClickListening.stop();
+				}
 			}
 		}
 	}
@@ -189,8 +189,8 @@ export default class OpalAutosuggestion extends Component {
 		(this.$('text-input') as Component).props['loading'] = evt['value'];
 	}
 
-	_onDocumentFocusIn() {
-		if (!this.element.contains(document.activeElement.parentNode as Node)) {
+	_onDocumentFocusIn(evt: Event) {
+		if (!this.element.contains((evt.target as Node).parentNode as Node)) {
 			this.closeMenu();
 			this._setSelectedItemOfList();
 		}

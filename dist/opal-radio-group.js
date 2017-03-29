@@ -262,13 +262,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            },
 	            control: {
-	                focusin: function () {
+	                focus: function () {
 	                    this.props['focused'] = true;
-	                    this.emit('focusin');
+	                    this.emit('focus');
 	                },
-	                focusout: function () {
+	                blur: function () {
 	                    this.props['focused'] = false;
-	                    this.emit('focusout');
+	                    this.emit('blur');
 	                }
 	            }
 	        }

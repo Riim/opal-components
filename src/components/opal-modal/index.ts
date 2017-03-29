@@ -6,8 +6,8 @@ import template = require('./index.beml');
 let openedModals: Array<OpalModal> = [];
 let documentListening: IDisposableListening;
 
-function onDocumentFocusIn() {
-	if (!openedModals[0].element.contains(document.activeElement.parentNode as HTMLElement)) {
+function onDocumentFocusIn(evt: Event) {
+	if (!openedModals[0].element.contains((evt.target as Node).parentNode as Node)) {
 		(openedModals[0].$('btn-close') as HTMLElement).focus();
 	}
 }

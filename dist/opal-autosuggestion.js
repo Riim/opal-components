@@ -137,8 +137,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalAutosuggestion.prototype._onLoaderShownChange = function (evt) {
 	        this.$('text-input').props['loading'] = evt['value'];
 	    };
-	    OpalAutosuggestion.prototype._onDocumentFocusIn = function () {
-	        if (!this.element.contains(document.activeElement.parentNode)) {
+	    OpalAutosuggestion.prototype._onDocumentFocusIn = function (evt) {
+	        if (!this.element.contains(evt.target.parentNode)) {
 	            this.closeMenu();
 	            this._setSelectedItemOfList();
 	        }
@@ -299,10 +299,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bemlTemplate: template,
 	        events: {
 	            'text-input': {
-	                focusin: function () {
+	                focus: function () {
 	                    this.openMenu();
 	                },
-	                focusout: function () {
+	                blur: function () {
 	                    this._cancelLoading();
 	                    // Нужно для следующего случая:
 	                    // 1. выбираем что-то;
@@ -335,15 +335,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            },
 	            menu: {
-	                open: function () {
-	                    this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
-	                    this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-	                    this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
-	                },
-	                close: function () {
-	                    this._documentFocusInListening.stop();
-	                    this._documentKeyDownListening.stop();
-	                    this._documentClickListening.stop();
+	                'property-opened-change': function (evt) {
+	                    if (evt.value) {
+	                        this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+	                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	                        this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+	                    }
+	                    else {
+	                        this._documentFocusInListening.stop();
+	                        this._documentKeyDownListening.stop();
+	                        this._documentClickListening.stop();
+	                    }
 	                }
 	            }
 	        }

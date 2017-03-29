@@ -158,13 +158,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bemlTemplate: template,
 	        events: {
 	            control: {
-	                focusin: function (evt) {
+	                focus: function (evt) {
 	                    this.props['focused'] = true;
-	                    this.emit({ type: 'focusin', originalEvent: evt });
+	                    this.emit({ type: 'focus', originalEvent: evt });
 	                },
-	                focusout: function (evt) {
+	                blur: function (evt) {
 	                    this.props['focused'] = false;
-	                    this.emit({ type: 'focusout', originalEvent: evt });
+	                    this.emit({ type: 'blur', originalEvent: evt });
 	                },
 	                click: function (evt) {
 	                    if (!this.props['disabled']) {

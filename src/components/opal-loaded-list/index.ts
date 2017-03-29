@@ -1,6 +1,6 @@
 import './index.css';
 
-import { IEvent, ObservableList, define, Utils } from 'cellx';
+import { IEvent, ObservableList, Cell, define, Utils } from 'cellx';
 import { IDisposableTimeout, IDisposableCallback, getText, Component, d } from 'rionite';
 import template = require('./index.beml');
 
@@ -190,11 +190,13 @@ export default class OpalLoadedList extends Component {
 						this._lastLoadedQuery = query;
 					}
 
+					Cell.forceRelease();
+
+					this.emit('loaded');
+
 					setTimeout(() => {
 						this.checkLoading();
 					}, 1);
-
-					this.emit('loaded');
 				}
 			)
 		);

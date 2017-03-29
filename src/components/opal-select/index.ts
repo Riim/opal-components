@@ -113,14 +113,14 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		},
 
 		button: {
-			focusin() {
+			focus() {
 				this.props['focused'] = true;
-				this.emit('focusin');
+				this.emit('focus');
 			},
 
-			focusout() {
+			blur() {
 				this.props['focused'] = false;
-				this.emit('focusout');
+				this.emit('blur');
 			},
 
 			click(evt: IEvent) {
@@ -135,8 +135,10 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		},
 
 		menu: {
-			close() {
-				this.close();
+			'property-opened-change'(evt: IEvent) {
+				if (!evt.value) {
+					this.close();
+				}
 			},
 
 			'<opal-select-option>select'(evt: IEvent) {
@@ -243,7 +245,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 				this._onсeFocusedAfterLoading = true;
 
-				setTimeout(() => {
+				nextTick(() => {
 					let filteredList = this.$('filtered-list') as OpalFilteredList;
 
 					if (filteredList) {
@@ -258,7 +260,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 					} else {
 						this._focusOptions();
 					}
-				}, 1);
+				});
 			}
 		}
 	}
@@ -283,7 +285,7 @@ export default class OpalSelect extends Component {
 	_onсeFocusedAfterLoading: boolean = false;
 
 	_documentFocusInListening: IDisposableListening;
-	_documentKeyDownListening: IDisposableListening;
+	_documentKeyDownListening: IDisposableListening | null | undefined;
 
 	initialize() {
 		let props = this.props;
@@ -391,14 +393,15 @@ export default class OpalSelect extends Component {
 	propertyChanged(name: string, value: any) {
 		if (name == 'focused') {
 			if (value) {
-				if (!this._opened) {
+				if (!this._documentKeyDownListening) {
 					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 				}
 
 				this.focus();
 			} else {
-				if (!this._opened) {
+				if (this._documentKeyDownListening) {
 					this._documentKeyDownListening.stop();
+					this._documentKeyDownListening = null;
 				}
 
 				this.blur();
@@ -436,7 +439,7 @@ export default class OpalSelect extends Component {
 
 		this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
 
-		if (!this.props['focused']) {
+		if (!this._documentKeyDownListening) {
 			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 		}
 
@@ -454,9 +457,7 @@ export default class OpalSelect extends Component {
 		let filteredList = this.$('filtered-list') as OpalFilteredList;
 
 		if (filteredList) {
-			setTimeout(() => {
-				filteredList.focus();
-			}, 1);
+			filteredList.focus();
 		} else {
 			this._focusOptions();
 		}
@@ -473,8 +474,9 @@ export default class OpalSelect extends Component {
 
 		this._documentFocusInListening.stop();
 
-		if (!this.props['focused']) {
+		if (this._documentKeyDownListening) {
 			this._documentKeyDownListening.stop();
+			this._documentKeyDownListening = null;
 		}
 
 		(this.$('button') as OpalButton).uncheck();

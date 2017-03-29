@@ -89,13 +89,13 @@ function getTodayDate() {
 		},
 
 		days: {
-			focusin() {
+			focus() {
 				if ((document.activeElement as HTMLElement).dataset['date'] && !this._documentKeyDownListening) {
 					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 				}
 			},
 
-			focusout() {
+			blur() {
 				setTimeout(() => {
 					if (!document.activeElement.classList.contains('opal-calendar__day')) {
 						(this._documentKeyDownListening as IDisposableListening).stop();

@@ -332,10 +332,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bemlTemplate: template,
 	        events: {
 	            control: {
-	                focusin: function () {
+	                focus: function () {
 	                    this.props['focused'] = true;
 	                },
-	                focusout: function () {
+	                blur: function () {
 	                    this.props['focused'] = false;
 	                },
 	                click: function () {

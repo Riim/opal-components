@@ -17,7 +17,7 @@ import { IDisposableListening, Component, d } from 'rionite';
 export default class OpalPopover extends Component {
 	_toValueAtOpen: string;
 
-	_documentClickListening: IDisposableListening;
+	_documentClickListening: IDisposableListening | undefined;
 
 	ready() {
 		if (this.props['opened']) {

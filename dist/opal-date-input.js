@@ -105,8 +105,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalDateInput.prototype._onTextInputClick = function () {
 	        this.$('calendar-menu').open();
 	    };
-	    OpalDateInput.prototype._onDocumentFocusIn = function () {
-	        if (!this.element.contains(document.activeElement.parentNode)) {
+	    OpalDateInput.prototype._onDocumentFocusIn = function (evt) {
+	        if (!this.element.contains(evt.target.parentNode)) {
 	            this.$('calendar-menu').close();
 	        }
 	    };
@@ -186,15 +186,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            },
 	            'calendar-menu': {
-	                open: function () {
-	                    this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
-	                    this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-	                    this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
-	                },
-	                close: function () {
-	                    this._documentFocusInListening.stop();
-	                    this._documentKeyDownListening.stop();
-	                    this._documentClickListening.stop();
+	                'property-opened-change': function (evt) {
+	                    if (evt.value) {
+	                        this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+	                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	                        this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+	                    }
+	                    else {
+	                        this._documentFocusInListening.stop();
+	                        this._documentKeyDownListening.stop();
+	                        this._documentClickListening.stop();
+	                    }
 	                }
 	            },
 	            calendar: {

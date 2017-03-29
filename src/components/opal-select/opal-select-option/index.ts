@@ -20,11 +20,11 @@ import template = require('./index.beml');
 
 	events: {
 		control: {
-			focusin() {
+			focus() {
 				this.props['focused'] = true;
 			},
 
-			focusout() {
+			blur() {
 				this.props['focused'] = false;
 			},
 

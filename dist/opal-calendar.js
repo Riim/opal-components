@@ -309,12 +309,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            },
 	            days: {
-	                focusin: function () {
+	                focus: function () {
 	                    if (document.activeElement.dataset['date'] && !this._documentKeyDownListening) {
 	                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 	                    }
 	                },
-	                focusout: function () {
+	                blur: function () {
 	                    var _this = this;
 	                    setTimeout(function () {
 	                        if (!document.activeElement.classList.contains('opal-calendar__day')) {

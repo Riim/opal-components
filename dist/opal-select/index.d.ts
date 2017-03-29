@@ -22,7 +22,7 @@ export default class OpalSelect extends Component {
     _valueAtOpening: any;
     _onсeFocusedAfterLoading: boolean;
     _documentFocusInListening: IDisposableListening;
-    _documentKeyDownListening: IDisposableListening;
+    _documentKeyDownListening: IDisposableListening | null | undefined;
     initialize(): void;
     ready(): void;
     elementAttached(): void;
