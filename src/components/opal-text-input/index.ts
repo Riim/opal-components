@@ -1,8 +1,10 @@
 import './index.css';
 
-import { define } from 'cellx';
+import { define, Utils } from 'cellx';
 import { Component, d } from 'rionite';
 import template = require('./index.beml');
+
+let nextTick = Utils.nextTick;
 
 @d.Component<OpalTextInput>({
 	elementIs: 'opal-text-input',
@@ -28,9 +30,13 @@ import template = require('./index.beml');
 
 	events: {
 		'text-field': {
-			focus() {
-				this.props['focused'] = true;
-				this.emit('focus');
+			focus(evt: Event) {
+				nextTick(() => {
+					if (document.activeElement == evt.target) {
+						this.props['focused'] = true;
+						this.emit('focus');
+					}
+				});
 			},
 
 			blur() {

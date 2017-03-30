@@ -1,7 +1,9 @@
 import './index.css';
 
-import { define } from 'cellx';
+import { define, Utils } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
+
+let nextTick = Utils.nextTick;
 
 @d.Component<OpalButton>({
 	elementIs: 'opal-button',
@@ -26,26 +28,32 @@ import { IDisposableListening, Component, d } from 'rionite';
 
 		':element': {
 			focus(evt: Event) {
-				if (this.element.tagName.indexOf('-') > -1) {
-					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-				}
+				nextTick(() => {
+					if (document.activeElement != this.element) {
+						return;
+					}
 
-				this.props['focused'] = true;
-				this.emit({ type: 'focus', originalEvent: evt });
+					if (this.element.tagName.indexOf('-') > -1) {
+						this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+					}
+
+					this.props['focused'] = true;
+					this.emit('focus');
+				});
 			},
 
-			blur(evt: Event) {
+			blur() {
 				if (this._documentKeyDownListening) {
 					this._documentKeyDownListening.stop();
 				}
 
 				this.props['focused'] = false;
-				this.emit({ type: 'blur', originalEvent: evt });
+				this.emit('blur');
 			},
 
-			click(evt: Event) {
+			click() {
 				if (!this.props['disabled']) {
-					this.click(evt);
+					this.click();
 				}
 			}
 		}
@@ -82,17 +90,21 @@ export default class OpalButton extends Component {
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {
-		if (evt.which == 13/* Enter */ && !this.props['disabled']) {
-			this.click(evt);
+		if (evt.which == 13/* Enter */) {
+			evt.preventDefault();
+
+			if (!this.props['disabled']) {
+				this.click();
+			}
 		}
 	}
 
-	click(originalEvent?: Event): OpalButton {
+	click(): OpalButton {
 		if (this.props['checkable']) {
 			this.emit(this.toggle() ? 'check' : 'uncheck');
 		}
 
-		this.emit({ type: 'click', originalEvent });
+		this.emit('click');
 
 		return this;
 	}

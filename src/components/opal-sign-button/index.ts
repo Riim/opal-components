@@ -1,8 +1,10 @@
 import './index.css';
 
-import { define } from 'cellx';
-import { Component, d } from 'rionite';
+import { define, Utils } from 'cellx';
+import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.beml');
+
+let nextTick = Utils.nextTick;
 
 @d.Component<OpalSignButton>({
 	elementIs: 'opal-sign-button',
@@ -21,22 +23,24 @@ import template = require('./index.beml');
 	events: {
 		control: {
 			focus(evt: Event) {
-				this.props['focused'] = true;
-				this.emit({ type: 'focus', originalEvent: evt });
+				nextTick(() => {
+					if (document.activeElement == evt.target) {
+						this.props['focused'] = true;
+						this.emit('focus');
+					}
+				});
 			},
 
-			blur(evt: Event) {
+			blur() {
 				this.props['focused'] = false;
-				this.emit({ type: 'blur', originalEvent: evt });
+				this.emit('blur');
 			},
 
 			click(evt: Event) {
-				if (!this.props['disabled']) {
-					if (this.props['checkable']) {
-						this.emit(this.toggle() ? 'check' : 'uncheck');
-					}
+				evt.preventDefault();
 
-					this.emit({ type: 'click', originalEvent: evt });
+				if (!this.props['disabled']) {
+					this.click();
 				}
 			}
 		}
@@ -44,6 +48,8 @@ import template = require('./index.beml');
 })
 export default class OpalSignButton extends Component {
 	_tabIndex: number;
+
+	_documentKeyDownListening: IDisposableListening;
 
 	initialize() {
 		define(this, {
@@ -63,6 +69,16 @@ export default class OpalSignButton extends Component {
 		if (name == 'focused') {
 			this[value ? 'focus' : 'blur']();
 		}
+	}
+
+	click(): OpalSignButton {
+		if (this.props['checkable']) {
+			this.emit(this.toggle() ? 'check' : 'uncheck');
+		}
+
+		this.emit('click');
+
+		return this;
 	}
 
 	get checked(): boolean {

@@ -6,13 +6,13 @@ export default class OpalRadioButton extends Component {
     initialize(): void;
     ready(): void;
     propertyChanged(name: string, value: any): void;
+    _onDocumentKeyDown(evt: KeyboardEvent): void;
     checked: boolean;
     check(): boolean;
     uncheck(): boolean;
     toggle(value?: boolean): boolean;
     focus(): OpalRadioButton;
     blur(): OpalRadioButton;
-    _onDocumentKeyDown(evt: KeyboardEvent): void;
     enable(): OpalRadioButton;
     disable(): OpalRadioButton;
 }

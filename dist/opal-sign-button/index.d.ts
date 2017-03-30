@@ -1,10 +1,12 @@
 import './index.css';
-import { Component } from 'rionite';
+import { IDisposableListening, Component } from 'rionite';
 export default class OpalSignButton extends Component {
     _tabIndex: number;
+    _documentKeyDownListening: IDisposableListening;
     initialize(): void;
     ready(): void;
     propertyChanged(name: string, value: any): void;
+    click(): OpalSignButton;
     checked: boolean;
     check(): boolean;
     uncheck(): boolean;

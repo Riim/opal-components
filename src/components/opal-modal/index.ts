@@ -4,9 +4,11 @@ import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.beml');
 
 let openedModals: Array<OpalModal> = [];
-let documentListening: IDisposableListening;
 
-function onDocumentFocusIn(evt: Event) {
+let documentFocusListening: IDisposableListening;
+let documentKeyUpListening: IDisposableListening;
+
+function onDocumentFocus(evt: Event) {
 	if (!openedModals[0].element.contains((evt.target as Node).parentNode as Node)) {
 		(openedModals[0].$('btn-close') as HTMLElement).focus();
 	}
@@ -100,10 +102,8 @@ export default class OpalModal extends Component {
 		if (openedModals.length) {
 			openedModals[0].element.classList.add('_overlapped');
 		} else {
-			documentListening = this.listenTo(document, {
-				focusin: onDocumentFocusIn,
-				keyup: onDocumentKeyUp
-			});
+			documentFocusListening = this.listenTo(document, 'focus', onDocumentFocus, document, true);
+			documentKeyUpListening = this.listenTo(document, 'keyup', onDocumentKeyUp, document);
 
 			let body = document.body;
 			let initialBodyWidth = body.offsetWidth;
@@ -135,7 +135,8 @@ export default class OpalModal extends Component {
 			openedModals[0].element.classList.remove('_overlapped');
 			openedModals[0].focus();
 		} else {
-			documentListening.stop();
+			documentFocusListening.stop();
+			documentKeyUpListening.stop();
 
 			let bodyStyle = document.body.style;
 

@@ -24,7 +24,7 @@ export default class OpalAutosuggestion extends Component {
     loaderShown: boolean;
     _focusedListItem: HTMLElement | null;
     selectedItem: IItem | null;
-    _documentFocusInListening: IDisposableListening;
+    _documentFocusListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening;
     _documentClickListening: IDisposableListening;
     initialize(): void;
@@ -34,7 +34,7 @@ export default class OpalAutosuggestion extends Component {
     _onMenuMouseOver(evt: Event): void;
     _onListChange(): void;
     _onLoaderShownChange(evt: IEvent): void;
-    _onDocumentFocusIn(evt: Event): void;
+    _onDocumentFocus(evt: Event): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _onDocumentClick(evt: Event): void;
     _onListItemClick(evt: Event, listItem: HTMLElement): void;

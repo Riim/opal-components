@@ -3,7 +3,7 @@
 	border: 0;
 	background: transparent;
 	color: inherit;
-	font-size: inherit;
+	font: inherit;
 	cursor: pointer;
 	user-select: none;
 }

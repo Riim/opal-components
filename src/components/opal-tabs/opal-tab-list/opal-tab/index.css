@@ -5,6 +5,7 @@
 		position: relative;
 		display: block;
 		padding: 5px 22px;
+		border: 0;
 		border-top-left-radius: 3px;
 		border-top-right-radius: 3px;
 		background: #fff;

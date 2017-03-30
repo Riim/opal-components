@@ -84,6 +84,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.OpalInputMaskDefinition = opal_input_mask_definition_2.default;
 	var defaultDefinitions_2 = __webpack_require__(4);
 	exports.defaultDefinitions = defaultDefinitions_2.default;
+	var nextTick = cellx_1.Utils.nextTick;
 	var forEach = Array.prototype.forEach;
 	var iPhone = /iphone/i.test(navigator.userAgent);
 	var OpalInputMask = OpalInputMask_1 = (function (_super) {
@@ -133,14 +134,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalInputMask.prototype._onMaskChange = function () {
 	        var _this = this;
 	        this._initBuffer();
-	        setTimeout(function () {
+	        cellx_1.Cell.afterRelease(function () {
 	            _this._checkValue(false);
-	        }, 1);
+	        });
 	    };
 	    OpalInputMask.prototype._onTextFieldFocus = function () {
-	        this._setTextFieldSelection(0, this._checkValue(false));
-	        this._textAtFocusing = this._textField.value;
-	        this._writeBuffer();
+	        var _this = this;
+	        nextTick(function () {
+	            if (document.activeElement == _this._textField) {
+	                _this._setTextFieldSelection(0, _this._checkValue(false));
+	                _this._textAtFocusing = _this._textField.value;
+	                _this._writeBuffer();
+	            }
+	        });
 	    };
 	    OpalInputMask.prototype._onTextFieldBlur = function () {
 	        this._checkValue(false);
@@ -222,10 +228,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    OpalInputMask.prototype._onTextFieldInput = function () {
-	        var _this = this;
-	        setTimeout(function () {
-	            _this._setTextFieldSelection(_this._checkValue(true));
-	        }, 1);
+	        this._setTextFieldSelection(this._checkValue(true));
 	    };
 	    OpalInputMask.prototype._initBuffer = function () {
 	        var definitions = this._definitions;

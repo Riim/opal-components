@@ -80,6 +80,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var parseDate_1 = __webpack_require__(15);
 	var formatDate_1 = __webpack_require__(14);
 	var template = __webpack_require__(23);
+	var nextTick = cellx_1.Utils.nextTick;
 	function getTodayDate() {
 	    var now = new Date();
 	    return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -229,8 +230,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        });
 	    };
+	    OpalCalendar.prototype.elementAttached = function () {
+	        this.listenTo(this.$('days'), {
+	            focus: function (evt) {
+	                var _this = this;
+	                if (evt.target.classList.contains('opal-calendar__day')) {
+	                    nextTick(function () {
+	                        if (document.activeElement == evt.target && !_this._documentKeyDownListening) {
+	                            _this._documentKeyDownListening = _this.listenTo(document, 'keydown', _this._onDocumentKeyDown);
+	                        }
+	                    });
+	                }
+	            },
+	            blur: function () {
+	                var _this = this;
+	                setTimeout(function () {
+	                    if (!document.activeElement.classList.contains('opal-calendar__day')) {
+	                        _this._documentKeyDownListening.stop();
+	                        _this._documentKeyDownListening = null;
+	                    }
+	                }, 1);
+	            }
+	        }, this, true);
+	    };
 	    OpalCalendar.prototype._onDocumentKeyDown = function (evt) {
-	        if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
+	        if (evt.which == 13 /* Enter */) {
 	            evt.preventDefault();
 	            this._click(document.activeElement);
 	        }
@@ -306,22 +330,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            's-year': {
 	                '<opal-select-option>select': function (evt) {
 	                    this.shownYear = +evt.target.value;
-	                }
-	            },
-	            days: {
-	                focus: function () {
-	                    if (document.activeElement.dataset['date'] && !this._documentKeyDownListening) {
-	                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-	                    }
-	                },
-	                blur: function () {
-	                    var _this = this;
-	                    setTimeout(function () {
-	                        if (!document.activeElement.classList.contains('opal-calendar__day')) {
-	                            _this._documentKeyDownListening.stop();
-	                            _this._documentKeyDownListening = null;
-	                        }
-	                    }, 1);
 	                }
 	            }
 	        }

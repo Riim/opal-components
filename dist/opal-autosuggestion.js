@@ -137,7 +137,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalAutosuggestion.prototype._onLoaderShownChange = function (evt) {
 	        this.$('text-input').props['loading'] = evt['value'];
 	    };
-	    OpalAutosuggestion.prototype._onDocumentFocusIn = function (evt) {
+	    OpalAutosuggestion.prototype._onDocumentFocus = function (evt) {
 	        if (!this.element.contains(evt.target.parentNode)) {
 	            this.closeMenu();
 	            this._setSelectedItemOfList();
@@ -337,12 +337,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            menu: {
 	                'property-opened-change': function (evt) {
 	                    if (evt.value) {
-	                        this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+	                        this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
 	                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 	                        this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
 	                    }
 	                    else {
-	                        this._documentFocusInListening.stop();
+	                        this._documentFocusListening.stop();
 	                        this._documentKeyDownListening.stop();
 	                        this._documentClickListening.stop();
 	                    }

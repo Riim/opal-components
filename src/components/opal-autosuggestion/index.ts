@@ -86,11 +86,11 @@ function toComparable(str: string): string {
 		menu: {
 			'property-opened-change'(evt: IEvent) {
 				if (evt.value) {
-					this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+					this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
 					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 					this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
 				} else {
-					this._documentFocusInListening.stop();
+					this._documentFocusListening.stop();
 					this._documentKeyDownListening.stop();
 					this._documentClickListening.stop();
 				}
@@ -115,7 +115,7 @@ export default class OpalAutosuggestion extends Component {
 	_focusedListItem: HTMLElement | null;
 	selectedItem: IItem | null;
 
-	_documentFocusInListening: IDisposableListening;
+	_documentFocusListening: IDisposableListening;
 	_documentKeyDownListening: IDisposableListening;
 	_documentClickListening: IDisposableListening;
 
@@ -189,7 +189,7 @@ export default class OpalAutosuggestion extends Component {
 		(this.$('text-input') as Component).props['loading'] = evt['value'];
 	}
 
-	_onDocumentFocusIn(evt: Event) {
+	_onDocumentFocus(evt: Event) {
 		if (!this.element.contains((evt.target as Node).parentNode as Node)) {
 			this.closeMenu();
 			this._setSelectedItemOfList();

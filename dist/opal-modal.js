@@ -77,8 +77,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	var rionite_1 = __webpack_require__(1);
 	var template = __webpack_require__(30);
 	var openedModals = [];
-	var documentListening;
-	function onDocumentFocusIn(evt) {
+	var documentFocusListening;
+	var documentKeyUpListening;
+	function onDocumentFocus(evt) {
 	    if (!openedModals[0].element.contains(evt.target.parentNode)) {
 	        openedModals[0].$('btn-close').focus();
 	    }
@@ -129,10 +130,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            openedModals[0].element.classList.add('_overlapped');
 	        }
 	        else {
-	            documentListening = this.listenTo(document, {
-	                focusin: onDocumentFocusIn,
-	                keyup: onDocumentKeyUp
-	            });
+	            documentFocusListening = this.listenTo(document, 'focus', onDocumentFocus, document, true);
+	            documentKeyUpListening = this.listenTo(document, 'keyup', onDocumentKeyUp, document);
 	            var body = document.body;
 	            var initialBodyWidth = body.offsetWidth;
 	            body.style.overflow = 'hidden';
@@ -156,7 +155,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            openedModals[0].focus();
 	        }
 	        else {
-	            documentListening.stop();
+	            documentFocusListening.stop();
+	            documentKeyUpListening.stop();
 	            var bodyStyle = document.body.style;
 	            bodyStyle.overflow = '';
 	            bodyStyle.marginRight = '';

@@ -105,7 +105,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalDateInput.prototype._onTextInputClick = function () {
 	        this.$('calendar-menu').open();
 	    };
-	    OpalDateInput.prototype._onDocumentFocusIn = function (evt) {
+	    OpalDateInput.prototype._onDocumentFocus = function (evt) {
 	        if (!this.element.contains(evt.target.parentNode)) {
 	            this.$('calendar-menu').close();
 	        }
@@ -188,12 +188,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            'calendar-menu': {
 	                'property-opened-change': function (evt) {
 	                    if (evt.value) {
-	                        this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+	                        this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
 	                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 	                        this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
 	                    }
 	                    else {
-	                        this._documentFocusInListening.stop();
+	                        this._documentFocusListening.stop();
 	                        this._documentKeyDownListening.stop();
 	                        this._documentClickListening.stop();
 	                    }

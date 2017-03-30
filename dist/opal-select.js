@@ -197,7 +197,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.focus();
 	            }
 	            else {
-	                if (this._documentKeyDownListening) {
+	                if (!this._opened) {
 	                    this._documentKeyDownListening.stop();
 	                    this._documentKeyDownListening = null;
 	                }
@@ -229,7 +229,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        this._opened = true;
 	        this._valueAtOpening = this.viewModel.map(function (item) { return item[_this._viewModelItemValueFieldName]; });
-	        this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+	        this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
 	        if (!this._documentKeyDownListening) {
 	            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 	        }
@@ -256,8 +256,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return false;
 	        }
 	        this._opened = false;
-	        this._documentFocusInListening.stop();
-	        if (this._documentKeyDownListening) {
+	        this._documentFocusListening.stop();
+	        if (!this.props['focused']) {
 	            this._documentKeyDownListening.stop();
 	            this._documentKeyDownListening = null;
 	        }
@@ -276,18 +276,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return this.open() || !this.close();
 	    };
-	    OpalSelect.prototype._onDocumentFocusIn = function (evt) {
+	    OpalSelect.prototype._onDocumentFocus = function (evt) {
 	        if (!this.element.contains(evt.target.parentNode)) {
 	            this.close();
 	        }
-	    };
-	    OpalSelect.prototype.focus = function () {
-	        this.$('button').focus();
-	        return this;
-	    };
-	    OpalSelect.prototype.blur = function () {
-	        this.$('button').blur();
-	        return this;
 	    };
 	    OpalSelect.prototype._onDocumentKeyDown = function (evt) {
 	        switch (evt.which) {
@@ -392,6 +384,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return false;
 	    };
+	    OpalSelect.prototype.focus = function () {
+	        this.$('button').focus();
+	        return this;
+	    };
+	    OpalSelect.prototype.blur = function () {
+	        this.$('button').blur();
+	        return this;
+	    };
 	    return OpalSelect;
 	}(rionite_1.Component));
 	OpalSelect.OpalSelectOption = opal_select_option_1.default;
@@ -416,9 +416,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        events: {
 	            ':component': {
 	                'property-value-change': function (evt) {
-	                    if (evt.target != this) {
-	                        return;
-	                    }
 	                    var vm = this.viewModel;
 	                    var value = evt['value'];
 	                    if (value) {
@@ -486,7 +483,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.emit('blur');
 	                },
 	                click: function (evt) {
-	                    (evt['originalEvent'] || evt).preventDefault();
 	                    if (evt.target.checked) {
 	                        this.open();
 	                    }
@@ -659,6 +655,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
 	var template = __webpack_require__(35);
+	var nextTick = cellx_1.Utils.nextTick;
 	var OpalSelectOption = (function (_super) {
 	    __extends(OpalSelectOption, _super);
 	    function OpalSelectOption() {
@@ -671,34 +668,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        });
 	    };
-	    OpalSelectOption.prototype.ready = function () {
-	        var props = this.props;
-	        if (props['value'] === null) {
-	            props['value'] = props['text'];
-	        }
-	    };
 	    OpalSelectOption.prototype.propertyChanged = function (name, value) {
 	        if (name == 'focused') {
-	            if (value) {
-	                this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-	                this.focus();
-	            }
-	            else {
-	                this._documentKeyDownListening.stop();
-	                this.blur();
-	            }
+	            this[value ? 'focus' : 'blur']();
 	        }
 	    };
-	    OpalSelectOption.prototype._onDocumentKeyDown = function (evt) {
-	        if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
-	            evt.preventDefault();
-	            if (!this.props['disabled']) {
-	                this._click();
-	            }
-	        }
-	    };
-	    OpalSelectOption.prototype._click = function () {
+	    OpalSelectOption.prototype.click = function () {
 	        this.emit(this.toggle() ? 'select' : 'deselect');
+	        return this;
 	    };
 	    Object.defineProperty(OpalSelectOption.prototype, "value", {
 	        get: function () {
@@ -790,14 +767,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bemlTemplate: template,
 	        events: {
 	            control: {
-	                focus: function () {
-	                    this.props['focused'] = true;
+	                focus: function (evt) {
+	                    var _this = this;
+	                    nextTick(function () {
+	                        if (document.activeElement == evt.target) {
+	                            _this.props['focused'] = true;
+	                        }
+	                    });
 	                },
 	                blur: function () {
 	                    this.props['focused'] = false;
 	                },
-	                click: function () {
-	                    this._click();
+	                click: function (evt) {
+	                    evt.preventDefault();
+	                    if (!this.props['disabled']) {
+	                        this.click();
+	                    }
 	                }
 	            }
 	        }
@@ -840,7 +825,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 35:
 /***/ function(module, exports) {
 
-	module.exports = "span/control (tabindex={_tabIndex}) {\nrt-content/content (cloning=no) { '{props.text}' }\n}"
+	module.exports = "button/control (tabindex={_tabIndex}) {\nrt-content/content (cloning=no) { '{props.text}' }\n}"
 
 /***/ },
 
@@ -870,7 +855,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-select-option{display:block}.opal-select-option .opal-select-option__control{position:relative;display:block;padding:7px 22px;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-select-option .opal-select-option__content{position:relative;display:block}.opal-select-option .opal-select-option__control:hover{background:#e6e6e6}.opal-select-option .opal-select-option__control:focus{outline:none}.opal-select-option .opal-select-option__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-select-option .opal-select-option__control:active{background:#ccc}.opal-select-option[selected] .opal-select-option__control{color:#0d87f2}.opal-select-option[disabled]{opacity:.5;pointer-events:none}.opal-select-option[disabled] .opal-select-option__control{cursor:default}";
+	            style.textContent = ".opal-select-option{display:block}.opal-select-option .opal-select-option__control{position:relative;display:block;box-sizing:border-box;padding:7px 22px;width:100%;border:0;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-select-option .opal-select-option__content{position:relative;display:block}.opal-select-option .opal-select-option__control:hover{background:#e6e6e6}.opal-select-option .opal-select-option__control:focus{outline:none}.opal-select-option .opal-select-option__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-select-option .opal-select-option__control:active{background:#ccc}.opal-select-option[selected] .opal-select-option__control{color:#0d87f2}.opal-select-option[disabled]{opacity:.5;pointer-events:none}.opal-select-option[disabled] .opal-select-option__control{cursor:default}";
 	            head.appendChild(style);
 	            return style;
 	        }

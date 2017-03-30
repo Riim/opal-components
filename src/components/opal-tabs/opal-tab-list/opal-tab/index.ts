@@ -1,8 +1,10 @@
 import './index.css';
 
-import { define } from 'cellx';
-import { IDisposableListening, Component, d } from 'rionite';
+import { define, Utils } from 'cellx';
+import { Component, d } from 'rionite';
 import template = require('./index.beml');
+
+let nextTick = Utils.nextTick;
 
 @d.Component<OpalTab>({
 	elementIs: 'opal-tab',
@@ -18,24 +20,30 @@ import template = require('./index.beml');
 
 	events: {
 		control: {
-			focus() {
-				this.props['focused'] = true;
+			focus(evt: Event) {
+				nextTick(() => {
+					if (document.activeElement == evt.target) {
+						this.props['focused'] = true;
+					}
+				});
 			},
 
 			blur() {
 				this.props['focused'] = false;
 			},
 
-			click() {
-				this._click();
+			click(evt: Event) {
+				evt.preventDefault();
+
+				if (!this.props['disabled']) {
+					this.click();
+				}
 			}
 		}
 	}
 })
 export default class OpalTab extends Component {
 	_tabIndex: number;
-
-	_documentKeyDownListening: IDisposableListening;
 
 	initialize() {
 		define(this, {
@@ -53,28 +61,13 @@ export default class OpalTab extends Component {
 
 	propertyChanged(name: string, value: any) {
 		if (name == 'focused') {
-			if (value) {
-				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-				this.focus();
-			} else {
-				this._documentKeyDownListening.stop();
-				this.blur();
-			}
+			this[value ? 'focus' : 'blur']();
 		}
 	}
 
-	_onDocumentKeyDown(evt: KeyboardEvent) {
-		if (evt.which == 13/* Enter */ || evt.which == 32/* Space */) {
-			evt.preventDefault();
-
-			if (!this.props['disabled']) {
-				this._click();
-			}
-		}
-	}
-
-	_click() {
+	click(): OpalTab {
 		this.emit(this.toggle() ? 'select' : 'deselect');
+		return this;
 	}
 
 	get selected(): boolean {

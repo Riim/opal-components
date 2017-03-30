@@ -1,8 +1,10 @@
 import './index.css';
 
-import { define } from 'cellx';
+import { define, Utils } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.beml');
+
+let nextTick = Utils.nextTick;
 
 @d.Component({
 	elementIs: 'opal-switch',
@@ -25,9 +27,13 @@ import template = require('./index.beml');
 		},
 
 		control: {
-			focus() {
-				this.props['focused'] = true;
-				this.emit('focus');
+			focus(evt: Event) {
+				nextTick(() => {
+					if (document.activeElement == evt.target) {
+						this.props['focused'] = true;
+						this.emit('focus');
+					}
+				});
 			},
 
 			blur() {
@@ -74,6 +80,19 @@ export default class OpalSwitch extends Component {
 		}
 	}
 
+	_onDocumentKeyDown(evt: KeyboardEvent) {
+		if (evt.which == 13/* Enter */ || evt.which == 32/* Space */) {
+			evt.preventDefault();
+
+			let props = this.props;
+
+			if (!props['disabled']) {
+				this.emit((props['checked'] = !props['checked']) ? 'check' : 'uncheck');
+				this.emit('change');
+			}
+		}
+	}
+
 	get checked(): boolean {
 		return this.props['checked'];
 	}
@@ -111,19 +130,6 @@ export default class OpalSwitch extends Component {
 	blur(): OpalSwitch {
 		(this.$('control') as HTMLElement).blur();
 		return this;
-	}
-
-	_onDocumentKeyDown(evt: KeyboardEvent) {
-		if (evt.which == 13/* Enter */ || evt.which == 32/* Space */) {
-			evt.preventDefault();
-
-			let props = this.props;
-
-			if (!props['disabled']) {
-				this.emit((props['checked'] = !props['checked']) ? 'check' : 'uncheck');
-				this.emit('change');
-			}
-		}
 	}
 
 	enable(): OpalSwitch {

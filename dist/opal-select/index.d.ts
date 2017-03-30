@@ -21,7 +21,7 @@ export default class OpalSelect extends Component {
     _opened: boolean;
     _valueAtOpening: any;
     _onсeFocusedAfterLoading: boolean;
-    _documentFocusInListening: IDisposableListening;
+    _documentFocusListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening | null | undefined;
     initialize(): void;
     ready(): void;
@@ -32,9 +32,9 @@ export default class OpalSelect extends Component {
     open(): boolean;
     close(): boolean;
     toggle(value?: boolean): boolean;
-    _onDocumentFocusIn(evt: Event): void;
-    focus(): OpalSelect;
-    blur(): OpalSelect;
+    _onDocumentFocus(evt: Event): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _focusOptions(): boolean;
+    focus(): OpalSelect;
+    blur(): OpalSelect;
 }

@@ -76,6 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(44);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
+	var nextTick = cellx_1.Utils.nextTick;
 	var OpalButton = (function (_super) {
 	    __extends(OpalButton, _super);
 	    function OpalButton() {
@@ -103,15 +104,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    OpalButton.prototype._onDocumentKeyDown = function (evt) {
-	        if (evt.which == 13 /* Enter */ && !this.props['disabled']) {
-	            this.click(evt);
+	        if (evt.which == 13 /* Enter */) {
+	            evt.preventDefault();
+	            if (!this.props['disabled']) {
+	                this.click();
+	            }
 	        }
 	    };
-	    OpalButton.prototype.click = function (originalEvent) {
+	    OpalButton.prototype.click = function () {
 	        if (this.props['checkable']) {
 	            this.emit(this.toggle() ? 'check' : 'uncheck');
 	        }
-	        this.emit({ type: 'click', originalEvent: originalEvent });
+	        this.emit('click');
 	        return this;
 	    };
 	    Object.defineProperty(OpalButton.prototype, "checked", {
@@ -180,22 +184,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            ':element': {
 	                focus: function (evt) {
-	                    if (this.element.tagName.indexOf('-') > -1) {
-	                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-	                    }
-	                    this.props['focused'] = true;
-	                    this.emit({ type: 'focus', originalEvent: evt });
+	                    var _this = this;
+	                    nextTick(function () {
+	                        if (document.activeElement != _this.element) {
+	                            return;
+	                        }
+	                        if (_this.element.tagName.indexOf('-') > -1) {
+	                            _this._documentKeyDownListening = _this.listenTo(document, 'keydown', _this._onDocumentKeyDown);
+	                        }
+	                        _this.props['focused'] = true;
+	                        _this.emit('focus');
+	                    });
 	                },
-	                blur: function (evt) {
+	                blur: function () {
 	                    if (this._documentKeyDownListening) {
 	                        this._documentKeyDownListening.stop();
 	                    }
 	                    this.props['focused'] = false;
-	                    this.emit({ type: 'blur', originalEvent: evt });
+	                    this.emit('blur');
 	                },
-	                click: function (evt) {
+	                click: function () {
 	                    if (!this.props['disabled']) {
-	                        this.click(evt);
+	                        this.click();
 	                    }
 	                }
 	            }
@@ -229,7 +239,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-button{padding:0;border:0;background:0 0;color:inherit;font-size:inherit;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-button:not([view-type=clean]){position:relative;display:inline-block;box-sizing:border-box;padding:7px 23px;border-radius:3px;background:#546778;color:#fff;vertical-align:middle;text-align:center;text-decoration:none;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;transition:background .1s linear;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-button:not([view-type=clean])::-moz-focus-inner{padding:0;border:0}.opal-button:not([view-type=clean])[size=s]{padding:4px 13px;font-size:14px;line-height:21px}.opal-button:not([view-type=clean]):hover{background:#597791}.opal-button:not([view-type=clean]):focus{outline:none}body:not(._no-focus-highlight) .opal-button:not([view-type=clean]):focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:inherit;content:'';pointer-events:none}.opal-button:not([view-type=clean]):active,.opal-button:not([view-type=clean])[checked]{background:#43484c}.opal-button:not([view-type=clean])[loading]{background-image:linear-gradient(135deg,rgba(255,255,255,.35) 0,rgba(255,255,255,.35) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.35) 50%,rgba(255,255,255,.35) 75%,transparent 75%,transparent 100%);background-size:30px 30px;animation:opal-button-loading-animation 3s linear infinite}.opal-button:not([view-type=clean])[disabled]{opacity:.5;pointer-events:none}.opal-group .opal-group__content>.opal-button:not([view-type=clean]):not(:first-child),.opal-group .opal-group__content>:not(:first-child) .opal-button:not([view-type=clean]){border-top-left-radius:0;border-bottom-left-radius:0;box-shadow:inset 1px 0 rgba(0,0,0,.4)}.opal-group .opal-group__content>.opal-button:not([view-type=clean]):not(:last-child),.opal-group .opal-group__content>:not(:last-child) .opal-button:not([view-type=clean]){border-top-right-radius:0;border-bottom-right-radius:0}.opal-switch-menu .opal-button:not([view-type=clean]):not(:first-child){border-top-left-radius:0;border-bottom-left-radius:0;box-shadow:inset 1px 0 rgba(0,0,0,.4)}.opal-switch-menu .opal-button:not([view-type=clean]):not(:last-child){border-top-right-radius:0;border-bottom-right-radius:0}.opal-button[view-type=primary]{background:#1b91f8}.opal-button[view-type=primary]:hover{background-color:#33a0ff}.opal-button[view-type=primary]:active,.opal-button[view-type=primary][checked]{background-color:#1371c3}.opal-button[view-type=danger]{background:#f63159}.opal-button[view-type=danger]:hover{background-color:#fd496d}.opal-button[view-type=danger]:active,.opal-button[view-type=danger][checked]{background-color:#d3173d}@keyframes opal-button-loading-animation{0%{background-position:0 0}to{background-position:60px 0}}";
+	            style.textContent = ".opal-button{padding:0;border:0;background:0 0;color:inherit;font:inherit;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-button:not([view-type=clean]){position:relative;display:inline-block;box-sizing:border-box;padding:7px 23px;border-radius:3px;background:#546778;color:#fff;vertical-align:middle;text-align:center;text-decoration:none;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;transition:background .1s linear;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-button:not([view-type=clean])::-moz-focus-inner{padding:0;border:0}.opal-button:not([view-type=clean])[size=s]{padding:4px 13px;font-size:14px;line-height:21px}.opal-button:not([view-type=clean]):hover{background:#597791}.opal-button:not([view-type=clean]):focus{outline:none}body:not(._no-focus-highlight) .opal-button:not([view-type=clean]):focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:inherit;content:'';pointer-events:none}.opal-button:not([view-type=clean]):active,.opal-button:not([view-type=clean])[checked]{background:#43484c}.opal-button:not([view-type=clean])[loading]{background-image:linear-gradient(135deg,rgba(255,255,255,.35) 0,rgba(255,255,255,.35) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.35) 50%,rgba(255,255,255,.35) 75%,transparent 75%,transparent 100%);background-size:30px 30px;animation:opal-button-loading-animation 3s linear infinite}.opal-button:not([view-type=clean])[disabled]{opacity:.5;pointer-events:none}.opal-group .opal-group__content>.opal-button:not([view-type=clean]):not(:first-child),.opal-group .opal-group__content>:not(:first-child) .opal-button:not([view-type=clean]){border-top-left-radius:0;border-bottom-left-radius:0;box-shadow:inset 1px 0 rgba(0,0,0,.4)}.opal-group .opal-group__content>.opal-button:not([view-type=clean]):not(:last-child),.opal-group .opal-group__content>:not(:last-child) .opal-button:not([view-type=clean]){border-top-right-radius:0;border-bottom-right-radius:0}.opal-switch-menu .opal-button:not([view-type=clean]):not(:first-child){border-top-left-radius:0;border-bottom-left-radius:0;box-shadow:inset 1px 0 rgba(0,0,0,.4)}.opal-switch-menu .opal-button:not([view-type=clean]):not(:last-child){border-top-right-radius:0;border-bottom-right-radius:0}.opal-button[view-type=primary]{background:#1b91f8}.opal-button[view-type=primary]:hover{background-color:#33a0ff}.opal-button[view-type=primary]:active,.opal-button[view-type=primary][checked]{background-color:#1371c3}.opal-button[view-type=danger]{background:#f63159}.opal-button[view-type=danger]:hover{background-color:#fd496d}.opal-button[view-type=danger]:active,.opal-button[view-type=danger][checked]{background-color:#d3173d}@keyframes opal-button-loading-animation{0%{background-position:0 0}to{background-position:60px 0}}";
 	            head.appendChild(style);
 	            return style;
 	        }

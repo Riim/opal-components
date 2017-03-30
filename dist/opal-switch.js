@@ -77,6 +77,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
 	var template = __webpack_require__(38);
+	var nextTick = cellx_1.Utils.nextTick;
 	var OpalSwitch = (function (_super) {
 	    __extends(OpalSwitch, _super);
 	    function OpalSwitch() {
@@ -109,6 +110,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	            else {
 	                this._documentKeyDownListening.stop();
 	                this.blur();
+	            }
+	        }
+	    };
+	    OpalSwitch.prototype._onDocumentKeyDown = function (evt) {
+	        if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
+	            evt.preventDefault();
+	            var props = this.props;
+	            if (!props['disabled']) {
+	                this.emit((props['checked'] = !props['checked']) ? 'check' : 'uncheck');
+	                this.emit('change');
 	            }
 	        }
 	    };
@@ -147,16 +158,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.$('control').blur();
 	        return this;
 	    };
-	    OpalSwitch.prototype._onDocumentKeyDown = function (evt) {
-	        if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
-	            evt.preventDefault();
-	            var props = this.props;
-	            if (!props['disabled']) {
-	                this.emit((props['checked'] = !props['checked']) ? 'check' : 'uncheck');
-	                this.emit('change');
-	            }
-	        }
-	    };
 	    OpalSwitch.prototype.enable = function () {
 	        this.props['disabled'] = false;
 	        return this;
@@ -185,9 +186,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            },
 	            control: {
-	                focus: function () {
-	                    this.props['focused'] = true;
-	                    this.emit('focus');
+	                focus: function (evt) {
+	                    var _this = this;
+	                    nextTick(function () {
+	                        if (document.activeElement == evt.target) {
+	                            _this.props['focused'] = true;
+	                            _this.emit('focus');
+	                        }
+	                    });
 	                },
 	                blur: function () {
 	                    this.props['focused'] = false;

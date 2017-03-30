@@ -48,10 +48,6 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 	events: {
 		':component': {
 			'property-value-change'(evt: IEvent) {
-				if (evt.target != this) {
-					return;
-				}
-
 				let vm = this.viewModel;
 				let value = evt['value'];
 
@@ -124,8 +120,6 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 			},
 
 			click(evt: IEvent) {
-				(evt['originalEvent'] || evt).preventDefault();
-
 				if ((evt.target as OpalButton).checked) {
 					this.open();
 				} else {
@@ -284,7 +278,7 @@ export default class OpalSelect extends Component {
 
 	_onсeFocusedAfterLoading: boolean = false;
 
-	_documentFocusInListening: IDisposableListening;
+	_documentFocusListening: IDisposableListening;
 	_documentKeyDownListening: IDisposableListening | null | undefined;
 
 	initialize() {
@@ -399,8 +393,8 @@ export default class OpalSelect extends Component {
 
 				this.focus();
 			} else {
-				if (this._documentKeyDownListening) {
-					this._documentKeyDownListening.stop();
+				if (!this._opened) {
+					(this._documentKeyDownListening as IDisposableListening).stop();
 					this._documentKeyDownListening = null;
 				}
 
@@ -437,7 +431,7 @@ export default class OpalSelect extends Component {
 
 		this._valueAtOpening = this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
 
-		this._documentFocusInListening = this.listenTo(document, 'focusin', this._onDocumentFocusIn);
+		this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
 
 		if (!this._documentKeyDownListening) {
 			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
@@ -472,10 +466,10 @@ export default class OpalSelect extends Component {
 
 		this._opened = false;
 
-		this._documentFocusInListening.stop();
+		this._documentFocusListening.stop();
 
-		if (this._documentKeyDownListening) {
-			this._documentKeyDownListening.stop();
+		if (!this.props['focused']) {
+			(this._documentKeyDownListening as IDisposableListening).stop();
 			this._documentKeyDownListening = null;
 		}
 
@@ -501,20 +495,10 @@ export default class OpalSelect extends Component {
 		return this.open() || !this.close();
 	}
 
-	_onDocumentFocusIn(evt: Event) {
+	_onDocumentFocus(evt: Event) {
 		if (!this.element.contains((evt.target as Node).parentNode as Node)) {
 			this.close();
 		}
-	}
-
-	focus(): OpalSelect {
-		(this.$('button') as OpalSelect).focus();
-		return this;
-	}
-
-	blur(): OpalSelect {
-		(this.$('button') as OpalSelect).blur();
-		return this;
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {
@@ -632,5 +616,15 @@ export default class OpalSelect extends Component {
 		}
 
 		return false;
+	}
+
+	focus(): OpalSelect {
+		(this.$('button') as OpalSelect).focus();
+		return this;
+	}
+
+	blur(): OpalSelect {
+		(this.$('button') as OpalSelect).blur();
+		return this;
 	}
 }

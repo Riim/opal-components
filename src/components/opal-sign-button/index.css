@@ -4,8 +4,12 @@
 	line-height: 0;
 
 	& .opal-sign-button__control {
-		display: inline-block;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		color: inherit;
 		white-space: nowrap;
+		font: inherit;
 		cursor: pointer;
 		user-select: none;
 	}

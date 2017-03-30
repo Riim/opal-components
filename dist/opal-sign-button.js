@@ -77,6 +77,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
 	var template = __webpack_require__(36);
+	var nextTick = cellx_1.Utils.nextTick;
 	var OpalSignButton = (function (_super) {
 	    __extends(OpalSignButton, _super);
 	    function OpalSignButton() {
@@ -98,6 +99,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (name == 'focused') {
 	            this[value ? 'focus' : 'blur']();
 	        }
+	    };
+	    OpalSignButton.prototype.click = function () {
+	        if (this.props['checkable']) {
+	            this.emit(this.toggle() ? 'check' : 'uncheck');
+	        }
+	        this.emit('click');
+	        return this;
 	    };
 	    Object.defineProperty(OpalSignButton.prototype, "checked", {
 	        get: function () {
@@ -159,19 +167,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	        events: {
 	            control: {
 	                focus: function (evt) {
-	                    this.props['focused'] = true;
-	                    this.emit({ type: 'focus', originalEvent: evt });
+	                    var _this = this;
+	                    nextTick(function () {
+	                        if (document.activeElement == evt.target) {
+	                            _this.props['focused'] = true;
+	                            _this.emit('focus');
+	                        }
+	                    });
 	                },
-	                blur: function (evt) {
+	                blur: function () {
 	                    this.props['focused'] = false;
-	                    this.emit({ type: 'blur', originalEvent: evt });
+	                    this.emit('blur');
 	                },
 	                click: function (evt) {
+	                    evt.preventDefault();
 	                    if (!this.props['disabled']) {
-	                        if (this.props['checkable']) {
-	                            this.emit(this.toggle() ? 'check' : 'uncheck');
-	                        }
-	                        this.emit({ type: 'click', originalEvent: evt });
+	                        this.click();
 	                    }
 	                }
 	            }
@@ -200,7 +211,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 36:
 /***/ function(module, exports) {
 
-	module.exports = "span/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-content/content (cloning=no)\n}"
+	module.exports = "button/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-content/content (cloning=no)\n}"
 
 /***/ },
 
@@ -212,7 +223,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (head) {
 	            var style = d.createElement('style');
 	            style.type = 'text/css';
-	            style.textContent = ".opal-sign-button{position:relative;display:inline-block;line-height:0}.opal-sign-button .opal-sign-button__control{display:inline-block;white-space:nowrap;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-sign-button .opal-sign-button__sign{position:relative;top:-1px;display:inline-block;box-sizing:border-box;margin:3px;width:28px;height:28px;border:2px solid;border-radius:50%;vertical-align:middle;transition:background .1s linear}.opal-sign-button .opal-sign-button__sign::before,.opal-sign-button .opal-sign-button__sign::after{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;transition:background .1s linear}.opal-sign-button .opal-sign-button__sign::after{-ms-transform:rotate(90deg);transform:rotate(90deg)}.opal-sign-button[sign=plus] .opal-sign-button__sign{border-color:#107cda}.opal-sign-button[sign=plus] .opal-sign-button__sign::before,.opal-sign-button[sign=plus] .opal-sign-button__sign::after{background:#107cda;content:''}.opal-sign-button[sign=minus] .opal-sign-button__sign{border-color:#eb143f}.opal-sign-button[sign=minus] .opal-sign-button__sign::before{background:#eb143f;content:''}.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign{border-color:#33a0ff}.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::before,.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::after{background:#33a0ff}.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign{border-color:#fd496d}.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::before,.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::after{background:#fd496d}.opal-sign-button .opal-sign-button__control:focus{outline:none}body:not(._no-focus-highlight) .opal-sign-button .opal-sign-button__control:focus::after{position:absolute;top:-1px;right:0;bottom:1px;left:0;border:1px solid #33a0ff;border-radius:3px;content:'';pointer-events:none}.opal-sign-button .opal-sign-button__control:active .opal-sign-button__sign,.opal-sign-button[checked] .opal-sign-button__control .opal-sign-button__sign{top:0}.opal-sign-button[disabled]{opacity:.5;pointer-events:none}.opal-sign-button[disabled] .opal-sign-button__control{cursor:default}";
+	            style.textContent = ".opal-sign-button{position:relative;display:inline-block;line-height:0}.opal-sign-button .opal-sign-button__control{padding:0;border:0;background:0 0;color:inherit;white-space:nowrap;font:inherit;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-sign-button .opal-sign-button__sign{position:relative;top:-1px;display:inline-block;box-sizing:border-box;margin:3px;width:28px;height:28px;border:2px solid;border-radius:50%;vertical-align:middle;transition:background .1s linear}.opal-sign-button .opal-sign-button__sign::before,.opal-sign-button .opal-sign-button__sign::after{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;transition:background .1s linear}.opal-sign-button .opal-sign-button__sign::after{-ms-transform:rotate(90deg);transform:rotate(90deg)}.opal-sign-button[sign=plus] .opal-sign-button__sign{border-color:#107cda}.opal-sign-button[sign=plus] .opal-sign-button__sign::before,.opal-sign-button[sign=plus] .opal-sign-button__sign::after{background:#107cda;content:''}.opal-sign-button[sign=minus] .opal-sign-button__sign{border-color:#eb143f}.opal-sign-button[sign=minus] .opal-sign-button__sign::before{background:#eb143f;content:''}.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign{border-color:#33a0ff}.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::before,.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::after{background:#33a0ff}.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign{border-color:#fd496d}.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::before,.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::after{background:#fd496d}.opal-sign-button .opal-sign-button__control:focus{outline:none}body:not(._no-focus-highlight) .opal-sign-button .opal-sign-button__control:focus::after{position:absolute;top:-1px;right:0;bottom:1px;left:0;border:1px solid #33a0ff;border-radius:3px;content:'';pointer-events:none}.opal-sign-button .opal-sign-button__control:active .opal-sign-button__sign,.opal-sign-button[checked] .opal-sign-button__control .opal-sign-button__sign{top:0}.opal-sign-button[disabled]{opacity:.5;pointer-events:none}.opal-sign-button[disabled] .opal-sign-button__control{cursor:default}";
 	            head.appendChild(style);
 	            return style;
 	        }

@@ -28,8 +28,9 @@ export default class OpalCalendar extends Component {
     btnNextMonthDisabled: boolean;
     days: TDays;
     _currentlyDateSelect: boolean;
-    _documentKeyDownListening: IDisposableListening | null;
+    _documentKeyDownListening: IDisposableListening | null | undefined;
     initialize(): void;
+    elementAttached(): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _onDayClick(evt: MouseEvent): void;
     _click(dayEl: HTMLElement): void;

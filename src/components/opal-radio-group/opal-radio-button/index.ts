@@ -1,8 +1,10 @@
 import './index.css';
 
-import { define } from 'cellx';
+import { define, Utils } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.beml');
+
+let nextTick = Utils.nextTick;
 
 @d.Component({
 	elementIs: 'opal-radio-button',
@@ -25,9 +27,13 @@ import template = require('./index.beml');
 		},
 
 		control: {
-			focus() {
-				this.props['focused'] = true;
-				this.emit('focus');
+			focus(evt: Event) {
+				nextTick(() => {
+					if (document.activeElement == evt.target) {
+						this.props['focused'] = true;
+						this.emit('focus');
+					}
+				});
 			},
 
 			blur() {
@@ -51,13 +57,11 @@ export default class OpalRadioButton extends Component {
 	}
 
 	ready() {
-		let props = this.props;
-
-		if (props['checked']) {
+		if (this.props['checked']) {
 			(this.$('input') as HTMLInputElement).checked = true;
 		}
 
-		if (props['focused']) {
+		if (this.props['focused']) {
 			this.focus();
 		}
 	}
@@ -72,6 +76,19 @@ export default class OpalRadioButton extends Component {
 			} else {
 				this._documentKeyDownListening.stop();
 				this.blur();
+			}
+		}
+	}
+
+	_onDocumentKeyDown(evt: KeyboardEvent) {
+		if (evt.which == 13/* Enter */ || evt.which == 32/* Space */) {
+			evt.preventDefault();
+
+			let props = this.props;
+
+			if (!props['disabled']) {
+				this.emit((props['checked'] = !props['checked']) ? 'check' : 'uncheck');
+				this.emit('change');
 			}
 		}
 	}
@@ -113,19 +130,6 @@ export default class OpalRadioButton extends Component {
 	blur(): OpalRadioButton {
 		(this.$('control') as HTMLElement).blur();
 		return this;
-	}
-
-	_onDocumentKeyDown(evt: KeyboardEvent) {
-		if (evt.which == 13/* Enter */ || evt.which == 32/* Space */) {
-			evt.preventDefault();
-
-			let props = this.props;
-
-			if (!props['disabled']) {
-				this.emit((props['checked'] = !props['checked']) ? 'check' : 'uncheck');
-				this.emit('change');
-			}
-		}
 	}
 
 	enable(): OpalRadioButton {

@@ -47,6 +47,6 @@
 		}
 
 	& .opal-loaded-list__not-found[shown] {
-		display: inline-block;
+		display: block;
 	}
 }

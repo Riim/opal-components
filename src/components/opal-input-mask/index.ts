@@ -2,7 +2,7 @@
  * Based on [jquery.maskedinput](https://github.com/digitalBush/jquery.maskedinput).
  */
 
-import { Cell, define } from 'cellx';
+import { Cell, define, Utils } from 'cellx';
 import { IComponentElement, IComponentEvents, Component, d } from 'rionite';
 import OpalTextInput from '../opal-text-input';
 import OpalInputMaskDefinition from './opal-input-mask-definition';
@@ -10,6 +10,8 @@ import defaultDefinitions from './defaultDefinitions';
 
 export { default as OpalInputMaskDefinition } from './opal-input-mask-definition';
 export { default as defaultDefinitions } from './defaultDefinitions';
+
+let nextTick = Utils.nextTick;
 
 let forEach = Array.prototype.forEach;
 
@@ -99,15 +101,19 @@ export default class OpalInputMask extends Component {
 	_onMaskChange() {
 		this._initBuffer();
 
-		setTimeout(() => {
+		Cell.afterRelease(() => {
 			this._checkValue(false);
-		}, 1);
+		});
 	}
 
 	_onTextFieldFocus() {
-		this._setTextFieldSelection(0, this._checkValue(false));
-		this._textAtFocusing = this._textField.value;
-		this._writeBuffer();
+		nextTick(() => {
+			if (document.activeElement == this._textField) {
+				this._setTextFieldSelection(0, this._checkValue(false));
+				this._textAtFocusing = this._textField.value;
+				this._writeBuffer();
+			}
+		});
 	}
 
 	_onTextFieldBlur() {
@@ -214,9 +220,7 @@ export default class OpalInputMask extends Component {
 	}
 
 	_onTextFieldInput() {
-		setTimeout(() => {
-			this._setTextFieldSelection(this._checkValue(true));
-		}, 1);
+		this._setTextFieldSelection(this._checkValue(true));
 	}
 
 	_initBuffer() {

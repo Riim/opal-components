@@ -6,13 +6,13 @@ export default class OpalSwitch extends Component {
     initialize(): void;
     ready(): void;
     propertyChanged(name: string, value: any): void;
+    _onDocumentKeyDown(evt: KeyboardEvent): void;
     checked: boolean;
     check(): boolean;
     uncheck(): boolean;
     toggle(value?: boolean): boolean;
     focus(): OpalSwitch;
     blur(): OpalSwitch;
-    _onDocumentKeyDown(evt: KeyboardEvent): void;
     enable(): OpalSwitch;
     disable(): OpalSwitch;
 }

@@ -6,13 +6,13 @@ export default class OpalCheckbox extends Component {
     initialize(): void;
     ready(): void;
     propertyChanged(name: string, value: any): void;
+    _onDocumentKeyDown(evt: KeyboardEvent): void;
     checked: boolean;
     check(): boolean;
     uncheck(): boolean;
     toggle(value?: boolean): boolean;
     focus(): OpalCheckbox;
     blur(): OpalCheckbox;
-    _onDocumentKeyDown(evt: KeyboardEvent): void;
     enable(): OpalCheckbox;
     disable(): OpalCheckbox;
 }

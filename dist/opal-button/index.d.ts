@@ -8,7 +8,7 @@ export default class OpalButton extends Component {
     elementAttached(): void;
     propertyChanged(name: string, value: any): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
-    click(originalEvent?: Event): OpalButton;
+    click(): OpalButton;
     checked: boolean;
     check(): boolean;
     uncheck(): boolean;
