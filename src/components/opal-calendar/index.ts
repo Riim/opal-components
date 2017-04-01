@@ -207,7 +207,7 @@ export default class OpalCalendar extends Component {
 				return this.shownYear == this.toYear && this.shownMonth == 11;
 			},
 
-			days(this: OpalCalendar, push: any, fail: any, oldDays: TDays | undefined): TDays {
+			days(this: OpalCalendar, cell: any, oldDays: TDays | undefined): TDays {
 				let dateDelimiter = this.props['dateDelimiter'];
 
 				let fromDate = this.fromDate;

@@ -160,7 +160,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            btnNextMonthDisabled: function () {
 	                return this.shownYear == this.toYear && this.shownMonth == 11;
 	            },
-	            days: function (push, fail, oldDays) {
+	            days: function (cell, oldDays) {
 	                var dateDelimiter = this.props['dateDelimiter'];
 	                var fromDate = this.fromDate;
 	                var toDate = this.toDate;

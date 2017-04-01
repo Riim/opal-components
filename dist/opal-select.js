@@ -589,7 +589,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            var queryInput = filteredList.$('query-input');
 	                            if (queryInput && document.activeElement == queryInput.$('text-field')) {
 	                                _this._focusOptions();
-	                                filteredList.focus();
+	                                nextTick(function () {
+	                                    filteredList.focus();
+	                                });
 	                            }
 	                            else {
 	                                _this._focusOptions();

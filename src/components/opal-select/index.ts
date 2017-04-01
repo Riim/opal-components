@@ -247,7 +247,10 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 						if (queryInput && document.activeElement == queryInput.$('text-field') as HTMLElement) {
 							this._focusOptions();
-							filteredList.focus();
+
+							nextTick(() => {
+								filteredList.focus();
+							});
 						} else {
 							this._focusOptions();
 						}
