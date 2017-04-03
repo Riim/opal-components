@@ -33,7 +33,7 @@ let nextTick = Utils.nextTick;
 						return;
 					}
 
-					if (this.element.tagName.indexOf('-') > -1) {
+					if (this.element.tagName.indexOf('-', 1) != -1) {
 						this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 					}
 

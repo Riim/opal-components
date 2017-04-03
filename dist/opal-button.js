@@ -189,7 +189,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        if (document.activeElement != _this.element) {
 	                            return;
 	                        }
-	                        if (_this.element.tagName.indexOf('-') > -1) {
+	                        if (_this.element.tagName.indexOf('-', 1) != -1) {
 	                            _this._documentKeyDownListening = _this.listenTo(document, 'keydown', _this._onDocumentKeyDown);
 	                        }
 	                        _this.props['focused'] = true;
