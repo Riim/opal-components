@@ -71,7 +71,7 @@ let nextTick = Utils.nextTick;
 
 			keypress(evt: KeyboardEvent) {
 				if (evt.which == 13/* Enter */) {
-					this.emit('input-confirm');
+					this.emit('confirm');
 				}
 
 				this.emit({ type: 'keypress', initialEvent: evt });

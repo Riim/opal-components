@@ -235,7 +235,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                },
 	                keypress: function (evt) {
 	                    if (evt.which == 13 /* Enter */) {
-	                        this.emit('input-confirm');
+	                        this.emit('confirm');
 	                    }
 	                    this.emit({ type: 'keypress', initialEvent: evt });
 	                },

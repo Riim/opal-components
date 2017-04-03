@@ -171,7 +171,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				}
 			},
 
-			'<opal-text-input>input-confirm'(evt: IEvent) {
+			'<opal-text-input>confirm'(evt: IEvent) {
 				let textInput = evt.target as OpalTextInput;
 
 				if (textInput !== this.$('new-item-input')) {

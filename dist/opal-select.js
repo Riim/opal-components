@@ -529,7 +529,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        this.focus();
 	                    }
 	                },
-	                '<opal-text-input>input-confirm': function (evt) {
+	                '<opal-text-input>confirm': function (evt) {
 	                    var textInput = evt.target;
 	                    if (textInput !== this.$('new-item-input')) {
 	                        return;
