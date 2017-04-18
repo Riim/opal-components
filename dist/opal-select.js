@@ -53,7 +53,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ({
 
 /***/ 0:
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var __extends = (this && this.__extends) || (function () {
@@ -609,31 +609,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = OpalSelect;
 
 
-/***/ },
+/***/ }),
 
 /***/ 1:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
-/***/ },
+/***/ }),
 
 /***/ 2:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
-/***/ },
+/***/ }),
 
 /***/ 3:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
-/***/ },
+/***/ }),
 
 /***/ 10:
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var __extends = (this && this.__extends) || (function () {
@@ -793,10 +793,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = OpalSelectOption;
 
 
-/***/ },
+/***/ }),
 
 /***/ 19:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -815,24 +815,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = isEqualArray;
 
 
-/***/ },
+/***/ }),
 
 /***/ 34:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
-	module.exports = "rt-content (select=.opal-select__button, cloning=no) {\nopal-button/button (\nview-type={props.viewType},\nsize={props.size},\ncheckable,\ntab-index={props.tabIndex},\ndisabled={props.disabled}\n) {\ntemplate (is=rt-if-then, if=props.text, rt-silent) { '{props.text}' }\ntemplate (is=rt-if-else, if=props.text, rt-silent) { '{text}' }\n' '\nsvg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu, cloning=no) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content, cloning=no) {\ntemplate (is=rt-if-then, if=props.datalist) {\ndiv/, menu-content {\ntemplate (is=rt-if-then, if=dataList.length) {\ntemplate (is=rt-repeat, for=item of dataList) {\nopal-select-option/option (\nvalue='{item |key(_viewModelItemValueFieldName) }',\ntext='{item |key(_viewModelItemTextFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\ntemplate (is=rt-if-else, if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\ntemplate (is=rt-if-else, if=props.datalist) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}"
+	module.exports = "rt-content (select=.opal-select__button, cloning=no) {\nopal-button/button (\nview-type={props.viewType},\nsize={props.size},\ncheckable,\ntab-index={props.tabIndex},\ndisabled={props.disabled}\n) {\n@if-then (if=props.text, rt-silent) { '{props.text}' }\n@if-else (if=props.text, rt-silent) { '{text}' }\n' '\nsvg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu, cloning=no) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content, cloning=no) {\n@if-then (if=props.datalist) {\ndiv/, menu-content {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/option (\nvalue='{item |key(_viewModelItemValueFieldName) }',\ntext='{item |key(_viewModelItemTextFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=props.datalist) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}"
 
-/***/ },
+/***/ }),
 
 /***/ 35:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "button/control (tabindex={_tabIndex}) {\nrt-content/content (cloning=no) { '{props.text}' }\n}"
 
-/***/ },
+/***/ }),
 
 /***/ 64:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = (function(d) {
 	        var head = d.head || d.getElementsByTagName('head')[0];
@@ -847,10 +847,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    })(document);
 
 
-/***/ },
+/***/ }),
 
 /***/ 65:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = (function(d) {
 	        var head = d.head || d.getElementsByTagName('head')[0];
@@ -865,14 +865,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    })(document);
 
 
-/***/ },
+/***/ }),
 
 /***/ 77:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 18\" id=\"opal-components__icon-chevron-down\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 2l14 14L30 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
-/***/ }
+/***/ })
 
 /******/ })
 });

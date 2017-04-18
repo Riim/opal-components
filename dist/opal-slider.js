@@ -53,7 +53,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ({
 
 /***/ 0:
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var __extends = (this && this.__extends) || (function () {
@@ -153,31 +153,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = OpalSlider;
 
 
-/***/ },
+/***/ }),
 
 /***/ 1:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
-/***/ },
+/***/ }),
 
 /***/ 2:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
-/***/ },
+/***/ }),
 
 /***/ 37:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
-	module.exports = "template (is=rt-if-then, if=props.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%;) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={props.min},\nmax={props.max},\nstep={props.step},\nvalue={props.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={props.min}, max={props.max}, step={props.step}, value={props.range.1})\n}\n}\ntemplate (is=rt-if-else, if=props.range) {\ninput/input (type=range, min={props.min}, max={props.max}, step={props.step}, value={props.value})\n}"
+	module.exports = "@if-then (if=props.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%;) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={props.min},\nmax={props.max},\nstep={props.step},\nvalue={props.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={props.min}, max={props.max}, step={props.step}, value={props.range.1})\n}\n}\n@if-else (if=props.range) {\ninput/input (type=range, min={props.min}, max={props.max}, step={props.step}, value={props.value})\n}"
 
-/***/ },
+/***/ }),
 
 /***/ 67:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = (function(d) {
 	        var head = d.head || d.getElementsByTagName('head')[0];
@@ -192,7 +192,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    })(document);
 
 
-/***/ }
+/***/ })
 
 /******/ })
 });

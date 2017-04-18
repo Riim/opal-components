@@ -1,5 +1,5 @@
 opal-input-validator/input-validator {
-	template (is=rt-if-then, if=props.required, rt-silent) {
+	@if-then (if=props.required, rt-silent) {
 		opal-input-validator-rule/input-validator-rule-required (required, popover-to={props.popoverTo}) {
 			'{constructor.i18n.isRequiredField}'
 		}

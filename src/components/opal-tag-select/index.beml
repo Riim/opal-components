@@ -1,6 +1,6 @@
 span/tags {
-	template (is=rt-if-then, if=viewModel.length, rt-silent) {
-		template (is=rt-repeat, for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {
+	@if-then (if=viewModel.length, rt-silent) {
+		@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {
 			span/tag (
 				data-value='{tag |key(_viewModelItemValueFieldName) }',
 				disabled='{tag |key(_viewModelItemDisabledFieldName) }'
@@ -17,7 +17,7 @@ span/tags {
 }
 
 span/control {
-	template (is=rt-if-then, if=placeholderShown, rt-silent) {
+	@if-then (if=placeholderShown, rt-silent) {
 		span/placeholder { '{props.placeholder} ' }
 	}
 
@@ -32,10 +32,10 @@ span/control {
 
 		opal-popover/menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {
 			rt-content (select='.opal-select__menu-content', cloning=no) {
-				template (is=rt-if-then, if=props.datalist) {
+				@if-then (if=props.datalist) {
 					div (class=opal-select__menu-content) {
-						template (is=rt-if-then, if=dataList.length) {
-							template (is=rt-repeat, for=$item of dataList) {
+						@if-then (if=dataList.length) {
+							@repeat (for=$item of dataList) {
 								opal-select-option/select-option // доопределяется ниже
 							}
 
@@ -44,12 +44,12 @@ span/control {
 								select='.opal-select__new-item-input'
 							)
 						}
-						template (is=rt-if-else, if=dataList.length, rt-silent) {
+						@if-else (if=dataList.length, rt-silent) {
 							opal-loader/menu-loader (shown)
 						}
 					}
 				}
-				template (is=rt-if-else, if=props.datalist) {
+				@if-else (if=props.datalist) {
 					opal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {
 						rt-content (
 							class=opal-filtered-list__query-input-container,

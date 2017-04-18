@@ -52,7 +52,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	'use strict';
 
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		});
 	});
 
-/***/ }
+/***/ })
 /******/ ])
 });
 ;

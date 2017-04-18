@@ -53,7 +53,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ({
 
 /***/ 0:
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var __extends = (this && this.__extends) || (function () {
@@ -117,17 +117,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = OpalCodeListing;
 
 
-/***/ },
+/***/ }),
 
 /***/ 1:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
-/***/ },
+/***/ }),
 
 /***/ 21:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	
 	/* **********************************************
@@ -926,17 +926,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	})();
 
 
-/***/ },
+/***/ }),
 
 /***/ 25:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "opal-tabs {\nopal-tab { 'HTML' }\nopal-tab-panel {\npre/html-code-wrapper { code/html-code }\n}\nopal-tab { 'JS' }\nopal-tab-panel {\npre/js-code-wrapper { code/js-code }\n}\n}\nrt-content/example-html-container (select=.opal-code-listing__example-html, cloning=no)\nrt-content/example-js-container (select=.opal-code-listing__example-js, cloning=no)"
 
-/***/ },
+/***/ }),
 
 /***/ 47:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = (function(d) {
 	        var head = d.head || d.getElementsByTagName('head')[0];
@@ -951,10 +951,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    })(document);
 
 
-/***/ },
+/***/ }),
 
 /***/ 48:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = (function(d) {
 	        var head = d.head || d.getElementsByTagName('head')[0];
@@ -969,7 +969,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    })(document);
 
 
-/***/ }
+/***/ })
 
 /******/ })
 });

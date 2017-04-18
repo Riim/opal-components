@@ -53,7 +53,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ({
 
 /***/ 0:
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var __extends = (this && this.__extends) || (function () {
@@ -105,24 +105,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = OpalFilteredList;
 
 
-/***/ },
+/***/ }),
 
 /***/ 1:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
-/***/ },
+/***/ }),
 
 /***/ 27:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "rt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input, cloning=no) {\nopal-text-input/query-input\n}\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__loaded-list, cloning=no)"
 
-/***/ },
+/***/ }),
 
 /***/ 51:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = (function(d) {
 	        var head = d.head || d.getElementsByTagName('head')[0];
@@ -137,7 +137,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    })(document);
 
 
-/***/ }
+/***/ })
 
 /******/ })
 });

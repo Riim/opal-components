@@ -53,7 +53,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ({
 
 /***/ 0:
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var __extends = (this && this.__extends) || (function () {
@@ -252,31 +252,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = OpalTextInput;
 
 
-/***/ },
+/***/ }),
 
 /***/ 1:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
-/***/ },
+/***/ }),
 
 /***/ 2:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
-/***/ },
+/***/ }),
 
 /***/ 42:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
-	module.exports = "template (is=rt-if-then, if=props.multiline) {\ntextarea/, text-field (\nrows={props.rows},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\ntemplate (is=rt-if-else, if=props.multiline) {\ninput/, text-field (\ntype={props.inputType},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\ntemplate (is=rt-if-then, if=props.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)\n}\ntemplate (is=rt-if-then, if=props.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}"
+	module.exports = "@if-then (if=props.multiline) {\ntextarea/, text-field (\nrows={props.rows},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\n@if-else (if=props.multiline) {\ninput/, text-field (\ntype={props.inputType},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\n@if-then (if=props.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)\n}\n@if-then (if=props.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}"
 
-/***/ },
+/***/ }),
 
 /***/ 75:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = (function(d) {
 	        var head = d.head || d.getElementsByTagName('head')[0];
@@ -291,7 +291,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    })(document);
 
 
-/***/ }
+/***/ })
 
 /******/ })
 });

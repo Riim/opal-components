@@ -6,8 +6,8 @@ rt-content (select=.opal-select__button, cloning=no) {
 		tab-index={props.tabIndex},
 		disabled={props.disabled}
 	) {
-		template (is=rt-if-then, if=props.text, rt-silent) { '{props.text}' }
-		template (is=rt-if-else, if=props.text, rt-silent) { '{text}' }
+		@if-then (if=props.text, rt-silent) { '{props.text}' }
+		@if-else (if=props.text, rt-silent) { '{text}' }
 		' '
 		svg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }
 	}
@@ -16,10 +16,10 @@ rt-content (select=.opal-select__button, cloning=no) {
 rt-content (select=.opal-select__menu, cloning=no) {
 	opal-dropdown/menu (auto-closing) {
 		rt-content (select=.opal-select__menu-content, cloning=no) {
-			template (is=rt-if-then, if=props.datalist) {
+			@if-then (if=props.datalist) {
 				div/, menu-content {
-					template (is=rt-if-then, if=dataList.length) {
-						template (is=rt-repeat, for=item of dataList) {
+					@if-then (if=dataList.length) {
+						@repeat (for=item of dataList) {
 							opal-select-option/option (
 								value='{item |key(_viewModelItemValueFieldName) }',
 								text='{item |key(_viewModelItemTextFieldName) }'
@@ -28,12 +28,12 @@ rt-content (select=.opal-select__menu, cloning=no) {
 
 						rt-content/new-item-input-container // доопределяется ниже
 					}
-					template (is=rt-if-else, if=dataList.length, rt-silent) {
+					@if-else (if=dataList.length, rt-silent) {
 						opal-loader/menu-loader (shown)
 					}
 				}
 			}
-			template (is=rt-if-else, if=props.datalist) {
+			@if-else (if=props.datalist) {
 				div/, menu-content {
 					rt-content/options (select=opal-select-option)
 					rt-content/new-item-input-container (select=.opal-select__new-item-input)

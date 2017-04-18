@@ -53,7 +53,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ({
 
 /***/ 0:
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var __extends = (this && this.__extends) || (function () {
@@ -173,31 +173,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = OpalTagSelect;
 
 
-/***/ },
+/***/ }),
 
 /***/ 1:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
-/***/ },
+/***/ }),
 
 /***/ 2:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
-/***/ },
+/***/ }),
 
 /***/ 41:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
-	module.exports = "span/tags {\ntemplate (is=rt-if-then, if=viewModel.length, rt-silent) {\ntemplate (is=rt-repeat, for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (\ndata-tag-value='{tag |key(_viewModelItemValueFieldName) }',\nrt-click=_onBtnRemoveTagClick\n)\n}\n' '\n}\n}\n}\nspan/control {\ntemplate (is=rt-if-then, if=placeholderShown, rt-silent) {\nspan/placeholder { '{props.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist={_dataListParam},\nvalue={props.value},\nview-model={_viewModelParam},\nview-model-item-schema={props.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content', cloning=no) {\ntemplate (is=rt-if-then, if=props.datalist) {\ndiv (class=opal-select__menu-content) {\ntemplate (is=rt-if-then, if=dataList.length) {\ntemplate (is=rt-repeat, for=$item of dataList) {\nopal-select-option/select-option // доопределяется ниже\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\ntemplate (is=rt-if-else, if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\ntemplate (is=rt-if-else, if=props.datalist) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input,\ncloning=no\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider={_dataProviderParam}\n) {\nopal-select-option/select-option (value={$item.value}, text={$item.text})\n}\n}\n}\n}\n}\n}\n}"
+	module.exports = "span/tags {\n@if-then (if=viewModel.length, rt-silent) {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (\ndata-tag-value='{tag |key(_viewModelItemValueFieldName) }',\nrt-click=_onBtnRemoveTagClick\n)\n}\n' '\n}\n}\n}\nspan/control {\n@if-then (if=placeholderShown, rt-silent) {\nspan/placeholder { '{props.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist={_dataListParam},\nvalue={props.value},\nview-model={_viewModelParam},\nview-model-item-schema={props.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content', cloning=no) {\n@if-then (if=props.datalist) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList.length) {\n@repeat (for=$item of dataList) {\nopal-select-option/select-option // доопределяется ниже\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=props.datalist) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input,\ncloning=no\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider={_dataProviderParam}\n) {\nopal-select-option/select-option (value={$item.value}, text={$item.text})\n}\n}\n}\n}\n}\n}\n}"
 
-/***/ },
+/***/ }),
 
 /***/ 74:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = (function(d) {
 	        var head = d.head || d.getElementsByTagName('head')[0];
@@ -212,7 +212,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    })(document);
 
 
-/***/ }
+/***/ })
 
 /******/ })
 });

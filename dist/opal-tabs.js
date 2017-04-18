@@ -53,7 +53,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ({
 
 /***/ 0:
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var __extends = (this && this.__extends) || (function () {
@@ -149,24 +149,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = OpalTabs;
 
 
-/***/ },
+/***/ }),
 
 /***/ 1:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
-/***/ },
+/***/ }),
 
 /***/ 2:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
-/***/ },
+/***/ }),
 
 /***/ 11:
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var __extends = (this && this.__extends) || (function () {
@@ -208,10 +208,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = OpalTabList;
 
 
-/***/ },
+/***/ }),
 
 /***/ 12:
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var __extends = (this && this.__extends) || (function () {
@@ -343,10 +343,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = OpalTab;
 
 
-/***/ },
+/***/ }),
 
 /***/ 13:
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var __extends = (this && this.__extends) || (function () {
@@ -387,24 +387,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = OpalTabPanel;
 
 
-/***/ },
+/***/ }),
 
 /***/ 39:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "rt-content/tab-list-container (select=opal-tab-list, cloning=no) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab, cloning=no)\n}\n}\nrt-content/panels (select=opal-tab-panel, cloning=no)"
 
-/***/ },
+/***/ }),
 
 /***/ 40:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = "button/control (tabindex={_tabIndex}) {\nrt-content/content (cloning=no)\n}"
 
-/***/ },
+/***/ }),
 
 /***/ 70:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = (function(d) {
 	        var head = d.head || d.getElementsByTagName('head')[0];
@@ -419,10 +419,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    })(document);
 
 
-/***/ },
+/***/ }),
 
 /***/ 71:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = (function(d) {
 	        var head = d.head || d.getElementsByTagName('head')[0];
@@ -437,10 +437,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    })(document);
 
 
-/***/ },
+/***/ }),
 
 /***/ 72:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = (function(d) {
 	        var head = d.head || d.getElementsByTagName('head')[0];
@@ -455,10 +455,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    })(document);
 
 
-/***/ },
+/***/ }),
 
 /***/ 73:
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = (function(d) {
 	        var head = d.head || d.getElementsByTagName('head')[0];
@@ -473,7 +473,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    })(document);
 
 
-/***/ }
+/***/ })
 
 /******/ })
 });

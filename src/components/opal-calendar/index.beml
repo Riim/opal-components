@@ -4,13 +4,13 @@ header/header {
 	}
 
 	opal-select/s-month (size=s, value=['{shownMonth}']) {
-		template (class=opal-select__menu-content, is=rt-repeat, for=month of constructor.i18n.months, rt-silent) {
+		@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months, rt-silent) {
 			opal-select-option (value={$index}, text={month})
 		}
 	}
 	' '
 	opal-select/s-year (size=s, value=['{shownYear}']) {
-		template (class=opal-select__menu-content, is=rt-repeat, for=year of years, rt-silent) {
+		@repeat (class=opal-select__menu-content, for=year of years, rt-silent) {
 			opal-select-option (value={year}, text={year})
 		}
 	}
@@ -23,16 +23,16 @@ header/header {
 div/body {
 	table/week-days {
 		tr/week-days-row {
-			template (is=rt-repeat, for=weekDay of weekDaysShort, rt-silent) {
+			@repeat (for=weekDay of weekDaysShort, rt-silent) {
 				td/week-day { '{weekDay}' }
 			}
 		}
 	}
 
 	table/days {
-		template (is=rt-repeat, for=weekDays of days, rt-silent) {
+		@repeat (for=weekDays of days, rt-silent) {
 			tr/days-row {
-				template (is=rt-repeat, for=day of weekDays, rt-silent) {
+				@repeat (for=day of weekDays, rt-silent) {
 					td/day (
 						week-day={day.weekDay},
 						today={day.today},

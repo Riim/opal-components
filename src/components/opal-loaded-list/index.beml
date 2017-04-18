@@ -1,5 +1,5 @@
 div/list {
-	template (is=rt-repeat, for={props.itemAs} of list) {
+	@repeat (for={props.itemAs} of list) {
 		rt-content/list-item (get-context=_getContentContext)
 	}
 }

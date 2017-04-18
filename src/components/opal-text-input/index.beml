@@ -1,4 +1,4 @@
-template (is=rt-if-then, if=props.multiline) {
+@if-then (if=props.multiline) {
 	textarea/, text-field (
 		rows={props.rows},
 		name={props.inputName},
@@ -7,7 +7,7 @@ template (is=rt-if-then, if=props.multiline) {
 		disabled={props.disabled}
 	)
 }
-template (is=rt-if-else, if=props.multiline) {
+@if-else (if=props.multiline) {
 	input/, text-field (
 		type={props.inputType},
 		name={props.inputName},
@@ -17,10 +17,10 @@ template (is=rt-if-else, if=props.multiline) {
 	)
 }
 
-template (is=rt-if-then, if=props.clearable, rt-silent) {
+@if-then (if=props.clearable, rt-silent) {
 	button/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)
 }
 
-template (is=rt-if-then, if=props.loading, rt-silent) {
+@if-then (if=props.loading, rt-silent) {
 	opal-loader/loader (size=s, shown)
 }
