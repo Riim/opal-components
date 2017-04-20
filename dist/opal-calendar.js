@@ -73,8 +73,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(45);
-	__webpack_require__(76);
+	__webpack_require__(46);
+	__webpack_require__(77);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
 	var parseDate_1 = __webpack_require__(15);
@@ -386,11 +386,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 23:
 /***/ (function(module, exports) {
 
-	module.exports = "header/header {\nbutton/btn-prev-month (disabled={btnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/s-month (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months, rt-silent) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/s-year (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years, rt-silent) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={btnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ntable/week-days {\ntr/week-days-row {\n@repeat (for=weekDay of weekDaysShort, rt-silent) {\ntd/week-day { '{weekDay}' }\n}\n}\n}\ntable/days {\n@repeat (for=weekDays of days, rt-silent) {\ntr/days-row {\n@repeat (for=day of weekDays, rt-silent) {\ntd/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date},\nrt-click=_onDayClick\n) { '{day.value}' }\n}\n}\n}\n}\n}"
+	module.exports = "@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={btnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/s-month (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months, rt-silent) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/s-year (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years, rt-silent) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={btnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ntable/week-days {\ntr/week-days-row {\n@repeat (for=weekDay of weekDaysShort, rt-silent) {\ntd/week-day { '{weekDay}' }\n}\n}\n}\ntable/days {\n@repeat (for=weekDays of days, rt-silent) {\ntr/days-row {\n@repeat (for=day of weekDays, rt-silent) {\ntd/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date},\nrt-click=_onDayClick\n) { '{day.value}' }\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 
-/***/ 45:
+/***/ 46:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {
@@ -408,7 +408,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 76:
+/***/ 77:
 /***/ (function(module, exports) {
 
 	(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 28\" id=\"opal-components__icon-arrow-left\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M14 2L2 14l12 12M2 14h28\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();

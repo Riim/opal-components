@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(50);
+	__webpack_require__(51);
 	var rionite_1 = __webpack_require__(1);
 	var openedDropdowns = [];
 	var OpalDropdown = (function (_super) {
@@ -192,7 +192,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            autoClosing: false,
 	            opened: false
 	        },
-	        bemlTemplate: 'rt-content/content (cloning=no)'
+	        bemlTemplate: '@section/inner { rt-content/content (cloning=no) }'
 	    })
 	], OpalDropdown);
 	exports.default = OpalDropdown;
@@ -207,7 +207,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 50:
+/***/ 51:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {

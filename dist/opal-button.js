@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(44);
+	__webpack_require__(45);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
 	var nextTick = cellx_1.Utils.nextTick;
@@ -231,7 +231,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 44:
+/***/ 45:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {

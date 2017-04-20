@@ -73,11 +73,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(70);
+	__webpack_require__(71);
 	var rionite_1 = __webpack_require__(1);
 	var opal_tab_list_1 = __webpack_require__(11);
 	var opal_tab_panel_1 = __webpack_require__(13);
-	var template = __webpack_require__(39);
+	var template = __webpack_require__(40);
 	var opal_tab_list_2 = __webpack_require__(11);
 	exports.OpalTab = opal_tab_list_2.OpalTab;
 	exports.OpalTabList = opal_tab_list_2.default;
@@ -186,7 +186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(71);
+	__webpack_require__(72);
 	var rionite_1 = __webpack_require__(1);
 	var opal_tab_1 = __webpack_require__(12);
 	var opal_tab_2 = __webpack_require__(12);
@@ -202,7 +202,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalTabList = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-tab-list',
-	        bemlTemplate: 'rt-content/content (cloning=no)'
+	        bemlTemplate: '@section/inner { rt-content/content (cloning=no) }'
 	    })
 	], OpalTabList);
 	exports.default = OpalTabList;
@@ -231,10 +231,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(72);
+	__webpack_require__(73);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(40);
+	var template = __webpack_require__(41);
 	var nextTick = cellx_1.Utils.nextTick;
 	var OpalTab = (function (_super) {
 	    __extends(OpalTab, _super);
@@ -366,7 +366,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(73);
+	__webpack_require__(74);
 	var rionite_1 = __webpack_require__(1);
 	var OpalTabPanel = (function (_super) {
 	    __extends(OpalTabPanel, _super);
@@ -381,7 +381,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        props: {
 	            shown: false
 	        },
-	        bemlTemplate: 'rt-content/content (cloning=no)'
+	        bemlTemplate: '@section/inner { rt-content/content (cloning=no) }'
 	    })
 	], OpalTabPanel);
 	exports.default = OpalTabPanel;
@@ -389,21 +389,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 39:
-/***/ (function(module, exports) {
-
-	module.exports = "rt-content/tab-list-container (select=opal-tab-list, cloning=no) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab, cloning=no)\n}\n}\nrt-content/panels (select=opal-tab-panel, cloning=no)"
-
-/***/ }),
-
 /***/ 40:
 /***/ (function(module, exports) {
 
-	module.exports = "button/control (tabindex={_tabIndex}) {\nrt-content/content (cloning=no)\n}"
+	module.exports = "@section/inner {\nrt-content/tab-list-container (select=opal-tab-list, cloning=no) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab, cloning=no)\n}\n}\nrt-content/panels (select=opal-tab-panel, cloning=no)\n}"
 
 /***/ }),
 
-/***/ 70:
+/***/ 41:
+/***/ (function(module, exports) {
+
+	module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content (cloning=no)\n}\n}"
+
+/***/ }),
+
+/***/ 71:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {
@@ -421,7 +421,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 71:
+/***/ 72:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {
@@ -439,7 +439,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 72:
+/***/ 73:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {
@@ -457,7 +457,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 73:
+/***/ 74:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {

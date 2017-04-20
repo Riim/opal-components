@@ -366,7 +366,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        props: {
 	            mask: { type: String, required: true }
 	        },
-	        bemlTemplate: 'rt-content/content (cloning=no)'
+	        bemlTemplate: '@section/inner { rt-content/content (cloning=no) }'
 	    })
 	], OpalInputMask);
 	exports.default = OpalInputMask;
@@ -424,7 +424,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(53);
+	__webpack_require__(54);
 	var rionite_1 = __webpack_require__(1);
 	var OpalInputMaskDefinition = (function (_super) {
 	    __extends(OpalInputMaskDefinition, _super);
@@ -447,7 +447,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 53:
+/***/ 54:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {

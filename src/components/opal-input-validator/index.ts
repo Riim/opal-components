@@ -11,7 +11,7 @@ let map = Array.prototype.map;
 
 @d.Component<OpalInputValidator>({
 	elementIs: 'opal-input-validator',
-	bemlTemplate: 'rt-content/content (cloning=no)',
+	bemlTemplate: '@section/inner { rt-content/content (cloning=no) }',
 
 	events: {
 		'text-input': {

@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(52);
+	__webpack_require__(53);
 	var rionite_1 = __webpack_require__(1);
 	var OpalGroup = (function (_super) {
 	    __extends(OpalGroup, _super);
@@ -85,7 +85,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalGroup = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-group',
-	        bemlTemplate: 'rt-content/content (cloning=no)'
+	        bemlTemplate: '@section/inner { rt-content/content (cloning=no) }'
 	    })
 	], OpalGroup);
 	exports.default = OpalGroup;
@@ -100,7 +100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 52:
+/***/ 53:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {

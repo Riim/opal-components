@@ -1,3 +1,5 @@
+@section/inner {
+
 rt-content (select=.opal-autosuggestion__text-input, cloning=no) {
 	opal-text-input/text-input (
 		value={props.selectedItem.text},
@@ -16,4 +18,6 @@ opal-dropdown/menu {
 	}
 
 	span/not-found-message (shown={list.length |not }) { '{constructor.i18n.notFound}' }
+}
+
 }

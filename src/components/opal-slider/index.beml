@@ -1,3 +1,5 @@
+@section/inner {
+
 @if-then (if=props.range) {
 	div/first-input-wrapper3 {
 		div/first-input-wrapper2 (style=width: {_firstInputWidth}%;) {
@@ -20,4 +22,6 @@
 
 @if-else (if=props.range) {
 	input/input (type=range, min={props.min}, max={props.max}, step={props.step}, value={props.value})
+}
+
 }

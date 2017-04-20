@@ -73,10 +73,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(75);
+	__webpack_require__(76);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(42);
+	var template = __webpack_require__(43);
 	var nextTick = cellx_1.Utils.nextTick;
 	var OpalTextInput = (function (_super) {
 	    __extends(OpalTextInput, _super);
@@ -268,14 +268,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 42:
+/***/ 43:
 /***/ (function(module, exports) {
 
-	module.exports = "@if-then (if=props.multiline) {\ntextarea/, text-field (\nrows={props.rows},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\n@if-else (if=props.multiline) {\ninput/, text-field (\ntype={props.inputType},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\n@if-then (if=props.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)\n}\n@if-then (if=props.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}"
+	module.exports = "@section/inner {\n@if-then (if=props.multiline) {\ntextarea/, text-field (\nrows={props.rows},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\n@if-else (if=props.multiline) {\ninput/, text-field (\ntype={props.inputType},\nname={props.inputName},\nplaceholder={props.placeholder},\ntabindex={props.tabIndex},\ndisabled={props.disabled}\n)\n}\n@if-then (if=props.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)\n}\n@if-then (if=props.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}\n}"
 
 /***/ }),
 
-/***/ 75:
+/***/ 76:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {

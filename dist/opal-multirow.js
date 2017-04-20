@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(59);
+	__webpack_require__(60);
 	var cellx_1 = __webpack_require__(2);
 	var cellx_indexed_collections_1 = __webpack_require__(3);
 	var rionite_1 = __webpack_require__(1);
@@ -187,7 +187,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(60);
+	__webpack_require__(61);
 	var rionite_1 = __webpack_require__(1);
 	var template = __webpack_require__(32);
 	var OpalMultirowRow = (function (_super) {
@@ -226,18 +226,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 31:
 /***/ (function(module, exports) {
 
-	module.exports = "rt-content/preset-rows-container (\nselect='opal-multirow-row[preset], .opal-multirow__preset-rows',\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow},\ncloning=no\n)\ndiv/new-rows (not-single-row={_notSingleRow}) {\n@repeat (for=row of _newRows, track-by=key, rt-silent) {\nrt-content/new-row-container (select='opal-multirow-row:not([preset])', data-key={row.key})\n}\n}"
+	module.exports = "@section/inner {\nrt-content/preset-rows-container (\nselect='opal-multirow-row[preset], .opal-multirow__preset-rows',\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow},\ncloning=no\n)\ndiv/new-rows (not-single-row={_notSingleRow}) {\n@repeat (for=row of _newRows, track-by=key, rt-silent) {\nrt-content/new-row-container (select='opal-multirow-row:not([preset])', data-key={row.key})\n}\n}\n}"
 
 /***/ }),
 
 /***/ 32:
 /***/ (function(module, exports) {
 
-	module.exports = "rt-content/content (cloning=no)\n' '\nopal-sign-button/btn-remove-row (sign=minus)\n' '\nopal-sign-button/btn-add-row (sign=plus)"
+	module.exports = "@section/inner {\nrt-content/content (cloning=no)\n' '\nopal-sign-button/btn-remove-row (sign=minus)\n' '\nopal-sign-button/btn-add-row (sign=plus)\n}"
 
 /***/ }),
 
-/***/ 59:
+/***/ 60:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {
@@ -255,7 +255,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 60:
+/***/ 61:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {

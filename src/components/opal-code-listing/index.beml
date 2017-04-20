@@ -1,3 +1,5 @@
+@section/inner {
+
 opal-tabs {
 	opal-tab { 'HTML' }
 	opal-tab-panel {
@@ -12,3 +14,5 @@ opal-tabs {
 
 rt-content/example-html-container (select=.opal-code-listing__example-html, cloning=no)
 rt-content/example-js-container (select=.opal-code-listing__example-js, cloning=no)
+
+}

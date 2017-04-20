@@ -1,3 +1,5 @@
+@section/inner {
+
 rt-content (select=.opal-select__button, cloning=no) {
 	opal-button/button (
 		view-type={props.viewType},
@@ -41,4 +43,6 @@ rt-content (select=.opal-select__menu, cloning=no) {
 			}
 		}
 	}
+}
+
 }

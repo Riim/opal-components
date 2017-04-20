@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(68);
+	__webpack_require__(69);
 	var rionite_1 = __webpack_require__(1);
 	var forEach = Array.prototype.forEach;
 	var find = Array.prototype.find;
@@ -123,7 +123,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalSwitchMenu = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-switch-menu',
-	        bemlTemplate: 'rt-content/content (cloning=no)',
+	        bemlTemplate: '@section/inner { rt-content/content (cloning=no) }',
 	        events: {
 	            ':component': {
 	                '<opal-button>check': function (evt) {
@@ -155,7 +155,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 68:
+/***/ 69:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {

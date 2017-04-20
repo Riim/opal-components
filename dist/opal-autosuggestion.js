@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(43);
+	__webpack_require__(44);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
 	var template = __webpack_require__(22);
@@ -373,11 +373,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 22:
 /***/ (function(module, exports) {
 
-	module.exports = "rt-content (select=.opal-autosuggestion__text-input, cloning=no) {\nopal-text-input/text-input (\nvalue={props.selectedItem.text},\nplaceholder={constructor.i18n.inputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of list, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\nspan/not-found-message (shown={list.length |not }) { '{constructor.i18n.notFound}' }\n}"
+	module.exports = "@section/inner {\nrt-content (select=.opal-autosuggestion__text-input, cloning=no) {\nopal-text-input/text-input (\nvalue={props.selectedItem.text},\nplaceholder={constructor.i18n.inputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of list, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\nspan/not-found-message (shown={list.length |not }) { '{constructor.i18n.notFound}' }\n}\n}"
 
 /***/ }),
 
-/***/ 43:
+/***/ 44:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {

@@ -1,3 +1,5 @@
+@section/inner {
+
 rt-content/preset-rows-container (
 	select='opal-multirow-row[preset], .opal-multirow__preset-rows',
 	not-have-new-rows={_notHaveNewRows},
@@ -9,4 +11,6 @@ div/new-rows (not-single-row={_notSingleRow}) {
 	@repeat (for=row of _newRows, track-by=key, rt-silent) {
 		rt-content/new-row-container (select='opal-multirow-row:not([preset])', data-key={row.key})
 	}
+}
+
 }

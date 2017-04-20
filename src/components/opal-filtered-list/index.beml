@@ -1,3 +1,5 @@
+@section/inner {
+
 rt-content (select=.opal-filtered-list__query-input-container) {
 	rt-content/query-input-container (select=.opal-filtered-list__query-input, cloning=no) {
 		opal-text-input/query-input
@@ -5,3 +7,5 @@ rt-content (select=.opal-filtered-list__query-input-container) {
 }
 
 rt-content/loaded-list-container (select=.opal-filtered-list__loaded-list, cloning=no)
+
+}

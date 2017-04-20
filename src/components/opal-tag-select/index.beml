@@ -1,3 +1,5 @@
+@section/inner {
+
 span/tags {
 	@if-then (if=viewModel.length, rt-silent) {
 		@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {
@@ -68,4 +70,6 @@ span/control {
 			}
 		}
 	}
+}
+
 }

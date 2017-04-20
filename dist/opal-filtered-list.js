@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(51);
+	__webpack_require__(52);
 	var rionite_1 = __webpack_require__(1);
 	var template = __webpack_require__(27);
 	var OpalFilteredList = (function (_super) {
@@ -117,11 +117,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 27:
 /***/ (function(module, exports) {
 
-	module.exports = "rt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input, cloning=no) {\nopal-text-input/query-input\n}\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__loaded-list, cloning=no)"
+	module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input, cloning=no) {\nopal-text-input/query-input\n}\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__loaded-list, cloning=no)\n}"
 
 /***/ }),
 
-/***/ 51:
+/***/ 52:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {

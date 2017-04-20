@@ -13,7 +13,7 @@ let openedDropdowns: Array<OpalDropdown> = [];
 		opened: false
 	},
 
-	bemlTemplate: 'rt-content/content (cloning=no)'
+	bemlTemplate: '@section/inner { rt-content/content (cloning=no) }'
 })
 export default class OpalDropdown extends Component {
 	_documentClickListening: IDisposableListening | undefined;

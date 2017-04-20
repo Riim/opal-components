@@ -1,6 +1,7 @@
 import './index.css';
 
 import { IDisposableListening, Component, d } from 'rionite';
+import template = require('./index.beml');
 
 @d.Component({
 	elementIs: 'opal-popover',
@@ -12,7 +13,7 @@ import { IDisposableListening, Component, d } from 'rionite';
 		opened: false
 	},
 
-	bemlTemplate: 'span/arrow rt-content/content (cloning=no)'
+	bemlTemplate: template
 })
 export default class OpalPopover extends Component {
 	_toValueAtOpen: string;

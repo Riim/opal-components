@@ -1,3 +1,5 @@
+@section/inner {
+
 div/list {
 	@repeat (for={props.itemAs} of list) {
 		rt-content/list-item (get-context=_getContentContext)
@@ -8,4 +10,6 @@ opal-loader/loader (shown={loaderShown}, align-center={empty})
 
 div/not-found (shown={notFoundShown}) {
 	span/not-found-message { '{constructor.i18n.notFound}' }
+}
+
 }

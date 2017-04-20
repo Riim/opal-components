@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(56);
+	__webpack_require__(57);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
 	var template = __webpack_require__(29);
@@ -244,11 +244,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 29:
 /***/ (function(module, exports) {
 
-	module.exports = "div/list {\n@repeat (for={props.itemAs} of list) {\nrt-content/list-item (get-context=_getContentContext)\n}\n}\nopal-loader/loader (shown={loaderShown}, align-center={empty})\ndiv/not-found (shown={notFoundShown}) {\nspan/not-found-message { '{constructor.i18n.notFound}' }\n}"
+	module.exports = "@section/inner {\ndiv/list {\n@repeat (for={props.itemAs} of list) {\nrt-content/list-item (get-context=_getContentContext)\n}\n}\nopal-loader/loader (shown={loaderShown}, align-center={empty})\ndiv/not-found (shown={notFoundShown}) {\nspan/not-found-message { '{constructor.i18n.notFound}' }\n}\n}"
 
 /***/ }),
 
-/***/ 56:
+/***/ 57:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {

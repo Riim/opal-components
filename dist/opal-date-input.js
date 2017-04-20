@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(49);
+	__webpack_require__(50);
 	var rionite_1 = __webpack_require__(1);
 	var date_exists_1 = __webpack_require__(20);
 	var template = __webpack_require__(26);
@@ -249,11 +249,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 26:
 /***/ (function(module, exports) {
 
-	module.exports = "opal-input-validator/input-validator {\n@if-then (if=props.required, rt-silent) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-to={props.popoverTo}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={props.popoverTo}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (test=dateInRange, popover-to={props.popoverTo}) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={props.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={props.value},\nplaceholder={props.placeholder},\nclearable\n)\n}\n}\nopal-dropdown/calendar-menu {\nopal-calendar/calendar (from-date={props.fromDate}, to-date={props.toDate}, value={props.value}, date-delimiter=.)\n}"
+	module.exports = "@section/inner {\nopal-input-validator/input-validator {\n@if-then (if=props.required, rt-silent) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-to={props.popoverTo}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={props.popoverTo}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (test=dateInRange, popover-to={props.popoverTo}) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={props.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={props.value},\nplaceholder={props.placeholder},\nclearable\n)\n}\n}\nopal-dropdown/calendar-menu {\nopal-calendar/calendar (from-date={props.fromDate}, to-date={props.toDate}, value={props.value}, date-delimiter=.)\n}\n}"
 
 /***/ }),
 
-/***/ 49:
+/***/ 50:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {

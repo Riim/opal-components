@@ -1,3 +1,5 @@
+@section/inner {
+
 opal-input-validator/input-validator {
 	@if-then (if=props.required, rt-silent) {
 		opal-input-validator-rule/input-validator-rule-required (required, popover-to={props.popoverTo}) {
@@ -25,4 +27,6 @@ opal-input-validator/input-validator {
 
 opal-dropdown/calendar-menu {
 	opal-calendar/calendar (from-date={props.fromDate}, to-date={props.toDate}, value={props.value}, date-delimiter=.)
+}
+
 }

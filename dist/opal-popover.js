@@ -73,8 +73,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(61);
+	__webpack_require__(62);
 	var rionite_1 = __webpack_require__(1);
+	var template = __webpack_require__(33);
 	var OpalPopover = (function (_super) {
 	    __extends(OpalPopover, _super);
 	    function OpalPopover() {
@@ -191,7 +192,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            autoClosing: false,
 	            opened: false
 	        },
-	        bemlTemplate: 'span/arrow rt-content/content (cloning=no)'
+	        bemlTemplate: template
 	    })
 	], OpalPopover);
 	exports.default = OpalPopover;
@@ -206,7 +207,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 61:
+/***/ 33:
+/***/ (function(module, exports) {
+
+	module.exports = "@section/inner {\nspan/arrow\nrt-content/content (cloning=no)\n}"
+
+/***/ }),
+
+/***/ 62:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {

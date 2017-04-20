@@ -1,3 +1,5 @@
+@section/inner {
+
 rt-content/tab-list-container (select=opal-tab-list, cloning=no) {
 	opal-tab-list/tab-list {
 		rt-content/tabs (select=opal-tab, cloning=no)
@@ -5,3 +7,5 @@ rt-content/tab-list-container (select=opal-tab-list, cloning=no) {
 }
 
 rt-content/panels (select=opal-tab-panel, cloning=no)
+
+}

@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(58);
+	__webpack_require__(59);
 	var rionite_1 = __webpack_require__(1);
 	var template = __webpack_require__(30);
 	var openedModals = [];
@@ -219,11 +219,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 30:
 /***/ (function(module, exports) {
 
-	module.exports = "div/window {\nspan/btn-close-wrapper {\nbutton/btn-close\n}\nrt-content/content (cloning=no)\n}"
+	module.exports = "@section/inner {\ndiv/window {\nspan/btn-close-wrapper {\nbutton/btn-close\n}\nrt-content/content (cloning=no)\n}\n}"
 
 /***/ }),
 
-/***/ 58:
+/***/ 59:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {

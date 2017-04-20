@@ -73,10 +73,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return c > 3 && r && Object.defineProperty(target, key, r), r;
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
-	__webpack_require__(69);
+	__webpack_require__(70);
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
-	var template = __webpack_require__(38);
+	var template = __webpack_require__(39);
 	var nextTick = cellx_1.Utils.nextTick;
 	var OpalSwitch = (function (_super) {
 	    __extends(OpalSwitch, _super);
@@ -222,14 +222,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
-/***/ 38:
+/***/ 39:
 /***/ (function(module, exports) {
 
-	module.exports = "label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content (cloning=no)\n}"
+	module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content (cloning=no)\n}\n}"
 
 /***/ }),
 
-/***/ 69:
+/***/ 70:
 /***/ (function(module, exports) {
 
 	module.exports = (function(d) {
