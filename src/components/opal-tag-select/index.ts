@@ -6,6 +6,7 @@ import { TDataList, TViewModel, default as OpalSelect } from '../opal-select';
 import { IDataProvider } from '../opal-loaded-list';
 import template = require('./index.beml');
 
+let defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 
 @d.Component({
@@ -14,6 +15,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 	props: {
 		viewType: String,
 		datalist: { type: String, readonly: true },
+		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		// необязательный, так как может указываться на передаваемом opal-loaded-list
 		dataprovider: { type: String, readonly: true },
 		value: eval,
@@ -66,40 +68,39 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 	}
 })
 export default class OpalTagSelect extends Component {
-	_dataListParam: string;
-	_dataProviderParam: string;
-	_viewModelParam: string;
-
 	dataList: TDataList;
-	dataProvider: IDataProvider;
-	viewModel: TViewModel;
+	_dataListItemValueFieldName: string;
+	_dataListItemTextFieldName: string;
+	_dataListItemDisabledFieldName: string;
 
+	dataProvider: IDataProvider;
+
+	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 	_viewModelItemDisabledFieldName: string;
 
 	placeholderShown: boolean;
 
+	_dataListParam: string;
+	_dataProviderParam: string;
+	_viewModelParam: string;
+
 	initialize() {
 		let props = this.props;
-		let dataList: string | undefined = props.datalist;
-		let dataProvider: string | undefined = props.dataprovider;
-		let vm: string | undefined = props.viewModel;
 
-		this._dataListParam = (dataList && 'dataList') as string;
-		this._dataProviderParam = (dataProvider && 'dataProvider') as string;
-		this._viewModelParam = (vm && 'viewModel') as string;
-
-		let getDataList: () => TDataList;
+		let dataList = props.datalist as string | undefined;
+		let dataProvider = props.dataprovider as string | undefined;
+		let vm = props.viewModel as string | undefined;
+		let context = this.ownerComponent || window;
+		let getDataList: (() => TDataList) | undefined;
 
 		if (dataList) {
 			getDataList = Function(`return this.${ dataList };`) as () => TDataList;
 		}
 
-		let context = this.ownerComponent || window;
-
 		define(this, {
-			dataList: dataList && function() { return getDataList.call(context); },
+			dataList: getDataList && function() { return (getDataList as Function).call(context); },
 			dataProvider: dataProvider && Function(`return this.${ dataProvider };`).call(context),
 			viewModel: vm && Function(`return this.${ vm };`).call(context),
 
@@ -108,11 +109,22 @@ export default class OpalTagSelect extends Component {
 			}
 		});
 
+		if (dataList) {
+			let dataListItemSchema = props.datalistItemSchema;
+			this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+			this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+			this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
+		}
+
 		let vmItemSchema = props.viewModelItemSchema;
 
 		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 		this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
+
+		this._dataListParam = (dataList && 'dataList') as string;
+		this._dataProviderParam = (dataProvider && 'dataProvider') as string;
+		this._viewModelParam = (vm && 'viewModel') as string;
 	}
 
 	ready() {

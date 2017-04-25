@@ -26,6 +26,7 @@ span/control {
 	opal-select/select (
 		multiple,
 		datalist={_dataListParam},
+		datalist-item-schema={props.datalistItemSchema |json },
 		value={props.value},
 		view-model={_viewModelParam},
 		view-model-item-schema={props.viewModelItemSchema |json }
@@ -38,7 +39,13 @@ span/control {
 					div (class=opal-select__menu-content) {
 						@if-then (if=dataList.length) {
 							@repeat (for=$item of dataList) {
-								opal-select-option/select-option // доопределяется ниже
+								@section/select-option-1 {
+									opal-select-option/, select-option (
+										value='{$item |key(_dataListItemValueFieldName) }',
+										text='{$item |key(_dataListItemTextFieldName) }',
+										disabled='{$item |key(_dataListItemDisabledFieldName) }'
+									)
+								}
 							}
 
 							rt-content (
@@ -63,7 +70,9 @@ span/control {
 							class=opal-select__loaded-list opal-filtered-list__loaded-list,
 							dataprovider={_dataProviderParam}
 						) {
-							opal-select-option/select-option (value={$item.value}, text={$item.text})
+							@section/select-option-2 {
+								opal-select-option/, select-option (value={$item.value}, text={$item.text})
+							}
 						}
 					}
 				}

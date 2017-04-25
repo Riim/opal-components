@@ -77,6 +77,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cellx_1 = __webpack_require__(2);
 	var rionite_1 = __webpack_require__(1);
 	var template = __webpack_require__(42);
+	var defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 	var defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 	var OpalTagSelect = (function (_super) {
 	    __extends(OpalTagSelect, _super);
@@ -88,26 +89,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var dataList = props.datalist;
 	        var dataProvider = props.dataprovider;
 	        var vm = props.viewModel;
-	        this._dataListParam = (dataList && 'dataList');
-	        this._dataProviderParam = (dataProvider && 'dataProvider');
-	        this._viewModelParam = (vm && 'viewModel');
+	        var context = this.ownerComponent || window;
 	        var getDataList;
 	        if (dataList) {
 	            getDataList = Function("return this." + dataList + ";");
 	        }
-	        var context = this.ownerComponent || window;
 	        cellx_1.define(this, {
-	            dataList: dataList && function () { return getDataList.call(context); },
+	            dataList: getDataList && function () { return getDataList.call(context); },
 	            dataProvider: dataProvider && Function("return this." + dataProvider + ";").call(context),
 	            viewModel: vm && Function("return this." + vm + ";").call(context),
 	            placeholderShown: function () {
 	                return !!this.props.placeholder && (!this.viewModel || !this.viewModel.length);
 	            }
 	        });
+	        if (dataList) {
+	            var dataListItemSchema = props.datalistItemSchema;
+	            this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+	            this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+	            this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
+	        }
 	        var vmItemSchema = props.viewModelItemSchema;
 	        this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 	        this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
+	        this._dataListParam = (dataList && 'dataList');
+	        this._dataProviderParam = (dataProvider && 'dataProvider');
+	        this._viewModelParam = (vm && 'viewModel');
 	    };
 	    OpalTagSelect.prototype.ready = function () {
 	        var select = this.$('select');
@@ -126,6 +133,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        props: {
 	            viewType: String,
 	            datalist: { type: String, readonly: true },
+	            datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 	            // необязательный, так как может указываться на передаваемом opal-loaded-list
 	            dataprovider: { type: String, readonly: true },
 	            value: eval,
@@ -192,7 +200,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 42:
 /***/ (function(module, exports) {
 
-	module.exports = "@section/inner {\nspan/tags {\n@if-then (if=viewModel.length, rt-silent) {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (\ndata-tag-value='{tag |key(_viewModelItemValueFieldName) }',\nrt-click=_onBtnRemoveTagClick\n)\n}\n' '\n}\n}\n}\nspan/control {\n@if-then (if=placeholderShown, rt-silent) {\nspan/placeholder { '{props.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist={_dataListParam},\nvalue={props.value},\nview-model={_viewModelParam},\nview-model-item-schema={props.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content', cloning=no) {\n@if-then (if=props.datalist) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList.length) {\n@repeat (for=$item of dataList) {\nopal-select-option/select-option // доопределяется ниже\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=props.datalist) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input,\ncloning=no\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider={_dataProviderParam}\n) {\nopal-select-option/select-option (value={$item.value}, text={$item.text})\n}\n}\n}\n}\n}\n}\n}\n}"
+	module.exports = "@section/inner {\nspan/tags {\n@if-then (if=viewModel.length, rt-silent) {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (\ndata-tag-value='{tag |key(_viewModelItemValueFieldName) }',\nrt-click=_onBtnRemoveTagClick\n)\n}\n' '\n}\n}\n}\nspan/control {\n@if-then (if=placeholderShown, rt-silent) {\nspan/placeholder { '{props.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist={_dataListParam},\ndatalist-item-schema={props.datalistItemSchema |json },\nvalue={props.value},\nview-model={_viewModelParam},\nview-model-item-schema={props.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content', cloning=no) {\n@if-then (if=props.datalist) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList.length) {\n@repeat (for=$item of dataList) {\n@section/select-option-1 {\nopal-select-option/, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }',\ndisabled='{$item |key(_dataListItemDisabledFieldName) }'\n)\n}\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=props.datalist) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input,\ncloning=no\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider={_dataProviderParam}\n) {\n@section/select-option-2 {\nopal-select-option/, select-option (value={$item.value}, text={$item.text})\n}\n}\n}\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 

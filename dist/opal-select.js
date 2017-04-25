@@ -100,15 +100,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var props = this.props;
 	        var dataList = props.datalist;
 	        if (dataList) {
-	            var dataListItemSchema = props.datalistItemSchema;
-	            this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
-	            this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
-	            this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 	            var context_1 = this.ownerComponent || window;
 	            var getDataList_1 = Function("return this." + dataList + ";");
 	            cellx_1.define(this, 'dataList', function () {
 	                return getDataList_1.call(context_1);
 	            });
+	            var dataListItemSchema = props.datalistItemSchema;
+	            this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+	            this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+	            this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 	        }
 	        var vm = props.viewModel;
 	        var vmItemSchema = props.viewModelItemSchema;

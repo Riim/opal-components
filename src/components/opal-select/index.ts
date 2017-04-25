@@ -270,15 +270,15 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 export default class OpalSelect extends Component {
 	static OpalSelectOption = OpalSelectOption;
 
+	dataList: TDataList;
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;
 	_dataListItemDisabledFieldName: string;
-	dataList: TDataList;
 
+	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 	_viewModelItemDisabledFieldName: string;
-	viewModel: TViewModel;
 
 	optionElements: NodeListOf<IComponentElement>;
 	options: Array<OpalSelectOption>;
@@ -295,21 +295,21 @@ export default class OpalSelect extends Component {
 	initialize() {
 		let props = this.props;
 
-		let dataList = props.datalist;
+		let dataList = props.datalist as string | undefined;
 
 		if (dataList) {
-			let dataListItemSchema = props.datalistItemSchema;
-
-			this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
-			this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
-			this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
-
 			let context = this.ownerComponent || window;
 			let getDataList = Function(`return this.${ dataList };`);
 
 			define(this, 'dataList', function() {
 				return getDataList.call(context);
 			});
+
+			let dataListItemSchema = props.datalistItemSchema;
+
+			this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+			this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+			this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 		}
 
 		let vm = props.viewModel;
