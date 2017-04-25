@@ -23,8 +23,9 @@ rt-content (select=.opal-select__menu, cloning=no) {
 					@if-then (if=dataList.length) {
 						@repeat (for=item of dataList) {
 							opal-select-option/option (
-								value='{item |key(_viewModelItemValueFieldName) }',
-								text='{item |key(_viewModelItemTextFieldName) }'
+								value='{item |key(_dataListItemValueFieldName) }',
+								text='{item |key(_dataListItemTextFieldName) }',
+								disabled='{item |key(_dataListItemDisabledFieldName) }'
 							)
 						}
 

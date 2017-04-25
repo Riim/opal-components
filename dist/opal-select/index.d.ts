@@ -4,18 +4,18 @@ import { IndexedList } from 'cellx-indexed-collections';
 import { IDisposableListening, IComponentElement, Component } from 'rionite';
 import OpalSelectOption from './opal-select-option';
 export { default as OpalSelectOption } from './opal-select-option';
-export declare type TDataList = IndexedList<{
-    value: string;
-    text: string;
-}>;
+export declare type TDataList = IndexedList<Object>;
 export declare type TViewModel = IndexedList<Object>;
 export default class OpalSelect extends Component {
     static OpalSelectOption: typeof OpalSelectOption;
+    _dataListItemValueFieldName: string;
+    _dataListItemTextFieldName: string;
+    _dataListItemDisabledFieldName: string;
     dataList: TDataList;
-    viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _viewModelItemDisabledFieldName: string;
+    viewModel: TViewModel;
     optionElements: NodeListOf<IComponentElement>;
     options: Array<OpalSelectOption>;
     _opened: boolean;

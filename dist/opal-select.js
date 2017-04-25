@@ -86,6 +86,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var nextUID = cellx_1.Utils.nextUID, nextTick = cellx_1.Utils.nextTick;
 	var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
 	var map = Array.prototype.map;
+	var defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 	var defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 	var OpalSelect = (function (_super) {
 	    __extends(OpalSelect, _super);
@@ -99,6 +100,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var props = this.props;
 	        var dataList = props['datalist'];
 	        if (dataList) {
+	            var dataListItemSchema = props['dataListItemSchema'];
+	            this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+	            this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+	            this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 	            var context_1 = this.ownerComponent || window;
 	            var getDataList_1 = Function("return this." + dataList + ";");
 	            cellx_1.define(this, 'dataList', function () {
@@ -107,6 +112,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        var vm = props['viewModel'];
 	        var vmItemSchema = props['viewModelItemSchema'];
+	        this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
+	        this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
+	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
 	        if (vm) {
 	            vm = Function("return this." + vm + ";").call(this.ownerComponent || window);
 	            if (!vm) {
@@ -114,13 +122,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	        else {
-	            vm = new cellx_indexed_collections_1.IndexedList(undefined, { indexes: [vmItemSchema.value] });
+	            vm = new cellx_indexed_collections_1.IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });
 	        }
-	        cellx_1.define(this, 'viewModel', vm);
-	        this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
-	        this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
-	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
 	        cellx_1.define(this, {
+	            viewModel: vm,
 	            options: function () {
 	                return this.optionElements ?
 	                    map.call(this.optionElements, function (option) { return option.$c; }) :
@@ -403,6 +408,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            size: 'm',
 	            multiple: { default: false, readonly: true },
 	            datalist: { type: String, readonly: true },
+	            datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 	            value: eval,
 	            viewModel: { type: String, readonly: true },
 	            viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
@@ -538,7 +544,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var itemText = textInput.value;
 	                    var dataList = this.dataList;
 	                    if (dataList) {
-	                        dataList.add({ value: itemValue, text: itemText });
+	                        dataList.add((_a = {},
+	                            _a[this._dataListItemValueFieldName] = itemValue,
+	                            _a[this._dataListItemTextFieldName] = itemText,
+	                            _a));
 	                    }
 	                    textInput.clear();
 	                    var loadedList = this.$('loaded-list');
@@ -547,10 +556,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                    this.emit('input');
 	                    var vm = this.viewModel;
-	                    var vmItem = (_a = {},
-	                        _a[this._viewModelItemValueFieldName] = itemValue,
-	                        _a[this._viewModelItemTextFieldName] = itemText,
-	                        _a);
+	                    var vmItem = (_b = {},
+	                        _b[this._viewModelItemValueFieldName] = itemValue,
+	                        _b[this._viewModelItemTextFieldName] = itemText,
+	                        _b);
 	                    if (this.props['multiple']) {
 	                        vm.add(vmItem);
 	                    }
@@ -565,7 +574,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        this.focus();
 	                        this.emit('change');
 	                    }
-	                    var _a;
+	                    var _a, _b;
 	                },
 	                '<*>change': function (evt) {
 	                    if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
@@ -820,7 +829,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 35:
 /***/ (function(module, exports) {
 
-	module.exports = "@section/inner {\nrt-content (select=.opal-select__button, cloning=no) {\nopal-button/button (\nview-type={props.viewType},\nsize={props.size},\ncheckable,\ntab-index={props.tabIndex},\ndisabled={props.disabled}\n) {\n@if-then (if=props.text, rt-silent) { '{props.text}' }\n@if-else (if=props.text, rt-silent) { '{text}' }\n' '\nsvg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu, cloning=no) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content, cloning=no) {\n@if-then (if=props.datalist) {\ndiv/, menu-content {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/option (\nvalue='{item |key(_viewModelItemValueFieldName) }',\ntext='{item |key(_viewModelItemTextFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=props.datalist) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}"
+	module.exports = "@section/inner {\nrt-content (select=.opal-select__button, cloning=no) {\nopal-button/button (\nview-type={props.viewType},\nsize={props.size},\ncheckable,\ntab-index={props.tabIndex},\ndisabled={props.disabled}\n) {\n@if-then (if=props.text, rt-silent) { '{props.text}' }\n@if-else (if=props.text, rt-silent) { '{text}' }\n' '\nsvg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu, cloning=no) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content, cloning=no) {\n@if-then (if=props.datalist) {\ndiv/, menu-content {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=props.datalist) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 

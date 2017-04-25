@@ -20,9 +20,10 @@ let { RtIfThen, RtRepeat } = Components;
 
 let map = Array.prototype.map;
 
-export type TDataList = IndexedList<{ value: string, text: string }>;
+export type TDataList = IndexedList<Object>;
 export type TViewModel = IndexedList<Object>;
 
+let defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 
 @d.Component<OpalSelect>({
@@ -33,6 +34,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		size: 'm',
 		multiple: { default: false, readonly: true },
 		datalist: { type: String, readonly: true },
+		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		value: eval,
 		viewModel: { type: String, readonly: true },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
@@ -184,7 +186,10 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				let dataList = this.dataList;
 
 				if (dataList) {
-					dataList.add({ value: itemValue, text: itemText });
+					dataList.add({
+						[this._dataListItemValueFieldName]: itemValue,
+						[this._dataListItemTextFieldName]: itemText
+					});
 				}
 
 				textInput.clear();
@@ -265,12 +270,15 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 export default class OpalSelect extends Component {
 	static OpalSelectOption = OpalSelectOption;
 
+	_dataListItemValueFieldName: string;
+	_dataListItemTextFieldName: string;
+	_dataListItemDisabledFieldName: string;
 	dataList: TDataList;
-	viewModel: TViewModel;
 
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 	_viewModelItemDisabledFieldName: string;
+	viewModel: TViewModel;
 
 	optionElements: NodeListOf<IComponentElement>;
 	options: Array<OpalSelectOption>;
@@ -286,9 +294,16 @@ export default class OpalSelect extends Component {
 
 	initialize() {
 		let props = this.props;
+
 		let dataList = props['datalist'];
 
 		if (dataList) {
+			let dataListItemSchema = props['datalistItemSchema'];
+
+			this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+			this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+			this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
+
 			let context = this.ownerComponent || window;
 			let getDataList = Function(`return this.${ dataList };`);
 
@@ -300,6 +315,10 @@ export default class OpalSelect extends Component {
 		let vm = props['viewModel'];
 		let vmItemSchema = props['viewModelItemSchema'];
 
+		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
+		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
+		this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
+
 		if (vm) {
 			vm = Function(`return this.${ vm };`).call(this.ownerComponent || window);
 
@@ -307,16 +326,12 @@ export default class OpalSelect extends Component {
 				throw new TypeError('viewModel is not defined');
 			}
 		} else {
-			vm = new IndexedList(undefined, { indexes: [vmItemSchema.value] });
+			vm = new IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });
 		}
 
-		define(this, 'viewModel', vm);
-
-		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
-		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
-		this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
-
 		define(this, {
+			viewModel: vm,
+
 			options(this: OpalSelect): Array<OpalSelectOption> {
 				return this.optionElements ?
 					map.call(this.optionElements, (option: IComponentElement) => option.$c) :
