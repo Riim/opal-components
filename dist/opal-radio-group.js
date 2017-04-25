@@ -162,15 +162,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalRadioButton.prototype.initialize = function () {
 	        cellx_1.define(this, {
 	            _tabIndex: function () {
-	                return this.props['disabled'] ? -1 : this.props['tabIndex'];
+	                return this.props.disabled ? -1 : this.props.tabIndex;
 	            }
 	        });
 	    };
 	    OpalRadioButton.prototype.ready = function () {
-	        if (this.props['checked']) {
+	        if (this.props.checked) {
 	            this.$('input').checked = true;
 	        }
-	        if (this.props['focused']) {
+	        if (this.props.focused) {
 	            this.focus();
 	        }
 	    };
@@ -193,38 +193,38 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
 	            evt.preventDefault();
 	            var props = this.props;
-	            if (!props['disabled']) {
-	                this.emit((props['checked'] = !props['checked']) ? 'check' : 'uncheck');
+	            if (!props.disabled) {
+	                this.emit((props.checked = !props.checked) ? 'check' : 'uncheck');
 	                this.emit('change');
 	            }
 	        }
 	    };
 	    Object.defineProperty(OpalRadioButton.prototype, "checked", {
 	        get: function () {
-	            return this.props['checked'];
+	            return this.props.checked;
 	        },
 	        set: function (checked) {
-	            this.props['checked'] = checked;
+	            this.props.checked = checked;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
 	    OpalRadioButton.prototype.check = function () {
-	        if (!this.props['checked']) {
-	            this.props['checked'] = true;
+	        if (!this.props.checked) {
+	            this.props.checked = true;
 	            return true;
 	        }
 	        return false;
 	    };
 	    OpalRadioButton.prototype.uncheck = function () {
-	        if (this.props['checked']) {
-	            this.props['checked'] = false;
+	        if (this.props.checked) {
+	            this.props.checked = false;
 	            return true;
 	        }
 	        return false;
 	    };
 	    OpalRadioButton.prototype.toggle = function (value) {
-	        return (this.props['checked'] = value === undefined ? !this.props['checked'] : value);
+	        return (this.props.checked = value === undefined ? !this.props.checked : value);
 	    };
 	    OpalRadioButton.prototype.focus = function () {
 	        this.$('control').focus();
@@ -235,11 +235,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this;
 	    };
 	    OpalRadioButton.prototype.enable = function () {
-	        this.props['disabled'] = false;
+	        this.props.disabled = false;
 	        return this;
 	    };
 	    OpalRadioButton.prototype.disable = function () {
-	        this.props['disabled'] = true;
+	        this.props.disabled = true;
 	        return this;
 	    };
 	    return OpalRadioButton;
@@ -257,7 +257,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        events: {
 	            input: {
 	                change: function (evt) {
-	                    this.emit((this.props['checked'] = evt.target.checked) ? 'check' : 'uncheck');
+	                    this.emit((this.props.checked = evt.target.checked) ? 'check' : 'uncheck');
 	                    this.emit('change');
 	                }
 	            },
@@ -266,13 +266,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var _this = this;
 	                    nextTick(function () {
 	                        if (document.activeElement == evt.target) {
-	                            _this.props['focused'] = true;
+	                            _this.props.focused = true;
 	                            _this.emit('focus');
 	                        }
 	                    });
 	                },
 	                blur: function () {
-	                    this.props['focused'] = false;
+	                    this.props.focused = false;
 	                    this.emit('blur');
 	                }
 	            }

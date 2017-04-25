@@ -100,14 +100,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var definitions = this._definitions;
 	        forEach.call(this.element.querySelectorAll('opal-input-mask-definition'), function (inputMaskDefinition) {
 	            var props = inputMaskDefinition.$c.props;
-	            definitions[props['maskChar']] = props['regex'];
+	            definitions[props.maskChar] = props.regex;
 	        });
 	        cellx_1.define(this, {
 	            _mask: function () {
-	                return this.props['mask'].split('').filter(function (chr) { return chr != '?'; });
+	                return this.props.mask.split('').filter(function (chr) { return chr != '?'; });
 	            },
 	            _partialIndex: function () {
-	                var mask = this.props['mask'];
+	                var mask = this.props.mask;
 	                var index = mask.indexOf('?');
 	                return index == -1 ? mask.length : index;
 	            },
@@ -176,7 +176,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this._shiftLeft(start, end - 1);
 	            if (value != textField.value) {
 	                var textInput = this.$('text-input');
-	                textInput.constructor.events['text-field']['input'].call(textInput, evt);
+	                textInput.constructor.events['text-field'].input.call(textInput, evt);
 	            }
 	        }
 	        else if (key == 27) {
@@ -185,7 +185,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                textField.value = this._textAtFocusing;
 	                this._setTextFieldSelection(0, this._checkValue(false));
 	                var textInput = this.$('text-input');
-	                textInput.constructor.events['text-field']['input'].call(textInput, evt);
+	                textInput.constructor.events['text-field'].input.call(textInput, evt);
 	            }
 	        }
 	    };
@@ -215,14 +215,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    index = this._nextTestIndex(index);
 	                    this._setTextFieldSelection(index, index);
 	                    var textInput = this.$('text-input');
-	                    textInput.constructor.events['text-field']['input'].call(textInput, evt);
+	                    textInput.constructor.events['text-field'].input.call(textInput, evt);
 	                    if (index >= bufferLen) {
 	                        this.emit('complete');
 	                    }
 	                }
 	                else if (start != end) {
 	                    var textInput = this.$('text-input');
-	                    textInput.constructor.events['text-field']['input'].call(textInput, evt);
+	                    textInput.constructor.events['text-field'].input.call(textInput, evt);
 	                }
 	            }
 	        }

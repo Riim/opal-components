@@ -85,9 +85,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    OpalTagSelect.prototype.initialize = function () {
 	        var props = this.props;
-	        var dataList = props['datalist'];
-	        var dataProvider = props['dataprovider'];
-	        var vm = props['viewModel'];
+	        var dataList = props.datalist;
+	        var dataProvider = props.dataprovider;
+	        var vm = props.viewModel;
 	        this._dataListParam = (dataList && 'dataList');
 	        this._dataProviderParam = (dataProvider && 'dataProvider');
 	        this._viewModelParam = (vm && 'viewModel');
@@ -101,10 +101,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            dataProvider: dataProvider && Function("return this." + dataProvider + ";").call(context),
 	            viewModel: vm && Function("return this." + vm + ";").call(context),
 	            placeholderShown: function () {
-	                return !!this.props['placeholder'] && (!this.viewModel || !this.viewModel.length);
+	                return !!this.props.placeholder && (!this.viewModel || !this.viewModel.length);
 	            }
 	        });
-	        var vmItemSchema = props['viewModelItemSchema'];
+	        var vmItemSchema = props.viewModelItemSchema;
 	        this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 	        this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
@@ -115,7 +115,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.viewModel = select.viewModel;
 	    };
 	    OpalTagSelect.prototype._onBtnRemoveTagClick = function (evt, btn) {
-	        this.viewModel.remove(this.viewModel.get(btn.dataset['tagValue'], this._viewModelItemValueFieldName));
+	        this.viewModel.remove(this.viewModel.get(btn.dataset.tagValue, this._viewModelItemValueFieldName));
 	        this.emit('change');
 	    };
 	    return OpalTagSelect;

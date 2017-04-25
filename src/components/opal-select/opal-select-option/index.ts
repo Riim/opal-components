@@ -25,19 +25,19 @@ let nextTick = Utils.nextTick;
 			focus(evt: Event) {
 				nextTick(() => {
 					if (document.activeElement == evt.target) {
-						this.props['focused'] = true;
+						this.props.focused = true;
 					}
 				});
 			},
 
 			blur() {
-				this.props['focused'] = false;
+				this.props.focused = false;
 			},
 
 			click(evt: Event) {
 				evt.preventDefault();
 
-				if (!this.props['disabled']) {
+				if (!this.props.disabled) {
 					this.click();
 				}
 			}
@@ -50,7 +50,7 @@ export default class OpalSelectOption extends Component {
 	initialize() {
 		define(this, {
 			_tabIndex(this: OpalSelectOption): number {
-				return this.props['disabled'] ? -1 : this.props['tabIndex'];
+				return this.props.disabled ? -1 : this.props.tabIndex;
 			}
 		});
 	}
@@ -68,36 +68,36 @@ export default class OpalSelectOption extends Component {
 
 	get value(): string {
 		let props = this.props;
-		return props['value'] === null ? props['text'] : props['value'];
+		return props.value === null ? props.text : props.value;
 	}
 	set value(value: string) {
-		this.props['value'] = value;
+		this.props.value = value;
 	}
 
 	get text(): string {
-		return this.props['text'].trim() || ' ';
+		return this.props.text.trim() || ' ';
 	}
 	set text(text: string) {
-		this.props['text'] = text;
+		this.props.text = text;
 	}
 
 	get selected(): boolean {
-		return this.props['selected'];
+		return this.props.selected;
 	}
 	set selected(selected: boolean) {
-		this.props['selected'] = selected;
+		this.props.selected = selected;
 	}
 
 	get disabled(): boolean {
-		return this.props['disabled'];
+		return this.props.disabled;
 	}
 	set disabled(disabled: boolean) {
-		this.props['disabled'] = disabled;
+		this.props.disabled = disabled;
 	}
 
 	select(): boolean {
-		if (!this.props['selected']) {
-			this.props['selected'] = true;
+		if (!this.props.selected) {
+			this.props.selected = true;
 			return true;
 		}
 
@@ -105,8 +105,8 @@ export default class OpalSelectOption extends Component {
 	}
 
 	deselect(): boolean {
-		if (this.props['selected']) {
-			this.props['selected'] = false;
+		if (this.props.selected) {
+			this.props.selected = false;
 			return true;
 		}
 
@@ -114,7 +114,7 @@ export default class OpalSelectOption extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.props['selected'] = value === undefined ? !this.props['selected'] : value);
+		return (this.props.selected = value === undefined ? !this.props.selected : value);
 	}
 
 	focus(): OpalSelectOption {
@@ -128,12 +128,12 @@ export default class OpalSelectOption extends Component {
 	}
 
 	enable(): OpalSelectOption {
-		this.props['disabled'] = false;
+		this.props.disabled = false;
 		return this;
 	}
 
 	disable(): OpalSelectOption {
-		this.props['disabled'] = true;
+		this.props.disabled = true;
 		return this;
 	}
 }

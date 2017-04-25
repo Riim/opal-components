@@ -57,17 +57,17 @@ export default class OpalInputMask extends Component {
 			this.element.querySelectorAll('opal-input-mask-definition'),
 			(inputMaskDefinition: IComponentElement) => {
 				let props = inputMaskDefinition.$c.props;
-				definitions[props['maskChar']] = props['regex'];
+				definitions[props.maskChar] = props.regex;
 			}
 		);
 
 		define(this, {
 			_mask(this: OpalInputMask): Array<string> {
-				return this.props['mask'].split('').filter((chr: string) => chr != '?');
+				return this.props.mask.split('').filter((chr: string) => chr != '?');
 			},
 
 			_partialIndex(this: OpalInputMask): number {
-				let mask = this.props['mask'];
+				let mask = this.props.mask;
 				let index = mask.indexOf('?');
 				return index == -1 ? mask.length : index;
 			},
@@ -152,7 +152,7 @@ export default class OpalInputMask extends Component {
 			if (value != textField.value) {
 				let textInput = this.$('text-input') as OpalTextInput;
 				((textInput.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
-					['text-field']['input'].call(textInput, evt);
+					['text-field'].input.call(textInput, evt);
 			}
 		} else if (key == 27) { // Escape
 			evt.preventDefault();
@@ -164,7 +164,7 @@ export default class OpalInputMask extends Component {
 				let textInput = this.$('text-input') as OpalTextInput;
 
 				((textInput.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
-					['text-field']['input'].call(textInput, evt);
+					['text-field'].input.call(textInput, evt);
 			}
 		}
 	}
@@ -205,7 +205,7 @@ export default class OpalInputMask extends Component {
 
 					let textInput = this.$('text-input') as OpalTextInput;
 					((textInput.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
-						['text-field']['input'].call(textInput, evt);
+						['text-field'].input.call(textInput, evt);
 
 					if (index >= bufferLen) {
 						this.emit('complete');
@@ -213,7 +213,7 @@ export default class OpalInputMask extends Component {
 				} else if (start != end) {
 					let textInput = this.$('text-input') as OpalTextInput;
 					((textInput.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
-						['text-field']['input'].call(textInput, evt);
+						['text-field'].input.call(textInput, evt);
 				}
 			}
 		}

@@ -86,7 +86,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return _this;
 	    }
 	    OpalLoadedList.prototype.initialize = function () {
-	        var dataProvider = Function("return this." + this.props['dataprovider'] + ";").call(this.ownerComponent || window);
+	        var dataProvider = Function("return this." + this.props.dataprovider + ";").call(this.ownerComponent || window);
 	        if (!dataProvider) {
 	            throw new TypeError('dataProvider is not defined');
 	        }
@@ -108,7 +108,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	    };
 	    OpalLoadedList.prototype.elementAttached = function () {
-	        if (this.props['preloading']) {
+	        if (this.props.preloading) {
 	            this._load();
 	        }
 	        else {
@@ -116,7 +116,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    OpalLoadedList.prototype.checkLoading = function () {
-	        if (this.props['query'] === this._lastRequestedQuery &&
+	        if (this.props.query === this._lastRequestedQuery &&
 	            (this.loading || this.total !== undefined && this.list.length == this.total)) {
 	            return;
 	        }
@@ -130,12 +130,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.loading) {
 	            this._requestCallback.cancel();
 	        }
-	        var query = this._lastRequestedQuery = this.props['query'];
+	        var query = this._lastRequestedQuery = this.props.query;
 	        var dataProvider = this.dataProvider;
 	        var infinite = dataProvider.getItems.length >= 2;
 	        var args = [query];
 	        if (infinite) {
-	            args.unshift(this.props['count'], this.list.length ? this.list.get(-1).value : undefined);
+	            args.unshift(this.props.count, this.list.length ? this.list.get(-1).value : undefined);
 	        }
 	        this.loading = true;
 	        dataProvider.getItems.apply(dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {

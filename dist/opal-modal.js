@@ -96,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalModal.prototype.ready = function () {
-	        if (this.props['opened']) {
+	        if (this.props.opened) {
 	            this._open();
 	        }
 	    };
@@ -109,21 +109,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    OpalModal.prototype.open = function () {
-	        if (this.props['opened']) {
+	        if (this.props.opened) {
 	            return false;
 	        }
-	        this.props['opened'] = true;
+	        this.props.opened = true;
 	        return true;
 	    };
 	    OpalModal.prototype.close = function () {
-	        if (!this.props['opened']) {
+	        if (!this.props.opened) {
 	            return false;
 	        }
-	        this.props['opened'] = false;
+	        this.props.opened = false;
 	        return true;
 	    };
 	    OpalModal.prototype.toggle = function (value) {
-	        return (this.props['opened'] = value === undefined ? !this.props['opened'] : value);
+	        return (this.props.opened = value === undefined ? !this.props.opened : value);
 	    };
 	    OpalModal.prototype._open = function () {
 	        if (openedModals.length) {
@@ -139,7 +139,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                body.style.marginRight = body.offsetWidth - initialBodyWidth + 'px';
 	            }
 	        }
-	        this.props['opened'] = true;
+	        this.props.opened = true;
 	        openedModals.unshift(this);
 	        this.focus();
 	    };
@@ -148,7 +148,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (index) {
 	            openedModals[index - 1].close();
 	        }
-	        this.props['opened'] = false;
+	        this.props.opened = false;
 	        openedModals.shift();
 	        if (openedModals.length) {
 	            openedModals[0].element.classList.remove('_overlapped');
@@ -197,7 +197,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            'btn-close': {
 	                click: function () {
-	                    this.props['opened'] = false;
+	                    this.props.opened = false;
 	                    this.emit('close');
 	                }
 	            }

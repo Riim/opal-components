@@ -118,34 +118,34 @@ export default class OpalCalendar extends Component {
 
 	initialize() {
 		let i18n = (this.constructor as typeof OpalCalendar).i18n;
-		let sundayFirst = i18n['sundayFirst'];
+		let sundayFirst = i18n.sundayFirst;
 
-		this.weekDays = sundayFirst ? i18n['weekDays'] : i18n['weekDays'].slice(1).concat(i18n['weekDays'][0]);
+		this.weekDays = sundayFirst ? i18n.weekDays : i18n.weekDays.slice(1).concat(i18n.weekDays[0]);
 		this.weekDaysShort = sundayFirst ?
-			i18n['weekDaysShort'] :
-			i18n['weekDaysShort'].slice(1).concat(i18n['weekDaysShort'][0]);
+			i18n.weekDaysShort :
+			i18n.weekDaysShort.slice(1).concat(i18n.weekDaysShort[0]);
 
 		define(this, {
 			fromDate(this: OpalCalendar) {
-				let fromDate: string | undefined = this.props['fromDate'];
+				let fromDate: string | undefined = this.props.fromDate;
 
 				if (fromDate) {
 					return fromDate == 'today' ? getTodayDate() : parseDate(fromDate);
 				}
 
-				let toDate: string | undefined = this.props['toDate'];
+				let toDate: string | undefined = this.props.toDate;
 				let date = toDate && toDate != 'today' ? parseDate(toDate) : new Date();
 				return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
 			},
 
 			toDate(this: OpalCalendar) {
-				let toDate: string | undefined = this.props['toDate'];
+				let toDate: string | undefined = this.props.toDate;
 
 				if (toDate) {
 					return toDate == 'today' ? getTodayDate() : parseDate(toDate);
 				}
 
-				let fromDate: string | undefined = this.props['fromDate'];
+				let fromDate: string | undefined = this.props.fromDate;
 				let date = fromDate && fromDate != 'today' ? parseDate(fromDate) : new Date();
 				return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
 			},
@@ -169,7 +169,7 @@ export default class OpalCalendar extends Component {
 			},
 
 			value(this: OpalCalendar) {
-				let value = this.props['value'];
+				let value = this.props.value;
 				return value ? parseDate(value) : null;
 			}
 		});
@@ -208,7 +208,7 @@ export default class OpalCalendar extends Component {
 			},
 
 			days(this: OpalCalendar, cell: any, oldDays: TDays | undefined): TDays {
-				let dateDelimiter = this.props['dateDelimiter'];
+				let dateDelimiter = this.props.dateDelimiter;
 
 				let fromDate = this.fromDate;
 				let toDate = this.toDate;
@@ -352,7 +352,7 @@ export default class OpalCalendar extends Component {
 		dayEl.setAttribute('selected', '');
 
 		this._currentlyDateSelect = true;
-		this.props['value'] = dayEl.dataset['date'];
+		this.props.value = dayEl.dataset.date;
 
 		this.emit('change');
 	}

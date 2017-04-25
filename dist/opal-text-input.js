@@ -86,24 +86,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalTextInput.prototype.initialize = function () {
 	        cellx_1.define(this, {
 	            btnClearShown: function () {
-	                return !!this.props['value'] && !this.props['loading'];
+	                return !!this.props.value && !this.props.loading;
 	            }
 	        });
 	    };
 	    OpalTextInput.prototype.ready = function () {
 	        var props = this.props;
-	        var value = props['value'];
+	        var value = props.value;
 	        var textField = this.$('text-field');
 	        if (value) {
 	            textField.value = value;
 	        }
 	        else {
-	            var storeKey = props['storeKey'];
+	            var storeKey = props.storeKey;
 	            if (storeKey) {
-	                props['value'] = localStorage.getItem(storeKey) || '';
+	                props.value = localStorage.getItem(storeKey) || '';
 	            }
 	        }
-	        if (this.props['multiline'] && this.props['autoHeight']) {
+	        if (this.props.multiline && this.props.autoHeight) {
 	            var offsetHeight = textField.offsetHeight;
 	            if (offsetHeight) {
 	                this._initialHeight = offsetHeight + textField.scrollHeight - textField.clientHeight;
@@ -118,7 +118,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                textField.style.height = this._initialHeight + 'px';
 	            }
 	        }
-	        if (props['focused']) {
+	        if (props.focused) {
 	            this.focus();
 	        }
 	    };
@@ -148,10 +148,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    Object.defineProperty(OpalTextInput.prototype, "value", {
 	        get: function () {
-	            return this.props['value'];
+	            return this.props.value;
 	        },
 	        set: function (value) {
-	            this.props['value'] = value;
+	            this.props.value = value;
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -169,11 +169,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this;
 	    };
 	    OpalTextInput.prototype.enable = function () {
-	        this.props['disabled'] = false;
+	        this.props.disabled = false;
 	        return this;
 	    };
 	    OpalTextInput.prototype.disable = function () {
-	        this.props['disabled'] = true;
+	        this.props.disabled = true;
 	        return this;
 	    };
 	    return OpalTextInput;
@@ -204,13 +204,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var _this = this;
 	                    nextTick(function () {
 	                        if (document.activeElement == evt.target) {
-	                            _this.props['focused'] = true;
+	                            _this.props.focused = true;
 	                            _this.emit('focus');
 	                        }
 	                    });
 	                },
 	                blur: function () {
-	                    this.props['focused'] = false;
+	                    this.props.focused = false;
 	                    this.emit('blur');
 	                },
 	                input: function (evt) {
@@ -218,7 +218,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.emit({ type: 'input', initialEvent: evt });
 	                },
 	                change: function (evt) {
-	                    var storeKey = this.props['storeKey'];
+	                    var storeKey = this.props.storeKey;
 	                    if (storeKey) {
 	                        localStorage.setItem(storeKey, evt.target.value);
 	                    }
@@ -226,7 +226,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                },
 	                keydown: function (evt) {
 	                    var _this = this;
-	                    if (this.props['multiline'] && this.props['autoHeight']) {
+	                    if (this.props.multiline && this.props.autoHeight) {
 	                        setTimeout(function () {
 	                            _this._fixHeight();
 	                        }, 1);
@@ -240,7 +240,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    this.emit({ type: 'keypress', initialEvent: evt });
 	                },
 	                keyup: function (evt) {
-	                    if (this.props['multiline'] && this.props['autoHeight']) {
+	                    if (this.props.multiline && this.props.autoHeight) {
 	                        this._fixHeight();
 	                    }
 	                    this.emit({ type: 'keyup', initialEvent: evt });

@@ -82,7 +82,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalDropdown.prototype.ready = function () {
-	        if (this.props['opened']) {
+	        if (this.props.opened) {
 	            this._open();
 	        }
 	    };
@@ -92,21 +92,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    OpalDropdown.prototype.open = function () {
-	        if (this.props['opened']) {
+	        if (this.props.opened) {
 	            return false;
 	        }
-	        this.props['opened'] = true;
+	        this.props.opened = true;
 	        return true;
 	    };
 	    OpalDropdown.prototype.close = function () {
-	        if (!this.props['opened']) {
+	        if (!this.props.opened) {
 	            return false;
 	        }
-	        this.props['opened'] = false;
+	        this.props.opened = false;
 	        return true;
 	    };
 	    OpalDropdown.prototype.toggle = function (value) {
-	        return (this.props['opened'] = value === undefined ? !this.props['opened'] : value);
+	        return (this.props.opened = value === undefined ? !this.props.opened : value);
 	    };
 	    OpalDropdown.prototype._open = function () {
 	        var _this = this;
@@ -133,7 +133,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                elStyle.left = Math.max(-containerClientRect.left, docElClientWidth - elClientRect.right) + 'px';
 	            }
 	        }
-	        if (this.props['autoHeight']) {
+	        if (this.props.autoHeight) {
 	            var docElClientHeight = docEl.clientHeight;
 	            var margin = elClientRect.top - containerClientRect.bottom;
 	            var excess = elClientRect.bottom + margin - docElClientHeight;
@@ -152,9 +152,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	        }
-	        if (this.props['autoClosing']) {
+	        if (this.props.autoClosing) {
 	            setTimeout(function () {
-	                if (_this.props['opened']) {
+	                if (_this.props.opened) {
 	                    _this._documentClickListening = _this.listenTo(document, 'click', _this._onDocumentClick);
 	                }
 	            }, 1);

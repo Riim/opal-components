@@ -21,7 +21,7 @@ let nextTick = Utils.nextTick;
 	events: {
 		input: {
 			change(evt: Event) {
-				this.emit((this.props['checked'] = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
+				this.emit((this.props.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
 				this.emit('change');
 			}
 		},
@@ -30,14 +30,14 @@ let nextTick = Utils.nextTick;
 			focus(evt: Event) {
 				nextTick(() => {
 					if (document.activeElement == evt.target) {
-						this.props['focused'] = true;
+						this.props.focused = true;
 						this.emit('focus');
 					}
 				});
 			},
 
 			blur() {
-				this.props['focused'] = false;
+				this.props.focused = false;
 				this.emit('blur');
 			}
 		}
@@ -51,17 +51,17 @@ export default class OpalSwitch extends Component {
 	initialize() {
 		define(this, {
 			_tabIndex(this: OpalSwitch): number {
-				return this.props['disabled'] ? -1 : this.props['tabIndex'];
+				return this.props.disabled ? -1 : this.props.tabIndex;
 			}
 		});
 	}
 
 	ready() {
-		if (this.props['checked']) {
+		if (this.props.checked) {
 			(this.$('input') as HTMLInputElement).checked = true;
 		}
 
-		if (this.props['focused']) {
+		if (this.props.focused) {
 			this.focus();
 		}
 	}
@@ -86,23 +86,23 @@ export default class OpalSwitch extends Component {
 
 			let props = this.props;
 
-			if (!props['disabled']) {
-				this.emit((props['checked'] = !props['checked']) ? 'check' : 'uncheck');
+			if (!props.disabled) {
+				this.emit((props.checked = !props.checked) ? 'check' : 'uncheck');
 				this.emit('change');
 			}
 		}
 	}
 
 	get checked(): boolean {
-		return this.props['checked'];
+		return this.props.checked;
 	}
 	set checked(checked: boolean) {
-		this.props['checked'] = checked;
+		this.props.checked = checked;
 	}
 
 	check(): boolean {
-		if (!this.props['checked']) {
-			this.props['checked'] = true;
+		if (!this.props.checked) {
+			this.props.checked = true;
 			return true;
 		}
 
@@ -110,8 +110,8 @@ export default class OpalSwitch extends Component {
 	}
 
 	uncheck(): boolean {
-		if (this.props['checked']) {
-			this.props['checked'] = false;
+		if (this.props.checked) {
+			this.props.checked = false;
 			return true;
 		}
 
@@ -119,7 +119,7 @@ export default class OpalSwitch extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.props['checked'] = value === undefined ? !this.props['checked'] : value);
+		return (this.props.checked = value === undefined ? !this.props.checked : value);
 	}
 
 	focus(): OpalSwitch {
@@ -133,12 +133,12 @@ export default class OpalSwitch extends Component {
 	}
 
 	enable(): OpalSwitch {
-		this.props['disabled'] = false;
+		this.props.disabled = false;
 		return this;
 	}
 
 	disable(): OpalSwitch {
-		this.props['disabled'] = true;
+		this.props.disabled = true;
 		return this;
 	}
 }

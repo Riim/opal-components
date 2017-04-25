@@ -23,19 +23,19 @@ let nextTick = Utils.nextTick;
 			focus(evt: Event) {
 				nextTick(() => {
 					if (document.activeElement == evt.target) {
-						this.props['focused'] = true;
+						this.props.focused = true;
 					}
 				});
 			},
 
 			blur() {
-				this.props['focused'] = false;
+				this.props.focused = false;
 			},
 
 			click(evt: Event) {
 				evt.preventDefault();
 
-				if (!this.props['disabled']) {
+				if (!this.props.disabled) {
 					this.click();
 				}
 			}
@@ -48,13 +48,13 @@ export default class OpalTab extends Component {
 	initialize() {
 		define(this, {
 			_tabIndex(this: OpalTab): number {
-				return this.props['disabled'] ? -1 : this.props['tabIndex'];
+				return this.props.disabled ? -1 : this.props.tabIndex;
 			}
 		});
 	}
 
 	ready() {
-		if (this.props['focused']) {
+		if (this.props.focused) {
 			this.focus();
 		}
 	}
@@ -71,15 +71,15 @@ export default class OpalTab extends Component {
 	}
 
 	get selected(): boolean {
-		return this.props['selected'];
+		return this.props.selected;
 	}
 	set selected(selected: boolean) {
-		this.props['selected'] = selected;
+		this.props.selected = selected;
 	}
 
 	select(): boolean {
-		if (!this.props['selected']) {
-			this.props['selected'] = true;
+		if (!this.props.selected) {
+			this.props.selected = true;
 			return true;
 		}
 
@@ -87,8 +87,8 @@ export default class OpalTab extends Component {
 	}
 
 	deselect(): boolean {
-		if (this.props['selected']) {
-			this.props['selected'] = false;
+		if (this.props.selected) {
+			this.props.selected = false;
 			return true;
 		}
 
@@ -96,7 +96,7 @@ export default class OpalTab extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.props['selected'] = value === undefined ? !this.props['selected'] : value);
+		return (this.props.selected = value === undefined ? !this.props.selected : value);
 	}
 
 	focus(): OpalTab {
@@ -110,12 +110,12 @@ export default class OpalTab extends Component {
 	}
 
 	enable(): OpalTab {
-		this.props['disabled'] = false;
+		this.props.disabled = false;
 		return this;
 	}
 
 	disable(): OpalTab {
-		this.props['disabled'] = true;
+		this.props.disabled = true;
 		return this;
 	}
 }

@@ -82,7 +82,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return _super !== null && _super.apply(this, arguments) || this;
 	    }
 	    OpalPopover.prototype.ready = function () {
-	        if (this.props['opened']) {
+	        if (this.props.opened) {
 	            this._open();
 	        }
 	    };
@@ -92,26 +92,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    OpalPopover.prototype.open = function () {
-	        if (this.props['opened']) {
+	        if (this.props.opened) {
 	            return false;
 	        }
-	        this.props['opened'] = true;
+	        this.props.opened = true;
 	        return true;
 	    };
 	    OpalPopover.prototype.close = function () {
-	        if (!this.props['opened']) {
+	        if (!this.props.opened) {
 	            return false;
 	        }
-	        this.props['opened'] = false;
+	        this.props.opened = false;
 	        return true;
 	    };
 	    OpalPopover.prototype.toggle = function (value) {
-	        return (this.props['opened'] = value === undefined ? !this.props['opened'] : value);
+	        return (this.props.opened = value === undefined ? !this.props.opened : value);
 	    };
 	    OpalPopover.prototype._open = function () {
 	        var _this = this;
-	        if (this.props['autoDirection']) {
-	            var to = this.props['to'];
+	        if (this.props.autoDirection) {
+	            var to = this.props.to;
 	            this._toValueAtOpen = to;
 	            var docEl = document.documentElement;
 	            var containerClientRect = this.element.offsetParent.getBoundingClientRect();
@@ -120,14 +120,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                case 'left': {
 	                    if (elClientRect.left + window.pageXOffset < 0 || (elClientRect.left < 0 &&
 	                        containerClientRect.left < docEl.clientWidth - containerClientRect.right)) {
-	                        this.props['to'] = 'right';
+	                        this.props.to = 'right';
 	                    }
 	                    break;
 	                }
 	                case 'top': {
 	                    if (elClientRect.top + window.pageYOffset < 0 || (elClientRect.top < 0 &&
 	                        containerClientRect.top < docEl.clientHeight - containerClientRect.bottom)) {
-	                        this.props['to'] = 'bottom';
+	                        this.props.to = 'bottom';
 	                    }
 	                    break;
 	                }
@@ -136,7 +136,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        containerClientRect.left > docEl.clientWidth - containerClientRect.right &&
 	                        containerClientRect.left + window.pageXOffset >=
 	                            elClientRect.right - containerClientRect.right) {
-	                        this.props['to'] = 'left';
+	                        this.props.to = 'left';
 	                    }
 	                    break;
 	                }
@@ -144,23 +144,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    if (elClientRect.bottom > docEl.clientHeight &&
 	                        containerClientRect.top > docEl.clientHeight - containerClientRect.bottom &&
 	                        containerClientRect.top + window.pageYOffset >= elClientRect.bottom - containerClientRect.bottom) {
-	                        this.props['to'] = 'top';
+	                        this.props.to = 'top';
 	                    }
 	                    break;
 	                }
 	            }
 	        }
-	        if (this.props['autoClosing']) {
+	        if (this.props.autoClosing) {
 	            setTimeout(function () {
-	                if (_this.props['opened']) {
+	                if (_this.props.opened) {
 	                    _this._documentClickListening = _this.listenTo(document, 'click', _this._onDocumentClick);
 	                }
 	            }, 1);
 	        }
 	    };
 	    OpalPopover.prototype._close = function () {
-	        if (this.props['autoDirection']) {
-	            this.props['to'] = this._toValueAtOpen;
+	        if (this.props.autoDirection) {
+	            this.props.to = this._toValueAtOpen;
 	        }
 	        if (this._documentClickListening) {
 	            this._documentClickListening.stop();

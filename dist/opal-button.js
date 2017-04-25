@@ -85,12 +85,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalButton.prototype.initialize = function () {
 	        cellx_1.define(this, {
 	            _tabIndex: function () {
-	                return this.props['disabled'] ? -1 : this.props['tabIndex'];
+	                return this.props.disabled ? -1 : this.props.tabIndex;
 	            }
 	        });
 	    };
 	    OpalButton.prototype.ready = function () {
-	        if (this.props['focused']) {
+	        if (this.props.focused) {
 	            this.element.tabIndex = this._tabIndex;
 	            this.focus();
 	        }
@@ -106,13 +106,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalButton.prototype._onDocumentKeyDown = function (evt) {
 	        if (evt.which == 13 /* Enter */) {
 	            evt.preventDefault();
-	            if (!this.props['disabled']) {
+	            if (!this.props.disabled) {
 	                this.click();
 	            }
 	        }
 	    };
 	    OpalButton.prototype.click = function () {
-	        if (this.props['checkable']) {
+	        if (this.props.checkable) {
 	            this.emit(this.toggle() ? 'check' : 'uncheck');
 	        }
 	        this.emit('click');
@@ -120,30 +120,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    Object.defineProperty(OpalButton.prototype, "checked", {
 	        get: function () {
-	            return this.props['checked'];
+	            return this.props.checked;
 	        },
 	        set: function (checked) {
-	            this.props['checked'] = checked;
+	            this.props.checked = checked;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
 	    OpalButton.prototype.check = function () {
-	        if (!this.props['checked']) {
-	            this.props['checked'] = true;
+	        if (!this.props.checked) {
+	            this.props.checked = true;
 	            return true;
 	        }
 	        return false;
 	    };
 	    OpalButton.prototype.uncheck = function () {
-	        if (this.props['checked']) {
-	            this.props['checked'] = false;
+	        if (this.props.checked) {
+	            this.props.checked = false;
 	            return true;
 	        }
 	        return false;
 	    };
 	    OpalButton.prototype.toggle = function (value) {
-	        return (this.props['checked'] = value === undefined ? !this.props['checked'] : value);
+	        return (this.props.checked = value === undefined ? !this.props.checked : value);
 	    };
 	    OpalButton.prototype.focus = function () {
 	        this.element.focus();
@@ -154,11 +154,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this;
 	    };
 	    OpalButton.prototype.enable = function () {
-	        this.props['disabled'] = false;
+	        this.props.disabled = false;
 	        return this;
 	    };
 	    OpalButton.prototype.disable = function () {
-	        this.props['disabled'] = true;
+	        this.props.disabled = true;
 	        return this;
 	    };
 	    return OpalButton;
@@ -192,7 +192,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        if (_this.element.tagName.indexOf('-', 1) != -1) {
 	                            _this._documentKeyDownListening = _this.listenTo(document, 'keydown', _this._onDocumentKeyDown);
 	                        }
-	                        _this.props['focused'] = true;
+	                        _this.props.focused = true;
 	                        _this.emit('focus');
 	                    });
 	                },
@@ -200,11 +200,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    if (this._documentKeyDownListening) {
 	                        this._documentKeyDownListening.stop();
 	                    }
-	                    this.props['focused'] = false;
+	                    this.props.focused = false;
 	                    this.emit('blur');
 	                },
 	                click: function () {
-	                    if (!this.props['disabled']) {
+	                    if (!this.props.disabled) {
 	                        this.click();
 	                    }
 	                }

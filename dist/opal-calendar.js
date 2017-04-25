@@ -92,27 +92,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    OpalCalendar.prototype.initialize = function () {
 	        var i18n = this.constructor.i18n;
-	        var sundayFirst = i18n['sundayFirst'];
-	        this.weekDays = sundayFirst ? i18n['weekDays'] : i18n['weekDays'].slice(1).concat(i18n['weekDays'][0]);
+	        var sundayFirst = i18n.sundayFirst;
+	        this.weekDays = sundayFirst ? i18n.weekDays : i18n.weekDays.slice(1).concat(i18n.weekDays[0]);
 	        this.weekDaysShort = sundayFirst ?
-	            i18n['weekDaysShort'] :
-	            i18n['weekDaysShort'].slice(1).concat(i18n['weekDaysShort'][0]);
+	            i18n.weekDaysShort :
+	            i18n.weekDaysShort.slice(1).concat(i18n.weekDaysShort[0]);
 	        cellx_1.define(this, {
 	            fromDate: function () {
-	                var fromDate = this.props['fromDate'];
+	                var fromDate = this.props.fromDate;
 	                if (fromDate) {
 	                    return fromDate == 'today' ? getTodayDate() : parseDate_1.default(fromDate);
 	                }
-	                var toDate = this.props['toDate'];
+	                var toDate = this.props.toDate;
 	                var date = toDate && toDate != 'today' ? parseDate_1.default(toDate) : new Date();
 	                return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
 	            },
 	            toDate: function () {
-	                var toDate = this.props['toDate'];
+	                var toDate = this.props.toDate;
 	                if (toDate) {
 	                    return toDate == 'today' ? getTodayDate() : parseDate_1.default(toDate);
 	                }
-	                var fromDate = this.props['fromDate'];
+	                var fromDate = this.props.fromDate;
 	                var date = fromDate && fromDate != 'today' ? parseDate_1.default(fromDate) : new Date();
 	                return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
 	            },
@@ -130,7 +130,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return years;
 	            },
 	            value: function () {
-	                var value = this.props['value'];
+	                var value = this.props.value;
 	                return value ? parseDate_1.default(value) : null;
 	            }
 	        });
@@ -161,7 +161,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return this.shownYear == this.toYear && this.shownMonth == 11;
 	            },
 	            days: function (cell, oldDays) {
-	                var dateDelimiter = this.props['dateDelimiter'];
+	                var dateDelimiter = this.props.dateDelimiter;
 	                var fromDate = this.fromDate;
 	                var toDate = this.toDate;
 	                var value = this.value;
@@ -272,7 +272,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        dayEl.setAttribute('selected', '');
 	        this._currentlyDateSelect = true;
-	        this.props['value'] = dayEl.dataset['date'];
+	        this.props.value = dayEl.dataset.date;
 	        this.emit('change');
 	    };
 	    return OpalCalendar;

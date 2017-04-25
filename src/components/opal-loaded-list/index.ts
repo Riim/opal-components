@@ -100,7 +100,7 @@ export default class OpalLoadedList extends Component {
 	loaderShown: boolean;
 
 	initialize() {
-		let dataProvider = Function(`return this.${ this.props['dataprovider'] };`).call(this.ownerComponent || window);
+		let dataProvider = Function(`return this.${ this.props.dataprovider };`).call(this.ownerComponent || window);
 
 		if (!dataProvider) {
 			throw new TypeError('dataProvider is not defined');
@@ -130,7 +130,7 @@ export default class OpalLoadedList extends Component {
 	}
 
 	elementAttached() {
-		if (this.props['preloading']) {
+		if (this.props.preloading) {
 			this._load();
 		} else {
 			this.checkLoading();
@@ -139,7 +139,7 @@ export default class OpalLoadedList extends Component {
 
 	checkLoading() {
 		if (
-			this.props['query'] === this._lastRequestedQuery &&
+			this.props.query === this._lastRequestedQuery &&
 				(this.loading || this.total !== undefined && this.list.length == this.total)
 		) {
 			return;
@@ -159,13 +159,13 @@ export default class OpalLoadedList extends Component {
 			this._requestCallback.cancel();
 		}
 
-		let query: string | undefined = this._lastRequestedQuery = this.props['query'];
+		let query: string | undefined = this._lastRequestedQuery = this.props.query;
 		let dataProvider = this.dataProvider;
 		let infinite = dataProvider.getItems.length >= 2;
 		let args = [query];
 
 		if (infinite) {
-			args.unshift(this.props['count'], this.list.length ? this.list.get(-1).value : undefined);
+			args.unshift(this.props.count, this.list.length ? this.list.get(-1).value : undefined);
 		}
 
 		this.loading = true;

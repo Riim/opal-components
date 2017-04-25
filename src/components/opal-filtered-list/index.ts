@@ -14,7 +14,7 @@ import template = require('./index.beml');
 	events: {
 		'query-input': {
 			input(evt: IEvent) {
-				(this.$('loaded-list') as OpalLoadedList).props['query'] = (evt.target as OpalTextInput).value;
+				(this.$('loaded-list') as OpalLoadedList).props.query = (evt.target as OpalTextInput).value;
 			}
 		}
 	}

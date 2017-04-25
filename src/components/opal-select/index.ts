@@ -51,7 +51,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		':component': {
 			'property-value-change'(evt: IEvent) {
 				let vm = this.viewModel;
-				let value = evt['value'];
+				let value = evt.value;
 
 				if (value) {
 					if (!Array.isArray(value)) {
@@ -62,7 +62,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 						let vmItemValueFieldName = this._viewModelItemValueFieldName;
 						let vmItemTextFieldName = this._viewModelItemTextFieldName;
 
-						if (this.props['multiple']) {
+						if (this.props.multiple) {
 							this.options.forEach(option => {
 								let optionValue = option.value;
 
@@ -112,12 +112,12 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 		button: {
 			focus() {
-				this.props['focused'] = true;
+				this.props.focused = true;
 				this.emit('focus');
 			},
 
 			blur() {
-				this.props['focused'] = false;
+				this.props.focused = false;
 				this.emit('blur');
 			},
 
@@ -144,7 +144,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 					[this._viewModelItemTextFieldName]: (evt.target as OpalSelectOption).text
 				};
 
-				if (this.props['multiple']) {
+				if (this.props.multiple) {
 					vm.add(vmItem);
 				} else {
 					if (vm.length) {
@@ -161,7 +161,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 			},
 
 			'<opal-select-option>deselect'(evt: IEvent) {
-				if (this.props['multiple']) {
+				if (this.props.multiple) {
 					this.viewModel.remove(
 						this.viewModel.get((evt.target as OpalSelectOption).value, this._viewModelItemValueFieldName)
 					);
@@ -197,7 +197,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				let loadedList = this.$('loaded-list') as OpalLoadedList;
 
 				if (loadedList) {
-					loadedList.props['query'] = '';
+					loadedList.props.query = '';
 				}
 
 				this.emit('input');
@@ -208,7 +208,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 					[this._viewModelItemTextFieldName]: itemText
 				};
 
-				if (this.props['multiple']) {
+				if (this.props.multiple) {
 					vm.add(vmItem);
 				} else {
 					if (vm.length) {
@@ -295,10 +295,10 @@ export default class OpalSelect extends Component {
 	initialize() {
 		let props = this.props;
 
-		let dataList = props['datalist'];
+		let dataList = props.datalist;
 
 		if (dataList) {
-			let dataListItemSchema = props['datalistItemSchema'];
+			let dataListItemSchema = props.datalistItemSchema;
 
 			this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
 			this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
@@ -312,8 +312,8 @@ export default class OpalSelect extends Component {
 			});
 		}
 
-		let vm = props['viewModel'];
-		let vmItemSchema = props['viewModelItemSchema'];
+		let vm = props.viewModel;
+		let vmItemSchema = props.viewModelItemSchema;
 
 		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
@@ -340,7 +340,7 @@ export default class OpalSelect extends Component {
 
 			text(this: OpalSelect): string {
 				return this.viewModel.map(item => item[this._viewModelItemTextFieldName]).join(', ') ||
-					this.props['placeholder'];
+					this.props.placeholder;
 			}
 		});
 	}
@@ -351,10 +351,10 @@ export default class OpalSelect extends Component {
 
 		let props = this.props;
 
-		if (props['viewModel']) {
+		if (props.viewModel) {
 			this._updateOptions();
 		} else {
-			let value = props['value'];
+			let value = props.value;
 			let selectedOptions: Array<OpalSelectOption>;
 
 			if (value) {
@@ -363,7 +363,7 @@ export default class OpalSelect extends Component {
 				}
 
 				if (value.length) {
-					if (props['multiple']) {
+					if (props.multiple) {
 						selectedOptions = this.options.filter(option => value.indexOf(option.value) != -1);
 					} else {
 						value = value[0];
@@ -377,7 +377,7 @@ export default class OpalSelect extends Component {
 					selectedOptions = [];
 				}
 			} else {
-				if (props['multiple']) {
+				if (props.multiple) {
 					selectedOptions = this.options.filter(option => option.selected);
 				} else {
 					let selectedOption = (this.options as any).find((option: OpalSelectOption) => option.selected);
@@ -486,7 +486,7 @@ export default class OpalSelect extends Component {
 
 		this._documentFocusListening.stop();
 
-		if (!this.props['focused']) {
+		if (!this.props.focused) {
 			(this._documentKeyDownListening as IDisposableListening).stop();
 			this._documentKeyDownListening = null;
 		}
@@ -494,7 +494,7 @@ export default class OpalSelect extends Component {
 		(this.$('button') as OpalButton).uncheck();
 		(this.$('menu') as OpalDropdown).close();
 
-		if (this.props['multiple']) {
+		if (this.props.multiple) {
 			if (!isEqualArray(
 				this.viewModel.map(item => item[this._viewModelItemValueFieldName]),
 				this._valueAtOpening
@@ -525,7 +525,7 @@ export default class OpalSelect extends Component {
 				evt.preventDefault();
 
 				if (this._opened) {
-					if (this.props['focused']) {
+					if (this.props.focused) {
 						this.close();
 					}
 				} else {
@@ -546,11 +546,11 @@ export default class OpalSelect extends Component {
 						let options = this.options;
 
 						for (let i = 1, l = options.length; i < l; i++) {
-							if (options[i].props['focused']) {
+							if (options[i].props.focused) {
 								do {
 									let option = options[--i];
 
-									if (!option.props['disabled']) {
+									if (!option.props.disabled) {
 										document.body.classList.remove('_no-focus-highlight');
 										option.focus();
 										break;
@@ -579,11 +579,11 @@ export default class OpalSelect extends Component {
 						let options = this.options;
 
 						for (let i = 0, l = options.length - 1; i < l; i++) {
-							if (options[i].props['focused']) {
+							if (options[i].props.focused) {
 								do {
 									let option = options[++i];
 
-									if (!option.props['disabled']) {
+									if (!option.props.disabled) {
 										document.body.classList.remove('_no-focus-highlight');
 										option.focus();
 										break;
@@ -616,7 +616,7 @@ export default class OpalSelect extends Component {
 		for (let i = 0, l = options.length; i < l; i++) {
 			let option = options[i];
 
-			if (!option.props['disabled']) {
+			if (!option.props.disabled) {
 				if (option.selected) {
 					optionForFocus = option;
 					break;

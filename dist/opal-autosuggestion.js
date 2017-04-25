@@ -88,8 +88,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return _this;
 	    }
 	    OpalAutosuggestion.prototype.initialize = function () {
-	        this.dataProvider = Function("return this." + this.props['dataprovider'] + ";")
-	            .call(this.ownerComponent || window);
+	        this.dataProvider = Function("return this." + this.props.dataprovider + ";").call(this.ownerComponent || window);
 	        cellx_1.define(this, {
 	            list: new cellx_1.ObservableList(),
 	            _loadingPlanned: false,
@@ -97,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            loaderShown: function () {
 	                return this._loadingPlanned || this.loading;
 	            },
-	            selectedItem: this.props['selectedItem']
+	            selectedItem: this.props.selectedItem
 	        });
 	    };
 	    OpalAutosuggestion.prototype.elementAttached = function () {
@@ -135,7 +134,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.openMenu();
 	    };
 	    OpalAutosuggestion.prototype._onLoaderShownChange = function (evt) {
-	        this.$('text-input').props['loading'] = evt['value'];
+	        this.$('text-input').props.loading = evt.value;
 	    };
 	    OpalAutosuggestion.prototype._onDocumentFocus = function (evt) {
 	        if (!this.element.contains(evt.target.parentNode)) {
@@ -167,11 +166,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var focusedListItem = this._focusedListItem;
 	                if (focusedListItem) {
 	                    var focusedListItemDataSet = focusedListItem.dataset;
-	                    this.$('text-input').value = focusedListItemDataSet['text'];
+	                    this.$('text-input').value = focusedListItemDataSet.text;
 	                    this.closeMenu();
 	                    this._setSelectedItem({
-	                        value: focusedListItemDataSet['value'],
-	                        text: focusedListItemDataSet['text']
+	                        value: focusedListItemDataSet.value,
+	                        text: focusedListItemDataSet.text
 	                    });
 	                }
 	                break;
@@ -193,12 +192,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalAutosuggestion.prototype._onListItemClick = function (evt, listItem) {
 	        var textInput = this.$('text-input');
 	        var listItemDataSet = listItem.dataset;
-	        textInput.value = listItemDataSet['text'];
+	        textInput.value = listItemDataSet.text;
 	        textInput.focus();
 	        this.closeMenu();
 	        this._setSelectedItem({
-	            value: listItemDataSet['value'],
-	            text: listItemDataSet['text']
+	            value: listItemDataSet.value,
+	            text: listItemDataSet.text
 	        });
 	    };
 	    OpalAutosuggestion.prototype._load = function () {
@@ -206,7 +205,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var dataProvider = this.dataProvider;
 	        var args = [this.$('text-input').value];
 	        if (dataProvider.getItems.length >= 2) {
-	            args.unshift(this.props['count']);
+	            args.unshift(this.props.count);
 	        }
 	        dataProvider.getItems.apply(dataProvider, args)
 	            .then(this._requestCallback = this.registerCallback(this._itemsRequestCallback));
@@ -308,7 +307,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    // 1. выбираем что-то;
 	                    // 2. изменяем запрос так чтобы ничего не нашлось;
 	                    // 3. убираем фокус.
-	                    if (!this.$('menu').props['opened']) {
+	                    if (!this.$('menu').props.opened) {
 	                        this._setSelectedItemOfList();
 	                    }
 	                },
@@ -316,7 +315,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var _this = this;
 	                    this._isInputLast = true;
 	                    this._clearList();
-	                    if (evt.target.value.length >= this.props['minQueryLength']) {
+	                    if (evt.target.value.length >= this.props.minQueryLength) {
 	                        this._loadingPlanned = true;
 	                        this._loadingTimeout = this.setTimeout(function () {
 	                            _this._loadingPlanned = false;

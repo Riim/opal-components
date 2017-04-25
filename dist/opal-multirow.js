@@ -99,7 +99,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	    };
 	    OpalMultirow.prototype.ready = function () {
-	        var presetRowCount = this._presetRowCount = filter.call(this.element.getElementsByClassName('opal-multirow-row'), function (rowEl) { return rowEl.$c.props['preset']; }).length;
+	        var presetRowCount = this._presetRowCount = filter.call(this.element.getElementsByClassName('opal-multirow-row'), function (rowEl) { return rowEl.$c.props.preset; }).length;
 	        if (!presetRowCount) {
 	            this._newRows.add({ key: nextUID() });
 	        }
@@ -116,12 +116,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                '<opal-multirow-row>remove-row-click': function (evt) {
 	                    var _this = this;
 	                    var row = evt.target;
-	                    if (row.props['preset']) {
+	                    if (row.props.preset) {
 	                        this.$('preset-rows-container').element.removeChild(row.element);
 	                        this._presetRowCount--;
 	                    }
 	                    else {
-	                        this._newRows.remove(this._newRows.get(row.parentComponent.element.dataset['key'], 'key'));
+	                        this._newRows.remove(this._newRows.get(row.parentComponent.element.dataset.key, 'key'));
 	                    }
 	                    setTimeout(function () {
 	                        _this.emit('remove-row');

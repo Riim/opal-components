@@ -53,7 +53,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 
 		'btn-close': {
 			click() {
-				this.props['opened'] = false;
+				this.props.opened = false;
 				this.emit('close');
 			}
 		}
@@ -61,7 +61,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 })
 export default class OpalModal extends Component {
 	ready() {
-		if (this.props['opened']) {
+		if (this.props.opened) {
 			this._open();
 		}
 	}
@@ -77,25 +77,25 @@ export default class OpalModal extends Component {
 	}
 
 	open(): boolean {
-		if (this.props['opened']) {
+		if (this.props.opened) {
 			return false;
 		}
 
-		this.props['opened'] = true;
+		this.props.opened = true;
 		return true;
 	}
 
 	close(): boolean {
-		if (!this.props['opened']) {
+		if (!this.props.opened) {
 			return false;
 		}
 
-		this.props['opened'] = false;
+		this.props.opened = false;
 		return true;
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.props['opened'] = value === undefined ? !this.props['opened'] : value);
+		return (this.props.opened = value === undefined ? !this.props.opened : value);
 	}
 
 	_open() {
@@ -115,7 +115,7 @@ export default class OpalModal extends Component {
 			}
 		}
 
-		this.props['opened'] = true;
+		this.props.opened = true;
 		openedModals.unshift(this);
 
 		this.focus();
@@ -128,7 +128,7 @@ export default class OpalModal extends Component {
 			openedModals[index - 1].close();
 		}
 
-		this.props['opened'] = false;
+		this.props.opened = false;
 		openedModals.shift();
 
 		if (openedModals.length) {

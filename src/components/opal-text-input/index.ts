@@ -33,14 +33,14 @@ let nextTick = Utils.nextTick;
 			focus(evt: Event) {
 				nextTick(() => {
 					if (document.activeElement == evt.target) {
-						this.props['focused'] = true;
+						this.props.focused = true;
 						this.emit('focus');
 					}
 				});
 			},
 
 			blur() {
-				this.props['focused'] = false;
+				this.props.focused = false;
 				this.emit('blur');
 			},
 
@@ -50,7 +50,7 @@ let nextTick = Utils.nextTick;
 			},
 
 			change(evt: Event) {
-				let storeKey = this.props['storeKey'];
+				let storeKey = this.props.storeKey;
 
 				if (storeKey) {
 					localStorage.setItem(storeKey, (evt.target as HTMLInputElement).value);
@@ -60,7 +60,7 @@ let nextTick = Utils.nextTick;
 			},
 
 			keydown(evt: Event) {
-				if (this.props['multiline'] && this.props['autoHeight']) {
+				if (this.props.multiline && this.props.autoHeight) {
 					setTimeout(() => {
 						this._fixHeight();
 					}, 1);
@@ -78,7 +78,7 @@ let nextTick = Utils.nextTick;
 			},
 
 			keyup(evt: Event) {
-				if (this.props['multiline'] && this.props['autoHeight']) {
+				if (this.props.multiline && this.props.autoHeight) {
 					this._fixHeight();
 				}
 
@@ -95,27 +95,27 @@ export default class OpalTextInput extends Component {
 	initialize() {
 		define(this, {
 			btnClearShown(this: OpalTextInput): boolean {
-				return !!this.props['value'] && !this.props['loading'];
+				return !!this.props.value && !this.props.loading;
 			}
 		});
 	}
 
 	ready() {
 		let props = this.props;
-		let value = props['value'];
+		let value = props.value;
 		let textField = this.$('text-field') as HTMLInputElement;
 
 		if (value) {
 			textField.value = value;
 		} else {
-			let storeKey = props['storeKey'];
+			let storeKey = props.storeKey;
 
 			if (storeKey) {
-				props['value'] = localStorage.getItem(storeKey) || '';
+				props.value = localStorage.getItem(storeKey) || '';
 			}
 		}
 
-		if (this.props['multiline'] && this.props['autoHeight']) {
+		if (this.props.multiline && this.props.autoHeight) {
 			let offsetHeight = textField.offsetHeight;
 
 			if (offsetHeight) {
@@ -132,7 +132,7 @@ export default class OpalTextInput extends Component {
 			}
 		}
 
-		if (props['focused']) {
+		if (props.focused) {
 			this.focus();
 		}
 	}
@@ -168,10 +168,10 @@ export default class OpalTextInput extends Component {
 	}
 
 	get value(): string {
-		return this.props['value'];
+		return this.props.value;
 	}
 	set value(value: string) {
-		this.props['value'] = value;
+		this.props.value = value;
 	}
 
 	clear(): OpalTextInput {
@@ -190,12 +190,12 @@ export default class OpalTextInput extends Component {
 	}
 
 	enable(): OpalTextInput {
-		this.props['disabled'] = false;
+		this.props.disabled = false;
 		return this;
 	}
 
 	disable(): OpalTextInput {
-		this.props['disabled'] = true;
+		this.props.disabled = true;
 		return this;
 	}
 }

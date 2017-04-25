@@ -48,7 +48,7 @@ export default class OpalSlider extends Component {
 
 	initialize() {
 		let props = this.props;
-		let range = props['range'];
+		let range = props.range;
 
 		if (range) {
 			define(this, {
@@ -56,8 +56,8 @@ export default class OpalSlider extends Component {
 				_secondInputValue: range[1],
 
 				_firstInputWidth(this: OpalSlider): number {
-					let min = props['min'];
-					let all = props['max'] - min;
+					let min = props.min;
+					let all = props.max - min;
 
 					return Math.round(
 						(((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) / 2) * 1e5
@@ -68,13 +68,13 @@ export default class OpalSlider extends Component {
 	}
 
 	get value(): number | Array<number> {
-		return this.props['range'] ?
+		return this.props.range ?
 			[this._firstInputValue, this._secondInputValue] :
 			+(this.$('input') as HTMLInputElement).value;
 	}
 
 	set value(value: number | Array<number>) {
-		if (this.props['range']) {
+		if (this.props.range) {
 			(this.$('first-input') as HTMLInputElement).value = this._firstInputValue = value[0];
 			(this.$('second-input') as HTMLInputElement).value = this._secondInputValue = value[1];
 		} else {

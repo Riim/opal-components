@@ -20,12 +20,12 @@ let filter = Array.prototype.filter;
 			'<opal-multirow-row>remove-row-click'(evt: IEvent) {
 				let row = evt.target as OpalMultirowRow;
 
-				if (row.props['preset']) {
+				if (row.props.preset) {
 					(this.$('preset-rows-container') as Component).element.removeChild(row.element);
 					this._presetRowCount--;
 				} else {
 					this._newRows.remove(
-						this._newRows.get((row.parentComponent as Component).element.dataset['key'], 'key')
+						this._newRows.get((row.parentComponent as Component).element.dataset.key, 'key')
 					);
 				}
 
@@ -74,7 +74,7 @@ export default class OpalMultirow extends Component {
 	ready() {
 		let presetRowCount = this._presetRowCount = filter.call(
 			this.element.getElementsByClassName('opal-multirow-row'),
-			(rowEl: IComponentElement): boolean => rowEl.$c.props['preset']
+			(rowEl: IComponentElement): boolean => rowEl.$c.props.preset
 		).length;
 
 		if (!presetRowCount) {

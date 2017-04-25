@@ -96,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        events: {
 	            'query-input': {
 	                input: function (evt) {
-	                    this.$('loaded-list').props['query'] = evt.target.value;
+	                    this.$('loaded-list').props.query = evt.target.value;
 	                }
 	            }
 	        }

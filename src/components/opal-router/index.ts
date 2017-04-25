@@ -47,7 +47,7 @@ export default class OpalRouter extends Component {
 		let routes = this._routes;
 
 		forEach.call(this.element.querySelectorAll('opal-route'), (routeEl: IComponentElement) => {
-			let path: string = routeEl.$c.props['path'];
+			let path: string = routeEl.$c.props.path;
 			let rePath: Array<string> | string = [];
 			let props: Array<IRouteProperty> = [];
 
@@ -87,7 +87,7 @@ export default class OpalRouter extends Component {
 				path,
 				rePath: RegExp(`^${ rePath }${ rePath.charAt(rePath.length - 1) == '\/' ? '?' : '\/?' }$`),
 				properties: props,
-				componentName: routeEl.$c.props['component']
+				componentName: routeEl.$c.props.component
 			});
 		});
 	}

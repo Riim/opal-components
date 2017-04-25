@@ -82,9 +82,9 @@ export default class OpalTagSelect extends Component {
 
 	initialize() {
 		let props = this.props;
-		let dataList: string | undefined = props['datalist'];
-		let dataProvider: string | undefined = props['dataprovider'];
-		let vm: string | undefined = props['viewModel'];
+		let dataList: string | undefined = props.datalist;
+		let dataProvider: string | undefined = props.dataprovider;
+		let vm: string | undefined = props.viewModel;
 
 		this._dataListParam = (dataList && 'dataList') as string;
 		this._dataProviderParam = (dataProvider && 'dataProvider') as string;
@@ -104,11 +104,11 @@ export default class OpalTagSelect extends Component {
 			viewModel: vm && Function(`return this.${ vm };`).call(context),
 
 			placeholderShown(this: OpalTagSelect): boolean {
-				return !!this.props['placeholder'] && (!this.viewModel || !this.viewModel.length);
+				return !!this.props.placeholder && (!this.viewModel || !this.viewModel.length);
 			}
 		});
 
-		let vmItemSchema = props['viewModelItemSchema'];
+		let vmItemSchema = props.viewModelItemSchema;
 
 		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
@@ -123,7 +123,7 @@ export default class OpalTagSelect extends Component {
 	}
 
 	_onBtnRemoveTagClick(evt: Event, btn: HTMLElement) {
-		this.viewModel.remove(this.viewModel.get(btn.dataset['tagValue'], this._viewModelItemValueFieldName));
+		this.viewModel.remove(this.viewModel.get(btn.dataset.tagValue, this._viewModelItemValueFieldName));
 		this.emit('change');
 	}
 }

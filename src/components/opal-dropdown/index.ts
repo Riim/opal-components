@@ -19,7 +19,7 @@ export default class OpalDropdown extends Component {
 	_documentClickListening: IDisposableListening | undefined;
 
 	ready() {
-		if (this.props['opened']) {
+		if (this.props.opened) {
 			this._open();
 		}
 	}
@@ -31,25 +31,25 @@ export default class OpalDropdown extends Component {
 	}
 
 	open(): boolean {
-		if (this.props['opened']) {
+		if (this.props.opened) {
 			return false;
 		}
 
-		this.props['opened'] = true;
+		this.props.opened = true;
 		return true;
 	}
 
 	close(): boolean {
-		if (!this.props['opened']) {
+		if (!this.props.opened) {
 			return false;
 		}
 
-		this.props['opened'] = false;
+		this.props.opened = false;
 		return true;
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.props['opened'] = value === undefined ? !this.props['opened'] : value);
+		return (this.props.opened = value === undefined ? !this.props.opened : value);
 	}
 
 	_open() {
@@ -81,7 +81,7 @@ export default class OpalDropdown extends Component {
 			}
 		}
 
-		if (this.props['autoHeight']) {
+		if (this.props.autoHeight) {
 			let docElClientHeight = docEl.clientHeight;
 			let margin = elClientRect.top - containerClientRect.bottom;
 			let excess = elClientRect.bottom + margin - docElClientHeight;
@@ -104,9 +104,9 @@ export default class OpalDropdown extends Component {
 			}
 		}
 
-		if (this.props['autoClosing']) {
+		if (this.props.autoClosing) {
 			setTimeout(() => {
-				if (this.props['opened']) {
+				if (this.props.opened) {
 					this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
 				}
 			}, 1);

@@ -38,7 +38,7 @@ function pad(num: number): string {
 		'text-input': {
 			change(evt) {
 				if ((this.$('input-validator') as OpalInputValidator).valid) {
-					(this.$('calendar') as OpalCalendar).props['value'] = (evt.target as OpalTextInput).value;
+					(this.$('calendar') as OpalCalendar).props.value = (evt.target as OpalTextInput).value;
 				}
 			}
 		},
@@ -63,7 +63,7 @@ function pad(num: number): string {
 
 				let textInput = this.$('text-input') as OpalTextInput;
 
-				textInput.value = (evt.target as OpalCalendar).props['value'];
+				textInput.value = (evt.target as OpalCalendar).props.value;
 				textInput.focus();
 			}
 		}

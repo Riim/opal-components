@@ -98,7 +98,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalRouter.prototype.ready = function () {
 	        var routes = this._routes;
 	        forEach.call(this.element.querySelectorAll('opal-route'), function (routeEl) {
-	            var path = routeEl.$c.props['path'];
+	            var path = routeEl.$c.props.path;
 	            var rePath = [];
 	            var props = [];
 	            (function processPath(path) {
@@ -134,7 +134,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                path: path,
 	                rePath: RegExp("^" + rePath + (rePath.charAt(rePath.length - 1) == '\/' ? '?' : '\/?') + "$"),
 	                properties: props,
-	                componentName: routeEl.$c.props['component']
+	                componentName: routeEl.$c.props.component
 	            });
 	        });
 	    };

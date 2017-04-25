@@ -86,12 +86,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalSignButton.prototype.initialize = function () {
 	        cellx_1.define(this, {
 	            _tabIndex: function () {
-	                return this.props['disabled'] ? -1 : this.props['tabIndex'];
+	                return this.props.disabled ? -1 : this.props.tabIndex;
 	            }
 	        });
 	    };
 	    OpalSignButton.prototype.ready = function () {
-	        if (this.props['focused']) {
+	        if (this.props.focused) {
 	            this.focus();
 	        }
 	    };
@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	    OpalSignButton.prototype.click = function () {
-	        if (this.props['checkable']) {
+	        if (this.props.checkable) {
 	            this.emit(this.toggle() ? 'check' : 'uncheck');
 	        }
 	        this.emit('click');
@@ -109,30 +109,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    Object.defineProperty(OpalSignButton.prototype, "checked", {
 	        get: function () {
-	            return this.props['checked'];
+	            return this.props.checked;
 	        },
 	        set: function (checked) {
-	            this.props['checked'] = checked;
+	            this.props.checked = checked;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
 	    OpalSignButton.prototype.check = function () {
-	        if (!this.props['checked']) {
-	            this.props['checked'] = true;
+	        if (!this.props.checked) {
+	            this.props.checked = true;
 	            return true;
 	        }
 	        return false;
 	    };
 	    OpalSignButton.prototype.uncheck = function () {
-	        if (this.props['checked']) {
-	            this.props['checked'] = false;
+	        if (this.props.checked) {
+	            this.props.checked = false;
 	            return true;
 	        }
 	        return false;
 	    };
 	    OpalSignButton.prototype.toggle = function (value) {
-	        return (this.props['checked'] = value === undefined ? !this.props['checked'] : value);
+	        return (this.props.checked = value === undefined ? !this.props.checked : value);
 	    };
 	    OpalSignButton.prototype.focus = function () {
 	        this.$('control').focus();
@@ -143,11 +143,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this;
 	    };
 	    OpalSignButton.prototype.enable = function () {
-	        this.props['disabled'] = false;
+	        this.props.disabled = false;
 	        return this;
 	    };
 	    OpalSignButton.prototype.disable = function () {
-	        this.props['disabled'] = true;
+	        this.props.disabled = true;
 	        return this;
 	    };
 	    return OpalSignButton;
@@ -170,18 +170,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var _this = this;
 	                    nextTick(function () {
 	                        if (document.activeElement == evt.target) {
-	                            _this.props['focused'] = true;
+	                            _this.props.focused = true;
 	                            _this.emit('focus');
 	                        }
 	                    });
 	                },
 	                blur: function () {
-	                    this.props['focused'] = false;
+	                    this.props.focused = false;
 	                    this.emit('blur');
 	                },
 	                click: function (evt) {
 	                    evt.preventDefault();
-	                    if (!this.props['disabled']) {
+	                    if (!this.props.disabled) {
 	                        this.click();
 	                    }
 	                }

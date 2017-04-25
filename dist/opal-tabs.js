@@ -115,7 +115,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            selectedTabIndex = 0;
 	            selectedTab.select();
 	        }
-	        tabPanels[selectedTabIndex].$c.props['shown'] = true;
+	        tabPanels[selectedTabIndex].$c.props.shown = true;
 	    };
 	    OpalTabs.prototype.elementAttached = function () {
 	        this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0].$c, {
@@ -127,10 +127,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var tab = evt.target;
 	        var selectedTab = this._selectedTab;
 	        if (selectedTab) {
-	            this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$c.props['shown'] = false;
+	            this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$c.props.shown = false;
 	            selectedTab.deselect();
 	        }
-	        this.tabPanels[indexOf.call(this.tabs, tab.element)].$c.props['shown'] = true;
+	        this.tabPanels[indexOf.call(this.tabs, tab.element)].$c.props.shown = true;
 	        this._selectedTab = tab;
 	    };
 	    OpalTabs.prototype._onTabListDeselect = function (evt) {
@@ -244,12 +244,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalTab.prototype.initialize = function () {
 	        cellx_1.define(this, {
 	            _tabIndex: function () {
-	                return this.props['disabled'] ? -1 : this.props['tabIndex'];
+	                return this.props.disabled ? -1 : this.props.tabIndex;
 	            }
 	        });
 	    };
 	    OpalTab.prototype.ready = function () {
-	        if (this.props['focused']) {
+	        if (this.props.focused) {
 	            this.focus();
 	        }
 	    };
@@ -264,30 +264,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    Object.defineProperty(OpalTab.prototype, "selected", {
 	        get: function () {
-	            return this.props['selected'];
+	            return this.props.selected;
 	        },
 	        set: function (selected) {
-	            this.props['selected'] = selected;
+	            this.props.selected = selected;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
 	    OpalTab.prototype.select = function () {
-	        if (!this.props['selected']) {
-	            this.props['selected'] = true;
+	        if (!this.props.selected) {
+	            this.props.selected = true;
 	            return true;
 	        }
 	        return false;
 	    };
 	    OpalTab.prototype.deselect = function () {
-	        if (this.props['selected']) {
-	            this.props['selected'] = false;
+	        if (this.props.selected) {
+	            this.props.selected = false;
 	            return true;
 	        }
 	        return false;
 	    };
 	    OpalTab.prototype.toggle = function (value) {
-	        return (this.props['selected'] = value === undefined ? !this.props['selected'] : value);
+	        return (this.props.selected = value === undefined ? !this.props.selected : value);
 	    };
 	    OpalTab.prototype.focus = function () {
 	        this.$('control').focus();
@@ -298,11 +298,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this;
 	    };
 	    OpalTab.prototype.enable = function () {
-	        this.props['disabled'] = false;
+	        this.props.disabled = false;
 	        return this;
 	    };
 	    OpalTab.prototype.disable = function () {
-	        this.props['disabled'] = true;
+	        this.props.disabled = true;
 	        return this;
 	    };
 	    return OpalTab;
@@ -323,16 +323,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var _this = this;
 	                    nextTick(function () {
 	                        if (document.activeElement == evt.target) {
-	                            _this.props['focused'] = true;
+	                            _this.props.focused = true;
 	                        }
 	                    });
 	                },
 	                blur: function () {
-	                    this.props['focused'] = false;
+	                    this.props.focused = false;
 	                },
 	                click: function (evt) {
 	                    evt.preventDefault();
-	                    if (!this.props['disabled']) {
+	                    if (!this.props.disabled) {
 	                        this.click();
 	                    }
 	                }

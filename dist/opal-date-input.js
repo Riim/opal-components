@@ -181,7 +181,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            'text-input': {
 	                change: function (evt) {
 	                    if (this.$('input-validator').valid) {
-	                        this.$('calendar').props['value'] = evt.target.value;
+	                        this.$('calendar').props.value = evt.target.value;
 	                    }
 	                }
 	            },
@@ -203,7 +203,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                change: function (evt) {
 	                    this.$('calendar-menu').close();
 	                    var textInput = this.$('text-input');
-	                    textInput.value = evt.target.props['value'];
+	                    textInput.value = evt.target.props.value;
 	                    textInput.focus();
 	                }
 	            }

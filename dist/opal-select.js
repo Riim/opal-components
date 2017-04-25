@@ -98,9 +98,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    OpalSelect.prototype.initialize = function () {
 	        var props = this.props;
-	        var dataList = props['datalist'];
+	        var dataList = props.datalist;
 	        if (dataList) {
-	            var dataListItemSchema = props['dataListItemSchema'];
+	            var dataListItemSchema = props.datalistItemSchema;
 	            this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
 	            this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
 	            this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
@@ -110,8 +110,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return getDataList_1.call(context_1);
 	            });
 	        }
-	        var vm = props['viewModel'];
-	        var vmItemSchema = props['viewModelItemSchema'];
+	        var vm = props.viewModel;
+	        var vmItemSchema = props.viewModelItemSchema;
 	        this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 	        this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
@@ -134,7 +134,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            text: function () {
 	                var _this = this;
 	                return this.viewModel.map(function (item) { return item[_this._viewModelItemTextFieldName]; }).join(', ') ||
-	                    this.props['placeholder'];
+	                    this.props.placeholder;
 	            }
 	        });
 	    };
@@ -142,18 +142,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this = this;
 	        this.optionElements = this.element.getElementsByClassName('opal-select-option');
 	        var props = this.props;
-	        if (props['viewModel']) {
+	        if (props.viewModel) {
 	            this._updateOptions();
 	        }
 	        else {
-	            var value_1 = props['value'];
+	            var value_1 = props.value;
 	            var selectedOptions = void 0;
 	            if (value_1) {
 	                if (!Array.isArray(value_1)) {
 	                    throw new TypeError('value must be an array');
 	                }
 	                if (value_1.length) {
-	                    if (props['multiple']) {
+	                    if (props.multiple) {
 	                        selectedOptions = this.options.filter(function (option) { return value_1.indexOf(option.value) != -1; });
 	                    }
 	                    else {
@@ -168,7 +168,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	            else {
-	                if (props['multiple']) {
+	                if (props.multiple) {
 	                    selectedOptions = this.options.filter(function (option) { return option.selected; });
 	                }
 	                else {
@@ -262,13 +262,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        this._opened = false;
 	        this._documentFocusListening.stop();
-	        if (!this.props['focused']) {
+	        if (!this.props.focused) {
 	            this._documentKeyDownListening.stop();
 	            this._documentKeyDownListening = null;
 	        }
 	        this.$('button').uncheck();
 	        this.$('menu').close();
-	        if (this.props['multiple']) {
+	        if (this.props.multiple) {
 	            if (!isEqualArray_1.default(this.viewModel.map(function (item) { return item[_this._viewModelItemValueFieldName]; }), this._valueAtOpening)) {
 	                this.emit('change');
 	            }
@@ -291,7 +291,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            case 32 /* Space */: {
 	                evt.preventDefault();
 	                if (this._opened) {
-	                    if (this.props['focused']) {
+	                    if (this.props.focused) {
 	                        this.close();
 	                    }
 	                }
@@ -311,10 +311,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    else {
 	                        var options = this.options;
 	                        for (var i = 1, l = options.length; i < l; i++) {
-	                            if (options[i].props['focused']) {
+	                            if (options[i].props.focused) {
 	                                do {
 	                                    var option = options[--i];
-	                                    if (!option.props['disabled']) {
+	                                    if (!option.props.disabled) {
 	                                        document.body.classList.remove('_no-focus-highlight');
 	                                        option.focus();
 	                                        break;
@@ -341,10 +341,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    else {
 	                        var options = this.options;
 	                        for (var i = 0, l = options.length - 1; i < l; i++) {
-	                            if (options[i].props['focused']) {
+	                            if (options[i].props.focused) {
 	                                do {
 	                                    var option = options[++i];
-	                                    if (!option.props['disabled']) {
+	                                    if (!option.props.disabled) {
 	                                        document.body.classList.remove('_no-focus-highlight');
 	                                        option.focus();
 	                                        break;
@@ -373,7 +373,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var optionForFocus;
 	        for (var i = 0, l = options.length; i < l; i++) {
 	            var option = options[i];
-	            if (!option.props['disabled']) {
+	            if (!option.props.disabled) {
 	                if (option.selected) {
 	                    optionForFocus = option;
 	                    break;
@@ -423,7 +423,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            ':component': {
 	                'property-value-change': function (evt) {
 	                    var vm = this.viewModel;
-	                    var value = evt['value'];
+	                    var value = evt.value;
 	                    if (value) {
 	                        if (!Array.isArray(value)) {
 	                            throw new TypeError('value must be an array');
@@ -431,7 +431,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        if (value.length) {
 	                            var vmItemValueFieldName_1 = this._viewModelItemValueFieldName;
 	                            var vmItemTextFieldName_1 = this._viewModelItemTextFieldName;
-	                            if (this.props['multiple']) {
+	                            if (this.props.multiple) {
 	                                this.options.forEach(function (option) {
 	                                    var optionValue = option.value;
 	                                    if (value.indexOf(optionValue) != -1) {
@@ -481,11 +481,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            button: {
 	                focus: function () {
-	                    this.props['focused'] = true;
+	                    this.props.focused = true;
 	                    this.emit('focus');
 	                },
 	                blur: function () {
-	                    this.props['focused'] = false;
+	                    this.props.focused = false;
 	                    this.emit('blur');
 	                },
 	                click: function (evt) {
@@ -509,7 +509,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        _a[this._viewModelItemValueFieldName] = evt.target.value,
 	                        _a[this._viewModelItemTextFieldName] = evt.target.text,
 	                        _a);
-	                    if (this.props['multiple']) {
+	                    if (this.props.multiple) {
 	                        vm.add(vmItem);
 	                    }
 	                    else {
@@ -526,7 +526,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var _a;
 	                },
 	                '<opal-select-option>deselect': function (evt) {
-	                    if (this.props['multiple']) {
+	                    if (this.props.multiple) {
 	                        this.viewModel.remove(this.viewModel.get(evt.target.value, this._viewModelItemValueFieldName));
 	                    }
 	                    else {
@@ -552,7 +552,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    textInput.clear();
 	                    var loadedList = this.$('loaded-list');
 	                    if (loadedList) {
-	                        loadedList.props['query'] = '';
+	                        loadedList.props.query = '';
 	                    }
 	                    this.emit('input');
 	                    var vm = this.viewModel;
@@ -560,7 +560,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        _b[this._viewModelItemValueFieldName] = itemValue,
 	                        _b[this._viewModelItemTextFieldName] = itemText,
 	                        _b);
-	                    if (this.props['multiple']) {
+	                    if (this.props.multiple) {
 	                        vm.add(vmItem);
 	                    }
 	                    else {
@@ -675,7 +675,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalSelectOption.prototype.initialize = function () {
 	        cellx_1.define(this, {
 	            _tabIndex: function () {
-	                return this.props['disabled'] ? -1 : this.props['tabIndex'];
+	                return this.props.disabled ? -1 : this.props.tabIndex;
 	            }
 	        });
 	    };
@@ -691,60 +691,60 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Object.defineProperty(OpalSelectOption.prototype, "value", {
 	        get: function () {
 	            var props = this.props;
-	            return props['value'] === null ? props['text'] : props['value'];
+	            return props.value === null ? props.text : props.value;
 	        },
 	        set: function (value) {
-	            this.props['value'] = value;
+	            this.props.value = value;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
 	    Object.defineProperty(OpalSelectOption.prototype, "text", {
 	        get: function () {
-	            return this.props['text'].trim() || ' ';
+	            return this.props.text.trim() || ' ';
 	        },
 	        set: function (text) {
-	            this.props['text'] = text;
+	            this.props.text = text;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
 	    Object.defineProperty(OpalSelectOption.prototype, "selected", {
 	        get: function () {
-	            return this.props['selected'];
+	            return this.props.selected;
 	        },
 	        set: function (selected) {
-	            this.props['selected'] = selected;
+	            this.props.selected = selected;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
 	    Object.defineProperty(OpalSelectOption.prototype, "disabled", {
 	        get: function () {
-	            return this.props['disabled'];
+	            return this.props.disabled;
 	        },
 	        set: function (disabled) {
-	            this.props['disabled'] = disabled;
+	            this.props.disabled = disabled;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
 	    OpalSelectOption.prototype.select = function () {
-	        if (!this.props['selected']) {
-	            this.props['selected'] = true;
+	        if (!this.props.selected) {
+	            this.props.selected = true;
 	            return true;
 	        }
 	        return false;
 	    };
 	    OpalSelectOption.prototype.deselect = function () {
-	        if (this.props['selected']) {
-	            this.props['selected'] = false;
+	        if (this.props.selected) {
+	            this.props.selected = false;
 	            return true;
 	        }
 	        return false;
 	    };
 	    OpalSelectOption.prototype.toggle = function (value) {
-	        return (this.props['selected'] = value === undefined ? !this.props['selected'] : value);
+	        return (this.props.selected = value === undefined ? !this.props.selected : value);
 	    };
 	    OpalSelectOption.prototype.focus = function () {
 	        this.$('control').focus();
@@ -755,11 +755,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this;
 	    };
 	    OpalSelectOption.prototype.enable = function () {
-	        this.props['disabled'] = false;
+	        this.props.disabled = false;
 	        return this;
 	    };
 	    OpalSelectOption.prototype.disable = function () {
-	        this.props['disabled'] = true;
+	        this.props.disabled = true;
 	        return this;
 	    };
 	    return OpalSelectOption;
@@ -782,16 +782,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var _this = this;
 	                    nextTick(function () {
 	                        if (document.activeElement == evt.target) {
-	                            _this.props['focused'] = true;
+	                            _this.props.focused = true;
 	                        }
 	                    });
 	                },
 	                blur: function () {
-	                    this.props['focused'] = false;
+	                    this.props.focused = false;
 	                },
 	                click: function (evt) {
 	                    evt.preventDefault();
-	                    if (!this.props['disabled']) {
+	                    if (!this.props.disabled) {
 	                        this.click();
 	                    }
 	                }

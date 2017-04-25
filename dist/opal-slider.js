@@ -84,14 +84,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    OpalSlider.prototype.initialize = function () {
 	        var props = this.props;
-	        var range = props['range'];
+	        var range = props.range;
 	        if (range) {
 	            cellx_1.define(this, {
 	                _firstInputValue: range[0],
 	                _secondInputValue: range[1],
 	                _firstInputWidth: function () {
-	                    var min = props['min'];
-	                    var all = props['max'] - min;
+	                    var min = props.min;
+	                    var all = props.max - min;
 	                    return Math.round((((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) / 2) * 1e5) / 1e3;
 	                }
 	            });
@@ -99,12 +99,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    Object.defineProperty(OpalSlider.prototype, "value", {
 	        get: function () {
-	            return this.props['range'] ?
+	            return this.props.range ?
 	                [this._firstInputValue, this._secondInputValue] :
 	                +this.$('input').value;
 	        },
 	        set: function (value) {
-	            if (this.props['range']) {
+	            if (this.props.range) {
 	                this.$('first-input').value = this._firstInputValue = value[0];
 	                this.$('second-input').value = this._secondInputValue = value[1];
 	            }
