@@ -38,14 +38,12 @@ span/control {
 				@if-then (if=props.datalist) {
 					div (class=opal-select__menu-content) {
 						@if-then (if=dataList.length) {
-							@repeat (for=$item of dataList) {
-								@section/select-option-1 {
-									opal-select-option/, select-option (
-										value='{$item |key(_dataListItemValueFieldName) }',
-										text='{$item |key(_dataListItemTextFieldName) }',
-										disabled='{$item |key(_dataListItemDisabledFieldName) }'
-									)
-								}
+							@repeat (for=item of dataList) {
+								opal-select-option/select-option-of-datalist, select-option (
+									value='{item |key(_dataListItemValueFieldName) }',
+									text='{item |key(_dataListItemTextFieldName) }',
+									disabled='{item |key(_dataListItemDisabledFieldName) }'
+								)
 							}
 
 							rt-content (
@@ -70,9 +68,10 @@ span/control {
 							class=opal-select__loaded-list opal-filtered-list__loaded-list,
 							dataprovider={_dataProviderParam}
 						) {
-							@section/select-option-2 {
-								opal-select-option/, select-option (value={$item.value}, text={$item.text})
-							}
+							opal-select-option/select-option-of-loaded-list, select-option (
+								value={$item.value},
+								text={$item.text}
+							)
 						}
 					}
 				}
