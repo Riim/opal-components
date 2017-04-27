@@ -3,20 +3,19 @@ import { Component } from 'rionite';
 import { TDataList, TViewModel } from '../opal-select';
 import { IDataProvider } from '../opal-loaded-list';
 export default class OpalTagSelect extends Component {
-    dataList: TDataList;
+    _isDataListPropertyDefined: boolean;
+    dataList: TDataList | null;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
     _dataListItemDisabledFieldName: string;
-    dataProvider: IDataProvider;
+    dataProvider: IDataProvider | null;
     viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _viewModelItemDisabledFieldName: string;
     placeholderShown: boolean;
-    _dataListParam: string;
-    _dataProviderParam: string;
-    _viewModelParam: string;
+    _dataListKeypathParam: string | null;
+    _dataProviderKeypathParam: string | null;
     initialize(): void;
-    ready(): void;
     _onBtnRemoveTagClick(evt: Event, btn: HTMLElement): void;
 }

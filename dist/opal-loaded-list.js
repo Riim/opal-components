@@ -86,11 +86,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return _this;
 	    }
 	    OpalLoadedList.prototype.initialize = function () {
-	        var dataProvider = Function("return this." + this.props.dataprovider + ";").call(this.ownerComponent || window);
-	        if (!dataProvider) {
-	            throw new TypeError('dataProvider is not defined');
-	        }
-	        this.dataProvider = dataProvider;
+	        this.dataProvider = this.props.dataprovider;
 	        cellx_1.define(this, {
 	            list: new cellx_1.ObservableList(),
 	            total: undefined,
@@ -166,7 +162,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    rionite_1.d.Component({
 	        elementIs: 'opal-loaded-list',
 	        props: {
-	            dataprovider: { type: String, required: true, readonly: true },
+	            dataprovider: { type: Object, required: true, readonly: true },
 	            count: 100,
 	            query: String,
 	            itemAs: { default: '$item', readonly: true },

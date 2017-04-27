@@ -25,17 +25,17 @@ span/control {
 
 	opal-select/select (
 		multiple,
-		datalist={_dataListParam},
+		datalist-keypath={_dataListKeypathParam},
 		datalist-item-schema={props.datalistItemSchema |json },
 		value={props.value},
-		view-model={_viewModelParam},
+		view-model-keypath=viewModel,
 		view-model-item-schema={props.viewModelItemSchema |json }
 	) {
 		opal-sign-button/button (class=opal-select__button, sign=plus, checkable)
 
 		opal-popover/menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {
 			rt-content (select='.opal-select__menu-content', cloning=no) {
-				@if-then (if=props.datalist) {
+				@if-then (if=_isDataListPropertyDefined) {
 					div (class=opal-select__menu-content) {
 						@if-then (if=dataList.length) {
 							@repeat (for=item of dataList) {
@@ -56,7 +56,7 @@ span/control {
 						}
 					}
 				}
-				@if-else (if=props.datalist) {
+				@if-else (if=_isDataListPropertyDefined) {
 					opal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {
 						rt-content (
 							class=opal-filtered-list__query-input-container,
@@ -66,7 +66,7 @@ span/control {
 
 						opal-loaded-list/menu-loaded-list (
 							class=opal-select__loaded-list opal-filtered-list__loaded-list,
-							dataprovider={_dataProviderParam}
+							dataprovider-keypath=dataProvider
 						) {
 							opal-select-option/select-option-of-loaded-list, select-option (
 								value={$item.value},

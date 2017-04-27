@@ -88,17 +88,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return _this;
 	    }
 	    OpalAutosuggestion.prototype.initialize = function () {
-	        var props = this.props;
-	        if (props.dataprovider) {
-	            this.dataProvider = props.dataprovider;
-	        }
-	        else if (props.dataproviderKeypath) {
-	            this.dataProvider = Function("return this." + props.dataproviderKeypath + ";")
-	                .call(this.ownerComponent || window);
-	        }
-	        else {
-	            throw new TypeError('Property "dataprovider" is required');
-	        }
+	        this.dataProvider = this.props.dataprovider;
 	        cellx_1.define(this, {
 	            list: new cellx_1.ObservableList(),
 	            _loadingPlanned: false,
@@ -106,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            loaderShown: function () {
 	                return this._loadingPlanned || this.loading;
 	            },
-	            selectedItem: props.selectedItem
+	            selectedItem: this.props.selectedItem
 	        });
 	    };
 	    OpalAutosuggestion.prototype.elementAttached = function () {
@@ -295,8 +285,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    rionite_1.d.Component({
 	        elementIs: 'opal-autosuggestion',
 	        props: {
-	            dataprovider: { type: Object, readonly: true },
-	            dataproviderKeypath: { type: String, readonly: true },
+	            dataprovider: { type: Object, required: true, readonly: true },
 	            selectedItem: eval,
 	            minQueryLength: 3,
 	            count: 5,

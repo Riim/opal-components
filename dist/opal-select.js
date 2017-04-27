@@ -99,33 +99,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalSelect.prototype.initialize = function () {
 	        var props = this.props;
 	        var dataList = props.datalist;
-	        if (dataList) {
-	            var context_1 = this.ownerComponent || window;
-	            var getDataList_1 = Function("return this." + dataList + ";");
-	            cellx_1.define(this, 'dataList', function () {
-	                return getDataList_1.call(context_1);
-	            });
+	        if ((this._isDataListPropertyDefined = dataList || props.datalistKeypath)) {
+	            if (dataList) {
+	                cellx_1.define(this, 'dataList', dataList);
+	            }
+	            else {
+	                var context_1 = this.ownerComponent || window;
+	                var getDataList_1 = Function("return this." + props.datalistKeypath + ";");
+	                cellx_1.define(this, 'dataList', function () {
+	                    return getDataList_1.call(context_1);
+	                });
+	            }
 	            var dataListItemSchema = props.datalistItemSchema;
 	            this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
 	            this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
 	            this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 	        }
-	        var vm = props.viewModel;
+	        else {
+	            this.dataList = null;
+	        }
 	        var vmItemSchema = props.viewModelItemSchema;
 	        this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 	        this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
-	        if (vm) {
-	            vm = Function("return this." + vm + ";").call(this.ownerComponent || window);
-	            if (!vm) {
-	                throw new TypeError('viewModel is not defined');
-	            }
-	        }
-	        else {
-	            vm = new cellx_indexed_collections_1.IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });
-	        }
 	        cellx_1.define(this, {
-	            viewModel: vm,
+	            viewModel: props.viewModel || new cellx_indexed_collections_1.IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] }),
 	            options: function () {
 	                return this.optionElements ?
 	                    map.call(this.optionElements, function (option) { return option.$c; }) :
@@ -407,10 +405,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            viewType: String,
 	            size: 'm',
 	            multiple: { default: false, readonly: true },
-	            datalist: { type: String, readonly: true },
+	            datalist: { type: Object, readonly: true },
+	            datalistKeypath: { type: String, readonly: true },
 	            datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 	            value: eval,
-	            viewModel: { type: String, readonly: true },
+	            viewModel: { type: Object, readonly: true },
 	            viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 	            text: String,
 	            placeholder: rionite_1.getText.t('Не выбрано'),
@@ -829,7 +828,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 35:
 /***/ (function(module, exports) {
 
-	module.exports = "@section/inner {\nrt-content (select=.opal-select__button, cloning=no) {\nopal-button/button (\nview-type={props.viewType},\nsize={props.size},\ncheckable,\ntab-index={props.tabIndex},\ndisabled={props.disabled}\n) {\n@if-then (if=props.text, rt-silent) { '{props.text}' }\n@if-else (if=props.text, rt-silent) { '{text}' }\n' '\nsvg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu, cloning=no) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content, cloning=no) {\n@if-then (if=props.datalist) {\ndiv/, menu-content {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=props.datalist) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}"
+	module.exports = "@section/inner {\nrt-content (select=.opal-select__button, cloning=no) {\nopal-button/button (\nview-type={props.viewType},\nsize={props.size},\ncheckable,\ntab-index={props.tabIndex},\ndisabled={props.disabled}\n) {\n@if-then (if=props.text, rt-silent) { '{props.text}' }\n@if-else (if=props.text, rt-silent) { '{text}' }\n' '\nsvg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu, cloning=no) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content, cloning=no) {\n@if-then (if=_isDataListPropertyDefined) {\ndiv/, menu-content {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isDataListPropertyDefined) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 

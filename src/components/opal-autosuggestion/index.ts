@@ -24,8 +24,7 @@ function toComparable(str: string): string {
 	elementIs: 'opal-autosuggestion',
 
 	props: {
-		dataprovider: { type: Object, readonly: true },
-		dataproviderKeypath: { type: String, readonly: true },
+		dataprovider: { type: Object, required: true, readonly: true },
 		selectedItem: eval,
 		minQueryLength: 3,
 		count: 5,
@@ -121,28 +120,19 @@ export default class OpalAutosuggestion extends Component {
 	_documentClickListening: IDisposableListening;
 
 	initialize() {
-		let props = this.props;
-
-		if (props.dataprovider) {
-			this.dataProvider = props.dataprovider;
-		} else if (props.dataproviderKeypath) {
-			this.dataProvider = Function(`return this.${ props.dataproviderKeypath };`)
-				.call(this.ownerComponent || window);
-		} else {
-			throw new TypeError('Property "dataprovider" is required');
-		}
+		this.dataProvider = this.props.dataprovider;
 
 		define(this, {
-			list: new ObservableList(),
+			list: new ObservableList<IItem>(),
 
 			_loadingPlanned: false,
 			loading: false,
 
-			loaderShown() {
+			loaderShown(this: OpalAutosuggestion): boolean {
 				return this._loadingPlanned || this.loading;
 			},
 
-			selectedItem: props.selectedItem
+			selectedItem: this.props.selectedItem
 		});
 	}
 

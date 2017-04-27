@@ -394,7 +394,7 @@ body {
 			<opal-select-option text="Option 5"></opal-select-option>
 		</opal-select>
 
-		<opal-select multiple datalist="model1.dataList" placeholder="Select">
+		<opal-select multiple datalist-keypath="model1.dataList" placeholder="Select">
 			<opal-text-input class="opal-select__new-item-input"></opal-text-input>
 		</opal-select>
 	</div>
@@ -480,7 +480,7 @@ body {
 <opal-code-listing>
 	<div class="opal-code-listing__example-html">
 		<opal-filtered-list>
-			<opal-loaded-list class="opal-filtered-list__loaded-list" dataprovider="dataProvider1">
+			<opal-loaded-list class="opal-filtered-list__loaded-list" dataprovider-keypath="dataProvider1">
 				{$item.text}
 			</opal-loaded-list>
 		</opal-filtered-list>
@@ -500,7 +500,7 @@ body {
 			<opal-dropdown class="opal-select__menu" auto-height="no" auto-closing>
 				<opal-filtered-list class="opal-select__filtered-list">
 					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
-							dataprovider="dataProvider1">
+							dataprovider-keypath="dataProvider1">
 						<opal-select-option text="{$item.text}"></opal-select-option>
 					</opal-loaded-list>
 				</opal-filtered-list>
@@ -509,15 +509,15 @@ body {
 
 		<opal-select>
 			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
-				<opal-loaded-list class="opal-select__loaded-list" dataprovider="dataProvider1">
+				<opal-loaded-list class="opal-select__loaded-list" dataprovider-keypath="dataProvider1">
 					<opal-select-option text="{$item.text}"></opal-select-option>
 				</opal-loaded-list>
 			</opal-popover>
 		</opal-select>
 
-		<opal-select multiple view-model="selectViewModel1">
+		<opal-select multiple view-model-keypath="selectViewModel1">
 			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
-				<opal-loaded-list class="opal-select__loaded-list" dataprovider="dataProvider1">
+				<opal-loaded-list class="opal-select__loaded-list" dataprovider-keypath="dataProvider1">
 					<opal-select-option text="{$item.text}"></opal-select-option>
 				</opal-loaded-list>
 			</opal-popover>
@@ -527,7 +527,7 @@ body {
 			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
 				<opal-filtered-list class="opal-select__filtered-list">
 					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
-							dataprovider="dataProvider1">
+							dataprovider-keypath="dataProvider1">
 						<opal-select-option text="{$item.text}"></opal-select-option>
 					</opal-loaded-list>
 				</opal-filtered-list>
@@ -538,7 +538,7 @@ body {
 			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
 				<opal-filtered-list class="opal-select__filtered-list">
 					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
-							dataprovider="dataProvider1">
+							dataprovider-keypath="dataProvider1">
 						<opal-select-option text="{$item.text}"></opal-select-option>
 					</opal-loaded-list>
 				</opal-filtered-list>
@@ -576,9 +576,9 @@ body {
 
 <opal-code-listing>
 	<div class="opal-code-listing__example-html">
-		<opal-tag-select dataprovider="dataProvider1" placeholder=""></opal-tag-select>
-		<opal-tag-select view-type="primary" dataprovider="dataProvider1"></opal-tag-select>
-		<opal-tag-select view-type="danger" dataprovider="dataProvider1" view-model="selectViewModel1">
+		<opal-tag-select dataprovider-keypath="dataProvider1" placeholder=""></opal-tag-select>
+		<opal-tag-select view-type="primary" dataprovider-keypath="dataProvider1"></opal-tag-select>
+		<opal-tag-select view-type="danger" dataprovider-keypath="dataProvider1" view-model-keypath="selectViewModel1">
 			<opal-text-input class="opal-select__new-item-input opal-filtered-list__query-input"></opal-text-input>
 		</opal-tag-select>
 	</div>

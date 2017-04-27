@@ -33,10 +33,11 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		viewType: String,
 		size: 'm',
 		multiple: { default: false, readonly: true },
-		datalist: { type: String, readonly: true },
+		datalist: { type: Object, readonly: true },
+		datalistKeypath: { type: String, readonly: true },
 		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		value: eval,
-		viewModel: { type: String, readonly: true },
+		viewModel: { type: Object, readonly: true },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 		text: String,
 		placeholder: getText.t('Не выбрано'),
@@ -270,7 +271,9 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 export default class OpalSelect extends Component {
 	static OpalSelectOption = OpalSelectOption;
 
-	dataList: TDataList;
+	_isDataListPropertyDefined: boolean;
+
+	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;
 	_dataListItemDisabledFieldName: string;
@@ -294,43 +297,37 @@ export default class OpalSelect extends Component {
 
 	initialize() {
 		let props = this.props;
+		let dataList = props.datalist;
 
-		let dataList = props.datalist as string | undefined;
+		if ((this._isDataListPropertyDefined = dataList || props.datalistKeypath)) {
+			if (dataList) {
+				define(this, 'dataList', dataList);
+			} else {
+				let context = this.ownerComponent || window;
+				let getDataList = Function(`return this.${ props.datalistKeypath };`);
 
-		if (dataList) {
-			let context = this.ownerComponent || window;
-			let getDataList = Function(`return this.${ dataList };`);
-
-			define(this, 'dataList', function() {
-				return getDataList.call(context);
-			});
+				define(this, 'dataList', function() {
+					return getDataList.call(context);
+				});
+			}
 
 			let dataListItemSchema = props.datalistItemSchema;
 
 			this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
 			this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
 			this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
+		} else {
+			this.dataList = null;
 		}
 
-		let vm = props.viewModel;
 		let vmItemSchema = props.viewModelItemSchema;
 
 		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 		this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
 
-		if (vm) {
-			vm = Function(`return this.${ vm };`).call(this.ownerComponent || window);
-
-			if (!vm) {
-				throw new TypeError('viewModel is not defined');
-			}
-		} else {
-			vm = new IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });
-		}
-
 		define(this, {
-			viewModel: vm,
+			viewModel: props.viewModel || new IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] }),
 
 			options(this: OpalSelect): Array<OpalSelectOption> {
 				return this.optionElements ?

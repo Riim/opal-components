@@ -8,7 +8,8 @@ export declare type TDataList = IndexedList<Object>;
 export declare type TViewModel = IndexedList<Object>;
 export default class OpalSelect extends Component {
     static OpalSelectOption: typeof OpalSelectOption;
-    dataList: TDataList;
+    _isDataListPropertyDefined: boolean;
+    dataList: TDataList | null;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
     _dataListItemDisabledFieldName: string;

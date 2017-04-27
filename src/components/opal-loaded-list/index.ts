@@ -20,7 +20,7 @@ export interface IDataProvider {
 	elementIs: 'opal-loaded-list',
 
 	props: {
-		dataprovider: { type: String, required: true, readonly: true },
+		dataprovider: { type: Object, required: true, readonly: true },
 		count: 100,
 		query: String,
 		itemAs: { default: '$item', readonly: true },
@@ -100,13 +100,7 @@ export default class OpalLoadedList extends Component {
 	loaderShown: boolean;
 
 	initialize() {
-		let dataProvider = Function(`return this.${ this.props.dataprovider };`).call(this.ownerComponent || window);
-
-		if (!dataProvider) {
-			throw new TypeError('dataProvider is not defined');
-		}
-
-		this.dataProvider = dataProvider;
+		this.dataProvider = this.props.dataprovider;
 
 		define(this, {
 			list: new ObservableList<IItem>(),
@@ -115,15 +109,15 @@ export default class OpalLoadedList extends Component {
 			_loadingCheckPlanned: false,
 			loading: false,
 
-			empty() {
+			empty(this: OpalLoadedList): boolean {
 				return !this.list.length;
 			},
 
-			notFoundShown() {
+			notFoundShown(this: OpalLoadedList): boolean {
 				return this.total === 0 && !this._loadingCheckPlanned && !this.loading;
 			},
 
-			loaderShown() {
+			loaderShown(this: OpalLoadedList): boolean {
 				return this.total === undefined || this.list.length < this.total || this.loading;
 			}
 		});
