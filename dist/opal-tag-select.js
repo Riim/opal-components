@@ -108,9 +108,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        else {
 	            this.dataList = null;
-	            if (!props.dataprovider) {
-	                throw new TypeError('Property "dataprovider" is required');
-	            }
 	            this.dataProvider = props.dataprovider;
 	            this._dataListKeypathParam = null;
 	        }
