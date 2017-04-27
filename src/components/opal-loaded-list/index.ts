@@ -20,7 +20,8 @@ export interface IDataProvider {
 	elementIs: 'opal-loaded-list',
 
 	props: {
-		dataprovider: { type: Object, required: true, readonly: true },
+		dataprovider: { type: Object, readonly: true },
+		dataproviderKeypath: { type: String, readonly: true },
 		count: 100,
 		query: String,
 		itemAs: { default: '$item', readonly: true },
@@ -100,7 +101,23 @@ export default class OpalLoadedList extends Component {
 	loaderShown: boolean;
 
 	initialize() {
-		this.dataProvider = this.props.dataprovider;
+		let props = this.props;
+		let dataProvider = props.dataprovider;
+
+		if (dataProvider || props.dataproviderKeypath) {
+			if (!dataProvider) {
+				dataProvider = Function(`return this.${ props.dataproviderKeypath };`)
+					.call(this.ownerComponent || window);
+
+				if (!dataProvider) {
+					throw new TypeError('dataProvider is not defined');
+				}
+			}
+
+			this.dataProvider = dataProvider;
+		} else {
+			throw new TypeError('Property "dataprovider" is required');
+		}
 
 		define(this, {
 			list: new ObservableList<IItem>(),

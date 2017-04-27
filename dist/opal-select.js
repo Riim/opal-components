@@ -122,8 +122,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 	        this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
+	        var vm = props.viewModel;
+	        if (!vm) {
+	            if (props.viewModelKeypath) {
+	                vm = Function("return this." + props.viewModelKeypath + ";").call(this.ownerComponent || window);
+	                if (!vm) {
+	                    throw new TypeError('viewModel is not defined');
+	                }
+	            }
+	            else {
+	                vm = new cellx_indexed_collections_1.IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });
+	            }
+	        }
 	        cellx_1.define(this, {
-	            viewModel: props.viewModel || new cellx_indexed_collections_1.IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] }),
+	            viewModel: vm,
 	            options: function () {
 	                return this.optionElements ?
 	                    map.call(this.optionElements, function (option) { return option.$c; }) :
@@ -410,6 +422,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 	            value: eval,
 	            viewModel: { type: Object, readonly: true },
+	            viewModelKeypath: { type: String, readonly: true },
 	            viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 	            text: String,
 	            placeholder: rionite_1.getText.t('Не выбрано'),

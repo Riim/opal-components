@@ -20,8 +20,10 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		// необязательный, так как может указываться на передаваемом opal-loaded-list
 		dataprovider: { type: Object, readonly: true },
+		dataproviderKeypath: { type: String, readonly: true },
 		value: eval,
 		viewModel: { type: Object, readonly: true },
+		viewModelKeypath: { type: String, readonly: true },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 		placeholder: getText.t('Не выбрано'),
 		popoverTo: 'bottom',
@@ -87,7 +89,6 @@ export default class OpalTagSelect extends Component {
 	placeholderShown: boolean;
 
 	_dataListKeypathParam: string | null;
-	_dataProviderKeypathParam: string | null;
 
 	initialize() {
 		let props = this.props;
@@ -116,7 +117,19 @@ export default class OpalTagSelect extends Component {
 			this._dataListKeypathParam = 'dataList';
 		} else {
 			this.dataList = null;
-			this.dataProvider = props.dataprovider;
+
+			let dataProvider = props.dataprovider;
+
+			if (!dataProvider && props.dataproviderKeypath) {
+				dataProvider = Function(`return this.${ props.dataproviderKeypath };`)
+					.call(this.ownerComponent || window);
+
+				if (!dataProvider) {
+					throw new TypeError('dataProvider is not defined');
+				}
+			}
+
+			this.dataProvider = dataProvider;
 
 			this._dataListKeypathParam = null;
 		}
@@ -127,8 +140,22 @@ export default class OpalTagSelect extends Component {
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 		this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
 
+		let vm = props.viewModel;
+
+		if (!vm) {
+			if (props.viewModelKeypath) {
+				vm = Function(`return this.${ props.viewModelKeypath };`).call(this.ownerComponent || window);
+
+				if (!vm) {
+					throw new TypeError('viewModel is not defined');
+				}
+			} else {
+				vm = new IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });
+			}
+		}
+
 		define(this, {
-			viewModel: props.viewModel || new IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] }),
+			viewModel: vm,
 
 			placeholderShown(this: OpalTagSelect): boolean {
 				return !!this.props.placeholder && !this.viewModel.length;

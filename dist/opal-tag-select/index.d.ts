@@ -15,7 +15,6 @@ export default class OpalTagSelect extends Component {
     _viewModelItemDisabledFieldName: string;
     placeholderShown: boolean;
     _dataListKeypathParam: string | null;
-    _dataProviderKeypathParam: string | null;
     initialize(): void;
     _onBtnRemoveTagClick(evt: Event, btn: HTMLElement): void;
 }

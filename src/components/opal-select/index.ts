@@ -38,6 +38,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		value: eval,
 		viewModel: { type: Object, readonly: true },
+		viewModelKeypath: { type: String, readonly: true },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 		text: String,
 		placeholder: getText.t('Не выбрано'),
@@ -326,8 +327,22 @@ export default class OpalSelect extends Component {
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 		this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
 
+		let vm = props.viewModel;
+
+		if (!vm) {
+			if (props.viewModelKeypath) {
+				vm = Function(`return this.${ props.viewModelKeypath };`).call(this.ownerComponent || window);
+
+				if (!vm) {
+					throw new TypeError('viewModel is not defined');
+				}
+			} else {
+				vm = new IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });
+			}
+		}
+
 		define(this, {
-			viewModel: props.viewModel || new IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] }),
+			viewModel: vm,
 
 			options(this: OpalSelect): Array<OpalSelectOption> {
 				return this.optionElements ?

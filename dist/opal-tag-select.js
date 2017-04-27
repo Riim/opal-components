@@ -108,15 +108,35 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        else {
 	            this.dataList = null;
-	            this.dataProvider = props.dataprovider;
+	            var dataProvider = props.dataprovider;
+	            if (!dataProvider && props.dataproviderKeypath) {
+	                dataProvider = Function("return this." + props.dataproviderKeypath + ";")
+	                    .call(this.ownerComponent || window);
+	                if (!dataProvider) {
+	                    throw new TypeError('dataProvider is not defined');
+	                }
+	            }
+	            this.dataProvider = dataProvider;
 	            this._dataListKeypathParam = null;
 	        }
 	        var vmItemSchema = props.viewModelItemSchema;
 	        this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 	        this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 	        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
+	        var vm = props.viewModel;
+	        if (!vm) {
+	            if (props.viewModelKeypath) {
+	                vm = Function("return this." + props.viewModelKeypath + ";").call(this.ownerComponent || window);
+	                if (!vm) {
+	                    throw new TypeError('viewModel is not defined');
+	                }
+	            }
+	            else {
+	                vm = new cellx_indexed_collections_1.IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });
+	            }
+	        }
 	        cellx_1.define(this, {
-	            viewModel: props.viewModel || new cellx_indexed_collections_1.IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] }),
+	            viewModel: vm,
 	            placeholderShown: function () {
 	                return !!this.props.placeholder && !this.viewModel.length;
 	            }
@@ -138,8 +158,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 	            // необязательный, так как может указываться на передаваемом opal-loaded-list
 	            dataprovider: { type: Object, readonly: true },
+	            dataproviderKeypath: { type: String, readonly: true },
 	            value: eval,
 	            viewModel: { type: Object, readonly: true },
+	            viewModelKeypath: { type: String, readonly: true },
 	            viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 	            placeholder: rionite_1.getText.t('Не выбрано'),
 	            popoverTo: 'bottom',
