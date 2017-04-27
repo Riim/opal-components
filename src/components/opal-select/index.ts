@@ -1,7 +1,7 @@
 import './index.css';
 import '../../assets/icons/opal-components__icon-chevron-down.svg';
 
-import { IEvent, define, Utils } from 'cellx';
+import { IEvent, ObservableList, define, Utils } from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
 import { IDisposableListening, getText, IComponentElement, Component, Components, d } from 'rionite';
 import OpalButton from '../opal-button';
@@ -20,7 +20,7 @@ let { RtIfThen, RtRepeat } = Components;
 
 let map = Array.prototype.map;
 
-export type TDataList = IndexedList<Object>;
+export type TDataList = ObservableList<Object>;
 export type TViewModel = IndexedList<Object>;
 
 let defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
