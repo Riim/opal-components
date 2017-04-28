@@ -15,14 +15,12 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 	props: {
 		viewType: String,
-		datalist: { type: Object, readonly: true },
 		datalistKeypath: { type: String, readonly: true },
 		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		// необязательный, так как может указываться на передаваемом opal-loaded-list
 		dataprovider: { type: Object, readonly: true },
 		dataproviderKeypath: { type: String, readonly: true },
 		value: eval,
-		viewModel: { type: Object, readonly: true },
 		viewModelKeypath: { type: String, readonly: true },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 		placeholder: getText.t('Не выбрано'),
@@ -72,8 +70,6 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 	}
 })
 export default class OpalTagSelect extends Component {
-	_isDataListPropertyDefined: boolean;
-
 	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;
@@ -92,18 +88,17 @@ export default class OpalTagSelect extends Component {
 
 	initialize() {
 		let props = this.props;
-		let dataList = props.datalist;
 
-		if ((this._isDataListPropertyDefined = dataList || props.datalistKeypath)) {
-			if (dataList) {
-				define(this, 'dataList', dataList);
-			} else {
-				let context = this.ownerComponent || window;
-				let getDataList = Function(`return this.${ props.datalistKeypath };`);
+		if (props.datalistKeypath) {
+			let context = this.ownerComponent || window;
+			let getDataList = Function(`return this.${ props.datalistKeypath };`);
 
-				define(this, 'dataList', function() {
-					return getDataList.call(context);
-				});
+			define(this, 'dataList', function() {
+				return getDataList.call(context);
+			});
+
+			if (!this.dataList) {
+				throw new TypeError('dataList is not defined');
 			}
 
 			let dataListItemSchema = props.datalistItemSchema;
@@ -140,18 +135,16 @@ export default class OpalTagSelect extends Component {
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 		this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
 
-		let vm = props.viewModel;
+		let vm;
 
-		if (!vm) {
-			if (props.viewModelKeypath) {
-				vm = Function(`return this.${ props.viewModelKeypath };`).call(this.ownerComponent || window);
+		if (props.viewModelKeypath) {
+			vm = Function(`return this.${ props.viewModelKeypath };`).call(this.ownerComponent || window);
 
-				if (!vm) {
-					throw new TypeError('viewModel is not defined');
-				}
-			} else {
-				vm = new IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });
+			if (!vm) {
+				throw new TypeError('viewModel is not defined');
 			}
+		} else {
+			vm = new IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });
 		}
 
 		define(this, {

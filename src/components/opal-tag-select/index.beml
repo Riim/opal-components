@@ -35,7 +35,7 @@ span/control {
 
 		opal-popover/menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {
 			rt-content (select='.opal-select__menu-content', cloning=no) {
-				@if-then (if=_isDataListPropertyDefined) {
+				@if-then (if=props.datalistKeypath) {
 					div (class=opal-select__menu-content) {
 						@if-then (if=dataList.length) {
 							@repeat (for=item of dataList) {
@@ -56,7 +56,7 @@ span/control {
 						}
 					}
 				}
-				@if-else (if=_isDataListPropertyDefined) {
+				@if-else (if=props.datalistKeypath) {
 					opal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {
 						rt-content (
 							class=opal-filtered-list__query-input-container,

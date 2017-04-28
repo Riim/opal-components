@@ -18,7 +18,7 @@ rt-content (select=.opal-select__button, cloning=no) {
 rt-content (select=.opal-select__menu, cloning=no) {
 	opal-dropdown/menu (auto-closing) {
 		rt-content (select=.opal-select__menu-content, cloning=no) {
-			@if-then (if=_isDataListPropertyDefined) {
+			@if-then (if=props.datalistKeypath) {
 				div/, menu-content {
 					@if-then (if=dataList.length) {
 						@repeat (for=item of dataList) {
@@ -36,7 +36,7 @@ rt-content (select=.opal-select__menu, cloning=no) {
 					}
 				}
 			}
-			@if-else (if=_isDataListPropertyDefined) {
+			@if-else (if=props.datalistKeypath) {
 				div/, menu-content {
 					rt-content/options (select=opal-select-option)
 					rt-content/new-item-input-container (select=.opal-select__new-item-input)

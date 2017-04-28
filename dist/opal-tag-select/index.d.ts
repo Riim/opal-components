@@ -3,7 +3,6 @@ import { Component } from 'rionite';
 import { TDataList, TViewModel } from '../opal-select';
 import { IDataProvider } from '../opal-loaded-list';
 export default class OpalTagSelect extends Component {
-    _isDataListPropertyDefined: boolean;
     dataList: TDataList | null;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
