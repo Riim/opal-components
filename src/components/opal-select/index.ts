@@ -303,10 +303,6 @@ export default class OpalSelect extends Component {
 				return getDataList.call(context);
 			});
 
-			if (!this.dataList) {
-				throw new TypeError('dataList is not defined');
-			}
-
 			let dataListItemSchema = props.datalistItemSchema;
 
 			this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;

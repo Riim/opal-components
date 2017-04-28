@@ -104,9 +104,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            cellx_1.define(this, 'dataList', function () {
 	                return getDataList_1.call(context_1);
 	            });
-	            if (!this.dataList) {
-	                throw new TypeError('dataList is not defined');
-	            }
 	            var dataListItemSchema = props.datalistItemSchema;
 	            this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
 	            this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
