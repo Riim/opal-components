@@ -87,14 +87,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (this._checkedButton !== undefined) {
 	                return this._checkedButton;
 	            }
-	            return (this._checkedButton = find.call(this.buttonElements, function (btnEl) { return btnEl.$c.checked; }) || null);
+	            return (this._checkedButton = find.call(this.buttonElements, function (btnEl) { return btnEl.$component.checked; }) || null);
 	        },
 	        set: function (checkedButton) {
 	            if (checkedButton === this._checkedButton) {
 	                return;
 	            }
 	            forEach.call(this.buttonElements, function (btnEl) {
-	                var btn = btnEl.$c;
+	                var btn = btnEl.$component;
 	                if (btn === checkedButton) {
 	                    btn.check();
 	                }
@@ -129,8 +129,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                '<opal-button>check': function (evt) {
 	                    var checkedButton = evt.target;
 	                    forEach.call(this.buttonElements, function (btnEl) {
-	                        if (btnEl.$c != checkedButton) {
-	                            btnEl.$c.uncheck();
+	                        if (btnEl.$component != checkedButton) {
+	                            btnEl.$component.uncheck();
 	                        }
 	                    });
 	                    this._checkedButton = checkedButton;

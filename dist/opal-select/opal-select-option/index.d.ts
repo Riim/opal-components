@@ -3,7 +3,6 @@ import { Component } from 'rionite';
 export default class OpalSelectOption extends Component {
     _tabIndex: number;
     initialize(): void;
-    propertyChanged(name: string, value: any): void;
     click(): OpalSelectOption;
     value: string;
     text: string;

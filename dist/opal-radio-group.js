@@ -97,8 +97,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                '<opal-radio-button>check': function (evt) {
 	                    var checkedButton = evt.target;
 	                    forEach.call(this.buttonElements, function (btnEl) {
-	                        if (btnEl.$c != checkedButton) {
-	                            btnEl.$c.uncheck();
+	                        if (btnEl.$component != checkedButton) {
+	                            btnEl.$component.uncheck();
 	                        }
 	                    });
 	                },
@@ -174,21 +174,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.focus();
 	        }
 	    };
-	    OpalRadioButton.prototype.propertyChanged = function (name, value) {
-	        if (name == 'checked') {
-	            this.$('input').checked = value;
-	        }
-	        else if (name == 'focused') {
-	            if (value) {
-	                this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-	                this.focus();
-	            }
-	            else {
-	                this._documentKeyDownListening.stop();
-	                this.blur();
-	            }
-	        }
-	    };
 	    OpalRadioButton.prototype._onDocumentKeyDown = function (evt) {
 	        if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
 	            evt.preventDefault();
@@ -255,6 +240,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        bemlTemplate: template,
 	        events: {
+	            ':component': {
+	                'property-checked-change': function (evt) {
+	                    this.$('input').checked = evt.value;
+	                },
+	                'property-focused-change': function (evt) {
+	                    if (evt.value) {
+	                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	                        this.focus();
+	                    }
+	                    else {
+	                        this._documentKeyDownListening.stop();
+	                        this.blur();
+	                    }
+	                }
+	            },
 	            input: {
 	                change: function (evt) {
 	                    this.emit((this.props.checked = evt.target.checked) ? 'check' : 'uncheck');

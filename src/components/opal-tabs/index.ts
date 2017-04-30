@@ -35,7 +35,7 @@ export default class OpalTabs extends Component {
 		let selectedTabIndex: number | undefined;
 
 		forEach.call(tabs, (tabEl: IComponentElement, index: number) => {
-			let tab = tabEl.$c as OpalTab;
+			let tab = tabEl.$component as OpalTab;
 
 			if (tab.selected) {
 				if (selectedTab) {
@@ -48,17 +48,17 @@ export default class OpalTabs extends Component {
 		});
 
 		if (!selectedTab) {
-			selectedTab = this._selectedTab = tabs[0].$c as OpalTab;
+			selectedTab = this._selectedTab = tabs[0].$component as OpalTab;
 			selectedTabIndex = 0;
 
 			selectedTab.select();
 		}
 
-		tabPanels[selectedTabIndex as number].$c.props.shown = true;
+		tabPanels[selectedTabIndex as number].$component.props.shown = true;
 	}
 
 	elementAttached() {
-		this.listenTo((this.element.getElementsByClassName('opal-tab-list')[0] as IComponentElement).$c, {
+		this.listenTo((this.element.getElementsByClassName('opal-tab-list')[0] as IComponentElement).$component, {
 			'<opal-tab>select': this._onTabListSelect,
 			'<opal-tab>deselect': this._onTabListDeselect
 		});
@@ -69,11 +69,11 @@ export default class OpalTabs extends Component {
 		let selectedTab = this._selectedTab;
 
 		if (selectedTab) {
-			this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$c.props.shown = false;
+			this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$component.props.shown = false;
 			selectedTab.deselect();
 		}
 
-		this.tabPanels[indexOf.call(this.tabs, tab.element)].$c.props.shown = true;
+		this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.props.shown = true;
 		this._selectedTab = tab;
 	}
 

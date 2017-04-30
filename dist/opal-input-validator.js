@@ -94,7 +94,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	    };
 	    OpalInputValidator.prototype.ready = function () {
-	        this._rules = map.call(this.element.getElementsByClassName('opal-input-validator-rule'), function (ruleEl) { return ruleEl.$c; });
+	        this._rules = map.call(this.element.getElementsByClassName('opal-input-validator-rule'), function (ruleEl) { return ruleEl.$component; });
 	    };
 	    OpalInputValidator.prototype.validate = function () {
 	        return this._validate(this._rules);

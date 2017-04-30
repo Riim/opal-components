@@ -74,7 +74,7 @@ export default class OpalMultirow extends Component {
 	ready() {
 		let presetRowCount = this._presetRowCount = filter.call(
 			this.element.getElementsByClassName('opal-multirow-row'),
-			(rowEl: IComponentElement): boolean => rowEl.$c.props.preset
+			(rowEl: IComponentElement): boolean => rowEl.$component.props.preset
 		).length;
 
 		if (!presetRowCount) {

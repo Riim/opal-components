@@ -95,11 +95,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.focus();
 	        }
 	    };
-	    OpalSignButton.prototype.propertyChanged = function (name, value) {
-	        if (name == 'focused') {
-	            this[value ? 'focus' : 'blur']();
-	        }
-	    };
 	    OpalSignButton.prototype.click = function () {
 	        if (this.props.checkable) {
 	            this.emit(this.toggle() ? 'check' : 'uncheck');
@@ -165,6 +160,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        bemlTemplate: template,
 	        events: {
+	            ':component': {
+	                'property-focused-change': function (evt) {
+	                    this[evt.value ? 'focus' : 'blur']();
+	                }
+	            },
 	            control: {
 	                focus: function (evt) {
 	                    var _this = this;

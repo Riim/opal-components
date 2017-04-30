@@ -5,7 +5,6 @@ export default class OpalTextInput extends Component {
     _initialHeight: number;
     initialize(): void;
     ready(): void;
-    propertyChanged(name: string, value: any): void;
     _onBtnClearClick(evt: Event): void;
     _fixHeight(): void;
     value: string;

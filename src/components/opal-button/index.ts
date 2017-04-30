@@ -1,6 +1,6 @@
 import './index.css';
 
-import { define, Utils } from 'cellx';
+import { IEvent, define, Utils } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
 
 let nextTick = Utils.nextTick;
@@ -21,6 +21,10 @@ let nextTick = Utils.nextTick;
 
 	events: {
 		':component': {
+			'property-focused-change'(evt: IEvent) {
+				this[evt.value ? 'focus' : 'blur']();
+			},
+
 			'change:_tabIndex'() {
 				this.element.tabIndex = this._tabIndex;
 			}
@@ -81,12 +85,6 @@ export default class OpalButton extends Component {
 
 	elementAttached() {
 		this.element.tabIndex = this._tabIndex;
-	}
-
-	propertyChanged(name: string, value: any) {
-		if (name == 'focused') {
-			this[value ? 'focus' : 'blur']();
-		}
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {

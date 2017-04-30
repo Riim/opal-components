@@ -98,7 +98,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalRouter.prototype.ready = function () {
 	        var routes = this._routes;
 	        forEach.call(this.element.querySelectorAll('opal-route'), function (routeEl) {
-	            var path = routeEl.$c.props.path;
+	            var path = routeEl.$component.props.path;
 	            var rePath = [];
 	            var props = [];
 	            (function processPath(path) {
@@ -134,7 +134,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                path: path,
 	                rePath: RegExp("^" + rePath + (rePath.charAt(rePath.length - 1) == '\/' ? '?' : '\/?') + "$"),
 	                properties: props,
-	                componentName: routeEl.$c.props.component
+	                componentName: routeEl.$component.props.component
 	            });
 	        });
 	    };
@@ -180,7 +180,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this_1._clear();
 	                this_1._route = route;
 	                var componentEl = this_1._componentElement = document.createElement(route.componentName);
-	                componentEl.$c.ownerComponent = this_1;
+	                componentEl.$component.ownerComponent = this_1;
 	                this_1._applyState(state);
 	                this_1.element.appendChild(componentEl);
 	            }

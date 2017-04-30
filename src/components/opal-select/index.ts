@@ -107,6 +107,23 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				} else {
 					vm.clear();
 				}
+			},
+
+			'property-focused-change'(evt: IEvent) {
+				if (evt.value) {
+					if (!this._documentKeyDownListening) {
+						this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+					}
+
+					this.focus();
+				} else {
+					if (!this._opened) {
+						(this._documentKeyDownListening as IDisposableListening).stop();
+						this._documentKeyDownListening = null;
+					}
+
+					this.blur();
+				}
 			}
 		},
 
@@ -335,7 +352,7 @@ export default class OpalSelect extends Component {
 
 			options(this: OpalSelect): Array<OpalSelectOption> {
 				return this.optionElements ?
-					map.call(this.optionElements, (option: IComponentElement) => option.$c) :
+					map.call(this.optionElements, (option: IComponentElement) => option.$component) :
 					[];
 			},
 
@@ -401,25 +418,6 @@ export default class OpalSelect extends Component {
 
 	elementAttached() {
 		this.listenTo(this.viewModel, 'change', this._onViewModelChange);
-	}
-
-	propertyChanged(name: string, value: any) {
-		if (name == 'focused') {
-			if (value) {
-				if (!this._documentKeyDownListening) {
-					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-				}
-
-				this.focus();
-			} else {
-				if (!this._opened) {
-					(this._documentKeyDownListening as IDisposableListening).stop();
-					this._documentKeyDownListening = null;
-				}
-
-				this.blur();
-			}
-		}
 	}
 
 	_onViewModelChange() {

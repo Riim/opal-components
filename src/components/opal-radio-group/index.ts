@@ -15,8 +15,8 @@ let forEach = Array.prototype.forEach;
 				let checkedButton = evt.target;
 
 				forEach.call(this.buttonElements, (btnEl: IComponentElement) => {
-					if (btnEl.$c != checkedButton) {
-						(btnEl.$c as OpalRadioButton).uncheck();
+					if (btnEl.$component != checkedButton) {
+						(btnEl.$component as OpalRadioButton).uncheck();
 					}
 				});
 			},

@@ -4,7 +4,6 @@ export default class OpalTab extends Component {
     _tabIndex: number;
     initialize(): void;
     ready(): void;
-    propertyChanged(name: string, value: any): void;
     click(): OpalTab;
     selected: boolean;
     select(): boolean;

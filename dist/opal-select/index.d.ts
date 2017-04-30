@@ -27,7 +27,6 @@ export default class OpalSelect extends Component {
     initialize(): void;
     ready(): void;
     elementAttached(): void;
-    propertyChanged(name: string, value: any): void;
     _onViewModelChange(): void;
     _updateOptions(): void;
     open(): boolean;

@@ -99,7 +99,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 	    };
 	    OpalMultirow.prototype.ready = function () {
-	        var presetRowCount = this._presetRowCount = filter.call(this.element.getElementsByClassName('opal-multirow-row'), function (rowEl) { return rowEl.$c.props.preset; }).length;
+	        var presetRowCount = this._presetRowCount = filter.call(this.element.getElementsByClassName('opal-multirow-row'), function (rowEl) { return rowEl.$component.props.preset; }).length;
 	        if (!presetRowCount) {
 	            this._newRows.add({ key: nextUID() });
 	        }

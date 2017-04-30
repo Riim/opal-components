@@ -86,11 +86,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this._open();
 	        }
 	    };
-	    OpalPopover.prototype.propertyChanged = function (name, value) {
-	        if (name == 'opened') {
-	            this[value ? '_open' : '_close']();
-	        }
-	    };
 	    OpalPopover.prototype.open = function () {
 	        if (this.props.opened) {
 	            return false;
@@ -192,7 +187,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            autoClosing: false,
 	            opened: false
 	        },
-	        bemlTemplate: template
+	        bemlTemplate: template,
+	        events: {
+	            ':component': {
+	                'property-opened-change': function (evt) {
+	                    this[evt.value ? '_open' : '_close']();
+	                }
+	            }
+	        }
 	    })
 	], OpalPopover);
 	exports.default = OpalPopover;

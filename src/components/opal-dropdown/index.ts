@@ -1,5 +1,6 @@
 import './index.css';
 
+import { IEvent } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
 
 let openedDropdowns: Array<OpalDropdown> = [];
@@ -13,7 +14,15 @@ let openedDropdowns: Array<OpalDropdown> = [];
 		opened: false
 	},
 
-	bemlTemplate: '@section/inner { rt-content/content (cloning=no) }'
+	bemlTemplate: '@section/inner { rt-content/content (cloning=no) }',
+
+	events: {
+		':component': {
+			'property-opened-change'(evt: IEvent) {
+				this[evt.value ? '_open' : '_close']();
+			}
+		}
+	}
 })
 export default class OpalDropdown extends Component {
 	_documentClickListening: IDisposableListening | undefined;
@@ -21,12 +30,6 @@ export default class OpalDropdown extends Component {
 	ready() {
 		if (this.props.opened) {
 			this._open();
-		}
-	}
-
-	propertyChanged(name: string, value: any) {
-		if (name == 'opened') {
-			this[value ? '_open' : '_close']();
 		}
 	}
 

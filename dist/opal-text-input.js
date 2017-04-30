@@ -122,17 +122,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.focus();
 	        }
 	    };
-	    OpalTextInput.prototype.propertyChanged = function (name, value) {
-	        if (name == 'value') {
-	            var textField = this.$('text-field');
-	            if (textField.value != value) {
-	                textField.value = value;
-	            }
-	        }
-	        else if (name == 'focused') {
-	            this[value ? 'focus' : 'blur']();
-	        }
-	    };
 	    OpalTextInput.prototype._onBtnClearClick = function (evt) {
 	        evt.preventDefault();
 	        this.value = '';
@@ -199,6 +188,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        bemlTemplate: template,
 	        events: {
+	            ':component': {
+	                'property-value-change': function (evt) {
+	                    var textField = this.$('text-field');
+	                    if (textField.value != evt.value) {
+	                        textField.value = evt.value;
+	                    }
+	                },
+	                'property-focused-change': function (evt) {
+	                    this[evt.value ? 'focus' : 'blur']();
+	                }
+	            },
 	            'text-field': {
 	                focus: function (evt) {
 	                    var _this = this;

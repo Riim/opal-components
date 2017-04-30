@@ -1,6 +1,6 @@
 import './index.css';
 
-import { define, Utils } from 'cellx';
+import { IEvent, define, Utils } from 'cellx';
 import { Component, d } from 'rionite';
 import template = require('./index.beml');
 
@@ -29,6 +29,20 @@ let nextTick = Utils.nextTick;
 	bemlTemplate: template,
 
 	events: {
+		':component': {
+			'property-value-change'(evt: IEvent) {
+				let textField = this.$('text-field') as HTMLInputElement;
+
+				if (textField.value != evt.value) {
+					textField.value = evt.value;
+				}
+			},
+
+			'property-focused-change'(evt: IEvent) {
+				this[evt.value ? 'focus' : 'blur']();
+			}
+		},
+
 		'text-field': {
 			focus(evt: Event) {
 				nextTick(() => {
@@ -134,18 +148,6 @@ export default class OpalTextInput extends Component {
 
 		if (props.focused) {
 			this.focus();
-		}
-	}
-
-	propertyChanged(name: string, value: any) {
-		if (name == 'value') {
-			let textField = this.$('text-field') as HTMLInputElement;
-
-			if (textField.value != value) {
-				textField.value = value;
-			}
-		} else if (name == 'focused') {
-			this[value ? 'focus' : 'blur']();
 		}
 	}
 

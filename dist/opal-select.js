@@ -130,7 +130,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            viewModel: vm,
 	            options: function () {
 	                return this.optionElements ?
-	                    map.call(this.optionElements, function (option) { return option.$c; }) :
+	                    map.call(this.optionElements, function (option) { return option.$component; }) :
 	                    [];
 	            },
 	            text: function () {
@@ -194,23 +194,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    OpalSelect.prototype.elementAttached = function () {
 	        this.listenTo(this.viewModel, 'change', this._onViewModelChange);
-	    };
-	    OpalSelect.prototype.propertyChanged = function (name, value) {
-	        if (name == 'focused') {
-	            if (value) {
-	                if (!this._documentKeyDownListening) {
-	                    this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-	                }
-	                this.focus();
-	            }
-	            else {
-	                if (!this._opened) {
-	                    this._documentKeyDownListening.stop();
-	                    this._documentKeyDownListening = null;
-	                }
-	                this.blur();
-	            }
-	        }
 	    };
 	    OpalSelect.prototype._onViewModelChange = function () {
 	        this._updateOptions();
@@ -479,6 +462,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    else {
 	                        vm.clear();
 	                    }
+	                },
+	                'property-focused-change': function (evt) {
+	                    if (evt.value) {
+	                        if (!this._documentKeyDownListening) {
+	                            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+	                        }
+	                        this.focus();
+	                    }
+	                    else {
+	                        if (!this._opened) {
+	                            this._documentKeyDownListening.stop();
+	                            this._documentKeyDownListening = null;
+	                        }
+	                        this.blur();
+	                    }
 	                }
 	            },
 	            button: {
@@ -681,11 +679,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        });
 	    };
-	    OpalSelectOption.prototype.propertyChanged = function (name, value) {
-	        if (name == 'focused') {
-	            this[value ? 'focus' : 'blur']();
-	        }
-	    };
 	    OpalSelectOption.prototype.click = function () {
 	        this.emit(this.toggle() ? 'select' : 'deselect');
 	        return this;
@@ -779,6 +772,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        bemlTemplate: template,
 	        events: {
+	            ':component': {
+	                'property-focused-change': function (evt) {
+	                    this[evt.value ? 'focus' : 'blur']();
+	                }
+	            },
 	            control: {
 	                focus: function (evt) {
 	                    var _this = this;

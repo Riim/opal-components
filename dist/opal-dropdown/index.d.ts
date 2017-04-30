@@ -3,7 +3,6 @@ import { IDisposableListening, Component } from 'rionite';
 export default class OpalDropdown extends Component {
     _documentClickListening: IDisposableListening | undefined;
     ready(): void;
-    propertyChanged(name: string, value: any): void;
     open(): boolean;
     close(): boolean;
     toggle(value?: boolean): boolean;

@@ -49,7 +49,7 @@ export default class OpalInputValidator extends Component {
 	ready() {
 		this._rules = map.call(
 			this.element.getElementsByClassName('opal-input-validator-rule'),
-			(ruleEl: IComponentElement) => ruleEl.$c
+			(ruleEl: IComponentElement) => ruleEl.$component
 		);
 	}
 

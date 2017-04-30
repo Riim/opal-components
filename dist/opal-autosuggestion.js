@@ -119,13 +119,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.listenTo(this.list, 'change', this._onListChange);
 	        this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 	    };
-	    OpalAutosuggestion.prototype.propertyChanged = function (name, value) {
-	        if (name == 'selectedItem') {
-	            this._clearList();
-	            this.selectedItem = value;
-	            this.$('text-input').value = value ? value.text : '';
-	        }
-	    };
 	    OpalAutosuggestion.prototype._onTextFieldClick = function () {
 	        this.openMenu();
 	    };
@@ -312,6 +305,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        bemlTemplate: template,
 	        events: {
+	            ':component': {
+	                'property-selected-item-change': function (evt) {
+	                    var value = evt.value;
+	                    this._clearList();
+	                    this.selectedItem = value;
+	                    this.$('text-input').value = value ? value.text : '';
+	                }
+	            },
 	            'text-input': {
 	                focus: function () {
 	                    this.openMenu();

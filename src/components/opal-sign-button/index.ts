@@ -1,6 +1,6 @@
 import './index.css';
 
-import { define, Utils } from 'cellx';
+import { IEvent, define, Utils } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.beml');
 
@@ -21,6 +21,12 @@ let nextTick = Utils.nextTick;
 	bemlTemplate: template,
 
 	events: {
+		':component': {
+			'property-focused-change'(evt: IEvent) {
+				this[evt.value ? 'focus' : 'blur']();
+			}
+		},
+
 		control: {
 			focus(evt: Event) {
 				nextTick(() => {
@@ -62,12 +68,6 @@ export default class OpalSignButton extends Component {
 	ready() {
 		if (this.props.focused) {
 			this.focus();
-		}
-	}
-
-	propertyChanged(name: string, value: any) {
-		if (name == 'focused') {
-			this[value ? 'focus' : 'blur']();
 		}
 	}
 

@@ -40,6 +40,17 @@ function toComparable(str: string): string {
 	bemlTemplate: template,
 
 	events: {
+		':component': {
+			'property-selected-item-change'(evt: IEvent) {
+				let value = evt.value as IItem;
+
+				this._clearList();
+
+				this.selectedItem = value;
+				(this.$('text-input') as OpalTextInput).value = value ? value.text : '';
+			}
+		},
+
 		'text-input': {
 			focus() {
 				this.openMenu();
@@ -162,15 +173,6 @@ export default class OpalAutosuggestion extends Component {
 		this.listenTo((this.$('menu') as Component).element as HTMLElement, 'mouseover', this._onMenuMouseOver);
 		this.listenTo(this.list, 'change', this._onListChange);
 		this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
-	}
-
-	propertyChanged(name: string, value: any) {
-		if (name == 'selectedItem') {
-			this._clearList();
-
-			this.selectedItem = value;
-			(this.$('text-input') as OpalTextInput).value = value ? value.text : '';
-		}
 	}
 
 	_onTextFieldClick() {

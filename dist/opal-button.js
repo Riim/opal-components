@@ -98,11 +98,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalButton.prototype.elementAttached = function () {
 	        this.element.tabIndex = this._tabIndex;
 	    };
-	    OpalButton.prototype.propertyChanged = function (name, value) {
-	        if (name == 'focused') {
-	            this[value ? 'focus' : 'blur']();
-	        }
-	    };
 	    OpalButton.prototype._onDocumentKeyDown = function (evt) {
 	        if (evt.which == 13 /* Enter */) {
 	            evt.preventDefault();
@@ -178,6 +173,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        events: {
 	            ':component': {
+	                'property-focused-change': function (evt) {
+	                    this[evt.value ? 'focus' : 'blur']();
+	                },
 	                'change:_tabIndex': function () {
 	                    this.element.tabIndex = this._tabIndex;
 	                }

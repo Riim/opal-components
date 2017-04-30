@@ -86,11 +86,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this._open();
 	        }
 	    };
-	    OpalDropdown.prototype.propertyChanged = function (name, value) {
-	        if (name == 'opened') {
-	            this[value ? '_open' : '_close']();
-	        }
-	    };
 	    OpalDropdown.prototype.open = function () {
 	        if (this.props.opened) {
 	            return false;
@@ -192,7 +187,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            autoClosing: false,
 	            opened: false
 	        },
-	        bemlTemplate: '@section/inner { rt-content/content (cloning=no) }'
+	        bemlTemplate: '@section/inner { rt-content/content (cloning=no) }',
+	        events: {
+	            ':component': {
+	                'property-opened-change': function (evt) {
+	                    this[evt.value ? '_open' : '_close']();
+	                }
+	            }
+	        }
 	    })
 	], OpalDropdown);
 	exports.default = OpalDropdown;

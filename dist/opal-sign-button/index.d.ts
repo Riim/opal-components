@@ -5,7 +5,6 @@ export default class OpalSignButton extends Component {
     _documentKeyDownListening: IDisposableListening;
     initialize(): void;
     ready(): void;
-    propertyChanged(name: string, value: any): void;
     click(): OpalSignButton;
     checked: boolean;
     check(): boolean;

@@ -1,5 +1,6 @@
 import './index.css';
 
+import { IEvent } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.beml');
 
@@ -13,7 +14,15 @@ import template = require('./index.beml');
 		opened: false
 	},
 
-	bemlTemplate: template
+	bemlTemplate: template,
+
+	events: {
+		':component': {
+			'property-opened-change'(evt: IEvent) {
+				this[evt.value ? '_open' : '_close']();
+			}
+		}
+	}
 })
 export default class OpalPopover extends Component {
 	_toValueAtOpen: string;
@@ -23,12 +32,6 @@ export default class OpalPopover extends Component {
 	ready() {
 		if (this.props.opened) {
 			this._open();
-		}
-	}
-
-	propertyChanged(name: string, value: any) {
-		if (name == 'opened') {
-			this[value ? '_open' : '_close']();
 		}
 	}
 

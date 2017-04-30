@@ -103,11 +103,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    OpalModal.prototype.elementDetached = function () {
 	        this.close();
 	    };
-	    OpalModal.prototype.propertyChanged = function (name, value) {
-	        if (name == 'opened') {
-	            this[value ? '_open' : '_close']();
-	        }
-	    };
 	    OpalModal.prototype.open = function () {
 	        if (this.props.opened) {
 	            return false;
@@ -179,6 +174,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        bemlTemplate: template,
 	        events: {
+	            ':component': {
+	                'property-opened-change': function (evt) {
+	                    this[evt.value ? '_open' : '_close']();
+	                }
+	            },
 	            ':element': {
 	                click: function (evt) {
 	                    var el = this.element;

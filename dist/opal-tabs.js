@@ -99,7 +99,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var selectedTab;
 	        var selectedTabIndex;
 	        forEach.call(tabs, function (tabEl, index) {
-	            var tab = tabEl.$c;
+	            var tab = tabEl.$component;
 	            if (tab.selected) {
 	                if (selectedTab) {
 	                    tab.deselect();
@@ -111,14 +111,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        });
 	        if (!selectedTab) {
-	            selectedTab = this._selectedTab = tabs[0].$c;
+	            selectedTab = this._selectedTab = tabs[0].$component;
 	            selectedTabIndex = 0;
 	            selectedTab.select();
 	        }
-	        tabPanels[selectedTabIndex].$c.props.shown = true;
+	        tabPanels[selectedTabIndex].$component.props.shown = true;
 	    };
 	    OpalTabs.prototype.elementAttached = function () {
-	        this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0].$c, {
+	        this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0].$component, {
 	            '<opal-tab>select': this._onTabListSelect,
 	            '<opal-tab>deselect': this._onTabListDeselect
 	        });
@@ -127,10 +127,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var tab = evt.target;
 	        var selectedTab = this._selectedTab;
 	        if (selectedTab) {
-	            this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$c.props.shown = false;
+	            this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$component.props.shown = false;
 	            selectedTab.deselect();
 	        }
-	        this.tabPanels[indexOf.call(this.tabs, tab.element)].$c.props.shown = true;
+	        this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.props.shown = true;
 	        this._selectedTab = tab;
 	    };
 	    OpalTabs.prototype._onTabListDeselect = function (evt) {
@@ -253,11 +253,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.focus();
 	        }
 	    };
-	    OpalTab.prototype.propertyChanged = function (name, value) {
-	        if (name == 'focused') {
-	            this[value ? 'focus' : 'blur']();
-	        }
-	    };
 	    OpalTab.prototype.click = function () {
 	        this.emit(this.toggle() ? 'select' : 'deselect');
 	        return this;
@@ -318,6 +313,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        bemlTemplate: template,
 	        events: {
+	            ':component': {
+	                'property-focused-change': function (evt) {
+	                    this[evt.value ? 'focus' : 'blur']();
+	                }
+	            },
 	            control: {
 	                focus: function (evt) {
 	                    var _this = this;

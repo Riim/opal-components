@@ -1,5 +1,6 @@
 import './index.css';
 
+import { IEvent } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.beml');
 
@@ -31,6 +32,12 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 	bemlTemplate: template,
 
 	events: {
+		':component': {
+			'property-opened-change'(evt: IEvent) {
+				this[evt.value ? '_open' : '_close']();
+			}
+		},
+
 		':element': {
 			click(evt: Event) {
 				let el = this.element;
@@ -68,12 +75,6 @@ export default class OpalModal extends Component {
 
 	elementDetached() {
 		this.close();
-	}
-
-	propertyChanged(name: string, value: any) {
-		if (name == 'opened') {
-			this[value ? '_open' : '_close']();
-		}
 	}
 
 	open(): boolean {

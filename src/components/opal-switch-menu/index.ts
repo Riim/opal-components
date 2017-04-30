@@ -17,8 +17,8 @@ let find = (Array.prototype as any).find;
 				let checkedButton = evt.target as OpalButton;
 
 				forEach.call(this.buttonElements, (btnEl: IComponentElement) => {
-					if (btnEl.$c != checkedButton) {
-						(btnEl.$c as OpalButton).uncheck();
+					if (btnEl.$component != checkedButton) {
+						(btnEl.$component as OpalButton).uncheck();
 					}
 				});
 
@@ -45,7 +45,7 @@ export default class OpalSwitchMenu extends Component {
 
 		return (this._checkedButton = find.call(
 			this.buttonElements,
-			(btnEl: IComponentElement) => (btnEl.$c as OpalButton).checked) || null
+			(btnEl: IComponentElement) => (btnEl.$component as OpalButton).checked) || null
 		);
 	}
 
@@ -55,7 +55,7 @@ export default class OpalSwitchMenu extends Component {
 		}
 
 		forEach.call(this.buttonElements, (btnEl: IComponentElement) => {
-			let btn = btnEl.$c as OpalButton;
+			let btn = btnEl.$component as OpalButton;
 
 			if (btn === checkedButton) {
 				btn.check();

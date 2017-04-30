@@ -5,7 +5,6 @@ export default class OpalSwitch extends Component {
     _documentKeyDownListening: IDisposableListening;
     initialize(): void;
     ready(): void;
-    propertyChanged(name: string, value: any): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     checked: boolean;
     check(): boolean;

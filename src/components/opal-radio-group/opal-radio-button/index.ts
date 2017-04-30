@@ -1,12 +1,12 @@
 import './index.css';
 
-import { define, Utils } from 'cellx';
+import { IEvent, define, Utils } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.beml');
 
 let nextTick = Utils.nextTick;
 
-@d.Component({
+@d.Component<OpalRadioButton>({
 	elementIs: 'opal-radio-button',
 
 	props: {
@@ -19,6 +19,22 @@ let nextTick = Utils.nextTick;
 	bemlTemplate: template,
 
 	events: {
+		':component': {
+			'property-checked-change'(evt: IEvent) {
+				(this.$('input') as HTMLInputElement).checked = evt.value;
+			},
+
+			'property-focused-change'(evt: IEvent) {
+				if (evt.value) {
+					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+					this.focus();
+				} else {
+					this._documentKeyDownListening.stop();
+					this.blur();
+				}
+			}
+		},
+
 		input: {
 			change(evt: Event) {
 				this.emit((this.props.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
@@ -63,20 +79,6 @@ export default class OpalRadioButton extends Component {
 
 		if (this.props.focused) {
 			this.focus();
-		}
-	}
-
-	propertyChanged(name: string, value: any) {
-		if (name == 'checked') {
-			(this.$('input') as HTMLInputElement).checked = value;
-		} else if (name == 'focused') {
-			if (value) {
-				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-				this.focus();
-			} else {
-				this._documentKeyDownListening.stop();
-				this.blur();
-			}
 		}
 	}
 

@@ -99,7 +99,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this._textField = this.$('text-input').$('text-field');
 	        var definitions = this._definitions;
 	        forEach.call(this.element.querySelectorAll('opal-input-mask-definition'), function (inputMaskDefinition) {
-	            var props = inputMaskDefinition.$c.props;
+	            var props = inputMaskDefinition.$component.props;
 	            definitions[props.maskChar] = props.regex;
 	        });
 	        cellx_1.define(this, {
