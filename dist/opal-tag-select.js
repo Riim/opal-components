@@ -157,7 +157,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            popoverTo: 'bottom',
 	            disabled: false
 	        },
-	        bemlTemplate: template,
+	        template: template,
 	        events: {
 	            control: {
 	                click: function (evt) {

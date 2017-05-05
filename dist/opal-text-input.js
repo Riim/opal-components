@@ -186,7 +186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            focused: false,
 	            disabled: false
 	        },
-	        bemlTemplate: template,
+	        template: template,
 	        events: {
 	            ':component': {
 	                'property-value-change': function (evt) {

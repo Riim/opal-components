@@ -366,7 +366,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        props: {
 	            mask: { type: String, required: true }
 	        },
-	        bemlTemplate: '@section/inner { rt-content/content (cloning=no) }'
+	        template: '@section/inner { rt-content/content (cloning=no) }'
 	    })
 	], OpalInputMask);
 	exports.default = OpalInputMask;

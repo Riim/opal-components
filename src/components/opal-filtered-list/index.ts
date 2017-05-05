@@ -9,7 +9,7 @@ import template = require('./index.beml');
 @d.Component({
 	elementIs: 'opal-filtered-list',
 
-	bemlTemplate: template,
+	template,
 
 	events: {
 		'query-input': {

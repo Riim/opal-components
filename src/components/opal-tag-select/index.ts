@@ -28,7 +28,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		disabled: false
 	},
 
-	bemlTemplate: template,
+	template,
 
 	events: {
 		control: {

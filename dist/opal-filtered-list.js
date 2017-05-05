@@ -92,7 +92,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalFilteredList = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-filtered-list',
-	        bemlTemplate: template,
+	        template: template,
 	        events: {
 	            'query-input': {
 	                input: function (evt) {

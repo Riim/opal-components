@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.22.2",
+  "version": "0.23.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -51,13 +51,13 @@
     "trim-lines-loader": "^0.1.0",
     "typescript": "^2.3.2",
     "webpack": "^1.15.0",
-    "yargs": "^7.1.0"
+    "yargs": "^8.0.1"
   },
   "dependencies": {
     "cellx": "^1.7.5",
     "cellx-indexed-collections": "^1.0.8",
     "date-exists": "^1.0.0",
     "prismjs": "^1.6.0",
-    "rionite": "^0.22.6"
+    "rionite": "^0.23.1"
   }
 }

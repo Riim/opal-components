@@ -14,7 +14,7 @@ let openedDropdowns: Array<OpalDropdown> = [];
 		opened: false
 	},
 
-	bemlTemplate: '@section/inner { rt-content/content (cloning=no) }',
+	template: '@section/inner { rt-content/content (cloning=no) }',
 
 	events: {
 		':component': {

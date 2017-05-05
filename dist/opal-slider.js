@@ -127,7 +127,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            value: 0,
 	            range: eval
 	        },
-	        bemlTemplate: template,
+	        template: template,
 	        events: {
 	            'first-input': {
 	                input: function (evt) {

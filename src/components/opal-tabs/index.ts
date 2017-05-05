@@ -15,7 +15,7 @@ let forEach = Array.prototype.forEach;
 
 @d.Component({
 	elementIs: 'opal-tabs',
-	bemlTemplate: template
+	template
 })
 export default class OpalTabs extends Component {
 	static OpalTabList = OpalTabList;

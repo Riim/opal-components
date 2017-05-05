@@ -32,7 +32,7 @@ function pad(num: number): string {
 		invalidDateRange: getText.t('Дата вне допустимого диапазона')
 	},
 
-	bemlTemplate: template,
+	template,
 
 	events: {
 		'text-input': {

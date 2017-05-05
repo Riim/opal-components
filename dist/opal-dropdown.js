@@ -187,7 +187,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            autoClosing: false,
 	            opened: false
 	        },
-	        bemlTemplate: '@section/inner { rt-content/content (cloning=no) }',
+	        template: '@section/inner { rt-content/content (cloning=no) }',
 	        events: {
 	            ':component': {
 	                'property-opened-change': function (evt) {

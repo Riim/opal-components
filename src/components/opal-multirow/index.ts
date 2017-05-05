@@ -13,7 +13,7 @@ let filter = Array.prototype.filter;
 @d.Component<OpalMultirow>({
 	elementIs: 'opal-multirow',
 
-	bemlTemplate: template,
+	template,
 
 	events: {
 		':component': {

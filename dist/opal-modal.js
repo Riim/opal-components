@@ -172,7 +172,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        props: {
 	            opened: false
 	        },
-	        bemlTemplate: template,
+	        template: template,
 	        events: {
 	            ':component': {
 	                'property-opened-change': function (evt) {

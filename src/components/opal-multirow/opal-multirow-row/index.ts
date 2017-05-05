@@ -10,7 +10,7 @@ import template = require('./index.beml');
 		preset: { default: false, readonly: true }
 	},
 
-	bemlTemplate: template,
+	template,
 
 	events: {
 		'btn-remove-row': {

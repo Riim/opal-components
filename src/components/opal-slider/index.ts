@@ -15,7 +15,7 @@ import template = require('./index.beml');
 		range: eval
 	},
 
-	bemlTemplate: template,
+	template,
 
 	events: {
 		'first-input': {

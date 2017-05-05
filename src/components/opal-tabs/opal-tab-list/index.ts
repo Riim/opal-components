@@ -7,7 +7,7 @@ export { default as OpalTab } from './opal-tab';
 
 @d.Component({
 	elementIs: 'opal-tab-list',
-	bemlTemplate: '@section/inner { rt-content/content (cloning=no) }'
+	template: '@section/inner { rt-content/content (cloning=no) }'
 })
 export default class OpalTabList extends Component {
 	static OpalTab = OpalTab;

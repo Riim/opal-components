@@ -29,7 +29,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 		opened: false
 	},
 
-	bemlTemplate: template,
+	template,
 
 	events: {
 		':component': {

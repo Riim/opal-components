@@ -186,7 +186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        i18n: {
 	            notFound: rionite_1.getText.t('Ничего не найдено')
 	        },
-	        bemlTemplate: template,
+	        template: template,
 	        events: {
 	            ':component': {
 	                'property-query-change': function () {

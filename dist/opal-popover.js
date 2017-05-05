@@ -187,7 +187,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            autoClosing: false,
 	            opened: false
 	        },
-	        bemlTemplate: template,
+	        template: template,
 	        events: {
 	            ':component': {
 	                'property-opened-change': function (evt) {

@@ -138,7 +138,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalInputValidator = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-input-validator',
-	        bemlTemplate: '@section/inner { rt-content/content (cloning=no) }',
+	        template: '@section/inner { rt-content/content (cloning=no) }',
 	        events: {
 	            'text-input': {
 	                input: function () {
@@ -219,7 +219,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            test: { type: String, readonly: true },
 	            popoverTo: 'right'
 	        },
-	        bemlTemplate: template
+	        template: template
 	    })
 	], OpalInputValidatorRule);
 	exports.default = OpalInputValidatorRule;

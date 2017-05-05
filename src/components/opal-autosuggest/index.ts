@@ -37,7 +37,7 @@ function toComparable(str: string): string {
 		notFound: getText.t('Ничего не найдено')
 	},
 
-	bemlTemplate: template,
+	template,
 
 	events: {
 		':component': {

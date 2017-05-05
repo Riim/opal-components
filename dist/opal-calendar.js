@@ -298,7 +298,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            weekDaysShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
 	            sundayFirst: false
 	        },
-	        bemlTemplate: template,
+	        template: template,
 	        events: {
 	            'btn-prev-month': {
 	                click: function () {

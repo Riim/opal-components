@@ -303,7 +303,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            inputPlaceholder: rionite_1.getText.t('начните вводить для поиска'),
 	            notFound: rionite_1.getText.t('Ничего не найдено')
 	        },
-	        bemlTemplate: template,
+	        template: template,
 	        events: {
 	            ':component': {
 	                'property-selected-item-change': function (evt) {

@@ -14,7 +14,7 @@ import template = require('./index.beml');
 		opened: false
 	},
 
-	bemlTemplate: template,
+	template,
 
 	events: {
 		':component': {

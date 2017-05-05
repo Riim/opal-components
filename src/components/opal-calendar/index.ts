@@ -53,7 +53,7 @@ function getTodayDate() {
 		sundayFirst: false
 	},
 
-	bemlTemplate: template,
+	template,
 
 	events: {
 		'btn-prev-month': {

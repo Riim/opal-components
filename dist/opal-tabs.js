@@ -143,7 +143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalTabs = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-tabs',
-	        bemlTemplate: template
+	        template: template
 	    })
 	], OpalTabs);
 	exports.default = OpalTabs;
@@ -202,7 +202,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalTabList = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-tab-list',
-	        bemlTemplate: '@section/inner { rt-content/content (cloning=no) }'
+	        template: '@section/inner { rt-content/content (cloning=no) }'
 	    })
 	], OpalTabList);
 	exports.default = OpalTabList;
@@ -311,7 +311,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            focused: false,
 	            disabled: false
 	        },
-	        bemlTemplate: template,
+	        template: template,
 	        events: {
 	            ':component': {
 	                'property-focused-change': function (evt) {
@@ -381,7 +381,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        props: {
 	            shown: false
 	        },
-	        bemlTemplate: '@section/inner { rt-content/content (cloning=no) }'
+	        template: '@section/inner { rt-content/content (cloning=no) }'
 	    })
 	], OpalTabPanel);
 	exports.default = OpalTabPanel;

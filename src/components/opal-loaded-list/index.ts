@@ -32,7 +32,7 @@ export interface IDataProvider {
 		notFound: getText.t('Ничего не найдено')
 	},
 
-	bemlTemplate: template,
+	template,
 
 	events: {
 		':component': {

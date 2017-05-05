@@ -176,7 +176,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nonExistentDate: rionite_1.getText.t('Несуществующая дата'),
 	            invalidDateRange: rionite_1.getText.t('Дата вне допустимого диапазона')
 	        },
-	        bemlTemplate: template,
+	        template: template,
 	        events: {
 	            'text-input': {
 	                change: function (evt) {

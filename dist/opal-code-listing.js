@@ -111,7 +111,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalCodeListing = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-code-listing',
-	        bemlTemplate: template
+	        template: template
 	    })
 	], OpalCodeListing);
 	exports.default = OpalCodeListing;

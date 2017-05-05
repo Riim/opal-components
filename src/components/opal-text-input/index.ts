@@ -26,7 +26,7 @@ let nextTick = Utils.nextTick;
 		disabled: false
 	},
 
-	bemlTemplate: template,
+	template,
 
 	events: {
 		':component': {

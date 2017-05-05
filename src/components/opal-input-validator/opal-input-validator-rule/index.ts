@@ -15,7 +15,7 @@ import template = require('./index.beml');
 		popoverTo: 'right'
 	},
 
-	bemlTemplate: template
+	template
 })
 export default class OpalInputValidatorRule extends Component {
 	showMessage() {

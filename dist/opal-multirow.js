@@ -110,7 +110,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalMultirow = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-multirow',
-	        bemlTemplate: template,
+	        template: template,
 	        events: {
 	            ':component': {
 	                '<opal-multirow-row>remove-row-click': function (evt) {
@@ -203,7 +203,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        props: {
 	            preset: { default: false, readonly: true }
 	        },
-	        bemlTemplate: template,
+	        template: template,
 	        events: {
 	            'btn-remove-row': {
 	                click: function () {

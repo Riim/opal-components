@@ -24,7 +24,7 @@ let iPhone = /iphone/i.test(navigator.userAgent);
 		mask: { type: String, required: true }
 	},
 
-	bemlTemplate: '@section/inner { rt-content/content (cloning=no) }'
+	template: '@section/inner { rt-content/content (cloning=no) }'
 })
 export default class OpalInputMask extends Component {
 	static OpalInputMaskDefinition = OpalInputMaskDefinition;

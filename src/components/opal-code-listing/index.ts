@@ -27,7 +27,7 @@ function prepareCode(code: string, isHtml?: boolean) {
 
 @d.Component({
 	elementIs: 'opal-code-listing',
-	bemlTemplate: template
+	template
 })
 export default class OpalCodeListing extends Component {
 	highlightedHTMLCode: string;
