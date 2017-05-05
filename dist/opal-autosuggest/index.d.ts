@@ -13,7 +13,7 @@ export interface IDataProvider {
         items: Array<IItem>;
     }>;
 }
-export default class OpalAutosuggestion extends Component {
+export default class OpalAutosuggest extends Component {
     dataProvider: IDataProvider;
     list: ObservableList<IItem>;
     _isInputLast: boolean;
@@ -42,8 +42,8 @@ export default class OpalAutosuggestion extends Component {
         items: Array<IItem>;
     }): void;
     _cancelLoading(): void;
-    openMenu(force?: boolean): OpalAutosuggestion;
-    closeMenu(): OpalAutosuggestion;
+    openMenu(force?: boolean): OpalAutosuggest;
+    closeMenu(): OpalAutosuggest;
     _setSelectedItemOfList(): void;
     _setSelectedItem(selectedItem: IItem | null): void;
     clear(): void;

@@ -1,17 +1,17 @@
-.opal-autosuggestion {
+.opal-autosuggest {
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
 
-	& .opal-autosuggestion__text-input {
+	& .opal-autosuggest__text-input {
 		display: block;
 	}
 
-	& .opal-autosuggestion__menu {
+	& .opal-autosuggest__menu {
 	}
-		& .opal-autosuggestion__list {
+		& .opal-autosuggest__list {
 		}
-			& .opal-autosuggestion__list-item {
+			& .opal-autosuggest__list-item {
 				position: relative;
 				padding: 7px 22px;
 				background: #fff;
@@ -30,16 +30,16 @@
 				-webkit-tap-highlight-color: transparent;
 			}
 
-			& .opal-autosuggestion__list-item:hover,
-			& .opal-autosuggestion__list-item[focused] {
+			& .opal-autosuggest__list-item:hover,
+			& .opal-autosuggest__list-item[focused] {
 				background: hsl(0,0%,90%);
 			}
 
-			& .opal-autosuggestion__list-item:active {
+			& .opal-autosuggest__list-item:active {
 				background: hsl(0,0%,80%);
 			}
 
-		& .opal-autosuggestion__not-found-message {
+		& .opal-autosuggest__not-found-message {
 			display: none;
 			padding: 10px;
 			text-align: center;
@@ -47,7 +47,7 @@
 			opacity: .6;
 		}
 
-		& .opal-autosuggestion__not-found-message[shown] {
+		& .opal-autosuggest__not-found-message[shown] {
 			display: block;
 		}
 

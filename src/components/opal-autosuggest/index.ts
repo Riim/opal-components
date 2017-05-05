@@ -20,8 +20,8 @@ function toComparable(str: string): string {
 	return str.trim().replace(/\s+/g, ' ').toLowerCase();
 }
 
-@d.Component<OpalAutosuggestion>({
-	elementIs: 'opal-autosuggestion',
+@d.Component<OpalAutosuggest>({
+	elementIs: 'opal-autosuggest',
 
 	props: {
 		dataprovider: { type: Object, readonly: true },
@@ -110,7 +110,7 @@ function toComparable(str: string): string {
 		}
 	}
 })
-export default class OpalAutosuggestion extends Component {
+export default class OpalAutosuggest extends Component {
 	dataProvider: IDataProvider;
 
 	list: ObservableList<IItem>;
@@ -156,7 +156,7 @@ export default class OpalAutosuggestion extends Component {
 			_loadingPlanned: false,
 			loading: false,
 
-			loaderShown(this: OpalAutosuggestion): boolean {
+			loaderShown(this: OpalAutosuggest): boolean {
 				return this._loadingPlanned || this.loading;
 			},
 
@@ -183,7 +183,7 @@ export default class OpalAutosuggestion extends Component {
 		let menu = (this.$('menu') as Component).element as HTMLElement;
 		let el = evt.target as HTMLElement;
 
-		for (; !el.classList.contains('opal-autosuggestion__list-item'); el = el.parentNode as HTMLElement) {
+		for (; !el.classList.contains('opal-autosuggest__list-item'); el = el.parentNode as HTMLElement) {
 			if (el == menu) {
 				return;
 			}
@@ -333,7 +333,7 @@ export default class OpalAutosuggestion extends Component {
 		}
 	}
 
-	openMenu(force?: boolean): OpalAutosuggestion {
+	openMenu(force?: boolean): OpalAutosuggest {
 		if (force || this.list.length) {
 			(this.$('menu') as OpalDropdown).open();
 		}
@@ -341,7 +341,7 @@ export default class OpalAutosuggestion extends Component {
 		return this;
 	}
 
-	closeMenu(): OpalAutosuggestion {
+	closeMenu(): OpalAutosuggest {
 		(this.$('menu') as OpalDropdown).close();
 		return this;
 	}
