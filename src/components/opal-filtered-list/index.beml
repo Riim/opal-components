@@ -2,7 +2,7 @@
 
 rt-content (select=.opal-filtered-list__query-input-container) {
 	rt-content/query-input-container (select=.opal-filtered-list__query-input, cloning=no) {
-		opal-text-input/query-input
+		opal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder})
 	}
 }
 

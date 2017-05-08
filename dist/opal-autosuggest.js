@@ -300,7 +300,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            showNotFound: false
 	        },
 	        i18n: {
-	            inputPlaceholder: rionite_1.getText.t('начните вводить для поиска'),
+	            textInputPlaceholder: rionite_1.getText.t('Начните вводить для поиска'),
 	            notFound: rionite_1.getText.t('Ничего не найдено')
 	        },
 	        template: template,
@@ -388,7 +388,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 22:
 /***/ (function(module, exports) {
 
-	module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input, cloning=no) {\nopal-text-input/text-input (\nvalue={props.selectedItem.text},\nplaceholder={constructor.i18n.inputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of list, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\nspan/not-found-message (shown={list.length |not }) { '{constructor.i18n.notFound}' }\n}\n}"
+	module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input, cloning=no) {\nopal-text-input/text-input (\nvalue={props.selectedItem.text},\nplaceholder={constructor.i18n.textInputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of list, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\nspan/not-found-message (shown={list.length |not }) { '{constructor.i18n.notFound}' }\n}\n}"
 
 /***/ }),
 

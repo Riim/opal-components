@@ -92,6 +92,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	OpalFilteredList = __decorate([
 	    rionite_1.d.Component({
 	        elementIs: 'opal-filtered-list',
+	        i18n: {
+	            queryInputPlaceholder: rionite_1.getText.t('Поиск')
+	        },
 	        template: template,
 	        events: {
 	            'query-input': {
@@ -117,7 +120,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 27:
 /***/ (function(module, exports) {
 
-	module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input, cloning=no) {\nopal-text-input/query-input\n}\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__loaded-list, cloning=no)\n}"
+	module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input, cloning=no) {\nopal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder})\n}\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__loaded-list, cloning=no)\n}"
 
 /***/ }),
 

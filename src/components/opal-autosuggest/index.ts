@@ -33,7 +33,7 @@ function toComparable(str: string): string {
 	},
 
 	i18n: {
-		inputPlaceholder: getText.t('начните вводить для поиска'),
+		textInputPlaceholder: getText.t('Начните вводить для поиска'),
 		notFound: getText.t('Ничего не найдено')
 	},
 
