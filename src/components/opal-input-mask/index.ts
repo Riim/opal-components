@@ -6,10 +6,6 @@ import { Cell, define, Utils } from 'cellx';
 import { IComponentElement, IComponentEvents, Component, d } from 'rionite';
 import OpalTextInput from '../opal-text-input';
 import OpalInputMaskDefinition from './opal-input-mask-definition';
-import defaultDefinitions from './defaultDefinitions';
-
-export { default as OpalInputMaskDefinition } from './opal-input-mask-definition';
-export { default as defaultDefinitions } from './defaultDefinitions';
 
 let nextTick = Utils.nextTick;
 
@@ -29,7 +25,13 @@ let iPhone = /iphone/i.test(navigator.userAgent);
 export default class OpalInputMask extends Component {
 	static OpalInputMaskDefinition = OpalInputMaskDefinition;
 
-	static defaultDefinitions = defaultDefinitions;
+	static defaultDefinitions: { [chr: string]: RegExp } = {
+		__proto__: null,
+
+		'9': /\d/,
+		'z': /[a-zA-Z]/,
+		'*': /[0-9a-zA-Z]/
+	} as any;
 
 	_definitions: { [chr: string]: RegExp };
 
@@ -370,3 +372,5 @@ export default class OpalInputMask extends Component {
 		this._textField.setSelectionRange(start, end);
 	}
 }
+
+export { OpalInputMaskDefinition };

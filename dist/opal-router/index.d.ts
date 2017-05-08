@@ -1,7 +1,6 @@
 import './index.css';
 import { IComponentElement, Component } from 'rionite';
 import OpalRoute from './opal-route';
-export { default as OpalRoute } from './opal-route';
 export interface IRouteProperty {
     name: string;
     optional: boolean;
@@ -29,3 +28,4 @@ export default class OpalRouter extends Component {
     _applyState(state: IComponentState): void;
     _clear(): void;
 }
+export { OpalRoute };

@@ -13,8 +13,6 @@ import OpalSelectOption from './opal-select-option';
 import isEqualArray from './isEqualArray';
 import template = require('./index.beml');
 
-export { default as OpalSelectOption } from './opal-select-option';
-
 let { nextUID, nextTick } = Utils;
 let { RtIfThen, RtRepeat } = Components;
 
@@ -645,3 +643,5 @@ export default class OpalSelect extends Component {
 		return this;
 	}
 }
+
+export { OpalSelectOption };

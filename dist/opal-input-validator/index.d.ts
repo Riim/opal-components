@@ -1,7 +1,6 @@
 import './index.css';
 import { Component } from 'rionite';
 import OpalInputValidatorRule from './opal-input-validator-rule';
-export { default as OpalInputValidatorRule } from './opal-input-validator-rule';
 export default class OpalInputValidator extends Component {
     static OpalInputValidatorRule: typeof OpalInputValidatorRule;
     failedRule: OpalInputValidatorRule | null;
@@ -12,3 +11,4 @@ export default class OpalInputValidator extends Component {
     validate(): boolean;
     _validate(rules: Array<OpalInputValidatorRule>): boolean;
 }
+export { OpalInputValidatorRule };

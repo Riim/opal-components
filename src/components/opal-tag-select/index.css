@@ -55,7 +55,6 @@
 			& .opal-tag-select__btn-remove-tag:focus {
 				outline: none;
 			}
-				@nest
 				body:not(._no-focus-highlight) & .opal-tag-select__btn-remove-tag:focus::after {
 					position: absolute;
 					top: 2px;

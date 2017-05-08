@@ -75,7 +75,6 @@
 	& .opal-text-input__btn-clear:focus {
 		outline: none;
 	}
-		@nest
 		body:not(._no-focus-highlight) & .opal-text-input__btn-clear:focus {
 			border-color: hsl(208,100%,60%);
 			opacity: 1;
@@ -130,20 +129,17 @@
 
 	/* Combinations */
 
-	@nest
 	.opal-group .opal-group__content > &:not(:first-child),
 	.opal-group .opal-group__content > *:not(:first-child) & {
 		margin-right: -1px;
 	}
 
-	@nest
 	.opal-group__content &:not(:first-child) .opal-text-input__text-field,
 	.opal-group__content *:not(:first-child) & .opal-text-input__text-field {
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
 	}
 
-	@nest
 	.opal-group__content &:not(:last-child) .opal-text-input__text-field,
 	.opal-group__content *:not(:last-child) & .opal-text-input__text-field {
 		border-top-right-radius: 0;

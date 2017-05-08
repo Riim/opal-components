@@ -2,13 +2,10 @@ import './index.css';
 
 import { IEvent } from 'cellx';
 import { IComponentElement, Component, d } from 'rionite';
-import OpalTab from './opal-tab-list/opal-tab';
 import OpalTabList from './opal-tab-list';
+import OpalTab from './opal-tab-list/opal-tab';
 import OpalTabPanel from './opal-tab-panel';
 import template = require('./index.beml');
-
-export { OpalTab, default as OpalTabList } from './opal-tab-list';
-export { default as OpalTabPanel } from './opal-tab-panel';
 
 let indexOf = Array.prototype.indexOf;
 let forEach = Array.prototype.forEach;
@@ -81,3 +78,5 @@ export default class OpalTabs extends Component {
 		(evt.target as OpalTab).select();
 	}
 }
+
+export { OpalTabList, OpalTab, OpalTabPanel };

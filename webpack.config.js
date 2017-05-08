@@ -1,111 +1,109 @@
 var path = require('path');
-var argv = require('yargs').argv;
-var glob = require('glob');
 var webpack = require('webpack');
 var cssVariables = require('postcss-css-variables');
-var nesting = require('postcss-nesting');
+var nesting = require('postcss-nested');
 var colorFunction = require('postcss-color-function');
 var autoprefixer = require('autoprefixer');
 var csso = require('postcss-csso');
 
-var plugins = [
-	new webpack.optimize.OccurrenceOrderPlugin(true),
+module.exports = function(env) {
+	if (!env) {
+		env = {};
+	}
 
-	new webpack.DefinePlugin({
-		'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-	})
-];
+	var plugins = [
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+		})
+	];
 
-module.exports = {
-	entry: glob.sync('src/components/*/index.@(ts|js)').reduce(function(entries, p) {
-		entries[p.split(path.sep).slice(-2)[0]] = path.join(__dirname, p);
-		return entries;
-	}, {
-		focusHighlightController: path.join(__dirname, 'src/focusHighlightController.js')
-	}),
+	return {
+		entry: {
+			index: './src/components/index.ts',
+			'opal-code-listing': './src/components/opal-code-listing/index.ts',
+			focusHighlightController: './src/focusHighlightController.js'
+		},
 
-	output: {
-		filename: '[name].js',
-		path: path.join(__dirname, 'dist'),
-		library: '[name]',
-		libraryTarget: 'umd'
-	},
+		output: {
+			filename: '[name].js',
+			path: path.join(__dirname, 'dist'),
+			library: '[name]',
+			libraryTarget: 'umd'
+		},
 
-	module: {
-		preLoaders: [
-			{
-				test: /\.js$/,
-				exclude: /(?:node_modules|bower_components)/,
-				loader: 'eslint-loader'
-			}
-		],
-
-		loaders: [
-			{
-				test: /\.js$/,
-				exclude: /(?:node_modules|bower_components)/,
-				loader: 'babel-loader',
-				query: {
-					presets: ['@riim/babel-preset'],
-					plugins: [
-						'syntax-flow',
-						'transform-flow-comments'
-					]
+		module: {
+			rules: [
+				{
+					test: /\.js$/,
+					exclude: /(?:node_modules|bower_components)/,
+					enforce: 'pre',
+					loader: 'eslint-loader'
+				},
+				{
+					test: /\.js$/,
+					exclude: /(?:node_modules|bower_components)/,
+					use: {
+						loader: 'babel-loader',
+						options: {
+							presets: ['@riim/babel-preset']
+						}
+					}
+				},
+				{
+					test: /\.ts$/,
+					exclude: /(?:node_modules|bower_components)/,
+					loader: 'awesome-typescript-loader'
+				},
+				{
+					test: /\.html$/,
+					loader: ['raw-loader', 'collapse-html-whitespaces-loader']
+				},
+				{
+					test: /\.beml$/,
+					loader: ['raw-loader', 'collapse-line-breaks-loader', 'trim-lines-loader']
+				},
+				{
+					test: /\.css$/,
+					loader: ['simple-css-loader', {
+						loader: 'postcss-loader',
+						options: {
+							plugins: [
+								cssVariables(),
+								nesting(),
+								colorFunction(),
+								autoprefixer({ browsers: ['last 3 versions'] }),
+								csso({ restructure: false })
+							]
+						}
+					}]
+				},
+				{
+					test: /\.svg$/,
+					loader: 'simple-svg-loader'
 				}
-			},
-			{
- 				test: /\.ts$/,
- 				exclude: /(?:node_modules|bower_components)/,
- 				loader: 'awesome-typescript-loader'
- 			},
-			{
-				test: /\.html$/,
-				loader: 'raw-loader!collapse-html-whitespaces-loader'
-			},
-			{
-				test: /\.beml$/,
-				loader: 'raw-loader!collapse-line-breaks-loader!trim-lines-loader'
-			},
-			{
-				test: /\.css$/,
-				loader: 'simple-css-loader!postcss-loader'
-			},
-			{
-				test: /\.svg$/,
-				loader: 'simple-svg-loader'
-			}
-		]
-	},
+			]
+		},
 
-	resolve: {
-		extensions: ['.ts', '.tsx', '.js', '.jsx', '']
-	},
+		resolve: {
+			extensions: ['.ts', '.tsx', '.js', '.jsx']
+		},
 
-	externals: ['cellx', 'cellx-indexed-collections', 'rionite'],
+		context: __dirname,
 
-	watch: argv.dev,
+		externals: ['cellx', 'cellx-indexed-collections', 'rionite'],
 
-	node: {
-		console: false,
-		global: false,
-		process: false,
-		Buffer: false,
-		__filename: false,
-		__dirname: false,
-		setImmediate: false
-	},
+		plugins: plugins,
 
-	postcss: function() {
-		return [
-			cssVariables(),
-			nesting(),
-			colorFunction(),
-			autoprefixer({ browsers: ['last 3 versions'] }),
-			csso({ restructure: false })
-		];
-	},
+		watch: env.dev,
 
-	recordsPath: 'build/paths.json',
-
-	plugins: plugins
+		node: {
+			console: false,
+			global: false,
+			process: false,
+			Buffer: false,
+			__filename: false,
+			__dirname: false,
+			setImmediate: false
+		}
+	};
 };

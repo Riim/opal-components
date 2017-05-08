@@ -44,7 +44,6 @@
 	& .opal-switch__control:focus {
 		outline: none;
 	}
-		@nest
 		body:not(._no-focus-highlight) & .opal-switch__control:focus .opal-switch__thumb::after {
 			position: absolute;
 			top: 2px;

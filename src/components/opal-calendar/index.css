@@ -46,7 +46,6 @@
 		& .opal-calendar__btn-next-month:focus {
 			outline: none;
 		}
-			@nest
 			body:not(._no-focus-highlight) & .opal-calendar__btn-prev-month:focus::after,
 			body:not(._no-focus-highlight) & .opal-calendar__btn-next-month:focus::after {
 				position: absolute;
@@ -139,7 +138,6 @@
 				& .opal-calendar__day:focus {
 					outline: none;
 				}
-					@nest
 					body:not(._no-focus-highlight) & .opal-calendar__day:focus::after {
 						position: absolute;
 						top: 2px;

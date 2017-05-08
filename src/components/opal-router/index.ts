@@ -6,8 +6,6 @@ import PathNodeType from './PathNodeType';
 import parsePath from './parsePath';
 import escapeRegExp from './escapeRegExp';
 
-export { default as OpalRoute } from './opal-route';
-
 let hyphenize = Utils.hyphenize;
 let escapeHTML = Utils.escapeHTML;
 
@@ -181,3 +179,5 @@ export default class OpalRouter extends Component {
 		}
 	}
 }
+
+export { OpalRoute };

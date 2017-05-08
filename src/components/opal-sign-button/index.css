@@ -92,7 +92,6 @@
 	& .opal-sign-button__control:focus {
 		outline: none;
 	}
-		@nest
 		body:not(._no-focus-highlight) & .opal-sign-button__control:focus::after {
 			position: absolute;
 			top: -1px;

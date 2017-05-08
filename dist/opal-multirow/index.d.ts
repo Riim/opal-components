@@ -14,3 +14,4 @@ export default class OpalMultirow extends Component {
     initialize(): void;
     ready(): void;
 }
+export { OpalMultirowRow };

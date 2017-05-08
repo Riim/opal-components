@@ -82,3 +82,5 @@ export default class OpalMultirow extends Component {
 		}
 	}
 }
+
+export { OpalMultirowRow };

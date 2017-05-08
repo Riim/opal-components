@@ -5,8 +5,6 @@ import { IComponentElement, Component, d } from 'rionite';
 import OpalTextInput from '../opal-text-input';
 import OpalInputValidatorRule from './opal-input-validator-rule';
 
-export { default as OpalInputValidatorRule } from './opal-input-validator-rule';
-
 let map = Array.prototype.map;
 
 @d.Component<OpalInputValidator>({
@@ -98,3 +96,5 @@ export default class OpalInputValidator extends Component {
 		return !failedRule;
 	}
 }
+
+export { OpalInputValidatorRule };

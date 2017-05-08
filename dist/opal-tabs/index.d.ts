@@ -1,11 +1,9 @@
 import './index.css';
 import { IEvent } from 'cellx';
 import { IComponentElement, Component } from 'rionite';
-import OpalTab from './opal-tab-list/opal-tab';
 import OpalTabList from './opal-tab-list';
+import OpalTab from './opal-tab-list/opal-tab';
 import OpalTabPanel from './opal-tab-panel';
-export { OpalTab, default as OpalTabList } from './opal-tab-list';
-export { default as OpalTabPanel } from './opal-tab-panel';
 export default class OpalTabs extends Component {
     static OpalTabList: typeof OpalTabList;
     static OpalTabPanel: typeof OpalTabPanel;
@@ -17,3 +15,4 @@ export default class OpalTabs extends Component {
     _onTabListSelect(evt: IEvent): void;
     _onTabListDeselect(evt: IEvent): void;
 }
+export { OpalTabList, OpalTab, OpalTabPanel };
