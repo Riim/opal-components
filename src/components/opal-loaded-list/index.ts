@@ -210,6 +210,6 @@ export default class OpalLoadedList extends Component {
 	}
 
 	_getContentContext(content: Component): Object {
-		return mixin(Object.create(this.props.context), content.props.context);
+		return mixin(Object.create(this.props.context), content.props.context as Object);
 	}
 }

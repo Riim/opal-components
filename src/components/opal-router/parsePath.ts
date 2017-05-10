@@ -43,7 +43,7 @@ export default function parsePath(path: string): Array<TPathNode> {
 	}
 
 	function readPath() {
-		let path = [] as Array<TPathNode>;
+		let path: Array<TPathNode> = [];
 
 		while (chr) {
 			if (chr == '(') {
@@ -86,7 +86,7 @@ export default function parsePath(path: string): Array<TPathNode> {
 			name = readOptionalNodeName();
 		}
 
-		let childNodes = [] as Array<TPathNode>;
+		let childNodes: Array<TPathNode> = [];
 
 		let prevCtx = ctx;
 		ctx = PathNodeType.OPTIONAL;

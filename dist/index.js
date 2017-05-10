@@ -1461,15 +1461,15 @@ var OpalDropdown = (function (_super) {
     };
     OpalDropdown.prototype._onDocumentClick = function (evt) {
         var docEl = document.documentElement;
-        var el = this.element;
-        for (var node = evt.target; node != el;) {
-            if (node == docEl || node.tagName == 'A') {
+        var componentEl = this.element;
+        for (var el = evt.target; el != componentEl;) {
+            if (el == docEl || el.tagName == 'A') {
                 this.close();
                 this.emit('close');
                 break;
             }
-            node = node.parentNode;
-            if (!node) {
+            el = el.parentNode;
+            if (!el) {
                 break;
             }
         }
@@ -2386,15 +2386,16 @@ OpalModal = __decorate([
             },
             ':element': {
                 click: function (evt) {
-                    var el = this.element;
+                    var componentEl = this.element;
                     var windowEl = this.$('window');
-                    for (var node = evt.target; node != windowEl;) {
-                        if (node == el) {
+                    for (var el = evt.target; el != windowEl;) {
+                        if (el == componentEl) {
                             this.close();
+                            this.emit('close');
                             break;
                         }
-                        node = node.parentNode;
-                        if (!node) {
+                        el = el.parentNode;
+                        if (!el) {
                             break;
                         }
                     }
@@ -2619,15 +2620,15 @@ var OpalPopover = (function (_super) {
     };
     OpalPopover.prototype._onDocumentClick = function (evt) {
         var docEl = document.documentElement;
-        var el = this.element;
-        for (var node = evt.target; node != el;) {
-            if (node == docEl || node.tagName == 'A') {
+        var componentEl = this.element;
+        for (var el = evt.target; el != componentEl;) {
+            if (el == docEl || el.tagName == 'A') {
                 this.close();
                 this.emit('close');
                 break;
             }
-            node = node.parentNode;
-            if (!node) {
+            el = el.parentNode;
+            if (!el) {
                 break;
             }
         }

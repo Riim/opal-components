@@ -128,18 +128,18 @@ export default class OpalDropdown extends Component {
 
 	_onDocumentClick(evt: Event) {
 		let docEl = document.documentElement;
-		let el = this.element;
+		let componentEl = this.element;
 
-		for (let node = evt.target as HTMLElement; node != el;) {
-			if (node == docEl || node.tagName == 'A') {
+		for (let el: HTMLElement | null = evt.target as HTMLElement; el != componentEl;) {
+			if (el == docEl || el.tagName == 'A') {
 				this.close();
 				this.emit('close');
 				break;
 			}
 
-			node = node.parentNode as HTMLElement;
+			el = el.parentNode as HTMLElement;
 
-			if (!node) {
+			if (!el) {
 				break;
 			}
 		}

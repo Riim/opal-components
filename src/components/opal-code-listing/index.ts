@@ -39,7 +39,7 @@ export default class OpalCodeListing extends Component {
 			Prism.languages['html']
 		);
 
-		let exampleJS = this.$('example-js') as HTMLElement;
+		let exampleJS = this.$('example-js') as HTMLElement | null;
 
 		if (exampleJS) {
 			this.highlightedJSCode = Prism.highlight(

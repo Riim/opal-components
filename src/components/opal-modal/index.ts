@@ -40,18 +40,19 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 
 		':element': {
 			click(evt: Event) {
-				let el = this.element;
+				let componentEl = this.element;
 				let windowEl = this.$('window');
 
-				for (let node = evt.target as HTMLElement; node != windowEl;) {
-					if (node == el) {
+				for (let el: HTMLElement | null = evt.target as HTMLElement; el != windowEl;) {
+					if (el == componentEl) {
 						this.close();
+						this.emit('close');
 						break;
 					}
 
-					node = node.parentNode as HTMLElement;
+					el = el.parentNode as HTMLElement;
 
-					if (!node) {
+					if (!el) {
 						break;
 					}
 				}

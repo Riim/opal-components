@@ -209,7 +209,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 				textInput.clear();
 
-				let loadedList = this.$('loaded-list') as OpalLoadedList;
+				let loadedList = this.$('loaded-list') as OpalLoadedList | null;
 
 				if (loadedList) {
 					loadedList.props.query = '';
@@ -260,7 +260,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				this._onсeFocusedAfterLoading = true;
 
 				nextTick(() => {
-					let filteredList = this.$('filtered-list') as OpalFilteredList;
+					let filteredList = this.$('filtered-list') as OpalFilteredList | null;
 
 					if (filteredList) {
 						let queryInput = filteredList.$('query-input') as Component | null;
@@ -269,7 +269,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 							this._focusOptions();
 
 							nextTick(() => {
-								filteredList.focus();
+								(filteredList as OpalFilteredList).focus();
 							});
 						} else {
 							this._focusOptions();
