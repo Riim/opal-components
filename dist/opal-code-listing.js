@@ -890,7 +890,7 @@ Prism.languages.js = Prism.languages.javascript;
 /***/ 31:
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nopal-tabs {\nopal-tab { 'HTML' }\nopal-tab-panel {\npre/html-code-wrapper { code/html-code }\n}\nopal-tab { 'JS' }\nopal-tab-panel {\npre/js-code-wrapper { code/js-code }\n}\n}\nrt-content/example-html-container (select=.opal-code-listing__example-html, cloning=no)\nrt-content/example-js-container (select=.opal-code-listing__example-js, cloning=no)\n}"
+module.exports = "@section/inner {\nopal-tabs {\nopal-tab { 'HTML' }\nopal-tab-panel {\npre/html-code-wrapper { code/html-code }\n}\nopal-tab { 'JS' }\nopal-tab-panel {\npre/js-code-wrapper { code/js-code }\n}\n}\nrt-content/example-html-container (select=.opal-code-listing__example-html)\nrt-content/example-js-container (select=.opal-code-listing__example-js)\n}"
 
 /***/ }),
 

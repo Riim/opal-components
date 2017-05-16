@@ -1,6 +1,6 @@
 @section/inner {
 
-rt-content (select=.opal-select__button, cloning=no) {
+rt-content (select=.opal-select__button) {
 	opal-button/button (
 		view-type={props.viewType},
 		size={props.size},
@@ -15,9 +15,9 @@ rt-content (select=.opal-select__button, cloning=no) {
 	}
 }
 
-rt-content (select=.opal-select__menu, cloning=no) {
+rt-content (select=.opal-select__menu) {
 	opal-dropdown/menu (auto-closing) {
-		rt-content (select=.opal-select__menu-content, cloning=no) {
+		rt-content (select=.opal-select__menu-content) {
 			@if-then (if=props.datalistKeypath) {
 				div/, menu-content {
 					@if-then (if=dataList.length) {

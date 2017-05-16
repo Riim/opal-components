@@ -12,7 +12,7 @@ opal-tabs {
 	}
 }
 
-rt-content/example-html-container (select=.opal-code-listing__example-html, cloning=no)
-rt-content/example-js-container (select=.opal-code-listing__example-js, cloning=no)
+rt-content/example-html-container (select=.opal-code-listing__example-html)
+rt-content/example-js-container (select=.opal-code-listing__example-js)
 
 }

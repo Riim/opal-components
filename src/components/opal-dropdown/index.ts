@@ -14,7 +14,7 @@ let openedDropdowns: Array<OpalDropdown> = [];
 		opened: false
 	},
 
-	template: '@section/inner { rt-content/content (cloning=no) }',
+	template: '@section/inner { rt-content/content }',
 
 	events: {
 		':component': {

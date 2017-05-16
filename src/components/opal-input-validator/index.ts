@@ -9,7 +9,7 @@ let map = Array.prototype.map;
 
 @d.Component<OpalInputValidator>({
 	elementIs: 'opal-input-validator',
-	template: '@section/inner { rt-content/content (cloning=no) }',
+	template: '@section/inner { rt-content/content }',
 
 	events: {
 		'text-input': {

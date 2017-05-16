@@ -9,7 +9,7 @@ import { Component, d } from 'rionite';
 		shown: false
 	},
 
-	template: '@section/inner { rt-content/content (cloning=no) }'
+	template: '@section/inner { rt-content/content }'
 })
 export default class OpalTabPanel extends Component {
 }

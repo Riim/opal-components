@@ -34,7 +34,7 @@ span/control {
 		opal-sign-button/button (class=opal-select__button, sign=plus, checkable)
 
 		opal-popover/menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {
-			rt-content (select='.opal-select__menu-content', cloning=no) {
+			rt-content (select='.opal-select__menu-content') {
 				@if-then (if=props.datalistKeypath) {
 					div (class=opal-select__menu-content) {
 						@if-then (if=dataList.length) {
@@ -60,8 +60,7 @@ span/control {
 					opal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {
 						rt-content (
 							class=opal-filtered-list__query-input-container,
-							select=.opal-filtered-list__query-input,
-							cloning=no
+							select=.opal-filtered-list__query-input
 						)
 
 						opal-loaded-list/menu-loaded-list (

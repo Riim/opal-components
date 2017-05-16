@@ -1,6 +1,6 @@
 @section/inner {
 
-rt-content (select=.opal-autosuggest__text-input, cloning=no) {
+rt-content (select=.opal-autosuggest__text-input) {
 	opal-text-input/text-input (
 		value={props.selectedItem.text},
 		placeholder={constructor.i18n.textInputPlaceholder},

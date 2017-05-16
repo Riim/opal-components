@@ -2,7 +2,7 @@
 
 div/list {
 	@repeat (for={props.itemAs} of list) {
-		rt-content/list-item (get-context=_getContentContext)
+		rt-content/list-item (clone, get-context=_getContentContext)
 	}
 }
 

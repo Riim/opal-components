@@ -1,11 +1,11 @@
 @section/inner {
 
 rt-content (select=.opal-filtered-list__query-input-container) {
-	rt-content/query-input-container (select=.opal-filtered-list__query-input, cloning=no) {
+	rt-content/query-input-container (select=.opal-filtered-list__query-input) {
 		opal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder})
 	}
 }
 
-rt-content/loaded-list-container (select=.opal-filtered-list__loaded-list, cloning=no)
+rt-content/loaded-list-container (select=.opal-filtered-list__loaded-list)
 
 }
