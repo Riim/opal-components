@@ -2751,6 +2751,15 @@ var escapeRegExp_1 = __webpack_require__(42);
 var hyphenize = rionite_1.Utils.hyphenize;
 var escapeHTML = rionite_1.Utils.escapeHTML;
 var forEach = Array.prototype.forEach;
+function isReadonlyProperty(componentPropConfig) {
+    return componentPropConfig &&
+        typeof componentPropConfig == 'object' &&
+        (componentPropConfig.type !== undefined || componentPropConfig.default !== undefined) &&
+        componentPropConfig.readonly;
+}
+function valueToAttributeValue(value) {
+    return "" + (value === false ? 'no' : (value === true ? 'yes' : escapeHTML(value)));
+}
 var OpalRouter = (function (_super) {
     __extends(OpalRouter, _super);
     function OpalRouter() {
@@ -2833,23 +2842,50 @@ var OpalRouter = (function (_super) {
                 return state;
             }, Object.create(null));
             if (route === this_1._route) {
-                var componentEl = this_1._componentElement;
-                var attrs = componentEl.attributes;
-                for (var i = attrs.length; i;) {
-                    var name_1 = attrs.item(--i).name;
-                    if (name_1 != 'class' && !(name_1 in state)) {
-                        componentEl.removeAttribute(name_1);
+                var componentEl_1 = this_1._componentElement;
+                var componentProps = componentEl_1.$component.constructor.props;
+                var attrs = componentEl_1.attributes;
+                var writable = true;
+                if (componentProps) {
+                    for (var i = attrs.length; i;) {
+                        var name_1 = attrs.item(--i).name;
+                        if (name_1 != 'class' && !(name_1 in state) && isReadonlyProperty(componentProps[name_1])) {
+                            writable = false;
+                            break;
+                        }
+                    }
+                    if (writable) {
+                        for (var name_2 in state) {
+                            if (componentEl_1.getAttribute(hyphenize(name_2)) !== valueToAttributeValue(state[name_2]) &&
+                                isReadonlyProperty(componentProps[name_2])) {
+                                writable = false;
+                                break;
+                            }
+                        }
                     }
                 }
-                this_1._applyState(state);
+                if (writable) {
+                    for (var i = attrs.length; i;) {
+                        var name_3 = attrs.item(--i).name;
+                        if (name_3 != 'class' && !(name_3 in state)) {
+                            componentEl_1.removeAttribute(name_3);
+                        }
+                    }
+                    this_1._applyState(state);
+                    if (this_1.props.scrollTopOnChange) {
+                        document.body.scrollTop = 0;
+                    }
+                    return { value: void 0 };
+                }
             }
-            else {
-                this_1._clear();
-                this_1._route = route;
-                var componentEl = this_1._componentElement = document.createElement(route.componentName);
-                componentEl.$component.ownerComponent = this_1;
-                this_1._applyState(state);
-                this_1.element.appendChild(componentEl);
+            this_1._clear();
+            this_1._route = route;
+            var componentEl = this_1._componentElement = document.createElement(route.componentName);
+            componentEl.$component.ownerComponent = this_1;
+            this_1._applyState(state);
+            this_1.element.appendChild(componentEl);
+            if (this_1.props.scrollTopOnChange || this_1.props.scrollTopOnChangeComponent) {
+                document.body.scrollTop = 0;
             }
             return { value: void 0 };
         };
@@ -2864,9 +2900,8 @@ var OpalRouter = (function (_super) {
     };
     OpalRouter.prototype._applyState = function (state) {
         var componentEl = this._componentElement;
-        for (var name_2 in state) {
-            var value = state[name_2];
-            componentEl.setAttribute(hyphenize(name_2), "" + (value === false ? 'no' : (value === true ? 'yes' : escapeHTML(value))));
+        for (var name_4 in state) {
+            componentEl.setAttribute(hyphenize(name_4), valueToAttributeValue(state[name_4]));
         }
     };
     OpalRouter.prototype._clear = function () {
@@ -2881,7 +2916,11 @@ var OpalRouter = (function (_super) {
 OpalRouter.OpalRoute = opal_route_1.default;
 OpalRouter = __decorate([
     rionite_1.d.Component({
-        elementIs: 'opal-router'
+        elementIs: 'opal-router',
+        props: {
+            scrollTopOnChange: true,
+            scrollTopOnChangeComponent: true
+        }
     })
 ], OpalRouter);
 exports.default = OpalRouter;

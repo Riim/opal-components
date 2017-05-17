@@ -27,8 +27,24 @@ export interface IComponentState {
 	[name: string]: boolean | string
 }
 
+function isReadonlyProperty(componentPropConfig: any): boolean {
+	return componentPropConfig &&
+		typeof componentPropConfig == 'object' &&
+		(componentPropConfig.type !== undefined || componentPropConfig.default !== undefined) &&
+		componentPropConfig.readonly;
+}
+
+function valueToAttributeValue(value: boolean | string): string {
+	return `${ value === false ? 'no' : (value === true ? 'yes' : escapeHTML(value)) }`;
+}
+
 @d.Component({
-	elementIs: 'opal-router'
+	elementIs: 'opal-router',
+
+	props: {
+		scrollTopOnChange: true,
+		scrollTopOnChangeComponent: true
+	}
 })
 export default class OpalRouter extends Component {
 	static OpalRoute = OpalRoute;
@@ -126,29 +142,65 @@ export default class OpalRouter extends Component {
 
 			if (route === this._route) {
 				let componentEl = this._componentElement as IComponentElement;
+				let componentProps = (componentEl.$component.constructor as typeof Component).props;
 				let attrs = componentEl.attributes;
+				let writable = true;
 
-				for (let i = attrs.length; i;) {
-					let name = attrs.item(--i).name;
+				if (componentProps) {
+					for (let i = attrs.length; i;) {
+						let name = attrs.item(--i).name;
 
-					if (name != 'class' && !(name in state)) {
-						componentEl.removeAttribute(name);
+						if (name != 'class' && !(name in state) && isReadonlyProperty(componentProps[name])) {
+							writable = false;
+							break;
+						}
+					}
+
+					if (writable) {
+						for (let name in state) {
+							if (
+								componentEl.getAttribute(hyphenize(name)) !== valueToAttributeValue(state[name]) &&
+									isReadonlyProperty(componentProps[name])
+							) {
+								writable = false;
+								break;
+							}
+						}
 					}
 				}
 
-				this._applyState(state);
-			} else {
-				this._clear();
+				if (writable) {
+					for (let i = attrs.length; i;) {
+						let name = attrs.item(--i).name;
 
-				this._route = route;
+						if (name != 'class' && !(name in state)) {
+							componentEl.removeAttribute(name);
+						}
+					}
 
-				let componentEl = this._componentElement = document.createElement(route.componentName) as
-					IComponentElement;
+					this._applyState(state);
 
-				componentEl.$component.ownerComponent = this;
-				this._applyState(state);
+					if (this.props.scrollTopOnChange) {
+						document.body.scrollTop = 0;
+					}
 
-				this.element.appendChild(componentEl);
+					return;
+				}
+			}
+
+			this._clear();
+
+			this._route = route;
+
+			let componentEl = this._componentElement = document.createElement(route.componentName) as IComponentElement;
+
+			componentEl.$component.ownerComponent = this;
+			this._applyState(state);
+
+			this.element.appendChild(componentEl);
+
+			if (this.props.scrollTopOnChange || this.props.scrollTopOnChangeComponent) {
+				document.body.scrollTop = 0;
 			}
 
 			return;
@@ -161,12 +213,7 @@ export default class OpalRouter extends Component {
 		let componentEl = this._componentElement as IComponentElement;
 
 		for (let name in state) {
-			let value = state[name];
-
-			componentEl.setAttribute(
-				hyphenize(name),
-				`${ value === false ? 'no' : (value === true ? 'yes' : escapeHTML(value)) }`
-			);
+			componentEl.setAttribute(hyphenize(name), valueToAttributeValue(state[name]));
 		}
 	}
 
