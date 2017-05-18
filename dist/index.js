@@ -4334,7 +4334,6 @@ var OpalTextInput = (function (_super) {
         }
     };
     OpalTextInput.prototype._onBtnClearClick = function (evt) {
-        evt.preventDefault();
         this.value = '';
         this.$('text-field').focus();
         this.emit({ type: 'change', initialEvent: evt });

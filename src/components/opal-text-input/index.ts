@@ -152,8 +152,6 @@ export default class OpalTextInput extends Component {
 	}
 
 	_onBtnClearClick(evt: Event) {
-		evt.preventDefault();
-
 		this.value = '';
 		(this.$('text-field') as HTMLInputElement).focus();
 
