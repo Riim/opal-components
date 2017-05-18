@@ -38,12 +38,21 @@ function valueToAttributeValue(value: boolean | string): string {
 	return `${ value === false ? 'no' : (value === true ? 'yes' : escapeHTML(value)) }`;
 }
 
-@d.Component({
+@d.Component<OpalRouter>({
 	elementIs: 'opal-router',
 
 	props: {
 		scrollTopOnChange: true,
 		scrollTopOnChangeComponent: true
+	},
+
+	events: {
+		':component': {
+			'<*>refresh-router'() {
+				this.refresh();
+				return false;
+			}
+		}
 	}
 })
 export default class OpalRouter extends Component {
@@ -51,6 +60,7 @@ export default class OpalRouter extends Component {
 
 	_routes: Array<IRoute>;
 	_route: IRoute | null = null;
+	_state: IComponentState | null = null;
 	_componentElement: IComponentElement | null = null;
 
 	initialize() {
@@ -178,7 +188,9 @@ export default class OpalRouter extends Component {
 						}
 					}
 
-					this._applyState(state);
+					this._state = state;
+
+					this._applyState();
 
 					if (this.props.scrollTopOnChange) {
 						document.body.scrollTop = 0;
@@ -188,14 +200,17 @@ export default class OpalRouter extends Component {
 				}
 			}
 
-			this._clear();
+			if (this._componentElement) {
+				this.element.removeChild(this._componentElement);
+			}
 
 			this._route = route;
+			this._state = state;
 
 			let componentEl = this._componentElement = document.createElement(route.componentName) as IComponentElement;
 
 			componentEl.$component.ownerComponent = this;
-			this._applyState(state);
+			this._applyState();
 
 			this.element.appendChild(componentEl);
 
@@ -209,7 +224,8 @@ export default class OpalRouter extends Component {
 		this._clear();
 	}
 
-	_applyState(state: IComponentState) {
+	_applyState() {
+		let state = this._state as IComponentState;
 		let componentEl = this._componentElement as IComponentElement;
 
 		for (let name in state) {
@@ -220,9 +236,29 @@ export default class OpalRouter extends Component {
 	_clear() {
 		if (this._route) {
 			this._route = null;
+			this._state = null;
 
 			this.element.removeChild(this._componentElement as IComponentElement);
 			this._componentElement = null;
+		}
+	}
+
+	refresh() {
+		let route = this._route;
+
+		if (route) {
+			this.element.removeChild(this._componentElement as IComponentElement);
+
+			let componentEl = this._componentElement = document.createElement(route.componentName) as IComponentElement;
+
+			componentEl.$component.ownerComponent = this;
+			this._applyState();
+
+			this.element.appendChild(componentEl);
+
+			if (this.props.scrollTopOnChange || this.props.scrollTopOnChangeComponent) {
+				document.body.scrollTop = 0;
+			}
 		}
 	}
 }

@@ -18,6 +18,7 @@ export default class OpalRouter extends Component {
     static OpalRoute: typeof OpalRoute;
     _routes: Array<IRoute>;
     _route: IRoute | null;
+    _state: IComponentState | null;
     _componentElement: IComponentElement | null;
     initialize(): void;
     ready(): void;
@@ -25,7 +26,8 @@ export default class OpalRouter extends Component {
     elementDetached(): void;
     _onWindowPopState(): void;
     _update(): void;
-    _applyState(state: IComponentState): void;
+    _applyState(): void;
     _clear(): void;
+    refresh(): void;
 }
 export { OpalRoute };

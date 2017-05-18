@@ -2765,6 +2765,7 @@ var OpalRouter = (function (_super) {
     function OpalRouter() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this._route = null;
+        _this._state = null;
         _this._componentElement = null;
         return _this;
     }
@@ -2871,18 +2872,22 @@ var OpalRouter = (function (_super) {
                             componentEl_1.removeAttribute(name_3);
                         }
                     }
-                    this_1._applyState(state);
+                    this_1._state = state;
+                    this_1._applyState();
                     if (this_1.props.scrollTopOnChange) {
                         document.body.scrollTop = 0;
                     }
                     return { value: void 0 };
                 }
             }
-            this_1._clear();
+            if (this_1._componentElement) {
+                this_1.element.removeChild(this_1._componentElement);
+            }
             this_1._route = route;
+            this_1._state = state;
             var componentEl = this_1._componentElement = document.createElement(route.componentName);
             componentEl.$component.ownerComponent = this_1;
-            this_1._applyState(state);
+            this_1._applyState();
             this_1.element.appendChild(componentEl);
             if (this_1.props.scrollTopOnChange || this_1.props.scrollTopOnChangeComponent) {
                 document.body.scrollTop = 0;
@@ -2898,7 +2903,8 @@ var OpalRouter = (function (_super) {
         }
         this._clear();
     };
-    OpalRouter.prototype._applyState = function (state) {
+    OpalRouter.prototype._applyState = function () {
+        var state = this._state;
         var componentEl = this._componentElement;
         for (var name_4 in state) {
             componentEl.setAttribute(hyphenize(name_4), valueToAttributeValue(state[name_4]));
@@ -2907,8 +2913,22 @@ var OpalRouter = (function (_super) {
     OpalRouter.prototype._clear = function () {
         if (this._route) {
             this._route = null;
+            this._state = null;
             this.element.removeChild(this._componentElement);
             this._componentElement = null;
+        }
+    };
+    OpalRouter.prototype.refresh = function () {
+        var route = this._route;
+        if (route) {
+            this.element.removeChild(this._componentElement);
+            var componentEl = this._componentElement = document.createElement(route.componentName);
+            componentEl.$component.ownerComponent = this;
+            this._applyState();
+            this.element.appendChild(componentEl);
+            if (this.props.scrollTopOnChange || this.props.scrollTopOnChangeComponent) {
+                document.body.scrollTop = 0;
+            }
         }
     };
     return OpalRouter;
@@ -2920,6 +2940,14 @@ OpalRouter = __decorate([
         props: {
             scrollTopOnChange: true,
             scrollTopOnChangeComponent: true
+        },
+        events: {
+            ':component': {
+                '<*>refresh-router': function () {
+                    this.refresh();
+                    return false;
+                }
+            }
         }
     })
 ], OpalRouter);
