@@ -32,5 +32,5 @@ export default class OpalLoadedList extends Component {
     elementAttached(): void;
     checkLoading(): void;
     _load(): void;
-    _getContentContext(content: Component): Object;
+    _getListItemContext(context: Object, content: Component): Object;
 }

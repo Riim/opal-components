@@ -27,11 +27,11 @@ export interface IComponentState {
 	[name: string]: boolean | string
 }
 
-function isReadonlyProperty(componentPropConfig: any): boolean {
-	return componentPropConfig &&
-		typeof componentPropConfig == 'object' &&
-		(componentPropConfig.type !== undefined || componentPropConfig.default !== undefined) &&
-		componentPropConfig.readonly;
+function isReadonlyProperty(propConfig: any): boolean {
+	return propConfig &&
+		typeof propConfig == 'object' &&
+		(propConfig.type !== undefined || propConfig.default !== undefined) &&
+		propConfig.readonly;
 }
 
 function valueToAttributeValue(value: boolean | string): string {
@@ -152,15 +152,15 @@ export default class OpalRouter extends Component {
 
 			if (route === this._route) {
 				let componentEl = this._componentElement as IComponentElement;
-				let componentProps = (componentEl.$component.constructor as typeof Component).props;
+				let propsConfig = (componentEl.$component.constructor as typeof Component).props;
 				let attrs = componentEl.attributes;
 				let writable = true;
 
-				if (componentProps) {
+				if (propsConfig) {
 					for (let i = attrs.length; i;) {
 						let name = attrs.item(--i).name;
 
-						if (name != 'class' && !(name in state) && isReadonlyProperty(componentProps[name])) {
+						if (name != 'class' && !(name in state) && isReadonlyProperty(propsConfig[name])) {
 							writable = false;
 							break;
 						}
@@ -170,7 +170,7 @@ export default class OpalRouter extends Component {
 						for (let name in state) {
 							if (
 								componentEl.getAttribute(hyphenize(name)) !== valueToAttributeValue(state[name]) &&
-									isReadonlyProperty(componentProps[name])
+									isReadonlyProperty(propsConfig[name])
 							) {
 								writable = false;
 								break;

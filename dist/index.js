@@ -2142,8 +2142,8 @@ var OpalLoadedList = (function (_super) {
             }, 1);
         }));
     };
-    OpalLoadedList.prototype._getContentContext = function (content) {
-        return mixin(Object.create(this.props.context), content.props.context);
+    OpalLoadedList.prototype._getListItemContext = function (context, content) {
+        return mixin(Object.create(context), content.props.context);
     };
     return OpalLoadedList;
 }(rionite_1.Component));
@@ -2751,11 +2751,11 @@ var escapeRegExp_1 = __webpack_require__(41);
 var hyphenize = rionite_1.Utils.hyphenize;
 var escapeHTML = rionite_1.Utils.escapeHTML;
 var forEach = Array.prototype.forEach;
-function isReadonlyProperty(componentPropConfig) {
-    return componentPropConfig &&
-        typeof componentPropConfig == 'object' &&
-        (componentPropConfig.type !== undefined || componentPropConfig.default !== undefined) &&
-        componentPropConfig.readonly;
+function isReadonlyProperty(propConfig) {
+    return propConfig &&
+        typeof propConfig == 'object' &&
+        (propConfig.type !== undefined || propConfig.default !== undefined) &&
+        propConfig.readonly;
 }
 function valueToAttributeValue(value) {
     return "" + (value === false ? 'no' : (value === true ? 'yes' : escapeHTML(value)));
@@ -2844,13 +2844,13 @@ var OpalRouter = (function (_super) {
             }, Object.create(null));
             if (route === this_1._route) {
                 var componentEl_1 = this_1._componentElement;
-                var componentProps = componentEl_1.$component.constructor.props;
+                var propsConfig = componentEl_1.$component.constructor.props;
                 var attrs = componentEl_1.attributes;
                 var writable = true;
-                if (componentProps) {
+                if (propsConfig) {
                     for (var i = attrs.length; i;) {
                         var name_1 = attrs.item(--i).name;
-                        if (name_1 != 'class' && !(name_1 in state) && isReadonlyProperty(componentProps[name_1])) {
+                        if (name_1 != 'class' && !(name_1 in state) && isReadonlyProperty(propsConfig[name_1])) {
                             writable = false;
                             break;
                         }
@@ -2858,7 +2858,7 @@ var OpalRouter = (function (_super) {
                     if (writable) {
                         for (var name_2 in state) {
                             if (componentEl_1.getAttribute(hyphenize(name_2)) !== valueToAttributeValue(state[name_2]) &&
-                                isReadonlyProperty(componentProps[name_2])) {
+                                isReadonlyProperty(propsConfig[name_2])) {
                                 writable = false;
                                 break;
                             }
@@ -5428,7 +5428,7 @@ module.exports = "@section/inner {\nopal-popover/popover (to={props.popoverTo}) 
 /* 57 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\ndiv/list {\n@repeat (for={props.itemAs} of list) {\nrt-content/list-item (clone, get-context=_getContentContext)\n}\n}\nopal-loader/loader (shown={loaderShown}, align-center={empty})\ndiv/not-found (shown={notFoundShown}) {\nspan/not-found-message { '{constructor.i18n.notFound}' }\n}\n}"
+module.exports = "@section/inner {\ndiv/list {\n@repeat (for={props.itemAs} of list) {\nrt-content/list-item (clone, get-context=_getListItemContext)\n}\n}\nopal-loader/loader (shown={loaderShown}, align-center={empty})\ndiv/not-found (shown={notFoundShown}) {\nspan/not-found-message { '{constructor.i18n.notFound}' }\n}\n}"
 
 /***/ }),
 /* 58 */
