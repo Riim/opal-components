@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var cssVariables = require('postcss-css-variables');
-var nesting = require('postcss-nested');
+var nested = require('postcss-nested');
 var colorFunction = require('postcss-color-function');
 var autoprefixer = require('autoprefixer');
 var csso = require('postcss-csso');
@@ -19,7 +19,7 @@ module.exports = function(env) {
 
 	return {
 		entry: {
-			index: './src/components/index.ts',
+			index: './src/index.ts',
 			'opal-code-listing': './src/components/opal-code-listing/index.ts',
 			focusHighlightController: './src/focusHighlightController.js'
 		},
@@ -69,7 +69,7 @@ module.exports = function(env) {
 						options: {
 							plugins: [
 								cssVariables(),
-								nesting(),
+								nested(),
 								colorFunction(),
 								autoprefixer({ browsers: ['last 3 versions'] }),
 								csso({ restructure: false })
@@ -87,8 +87,6 @@ module.exports = function(env) {
 		resolve: {
 			extensions: ['.ts', '.tsx', '.js', '.jsx']
 		},
-
-		context: __dirname,
 
 		externals: ['cellx', 'cellx-indexed-collections', 'rionite'],
 

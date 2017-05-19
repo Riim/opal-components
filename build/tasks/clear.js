@@ -1,6 +1,6 @@
 var rimraf = require('rimraf');
 var gulp = require('gulp');
 
-gulp.task('clean', function(done) {
+gulp.task('clear', function(done) {
 	rimraf('dist', done);
 });
