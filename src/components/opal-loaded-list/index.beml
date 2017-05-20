@@ -1,7 +1,7 @@
 @section/inner {
 
 div/list {
-	@repeat (for={props.itemAs} of list) {
+	@repeat (for={input.itemAs} of list) {
 		rt-content/list-item (clone, get-context=_getListItemContext)
 	}
 }

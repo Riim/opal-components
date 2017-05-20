@@ -1,32 +1,32 @@
 @section/inner {
 
 opal-input-validator/input-validator {
-	@if-then (if=props.required, rt-silent) {
-		opal-input-validator-rule/input-validator-rule-required (required, popover-to={props.popoverTo}) {
+	@if-then (if=input.required, rt-silent) {
+		opal-input-validator-rule/input-validator-rule-required (required, popover-to={input.popoverTo}) {
 			'{constructor.i18n.isRequiredField}'
 		}
 	}
 
-	opal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={props.popoverTo}) {
+	opal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={input.popoverTo}) {
 		'{constructor.i18n.nonExistentDate}'
 	}
 
-	opal-input-validator-rule/input-validator-rule-date-in-range (test=dateInRange, popover-to={props.popoverTo}) {
+	opal-input-validator-rule/input-validator-rule-date-in-range (test=dateInRange, popover-to={input.popoverTo}) {
 		'{constructor.i18n.invalidDateRange}'
 	}
 
-	opal-input-mask/input-mask (mask={props.mask}) {
+	opal-input-mask/input-mask (mask={input.mask}) {
 		opal-text-input/text-input (
 			class=opal-input-validator__text-input opal-input-mask__text-input,
-			value={props.value},
-			placeholder={props.placeholder},
+			value={input.value},
+			placeholder={input.placeholder},
 			clearable
 		)
 	}
 }
 
 opal-dropdown/calendar-menu {
-	opal-calendar/calendar (from-date={props.fromDate}, to-date={props.toDate}, value={props.value}, date-delimiter=.)
+	opal-calendar/calendar (from-date={input.fromDate}, to-date={input.toDate}, value={input.value}, date-delimiter=.)
 }
 
 }

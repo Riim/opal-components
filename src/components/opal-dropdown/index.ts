@@ -8,7 +8,7 @@ let openedDropdowns: Array<OpalDropdown> = [];
 @d.Component({
 	elementIs: 'opal-dropdown',
 
-	props: {
+	input: {
 		autoHeight: true,
 		autoClosing: false,
 		opened: false
@@ -18,7 +18,7 @@ let openedDropdowns: Array<OpalDropdown> = [];
 
 	events: {
 		':component': {
-			'property-opened-change'(evt: IEvent) {
+			'input-opened-change'(evt: IEvent) {
 				this[evt.value ? '_open' : '_close']();
 			}
 		}
@@ -28,31 +28,31 @@ export default class OpalDropdown extends Component {
 	_documentClickListening: IDisposableListening | undefined;
 
 	ready() {
-		if (this.props.opened) {
+		if (this.input.opened) {
 			this._open();
 		}
 	}
 
 	open(): boolean {
-		if (this.props.opened) {
+		if (this.input.opened) {
 			return false;
 		}
 
-		this.props.opened = true;
+		this.input.opened = true;
 		return true;
 	}
 
 	close(): boolean {
-		if (!this.props.opened) {
+		if (!this.input.opened) {
 			return false;
 		}
 
-		this.props.opened = false;
+		this.input.opened = false;
 		return true;
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.props.opened = value === undefined ? !this.props.opened : value);
+		return (this.input.opened = value === undefined ? !this.input.opened : value);
 	}
 
 	_open() {
@@ -84,7 +84,7 @@ export default class OpalDropdown extends Component {
 			}
 		}
 
-		if (this.props.autoHeight) {
+		if (this.input.autoHeight) {
 			let docElClientHeight = docEl.clientHeight;
 			let margin = elClientRect.top - containerClientRect.bottom;
 			let excess = elClientRect.bottom + margin - docElClientHeight;
@@ -107,9 +107,9 @@ export default class OpalDropdown extends Component {
 			}
 		}
 
-		if (this.props.autoClosing) {
+		if (this.input.autoClosing) {
 			setTimeout(() => {
-				if (this.props.opened) {
+				if (this.input.opened) {
 					this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
 				}
 			}, 1);

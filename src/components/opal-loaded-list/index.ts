@@ -19,7 +19,7 @@ export interface IDataProvider {
 @d.Component<OpalLoadedList>({
 	elementIs: 'opal-loaded-list',
 
-	props: {
+	input: {
 		dataprovider: { type: Object, readonly: true },
 		dataproviderKeypath: { type: String, readonly: true },
 		count: 100,
@@ -36,7 +36,7 @@ export interface IDataProvider {
 
 	events: {
 		':component': {
-			'property-query-change'() {
+			'input-query-change'() {
 				if (this._loadingCheckPlanned) {
 					this._loadingCheckTimeout.clear();
 				} else {
@@ -101,12 +101,12 @@ export default class OpalLoadedList extends Component {
 	loaderShown: boolean;
 
 	initialize() {
-		let props = this.props;
-		let dataProvider = props.dataprovider;
+		let input = this.input;
+		let dataProvider = input.dataprovider;
 
-		if (dataProvider || props.dataproviderKeypath) {
+		if (dataProvider || input.dataproviderKeypath) {
 			if (!dataProvider) {
-				dataProvider = Function(`return this.${ props.dataproviderKeypath };`)
+				dataProvider = Function(`return this.${ input.dataproviderKeypath };`)
 					.call(this.ownerComponent || window);
 
 				if (!dataProvider) {
@@ -141,7 +141,7 @@ export default class OpalLoadedList extends Component {
 	}
 
 	elementAttached() {
-		if (this.props.preloading) {
+		if (this.input.preloading) {
 			this._load();
 		} else {
 			this.checkLoading();
@@ -150,7 +150,7 @@ export default class OpalLoadedList extends Component {
 
 	checkLoading() {
 		if (
-			this.props.query === this._lastRequestedQuery &&
+			this.input.query === this._lastRequestedQuery &&
 				(this.loading || this.total !== undefined && this.list.length == this.total)
 		) {
 			return;
@@ -170,13 +170,13 @@ export default class OpalLoadedList extends Component {
 			this._requestCallback.cancel();
 		}
 
-		let query: string | undefined = this._lastRequestedQuery = this.props.query;
+		let query: string | undefined = this._lastRequestedQuery = this.input.query;
 		let dataProvider = this.dataProvider;
 		let infinite = dataProvider.getItems.length >= 2;
 		let args = [query];
 
 		if (infinite) {
-			args.unshift(this.props.count, this.list.length ? this.list.get(-1).value : undefined);
+			args.unshift(this.input.count, this.list.length ? this.list.get(-1).value : undefined);
 		}
 
 		this.loading = true;
@@ -210,6 +210,6 @@ export default class OpalLoadedList extends Component {
 	}
 
 	_getListItemContext(context: Object, content: Component): Object {
-		return mixin(Object.create(context), content.props.context as Object);
+		return mixin(Object.create(context), content.input.$context as Object);
 	}
 }

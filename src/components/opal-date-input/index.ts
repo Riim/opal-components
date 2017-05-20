@@ -16,7 +16,7 @@ function pad(num: number): string {
 @d.Component<OpalDateInput>({
 	elementIs: 'opal-date-input',
 
-	props: {
+	input: {
 		fromDate: String,
 		toDate: String,
 		value: String,
@@ -38,13 +38,13 @@ function pad(num: number): string {
 		'text-input': {
 			change(evt) {
 				if ((this.$('input-validator') as OpalInputValidator).valid) {
-					(this.$('calendar') as OpalCalendar).props.value = (evt.target as OpalTextInput).value;
+					(this.$('calendar') as OpalCalendar).input.value = (evt.target as OpalTextInput).value;
 				}
 			}
 		},
 
 		'calendar-menu': {
-			'property-opened-change'(evt: IEvent) {
+			'input-opened-change'(evt: IEvent) {
 				if (evt.value) {
 					this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
 					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
@@ -63,7 +63,7 @@ function pad(num: number): string {
 
 				let textInput = this.$('text-input') as OpalTextInput;
 
-				textInput.value = (evt.target as OpalCalendar).props.value;
+				textInput.value = (evt.target as OpalCalendar).input.value;
 				textInput.focus();
 			}
 		}

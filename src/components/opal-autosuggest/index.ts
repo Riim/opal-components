@@ -23,7 +23,7 @@ function toComparable(str: string): string {
 @d.Component<OpalAutosuggest>({
 	elementIs: 'opal-autosuggest',
 
-	props: {
+	input: {
 		dataprovider: { type: Object, readonly: true },
 		dataproviderKeypath: { type: String, readonly: true },
 		selectedItem: eval,
@@ -41,7 +41,7 @@ function toComparable(str: string): string {
 
 	events: {
 		':component': {
-			'property-selected-item-change'(evt: IEvent) {
+			'input-selected-item-change'(evt: IEvent) {
 				let value = evt.value as IItem;
 
 				this._clearList();
@@ -63,7 +63,7 @@ function toComparable(str: string): string {
 				// 1. выбираем что-то;
 				// 2. изменяем запрос так чтобы ничего не нашлось;
 				// 3. убираем фокус.
-				if (!(this.$('menu') as Component).props.opened) {
+				if (!(this.$('menu') as Component).input.opened) {
 					this._setSelectedItemOfList();
 				}
 			},
@@ -73,7 +73,7 @@ function toComparable(str: string): string {
 
 				this._clearList();
 
-				if ((evt.target as OpalTextInput).value.length >= this.props.minQueryLength) {
+				if ((evt.target as OpalTextInput).value.length >= this.input.minQueryLength) {
 					this._loadingPlanned = true;
 
 					this._loadingTimeout = this.setTimeout(() => {
@@ -96,7 +96,7 @@ function toComparable(str: string): string {
 		},
 
 		menu: {
-			'property-opened-change'(evt: IEvent) {
+			'input-opened-change'(evt: IEvent) {
 				if (evt.value) {
 					this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
 					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
@@ -132,12 +132,12 @@ export default class OpalAutosuggest extends Component {
 	_documentClickListening: IDisposableListening;
 
 	initialize() {
-		let props = this.props;
-		let dataProvider = props.dataprovider;
+		let input = this.input;
+		let dataProvider = input.dataprovider;
 
-		if (dataProvider || props.dataproviderKeypath) {
+		if (dataProvider || input.dataproviderKeypath) {
 			if (!dataProvider) {
-				dataProvider = Function(`return this.${ props.dataproviderKeypath };`)
+				dataProvider = Function(`return this.${ input.dataproviderKeypath };`)
 					.call(this.ownerComponent || window);
 
 				if (!dataProvider) {
@@ -160,7 +160,7 @@ export default class OpalAutosuggest extends Component {
 				return this._loadingPlanned || this.loading;
 			},
 
-			selectedItem: props.selectedItem
+			selectedItem: input.selectedItem
 		});
 	}
 
@@ -204,7 +204,7 @@ export default class OpalAutosuggest extends Component {
 	}
 
 	_onLoaderShownChange(evt: IEvent) {
-		(this.$('text-input') as Component).props.loading = evt.value;
+		(this.$('text-input') as Component).input.loading = evt.value;
 	}
 
 	_onDocumentFocus(evt: Event) {
@@ -297,7 +297,7 @@ export default class OpalAutosuggest extends Component {
 		let args = [(this.$('text-input') as OpalTextInput).value];
 
 		if (dataProvider.getItems.length >= 2) {
-			args.unshift(this.props.count);
+			args.unshift(this.input.count);
 		}
 
 		dataProvider.getItems.apply(dataProvider, args)
@@ -318,7 +318,7 @@ export default class OpalAutosuggest extends Component {
 				this._focusedListItem = focusedListItem;
 				focusedListItem.setAttribute('focused', '');
 			});
-		} else if (this.props.showNotFound) {
+		} else if (this.input.showNotFound) {
 			this.openMenu(true);
 		}
 	}

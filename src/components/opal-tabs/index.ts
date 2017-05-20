@@ -51,7 +51,7 @@ export default class OpalTabs extends Component {
 			selectedTab.select();
 		}
 
-		tabPanels[selectedTabIndex as number].$component.props.shown = true;
+		tabPanels[selectedTabIndex as number].$component.input.shown = true;
 	}
 
 	elementAttached() {
@@ -66,11 +66,11 @@ export default class OpalTabs extends Component {
 		let selectedTab = this._selectedTab;
 
 		if (selectedTab) {
-			this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$component.props.shown = false;
+			this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$component.input.shown = false;
 			selectedTab.deselect();
 		}
 
-		this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.props.shown = true;
+		this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.input.shown = true;
 		this._selectedTab = tab;
 	}
 

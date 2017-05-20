@@ -9,7 +9,7 @@ let nextTick = Utils.nextTick;
 @d.Component<OpalCheckbox>({
 	elementIs: 'opal-checkbox',
 
-	props: {
+	input: {
 		checked: false,
 		indeterminate: false,
 		tabIndex: 0,
@@ -21,21 +21,21 @@ let nextTick = Utils.nextTick;
 
 	events: {
 		':component': {
-			'property-checked-change'(evt: IEvent) {
+			'input-checked-change'(evt: IEvent) {
 				if (evt.value) {
-					this.props.indeterminate = false;
+					this.input.indeterminate = false;
 				}
 
 				(this.$('input') as HTMLInputElement).checked = evt.value;
 			},
 
-			'property-indeterminate-change'(evt: IEvent) {
+			'input-indeterminate-change'(evt: IEvent) {
 				if (evt.value) {
-					this.props.checked = false;
+					this.input.checked = false;
 				}
 			},
 
-			'property-focused-change'( evt: IEvent) {
+			'input-focused-change'( evt: IEvent) {
 				if (evt.value) {
 					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 					this.focus();
@@ -48,7 +48,7 @@ let nextTick = Utils.nextTick;
 
 		input: {
 			change(evt: Event) {
-				this.emit((this.props.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
+				this.emit((this.input.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
 				this.emit('change');
 			}
 		},
@@ -57,14 +57,14 @@ let nextTick = Utils.nextTick;
 			focus(evt: Event) {
 				nextTick(() => {
 					if (document.activeElement == evt.target) {
-						this.props.focused = true;
+						this.input.focused = true;
 						this.emit('focus');
 					}
 				});
 			},
 
 			blur() {
-				this.props.focused = false;
+				this.input.focused = false;
 				this.emit('blur');
 			}
 		}
@@ -78,20 +78,20 @@ export default class OpalCheckbox extends Component {
 	initialize() {
 		define(this, {
 			_tabIndex(this: OpalCheckbox): number {
-				return this.props.disabled ? -1 : this.props.tabIndex;
+				return this.input.disabled ? -1 : this.input.tabIndex;
 			}
 		});
 	}
 
 	ready() {
-		let props = this.props;
+		let input = this.input;
 
-		if (props.checked) {
-			props.indeterminate = false;
+		if (input.checked) {
+			input.indeterminate = false;
 			(this.$('input') as HTMLInputElement).checked = true;
 		}
 
-		if (props.focused) {
+		if (input.focused) {
 			this.focus();
 		}
 	}
@@ -100,25 +100,25 @@ export default class OpalCheckbox extends Component {
 		if (evt.which == 13/* Enter */ || evt.which == 32/* Space */) {
 			evt.preventDefault();
 
-			let props = this.props;
+			let input = this.input;
 
-			if (!props.disabled) {
-				this.emit((props.checked = !props.checked) ? 'check' : 'uncheck');
+			if (!input.disabled) {
+				this.emit((input.checked = !input.checked) ? 'check' : 'uncheck');
 				this.emit('change');
 			}
 		}
 	}
 
 	get checked(): boolean {
-		return this.props.checked;
+		return this.input.checked;
 	}
 	set checked(checked: boolean) {
-		this.props.checked = checked;
+		this.input.checked = checked;
 	}
 
 	check(): boolean {
-		if (!this.props.checked) {
-			this.props.checked = true;
+		if (!this.input.checked) {
+			this.input.checked = true;
 			return true;
 		}
 
@@ -126,8 +126,8 @@ export default class OpalCheckbox extends Component {
 	}
 
 	uncheck(): boolean {
-		if (this.props.checked) {
-			this.props.checked = false;
+		if (this.input.checked) {
+			this.input.checked = false;
 			return true;
 		}
 
@@ -135,7 +135,7 @@ export default class OpalCheckbox extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.props.checked = value === undefined ? !this.props.checked : value);
+		return (this.input.checked = value === undefined ? !this.input.checked : value);
 	}
 
 	focus(): OpalCheckbox {
@@ -149,12 +149,12 @@ export default class OpalCheckbox extends Component {
 	}
 
 	enable(): OpalCheckbox {
-		this.props.disabled = false;
+		this.input.disabled = false;
 		return this;
 	}
 
 	disable(): OpalCheckbox {
-		this.props.disabled = true;
+		this.input.disabled = true;
 		return this;
 	}
 }

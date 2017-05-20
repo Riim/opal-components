@@ -16,7 +16,7 @@ let iPhone = /iphone/i.test(navigator.userAgent);
 @d.Component({
 	elementIs: 'opal-input-mask',
 
-	props: {
+	input: {
 		mask: { type: String, required: true }
 	},
 
@@ -58,18 +58,18 @@ export default class OpalInputMask extends Component {
 		forEach.call(
 			this.element.querySelectorAll('opal-input-mask-definition'),
 			(inputMaskDefinition: IComponentElement) => {
-				let props = inputMaskDefinition.$component.props;
-				definitions[props.maskChar] = props.regex;
+				let input = inputMaskDefinition.$component.input;
+				definitions[input.maskChar] = input.regex;
 			}
 		);
 
 		define(this, {
 			_mask(this: OpalInputMask): Array<string> {
-				return this.props.mask.split('').filter((chr: string) => chr != '?');
+				return this.input.mask.split('').filter((chr: string) => chr != '?');
 			},
 
 			_partialIndex(this: OpalInputMask): number {
-				let mask = this.props.mask;
+				let mask = this.input.mask;
 				let index = mask.indexOf('?');
 				return index == -1 ? mask.length : index;
 			},

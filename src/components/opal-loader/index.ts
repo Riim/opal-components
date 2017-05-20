@@ -5,7 +5,7 @@ import { Component, d } from 'rionite';
 @d.Component({
 	elementIs: 'opal-loader',
 
-	props: {
+	input: {
 		size: 'm',
 		shown: false
 	}

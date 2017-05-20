@@ -61,16 +61,16 @@ export default class OpalInputValidator extends Component {
 		let failedRule: OpalInputValidatorRule | undefined;
 
 		rules.forEach(rule => {
-			let ruleProps = rule.props;
+			let ruleInput = rule.input;
 
 			if (!failedRule && (
 				trimmedValue ?
-					ruleProps.minLength && trimmedValue.length < ruleProps.minLength ||
-						ruleProps.regex && !ruleProps.regex.test(value) ||
-						ruleProps.test && !(
-							(this.ownerComponent as Component)[ruleProps.test] as (value: string) => boolean
+					ruleInput.minLength && trimmedValue.length < ruleInput.minLength ||
+						ruleInput.regex && !ruleInput.regex.test(value) ||
+						ruleInput.test && !(
+							(this.ownerComponent as Component)[ruleInput.test] as (value: string) => boolean
 						)(value) :
-					ruleProps.required
+					ruleInput.required
 			)) {
 				failedRule = rule;
 				rule.showMessage();

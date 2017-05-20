@@ -41,7 +41,7 @@ function valueToAttributeValue(value: boolean | string): string {
 @d.Component<OpalRouter>({
 	elementIs: 'opal-router',
 
-	props: {
+	input: {
 		scrollTopOnChange: true,
 		scrollTopOnChangeComponent: true
 	},
@@ -71,7 +71,7 @@ export default class OpalRouter extends Component {
 		let routes = this._routes;
 
 		forEach.call(this.element.querySelectorAll('opal-route'), (routeEl: IComponentElement) => {
-			let path: string = routeEl.$component.props.path;
+			let path: string = routeEl.$component.input.path;
 			let rePath: Array<string> | string = [];
 			let props: Array<IRouteProperty> = [];
 
@@ -111,7 +111,7 @@ export default class OpalRouter extends Component {
 				path,
 				rePath: RegExp(`^${ rePath }${ rePath.charAt(rePath.length - 1) == '\/' ? '?' : '\/?' }$`),
 				properties: props,
-				componentName: routeEl.$component.props.component
+				componentName: routeEl.$component.input.component
 			});
 		});
 	}
@@ -152,15 +152,15 @@ export default class OpalRouter extends Component {
 
 			if (route === this._route) {
 				let componentEl = this._componentElement as IComponentElement;
-				let propsConfig = (componentEl.$component.constructor as typeof Component).props;
+				let inputConfig = (componentEl.$component.constructor as typeof Component).input;
 				let attrs = componentEl.attributes;
 				let writable = true;
 
-				if (propsConfig) {
+				if (inputConfig) {
 					for (let i = attrs.length; i;) {
 						let name = attrs.item(--i).name;
 
-						if (name != 'class' && !(name in state) && isReadonlyProperty(propsConfig[name])) {
+						if (name != 'class' && !(name in state) && isReadonlyProperty(inputConfig[name])) {
 							writable = false;
 							break;
 						}
@@ -170,7 +170,7 @@ export default class OpalRouter extends Component {
 						for (let name in state) {
 							if (
 								componentEl.getAttribute(hyphenize(name)) !== valueToAttributeValue(state[name]) &&
-									isReadonlyProperty(propsConfig[name])
+									isReadonlyProperty(inputConfig[name])
 							) {
 								writable = false;
 								break;
@@ -192,7 +192,7 @@ export default class OpalRouter extends Component {
 
 					this._applyState();
 
-					if (this.props.scrollTopOnChange) {
+					if (this.input.scrollTopOnChange) {
 						document.body.scrollTop = 0;
 					}
 
@@ -214,7 +214,7 @@ export default class OpalRouter extends Component {
 
 			this.element.appendChild(componentEl);
 
-			if (this.props.scrollTopOnChange || this.props.scrollTopOnChangeComponent) {
+			if (this.input.scrollTopOnChange || this.input.scrollTopOnChangeComponent) {
 				document.body.scrollTop = 0;
 			}
 
@@ -256,7 +256,7 @@ export default class OpalRouter extends Component {
 
 			this.element.appendChild(componentEl);
 
-			if (this.props.scrollTopOnChange || this.props.scrollTopOnChangeComponent) {
+			if (this.input.scrollTopOnChange || this.input.scrollTopOnChangeComponent) {
 				document.body.scrollTop = 0;
 			}
 		}

@@ -9,7 +9,7 @@ let nextTick = Utils.nextTick;
 @d.Component<OpalSignButton>({
 	elementIs: 'opal-sign-button',
 
-	props: {
+	input: {
 		sign: { type: String, required: true },
 		checkable: false,
 		checked: false,
@@ -22,7 +22,7 @@ let nextTick = Utils.nextTick;
 
 	events: {
 		':component': {
-			'property-focused-change'(evt: IEvent) {
+			'input-focused-change'(evt: IEvent) {
 				this[evt.value ? 'focus' : 'blur']();
 			}
 		},
@@ -31,21 +31,21 @@ let nextTick = Utils.nextTick;
 			focus(evt: Event) {
 				nextTick(() => {
 					if (document.activeElement == evt.target) {
-						this.props.focused = true;
+						this.input.focused = true;
 						this.emit('focus');
 					}
 				});
 			},
 
 			blur() {
-				this.props.focused = false;
+				this.input.focused = false;
 				this.emit('blur');
 			},
 
 			click(evt: Event) {
 				evt.preventDefault();
 
-				if (!this.props.disabled) {
+				if (!this.input.disabled) {
 					this.click();
 				}
 			}
@@ -60,19 +60,19 @@ export default class OpalSignButton extends Component {
 	initialize() {
 		define(this, {
 			_tabIndex(this: OpalSignButton): number {
-				return this.props.disabled ? -1 : this.props.tabIndex;
+				return this.input.disabled ? -1 : this.input.tabIndex;
 			}
 		});
 	}
 
 	ready() {
-		if (this.props.focused) {
+		if (this.input.focused) {
 			this.focus();
 		}
 	}
 
 	click(): OpalSignButton {
-		if (this.props.checkable) {
+		if (this.input.checkable) {
 			this.emit(this.toggle() ? 'check' : 'uncheck');
 		}
 
@@ -82,15 +82,15 @@ export default class OpalSignButton extends Component {
 	}
 
 	get checked(): boolean {
-		return this.props.checked;
+		return this.input.checked;
 	}
 	set checked(checked: boolean) {
-		this.props.checked = checked;
+		this.input.checked = checked;
 	}
 
 	check(): boolean {
-		if (!this.props.checked) {
-			this.props.checked = true;
+		if (!this.input.checked) {
+			this.input.checked = true;
 			return true;
 		}
 
@@ -98,8 +98,8 @@ export default class OpalSignButton extends Component {
 	}
 
 	uncheck(): boolean {
-		if (this.props.checked) {
-			this.props.checked = false;
+		if (this.input.checked) {
+			this.input.checked = false;
 			return true;
 		}
 
@@ -107,7 +107,7 @@ export default class OpalSignButton extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.props.checked = value === undefined ? !this.props.checked : value);
+		return (this.input.checked = value === undefined ? !this.input.checked : value);
 	}
 
 	focus(): OpalSignButton {
@@ -121,12 +121,12 @@ export default class OpalSignButton extends Component {
 	}
 
 	enable(): OpalSignButton {
-		this.props.disabled = false;
+		this.input.disabled = false;
 		return this;
 	}
 
 	disable(): OpalSignButton {
-		this.props.disabled = true;
+		this.input.disabled = true;
 		return this;
 	}
 }

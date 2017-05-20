@@ -3,7 +3,7 @@ import { Component, d } from 'rionite';
 @d.Component({
 	elementIs: 'opal-route',
 
-	props: {
+	input: {
 		path: { type: String, required: true, readonly: true },
 		component: { type: String, required: true, readonly: true }
 	}

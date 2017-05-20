@@ -7,7 +7,7 @@ import template = require('./index.beml');
 @d.Component({
 	elementIs: 'opal-input-validator-rule',
 
-	props: {
+	input: {
 		required: { default: false, readonly: true },
 		minLength: { type: Number, readonly: true },
 		regex: { type: eval, readonly: true },

@@ -20,22 +20,22 @@ span/tags {
 
 span/control {
 	@if-then (if=placeholderShown, rt-silent) {
-		span/placeholder { '{props.placeholder} ' }
+		span/placeholder { '{input.placeholder} ' }
 	}
 
 	opal-select/select (
 		multiple,
 		datalist-keypath={_dataListKeypathParam},
-		datalist-item-schema={props.datalistItemSchema |json },
-		value={props.value},
+		datalist-item-schema={input.datalistItemSchema |json },
+		value={input.value},
 		view-model-keypath=viewModel,
-		view-model-item-schema={props.viewModelItemSchema |json }
+		view-model-item-schema={input.viewModelItemSchema |json }
 	) {
 		opal-sign-button/button (class=opal-select__button, sign=plus, checkable)
 
-		opal-popover/menu (class=opal-select__menu, to={props.popoverTo}, auto-closing) {
+		opal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {
 			rt-content (select='.opal-select__menu-content') {
-				@if-then (if=props.datalistKeypath) {
+				@if-then (if=input.datalistKeypath) {
 					div (class=opal-select__menu-content) {
 						@if-then (if=dataList.length) {
 							@repeat (for=item of dataList) {
@@ -56,7 +56,7 @@ span/control {
 						}
 					}
 				}
-				@if-else (if=props.datalistKeypath) {
+				@if-else (if=input.datalistKeypath) {
 					opal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {
 						rt-content (
 							class=opal-filtered-list__query-input-container,

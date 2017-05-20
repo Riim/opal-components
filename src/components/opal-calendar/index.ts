@@ -33,7 +33,7 @@ function getTodayDate() {
 @d.Component<OpalCalendar>({
 	elementIs: 'opal-calendar',
 
-	props: {
+	input: {
 		fromDate: String,
 		toDate: String,
 		value: String,
@@ -127,25 +127,25 @@ export default class OpalCalendar extends Component {
 
 		define(this, {
 			fromDate(this: OpalCalendar) {
-				let fromDate: string | undefined = this.props.fromDate;
+				let fromDate: string | undefined = this.input.fromDate;
 
 				if (fromDate) {
 					return fromDate == 'today' ? getTodayDate() : parseDate(fromDate);
 				}
 
-				let toDate: string | undefined = this.props.toDate;
+				let toDate: string | undefined = this.input.toDate;
 				let date = toDate && toDate != 'today' ? parseDate(toDate) : new Date();
 				return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
 			},
 
 			toDate(this: OpalCalendar) {
-				let toDate: string | undefined = this.props.toDate;
+				let toDate: string | undefined = this.input.toDate;
 
 				if (toDate) {
 					return toDate == 'today' ? getTodayDate() : parseDate(toDate);
 				}
 
-				let fromDate: string | undefined = this.props.fromDate;
+				let fromDate: string | undefined = this.input.fromDate;
 				let date = fromDate && fromDate != 'today' ? parseDate(fromDate) : new Date();
 				return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
 			},
@@ -169,7 +169,7 @@ export default class OpalCalendar extends Component {
 			},
 
 			value(this: OpalCalendar) {
-				let value = this.props.value;
+				let value = this.input.value;
 				return value ? parseDate(value) : null;
 			}
 		});
@@ -208,7 +208,7 @@ export default class OpalCalendar extends Component {
 			},
 
 			days(this: OpalCalendar, cell: any, oldDays: TDays | undefined): TDays {
-				let dateDelimiter = this.props.dateDelimiter;
+				let dateDelimiter = this.input.dateDelimiter;
 
 				let fromDate = this.fromDate;
 				let toDate = this.toDate;
@@ -352,7 +352,7 @@ export default class OpalCalendar extends Component {
 		dayEl.setAttribute('selected', '');
 
 		this._currentlyDateSelect = true;
-		this.props.value = dayEl.dataset.date;
+		this.input.value = dayEl.dataset.date;
 
 		this.emit('change');
 	}

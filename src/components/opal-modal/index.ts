@@ -25,7 +25,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 @d.Component<OpalModal>({
 	elementIs: 'opal-modal',
 
-	props: {
+	input: {
 		opened: false
 	},
 
@@ -33,7 +33,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 
 	events: {
 		':component': {
-			'property-opened-change'(evt: IEvent) {
+			'input-opened-change'(evt: IEvent) {
 				this[evt.value ? '_open' : '_close']();
 			}
 		},
@@ -61,7 +61,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 
 		'btn-close': {
 			click() {
-				this.props.opened = false;
+				this.input.opened = false;
 				this.emit('close');
 			}
 		}
@@ -69,7 +69,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 })
 export default class OpalModal extends Component {
 	ready() {
-		if (this.props.opened) {
+		if (this.input.opened) {
 			this._open();
 		}
 	}
@@ -79,25 +79,25 @@ export default class OpalModal extends Component {
 	}
 
 	open(): boolean {
-		if (this.props.opened) {
+		if (this.input.opened) {
 			return false;
 		}
 
-		this.props.opened = true;
+		this.input.opened = true;
 		return true;
 	}
 
 	close(): boolean {
-		if (!this.props.opened) {
+		if (!this.input.opened) {
 			return false;
 		}
 
-		this.props.opened = false;
+		this.input.opened = false;
 		return true;
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.props.opened = value === undefined ? !this.props.opened : value);
+		return (this.input.opened = value === undefined ? !this.input.opened : value);
 	}
 
 	_open() {
@@ -117,7 +117,7 @@ export default class OpalModal extends Component {
 			}
 		}
 
-		this.props.opened = true;
+		this.input.opened = true;
 		openedModals.unshift(this);
 
 		this.focus();
@@ -130,7 +130,7 @@ export default class OpalModal extends Component {
 			openedModals[index - 1].close();
 		}
 
-		this.props.opened = false;
+		this.input.opened = false;
 		openedModals.shift();
 
 		if (openedModals.length) {

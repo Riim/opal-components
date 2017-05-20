@@ -7,7 +7,7 @@ import template = require('./index.beml');
 @d.Component({
 	elementIs: 'opal-popover',
 
-	props: {
+	input: {
 		to: 'right',
 		autoDirection: true,
 		autoClosing: false,
@@ -18,7 +18,7 @@ import template = require('./index.beml');
 
 	events: {
 		':component': {
-			'property-opened-change'(evt: IEvent) {
+			'input-opened-change'(evt: IEvent) {
 				this[evt.value ? '_open' : '_close']();
 			}
 		}
@@ -30,36 +30,36 @@ export default class OpalPopover extends Component {
 	_documentClickListening: IDisposableListening | undefined;
 
 	ready() {
-		if (this.props.opened) {
+		if (this.input.opened) {
 			this._open();
 		}
 	}
 
 	open(): boolean {
-		if (this.props.opened) {
+		if (this.input.opened) {
 			return false;
 		}
 
-		this.props.opened = true;
+		this.input.opened = true;
 		return true;
 	}
 
 	close(): boolean {
-		if (!this.props.opened) {
+		if (!this.input.opened) {
 			return false;
 		}
 
-		this.props.opened = false;
+		this.input.opened = false;
 		return true;
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.props.opened = value === undefined ? !this.props.opened : value);
+		return (this.input.opened = value === undefined ? !this.input.opened : value);
 	}
 
 	_open() {
-		if (this.props.autoDirection) {
-			let to = this.props.to;
+		if (this.input.autoDirection) {
+			let to = this.input.to;
 
 			this._toValueAtOpen = to;
 
@@ -76,7 +76,7 @@ export default class OpalPopover extends Component {
 								containerClientRect.left < docEl.clientWidth - containerClientRect.right
 						)
 					) {
-						this.props.to = 'right';
+						this.input.to = 'right';
 					}
 
 					break;
@@ -88,7 +88,7 @@ export default class OpalPopover extends Component {
 								containerClientRect.top < docEl.clientHeight - containerClientRect.bottom
 						)
 					) {
-						this.props.to = 'bottom';
+						this.input.to = 'bottom';
 					}
 
 					break;
@@ -100,7 +100,7 @@ export default class OpalPopover extends Component {
 							containerClientRect.left + window.pageXOffset >=
 								elClientRect.right - containerClientRect.right
 					) {
-						this.props.to = 'left';
+						this.input.to = 'left';
 					}
 
 					break;
@@ -111,7 +111,7 @@ export default class OpalPopover extends Component {
 							containerClientRect.top > docEl.clientHeight - containerClientRect.bottom &&
 							containerClientRect.top + window.pageYOffset >= elClientRect.bottom - containerClientRect.bottom
 					) {
-						this.props.to = 'top';
+						this.input.to = 'top';
 					}
 
 					break;
@@ -119,9 +119,9 @@ export default class OpalPopover extends Component {
 			}
 		}
 
-		if (this.props.autoClosing) {
+		if (this.input.autoClosing) {
 			setTimeout(() => {
-				if (this.props.opened) {
+				if (this.input.opened) {
 					this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
 				}
 			}, 1);
@@ -129,8 +129,8 @@ export default class OpalPopover extends Component {
 	}
 
 	_close() {
-		if (this.props.autoDirection) {
-			this.props.to = this._toValueAtOpen;
+		if (this.input.autoDirection) {
+			this.input.to = this._toValueAtOpen;
 		}
 
 		if (this._documentClickListening) {

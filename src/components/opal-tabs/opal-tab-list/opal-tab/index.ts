@@ -9,7 +9,7 @@ let nextTick = Utils.nextTick;
 @d.Component<OpalTab>({
 	elementIs: 'opal-tab',
 
-	props: {
+	input: {
 		selected: false,
 		tabIndex: 0,
 		focused: false,
@@ -20,7 +20,7 @@ let nextTick = Utils.nextTick;
 
 	events: {
 		':component': {
-			'property-focused-change'(evt: IEvent) {
+			'input-focused-change'(evt: IEvent) {
 				this[evt.value ? 'focus' : 'blur']();
 			}
 		},
@@ -29,19 +29,19 @@ let nextTick = Utils.nextTick;
 			focus(evt: Event) {
 				nextTick(() => {
 					if (document.activeElement == evt.target) {
-						this.props.focused = true;
+						this.input.focused = true;
 					}
 				});
 			},
 
 			blur() {
-				this.props.focused = false;
+				this.input.focused = false;
 			},
 
 			click(evt: Event) {
 				evt.preventDefault();
 
-				if (!this.props.disabled) {
+				if (!this.input.disabled) {
 					this.click();
 				}
 			}
@@ -54,13 +54,13 @@ export default class OpalTab extends Component {
 	initialize() {
 		define(this, {
 			_tabIndex(this: OpalTab): number {
-				return this.props.disabled ? -1 : this.props.tabIndex;
+				return this.input.disabled ? -1 : this.input.tabIndex;
 			}
 		});
 	}
 
 	ready() {
-		if (this.props.focused) {
+		if (this.input.focused) {
 			this.focus();
 		}
 	}
@@ -71,15 +71,15 @@ export default class OpalTab extends Component {
 	}
 
 	get selected(): boolean {
-		return this.props.selected;
+		return this.input.selected;
 	}
 	set selected(selected: boolean) {
-		this.props.selected = selected;
+		this.input.selected = selected;
 	}
 
 	select(): boolean {
-		if (!this.props.selected) {
-			this.props.selected = true;
+		if (!this.input.selected) {
+			this.input.selected = true;
 			return true;
 		}
 
@@ -87,8 +87,8 @@ export default class OpalTab extends Component {
 	}
 
 	deselect(): boolean {
-		if (this.props.selected) {
-			this.props.selected = false;
+		if (this.input.selected) {
+			this.input.selected = false;
 			return true;
 		}
 
@@ -96,7 +96,7 @@ export default class OpalTab extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.props.selected = value === undefined ? !this.props.selected : value);
+		return (this.input.selected = value === undefined ? !this.input.selected : value);
 	}
 
 	focus(): OpalTab {
@@ -110,12 +110,12 @@ export default class OpalTab extends Component {
 	}
 
 	enable(): OpalTab {
-		this.props.disabled = false;
+		this.input.disabled = false;
 		return this;
 	}
 
 	disable(): OpalTab {
-		this.props.disabled = true;
+		this.input.disabled = true;
 		return this;
 	}
 }

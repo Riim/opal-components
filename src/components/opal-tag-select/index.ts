@@ -13,7 +13,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 @d.Component({
 	elementIs: 'opal-tag-select',
 
-	props: {
+	input: {
 		viewType: String,
 		datalistKeypath: { type: String, readonly: true },
 		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
@@ -87,17 +87,17 @@ export default class OpalTagSelect extends Component {
 	_dataListKeypathParam: string | null;
 
 	initialize() {
-		let props = this.props;
+		let input = this.input;
 
-		if (props.datalistKeypath) {
+		if (input.datalistKeypath) {
 			let context = this.ownerComponent || window;
-			let getDataList = Function(`return this.${ props.datalistKeypath };`);
+			let getDataList = Function(`return this.${ input.datalistKeypath };`);
 
 			define(this, 'dataList', function() {
 				return getDataList.call(context);
 			});
 
-			let dataListItemSchema = props.datalistItemSchema;
+			let dataListItemSchema = input.datalistItemSchema;
 
 			this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
 			this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
@@ -109,10 +109,10 @@ export default class OpalTagSelect extends Component {
 		} else {
 			this.dataList = null;
 
-			let dataProvider = props.dataprovider;
+			let dataProvider = input.dataprovider;
 
-			if (!dataProvider && props.dataproviderKeypath) {
-				dataProvider = Function(`return this.${ props.dataproviderKeypath };`)
+			if (!dataProvider && input.dataproviderKeypath) {
+				dataProvider = Function(`return this.${ input.dataproviderKeypath };`)
 					.call(this.ownerComponent || window);
 
 				if (!dataProvider) {
@@ -125,7 +125,7 @@ export default class OpalTagSelect extends Component {
 			this._dataListKeypathParam = null;
 		}
 
-		let vmItemSchema = props.viewModelItemSchema;
+		let vmItemSchema = input.viewModelItemSchema;
 
 		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
@@ -133,8 +133,8 @@ export default class OpalTagSelect extends Component {
 
 		let vm;
 
-		if (props.viewModelKeypath) {
-			vm = Function(`return this.${ props.viewModelKeypath };`).call(this.ownerComponent || window);
+		if (input.viewModelKeypath) {
+			vm = Function(`return this.${ input.viewModelKeypath };`).call(this.ownerComponent || window);
 
 			if (!vm) {
 				throw new TypeError('viewModel is not defined');
@@ -147,7 +147,7 @@ export default class OpalTagSelect extends Component {
 			viewModel: vm,
 
 			placeholderShown(this: OpalTagSelect): boolean {
-				return !!this.props.placeholder && !this.viewModel.length;
+				return !!this.input.placeholder && !this.viewModel.length;
 			}
 		});
 	}

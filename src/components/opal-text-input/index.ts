@@ -9,7 +9,7 @@ let nextTick = Utils.nextTick;
 @d.Component<OpalTextInput>({
 	elementIs: 'opal-text-input',
 
-	props: {
+	input: {
 		inputType: 'text',
 		size: 'm',
 		multiline: false,
@@ -30,7 +30,7 @@ let nextTick = Utils.nextTick;
 
 	events: {
 		':component': {
-			'property-value-change'(evt: IEvent) {
+			'input-value-change'(evt: IEvent) {
 				let textField = this.$('text-field') as HTMLInputElement;
 
 				if (textField.value != evt.value) {
@@ -38,7 +38,7 @@ let nextTick = Utils.nextTick;
 				}
 			},
 
-			'property-focused-change'(evt: IEvent) {
+			'input-focused-change'(evt: IEvent) {
 				this[evt.value ? 'focus' : 'blur']();
 			}
 		},
@@ -47,14 +47,14 @@ let nextTick = Utils.nextTick;
 			focus(evt: Event) {
 				nextTick(() => {
 					if (document.activeElement == evt.target) {
-						this.props.focused = true;
+						this.input.focused = true;
 						this.emit('focus');
 					}
 				});
 			},
 
 			blur() {
-				this.props.focused = false;
+				this.input.focused = false;
 				this.emit('blur');
 			},
 
@@ -64,7 +64,7 @@ let nextTick = Utils.nextTick;
 			},
 
 			change(evt: Event) {
-				let storeKey = this.props.storeKey;
+				let storeKey = this.input.storeKey;
 
 				if (storeKey) {
 					localStorage.setItem(storeKey, (evt.target as HTMLInputElement).value);
@@ -74,7 +74,7 @@ let nextTick = Utils.nextTick;
 			},
 
 			keydown(evt: Event) {
-				if (this.props.multiline && this.props.autoHeight) {
+				if (this.input.multiline && this.input.autoHeight) {
 					setTimeout(() => {
 						this._fixHeight();
 					}, 1);
@@ -92,7 +92,7 @@ let nextTick = Utils.nextTick;
 			},
 
 			keyup(evt: Event) {
-				if (this.props.multiline && this.props.autoHeight) {
+				if (this.input.multiline && this.input.autoHeight) {
 					this._fixHeight();
 				}
 
@@ -109,34 +109,34 @@ export default class OpalTextInput extends Component {
 	initialize() {
 		define(this, {
 			btnClearShown(this: OpalTextInput): boolean {
-				return !!this.props.value && !this.props.loading;
+				return !!this.input.value && !this.input.loading;
 			}
 		});
 	}
 
 	ready() {
-		let props = this.props;
-		let value = props.value;
+		let input = this.input;
+		let value = input.value;
 		let textField = this.$('text-field') as HTMLInputElement;
 
 		if (value) {
 			textField.value = value;
 		} else {
-			let storeKey = props.storeKey;
+			let storeKey = input.storeKey;
 
 			if (storeKey) {
-				props.value = localStorage.getItem(storeKey) || '';
+				input.value = localStorage.getItem(storeKey) || '';
 			}
 		}
 
-		if (this.props.multiline && this.props.autoHeight) {
+		if (input.multiline && input.autoHeight) {
 			let offsetHeight = textField.offsetHeight;
 
 			if (offsetHeight) {
 				this._initialHeight = offsetHeight + textField.scrollHeight - textField.clientHeight;
 				this._fixHeight();
 			} else {
-				this._initialHeight = parseInt(getComputedStyle(textField).lineHeight as string, 10) * this.props.rows +
+				this._initialHeight = parseInt(getComputedStyle(textField).lineHeight as string, 10) * this.input.rows +
 					parseInt(getComputedStyle(textField).borderTop as string, 10) +
 					parseInt(getComputedStyle(textField).borderBottom as string, 10) +
 					parseInt(getComputedStyle(textField).paddingTop as string, 10) +
@@ -146,7 +146,7 @@ export default class OpalTextInput extends Component {
 			}
 		}
 
-		if (props.focused) {
+		if (input.focused) {
 			this.focus();
 		}
 	}
@@ -168,10 +168,10 @@ export default class OpalTextInput extends Component {
 	}
 
 	get value(): string {
-		return this.props.value;
+		return this.input.value;
 	}
 	set value(value: string) {
-		this.props.value = value;
+		this.input.value = value;
 	}
 
 	clear(): OpalTextInput {
@@ -190,12 +190,12 @@ export default class OpalTextInput extends Component {
 	}
 
 	enable(): OpalTextInput {
-		this.props.disabled = false;
+		this.input.disabled = false;
 		return this;
 	}
 
 	disable(): OpalTextInput {
-		this.props.disabled = true;
+		this.input.disabled = true;
 		return this;
 	}
 }

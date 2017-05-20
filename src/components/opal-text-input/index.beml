@@ -1,29 +1,29 @@
 @section/inner {
 
-@if-then (if=props.multiline) {
+@if-then (if=input.multiline) {
 	textarea/, text-field (
-		rows={props.rows},
-		name={props.inputName},
-		placeholder={props.placeholder},
-		tabindex={props.tabIndex},
-		disabled={props.disabled}
+		rows={input.rows},
+		name={input.inputName},
+		placeholder={input.placeholder},
+		tabindex={input.tabIndex},
+		disabled={input.disabled}
 	)
 }
-@if-else (if=props.multiline) {
+@if-else (if=input.multiline) {
 	input/, text-field (
-		type={props.inputType},
-		name={props.inputName},
-		placeholder={props.placeholder},
-		tabindex={props.tabIndex},
-		disabled={props.disabled}
+		type={input.inputType},
+		name={input.inputName},
+		placeholder={input.placeholder},
+		tabindex={input.tabIndex},
+		disabled={input.disabled}
 	)
 }
 
-@if-then (if=props.clearable, rt-silent) {
+@if-then (if=input.clearable, rt-silent) {
 	button/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)
 }
 
-@if-then (if=props.loading, rt-silent) {
+@if-then (if=input.loading, rt-silent) {
 	opal-loader/loader (size=s, shown)
 }
 

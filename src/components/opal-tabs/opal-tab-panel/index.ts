@@ -5,7 +5,7 @@ import { Component, d } from 'rionite';
 @d.Component({
 	elementIs: 'opal-tab-panel',
 
-	props: {
+	input: {
 		shown: false
 	},
 

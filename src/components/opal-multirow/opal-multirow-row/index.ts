@@ -6,7 +6,7 @@ import template = require('./index.beml');
 @d.Component({
 	elementIs: 'opal-multirow-row',
 
-	props: {
+	input: {
 		preset: { default: false, readonly: true }
 	},
 

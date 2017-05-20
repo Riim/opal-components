@@ -2,14 +2,14 @@
 
 rt-content (select=.opal-select__button) {
 	opal-button/button (
-		view-type={props.viewType},
-		size={props.size},
+		view-type={input.viewType},
+		size={input.size},
 		checkable,
-		tab-index={props.tabIndex},
-		disabled={props.disabled}
+		tab-index={input.tabIndex},
+		disabled={input.disabled}
 	) {
-		@if-then (if=props.text, rt-silent) { '{props.text}' }
-		@if-else (if=props.text, rt-silent) { '{text}' }
+		@if-then (if=input.text, rt-silent) { '{input.text}' }
+		@if-else (if=input.text, rt-silent) { '{text}' }
 		' '
 		svg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }
 	}
@@ -18,7 +18,7 @@ rt-content (select=.opal-select__button) {
 rt-content (select=.opal-select__menu) {
 	opal-dropdown/menu (auto-closing) {
 		rt-content (select=.opal-select__menu-content) {
-			@if-then (if=props.datalistKeypath) {
+			@if-then (if=input.datalistKeypath) {
 				div/, menu-content {
 					@if-then (if=dataList.length) {
 						@repeat (for=item of dataList) {
@@ -36,7 +36,7 @@ rt-content (select=.opal-select__menu) {
 					}
 				}
 			}
-			@if-else (if=props.datalistKeypath) {
+			@if-else (if=input.datalistKeypath) {
 				div/, menu-content {
 					rt-content/options (select=opal-select-option)
 					rt-content/new-item-input-container (select=.opal-select__new-item-input)
