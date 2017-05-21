@@ -2,7 +2,7 @@ import './index.css';
 
 import { define } from 'cellx';
 import { Component, d } from 'rionite';
-import template = require('./index.beml');
+import template = require('./index.nelm');
 
 @d.Component<OpalSlider>({
 	elementIs: 'opal-slider',

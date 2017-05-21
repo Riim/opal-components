@@ -5,7 +5,7 @@ import { IComponentElement, Component, d } from 'rionite';
 import OpalTabList from './opal-tab-list';
 import OpalTab from './opal-tab-list/opal-tab';
 import OpalTabPanel from './opal-tab-panel';
-import template = require('./index.beml');
+import template = require('./index.nelm');
 
 let indexOf = Array.prototype.indexOf;
 let forEach = Array.prototype.forEach;

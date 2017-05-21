@@ -5,7 +5,7 @@ import { IndexedList } from 'cellx-indexed-collections';
 import { getText, Component, d } from 'rionite';
 import { TDataList, TViewModel, default as OpalSelect } from '../opal-select';
 import { IDataProvider } from '../opal-loaded-list';
-import template = require('./index.beml');
+import template = require('./index.nelm');
 
 let defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };

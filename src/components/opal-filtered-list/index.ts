@@ -4,7 +4,7 @@ import { IEvent } from 'cellx';
 import { getText, Component, d } from 'rionite';
 import OpalTextInput from '../opal-text-input';
 import OpalLoadedList from '../opal-loaded-list';
-import template = require('./index.beml');
+import template = require('./index.nelm');
 
 @d.Component({
 	elementIs: 'opal-filtered-list',

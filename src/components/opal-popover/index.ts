@@ -2,7 +2,7 @@ import './index.css';
 
 import { IEvent } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
-import template = require('./index.beml');
+import template = require('./index.nelm');
 
 @d.Component({
 	elementIs: 'opal-popover',

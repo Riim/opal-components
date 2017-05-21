@@ -2,7 +2,7 @@ import './index.css';
 
 import { ObservableList, Cell, define, Utils } from 'cellx';
 import { IDisposableTimeout, IDisposableCallback, getText, Component, d } from 'rionite';
-import template = require('./index.beml');
+import template = require('./index.nelm');
 
 let mixin = Utils.mixin;
 

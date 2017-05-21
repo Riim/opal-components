@@ -6,7 +6,7 @@ import { IDisposableListening, Component, d } from 'rionite';
 import { OpalSelectOption } from '../opal-select';
 import parseDate from './parseDate';
 import formatDate from './formatDate';
-import template = require('./index.beml');
+import template = require('./index.nelm');
 
 let nextTick = Utils.nextTick;
 

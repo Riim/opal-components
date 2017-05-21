@@ -11,7 +11,7 @@ import OpalLoadedList from '../opal-loaded-list';
 import OpalFilteredList from '../opal-filtered-list';
 import OpalSelectOption from './opal-select-option';
 import isEqualArray from './isEqualArray';
-import template = require('./index.beml');
+import template = require('./index.nelm');
 
 let { nextUID, nextTick } = Utils;
 let { RtIfThen, RtRepeat } = Components;

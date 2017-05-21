@@ -4,7 +4,7 @@ import { IEvent, define, Utils } from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
 import { IComponentElement, Component, d } from 'rionite';
 import OpalMultirowRow from './opal-multirow-row';
-import template = require('./index.beml');
+import template = require('./index.nelm');
 
 let nextUID = Utils.nextUID;
 

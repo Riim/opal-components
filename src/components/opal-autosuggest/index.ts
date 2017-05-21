@@ -4,7 +4,7 @@ import { IEvent, ObservableList, Cell, define } from 'cellx';
 import { IDisposableListening, IDisposableTimeout, IDisposableCallback, getText, Component, d } from 'rionite';
 import OpalTextInput from '../opal-text-input';
 import OpalDropdown from '../opal-dropdown';
-import template = require('./index.beml');
+import template = require('./index.nelm');
 
 export interface IItem {
 	value: string;

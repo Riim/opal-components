@@ -7,7 +7,7 @@ import OpalDropdown from '../opal-dropdown';
 import OpalInputValidator from '../opal-input-validator';
 import OpalCalendar from '../opal-calendar';
 import dateExists from 'date-exists';
-import template = require('./index.beml');
+import template = require('./index.nelm');
 
 function pad(num: number): string {
 	return (num < 10 ? '0' : '') + num;

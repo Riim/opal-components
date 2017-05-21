@@ -3,7 +3,7 @@ import './light.css';
 
 import { Component, d } from 'rionite';
 import Prism = require('prismjs');
-import template = require('./index.beml');
+import template = require('./index.nelm');
 
 function prepareCode(code: string, isHtml?: boolean) {
 	code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');

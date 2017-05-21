@@ -2,7 +2,7 @@ import './index.css';
 
 import { Component, d } from 'rionite';
 import OpalPopover from '../../opal-popover';
-import template = require('./index.beml');
+import template = require('./index.nelm');
 
 @d.Component({
 	elementIs: 'opal-input-validator-rule',
