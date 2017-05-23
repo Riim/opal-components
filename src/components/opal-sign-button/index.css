@@ -71,21 +71,27 @@
 		}
 	}
 
-	&[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign {
+	&[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign,
+	&[sign=plus] .opal-sign-button__control:active .opal-sign-button__sign {
 		border-color: hsl(208,100%,60%);
 	}
 
 	&[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::before,
-	&[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::after {
+	&[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::after,
+	&[sign=plus] .opal-sign-button__control:active .opal-sign-button__sign::before,
+	&[sign=plus] .opal-sign-button__control:active .opal-sign-button__sign::after {
 		background: hsl(208,100%,60%);
 	}
 
-	&[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign {
+	&[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign,
+	&[sign=minus] .opal-sign-button__control:active .opal-sign-button__sign {
 		border-color: hsl(348,98%,64%);
 	}
 
 	&[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::before,
-	&[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::after {
+	&[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::after,
+	&[sign=minus] .opal-sign-button__control:active .opal-sign-button__sign::before,
+	&[sign=minus] .opal-sign-button__control:active .opal-sign-button__sign::after {
 		background: hsl(348,98%,64%);
 	}
 
