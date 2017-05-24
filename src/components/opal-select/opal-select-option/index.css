@@ -5,7 +5,7 @@
 		position: relative;
 		display: block;
 		box-sizing: border-box;
-		padding: 7px 22px;
+		padding: 7px 38px 7px 22px;
 		width: 100%;
 		border: 0;
 		background: #fff;
@@ -26,6 +26,18 @@
 		& .opal-select-option__content {
 			position: relative;
 			display: block;
+		}
+
+		& .opal-select-option__icon-check {
+			position: absolute;
+			top: 0;
+			right: 14px;
+			bottom: 0;
+			display: none;
+			margin: auto;
+			width: 16px;
+			height: 16px;
+			color: hsl(0,0%,20%);
 		}
 
 	/* States */
@@ -55,6 +67,9 @@
 	&[selected] .opal-select-option__control {
 		color: hsl(208,90%,50%);
 	}
+		&[selected] .opal-select-option__icon-check {
+			display: block;
+		}
 
 	&[disabled] {
 		opacity: .5;

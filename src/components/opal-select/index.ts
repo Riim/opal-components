@@ -279,6 +279,13 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 					}
 				});
 			}
+		},
+
+		'btn-close': {
+			click() {
+				this.close();
+				this.focus();
+			}
 		}
 	}
 })

@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.24.17",
+  "version": "0.24.18",
   "description": "",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -49,7 +49,7 @@
     "webpack": "^2.6.0"
   },
   "dependencies": {
-    "cellx": "^1.7.9",
+    "cellx": "^1.7.10",
     "cellx-indexed-collections": "^1.0.12",
     "date-exists": "^1.0.0",
     "prismjs": "^1.6.0",

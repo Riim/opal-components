@@ -30,6 +30,7 @@ rt-content (select=.opal-select__menu) {
 						}
 
 						rt-content/new-item-input-container // доопределяется ниже
+						rt-content/btn-close-container // доопределяется ниже
 					}
 					@if-else (if=dataList.length, rt-silent) {
 						opal-loader/menu-loader (shown)
@@ -40,6 +41,7 @@ rt-content (select=.opal-select__menu) {
 				div/, menu-content {
 					rt-content/options (select=opal-select-option)
 					rt-content/new-item-input-container (select=.opal-select__new-item-input)
+					rt-content/btn-close-container (select=.opal-select__btn-close)
 				}
 			}
 		}

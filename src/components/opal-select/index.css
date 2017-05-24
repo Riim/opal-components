@@ -34,8 +34,15 @@
 			}
 				& .opal-select__new-item-input {
 					display: block;
-					margin: 10px;
+					margin: 6px 10px 4px;
 					width: auto;
+				}
+
+			& .opal-select__btn-close-container {
+			}
+				& .opal-select__btn-close {
+					display: block;
+					margin: 6px 10px 4px;
 				}
 
 	/* Combinations */
@@ -46,7 +53,7 @@
 	}
 
 	& .opal-filtered-list .opal-filtered-list__query-input {
-		margin: 10px;
+		margin: 4px 10px 6px;
 	}
 
 	& .opal-loaded-list {

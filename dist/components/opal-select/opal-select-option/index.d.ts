@@ -1,4 +1,5 @@
 import './index.css';
+import '../../../assets/icons/opal-components__icon-check.svg';
 import { Component } from 'rionite';
 export default class OpalSelectOption extends Component {
     _tabIndex: number;

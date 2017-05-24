@@ -1,4 +1,5 @@
 import './index.css';
+import '../../../assets/icons/opal-components__icon-check.svg';
 
 import { IEvent, define, Utils } from 'cellx';
 import { Component, d } from 'rionite';
