@@ -7,8 +7,8 @@ import { TDataList, TViewModel, default as OpalSelect } from '../opal-select';
 import { IDataProvider } from '../opal-loaded-list';
 import template = require('./index.nelm');
 
-let defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
-let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
+let defaultDataListItemSchema = OpalSelect.defaultDataListItemSchema;
+let defaultVMItemSchema = OpalSelect.defaultVMItemSchema;
 
 @d.Component({
 	elementIs: 'opal-tag-select',

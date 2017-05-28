@@ -1,6 +1,6 @@
 import './index.css';
 
-import { IEvent } from 'cellx';
+import { IEvent, Cell } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.nelm');
 
@@ -25,7 +25,7 @@ import template = require('./index.nelm');
 	}
 })
 export default class OpalPopover extends Component {
-	_toValueAtOpen: string;
+	_toOnOpen: string;
 
 	_documentClickListening: IDisposableListening | undefined;
 
@@ -41,6 +41,8 @@ export default class OpalPopover extends Component {
 		}
 
 		this.input.opened = true;
+		Cell.forceRelease();
+
 		return true;
 	}
 
@@ -50,18 +52,22 @@ export default class OpalPopover extends Component {
 		}
 
 		this.input.opened = false;
+		Cell.forceRelease();
+
 		return true;
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.input.opened = value === undefined ? !this.input.opened : value);
+		let opened = this.input.opened = value === undefined ? !this.input.opened : value
+		Cell.forceRelease();
+		return opened;
 	}
 
 	_open() {
 		if (this.input.autoDirection) {
 			let to = this.input.to;
 
-			this._toValueAtOpen = to;
+			this._toOnOpen = to;
 
 			let docEl = document.documentElement;
 
@@ -71,7 +77,7 @@ export default class OpalPopover extends Component {
 			switch (to) {
 				case 'left': {
 					if (
-						elClientRect.left + window.pageXOffset < 0 || (
+						elClientRect.left + document.body.scrollLeft < 0 || (
 							elClientRect.left < 0 &&
 								containerClientRect.left < docEl.clientWidth - containerClientRect.right
 						)
@@ -83,7 +89,7 @@ export default class OpalPopover extends Component {
 				}
 				case 'top': {
 					if (
-						elClientRect.top + window.pageYOffset < 0 || (
+						elClientRect.top + document.body.scrollTop < 0 || (
 							elClientRect.top < 0 &&
 								containerClientRect.top < docEl.clientHeight - containerClientRect.bottom
 						)
@@ -97,7 +103,7 @@ export default class OpalPopover extends Component {
 					if (
 						elClientRect.right > docEl.clientWidth &&
 							containerClientRect.left > docEl.clientWidth - containerClientRect.right &&
-							containerClientRect.left + window.pageXOffset >=
+							containerClientRect.left + document.body.scrollLeft >=
 								elClientRect.right - containerClientRect.right
 					) {
 						this.input.to = 'left';
@@ -109,7 +115,8 @@ export default class OpalPopover extends Component {
 					if (
 						elClientRect.bottom > docEl.clientHeight &&
 							containerClientRect.top > docEl.clientHeight - containerClientRect.bottom &&
-							containerClientRect.top + window.pageYOffset >= elClientRect.bottom - containerClientRect.bottom
+							containerClientRect.top + document.body.scrollTop >=
+								elClientRect.bottom - containerClientRect.bottom
 					) {
 						this.input.to = 'top';
 					}
@@ -130,7 +137,7 @@ export default class OpalPopover extends Component {
 
 	_close() {
 		if (this.input.autoDirection) {
-			this.input.to = this._toValueAtOpen;
+			this.input.to = this._toOnOpen;
 		}
 
 		if (this._documentClickListening) {

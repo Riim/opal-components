@@ -29,12 +29,12 @@ function toComparable(str: string): string {
 		selectedItem: eval,
 		minQueryLength: 3,
 		count: 5,
-		showNotFound: false
+		openMenuOnNothingFound: false
 	},
 
 	i18n: {
 		textInputPlaceholder: getText.t('Начните вводить для поиска'),
-		notFound: getText.t('Ничего не найдено')
+		nothingFound: getText.t('Ничего не найдено')
 	},
 
 	template,
@@ -318,7 +318,7 @@ export default class OpalAutosuggest extends Component {
 				this._focusedListItem = focusedListItem;
 				focusedListItem.setAttribute('focused', '');
 			});
-		} else if (this.input.showNotFound) {
+		} else if (this.input.openMenuOnNothingFound) {
 			this.openMenu(true);
 		}
 	}

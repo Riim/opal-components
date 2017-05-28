@@ -19,14 +19,14 @@ export default class OpalLoadedList extends Component {
     list: ObservableList<IItem>;
     total: number | undefined;
     _scrolling: boolean;
-    _loadingCheckPlanned: boolean;
+    _isLoadingCheckPlanned: boolean;
     _loadingCheckTimeout: IDisposableTimeout;
     _requestCallback: IDisposableCallback;
     loading: boolean;
     _lastRequestedQuery: string | undefined;
     _lastLoadedQuery: string | undefined;
     empty: boolean;
-    notFoundShown: boolean;
+    nothingFoundShown: boolean;
     loaderShown: boolean;
     initialize(): void;
     elementAttached(): void;

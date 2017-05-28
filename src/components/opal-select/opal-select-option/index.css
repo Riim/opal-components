@@ -3,11 +3,7 @@
 
 	& .opal-select-option__control {
 		position: relative;
-		display: block;
-		box-sizing: border-box;
 		padding: 7px 38px 7px 22px;
-		width: 100%;
-		border: 0;
 		background: #fff;
 		color: #000;
 		text-align: left;
@@ -26,6 +22,8 @@
 		& .opal-select-option__content {
 			position: relative;
 			display: block;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 
 		& .opal-select-option__icon-check {

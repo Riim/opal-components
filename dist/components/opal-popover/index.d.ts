@@ -1,7 +1,7 @@
 import './index.css';
 import { IDisposableListening, Component } from 'rionite';
 export default class OpalPopover extends Component {
-    _toValueAtOpen: string;
+    _toOnOpen: string;
     _documentClickListening: IDisposableListening | undefined;
     ready(): void;
     open(): boolean;

@@ -8,6 +8,16 @@ export declare type TDataList = ObservableList<Object>;
 export declare type TViewModel = IndexedList<Object>;
 export default class OpalSelect extends Component {
     static OpalSelectOption: typeof OpalSelectOption;
+    static defaultDataListItemSchema: {
+        value: string;
+        text: string;
+        disabled: string;
+    };
+    static defaultVMItemSchema: {
+        value: string;
+        text: string;
+        disabled: string;
+    };
     dataList: TDataList | null;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
@@ -19,7 +29,7 @@ export default class OpalSelect extends Component {
     optionElements: NodeListOf<IComponentElement>;
     options: Array<OpalSelectOption>;
     _opened: boolean;
-    _valueAtOpening: any;
+    _valueOnOpen: any;
     _onсeFocusedAfterLoading: boolean;
     _documentFocusListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening | null | undefined;

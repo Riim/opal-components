@@ -1,6 +1,6 @@
 import './index.css';
 
-import { IEvent } from 'cellx';
+import { IEvent, Cell } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
 
 let openedDropdowns: Array<OpalDropdown> = [];
@@ -39,6 +39,8 @@ export default class OpalDropdown extends Component {
 		}
 
 		this.input.opened = true;
+		Cell.forceRelease();
+
 		return true;
 	}
 
@@ -48,11 +50,15 @@ export default class OpalDropdown extends Component {
 		}
 
 		this.input.opened = false;
+		Cell.forceRelease();
+
 		return true;
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.input.opened = value === undefined ? !this.input.opened : value);
+		let opened = this.input.opened = value === undefined ? !this.input.opened : value
+		Cell.forceRelease();
+		return opened;
 	}
 
 	_open() {
@@ -62,48 +68,47 @@ export default class OpalDropdown extends Component {
 		let elStyle = el.style;
 
 		elStyle.top = '100%';
-		elStyle.right = '';
-		elStyle.bottom = '';
+		elStyle.right = 'auto';
+		elStyle.bottom = 'auto';
 		elStyle.left = '0';
-		elStyle.display = 'block';
-		elStyle.maxHeight = '';
 
-		let docEl = document.documentElement;
-		let container = el.offsetParent;
-
-		let docElClientWidth = docEl.clientWidth;
-		let containerClientRect = container.getBoundingClientRect();
+		let docElClientWidth = document.documentElement.clientWidth;
+		let containerClientRect = el.offsetParent.getBoundingClientRect();
 		let elClientRect = el.getBoundingClientRect();
 
 		if (elClientRect.right > docElClientWidth) {
 			if (containerClientRect.right - el.offsetWidth >= 0) {
 				elStyle.right = '0';
-				elStyle.left = '';
+				elStyle.left = 'auto';
 			} else {
 				elStyle.left = Math.max(-containerClientRect.left, docElClientWidth - elClientRect.right) + 'px';
 			}
 		}
 
-		if (this.input.autoHeight) {
-			let docElClientHeight = docEl.clientHeight;
-			let margin = elClientRect.top - containerClientRect.bottom;
-			let excess = elClientRect.bottom + margin - docElClientHeight;
+		let margin = elClientRect.top - containerClientRect.bottom;
+		let excess = elClientRect.bottom + margin - document.documentElement.clientHeight;
 
-			if (excess > 0) {
-				let diff = containerClientRect.top - (docElClientHeight - containerClientRect.bottom);
+		if (excess > 0) {
+			let diff = containerClientRect.top - (document.documentElement.clientHeight - containerClientRect.bottom);
+
+			if (this.input.autoHeight) {
+				elStyle.maxHeight = 'none';
 
 				if (diff > 0) {
-					elStyle.top = '';
+					elStyle.top = 'auto';
 					elStyle.bottom = '100%';
 
 					excess -= diff;
 
 					if (excess > 0) {
-						elStyle.maxHeight = el.offsetHeight - excess + 'px';
+						elStyle.maxHeight = containerClientRect.bottom - containerClientRect.top - excess + 'px';
 					}
 				} else {
-					elStyle.maxHeight = el.offsetHeight - excess + 'px';
+					elStyle.maxHeight = containerClientRect.bottom - containerClientRect.top - excess + 'px';
 				}
+			} else if (diff > 0 && excess - diff <= document.body.scrollTop) {
+				elStyle.top = 'auto';
+				elStyle.bottom = '100%';
 			}
 		}
 
@@ -118,8 +123,6 @@ export default class OpalDropdown extends Component {
 
 	_close() {
 		openedDropdowns.splice(openedDropdowns.indexOf(this), 1);
-
-		this.element.style.display = '';
 
 		if (this._documentClickListening) {
 			this._documentClickListening.stop();

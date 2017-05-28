@@ -7,7 +7,7 @@
 		exports["index"] = factory(require("rionite"), require("cellx"), require("cellx-indexed-collections"));
 	else
 		root["index"] = factory(root["rionite"], root["cellx"], root["cellx-indexed-collections"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 48);
+/******/ 	return __webpack_require__(__webpack_require__.s = 49);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -90,29 +90,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType;
-(function (PathNodeType) {
-    PathNodeType[PathNodeType["SIMPLE"] = 0] = "SIMPLE";
-    PathNodeType[PathNodeType["OPTIONAL"] = 1] = "OPTIONAL";
-    PathNodeType[PathNodeType["INSERT"] = 2] = "INSERT";
-})(PathNodeType || (PathNodeType = {}));
-;
-exports.default = PathNodeType;
-
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -134,10 +111,626 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(99);
+__webpack_require__(94);
+__webpack_require__(108);
+var cellx_1 = __webpack_require__(1);
+var cellx_indexed_collections_1 = __webpack_require__(3);
+var rionite_1 = __webpack_require__(0);
+var opal_select_option_1 = __webpack_require__(46);
+exports.OpalSelectOption = opal_select_option_1.default;
+var isEqualArray_1 = __webpack_require__(45);
+var template = __webpack_require__(65);
+var nextUID = cellx_1.Utils.nextUID, nextTick = cellx_1.Utils.nextTick;
+var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
+var map = Array.prototype.map;
+var defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
+var defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
+var OpalSelect = (function (_super) {
+    __extends(OpalSelect, _super);
+    function OpalSelect() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this._opened = false;
+        _this._onсeFocusedAfterLoading = false;
+        return _this;
+    }
+    OpalSelect.prototype.initialize = function () {
+        var input = this.input;
+        if (input.datalistKeypath) {
+            var context_1 = this.ownerComponent || window;
+            var getDataList_1 = Function("return this." + input.datalistKeypath + ";");
+            cellx_1.define(this, 'dataList', function () {
+                return getDataList_1.call(context_1);
+            });
+            var dataListItemSchema = input.datalistItemSchema;
+            this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+            this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+            this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
+        }
+        else {
+            this.dataList = null;
+        }
+        var vmItemSchema = input.viewModelItemSchema;
+        this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
+        this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
+        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
+        var vm;
+        if (input.viewModelKeypath) {
+            vm = Function("return this." + input.viewModelKeypath + ";").call(this.ownerComponent || window);
+            if (!vm) {
+                throw new TypeError('viewModel is not defined');
+            }
+        }
+        else {
+            vm = new cellx_indexed_collections_1.IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });
+        }
+        cellx_1.define(this, {
+            viewModel: vm,
+            options: function () {
+                return this.optionElements ?
+                    map.call(this.optionElements, function (option) { return option.$component; }) :
+                    [];
+            },
+            text: function () {
+                var _this = this;
+                var text = this.viewModel.map(function (item) { return item[_this._viewModelItemTextFieldName]; }).join(', ');
+                if (!text) {
+                    return this.input.placeholder;
+                }
+                if (text.length > this.input.maxTextLength) {
+                    text = rionite_1.getText.nt('Выбран{n:|о|о} {n}', this.viewModel.length);
+                }
+                return text;
+            }
+        });
+    };
+    OpalSelect.prototype.ready = function () {
+        var _this = this;
+        this.optionElements = this.element.getElementsByClassName('opal-select-option');
+        var input = this.input;
+        if (input.viewModel) {
+            this._updateOptions();
+        }
+        else {
+            var value_1 = input.value;
+            var selectedOptions = void 0;
+            if (value_1) {
+                if (!Array.isArray(value_1)) {
+                    throw new TypeError('value must be an array');
+                }
+                if (value_1.length) {
+                    if (input.multiple) {
+                        selectedOptions = this.options.filter(function (option) { return value_1.indexOf(option.value) != -1; });
+                    }
+                    else {
+                        value_1 = value_1[0];
+                        var selectedOption = this.options
+                            .find(function (option) { return option.value == value_1; });
+                        selectedOptions = selectedOption ? [selectedOption] : [];
+                    }
+                }
+                else {
+                    selectedOptions = [];
+                }
+            }
+            else {
+                if (input.multiple) {
+                    selectedOptions = this.options.filter(function (option) { return option.selected; });
+                }
+                else {
+                    var selectedOption = this.options.find(function (option) { return option.selected; });
+                    selectedOptions = selectedOption ? [selectedOption] : [];
+                }
+            }
+            if (selectedOptions.length) {
+                this.viewModel.addRange(selectedOptions.map(function (option) {
+                    return (_a = {},
+                        _a[_this._viewModelItemValueFieldName] = option.value,
+                        _a[_this._viewModelItemTextFieldName] = option.text,
+                        _a);
+                    var _a;
+                }));
+            }
+            if (value_1) {
+                this._updateOptions();
+            }
+        }
+    };
+    OpalSelect.prototype.elementAttached = function () {
+        this.listenTo(this.viewModel, 'change', this._onViewModelChange);
+    };
+    OpalSelect.prototype._onViewModelChange = function () {
+        this._updateOptions();
+    };
+    OpalSelect.prototype._updateOptions = function () {
+        var _this = this;
+        var vm = this.viewModel;
+        this.options.forEach(function (option) {
+            var item = vm.get(option.value, _this._viewModelItemValueFieldName);
+            if (item) {
+                option.selected = true;
+                option.disabled = item[_this._viewModelItemDisabledFieldName];
+            }
+            else {
+                option.selected = false;
+            }
+        });
+    };
+    OpalSelect.prototype.open = function () {
+        var _this = this;
+        if (this._opened) {
+            return false;
+        }
+        this._opened = true;
+        this._valueOnOpen = this.viewModel.map(function (item) { return item[_this._viewModelItemValueFieldName]; });
+        this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
+        if (!this._documentKeyDownListening) {
+            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+        }
+        this.$('button').check();
+        this.$('menu').open();
+        var loadedList = this.$('loaded-list');
+        if (loadedList) {
+            nextTick(function () {
+                loadedList.checkLoading();
+            });
+        }
+        var focusTarget = this.$('focus');
+        if (focusTarget) {
+            focusTarget.focus();
+        }
+        else {
+            var filteredList = this.$('filtered-list');
+            if (filteredList) {
+                focusTarget = filteredList.$('query-input');
+            }
+            if (focusTarget) {
+                focusTarget.focus();
+            }
+            else {
+                this._focusOptions();
+            }
+        }
+        return true;
+    };
+    OpalSelect.prototype.close = function () {
+        var _this = this;
+        if (!this._opened) {
+            return false;
+        }
+        this._opened = false;
+        this._documentFocusListening.stop();
+        if (!this.input.focused) {
+            this._documentKeyDownListening.stop();
+            this._documentKeyDownListening = null;
+        }
+        this.$('button').uncheck();
+        this.$('menu').close();
+        if (this.input.multiple) {
+            if (!isEqualArray_1.default(this.viewModel.map(function (item) { return item[_this._viewModelItemValueFieldName]; }), this._valueOnOpen)) {
+                this.emit('change');
+            }
+        }
+        return true;
+    };
+    OpalSelect.prototype.toggle = function (value) {
+        if (value !== undefined) {
+            return value ? this.open() : !this.close();
+        }
+        return this.open() || !this.close();
+    };
+    OpalSelect.prototype._onDocumentFocus = function (evt) {
+        if (!this.element.contains(evt.target.parentNode)) {
+            this.close();
+        }
+    };
+    OpalSelect.prototype._onDocumentKeyDown = function (evt) {
+        switch (evt.which) {
+            case 32 /* Space */: {
+                evt.preventDefault();
+                if (this._opened) {
+                    if (this.input.focused) {
+                        this.close();
+                    }
+                }
+                else {
+                    this.open();
+                }
+                break;
+            }
+            case 38 /* Up */: {
+                evt.preventDefault();
+                if (this._opened) {
+                    if (document.activeElement == document.body) {
+                        if (this._focusOptions()) {
+                            document.body.classList.remove('_no-focus-highlight');
+                        }
+                    }
+                    else {
+                        var options = this.options;
+                        for (var i = 1, l = options.length; i < l; i++) {
+                            if (options[i].input.focused) {
+                                do {
+                                    var option = options[--i];
+                                    if (!option.input.disabled) {
+                                        document.body.classList.remove('_no-focus-highlight');
+                                        option.focus();
+                                        break;
+                                    }
+                                } while (i);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else {
+                    this.open();
+                }
+                break;
+            }
+            case 40 /* Down */: {
+                evt.preventDefault();
+                if (this._opened) {
+                    if (document.activeElement == document.body) {
+                        if (this._focusOptions()) {
+                            document.body.classList.remove('_no-focus-highlight');
+                        }
+                    }
+                    else {
+                        var options = this.options;
+                        for (var i = 0, l = options.length - 1; i < l; i++) {
+                            if (options[i].input.focused) {
+                                do {
+                                    var option = options[++i];
+                                    if (!option.input.disabled) {
+                                        document.body.classList.remove('_no-focus-highlight');
+                                        option.focus();
+                                        break;
+                                    }
+                                } while (i < l);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else {
+                    this.open();
+                }
+                break;
+            }
+            case 27 /* Esc */: {
+                evt.preventDefault();
+                this.close();
+                this.focus();
+                break;
+            }
+        }
+    };
+    OpalSelect.prototype._focusOptions = function () {
+        var options = this.options;
+        var optionForFocus;
+        for (var i = 0, l = options.length; i < l; i++) {
+            var option = options[i];
+            if (!option.input.disabled) {
+                if (option.selected) {
+                    optionForFocus = option;
+                    break;
+                }
+                if (!optionForFocus) {
+                    optionForFocus = option;
+                }
+            }
+        }
+        if (optionForFocus) {
+            optionForFocus.focus();
+            return true;
+        }
+        return false;
+    };
+    OpalSelect.prototype.focus = function () {
+        this.$('button').focus();
+        return this;
+    };
+    OpalSelect.prototype.blur = function () {
+        this.$('button').blur();
+        return this;
+    };
+    return OpalSelect;
+}(rionite_1.Component));
+OpalSelect.OpalSelectOption = opal_select_option_1.default;
+OpalSelect.defaultDataListItemSchema = defaultDataListItemSchema;
+OpalSelect.defaultVMItemSchema = defaultVMItemSchema;
+OpalSelect = __decorate([
+    rionite_1.d.Component({
+        elementIs: 'opal-select',
+        input: {
+            viewType: String,
+            size: 'm',
+            multiple: { default: false, readonly: true },
+            datalistKeypath: { type: String, readonly: true },
+            datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
+            value: eval,
+            viewModelKeypath: { type: String, readonly: true },
+            viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
+            text: String,
+            maxTextLength: 20,
+            placeholder: rionite_1.getText.t('Не выбрано'),
+            tabIndex: 0,
+            focused: false,
+            disabled: false
+        },
+        template: template,
+        events: {
+            ':component': {
+                'input-value-change': function (evt) {
+                    var vm = this.viewModel;
+                    var value = evt.value;
+                    if (value) {
+                        if (!Array.isArray(value)) {
+                            throw new TypeError('value must be an array');
+                        }
+                        if (value.length) {
+                            var vmItemValueFieldName_1 = this._viewModelItemValueFieldName;
+                            var vmItemTextFieldName_1 = this._viewModelItemTextFieldName;
+                            if (this.input.multiple) {
+                                this.options.forEach(function (option) {
+                                    var optionValue = option.value;
+                                    if (value.indexOf(optionValue) != -1) {
+                                        if (!vm.contains(optionValue, vmItemValueFieldName_1)) {
+                                            vm.add((_a = {},
+                                                _a[vmItemValueFieldName_1] = optionValue,
+                                                _a[vmItemTextFieldName_1] = option.text,
+                                                _a));
+                                        }
+                                    }
+                                    else {
+                                        var item = vm.get(optionValue, vmItemValueFieldName_1);
+                                        if (item) {
+                                            vm.remove(item);
+                                        }
+                                    }
+                                    var _a;
+                                });
+                            }
+                            else {
+                                value = value[0];
+                                if (!vm.length || value != vm.get(0)[vmItemValueFieldName_1]) {
+                                    if (!this.options.some(function (option) {
+                                        if (option.value != value) {
+                                            return false;
+                                        }
+                                        vm.set(0, (_a = {},
+                                            _a[vmItemValueFieldName_1] = value,
+                                            _a[vmItemTextFieldName_1] = option.text,
+                                            _a));
+                                        return true;
+                                        var _a;
+                                    }) && vm.length) {
+                                        vm.clear();
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            vm.clear();
+                        }
+                    }
+                    else {
+                        vm.clear();
+                    }
+                },
+                'input-focused-change': function (evt) {
+                    if (evt.value) {
+                        if (!this._documentKeyDownListening) {
+                            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+                        }
+                        this.focus();
+                    }
+                    else {
+                        if (!this._opened) {
+                            this._documentKeyDownListening.stop();
+                            this._documentKeyDownListening = null;
+                        }
+                        this.blur();
+                    }
+                }
+            },
+            button: {
+                focus: function () {
+                    this.input.focused = true;
+                    this.emit('focus');
+                },
+                blur: function () {
+                    this.input.focused = false;
+                    this.emit('blur');
+                },
+                click: function (evt) {
+                    if (evt.target.checked) {
+                        this.open();
+                    }
+                    else {
+                        this.close();
+                    }
+                }
+            },
+            menu: {
+                'input-opened-change': function (evt) {
+                    if (!evt.value) {
+                        this.close();
+                    }
+                },
+                '<opal-select-option>select': function (evt) {
+                    var vm = this.viewModel;
+                    var vmItem = (_a = {},
+                        _a[this._viewModelItemValueFieldName] = evt.target.value,
+                        _a[this._viewModelItemTextFieldName] = evt.target.text,
+                        _a);
+                    if (this.input.multiple) {
+                        vm.add(vmItem);
+                    }
+                    else {
+                        if (vm.length) {
+                            vm.set(0, vmItem);
+                        }
+                        else {
+                            vm.add(vmItem);
+                        }
+                        this.close();
+                        this.focus();
+                        this.emit('change');
+                    }
+                    var _a;
+                },
+                '<opal-select-option>deselect': function (evt) {
+                    if (this.input.multiple) {
+                        this.viewModel.remove(this.viewModel.get(evt.target.value, this._viewModelItemValueFieldName));
+                    }
+                    else {
+                        evt.target.select();
+                        this.close();
+                        this.focus();
+                    }
+                },
+                '<opal-text-input>confirm': function (evt) {
+                    var textInput = evt.target;
+                    if (textInput !== this.$('new-item-input')) {
+                        return;
+                    }
+                    var itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
+                    var itemText = textInput.value;
+                    var dataList = this.dataList;
+                    if (dataList) {
+                        dataList.add((_a = {},
+                            _a[this._dataListItemValueFieldName] = itemValue,
+                            _a[this._dataListItemTextFieldName] = itemText,
+                            _a));
+                    }
+                    textInput.clear();
+                    var loadedList = this.$('loaded-list');
+                    if (loadedList) {
+                        loadedList.input.query = '';
+                    }
+                    this.emit('input');
+                    var vm = this.viewModel;
+                    var vmItem = (_b = {},
+                        _b[this._viewModelItemValueFieldName] = itemValue,
+                        _b[this._viewModelItemTextFieldName] = itemText,
+                        _b);
+                    if (this.input.multiple) {
+                        vm.add(vmItem);
+                    }
+                    else {
+                        if (vm.length) {
+                            vm.set(0, vmItem);
+                        }
+                        else {
+                            vm.add(vmItem);
+                        }
+                        this.close();
+                        this.focus();
+                        this.emit('change');
+                    }
+                    var _a, _b;
+                },
+                '<*>change': function (evt) {
+                    if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
+                        return;
+                    }
+                    this._options.pull();
+                    this._updateOptions();
+                    return false;
+                }
+            },
+            'loaded-list': {
+                loaded: function () {
+                    var _this = this;
+                    if (this._onсeFocusedAfterLoading) {
+                        return;
+                    }
+                    this._onсeFocusedAfterLoading = true;
+                    nextTick(function () {
+                        _this._focusOptions();
+                        var focusTarget = _this.$('focus');
+                        if (focusTarget) {
+                            nextTick(function () {
+                                focusTarget.focus();
+                            });
+                        }
+                        else {
+                            var filteredList = _this.$('filtered-list');
+                            if (filteredList) {
+                                focusTarget = filteredList.$('query-input');
+                            }
+                            if (focusTarget) {
+                                nextTick(function () {
+                                    focusTarget.focus();
+                                });
+                            }
+                        }
+                    });
+                }
+            },
+            'btn-close': {
+                click: function () {
+                    this.close();
+                    this.focus();
+                }
+            }
+        }
+    })
+], OpalSelect);
+exports.default = OpalSelect;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var PathNodeType;
+(function (PathNodeType) {
+    PathNodeType[PathNodeType["SIMPLE"] = 0] = "SIMPLE";
+    PathNodeType[PathNodeType["OPTIONAL"] = 1] = "OPTIONAL";
+    PathNodeType[PathNodeType["INSERT"] = 2] = "INSERT";
+})(PathNodeType || (PathNodeType = {}));
+;
+exports.default = PathNodeType;
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(102);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(69);
+var template = __webpack_require__(71);
 var nextTick = cellx_1.Utils.nextTick;
 var OpalTab = (function (_super) {
     __extends(OpalTab, _super);
@@ -247,7 +840,7 @@ exports.default = OpalTab;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -269,10 +862,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(72);
+__webpack_require__(74);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(51);
+var template = __webpack_require__(52);
 function toComparable(str) {
     return str.trim().replace(/\s+/g, ' ').toLowerCase();
 }
@@ -425,7 +1018,7 @@ var OpalAutosuggest = (function (_super) {
                 focusedListItem.setAttribute('focused', '');
             });
         }
-        else if (this.input.showNotFound) {
+        else if (this.input.openMenuOnNothingFound) {
             this.openMenu(true);
         }
     };
@@ -493,11 +1086,11 @@ OpalAutosuggest = __decorate([
             selectedItem: eval,
             minQueryLength: 3,
             count: 5,
-            showNotFound: false
+            openMenuOnNothingFound: false
         },
         i18n: {
             textInputPlaceholder: rionite_1.getText.t('Начните вводить для поиска'),
-            notFound: rionite_1.getText.t('Ничего не найдено')
+            nothingFound: rionite_1.getText.t('Ничего не найдено')
         },
         template: template,
         events: {
@@ -566,7 +1159,7 @@ exports.default = OpalAutosuggest;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -588,7 +1181,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(73);
+__webpack_require__(75);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 var nextTick = cellx_1.Utils.nextTick;
@@ -729,7 +1322,7 @@ exports.default = OpalButton;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -751,13 +1344,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(74);
-__webpack_require__(103);
+__webpack_require__(76);
+__webpack_require__(106);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var parseDate_1 = __webpack_require__(35);
-var formatDate_1 = __webpack_require__(34);
-var template = __webpack_require__(52);
+var parseDate_1 = __webpack_require__(36);
+var formatDate_1 = __webpack_require__(35);
+var template = __webpack_require__(53);
 var nextTick = cellx_1.Utils.nextTick;
 function getTodayDate() {
     var now = new Date();
@@ -1018,7 +1611,7 @@ var OpalCalendar_1;
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1040,10 +1633,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(75);
+__webpack_require__(77);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(53);
+var template = __webpack_require__(54);
 var nextTick = cellx_1.Utils.nextTick;
 var OpalCheckbox = (function (_super) {
     __extends(OpalCheckbox, _super);
@@ -1185,7 +1778,7 @@ exports.default = OpalCheckbox;
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1207,10 +1800,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(76);
+__webpack_require__(78);
 var rionite_1 = __webpack_require__(0);
-var date_exists_1 = __webpack_require__(50);
-var template = __webpack_require__(54);
+var date_exists_1 = __webpack_require__(51);
+var template = __webpack_require__(55);
 function pad(num) {
     return (num < 10 ? '0' : '') + num;
 }
@@ -1348,7 +1941,7 @@ exports.default = OpalDateInput;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1370,7 +1963,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(77);
+__webpack_require__(79);
+var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 var openedDropdowns = [];
 var OpalDropdown = (function (_super) {
@@ -1388,6 +1982,7 @@ var OpalDropdown = (function (_super) {
             return false;
         }
         this.input.opened = true;
+        cellx_1.Cell.forceRelease();
         return true;
     };
     OpalDropdown.prototype.close = function () {
@@ -1395,10 +1990,13 @@ var OpalDropdown = (function (_super) {
             return false;
         }
         this.input.opened = false;
+        cellx_1.Cell.forceRelease();
         return true;
     };
     OpalDropdown.prototype.toggle = function (value) {
-        return (this.input.opened = value === undefined ? !this.input.opened : value);
+        var opened = this.input.opened = value === undefined ? !this.input.opened : value;
+        cellx_1.Cell.forceRelease();
+        return opened;
     };
     OpalDropdown.prototype._open = function () {
         var _this = this;
@@ -1406,42 +2004,42 @@ var OpalDropdown = (function (_super) {
         var el = this.element;
         var elStyle = el.style;
         elStyle.top = '100%';
-        elStyle.right = '';
-        elStyle.bottom = '';
+        elStyle.right = 'auto';
+        elStyle.bottom = 'auto';
         elStyle.left = '0';
-        elStyle.display = 'block';
-        elStyle.maxHeight = '';
-        var docEl = document.documentElement;
-        var container = el.offsetParent;
-        var docElClientWidth = docEl.clientWidth;
-        var containerClientRect = container.getBoundingClientRect();
+        var docElClientWidth = document.documentElement.clientWidth;
+        var containerClientRect = el.offsetParent.getBoundingClientRect();
         var elClientRect = el.getBoundingClientRect();
         if (elClientRect.right > docElClientWidth) {
             if (containerClientRect.right - el.offsetWidth >= 0) {
                 elStyle.right = '0';
-                elStyle.left = '';
+                elStyle.left = 'auto';
             }
             else {
                 elStyle.left = Math.max(-containerClientRect.left, docElClientWidth - elClientRect.right) + 'px';
             }
         }
-        if (this.input.autoHeight) {
-            var docElClientHeight = docEl.clientHeight;
-            var margin = elClientRect.top - containerClientRect.bottom;
-            var excess = elClientRect.bottom + margin - docElClientHeight;
-            if (excess > 0) {
-                var diff = containerClientRect.top - (docElClientHeight - containerClientRect.bottom);
+        var margin = elClientRect.top - containerClientRect.bottom;
+        var excess = elClientRect.bottom + margin - document.documentElement.clientHeight;
+        if (excess > 0) {
+            var diff = containerClientRect.top - (document.documentElement.clientHeight - containerClientRect.bottom);
+            if (this.input.autoHeight) {
+                elStyle.maxHeight = 'none';
                 if (diff > 0) {
-                    elStyle.top = '';
+                    elStyle.top = 'auto';
                     elStyle.bottom = '100%';
                     excess -= diff;
                     if (excess > 0) {
-                        elStyle.maxHeight = el.offsetHeight - excess + 'px';
+                        elStyle.maxHeight = containerClientRect.bottom - containerClientRect.top - excess + 'px';
                     }
                 }
                 else {
-                    elStyle.maxHeight = el.offsetHeight - excess + 'px';
+                    elStyle.maxHeight = containerClientRect.bottom - containerClientRect.top - excess + 'px';
                 }
+            }
+            else if (diff > 0 && excess - diff <= document.body.scrollTop) {
+                elStyle.top = 'auto';
+                elStyle.bottom = '100%';
             }
         }
         if (this.input.autoClosing) {
@@ -1454,7 +2052,6 @@ var OpalDropdown = (function (_super) {
     };
     OpalDropdown.prototype._close = function () {
         openedDropdowns.splice(openedDropdowns.indexOf(this), 1);
-        this.element.style.display = '';
         if (this._documentClickListening) {
             this._documentClickListening.stop();
         }
@@ -1498,7 +2095,7 @@ exports.default = OpalDropdown;
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1520,9 +2117,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(78);
+__webpack_require__(80);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(55);
+var template = __webpack_require__(56);
 var OpalFilteredList = (function (_super) {
     __extends(OpalFilteredList, _super);
     function OpalFilteredList() {
@@ -1556,7 +2153,7 @@ exports.default = OpalFilteredList;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1578,7 +2175,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(79);
+__webpack_require__(81);
 var rionite_1 = __webpack_require__(0);
 var OpalGroup = (function (_super) {
     __extends(OpalGroup, _super);
@@ -1597,7 +2194,7 @@ exports.default = OpalGroup;
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1624,7 +2221,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var opal_input_mask_definition_1 = __webpack_require__(37);
+var opal_input_mask_definition_1 = __webpack_require__(38);
 exports.OpalInputMaskDefinition = opal_input_mask_definition_1.default;
 var nextTick = cellx_1.Utils.nextTick;
 var forEach = Array.prototype.forEach;
@@ -1685,14 +2282,14 @@ var OpalInputMask = OpalInputMask_1 = (function (_super) {
         nextTick(function () {
             if (document.activeElement == _this._textField) {
                 _this._setTextFieldSelection(0, _this._checkValue(false));
-                _this._textAtFocusing = _this._textField.value;
+                _this._textOnFocus = _this._textField.value;
                 _this._writeBuffer();
             }
         });
     };
     OpalInputMask.prototype._onTextFieldBlur = function () {
         this._checkValue(false);
-        if (this._textField.value != this._textAtFocusing) {
+        if (this._textField.value != this._textOnFocus) {
             this.$('text-input').emit('change');
         }
     };
@@ -1723,8 +2320,8 @@ var OpalInputMask = OpalInputMask_1 = (function (_super) {
         }
         else if (key == 27) {
             evt.preventDefault();
-            if (textField.value != this._textAtFocusing) {
-                textField.value = this._textAtFocusing;
+            if (textField.value != this._textOnFocus) {
+                textField.value = this._textOnFocus;
                 this._setTextFieldSelection(0, this._checkValue(false));
                 var textInput = this.$('text-input');
                 textInput.constructor.events['text-field'].input.call(textInput, evt);
@@ -1921,7 +2518,7 @@ var OpalInputMask_1;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1943,10 +2540,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(81);
+__webpack_require__(83);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var opal_input_validator_rule_1 = __webpack_require__(38);
+var opal_input_validator_rule_1 = __webpack_require__(39);
 exports.OpalInputValidatorRule = opal_input_validator_rule_1.default;
 var map = Array.prototype.map;
 var OpalInputValidator = (function (_super) {
@@ -2026,7 +2623,7 @@ exports.default = OpalInputValidator;
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2048,10 +2645,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(83);
+__webpack_require__(85);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(57);
+var template = __webpack_require__(58);
 var mixin = cellx_1.Utils.mixin;
 var OpalLoadedList = (function (_super) {
     __extends(OpalLoadedList, _super);
@@ -2079,13 +2676,13 @@ var OpalLoadedList = (function (_super) {
         cellx_1.define(this, {
             list: new cellx_1.ObservableList(),
             total: undefined,
-            _loadingCheckPlanned: false,
+            _isLoadingCheckPlanned: false,
             loading: false,
             empty: function () {
                 return !this.list.length;
             },
-            notFoundShown: function () {
-                return this.total === 0 && !this._loadingCheckPlanned && !this.loading;
+            nothingFoundShown: function () {
+                return this.total === 0 && !this._isLoadingCheckPlanned && !this.loading;
             },
             loaderShown: function () {
                 return this.total === undefined || this.list.length < this.total || this.loading;
@@ -2159,28 +2756,28 @@ OpalLoadedList = __decorate([
             preloading: { default: false, readonly: true }
         },
         i18n: {
-            notFound: rionite_1.getText.t('Ничего не найдено')
+            nothingFound: rionite_1.getText.t('Ничего не найдено')
         },
         template: template,
         events: {
             ':component': {
                 'input-query-change': function () {
                     var _this = this;
-                    if (this._loadingCheckPlanned) {
+                    if (this.loading) {
+                        this._requestCallback.cancel();
+                        this.loading = false;
+                    }
+                    this.list.clear();
+                    this.total = undefined;
+                    if (this._isLoadingCheckPlanned) {
                         this._loadingCheckTimeout.clear();
                     }
                     else {
-                        if (this.loading) {
-                            this._requestCallback.cancel();
-                            this.loading = false;
-                        }
-                        this.list.clear();
-                        this.total = undefined;
-                        this._loadingCheckPlanned = true;
+                        this._isLoadingCheckPlanned = true;
                     }
                     this._loadingCheckTimeout = this.setTimeout(function () {
                         _this._scrolling = false;
-                        _this._loadingCheckPlanned = false;
+                        _this._isLoadingCheckPlanned = false;
                         _this.checkLoading();
                     }, 300);
                 }
@@ -2192,15 +2789,15 @@ OpalLoadedList = __decorate([
                         return;
                     }
                     this._scrolling = true;
-                    if (this._loadingCheckPlanned) {
+                    if (this._isLoadingCheckPlanned) {
                         this._loadingCheckTimeout.clear();
                     }
                     else {
-                        this._loadingCheckPlanned = true;
+                        this._isLoadingCheckPlanned = true;
                     }
                     this._loadingCheckTimeout = this.setTimeout(function () {
                         _this._scrolling = false;
-                        _this._loadingCheckPlanned = false;
+                        _this._isLoadingCheckPlanned = false;
                         _this.checkLoading();
                     }, 150);
                 }
@@ -2209,50 +2806,6 @@ OpalLoadedList = __decorate([
     })
 ], OpalLoadedList);
 exports.default = OpalLoadedList;
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(84);
-var rionite_1 = __webpack_require__(0);
-var OpalLoader = (function (_super) {
-    __extends(OpalLoader, _super);
-    function OpalLoader() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return OpalLoader;
-}(rionite_1.Component));
-OpalLoader = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-loader',
-        input: {
-            size: 'm',
-            shown: false
-        }
-    })
-], OpalLoader);
-exports.default = OpalLoader;
 
 
 /***/ }),
@@ -2278,9 +2831,53 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(85);
+__webpack_require__(86);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(58);
+var OpalLoader = (function (_super) {
+    __extends(OpalLoader, _super);
+    function OpalLoader() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return OpalLoader;
+}(rionite_1.Component));
+OpalLoader = __decorate([
+    rionite_1.d.Component({
+        elementIs: 'opal-loader',
+        input: {
+            size: 'm',
+            shown: false
+        }
+    })
+], OpalLoader);
+exports.default = OpalLoader;
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(87);
+var rionite_1 = __webpack_require__(0);
+var template = __webpack_require__(59);
 var openedModals = [];
 var documentFocusListening;
 var documentKeyUpListening;
@@ -2414,7 +3011,7 @@ exports.default = OpalModal;
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2436,13 +3033,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(86);
+__webpack_require__(88);
 var cellx_1 = __webpack_require__(1);
-var cellx_indexed_collections_1 = __webpack_require__(2);
+var cellx_indexed_collections_1 = __webpack_require__(3);
 var rionite_1 = __webpack_require__(0);
-var opal_multirow_row_1 = __webpack_require__(39);
+var opal_multirow_row_1 = __webpack_require__(40);
 exports.OpalMultirowRow = opal_multirow_row_1.default;
-var template = __webpack_require__(59);
+var template = __webpack_require__(60);
 var nextUID = cellx_1.Utils.nextUID;
 var filter = Array.prototype.filter;
 var OpalMultirow = (function (_super) {
@@ -2508,7 +3105,7 @@ exports.default = OpalMultirow;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2530,9 +3127,92 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(88);
+__webpack_require__(90);
+__webpack_require__(109);
+var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(61);
+var opal_select_1 = __webpack_require__(2);
+var template = __webpack_require__(62);
+var OpalMultiselect = (function (_super) {
+    __extends(OpalMultiselect, _super);
+    function OpalMultiselect() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    OpalMultiselect.prototype.initialize = function () {
+        _super.prototype.initialize.call(this);
+        var input = this.input;
+        var dataProvider = input.dataprovider;
+        if (!dataProvider && input.dataproviderKeypath) {
+            dataProvider = Function("return this." + input.dataproviderKeypath + ";")
+                .call(this.ownerComponent || window);
+            if (!dataProvider) {
+                throw new TypeError('dataProvider is not defined');
+            }
+        }
+        this.dataProvider = dataProvider;
+        cellx_1.define(this, {
+            nothingSelectedShown: function () {
+                return !this.viewModel.length;
+            }
+        });
+    };
+    OpalMultiselect.prototype._onBtnDeselectItemClick = function (evt, btn) {
+        this.viewModel.remove(this.viewModel.get(btn.dataset.itemValue, this._viewModelItemValueFieldName));
+    };
+    return OpalMultiselect;
+}(opal_select_1.default));
+OpalMultiselect = __decorate([
+    rionite_1.d.Component({
+        elementIs: 'opal-multiselect',
+        i18n: {
+            queryInputPlaceholder: rionite_1.getText.t('Поиск'),
+            nothingSelected: rionite_1.getText.t('Ничего не выбрано')
+        },
+        input: {
+            multiple: true,
+            dataprovider: { type: Object, readonly: true },
+            dataproviderKeypath: { type: String, readonly: true }
+        },
+        template: opal_select_1.default.template.extend(template),
+        events: {
+            'query-input': {
+                input: function (evt) {
+                    this.$('loaded-list').input.query = evt.target.value;
+                }
+            }
+        }
+    })
+], OpalMultiselect);
+exports.default = OpalMultiselect;
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(91);
+var cellx_1 = __webpack_require__(1);
+var rionite_1 = __webpack_require__(0);
+var template = __webpack_require__(63);
 var OpalPopover = (function (_super) {
     __extends(OpalPopover, _super);
     function OpalPopover() {
@@ -2548,6 +3228,7 @@ var OpalPopover = (function (_super) {
             return false;
         }
         this.input.opened = true;
+        cellx_1.Cell.forceRelease();
         return true;
     };
     OpalPopover.prototype.close = function () {
@@ -2555,29 +3236,32 @@ var OpalPopover = (function (_super) {
             return false;
         }
         this.input.opened = false;
+        cellx_1.Cell.forceRelease();
         return true;
     };
     OpalPopover.prototype.toggle = function (value) {
-        return (this.input.opened = value === undefined ? !this.input.opened : value);
+        var opened = this.input.opened = value === undefined ? !this.input.opened : value;
+        cellx_1.Cell.forceRelease();
+        return opened;
     };
     OpalPopover.prototype._open = function () {
         var _this = this;
         if (this.input.autoDirection) {
             var to = this.input.to;
-            this._toValueAtOpen = to;
+            this._toOnOpen = to;
             var docEl = document.documentElement;
             var containerClientRect = this.element.offsetParent.getBoundingClientRect();
             var elClientRect = this.element.getBoundingClientRect();
             switch (to) {
                 case 'left': {
-                    if (elClientRect.left + window.pageXOffset < 0 || (elClientRect.left < 0 &&
+                    if (elClientRect.left + document.body.scrollLeft < 0 || (elClientRect.left < 0 &&
                         containerClientRect.left < docEl.clientWidth - containerClientRect.right)) {
                         this.input.to = 'right';
                     }
                     break;
                 }
                 case 'top': {
-                    if (elClientRect.top + window.pageYOffset < 0 || (elClientRect.top < 0 &&
+                    if (elClientRect.top + document.body.scrollTop < 0 || (elClientRect.top < 0 &&
                         containerClientRect.top < docEl.clientHeight - containerClientRect.bottom)) {
                         this.input.to = 'bottom';
                     }
@@ -2586,7 +3270,7 @@ var OpalPopover = (function (_super) {
                 case 'right': {
                     if (elClientRect.right > docEl.clientWidth &&
                         containerClientRect.left > docEl.clientWidth - containerClientRect.right &&
-                        containerClientRect.left + window.pageXOffset >=
+                        containerClientRect.left + document.body.scrollLeft >=
                             elClientRect.right - containerClientRect.right) {
                         this.input.to = 'left';
                     }
@@ -2595,7 +3279,8 @@ var OpalPopover = (function (_super) {
                 case 'bottom': {
                     if (elClientRect.bottom > docEl.clientHeight &&
                         containerClientRect.top > docEl.clientHeight - containerClientRect.bottom &&
-                        containerClientRect.top + window.pageYOffset >= elClientRect.bottom - containerClientRect.bottom) {
+                        containerClientRect.top + document.body.scrollTop >=
+                            elClientRect.bottom - containerClientRect.bottom) {
                         this.input.to = 'top';
                     }
                     break;
@@ -2612,7 +3297,7 @@ var OpalPopover = (function (_super) {
     };
     OpalPopover.prototype._close = function () {
         if (this.input.autoDirection) {
-            this.input.to = this._toValueAtOpen;
+            this.input.to = this._toOnOpen;
         }
         if (this._documentClickListening) {
             this._documentClickListening.stop();
@@ -2658,7 +3343,7 @@ exports.default = OpalPopover;
 
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2681,7 +3366,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var opal_radio_button_1 = __webpack_require__(40);
+var opal_radio_button_1 = __webpack_require__(41);
 exports.OpalRadioButton = opal_radio_button_1.default;
 var forEach = Array.prototype.forEach;
 var OpalRadioGroup = (function (_super) {
@@ -2719,7 +3404,7 @@ exports.default = OpalRadioGroup;
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2741,13 +3426,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(90);
+__webpack_require__(93);
 var rionite_1 = __webpack_require__(0);
-var opal_route_1 = __webpack_require__(42);
+var opal_route_1 = __webpack_require__(43);
 exports.OpalRoute = opal_route_1.default;
-var PathNodeType_1 = __webpack_require__(3);
-var parsePath_1 = __webpack_require__(43);
-var escapeRegExp_1 = __webpack_require__(41);
+var PathNodeType_1 = __webpack_require__(4);
+var parsePath_1 = __webpack_require__(44);
+var escapeRegExp_1 = __webpack_require__(42);
 var hyphenize = rionite_1.Utils.hyphenize;
 var escapeHTML = rionite_1.Utils.escapeHTML;
 var forEach = Array.prototype.forEach;
@@ -2955,7 +3640,7 @@ exports.default = OpalRouter;
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2977,583 +3662,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(91);
-__webpack_require__(105);
-var cellx_1 = __webpack_require__(1);
-var cellx_indexed_collections_1 = __webpack_require__(2);
-var rionite_1 = __webpack_require__(0);
-var opal_select_option_1 = __webpack_require__(45);
-exports.OpalSelectOption = opal_select_option_1.default;
-var isEqualArray_1 = __webpack_require__(44);
-var template = __webpack_require__(63);
-var nextUID = cellx_1.Utils.nextUID, nextTick = cellx_1.Utils.nextTick;
-var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
-var map = Array.prototype.map;
-var defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
-var defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
-var OpalSelect = (function (_super) {
-    __extends(OpalSelect, _super);
-    function OpalSelect() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this._opened = false;
-        _this._onсeFocusedAfterLoading = false;
-        return _this;
-    }
-    OpalSelect.prototype.initialize = function () {
-        var input = this.input;
-        if (input.datalistKeypath) {
-            var context_1 = this.ownerComponent || window;
-            var getDataList_1 = Function("return this." + input.datalistKeypath + ";");
-            cellx_1.define(this, 'dataList', function () {
-                return getDataList_1.call(context_1);
-            });
-            var dataListItemSchema = input.datalistItemSchema;
-            this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
-            this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
-            this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
-        }
-        else {
-            this.dataList = null;
-        }
-        var vmItemSchema = input.viewModelItemSchema;
-        this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
-        this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
-        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
-        var vm;
-        if (input.viewModelKeypath) {
-            vm = Function("return this." + input.viewModelKeypath + ";").call(this.ownerComponent || window);
-            if (!vm) {
-                throw new TypeError('viewModel is not defined');
-            }
-        }
-        else {
-            vm = new cellx_indexed_collections_1.IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });
-        }
-        cellx_1.define(this, {
-            viewModel: vm,
-            options: function () {
-                return this.optionElements ?
-                    map.call(this.optionElements, function (option) { return option.$component; }) :
-                    [];
-            },
-            text: function () {
-                var _this = this;
-                return this.viewModel.map(function (item) { return item[_this._viewModelItemTextFieldName]; }).join(', ') ||
-                    this.input.placeholder;
-            }
-        });
-    };
-    OpalSelect.prototype.ready = function () {
-        var _this = this;
-        this.optionElements = this.element.getElementsByClassName('opal-select-option');
-        var input = this.input;
-        if (input.viewModel) {
-            this._updateOptions();
-        }
-        else {
-            var value_1 = input.value;
-            var selectedOptions = void 0;
-            if (value_1) {
-                if (!Array.isArray(value_1)) {
-                    throw new TypeError('value must be an array');
-                }
-                if (value_1.length) {
-                    if (input.multiple) {
-                        selectedOptions = this.options.filter(function (option) { return value_1.indexOf(option.value) != -1; });
-                    }
-                    else {
-                        value_1 = value_1[0];
-                        var selectedOption = this.options
-                            .find(function (option) { return option.value == value_1; });
-                        selectedOptions = selectedOption ? [selectedOption] : [];
-                    }
-                }
-                else {
-                    selectedOptions = [];
-                }
-            }
-            else {
-                if (input.multiple) {
-                    selectedOptions = this.options.filter(function (option) { return option.selected; });
-                }
-                else {
-                    var selectedOption = this.options.find(function (option) { return option.selected; });
-                    selectedOptions = selectedOption ? [selectedOption] : [];
-                }
-            }
-            if (selectedOptions.length) {
-                this.viewModel.addRange(selectedOptions.map(function (option) {
-                    return (_a = {},
-                        _a[_this._viewModelItemValueFieldName] = option.value,
-                        _a[_this._viewModelItemTextFieldName] = option.text,
-                        _a);
-                    var _a;
-                }));
-            }
-            if (value_1) {
-                this._updateOptions();
-            }
-        }
-    };
-    OpalSelect.prototype.elementAttached = function () {
-        this.listenTo(this.viewModel, 'change', this._onViewModelChange);
-    };
-    OpalSelect.prototype._onViewModelChange = function () {
-        this._updateOptions();
-    };
-    OpalSelect.prototype._updateOptions = function () {
-        var _this = this;
-        var vm = this.viewModel;
-        this.options.forEach(function (option) {
-            var item = vm.get(option.value, _this._viewModelItemValueFieldName);
-            if (item) {
-                option.selected = true;
-                option.disabled = item[_this._viewModelItemDisabledFieldName];
-            }
-            else {
-                option.selected = false;
-            }
-        });
-    };
-    OpalSelect.prototype.open = function () {
-        var _this = this;
-        if (this._opened) {
-            return false;
-        }
-        this._opened = true;
-        this._valueAtOpening = this.viewModel.map(function (item) { return item[_this._viewModelItemValueFieldName]; });
-        this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
-        if (!this._documentKeyDownListening) {
-            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-        }
-        this.$('button').check();
-        this.$('menu').open();
-        var loadedList = this.$('loaded-list');
-        if (loadedList) {
-            nextTick(function () {
-                loadedList.checkLoading();
-            });
-        }
-        var filteredList = this.$('filtered-list');
-        if (filteredList) {
-            filteredList.focus();
-        }
-        else {
-            this._focusOptions();
-        }
-        return true;
-    };
-    OpalSelect.prototype.close = function () {
-        var _this = this;
-        if (!this._opened) {
-            return false;
-        }
-        this._opened = false;
-        this._documentFocusListening.stop();
-        if (!this.input.focused) {
-            this._documentKeyDownListening.stop();
-            this._documentKeyDownListening = null;
-        }
-        this.$('button').uncheck();
-        this.$('menu').close();
-        if (this.input.multiple) {
-            if (!isEqualArray_1.default(this.viewModel.map(function (item) { return item[_this._viewModelItemValueFieldName]; }), this._valueAtOpening)) {
-                this.emit('change');
-            }
-        }
-        return true;
-    };
-    OpalSelect.prototype.toggle = function (value) {
-        if (value !== undefined) {
-            return value ? this.open() : !this.close();
-        }
-        return this.open() || !this.close();
-    };
-    OpalSelect.prototype._onDocumentFocus = function (evt) {
-        if (!this.element.contains(evt.target.parentNode)) {
-            this.close();
-        }
-    };
-    OpalSelect.prototype._onDocumentKeyDown = function (evt) {
-        switch (evt.which) {
-            case 32 /* Space */: {
-                evt.preventDefault();
-                if (this._opened) {
-                    if (this.input.focused) {
-                        this.close();
-                    }
-                }
-                else {
-                    this.open();
-                }
-                break;
-            }
-            case 38 /* Up */: {
-                evt.preventDefault();
-                if (this._opened) {
-                    if (document.activeElement == document.body) {
-                        if (this._focusOptions()) {
-                            document.body.classList.remove('_no-focus-highlight');
-                        }
-                    }
-                    else {
-                        var options = this.options;
-                        for (var i = 1, l = options.length; i < l; i++) {
-                            if (options[i].input.focused) {
-                                do {
-                                    var option = options[--i];
-                                    if (!option.input.disabled) {
-                                        document.body.classList.remove('_no-focus-highlight');
-                                        option.focus();
-                                        break;
-                                    }
-                                } while (i);
-                                break;
-                            }
-                        }
-                    }
-                }
-                else {
-                    this.open();
-                }
-                break;
-            }
-            case 40 /* Down */: {
-                evt.preventDefault();
-                if (this._opened) {
-                    if (document.activeElement == document.body) {
-                        if (this._focusOptions()) {
-                            document.body.classList.remove('_no-focus-highlight');
-                        }
-                    }
-                    else {
-                        var options = this.options;
-                        for (var i = 0, l = options.length - 1; i < l; i++) {
-                            if (options[i].input.focused) {
-                                do {
-                                    var option = options[++i];
-                                    if (!option.input.disabled) {
-                                        document.body.classList.remove('_no-focus-highlight');
-                                        option.focus();
-                                        break;
-                                    }
-                                } while (i < l);
-                                break;
-                            }
-                        }
-                    }
-                }
-                else {
-                    this.open();
-                }
-                break;
-            }
-            case 27 /* Esc */: {
-                evt.preventDefault();
-                this.close();
-                this.focus();
-                break;
-            }
-        }
-    };
-    OpalSelect.prototype._focusOptions = function () {
-        var options = this.options;
-        var optionForFocus;
-        for (var i = 0, l = options.length; i < l; i++) {
-            var option = options[i];
-            if (!option.input.disabled) {
-                if (option.selected) {
-                    optionForFocus = option;
-                    break;
-                }
-                if (!optionForFocus) {
-                    optionForFocus = option;
-                }
-            }
-        }
-        if (optionForFocus) {
-            optionForFocus.focus();
-            return true;
-        }
-        return false;
-    };
-    OpalSelect.prototype.focus = function () {
-        this.$('button').focus();
-        return this;
-    };
-    OpalSelect.prototype.blur = function () {
-        this.$('button').blur();
-        return this;
-    };
-    return OpalSelect;
-}(rionite_1.Component));
-OpalSelect.OpalSelectOption = opal_select_option_1.default;
-OpalSelect = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-select',
-        input: {
-            viewType: String,
-            size: 'm',
-            multiple: { default: false, readonly: true },
-            datalistKeypath: { type: String, readonly: true },
-            datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
-            value: eval,
-            viewModelKeypath: { type: String, readonly: true },
-            viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
-            text: String,
-            placeholder: rionite_1.getText.t('Не выбрано'),
-            tabIndex: 0,
-            focused: false,
-            disabled: false
-        },
-        template: template,
-        events: {
-            ':component': {
-                'input-value-change': function (evt) {
-                    var vm = this.viewModel;
-                    var value = evt.value;
-                    if (value) {
-                        if (!Array.isArray(value)) {
-                            throw new TypeError('value must be an array');
-                        }
-                        if (value.length) {
-                            var vmItemValueFieldName_1 = this._viewModelItemValueFieldName;
-                            var vmItemTextFieldName_1 = this._viewModelItemTextFieldName;
-                            if (this.input.multiple) {
-                                this.options.forEach(function (option) {
-                                    var optionValue = option.value;
-                                    if (value.indexOf(optionValue) != -1) {
-                                        if (!vm.contains(optionValue, vmItemValueFieldName_1)) {
-                                            vm.add((_a = {},
-                                                _a[vmItemValueFieldName_1] = optionValue,
-                                                _a[vmItemTextFieldName_1] = option.text,
-                                                _a));
-                                        }
-                                    }
-                                    else {
-                                        var item = vm.get(optionValue, vmItemValueFieldName_1);
-                                        if (item) {
-                                            vm.remove(item);
-                                        }
-                                    }
-                                    var _a;
-                                });
-                            }
-                            else {
-                                value = value[0];
-                                if (!vm.length || value != vm.get(0)[vmItemValueFieldName_1]) {
-                                    if (!this.options.some(function (option) {
-                                        if (option.value != value) {
-                                            return false;
-                                        }
-                                        vm.set(0, (_a = {},
-                                            _a[vmItemValueFieldName_1] = value,
-                                            _a[vmItemTextFieldName_1] = option.text,
-                                            _a));
-                                        return true;
-                                        var _a;
-                                    }) && vm.length) {
-                                        vm.clear();
-                                    }
-                                }
-                            }
-                        }
-                        else {
-                            vm.clear();
-                        }
-                    }
-                    else {
-                        vm.clear();
-                    }
-                },
-                'input-focused-change': function (evt) {
-                    if (evt.value) {
-                        if (!this._documentKeyDownListening) {
-                            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-                        }
-                        this.focus();
-                    }
-                    else {
-                        if (!this._opened) {
-                            this._documentKeyDownListening.stop();
-                            this._documentKeyDownListening = null;
-                        }
-                        this.blur();
-                    }
-                }
-            },
-            button: {
-                focus: function () {
-                    this.input.focused = true;
-                    this.emit('focus');
-                },
-                blur: function () {
-                    this.input.focused = false;
-                    this.emit('blur');
-                },
-                click: function (evt) {
-                    if (evt.target.checked) {
-                        this.open();
-                    }
-                    else {
-                        this.close();
-                    }
-                }
-            },
-            menu: {
-                'input-opened-change': function (evt) {
-                    if (!evt.value) {
-                        this.close();
-                    }
-                },
-                '<opal-select-option>select': function (evt) {
-                    var vm = this.viewModel;
-                    var vmItem = (_a = {},
-                        _a[this._viewModelItemValueFieldName] = evt.target.value,
-                        _a[this._viewModelItemTextFieldName] = evt.target.text,
-                        _a);
-                    if (this.input.multiple) {
-                        vm.add(vmItem);
-                    }
-                    else {
-                        if (vm.length) {
-                            vm.set(0, vmItem);
-                        }
-                        else {
-                            vm.add(vmItem);
-                        }
-                        this.close();
-                        this.focus();
-                        this.emit('change');
-                    }
-                    var _a;
-                },
-                '<opal-select-option>deselect': function (evt) {
-                    if (this.input.multiple) {
-                        this.viewModel.remove(this.viewModel.get(evt.target.value, this._viewModelItemValueFieldName));
-                    }
-                    else {
-                        evt.target.select();
-                        this.close();
-                        this.focus();
-                    }
-                },
-                '<opal-text-input>confirm': function (evt) {
-                    var textInput = evt.target;
-                    if (textInput !== this.$('new-item-input')) {
-                        return;
-                    }
-                    var itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
-                    var itemText = textInput.value;
-                    var dataList = this.dataList;
-                    if (dataList) {
-                        dataList.add((_a = {},
-                            _a[this._dataListItemValueFieldName] = itemValue,
-                            _a[this._dataListItemTextFieldName] = itemText,
-                            _a));
-                    }
-                    textInput.clear();
-                    var loadedList = this.$('loaded-list');
-                    if (loadedList) {
-                        loadedList.input.query = '';
-                    }
-                    this.emit('input');
-                    var vm = this.viewModel;
-                    var vmItem = (_b = {},
-                        _b[this._viewModelItemValueFieldName] = itemValue,
-                        _b[this._viewModelItemTextFieldName] = itemText,
-                        _b);
-                    if (this.input.multiple) {
-                        vm.add(vmItem);
-                    }
-                    else {
-                        if (vm.length) {
-                            vm.set(0, vmItem);
-                        }
-                        else {
-                            vm.add(vmItem);
-                        }
-                        this.close();
-                        this.focus();
-                        this.emit('change');
-                    }
-                    var _a, _b;
-                },
-                '<*>change': function (evt) {
-                    if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
-                        return;
-                    }
-                    this._options.pull();
-                    this._updateOptions();
-                    return false;
-                }
-            },
-            'loaded-list': {
-                loaded: function () {
-                    var _this = this;
-                    if (this._onсeFocusedAfterLoading) {
-                        return;
-                    }
-                    this._onсeFocusedAfterLoading = true;
-                    nextTick(function () {
-                        var filteredList = _this.$('filtered-list');
-                        if (filteredList) {
-                            var queryInput = filteredList.$('query-input');
-                            if (queryInput && document.activeElement == queryInput.$('text-field')) {
-                                _this._focusOptions();
-                                nextTick(function () {
-                                    filteredList.focus();
-                                });
-                            }
-                            else {
-                                _this._focusOptions();
-                            }
-                        }
-                        else {
-                            _this._focusOptions();
-                        }
-                    });
-                }
-            },
-            'btn-close': {
-                click: function () {
-                    this.close();
-                    this.focus();
-                }
-            }
-        }
-    })
-], OpalSelect);
-exports.default = OpalSelect;
-
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(93);
+__webpack_require__(96);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(65);
+var template = __webpack_require__(67);
 var nextTick = cellx_1.Utils.nextTick;
 var OpalSignButton = (function (_super) {
     __extends(OpalSignButton, _super);
@@ -3670,7 +3782,7 @@ exports.default = OpalSignButton;
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3692,10 +3804,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(94);
+__webpack_require__(97);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(66);
+var template = __webpack_require__(68);
 var OpalSlider = (function (_super) {
     __extends(OpalSlider, _super);
     function OpalSlider() {
@@ -3773,7 +3885,7 @@ exports.default = OpalSlider;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3795,7 +3907,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(95);
+__webpack_require__(98);
 var rionite_1 = __webpack_require__(0);
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
@@ -3869,7 +3981,7 @@ exports.default = OpalSwitchMenu;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3891,10 +4003,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(96);
+__webpack_require__(99);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(67);
+var template = __webpack_require__(69);
 var nextTick = cellx_1.Utils.nextTick;
 var OpalSwitch = (function (_super) {
     __extends(OpalSwitch, _super);
@@ -4025,7 +4137,7 @@ exports.default = OpalSwitch;
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4047,15 +4159,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(97);
+__webpack_require__(100);
 var rionite_1 = __webpack_require__(0);
-var opal_tab_list_1 = __webpack_require__(46);
+var opal_tab_list_1 = __webpack_require__(47);
 exports.OpalTabList = opal_tab_list_1.default;
-var opal_tab_1 = __webpack_require__(4);
+var opal_tab_1 = __webpack_require__(5);
 exports.OpalTab = opal_tab_1.default;
-var opal_tab_panel_1 = __webpack_require__(47);
+var opal_tab_panel_1 = __webpack_require__(48);
 exports.OpalTabPanel = opal_tab_panel_1.default;
-var template = __webpack_require__(68);
+var template = __webpack_require__(70);
 var indexOf = Array.prototype.indexOf;
 var forEach = Array.prototype.forEach;
 var OpalTabs = (function (_super) {
@@ -4123,7 +4235,7 @@ exports.default = OpalTabs;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4145,13 +4257,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(101);
+__webpack_require__(104);
 var cellx_1 = __webpack_require__(1);
-var cellx_indexed_collections_1 = __webpack_require__(2);
+var cellx_indexed_collections_1 = __webpack_require__(3);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(70);
-var defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
-var defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
+var opal_select_1 = __webpack_require__(2);
+var template = __webpack_require__(72);
+var defaultDataListItemSchema = opal_select_1.default.defaultDataListItemSchema;
+var defaultVMItemSchema = opal_select_1.default.defaultVMItemSchema;
 var OpalTagSelect = (function (_super) {
     __extends(OpalTagSelect, _super);
     function OpalTagSelect() {
@@ -4268,7 +4381,7 @@ exports.default = OpalTagSelect;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4290,10 +4403,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(102);
+__webpack_require__(105);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(71);
+var template = __webpack_require__(73);
 var nextTick = cellx_1.Utils.nextTick;
 var OpalTextInput = (function (_super) {
     __extends(OpalTextInput, _super);
@@ -4469,11 +4582,11 @@ exports.default = OpalTextInput;
 
 
 /***/ }),
-/* 30 */,
 /* 31 */,
 /* 32 */,
 /* 33 */,
-/* 34 */
+/* 34 */,
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4487,7 +4600,7 @@ exports.default = formatDate;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4501,51 +4614,7 @@ exports.default = parseDate;
 
 
 /***/ }),
-/* 36 */,
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(80);
-var rionite_1 = __webpack_require__(0);
-var OpalInputMaskDefinition = (function (_super) {
-    __extends(OpalInputMaskDefinition, _super);
-    function OpalInputMaskDefinition() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return OpalInputMaskDefinition;
-}(rionite_1.Component));
-OpalInputMaskDefinition = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-input-mask-definition',
-        input: {
-            maskChar: { type: String, required: true, readonly: true },
-            regex: { type: eval, required: true, readonly: true }
-        }
-    })
-], OpalInputMaskDefinition);
-exports.default = OpalInputMaskDefinition;
-
-
-/***/ }),
+/* 37 */,
 /* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4570,7 +4639,51 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(82);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(56);
+var OpalInputMaskDefinition = (function (_super) {
+    __extends(OpalInputMaskDefinition, _super);
+    function OpalInputMaskDefinition() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return OpalInputMaskDefinition;
+}(rionite_1.Component));
+OpalInputMaskDefinition = __decorate([
+    rionite_1.d.Component({
+        elementIs: 'opal-input-mask-definition',
+        input: {
+            maskChar: { type: String, required: true, readonly: true },
+            regex: { type: eval, required: true, readonly: true }
+        }
+    })
+], OpalInputMaskDefinition);
+exports.default = OpalInputMaskDefinition;
+
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(84);
+var rionite_1 = __webpack_require__(0);
+var template = __webpack_require__(57);
 var OpalInputValidatorRule = (function (_super) {
     __extends(OpalInputValidatorRule, _super);
     function OpalInputValidatorRule() {
@@ -4601,7 +4714,7 @@ exports.default = OpalInputValidatorRule;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4623,9 +4736,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(87);
+__webpack_require__(89);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(60);
+var template = __webpack_require__(61);
 var OpalMultirowRow = (function (_super) {
     __extends(OpalMultirowRow, _super);
     function OpalMultirowRow() {
@@ -4658,7 +4771,7 @@ exports.default = OpalMultirowRow;
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4680,10 +4793,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(89);
+__webpack_require__(92);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(62);
+var template = __webpack_require__(64);
 var nextTick = cellx_1.Utils.nextTick;
 var OpalRadioButton = (function (_super) {
     __extends(OpalRadioButton, _super);
@@ -4814,7 +4927,7 @@ exports.default = OpalRadioButton;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4828,7 +4941,7 @@ exports.default = escapeRegExp;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4871,13 +4984,13 @@ exports.default = OpalRoute;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType_1 = __webpack_require__(3);
+var PathNodeType_1 = __webpack_require__(4);
 var reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
     var ctx = PathNodeType_1.default.SIMPLE;
@@ -5030,7 +5143,7 @@ exports.default = parsePath;
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5052,7 +5165,7 @@ exports.default = isEqualArray;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5074,11 +5187,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(92);
-__webpack_require__(104);
+__webpack_require__(95);
+__webpack_require__(107);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(64);
+var template = __webpack_require__(66);
 var nextTick = cellx_1.Utils.nextTick;
 var OpalSelectOption = (function (_super) {
     __extends(OpalSelectOption, _super);
@@ -5216,50 +5329,6 @@ exports.default = OpalSelectOption;
 
 
 /***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(98);
-var rionite_1 = __webpack_require__(0);
-var opal_tab_1 = __webpack_require__(4);
-exports.OpalTab = opal_tab_1.default;
-var OpalTabList = (function (_super) {
-    __extends(OpalTabList, _super);
-    function OpalTabList() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return OpalTabList;
-}(rionite_1.Component));
-OpalTabList.OpalTab = opal_tab_1.default;
-OpalTabList = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-tab-list',
-        template: '@section/inner { rt-content/content }'
-    })
-], OpalTabList);
-exports.default = OpalTabList;
-
-
-/***/ }),
 /* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5282,7 +5351,51 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(100);
+__webpack_require__(101);
+var rionite_1 = __webpack_require__(0);
+var opal_tab_1 = __webpack_require__(5);
+exports.OpalTab = opal_tab_1.default;
+var OpalTabList = (function (_super) {
+    __extends(OpalTabList, _super);
+    function OpalTabList() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return OpalTabList;
+}(rionite_1.Component));
+OpalTabList.OpalTab = opal_tab_1.default;
+OpalTabList = __decorate([
+    rionite_1.d.Component({
+        elementIs: 'opal-tab-list',
+        template: '@section/inner { rt-content/content }'
+    })
+], OpalTabList);
+exports.default = OpalTabList;
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(103);
 var rionite_1 = __webpack_require__(0);
 var OpalTabPanel = (function (_super) {
     __extends(OpalTabPanel, _super);
@@ -5304,75 +5417,77 @@ exports.default = OpalTabPanel;
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_button_1 = __webpack_require__(6);
+var opal_button_1 = __webpack_require__(7);
 exports.OpalButton = opal_button_1.default;
-var opal_sign_button_1 = __webpack_require__(23);
+var opal_sign_button_1 = __webpack_require__(24);
 exports.OpalSignButton = opal_sign_button_1.default;
-var opal_text_input_1 = __webpack_require__(29);
+var opal_text_input_1 = __webpack_require__(30);
 exports.OpalTextInput = opal_text_input_1.default;
-var opal_input_mask_1 = __webpack_require__(13);
+var opal_input_mask_1 = __webpack_require__(14);
 exports.OpalInputMask = opal_input_mask_1.default;
 exports.OpalInputMaskDefinition = opal_input_mask_1.OpalInputMaskDefinition;
-var opal_group_1 = __webpack_require__(12);
+var opal_group_1 = __webpack_require__(13);
 exports.OpalGroup = opal_group_1.default;
-var opal_checkbox_1 = __webpack_require__(8);
+var opal_checkbox_1 = __webpack_require__(9);
 exports.OpalCheckbox = opal_checkbox_1.default;
-var opal_radio_group_1 = __webpack_require__(20);
+var opal_radio_group_1 = __webpack_require__(22);
 exports.OpalRadioGroup = opal_radio_group_1.default;
 exports.OpalRadioButton = opal_radio_group_1.OpalRadioButton;
-var opal_switch_1 = __webpack_require__(26);
+var opal_switch_1 = __webpack_require__(27);
 exports.OpalSwitch = opal_switch_1.default;
-var opal_slider_1 = __webpack_require__(24);
+var opal_slider_1 = __webpack_require__(25);
 exports.OpalSlider = opal_slider_1.default;
-var opal_switch_menu_1 = __webpack_require__(25);
+var opal_switch_menu_1 = __webpack_require__(26);
 exports.OpalSwitchMenu = opal_switch_menu_1.default;
-var opal_tabs_1 = __webpack_require__(27);
+var opal_tabs_1 = __webpack_require__(28);
 exports.OpalTabs = opal_tabs_1.default;
 exports.OpalTabList = opal_tabs_1.OpalTabList;
 exports.OpalTab = opal_tabs_1.OpalTab;
-var opal_dropdown_1 = __webpack_require__(10);
+var opal_dropdown_1 = __webpack_require__(11);
 exports.OpalDropdown = opal_dropdown_1.default;
-var opal_popover_1 = __webpack_require__(19);
+var opal_popover_1 = __webpack_require__(21);
 exports.OpalPopover = opal_popover_1.default;
-var opal_modal_1 = __webpack_require__(17);
+var opal_modal_1 = __webpack_require__(18);
 exports.OpalModal = opal_modal_1.default;
-var opal_select_1 = __webpack_require__(22);
+var opal_select_1 = __webpack_require__(2);
 exports.OpalSelect = opal_select_1.default;
 exports.OpalSelectOption = opal_select_1.OpalSelectOption;
-var opal_input_validator_1 = __webpack_require__(14);
+var opal_multiselect_1 = __webpack_require__(20);
+exports.OpalMultiselect = opal_multiselect_1.default;
+var opal_input_validator_1 = __webpack_require__(15);
 exports.OpalInputValidator = opal_input_validator_1.default;
 exports.OpalInputValidatorRule = opal_input_validator_1.OpalInputValidatorRule;
-var opal_calendar_1 = __webpack_require__(7);
+var opal_calendar_1 = __webpack_require__(8);
 exports.OpalCalendar = opal_calendar_1.default;
-var opal_date_input_1 = __webpack_require__(9);
+var opal_date_input_1 = __webpack_require__(10);
 exports.OpalDateInput = opal_date_input_1.default;
-var opal_loader_1 = __webpack_require__(16);
+var opal_loader_1 = __webpack_require__(17);
 exports.OpalLoader = opal_loader_1.default;
-var opal_loaded_list_1 = __webpack_require__(15);
+var opal_loaded_list_1 = __webpack_require__(16);
 exports.OpalLoadedList = opal_loaded_list_1.default;
-var opal_filtered_list_1 = __webpack_require__(11);
+var opal_filtered_list_1 = __webpack_require__(12);
 exports.OpalFilteredList = opal_filtered_list_1.default;
-var opal_autosuggest_1 = __webpack_require__(5);
+var opal_autosuggest_1 = __webpack_require__(6);
 exports.OpalAutosuggest = opal_autosuggest_1.default;
-var opal_tag_select_1 = __webpack_require__(28);
+var opal_tag_select_1 = __webpack_require__(29);
 exports.OpalTagSelect = opal_tag_select_1.default;
-var opal_multirow_1 = __webpack_require__(18);
+var opal_multirow_1 = __webpack_require__(19);
 exports.OpalMultirow = opal_multirow_1.default;
 exports.OpalMultirowRow = opal_multirow_1.OpalMultirowRow;
-var opal_router_1 = __webpack_require__(21);
+var opal_router_1 = __webpack_require__(23);
 exports.OpalRouter = opal_router_1.default;
 exports.OpalRoute = opal_router_1.OpalRoute;
 
 
 /***/ }),
-/* 49 */,
-/* 50 */
+/* 50 */,
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5396,164 +5511,136 @@ exports.default = dateExists;
 
 
 /***/ }),
-/* 51 */
-/***/ (function(module, exports) {
-
-module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue={input.selectedItem.text},\nplaceholder={constructor.i18n.textInputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of list, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\nspan/not-found-message (shown={list.length |not }) { '{constructor.i18n.notFound}' }\n}\n}"
-
-/***/ }),
 /* 52 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={btnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/s-month (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months, rt-silent) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/s-year (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years, rt-silent) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={btnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ntable/week-days {\ntr/week-days-row {\n@repeat (for=weekDay of weekDaysShort, rt-silent) {\ntd/week-day { '{weekDay}' }\n}\n}\n}\ntable/days {\n@repeat (for=weekDays of days, rt-silent) {\ntr/days-row {\n@repeat (for=day of weekDays, rt-silent) {\ntd/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date},\nrt-click=_onDayClick\n) { '{day.value}' }\n}\n}\n}\n}\n}\n}"
+module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue={input.selectedItem.text},\nplaceholder={constructor.i18n.textInputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of list, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\nspan/nothing-found-message (shown={list.length |not }) { '{constructor.i18n.nothingFound}' }\n}\n}"
 
 /***/ }),
 /* 53 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}"
+module.exports = "@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={btnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/s-month (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months, rt-silent) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/s-year (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years, rt-silent) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={btnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ntable/week-days {\ntr/week-days-row {\n@repeat (for=weekDay of weekDaysShort, rt-silent) {\ntd/week-day { '{weekDay}' }\n}\n}\n}\ntable/days {\n@repeat (for=weekDays of days, rt-silent) {\ntr/days-row {\n@repeat (for=day of weekDays, rt-silent) {\ntd/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date},\nrt-click=_onDayClick\n) { '{day.value}' }\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 54 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nopal-input-validator/input-validator {\n@if-then (if=input.required, rt-silent) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-to={input.popoverTo}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={input.popoverTo}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (test=dateInRange, popover-to={input.popoverTo}) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={input.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={input.value},\nplaceholder={input.placeholder},\nclearable\n)\n}\n}\nopal-dropdown/calendar-menu {\nopal-calendar/calendar (from-date={input.fromDate}, to-date={input.toDate}, value={input.value}, date-delimiter=.)\n}\n}"
+module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
 /* 55 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input) {\nopal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder})\n}\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__loaded-list)\n}"
+module.exports = "@section/inner {\nopal-input-validator/input-validator {\n@if-then (if=input.required, rt-silent) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-to={input.popoverTo}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={input.popoverTo}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (test=dateInRange, popover-to={input.popoverTo}) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={input.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={input.value},\nplaceholder={input.placeholder},\nclearable\n)\n}\n}\nopal-dropdown/calendar-menu {\nopal-calendar/calendar (from-date={input.fromDate}, to-date={input.toDate}, value={input.value}, date-delimiter=.)\n}\n}"
 
 /***/ }),
 /* 56 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nopal-popover/popover (to={input.popoverTo}) {\nrt-content/content\n}\n}"
+module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input) {\nopal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder})\n}\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__loaded-list)\n}"
 
 /***/ }),
 /* 57 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\ndiv/list {\n@repeat (for={input.itemAs} of list) {\nrt-content/list-item (clone, get-context=_getListItemContext)\n}\n}\nopal-loader/loader (shown={loaderShown}, align-center={empty})\ndiv/not-found (shown={notFoundShown}) {\nspan/not-found-message { '{constructor.i18n.notFound}' }\n}\n}"
+module.exports = "@section/inner {\nopal-popover/popover (to={input.popoverTo}) {\nrt-content/content\n}\n}"
 
 /***/ }),
 /* 58 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\ndiv/window {\nspan/btn-close-wrapper {\nbutton/btn-close\n}\nrt-content/content\n}\n}"
+module.exports = "@section/inner {\ndiv/list {\n@repeat (for={input.itemAs} of list) {\nrt-content/list-item (clone, get-context=_getListItemContext)\n}\n}\nopal-loader/loader (shown={loaderShown}, align-center={empty})\ndiv/nothing-found (shown={nothingFoundShown}) {\nspan/nothing-found-message { '{constructor.i18n.nothingFound}' }\n}\n}"
 
 /***/ }),
 /* 59 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content/preset-rows-container (\nselect='opal-multirow-row[preset], .opal-multirow__preset-rows',\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n)\ndiv/new-rows (not-single-row={_notSingleRow}) {\n@repeat (for=row of _newRows, track-by=key, rt-silent) {\nrt-content/new-row-container (select='opal-multirow-row:not([preset])', clone, data-key={row.key})\n}\n}\n}"
+module.exports = "@section/inner {\ndiv/window {\nspan/btn-close-wrapper {\nbutton/btn-close\n}\nrt-content/content\n}\n}"
 
 /***/ }),
 /* 60 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content/content\n' '\nopal-sign-button/btn-remove-row (sign=minus)\n' '\nopal-sign-button/btn-add-row (sign=plus)\n}"
+module.exports = "@section/inner {\nrt-content/preset-rows-container (\nselect='opal-multirow-row[preset], .opal-multirow__preset-rows',\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n)\ndiv/new-rows (not-single-row={_notSingleRow}) {\n@repeat (for=row of _newRows, track-by=key, rt-silent) {\nrt-content/new-row-container (select='opal-multirow-row:not([preset])', clone, data-key={row.key})\n}\n}\n}"
 
 /***/ }),
 /* 61 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nspan/arrow\nrt-content/content\n}"
+module.exports = "@section/inner {\nrt-content/content\n' '\nopal-sign-button/btn-remove-row (sign=minus)\n' '\nopal-sign-button/btn-add-row (sign=plus)\n}"
 
 /***/ }),
 /* 62 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}"
+module.exports = "/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=opal-select__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n)\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item.text}'\ndiv/btn-deselect-item (data-item-value={item.value}, rt-click=_onBtnDeselectItemClick) {\nsvg/btn-deselect-item-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n}\ndiv/nothing-selected (shown={nothingSelectedShown}) {\nspan/nothing-selected-message { '{constructor.i18n.nothingSelected}' }\n}\n}\ndiv/menu-content {\nopal-loaded-list/loaded-list (dataprovider-keypath=dataProvider) {\nopal-select-option (value={$item.value}, text={$item.text})\n}\n}\ndiv/menu-footer {\nopal-button/btn-close { 'Закрыть' }\n}\n}"
 
 /***/ }),
 /* 63 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content (select=.opal-select__button) {\nopal-button/button (\nview-type={input.viewType},\nsize={input.size},\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n) {\n@if-then (if=input.text, rt-silent) { '{input.text}' }\n@if-else (if=input.text, rt-silent) { '{text}' }\n' '\nsvg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content) {\n@if-then (if=input.datalistKeypath) {\ndiv/, menu-content {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\nrt-content/btn-close-container // доопределяется ниже\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=input.datalistKeypath) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\nrt-content/btn-close-container (select=.opal-select__btn-close)\n}\n}\n}\n}\n}\n}"
+module.exports = "@section/inner {\nspan/arrow\nrt-content/content\n}"
 
 /***/ }),
 /* 64 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content { '{input.text}' }\nsvg/icon-check (viewBox=0 0 30 22) { use (xlink:href=#opal-components__icon-check) }\n}\n}"
+module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
 /* 65 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-content/content\n}\n}"
+module.exports = "@section/inner {\nrt-content (select=.opal-select__button) {\nopal-button/button (\nview-type={input.viewType},\nsize={input.size},\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n) {\n@if-then (if=input.text, rt-silent) { '{input.text}' }\n@if-else (if=input.text, rt-silent) { '{text}' }\n' '\nsvg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content) {\n@if-then (if=input.datalistKeypath) {\ndiv/, menu-content {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=input.datalistKeypath) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 66 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\n@if-then (if=input.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%;) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={input.min},\nmax={input.max},\nstep={input.step},\nvalue={input.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.range.1})\n}\n}\n@if-else (if=input.range) {\ninput/input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.value})\n}\n}"
+module.exports = "@section/inner {\ndiv/control (tabindex={_tabIndex}) {\nrt-content/content { '{input.text}' }\nsvg/icon-check (viewBox=0 0 32 24) { use (xlink:href=#opal-components__icon-check) }\n}\n}"
 
 /***/ }),
 /* 67 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content\n}\n}"
+module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
 /* 68 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content/tab-list-container (select=opal-tab-list) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab)\n}\n}\nrt-content/panels (select=opal-tab-panel)\n}"
+module.exports = "@section/inner {\n@if-then (if=input.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%;) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={input.min},\nmax={input.max},\nstep={input.step},\nvalue={input.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.range.1})\n}\n}\n@if-else (if=input.range) {\ninput/input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.value})\n}\n}"
 
 /***/ }),
 /* 69 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content\n}\n}"
+module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
 /* 70 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nspan/tags {\n@if-then (if=viewModel.length, rt-silent) {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (\ndata-tag-value='{tag |key(_viewModelItemValueFieldName) }',\nrt-click=_onBtnRemoveTagClick\n)\n}\n' '\n}\n}\n}\nspan/control {\n@if-then (if=placeholderShown, rt-silent) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist-keypath={_dataListKeypathParam},\ndatalist-item-schema={input.datalistItemSchema |json },\nvalue={input.value},\nview-model-keypath=viewModel,\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=input.datalistKeypath) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/select-option-of-datalist, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=input.datalistKeypath) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider-keypath=dataProvider\n) {\nopal-select-option/select-option-of-loaded-list, select-option (\nvalue={$item.value},\ntext={$item.text}\n)\n}\n}\n}\n}\n}\n}\n}\n}"
+module.exports = "@section/inner {\nrt-content/tab-list-container (select=opal-tab-list) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab)\n}\n}\nrt-content/panels (select=opal-tab-panel)\n}"
 
 /***/ }),
 /* 71 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\n@if-then (if=input.multiline) {\ntextarea/, text-field (\nrows={input.rows},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-else (if=input.multiline) {\ninput/, text-field (\ntype={input.inputType},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-then (if=input.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)\n}\n@if-then (if=input.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}\n}"
+module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content\n}\n}"
 
 /***/ }),
 /* 72 */
 /***/ (function(module, exports) {
 
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".opal-autosuggest{position:relative;display:inline-block;vertical-align:middle}.opal-autosuggest .opal-autosuggest__text-input{display:block}.opal-autosuggest .opal-autosuggest__list-item{position:relative;padding:7px 22px;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-autosuggest .opal-autosuggest__list-item:hover,.opal-autosuggest .opal-autosuggest__list-item[focused]{background:#e6e6e6}.opal-autosuggest .opal-autosuggest__list-item:active{background:#ccc}.opal-autosuggest .opal-autosuggest__not-found-message{display:none;padding:10px;text-align:center;white-space:nowrap;opacity:.6}.opal-autosuggest .opal-autosuggest__not-found-message[shown]{display:block}.opal-input-validator .opal-autosuggest{display:block}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
+module.exports = "@section/inner {\nspan/tags {\n@if-then (if=viewModel.length, rt-silent) {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (\ndata-tag-value='{tag |key(_viewModelItemValueFieldName) }',\nrt-click=_onBtnRemoveTagClick\n)\n}\n' '\n}\n}\n}\nspan/control {\n@if-then (if=placeholderShown, rt-silent) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist-keypath={_dataListKeypathParam},\ndatalist-item-schema={input.datalistItemSchema |json },\nvalue={input.value},\nview-model-keypath=viewModel,\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=input.datalistKeypath) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/select-option-of-datalist, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=input.datalistKeypath) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider-keypath=dataProvider\n) {\nopal-select-option/select-option-of-loaded-list, select-option (\nvalue={$item.value},\ntext={$item.text}\n)\n}\n}\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 73 */
 /***/ (function(module, exports) {
 
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".opal-button{padding:0;border:0;background:0 0;color:inherit;font:inherit;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-button:not([view-type=clean]){position:relative;display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:7px 23px;border-radius:3px;background:#546778;color:#fff;vertical-align:middle;text-align:center;text-decoration:none;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-button:not([view-type=clean])::-moz-focus-inner{padding:0;border:0}.opal-button:not([view-type=clean])[size=s]{padding:4px 13px;font-size:14px;line-height:21px}.opal-button:not([view-type=clean]):hover{background:#597791}.opal-button:not([view-type=clean]):focus{outline:none}body:not(._no-focus-highlight) .opal-button:not([view-type=clean]):focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:inherit;content:'';pointer-events:none}.opal-button:not([view-type=clean]):active,.opal-button:not([view-type=clean])[checked]{background:#43484c}.opal-button:not([view-type=clean])[loading]{background-image:-o-linear-gradient(315deg,rgba(255,255,255,.35) 0,rgba(255,255,255,.35) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.35) 50%,rgba(255,255,255,.35) 75%,transparent 75%,transparent 100%);background-image:linear-gradient(135deg,rgba(255,255,255,.35) 0,rgba(255,255,255,.35) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.35) 50%,rgba(255,255,255,.35) 75%,transparent 75%,transparent 100%);background-size:30px 30px;-webkit-animation:opal-button-loading-animation 3s linear infinite;animation:opal-button-loading-animation 3s linear infinite}.opal-button:not([view-type=clean])[disabled]{opacity:.5;pointer-events:none}.opal-group .opal-group__content>.opal-button:not([view-type=clean]):not(:first-child),.opal-group .opal-group__content>:not(:first-child) .opal-button:not([view-type=clean]){border-top-left-radius:0;border-bottom-left-radius:0;-webkit-box-shadow:inset 1px 0 rgba(0,0,0,.4);box-shadow:inset 1px 0 rgba(0,0,0,.4)}.opal-group .opal-group__content>.opal-button:not([view-type=clean]):not(:last-child),.opal-group .opal-group__content>:not(:last-child) .opal-button:not([view-type=clean]){border-top-right-radius:0;border-bottom-right-radius:0}.opal-switch-menu .opal-button:not([view-type=clean]):not(:first-child){border-top-left-radius:0;border-bottom-left-radius:0;-webkit-box-shadow:inset 1px 0 rgba(0,0,0,.4);box-shadow:inset 1px 0 rgba(0,0,0,.4)}.opal-switch-menu .opal-button:not([view-type=clean]):not(:last-child){border-top-right-radius:0;border-bottom-right-radius:0}.opal-button[view-type=primary]{background:#1b91f8}.opal-button[view-type=primary]:hover{background-color:#33a0ff}.opal-button[view-type=primary]:active,.opal-button[view-type=primary][checked]{background-color:#1371c3}.opal-button[view-type=danger]{background:#f63159}.opal-button[view-type=danger]:hover{background-color:#fd496d}.opal-button[view-type=danger]:active,.opal-button[view-type=danger][checked]{background-color:#d3173d}@-webkit-keyframes opal-button-loading-animation{0%{background-position:0 0}to{background-position:60px 0}}@keyframes opal-button-loading-animation{0%{background-position:0 0}to{background-position:60px 0}}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
+module.exports = "@section/inner {\n@if-then (if=input.multiline) {\ntextarea/, text-field (\nrows={input.rows},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-else (if=input.multiline) {\ninput/, text-field (\ntype={input.inputType},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-then (if=input.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)\n}\n@if-then (if=input.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}\n}"
 
 /***/ }),
 /* 74 */
@@ -5564,7 +5651,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-calendar{display:block;width:300px;border:1px solid #dbdbdb;border-radius:3px;background:#fff;color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400}.opal-calendar .opal-calendar__header{position:relative;padding:8px 44px;text-align:center}.opal-calendar .opal-calendar__btn-prev-month,.opal-calendar .opal-calendar__btn-next-month{position:absolute;top:0;bottom:0;margin:auto;padding:0;width:30px;height:30px;border:0;border-radius:50%;background:0 0;cursor:pointer}.opal-calendar .opal-calendar__btn-prev-month{left:8px}.opal-calendar .opal-calendar__btn-next-month{right:8px}.opal-calendar .opal-calendar__btn-prev-month:hover,.opal-calendar .opal-calendar__btn-next-month:hover{background:#e6e6e6}.opal-calendar .opal-calendar__btn-prev-month:focus,.opal-calendar .opal-calendar__btn-next-month:focus{outline:none}body:not(._no-focus-highlight) .opal-calendar .opal-calendar__btn-prev-month:focus::after,body:not(._no-focus-highlight) .opal-calendar .opal-calendar__btn-next-month:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;-webkit-box-shadow:inset 0 0 0 1px #33a0ff;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-calendar .opal-calendar__btn-prev-month:active,.opal-calendar .opal-calendar__btn-next-month:active{background:#ccc}.opal-calendar .opal-calendar__btn-prev-month[disabled],.opal-calendar .opal-calendar__btn-next-month[disabled]{background:0 0;color:#000;opacity:.3;cursor:default}.opal-calendar .opal-calendar__btn-prev-month-icon,.opal-calendar .opal-calendar__btn-next-month-icon{display:block;margin:auto;width:16px;height:16px;fill:currentColor}.opal-calendar .opal-calendar__btn-next-month-icon{-webkit-transform:scaleX(-1);-ms-transform:scaleX(-1);transform:scaleX(-1)}.opal-calendar .opal-calendar__body{padding:0 8px 8px;text-align:center;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-calendar .opal-calendar__week-days,.opal-calendar .opal-calendar__days{width:100%;border-spacing:0;border-collapse:separate}.opal-calendar .opal-calendar__week-day,.opal-calendar .opal-calendar__day{padding:3px 7px;width:14.286%;border:1px solid transparent}.opal-calendar .opal-calendar__day{position:relative;border-radius:3px;cursor:pointer}.opal-calendar .opal-calendar__day:hover{background:#e6e6e6}.opal-calendar .opal-calendar__day:focus{outline:none}body:not(._no-focus-highlight) .opal-calendar .opal-calendar__day:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;-webkit-box-shadow:inset 0 0 0 1px #33a0ff;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-calendar .opal-calendar__day:active{background:#ccc}.opal-calendar .opal-calendar__day[today]{text-decoration:underline}.opal-calendar .opal-calendar__day[not-in-current-month]{opacity:.45}.opal-calendar .opal-calendar__day[disabled]{background:0 0;opacity:.15;cursor:default}.opal-calendar .opal-calendar__day[selected]{color:#0d87f2;opacity:1}";
+            style.textContent = ".opal-autosuggest{position:relative;display:inline-block;vertical-align:middle}.opal-autosuggest .opal-autosuggest__text-input{display:block}.opal-autosuggest .opal-autosuggest__list-item{position:relative;padding:7px 22px;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-autosuggest .opal-autosuggest__list-item:hover,.opal-autosuggest .opal-autosuggest__list-item[focused]{background:#e6e6e6}.opal-autosuggest .opal-autosuggest__list-item:active{background:#ccc}.opal-autosuggest .opal-autosuggest__nothing-found-message{display:none;padding:10px;text-align:center;white-space:nowrap;opacity:.6}.opal-autosuggest .opal-autosuggest__nothing-found-message[shown]{display:block}.opal-input-validator .opal-autosuggest{display:block}";
             head.appendChild(style);
             return style;
         }
@@ -5581,7 +5668,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-checkbox{position:relative;display:inline-block}.opal-checkbox .opal-checkbox__input{display:none}.opal-checkbox .opal-checkbox__control{position:relative;top:-1px;display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;width:22px;height:22px;border:2px solid #a3a3a3;border-radius:3px;background:#fff;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-checkbox .opal-checkbox__label:hover .opal-checkbox__control{border-color:#8a8a8a}.opal-checkbox .opal-checkbox__control:focus,.opal-checkbox .opal-checkbox__label:hover .opal-checkbox__control:focus{outline:none;border-color:#33a0ff}.opal-checkbox[checked] .opal-checkbox__control::before{position:absolute;top:1px;left:6px;width:5px;height:10px;border:solid #000;border-width:0 2px 2px 0;content:'';-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.opal-checkbox[indeterminate] .opal-checkbox__control::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;background:#000;content:''}.opal-checkbox[disabled]{opacity:.5;pointer-events:none}.opal-checkbox[disabled] .opal-checkbox__control{background:#e6e6e6}";
+            style.textContent = ".opal-button{padding:0;border:0;background:0 0;color:inherit;font:inherit;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-button:not([view-type=clean]){position:relative;display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:7px 23px;border-radius:3px;background:#546778;color:#fff;vertical-align:middle;text-align:center;text-decoration:none;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-button:not([view-type=clean])::-moz-focus-inner{padding:0;border:0}.opal-button:not([view-type=clean])[size=s]{padding:4px 13px;font-size:14px;line-height:21px}.opal-button:not([view-type=clean]):hover{background:#597791}.opal-button:not([view-type=clean]):focus{outline:none}body:not(._no-focus-highlight) .opal-button:not([view-type=clean]):focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:inherit;content:'';pointer-events:none}.opal-button:not([view-type=clean]):active,.opal-button:not([view-type=clean])[checked]{background:#43484c}.opal-button:not([view-type=clean])[loading]{background-image:-o-linear-gradient(315deg,rgba(255,255,255,.35) 0,rgba(255,255,255,.35) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.35) 50%,rgba(255,255,255,.35) 75%,transparent 75%,transparent 100%);background-image:linear-gradient(135deg,rgba(255,255,255,.35) 0,rgba(255,255,255,.35) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.35) 50%,rgba(255,255,255,.35) 75%,transparent 75%,transparent 100%);background-size:30px 30px;-webkit-animation:opal-button-loading-animation 3s linear infinite;animation:opal-button-loading-animation 3s linear infinite}.opal-button:not([view-type=clean])[disabled]{opacity:.5;pointer-events:none}.opal-group .opal-group__content>.opal-button:not([view-type=clean]):not(:first-child),.opal-group .opal-group__content>:not(:first-child) .opal-button:not([view-type=clean]){border-top-left-radius:0;border-bottom-left-radius:0;-webkit-box-shadow:inset 1px 0 rgba(0,0,0,.4);box-shadow:inset 1px 0 rgba(0,0,0,.4)}.opal-group .opal-group__content>.opal-button:not([view-type=clean]):not(:last-child),.opal-group .opal-group__content>:not(:last-child) .opal-button:not([view-type=clean]){border-top-right-radius:0;border-bottom-right-radius:0}.opal-switch-menu .opal-button:not([view-type=clean]):not(:first-child){border-top-left-radius:0;border-bottom-left-radius:0;-webkit-box-shadow:inset 1px 0 rgba(0,0,0,.4);box-shadow:inset 1px 0 rgba(0,0,0,.4)}.opal-switch-menu .opal-button:not([view-type=clean]):not(:last-child){border-top-right-radius:0;border-bottom-right-radius:0}.opal-button[view-type=primary]{background:#1b91f8}.opal-button[view-type=primary]:hover{background-color:#33a0ff}.opal-button[view-type=primary]:active,.opal-button[view-type=primary][checked]{background-color:#1371c3}.opal-button[view-type=danger]{background:#f63159}.opal-button[view-type=danger]:hover{background-color:#fd496d}.opal-button[view-type=danger]:active,.opal-button[view-type=danger][checked]{background-color:#d3173d}@-webkit-keyframes opal-button-loading-animation{0%{background-position:0 0}to{background-position:60px 0}}@keyframes opal-button-loading-animation{0%{background-position:0 0}to{background-position:60px 0}}";
             head.appendChild(style);
             return style;
         }
@@ -5598,7 +5685,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-date-input{position:relative;display:inline-block;vertical-align:middle}.opal-date-input .opal-date-input__text-input{display:block}.opal-date-input .opal-date-input__calendar-menu{overflow:visible;padding:0;min-width:auto}.opal-date-input .opal-date-input__calendar{border:0}";
+            style.textContent = ".opal-calendar{display:block;width:300px;border:1px solid #dbdbdb;border-radius:3px;background:#fff;color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400}.opal-calendar .opal-calendar__header{position:relative;padding:8px 44px;text-align:center}.opal-calendar .opal-calendar__btn-prev-month,.opal-calendar .opal-calendar__btn-next-month{position:absolute;top:0;bottom:0;margin:auto;padding:0;width:30px;height:30px;border:0;border-radius:50%;background:0 0;cursor:pointer}.opal-calendar .opal-calendar__btn-prev-month{left:8px}.opal-calendar .opal-calendar__btn-next-month{right:8px}.opal-calendar .opal-calendar__btn-prev-month:hover,.opal-calendar .opal-calendar__btn-next-month:hover{background:#e6e6e6}.opal-calendar .opal-calendar__btn-prev-month:focus,.opal-calendar .opal-calendar__btn-next-month:focus{outline:none}body:not(._no-focus-highlight) .opal-calendar .opal-calendar__btn-prev-month:focus::after,body:not(._no-focus-highlight) .opal-calendar .opal-calendar__btn-next-month:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;-webkit-box-shadow:inset 0 0 0 1px #33a0ff;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-calendar .opal-calendar__btn-prev-month:active,.opal-calendar .opal-calendar__btn-next-month:active{background:#ccc}.opal-calendar .opal-calendar__btn-prev-month[disabled],.opal-calendar .opal-calendar__btn-next-month[disabled]{background:0 0;color:#000;opacity:.3;cursor:default}.opal-calendar .opal-calendar__btn-prev-month-icon,.opal-calendar .opal-calendar__btn-next-month-icon{display:block;margin:auto;width:16px;height:16px;fill:currentColor}.opal-calendar .opal-calendar__btn-next-month-icon{-webkit-transform:scaleX(-1);-ms-transform:scaleX(-1);transform:scaleX(-1)}.opal-calendar .opal-calendar__body{padding:0 8px 8px;text-align:center;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-calendar .opal-calendar__week-days,.opal-calendar .opal-calendar__days{width:100%;border-spacing:0;border-collapse:separate}.opal-calendar .opal-calendar__week-day,.opal-calendar .opal-calendar__day{padding:3px 7px;width:14.286%;border:1px solid transparent}.opal-calendar .opal-calendar__day{position:relative;border-radius:3px;cursor:pointer}.opal-calendar .opal-calendar__day:hover{background:#e6e6e6}.opal-calendar .opal-calendar__day:focus{outline:none}body:not(._no-focus-highlight) .opal-calendar .opal-calendar__day:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;-webkit-box-shadow:inset 0 0 0 1px #33a0ff;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-calendar .opal-calendar__day:active{background:#ccc}.opal-calendar .opal-calendar__day[today]{text-decoration:underline}.opal-calendar .opal-calendar__day[not-in-current-month]{opacity:.45}.opal-calendar .opal-calendar__day[disabled]{background:0 0;opacity:.15;cursor:default}.opal-calendar .opal-calendar__day[selected]{color:#0d87f2;opacity:1}";
             head.appendChild(style);
             return style;
         }
@@ -5615,7 +5702,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-dropdown{position:absolute;z-index:100;display:none;overflow-x:hidden;overflow-y:auto;-webkit-box-sizing:border-box;box-sizing:border-box;margin:2px 0;padding:6px 0;min-width:100%;border:1px solid #ccc;border-radius:3px;background:#fff;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.2);box-shadow:0 1px 3px rgba(0,0,0,.2);line-height:1.5;cursor:default}.opal-dropdown .opal-dropdown__content{position:relative;display:block}";
+            style.textContent = ".opal-checkbox{position:relative;display:inline-block}.opal-checkbox .opal-checkbox__input{display:none}.opal-checkbox .opal-checkbox__control{position:relative;top:-1px;display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;width:22px;height:22px;border:2px solid #a3a3a3;border-radius:3px;background:#fff;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-checkbox .opal-checkbox__label:hover .opal-checkbox__control{border-color:#8a8a8a}.opal-checkbox .opal-checkbox__control:focus,.opal-checkbox .opal-checkbox__label:hover .opal-checkbox__control:focus{outline:none;border-color:#33a0ff}.opal-checkbox[checked] .opal-checkbox__control::before{position:absolute;top:1px;left:6px;width:5px;height:10px;border:solid #000;border-width:0 2px 2px 0;content:'';-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.opal-checkbox[indeterminate] .opal-checkbox__control::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;background:#000;content:''}.opal-checkbox[disabled]{opacity:.5;pointer-events:none}.opal-checkbox[disabled] .opal-checkbox__control{background:#e6e6e6}";
             head.appendChild(style);
             return style;
         }
@@ -5632,7 +5719,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-filtered-list .opal-filtered-list__query-input-container{display:block}.opal-filtered-list .opal-filtered-list__query-input{display:block;margin-bottom:15px;width:auto}";
+            style.textContent = ".opal-date-input{position:relative;display:inline-block;vertical-align:middle}.opal-date-input .opal-date-input__text-input{display:block}.opal-date-input .opal-date-input__calendar-menu{overflow:visible;padding:0;min-width:auto}.opal-date-input .opal-date-input__calendar{border:0}";
             head.appendChild(style);
             return style;
         }
@@ -5649,7 +5736,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-group{position:relative;display:inline-block;vertical-align:middle;white-space:nowrap;font-size:0}";
+            style.textContent = ".opal-dropdown{position:absolute;top:100%;left:0;z-index:100;display:none;overflow-x:hidden;overflow-y:auto;-webkit-box-sizing:border-box;box-sizing:border-box;margin:2px 0;padding:6px 0;min-width:100%;border:1px solid #ccc;border-radius:3px;background:#fff;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.2);box-shadow:0 1px 3px rgba(0,0,0,.2);line-height:1.5;cursor:default}.opal-dropdown .opal-dropdown__content{position:relative;display:block}.opal-dropdown[opened]{display:block}";
             head.appendChild(style);
             return style;
         }
@@ -5666,7 +5753,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-input-mask-definition{display:none}";
+            style.textContent = ".opal-filtered-list .opal-filtered-list__query-input-container{display:block}.opal-filtered-list .opal-filtered-list__query-input{display:block;margin-bottom:15px;width:auto}";
             head.appendChild(style);
             return style;
         }
@@ -5683,7 +5770,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-input-validator{position:relative;display:inline-block;vertical-align:middle}.opal-input-validator .opal-input-validator__text-input{display:block}.opal-input-validator[valid=no] .opal-input-validator__text-input .opal-text-input__text-field{border-color:#f50000}";
+            style.textContent = ".opal-group{position:relative;display:inline-block;vertical-align:middle;white-space:nowrap;font-size:0}";
             head.appendChild(style);
             return style;
         }
@@ -5700,7 +5787,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-input-validator-rule{display:block}.opal-input-validator-rule .opal-input-validator-rule__content{display:block;width:240px;text-align:center}";
+            style.textContent = ".opal-input-mask-definition{display:none}";
             head.appendChild(style);
             return style;
         }
@@ -5717,7 +5804,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-loaded-list{position:relative;display:block;overflow-x:hidden;overflow-y:auto;height:500px}.opal-loaded-list .opal-loaded-list__list-item{display:block}.opal-loaded-list .opal-loaded-list__loader[align-center]{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto}.opal-loaded-list .opal-loaded-list__not-found{display:none;-webkit-box-sizing:border-box;box-sizing:border-box;padding:10px;width:100%;height:100%;text-align:center;white-space:nowrap}.opal-loaded-list .opal-loaded-list__not-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-loaded-list .opal-loaded-list__not-found-message{display:inline-block;vertical-align:middle;opacity:.6}.opal-loaded-list .opal-loaded-list__not-found[shown]{display:block}";
+            style.textContent = ".opal-input-validator{position:relative;display:inline-block;vertical-align:middle}.opal-input-validator .opal-input-validator__text-input{display:block}.opal-input-validator[valid=no] .opal-input-validator__text-input .opal-text-input__text-field{border-color:#f50000}";
             head.appendChild(style);
             return style;
         }
@@ -5734,7 +5821,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-loader{position:relative;display:none;margin:10px auto;width:38px;height:38px;background:rgba(255,255,255,.5)}.opal-loader::before,.opal-loader::after{position:absolute;top:0;right:0;bottom:0;left:0;-webkit-box-sizing:border-box;box-sizing:border-box;margin:auto;width:100%;height:100%;border:3px solid #1b91f8;border-top-color:transparent;border-radius:50%;content:'';-webkit-animation:opal-loader-animation 1.2s infinite linear;animation:opal-loader-animation 1.2s infinite linear}.opal-loader::after{width:26px;height:26px;border-color:#f63159;border-bottom-color:transparent;-webkit-animation-direction:reverse;animation-direction:reverse}.opal-loader[size=s]{margin:6px auto;width:18px;height:18px}.opal-loader[size=s]::before{border-width:2px}.opal-loader[size=s]::after{content:none}.opal-loader[shown]{display:block}@-webkit-keyframes opal-loader-animation{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes opal-loader-animation{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}";
+            style.textContent = ".opal-input-validator-rule{display:block}.opal-input-validator-rule .opal-input-validator-rule__content{display:block;width:240px;text-align:center}";
             head.appendChild(style);
             return style;
         }
@@ -5751,7 +5838,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-modal{position:fixed;top:0;left:0;z-index:1000;display:none;overflow:auto;-webkit-box-sizing:border-box;box-sizing:border-box;padding:20px 65px;width:100%;height:100%;background:rgba(0,0,0,.6);text-align:center;white-space:nowrap;cursor:default}.opal-modal::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-modal .opal-modal__window{display:inline-block;padding:30px;border-radius:3px;background:#fff;-webkit-box-shadow:0 0 20px rgba(0,0,0,.3);box-shadow:0 0 20px rgba(0,0,0,.3);vertical-align:middle;text-align:left;white-space:normal}.opal-modal .opal-modal__btn-close-wrapper{position:absolute;top:10px;right:10px;width:45px}.opal-modal .opal-modal__btn-close{position:fixed;top:10px;-webkit-box-sizing:content-box;box-sizing:content-box;padding:10px;width:25px;height:25px;border:0;background:0 0;cursor:pointer}.opal-modal .opal-modal__btn-close::before,.opal-modal .opal-modal__btn-close::after{position:absolute;top:21px;left:10px;width:25px;height:3px;border-radius:2px;background:#e6e6e6;content:'';-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.opal-modal .opal-modal__btn-close::after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.opal-modal .opal-modal__window:hover .opal-modal__btn-close::before,.opal-modal .opal-modal__window:hover .opal-modal__btn-close::after{background:#ccc}.opal-modal .opal-modal__btn-close:hover::before,.opal-modal .opal-modal__btn-close:hover::after,.opal-modal .opal-modal__window:hover .opal-modal__btn-close:hover::before,.opal-modal .opal-modal__window:hover .opal-modal__btn-close:hover::after{background:#fff}.opal-modal .opal-modal__btn-close:active::before,.opal-modal .opal-modal__btn-close:active::after,.opal-modal .opal-modal__window:hover .opal-modal__btn-close:active::before,.opal-modal .opal-modal__window:hover .opal-modal__btn-close:active::after{background:#b3b3b3}.opal-modal .opal-modal__content{position:relative;display:block}.opal-modal[opened]{display:block}.opal-modal._overlapped{left:100%;overflow:visible}";
+            style.textContent = ".opal-loaded-list{position:relative;display:block;overflow-x:hidden;overflow-y:auto;height:500px}.opal-loaded-list .opal-loaded-list__list-item{display:block}.opal-loaded-list .opal-loaded-list__loader[align-center]{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto}.opal-loaded-list .opal-loaded-list__nothing-found{display:none;-webkit-box-sizing:border-box;box-sizing:border-box;padding:10px;height:100%;text-align:center;white-space:nowrap}.opal-loaded-list .opal-loaded-list__nothing-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-loaded-list .opal-loaded-list__nothing-found-message{display:inline-block;vertical-align:middle;opacity:.6}.opal-loaded-list .opal-loaded-list__nothing-found[shown]{display:block}";
             head.appendChild(style);
             return style;
         }
@@ -5768,7 +5855,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-multirow{display:block}";
+            style.textContent = ".opal-loader{position:relative;display:none;margin:auto;width:38px;height:38px;border:15px solid transparent;background:rgba(255,255,255,.5)}.opal-loader::before,.opal-loader::after{position:absolute;top:0;right:0;bottom:0;left:0;-webkit-box-sizing:border-box;box-sizing:border-box;margin:auto;width:100%;height:100%;border:3px solid #1b91f8;border-top-color:transparent;border-radius:50%;content:'';-webkit-animation:opal-loader-animation 1.2s infinite linear;animation:opal-loader-animation 1.2s infinite linear}.opal-loader::after{width:26px;height:26px;border-color:#f63159;border-bottom-color:transparent;-webkit-animation-direction:reverse;animation-direction:reverse}.opal-loader[size=s]{width:18px;height:18px;border-width:6px}.opal-loader[size=s]::before{border-width:2px}.opal-loader[size=s]::after{content:none}.opal-loader[shown]{display:block}@-webkit-keyframes opal-loader-animation{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes opal-loader-animation{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}";
             head.appendChild(style);
             return style;
         }
@@ -5785,7 +5872,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-multirow-row{display:block;white-space:nowrap}.opal-multirow-row::after{display:table;clear:both;content:''}.opal-multirow-row .opal-multirow-row__content{display:inline-block;margin-bottom:20px;padding-right:6px}.opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow-row .opal-multirow-row__btn-add-row{position:relative;top:1px;display:none}.opal-multirow__preset-rows-container[not-have-new-rows] .opal-multirow-row:last-child .opal-multirow-row__content,.opal-multirow__new-rows rt-content:last-child .opal-multirow-row .opal-multirow-row__content{margin-bottom:0}.opal-multirow__preset-rows-container[not-single-row] .opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow__new-rows[not-single-row] .opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow__preset-rows-container[not-have-new-rows] .opal-multirow-row:last-child .opal-multirow-row__btn-add-row,.opal-multirow__new-rows rt-content:last-child .opal-multirow-row .opal-multirow-row__btn-add-row{display:inline-block}.opal-multirow-row .opal-popover{white-space:normal}";
+            style.textContent = ".opal-modal{position:fixed;top:0;left:0;z-index:1000;display:none;overflow:auto;-webkit-box-sizing:border-box;box-sizing:border-box;padding:20px 65px;width:100%;height:100%;background:rgba(0,0,0,.6);text-align:center;white-space:nowrap;cursor:default}.opal-modal::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-modal .opal-modal__window{display:inline-block;padding:30px;border-radius:3px;background:#fff;-webkit-box-shadow:0 0 20px rgba(0,0,0,.3);box-shadow:0 0 20px rgba(0,0,0,.3);vertical-align:middle;text-align:left;white-space:normal}.opal-modal .opal-modal__btn-close-wrapper{position:absolute;top:10px;right:10px;width:45px}.opal-modal .opal-modal__btn-close{position:fixed;top:10px;-webkit-box-sizing:content-box;box-sizing:content-box;padding:10px;width:25px;height:25px;border:0;background:0 0;cursor:pointer}.opal-modal .opal-modal__btn-close::before,.opal-modal .opal-modal__btn-close::after{position:absolute;top:21px;left:10px;width:25px;height:3px;border-radius:2px;background:#e6e6e6;content:'';-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.opal-modal .opal-modal__btn-close::after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.opal-modal .opal-modal__window:hover .opal-modal__btn-close::before,.opal-modal .opal-modal__window:hover .opal-modal__btn-close::after{background:#ccc}.opal-modal .opal-modal__btn-close:hover::before,.opal-modal .opal-modal__btn-close:hover::after,.opal-modal .opal-modal__window:hover .opal-modal__btn-close:hover::before,.opal-modal .opal-modal__window:hover .opal-modal__btn-close:hover::after{background:#fff}.opal-modal .opal-modal__btn-close:active::before,.opal-modal .opal-modal__btn-close:active::after,.opal-modal .opal-modal__window:hover .opal-modal__btn-close:active::before,.opal-modal .opal-modal__window:hover .opal-modal__btn-close:active::after{background:#b3b3b3}.opal-modal .opal-modal__content{position:relative;display:block}.opal-modal[opened]{display:block}.opal-modal._overlapped{left:100%;overflow:visible}";
             head.appendChild(style);
             return style;
         }
@@ -5802,7 +5889,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-popover{position:absolute;z-index:100;display:none;-webkit-box-sizing:border-box;box-sizing:border-box;padding:15px;border:1px solid #ccc;border-radius:6px;background:#fff;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.2);box-shadow:0 1px 3px rgba(0,0,0,.2);line-height:1.5;cursor:default}.opal-popover .opal-popover__arrow{position:absolute;z-index:1;width:0;height:0}.opal-popover .opal-popover__arrow::before,.opal-popover .opal-popover__arrow::after{position:absolute;width:0;height:0;border:10px solid transparent;content:''}.opal-popover .opal-popover__arrow::after{border:8px solid transparent}.opal-popover .opal-popover__content{position:relative;display:block}.opal-popover[to=top]{bottom:100%;left:50%;margin-bottom:15px;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[to=top] .opal-popover__arrow{top:100%;left:50%}.opal-popover[to=top] .opal-popover__arrow::before,.opal-popover[to=top] .opal-popover__arrow::after{border-top-color:#ccc;border-bottom-width:0;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[to=top] .opal-popover__arrow::after{border-top-color:#fff}.opal-popover[to=right]{top:50%;left:100%;margin-left:15px;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[to=right] .opal-popover__arrow{top:50%;right:100%}.opal-popover[to=right] .opal-popover__arrow::before,.opal-popover[to=right] .opal-popover__arrow::after{right:0;border-right-color:#ccc;border-left-width:0;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[to=right] .opal-popover__arrow::after{border-right-color:#fff}.opal-popover[to=bottom]{top:100%;left:50%;margin-top:15px;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[to=bottom] .opal-popover__arrow{bottom:100%;left:50%}.opal-popover[to=bottom] .opal-popover__arrow::before,.opal-popover[to=bottom] .opal-popover__arrow::after{bottom:0;border-top-width:0;border-bottom-color:#ccc;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[to=bottom] .opal-popover__arrow::after{border-bottom-color:#fff}.opal-popover[to=left]{top:50%;right:100%;margin-right:15px;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[to=left] .opal-popover__arrow{top:50%;left:100%}.opal-popover[to=left] .opal-popover__arrow::before,.opal-popover[to=left] .opal-popover__arrow::after{left:0;border-right-width:0;border-left-color:#ccc;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[to=left] .opal-popover__arrow::after{border-left-color:#fff}.opal-popover[opened]{display:block;-webkit-animation:opal-popover-fade-in-animation .1s linear;animation:opal-popover-fade-in-animation .1s linear}@-webkit-keyframes opal-popover-fade-in-animation{0%{opacity:0}to{opacity:1}}@keyframes opal-popover-fade-in-animation{0%{opacity:0}to{opacity:1}}";
+            style.textContent = ".opal-multirow{display:block}";
             head.appendChild(style);
             return style;
         }
@@ -5819,7 +5906,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-radio-button{position:relative;display:inline-block}.opal-radio-button .opal-radio-button__input{display:none}.opal-radio-button .opal-radio-button__control{position:relative;top:-1px;display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;width:22px;height:22px;border:2px solid #a3a3a3;border-radius:50%;background:#fff;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-radio-button .opal-radio-button__label:hover .opal-radio-button__control{border-color:#8a8a8a}.opal-radio-button .opal-radio-button__control:focus,.opal-radio-button .opal-radio-button__label:hover .opal-radio-button__control:focus{outline:none;border-color:#33a0ff}.opal-radio-button[checked] .opal-radio-button__control::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:10px;height:10px;border-radius:50%;background:#000;content:''}.opal-radio-button[disabled]{opacity:.5;pointer-events:none}.opal-radio-button[disabled] .opal-radio-button__control{background:#e6e6e6}";
+            style.textContent = ".opal-multirow-row{display:block;white-space:nowrap}.opal-multirow-row::after{display:table;clear:both;content:''}.opal-multirow-row .opal-multirow-row__content{display:inline-block;margin-bottom:20px;padding-right:6px}.opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow-row .opal-multirow-row__btn-add-row{position:relative;top:1px;display:none}.opal-multirow__preset-rows-container[not-have-new-rows] .opal-multirow-row:last-child .opal-multirow-row__content,.opal-multirow__new-rows rt-content:last-child .opal-multirow-row .opal-multirow-row__content{margin-bottom:0}.opal-multirow__preset-rows-container[not-single-row] .opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow__new-rows[not-single-row] .opal-multirow-row .opal-multirow-row__btn-remove-row,.opal-multirow__preset-rows-container[not-have-new-rows] .opal-multirow-row:last-child .opal-multirow-row__btn-add-row,.opal-multirow__new-rows rt-content:last-child .opal-multirow-row .opal-multirow-row__btn-add-row{display:inline-block}.opal-multirow-row .opal-popover{white-space:normal}";
             head.appendChild(style);
             return style;
         }
@@ -5836,7 +5923,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-router{display:block}";
+            style.textContent = ".opal-multiselect.opal-select .opal-select__menu{padding:0;width:600px}.opal-multiselect.opal-select .opal-select__menu-header{-webkit-box-sizing:border-box;box-sizing:border-box;padding:0 10px;border-bottom:1px solid #ccc;font-size:0;line-height:60px}.opal-multiselect.opal-select .opal-select__query-input{width:279px}.opal-multiselect.opal-select .opal-select__menu-selected{float:right;overflow:auto;-webkit-box-sizing:border-box;box-sizing:border-box;width:299px;height:304px;border-left:1px solid #ccc}.opal-multiselect.opal-select .opal-select__selected-item{position:relative;overflow:hidden;padding:7px 38px 7px 22px;background:#fff;color:#000;text-align:left;-o-text-overflow:ellipsis;text-overflow:ellipsis;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-multiselect.opal-select .opal-select__btn-deselect-item{position:absolute;top:0;right:10px;bottom:0;display:none;-webkit-box-sizing:border-box;box-sizing:border-box;margin:auto;padding:4px;width:22px;height:22px;cursor:pointer}.opal-multiselect.opal-select .opal-select__btn-deselect-item-icon{display:block;margin:auto;width:14px;height:14px;color:#333}.opal-multiselect.opal-select .opal-select__selected-item:hover .opal-select__btn-deselect-item{display:block}.opal-multiselect.opal-select .opal-select__btn-deselect-item:active{top:1px;bottom:-1px;opacity:1}.opal-multiselect.opal-select .opal-select__nothing-selected{display:none;-webkit-box-sizing:border-box;box-sizing:border-box;padding:10px;height:100%;text-align:center;white-space:nowrap}.opal-multiselect.opal-select .opal-select__nothing-selected::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-multiselect.opal-select .opal-select__nothing-selected-message{display:inline-block;vertical-align:middle;opacity:.6}.opal-multiselect.opal-select .opal-select__nothing-selected[shown]{display:block}.opal-multiselect.opal-select .opal-select__menu-content{width:299px;height:304px}.opal-multiselect.opal-select .opal-select__menu-footer{-webkit-box-sizing:border-box;box-sizing:border-box;padding:0 10px;width:100%;border-top:1px solid #ccc;text-align:right;font-size:0;line-height:60px}";
             head.appendChild(style);
             return style;
         }
@@ -5853,7 +5940,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-select{position:relative;display:inline-block;vertical-align:middle}.opal-select .opal-select__button{display:block;min-width:100%}.opal-select .opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:14px;height:14px;vertical-align:middle;-webkit-transition:-webkit-transform .1s linear;transition:-webkit-transform .1s linear;-o-transition:transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;fill:currentColor}.opal-select .opal-select__button[size=s] .opal-select__icon-chevron-down{width:12px;height:12px}.opal-select .opal-select__button[checked] .opal-select__icon-chevron-down{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-select__new-item-input{display:block;margin:6px 10px 4px;width:auto}.opal-select .opal-select__btn-close{display:block;margin:6px 10px 4px}.opal-select .opal-popover{padding:6px 0;min-width:100px}.opal-select .opal-filtered-list .opal-filtered-list__query-input{margin:4px 10px 6px}.opal-select .opal-loaded-list{height:300px}";
+            style.textContent = ".opal-popover{position:absolute;z-index:100;display:none;-webkit-box-sizing:border-box;box-sizing:border-box;padding:15px;border:1px solid #ccc;border-radius:6px;background:#fff;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.2);box-shadow:0 1px 3px rgba(0,0,0,.2);line-height:1.5;cursor:default}.opal-popover .opal-popover__arrow{position:absolute;z-index:1;width:0;height:0}.opal-popover .opal-popover__arrow::before,.opal-popover .opal-popover__arrow::after{position:absolute;width:0;height:0;border:10px solid transparent;content:''}.opal-popover .opal-popover__arrow::after{border:8px solid transparent}.opal-popover .opal-popover__content{position:relative;display:block}.opal-popover[to=top]{bottom:100%;left:50%;margin-bottom:15px;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[to=top] .opal-popover__arrow{top:100%;left:50%}.opal-popover[to=top] .opal-popover__arrow::before,.opal-popover[to=top] .opal-popover__arrow::after{border-top-color:#ccc;border-bottom-width:0;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[to=top] .opal-popover__arrow::after{border-top-color:#fff}.opal-popover[to=right]{top:50%;left:100%;margin-left:15px;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[to=right] .opal-popover__arrow{top:50%;right:100%}.opal-popover[to=right] .opal-popover__arrow::before,.opal-popover[to=right] .opal-popover__arrow::after{right:0;border-right-color:#ccc;border-left-width:0;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[to=right] .opal-popover__arrow::after{border-right-color:#fff}.opal-popover[to=bottom]{top:100%;left:50%;margin-top:15px;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[to=bottom] .opal-popover__arrow{bottom:100%;left:50%}.opal-popover[to=bottom] .opal-popover__arrow::before,.opal-popover[to=bottom] .opal-popover__arrow::after{bottom:0;border-top-width:0;border-bottom-color:#ccc;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[to=bottom] .opal-popover__arrow::after{border-bottom-color:#fff}.opal-popover[to=left]{top:50%;right:100%;margin-right:15px;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[to=left] .opal-popover__arrow{top:50%;left:100%}.opal-popover[to=left] .opal-popover__arrow::before,.opal-popover[to=left] .opal-popover__arrow::after{left:0;border-right-width:0;border-left-color:#ccc;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[to=left] .opal-popover__arrow::after{border-left-color:#fff}.opal-popover[opened]{display:block;-webkit-animation:opal-popover-fade-in-animation .1s linear;animation:opal-popover-fade-in-animation .1s linear}@-webkit-keyframes opal-popover-fade-in-animation{0%{opacity:0}to{opacity:1}}@keyframes opal-popover-fade-in-animation{0%{opacity:0}to{opacity:1}}";
             head.appendChild(style);
             return style;
         }
@@ -5870,7 +5957,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-select-option{display:block}.opal-select-option .opal-select-option__control{position:relative;display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:7px 38px 7px 22px;width:100%;border:0;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-select-option .opal-select-option__content{position:relative;display:block}.opal-select-option .opal-select-option__icon-check{position:absolute;top:0;right:14px;bottom:0;display:none;margin:auto;width:16px;height:16px;color:#333}.opal-select-option .opal-select-option__control:hover{background:#e6e6e6}.opal-select-option .opal-select-option__control:focus{outline:none}.opal-select-option .opal-select-option__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;-webkit-box-shadow:inset 0 0 0 1px #33a0ff;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-select-option .opal-select-option__control:active{background:#ccc}.opal-select-option[selected] .opal-select-option__control{color:#0d87f2}.opal-select-option[selected] .opal-select-option__icon-check{display:block}.opal-select-option[disabled]{opacity:.5;pointer-events:none}.opal-select-option[disabled] .opal-select-option__control{cursor:default}";
+            style.textContent = ".opal-radio-button{position:relative;display:inline-block}.opal-radio-button .opal-radio-button__input{display:none}.opal-radio-button .opal-radio-button__control{position:relative;top:-1px;display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;width:22px;height:22px;border:2px solid #a3a3a3;border-radius:50%;background:#fff;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-radio-button .opal-radio-button__label:hover .opal-radio-button__control{border-color:#8a8a8a}.opal-radio-button .opal-radio-button__control:focus,.opal-radio-button .opal-radio-button__label:hover .opal-radio-button__control:focus{outline:none;border-color:#33a0ff}.opal-radio-button[checked] .opal-radio-button__control::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:10px;height:10px;border-radius:50%;background:#000;content:''}.opal-radio-button[disabled]{opacity:.5;pointer-events:none}.opal-radio-button[disabled] .opal-radio-button__control{background:#e6e6e6}";
             head.appendChild(style);
             return style;
         }
@@ -5887,7 +5974,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-sign-button{position:relative;display:inline-block;line-height:0}.opal-sign-button .opal-sign-button__control{padding:0;border:0;background:0 0;color:inherit;white-space:nowrap;font:inherit;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-sign-button .opal-sign-button__sign{position:relative;top:-1px;display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;margin:3px;width:28px;height:28px;border:2px solid;border-radius:50%;vertical-align:middle;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-sign-button .opal-sign-button__sign::before,.opal-sign-button .opal-sign-button__sign::after{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-sign-button .opal-sign-button__sign::after{-webkit-transform:rotate(90deg);-ms-transform:rotate(90deg);transform:rotate(90deg)}.opal-sign-button[sign=plus] .opal-sign-button__sign{border-color:#107cda}.opal-sign-button[sign=plus] .opal-sign-button__sign::before,.opal-sign-button[sign=plus] .opal-sign-button__sign::after{background:#107cda;content:''}.opal-sign-button[sign=minus] .opal-sign-button__sign{border-color:#eb143f}.opal-sign-button[sign=minus] .opal-sign-button__sign::before{background:#eb143f;content:''}.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign,.opal-sign-button[sign=plus] .opal-sign-button__control:active .opal-sign-button__sign{border-color:#33a0ff}.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::before,.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::after,.opal-sign-button[sign=plus] .opal-sign-button__control:active .opal-sign-button__sign::before,.opal-sign-button[sign=plus] .opal-sign-button__control:active .opal-sign-button__sign::after{background:#33a0ff}.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign,.opal-sign-button[sign=minus] .opal-sign-button__control:active .opal-sign-button__sign{border-color:#fd496d}.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::before,.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::after,.opal-sign-button[sign=minus] .opal-sign-button__control:active .opal-sign-button__sign::before,.opal-sign-button[sign=minus] .opal-sign-button__control:active .opal-sign-button__sign::after{background:#fd496d}.opal-sign-button .opal-sign-button__control:focus{outline:none}body:not(._no-focus-highlight) .opal-sign-button .opal-sign-button__control:focus::after{position:absolute;top:-1px;right:0;bottom:1px;left:0;border:1px solid #33a0ff;border-radius:3px;content:'';pointer-events:none}.opal-sign-button .opal-sign-button__control:active .opal-sign-button__sign,.opal-sign-button[checked] .opal-sign-button__control .opal-sign-button__sign{top:0}.opal-sign-button[disabled]{opacity:.5;pointer-events:none}.opal-sign-button[disabled] .opal-sign-button__control{cursor:default}";
+            style.textContent = ".opal-router{display:block}";
             head.appendChild(style);
             return style;
         }
@@ -5904,7 +5991,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-slider{position:relative;top:-1px;display:inline-block;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-slider::before{position:absolute;top:3px;right:3px;left:3px;z-index:0;height:14px;border-radius:7px;background:#d6d6d6;content:''}.opal-slider .opal-slider__first-input-wrapper3{position:absolute;top:0;right:10px;left:10px;z-index:2}.opal-slider .opal-slider__first-input-wrapper2{position:relative}.opal-slider .opal-slider__first-input-wrapper{position:absolute;top:0;right:0;left:-10px;overflow:hidden}.opal-slider .opal-slider__first-input,.opal-slider .opal-slider__second-input{display:block;margin:0;padding:0;width:200px;height:20px;background:0 0;-webkit-appearance:none}.opal-slider .opal-slider__second-input{position:relative;z-index:1}.opal-slider .opal-slider__first-input::-moz-focus-outer{border:none}.opal-slider .opal-slider__first-input::-moz-range-track{border:none;background:0 0}.opal-slider .opal-slider__first-input::-ms-track{border-width:6px 0;border-color:transparent;background:0 0;color:transparent}.opal-slider .opal-slider__first-input::-ms-fill-lower{background:0 0}.opal-slider .opal-slider__first-input::-webkit-slider-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#546778;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear;-webkit-appearance:none}.opal-slider .opal-slider__first-input::-moz-range-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#546778;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-slider .opal-slider__first-input::-ms-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#546778;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-slider .opal-slider__second-input::-moz-focus-outer{border:none}.opal-slider .opal-slider__second-input::-moz-range-track{border:none;background:0 0}.opal-slider .opal-slider__second-input::-ms-track{border-width:6px 0;border-color:transparent;background:0 0;color:transparent}.opal-slider .opal-slider__second-input::-ms-fill-lower{background:0 0}.opal-slider .opal-slider__second-input::-webkit-slider-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#1b91f8;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear;-webkit-appearance:none}.opal-slider .opal-slider__second-input::-moz-range-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#1b91f8;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-slider .opal-slider__second-input::-ms-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#1b91f8;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-slider .opal-slider__input{position:relative;z-index:1;display:block;margin:0;padding:0;width:200px;height:20px;background:0 0;-webkit-appearance:none}.opal-slider .opal-slider__input::-moz-focus-outer{border:none}.opal-slider .opal-slider__input::-moz-range-track{border:none;background:0 0}.opal-slider .opal-slider__input::-ms-track{border-width:6px 0;border-color:transparent;background:0 0;color:transparent}.opal-slider .opal-slider__input::-ms-fill-lower{background:0 0}.opal-slider .opal-slider__input::-webkit-slider-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#546778;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear;-webkit-appearance:none}.opal-slider .opal-slider__input::-moz-range-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#546778;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-slider .opal-slider__input::-ms-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#546778;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-slider .opal-slider__first-input:hover::-webkit-slider-thumb{background:#597791}.opal-slider .opal-slider__first-input:hover::-moz-range-thumb{background:#597791}.opal-slider .opal-slider__first-input:hover::-ms-thumb{background:#597791}.opal-slider .opal-slider__second-input:hover::-webkit-slider-thumb{background:#33a0ff}.opal-slider .opal-slider__second-input:hover::-moz-range-thumb{background:#33a0ff}.opal-slider .opal-slider__second-input:hover::-ms-thumb{background:#33a0ff}.opal-slider .opal-slider__input:hover::-webkit-slider-thumb{background:#597791}.opal-slider .opal-slider__input:hover::-moz-range-thumb{background:#597791}.opal-slider .opal-slider__input:hover::-ms-thumb{background:#597791}.opal-slider .opal-slider__first-input:focus,.opal-slider .opal-slider__second-input:focus,.opal-slider .opal-slider__input:focus{outline:none}body:not(._no-focus-highlight) .opal-slider .opal-slider__first-input:focus::-webkit-slider-thumb{-webkit-box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8);box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__second-input:focus::-webkit-slider-thumb{-webkit-box-shadow:inset 0 0 0 2px #1b91f8 ,inset 0 0 0 3px rgba(255,255,255,.8);box-shadow:inset 0 0 0 2px #1b91f8 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__input:focus::-webkit-slider-thumb{-webkit-box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8);box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__first-input:focus::-moz-range-thumb{box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__second-input:focus::-moz-range-thumb{box-shadow:inset 0 0 0 2px #1b91f8 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__input:focus::-moz-range-thumb{box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__first-input:focus::-ms-thumb{box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__second-input:focus::-ms-thumb{box-shadow:inset 0 0 0 2px #1b91f8 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__input:focus::-ms-thumb{box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__first-input:hover:focus::-webkit-slider-thumb{-webkit-box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8);box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__second-input:hover:focus::-webkit-slider-thumb{-webkit-box-shadow:inset 0 0 0 2px #33a0ff ,inset 0 0 0 3px rgba(255,255,255,.8);box-shadow:inset 0 0 0 2px #33a0ff ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__input:hover:focus::-webkit-slider-thumb{-webkit-box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8);box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__first-input:hover:focus::-moz-range-thumb{box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__second-input:hover:focus::-moz-range-thumb{box-shadow:inset 0 0 0 2px #33a0ff ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__input:hover:focus::-moz-range-thumb{box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__first-input:hover:focus::-ms-thumb{box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__second-input:hover:focus::-ms-thumb{box-shadow:inset 0 0 0 2px #33a0ff ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__input:hover:focus::-ms-thumb{box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8)}";
+            style.textContent = ".opal-select{position:relative;display:inline-block;vertical-align:middle}.opal-select .opal-select__button{display:block;min-width:100%}.opal-select .opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:14px;height:14px;vertical-align:middle;-webkit-transition:-webkit-transform .1s linear;transition:-webkit-transform .1s linear;-o-transition:transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;fill:currentColor}.opal-select .opal-select__button[size=s] .opal-select__icon-chevron-down{width:12px;height:12px}.opal-select .opal-select__button[checked] .opal-select__icon-chevron-down{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-select__new-item-input{display:block;margin:6px 10px 4px;width:auto}.opal-select .opal-popover{padding:6px 0;min-width:100px}.opal-select .opal-filtered-list .opal-filtered-list__query-input{margin:4px 10px 6px}.opal-select .opal-loaded-list{height:304px}";
             head.appendChild(style);
             return style;
         }
@@ -5921,7 +6008,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-switch-menu{position:relative;display:inline-block;vertical-align:middle;white-space:nowrap;font-size:0}";
+            style.textContent = ".opal-select-option{display:block}.opal-select-option .opal-select-option__control{position:relative;padding:7px 38px 7px 22px;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-select-option .opal-select-option__content{position:relative;display:block;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.opal-select-option .opal-select-option__icon-check{position:absolute;top:0;right:14px;bottom:0;display:none;margin:auto;width:16px;height:16px;color:#333}.opal-select-option .opal-select-option__control:hover{background:#e6e6e6}.opal-select-option .opal-select-option__control:focus{outline:none}.opal-select-option .opal-select-option__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;-webkit-box-shadow:inset 0 0 0 1px #33a0ff;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-select-option .opal-select-option__control:active{background:#ccc}.opal-select-option[selected] .opal-select-option__control{color:#0d87f2}.opal-select-option[selected] .opal-select-option__icon-check{display:block}.opal-select-option[disabled]{opacity:.5;pointer-events:none}.opal-select-option[disabled] .opal-select-option__control{cursor:default}";
             head.appendChild(style);
             return style;
         }
@@ -5938,7 +6025,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-switch{position:relative;display:inline-block}.opal-switch .opal-switch__input{display:none}.opal-switch .opal-switch__control{position:relative;top:-1px;display:inline-block;margin:3px;width:30px;height:14px;border-radius:7px;background:#d6d6d6;vertical-align:middle;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-switch .opal-switch__thumb{position:absolute;top:-3px;left:-3px;width:20px;height:20px;border-radius:50%;background:#546778;-webkit-transition:background .1s linear,-webkit-transform .1s linear;transition:background .1s linear,-webkit-transform .1s linear;-o-transition:background .1s linear,transform .1s linear;transition:background .1s linear,transform .1s linear;transition:background .1s linear,transform .1s linear,-webkit-transform .1s linear}.opal-switch .opal-switch__label:hover .opal-switch__thumb{background:#597791}.opal-switch .opal-switch__control:focus{outline:none}body:not(._no-focus-highlight) .opal-switch .opal-switch__control:focus .opal-switch__thumb::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:50%;content:''}.opal-switch[checked] .opal-switch__thumb{background:#1b91f8;-webkit-transform:translateX(16px);-ms-transform:translateX(16px);transform:translateX(16px)}.opal-switch[checked] .opal-switch__label:hover .opal-switch__thumb{background:#33a0ff}.opal-switch[disabled]{opacity:.5;pointer-events:none}";
+            style.textContent = ".opal-sign-button{position:relative;display:inline-block;line-height:0}.opal-sign-button .opal-sign-button__control{padding:0;border:0;background:0 0;color:inherit;white-space:nowrap;font:inherit;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-sign-button .opal-sign-button__sign{position:relative;top:-1px;display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;margin:3px;width:28px;height:28px;border:2px solid;border-radius:50%;vertical-align:middle;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-sign-button .opal-sign-button__sign::before,.opal-sign-button .opal-sign-button__sign::after{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-sign-button .opal-sign-button__sign::after{-webkit-transform:rotate(90deg);-ms-transform:rotate(90deg);transform:rotate(90deg)}.opal-sign-button[sign=plus] .opal-sign-button__sign{border-color:#107cda}.opal-sign-button[sign=plus] .opal-sign-button__sign::before,.opal-sign-button[sign=plus] .opal-sign-button__sign::after{background:#107cda;content:''}.opal-sign-button[sign=minus] .opal-sign-button__sign{border-color:#eb143f}.opal-sign-button[sign=minus] .opal-sign-button__sign::before{background:#eb143f;content:''}.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign,.opal-sign-button[sign=plus] .opal-sign-button__control:active .opal-sign-button__sign{border-color:#33a0ff}.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::before,.opal-sign-button[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::after,.opal-sign-button[sign=plus] .opal-sign-button__control:active .opal-sign-button__sign::before,.opal-sign-button[sign=plus] .opal-sign-button__control:active .opal-sign-button__sign::after{background:#33a0ff}.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign,.opal-sign-button[sign=minus] .opal-sign-button__control:active .opal-sign-button__sign{border-color:#fd496d}.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::before,.opal-sign-button[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::after,.opal-sign-button[sign=minus] .opal-sign-button__control:active .opal-sign-button__sign::before,.opal-sign-button[sign=minus] .opal-sign-button__control:active .opal-sign-button__sign::after{background:#fd496d}.opal-sign-button .opal-sign-button__control:focus{outline:none}body:not(._no-focus-highlight) .opal-sign-button .opal-sign-button__control:focus::after{position:absolute;top:-1px;right:0;bottom:1px;left:0;border:1px solid #33a0ff;border-radius:3px;content:'';pointer-events:none}.opal-sign-button .opal-sign-button__control:active .opal-sign-button__sign,.opal-sign-button[checked] .opal-sign-button__control .opal-sign-button__sign{top:0}.opal-sign-button[disabled]{opacity:.5;pointer-events:none}.opal-sign-button[disabled] .opal-sign-button__control{cursor:default}";
             head.appendChild(style);
             return style;
         }
@@ -5955,7 +6042,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-tabs{display:block}";
+            style.textContent = ".opal-slider{position:relative;top:-1px;display:inline-block;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-slider::before{position:absolute;top:3px;right:3px;left:3px;z-index:0;height:14px;border-radius:7px;background:#d6d6d6;content:''}.opal-slider .opal-slider__first-input-wrapper3{position:absolute;top:0;right:10px;left:10px;z-index:2}.opal-slider .opal-slider__first-input-wrapper2{position:relative}.opal-slider .opal-slider__first-input-wrapper{position:absolute;top:0;right:0;left:-10px;overflow:hidden}.opal-slider .opal-slider__first-input,.opal-slider .opal-slider__second-input{display:block;margin:0;padding:0;width:200px;height:20px;background:0 0;-webkit-appearance:none}.opal-slider .opal-slider__second-input{position:relative;z-index:1}.opal-slider .opal-slider__first-input::-moz-focus-outer{border:none}.opal-slider .opal-slider__first-input::-moz-range-track{border:none;background:0 0}.opal-slider .opal-slider__first-input::-ms-track{border-width:6px 0;border-color:transparent;background:0 0;color:transparent}.opal-slider .opal-slider__first-input::-ms-fill-lower{background:0 0}.opal-slider .opal-slider__first-input::-webkit-slider-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#546778;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear;-webkit-appearance:none}.opal-slider .opal-slider__first-input::-moz-range-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#546778;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-slider .opal-slider__first-input::-ms-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#546778;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-slider .opal-slider__second-input::-moz-focus-outer{border:none}.opal-slider .opal-slider__second-input::-moz-range-track{border:none;background:0 0}.opal-slider .opal-slider__second-input::-ms-track{border-width:6px 0;border-color:transparent;background:0 0;color:transparent}.opal-slider .opal-slider__second-input::-ms-fill-lower{background:0 0}.opal-slider .opal-slider__second-input::-webkit-slider-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#1b91f8;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear;-webkit-appearance:none}.opal-slider .opal-slider__second-input::-moz-range-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#1b91f8;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-slider .opal-slider__second-input::-ms-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#1b91f8;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-slider .opal-slider__input{position:relative;z-index:1;display:block;margin:0;padding:0;width:200px;height:20px;background:0 0;-webkit-appearance:none}.opal-slider .opal-slider__input::-moz-focus-outer{border:none}.opal-slider .opal-slider__input::-moz-range-track{border:none;background:0 0}.opal-slider .opal-slider__input::-ms-track{border-width:6px 0;border-color:transparent;background:0 0;color:transparent}.opal-slider .opal-slider__input::-ms-fill-lower{background:0 0}.opal-slider .opal-slider__input::-webkit-slider-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#546778;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear;-webkit-appearance:none}.opal-slider .opal-slider__input::-moz-range-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#546778;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-slider .opal-slider__input::-ms-thumb{position:relative;width:20px;height:20px;border:0;border-radius:50%;background:#546778;cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-slider .opal-slider__first-input:hover::-webkit-slider-thumb{background:#597791}.opal-slider .opal-slider__first-input:hover::-moz-range-thumb{background:#597791}.opal-slider .opal-slider__first-input:hover::-ms-thumb{background:#597791}.opal-slider .opal-slider__second-input:hover::-webkit-slider-thumb{background:#33a0ff}.opal-slider .opal-slider__second-input:hover::-moz-range-thumb{background:#33a0ff}.opal-slider .opal-slider__second-input:hover::-ms-thumb{background:#33a0ff}.opal-slider .opal-slider__input:hover::-webkit-slider-thumb{background:#597791}.opal-slider .opal-slider__input:hover::-moz-range-thumb{background:#597791}.opal-slider .opal-slider__input:hover::-ms-thumb{background:#597791}.opal-slider .opal-slider__first-input:focus,.opal-slider .opal-slider__second-input:focus,.opal-slider .opal-slider__input:focus{outline:none}body:not(._no-focus-highlight) .opal-slider .opal-slider__first-input:focus::-webkit-slider-thumb{-webkit-box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8);box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__second-input:focus::-webkit-slider-thumb{-webkit-box-shadow:inset 0 0 0 2px #1b91f8 ,inset 0 0 0 3px rgba(255,255,255,.8);box-shadow:inset 0 0 0 2px #1b91f8 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__input:focus::-webkit-slider-thumb{-webkit-box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8);box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__first-input:focus::-moz-range-thumb{box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__second-input:focus::-moz-range-thumb{box-shadow:inset 0 0 0 2px #1b91f8 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__input:focus::-moz-range-thumb{box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__first-input:focus::-ms-thumb{box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__second-input:focus::-ms-thumb{box-shadow:inset 0 0 0 2px #1b91f8 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__input:focus::-ms-thumb{box-shadow:inset 0 0 0 2px #546778 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__first-input:hover:focus::-webkit-slider-thumb{-webkit-box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8);box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__second-input:hover:focus::-webkit-slider-thumb{-webkit-box-shadow:inset 0 0 0 2px #33a0ff ,inset 0 0 0 3px rgba(255,255,255,.8);box-shadow:inset 0 0 0 2px #33a0ff ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__input:hover:focus::-webkit-slider-thumb{-webkit-box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8);box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__first-input:hover:focus::-moz-range-thumb{box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__second-input:hover:focus::-moz-range-thumb{box-shadow:inset 0 0 0 2px #33a0ff ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__input:hover:focus::-moz-range-thumb{box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__first-input:hover:focus::-ms-thumb{box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__second-input:hover:focus::-ms-thumb{box-shadow:inset 0 0 0 2px #33a0ff ,inset 0 0 0 3px rgba(255,255,255,.8)}body:not(._no-focus-highlight) .opal-slider .opal-slider__input:hover:focus::-ms-thumb{box-shadow:inset 0 0 0 2px #597791 ,inset 0 0 0 3px rgba(255,255,255,.8)}";
             head.appendChild(style);
             return style;
         }
@@ -5972,7 +6059,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-tab-list{display:block;padding:0 30px;border-bottom:1px solid #dbdbdb;white-space:nowrap;font-size:0}";
+            style.textContent = ".opal-switch-menu{position:relative;display:inline-block;vertical-align:middle;white-space:nowrap;font-size:0}";
             head.appendChild(style);
             return style;
         }
@@ -5989,7 +6076,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-tab{display:inline-block}.opal-tab .opal-tab__control{position:relative;display:block;padding:5px 22px;border:0;border-top-left-radius:3px;border-top-right-radius:3px;background:#fff;color:#000;text-align:center;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-tab .opal-tab__content{position:relative;display:block}.opal-tab .opal-tab__control:hover{background:#e6e6e6}.opal-tab .opal-tab__control:focus{outline:none}body:not(._no-focus-highlight) .opal-tab .opal-tab__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;-webkit-box-shadow:inset 0 0 0 1px #33a0ff;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-tab .opal-tab__control:active{background:#ccc}.opal-tab[selected] .opal-tab__control{-webkit-box-shadow:0 3px #1b91f8;box-shadow:0 3px #1b91f8}.opal-tab[disabled]{opacity:.5;pointer-events:none}.opal-tab[disabled] .opal-tab__control{cursor:default}";
+            style.textContent = ".opal-switch{position:relative;display:inline-block}.opal-switch .opal-switch__input{display:none}.opal-switch .opal-switch__control{position:relative;top:-1px;display:inline-block;margin:3px;width:30px;height:14px;border-radius:7px;background:#d6d6d6;vertical-align:middle;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-switch .opal-switch__thumb{position:absolute;top:-3px;left:-3px;width:20px;height:20px;border-radius:50%;background:#546778;-webkit-transition:background .1s linear,-webkit-transform .1s linear;transition:background .1s linear,-webkit-transform .1s linear;-o-transition:background .1s linear,transform .1s linear;transition:background .1s linear,transform .1s linear;transition:background .1s linear,transform .1s linear,-webkit-transform .1s linear}.opal-switch .opal-switch__label:hover .opal-switch__thumb{background:#597791}.opal-switch .opal-switch__control:focus{outline:none}body:not(._no-focus-highlight) .opal-switch .opal-switch__control:focus .opal-switch__thumb::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:50%;content:''}.opal-switch[checked] .opal-switch__thumb{background:#1b91f8;-webkit-transform:translateX(16px);-ms-transform:translateX(16px);transform:translateX(16px)}.opal-switch[checked] .opal-switch__label:hover .opal-switch__thumb{background:#33a0ff}.opal-switch[disabled]{opacity:.5;pointer-events:none}";
             head.appendChild(style);
             return style;
         }
@@ -6006,7 +6093,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-tab-panel{position:relative;display:none;padding:30px}.opal-tab-panel[shown]{display:block}";
+            style.textContent = ".opal-tabs{display:block}";
             head.appendChild(style);
             return style;
         }
@@ -6023,7 +6110,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-tag-select{display:inline-block}.opal-tag-select .opal-tag-select__tag{position:relative;top:-1px;display:inline-block;margin:2px 35px 2px 0;padding:0 10px 0 16px;border-top-left-radius:16px;border-bottom-left-radius:16px;background:#5b7d9a;color:#fff;vertical-align:middle;text-decoration:none;text-shadow:none;font:16px/32px Verdana,Geneva,sans-serif;font-weight:400}.opal-tag-select .opal-tag-select__btn-remove-tag{position:absolute;top:0;bottom:0;left:100%;display:block;padding:0;width:32px;border:0;border-top-right-radius:16px;border-bottom-right-radius:16px;background:#516270;-webkit-box-shadow:inset 1px 0 rgba(0,0,0,.4);box-shadow:inset 1px 0 rgba(0,0,0,.4);cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-tag-select .opal-tag-select__btn-remove-tag::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;background:#fff;content:''}.opal-tag-select .opal-tag-select__btn-remove-tag:hover{background:#5b7d9a}.opal-tag-select .opal-tag-select__btn-remove-tag:focus{outline:none}body:not(._no-focus-highlight) .opal-tag-select .opal-tag-select__btn-remove-tag:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:inherit;content:'';pointer-events:none}.opal-tag-select .opal-tag-select__btn-remove-tag:active{background:#43484c}.opal-tag-select .opal-tag-select__tag[disabled]{margin-right:3px;padding-right:16px;border-top-right-radius:16px;border-bottom-right-radius:16px}.opal-tag-select .opal-tag-select__tag[disabled] .opal-tag-select__btn-remove-tag{display:none}.opal-tag-select .opal-tag-select__control{display:inline-block;white-space:nowrap;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-tag-select[view-type=primary] .opal-tag-select__tag{background:#0083f5}.opal-tag-select[view-type=primary] .opal-tag-select__btn-remove-tag{background:#0a67b8}.opal-tag-select[view-type=primary] .opal-tag-select__btn-remove-tag:hover{background:#0083f5}.opal-tag-select[view-type=primary] .opal-tag-select__btn-remove-tag:active{background:#0e4b81}.opal-tag-select[view-type=danger] .opal-tag-select__tag{background:#fa0f3e}.opal-tag-select[view-type=danger] .opal-tag-select__btn-remove-tag{background:#c70f34}.opal-tag-select[view-type=danger] .opal-tag-select__btn-remove-tag:hover{background:#fa0f3e}.opal-tag-select[view-type=danger] .opal-tag-select__btn-remove-tag:active{background:#90142c}";
+            style.textContent = ".opal-tab-list{display:block;padding:0 30px;border-bottom:1px solid #dbdbdb;white-space:nowrap;font-size:0}";
             head.appendChild(style);
             return style;
         }
@@ -6040,7 +6127,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-text-input{position:relative;display:inline-block;width:400px;vertical-align:middle}.opal-text-input .opal-text-input__text-field{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:6px 11px;width:100%;border:1px solid #adadad;border-top-color:#a8a8a8;border-bottom-color:#c7c7c7;border-radius:3px;background:#fff;-webkit-box-shadow:inset 0 1px rgba(0,0,0,.1);box-shadow:inset 0 1px rgba(0,0,0,.1);color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;-webkit-transition:border-color .1s linear;-o-transition:border-color .1s linear;transition:border-color .1s linear;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-text-input .opal-text-input__btn-clear{position:absolute;top:0;right:10px;bottom:0;display:none;margin:auto;padding:0;width:23px;height:23px;border:0;border-radius:3px;background:0 0;opacity:.5;cursor:pointer;-webkit-transition:opacity .1s linear;-o-transition:opacity .1s linear;transition:opacity .1s linear}.opal-text-input .opal-text-input__btn-clear::before,.opal-text-input .opal-text-input__btn-clear::after{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:18px;height:1px;background:#000;content:'';-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.opal-text-input .opal-text-input__btn-clear::after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.opal-text-input .opal-text-input__btn-clear[shown]{display:block}.opal-text-input .opal-text-input__btn-clear:hover{background:#e6e6e6;opacity:1}.opal-text-input .opal-text-input__btn-clear:focus{outline:none}body:not(._no-focus-highlight) .opal-text-input .opal-text-input__btn-clear:focus{border-color:#33a0ff;opacity:1}.opal-text-input .opal-text-input__btn-clear:active{background:#ccc}.opal-text-input .opal-text-input__loader,.opal-text-input .opal-text-input__loader[size=s]{position:absolute;top:0;right:12px;bottom:0;margin:auto;pointer-events:none}.opal-text-input:hover .opal-text-input__text-field{border-color:#949494;border-top-color:#8f8f8f;border-bottom-color:#adadad}.opal-text-input .opal-text-input__text-field:focus{outline:none;border-color:#33a0ff}.opal-text-input[multiline]:not([auto-height=no]) .opal-text-input__text-field{overflow-y:hidden}.opal-text-input[valid] .opal-text-input__text-field{border-color:#0ab80a}.opal-text-input[valid=no] .opal-text-input__text-field{border-color:#f50000}.opal-text-input[disabled]{opacity:.5;pointer-events:none}.opal-text-input[disabled] .opal-text-input__text-field{background:#e6e6e6}.opal-group .opal-group__content>.opal-text-input:not(:first-child),.opal-group .opal-group__content>:not(:first-child) .opal-text-input{margin-right:-1px}.opal-group__content .opal-text-input:not(:first-child) .opal-text-input__text-field,.opal-group__content :not(:first-child) .opal-text-input .opal-text-input__text-field{border-top-left-radius:0;border-bottom-left-radius:0}.opal-group__content .opal-text-input:not(:last-child) .opal-text-input__text-field,.opal-group__content :not(:last-child) .opal-text-input .opal-text-input__text-field{border-top-right-radius:0;border-bottom-right-radius:0}";
+            style.textContent = ".opal-tab{display:inline-block}.opal-tab .opal-tab__control{position:relative;display:block;padding:5px 22px;border:0;border-top-left-radius:3px;border-top-right-radius:3px;background:#fff;color:#000;text-align:center;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-tab .opal-tab__content{position:relative;display:block}.opal-tab .opal-tab__control:hover{background:#e6e6e6}.opal-tab .opal-tab__control:focus{outline:none}body:not(._no-focus-highlight) .opal-tab .opal-tab__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;-webkit-box-shadow:inset 0 0 0 1px #33a0ff;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-tab .opal-tab__control:active{background:#ccc}.opal-tab[selected] .opal-tab__control{-webkit-box-shadow:0 3px #1b91f8;box-shadow:0 3px #1b91f8}.opal-tab[disabled]{opacity:.5;pointer-events:none}.opal-tab[disabled] .opal-tab__control{cursor:default}";
             head.appendChild(style);
             return style;
         }
@@ -6052,19 +6139,76 @@ module.exports = (function(d) {
 /* 103 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 28\" id=\"opal-components__icon-arrow-left\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M14 2L2 14l12 12M2 14h28\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".opal-tab-panel{position:relative;display:none;padding:30px}.opal-tab-panel[shown]{display:block}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
 
 /***/ }),
 /* 104 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 30 22\" id=\"opal-components__icon-check\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 12l8 8L28 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".opal-tag-select{display:inline-block}.opal-tag-select .opal-tag-select__tag{position:relative;top:-1px;display:inline-block;margin:2px 35px 2px 0;padding:0 10px 0 16px;border-top-left-radius:16px;border-bottom-left-radius:16px;background:#5b7d9a;color:#fff;vertical-align:middle;text-decoration:none;text-shadow:none;font:16px/32px Verdana,Geneva,sans-serif;font-weight:400}.opal-tag-select .opal-tag-select__btn-remove-tag{position:absolute;top:0;bottom:0;left:100%;display:block;padding:0;width:32px;border:0;border-top-right-radius:16px;border-bottom-right-radius:16px;background:#516270;-webkit-box-shadow:inset 1px 0 rgba(0,0,0,.4);box-shadow:inset 1px 0 rgba(0,0,0,.4);cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.opal-tag-select .opal-tag-select__btn-remove-tag::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;background:#fff;content:''}.opal-tag-select .opal-tag-select__btn-remove-tag:hover{background:#5b7d9a}.opal-tag-select .opal-tag-select__btn-remove-tag:focus{outline:none}body:not(._no-focus-highlight) .opal-tag-select .opal-tag-select__btn-remove-tag:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:inherit;content:'';pointer-events:none}.opal-tag-select .opal-tag-select__btn-remove-tag:active{background:#43484c}.opal-tag-select .opal-tag-select__tag[disabled]{margin-right:3px;padding-right:16px;border-top-right-radius:16px;border-bottom-right-radius:16px}.opal-tag-select .opal-tag-select__tag[disabled] .opal-tag-select__btn-remove-tag{display:none}.opal-tag-select .opal-tag-select__control{display:inline-block;white-space:nowrap;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.opal-tag-select[view-type=primary] .opal-tag-select__tag{background:#0083f5}.opal-tag-select[view-type=primary] .opal-tag-select__btn-remove-tag{background:#0a67b8}.opal-tag-select[view-type=primary] .opal-tag-select__btn-remove-tag:hover{background:#0083f5}.opal-tag-select[view-type=primary] .opal-tag-select__btn-remove-tag:active{background:#0e4b81}.opal-tag-select[view-type=danger] .opal-tag-select__tag{background:#fa0f3e}.opal-tag-select[view-type=danger] .opal-tag-select__btn-remove-tag{background:#c70f34}.opal-tag-select[view-type=danger] .opal-tag-select__btn-remove-tag:hover{background:#fa0f3e}.opal-tag-select[view-type=danger] .opal-tag-select__btn-remove-tag:active{background:#90142c}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
 
 /***/ }),
 /* 105 */
 /***/ (function(module, exports) {
 
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".opal-text-input{position:relative;display:inline-block;width:400px;vertical-align:middle}.opal-text-input .opal-text-input__text-field{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:6px 11px;width:100%;border:1px solid #adadad;border-top-color:#a8a8a8;border-bottom-color:#c7c7c7;border-radius:3px;background:#fff;-webkit-box-shadow:inset 0 1px rgba(0,0,0,.1);box-shadow:inset 0 1px rgba(0,0,0,.1);color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;-webkit-transition:border-color .1s linear;-o-transition:border-color .1s linear;transition:border-color .1s linear;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-text-input .opal-text-input__btn-clear{position:absolute;top:0;right:10px;bottom:0;display:none;margin:auto;padding:0;width:23px;height:23px;border:0;border-radius:3px;background:0 0;opacity:.5;cursor:pointer;-webkit-transition:opacity .1s linear;-o-transition:opacity .1s linear;transition:opacity .1s linear}.opal-text-input .opal-text-input__btn-clear::before,.opal-text-input .opal-text-input__btn-clear::after{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:18px;height:1px;background:#000;content:'';-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.opal-text-input .opal-text-input__btn-clear::after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.opal-text-input .opal-text-input__btn-clear[shown]{display:block}.opal-text-input .opal-text-input__btn-clear:hover{background:#e6e6e6;opacity:1}.opal-text-input .opal-text-input__btn-clear:focus{outline:none}body:not(._no-focus-highlight) .opal-text-input .opal-text-input__btn-clear:focus{border-color:#33a0ff;opacity:1}.opal-text-input .opal-text-input__btn-clear:active{background:#ccc}.opal-text-input .opal-text-input__loader,.opal-text-input .opal-text-input__loader[size=s]{position:absolute;top:0;right:12px;bottom:0;margin:auto;pointer-events:none}.opal-text-input:hover .opal-text-input__text-field{border-color:#949494;border-top-color:#8f8f8f;border-bottom-color:#adadad}.opal-text-input .opal-text-input__text-field:focus{outline:none;border-color:#33a0ff}.opal-text-input[multiline]:not([auto-height=no]) .opal-text-input__text-field{overflow-y:hidden}.opal-text-input[valid] .opal-text-input__text-field{border-color:#0ab80a}.opal-text-input[valid=no] .opal-text-input__text-field{border-color:#f50000}.opal-text-input[disabled]{opacity:.5;pointer-events:none}.opal-text-input[disabled] .opal-text-input__text-field{background:#e6e6e6}.opal-group .opal-group__content>.opal-text-input:not(:first-child),.opal-group .opal-group__content>:not(:first-child) .opal-text-input{margin-right:-1px}.opal-group__content .opal-text-input:not(:first-child) .opal-text-input__text-field,.opal-group__content :not(:first-child) .opal-text-input .opal-text-input__text-field{border-top-left-radius:0;border-bottom-left-radius:0}.opal-group__content .opal-text-input:not(:last-child) .opal-text-input__text-field,.opal-group__content :not(:last-child) .opal-text-input .opal-text-input__text-field{border-top-right-radius:0;border-bottom-right-radius:0}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports) {
+
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 28\" id=\"opal-components__icon-arrow-left\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M14 2L2 14l12 12M2 14h28\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports) {
+
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 24\" id=\"opal-components__icon-check\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 14l8 8L30 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports) {
+
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 18\" id=\"opal-components__icon-chevron-down\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 2l14 14L30 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports) {
+
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 28 28\" id=\"opal-components__icon-cross\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 2l24 24m0-24L2 26\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ })
 /******/ ]);

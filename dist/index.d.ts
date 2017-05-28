@@ -13,6 +13,7 @@ export { default as OpalDropdown } from './components/opal-dropdown';
 export { default as OpalPopover } from './components/opal-popover';
 export { default as OpalModal } from './components/opal-modal';
 export { TDataList as TOpalSelectDataList, TViewModel as TOpalSelectViewModel, default as OpalSelect, OpalSelectOption } from './components/opal-select';
+export { default as OpalMultiselect } from './components/opal-multiselect';
 export { default as OpalInputValidator, OpalInputValidatorRule } from './components/opal-input-validator';
 export { IDay as IOpalCalendarDay, TWeekDays as TOpalCalendarWeekDays, TDays as TOpalCalendarDays, default as OpalCalendar } from './components/opal-calendar';
 export { default as OpalDateInput } from './components/opal-date-input';

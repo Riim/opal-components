@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 36);
+/******/ 	return __webpack_require__(__webpack_require__.s = 37);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -85,7 +85,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
 
-/***/ 30:
+/***/ 31:
 /***/ (function(module, exports) {
 
 
@@ -887,14 +887,14 @@ Prism.languages.js = Prism.languages.javascript;
 
 /***/ }),
 
-/***/ 31:
+/***/ 32:
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nopal-tabs {\nopal-tab { 'HTML' }\nopal-tab-panel {\npre/html-code-wrapper { code/html-code }\n}\nopal-tab { 'JS' }\nopal-tab-panel {\npre/js-code-wrapper { code/js-code }\n}\n}\nrt-content/example-html-container (select=.opal-code-listing__example-html)\nrt-content/example-js-container (select=.opal-code-listing__example-js)\n}"
 
 /***/ }),
 
-/***/ 32:
+/***/ 33:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -912,7 +912,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 33:
+/***/ 34:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -930,7 +930,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 36:
+/***/ 37:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -952,11 +952,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(32);
 __webpack_require__(33);
+__webpack_require__(34);
 var rionite_1 = __webpack_require__(0);
-var Prism = __webpack_require__(30);
-var template = __webpack_require__(31);
+var Prism = __webpack_require__(31);
+var template = __webpack_require__(32);
 function prepareCode(code, isHtml) {
     code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
     var tabs = code.match(/^\t*[^\t\r\n]/gm);

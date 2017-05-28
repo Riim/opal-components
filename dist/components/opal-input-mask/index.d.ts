@@ -14,7 +14,7 @@ export default class OpalInputMask extends Component {
     _firstTestIndex: number;
     _buffer: Array<string | null>;
     _textField: HTMLInputElement;
-    _textAtFocusing: string;
+    _textOnFocus: string;
     initialize(): void;
     ready(): void;
     elementAttached(): void;

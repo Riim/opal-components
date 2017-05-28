@@ -1,9 +1,10 @@
 .opal-loader {
 	position: relative;
 	display: none;
-	margin: 10px auto;
+	margin: auto;
 	width: 38px;
 	height: 38px;
+	border: 15px solid transparent;
 	background: rgba(255,255,255,.5);
 
 	&::before,
@@ -35,9 +36,9 @@
 	/* States */
 
 	&[size=s] {
-		margin: 6px auto;
 		width: 18px;
 		height: 18px;
+		border-width: 6px;
 	}
 		&[size=s]::before {
 			border-width: 2px;

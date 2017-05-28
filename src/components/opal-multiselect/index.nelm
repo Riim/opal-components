@@ -1,0 +1,35 @@
+/menu (auto-height=no, auto-closing) {
+	div/menu-header {
+		opal-text-input/query-input (
+			class=opal-select__focus,
+			clearable,
+			placeholder={constructor.i18n.queryInputPlaceholder}
+		)
+	}
+
+	div/menu-selected {
+		@repeat (for=item of viewModel) {
+			div/selected-item {
+				'{item.text}'
+
+				div/btn-deselect-item (data-item-value={item.value}, rt-click=_onBtnDeselectItemClick) {
+					svg/btn-deselect-item-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }
+				}
+			}
+		}
+
+		div/nothing-selected (shown={nothingSelectedShown}) {
+			span/nothing-selected-message { '{constructor.i18n.nothingSelected}' }
+		}
+	}
+
+	div/menu-content {
+		opal-loaded-list/loaded-list (dataprovider-keypath=dataProvider) {
+			opal-select-option (value={$item.value}, text={$item.text})
+		}
+	}
+
+	div/menu-footer {
+		opal-button/btn-close { 'Закрыть' }
+	}
+}

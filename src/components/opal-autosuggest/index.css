@@ -39,7 +39,7 @@
 				background: hsl(0,0%,80%);
 			}
 
-		& .opal-autosuggest__not-found-message {
+		& .opal-autosuggest__nothing-found-message {
 			display: none;
 			padding: 10px;
 			text-align: center;
@@ -47,7 +47,7 @@
 			opacity: .6;
 		}
 
-		& .opal-autosuggest__not-found-message[shown] {
+		& .opal-autosuggest__nothing-found-message[shown] {
 			display: block;
 		}
 

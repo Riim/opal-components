@@ -1,0 +1,117 @@
+.opal-multiselect.opal-select {
+	& .opal-select__menu {
+		padding: 0;
+		width: 600px;
+	}
+		& .opal-select__menu-header {
+			box-sizing: border-box;
+			padding: 0 10px;
+			border-bottom: 1px solid hsl(0,0%,80%);
+			font-size: 0;
+			line-height: 60px;
+		}
+			& .opal-select__query-input {
+				width: 279px;
+			}
+
+		& .opal-select__menu-selected {
+			float: right;
+			overflow: auto;
+			box-sizing: border-box;
+			width: 299px;
+			height: 304px;
+			border-left: 1px solid hsl(0,0%,80%);
+		}
+			& .opal-select__selected-item {
+				position: relative;
+    			overflow: hidden;
+				padding: 7px 38px 7px 22px;
+				background: #fff;
+				color: #000;
+				text-align: left;
+    			text-overflow: ellipsis;
+				text-shadow: none;
+				white-space: nowrap;
+				font: 16px/24px Verdana, Geneva, sans-serif;
+				font-weight: normal;
+				user-select: none;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				-webkit-text-size-adjust: 100%;
+				-ms-text-size-adjust: 100%;
+				-webkit-tap-highlight-color: transparent;
+			}
+				& .opal-select__btn-deselect-item {
+					position: absolute;
+					top: 0;
+					right: 10px;
+					bottom: 0;
+					display: none;
+					box-sizing: border-box;
+					margin: auto;
+					padding: 4px;
+					width: 22px;
+					height: 22px;
+					cursor: pointer;
+				}
+					& .opal-select__btn-deselect-item-icon {
+						display: block;
+						margin: auto;
+						width: 14px;
+						height: 14px;
+						color: hsl(0,0%,20%);
+					}
+
+				& .opal-select__selected-item:hover .opal-select__btn-deselect-item {
+					display: block;
+				}
+
+				& .opal-select__btn-deselect-item:active {
+					top: 1px;
+					bottom: -1px;
+					opacity: 1;
+				}
+
+			& .opal-select__nothing-selected {
+				display: none;
+				box-sizing: border-box;
+				padding: 10px;
+				height: 100%;
+				text-align: center;
+				white-space: nowrap;
+			}
+				& .opal-select__nothing-selected::before {
+					display: inline-block;
+					width: 0;
+					height: 100%;
+					content: '';
+					vertical-align: middle;
+				}
+
+				& .opal-select__nothing-selected-message {
+					display: inline-block;
+					vertical-align: middle;
+					opacity: .6;
+				}
+
+			& .opal-select__nothing-selected[shown] {
+				display: block;
+			}
+
+		& .opal-select__menu-content {
+			width: 299px;
+			height: 304px;
+		}
+
+		& .opal-select__menu-footer {
+			box-sizing: border-box;
+			padding: 0 10px;
+			width: 100%;
+			border-top: 1px solid hsl(0,0%,80%);
+			text-align: right;
+			font-size: 0;
+			line-height: 60px;
+		}
+			& .opal-select__btn-close {
+			}
+}

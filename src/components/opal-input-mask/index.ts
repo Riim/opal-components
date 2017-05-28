@@ -44,7 +44,7 @@ export default class OpalInputMask extends Component {
 
 	_textField: HTMLInputElement;
 
-	_textAtFocusing: string;
+	_textOnFocus: string;
 
 	initialize() {
 		this._definitions = Object.create((this.constructor as typeof OpalInputMask).defaultDefinitions);
@@ -112,7 +112,7 @@ export default class OpalInputMask extends Component {
 		nextTick(() => {
 			if (document.activeElement == this._textField) {
 				this._setTextFieldSelection(0, this._checkValue(false));
-				this._textAtFocusing = this._textField.value;
+				this._textOnFocus = this._textField.value;
 				this._writeBuffer();
 			}
 		});
@@ -121,7 +121,7 @@ export default class OpalInputMask extends Component {
 	_onTextFieldBlur() {
 		this._checkValue(false);
 
-		if (this._textField.value != this._textAtFocusing) {
+		if (this._textField.value != this._textOnFocus) {
 			(this.$('text-input') as OpalTextInput).emit('change');
 		}
 	}
@@ -159,8 +159,8 @@ export default class OpalInputMask extends Component {
 		} else if (key == 27) { // Escape
 			evt.preventDefault();
 
-			if (textField.value != this._textAtFocusing) {
-				textField.value = this._textAtFocusing;
+			if (textField.value != this._textOnFocus) {
+				textField.value = this._textOnFocus;
 				this._setTextFieldSelection(0, this._checkValue(false));
 
 				let textInput = this.$('text-input') as OpalTextInput;

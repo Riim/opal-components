@@ -37,6 +37,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		viewModelKeypath: { type: String, readonly: true },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 		text: String,
+		maxTextLength: 20,
 		placeholder: getText.t('Не выбрано'),
 		tabIndex: 0,
 		focused: false,
@@ -260,22 +261,26 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				this._onсeFocusedAfterLoading = true;
 
 				nextTick(() => {
-					let filteredList = this.$('filtered-list') as OpalFilteredList | null;
+					this._focusOptions();
 
-					if (filteredList) {
-						let queryInput = filteredList.$('query-input') as Component | null;
+					let focusTarget = this.$('focus') as HTMLElement | OpalTextInput | null;
 
-						if (queryInput && document.activeElement == queryInput.$('text-field') as HTMLElement) {
-							this._focusOptions();
-
-							nextTick(() => {
-								(filteredList as OpalFilteredList).focus();
-							});
-						} else {
-							this._focusOptions();
-						}
+					if (focusTarget) {
+						nextTick(() => {
+							(focusTarget as HTMLElement).focus();
+						});
 					} else {
-						this._focusOptions();
+						let filteredList = this.$('filtered-list') as OpalFilteredList | null;
+
+						if (filteredList) {
+							focusTarget = filteredList.$('query-input') as OpalTextInput | null;
+						}
+
+						if (focusTarget) {
+							nextTick(() => {
+								(focusTarget as OpalTextInput).focus();
+							});
+						}
 					}
 				});
 			}
@@ -292,6 +297,9 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 export default class OpalSelect extends Component {
 	static OpalSelectOption = OpalSelectOption;
 
+	static defaultDataListItemSchema = defaultDataListItemSchema;
+	static defaultVMItemSchema = defaultVMItemSchema;
+
 	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;
@@ -307,7 +315,7 @@ export default class OpalSelect extends Component {
 
 	_opened: boolean = false;
 
-	_valueAtOpening: any;
+	_valueOnOpen: any;
 
 	_onсeFocusedAfterLoading: boolean = false;
 
@@ -362,8 +370,17 @@ export default class OpalSelect extends Component {
 			},
 
 			text(this: OpalSelect): string {
-				return this.viewModel.map(item => item[this._viewModelItemTextFieldName]).join(', ') ||
-					this.input.placeholder;
+				let text = this.viewModel.map(item => item[this._viewModelItemTextFieldName]).join(', ');
+
+				if (!text) {
+					return this.input.placeholder;
+				}
+
+				if (text.length > this.input.maxTextLength) {
+					text = getText.nt('Выбран{n:|о|о} {n}', this.viewModel.length);
+				}
+
+				return text;
 			}
 		});
 	}
@@ -451,7 +468,7 @@ export default class OpalSelect extends Component {
 
 		this._opened = true;
 
-		this._valueAtOpening = this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
+		this._valueOnOpen = this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
 
 		this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
 
@@ -470,12 +487,22 @@ export default class OpalSelect extends Component {
 			});
 		}
 
-		let filteredList = this.$('filtered-list') as OpalFilteredList;
+		let focusTarget = this.$('focus') as HTMLElement | OpalTextInput | null;
 
-		if (filteredList) {
-			filteredList.focus();
+		if (focusTarget) {
+			focusTarget.focus();
 		} else {
-			this._focusOptions();
+			let filteredList = this.$('filtered-list') as OpalFilteredList | null;
+
+			if (filteredList) {
+				focusTarget = filteredList.$('query-input') as OpalTextInput | null;
+			}
+
+			if (focusTarget) {
+				focusTarget.focus();
+			} else {
+				this._focusOptions();
+			}
 		}
 
 		return true;
@@ -501,7 +528,7 @@ export default class OpalSelect extends Component {
 		if (this.input.multiple) {
 			if (!isEqualArray(
 				this.viewModel.map(item => item[this._viewModelItemValueFieldName]),
-				this._valueAtOpening
+				this._valueOnOpen
 			)) {
 				this.emit('change');
 			}

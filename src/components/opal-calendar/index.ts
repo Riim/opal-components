@@ -117,7 +117,7 @@ export default class OpalCalendar extends Component {
 	_documentKeyDownListening: IDisposableListening | null | undefined;
 
 	initialize() {
-		let i18n = (this.constructor as typeof OpalCalendar).i18n;
+		let i18n = (this.constructor as typeof OpalCalendar).i18n as any;
 		let sundayFirst = i18n.sundayFirst;
 
 		this.weekDays = sundayFirst ? i18n.weekDays : i18n.weekDays.slice(1).concat(i18n.weekDays[0]);

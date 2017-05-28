@@ -18,6 +18,7 @@ export {
 	default as OpalSelect,
 	OpalSelectOption
 } from './components/opal-select';
+export { default as OpalMultiselect } from './components/opal-multiselect';
 export { default as OpalInputValidator, OpalInputValidatorRule } from './components/opal-input-validator';
 export {
 	IDay as IOpalCalendarDay,

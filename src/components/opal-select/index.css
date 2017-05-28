@@ -38,13 +38,6 @@
 					width: auto;
 				}
 
-			& .opal-select__btn-close-container {
-			}
-				& .opal-select__btn-close {
-					display: block;
-					margin: 6px 10px 4px;
-				}
-
 	/* Combinations */
 
 	& .opal-popover {
@@ -57,6 +50,6 @@
 	}
 
 	& .opal-loaded-list {
-		height: 300px;
+		height: 304px; /* 38 * 8 */
 	}
 }

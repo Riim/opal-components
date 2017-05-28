@@ -29,7 +29,7 @@ export interface IDataProvider {
 	},
 
 	i18n: {
-		notFound: getText.t('Ничего не найдено')
+		nothingFound: getText.t('Ничего не найдено')
 	},
 
 	template,
@@ -37,23 +37,23 @@ export interface IDataProvider {
 	events: {
 		':component': {
 			'input-query-change'() {
-				if (this._loadingCheckPlanned) {
+				if (this.loading) {
+					this._requestCallback.cancel();
+					this.loading = false;
+				}
+
+				this.list.clear();
+				this.total = undefined;
+
+				if (this._isLoadingCheckPlanned) {
 					this._loadingCheckTimeout.clear();
 				} else {
-					if (this.loading) {
-						this._requestCallback.cancel();
-						this.loading = false;
-					}
-
-					this.list.clear();
-					this.total = undefined;
-
-					this._loadingCheckPlanned = true;
+					this._isLoadingCheckPlanned = true;
 				}
 
 				this._loadingCheckTimeout = this.setTimeout(() => {
 					this._scrolling = false;
-					this._loadingCheckPlanned = false;
+					this._isLoadingCheckPlanned = false;
 					this.checkLoading();
 				}, 300);
 			}
@@ -66,15 +66,15 @@ export interface IDataProvider {
 				}
 				this._scrolling = true;
 
-				if (this._loadingCheckPlanned) {
+				if (this._isLoadingCheckPlanned) {
 					this._loadingCheckTimeout.clear();
 				} else {
-					this._loadingCheckPlanned = true;
+					this._isLoadingCheckPlanned = true;
 				}
 
 				this._loadingCheckTimeout = this.setTimeout(() => {
 					this._scrolling = false;
-					this._loadingCheckPlanned = false;
+					this._isLoadingCheckPlanned = false;
 					this.checkLoading();
 				}, 150);
 			}
@@ -88,7 +88,7 @@ export default class OpalLoadedList extends Component {
 	total: number | undefined;
 
 	_scrolling: boolean = false;
-	_loadingCheckPlanned: boolean;
+	_isLoadingCheckPlanned: boolean;
 	_loadingCheckTimeout: IDisposableTimeout;
 	_requestCallback: IDisposableCallback;
 	loading: boolean;
@@ -97,7 +97,7 @@ export default class OpalLoadedList extends Component {
 	_lastLoadedQuery: string | undefined;
 
 	empty: boolean;
-	notFoundShown: boolean;
+	nothingFoundShown: boolean;
 	loaderShown: boolean;
 
 	initialize() {
@@ -123,15 +123,15 @@ export default class OpalLoadedList extends Component {
 			list: new ObservableList<IItem>(),
 			total: undefined,
 
-			_loadingCheckPlanned: false,
+			_isLoadingCheckPlanned: false,
 			loading: false,
 
 			empty(this: OpalLoadedList): boolean {
 				return !this.list.length;
 			},
 
-			notFoundShown(this: OpalLoadedList): boolean {
-				return this.total === 0 && !this._loadingCheckPlanned && !this.loading;
+			nothingFoundShown(this: OpalLoadedList): boolean {
+				return this.total === 0 && !this._isLoadingCheckPlanned && !this.loading;
 			},
 
 			loaderShown(this: OpalLoadedList): boolean {
