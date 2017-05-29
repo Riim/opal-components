@@ -3178,6 +3178,9 @@ OpalMultiselect = __decorate([
             'query-input': {
                 input: function (evt) {
                     this.$('loaded-list').input.query = evt.target.value;
+                },
+                clear: function () {
+                    this.$('loaded-list').input.query = '';
                 }
             }
         }
@@ -4455,7 +4458,8 @@ var OpalTextInput = (function (_super) {
     OpalTextInput.prototype._onBtnClearClick = function (evt) {
         this.value = '';
         this.$('text-field').focus();
-        this.emit({ type: 'change', initialEvent: evt });
+        this.emit('clear');
+        this.emit('change');
     };
     OpalTextInput.prototype._fixHeight = function () {
         var textField = this.$('text-field');
@@ -5574,7 +5578,7 @@ module.exports = "@section/inner {\nrt-content/content\n' '\nopal-sign-button/bt
 /* 62 */
 /***/ (function(module, exports) {
 
-module.exports = "/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=opal-select__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n)\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item.text}'\ndiv/btn-deselect-item (data-item-value={item.value}, rt-click=_onBtnDeselectItemClick) {\nsvg/btn-deselect-item-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n}\ndiv/nothing-selected (shown={nothingSelectedShown}) {\nspan/nothing-selected-message { '{constructor.i18n.nothingSelected}' }\n}\n}\ndiv/menu-content {\nopal-loaded-list/loaded-list (dataprovider-keypath=dataProvider) {\nopal-select-option (value={$item.value}, text={$item.text})\n}\n}\ndiv/menu-footer {\nopal-button/btn-close { 'Закрыть' }\n}\n}"
+module.exports = "/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=opal-select__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n)\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\ndiv/btn-deselect-item (\ndata-item-value='{item |key(_viewModelItemValueFieldName) }',\nrt-click=_onBtnDeselectItemClick\n) {\nsvg/btn-deselect-item-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n}\ndiv/nothing-selected (shown={nothingSelectedShown}) {\nspan/nothing-selected-message { '{constructor.i18n.nothingSelected}' }\n}\n}\ndiv/menu-content {\nopal-loaded-list/loaded-list (dataprovider-keypath=dataProvider) {\nopal-select-option/option (value={$item.value}, text={$item.text})\n}\n}\ndiv/menu-footer {\nopal-button/btn-close { 'Закрыть' }\n}\n}"
 
 /***/ }),
 /* 63 */

@@ -155,7 +155,8 @@ export default class OpalTextInput extends Component {
 		this.value = '';
 		(this.$('text-field') as HTMLInputElement).focus();
 
-		this.emit({ type: 'change', initialEvent: evt });
+		this.emit('clear');
+		this.emit('change');
 	}
 
 	_fixHeight() {

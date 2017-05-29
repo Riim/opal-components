@@ -28,6 +28,10 @@ import template = require('./index.nelm');
 		'query-input': {
 			input(evt: IEvent) {
 				(this.$('loaded-list') as OpalLoadedList).input.query = (evt.target as OpalTextInput).value;
+			},
+
+			clear() {
+				(this.$('loaded-list') as OpalLoadedList).input.query = '';
 			}
 		}
 	}

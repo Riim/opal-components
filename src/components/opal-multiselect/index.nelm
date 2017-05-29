@@ -10,9 +10,12 @@
 	div/menu-selected {
 		@repeat (for=item of viewModel) {
 			div/selected-item {
-				'{item.text}'
+				'{item |key(_viewModelItemTextFieldName) }'
 
-				div/btn-deselect-item (data-item-value={item.value}, rt-click=_onBtnDeselectItemClick) {
+				div/btn-deselect-item (
+					data-item-value='{item |key(_viewModelItemValueFieldName) }',
+					rt-click=_onBtnDeselectItemClick
+				) {
 					svg/btn-deselect-item-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }
 				}
 			}
@@ -25,7 +28,7 @@
 
 	div/menu-content {
 		opal-loaded-list/loaded-list (dataprovider-keypath=dataProvider) {
-			opal-select-option (value={$item.value}, text={$item.text})
+			opal-select-option/option (value={$item.value}, text={$item.text})
 		}
 	}
 
