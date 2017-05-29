@@ -27,4 +27,6 @@
 	opal-loader/loader (size=s, shown)
 }
 
+rt-content/control-icon-container (select=.opal-text-input__control-icon, shown={controlIconShown})
+
 }

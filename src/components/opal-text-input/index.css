@@ -91,7 +91,24 @@
 		right: 12px;
 		bottom: 0;
 		margin: auto;
+		border: 0;
 		pointer-events: none;
+	}
+
+	& .opal-text-input__control-icon {
+		position: absolute;
+		top: 0;
+		right: 12px;
+		bottom: 0;
+		display: none;
+		margin: auto;
+		width: 18px;
+		height: 18px;
+		fill: hsl(0,0%,50%);
+	}
+
+	& .opal-text-input__control-icon-container[shown] .opal-text-input__control-icon {
+		display: block;
 	}
 
 	/* States */

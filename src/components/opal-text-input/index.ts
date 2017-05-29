@@ -110,6 +110,10 @@ export default class OpalTextInput extends Component {
 		define(this, {
 			btnClearShown(this: OpalTextInput): boolean {
 				return !!this.input.value && !this.input.loading;
+			},
+
+			controlIconShown(this: OpalTextInput): boolean {
+				return !this.btnClearShown && !this.input.loading;
 			}
 		});
 	}
