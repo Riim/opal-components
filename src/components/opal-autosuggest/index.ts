@@ -249,7 +249,7 @@ export default class OpalAutosuggest extends Component {
 
 					(this.$('text-input') as OpalTextInput).value = focusedListItemDataSet.text as string;
 
-					this.closeMenu();
+					this._clearList();
 
 					this._setSelectedItem({
 						value: focusedListItemDataSet.value as string,
@@ -282,7 +282,7 @@ export default class OpalAutosuggest extends Component {
 		textInput.value = listItemDataSet.text as string;
 		textInput.focus();
 
-		this.closeMenu();
+		this._clearList();
 
 		this._setSelectedItem({
 			value: listItemDataSet.value as string,
@@ -349,15 +349,19 @@ export default class OpalAutosuggest extends Component {
 	_setSelectedItemOfList() {
 		if (this._isInputLast) {
 			let comparableQuery = toComparable((this.$('text-input') as OpalTextInput).value);
-			this._setSelectedItem(this.list.find(item => toComparable(item.text) == comparableQuery) || null);
+			let selectedItem = this.list.find(item => toComparable(item.text) == comparableQuery) || null;
+
+			if (selectedItem && this.list.length > 1) {
+				this._clearList();
+			}
+
+			this._setSelectedItem(selectedItem);
 		}
 	}
 
 	_setSelectedItem(selectedItem: IItem | null) {
 		if (selectedItem) {
 			this._isInputLast = false;
-
-			this._clearList();
 
 			if (this.selectedItem && this.selectedItem.value == selectedItem.value) {
 				return;
@@ -381,9 +385,9 @@ export default class OpalAutosuggest extends Component {
 	}
 
 	_clearList() {
-		this.closeMenu();
-
 		this._cancelLoading();
+
+		this.closeMenu();
 
 		this.list.clear();
 		this._focusedListItem = null;

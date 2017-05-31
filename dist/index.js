@@ -963,7 +963,7 @@ var OpalAutosuggest = (function (_super) {
                 if (focusedListItem) {
                     var focusedListItemDataSet = focusedListItem.dataset;
                     this.$('text-input').value = focusedListItemDataSet.text;
-                    this.closeMenu();
+                    this._clearList();
                     this._setSelectedItem({
                         value: focusedListItemDataSet.value,
                         text: focusedListItemDataSet.text
@@ -990,7 +990,7 @@ var OpalAutosuggest = (function (_super) {
         var listItemDataSet = listItem.dataset;
         textInput.value = listItemDataSet.text;
         textInput.focus();
-        this.closeMenu();
+        this._clearList();
         this._setSelectedItem({
             value: listItemDataSet.value,
             text: listItemDataSet.text
@@ -1045,13 +1045,16 @@ var OpalAutosuggest = (function (_super) {
     OpalAutosuggest.prototype._setSelectedItemOfList = function () {
         if (this._isInputLast) {
             var comparableQuery_1 = toComparable(this.$('text-input').value);
-            this._setSelectedItem(this.list.find(function (item) { return toComparable(item.text) == comparableQuery_1; }) || null);
+            var selectedItem = this.list.find(function (item) { return toComparable(item.text) == comparableQuery_1; }) || null;
+            if (selectedItem && this.list.length > 1) {
+                this._clearList();
+            }
+            this._setSelectedItem(selectedItem);
         }
     };
     OpalAutosuggest.prototype._setSelectedItem = function (selectedItem) {
         if (selectedItem) {
             this._isInputLast = false;
-            this._clearList();
             if (this.selectedItem && this.selectedItem.value == selectedItem.value) {
                 return;
             }
@@ -1070,8 +1073,8 @@ var OpalAutosuggest = (function (_super) {
         this.$('text-input').clear();
     };
     OpalAutosuggest.prototype._clearList = function () {
-        this.closeMenu();
         this._cancelLoading();
+        this.closeMenu();
         this.list.clear();
         this._focusedListItem = null;
     };
