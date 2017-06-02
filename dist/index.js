@@ -3534,6 +3534,12 @@ var OpalRouter = (function (_super) {
                 return state;
             }, Object.create(null));
             if (route === this_1._route) {
+                var prevState_1 = this_1._state;
+                var stateKeys = Object.keys(state);
+                if (stateKeys.length == Object.keys(prevState_1).length &&
+                    stateKeys.every(function (name) { return state[name] === prevState_1[name]; })) {
+                    return { value: void 0 };
+                }
                 var componentEl_1 = this_1._componentElement;
                 var inputConfig = componentEl_1.$component.constructor.input;
                 var attrs = componentEl_1.attributes;
@@ -3568,6 +3574,7 @@ var OpalRouter = (function (_super) {
                     if (this_1.input.scrollTopOnChange) {
                         document.body.scrollTop = 0;
                     }
+                    this_1.emit('change');
                     return { value: void 0 };
                 }
             }
@@ -3583,6 +3590,7 @@ var OpalRouter = (function (_super) {
             if (this_1.input.scrollTopOnChange || this_1.input.scrollTopOnChangeComponent) {
                 document.body.scrollTop = 0;
             }
+            this_1.emit('change');
             return { value: void 0 };
         };
         var this_1 = this;
@@ -3592,7 +3600,10 @@ var OpalRouter = (function (_super) {
             if (typeof state_1 === "object")
                 return state_1.value;
         }
-        this._clear();
+        if (this._route) {
+            this.emit('change');
+            this._clear();
+        }
     };
     OpalRouter.prototype._applyState = function () {
         var state = this._state;

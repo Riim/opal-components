@@ -151,6 +151,16 @@ export default class OpalRouter extends Component {
 			}, Object.create(null));
 
 			if (route === this._route) {
+				let prevState = this._state as IComponentState;
+				let stateKeys = Object.keys(state);
+
+				if (
+					stateKeys.length == Object.keys(prevState).length &&
+						stateKeys.every(name => state[name] === prevState[name])
+				) {
+					return;
+				}
+
 				let componentEl = this._componentElement as IComponentElement;
 				let inputConfig = (componentEl.$component.constructor as typeof Component).input;
 				let attrs = componentEl.attributes;
@@ -196,6 +206,8 @@ export default class OpalRouter extends Component {
 						document.body.scrollTop = 0;
 					}
 
+					this.emit('change');
+
 					return;
 				}
 			}
@@ -218,10 +230,15 @@ export default class OpalRouter extends Component {
 				document.body.scrollTop = 0;
 			}
 
+			this.emit('change');
+
 			return;
 		}
 
-		this._clear();
+		if (this._route) {
+			this.emit('change');
+			this._clear();
+		}
 	}
 
 	_applyState() {
