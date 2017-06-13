@@ -36,12 +36,6 @@ module.exports = function(env) {
 				{
 					test: /\.js$/,
 					exclude: /(?:node_modules|bower_components)/,
-					enforce: 'pre',
-					loader: 'eslint-loader'
-				},
-				{
-					test: /\.js$/,
-					exclude: /(?:node_modules|bower_components)/,
 					use: {
 						loader: 'babel-loader',
 						options: {

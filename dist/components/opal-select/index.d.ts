@@ -4,8 +4,12 @@ import { ObservableList } from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
 import { IDisposableListening, IComponentElement, Component } from 'rionite';
 import OpalSelectOption from './opal-select-option';
-export declare type TDataList = ObservableList<Object>;
-export declare type TViewModel = IndexedList<Object>;
+export declare type TDataList = ObservableList<{
+    [name: string]: any;
+}>;
+export declare type TViewModel = IndexedList<{
+    [name: string]: any;
+}>;
 export default class OpalSelect extends Component {
     static OpalSelectOption: typeof OpalSelectOption;
     static defaultDataListItemSchema: {

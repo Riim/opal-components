@@ -18,8 +18,8 @@ let { RtIfThen, RtRepeat } = Components;
 
 let map = Array.prototype.map;
 
-export type TDataList = ObservableList<Object>;
-export type TViewModel = IndexedList<Object>;
+export type TDataList = ObservableList<{ [name: string]: any }>;
+export type TViewModel = IndexedList<{ [name: string]: any }>;
 
 let defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };

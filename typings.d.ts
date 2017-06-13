@@ -1,4 +1,4 @@
-declare module "*.nelm" {
+declare module '*.nelm' {
 	let nelm: string;
 	export = nelm;
 }
