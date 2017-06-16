@@ -3509,12 +3509,14 @@ var OpalRouter = (function (_super) {
     OpalRouter.prototype.elementAttached = function () {
         var _this = this;
         this._update(location.hash);
-        this._historyListening = history.listen(function (location) {
-            _this._onWindowPopState(location);
-        });
+        this._historyListening = {
+            unlisten: history.listen(function (location) {
+                _this._onWindowPopState(location);
+            })
+        };
     };
     OpalRouter.prototype.elementDetached = function () {
-        this._historyListening();
+        this._historyListening.unlisten();
         this._clear();
     };
     OpalRouter.prototype._onWindowPopState = function (location) {

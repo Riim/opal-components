@@ -67,7 +67,7 @@ export default class OpalRouter extends Component {
 	_state: IComponentState | null = null;
 	_componentElement: IComponentElement | null = null;
 
-	_historyListening: () => void;
+	_historyListening: { unlisten: () => void };
 
 	initialize() {
 		this._routes = [];
@@ -125,13 +125,15 @@ export default class OpalRouter extends Component {
 	elementAttached() {
 		this._update(location.hash);
 
-		this._historyListening = history.listen(location => {
-			this._onWindowPopState(location);
-		});
+		this._historyListening = {
+			unlisten: history.listen(location => {
+				this._onWindowPopState(location);
+			})
+		};
 	}
 
 	elementDetached() {
-		this._historyListening();
+		this._historyListening.unlisten();
 		this._clear();
 	}
 

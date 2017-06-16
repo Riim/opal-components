@@ -22,7 +22,9 @@ export default class OpalRouter extends Component {
     _route: IRoute | null;
     _state: IComponentState | null;
     _componentElement: IComponentElement | null;
-    _historyListening: () => void;
+    _historyListening: {
+        unlisten: () => void;
+    };
     initialize(): void;
     ready(): void;
     elementAttached(): void;
