@@ -1,5 +1,6 @@
 import './index.css';
 import { IComponentElement, Component } from 'rionite';
+import { History, Location } from 'history';
 import OpalRoute from './opal-route';
 export interface IRouteProperty {
     name: string;
@@ -16,16 +17,18 @@ export interface IComponentState {
 }
 export default class OpalRouter extends Component {
     static OpalRoute: typeof OpalRoute;
+    static history: History;
     _routes: Array<IRoute>;
     _route: IRoute | null;
     _state: IComponentState | null;
     _componentElement: IComponentElement | null;
+    _historyListening: () => void;
     initialize(): void;
     ready(): void;
     elementAttached(): void;
     elementDetached(): void;
-    _onWindowPopState(): void;
-    _update(): void;
+    _onWindowPopState(location: Location): void;
+    _update(hash: string): void;
     _applyState(): void;
     _clear(): void;
     refresh(): void;

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("cellx"), require("cellx-indexed-collections"));
+		module.exports = factory(require("rionite"), require("cellx"), require("cellx-indexed-collections"), require("history/createBrowserHistory"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "cellx", "cellx-indexed-collections"], factory);
+		define(["rionite", "cellx", "cellx-indexed-collections", "history/createBrowserHistory"], factory);
 	else if(typeof exports === 'object')
-		exports["index"] = factory(require("rionite"), require("cellx"), require("cellx-indexed-collections"));
+		exports["index"] = factory(require("rionite"), require("cellx"), require("cellx-indexed-collections"), require("history/createBrowserHistory"));
 	else
-		root["index"] = factory(root["rionite"], root["cellx"], root["cellx-indexed-collections"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_3__) {
+		root["index"] = factory(root["rionite"], root["cellx"], root["cellx-indexed-collections"], root["history/createBrowserHistory"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_110__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -3434,6 +3434,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(93);
 var rionite_1 = __webpack_require__(0);
+var createBrowserHistory_1 = __webpack_require__(110);
 var opal_route_1 = __webpack_require__(43);
 exports.OpalRoute = opal_route_1.default;
 var PathNodeType_1 = __webpack_require__(4);
@@ -3442,11 +3443,10 @@ var escapeRegExp_1 = __webpack_require__(42);
 var hyphenize = rionite_1.Utils.hyphenize;
 var escapeHTML = rionite_1.Utils.escapeHTML;
 var forEach = Array.prototype.forEach;
+var history = createBrowserHistory_1.default();
 function isReadonlyProperty(propConfig) {
-    return propConfig &&
-        typeof propConfig == 'object' &&
-        (propConfig.type !== undefined || propConfig.default !== undefined) &&
-        propConfig.readonly;
+    return propConfig && typeof propConfig == 'object' &&
+        (propConfig.type !== undefined || propConfig.default !== undefined) && propConfig.readonly;
 }
 function valueToAttributeValue(value) {
     return "" + (value === false ? 'no' : (value === true ? 'yes' : escapeHTML(value)));
@@ -3507,17 +3507,21 @@ var OpalRouter = (function (_super) {
         });
     };
     OpalRouter.prototype.elementAttached = function () {
-        this._update();
-        this.listenTo(window, 'popstate', this._onWindowPopState);
+        var _this = this;
+        this._update(location.hash);
+        this._historyListening = history.listen(function (location) {
+            _this._onWindowPopState(location);
+        });
     };
     OpalRouter.prototype.elementDetached = function () {
+        this._historyListening();
         this._clear();
     };
-    OpalRouter.prototype._onWindowPopState = function () {
-        this._update();
+    OpalRouter.prototype._onWindowPopState = function (location) {
+        this._update(location.hash);
     };
-    OpalRouter.prototype._update = function () {
-        var path = location.hash.slice(1) || '/';
+    OpalRouter.prototype._update = function (hash) {
+        var path = hash.slice(1) || '/';
         var _loop_1 = function (route) {
             var match = path.match(route.rePath);
             if (!match) {
@@ -3636,6 +3640,7 @@ var OpalRouter = (function (_super) {
     return OpalRouter;
 }(rionite_1.Component));
 OpalRouter.OpalRoute = opal_route_1.default;
+OpalRouter.history = history;
 OpalRouter = __decorate([
     rionite_1.d.Component({
         elementIs: 'opal-router',
@@ -6230,6 +6235,12 @@ module.exports = (function(d) {
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 28 28\" id=\"opal-components__icon-cross\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 2l24 24m0-24L2 26\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_110__;
 
 /***/ })
 /******/ ]);

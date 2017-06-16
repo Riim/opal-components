@@ -1,6 +1,8 @@
 import './index.css';
 
 import { IComponentElement, Component, d, Utils } from 'rionite';
+import { History, Location } from 'history';
+import createHistory from 'history/createBrowserHistory';
 import OpalRoute from './opal-route';
 import PathNodeType from './PathNodeType';
 import parsePath from './parsePath';
@@ -27,11 +29,11 @@ export interface IComponentState {
 	[name: string]: boolean | string
 }
 
+let history: History = createHistory();
+
 function isReadonlyProperty(propConfig: any): boolean {
-	return propConfig &&
-		typeof propConfig == 'object' &&
-		(propConfig.type !== undefined || propConfig.default !== undefined) &&
-		propConfig.readonly;
+	return propConfig && typeof propConfig == 'object' &&
+		(propConfig.type !== undefined || propConfig.default !== undefined) && propConfig.readonly;
 }
 
 function valueToAttributeValue(value: boolean | string): string {
@@ -58,10 +60,14 @@ function valueToAttributeValue(value: boolean | string): string {
 export default class OpalRouter extends Component {
 	static OpalRoute = OpalRoute;
 
+	static history = history;
+
 	_routes: Array<IRoute>;
 	_route: IRoute | null = null;
 	_state: IComponentState | null = null;
 	_componentElement: IComponentElement | null = null;
+
+	_historyListening: () => void;
 
 	initialize() {
 		this._routes = [];
@@ -117,20 +123,24 @@ export default class OpalRouter extends Component {
 	}
 
 	elementAttached() {
-		this._update();
-		this.listenTo(window, 'popstate', this._onWindowPopState);
+		this._update(location.hash);
+
+		this._historyListening = history.listen(location => {
+			this._onWindowPopState(location);
+		});
 	}
 
 	elementDetached() {
+		this._historyListening();
 		this._clear();
 	}
 
-	_onWindowPopState() {
-		this._update();
+	_onWindowPopState(location: Location) {
+		this._update(location.hash);
 	}
 
-	_update() {
-		let path = location.hash.slice(1) || '/';
+	_update(hash: string) {
+		let path = hash.slice(1) || '/';
 
 		for (let route of this._routes) {
 			let match = path.match(route.rePath);
