@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("cellx"), require("cellx-indexed-collections"), require("history/createBrowserHistory"));
+		module.exports = factory(require("rionite"), require("cellx"), require("cellx-indexed-collections"), require("created-browser-history"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "cellx", "cellx-indexed-collections", "history/createBrowserHistory"], factory);
+		define(["rionite", "cellx", "cellx-indexed-collections", "created-browser-history"], factory);
 	else if(typeof exports === 'object')
-		exports["index"] = factory(require("rionite"), require("cellx"), require("cellx-indexed-collections"), require("history/createBrowserHistory"));
+		exports["index"] = factory(require("rionite"), require("cellx"), require("cellx-indexed-collections"), require("created-browser-history"));
 	else
-		root["index"] = factory(root["rionite"], root["cellx"], root["cellx-indexed-collections"], root["history/createBrowserHistory"]);
+		root["index"] = factory(root["rionite"], root["cellx"], root["cellx-indexed-collections"], root["created-browser-history"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_110__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -3434,7 +3434,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(93);
 var rionite_1 = __webpack_require__(0);
-var createBrowserHistory_1 = __webpack_require__(110);
+var created_browser_history_1 = __webpack_require__(110);
 var opal_route_1 = __webpack_require__(43);
 exports.OpalRoute = opal_route_1.default;
 var PathNodeType_1 = __webpack_require__(4);
@@ -3443,7 +3443,6 @@ var escapeRegExp_1 = __webpack_require__(42);
 var hyphenize = rionite_1.Utils.hyphenize;
 var escapeHTML = rionite_1.Utils.escapeHTML;
 var forEach = Array.prototype.forEach;
-var history = createBrowserHistory_1.default();
 function isReadonlyProperty(propConfig) {
     return propConfig && typeof propConfig == 'object' &&
         (propConfig.type !== undefined || propConfig.default !== undefined) && propConfig.readonly;
@@ -3510,7 +3509,7 @@ var OpalRouter = (function (_super) {
         var _this = this;
         this._update(location.hash);
         this._historyListening = {
-            unlisten: history.listen(function (location) {
+            unlisten: created_browser_history_1.history.listen(function (location) {
                 _this._onWindowPopState(location);
             })
         };
@@ -3642,7 +3641,6 @@ var OpalRouter = (function (_super) {
     return OpalRouter;
 }(rionite_1.Component));
 OpalRouter.OpalRoute = opal_route_1.default;
-OpalRouter.history = history;
 OpalRouter = __decorate([
     rionite_1.d.Component({
         elementIs: 'opal-router',

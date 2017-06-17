@@ -82,8 +82,7 @@ module.exports = function(env) {
 			'cellx',
 			'cellx-indexed-collections',
 			'rionite',
-			'history',
-			'history/createBrowserHistory'
+			'created-browser-history'
 		],
 
 		plugins: plugins,

@@ -1,8 +1,7 @@
 import './index.css';
 
 import { IComponentElement, Component, d, Utils } from 'rionite';
-import { History, Location } from 'history';
-import createHistory from 'history/createBrowserHistory';
+import { Location, history } from 'created-browser-history';
 import OpalRoute from './opal-route';
 import PathNodeType from './PathNodeType';
 import parsePath from './parsePath';
@@ -28,8 +27,6 @@ export interface IRoute {
 export interface IComponentState {
 	[name: string]: boolean | string
 }
-
-let history: History = createHistory();
 
 function isReadonlyProperty(propConfig: any): boolean {
 	return propConfig && typeof propConfig == 'object' &&
@@ -59,8 +56,6 @@ function valueToAttributeValue(value: boolean | string): string {
 })
 export default class OpalRouter extends Component {
 	static OpalRoute = OpalRoute;
-
-	static history = history;
 
 	_routes: Array<IRoute>;
 	_route: IRoute | null = null;

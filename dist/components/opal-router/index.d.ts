@@ -1,6 +1,6 @@
 import './index.css';
 import { IComponentElement, Component } from 'rionite';
-import { History, Location } from 'history';
+import { Location } from 'created-browser-history';
 import OpalRoute from './opal-route';
 export interface IRouteProperty {
     name: string;
@@ -17,7 +17,6 @@ export interface IComponentState {
 }
 export default class OpalRouter extends Component {
     static OpalRoute: typeof OpalRoute;
-    static history: History;
     _routes: Array<IRoute>;
     _route: IRoute | null;
     _state: IComponentState | null;
