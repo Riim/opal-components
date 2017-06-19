@@ -2,6 +2,7 @@ import './index.css';
 
 import { IEvent, ObservableList, Cell, define } from 'cellx';
 import { IDisposableListening, IDisposableTimeout, IDisposableCallback, getText, Component, d } from 'rionite';
+import isFocusable from '../../Utils/isFocusable';
 import OpalTextInput from '../opal-text-input';
 import OpalDropdown from '../opal-dropdown';
 import template = require('./index.nelm');
@@ -208,6 +209,10 @@ export default class OpalAutosuggest extends Component {
 	}
 
 	_onDocumentFocus(evt: Event) {
+		if (!isFocusable(evt.target as HTMLElement)) {
+			return;
+		}
+
 		if (!this.element.contains((evt.target as HTMLElement).parentNode as Node)) {
 			this.closeMenu();
 			this._setSelectedItemOfList();

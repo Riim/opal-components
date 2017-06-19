@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.24.41",
+  "version": "0.24.43",
   "description": "",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",

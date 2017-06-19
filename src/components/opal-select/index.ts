@@ -4,6 +4,7 @@ import '../../assets/icons/opal-components__icon-chevron-down.svg';
 import { IEvent, ObservableList, define, Utils } from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
 import { IDisposableListening, getText, IComponentElement, Component, Components, d } from 'rionite';
+import isFocusable from '../../Utils/isFocusable';
 import OpalButton from '../opal-button';
 import OpalTextInput from '../opal-text-input';
 import OpalDropdown from '../opal-dropdown';
@@ -545,6 +546,10 @@ export default class OpalSelect extends Component {
 	}
 
 	_onDocumentFocus(evt: Event) {
+		if (!isFocusable(evt.target as HTMLElement)) {
+			return;
+		}
+
 		if (!this.element.contains((evt.target as Node).parentNode as Node)) {
 			this.close();
 		}

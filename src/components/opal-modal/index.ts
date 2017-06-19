@@ -2,6 +2,7 @@ import './index.css';
 
 import { IEvent } from 'cellx';
 import { IDisposableListening, Component, d } from 'rionite';
+import isFocusable from '../../Utils/isFocusable';
 import template = require('./index.nelm');
 
 let openedModals: Array<OpalModal> = [];
@@ -10,6 +11,10 @@ let documentFocusListening: IDisposableListening;
 let documentKeyUpListening: IDisposableListening;
 
 function onDocumentFocus(evt: Event) {
+	if (!isFocusable(evt.target as HTMLElement)) {
+		return;
+	}
+
 	if (!openedModals[0].element.contains((evt.target as Node).parentNode as Node)) {
 		(openedModals[0].$('btn-close') as HTMLElement).focus();
 	}

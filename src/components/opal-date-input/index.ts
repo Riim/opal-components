@@ -2,6 +2,7 @@ import './index.css';
 
 import { IEvent } from 'cellx';
 import { IDisposableListening, getText, Component, d } from 'rionite';
+import isFocusable from '../../Utils/isFocusable';
 import OpalTextInput from '../opal-text-input';
 import OpalDropdown from '../opal-dropdown';
 import OpalInputValidator from '../opal-input-validator';
@@ -104,6 +105,10 @@ export default class OpalDateInput extends Component {
 	}
 
 	_onDocumentFocus(evt: Event) {
+		if (!isFocusable(evt.target as HTMLElement)) {
+			return;
+		}
+
 		if (!this.element.contains((evt.target as Node).parentNode as Node)) {
 			(this.$('calendar-menu') as OpalDropdown).close();
 		}
