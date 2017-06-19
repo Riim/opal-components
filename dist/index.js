@@ -635,7 +635,7 @@ OpalSelect = __decorate([
                     if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
                         return;
                     }
-                    this._options.pull();
+                    this.optionsCell.pull();
                     this._updateOptions();
                     return false;
                 }

@@ -245,7 +245,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 					return;
 				}
 
-				(this as any)._options.pull();
+				(this as any).optionsCell.pull();
 				this._updateOptions();
 
 				return false;
