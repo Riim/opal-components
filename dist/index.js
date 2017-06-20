@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -141,16 +141,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(53);
 __webpack_require__(54);
+__webpack_require__(55);
 var cellx_1 = __webpack_require__(1);
 var cellx_indexed_collections_1 = __webpack_require__(4);
 var rionite_1 = __webpack_require__(0);
 var isFocusable_1 = __webpack_require__(2);
-var opal_select_option_1 = __webpack_require__(55);
+var opal_select_option_1 = __webpack_require__(56);
 exports.OpalSelectOption = opal_select_option_1.default;
-var isEqualArray_1 = __webpack_require__(59);
-var template = __webpack_require__(60);
+var isEqualArray_1 = __webpack_require__(60);
+var template = __webpack_require__(61);
 var nextUID = cellx_1.Utils.nextUID, nextTick = cellx_1.Utils.nextTick;
 var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
 var map = Array.prototype.map;
@@ -723,6 +723,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports) {
+
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 28 28\" id=\"opal-components__icon-cross\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 2l24 24m0-24L2 26\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -744,10 +750,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(40);
+__webpack_require__(41);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(41);
+var template = __webpack_require__(42);
 var nextTick = cellx_1.Utils.nextTick;
 var OpalTab = (function (_super) {
     __extends(OpalTab, _super);
@@ -857,7 +863,7 @@ exports.default = OpalTab;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -874,48 +880,48 @@ exports.default = PathNodeType;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_button_1 = __webpack_require__(8);
+var opal_button_1 = __webpack_require__(9);
 exports.OpalButton = opal_button_1.default;
-var opal_sign_button_1 = __webpack_require__(10);
+var opal_sign_button_1 = __webpack_require__(11);
 exports.OpalSignButton = opal_sign_button_1.default;
-var opal_text_input_1 = __webpack_require__(13);
+var opal_text_input_1 = __webpack_require__(14);
 exports.OpalTextInput = opal_text_input_1.default;
-var opal_input_mask_1 = __webpack_require__(16);
+var opal_input_mask_1 = __webpack_require__(17);
 exports.OpalInputMask = opal_input_mask_1.default;
 exports.OpalInputMaskDefinition = opal_input_mask_1.OpalInputMaskDefinition;
-var opal_group_1 = __webpack_require__(19);
+var opal_group_1 = __webpack_require__(20);
 exports.OpalGroup = opal_group_1.default;
-var opal_checkbox_1 = __webpack_require__(21);
+var opal_checkbox_1 = __webpack_require__(22);
 exports.OpalCheckbox = opal_checkbox_1.default;
-var opal_radio_group_1 = __webpack_require__(24);
+var opal_radio_group_1 = __webpack_require__(25);
 exports.OpalRadioGroup = opal_radio_group_1.default;
 exports.OpalRadioButton = opal_radio_group_1.OpalRadioButton;
-var opal_switch_1 = __webpack_require__(28);
+var opal_switch_1 = __webpack_require__(29);
 exports.OpalSwitch = opal_switch_1.default;
-var opal_slider_1 = __webpack_require__(31);
+var opal_slider_1 = __webpack_require__(32);
 exports.OpalSlider = opal_slider_1.default;
-var opal_switch_menu_1 = __webpack_require__(34);
+var opal_switch_menu_1 = __webpack_require__(35);
 exports.OpalSwitchMenu = opal_switch_menu_1.default;
-var opal_tabs_1 = __webpack_require__(36);
+var opal_tabs_1 = __webpack_require__(37);
 exports.OpalTabs = opal_tabs_1.default;
 exports.OpalTabList = opal_tabs_1.OpalTabList;
 exports.OpalTab = opal_tabs_1.OpalTab;
-var opal_dropdown_1 = __webpack_require__(45);
+var opal_dropdown_1 = __webpack_require__(46);
 exports.OpalDropdown = opal_dropdown_1.default;
-var opal_popover_1 = __webpack_require__(47);
+var opal_popover_1 = __webpack_require__(48);
 exports.OpalPopover = opal_popover_1.default;
-var opal_modal_1 = __webpack_require__(50);
+var opal_modal_1 = __webpack_require__(51);
 exports.OpalModal = opal_modal_1.default;
 var opal_select_1 = __webpack_require__(3);
 exports.OpalSelect = opal_select_1.default;
 exports.OpalSelectOption = opal_select_1.OpalSelectOption;
-var opal_multiselect_1 = __webpack_require__(61);
+var opal_multiselect_1 = __webpack_require__(62);
 exports.OpalMultiselect = opal_multiselect_1.default;
 var opal_input_validator_1 = __webpack_require__(65);
 exports.OpalInputValidator = opal_input_validator_1.default;
@@ -943,7 +949,7 @@ exports.OpalRoute = opal_router_1.OpalRoute;
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -965,7 +971,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(9);
+__webpack_require__(10);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 var nextTick = cellx_1.Utils.nextTick;
@@ -1106,7 +1112,7 @@ exports.default = OpalButton;
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -1123,7 +1129,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1145,10 +1151,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(11);
+__webpack_require__(12);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(12);
+var template = __webpack_require__(13);
 var nextTick = cellx_1.Utils.nextTick;
 var OpalSignButton = (function (_super) {
     __extends(OpalSignButton, _super);
@@ -1265,7 +1271,7 @@ exports.default = OpalSignButton;
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -1282,13 +1288,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1310,10 +1316,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(14);
+__webpack_require__(15);
+__webpack_require__(5);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(15);
+var template = __webpack_require__(16);
 var nextTick = cellx_1.Utils.nextTick;
 var OpalTextInput = (function (_super) {
     __extends(OpalTextInput, _super);
@@ -1493,7 +1500,7 @@ exports.default = OpalTextInput;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -1501,7 +1508,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-text-input{position:relative;display:inline-block;width:400px;vertical-align:middle}.opal-text-input .opal-text-input__text-field{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:6px 11px;width:100%;border:1px solid #adadad;border-top-color:#a8a8a8;border-bottom-color:#c7c7c7;border-radius:3px;background:#fff;-webkit-box-shadow:inset 0 1px rgba(0,0,0,.1);box-shadow:inset 0 1px rgba(0,0,0,.1);color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;-webkit-transition:border-color .1s linear;-o-transition:border-color .1s linear;transition:border-color .1s linear;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-text-input .opal-text-input__btn-clear{position:absolute;top:0;right:10px;bottom:0;display:none;margin:auto;padding:0;width:23px;height:23px;border:0;border-radius:3px;background:0 0;opacity:.5;cursor:pointer;-webkit-transition:opacity .1s linear;-o-transition:opacity .1s linear;transition:opacity .1s linear}.opal-text-input .opal-text-input__btn-clear::before,.opal-text-input .opal-text-input__btn-clear::after{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:18px;height:1px;background:#000;content:'';-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.opal-text-input .opal-text-input__btn-clear::after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.opal-text-input .opal-text-input__btn-clear[shown]{display:block}.opal-text-input .opal-text-input__btn-clear:hover{background:#e6e6e6;opacity:1}.opal-text-input .opal-text-input__btn-clear:focus{outline:none}body:not(._no-focus-highlight) .opal-text-input .opal-text-input__btn-clear:focus{border-color:#33a0ff;opacity:1}.opal-text-input .opal-text-input__btn-clear:active{background:#ccc}.opal-text-input .opal-text-input__loader,.opal-text-input .opal-text-input__loader[size=s]{position:absolute;top:0;right:12px;bottom:0;margin:auto;border:0;pointer-events:none}.opal-text-input .opal-text-input__control-icon{position:absolute;top:0;right:12px;bottom:0;display:none;margin:auto;width:18px;height:18px;fill:gray}.opal-text-input .opal-text-input__control-icon-container[shown] .opal-text-input__control-icon{display:block}.opal-text-input:hover .opal-text-input__text-field{border-color:#949494;border-top-color:#8f8f8f;border-bottom-color:#adadad}.opal-text-input .opal-text-input__text-field:focus{outline:none;border-color:#33a0ff}.opal-text-input[multiline]:not([auto-height=no]) .opal-text-input__text-field{overflow-y:hidden}.opal-text-input[valid] .opal-text-input__text-field{border-color:#0ab80a}.opal-text-input[valid=no] .opal-text-input__text-field{border-color:#f50000}.opal-text-input[disabled]{opacity:.5;pointer-events:none}.opal-text-input[disabled] .opal-text-input__text-field{background:#e6e6e6}.opal-group .opal-group__content>.opal-text-input:not(:first-child),.opal-group .opal-group__content>:not(:first-child) .opal-text-input{margin-right:-1px}.opal-group__content .opal-text-input:not(:first-child) .opal-text-input__text-field,.opal-group__content :not(:first-child) .opal-text-input .opal-text-input__text-field{border-top-left-radius:0;border-bottom-left-radius:0}.opal-group__content .opal-text-input:not(:last-child) .opal-text-input__text-field,.opal-group__content :not(:last-child) .opal-text-input .opal-text-input__text-field{border-top-right-radius:0;border-bottom-right-radius:0}";
+            style.textContent = ".opal-text-input{position:relative;display:inline-block;width:400px;vertical-align:middle}.opal-text-input .opal-text-input__text-field{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:6px 32px 6px 11px;width:100%;border:1px solid #adadad;border-top-color:#a8a8a8;border-bottom-color:#c7c7c7;border-radius:3px;background:#fff;-webkit-box-shadow:inset 0 1px rgba(0,0,0,.1);box-shadow:inset 0 1px rgba(0,0,0,.1);color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;-webkit-transition:border-color .1s linear;-o-transition:border-color .1s linear;transition:border-color .1s linear;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-text-input .opal-text-input__btn-clear{position:absolute;top:0;right:9px;bottom:0;display:none;margin:auto;padding:5px;width:24px;height:24px;border:0;background:0 0;color:#666;cursor:pointer;-webkit-transition:color .1s linear;-o-transition:color .1s linear;transition:color .1s linear}.opal-text-input .opal-text-input__btn-clear-icon{display:block;margin:auto;width:14px;height:14px}.opal-text-input .opal-text-input__btn-clear[shown]{display:block}.opal-text-input .opal-text-input__btn-clear:hover{color:#000}.opal-text-input .opal-text-input__btn-clear:focus{outline:none}body:not(._no-focus-highlight) .opal-text-input .opal-text-input__btn-clear:focus{border-color:#33a0ff}.opal-text-input .opal-text-input__btn-clear:active{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.opal-text-input .opal-text-input__loader,.opal-text-input .opal-text-input__loader[size=s]{position:absolute;top:0;right:12px;bottom:0;margin:auto;border:0;pointer-events:none}.opal-text-input .opal-text-input__control-icon{position:absolute;top:0;right:12px;bottom:0;display:none;margin:auto;width:18px;height:18px;fill:gray}.opal-text-input .opal-text-input__control-icon-container[shown] .opal-text-input__control-icon{display:block}.opal-text-input:hover .opal-text-input__text-field{border-color:#949494;border-top-color:#8f8f8f;border-bottom-color:#adadad}.opal-text-input .opal-text-input__text-field:focus{outline:none;border-color:#33a0ff}.opal-text-input[multiline]:not([auto-height=no]) .opal-text-input__text-field{overflow-y:hidden}.opal-text-input[valid] .opal-text-input__text-field{border-color:#0ab80a}.opal-text-input[valid=no] .opal-text-input__text-field{border-color:#f50000}.opal-text-input[disabled]{opacity:.5;pointer-events:none}.opal-text-input[disabled] .opal-text-input__text-field{background:#e6e6e6}.opal-group .opal-group__content>.opal-text-input:not(:first-child),.opal-group .opal-group__content>:not(:first-child) .opal-text-input{margin-right:-1px}.opal-group__content .opal-text-input:not(:first-child) .opal-text-input__text-field,.opal-group__content :not(:first-child) .opal-text-input .opal-text-input__text-field{border-top-left-radius:0;border-bottom-left-radius:0}.opal-group__content .opal-text-input:not(:last-child) .opal-text-input__text-field,.opal-group__content :not(:last-child) .opal-text-input .opal-text-input__text-field{border-top-right-radius:0;border-bottom-right-radius:0}";
             head.appendChild(style);
             return style;
         }
@@ -1510,13 +1517,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\n@if-then (if=input.multiline) {\ntextarea/, text-field (\nrows={input.rows},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-else (if=input.multiline) {\ninput/, text-field (\ntype={input.inputType},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-then (if=input.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)\n}\n@if-then (if=input.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}\nrt-content/control-icon-container (select=.opal-text-input__control-icon, shown={controlIconShown})\n}"
+module.exports = "@section/inner {\n@if-then (if=input.multiline) {\ntextarea/, text-field (\nrows={input.rows},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-else (if=input.multiline) {\ninput/, text-field (\ntype={input.inputType},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-then (if=input.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick) {\nsvg/btn-clear-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n@if-then (if=input.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}\nrt-content/control-icon-container (select=.opal-text-input__control-icon, shown={controlIconShown})\n}"
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1543,7 +1550,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var opal_input_mask_definition_1 = __webpack_require__(17);
+var opal_input_mask_definition_1 = __webpack_require__(18);
 exports.OpalInputMaskDefinition = opal_input_mask_definition_1.default;
 var nextTick = cellx_1.Utils.nextTick;
 var forEach = Array.prototype.forEach;
@@ -1850,7 +1857,7 @@ var OpalInputMask_1;
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1872,7 +1879,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(18);
+__webpack_require__(19);
 var rionite_1 = __webpack_require__(0);
 var OpalInputMaskDefinition = (function (_super) {
     __extends(OpalInputMaskDefinition, _super);
@@ -1894,7 +1901,7 @@ exports.default = OpalInputMaskDefinition;
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -1911,7 +1918,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1933,7 +1940,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(20);
+__webpack_require__(21);
 var rionite_1 = __webpack_require__(0);
 var OpalGroup = (function (_super) {
     __extends(OpalGroup, _super);
@@ -1952,7 +1959,7 @@ exports.default = OpalGroup;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -1969,7 +1976,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1991,10 +1998,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(22);
+__webpack_require__(23);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(23);
+var template = __webpack_require__(24);
 var nextTick = cellx_1.Utils.nextTick;
 var OpalCheckbox = (function (_super) {
     __extends(OpalCheckbox, _super);
@@ -2136,7 +2143,7 @@ exports.default = OpalCheckbox;
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -2153,13 +2160,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2182,7 +2189,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var opal_radio_button_1 = __webpack_require__(25);
+var opal_radio_button_1 = __webpack_require__(26);
 exports.OpalRadioButton = opal_radio_button_1.default;
 var forEach = Array.prototype.forEach;
 var OpalRadioGroup = (function (_super) {
@@ -2220,7 +2227,7 @@ exports.default = OpalRadioGroup;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2242,10 +2249,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(26);
+__webpack_require__(27);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(27);
+var template = __webpack_require__(28);
 var nextTick = cellx_1.Utils.nextTick;
 var OpalRadioButton = (function (_super) {
     __extends(OpalRadioButton, _super);
@@ -2376,7 +2383,7 @@ exports.default = OpalRadioButton;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -2393,13 +2400,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2421,10 +2428,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(29);
+__webpack_require__(30);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(30);
+var template = __webpack_require__(31);
 var nextTick = cellx_1.Utils.nextTick;
 var OpalSwitch = (function (_super) {
     __extends(OpalSwitch, _super);
@@ -2555,7 +2562,7 @@ exports.default = OpalSwitch;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -2572,13 +2579,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2600,10 +2607,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(32);
+__webpack_require__(33);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(33);
+var template = __webpack_require__(34);
 var OpalSlider = (function (_super) {
     __extends(OpalSlider, _super);
     function OpalSlider() {
@@ -2681,7 +2688,7 @@ exports.default = OpalSlider;
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -2698,13 +2705,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\n@if-then (if=input.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%;) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={input.min},\nmax={input.max},\nstep={input.step},\nvalue={input.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.range.1})\n}\n}\n@if-else (if=input.range) {\ninput/input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.value})\n}\n}"
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2726,7 +2733,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(35);
+__webpack_require__(36);
 var rionite_1 = __webpack_require__(0);
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
@@ -2800,7 +2807,7 @@ exports.default = OpalSwitchMenu;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -2817,7 +2824,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2839,15 +2846,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(37);
+__webpack_require__(38);
 var rionite_1 = __webpack_require__(0);
-var opal_tab_list_1 = __webpack_require__(38);
+var opal_tab_list_1 = __webpack_require__(39);
 exports.OpalTabList = opal_tab_list_1.default;
-var opal_tab_1 = __webpack_require__(5);
+var opal_tab_1 = __webpack_require__(6);
 exports.OpalTab = opal_tab_1.default;
-var opal_tab_panel_1 = __webpack_require__(42);
+var opal_tab_panel_1 = __webpack_require__(43);
 exports.OpalTabPanel = opal_tab_panel_1.default;
-var template = __webpack_require__(44);
+var template = __webpack_require__(45);
 var indexOf = Array.prototype.indexOf;
 var forEach = Array.prototype.forEach;
 var OpalTabs = (function (_super) {
@@ -2915,7 +2922,7 @@ exports.default = OpalTabs;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -2932,7 +2939,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2954,9 +2961,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(39);
+__webpack_require__(40);
 var rionite_1 = __webpack_require__(0);
-var opal_tab_1 = __webpack_require__(5);
+var opal_tab_1 = __webpack_require__(6);
 exports.OpalTab = opal_tab_1.default;
 var OpalTabList = (function (_super) {
     __extends(OpalTabList, _super);
@@ -2976,7 +2983,7 @@ exports.default = OpalTabList;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -2993,7 +3000,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3010,13 +3017,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3038,7 +3045,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(43);
+__webpack_require__(44);
 var rionite_1 = __webpack_require__(0);
 var OpalTabPanel = (function (_super) {
     __extends(OpalTabPanel, _super);
@@ -3060,7 +3067,7 @@ exports.default = OpalTabPanel;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3077,13 +3084,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content/tab-list-container (select=opal-tab-list) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab)\n}\n}\nrt-content/panels (select=opal-tab-panel)\n}"
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3105,7 +3112,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(46);
+__webpack_require__(47);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 var openedDropdowns = [];
@@ -3237,7 +3244,7 @@ exports.default = OpalDropdown;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3254,7 +3261,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3276,10 +3283,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(48);
+__webpack_require__(49);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(49);
+var template = __webpack_require__(50);
 var OpalPopover = (function (_super) {
     __extends(OpalPopover, _super);
     function OpalPopover() {
@@ -3410,7 +3417,7 @@ exports.default = OpalPopover;
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3427,13 +3434,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nspan/arrow\nrt-content/content\n}"
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3455,10 +3462,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(51);
+__webpack_require__(52);
 var rionite_1 = __webpack_require__(0);
 var isFocusable_1 = __webpack_require__(2);
-var template = __webpack_require__(52);
+var template = __webpack_require__(53);
 var openedModals = [];
 var documentFocusListening;
 var documentKeyUpListening;
@@ -3595,7 +3602,7 @@ exports.default = OpalModal;
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3612,13 +3619,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\ndiv/window {\nspan/btn-close-wrapper {\nbutton/btn-close\n}\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3635,13 +3642,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 18\" id=\"opal-components__icon-chevron-down\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 2l14 14L30 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3663,11 +3670,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(56);
 __webpack_require__(57);
+__webpack_require__(58);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template = __webpack_require__(58);
+var template = __webpack_require__(59);
 var nextTick = cellx_1.Utils.nextTick;
 var OpalSelectOption = (function (_super) {
     __extends(OpalSelectOption, _super);
@@ -3805,7 +3812,7 @@ exports.default = OpalSelectOption;
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3822,19 +3829,19 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 24\" id=\"opal-components__icon-check\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 14l8 8L30 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content { '{input.text}' }\nsvg/icon-check (viewBox=0 0 32 24) { use (xlink:href=#opal-components__icon-check) }\n}\n}"
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3856,13 +3863,13 @@ exports.default = isEqualArray;
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content (select=.opal-select__button) {\nopal-button/button (\nview-type={input.viewType},\nsize={input.size},\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n) {\n@if-then (if=input.text, rt-silent) { '{input.text}' }\n@if-else (if=input.text, rt-silent) { '{text}' }\n' '\nsvg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content) {\n@if-then (if=input.datalistKeypath) {\ndiv/, menu-content {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=input.datalistKeypath) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3884,8 +3891,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(62);
 __webpack_require__(63);
+__webpack_require__(5);
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 var opal_select_1 = __webpack_require__(3);
@@ -3947,7 +3954,7 @@ exports.default = OpalMultiselect;
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3955,19 +3962,13 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-multiselect.opal-select .opal-select__menu{padding:0;width:600px}.opal-multiselect.opal-select .opal-select__menu-header{-webkit-box-sizing:border-box;box-sizing:border-box;padding:0 10px;border-bottom:1px solid #ccc;font-size:0;line-height:60px}.opal-multiselect.opal-select .opal-select__query-input{width:279px}.opal-multiselect.opal-select .opal-select__menu-selected{float:right;overflow:auto;-webkit-box-sizing:border-box;box-sizing:border-box;width:299px;height:304px;border-left:1px solid #ccc}.opal-multiselect.opal-select .opal-select__selected-item{position:relative;overflow:hidden;padding:7px 38px 7px 22px;background:#fff;color:#000;text-align:left;-o-text-overflow:ellipsis;text-overflow:ellipsis;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-multiselect.opal-select .opal-select__btn-deselect-item{position:absolute;top:0;right:10px;bottom:0;display:none;-webkit-box-sizing:border-box;box-sizing:border-box;margin:auto;padding:4px;width:22px;height:22px;cursor:pointer}.opal-multiselect.opal-select .opal-select__btn-deselect-item-icon{display:block;margin:auto;width:14px;height:14px;color:#333}.opal-multiselect.opal-select .opal-select__selected-item:hover .opal-select__btn-deselect-item{display:block}.opal-multiselect.opal-select .opal-select__btn-deselect-item:active{top:1px;bottom:-1px;opacity:1}.opal-multiselect.opal-select .opal-select__nothing-selected{display:none;-webkit-box-sizing:border-box;box-sizing:border-box;padding:10px;height:100%;text-align:center;white-space:nowrap}.opal-multiselect.opal-select .opal-select__nothing-selected::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-multiselect.opal-select .opal-select__nothing-selected-message{display:inline-block;vertical-align:middle;opacity:.6}.opal-multiselect.opal-select .opal-select__nothing-selected[shown]{display:block}.opal-multiselect.opal-select .opal-select__menu-content{width:299px;height:304px}.opal-multiselect.opal-select .opal-select__menu-footer{-webkit-box-sizing:border-box;box-sizing:border-box;padding:0 10px;width:100%;border-top:1px solid #ccc;text-align:right;font-size:0;line-height:60px}";
+            style.textContent = ".opal-multiselect.opal-select .opal-select__menu{padding:0;width:600px}.opal-multiselect.opal-select .opal-select__menu-header{-webkit-box-sizing:border-box;box-sizing:border-box;padding:0 10px;border-bottom:1px solid #ccc;font-size:0;line-height:60px}.opal-multiselect.opal-select .opal-select__query-input{width:279px}.opal-multiselect.opal-select .opal-select__menu-selected{float:right;overflow:auto;-webkit-box-sizing:border-box;box-sizing:border-box;width:299px;height:304px;border-left:1px solid #ccc}.opal-multiselect.opal-select .opal-select__selected-item{position:relative;overflow:hidden;padding:7px 38px 7px 22px;background:#fff;color:#000;text-align:left;-o-text-overflow:ellipsis;text-overflow:ellipsis;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.opal-multiselect.opal-select .opal-select__btn-deselect-item{position:absolute;top:0;right:9px;bottom:0;display:none;-webkit-box-sizing:border-box;box-sizing:border-box;margin:auto;padding:5px;width:24px;height:24px;color:#666;cursor:pointer;-webkit-transition:color .1s linear;-o-transition:color .1s linear;transition:color .1s linear}.opal-multiselect.opal-select .opal-select__btn-deselect-item-icon{display:block;margin:auto;width:14px;height:14px}.opal-multiselect.opal-select .opal-select__selected-item:hover .opal-select__btn-deselect-item{display:block}.opal-multiselect.opal-select .opal-select__btn-deselect-item:hover{color:#000}.opal-multiselect.opal-select .opal-select__btn-deselect-item:active{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.opal-multiselect.opal-select .opal-select__nothing-selected{display:none;-webkit-box-sizing:border-box;box-sizing:border-box;padding:10px;height:100%;text-align:center;white-space:nowrap}.opal-multiselect.opal-select .opal-select__nothing-selected::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-multiselect.opal-select .opal-select__nothing-selected-message{display:inline-block;vertical-align:middle;opacity:.6}.opal-multiselect.opal-select .opal-select__nothing-selected[shown]{display:block}.opal-multiselect.opal-select .opal-select__menu-content{width:299px;height:304px}.opal-multiselect.opal-select .opal-select__menu-footer{-webkit-box-sizing:border-box;box-sizing:border-box;padding:0 10px;width:100%;border-top:1px solid #ccc;text-align:right;font-size:0;line-height:60px}";
             head.appendChild(style);
             return style;
         }
         return null;
     })(document);
 
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports) {
-
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 28 28\" id=\"opal-components__icon-cross\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 2l24 24m0-24L2 26\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 64 */
@@ -5829,7 +5830,7 @@ var rionite_1 = __webpack_require__(0);
 var created_browser_history_1 = __webpack_require__(102);
 var opal_route_1 = __webpack_require__(103);
 exports.OpalRoute = opal_route_1.default;
-var PathNodeType_1 = __webpack_require__(6);
+var PathNodeType_1 = __webpack_require__(7);
 var parsePath_1 = __webpack_require__(104);
 var escapeRegExp_1 = __webpack_require__(105);
 var hyphenize = rionite_1.Utils.hyphenize;
@@ -6126,7 +6127,7 @@ exports.default = OpalRoute;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType_1 = __webpack_require__(6);
+var PathNodeType_1 = __webpack_require__(7);
 var reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
     var ctx = PathNodeType_1.default.SIMPLE;

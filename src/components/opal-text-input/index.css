@@ -7,7 +7,7 @@
 	& .opal-text-input__text-field {
 		display: block;
 		box-sizing: border-box;
-		padding: 6px 11px;
+		padding: 6px 32px 6px 11px;
 		width: 100%;
 		border: 1px solid hsl(0,0%,68%);
 		border-top-color: hsl(0,0%,66%);
@@ -30,37 +30,24 @@
 	& .opal-text-input__btn-clear {
 		position: absolute;
 		top: 0;
-		right: 10px;
+		right: 9px;
 		bottom: 0;
 		display: none;
 		margin: auto;
-		padding: 0;
-		width: 23px;
-		height: 23px;
+		padding: 5px;
+		width: 24px;
+		height: 24px;
 		border: 0;
-		border-radius: 3px;
 		background: transparent;
-		opacity: .5;
+		color: hsl(0,0%,40%);
 		cursor: pointer;
-		transition: opacity .1s linear;
+		transition: color .1s linear;
 	}
-		& .opal-text-input__btn-clear::before,
-		& .opal-text-input__btn-clear::after {
-			position: absolute;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
+		& .opal-text-input__btn-clear-icon {
+			display: block;
 			margin: auto;
-			width: 18px;
-			height: 1px;
-			background: #000;
-			content: '';
-			transform: rotate(45deg);
-		}
-
-		& .opal-text-input__btn-clear::after {
-			transform: rotate(-45deg);
+			width: 14px;
+			height: 14px;
 		}
 
 	& .opal-text-input__btn-clear[shown] {
@@ -68,8 +55,7 @@
 	}
 
 	& .opal-text-input__btn-clear:hover {
-		background: hsl(0,0%,90%);
-		opacity: 1;
+		color: #000;
 	}
 
 	& .opal-text-input__btn-clear:focus {
@@ -77,11 +63,10 @@
 	}
 		body:not(._no-focus-highlight) & .opal-text-input__btn-clear:focus {
 			border-color: hsl(208,100%,60%);
-			opacity: 1;
 		}
 
 	& .opal-text-input__btn-clear:active {
-		background: hsl(0,0%,80%);
+		transform: translateY(1px);
 	}
 
 	& .opal-text-input__loader,

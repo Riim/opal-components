@@ -20,7 +20,9 @@
 }
 
 @if-then (if=input.clearable, rt-silent) {
-	button/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick)
+	button/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick) {
+		svg/btn-clear-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }
+	}
 }
 
 @if-then (if=input.loading, rt-silent) {

@@ -1,4 +1,5 @@
 import './index.css';
+import '../../assets/icons/opal-components__icon-cross.svg';
 
 import { IEvent, define, Utils } from 'cellx';
 import { Component, d } from 'rionite';

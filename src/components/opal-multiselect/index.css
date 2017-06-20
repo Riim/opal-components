@@ -44,32 +44,35 @@
 				& .opal-select__btn-deselect-item {
 					position: absolute;
 					top: 0;
-					right: 10px;
+					right: 9px;
 					bottom: 0;
 					display: none;
 					box-sizing: border-box;
 					margin: auto;
-					padding: 4px;
-					width: 22px;
-					height: 22px;
+					padding: 5px;
+					width: 24px;
+					height: 24px;
+					color: hsl(0,0%,40%);
 					cursor: pointer;
+					transition: color .1s linear;
 				}
 					& .opal-select__btn-deselect-item-icon {
 						display: block;
 						margin: auto;
 						width: 14px;
 						height: 14px;
-						color: hsl(0,0%,20%);
 					}
 
 				& .opal-select__selected-item:hover .opal-select__btn-deselect-item {
 					display: block;
 				}
 
+				& .opal-select__btn-deselect-item:hover {
+					color: #000;
+				}
+
 				& .opal-select__btn-deselect-item:active {
-					top: 1px;
-					bottom: -1px;
-					opacity: 1;
+					transform: translateY(1px);
 				}
 
 			& .opal-select__nothing-selected {
