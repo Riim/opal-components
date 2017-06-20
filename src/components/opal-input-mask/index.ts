@@ -12,6 +12,7 @@ let nextTick = Utils.nextTick;
 let forEach = Array.prototype.forEach;
 
 let iPhone = /iphone/i.test(navigator.userAgent);
+let ie11 = !((window as any).ActiveXObject) && 'ActiveXObject' in window;
 
 @d.Component({
 	elementIs: 'opal-input-mask',
@@ -47,10 +48,18 @@ export default class OpalInputMask extends Component {
 	_textOnFocus: string;
 
 	initialize() {
+		if (ie11) {
+			return;
+		}
+
 		this._definitions = Object.create((this.constructor as typeof OpalInputMask).defaultDefinitions);
 	}
 
 	ready() {
+		if (ie11) {
+			return;
+		}
+
 		this._textField = (this.$('text-input') as OpalTextInput).$('text-field') as HTMLInputElement;
 
 		let definitions = this._definitions;
@@ -87,6 +96,10 @@ export default class OpalInputMask extends Component {
 	}
 
 	elementAttached() {
+		if (ie11) {
+			return;
+		}
+
 		this.listenTo(this, 'change:_mask', this._onMaskChange);
 
 		this.listenTo(this._textField, {

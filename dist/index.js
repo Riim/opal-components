@@ -1548,15 +1548,22 @@ exports.OpalInputMaskDefinition = opal_input_mask_definition_1.default;
 var nextTick = cellx_1.Utils.nextTick;
 var forEach = Array.prototype.forEach;
 var iPhone = /iphone/i.test(navigator.userAgent);
+var ie11 = !(window.ActiveXObject) && 'ActiveXObject' in window;
 var OpalInputMask = OpalInputMask_1 = (function (_super) {
     __extends(OpalInputMask, _super);
     function OpalInputMask() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     OpalInputMask.prototype.initialize = function () {
+        if (ie11) {
+            return;
+        }
         this._definitions = Object.create(this.constructor.defaultDefinitions);
     };
     OpalInputMask.prototype.ready = function () {
+        if (ie11) {
+            return;
+        }
         this._textField = this.$('text-input').$('text-field');
         var definitions = this._definitions;
         forEach.call(this.element.querySelectorAll('opal-input-mask-definition'), function (inputMaskDefinition) {
@@ -1582,6 +1589,9 @@ var OpalInputMask = OpalInputMask_1 = (function (_super) {
         this._initBuffer();
     };
     OpalInputMask.prototype.elementAttached = function () {
+        if (ie11) {
+            return;
+        }
         this.listenTo(this, 'change:_mask', this._onMaskChange);
         this.listenTo(this._textField, {
             focus: this._onTextFieldFocus,
