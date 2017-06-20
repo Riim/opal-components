@@ -43,9 +43,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -73,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 38);
+/******/ 	return __webpack_require__(__webpack_require__.s = 106);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -85,7 +82,111 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
 
-/***/ 32:
+/***/ 106:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(107);
+__webpack_require__(108);
+var rionite_1 = __webpack_require__(0);
+var Prism = __webpack_require__(109);
+var template = __webpack_require__(110);
+function prepareCode(code, isHtml) {
+    code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
+    var tabs = code.match(/^\t*[^\t\r\n]/gm);
+    var stripTabCount = tabs.slice(1).reduce(function (stripTabCount, tabs) { return Math.min(stripTabCount, tabs.length); }, tabs[0].length) - 1;
+    if (stripTabCount) {
+        code = code.replace(RegExp("^\\t{" + stripTabCount + "}(.)", 'gm'), '$1');
+    }
+    if (isHtml) {
+        code = code.replace(/(\s[\-\w]+)=""(?=[^<]*>)/g, '$1');
+    }
+    return code;
+}
+var OpalCodeListing = (function (_super) {
+    __extends(OpalCodeListing, _super);
+    function OpalCodeListing() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    OpalCodeListing.prototype.initialize = function () {
+        this.highlightedHTMLCode = Prism.highlight(prepareCode(this.$('example-html').innerHTML, true), Prism.languages['html']);
+        var exampleJS = this.$('example-js');
+        if (exampleJS) {
+            this.highlightedJSCode = Prism.highlight(prepareCode(exampleJS.textContent || ''), Prism.languages['javascript']);
+        }
+    };
+    OpalCodeListing.prototype.ready = function () {
+        this.$('html-code').innerHTML = this.highlightedHTMLCode;
+        this.$('js-code').innerHTML = this.highlightedJSCode || '';
+    };
+    return OpalCodeListing;
+}(rionite_1.Component));
+OpalCodeListing = __decorate([
+    rionite_1.d.Component({
+        elementIs: 'opal-code-listing',
+        template: template
+    })
+], OpalCodeListing);
+exports.default = OpalCodeListing;
+
+
+/***/ }),
+
+/***/ 107:
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".opal-code-listing{display:block;margin-bottom:30px}.opal-code-listing .opal-code-listing__html-code-wrapper,.opal-code-listing .opal-code-listing__js-code-wrapper{overflow:auto;margin:0;color:#000;text-align:left;white-space:pre;word-spacing:normal;word-wrap:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;font-weight:700;font-size:16px;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;line-height:1.5}.opal-code-listing .opal-code-listing__example-html-container{position:relative;display:block;padding:29px;border:1px solid #dbdbdb;border-radius:3px;background:#fff}.opal-code-listing .opal-code-listing__example-html-container::before{position:absolute;top:0;left:29px;padding:0 10px;border:1px solid #dbdbdb;border-radius:3px;background:#f5f5f5;content:'Result';font:14px/28px Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+
+/***/ 108:
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".token.comment,.token.prolog,.token.doctype,.token.cdata{color:#666}.token.punctuation{color:#999}.namespace{opacity:.7}.token.property,.token.tag,.token.boolean,.token.number,.token.constant,.token.symbol,.token.deleted{color:#ab175e}.token.selector,.token.attr-name,.token.string,.token.char,.token.builtin,.token.inserted{color:#0083b3}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string{background:rgba(255,255,255,.5);color:#a68059}.token.atrule,.token.attr-value,.token.keyword{color:#723dc2}.token.function{color:#dd4b68}.token.regex,.token.important,.token.variable{color:#f09c00}.token.important,.token.bold{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+
+/***/ 109:
 /***/ (function(module, exports) {
 
 
@@ -887,114 +988,10 @@ Prism.languages.js = Prism.languages.javascript;
 
 /***/ }),
 
-/***/ 33:
+/***/ 110:
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nopal-tabs {\nopal-tab { 'HTML' }\nopal-tab-panel {\npre/html-code-wrapper { code/html-code }\n}\nopal-tab { 'JS' }\nopal-tab-panel {\npre/js-code-wrapper { code/js-code }\n}\n}\nrt-content/example-html-container (select=.opal-code-listing__example-html)\nrt-content/example-js-container (select=.opal-code-listing__example-js)\n}"
-
-/***/ }),
-
-/***/ 34:
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".opal-code-listing{display:block;margin-bottom:30px}.opal-code-listing .opal-code-listing__html-code-wrapper,.opal-code-listing .opal-code-listing__js-code-wrapper{overflow:auto;margin:0;color:#000;text-align:left;white-space:pre;word-spacing:normal;word-wrap:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;font-weight:700;font-size:16px;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;line-height:1.5}.opal-code-listing .opal-code-listing__example-html-container{position:relative;display:block;padding:29px;border:1px solid #dbdbdb;border-radius:3px;background:#fff}.opal-code-listing .opal-code-listing__example-html-container::before{position:absolute;top:0;left:29px;padding:0 10px;border:1px solid #dbdbdb;border-radius:3px;background:#f5f5f5;content:'Result';font:14px/28px Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-
-/***/ 35:
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".token.comment,.token.prolog,.token.doctype,.token.cdata{color:#666}.token.punctuation{color:#999}.namespace{opacity:.7}.token.property,.token.tag,.token.boolean,.token.number,.token.constant,.token.symbol,.token.deleted{color:#ab175e}.token.selector,.token.attr-name,.token.string,.token.char,.token.builtin,.token.inserted{color:#0083b3}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string{background:rgba(255,255,255,.5);color:#a68059}.token.atrule,.token.attr-value,.token.keyword{color:#723dc2}.token.function{color:#dd4b68}.token.regex,.token.important,.token.variable{color:#f09c00}.token.important,.token.bold{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-
-/***/ 38:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(34);
-__webpack_require__(35);
-var rionite_1 = __webpack_require__(0);
-var Prism = __webpack_require__(32);
-var template = __webpack_require__(33);
-function prepareCode(code, isHtml) {
-    code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
-    var tabs = code.match(/^\t*[^\t\r\n]/gm);
-    var stripTabCount = tabs.slice(1).reduce(function (stripTabCount, tabs) { return Math.min(stripTabCount, tabs.length); }, tabs[0].length) - 1;
-    if (stripTabCount) {
-        code = code.replace(RegExp("^\\t{" + stripTabCount + "}(.)", 'gm'), '$1');
-    }
-    if (isHtml) {
-        code = code.replace(/(\s[\-\w]+)=""(?=[^<]*>)/g, '$1');
-    }
-    return code;
-}
-var OpalCodeListing = (function (_super) {
-    __extends(OpalCodeListing, _super);
-    function OpalCodeListing() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    OpalCodeListing.prototype.initialize = function () {
-        this.highlightedHTMLCode = Prism.highlight(prepareCode(this.$('example-html').innerHTML, true), Prism.languages['html']);
-        var exampleJS = this.$('example-js');
-        if (exampleJS) {
-            this.highlightedJSCode = Prism.highlight(prepareCode(exampleJS.textContent || ''), Prism.languages['javascript']);
-        }
-    };
-    OpalCodeListing.prototype.ready = function () {
-        this.$('html-code').innerHTML = this.highlightedHTMLCode;
-        this.$('js-code').innerHTML = this.highlightedJSCode || '';
-    };
-    return OpalCodeListing;
-}(rionite_1.Component));
-OpalCodeListing = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-code-listing',
-        template: template
-    })
-], OpalCodeListing);
-exports.default = OpalCodeListing;
-
 
 /***/ })
 

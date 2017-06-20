@@ -23,19 +23,19 @@ header/header {
 }
 
 div/body {
-	table/week-days {
-		tr/week-days-row {
+	div/week-days {
+		div/week-days-row {
 			@repeat (for=weekDay of weekDaysShort, rt-silent) {
-				td/week-day { '{weekDay}' }
+				span/week-day { '{weekDay}' }
 			}
 		}
 	}
 
-	table/days {
+	div/days {
 		@repeat (for=weekDays of days, rt-silent) {
-			tr/days-row {
+			div/days-row {
 				@repeat (for=day of weekDays, rt-silent) {
-					td/day (
+					span/day (
 						week-day={day.weekDay},
 						today={day.today},
 						selected={day.selected},

@@ -109,8 +109,10 @@
 			}
 				& .opal-calendar__week-day,
 				& .opal-calendar__day {
+					display: inline-block;
+					box-sizing: border-box;
 					padding: 3px 7px;
-					width: 14.286%;
+					width: 14.2857%;
 					border: 1px solid transparent;
 				}
 
