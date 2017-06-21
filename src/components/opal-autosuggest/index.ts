@@ -176,6 +176,12 @@ export default class OpalAutosuggest extends Component {
 		this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
 	}
 
+	ready() {
+		if (this.selectedItem) {
+			(this.$('text-input') as OpalTextInput).value = this.selectedItem.text;
+		}
+	}
+
 	_onTextFieldClick() {
 		this.openMenu();
 	}

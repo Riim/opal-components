@@ -5157,6 +5157,11 @@ var OpalAutosuggest = (function (_super) {
         this.listenTo(this.list, 'change', this._onListChange);
         this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
     };
+    OpalAutosuggest.prototype.ready = function () {
+        if (this.selectedItem) {
+            this.$('text-input').value = this.selectedItem.text;
+        }
+    };
     OpalAutosuggest.prototype._onTextFieldClick = function () {
         this.openMenu();
     };

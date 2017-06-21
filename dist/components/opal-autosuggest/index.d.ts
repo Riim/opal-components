@@ -29,6 +29,7 @@ export default class OpalAutosuggest extends Component {
     _documentClickListening: IDisposableListening;
     initialize(): void;
     elementAttached(): void;
+    ready(): void;
     _onTextFieldClick(): void;
     _onMenuMouseOver(evt: Event): void;
     _onListChange(): void;
