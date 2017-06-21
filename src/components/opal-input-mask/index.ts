@@ -48,18 +48,10 @@ export default class OpalInputMask extends Component {
 	_textOnFocus: string;
 
 	initialize() {
-		if (ie11) {
-			return;
-		}
-
 		this._definitions = Object.create((this.constructor as typeof OpalInputMask).defaultDefinitions);
 	}
 
 	ready() {
-		if (ie11) {
-			return;
-		}
-
 		this._textField = (this.$('text-input') as OpalTextInput).$('text-field') as HTMLInputElement;
 
 		let definitions = this._definitions;
@@ -96,10 +88,6 @@ export default class OpalInputMask extends Component {
 	}
 
 	elementAttached() {
-		if (ie11) {
-			return;
-		}
-
 		this.listenTo(this, 'change:_mask', this._onMaskChange);
 
 		this.listenTo(this._textField, {
@@ -110,7 +98,9 @@ export default class OpalInputMask extends Component {
 			input: this._onTextFieldInput
 		});
 
-		this._checkValue(false);
+		if (!ie11) {
+			this._checkValue(false);
+		}
 	}
 
 	_onMaskChange() {
@@ -235,6 +225,10 @@ export default class OpalInputMask extends Component {
 	}
 
 	_onTextFieldInput() {
+		if (ie11) {
+			return;
+		}
+
 		this._setTextFieldSelection(this._checkValue(true));
 	}
 
