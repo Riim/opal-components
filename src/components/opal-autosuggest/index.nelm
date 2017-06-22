@@ -4,7 +4,7 @@ rt-content (select=.opal-autosuggest__text-input) {
 	opal-text-input/text-input (
 		value={input.selectedItem.text},
 		placeholder={constructor.i18n.textInputPlaceholder},
-		loading={loaderShown}
+		loading={isLoaderShown}
 	)
 }
 

@@ -19,7 +19,7 @@ span/tags {
 }
 
 span/control {
-	@if-then (if=placeholderShown, rt-silent) {
+	@if-then (if=isPlaceholderShown, rt-silent) {
 		span/placeholder { '{input.placeholder} ' }
 	}
 

@@ -70,15 +70,15 @@ function toComparable(str: string): string {
 			},
 
 			input(evt: IEvent) {
-				this._isInputLast = true;
+				this._isNotInputConfirmed = true;
 
 				this._clearList();
 
 				if ((evt.target as OpalTextInput).value.length >= this.input.minQueryLength) {
-					this._loadingPlanned = true;
+					this._isLoadingPlanned = true;
 
 					this._loadingTimeout = this.setTimeout(() => {
-						this._loadingPlanned = false;
+						this._isLoadingPlanned = false;
 						this._load();
 					}, 300);
 				}
@@ -116,14 +116,14 @@ export default class OpalAutosuggest extends Component {
 
 	list: ObservableList<IItem>;
 
-	_isInputLast = false;
+	_isNotInputConfirmed = false;
 
-	_loadingPlanned: boolean;
+	_isLoadingPlanned: boolean;
 	_loadingTimeout: IDisposableTimeout;
 	_requestCallback: IDisposableCallback;
 	loading: boolean;
 
-	loaderShown: boolean;
+	isLoaderShown: boolean;
 
 	_focusedListItem: HTMLElement | null;
 	selectedItem: IItem | null;
@@ -154,11 +154,11 @@ export default class OpalAutosuggest extends Component {
 		define(this, {
 			list: new ObservableList<IItem>(),
 
-			_loadingPlanned: false,
+			_isLoadingPlanned: false,
 			loading: false,
 
-			loaderShown(this: OpalAutosuggest): boolean {
-				return this._loadingPlanned || this.loading;
+			isLoaderShown(this: OpalAutosuggest): boolean {
+				return this._isLoadingPlanned || this.loading;
 			},
 
 			selectedItem: input.selectedItem
@@ -173,7 +173,7 @@ export default class OpalAutosuggest extends Component {
 		);
 		this.listenTo((this.$('menu') as Component).element as HTMLElement, 'mouseover', this._onMenuMouseOver);
 		this.listenTo(this.list, 'change', this._onListChange);
-		this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
+		this.listenTo(this, 'change:isLoaderShown', this._onIsLoaderShownChange);
 	}
 
 	ready() {
@@ -210,7 +210,7 @@ export default class OpalAutosuggest extends Component {
 		this.openMenu();
 	}
 
-	_onLoaderShownChange(evt: IEvent) {
+	_onIsLoaderShownChange(evt: IEvent) {
 		(this.$('text-input') as Component).input.loading = evt.value;
 	}
 
@@ -335,8 +335,8 @@ export default class OpalAutosuggest extends Component {
 	}
 
 	_cancelLoading() {
-		if (this._loadingPlanned) {
-			this._loadingPlanned = false;
+		if (this._isLoadingPlanned) {
+			this._isLoadingPlanned = false;
 			this._loadingTimeout.clear();
 		} else if (this.loading) {
 			this._requestCallback.cancel();
@@ -358,7 +358,7 @@ export default class OpalAutosuggest extends Component {
 	}
 
 	_setSelectedItemOfList() {
-		if (this._isInputLast) {
+		if (this._isNotInputConfirmed) {
 			let comparableQuery = toComparable((this.$('text-input') as OpalTextInput).value);
 			let selectedItem = this.list.find(item => toComparable(item.text) == comparableQuery) || null;
 
@@ -372,7 +372,7 @@ export default class OpalAutosuggest extends Component {
 
 	_setSelectedItem(selectedItem: IItem | null) {
 		if (selectedItem) {
-			this._isInputLast = false;
+			this._isNotInputConfirmed = false;
 
 			if (this.selectedItem && this.selectedItem.value == selectedItem.value) {
 				return;

@@ -2,7 +2,9 @@ import './index.css';
 import '../../assets/icons/opal-components__icon-cross.svg';
 import { Component } from 'rionite';
 export default class OpalTextInput extends Component {
-    btnClearShown: boolean;
+    _value: string;
+    isControlIconShown: boolean;
+    isBtnClearShown: boolean;
     _initialHeight: number;
     initialize(): void;
     ready(): void;

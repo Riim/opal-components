@@ -39,7 +39,7 @@ import template = require('./index.nelm');
 export default class OpalMultiselect extends OpalSelect {
 	dataProvider: IDataProvider | null;
 
-	nothingSelectedShown: boolean;
+	isNothingSelectedShown: boolean;
 
 	initialize() {
 		super.initialize();
@@ -59,7 +59,7 @@ export default class OpalMultiselect extends OpalSelect {
 		this.dataProvider = dataProvider;
 
 		define(this, {
-			nothingSelectedShown(this: OpalMultiselect) {
+			isNothingSelectedShown(this: OpalMultiselect) {
 				return !this.viewModel.length;
 			}
 		});

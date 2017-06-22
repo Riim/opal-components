@@ -107,12 +107,12 @@ export default class OpalCalendar extends Component {
 	shownYear: number;
 	shownMonth: number;
 
-	btnPrevMonthDisabled: boolean;
-	btnNextMonthDisabled: boolean;
+	isBtnPrevMonthDisabled: boolean;
+	isBtnNextMonthDisabled: boolean;
 
 	days: TDays;
 
-	_currentlyDateSelect: boolean;
+	_currentlyDateSelection: boolean;
 
 	_documentKeyDownListening: IDisposableListening | null | undefined;
 
@@ -199,11 +199,11 @@ export default class OpalCalendar extends Component {
 			shownYear: shownDate.getFullYear(),
 			shownMonth: shownDate.getMonth(),
 
-			btnPrevMonthDisabled(this: OpalCalendar) {
+			isBtnPrevMonthDisabled(this: OpalCalendar) {
 				return this.shownYear == this.fromYear && !this.shownMonth;
 			},
 
-			btnNextMonthDisabled(this: OpalCalendar) {
+			isBtnNextMonthDisabled(this: OpalCalendar) {
 				return this.shownYear == this.toYear && this.shownMonth == 11;
 			},
 
@@ -218,8 +218,8 @@ export default class OpalCalendar extends Component {
 				let shownYear = this.shownYear;
 				let shownMonth = this.shownMonth;
 
-				if (this._currentlyDateSelect) {
-					this._currentlyDateSelect = false;
+				if (this._currentlyDateSelection) {
+					this._currentlyDateSelection = false;
 					return oldDays as TDays;
 				}
 
@@ -351,7 +351,7 @@ export default class OpalCalendar extends Component {
 
 		dayEl.setAttribute('selected', '');
 
-		this._currentlyDateSelect = true;
+		this._currentlyDateSelection = true;
 		this.input.value = dayEl.dataset.date;
 
 		this.emit('change');

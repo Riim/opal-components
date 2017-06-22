@@ -1329,25 +1329,27 @@ var OpalTextInput = (function (_super) {
     }
     OpalTextInput.prototype.initialize = function () {
         cellx_1.define(this, {
-            btnClearShown: function () {
-                return !!this.input.value && !this.input.loading;
+            _value: function () {
+                return this.input.value;
             },
-            controlIconShown: function () {
-                return !this.btnClearShown && !this.input.loading;
+            isControlIconShown: function () {
+                return !this.isBtnClearShown && !this.input.loading;
+            },
+            isBtnClearShown: function () {
+                return !!this._value && !this.input.loading;
             }
         });
     };
     OpalTextInput.prototype.ready = function () {
         var input = this.input;
-        var value = input.value;
         var textField = this.$('text-field');
-        if (value) {
-            textField.value = value;
+        if (this._value) {
+            textField.value = this._value;
         }
         else {
             var storeKey = input.storeKey;
             if (storeKey) {
-                input.value = localStorage.getItem(storeKey) || '';
+                this._value = textField.value = localStorage.getItem(storeKey) || '';
             }
         }
         if (input.multiline && input.autoHeight) {
@@ -1384,10 +1386,10 @@ var OpalTextInput = (function (_super) {
     };
     Object.defineProperty(OpalTextInput.prototype, "value", {
         get: function () {
-            return this.input.value;
+            return this.$('text-field').value;
         },
         set: function (value) {
-            this.input.value = value;
+            this._value = this.$('text-field').value = value;
         },
         enumerable: true,
         configurable: true
@@ -1461,7 +1463,7 @@ OpalTextInput = __decorate([
                     this.emit('blur');
                 },
                 input: function (evt) {
-                    this.value = evt.target.value;
+                    this._value = evt.target.value;
                     this.emit({ type: 'input', initialEvent: evt });
                 },
                 change: function (evt) {
@@ -1520,7 +1522,7 @@ module.exports = (function(d) {
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\n@if-then (if=input.multiline) {\ntextarea/, text-field (\nrows={input.rows},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-else (if=input.multiline) {\ninput/, text-field (\ntype={input.inputType},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-then (if=input.clearable, rt-silent) {\nbutton/btn-clear (shown={btnClearShown}, rt-click=_onBtnClearClick) {\nsvg/btn-clear-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n@if-then (if=input.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}\nrt-content/control-icon-container (select=.opal-text-input__control-icon, shown={controlIconShown})\n}"
+module.exports = "@section/inner {\n@if-then (if=input.multiline) {\ntextarea/, text-field (\nrows={input.rows},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-else (if=input.multiline) {\ninput/, text-field (\ntype={input.inputType},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\nrt-content/control-icon-container (select=.opal-text-input__control-icon, shown={isControlIconShown})\n@if-then (if=input.clearable, rt-silent) {\nbutton/btn-clear (shown={isBtnClearShown}, rt-click=_onBtnClearClick) {\nsvg/btn-clear-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n@if-then (if=input.loading, rt-silent) {\nopal-loader/loader (size=s, shown)\n}\n}"
 
 /***/ }),
 /* 17 */
@@ -3911,7 +3913,7 @@ var OpalMultiselect = (function (_super) {
         }
         this.dataProvider = dataProvider;
         cellx_1.define(this, {
-            nothingSelectedShown: function () {
+            isNothingSelectedShown: function () {
                 return !this.viewModel.length;
             }
         });
@@ -3970,7 +3972,7 @@ module.exports = (function(d) {
 /* 64 */
 /***/ (function(module, exports) {
 
-module.exports = "/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=opal-select__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n)\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\ndiv/btn-deselect-item (\ndata-item-value='{item |key(_viewModelItemValueFieldName) }',\nrt-click=_onBtnDeselectItemClick\n) {\nsvg/btn-deselect-item-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n}\ndiv/nothing-selected (shown={nothingSelectedShown}) {\nspan/nothing-selected-message { '{constructor.i18n.nothingSelected}' }\n}\n}\ndiv/menu-content {\nopal-loaded-list/loaded-list (dataprovider-keypath=dataProvider) {\nopal-select-option/option (value={$item.value}, text={$item.text})\n}\n}\ndiv/menu-footer {\nopal-button/btn-close { 'Закрыть' }\n}\n}"
+module.exports = "/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=opal-select__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n)\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\ndiv/btn-deselect-item (\ndata-item-value='{item |key(_viewModelItemValueFieldName) }',\nrt-click=_onBtnDeselectItemClick\n) {\nsvg/btn-deselect-item-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n}\ndiv/nothing-selected (shown={isNothingSelectedShown}) {\nspan/nothing-selected-message { '{constructor.i18n.nothingSelected}' }\n}\n}\ndiv/menu-content {\nopal-loaded-list/loaded-list (dataprovider-keypath=dataProvider) {\nopal-select-option/option (value={$item.value}, text={$item.text})\n}\n}\ndiv/menu-footer {\nopal-button/btn-close { 'Закрыть' }\n}\n}"
 
 /***/ }),
 /* 65 */
@@ -4276,10 +4278,10 @@ var OpalCalendar = OpalCalendar_1 = (function (_super) {
         cellx_1.define(this, {
             shownYear: shownDate.getFullYear(),
             shownMonth: shownDate.getMonth(),
-            btnPrevMonthDisabled: function () {
+            isBtnPrevMonthDisabled: function () {
                 return this.shownYear == this.fromYear && !this.shownMonth;
             },
-            btnNextMonthDisabled: function () {
+            isBtnNextMonthDisabled: function () {
                 return this.shownYear == this.toYear && this.shownMonth == 11;
             },
             days: function (cell, oldDays) {
@@ -4289,8 +4291,8 @@ var OpalCalendar = OpalCalendar_1 = (function (_super) {
                 var value = this.value;
                 var shownYear = this.shownYear;
                 var shownMonth = this.shownMonth;
-                if (this._currentlyDateSelect) {
-                    this._currentlyDateSelect = false;
+                if (this._currentlyDateSelection) {
+                    this._currentlyDateSelection = false;
                     return oldDays;
                 }
                 var now = new Date();
@@ -4393,7 +4395,7 @@ var OpalCalendar = OpalCalendar_1 = (function (_super) {
             selectedDayEl.removeAttribute('selected');
         }
         dayEl.setAttribute('selected', '');
-        this._currentlyDateSelect = true;
+        this._currentlyDateSelection = true;
         this.input.value = dayEl.dataset.date;
         this.emit('change');
     };
@@ -4516,7 +4518,7 @@ exports.default = formatDate;
 /* 75 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={btnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/s-month (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months, rt-silent) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/s-year (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years, rt-silent) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={btnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ndiv/week-days {\ndiv/week-days-row {\n@repeat (for=weekDay of weekDaysShort, rt-silent) {\nspan/week-day { '{weekDay}' }\n}\n}\n}\ndiv/days {\n@repeat (for=weekDays of days, rt-silent) {\ndiv/days-row {\n@repeat (for=day of weekDays, rt-silent) {\nspan/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date},\nrt-click=_onDayClick\n) { '{day.value}' }\n}\n}\n}\n}\n}\n}"
+module.exports = "@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/s-month (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months, rt-silent) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/s-year (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years, rt-silent) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={isBtnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ndiv/week-days {\ndiv/week-days-row {\n@repeat (for=weekDay of weekDaysShort, rt-silent) {\nspan/week-day { '{weekDay}' }\n}\n}\n}\ndiv/days {\n@repeat (for=weekDays of days, rt-silent) {\ndiv/days-row {\n@repeat (for=day of weekDays, rt-silent) {\nspan/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date},\nrt-click=_onDayClick\n) { '{day.value}' }\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 76 */
@@ -4852,11 +4854,11 @@ var OpalLoadedList = (function (_super) {
             empty: function () {
                 return !this.list.length;
             },
-            nothingFoundShown: function () {
-                return this.total === 0 && !this._isLoadingCheckPlanned && !this.loading;
-            },
-            loaderShown: function () {
+            isLoaderShown: function () {
                 return this.total === undefined || this.list.length < this.total || this.loading;
+            },
+            isNothingFoundShown: function () {
+                return this.total === 0 && !this._isLoadingCheckPlanned && !this.loading;
             }
         });
     };
@@ -5000,7 +5002,7 @@ module.exports = (function(d) {
 /* 84 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\ndiv/list {\n@repeat (for={input.itemAs} of list) {\nrt-content/list-item (clone, get-context=_getListItemContext)\n}\n}\nopal-loader/loader (shown={loaderShown}, align-center={empty})\ndiv/nothing-found (shown={nothingFoundShown}) {\nspan/nothing-found-message { '{constructor.i18n.nothingFound}' }\n}\n}"
+module.exports = "@section/inner {\ndiv/list {\n@repeat (for={input.itemAs} of list) {\nrt-content/list-item (clone, get-context=_getListItemContext)\n}\n}\nopal-loader/loader (shown={isLoaderShown}, align-center={empty})\ndiv/nothing-found (shown={isNothingFoundShown}) {\nspan/nothing-found-message { '{constructor.i18n.nothingFound}' }\n}\n}"
 
 /***/ }),
 /* 85 */
@@ -5118,7 +5120,7 @@ var OpalAutosuggest = (function (_super) {
     __extends(OpalAutosuggest, _super);
     function OpalAutosuggest() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this._isInputLast = false;
+        _this._isNotInputConfirmed = false;
         return _this;
     }
     OpalAutosuggest.prototype.initialize = function () {
@@ -5139,10 +5141,10 @@ var OpalAutosuggest = (function (_super) {
         }
         cellx_1.define(this, {
             list: new cellx_1.ObservableList(),
-            _loadingPlanned: false,
+            _isLoadingPlanned: false,
             loading: false,
-            loaderShown: function () {
-                return this._loadingPlanned || this.loading;
+            isLoaderShown: function () {
+                return this._isLoadingPlanned || this.loading;
             },
             selectedItem: input.selectedItem
         });
@@ -5151,7 +5153,7 @@ var OpalAutosuggest = (function (_super) {
         this.listenTo(this.$('text-input').$('text-field'), 'click', this._onTextFieldClick);
         this.listenTo(this.$('menu').element, 'mouseover', this._onMenuMouseOver);
         this.listenTo(this.list, 'change', this._onListChange);
-        this.listenTo(this, 'change:loaderShown', this._onLoaderShownChange);
+        this.listenTo(this, 'change:isLoaderShown', this._onIsLoaderShownChange);
     };
     OpalAutosuggest.prototype.ready = function () {
         if (this.selectedItem) {
@@ -5179,7 +5181,7 @@ var OpalAutosuggest = (function (_super) {
     OpalAutosuggest.prototype._onListChange = function () {
         this.openMenu();
     };
-    OpalAutosuggest.prototype._onLoaderShownChange = function (evt) {
+    OpalAutosuggest.prototype._onIsLoaderShownChange = function (evt) {
         this.$('text-input').input.loading = evt.value;
     };
     OpalAutosuggest.prototype._onDocumentFocus = function (evt) {
@@ -5276,8 +5278,8 @@ var OpalAutosuggest = (function (_super) {
         }
     };
     OpalAutosuggest.prototype._cancelLoading = function () {
-        if (this._loadingPlanned) {
-            this._loadingPlanned = false;
+        if (this._isLoadingPlanned) {
+            this._isLoadingPlanned = false;
             this._loadingTimeout.clear();
         }
         else if (this.loading) {
@@ -5296,7 +5298,7 @@ var OpalAutosuggest = (function (_super) {
         return this;
     };
     OpalAutosuggest.prototype._setSelectedItemOfList = function () {
-        if (this._isInputLast) {
+        if (this._isNotInputConfirmed) {
             var comparableQuery_1 = toComparable(this.$('text-input').value);
             var selectedItem = this.list.find(function (item) { return toComparable(item.text) == comparableQuery_1; }) || null;
             if (selectedItem && this.list.length > 1) {
@@ -5307,7 +5309,7 @@ var OpalAutosuggest = (function (_super) {
     };
     OpalAutosuggest.prototype._setSelectedItem = function (selectedItem) {
         if (selectedItem) {
-            this._isInputLast = false;
+            this._isNotInputConfirmed = false;
             if (this.selectedItem && this.selectedItem.value == selectedItem.value) {
                 return;
             }
@@ -5374,12 +5376,12 @@ OpalAutosuggest = __decorate([
                 },
                 input: function (evt) {
                     var _this = this;
-                    this._isInputLast = true;
+                    this._isNotInputConfirmed = true;
                     this._clearList();
                     if (evt.target.value.length >= this.input.minQueryLength) {
-                        this._loadingPlanned = true;
+                        this._isLoadingPlanned = true;
                         this._loadingTimeout = this.setTimeout(function () {
-                            _this._loadingPlanned = false;
+                            _this._isLoadingPlanned = false;
                             _this._load();
                         }, 300);
                     }
@@ -5435,7 +5437,7 @@ module.exports = (function(d) {
 /* 90 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue={input.selectedItem.text},\nplaceholder={constructor.i18n.textInputPlaceholder},\nloading={loaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of list, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\nspan/nothing-found-message (shown={list.length |not }) { '{constructor.i18n.nothingFound}' }\n}\n}"
+module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue={input.selectedItem.text},\nplaceholder={constructor.i18n.textInputPlaceholder},\nloading={isLoaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of list, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, rt-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\nspan/nothing-found-message (shown={list.length |not }) { '{constructor.i18n.nothingFound}' }\n}\n}"
 
 /***/ }),
 /* 91 */
@@ -5517,7 +5519,7 @@ var OpalTagSelect = (function (_super) {
         }
         cellx_1.define(this, {
             viewModel: vm,
-            placeholderShown: function () {
+            isPlaceholderShown: function () {
                 return !!this.input.placeholder && !this.viewModel.length;
             }
         });
@@ -5604,7 +5606,7 @@ module.exports = (function(d) {
 /* 93 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nspan/tags {\n@if-then (if=viewModel.length, rt-silent) {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (\ndata-tag-value='{tag |key(_viewModelItemValueFieldName) }',\nrt-click=_onBtnRemoveTagClick\n)\n}\n' '\n}\n}\n}\nspan/control {\n@if-then (if=placeholderShown, rt-silent) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist-keypath={_dataListKeypathParam},\ndatalist-item-schema={input.datalistItemSchema |json },\nvalue={input.value},\nview-model-keypath=viewModel,\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=input.datalistKeypath) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/select-option-of-datalist, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=input.datalistKeypath) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider-keypath=dataProvider\n) {\nopal-select-option/select-option-of-loaded-list, select-option (\nvalue={$item.value},\ntext={$item.text}\n)\n}\n}\n}\n}\n}\n}\n}\n}"
+module.exports = "@section/inner {\nspan/tags {\n@if-then (if=viewModel.length, rt-silent) {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (\ndata-tag-value='{tag |key(_viewModelItemValueFieldName) }',\nrt-click=_onBtnRemoveTagClick\n)\n}\n' '\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown, rt-silent) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist-keypath={_dataListKeypathParam},\ndatalist-item-schema={input.datalistItemSchema |json },\nvalue={input.value},\nview-model-keypath=viewModel,\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=input.datalistKeypath) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/select-option-of-datalist, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=input.datalistKeypath) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider-keypath=dataProvider\n) {\nopal-select-option/select-option-of-loaded-list, select-option (\nvalue={$item.value},\ntext={$item.text}\n)\n}\n}\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 94 */

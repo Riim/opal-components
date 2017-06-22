@@ -82,7 +82,7 @@ export default class OpalTagSelect extends Component {
 	_viewModelItemTextFieldName: string;
 	_viewModelItemDisabledFieldName: string;
 
-	placeholderShown: boolean;
+	isPlaceholderShown: boolean;
 
 	_dataListKeypathParam: string | null;
 
@@ -146,7 +146,7 @@ export default class OpalTagSelect extends Component {
 		define(this, {
 			viewModel: vm,
 
-			placeholderShown(this: OpalTagSelect): boolean {
+			isPlaceholderShown(this: OpalTagSelect): boolean {
 				return !!this.input.placeholder && !this.viewModel.length;
 			}
 		});

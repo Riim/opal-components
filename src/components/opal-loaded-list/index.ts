@@ -97,8 +97,9 @@ export default class OpalLoadedList extends Component {
 	_lastLoadedQuery: string | undefined;
 
 	empty: boolean;
-	nothingFoundShown: boolean;
-	loaderShown: boolean;
+
+	isLoaderShown: boolean;
+	isNothingFoundShown: boolean;
 
 	initialize() {
 		let input = this.input;
@@ -130,12 +131,12 @@ export default class OpalLoadedList extends Component {
 				return !this.list.length;
 			},
 
-			nothingFoundShown(this: OpalLoadedList): boolean {
-				return this.total === 0 && !this._isLoadingCheckPlanned && !this.loading;
+			isLoaderShown(this: OpalLoadedList): boolean {
+				return this.total === undefined || this.list.length < this.total || this.loading;
 			},
 
-			loaderShown(this: OpalLoadedList): boolean {
-				return this.total === undefined || this.list.length < this.total || this.loading;
+			isNothingFoundShown(this: OpalLoadedList): boolean {
+				return this.total === 0 && !this._isLoadingCheckPlanned && !this.loading;
 			}
 		});
 	}

@@ -26,8 +26,8 @@ export default class OpalLoadedList extends Component {
     _lastRequestedQuery: string | undefined;
     _lastLoadedQuery: string | undefined;
     empty: boolean;
-    nothingFoundShown: boolean;
-    loaderShown: boolean;
+    isLoaderShown: boolean;
+    isNothingFoundShown: boolean;
     initialize(): void;
     elementAttached(): void;
     checkLoading(): void;

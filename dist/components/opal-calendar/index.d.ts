@@ -24,10 +24,10 @@ export default class OpalCalendar extends Component {
     value: Date | null;
     shownYear: number;
     shownMonth: number;
-    btnPrevMonthDisabled: boolean;
-    btnNextMonthDisabled: boolean;
+    isBtnPrevMonthDisabled: boolean;
+    isBtnNextMonthDisabled: boolean;
     days: TDays;
-    _currentlyDateSelect: boolean;
+    _currentlyDateSelection: boolean;
     _documentKeyDownListening: IDisposableListening | null | undefined;
     initialize(): void;
     elementAttached(): void;

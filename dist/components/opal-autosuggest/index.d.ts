@@ -16,12 +16,12 @@ export interface IDataProvider {
 export default class OpalAutosuggest extends Component {
     dataProvider: IDataProvider;
     list: ObservableList<IItem>;
-    _isInputLast: boolean;
-    _loadingPlanned: boolean;
+    _isNotInputConfirmed: boolean;
+    _isLoadingPlanned: boolean;
     _loadingTimeout: IDisposableTimeout;
     _requestCallback: IDisposableCallback;
     loading: boolean;
-    loaderShown: boolean;
+    isLoaderShown: boolean;
     _focusedListItem: HTMLElement | null;
     selectedItem: IItem | null;
     _documentFocusListening: IDisposableListening;
@@ -33,7 +33,7 @@ export default class OpalAutosuggest extends Component {
     _onTextFieldClick(): void;
     _onMenuMouseOver(evt: Event): void;
     _onListChange(): void;
-    _onLoaderShownChange(evt: IEvent): void;
+    _onIsLoaderShownChange(evt: IEvent): void;
     _onDocumentFocus(evt: Event): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _onDocumentClick(evt: Event): void;

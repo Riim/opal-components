@@ -4,7 +4,7 @@ import OpalSelect from '../opal-select';
 import { IDataProvider } from '../opal-loaded-list';
 export default class OpalMultiselect extends OpalSelect {
     dataProvider: IDataProvider | null;
-    nothingSelectedShown: boolean;
+    isNothingSelectedShown: boolean;
     initialize(): void;
     _onBtnDeselectItemClick(evt: Event, btn: HTMLElement): void;
 }

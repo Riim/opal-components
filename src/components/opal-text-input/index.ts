@@ -60,7 +60,7 @@ let nextTick = Utils.nextTick;
 			},
 
 			input(evt: Event) {
-				this.value = (evt.target as HTMLInputElement).value;
+				this._value = (evt.target as HTMLInputElement).value;
 				this.emit({ type: 'input', initialEvent: evt });
 			},
 
@@ -103,34 +103,40 @@ let nextTick = Utils.nextTick;
 	}
 })
 export default class OpalTextInput extends Component {
-	btnClearShown: boolean;
+	_value: string;
+
+	isControlIconShown: boolean;
+	isBtnClearShown: boolean;
 
 	_initialHeight: number;
 
 	initialize() {
 		define(this, {
-			btnClearShown(this: OpalTextInput): boolean {
-				return !!this.input.value && !this.input.loading;
+			_value(this: OpalTextInput): string {
+				return this.input.value;
 			},
 
-			controlIconShown(this: OpalTextInput): boolean {
-				return !this.btnClearShown && !this.input.loading;
+			isControlIconShown(this: OpalTextInput): boolean {
+				return !this.isBtnClearShown && !this.input.loading;
+			},
+
+			isBtnClearShown(this: OpalTextInput): boolean {
+				return !!this._value && !this.input.loading;
 			}
 		});
 	}
 
 	ready() {
 		let input = this.input;
-		let value = input.value;
 		let textField = this.$('text-field') as HTMLInputElement;
 
-		if (value) {
-			textField.value = value;
+		if (this._value) {
+			textField.value = this._value;
 		} else {
 			let storeKey = input.storeKey;
 
 			if (storeKey) {
-				input.value = localStorage.getItem(storeKey) || '';
+				this._value = textField.value = localStorage.getItem(storeKey) || '';
 			}
 		}
 
@@ -174,10 +180,10 @@ export default class OpalTextInput extends Component {
 	}
 
 	get value(): string {
-		return this.input.value;
+		return (this.$('text-field') as OpalTextInput).value;
 	}
 	set value(value: string) {
-		this.input.value = value;
+		this._value = (this.$('text-field') as OpalTextInput).value = value;
 	}
 
 	clear(): OpalTextInput {

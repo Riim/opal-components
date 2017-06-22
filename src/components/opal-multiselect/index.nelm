@@ -21,7 +21,7 @@
 			}
 		}
 
-		div/nothing-selected (shown={nothingSelectedShown}) {
+		div/nothing-selected (shown={isNothingSelectedShown}) {
 			span/nothing-selected-message { '{constructor.i18n.nothingSelected}' }
 		}
 	}
