@@ -468,250 +468,250 @@ var OpalSelect = (function (_super) {
         this.$('button').blur();
         return this;
     };
-    return OpalSelect;
-}(rionite_1.Component));
-OpalSelect.OpalSelectOption = opal_select_option_1.default;
-OpalSelect.defaultDataListItemSchema = defaultDataListItemSchema;
-OpalSelect.defaultVMItemSchema = defaultVMItemSchema;
-OpalSelect = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-select',
-        input: {
-            viewType: String,
-            size: 'm',
-            multiple: { default: false, readonly: true },
-            datalistKeypath: { type: String, readonly: true },
-            datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
-            value: eval,
-            viewModelKeypath: { type: String, readonly: true },
-            viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
-            text: String,
-            maxTextLength: 20,
-            placeholder: rionite_1.getText.t('Не выбрано'),
-            tabIndex: 0,
-            focused: false,
-            disabled: false
-        },
-        template: template,
-        events: {
-            ':component': {
-                'input-value-change': function (evt) {
-                    var vm = this.viewModel;
-                    var value = evt.value;
-                    if (value) {
-                        if (!Array.isArray(value)) {
-                            throw new TypeError('value must be an array');
-                        }
-                        if (value.length) {
-                            var vmItemValueFieldName_1 = this._viewModelItemValueFieldName;
-                            var vmItemTextFieldName_1 = this._viewModelItemTextFieldName;
-                            if (this.input.multiple) {
-                                this.options.forEach(function (option) {
-                                    var optionValue = option.value;
-                                    if (value.indexOf(optionValue) != -1) {
-                                        if (!vm.contains(optionValue, vmItemValueFieldName_1)) {
-                                            vm.add((_a = {},
-                                                _a[vmItemValueFieldName_1] = optionValue,
+    OpalSelect.OpalSelectOption = opal_select_option_1.default;
+    OpalSelect.defaultDataListItemSchema = defaultDataListItemSchema;
+    OpalSelect.defaultVMItemSchema = defaultVMItemSchema;
+    OpalSelect = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-select',
+            input: {
+                viewType: String,
+                size: 'm',
+                multiple: { default: false, readonly: true },
+                datalistKeypath: { type: String, readonly: true },
+                datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
+                value: eval,
+                viewModelKeypath: { type: String, readonly: true },
+                viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
+                text: String,
+                maxTextLength: 20,
+                placeholder: rionite_1.getText.t('Не выбрано'),
+                tabIndex: 0,
+                focused: false,
+                disabled: false
+            },
+            template: template,
+            events: {
+                ':component': {
+                    'input-value-change': function (evt) {
+                        var vm = this.viewModel;
+                        var value = evt.value;
+                        if (value) {
+                            if (!Array.isArray(value)) {
+                                throw new TypeError('value must be an array');
+                            }
+                            if (value.length) {
+                                var vmItemValueFieldName_1 = this._viewModelItemValueFieldName;
+                                var vmItemTextFieldName_1 = this._viewModelItemTextFieldName;
+                                if (this.input.multiple) {
+                                    this.options.forEach(function (option) {
+                                        var optionValue = option.value;
+                                        if (value.indexOf(optionValue) != -1) {
+                                            if (!vm.contains(optionValue, vmItemValueFieldName_1)) {
+                                                vm.add((_a = {},
+                                                    _a[vmItemValueFieldName_1] = optionValue,
+                                                    _a[vmItemTextFieldName_1] = option.text,
+                                                    _a));
+                                            }
+                                        }
+                                        else {
+                                            var item = vm.get(optionValue, vmItemValueFieldName_1);
+                                            if (item) {
+                                                vm.remove(item);
+                                            }
+                                        }
+                                        var _a;
+                                    });
+                                }
+                                else {
+                                    value = value[0];
+                                    if (!vm.length || value != vm.get(0)[vmItemValueFieldName_1]) {
+                                        if (!this.options.some(function (option) {
+                                            if (option.value != value) {
+                                                return false;
+                                            }
+                                            vm.set(0, (_a = {},
+                                                _a[vmItemValueFieldName_1] = value,
                                                 _a[vmItemTextFieldName_1] = option.text,
                                                 _a));
+                                            return true;
+                                            var _a;
+                                        }) && vm.length) {
+                                            vm.clear();
                                         }
-                                    }
-                                    else {
-                                        var item = vm.get(optionValue, vmItemValueFieldName_1);
-                                        if (item) {
-                                            vm.remove(item);
-                                        }
-                                    }
-                                    var _a;
-                                });
-                            }
-                            else {
-                                value = value[0];
-                                if (!vm.length || value != vm.get(0)[vmItemValueFieldName_1]) {
-                                    if (!this.options.some(function (option) {
-                                        if (option.value != value) {
-                                            return false;
-                                        }
-                                        vm.set(0, (_a = {},
-                                            _a[vmItemValueFieldName_1] = value,
-                                            _a[vmItemTextFieldName_1] = option.text,
-                                            _a));
-                                        return true;
-                                        var _a;
-                                    }) && vm.length) {
-                                        vm.clear();
                                     }
                                 }
+                            }
+                            else {
+                                vm.clear();
                             }
                         }
                         else {
                             vm.clear();
                         }
-                    }
-                    else {
-                        vm.clear();
-                    }
-                },
-                'input-focused-change': function (evt) {
-                    if (evt.value) {
-                        if (!this._documentKeyDownListening) {
-                            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-                        }
-                        this.focus();
-                    }
-                    else {
-                        if (!this._opened) {
-                            this._documentKeyDownListening.stop();
-                            this._documentKeyDownListening = null;
-                        }
-                        this.blur();
-                    }
-                }
-            },
-            button: {
-                focus: function () {
-                    this.input.focused = true;
-                    this.emit('focus');
-                },
-                blur: function () {
-                    this.input.focused = false;
-                    this.emit('blur');
-                },
-                click: function (evt) {
-                    if (evt.target.checked) {
-                        this.open();
-                    }
-                    else {
-                        this.close();
-                    }
-                }
-            },
-            menu: {
-                'input-opened-change': function (evt) {
-                    if (!evt.value) {
-                        this.close();
-                    }
-                },
-                '<opal-select-option>select': function (evt) {
-                    var vm = this.viewModel;
-                    var vmItem = (_a = {},
-                        _a[this._viewModelItemValueFieldName] = evt.target.value,
-                        _a[this._viewModelItemTextFieldName] = evt.target.text,
-                        _a);
-                    if (this.input.multiple) {
-                        vm.add(vmItem);
-                    }
-                    else {
-                        if (vm.length) {
-                            vm.set(0, vmItem);
-                        }
-                        else {
-                            vm.add(vmItem);
-                        }
-                        this.close();
-                        this.focus();
-                        this.emit('change');
-                    }
-                    var _a;
-                },
-                '<opal-select-option>deselect': function (evt) {
-                    if (this.input.multiple) {
-                        this.viewModel.remove(this.viewModel.get(evt.target.value, this._viewModelItemValueFieldName));
-                    }
-                    else {
-                        evt.target.select();
-                        this.close();
-                        this.focus();
-                    }
-                },
-                '<opal-text-input>confirm': function (evt) {
-                    var textInput = evt.target;
-                    if (textInput !== this.$('new-item-input')) {
-                        return;
-                    }
-                    var itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
-                    var itemText = textInput.value;
-                    var dataList = this.dataList;
-                    if (dataList) {
-                        dataList.add((_a = {},
-                            _a[this._dataListItemValueFieldName] = itemValue,
-                            _a[this._dataListItemTextFieldName] = itemText,
-                            _a));
-                    }
-                    textInput.clear();
-                    var loadedList = this.$('loaded-list');
-                    if (loadedList) {
-                        loadedList.input.query = '';
-                    }
-                    this.emit('input');
-                    var vm = this.viewModel;
-                    var vmItem = (_b = {},
-                        _b[this._viewModelItemValueFieldName] = itemValue,
-                        _b[this._viewModelItemTextFieldName] = itemText,
-                        _b);
-                    if (this.input.multiple) {
-                        vm.add(vmItem);
-                    }
-                    else {
-                        if (vm.length) {
-                            vm.set(0, vmItem);
-                        }
-                        else {
-                            vm.add(vmItem);
-                        }
-                        this.close();
-                        this.focus();
-                        this.emit('change');
-                    }
-                    var _a, _b;
-                },
-                '<*>change': function (evt) {
-                    if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
-                        return;
-                    }
-                    this.optionsCell.pull();
-                    this._updateOptions();
-                    return false;
-                }
-            },
-            'loaded-list': {
-                loaded: function () {
-                    var _this = this;
-                    if (this._onсeFocusedAfterLoading) {
-                        return;
-                    }
-                    this._onсeFocusedAfterLoading = true;
-                    nextTick(function () {
-                        _this._focusOptions();
-                        var focusTarget = _this.$('focus');
-                        if (focusTarget) {
-                            nextTick(function () {
-                                focusTarget.focus();
-                            });
-                        }
-                        else {
-                            var filteredList = _this.$('filtered-list');
-                            if (filteredList) {
-                                focusTarget = filteredList.$('query-input');
+                    },
+                    'input-focused-change': function (evt) {
+                        if (evt.value) {
+                            if (!this._documentKeyDownListening) {
+                                this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
                             }
+                            this.focus();
+                        }
+                        else {
+                            if (!this._opened) {
+                                this._documentKeyDownListening.stop();
+                                this._documentKeyDownListening = null;
+                            }
+                            this.blur();
+                        }
+                    }
+                },
+                button: {
+                    focus: function () {
+                        this.input.focused = true;
+                        this.emit('focus');
+                    },
+                    blur: function () {
+                        this.input.focused = false;
+                        this.emit('blur');
+                    },
+                    click: function (evt) {
+                        if (evt.target.checked) {
+                            this.open();
+                        }
+                        else {
+                            this.close();
+                        }
+                    }
+                },
+                menu: {
+                    'input-opened-change': function (evt) {
+                        if (!evt.value) {
+                            this.close();
+                        }
+                    },
+                    '<opal-select-option>select': function (evt) {
+                        var vm = this.viewModel;
+                        var vmItem = (_a = {},
+                            _a[this._viewModelItemValueFieldName] = evt.target.value,
+                            _a[this._viewModelItemTextFieldName] = evt.target.text,
+                            _a);
+                        if (this.input.multiple) {
+                            vm.add(vmItem);
+                        }
+                        else {
+                            if (vm.length) {
+                                vm.set(0, vmItem);
+                            }
+                            else {
+                                vm.add(vmItem);
+                            }
+                            this.close();
+                            this.focus();
+                            this.emit('change');
+                        }
+                        var _a;
+                    },
+                    '<opal-select-option>deselect': function (evt) {
+                        if (this.input.multiple) {
+                            this.viewModel.remove(this.viewModel.get(evt.target.value, this._viewModelItemValueFieldName));
+                        }
+                        else {
+                            evt.target.select();
+                            this.close();
+                            this.focus();
+                        }
+                    },
+                    '<opal-text-input>confirm': function (evt) {
+                        var textInput = evt.target;
+                        if (textInput !== this.$('new-item-input')) {
+                            return;
+                        }
+                        var itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
+                        var itemText = textInput.value;
+                        var dataList = this.dataList;
+                        if (dataList) {
+                            dataList.add((_a = {},
+                                _a[this._dataListItemValueFieldName] = itemValue,
+                                _a[this._dataListItemTextFieldName] = itemText,
+                                _a));
+                        }
+                        textInput.clear();
+                        var loadedList = this.$('loaded-list');
+                        if (loadedList) {
+                            loadedList.input.query = '';
+                        }
+                        this.emit('input');
+                        var vm = this.viewModel;
+                        var vmItem = (_b = {},
+                            _b[this._viewModelItemValueFieldName] = itemValue,
+                            _b[this._viewModelItemTextFieldName] = itemText,
+                            _b);
+                        if (this.input.multiple) {
+                            vm.add(vmItem);
+                        }
+                        else {
+                            if (vm.length) {
+                                vm.set(0, vmItem);
+                            }
+                            else {
+                                vm.add(vmItem);
+                            }
+                            this.close();
+                            this.focus();
+                            this.emit('change');
+                        }
+                        var _a, _b;
+                    },
+                    '<*>change': function (evt) {
+                        if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
+                            return;
+                        }
+                        this.optionsCell.pull();
+                        this._updateOptions();
+                        return false;
+                    }
+                },
+                'loaded-list': {
+                    loaded: function () {
+                        var _this = this;
+                        if (this._onсeFocusedAfterLoading) {
+                            return;
+                        }
+                        this._onсeFocusedAfterLoading = true;
+                        nextTick(function () {
+                            _this._focusOptions();
+                            var focusTarget = _this.$('focus');
                             if (focusTarget) {
                                 nextTick(function () {
                                     focusTarget.focus();
                                 });
                             }
-                        }
-                    });
-                }
-            },
-            'btn-close': {
-                click: function () {
-                    this.close();
-                    this.focus();
+                            else {
+                                var filteredList = _this.$('filtered-list');
+                                if (filteredList) {
+                                    focusTarget = filteredList.$('query-input');
+                                }
+                                if (focusTarget) {
+                                    nextTick(function () {
+                                        focusTarget.focus();
+                                    });
+                                }
+                            }
+                        });
+                    }
+                },
+                'btn-close': {
+                    click: function () {
+                        this.close();
+                        this.focus();
+                    }
                 }
             }
-        }
-    })
-], OpalSelect);
+        })
+    ], OpalSelect);
+    return OpalSelect;
+}(rionite_1.Component));
 exports.default = OpalSelect;
 
 
@@ -819,46 +819,46 @@ var OpalTab = (function (_super) {
         this.input.disabled = true;
         return this;
     };
-    return OpalTab;
-}(rionite_1.Component));
-OpalTab = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-tab',
-        input: {
-            selected: false,
-            tabIndex: 0,
-            focused: false,
-            disabled: false
-        },
-        template: template,
-        events: {
-            ':component': {
-                'input-focused-change': function (evt) {
-                    this[evt.value ? 'focus' : 'blur']();
-                }
+    OpalTab = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-tab',
+            input: {
+                selected: false,
+                tabIndex: 0,
+                focused: false,
+                disabled: false
             },
-            control: {
-                focus: function (evt) {
-                    var _this = this;
-                    nextTick(function () {
-                        if (document.activeElement == evt.target) {
-                            _this.input.focused = true;
+            template: template,
+            events: {
+                ':component': {
+                    'input-focused-change': function (evt) {
+                        this[evt.value ? 'focus' : 'blur']();
+                    }
+                },
+                control: {
+                    focus: function (evt) {
+                        var _this = this;
+                        nextTick(function () {
+                            if (document.activeElement == evt.target) {
+                                _this.input.focused = true;
+                            }
+                        });
+                    },
+                    blur: function () {
+                        this.input.focused = false;
+                    },
+                    click: function (evt) {
+                        evt.preventDefault();
+                        if (!this.input.disabled) {
+                            this.click();
                         }
-                    });
-                },
-                blur: function () {
-                    this.input.focused = false;
-                },
-                click: function (evt) {
-                    evt.preventDefault();
-                    if (!this.input.disabled) {
-                        this.click();
                     }
                 }
             }
-        }
-    })
-], OpalTab);
+        })
+    ], OpalTab);
+    return OpalTab;
+}(rionite_1.Component));
 exports.default = OpalTab;
 
 
@@ -1054,60 +1054,60 @@ var OpalButton = (function (_super) {
         this.input.disabled = true;
         return this;
     };
-    return OpalButton;
-}(rionite_1.Component));
-OpalButton = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-button',
-        input: {
-            viewType: 'default',
-            size: 'm',
-            checkable: false,
-            checked: false,
-            loading: false,
-            tabIndex: 0,
-            focused: false,
-            disabled: false
-        },
-        events: {
-            ':component': {
-                'input-focused-change': function (evt) {
-                    this[evt.value ? 'focus' : 'blur']();
-                },
-                'change:_tabIndex': function () {
-                    this.element.tabIndex = this._tabIndex;
-                }
+    OpalButton = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-button',
+            input: {
+                viewType: 'default',
+                size: 'm',
+                checkable: false,
+                checked: false,
+                loading: false,
+                tabIndex: 0,
+                focused: false,
+                disabled: false
             },
-            ':element': {
-                focus: function (evt) {
-                    var _this = this;
-                    nextTick(function () {
-                        if (document.activeElement != _this.element) {
-                            return;
-                        }
-                        if (_this.element.tagName.indexOf('-', 1) != -1) {
-                            _this._documentKeyDownListening = _this.listenTo(document, 'keydown', _this._onDocumentKeyDown);
-                        }
-                        _this.input.focused = true;
-                        _this.emit('focus');
-                    });
-                },
-                blur: function () {
-                    if (this._documentKeyDownListening) {
-                        this._documentKeyDownListening.stop();
+            events: {
+                ':component': {
+                    'input-focused-change': function (evt) {
+                        this[evt.value ? 'focus' : 'blur']();
+                    },
+                    'change:_tabIndex': function () {
+                        this.element.tabIndex = this._tabIndex;
                     }
-                    this.input.focused = false;
-                    this.emit('blur');
                 },
-                click: function () {
-                    if (!this.input.disabled) {
-                        this.click();
+                ':element': {
+                    focus: function (evt) {
+                        var _this = this;
+                        nextTick(function () {
+                            if (document.activeElement != _this.element) {
+                                return;
+                            }
+                            if (_this.element.tagName.indexOf('-', 1) != -1) {
+                                _this._documentKeyDownListening = _this.listenTo(document, 'keydown', _this._onDocumentKeyDown);
+                            }
+                            _this.input.focused = true;
+                            _this.emit('focus');
+                        });
+                    },
+                    blur: function () {
+                        if (this._documentKeyDownListening) {
+                            this._documentKeyDownListening.stop();
+                        }
+                        this.input.focused = false;
+                        this.emit('blur');
+                    },
+                    click: function () {
+                        if (!this.input.disabled) {
+                            this.click();
+                        }
                     }
                 }
             }
-        }
-    })
-], OpalButton);
+        })
+    ], OpalButton);
+    return OpalButton;
+}(rionite_1.Component));
 exports.default = OpalButton;
 
 
@@ -1223,50 +1223,50 @@ var OpalSignButton = (function (_super) {
         this.input.disabled = true;
         return this;
     };
-    return OpalSignButton;
-}(rionite_1.Component));
-OpalSignButton = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-sign-button',
-        input: {
-            sign: { type: String, required: true },
-            checkable: false,
-            checked: false,
-            tabIndex: 0,
-            focused: false,
-            disabled: false
-        },
-        template: template,
-        events: {
-            ':component': {
-                'input-focused-change': function (evt) {
-                    this[evt.value ? 'focus' : 'blur']();
-                }
+    OpalSignButton = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-sign-button',
+            input: {
+                sign: { type: String, required: true },
+                checkable: false,
+                checked: false,
+                tabIndex: 0,
+                focused: false,
+                disabled: false
             },
-            control: {
-                focus: function (evt) {
-                    var _this = this;
-                    nextTick(function () {
-                        if (document.activeElement == evt.target) {
-                            _this.input.focused = true;
-                            _this.emit('focus');
+            template: template,
+            events: {
+                ':component': {
+                    'input-focused-change': function (evt) {
+                        this[evt.value ? 'focus' : 'blur']();
+                    }
+                },
+                control: {
+                    focus: function (evt) {
+                        var _this = this;
+                        nextTick(function () {
+                            if (document.activeElement == evt.target) {
+                                _this.input.focused = true;
+                                _this.emit('focus');
+                            }
+                        });
+                    },
+                    blur: function () {
+                        this.input.focused = false;
+                        this.emit('blur');
+                    },
+                    click: function (evt) {
+                        evt.preventDefault();
+                        if (!this.input.disabled) {
+                            this.click();
                         }
-                    });
-                },
-                blur: function () {
-                    this.input.focused = false;
-                    this.emit('blur');
-                },
-                click: function (evt) {
-                    evt.preventDefault();
-                    if (!this.input.disabled) {
-                        this.click();
                     }
                 }
             }
-        }
-    })
-], OpalSignButton);
+        })
+    ], OpalSignButton);
+    return OpalSignButton;
+}(rionite_1.Component));
 exports.default = OpalSignButton;
 
 
@@ -1414,90 +1414,90 @@ var OpalTextInput = (function (_super) {
         this.input.disabled = true;
         return this;
     };
-    return OpalTextInput;
-}(rionite_1.Component));
-OpalTextInput = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-text-input',
-        input: {
-            inputType: 'text',
-            size: 'm',
-            multiline: false,
-            rows: 5,
-            autoHeight: true,
-            inputName: String,
-            value: '',
-            storeKey: String,
-            placeholder: String,
-            clearable: false,
-            loading: false,
-            tabIndex: 0,
-            focused: false,
-            disabled: false
-        },
-        template: template,
-        events: {
-            ':component': {
-                'input-value-change': function (evt) {
-                    var textField = this.$('text-field');
-                    if (textField.value != evt.value) {
-                        textField.value = evt.value;
-                    }
-                },
-                'input-focused-change': function (evt) {
-                    this[evt.value ? 'focus' : 'blur']();
-                }
+    OpalTextInput = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-text-input',
+            input: {
+                inputType: 'text',
+                size: 'm',
+                multiline: false,
+                rows: 5,
+                autoHeight: true,
+                inputName: String,
+                value: '',
+                storeKey: String,
+                placeholder: String,
+                clearable: false,
+                loading: false,
+                tabIndex: 0,
+                focused: false,
+                disabled: false
             },
-            'text-field': {
-                focus: function (evt) {
-                    var _this = this;
-                    nextTick(function () {
-                        if (document.activeElement == evt.target) {
-                            _this.input.focused = true;
-                            _this.emit('focus');
+            template: template,
+            events: {
+                ':component': {
+                    'input-value-change': function (evt) {
+                        var textField = this.$('text-field');
+                        if (textField.value != evt.value) {
+                            textField.value = evt.value;
                         }
-                    });
-                },
-                blur: function () {
-                    this.input.focused = false;
-                    this.emit('blur');
-                },
-                input: function (evt) {
-                    this._value = evt.target.value;
-                    this.emit({ type: 'input', initialEvent: evt });
-                },
-                change: function (evt) {
-                    var storeKey = this.input.storeKey;
-                    if (storeKey) {
-                        localStorage.setItem(storeKey, evt.target.value);
+                    },
+                    'input-focused-change': function (evt) {
+                        this[evt.value ? 'focus' : 'blur']();
                     }
-                    this.emit({ type: 'change', initialEvent: evt });
                 },
-                keydown: function (evt) {
-                    var _this = this;
-                    if (this.input.multiline && this.input.autoHeight) {
-                        setTimeout(function () {
-                            _this._fixHeight();
-                        }, 1);
+                'text-field': {
+                    focus: function (evt) {
+                        var _this = this;
+                        nextTick(function () {
+                            if (document.activeElement == evt.target) {
+                                _this.input.focused = true;
+                                _this.emit('focus');
+                            }
+                        });
+                    },
+                    blur: function () {
+                        this.input.focused = false;
+                        this.emit('blur');
+                    },
+                    input: function (evt) {
+                        this._value = evt.target.value;
+                        this.emit({ type: 'input', initialEvent: evt });
+                    },
+                    change: function (evt) {
+                        var storeKey = this.input.storeKey;
+                        if (storeKey) {
+                            localStorage.setItem(storeKey, evt.target.value);
+                        }
+                        this.emit({ type: 'change', initialEvent: evt });
+                    },
+                    keydown: function (evt) {
+                        var _this = this;
+                        if (this.input.multiline && this.input.autoHeight) {
+                            setTimeout(function () {
+                                _this._fixHeight();
+                            }, 1);
+                        }
+                        this.emit({ type: 'keydown', initialEvent: evt });
+                    },
+                    keypress: function (evt) {
+                        if (evt.which == 13 /* Enter */) {
+                            this.emit('confirm');
+                        }
+                        this.emit({ type: 'keypress', initialEvent: evt });
+                    },
+                    keyup: function (evt) {
+                        if (this.input.multiline && this.input.autoHeight) {
+                            this._fixHeight();
+                        }
+                        this.emit({ type: 'keyup', initialEvent: evt });
                     }
-                    this.emit({ type: 'keydown', initialEvent: evt });
-                },
-                keypress: function (evt) {
-                    if (evt.which == 13 /* Enter */) {
-                        this.emit('confirm');
-                    }
-                    this.emit({ type: 'keypress', initialEvent: evt });
-                },
-                keyup: function (evt) {
-                    if (this.input.multiline && this.input.autoHeight) {
-                        this._fixHeight();
-                    }
-                    this.emit({ type: 'keyup', initialEvent: evt });
                 }
             }
-        }
-    })
-], OpalTextInput);
+        })
+    ], OpalTextInput);
+    return OpalTextInput;
+}(rionite_1.Component));
 exports.default = OpalTextInput;
 
 
@@ -1558,11 +1558,12 @@ var nextTick = cellx_1.Utils.nextTick;
 var forEach = Array.prototype.forEach;
 var iPhone = /iphone/i.test(navigator.userAgent);
 var ie11 = !(window.ActiveXObject) && 'ActiveXObject' in window;
-var OpalInputMask = OpalInputMask_1 = (function (_super) {
+var OpalInputMask = (function (_super) {
     __extends(OpalInputMask, _super);
     function OpalInputMask() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    OpalInputMask_1 = OpalInputMask;
     OpalInputMask.prototype.initialize = function () {
         this._definitions = Object.create(this.constructor.defaultDefinitions);
     };
@@ -1832,26 +1833,26 @@ var OpalInputMask = OpalInputMask_1 = (function (_super) {
         if (end === void 0) { end = start; }
         this._textField.setSelectionRange(start, end);
     };
+    OpalInputMask.OpalInputMaskDefinition = opal_input_mask_definition_1.default;
+    OpalInputMask.defaultDefinitions = {
+        __proto__: null,
+        '9': /\d/,
+        'z': /[a-zA-Z]/,
+        '*': /[0-9a-zA-Z]/
+    };
+    OpalInputMask = OpalInputMask_1 = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-input-mask',
+            input: {
+                mask: { type: String, required: true }
+            },
+            template: '@section/inner { rt-content/content }'
+        })
+    ], OpalInputMask);
     return OpalInputMask;
+    var OpalInputMask_1;
 }(rionite_1.Component));
-OpalInputMask.OpalInputMaskDefinition = opal_input_mask_definition_1.default;
-OpalInputMask.defaultDefinitions = {
-    __proto__: null,
-    '9': /\d/,
-    'z': /[a-zA-Z]/,
-    '*': /[0-9a-zA-Z]/
-};
-OpalInputMask = OpalInputMask_1 = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-input-mask',
-        input: {
-            mask: { type: String, required: true }
-        },
-        template: '@section/inner { rt-content/content }'
-    })
-], OpalInputMask);
 exports.default = OpalInputMask;
-var OpalInputMask_1;
 
 
 /***/ }),
@@ -1884,17 +1885,17 @@ var OpalInputMaskDefinition = (function (_super) {
     function OpalInputMaskDefinition() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    OpalInputMaskDefinition = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-input-mask-definition',
+            input: {
+                maskChar: { type: String, required: true, readonly: true },
+                regex: { type: eval, required: true, readonly: true }
+            }
+        })
+    ], OpalInputMaskDefinition);
     return OpalInputMaskDefinition;
 }(rionite_1.Component));
-OpalInputMaskDefinition = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-input-mask-definition',
-        input: {
-            maskChar: { type: String, required: true, readonly: true },
-            regex: { type: eval, required: true, readonly: true }
-        }
-    })
-], OpalInputMaskDefinition);
 exports.default = OpalInputMaskDefinition;
 
 
@@ -1945,14 +1946,14 @@ var OpalGroup = (function (_super) {
     function OpalGroup() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    OpalGroup = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-group',
+            template: '@section/inner { rt-content/content }'
+        })
+    ], OpalGroup);
     return OpalGroup;
 }(rionite_1.Component));
-OpalGroup = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-group',
-        template: '@section/inner { rt-content/content }'
-    })
-], OpalGroup);
 exports.default = OpalGroup;
 
 
@@ -2076,67 +2077,67 @@ var OpalCheckbox = (function (_super) {
         this.input.disabled = true;
         return this;
     };
-    return OpalCheckbox;
-}(rionite_1.Component));
-OpalCheckbox = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-checkbox',
-        input: {
-            checked: false,
-            indeterminate: false,
-            tabIndex: 0,
-            focused: false,
-            disabled: false
-        },
-        template: template,
-        events: {
-            ':component': {
-                'input-checked-change': function (evt) {
-                    if (evt.value) {
-                        this.input.indeterminate = false;
-                    }
-                    this.$('input').checked = evt.value;
-                },
-                'input-indeterminate-change': function (evt) {
-                    if (evt.value) {
-                        this.input.checked = false;
-                    }
-                },
-                'input-focused-change': function (evt) {
-                    if (evt.value) {
-                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-                        this.focus();
-                    }
-                    else {
-                        this._documentKeyDownListening.stop();
-                        this.blur();
-                    }
-                }
-            },
+    OpalCheckbox = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-checkbox',
             input: {
-                change: function (evt) {
-                    this.emit((this.input.checked = evt.target.checked) ? 'check' : 'uncheck');
-                    this.emit('change');
-                }
+                checked: false,
+                indeterminate: false,
+                tabIndex: 0,
+                focused: false,
+                disabled: false
             },
-            control: {
-                focus: function (evt) {
-                    var _this = this;
-                    nextTick(function () {
-                        if (document.activeElement == evt.target) {
-                            _this.input.focused = true;
-                            _this.emit('focus');
+            template: template,
+            events: {
+                ':component': {
+                    'input-checked-change': function (evt) {
+                        if (evt.value) {
+                            this.input.indeterminate = false;
                         }
-                    });
+                        this.$('input').checked = evt.value;
+                    },
+                    'input-indeterminate-change': function (evt) {
+                        if (evt.value) {
+                            this.input.checked = false;
+                        }
+                    },
+                    'input-focused-change': function (evt) {
+                        if (evt.value) {
+                            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+                            this.focus();
+                        }
+                        else {
+                            this._documentKeyDownListening.stop();
+                            this.blur();
+                        }
+                    }
                 },
-                blur: function () {
-                    this.input.focused = false;
-                    this.emit('blur');
+                input: {
+                    change: function (evt) {
+                        this.emit((this.input.checked = evt.target.checked) ? 'check' : 'uncheck');
+                        this.emit('change');
+                    }
+                },
+                control: {
+                    focus: function (evt) {
+                        var _this = this;
+                        nextTick(function () {
+                            if (document.activeElement == evt.target) {
+                                _this.input.focused = true;
+                                _this.emit('focus');
+                            }
+                        });
+                    },
+                    blur: function () {
+                        this.input.focused = false;
+                        this.emit('blur');
+                    }
                 }
             }
-        }
-    })
-], OpalCheckbox);
+        })
+    ], OpalCheckbox);
+    return OpalCheckbox;
+}(rionite_1.Component));
 exports.default = OpalCheckbox;
 
 
@@ -2198,29 +2199,29 @@ var OpalRadioGroup = (function (_super) {
     OpalRadioGroup.prototype.ready = function () {
         this.buttonElements = this.element.getElementsByClassName('opal-radio-button');
     };
-    return OpalRadioGroup;
-}(rionite_1.Component));
-OpalRadioGroup.OpalRadioButton = opal_radio_button_1.default;
-OpalRadioGroup = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-radio-group',
-        events: {
-            ':component': {
-                '<opal-radio-button>check': function (evt) {
-                    var checkedButton = evt.target;
-                    forEach.call(this.buttonElements, function (btnEl) {
-                        if (btnEl.$component != checkedButton) {
-                            btnEl.$component.uncheck();
-                        }
-                    });
-                },
-                '<opal-radio-button>uncheck': function (evt) {
-                    evt.target.check();
+    OpalRadioGroup.OpalRadioButton = opal_radio_button_1.default;
+    OpalRadioGroup = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-radio-group',
+            events: {
+                ':component': {
+                    '<opal-radio-button>check': function (evt) {
+                        var checkedButton = evt.target;
+                        forEach.call(this.buttonElements, function (btnEl) {
+                            if (btnEl.$component != checkedButton) {
+                                btnEl.$component.uncheck();
+                            }
+                        });
+                    },
+                    '<opal-radio-button>uncheck': function (evt) {
+                        evt.target.check();
+                    }
                 }
             }
-        }
-    })
-], OpalRadioGroup);
+        })
+    ], OpalRadioGroup);
+    return OpalRadioGroup;
+}(rionite_1.Component));
 exports.default = OpalRadioGroup;
 
 
@@ -2325,58 +2326,58 @@ var OpalRadioButton = (function (_super) {
         this.input.disabled = true;
         return this;
     };
-    return OpalRadioButton;
-}(rionite_1.Component));
-OpalRadioButton = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-radio-button',
-        input: {
-            checked: false,
-            tabIndex: 0,
-            focused: false,
-            disabled: false
-        },
-        template: template,
-        events: {
-            ':component': {
-                'input-checked-change': function (evt) {
-                    this.$('input').checked = evt.value;
-                },
-                'input-focused-change': function (evt) {
-                    if (evt.value) {
-                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-                        this.focus();
-                    }
-                    else {
-                        this._documentKeyDownListening.stop();
-                        this.blur();
-                    }
-                }
-            },
+    OpalRadioButton = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-radio-button',
             input: {
-                change: function (evt) {
-                    this.emit((this.input.checked = evt.target.checked) ? 'check' : 'uncheck');
-                    this.emit('change');
-                }
+                checked: false,
+                tabIndex: 0,
+                focused: false,
+                disabled: false
             },
-            control: {
-                focus: function (evt) {
-                    var _this = this;
-                    nextTick(function () {
-                        if (document.activeElement == evt.target) {
-                            _this.input.focused = true;
-                            _this.emit('focus');
+            template: template,
+            events: {
+                ':component': {
+                    'input-checked-change': function (evt) {
+                        this.$('input').checked = evt.value;
+                    },
+                    'input-focused-change': function (evt) {
+                        if (evt.value) {
+                            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+                            this.focus();
                         }
-                    });
+                        else {
+                            this._documentKeyDownListening.stop();
+                            this.blur();
+                        }
+                    }
                 },
-                blur: function () {
-                    this.input.focused = false;
-                    this.emit('blur');
+                input: {
+                    change: function (evt) {
+                        this.emit((this.input.checked = evt.target.checked) ? 'check' : 'uncheck');
+                        this.emit('change');
+                    }
+                },
+                control: {
+                    focus: function (evt) {
+                        var _this = this;
+                        nextTick(function () {
+                            if (document.activeElement == evt.target) {
+                                _this.input.focused = true;
+                                _this.emit('focus');
+                            }
+                        });
+                    },
+                    blur: function () {
+                        this.input.focused = false;
+                        this.emit('blur');
+                    }
                 }
             }
-        }
-    })
-], OpalRadioButton);
+        })
+    ], OpalRadioButton);
+    return OpalRadioButton;
+}(rionite_1.Component));
 exports.default = OpalRadioButton;
 
 
@@ -2504,58 +2505,58 @@ var OpalSwitch = (function (_super) {
         this.input.disabled = true;
         return this;
     };
-    return OpalSwitch;
-}(rionite_1.Component));
-OpalSwitch = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-switch',
-        input: {
-            checked: false,
-            tabIndex: 0,
-            focused: false,
-            disabled: false
-        },
-        template: template,
-        events: {
-            ':component': {
-                'input-checked-change': function (evt) {
-                    this.$('input').checked = evt.value;
-                },
-                'input-focused-change': function (evt) {
-                    if (evt.value) {
-                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-                        this.focus();
-                    }
-                    else {
-                        this._documentKeyDownListening.stop();
-                        this.blur();
-                    }
-                }
-            },
+    OpalSwitch = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-switch',
             input: {
-                change: function (evt) {
-                    this.emit((this.input.checked = evt.target.checked) ? 'check' : 'uncheck');
-                    this.emit('change');
-                }
+                checked: false,
+                tabIndex: 0,
+                focused: false,
+                disabled: false
             },
-            control: {
-                focus: function (evt) {
-                    var _this = this;
-                    nextTick(function () {
-                        if (document.activeElement == evt.target) {
-                            _this.input.focused = true;
-                            _this.emit('focus');
+            template: template,
+            events: {
+                ':component': {
+                    'input-checked-change': function (evt) {
+                        this.$('input').checked = evt.value;
+                    },
+                    'input-focused-change': function (evt) {
+                        if (evt.value) {
+                            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+                            this.focus();
                         }
-                    });
+                        else {
+                            this._documentKeyDownListening.stop();
+                            this.blur();
+                        }
+                    }
                 },
-                blur: function () {
-                    this.input.focused = false;
-                    this.emit('blur');
+                input: {
+                    change: function (evt) {
+                        this.emit((this.input.checked = evt.target.checked) ? 'check' : 'uncheck');
+                        this.emit('change');
+                    }
+                },
+                control: {
+                    focus: function (evt) {
+                        var _this = this;
+                        nextTick(function () {
+                            if (document.activeElement == evt.target) {
+                                _this.input.focused = true;
+                                _this.emit('focus');
+                            }
+                        });
+                    },
+                    blur: function () {
+                        this.input.focused = false;
+                        this.emit('blur');
+                    }
                 }
             }
-        }
-    })
-], OpalSwitch);
+        })
+    ], OpalSwitch);
+    return OpalSwitch;
+}(rionite_1.Component));
 exports.default = OpalSwitch;
 
 
@@ -2647,41 +2648,41 @@ var OpalSlider = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    return OpalSlider;
-}(rionite_1.Component));
-OpalSlider = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-slider',
-        input: {
-            min: 0,
-            max: 100,
-            step: 1,
-            value: 0,
-            range: eval
-        },
-        template: template,
-        events: {
-            'first-input': {
-                input: function (evt) {
-                    var secondInput = this.$('second-input');
-                    var value = this._firstInputValue = +evt.target.value;
-                    if (+secondInput.value < value) {
-                        secondInput.value = this._secondInputValue = value;
-                    }
-                }
+    OpalSlider = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-slider',
+            input: {
+                min: 0,
+                max: 100,
+                step: 1,
+                value: 0,
+                range: eval
             },
-            'second-input': {
-                input: function (evt) {
-                    var firstInput = this.$('first-input');
-                    var value = this._secondInputValue = +evt.target.value;
-                    if (+firstInput.value > value) {
-                        firstInput.value = this._firstInputValue = value;
+            template: template,
+            events: {
+                'first-input': {
+                    input: function (evt) {
+                        var secondInput = this.$('second-input');
+                        var value = this._firstInputValue = +evt.target.value;
+                        if (+secondInput.value < value) {
+                            secondInput.value = this._secondInputValue = value;
+                        }
+                    }
+                },
+                'second-input': {
+                    input: function (evt) {
+                        var firstInput = this.$('first-input');
+                        var value = this._secondInputValue = +evt.target.value;
+                        if (+firstInput.value > value) {
+                            firstInput.value = this._firstInputValue = value;
+                        }
                     }
                 }
             }
-        }
-    })
-], OpalSlider);
+        })
+    ], OpalSlider);
+    return OpalSlider;
+}(rionite_1.Component));
 exports.default = OpalSlider;
 
 
@@ -2776,31 +2777,31 @@ var OpalSwitchMenu = (function (_super) {
             this._checkedButton = null;
         }
     };
-    return OpalSwitchMenu;
-}(rionite_1.Component));
-OpalSwitchMenu = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-switch-menu',
-        template: '@section/inner { rt-content/content }',
-        events: {
-            ':component': {
-                '<opal-button>check': function (evt) {
-                    var checkedButton = evt.target;
-                    forEach.call(this.buttonElements, function (btnEl) {
-                        if (btnEl.$component != checkedButton) {
-                            btnEl.$component.uncheck();
-                        }
-                    });
-                    this._checkedButton = checkedButton;
-                    this.emit('change');
-                },
-                '<opal-button>uncheck': function (evt) {
-                    evt.target.check();
+    OpalSwitchMenu = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-switch-menu',
+            template: '@section/inner { rt-content/content }',
+            events: {
+                ':component': {
+                    '<opal-button>check': function (evt) {
+                        var checkedButton = evt.target;
+                        forEach.call(this.buttonElements, function (btnEl) {
+                            if (btnEl.$component != checkedButton) {
+                                btnEl.$component.uncheck();
+                            }
+                        });
+                        this._checkedButton = checkedButton;
+                        this.emit('change');
+                    },
+                    '<opal-button>uncheck': function (evt) {
+                        evt.target.check();
+                    }
                 }
             }
-        }
-    })
-], OpalSwitchMenu);
+        })
+    ], OpalSwitchMenu);
+    return OpalSwitchMenu;
+}(rionite_1.Component));
 exports.default = OpalSwitchMenu;
 
 
@@ -2906,16 +2907,16 @@ var OpalTabs = (function (_super) {
     OpalTabs.prototype._onTabListDeselect = function (evt) {
         evt.target.select();
     };
+    OpalTabs.OpalTabList = opal_tab_list_1.default;
+    OpalTabs.OpalTabPanel = opal_tab_panel_1.default;
+    OpalTabs = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-tabs',
+            template: template
+        })
+    ], OpalTabs);
     return OpalTabs;
 }(rionite_1.Component));
-OpalTabs.OpalTabList = opal_tab_list_1.default;
-OpalTabs.OpalTabPanel = opal_tab_panel_1.default;
-OpalTabs = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-tabs',
-        template: template
-    })
-], OpalTabs);
 exports.default = OpalTabs;
 
 
@@ -2968,15 +2969,15 @@ var OpalTabList = (function (_super) {
     function OpalTabList() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    OpalTabList.OpalTab = opal_tab_1.default;
+    OpalTabList = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-tab-list',
+            template: '@section/inner { rt-content/content }'
+        })
+    ], OpalTabList);
     return OpalTabList;
 }(rionite_1.Component));
-OpalTabList.OpalTab = opal_tab_1.default;
-OpalTabList = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-tab-list',
-        template: '@section/inner { rt-content/content }'
-    })
-], OpalTabList);
 exports.default = OpalTabList;
 
 
@@ -3050,17 +3051,17 @@ var OpalTabPanel = (function (_super) {
     function OpalTabPanel() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    OpalTabPanel = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-tab-panel',
+            input: {
+                shown: false
+            },
+            template: '@section/inner { rt-content/content }'
+        })
+    ], OpalTabPanel);
     return OpalTabPanel;
 }(rionite_1.Component));
-OpalTabPanel = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-tab-panel',
-        input: {
-            shown: false
-        },
-        template: '@section/inner { rt-content/content }'
-    })
-], OpalTabPanel);
 exports.default = OpalTabPanel;
 
 
@@ -3154,6 +3155,7 @@ var OpalDropdown = (function (_super) {
         elStyle.right = 'auto';
         elStyle.bottom = 'auto';
         elStyle.left = '0';
+        elStyle.maxHeight = 'none';
         var docElClientWidth = document.documentElement.clientWidth;
         var containerClientRect = el.offsetParent.getBoundingClientRect();
         var elClientRect = el.getBoundingClientRect();
@@ -3171,17 +3173,16 @@ var OpalDropdown = (function (_super) {
         if (excess > 0) {
             var diff = containerClientRect.top - (document.documentElement.clientHeight - containerClientRect.bottom);
             if (this.input.autoHeight) {
-                elStyle.maxHeight = 'none';
                 if (diff > 0) {
                     elStyle.top = 'auto';
                     elStyle.bottom = '100%';
                     excess -= diff;
                     if (excess > 0) {
-                        elStyle.maxHeight = containerClientRect.bottom - containerClientRect.top - excess + 'px';
+                        elStyle.maxHeight = el.offsetHeight - excess + 'px';
                     }
                 }
                 else {
-                    elStyle.maxHeight = containerClientRect.bottom - containerClientRect.top - excess + 'px';
+                    elStyle.maxHeight = el.offsetHeight - excess + 'px';
                 }
             }
             else if (diff > 0 && excess - diff <= document.body.scrollTop) {
@@ -3218,26 +3219,26 @@ var OpalDropdown = (function (_super) {
             }
         }
     };
-    return OpalDropdown;
-}(rionite_1.Component));
-OpalDropdown = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-dropdown',
-        input: {
-            autoHeight: true,
-            autoClosing: false,
-            opened: false
-        },
-        template: '@section/inner { rt-content/content }',
-        events: {
-            ':component': {
-                'input-opened-change': function (evt) {
-                    this[evt.value ? '_open' : '_close']();
+    OpalDropdown = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-dropdown',
+            input: {
+                autoHeight: true,
+                autoClosing: false,
+                opened: false
+            },
+            template: '@section/inner { rt-content/content }',
+            events: {
+                ':component': {
+                    'input-opened-change': function (evt) {
+                        this[evt.value ? '_open' : '_close']();
+                    }
                 }
             }
-        }
-    })
-], OpalDropdown);
+        })
+    ], OpalDropdown);
+    return OpalDropdown;
+}(rionite_1.Component));
 exports.default = OpalDropdown;
 
 
@@ -3390,27 +3391,27 @@ var OpalPopover = (function (_super) {
             }
         }
     };
-    return OpalPopover;
-}(rionite_1.Component));
-OpalPopover = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-popover',
-        input: {
-            to: 'right',
-            autoDirection: true,
-            autoClosing: false,
-            opened: false
-        },
-        template: template,
-        events: {
-            ':component': {
-                'input-opened-change': function (evt) {
-                    this[evt.value ? '_open' : '_close']();
+    OpalPopover = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-popover',
+            input: {
+                to: 'right',
+                autoDirection: true,
+                autoClosing: false,
+                opened: false
+            },
+            template: template,
+            events: {
+                ':component': {
+                    'input-opened-change': function (evt) {
+                        this[evt.value ? '_open' : '_close']();
+                    }
                 }
             }
-        }
-    })
-], OpalPopover);
+        })
+    ], OpalPopover);
+    return OpalPopover;
+}(rionite_1.Component));
 exports.default = OpalPopover;
 
 
@@ -3555,47 +3556,47 @@ var OpalModal = (function (_super) {
         }
         return this;
     };
-    return OpalModal;
-}(rionite_1.Component));
-OpalModal = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-modal',
-        input: {
-            opened: false
-        },
-        template: template,
-        events: {
-            ':component': {
-                'input-opened-change': function (evt) {
-                    this[evt.value ? '_open' : '_close']();
-                }
+    OpalModal = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-modal',
+            input: {
+                opened: false
             },
-            ':element': {
-                click: function (evt) {
-                    var componentEl = this.element;
-                    var windowEl = this.$('window');
-                    for (var el = evt.target; el != windowEl;) {
-                        if (el == componentEl) {
-                            this.close();
-                            this.emit('close');
-                            break;
-                        }
-                        el = el.parentNode;
-                        if (!el) {
-                            break;
+            template: template,
+            events: {
+                ':component': {
+                    'input-opened-change': function (evt) {
+                        this[evt.value ? '_open' : '_close']();
+                    }
+                },
+                ':element': {
+                    click: function (evt) {
+                        var componentEl = this.element;
+                        var windowEl = this.$('window');
+                        for (var el = evt.target; el != windowEl;) {
+                            if (el == componentEl) {
+                                this.close();
+                                this.emit('close');
+                                break;
+                            }
+                            el = el.parentNode;
+                            if (!el) {
+                                break;
+                            }
                         }
                     }
-                }
-            },
-            'btn-close': {
-                click: function () {
-                    this.input.opened = false;
-                    this.emit('close');
+                },
+                'btn-close': {
+                    click: function () {
+                        this.input.opened = false;
+                        this.emit('close');
+                    }
                 }
             }
-        }
-    })
-], OpalModal);
+        })
+    ], OpalModal);
+    return OpalModal;
+}(rionite_1.Component));
 exports.default = OpalModal;
 
 
@@ -3764,48 +3765,48 @@ var OpalSelectOption = (function (_super) {
         this.input.disabled = true;
         return this;
     };
-    return OpalSelectOption;
-}(rionite_1.Component));
-OpalSelectOption = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-select-option',
-        input: {
-            value: String,
-            text: { type: String, required: true },
-            selected: false,
-            tabIndex: 0,
-            focused: false,
-            disabled: false
-        },
-        template: template,
-        events: {
-            ':component': {
-                'input-focused-change': function (evt) {
-                    this[evt.value ? 'focus' : 'blur']();
-                }
+    OpalSelectOption = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-select-option',
+            input: {
+                value: String,
+                text: { type: String, required: true },
+                selected: false,
+                tabIndex: 0,
+                focused: false,
+                disabled: false
             },
-            control: {
-                focus: function (evt) {
-                    var _this = this;
-                    nextTick(function () {
-                        if (document.activeElement == evt.target) {
-                            _this.input.focused = true;
+            template: template,
+            events: {
+                ':component': {
+                    'input-focused-change': function (evt) {
+                        this[evt.value ? 'focus' : 'blur']();
+                    }
+                },
+                control: {
+                    focus: function (evt) {
+                        var _this = this;
+                        nextTick(function () {
+                            if (document.activeElement == evt.target) {
+                                _this.input.focused = true;
+                            }
+                        });
+                    },
+                    blur: function () {
+                        this.input.focused = false;
+                    },
+                    click: function (evt) {
+                        evt.preventDefault();
+                        if (!this.input.disabled) {
+                            this.click();
                         }
-                    });
-                },
-                blur: function () {
-                    this.input.focused = false;
-                },
-                click: function (evt) {
-                    evt.preventDefault();
-                    if (!this.input.disabled) {
-                        this.click();
                     }
                 }
             }
-        }
-    })
-], OpalSelectOption);
+        })
+    ], OpalSelectOption);
+    return OpalSelectOption;
+}(rionite_1.Component));
 exports.default = OpalSelectOption;
 
 
@@ -3921,33 +3922,33 @@ var OpalMultiselect = (function (_super) {
     OpalMultiselect.prototype._onBtnDeselectItemClick = function (evt, btn) {
         this.viewModel.remove(this.viewModel.get(btn.dataset.itemValue, this._viewModelItemValueFieldName));
     };
-    return OpalMultiselect;
-}(opal_select_1.default));
-OpalMultiselect = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-multiselect',
-        i18n: {
-            queryInputPlaceholder: rionite_1.getText.t('Поиск'),
-            nothingSelected: rionite_1.getText.t('Ничего не выбрано')
-        },
-        input: {
-            multiple: true,
-            dataprovider: { type: Object, readonly: true },
-            dataproviderKeypath: { type: String, readonly: true }
-        },
-        template: opal_select_1.default.template.extend(template),
-        events: {
-            'query-input': {
-                input: function (evt) {
-                    this.$('loaded-list').input.query = evt.target.value;
-                },
-                clear: function () {
-                    this.$('loaded-list').input.query = '';
+    OpalMultiselect = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-multiselect',
+            i18n: {
+                queryInputPlaceholder: rionite_1.getText.t('Поиск'),
+                nothingSelected: rionite_1.getText.t('Ничего не выбрано')
+            },
+            input: {
+                multiple: true,
+                dataprovider: { type: Object, readonly: true },
+                dataproviderKeypath: { type: String, readonly: true }
+            },
+            template: opal_select_1.default.template.extend(template),
+            events: {
+                'query-input': {
+                    input: function (evt) {
+                        this.$('loaded-list').input.query = evt.target.value;
+                    },
+                    clear: function () {
+                        this.$('loaded-list').input.query = '';
+                    }
                 }
             }
-        }
-    })
-], OpalMultiselect);
+        })
+    ], OpalMultiselect);
+    return OpalMultiselect;
+}(opal_select_1.default));
 exports.default = OpalMultiselect;
 
 
@@ -4055,27 +4056,27 @@ var OpalInputValidator = (function (_super) {
         }
         return !failedRule;
     };
-    return OpalInputValidator;
-}(rionite_1.Component));
-OpalInputValidator.OpalInputValidatorRule = opal_input_validator_rule_1.default;
-OpalInputValidator = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-input-validator',
-        template: '@section/inner { rt-content/content }',
-        events: {
-            'text-input': {
-                input: function () {
-                    if (this.failedRule) {
-                        this._validate([this.failedRule]);
+    OpalInputValidator.OpalInputValidatorRule = opal_input_validator_rule_1.default;
+    OpalInputValidator = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-input-validator',
+            template: '@section/inner { rt-content/content }',
+            events: {
+                'text-input': {
+                    input: function () {
+                        if (this.failedRule) {
+                            this._validate([this.failedRule]);
+                        }
+                    },
+                    change: function () {
+                        this.validate();
                     }
-                },
-                change: function () {
-                    this.validate();
                 }
             }
-        }
-    })
-], OpalInputValidator);
+        })
+    ], OpalInputValidator);
+    return OpalInputValidator;
+}(rionite_1.Component));
 exports.default = OpalInputValidator;
 
 
@@ -4133,21 +4134,21 @@ var OpalInputValidatorRule = (function (_super) {
     OpalInputValidatorRule.prototype.hideMessage = function () {
         this.$('popover').close();
     };
+    OpalInputValidatorRule = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-input-validator-rule',
+            input: {
+                required: { default: false, readonly: true },
+                minLength: { type: Number, readonly: true },
+                regex: { type: eval, readonly: true },
+                test: { type: String, readonly: true },
+                popoverTo: 'right'
+            },
+            template: template
+        })
+    ], OpalInputValidatorRule);
     return OpalInputValidatorRule;
 }(rionite_1.Component));
-OpalInputValidatorRule = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-input-validator-rule',
-        input: {
-            required: { default: false, readonly: true },
-            minLength: { type: Number, readonly: true },
-            regex: { type: eval, readonly: true },
-            test: { type: String, readonly: true },
-            popoverTo: 'right'
-        },
-        template: template
-    })
-], OpalInputValidatorRule);
 exports.default = OpalInputValidatorRule;
 
 
@@ -4209,11 +4210,12 @@ function getTodayDate() {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 }
-var OpalCalendar = OpalCalendar_1 = (function (_super) {
+var OpalCalendar = (function (_super) {
     __extends(OpalCalendar, _super);
     function OpalCalendar() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    OpalCalendar_1 = OpalCalendar;
     OpalCalendar.prototype.initialize = function () {
         var i18n = this.constructor.i18n;
         var sundayFirst = i18n.sundayFirst;
@@ -4399,68 +4401,68 @@ var OpalCalendar = OpalCalendar_1 = (function (_super) {
         this.input.value = dayEl.dataset.date;
         this.emit('change');
     };
-    return OpalCalendar;
-}(rionite_1.Component));
-OpalCalendar = OpalCalendar_1 = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-calendar',
-        input: {
-            fromDate: String,
-            toDate: String,
-            value: String,
-            dateDelimiter: { default: '/', readonly: true }
-        },
-        i18n: {
-            previousMonth: 'Предыдущий месяц',
-            nextMonth: 'Следующий месяц',
-            months: [
-                'Январь', 'Февраль', 'Март', 'Апрель',
-                'Май', 'Июнь', 'Июль', 'Август',
-                'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
-            ],
-            weekDays: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
-            weekDaysShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-            sundayFirst: false
-        },
-        template: template,
-        events: {
-            'btn-prev-month': {
-                click: function () {
-                    if (this.shownMonth) {
-                        this.shownMonth--;
-                    }
-                    else {
-                        this.shownYear--;
-                        this.shownMonth = 11;
-                    }
-                }
+    OpalCalendar = OpalCalendar_1 = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-calendar',
+            input: {
+                fromDate: String,
+                toDate: String,
+                value: String,
+                dateDelimiter: { default: '/', readonly: true }
             },
-            'btn-next-month': {
-                click: function () {
-                    if (this.shownMonth == 11) {
-                        this.shownYear++;
-                        this.shownMonth = 0;
-                    }
-                    else {
-                        this.shownMonth++;
-                    }
-                }
+            i18n: {
+                previousMonth: 'Предыдущий месяц',
+                nextMonth: 'Следующий месяц',
+                months: [
+                    'Январь', 'Февраль', 'Март', 'Апрель',
+                    'Май', 'Июнь', 'Июль', 'Август',
+                    'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+                ],
+                weekDays: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+                weekDaysShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                sundayFirst: false
             },
-            's-month': {
-                '<opal-select-option>select': function (evt) {
-                    this.shownMonth = +evt.target.value;
-                }
-            },
-            's-year': {
-                '<opal-select-option>select': function (evt) {
-                    this.shownYear = +evt.target.value;
+            template: template,
+            events: {
+                'btn-prev-month': {
+                    click: function () {
+                        if (this.shownMonth) {
+                            this.shownMonth--;
+                        }
+                        else {
+                            this.shownYear--;
+                            this.shownMonth = 11;
+                        }
+                    }
+                },
+                'btn-next-month': {
+                    click: function () {
+                        if (this.shownMonth == 11) {
+                            this.shownYear++;
+                            this.shownMonth = 0;
+                        }
+                        else {
+                            this.shownMonth++;
+                        }
+                    }
+                },
+                's-month': {
+                    '<opal-select-option>select': function (evt) {
+                        this.shownMonth = +evt.target.value;
+                    }
+                },
+                's-year': {
+                    '<opal-select-option>select': function (evt) {
+                        this.shownYear = +evt.target.value;
+                    }
                 }
             }
-        }
-    })
-], OpalCalendar);
+        })
+    ], OpalCalendar);
+    return OpalCalendar;
+    var OpalCalendar_1;
+}(rionite_1.Component));
 exports.default = OpalCalendar;
-var OpalCalendar_1;
 
 
 /***/ }),
@@ -4631,59 +4633,59 @@ var OpalDateInput = (function (_super) {
     OpalDateInput.prototype.validate = function () {
         return this.$('input-validator').validate();
     };
-    return OpalDateInput;
-}(rionite_1.Component));
-OpalDateInput = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-date-input',
-        input: {
-            fromDate: String,
-            toDate: String,
-            value: String,
-            placeholder: 'dd.mm.yyyy',
-            mask: '99.99.9999',
-            required: { default: false, readonly: true },
-            popoverTo: 'right'
-        },
-        i18n: {
-            isRequiredField: rionite_1.getText.t('Поле обязательно для заполнения'),
-            nonExistentDate: rionite_1.getText.t('Несуществующая дата'),
-            invalidDateRange: rionite_1.getText.t('Дата вне допустимого диапазона')
-        },
-        template: template,
-        events: {
-            'text-input': {
-                change: function (evt) {
-                    if (this.$('input-validator').valid) {
-                        this.$('calendar').input.value = evt.target.value;
-                    }
-                }
+    OpalDateInput = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-date-input',
+            input: {
+                fromDate: String,
+                toDate: String,
+                value: String,
+                placeholder: 'dd.mm.yyyy',
+                mask: '99.99.9999',
+                required: { default: false, readonly: true },
+                popoverTo: 'right'
             },
-            'calendar-menu': {
-                'input-opened-change': function (evt) {
-                    if (evt.value) {
-                        this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
-                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-                        this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
-                    }
-                    else {
-                        this._documentFocusListening.stop();
-                        this._documentKeyDownListening.stop();
-                        this._documentClickListening.stop();
-                    }
-                }
+            i18n: {
+                isRequiredField: rionite_1.getText.t('Поле обязательно для заполнения'),
+                nonExistentDate: rionite_1.getText.t('Несуществующая дата'),
+                invalidDateRange: rionite_1.getText.t('Дата вне допустимого диапазона')
             },
-            calendar: {
-                change: function (evt) {
-                    this.$('calendar-menu').close();
-                    var textInput = this.$('text-input');
-                    textInput.value = evt.target.input.value;
-                    textInput.focus();
+            template: template,
+            events: {
+                'text-input': {
+                    change: function (evt) {
+                        if (this.$('input-validator').valid) {
+                            this.$('calendar').input.value = evt.target.value;
+                        }
+                    }
+                },
+                'calendar-menu': {
+                    'input-opened-change': function (evt) {
+                        if (evt.value) {
+                            this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
+                            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+                            this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+                        }
+                        else {
+                            this._documentFocusListening.stop();
+                            this._documentKeyDownListening.stop();
+                            this._documentClickListening.stop();
+                        }
+                    }
+                },
+                calendar: {
+                    change: function (evt) {
+                        this.$('calendar-menu').close();
+                        var textInput = this.$('text-input');
+                        textInput.value = evt.target.input.value;
+                        textInput.focus();
+                    }
                 }
             }
-        }
-    })
-], OpalDateInput);
+        })
+    ], OpalDateInput);
+    return OpalDateInput;
+}(rionite_1.Component));
 exports.default = OpalDateInput;
 
 
@@ -4764,17 +4766,17 @@ var OpalLoader = (function (_super) {
     function OpalLoader() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    OpalLoader = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-loader',
+            input: {
+                size: 'm',
+                shown: false
+            }
+        })
+    ], OpalLoader);
     return OpalLoader;
 }(rionite_1.Component));
-OpalLoader = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-loader',
-        input: {
-            size: 'm',
-            shown: false
-        }
-    })
-], OpalLoader);
 exports.default = OpalLoader;
 
 
@@ -4915,69 +4917,69 @@ var OpalLoadedList = (function (_super) {
     OpalLoadedList.prototype._getListItemContext = function (context, content) {
         return mixin(Object.create(context), content.input.$context);
     };
-    return OpalLoadedList;
-}(rionite_1.Component));
-OpalLoadedList = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-loaded-list',
-        input: {
-            dataprovider: { type: Object, readonly: true },
-            dataproviderKeypath: { type: String, readonly: true },
-            count: 100,
-            query: String,
-            itemAs: { default: '$item', readonly: true },
-            preloading: { default: false, readonly: true }
-        },
-        i18n: {
-            nothingFound: rionite_1.getText.t('Ничего не найдено')
-        },
-        template: template,
-        events: {
-            ':component': {
-                'input-query-change': function () {
-                    var _this = this;
-                    if (this.loading) {
-                        this._requestCallback.cancel();
-                        this.loading = false;
-                    }
-                    this.list.clear();
-                    this.total = undefined;
-                    if (this._isLoadingCheckPlanned) {
-                        this._loadingCheckTimeout.clear();
-                    }
-                    else {
-                        this._isLoadingCheckPlanned = true;
-                    }
-                    this._loadingCheckTimeout = this.setTimeout(function () {
-                        _this._scrolling = false;
-                        _this._isLoadingCheckPlanned = false;
-                        _this.checkLoading();
-                    }, 300);
-                }
+    OpalLoadedList = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-loaded-list',
+            input: {
+                dataprovider: { type: Object, readonly: true },
+                dataproviderKeypath: { type: String, readonly: true },
+                count: 100,
+                query: String,
+                itemAs: { default: '$item', readonly: true },
+                preloading: { default: false, readonly: true }
             },
-            ':element': {
-                scroll: function () {
-                    var _this = this;
-                    if (this._scrolling) {
-                        return;
+            i18n: {
+                nothingFound: rionite_1.getText.t('Ничего не найдено')
+            },
+            template: template,
+            events: {
+                ':component': {
+                    'input-query-change': function () {
+                        var _this = this;
+                        if (this.loading) {
+                            this._requestCallback.cancel();
+                            this.loading = false;
+                        }
+                        this.list.clear();
+                        this.total = undefined;
+                        if (this._isLoadingCheckPlanned) {
+                            this._loadingCheckTimeout.clear();
+                        }
+                        else {
+                            this._isLoadingCheckPlanned = true;
+                        }
+                        this._loadingCheckTimeout = this.setTimeout(function () {
+                            _this._scrolling = false;
+                            _this._isLoadingCheckPlanned = false;
+                            _this.checkLoading();
+                        }, 300);
                     }
-                    this._scrolling = true;
-                    if (this._isLoadingCheckPlanned) {
-                        this._loadingCheckTimeout.clear();
+                },
+                ':element': {
+                    scroll: function () {
+                        var _this = this;
+                        if (this._scrolling) {
+                            return;
+                        }
+                        this._scrolling = true;
+                        if (this._isLoadingCheckPlanned) {
+                            this._loadingCheckTimeout.clear();
+                        }
+                        else {
+                            this._isLoadingCheckPlanned = true;
+                        }
+                        this._loadingCheckTimeout = this.setTimeout(function () {
+                            _this._scrolling = false;
+                            _this._isLoadingCheckPlanned = false;
+                            _this.checkLoading();
+                        }, 150);
                     }
-                    else {
-                        this._isLoadingCheckPlanned = true;
-                    }
-                    this._loadingCheckTimeout = this.setTimeout(function () {
-                        _this._scrolling = false;
-                        _this._isLoadingCheckPlanned = false;
-                        _this.checkLoading();
-                    }, 150);
                 }
             }
-        }
-    })
-], OpalLoadedList);
+        })
+    ], OpalLoadedList);
+    return OpalLoadedList;
+}(rionite_1.Component));
 exports.default = OpalLoadedList;
 
 
@@ -5041,24 +5043,24 @@ var OpalFilteredList = (function (_super) {
             queryInput.focus();
         }
     };
-    return OpalFilteredList;
-}(rionite_1.Component));
-OpalFilteredList = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-filtered-list',
-        i18n: {
-            queryInputPlaceholder: rionite_1.getText.t('Поиск')
-        },
-        template: template,
-        events: {
-            'query-input': {
-                input: function (evt) {
-                    this.$('loaded-list').input.query = evt.target.value;
+    OpalFilteredList = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-filtered-list',
+            i18n: {
+                queryInputPlaceholder: rionite_1.getText.t('Поиск')
+            },
+            template: template,
+            events: {
+                'query-input': {
+                    input: function (evt) {
+                        this.$('loaded-list').input.query = evt.target.value;
+                    }
                 }
             }
-        }
-    })
-], OpalFilteredList);
+        })
+    ], OpalFilteredList);
+    return OpalFilteredList;
+}(rionite_1.Component));
 exports.default = OpalFilteredList;
 
 
@@ -5333,86 +5335,86 @@ var OpalAutosuggest = (function (_super) {
         this.list.clear();
         this._focusedListItem = null;
     };
-    return OpalAutosuggest;
-}(rionite_1.Component));
-OpalAutosuggest = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-autosuggest',
-        input: {
-            dataprovider: { type: Object, readonly: true },
-            dataproviderKeypath: { type: String, readonly: true },
-            selectedItem: eval,
-            minQueryLength: 3,
-            count: 5,
-            openMenuOnNothingFound: false
-        },
-        i18n: {
-            textInputPlaceholder: rionite_1.getText.t('Начните вводить для поиска'),
-            nothingFound: rionite_1.getText.t('Ничего не найдено')
-        },
-        template: template,
-        events: {
-            ':component': {
-                'input-selected-item-change': function (evt) {
-                    var value = evt.value;
-                    this._clearList();
-                    this.selectedItem = value;
-                    this.$('text-input').value = value ? value.text : '';
-                }
+    OpalAutosuggest = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-autosuggest',
+            input: {
+                dataprovider: { type: Object, readonly: true },
+                dataproviderKeypath: { type: String, readonly: true },
+                selectedItem: eval,
+                minQueryLength: 3,
+                count: 5,
+                openMenuOnNothingFound: false
             },
-            'text-input': {
-                focus: function () {
-                    this.openMenu();
-                },
-                blur: function () {
-                    this._cancelLoading();
-                    // Нужно для следующего случая:
-                    // 1. выбираем что-то;
-                    // 2. изменяем запрос так чтобы ничего не нашлось;
-                    // 3. убираем фокус.
-                    if (!this.$('menu').input.opened) {
-                        this._setSelectedItemOfList();
-                    }
-                },
-                input: function (evt) {
-                    var _this = this;
-                    this._isNotInputConfirmed = true;
-                    this._clearList();
-                    if (evt.target.value.length >= this.input.minQueryLength) {
-                        this._isLoadingPlanned = true;
-                        this._loadingTimeout = this.setTimeout(function () {
-                            _this._isLoadingPlanned = false;
-                            _this._load();
-                        }, 300);
-                    }
-                },
-                change: function (evt) {
-                    if (!evt.target.value.length) {
+            i18n: {
+                textInputPlaceholder: rionite_1.getText.t('Начните вводить для поиска'),
+                nothingFound: rionite_1.getText.t('Ничего не найдено')
+            },
+            template: template,
+            events: {
+                ':component': {
+                    'input-selected-item-change': function (evt) {
+                        var value = evt.value;
                         this._clearList();
-                        if (this.selectedItem) {
-                            this.selectedItem = null;
-                            this.emit('change');
+                        this.selectedItem = value;
+                        this.$('text-input').value = value ? value.text : '';
+                    }
+                },
+                'text-input': {
+                    focus: function () {
+                        this.openMenu();
+                    },
+                    blur: function () {
+                        this._cancelLoading();
+                        // Нужно для следующего случая:
+                        // 1. выбираем что-то;
+                        // 2. изменяем запрос так чтобы ничего не нашлось;
+                        // 3. убираем фокус.
+                        if (!this.$('menu').input.opened) {
+                            this._setSelectedItemOfList();
+                        }
+                    },
+                    input: function (evt) {
+                        var _this = this;
+                        this._isNotInputConfirmed = true;
+                        this._clearList();
+                        if (evt.target.value.length >= this.input.minQueryLength) {
+                            this._isLoadingPlanned = true;
+                            this._loadingTimeout = this.setTimeout(function () {
+                                _this._isLoadingPlanned = false;
+                                _this._load();
+                            }, 300);
+                        }
+                    },
+                    change: function (evt) {
+                        if (!evt.target.value.length) {
+                            this._clearList();
+                            if (this.selectedItem) {
+                                this.selectedItem = null;
+                                this.emit('change');
+                            }
+                        }
+                    }
+                },
+                menu: {
+                    'input-opened-change': function (evt) {
+                        if (evt.value) {
+                            this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
+                            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+                            this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+                        }
+                        else {
+                            this._documentFocusListening.stop();
+                            this._documentKeyDownListening.stop();
+                            this._documentClickListening.stop();
                         }
                     }
                 }
-            },
-            menu: {
-                'input-opened-change': function (evt) {
-                    if (evt.value) {
-                        this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
-                        this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-                        this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
-                    }
-                    else {
-                        this._documentFocusListening.stop();
-                        this._documentKeyDownListening.stop();
-                        this._documentClickListening.stop();
-                    }
-                }
             }
-        }
-    })
-], OpalAutosuggest);
+        })
+    ], OpalAutosuggest);
+    return OpalAutosuggest;
+}(rionite_1.Component));
 exports.default = OpalAutosuggest;
 
 
@@ -5528,60 +5530,60 @@ var OpalTagSelect = (function (_super) {
         this.viewModel.remove(this.viewModel.get(btn.dataset.tagValue, this._viewModelItemValueFieldName));
         this.emit('change');
     };
-    return OpalTagSelect;
-}(rionite_1.Component));
-OpalTagSelect = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-tag-select',
-        input: {
-            viewType: String,
-            datalistKeypath: { type: String, readonly: true },
-            datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
-            // необязательный, так как может указываться на передаваемом opal-loaded-list
-            dataprovider: { type: Object, readonly: true },
-            dataproviderKeypath: { type: String, readonly: true },
-            value: eval,
-            viewModelKeypath: { type: String, readonly: true },
-            viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
-            placeholder: rionite_1.getText.t('Не выбрано'),
-            popoverTo: 'bottom',
-            disabled: false
-        },
-        template: template,
-        events: {
-            control: {
-                click: function (evt) {
-                    var select = this.$('select');
-                    var selectEl = select.element;
-                    var node = evt.target;
-                    if (node != selectEl) {
-                        var control = this.$('control');
-                        do {
-                            if (node == control) {
-                                select.toggle();
-                                break;
-                            }
-                            node = node.parentNode;
-                        } while (node != selectEl);
+    OpalTagSelect = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-tag-select',
+            input: {
+                viewType: String,
+                datalistKeypath: { type: String, readonly: true },
+                datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
+                // необязательный, так как может указываться на передаваемом opal-loaded-list
+                dataprovider: { type: Object, readonly: true },
+                dataproviderKeypath: { type: String, readonly: true },
+                value: eval,
+                viewModelKeypath: { type: String, readonly: true },
+                viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
+                placeholder: rionite_1.getText.t('Не выбрано'),
+                popoverTo: 'bottom',
+                disabled: false
+            },
+            template: template,
+            events: {
+                control: {
+                    click: function (evt) {
+                        var select = this.$('select');
+                        var selectEl = select.element;
+                        var node = evt.target;
+                        if (node != selectEl) {
+                            var control = this.$('control');
+                            do {
+                                if (node == control) {
+                                    select.toggle();
+                                    break;
+                                }
+                                node = node.parentNode;
+                            } while (node != selectEl);
+                        }
+                    }
+                },
+                select: {
+                    input: function () {
+                        this.$('select').close();
+                    },
+                    // не соединять on-select и on-deselect в on-change,
+                    // тк on-change на opal-select[multiple] генерируется только при закрытии
+                    '<opal-select-option>select': function () {
+                        this.$('select').close();
+                    },
+                    '<opal-select-option>deselect': function () {
+                        this.$('select').close();
                     }
                 }
-            },
-            select: {
-                input: function () {
-                    this.$('select').close();
-                },
-                // не соединять on-select и on-deselect в on-change,
-                // тк on-change на opal-select[multiple] генерируется только при закрытии
-                '<opal-select-option>select': function () {
-                    this.$('select').close();
-                },
-                '<opal-select-option>deselect': function () {
-                    this.$('select').close();
-                }
             }
-        }
-    })
-], OpalTagSelect);
+        })
+    ], OpalTagSelect);
+    return OpalTagSelect;
+}(rionite_1.Component));
 exports.default = OpalTagSelect;
 
 
@@ -5663,42 +5665,42 @@ var OpalMultirow = (function (_super) {
             this._newRows.add({ key: nextUID() });
         }
     };
-    return OpalMultirow;
-}(rionite_1.Component));
-OpalMultirow.OpalMultirowRow = opal_multirow_row_1.default;
-OpalMultirow = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-multirow',
-        template: template,
-        events: {
-            ':component': {
-                '<opal-multirow-row>remove-row-click': function (evt) {
-                    var _this = this;
-                    var row = evt.target;
-                    if (row.input.preset) {
-                        this.$('preset-rows-container').element.removeChild(row.element);
-                        this._presetRowCount--;
+    OpalMultirow.OpalMultirowRow = opal_multirow_row_1.default;
+    OpalMultirow = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-multirow',
+            template: template,
+            events: {
+                ':component': {
+                    '<opal-multirow-row>remove-row-click': function (evt) {
+                        var _this = this;
+                        var row = evt.target;
+                        if (row.input.preset) {
+                            this.$('preset-rows-container').element.removeChild(row.element);
+                            this._presetRowCount--;
+                        }
+                        else {
+                            this._newRows.remove(this._newRows.get(row.parentComponent.element.dataset.key, 'key'));
+                        }
+                        setTimeout(function () {
+                            _this.emit('remove-row');
+                            _this.emit('change');
+                        }, 1);
+                    },
+                    '<opal-multirow-row>add-row-click': function () {
+                        var _this = this;
+                        this._newRows.add({ key: nextUID() });
+                        setTimeout(function () {
+                            _this.emit('add-row');
+                            _this.emit('change');
+                        }, 1);
                     }
-                    else {
-                        this._newRows.remove(this._newRows.get(row.parentComponent.element.dataset.key, 'key'));
-                    }
-                    setTimeout(function () {
-                        _this.emit('remove-row');
-                        _this.emit('change');
-                    }, 1);
-                },
-                '<opal-multirow-row>add-row-click': function () {
-                    var _this = this;
-                    this._newRows.add({ key: nextUID() });
-                    setTimeout(function () {
-                        _this.emit('add-row');
-                        _this.emit('change');
-                    }, 1);
                 }
             }
-        }
-    })
-], OpalMultirow);
+        })
+    ], OpalMultirow);
+    return OpalMultirow;
+}(rionite_1.Component));
 exports.default = OpalMultirow;
 
 
@@ -5750,29 +5752,29 @@ var OpalMultirowRow = (function (_super) {
     function OpalMultirowRow() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    return OpalMultirowRow;
-}(rionite_1.Component));
-OpalMultirowRow = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-multirow-row',
-        input: {
-            preset: { default: false, readonly: true }
-        },
-        template: template,
-        events: {
-            'btn-remove-row': {
-                click: function () {
-                    this.emit('remove-row-click');
-                }
+    OpalMultirowRow = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-multirow-row',
+            input: {
+                preset: { default: false, readonly: true }
             },
-            'btn-add-row': {
-                click: function () {
-                    this.emit('add-row-click');
+            template: template,
+            events: {
+                'btn-remove-row': {
+                    click: function () {
+                        this.emit('remove-row-click');
+                    }
+                },
+                'btn-add-row': {
+                    click: function () {
+                        this.emit('add-row-click');
+                    }
                 }
             }
-        }
-    })
-], OpalMultirowRow);
+        })
+    ], OpalMultirowRow);
+    return OpalMultirowRow;
+}(rionite_1.Component));
 exports.default = OpalMultirowRow;
 
 
@@ -6034,26 +6036,26 @@ var OpalRouter = (function (_super) {
             }
         }
     };
-    return OpalRouter;
-}(rionite_1.Component));
-OpalRouter.OpalRoute = opal_route_1.default;
-OpalRouter = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-router',
-        input: {
-            scrollTopOnChange: true,
-            scrollTopOnChangeComponent: true
-        },
-        events: {
-            ':component': {
-                '<*>refresh-router': function () {
-                    this.refresh();
-                    return false;
+    OpalRouter.OpalRoute = opal_route_1.default;
+    OpalRouter = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-router',
+            input: {
+                scrollTopOnChange: true,
+                scrollTopOnChangeComponent: true
+            },
+            events: {
+                ':component': {
+                    '<*>refresh-router': function () {
+                        this.refresh();
+                        return false;
+                    }
                 }
             }
-        }
-    })
-], OpalRouter);
+        })
+    ], OpalRouter);
+    return OpalRouter;
+}(rionite_1.Component));
 exports.default = OpalRouter;
 
 
@@ -6109,17 +6111,17 @@ var OpalRoute = (function (_super) {
     function OpalRoute() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    OpalRoute = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-route',
+            input: {
+                path: { type: String, required: true, readonly: true },
+                component: { type: String, required: true, readonly: true }
+            }
+        })
+    ], OpalRoute);
     return OpalRoute;
 }(rionite_1.Component));
-OpalRoute = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-route',
-        input: {
-            path: { type: String, required: true, readonly: true },
-            component: { type: String, required: true, readonly: true }
-        }
-    })
-], OpalRoute);
 exports.default = OpalRoute;
 
 

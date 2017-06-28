@@ -137,14 +137,14 @@ var OpalCodeListing = (function (_super) {
         this.$('html-code').innerHTML = this.highlightedHTMLCode;
         this.$('js-code').innerHTML = this.highlightedJSCode || '';
     };
+    OpalCodeListing = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-code-listing',
+            template: template
+        })
+    ], OpalCodeListing);
     return OpalCodeListing;
 }(rionite_1.Component));
-OpalCodeListing = __decorate([
-    rionite_1.d.Component({
-        elementIs: 'opal-code-listing',
-        template: template
-    })
-], OpalCodeListing);
 exports.default = OpalCodeListing;
 
 

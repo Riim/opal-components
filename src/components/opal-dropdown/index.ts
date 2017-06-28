@@ -71,6 +71,7 @@ export default class OpalDropdown extends Component {
 		elStyle.right = 'auto';
 		elStyle.bottom = 'auto';
 		elStyle.left = '0';
+		elStyle.maxHeight = 'none';
 
 		let docElClientWidth = document.documentElement.clientWidth;
 		let containerClientRect = el.offsetParent.getBoundingClientRect();
@@ -92,8 +93,6 @@ export default class OpalDropdown extends Component {
 			let diff = containerClientRect.top - (document.documentElement.clientHeight - containerClientRect.bottom);
 
 			if (this.input.autoHeight) {
-				elStyle.maxHeight = 'none';
-
 				if (diff > 0) {
 					elStyle.top = 'auto';
 					elStyle.bottom = '100%';
@@ -101,10 +100,10 @@ export default class OpalDropdown extends Component {
 					excess -= diff;
 
 					if (excess > 0) {
-						elStyle.maxHeight = containerClientRect.bottom - containerClientRect.top - excess + 'px';
+						elStyle.maxHeight = el.offsetHeight - excess + 'px';
 					}
 				} else {
-					elStyle.maxHeight = containerClientRect.bottom - containerClientRect.top - excess + 'px';
+					elStyle.maxHeight = el.offsetHeight - excess + 'px';
 				}
 			} else if (diff > 0 && excess - diff <= document.body.scrollTop) {
 				elStyle.top = 'auto';
