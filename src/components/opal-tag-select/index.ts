@@ -78,7 +78,7 @@ export default class OpalTagSelect extends Component {
 
 	dataProvider: IDataProvider | null;
 
-	_addNewItem: ((text: string) => Promise<{ value: string; text: string }>) | undefined;
+	_addNewItem: ((text: string) => Promise<{ [name: string]: string }>) | undefined;
 
 	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;

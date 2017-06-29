@@ -227,10 +227,8 @@ export default class OpalRouter extends Component {
 			this._state = state;
 
 			let componentEl = this._componentElement = document.createElement(route.componentName) as IComponentElement;
-
-			componentEl.$component.ownerComponent = this;
 			this._applyState();
-
+			componentEl.$component.ownerComponent = this;
 			this.element.appendChild(componentEl);
 
 			if (this.input.scrollTopOnChange || this.input.scrollTopOnChangeComponent) {
@@ -274,10 +272,8 @@ export default class OpalRouter extends Component {
 			this.element.removeChild(this._componentElement as IComponentElement);
 
 			let componentEl = this._componentElement = document.createElement(route.componentName) as IComponentElement;
-
-			componentEl.$component.ownerComponent = this;
 			this._applyState();
-
+			componentEl.$component.ownerComponent = this;
 			this.element.appendChild(componentEl);
 
 			if (this.input.scrollTopOnChange || this.input.scrollTopOnChangeComponent) {

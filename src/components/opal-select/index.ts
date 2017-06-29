@@ -217,14 +217,19 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 				textInput.clear();
 				textInput.input.loading = true;
+				textInput.input.disabled = true;
 
 				addNewItem(text).then((newItem: { value: string, text: string }) => {
 					textInput.input.loading = false;
+					textInput.input.disabled = false;
+
+					let value = newItem[this._viewModelItemValueFieldName];
+					let text = newItem[this._viewModelItemTextFieldName];
 
 					if (this.dataList) {
 						this.dataList.add({
-							[this._dataListItemValueFieldName]: newItem.value,
-							[this._dataListItemTextFieldName]: newItem.text
+							[this._dataListItemValueFieldName]: value,
+							[this._dataListItemTextFieldName]: text
 						});
 					}
 
@@ -238,8 +243,8 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 					let vm = this.viewModel;
 					let vmItem = {
-						[this._viewModelItemValueFieldName]: newItem.value,
-						[this._viewModelItemTextFieldName]: newItem.text
+						[this._viewModelItemValueFieldName]: value,
+						[this._viewModelItemTextFieldName]: text
 					};
 
 					if (this.input.multiple) {
@@ -258,6 +263,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 					}
 				}, () => {
 					textInput.input.loading = false;
+					textInput.input.disabled = false;
 				});
 			},
 
@@ -326,7 +332,7 @@ export default class OpalSelect extends Component {
 	_dataListItemTextFieldName: string;
 	_dataListItemDisabledFieldName: string;
 
-	_addNewItem: ((text: string) => Promise<{ value: string; text: string }>) | undefined;
+	_addNewItem: ((text: string) => Promise<{ [name: string]: string }>) | undefined;
 
 	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;

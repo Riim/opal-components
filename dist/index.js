@@ -641,12 +641,16 @@ var OpalSelect = (function (_super) {
                         var text = textInput.value;
                         textInput.clear();
                         textInput.input.loading = true;
+                        textInput.input.disabled = true;
                         addNewItem(text).then(function (newItem) {
                             textInput.input.loading = false;
+                            textInput.input.disabled = false;
+                            var value = newItem[_this._viewModelItemValueFieldName];
+                            var text = newItem[_this._viewModelItemTextFieldName];
                             if (_this.dataList) {
                                 _this.dataList.add((_a = {},
-                                    _a[_this._dataListItemValueFieldName] = newItem.value,
-                                    _a[_this._dataListItemTextFieldName] = newItem.text,
+                                    _a[_this._dataListItemValueFieldName] = value,
+                                    _a[_this._dataListItemTextFieldName] = text,
                                     _a));
                             }
                             var loadedList = _this.$('loaded-list');
@@ -656,8 +660,8 @@ var OpalSelect = (function (_super) {
                             _this.emit('input');
                             var vm = _this.viewModel;
                             var vmItem = (_b = {},
-                                _b[_this._viewModelItemValueFieldName] = newItem.value,
-                                _b[_this._viewModelItemTextFieldName] = newItem.text,
+                                _b[_this._viewModelItemValueFieldName] = value,
+                                _b[_this._viewModelItemTextFieldName] = text,
                                 _b);
                             if (_this.input.multiple) {
                                 vm.add(vmItem);
@@ -676,6 +680,7 @@ var OpalSelect = (function (_super) {
                             var _a, _b;
                         }, function () {
                             textInput.input.loading = false;
+                            textInput.input.disabled = false;
                         });
                     },
                     '<*>change': function (evt) {
@@ -6010,8 +6015,8 @@ var OpalRouter = (function (_super) {
             this_1._route = route;
             this_1._state = state;
             var componentEl = this_1._componentElement = document.createElement(route.componentName);
-            componentEl.$component.ownerComponent = this_1;
             this_1._applyState();
+            componentEl.$component.ownerComponent = this_1;
             this_1.element.appendChild(componentEl);
             if (this_1.input.scrollTopOnChange || this_1.input.scrollTopOnChangeComponent) {
                 document.body.scrollTop = 0;
@@ -6051,8 +6056,8 @@ var OpalRouter = (function (_super) {
         if (route) {
             this.element.removeChild(this._componentElement);
             var componentEl = this._componentElement = document.createElement(route.componentName);
-            componentEl.$component.ownerComponent = this;
             this._applyState();
+            componentEl.$component.ownerComponent = this;
             this.element.appendChild(componentEl);
             if (this.input.scrollTopOnChange || this.input.scrollTopOnChangeComponent) {
                 document.body.scrollTop = 0;
