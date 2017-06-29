@@ -14,7 +14,7 @@ import OpalSelectOption from './opal-select-option';
 import isEqualArray from './isEqualArray';
 import template = require('./index.nelm');
 
-let { nextUID, nextTick } = Utils;
+let { nextTick } = Utils;
 let { RtIfThen, RtRepeat } = Components;
 
 let map = Array.prototype.map;
@@ -34,6 +34,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		multiple: { default: false, readonly: true },
 		datalistKeypath: { type: String, readonly: true },
 		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
+		addNewItemKeypath: { type: String, readonly: true },
 		value: eval,
 		viewModelKeypath: { type: String, readonly: true },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
@@ -197,48 +198,67 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 					return;
 				}
 
-				let itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
-				let itemText = textInput.value;
+				let addNewItemKeypath = this.input.addNewItemKeypath;
 
-				let dataList = this.dataList;
-
-				if (dataList) {
-					dataList.add({
-						[this._dataListItemValueFieldName]: itemValue,
-						[this._dataListItemTextFieldName]: itemText
-					});
+				if (!addNewItemKeypath) {
+					throw new TypeError('Input "addNewItemKeypath" is required');
 				}
+
+				let addNewItem = this._addNewItem || (
+					this._addNewItem = Function(`return this.${ addNewItemKeypath };`)
+						.call(this.ownerComponent || window)
+				);
+
+				if (!addNewItem) {
+					throw new TypeError('"addNewItem" is not defined');
+				}
+
+				let text = textInput.value;
 
 				textInput.clear();
+				textInput.input.loading = true;
 
-				let loadedList = this.$('loaded-list') as OpalLoadedList | null;
+				addNewItem(text).then((newItem: { value: string, text: string }) => {
+					textInput.input.loading = false;
 
-				if (loadedList) {
-					loadedList.input.query = '';
-				}
-
-				this.emit('input');
-
-				let vm = this.viewModel;
-				let vmItem = {
-					[this._viewModelItemValueFieldName]: itemValue,
-					[this._viewModelItemTextFieldName]: itemText
-				};
-
-				if (this.input.multiple) {
-					vm.add(vmItem);
-				} else {
-					if (vm.length) {
-						vm.set(0, vmItem);
-					} else {
-						vm.add(vmItem);
+					if (this.dataList) {
+						this.dataList.add({
+							[this._dataListItemValueFieldName]: newItem.value,
+							[this._dataListItemTextFieldName]: newItem.text
+						});
 					}
 
-					this.close();
-					this.focus();
+					let loadedList = this.$('loaded-list') as OpalLoadedList | null;
 
-					this.emit('change');
-				}
+					if (loadedList) {
+						loadedList.input.query = '';
+					}
+
+					this.emit('input');
+
+					let vm = this.viewModel;
+					let vmItem = {
+						[this._viewModelItemValueFieldName]: newItem.value,
+						[this._viewModelItemTextFieldName]: newItem.text
+					};
+
+					if (this.input.multiple) {
+						vm.add(vmItem);
+					} else {
+						if (vm.length) {
+							vm.set(0, vmItem);
+						} else {
+							vm.add(vmItem);
+						}
+
+						this.close();
+						this.focus();
+
+						this.emit('change');
+					}
+				}, () => {
+					textInput.input.loading = false;
+				});
 			},
 
 			'<*>change'(evt: IEvent) {
@@ -306,6 +326,8 @@ export default class OpalSelect extends Component {
 	_dataListItemTextFieldName: string;
 	_dataListItemDisabledFieldName: string;
 
+	_addNewItem: ((text: string) => Promise<{ value: string; text: string }>) | undefined;
+
 	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
@@ -355,7 +377,7 @@ export default class OpalSelect extends Component {
 			vm = Function(`return this.${ input.viewModelKeypath };`).call(this.ownerComponent || window);
 
 			if (!vm) {
-				throw new TypeError('viewModel is not defined');
+				throw new TypeError('"viewModel" is not defined');
 			}
 		} else {
 			vm = new IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });

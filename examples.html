@@ -74,6 +74,10 @@ var dataProvider2 = (function() {
 	};
 })();
 
+var addNewItem1 = function(text) {
+	return Promise.resolve({ value: '__' + Math.random(), text: text });
+};
+
 var model1 = cellx.define({}, 'dataList', function() {
 	return new cellxIndexedCollections.IndexedList([
 		{ value: '1', text: '1' },
@@ -88,11 +92,6 @@ var selectViewModel1 = (function() {
 		{ value: '2', text: '2', disabled: true }
 	], { indexes: ['value'] });
 })();
-
-Rionite.formatters.log = function log(value) {
-	console.log(value);
-	return value;
-};
 
 	</script>
 
@@ -390,7 +389,8 @@ body {
 			<opal-button class="opal-select__btn-close">Закрыть</opal-button>
 		</opal-select>
 
-		<opal-select multiple datalist-keypath="model1.dataList" placeholder="Select">
+		<opal-select multiple datalist-keypath="model1.dataList" add-new-item-keypath="addNewItem1"
+				placeholder="Select">
 			<opal-text-input class="opal-select__new-item-input"></opal-text-input>
 		</opal-select>
 	</div>
@@ -574,7 +574,8 @@ body {
 	<div class="opal-code-listing__example-html">
 		<opal-tag-select dataprovider-keypath="dataProvider1" placeholder=""></opal-tag-select>
 		<opal-tag-select view-type="primary" dataprovider-keypath="dataProvider1"></opal-tag-select>
-		<opal-tag-select view-type="danger" dataprovider-keypath="dataProvider1" view-model-keypath="selectViewModel1">
+		<opal-tag-select view-type="danger" dataprovider-keypath="dataProvider1" add-new-item-keypath="addNewItem1"
+				view-model-keypath="selectViewModel1">
 			<opal-text-input class="opal-select__new-item-input opal-filtered-list__query-input"></opal-text-input>
 		</opal-tag-select>
 	</div>

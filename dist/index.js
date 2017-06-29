@@ -151,7 +151,7 @@ var opal_select_option_1 = __webpack_require__(56);
 exports.OpalSelectOption = opal_select_option_1.default;
 var isEqualArray_1 = __webpack_require__(60);
 var template = __webpack_require__(61);
-var nextUID = cellx_1.Utils.nextUID, nextTick = cellx_1.Utils.nextTick;
+var nextTick = cellx_1.Utils.nextTick;
 var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
 var map = Array.prototype.map;
 var defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
@@ -188,7 +188,7 @@ var OpalSelect = (function (_super) {
         if (input.viewModelKeypath) {
             vm = Function("return this." + input.viewModelKeypath + ";").call(this.ownerComponent || window);
             if (!vm) {
-                throw new TypeError('viewModel is not defined');
+                throw new TypeError('"viewModel" is not defined');
             }
         }
         else {
@@ -480,6 +480,7 @@ var OpalSelect = (function (_super) {
                 multiple: { default: false, readonly: true },
                 datalistKeypath: { type: String, readonly: true },
                 datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
+                addNewItemKeypath: { type: String, readonly: true },
                 value: eval,
                 viewModelKeypath: { type: String, readonly: true },
                 viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
@@ -623,45 +624,59 @@ var OpalSelect = (function (_super) {
                         }
                     },
                     '<opal-text-input>confirm': function (evt) {
+                        var _this = this;
                         var textInput = evt.target;
                         if (textInput !== this.$('new-item-input')) {
                             return;
                         }
-                        var itemValue = '_' + Math.floor(Math.random() * 1e9) + '_' + nextUID();
-                        var itemText = textInput.value;
-                        var dataList = this.dataList;
-                        if (dataList) {
-                            dataList.add((_a = {},
-                                _a[this._dataListItemValueFieldName] = itemValue,
-                                _a[this._dataListItemTextFieldName] = itemText,
-                                _a));
+                        var addNewItemKeypath = this.input.addNewItemKeypath;
+                        if (!addNewItemKeypath) {
+                            throw new TypeError('Input "addNewItemKeypath" is required');
                         }
+                        var addNewItem = this._addNewItem || (this._addNewItem = Function("return this." + addNewItemKeypath + ";")
+                            .call(this.ownerComponent || window));
+                        if (!addNewItem) {
+                            throw new TypeError('"addNewItem" is not defined');
+                        }
+                        var text = textInput.value;
                         textInput.clear();
-                        var loadedList = this.$('loaded-list');
-                        if (loadedList) {
-                            loadedList.input.query = '';
-                        }
-                        this.emit('input');
-                        var vm = this.viewModel;
-                        var vmItem = (_b = {},
-                            _b[this._viewModelItemValueFieldName] = itemValue,
-                            _b[this._viewModelItemTextFieldName] = itemText,
-                            _b);
-                        if (this.input.multiple) {
-                            vm.add(vmItem);
-                        }
-                        else {
-                            if (vm.length) {
-                                vm.set(0, vmItem);
+                        textInput.input.loading = true;
+                        addNewItem(text).then(function (newItem) {
+                            textInput.input.loading = false;
+                            if (_this.dataList) {
+                                _this.dataList.add((_a = {},
+                                    _a[_this._dataListItemValueFieldName] = newItem.value,
+                                    _a[_this._dataListItemTextFieldName] = newItem.text,
+                                    _a));
                             }
-                            else {
+                            var loadedList = _this.$('loaded-list');
+                            if (loadedList) {
+                                loadedList.input.query = '';
+                            }
+                            _this.emit('input');
+                            var vm = _this.viewModel;
+                            var vmItem = (_b = {},
+                                _b[_this._viewModelItemValueFieldName] = newItem.value,
+                                _b[_this._viewModelItemTextFieldName] = newItem.text,
+                                _b);
+                            if (_this.input.multiple) {
                                 vm.add(vmItem);
                             }
-                            this.close();
-                            this.focus();
-                            this.emit('change');
-                        }
-                        var _a, _b;
+                            else {
+                                if (vm.length) {
+                                    vm.set(0, vmItem);
+                                }
+                                else {
+                                    vm.add(vmItem);
+                                }
+                                _this.close();
+                                _this.focus();
+                                _this.emit('change');
+                            }
+                            var _a, _b;
+                        }, function () {
+                            textInput.input.loading = false;
+                        });
                     },
                     '<*>change': function (evt) {
                         if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
@@ -3632,7 +3647,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-select{position:relative;display:inline-block;vertical-align:middle}.opal-select .opal-select__button{display:block;min-width:100%}.opal-select .opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:14px;height:14px;vertical-align:middle;-webkit-transition:-webkit-transform .1s linear;transition:-webkit-transform .1s linear;-o-transition:transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;fill:currentColor}.opal-select .opal-select__button[size=s] .opal-select__icon-chevron-down{width:12px;height:12px}.opal-select .opal-select__button[checked] .opal-select__icon-chevron-down{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-select__new-item-input{display:block;margin:6px 10px 4px;width:auto}.opal-select .opal-popover{padding:6px 0;min-width:100px}.opal-select .opal-filtered-list .opal-filtered-list__query-input{margin:4px 10px 6px}.opal-select .opal-loaded-list{height:304px}";
+            style.textContent = ".opal-select{position:relative;display:inline-block;vertical-align:middle}.opal-select .opal-select__button{display:block;min-width:100%}.opal-select .opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:14px;height:14px;vertical-align:middle;-webkit-transition:-webkit-transform .1s linear;transition:-webkit-transform .1s linear;-o-transition:transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;fill:currentColor}.opal-select .opal-select__button[size=s] .opal-select__icon-chevron-down{width:12px;height:12px}.opal-select .opal-select__button[checked] .opal-select__icon-chevron-down{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-select__new-item-input{display:block;margin:6px 10px 4px;width:auto}.opal-select .opal-popover{padding:6px 0;min-width:140px}.opal-select .opal-popover .opal-popover__content{overflow:auto;max-height:380px}.opal-select .opal-filtered-list .opal-filtered-list__query-input{margin:4px 10px 6px}.opal-select .opal-loaded-list{height:304px}";
             head.appendChild(style);
             return style;
         }
@@ -3909,7 +3924,7 @@ var OpalMultiselect = (function (_super) {
             dataProvider = Function("return this." + input.dataproviderKeypath + ";")
                 .call(this.ownerComponent || window);
             if (!dataProvider) {
-                throw new TypeError('dataProvider is not defined');
+                throw new TypeError('"dataProvider" is not defined');
             }
         }
         this.dataProvider = dataProvider;
@@ -4840,7 +4855,7 @@ var OpalLoadedList = (function (_super) {
                 dataProvider = Function("return this." + input.dataproviderKeypath + ";")
                     .call(this.ownerComponent || window);
                 if (!dataProvider) {
-                    throw new TypeError('dataProvider is not defined');
+                    throw new TypeError('"dataProvider" is not defined');
                 }
             }
             this.dataProvider = dataProvider;
@@ -4992,7 +5007,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-loaded-list{position:relative;display:block;overflow-x:hidden;overflow-y:auto;height:500px}.opal-loaded-list .opal-loaded-list__list-item{display:block}.opal-loaded-list .opal-loaded-list__loader[align-center]{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto}.opal-loaded-list .opal-loaded-list__nothing-found{display:none;-webkit-box-sizing:border-box;box-sizing:border-box;padding:10px;height:100%;text-align:center;white-space:nowrap}.opal-loaded-list .opal-loaded-list__nothing-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-loaded-list .opal-loaded-list__nothing-found-message{display:inline-block;vertical-align:middle;opacity:.6}.opal-loaded-list .opal-loaded-list__nothing-found[shown]{display:block}";
+            style.textContent = ".opal-loaded-list{position:relative;display:block;overflow-x:hidden;overflow-y:auto;height:500px}.opal-loaded-list .opal-loaded-list__list-item{display:block}.opal-loaded-list .opal-loaded-list__loader[align-center]{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto}.opal-loaded-list .opal-loaded-list__nothing-found{display:none;-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;height:100%;text-align:center;white-space:nowrap}.opal-loaded-list .opal-loaded-list__nothing-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-loaded-list .opal-loaded-list__nothing-found-message{display:inline-block;vertical-align:middle;opacity:.6}.opal-loaded-list .opal-loaded-list__nothing-found[shown]{display:block}";
             head.appendChild(style);
             return style;
         }
@@ -5133,7 +5148,7 @@ var OpalAutosuggest = (function (_super) {
                 dataProvider = Function("return this." + input.dataproviderKeypath + ";")
                     .call(this.ownerComponent || window);
                 if (!dataProvider) {
-                    throw new TypeError('dataProvider is not defined');
+                    throw new TypeError('"dataProvider" is not defined');
                 }
             }
             this.dataProvider = dataProvider;
@@ -5499,11 +5514,18 @@ var OpalTagSelect = (function (_super) {
                 dataProvider = Function("return this." + input.dataproviderKeypath + ";")
                     .call(this.ownerComponent || window);
                 if (!dataProvider) {
-                    throw new TypeError('dataProvider is not defined');
+                    throw new TypeError('"dataProvider" is not defined');
                 }
             }
             this.dataProvider = dataProvider;
             this._dataListKeypathParam = null;
+        }
+        if (input.addNewItemKeypath) {
+            var addNewItem = this._addNewItem = Function("return this." + input.addNewItemKeypath + ";")
+                .call(this.ownerComponent || window);
+            if (!addNewItem) {
+                throw new TypeError('"addNewItem" is not defined');
+            }
         }
         var vmItemSchema = input.viewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
@@ -5513,7 +5535,7 @@ var OpalTagSelect = (function (_super) {
         if (input.viewModelKeypath) {
             vm = Function("return this." + input.viewModelKeypath + ";").call(this.ownerComponent || window);
             if (!vm) {
-                throw new TypeError('viewModel is not defined');
+                throw new TypeError('"viewModel" is not defined');
             }
         }
         else {
@@ -5540,6 +5562,7 @@ var OpalTagSelect = (function (_super) {
                 // необязательный, так как может указываться на передаваемом opal-loaded-list
                 dataprovider: { type: Object, readonly: true },
                 dataproviderKeypath: { type: String, readonly: true },
+                addNewItemKeypath: { type: String, readonly: true },
                 value: eval,
                 viewModelKeypath: { type: String, readonly: true },
                 viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
@@ -5608,7 +5631,7 @@ module.exports = (function(d) {
 /* 93 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nspan/tags {\n@if-then (if=viewModel.length, rt-silent) {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (\ndata-tag-value='{tag |key(_viewModelItemValueFieldName) }',\nrt-click=_onBtnRemoveTagClick\n)\n}\n' '\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown, rt-silent) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist-keypath={_dataListKeypathParam},\ndatalist-item-schema={input.datalistItemSchema |json },\nvalue={input.value},\nview-model-keypath=viewModel,\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=input.datalistKeypath) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/select-option-of-datalist, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=input.datalistKeypath) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider-keypath=dataProvider\n) {\nopal-select-option/select-option-of-loaded-list, select-option (\nvalue={$item.value},\ntext={$item.text}\n)\n}\n}\n}\n}\n}\n}\n}\n}"
+module.exports = "@section/inner {\nspan/tags {\n@if-then (if=viewModel.length, rt-silent) {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (\ndata-tag-value='{tag |key(_viewModelItemValueFieldName) }',\nrt-click=_onBtnRemoveTagClick\n)\n}\n' '\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown, rt-silent) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist-keypath={_dataListKeypathParam},\ndatalist-item-schema={input.datalistItemSchema |json },\nadd-new-item-keypath=_addNewItem,\nvalue={input.value},\nview-model-keypath=viewModel,\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=input.datalistKeypath) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/select-option-of-datalist, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=input.datalistKeypath) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider-keypath=dataProvider\n) {\nopal-select-option/select-option-of-loaded-list, select-option (\nvalue={$item.value},\ntext={$item.text}\n)\n}\n}\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 94 */

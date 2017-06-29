@@ -42,7 +42,12 @@
 
 	& .opal-popover {
 		padding: 6px 0;
-		min-width: 100px;
+		min-width: 140px;
+	}
+
+	& .opal-popover .opal-popover__content {
+		overflow: auto;
+		max-height: 380px;
 	}
 
 	& .opal-filtered-list .opal-filtered-list__query-input {

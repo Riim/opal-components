@@ -20,6 +20,7 @@ let defaultVMItemSchema = OpalSelect.defaultVMItemSchema;
 		// необязательный, так как может указываться на передаваемом opal-loaded-list
 		dataprovider: { type: Object, readonly: true },
 		dataproviderKeypath: { type: String, readonly: true },
+		addNewItemKeypath: { type: String, readonly: true },
 		value: eval,
 		viewModelKeypath: { type: String, readonly: true },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
@@ -77,6 +78,8 @@ export default class OpalTagSelect extends Component {
 
 	dataProvider: IDataProvider | null;
 
+	_addNewItem: ((text: string) => Promise<{ value: string; text: string }>) | undefined;
+
 	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
@@ -116,13 +119,22 @@ export default class OpalTagSelect extends Component {
 					.call(this.ownerComponent || window);
 
 				if (!dataProvider) {
-					throw new TypeError('dataProvider is not defined');
+					throw new TypeError('"dataProvider" is not defined');
 				}
 			}
 
 			this.dataProvider = dataProvider;
 
 			this._dataListKeypathParam = null;
+		}
+
+		if (input.addNewItemKeypath) {
+			let addNewItem = this._addNewItem = Function(`return this.${ input.addNewItemKeypath };`)
+				.call(this.ownerComponent || window);
+
+			if (!addNewItem) {
+				throw new TypeError('"addNewItem" is not defined');
+			}
 		}
 
 		let vmItemSchema = input.viewModelItemSchema;
@@ -137,7 +149,7 @@ export default class OpalTagSelect extends Component {
 			vm = Function(`return this.${ input.viewModelKeypath };`).call(this.ownerComponent || window);
 
 			if (!vm) {
-				throw new TypeError('viewModel is not defined');
+				throw new TypeError('"viewModel" is not defined');
 			}
 		} else {
 			vm = new IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });

@@ -27,6 +27,7 @@ span/control {
 		multiple,
 		datalist-keypath={_dataListKeypathParam},
 		datalist-item-schema={input.datalistItemSchema |json },
+		add-new-item-keypath=_addNewItem,
 		value={input.value},
 		view-model-keypath=viewModel,
 		view-model-item-schema={input.viewModelItemSchema |json }

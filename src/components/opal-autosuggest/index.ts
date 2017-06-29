@@ -142,7 +142,7 @@ export default class OpalAutosuggest extends Component {
 					.call(this.ownerComponent || window);
 
 				if (!dataProvider) {
-					throw new TypeError('dataProvider is not defined');
+					throw new TypeError('"dataProvider" is not defined');
 				}
 			}
 

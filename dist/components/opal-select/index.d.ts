@@ -26,6 +26,10 @@ export default class OpalSelect extends Component {
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
     _dataListItemDisabledFieldName: string;
+    _addNewItem: ((text: string) => Promise<{
+        value: string;
+        text: string;
+    }>) | undefined;
     viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;

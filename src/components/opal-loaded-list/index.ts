@@ -111,7 +111,7 @@ export default class OpalLoadedList extends Component {
 					.call(this.ownerComponent || window);
 
 				if (!dataProvider) {
-					throw new TypeError('dataProvider is not defined');
+					throw new TypeError('"dataProvider" is not defined');
 				}
 			}
 
