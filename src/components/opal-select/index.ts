@@ -219,7 +219,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 				textInput.input.loading = true;
 				textInput.input.disabled = true;
 
-				addNewItem(text).then((newItem: { value: string, text: string }) => {
+				addNewItem(text).then((newItem: { [name: string]: string }) => {
 					textInput.input.loading = false;
 					textInput.input.disabled = false;
 
@@ -239,8 +239,6 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 						loadedList.input.query = '';
 					}
 
-					this.emit('input');
-
 					let vm = this.viewModel;
 					let vmItem = {
 						[this._viewModelItemValueFieldName]: value,
@@ -249,6 +247,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 					if (this.input.multiple) {
 						vm.add(vmItem);
+						this.emit('input');
 					} else {
 						if (vm.length) {
 							vm.set(0, vmItem);
@@ -259,6 +258,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 						this.close();
 						this.focus();
 
+						this.emit('input');
 						this.emit('change');
 					}
 				}, () => {

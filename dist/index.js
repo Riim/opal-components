@@ -657,7 +657,6 @@ var OpalSelect = (function (_super) {
                             if (loadedList) {
                                 loadedList.input.query = '';
                             }
-                            _this.emit('input');
                             var vm = _this.viewModel;
                             var vmItem = (_b = {},
                                 _b[_this._viewModelItemValueFieldName] = value,
@@ -665,6 +664,7 @@ var OpalSelect = (function (_super) {
                                 _b);
                             if (_this.input.multiple) {
                                 vm.add(vmItem);
+                                _this.emit('input');
                             }
                             else {
                                 if (vm.length) {
@@ -675,6 +675,7 @@ var OpalSelect = (function (_super) {
                                 }
                                 _this.close();
                                 _this.focus();
+                                _this.emit('input');
                                 _this.emit('change');
                             }
                             var _a, _b;
