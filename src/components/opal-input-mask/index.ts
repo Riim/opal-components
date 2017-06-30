@@ -52,7 +52,7 @@ export default class OpalInputMask extends Component {
 	}
 
 	ready() {
-		this._textField = (this.$('text-input') as OpalTextInput).$('text-field') as HTMLInputElement;
+		this._textField = (this.$('text-input') as OpalTextInput).textField;
 
 		let definitions = this._definitions;
 

@@ -32,10 +32,8 @@ let nextTick = Utils.nextTick;
 	events: {
 		':component': {
 			'input-value-change'(evt: IEvent) {
-				let textField = this.$('text-field') as HTMLInputElement;
-
-				if (textField.value != evt.value) {
-					textField.value = evt.value;
+				if (this.textField.value != evt.value) {
+					this.textField.value = evt.value;
 				}
 			},
 
@@ -60,15 +58,21 @@ let nextTick = Utils.nextTick;
 			},
 
 			input(evt: Event) {
-				this._value = (evt.target as HTMLInputElement).value;
+				this._textFieldValue = this.textField.value;
 				this.emit({ type: 'input', initialEvent: evt });
 			},
 
 			change(evt: Event) {
+				if (this.value === this._prevValue) {
+					return;
+				}
+
+				this._prevValue = this.value;
+
 				let storeKey = this.input.storeKey;
 
 				if (storeKey) {
-					localStorage.setItem(storeKey, (evt.target as HTMLInputElement).value);
+					localStorage.setItem(storeKey, this.textField.value);
 				}
 
 				this.emit({ type: 'change', initialEvent: evt });
@@ -103,7 +107,11 @@ let nextTick = Utils.nextTick;
 	}
 })
 export default class OpalTextInput extends Component {
-	_value: string;
+	textField: HTMLInputElement;
+
+	_textFieldValue: string;
+
+	_prevValue: string | null;
 
 	isControlIconShown: boolean;
 	isBtnClearShown: boolean;
@@ -112,7 +120,7 @@ export default class OpalTextInput extends Component {
 
 	initialize() {
 		define(this, {
-			_value(this: OpalTextInput): string {
+			_textFieldValue(this: OpalTextInput): string {
 				return this.input.value;
 			},
 
@@ -121,24 +129,26 @@ export default class OpalTextInput extends Component {
 			},
 
 			isBtnClearShown(this: OpalTextInput): boolean {
-				return !!this._value && !this.input.loading;
+				return !!this._textFieldValue && !this.input.loading;
 			}
 		});
 	}
 
 	ready() {
 		let input = this.input;
-		let textField = this.$('text-field') as HTMLInputElement;
+		let textField = this.textField = this.$('text-field') as HTMLInputElement;
 
-		if (this._value) {
-			textField.value = this._value;
+		if (this._textFieldValue) {
+			textField.value = this._textFieldValue;
 		} else {
 			let storeKey = input.storeKey;
 
 			if (storeKey) {
-				this._value = textField.value = localStorage.getItem(storeKey) || '';
+				this._textFieldValue = textField.value = localStorage.getItem(storeKey) || '';
 			}
 		}
+
+		this._prevValue = this.value;
 
 		if (input.multiline && input.autoHeight) {
 			let offsetHeight = textField.offsetHeight;
@@ -163,15 +173,15 @@ export default class OpalTextInput extends Component {
 	}
 
 	_onBtnClearClick(evt: Event) {
-		this.value = '';
-		(this.$('text-field') as HTMLInputElement).focus();
+		this.value = null;
+		this.textField.focus();
 
 		this.emit('clear');
 		this.emit('change');
 	}
 
 	_fixHeight() {
-		let textField = this.$('text-field') as HTMLTextAreaElement;
+		let textField = this.textField;
 		let lineHeight = parseInt(getComputedStyle(textField).lineHeight as string, 10);
 
 		textField.style.height = this._initialHeight - lineHeight + 'px';
@@ -179,25 +189,25 @@ export default class OpalTextInput extends Component {
 			lineHeight + 'px';
 	}
 
-	get value(): string {
-		return (this.$('text-field') as OpalTextInput).value;
+	get value(): string | null {
+		return this.textField.value.trim() || null;
 	}
-	set value(value: string) {
-		this._value = (this.$('text-field') as OpalTextInput).value = value;
+	set value(value: string | null) {
+		this._textFieldValue = this.textField.value = value || '';
 	}
 
 	clear(): OpalTextInput {
-		this.value = '';
+		this.value = null;
 		return this;
 	}
 
 	focus(): OpalTextInput {
-		(this.$('text-field') as HTMLInputElement).focus();
+		this.textField.focus();
 		return this;
 	}
 
 	blur(): OpalTextInput {
-		(this.$('text-field') as HTMLInputElement).blur();
+		this.textField.blur();
 		return this;
 	}
 

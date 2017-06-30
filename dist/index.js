@@ -1350,29 +1350,30 @@ var OpalTextInput = (function (_super) {
     }
     OpalTextInput.prototype.initialize = function () {
         cellx_1.define(this, {
-            _value: function () {
+            _textFieldValue: function () {
                 return this.input.value;
             },
             isControlIconShown: function () {
                 return !this.isBtnClearShown && !this.input.loading;
             },
             isBtnClearShown: function () {
-                return !!this._value && !this.input.loading;
+                return !!this._textFieldValue && !this.input.loading;
             }
         });
     };
     OpalTextInput.prototype.ready = function () {
         var input = this.input;
-        var textField = this.$('text-field');
-        if (this._value) {
-            textField.value = this._value;
+        var textField = this.textField = this.$('text-field');
+        if (this._textFieldValue) {
+            textField.value = this._textFieldValue;
         }
         else {
             var storeKey = input.storeKey;
             if (storeKey) {
-                this._value = textField.value = localStorage.getItem(storeKey) || '';
+                this._textFieldValue = textField.value = localStorage.getItem(storeKey) || '';
             }
         }
+        this._prevValue = this.value;
         if (input.multiline && input.autoHeight) {
             var offsetHeight = textField.offsetHeight;
             if (offsetHeight) {
@@ -1393,13 +1394,13 @@ var OpalTextInput = (function (_super) {
         }
     };
     OpalTextInput.prototype._onBtnClearClick = function (evt) {
-        this.value = '';
-        this.$('text-field').focus();
+        this.value = null;
+        this.textField.focus();
         this.emit('clear');
         this.emit('change');
     };
     OpalTextInput.prototype._fixHeight = function () {
-        var textField = this.$('text-field');
+        var textField = this.textField;
         var lineHeight = parseInt(getComputedStyle(textField).lineHeight, 10);
         textField.style.height = this._initialHeight - lineHeight + 'px';
         textField.style.height = textField.offsetHeight + textField.scrollHeight - textField.clientHeight +
@@ -1407,24 +1408,24 @@ var OpalTextInput = (function (_super) {
     };
     Object.defineProperty(OpalTextInput.prototype, "value", {
         get: function () {
-            return this.$('text-field').value;
+            return this.textField.value.trim() || null;
         },
         set: function (value) {
-            this._value = this.$('text-field').value = value;
+            this._textFieldValue = this.textField.value = value || '';
         },
         enumerable: true,
         configurable: true
     });
     OpalTextInput.prototype.clear = function () {
-        this.value = '';
+        this.value = null;
         return this;
     };
     OpalTextInput.prototype.focus = function () {
-        this.$('text-field').focus();
+        this.textField.focus();
         return this;
     };
     OpalTextInput.prototype.blur = function () {
-        this.$('text-field').blur();
+        this.textField.blur();
         return this;
     };
     OpalTextInput.prototype.enable = function () {
@@ -1458,9 +1459,8 @@ var OpalTextInput = (function (_super) {
             events: {
                 ':component': {
                     'input-value-change': function (evt) {
-                        var textField = this.$('text-field');
-                        if (textField.value != evt.value) {
-                            textField.value = evt.value;
+                        if (this.textField.value != evt.value) {
+                            this.textField.value = evt.value;
                         }
                     },
                     'input-focused-change': function (evt) {
@@ -1482,13 +1482,17 @@ var OpalTextInput = (function (_super) {
                         this.emit('blur');
                     },
                     input: function (evt) {
-                        this._value = evt.target.value;
+                        this._textFieldValue = this.textField.value;
                         this.emit({ type: 'input', initialEvent: evt });
                     },
                     change: function (evt) {
+                        if (this.value === this._prevValue) {
+                            return;
+                        }
+                        this._prevValue = this.value;
                         var storeKey = this.input.storeKey;
                         if (storeKey) {
-                            localStorage.setItem(storeKey, evt.target.value);
+                            localStorage.setItem(storeKey, this.textField.value);
                         }
                         this.emit({ type: 'change', initialEvent: evt });
                     },
@@ -1589,7 +1593,7 @@ var OpalInputMask = (function (_super) {
         this._definitions = Object.create(this.constructor.defaultDefinitions);
     };
     OpalInputMask.prototype.ready = function () {
-        this._textField = this.$('text-input').$('text-field');
+        this._textField = this.$('text-input').textField;
         var definitions = this._definitions;
         forEach.call(this.element.querySelectorAll('opal-input-mask-definition'), function (inputMaskDefinition) {
             var input = inputMaskDefinition.$component.input;
@@ -4047,14 +4051,14 @@ var OpalInputValidator = (function (_super) {
     OpalInputValidator.prototype._validate = function (rules) {
         var _this = this;
         var value = this.$('text-input').value;
-        var trimmedValue = value.trim();
         var failedRule;
         rules.forEach(function (rule) {
             var ruleInput = rule.input;
-            if (!failedRule && (trimmedValue ?
-                ruleInput.minLength && trimmedValue.length < ruleInput.minLength ||
+            if (!failedRule && (value ?
+                ruleInput.minLength && value.length < ruleInput.minLength ||
                     ruleInput.regex && !ruleInput.regex.test(value) ||
-                    ruleInput.test && !_this.ownerComponent[ruleInput.test](value) :
+                    ruleInput.test &&
+                        !_this.ownerComponent[ruleInput.test](value) :
                 ruleInput.required)) {
                 failedRule = rule;
                 rule.showMessage();
@@ -5137,7 +5141,7 @@ var rionite_1 = __webpack_require__(0);
 var isFocusable_1 = __webpack_require__(2);
 var template = __webpack_require__(90);
 function toComparable(str) {
-    return str.trim().replace(/\s+/g, ' ').toLowerCase();
+    return str.replace(/\s+/g, ' ').toLowerCase();
 }
 var OpalAutosuggest = (function (_super) {
     __extends(OpalAutosuggest, _super);
@@ -5173,7 +5177,7 @@ var OpalAutosuggest = (function (_super) {
         });
     };
     OpalAutosuggest.prototype.elementAttached = function () {
-        this.listenTo(this.$('text-input').$('text-field'), 'click', this._onTextFieldClick);
+        this.listenTo(this.$('text-input').textField, 'click', this._onTextFieldClick);
         this.listenTo(this.$('menu').element, 'mouseover', this._onMenuMouseOver);
         this.listenTo(this.list, 'change', this._onListChange);
         this.listenTo(this, 'change:isLoaderShown', this._onIsLoaderShownChange);
@@ -5322,7 +5326,7 @@ var OpalAutosuggest = (function (_super) {
     };
     OpalAutosuggest.prototype._setSelectedItemOfList = function () {
         if (this._isNotInputConfirmed) {
-            var comparableQuery_1 = toComparable(this.$('text-input').value);
+            var comparableQuery_1 = toComparable(this.$('text-input').value || '');
             var selectedItem = this.list.find(function (item) { return toComparable(item.text) == comparableQuery_1; }) || null;
             if (selectedItem && this.list.length > 1) {
                 this._clearList();
@@ -5399,7 +5403,7 @@ var OpalAutosuggest = (function (_super) {
                         var _this = this;
                         this._isNotInputConfirmed = true;
                         this._clearList();
-                        if (evt.target.value.length >= this.input.minQueryLength) {
+                        if ((evt.target.value || '').length >= this.input.minQueryLength) {
                             this._isLoadingPlanned = true;
                             this._loadingTimeout = this.setTimeout(function () {
                                 _this._isLoadingPlanned = false;
@@ -5408,7 +5412,7 @@ var OpalAutosuggest = (function (_super) {
                         }
                     },
                     change: function (evt) {
-                        if (!evt.target.value.length) {
+                        if (!evt.target.value) {
                             this._clearList();
                             if (this.selectedItem) {
                                 this.selectedItem = null;
