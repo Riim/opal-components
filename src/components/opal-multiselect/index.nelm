@@ -14,7 +14,7 @@
 
 				div/btn-deselect-item (
 					data-item-value='{item |key(_viewModelItemValueFieldName) }',
-					rt-click=_onBtnDeselectItemClick
+					on-click=_onBtnDeselectItemClick
 				) {
 					svg/btn-deselect-item-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }
 				}

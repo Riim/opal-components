@@ -43,7 +43,7 @@ div/body {
 						disabled={day.disabled},
 						tabindex={day.tabIndex},
 						data-date={day.date},
-						rt-click=_onDayClick
+						on-click=_onDayClick
 					) { '{day.value}' }
 				}
 			}

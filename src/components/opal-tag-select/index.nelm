@@ -10,7 +10,7 @@ span/tags {
 				'{tag |key(_viewModelItemTextFieldName) }'
 				button/btn-remove-tag (
 					data-tag-value='{tag |key(_viewModelItemValueFieldName) }',
-					rt-click=_onBtnRemoveTagClick
+					on-click=_onBtnRemoveTagClick
 				)
 			}
 			' '
