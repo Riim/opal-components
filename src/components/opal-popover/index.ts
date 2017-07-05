@@ -14,15 +14,7 @@ import template = require('./index.nelm');
 		opened: false
 	},
 
-	template,
-
-	events: {
-		':component': {
-			'input-opened-change'(evt: IEvent) {
-				this[evt.value ? '_open' : '_close']();
-			}
-		}
-	}
+	template
 })
 export default class OpalPopover extends Component {
 	_toOnOpen: string;
@@ -33,6 +25,14 @@ export default class OpalPopover extends Component {
 		if (this.input.opened) {
 			this._open();
 		}
+	}
+
+	elementAttached() {
+		this.listenTo(this, 'input-opened-change', this._onInputOpenedChange);
+	}
+
+	_onInputOpenedChange(evt: IEvent) {
+		this[evt.value ? '_open' : '_close']();
 	}
 
 	open(): boolean {

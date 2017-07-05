@@ -49,85 +49,6 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 	template,
 
 	events: {
-		':component': {
-			'input-value-change'(evt: IEvent) {
-				let vm = this.viewModel;
-				let value = evt.value;
-
-				if (value) {
-					if (!Array.isArray(value)) {
-						throw new TypeError('value must be an array');
-					}
-
-					if (value.length) {
-						let vmItemValueFieldName = this._viewModelItemValueFieldName;
-						let vmItemTextFieldName = this._viewModelItemTextFieldName;
-
-						if (this.input.multiple) {
-							this.options.forEach(option => {
-								let optionValue = option.value;
-
-								if (value.indexOf(optionValue) != -1) {
-									if (!vm.contains(optionValue, vmItemValueFieldName)) {
-										vm.add({
-											[vmItemValueFieldName]: optionValue,
-											[vmItemTextFieldName]: option.text
-										});
-									}
-								} else {
-									let item = vm.get(optionValue, vmItemValueFieldName);
-
-									if (item) {
-										vm.remove(item);
-									}
-								}
-							});
-						} else {
-							value = value[0];
-
-							if (!vm.length || value != vm.get(0)[vmItemValueFieldName]) {
-								if (!this.options.some(option => {
-									if (option.value != value) {
-										return false;
-									}
-
-									vm.set(0, {
-										[vmItemValueFieldName]: value,
-										[vmItemTextFieldName]: option.text
-									});
-
-									return true;
-								}) && vm.length) {
-									vm.clear();
-								}
-							}
-						}
-					} else {
-						vm.clear();
-					}
-				} else {
-					vm.clear();
-				}
-			},
-
-			'input-focused-change'(evt: IEvent) {
-				if (evt.value) {
-					if (!this._documentKeyDownListening) {
-						this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-					}
-
-					this.focus();
-				} else {
-					if (!this._opened) {
-						(this._documentKeyDownListening as IDisposableListening).stop();
-						this._documentKeyDownListening = null;
-					}
-
-					this.blur();
-				}
-			}
-		},
-
 		button: {
 			focus() {
 				this.input.focused = true;
@@ -468,7 +389,89 @@ export default class OpalSelect extends Component {
 	}
 
 	elementAttached() {
+		this.listenTo(this, {
+			'input-value-change': this._onInputValueChange,
+			'input-focused-change': this._onInputFocusedChange
+		});
+
 		this.listenTo(this.viewModel, 'change', this._onViewModelChange);
+	}
+
+	_onInputValueChange(evt: IEvent) {
+		let vm = this.viewModel;
+		let value = evt.value;
+
+		if (value) {
+			if (!Array.isArray(value)) {
+				throw new TypeError('value must be an array');
+			}
+
+			if (value.length) {
+				let vmItemValueFieldName = this._viewModelItemValueFieldName;
+				let vmItemTextFieldName = this._viewModelItemTextFieldName;
+
+				if (this.input.multiple) {
+					this.options.forEach(option => {
+						let optionValue = option.value;
+
+						if (value.indexOf(optionValue) != -1) {
+							if (!vm.contains(optionValue, vmItemValueFieldName)) {
+								vm.add({
+									[vmItemValueFieldName]: optionValue,
+									[vmItemTextFieldName]: option.text
+								});
+							}
+						} else {
+							let item = vm.get(optionValue, vmItemValueFieldName);
+
+							if (item) {
+								vm.remove(item);
+							}
+						}
+					});
+				} else {
+					value = value[0];
+
+					if (!vm.length || value != vm.get(0)[vmItemValueFieldName]) {
+						if (!this.options.some(option => {
+							if (option.value != value) {
+								return false;
+							}
+
+							vm.set(0, {
+								[vmItemValueFieldName]: value,
+								[vmItemTextFieldName]: option.text
+							});
+
+							return true;
+						}) && vm.length) {
+							vm.clear();
+						}
+					}
+				}
+			} else {
+				vm.clear();
+			}
+		} else {
+			vm.clear();
+		}
+	}
+
+	_onInputFocusedChange(evt: IEvent) {
+		if (evt.value) {
+			if (!this._documentKeyDownListening) {
+				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+			}
+
+			this.focus();
+		} else {
+			if (!this._opened) {
+				(this._documentKeyDownListening as IDisposableListening).stop();
+				this._documentKeyDownListening = null;
+			}
+
+			this.blur();
+		}
 	}
 
 	_onViewModelChange() {

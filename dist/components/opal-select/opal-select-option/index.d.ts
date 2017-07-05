@@ -1,9 +1,12 @@
 import './index.css';
 import '../../../assets/icons/opal-components__icon-check.svg';
+import { IEvent } from 'cellx';
 import { Component } from 'rionite';
 export default class OpalSelectOption extends Component {
     _tabIndex: number;
     initialize(): void;
+    elementAttached(): void;
+    _onInputFocusedChange(evt: IEvent): void;
     click(): OpalSelectOption;
     value: string;
     text: string;

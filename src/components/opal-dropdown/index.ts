@@ -14,15 +14,7 @@ let openedDropdowns: Array<OpalDropdown> = [];
 		opened: false
 	},
 
-	template: '@section/inner { rt-content/content }',
-
-	events: {
-		':component': {
-			'input-opened-change'(evt: IEvent) {
-				this[evt.value ? '_open' : '_close']();
-			}
-		}
-	}
+	template: '@section/inner { rt-content/content }'
 })
 export default class OpalDropdown extends Component {
 	_documentClickListening: IDisposableListening | undefined;
@@ -31,6 +23,14 @@ export default class OpalDropdown extends Component {
 		if (this.input.opened) {
 			this._open();
 		}
+	}
+
+	elementAttached() {
+		this.listenTo(this, 'input-opened-change', this._onInputOpenedChange);
+	}
+
+	_onInputOpenedChange(evt: IEvent) {
+		this[evt.value ? '_open' : '_close']();
 	}
 
 	open(): boolean {

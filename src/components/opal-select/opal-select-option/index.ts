@@ -22,12 +22,6 @@ let nextTick = Utils.nextTick;
 	template,
 
 	events: {
-		':component': {
-			'input-focused-change'(evt: IEvent) {
-				this[evt.value ? 'focus' : 'blur']();
-			}
-		},
-
 		control: {
 			focus(evt: Event) {
 				nextTick(() => {
@@ -60,6 +54,14 @@ export default class OpalSelectOption extends Component {
 				return this.input.disabled ? -1 : this.input.tabIndex;
 			}
 		});
+	}
+
+	elementAttached() {
+		this.listenTo(this, 'input-focused-change', this._onInputFocusedChange);
+	}
+
+	_onInputFocusedChange(evt: IEvent) {
+		this[evt.value ? 'focus' : 'blur']();
 	}
 
 	click(): OpalSelectOption {

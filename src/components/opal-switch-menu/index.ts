@@ -9,29 +9,7 @@ let find = (Array.prototype as any).find;
 
 @d.Component<OpalSwitchMenu>({
 	elementIs: 'opal-switch-menu',
-	template: '@section/inner { rt-content/content }',
-
-	events: {
-		':component': {
-			'<opal-button>check'(evt: IEvent) {
-				let checkedButton = evt.target as OpalButton;
-
-				forEach.call(this.buttonElements, (btnEl: IComponentElement) => {
-					if (btnEl.$component != checkedButton) {
-						(btnEl.$component as OpalButton).uncheck();
-					}
-				});
-
-				this._checkedButton = checkedButton;
-
-				this.emit('change');
-			},
-
-			'<opal-button>uncheck'(evt: IEvent) {
-				(evt.target as OpalButton).check();
-			}
-		}
-	}
+	template: '@section/inner { rt-content/content }'
 })
 export default class OpalSwitchMenu extends Component {
 	buttonElements: NodeListOf<HTMLElement>;
@@ -71,6 +49,31 @@ export default class OpalSwitchMenu extends Component {
 
 	ready() {
 		this.buttonElements = this.element.getElementsByClassName('opal-button') as NodeListOf<HTMLElement>;
+	}
+
+	elementAttached() {
+		this.listenTo(this, {
+			'<opal-button>check': this._onButtonCheck,
+			'<opal-button>uncheck': this._onButtonUncheck
+		});
+	}
+
+	_onButtonCheck(evt: IEvent) {
+		let checkedButton = evt.target as OpalButton;
+
+		forEach.call(this.buttonElements, (btnEl: IComponentElement) => {
+			if (btnEl.$component != checkedButton) {
+				(btnEl.$component as OpalButton).uncheck();
+			}
+		});
+
+		this._checkedButton = checkedButton;
+
+		this.emit('change');
+	}
+
+	_onButtonUncheck(evt: IEvent) {
+		(evt.target as OpalButton).check();
 	}
 
 	clear() {

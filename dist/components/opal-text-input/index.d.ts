@@ -1,5 +1,6 @@
 import './index.css';
 import '../../assets/icons/opal-components__icon-cross.svg';
+import { IEvent } from 'cellx';
 import { Component } from 'rionite';
 export default class OpalTextInput extends Component {
     textField: HTMLInputElement;
@@ -10,7 +11,16 @@ export default class OpalTextInput extends Component {
     _initialHeight: number;
     initialize(): void;
     ready(): void;
-    _onBtnClearClick(evt: Event): void;
+    elementAttached(): void;
+    _onInputValueChange(evt: IEvent): void;
+    _onInputFocusedChange(evt: IEvent): void;
+    _onTextFieldFocus(evt: Event): void;
+    _onTextFieldBlur(): void;
+    _onTextFieldInput(evt: Event): void;
+    _onTextFieldChange(evt: Event): void;
+    _onTextFieldKeyDown(evt: Event): void;
+    _onTextFieldKeyPress(evt: KeyboardEvent): void;
+    _onTextFieldKeyUp(evt: Event): void;
     _fixHeight(): void;
     value: string | null;
     clear(): OpalTextInput;

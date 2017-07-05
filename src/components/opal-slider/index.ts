@@ -15,31 +15,7 @@ import template = require('./index.nelm');
 		range: eval
 	},
 
-	template,
-
-	events: {
-		'first-input': {
-			input(evt: Event) {
-				let secondInput = this.$('second-input') as HTMLInputElement;
-				let value = this._firstInputValue = +(evt.target as HTMLInputElement).value;
-
-				if (+secondInput.value < value) {
-					(secondInput as any).value = this._secondInputValue = value;
-				}
-			}
-		},
-
-		'second-input': {
-			input(evt: Event) {
-				let firstInput = this.$('first-input') as HTMLInputElement;
-				let value = this._secondInputValue = +(evt.target as HTMLInputElement).value;
-
-				if (+firstInput.value > value) {
-					(firstInput as any).value = this._firstInputValue = value;
-				}
-			}
-		}
-	}
+	template
 })
 export default class OpalSlider extends Component {
 	_firstInputValue: number;
@@ -64,6 +40,29 @@ export default class OpalSlider extends Component {
 					) / 1e3;
 				}
 			});
+		}
+	}
+
+	elementAttached() {
+		this.listenTo(this.$('first-input') as Node, 'input', this._onFirstInputInput);
+		this.listenTo(this.$('second-input') as Node, 'input', this._onSecondInputInput);
+	}
+
+	_onFirstInputInput(evt: Event) {
+		let secondInput = this.$('second-input') as HTMLInputElement;
+		let value = this._firstInputValue = +(evt.target as HTMLInputElement).value;
+
+		if (+secondInput.value < value) {
+			(secondInput as any).value = this._secondInputValue = value;
+		}
+	}
+
+	_onSecondInputInput(evt: Event) {
+		let firstInput = this.$('first-input') as HTMLInputElement;
+		let value = this._secondInputValue = +(evt.target as HTMLInputElement).value;
+
+		if (+firstInput.value > value) {
+			(firstInput as any).value = this._firstInputValue = value;
 		}
 	}
 

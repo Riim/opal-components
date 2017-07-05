@@ -12,7 +12,7 @@ import template = require('./index.nelm');
 
 	template,
 
-	events: {
+	events2: {
 		'btn-remove-row': {
 			click() {
 				this.emit('remove-row-click');

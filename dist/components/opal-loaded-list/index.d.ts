@@ -30,6 +30,8 @@ export default class OpalLoadedList extends Component {
     isNothingFoundShown: boolean;
     initialize(): void;
     elementAttached(): void;
+    _onInputQueryChange(): void;
+    _onElementScroll(): void;
     checkLoading(): void;
     _load(): void;
     _getListItemContext(context: Object, content: Component): Object;

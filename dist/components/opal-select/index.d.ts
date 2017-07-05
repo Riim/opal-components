@@ -1,6 +1,6 @@
 import './index.css';
 import '../../assets/icons/opal-components__icon-chevron-down.svg';
-import { ObservableList } from 'cellx';
+import { IEvent, ObservableList } from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
 import { IDisposableListening, IComponentElement, Component } from 'rionite';
 import OpalSelectOption from './opal-select-option';
@@ -43,6 +43,8 @@ export default class OpalSelect extends Component {
     initialize(): void;
     ready(): void;
     elementAttached(): void;
+    _onInputValueChange(evt: IEvent): void;
+    _onInputFocusedChange(evt: IEvent): void;
     _onViewModelChange(): void;
     _updateOptions(): void;
     open(): boolean;

@@ -19,22 +19,6 @@ let nextTick = Utils.nextTick;
 	template,
 
 	events: {
-		':component': {
-			'input-checked-change'(evt: IEvent) {
-				(this.$('input') as HTMLInputElement).checked = evt.value;
-			},
-
-			'input-focused-change'(evt: IEvent) {
-				if (evt.value) {
-					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-					this.focus();
-				} else {
-					this._documentKeyDownListening.stop();
-					this.blur();
-				}
-			}
-		},
-
 		input: {
 			change(evt: Event) {
 				this.emit((this.input.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
@@ -79,6 +63,27 @@ export default class OpalRadioButton extends Component {
 
 		if (this.input.focused) {
 			this.focus();
+		}
+	}
+
+	elementAttached() {
+		this.listenTo(this, {
+			'input-checked-change': this._onInputCheckedChange,
+			'input-focused-change': this._onInputFocusedChange
+		});
+	}
+
+	_onInputCheckedChange(evt: IEvent) {
+		(this.$('input') as HTMLInputElement).checked = evt.value;
+	}
+
+	_onInputFocusedChange(evt: IEvent) {
+		if (evt.value) {
+			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+			this.focus();
+		} else {
+			this._documentKeyDownListening.stop();
+			this.blur();
 		}
 	}
 

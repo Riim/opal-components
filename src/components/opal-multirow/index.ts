@@ -12,39 +12,7 @@ let filter = Array.prototype.filter;
 
 @d.Component<OpalMultirow>({
 	elementIs: 'opal-multirow',
-
-	template,
-
-	events: {
-		':component': {
-			'<opal-multirow-row>remove-row-click'(evt: IEvent) {
-				let row = evt.target as OpalMultirowRow;
-
-				if (row.input.preset) {
-					(this.$('preset-rows-container') as Component).element.removeChild(row.element);
-					this._presetRowCount--;
-				} else {
-					this._newRows.remove(
-						this._newRows.get((row.parentComponent as Component).element.dataset.key, 'key')
-					);
-				}
-
-				setTimeout(() => {
-					this.emit('remove-row');
-					this.emit('change');
-				}, 1);
-			},
-
-			'<opal-multirow-row>add-row-click'() {
-				this._newRows.add({ key: nextUID() });
-
-				setTimeout(() => {
-					this.emit('add-row');
-					this.emit('change');
-				}, 1);
-			}
-		}
-	}
+	template
 })
 export default class OpalMultirow extends Component {
 	static OpalMultirowRow = OpalMultirowRow;
@@ -80,6 +48,40 @@ export default class OpalMultirow extends Component {
 		if (!presetRowCount) {
 			this._newRows.add({ key: nextUID() });
 		}
+	}
+
+	elementAttached() {
+		this.listenTo(this, {
+			'<opal-multirow-row>remove-row-click': this._onRemoveRowClick,
+			'<opal-multirow-row>add-row-click': this._onAddRowClick
+		});
+	}
+
+	_onRemoveRowClick(evt: IEvent) {
+		let row = evt.target as OpalMultirowRow;
+
+		if (row.input.preset) {
+			(this.$('preset-rows-container') as Component).element.removeChild(row.element);
+			this._presetRowCount--;
+		} else {
+			this._newRows.remove(
+				this._newRows.get((row.parentComponent as Component).element.dataset.key, 'key')
+			);
+		}
+
+		setTimeout(() => {
+			this.emit('remove-row');
+			this.emit('change');
+		}, 1);
+	}
+
+	_onAddRowClick() {
+		this._newRows.add({ key: nextUID() });
+
+		setTimeout(() => {
+			this.emit('add-row');
+			this.emit('change');
+		}, 1);
 	}
 }
 

@@ -17,50 +17,6 @@ let nextTick = Utils.nextTick;
 		tabIndex: 0,
 		focused: false,
 		disabled: false
-	},
-
-	events: {
-		':component': {
-			'input-focused-change'(evt: IEvent) {
-				this[evt.value ? 'focus' : 'blur']();
-			},
-
-			'change:_tabIndex'() {
-				this.element.tabIndex = this._tabIndex;
-			}
-		},
-
-		':element': {
-			focus(evt: Event) {
-				nextTick(() => {
-					if (document.activeElement != this.element) {
-						return;
-					}
-
-					if (this.element.tagName.indexOf('-', 1) != -1) {
-						this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-					}
-
-					this.input.focused = true;
-					this.emit('focus');
-				});
-			},
-
-			blur() {
-				if (this._documentKeyDownListening) {
-					this._documentKeyDownListening.stop();
-				}
-
-				this.input.focused = false;
-				this.emit('blur');
-			},
-
-			click() {
-				if (!this.input.disabled) {
-					this.click();
-				}
-			}
-		}
 	}
 })
 export default class OpalButton extends Component {
@@ -84,7 +40,56 @@ export default class OpalButton extends Component {
 	}
 
 	elementAttached() {
+		this.listenTo(this, {
+			'input-focused-change': this._onInputFocusedChange,
+			'change:_tabIndex': this._onTabIndexChange
+		});
+
+		this.listenTo(this.element, {
+			focus: this._onElementFocus,
+			blur: this._onElementBlur,
+			click: this._onElementClick
+		});
+
 		this.element.tabIndex = this._tabIndex;
+	}
+
+	_onInputFocusedChange(evt: IEvent) {
+		this[evt.value ? 'focus' : 'blur']();
+	}
+
+	_onTabIndexChange() {
+		this.element.tabIndex = this._tabIndex;
+	}
+
+	_onElementFocus(evt: Event) {
+		nextTick(() => {
+			if (document.activeElement != this.element) {
+				return;
+			}
+
+			if (this.element.tagName.indexOf('-', 1) != -1) {
+				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+			}
+
+			this.input.focused = true;
+			this.emit('focus');
+		});
+	}
+
+	_onElementBlur() {
+		if (this._documentKeyDownListening) {
+			this._documentKeyDownListening.stop();
+		}
+
+		this.input.focused = false;
+		this.emit('blur');
+	}
+
+	_onElementClick() {
+		if (!this.input.disabled) {
+			this.click();
+		}
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {

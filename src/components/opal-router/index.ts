@@ -43,15 +43,6 @@ function valueToAttributeValue(value: boolean | string): string {
 	input: {
 		scrollTopOnChange: true,
 		scrollTopOnChangeComponent: true
-	},
-
-	events: {
-		':component': {
-			'<*>refresh-router'() {
-				this.refresh();
-				return false;
-			}
-		}
 	}
 })
 export default class OpalRouter extends Component {
@@ -118,6 +109,8 @@ export default class OpalRouter extends Component {
 	}
 
 	elementAttached() {
+		this.listenTo(this, '<*>refresh-router', this._onRefreshRouter);
+
 		this._update(location.hash);
 
 		this._historyListening = {
@@ -130,6 +123,11 @@ export default class OpalRouter extends Component {
 	elementDetached() {
 		this._historyListening.unlisten();
 		this._clear();
+	}
+
+	_onRefreshRouter() {
+		this.refresh();
+		return false;
 	}
 
 	_onWindowPopState(location: Location) {

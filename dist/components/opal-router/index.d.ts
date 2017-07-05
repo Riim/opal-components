@@ -28,6 +28,7 @@ export default class OpalRouter extends Component {
     ready(): void;
     elementAttached(): void;
     elementDetached(): void;
+    _onRefreshRouter(): boolean;
     _onWindowPopState(location: Location): void;
     _update(hash: string): void;
     _applyState(): void;

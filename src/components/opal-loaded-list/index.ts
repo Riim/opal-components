@@ -32,54 +32,7 @@ export interface IDataProvider {
 		nothingFound: getText.t('Ничего не найдено')
 	},
 
-	template,
-
-	events: {
-		':component': {
-			'input-query-change'() {
-				if (this.loading) {
-					this._requestCallback.cancel();
-					this.loading = false;
-				}
-
-				this.list.clear();
-				this.total = undefined;
-
-				if (this._isLoadingCheckPlanned) {
-					this._loadingCheckTimeout.clear();
-				} else {
-					this._isLoadingCheckPlanned = true;
-				}
-
-				this._loadingCheckTimeout = this.setTimeout(() => {
-					this._scrolling = false;
-					this._isLoadingCheckPlanned = false;
-					this.checkLoading();
-				}, 300);
-			}
-		},
-
-		':element': {
-			scroll() {
-				if (this._scrolling) {
-					return;
-				}
-				this._scrolling = true;
-
-				if (this._isLoadingCheckPlanned) {
-					this._loadingCheckTimeout.clear();
-				} else {
-					this._isLoadingCheckPlanned = true;
-				}
-
-				this._loadingCheckTimeout = this.setTimeout(() => {
-					this._scrolling = false;
-					this._isLoadingCheckPlanned = false;
-					this.checkLoading();
-				}, 150);
-			}
-		}
-	}
+	template
 })
 export default class OpalLoadedList extends Component {
 	dataProvider: IDataProvider;
@@ -142,11 +95,55 @@ export default class OpalLoadedList extends Component {
 	}
 
 	elementAttached() {
+		this.listenTo(this, 'input-query-change', this._onInputQueryChange);
+		this.listenTo(this.element, 'scroll', this._onElementScroll);
+
 		if (this.input.preloading) {
 			this._load();
 		} else {
 			this.checkLoading();
 		}
+	}
+
+	_onInputQueryChange() {
+		if (this.loading) {
+			this._requestCallback.cancel();
+			this.loading = false;
+		}
+
+		this.list.clear();
+		this.total = undefined;
+
+		if (this._isLoadingCheckPlanned) {
+			this._loadingCheckTimeout.clear();
+		} else {
+			this._isLoadingCheckPlanned = true;
+		}
+
+		this._loadingCheckTimeout = this.setTimeout(() => {
+			this._scrolling = false;
+			this._isLoadingCheckPlanned = false;
+			this.checkLoading();
+		}, 300);
+	}
+
+	_onElementScroll() {
+		if (this._scrolling) {
+			return;
+		}
+		this._scrolling = true;
+
+		if (this._isLoadingCheckPlanned) {
+			this._loadingCheckTimeout.clear();
+		} else {
+			this._isLoadingCheckPlanned = true;
+		}
+
+		this._loadingCheckTimeout = this.setTimeout(() => {
+			this._scrolling = false;
+			this._isLoadingCheckPlanned = false;
+			this.checkLoading();
+		}, 150);
 	}
 
 	checkLoading() {

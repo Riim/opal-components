@@ -29,79 +29,14 @@ let nextTick = Utils.nextTick;
 
 	template,
 
-	events: {
-		':component': {
-			'input-value-change'(evt: IEvent) {
-				if (this.textField.value != evt.value) {
-					this.textField.value = evt.value;
-				}
-			},
+	domEvents: {
+		'btn-clear': {
+			click(evt: Event) {
+				this.value = null;
+				this.textField.focus();
 
-			'input-focused-change'(evt: IEvent) {
-				this[evt.value ? 'focus' : 'blur']();
-			}
-		},
-
-		'text-field': {
-			focus(evt: Event) {
-				nextTick(() => {
-					if (document.activeElement == evt.target) {
-						this.input.focused = true;
-						this.emit('focus');
-					}
-				});
-			},
-
-			blur() {
-				this.input.focused = false;
-				this.emit('blur');
-			},
-
-			input(evt: Event) {
-				this._textFieldValue = this.textField.value;
-				this.emit({ type: 'input', initialEvent: evt });
-			},
-
-			change(evt: Event) {
-				if (this.value === this._prevValue) {
-					return;
-				}
-
-				this._prevValue = this.value;
-
-				let storeKey = this.input.storeKey;
-
-				if (storeKey) {
-					localStorage.setItem(storeKey, this.textField.value);
-				}
-
-				this.emit({ type: 'change', initialEvent: evt });
-			},
-
-			keydown(evt: Event) {
-				if (this.input.multiline && this.input.autoHeight) {
-					setTimeout(() => {
-						this._fixHeight();
-					}, 1);
-				}
-
-				this.emit({ type: 'keydown', initialEvent: evt });
-			},
-
-			keypress(evt: KeyboardEvent) {
-				if (evt.which == 13/* Enter */) {
-					this.emit('confirm');
-				}
-
-				this.emit({ type: 'keypress', initialEvent: evt });
-			},
-
-			keyup(evt: Event) {
-				if (this.input.multiline && this.input.autoHeight) {
-					this._fixHeight();
-				}
-
-				this.emit({ type: 'keyup', initialEvent: evt });
+				this.emit('clear');
+				this.emit('change');
 			}
 		}
 	}
@@ -172,12 +107,92 @@ export default class OpalTextInput extends Component {
 		}
 	}
 
-	_onBtnClearClick(evt: Event) {
-		this.value = null;
-		this.textField.focus();
+	elementAttached() {
+		this.listenTo(this, {
+			'input-value-change': this._onInputValueChange,
+			'input-focused-change': this._onInputFocusedChange
+		});
 
-		this.emit('clear');
-		this.emit('change');
+		this.listenTo(this.$('text-field') as Node, {
+			focus: this._onTextFieldFocus,
+			blur: this._onTextFieldBlur,
+			input: this._onTextFieldInput,
+			change: this._onTextFieldChange,
+			keydown: this._onTextFieldKeyDown,
+			keypress: this._onTextFieldKeyPress,
+			keyup: this._onTextFieldKeyUp
+		});
+	}
+
+	_onInputValueChange(evt: IEvent) {
+		if (this.textField.value != evt.value) {
+			this.textField.value = evt.value;
+		}
+	}
+
+	_onInputFocusedChange(evt: IEvent) {
+		this[evt.value ? 'focus' : 'blur']();
+	}
+
+	_onTextFieldFocus(evt: Event) {
+		nextTick(() => {
+			if (document.activeElement == evt.target) {
+				this.input.focused = true;
+				this.emit('focus');
+			}
+		});
+	}
+
+	_onTextFieldBlur() {
+		this.input.focused = false;
+		this.emit('blur');
+	}
+
+	_onTextFieldInput(evt: Event) {
+		this._textFieldValue = this.textField.value;
+		this.emit({ type: 'input', initialEvent: evt });
+	}
+
+	_onTextFieldChange(evt: Event) {
+		if (this.value === this._prevValue) {
+			return;
+		}
+
+		this._prevValue = this.value;
+
+		let storeKey = this.input.storeKey;
+
+		if (storeKey) {
+			localStorage.setItem(storeKey, this.textField.value);
+		}
+
+		this.emit({ type: 'change', initialEvent: evt });
+	}
+
+	_onTextFieldKeyDown(evt: Event) {
+		if (this.input.multiline && this.input.autoHeight) {
+			setTimeout(() => {
+				this._fixHeight();
+			}, 1);
+		}
+
+		this.emit({ type: 'keydown', initialEvent: evt });
+	}
+
+	_onTextFieldKeyPress(evt: KeyboardEvent) {
+		if (evt.which == 13/* Enter */) {
+			this.emit('confirm');
+		}
+
+		this.emit({ type: 'keypress', initialEvent: evt });
+	}
+
+	_onTextFieldKeyUp(evt: Event) {
+		if (this.input.multiline && this.input.autoHeight) {
+			this._fixHeight();
+		}
+
+		this.emit({ type: 'keyup', initialEvent: evt });
 	}
 
 	_fixHeight() {

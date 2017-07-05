@@ -36,34 +36,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 
 	template,
 
-	events: {
-		':component': {
-			'input-opened-change'(evt: IEvent) {
-				this[evt.value ? '_open' : '_close']();
-			}
-		},
-
-		':element': {
-			click(evt: Event) {
-				let componentEl = this.element;
-				let windowEl = this.$('window');
-
-				for (let el: HTMLElement | null = evt.target as HTMLElement; el != windowEl;) {
-					if (el == componentEl) {
-						this.close();
-						this.emit('close');
-						break;
-					}
-
-					el = el.parentNode as HTMLElement;
-
-					if (!el) {
-						break;
-					}
-				}
-			}
-		},
-
+	domEvents: {
 		'btn-close': {
 			click() {
 				this.input.opened = false;
@@ -79,8 +52,36 @@ export default class OpalModal extends Component {
 		}
 	}
 
+	elementAttached() {
+		this.listenTo(this, 'input-opened-change', this._onInputOpenedChange);
+		this.listenTo(this.element, 'click', this._onElementClick);
+	}
+
 	elementDetached() {
 		this.close();
+	}
+
+	_onInputOpenedChange(evt: IEvent) {
+		this[evt.value ? '_open' : '_close']();
+	}
+
+	_onElementClick(evt: Event) {
+		let componentEl = this.element;
+		let windowEl = this.$('window');
+
+		for (let el: HTMLElement | null = evt.target as HTMLElement; el != windowEl;) {
+			if (el == componentEl) {
+				this.close();
+				this.emit('close');
+				break;
+			}
+
+			el = el.parentNode as HTMLElement;
+
+			if (!el) {
+				break;
+			}
+		}
 	}
 
 	open(): boolean {
