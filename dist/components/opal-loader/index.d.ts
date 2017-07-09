@@ -1,4 +1,4 @@
-import './index.css';
 import { Component } from 'rionite';
-export default class OpalLoader extends Component {
+import './index.css';
+export declare class OpalLoader extends Component {
 }

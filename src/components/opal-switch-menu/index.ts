@@ -1,8 +1,7 @@
-import './index.css';
-
 import { IEvent } from 'cellx';
-import { IComponentElement, Component, d } from 'rionite';
-import OpalButton from '../opal-button';
+import { Component, d, IComponentElement } from 'rionite';
+import { OpalButton } from '../opal-button';
+import './index.css';
 
 let forEach = Array.prototype.forEach;
 let find = (Array.prototype as any).find;
@@ -11,7 +10,7 @@ let find = (Array.prototype as any).find;
 	elementIs: 'opal-switch-menu',
 	template: '@section/inner { rt-content/content }'
 })
-export default class OpalSwitchMenu extends Component {
+export class OpalSwitchMenu extends Component {
 	buttonElements: NodeListOf<HTMLElement>;
 
 	_checkedButton: OpalButton | null;

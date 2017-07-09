@@ -1,8 +1,8 @@
-import './index.css';
-import '../../assets/icons/opal-components__icon-cross.svg';
 import { IEvent } from 'cellx';
 import { Component } from 'rionite';
-export default class OpalTextInput extends Component {
+import '../../assets/icons/opal-components__icon-cross.svg';
+import './index.css';
+export declare class OpalTextInput extends Component {
     textField: HTMLInputElement;
     _textFieldValue: string;
     _prevValue: string | null;

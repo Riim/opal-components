@@ -1,7 +1,6 @@
+import { Component, d } from 'rionite';
 import './index.css';
 import './light.css';
-
-import { Component, d } from 'rionite';
 import Prism = require('prismjs');
 import template = require('./index.nelm');
 
@@ -29,7 +28,7 @@ function prepareCode(code: string, isHtml?: boolean) {
 	elementIs: 'opal-code-listing',
 	template
 })
-export default class OpalCodeListing extends Component {
+export class OpalCodeListing extends Component {
 	highlightedHTMLCode: string;
 	highlightedJSCode: string | undefined;
 

@@ -1,9 +1,9 @@
-import './index.css';
 import { IEvent } from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
 import { Component } from 'rionite';
-import OpalMultirowRow from './opal-multirow-row';
-export default class OpalMultirow extends Component {
+import './index.css';
+import { OpalMultirowRow } from './opal-multirow-row';
+export declare class OpalMultirow extends Component {
     static OpalMultirowRow: typeof OpalMultirowRow;
     _presetRowCount: number;
     _newRows: IndexedList<{

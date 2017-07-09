@@ -1,7 +1,6 @@
+import { define, IEvent, Utils } from 'cellx';
+import { Component, d, IDisposableListening } from 'rionite';
 import './index.css';
-
-import { IEvent, define, Utils } from 'cellx';
-import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.nelm');
 
 let nextTick = Utils.nextTick;
@@ -18,7 +17,7 @@ let nextTick = Utils.nextTick;
 
 	template,
 
-	events: {
+	oevents: {
 		':component': {
 			'input-checked-change'(evt: IEvent) {
 				(this.$('input') as HTMLInputElement).checked = evt.value;
@@ -59,7 +58,7 @@ let nextTick = Utils.nextTick;
 		}
 	}
 })
-export default class OpalSwitch extends Component {
+export class OpalSwitch extends Component {
 	_tabIndex: number;
 
 	_documentKeyDownListening: IDisposableListening;

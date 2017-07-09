@@ -1,8 +1,7 @@
-import './index.css';
-import '../../../assets/icons/opal-components__icon-check.svg';
-
-import { IEvent, define, Utils } from 'cellx';
+import { define, IEvent, Utils } from 'cellx';
 import { Component, d } from 'rionite';
+import '../../../assets/icons/opal-components__icon-check.svg';
+import './index.css';
 import template = require('./index.nelm');
 
 let nextTick = Utils.nextTick;
@@ -21,7 +20,7 @@ let nextTick = Utils.nextTick;
 
 	template,
 
-	events: {
+	oevents: {
 		control: {
 			focus(evt: Event) {
 				nextTick(() => {
@@ -45,7 +44,7 @@ let nextTick = Utils.nextTick;
 		}
 	}
 })
-export default class OpalSelectOption extends Component {
+export class OpalSelectOption extends Component {
 	_tabIndex: number;
 
 	initialize() {

@@ -1,7 +1,6 @@
-import './index.css';
-
 import { Component, d } from 'rionite';
-import OpalPopover from '../../opal-popover';
+import { OpalPopover } from '../../opal-popover';
+import './index.css';
 import template = require('./index.nelm');
 
 @d.Component({
@@ -17,7 +16,7 @@ import template = require('./index.nelm');
 
 	template
 })
-export default class OpalInputValidatorRule extends Component {
+export class OpalInputValidatorRule extends Component {
 	showMessage() {
 		(this.$('popover') as OpalPopover).open();
 	}

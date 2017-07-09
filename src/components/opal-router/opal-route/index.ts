@@ -8,5 +8,5 @@ import { Component, d } from 'rionite';
 		component: { type: String, required: true, readonly: true }
 	}
 })
-export default class OpalRoute extends Component {
+export class OpalRoute extends Component {
 }

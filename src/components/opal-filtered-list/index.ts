@@ -1,9 +1,8 @@
-import './index.css';
-
 import { IEvent } from 'cellx';
-import { getText, Component, d } from 'rionite';
-import OpalTextInput from '../opal-text-input';
-import OpalLoadedList from '../opal-loaded-list';
+import { Component, d, getText } from 'rionite';
+import { OpalLoadedList } from '../opal-loaded-list';
+import { OpalTextInput } from '../opal-text-input';
+import './index.css';
 import template = require('./index.nelm');
 
 @d.Component({
@@ -15,7 +14,7 @@ import template = require('./index.nelm');
 
 	template,
 
-	events: {
+	oevents: {
 		'query-input': {
 			input(evt: IEvent) {
 				(this.$('loaded-list') as OpalLoadedList).input.query = (evt.target as OpalTextInput).value;
@@ -23,7 +22,7 @@ import template = require('./index.nelm');
 		}
 	}
 })
-export default class OpalFilteredList extends Component {
+export class OpalFilteredList extends Component {
 	focus() {
 		let queryInput = this.$('query-input') as OpalTextInput | null;
 

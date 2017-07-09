@@ -1,7 +1,6 @@
+import { define, IEvent, Utils } from 'cellx';
+import { Component, d, IDisposableListening } from 'rionite';
 import './index.css';
-
-import { IEvent, define, Utils } from 'cellx';
-import { IDisposableListening, Component, d } from 'rionite';
 
 let nextTick = Utils.nextTick;
 
@@ -19,7 +18,7 @@ let nextTick = Utils.nextTick;
 		disabled: false
 	}
 })
-export default class OpalButton extends Component {
+export class OpalButton extends Component {
 	_tabIndex: number;
 
 	_documentKeyDownListening: IDisposableListening | undefined;

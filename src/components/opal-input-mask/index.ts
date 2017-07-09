@@ -1,11 +1,12 @@
-/**
- * Based on [jquery.maskedinput](https://github.com/digitalBush/jquery.maskedinput).
- */
-
 import { Cell, define, Utils } from 'cellx';
-import { IComponentElement, IComponentEvents, Component, d } from 'rionite';
-import OpalTextInput from '../opal-text-input';
-import OpalInputMaskDefinition from './opal-input-mask-definition';
+import {
+	Component,
+	d,
+	IComponentElement,
+	IComponentEvents
+	} from 'rionite';
+import { OpalTextInput } from '../opal-text-input';
+import { OpalInputMaskDefinition } from './opal-input-mask-definition';
 
 let nextTick = Utils.nextTick;
 
@@ -23,7 +24,7 @@ let ie11 = !((window as any).ActiveXObject) && 'ActiveXObject' in window;
 
 	template: '@section/inner { rt-content/content }'
 })
-export default class OpalInputMask extends Component {
+export class OpalInputMask extends Component {
 	static OpalInputMaskDefinition = OpalInputMaskDefinition;
 
 	static defaultDefinitions: { [chr: string]: RegExp } = {

@@ -1,7 +1,6 @@
-import './index.css';
-
 import { define } from 'cellx';
 import { Component, d } from 'rionite';
+import './index.css';
 import template = require('./index.nelm');
 
 @d.Component<OpalSlider>({
@@ -17,7 +16,7 @@ import template = require('./index.nelm');
 
 	template
 })
-export default class OpalSlider extends Component {
+export class OpalSlider extends Component {
 	_firstInputValue: number;
 	_secondInputValue: number;
 	_firstInputWidth: number;
@@ -44,8 +43,10 @@ export default class OpalSlider extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo(this.$('first-input') as Node, 'input', this._onFirstInputInput);
-		this.listenTo(this.$('second-input') as Node, 'input', this._onSecondInputInput);
+		if (this.input.range) {
+			this.listenTo(this.$('first-input') as Node, 'input', this._onFirstInputInput);
+			this.listenTo(this.$('second-input') as Node, 'input', this._onSecondInputInput);
+		}
 	}
 
 	_onFirstInputInput(evt: Event) {

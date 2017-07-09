@@ -1,9 +1,8 @@
-import './index.css';
-
 import { define } from 'cellx';
-import { IComponentElement, Component, d } from 'rionite';
-import OpalTextInput from '../opal-text-input';
-import OpalInputValidatorRule from './opal-input-validator-rule';
+import { Component, d, IComponentElement } from 'rionite';
+import { OpalTextInput } from '../opal-text-input';
+import './index.css';
+import { OpalInputValidatorRule } from './opal-input-validator-rule';
 
 let map = Array.prototype.map;
 
@@ -11,7 +10,7 @@ let map = Array.prototype.map;
 	elementIs: 'opal-input-validator',
 	template: '@section/inner { rt-content/content }',
 
-	events: {
+	oevents: {
 		'text-input': {
 			input() {
 				if (this.failedRule) {
@@ -25,7 +24,7 @@ let map = Array.prototype.map;
 		}
 	}
 })
-export default class OpalInputValidator extends Component {
+export class OpalInputValidator extends Component {
 	static OpalInputValidatorRule = OpalInputValidatorRule;
 
 	failedRule: OpalInputValidatorRule | null;

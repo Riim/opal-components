@@ -1,11 +1,10 @@
-import './index.css';
+import { define, IEvent } from 'cellx';
+import { d, getText, Template } from 'rionite';
 import '../../assets/icons/opal-components__icon-cross.svg';
-
-import { IEvent, define } from 'cellx';
-import { Template, getText, d } from 'rionite';
-import OpalTextInput from '../opal-text-input';
-import OpalSelect from '../opal-select';
-import { IDataProvider, default as OpalLoadedList } from '../opal-loaded-list';
+import { IDataProvider, OpalLoadedList } from '../opal-loaded-list';
+import { OpalSelect } from '../opal-select';
+import { OpalTextInput } from '../opal-text-input';
+import './index.css';
 import template = require('./index.nelm');
 
 @d.Component({
@@ -24,7 +23,7 @@ import template = require('./index.nelm');
 
 	template: (OpalSelect.template as Template).extend(template),
 
-	events: {
+	oevents: {
 		'query-input': {
 			input(evt: IEvent) {
 				(this.$('loaded-list') as OpalLoadedList).input.query = (evt.target as OpalTextInput).value;
@@ -36,7 +35,7 @@ import template = require('./index.nelm');
 		}
 	}
 })
-export default class OpalMultiselect extends OpalSelect {
+export class OpalMultiselect extends OpalSelect {
 	dataProvider: IDataProvider | null;
 
 	isNothingSelectedShown: boolean;

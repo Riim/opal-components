@@ -1,4 +1,4 @@
-import PathNodeType from './PathNodeType';
+import { PathNodeType } from './PathNodeType';
 export interface IPathSimpleNode {
     type: PathNodeType.SIMPLE;
     value: string;
@@ -13,4 +13,4 @@ export interface IPathInsertNode {
     name: string;
 }
 export declare type TPathNode = IPathSimpleNode | IPathOptionalNode | IPathInsertNode;
-export default function parsePath(path: string): Array<TPathNode>;
+export declare function parsePath(path: string): Array<TPathNode>;

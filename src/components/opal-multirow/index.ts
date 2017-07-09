@@ -1,9 +1,8 @@
-import './index.css';
-
-import { IEvent, define, Utils } from 'cellx';
+import { define, IEvent, Utils } from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
-import { IComponentElement, Component, d } from 'rionite';
-import OpalMultirowRow from './opal-multirow-row';
+import { Component, d, IComponentElement } from 'rionite';
+import './index.css';
+import { OpalMultirowRow } from './opal-multirow-row';
 import template = require('./index.nelm');
 
 let nextUID = Utils.nextUID;
@@ -14,7 +13,7 @@ let filter = Array.prototype.filter;
 	elementIs: 'opal-multirow',
 	template
 })
-export default class OpalMultirow extends Component {
+export class OpalMultirow extends Component {
 	static OpalMultirowRow = OpalMultirowRow;
 
 	_presetRowCount: number;

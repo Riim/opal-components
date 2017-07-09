@@ -1,10 +1,21 @@
+import {
+	Cell,
+	define,
+	IEvent,
+	ObservableList
+	} from 'cellx';
+import {
+	Component,
+	d,
+	getText,
+	IDisposableCallback,
+	IDisposableListening,
+	IDisposableTimeout
+	} from 'rionite';
+import { isFocusable } from '../../Utils/isFocusable';
+import { OpalDropdown } from '../opal-dropdown';
+import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-
-import { IEvent, ObservableList, Cell, define } from 'cellx';
-import { IDisposableListening, IDisposableTimeout, IDisposableCallback, getText, Component, d } from 'rionite';
-import isFocusable from '../../Utils/isFocusable';
-import OpalTextInput from '../opal-text-input';
-import OpalDropdown from '../opal-dropdown';
 import template = require('./index.nelm');
 
 export interface IItem {
@@ -40,7 +51,7 @@ function toComparable(str: string): string {
 
 	template,
 
-	events: {
+	oevents: {
 		':component': {
 			'input-selected-item-change'(evt: IEvent) {
 				let value = evt.value as IItem;
@@ -111,7 +122,7 @@ function toComparable(str: string): string {
 		}
 	}
 })
-export default class OpalAutosuggest extends Component {
+export class OpalAutosuggest extends Component {
 	dataProvider: IDataProvider;
 
 	list: ObservableList<IItem>;

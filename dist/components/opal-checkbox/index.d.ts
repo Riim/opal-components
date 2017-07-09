@@ -1,6 +1,6 @@
+import { Component, IDisposableListening } from 'rionite';
 import './index.css';
-import { IDisposableListening, Component } from 'rionite';
-export default class OpalCheckbox extends Component {
+export declare class OpalCheckbox extends Component {
     _tabIndex: number;
     _documentKeyDownListening: IDisposableListening;
     initialize(): void;

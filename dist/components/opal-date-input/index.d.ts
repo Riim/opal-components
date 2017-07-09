@@ -1,7 +1,7 @@
-import './index.css';
-import { IDisposableListening, Component } from 'rionite';
 import dateExists from 'date-exists';
-export default class OpalDateInput extends Component {
+import { Component, IDisposableListening } from 'rionite';
+import './index.css';
+export declare class OpalDateInput extends Component {
     dateExists: typeof dateExists;
     dateInRange(date: string): boolean;
     _documentFocusListening: IDisposableListening;

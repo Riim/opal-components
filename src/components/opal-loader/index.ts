@@ -1,6 +1,5 @@
-import './index.css';
-
 import { Component, d } from 'rionite';
+import './index.css';
 
 @d.Component({
 	elementIs: 'opal-loader',
@@ -10,5 +9,5 @@ import { Component, d } from 'rionite';
 		shown: false
 	}
 })
-export default class OpalLoader extends Component {
+export class OpalLoader extends Component {
 }

@@ -1,8 +1,8 @@
-import './index.css';
 import '../../assets/icons/opal-components__icon-cross.svg';
-import OpalSelect from '../opal-select';
 import { IDataProvider } from '../opal-loaded-list';
-export default class OpalMultiselect extends OpalSelect {
+import { OpalSelect } from '../opal-select';
+import './index.css';
+export declare class OpalMultiselect extends OpalSelect {
     dataProvider: IDataProvider | null;
     isNothingSelectedShown: boolean;
     initialize(): void;

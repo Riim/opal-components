@@ -1,7 +1,5 @@
-enum PathNodeType {
+export enum PathNodeType {
 	SIMPLE,
 	OPTIONAL,
 	INSERT
 };
-
-export default PathNodeType;

@@ -1,17 +1,28 @@
-import './index.css';
-import '../../assets/icons/opal-components__icon-chevron-down.svg';
-
-import { IEvent, ObservableList, define, Utils } from 'cellx';
+import {
+	define,
+	IEvent,
+	ObservableList,
+	Utils
+	} from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
-import { IDisposableListening, getText, IComponentElement, Component, Components, d } from 'rionite';
-import isFocusable from '../../Utils/isFocusable';
-import OpalButton from '../opal-button';
-import OpalTextInput from '../opal-text-input';
-import OpalDropdown from '../opal-dropdown';
-import OpalLoadedList from '../opal-loaded-list';
-import OpalFilteredList from '../opal-filtered-list';
-import OpalSelectOption from './opal-select-option';
-import isEqualArray from './isEqualArray';
+import {
+	Component,
+	Components,
+	d,
+	getText,
+	IComponentElement,
+	IDisposableListening
+	} from 'rionite';
+import '../../assets/icons/opal-components__icon-chevron-down.svg';
+import { isFocusable } from '../../Utils/isFocusable';
+import { OpalButton } from '../opal-button';
+import { OpalDropdown } from '../opal-dropdown';
+import { OpalFilteredList } from '../opal-filtered-list';
+import { OpalLoadedList } from '../opal-loaded-list';
+import { OpalTextInput } from '../opal-text-input';
+import './index.css';
+import { isEqualArray } from './isEqualArray';
+import { OpalSelectOption } from './opal-select-option';
 import template = require('./index.nelm');
 
 let { nextTick } = Utils;
@@ -48,7 +59,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 
 	template,
 
-	events: {
+	oevents: {
 		button: {
 			focus() {
 				this.input.focused = true;
@@ -242,7 +253,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 		}
 	}
 })
-export default class OpalSelect extends Component {
+export class OpalSelect extends Component {
 	static OpalSelectOption = OpalSelectOption;
 
 	static defaultDataListItemSchema = defaultDataListItemSchema;

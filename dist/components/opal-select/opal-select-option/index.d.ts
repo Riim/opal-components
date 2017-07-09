@@ -1,8 +1,8 @@
-import './index.css';
-import '../../../assets/icons/opal-components__icon-check.svg';
 import { IEvent } from 'cellx';
 import { Component } from 'rionite';
-export default class OpalSelectOption extends Component {
+import '../../../assets/icons/opal-components__icon-check.svg';
+import './index.css';
+export declare class OpalSelectOption extends Component {
     _tabIndex: number;
     initialize(): void;
     elementAttached(): void;

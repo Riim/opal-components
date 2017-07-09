@@ -104,9 +104,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var rionite_1 = __webpack_require__(0);
 __webpack_require__(107);
 __webpack_require__(108);
-var rionite_1 = __webpack_require__(0);
 var Prism = __webpack_require__(109);
 var template = __webpack_require__(110);
 function prepareCode(code, isHtml) {
@@ -145,7 +145,7 @@ var OpalCodeListing = (function (_super) {
     ], OpalCodeListing);
     return OpalCodeListing;
 }(rionite_1.Component));
-exports.default = OpalCodeListing;
+exports.OpalCodeListing = OpalCodeListing;
 
 
 /***/ }),

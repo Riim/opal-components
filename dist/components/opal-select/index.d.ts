@@ -1,16 +1,16 @@
-import './index.css';
-import '../../assets/icons/opal-components__icon-chevron-down.svg';
 import { IEvent, ObservableList } from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
-import { IDisposableListening, IComponentElement, Component } from 'rionite';
-import OpalSelectOption from './opal-select-option';
+import { Component, IComponentElement, IDisposableListening } from 'rionite';
+import '../../assets/icons/opal-components__icon-chevron-down.svg';
+import './index.css';
+import { OpalSelectOption } from './opal-select-option';
 export declare type TDataList = ObservableList<{
     [name: string]: any;
 }>;
 export declare type TViewModel = IndexedList<{
     [name: string]: any;
 }>;
-export default class OpalSelect extends Component {
+export declare class OpalSelect extends Component {
     static OpalSelectOption: typeof OpalSelectOption;
     static defaultDataListItemSchema: {
         value: string;

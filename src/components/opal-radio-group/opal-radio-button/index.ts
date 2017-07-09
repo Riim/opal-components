@@ -1,7 +1,6 @@
+import { define, IEvent, Utils } from 'cellx';
+import { Component, d, IDisposableListening } from 'rionite';
 import './index.css';
-
-import { IEvent, define, Utils } from 'cellx';
-import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.nelm');
 
 let nextTick = Utils.nextTick;
@@ -18,7 +17,7 @@ let nextTick = Utils.nextTick;
 
 	template,
 
-	events: {
+	oevents: {
 		input: {
 			change(evt: Event) {
 				this.emit((this.input.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
@@ -43,7 +42,7 @@ let nextTick = Utils.nextTick;
 		}
 	}
 })
-export default class OpalRadioButton extends Component {
+export class OpalRadioButton extends Component {
 	_tabIndex: number;
 
 	_documentKeyDownListening: IDisposableListening;

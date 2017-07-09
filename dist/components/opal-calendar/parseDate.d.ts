@@ -1,1 +1,1 @@
-export default function parseDate(date: string): Date;
+export declare function parseDate(date: string): Date;

@@ -1,6 +1,5 @@
-import './index.css';
-
 import { Component, d } from 'rionite';
+import './index.css';
 
 @d.Component({
 	elementIs: 'opal-tab-panel',
@@ -11,5 +10,5 @@ import { Component, d } from 'rionite';
 
 	template: '@section/inner { rt-content/content }'
 })
-export default class OpalTabPanel extends Component {
+export class OpalTabPanel extends Component {
 }

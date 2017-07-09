@@ -1,8 +1,7 @@
-import './index.css';
-
 import { IEvent } from 'cellx';
-import { IDisposableListening, Component, d } from 'rionite';
-import isFocusable from '../../Utils/isFocusable';
+import { Component, d, IDisposableListening } from 'rionite';
+import { isFocusable } from '../../Utils/isFocusable';
+import './index.css';
 import template = require('./index.nelm');
 
 let openedModals: Array<OpalModal> = [];
@@ -45,7 +44,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 		}
 	}
 })
-export default class OpalModal extends Component {
+export class OpalModal extends Component {
 	ready() {
 		if (this.input.opened) {
 			this._open();

@@ -1,7 +1,7 @@
-import './index.css';
 import { IEvent } from 'cellx';
 import { Component } from 'rionite';
-export default class OpalModal extends Component {
+import './index.css';
+export declare class OpalModal extends Component {
     ready(): void;
     elementAttached(): void;
     elementDetached(): void;

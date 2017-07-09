@@ -1,10 +1,9 @@
-import './index.css';
-
 import { IEvent } from 'cellx';
-import { IComponentElement, Component, d } from 'rionite';
-import OpalTabList from './opal-tab-list';
-import OpalTab from './opal-tab-list/opal-tab';
-import OpalTabPanel from './opal-tab-panel';
+import { Component, d, IComponentElement } from 'rionite';
+import './index.css';
+import { OpalTabList } from './opal-tab-list';
+import { OpalTab } from './opal-tab-list/opal-tab';
+import { OpalTabPanel } from './opal-tab-panel';
 import template = require('./index.nelm');
 
 let indexOf = Array.prototype.indexOf;
@@ -14,7 +13,7 @@ let forEach = Array.prototype.forEach;
 	elementIs: 'opal-tabs',
 	template
 })
-export default class OpalTabs extends Component {
+export class OpalTabs extends Component {
 	static OpalTabList = OpalTabList;
 	static OpalTabPanel = OpalTabPanel;
 

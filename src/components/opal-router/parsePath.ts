@@ -1,4 +1,4 @@
-import PathNodeType from './PathNodeType';
+import { PathNodeType } from './PathNodeType';
 
 let reName = /[a-z][0-9a-z]*/i;
 
@@ -20,7 +20,7 @@ export interface IPathInsertNode {
 
 export type TPathNode = IPathSimpleNode | IPathOptionalNode | IPathInsertNode;
 
-export default function parsePath(path: string): Array<TPathNode> {
+export function parsePath(path: string): Array<TPathNode> {
 	let ctx = PathNodeType.SIMPLE;
 
 	let at = 0;

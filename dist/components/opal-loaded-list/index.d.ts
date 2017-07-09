@@ -1,6 +1,6 @@
-import './index.css';
 import { ObservableList } from 'cellx';
-import { IDisposableTimeout, IDisposableCallback, Component } from 'rionite';
+import { Component, IDisposableCallback, IDisposableTimeout } from 'rionite';
+import './index.css';
 export interface IItem {
     value: string;
     text: string;
@@ -14,7 +14,7 @@ export interface IDataProvider {
         total?: number;
     }>;
 }
-export default class OpalLoadedList extends Component {
+export declare class OpalLoadedList extends Component {
     dataProvider: IDataProvider;
     list: ObservableList<IItem>;
     total: number | undefined;

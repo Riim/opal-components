@@ -1,6 +1,6 @@
-import './index.css';
 import { Component } from 'rionite';
-export default class OpalTab extends Component {
+import './index.css';
+export declare class OpalTab extends Component {
     _tabIndex: number;
     initialize(): void;
     ready(): void;

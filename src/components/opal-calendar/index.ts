@@ -1,11 +1,10 @@
-import './index.css';
+import { define, IEvent, Utils } from 'cellx';
+import { Component, d, IDisposableListening } from 'rionite';
 import '../../assets/icons/opal-components__icon-arrow-left.svg';
-
-import { IEvent, define, Utils } from 'cellx';
-import { IDisposableListening, Component, d } from 'rionite';
 import { OpalSelectOption } from '../opal-select';
-import parseDate from './parseDate';
-import formatDate from './formatDate';
+import { formatDate } from './formatDate';
+import './index.css';
+import { parseDate } from './parseDate';
 import template = require('./index.nelm');
 
 let nextTick = Utils.nextTick;
@@ -55,7 +54,7 @@ function getTodayDate() {
 
 	template,
 
-	events: {
+	oevents: {
 		'btn-prev-month': {
 			click() {
 				if (this.shownMonth) {
@@ -91,7 +90,7 @@ function getTodayDate() {
 		}
 	}
 })
-export default class OpalCalendar extends Component {
+export class OpalCalendar extends Component {
 	weekDays: Array<string>;
 	weekDaysShort: Array<string>;
 

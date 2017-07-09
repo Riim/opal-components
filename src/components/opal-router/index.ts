@@ -1,11 +1,15 @@
+import { history, Location } from 'created-browser-history';
+import {
+	Component,
+	d,
+	IComponentElement,
+	Utils
+	} from 'rionite';
+import { escapeRegExp } from './escapeRegExp';
 import './index.css';
-
-import { IComponentElement, Component, d, Utils } from 'rionite';
-import { Location, history } from 'created-browser-history';
-import OpalRoute from './opal-route';
-import PathNodeType from './PathNodeType';
-import parsePath from './parsePath';
-import escapeRegExp from './escapeRegExp';
+import { OpalRoute } from './opal-route';
+import { parsePath } from './parsePath';
+import { PathNodeType } from './PathNodeType';
 
 let hyphenize = Utils.hyphenize;
 let escapeHTML = Utils.escapeHTML;
@@ -45,7 +49,7 @@ function valueToAttributeValue(value: boolean | string): string {
 		scrollTopOnChangeComponent: true
 	}
 })
-export default class OpalRouter extends Component {
+export class OpalRouter extends Component {
 	static OpalRoute = OpalRoute;
 
 	_routes: Array<IRoute>;

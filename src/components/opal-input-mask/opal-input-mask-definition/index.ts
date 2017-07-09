@@ -1,6 +1,5 @@
-import './index.css';
-
 import { Component, d } from 'rionite';
+import './index.css';
 
 @d.Component({
 	elementIs: 'opal-input-mask-definition',
@@ -10,5 +9,5 @@ import { Component, d } from 'rionite';
 		regex: { type: eval, required: true, readonly: true }
 	}
 })
-export default class OpalInputMaskDefinition extends Component {
+export class OpalInputMaskDefinition extends Component {
 }

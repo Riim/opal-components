@@ -1,10 +1,9 @@
-import './index.css';
-
 import { define } from 'cellx';
 import { IndexedList } from 'cellx-indexed-collections';
-import { getText, Component, d } from 'rionite';
-import { TDataList, TViewModel, default as OpalSelect } from '../opal-select';
+import { Component, d, getText } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
+import { OpalSelect, TDataList, TViewModel } from '../opal-select';
+import './index.css';
 import template = require('./index.nelm');
 
 let defaultDataListItemSchema = OpalSelect.defaultDataListItemSchema;
@@ -31,7 +30,7 @@ let defaultVMItemSchema = OpalSelect.defaultVMItemSchema;
 
 	template,
 
-	events: {
+	oevents: {
 		control: {
 			click(evt: Event) {
 				let select = this.$('select') as OpalSelect;
@@ -70,7 +69,7 @@ let defaultVMItemSchema = OpalSelect.defaultVMItemSchema;
 		}
 	}
 })
-export default class OpalTagSelect extends Component {
+export class OpalTagSelect extends Component {
 	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;

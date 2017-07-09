@@ -1,7 +1,17 @@
+import {
+	Cell,
+	define,
+	ObservableList,
+	Utils
+	} from 'cellx';
+import {
+	Component,
+	d,
+	getText,
+	IDisposableCallback,
+	IDisposableTimeout
+	} from 'rionite';
 import './index.css';
-
-import { ObservableList, Cell, define, Utils } from 'cellx';
-import { IDisposableTimeout, IDisposableCallback, getText, Component, d } from 'rionite';
 import template = require('./index.nelm');
 
 let mixin = Utils.mixin;
@@ -34,7 +44,7 @@ export interface IDataProvider {
 
 	template
 })
-export default class OpalLoadedList extends Component {
+export class OpalLoadedList extends Component {
 	dataProvider: IDataProvider;
 
 	list: ObservableList<IItem>;

@@ -1,7 +1,6 @@
-import './index.css';
-
-import { IEvent, define, Utils } from 'cellx';
+import { define, IEvent, Utils } from 'cellx';
 import { Component, d } from 'rionite';
+import './index.css';
 import template = require('./index.nelm');
 
 let nextTick = Utils.nextTick;
@@ -18,7 +17,7 @@ let nextTick = Utils.nextTick;
 
 	template,
 
-	events: {
+	oevents: {
 		':component': {
 			'input-focused-change'(evt: IEvent) {
 				this[evt.value ? 'focus' : 'blur']();
@@ -48,7 +47,7 @@ let nextTick = Utils.nextTick;
 		}
 	}
 })
-export default class OpalTab extends Component {
+export class OpalTab extends Component {
 	_tabIndex: number;
 
 	initialize() {

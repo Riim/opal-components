@@ -1,13 +1,12 @@
-import './index.css';
-
 import { Component, d } from 'rionite';
-import OpalTab from './opal-tab';
+import './index.css';
+import { OpalTab } from './opal-tab';
 
 @d.Component({
 	elementIs: 'opal-tab-list',
 	template: '@section/inner { rt-content/content }'
 })
-export default class OpalTabList extends Component {
+export class OpalTabList extends Component {
 	static OpalTab = OpalTab;
 }
 

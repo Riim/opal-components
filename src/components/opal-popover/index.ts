@@ -1,7 +1,6 @@
+import { Cell, IEvent } from 'cellx';
+import { Component, d, IDisposableListening } from 'rionite';
 import './index.css';
-
-import { IEvent, Cell } from 'cellx';
-import { IDisposableListening, Component, d } from 'rionite';
 import template = require('./index.nelm');
 
 @d.Component({
@@ -16,7 +15,7 @@ import template = require('./index.nelm');
 
 	template
 })
-export default class OpalPopover extends Component {
+export class OpalPopover extends Component {
 	_toOnOpen: string;
 
 	_documentClickListening: IDisposableListening | undefined;

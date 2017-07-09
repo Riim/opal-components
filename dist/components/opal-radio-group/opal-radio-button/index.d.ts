@@ -1,7 +1,7 @@
-import './index.css';
 import { IEvent } from 'cellx';
-import { IDisposableListening, Component } from 'rionite';
-export default class OpalRadioButton extends Component {
+import { Component, IDisposableListening } from 'rionite';
+import './index.css';
+export declare class OpalRadioButton extends Component {
     _tabIndex: number;
     _documentKeyDownListening: IDisposableListening;
     initialize(): void;

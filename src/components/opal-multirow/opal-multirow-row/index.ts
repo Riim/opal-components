@@ -1,6 +1,5 @@
-import './index.css';
-
 import { Component, d } from 'rionite';
+import './index.css';
 import template = require('./index.nelm');
 
 @d.Component({
@@ -12,7 +11,7 @@ import template = require('./index.nelm');
 
 	template,
 
-	events2: {
+	events: {
 		'btn-remove-row': {
 			click() {
 				this.emit('remove-row-click');
@@ -26,5 +25,5 @@ import template = require('./index.nelm');
 		}
 	}
 })
-export default class OpalMultirowRow extends Component {
+export class OpalMultirowRow extends Component {
 }

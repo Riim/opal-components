@@ -1,7 +1,7 @@
-import './index.css';
 import { IEvent } from 'cellx';
-import { IDisposableListening, Component } from 'rionite';
-export default class OpalDropdown extends Component {
+import { Component, IDisposableListening } from 'rionite';
+import './index.css';
+export declare class OpalDropdown extends Component {
     _documentClickListening: IDisposableListening | undefined;
     ready(): void;
     elementAttached(): void;

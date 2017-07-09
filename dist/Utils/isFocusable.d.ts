@@ -1,1 +1,1 @@
-export default function isFocusable(el: HTMLElement): boolean;
+export declare function isFocusable(el: HTMLElement): boolean;

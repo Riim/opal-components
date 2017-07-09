@@ -1,3 +1,3 @@
 import { Component } from 'rionite';
-export default class OpalRoute extends Component {
+export declare class OpalRoute extends Component {
 }

@@ -1,8 +1,8 @@
-import './index.css';
 import { Component } from 'rionite';
-import { TDataList, TViewModel } from '../opal-select';
 import { IDataProvider } from '../opal-loaded-list';
-export default class OpalTagSelect extends Component {
+import { TDataList, TViewModel } from '../opal-select';
+import './index.css';
+export declare class OpalTagSelect extends Component {
     dataList: TDataList | null;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;

@@ -1,6 +1,6 @@
-import './index.css';
+import { Component, IDisposableListening } from 'rionite';
 import '../../assets/icons/opal-components__icon-arrow-left.svg';
-import { IDisposableListening, Component } from 'rionite';
+import './index.css';
 export interface IDay {
     date: string;
     value: number;
@@ -13,7 +13,7 @@ export interface IDay {
 }
 export declare type TWeekDays = Array<IDay>;
 export declare type TDays = Array<TWeekDays>;
-export default class OpalCalendar extends Component {
+export declare class OpalCalendar extends Component {
     weekDays: Array<string>;
     weekDaysShort: Array<string>;
     fromDate: Date;

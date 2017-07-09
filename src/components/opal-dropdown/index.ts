@@ -1,7 +1,6 @@
+import { Cell, IEvent } from 'cellx';
+import { Component, d, IDisposableListening } from 'rionite';
 import './index.css';
-
-import { IEvent, Cell } from 'cellx';
-import { IDisposableListening, Component, d } from 'rionite';
 
 let openedDropdowns: Array<OpalDropdown> = [];
 
@@ -16,7 +15,7 @@ let openedDropdowns: Array<OpalDropdown> = [];
 
 	template: '@section/inner { rt-content/content }'
 })
-export default class OpalDropdown extends Component {
+export class OpalDropdown extends Component {
 	_documentClickListening: IDisposableListening | undefined;
 
 	ready() {

@@ -1,4 +1,4 @@
-export default function isFocusable(el: HTMLElement): boolean {
+export function isFocusable(el: HTMLElement): boolean {
 	if (el.hasAttribute('tabindex')) {
 		return el.tabIndex >= 0;
 	}

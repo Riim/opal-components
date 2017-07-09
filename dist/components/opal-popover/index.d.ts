@@ -1,7 +1,7 @@
-import './index.css';
 import { IEvent } from 'cellx';
-import { IDisposableListening, Component } from 'rionite';
-export default class OpalPopover extends Component {
+import { Component, IDisposableListening } from 'rionite';
+import './index.css';
+export declare class OpalPopover extends Component {
     _toOnOpen: string;
     _documentClickListening: IDisposableListening | undefined;
     ready(): void;

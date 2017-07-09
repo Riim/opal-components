@@ -1,13 +1,17 @@
-import './index.css';
-
 import { IEvent } from 'cellx';
-import { IDisposableListening, getText, Component, d } from 'rionite';
-import isFocusable from '../../Utils/isFocusable';
-import OpalTextInput from '../opal-text-input';
-import OpalDropdown from '../opal-dropdown';
-import OpalInputValidator from '../opal-input-validator';
-import OpalCalendar from '../opal-calendar';
 import dateExists from 'date-exists';
+import {
+	Component,
+	d,
+	getText,
+	IDisposableListening
+	} from 'rionite';
+import { isFocusable } from '../../Utils/isFocusable';
+import { OpalCalendar } from '../opal-calendar';
+import { OpalDropdown } from '../opal-dropdown';
+import { OpalInputValidator } from '../opal-input-validator';
+import { OpalTextInput } from '../opal-text-input';
+import './index.css';
 import template = require('./index.nelm');
 
 function pad(num: number): string {
@@ -35,7 +39,7 @@ function pad(num: number): string {
 
 	template,
 
-	events: {
+	oevents: {
 		'text-input': {
 			change(evt) {
 				if ((this.$('input-validator') as OpalInputValidator).valid) {
@@ -70,7 +74,7 @@ function pad(num: number): string {
 		}
 	}
 })
-export default class OpalDateInput extends Component {
+export class OpalDateInput extends Component {
 	dateExists = dateExists;
 
 	dateInRange(date: string): boolean {

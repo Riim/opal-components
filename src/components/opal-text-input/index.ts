@@ -1,8 +1,7 @@
-import './index.css';
-import '../../assets/icons/opal-components__icon-cross.svg';
-
-import { IEvent, define, Utils } from 'cellx';
+import { define, IEvent, Utils } from 'cellx';
 import { Component, d } from 'rionite';
+import '../../assets/icons/opal-components__icon-cross.svg';
+import './index.css';
 import template = require('./index.nelm');
 
 let nextTick = Utils.nextTick;
@@ -41,7 +40,7 @@ let nextTick = Utils.nextTick;
 		}
 	}
 })
-export default class OpalTextInput extends Component {
+export class OpalTextInput extends Component {
 	textField: HTMLInputElement;
 
 	_textFieldValue: string;

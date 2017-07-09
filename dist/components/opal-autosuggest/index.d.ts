@@ -1,6 +1,6 @@
-import './index.css';
 import { IEvent, ObservableList } from 'cellx';
-import { IDisposableListening, IDisposableTimeout, IDisposableCallback, Component } from 'rionite';
+import { Component, IDisposableCallback, IDisposableListening, IDisposableTimeout } from 'rionite';
+import './index.css';
 export interface IItem {
     value: string;
     text: string;
@@ -13,7 +13,7 @@ export interface IDataProvider {
         items: Array<IItem>;
     }>;
 }
-export default class OpalAutosuggest extends Component {
+export declare class OpalAutosuggest extends Component {
     dataProvider: IDataProvider;
     list: ObservableList<IItem>;
     _isNotInputConfirmed: boolean;
