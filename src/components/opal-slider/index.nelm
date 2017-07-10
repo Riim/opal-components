@@ -2,7 +2,7 @@
 
 @if-then (if=input.range) {
 	div/first-input-wrapper3 {
-		div/first-input-wrapper2 (style=width: {_firstInputWidth}%;) {
+		div/first-input-wrapper2 (style=width: {_firstInputWidth}%) {
 			div/first-input-wrapper {
 				input/first-input (
 					type=range,

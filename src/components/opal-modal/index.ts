@@ -68,7 +68,7 @@ export class OpalModal extends Component {
 		let componentEl = this.element;
 		let windowEl = this.$('window');
 
-		for (let el: HTMLElement | null = evt.target as HTMLElement; el != windowEl;) {
+		for (let el: HTMLElement | null = evt.target as HTMLElement; el != windowEl; ) {
 			if (el == componentEl) {
 				this.close();
 				this.emit('close');

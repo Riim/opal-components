@@ -95,7 +95,7 @@ export class OpalTagSelect extends Component {
 			let context = this.ownerComponent || window;
 			let getDataList = Function(`return this.${ input.datalistKeypath };`);
 
-			define(this, 'dataList', function() {
+			define(this, 'dataList', () => {
 				return getDataList.call(context);
 			});
 

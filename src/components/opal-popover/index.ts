@@ -57,7 +57,7 @@ export class OpalPopover extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		let opened = this.input.opened = value === undefined ? !this.input.opened : value
+		let opened = this.input.opened = value === undefined ? !this.input.opened : value;
 		Cell.forceRelease();
 		return opened;
 	}
@@ -148,7 +148,7 @@ export class OpalPopover extends Component {
 		let docEl = document.documentElement;
 		let componentEl = this.element;
 
-		for (let el: HTMLElement | null = evt.target as HTMLElement; el != componentEl;) {
+		for (let el: HTMLElement | null = evt.target as HTMLElement; el != componentEl; ) {
 			if (el == docEl || el.tagName == 'A') {
 				this.close();
 				this.emit('close');

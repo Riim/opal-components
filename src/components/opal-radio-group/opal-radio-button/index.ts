@@ -87,7 +87,7 @@ export class OpalRadioButton extends Component {
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {
-		if (evt.which == 13/* Enter */ || evt.which == 32/* Space */) {
+		if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
 			evt.preventDefault();
 
 			let input = this.input;

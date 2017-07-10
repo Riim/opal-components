@@ -898,7 +898,6 @@ var PathNodeType;
     PathNodeType[PathNodeType["OPTIONAL"] = 1] = "OPTIONAL";
     PathNodeType[PathNodeType["INSERT"] = 2] = "INSERT";
 })(PathNodeType = exports.PathNodeType || (exports.PathNodeType = {}));
-;
 
 
 /***/ }),
@@ -1875,8 +1874,8 @@ var OpalInputMask = (function (_super) {
     OpalInputMask.OpalInputMaskDefinition = opal_input_mask_definition_1.OpalInputMaskDefinition;
     OpalInputMask.defaultDefinitions = {
         __proto__: null,
-        '9': /\d/,
-        'z': /[a-zA-Z]/,
+        9: /\d/,
+        z: /[a-zA-Z]/,
         '*': /[0-9a-zA-Z]/
     };
     OpalInputMask = OpalInputMask_1 = __decorate([
@@ -2752,7 +2751,7 @@ module.exports = (function(d) {
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\n@if-then (if=input.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%;) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={input.min},\nmax={input.max},\nstep={input.step},\nvalue={input.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.range.1})\n}\n}\n@if-else (if=input.range) {\ninput/input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.value})\n}\n}"
+module.exports = "@section/inner {\n@if-then (if=input.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={input.min},\nmax={input.max},\nstep={input.step},\nvalue={input.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.range.1})\n}\n}\n@if-else (if=input.range) {\ninput/input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.value})\n}\n}"
 
 /***/ }),
 /* 35 */

@@ -367,7 +367,7 @@ export class OpalAutosuggest extends Component {
 	_setSelectedItemOfList() {
 		if (this._isNotInputConfirmed) {
 			let comparableQuery = toComparable((this.$('text-input') as OpalTextInput).value || '');
-			let selectedItem = this.list.find(item => toComparable(item.text) == comparableQuery) || null;
+			let selectedItem = this.list.find((item) => toComparable(item.text) == comparableQuery) || null;
 
 			if (selectedItem && this.list.length > 1) {
 				this._clearList();

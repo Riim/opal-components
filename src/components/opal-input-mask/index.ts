@@ -30,8 +30,8 @@ export class OpalInputMask extends Component {
 	static defaultDefinitions: { [chr: string]: RegExp } = {
 		__proto__: null,
 
-		'9': /\d/,
-		'z': /[a-zA-Z]/,
+		9: /\d/,
+		z: /[a-zA-Z]/,
 		'*': /[0-9a-zA-Z]/
 	} as any;
 
@@ -344,7 +344,7 @@ export class OpalInputMask extends Component {
 
 	_nextTestIndex(index: number): number {
 		let tests = this._tests;
-		for (let l = tests.length; ++index < l && !tests[index];) {}
+		for (let l = tests.length; ++index < l && !tests[index]; ) {}
 		return index;
 	}
 

@@ -29,7 +29,7 @@ export interface IRoute {
 }
 
 export interface IComponentState {
-	[name: string]: boolean | string
+	[name: string]: boolean | string;
 }
 
 function isReadonlyProperty(propConfig: any): boolean {
@@ -118,7 +118,7 @@ export class OpalRouter extends Component {
 		this._update(location.hash);
 
 		this._historyListening = {
-			unlisten: history.listen(location => {
+			unlisten: history.listen((location) => {
 				this._onWindowPopState(location);
 			})
 		};
@@ -165,7 +165,7 @@ export class OpalRouter extends Component {
 
 				if (
 					stateKeys.length == Object.keys(prevState).length &&
-						stateKeys.every(name => state[name] === prevState[name])
+						stateKeys.every((name) => state[name] === prevState[name])
 				) {
 					return;
 				}
@@ -176,7 +176,7 @@ export class OpalRouter extends Component {
 				let writable = true;
 
 				if (inputConfig) {
-					for (let i = attrs.length; i;) {
+					for (let i = attrs.length; i; ) {
 						let name = attrs.item(--i).name;
 
 						if (name != 'class' && !(name in state) && isReadonlyProperty(inputConfig[name])) {
@@ -199,7 +199,7 @@ export class OpalRouter extends Component {
 				}
 
 				if (writable) {
-					for (let i = attrs.length; i;) {
+					for (let i = attrs.length; i; ) {
 						let name = attrs.item(--i).name;
 
 						if (name != 'class' && !(name in state)) {

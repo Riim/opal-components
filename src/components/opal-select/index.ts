@@ -290,7 +290,7 @@ export class OpalSelect extends Component {
 			let context = this.ownerComponent || window;
 			let getDataList = Function(`return this.${ input.datalistKeypath };`);
 
-			define(this, 'dataList', function() {
+			define(this, 'dataList', () => {
 				return getDataList.call(context);
 			});
 
@@ -331,7 +331,7 @@ export class OpalSelect extends Component {
 			},
 
 			text(this: OpalSelect): string {
-				let text = this.viewModel.map(item => item[this._viewModelItemTextFieldName]).join(', ');
+				let text = this.viewModel.map((item) => item[this._viewModelItemTextFieldName]).join(', ');
 
 				if (!text) {
 					return this.input.placeholder;
@@ -365,7 +365,7 @@ export class OpalSelect extends Component {
 
 				if (value.length) {
 					if (input.multiple) {
-						selectedOptions = this.options.filter(option => value.indexOf(option.value) != -1);
+						selectedOptions = this.options.filter((option) => value.indexOf(option.value) != -1);
 					} else {
 						value = value[0];
 
@@ -379,7 +379,7 @@ export class OpalSelect extends Component {
 				}
 			} else {
 				if (input.multiple) {
-					selectedOptions = this.options.filter(option => option.selected);
+					selectedOptions = this.options.filter((option) => option.selected);
 				} else {
 					let selectedOption = (this.options as any).find((option: OpalSelectOption) => option.selected);
 					selectedOptions = selectedOption ? [selectedOption] : [];
@@ -387,7 +387,7 @@ export class OpalSelect extends Component {
 			}
 
 			if (selectedOptions.length) {
-				this.viewModel.addRange(selectedOptions.map(option => ({
+				this.viewModel.addRange(selectedOptions.map((option) => ({
 					[this._viewModelItemValueFieldName]: option.value,
 					[this._viewModelItemTextFieldName]: option.text
 				})));
@@ -422,7 +422,7 @@ export class OpalSelect extends Component {
 				let vmItemTextFieldName = this._viewModelItemTextFieldName;
 
 				if (this.input.multiple) {
-					this.options.forEach(option => {
+					this.options.forEach((option) => {
 						let optionValue = option.value;
 
 						if (value.indexOf(optionValue) != -1) {
@@ -444,7 +444,7 @@ export class OpalSelect extends Component {
 					value = value[0];
 
 					if (!vm.length || value != vm.get(0)[vmItemValueFieldName]) {
-						if (!this.options.some(option => {
+						if (!this.options.some((option) => {
 							if (option.value != value) {
 								return false;
 							}
@@ -492,7 +492,7 @@ export class OpalSelect extends Component {
 	_updateOptions() {
 		let vm = this.viewModel;
 
-		this.options.forEach(option => {
+		this.options.forEach((option) => {
 			let item = vm.get(option.value, this._viewModelItemValueFieldName);
 
 			if (item) {
@@ -511,7 +511,7 @@ export class OpalSelect extends Component {
 
 		this._opened = true;
 
-		this._valueOnOpen = this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
+		this._valueOnOpen = this.viewModel.map((item) => item[this._viewModelItemValueFieldName]);
 
 		this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
 
@@ -570,7 +570,7 @@ export class OpalSelect extends Component {
 
 		if (this.input.multiple) {
 			if (!isEqualArray(
-				this.viewModel.map(item => item[this._viewModelItemValueFieldName]),
+				this.viewModel.map((item) => item[this._viewModelItemValueFieldName]),
 				this._valueOnOpen
 			)) {
 				this.emit('change');

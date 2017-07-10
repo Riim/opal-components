@@ -273,7 +273,7 @@ export class OpalCalendar extends Component {
 					});
 				}
 
-				for (let i = firstMonthDayWeekDayIndex; i;) {
+				for (let i = firstMonthDayWeekDayIndex; i; ) {
 					pushDay(
 						shownYear - +!shownMonth,
 						shownMonth ? shownMonth - 1 : 11,
@@ -282,7 +282,7 @@ export class OpalCalendar extends Component {
 					);
 				}
 
-				for (let i = 0; i < lastMonthDay;) {
+				for (let i = 0; i < lastMonthDay; ) {
 					pushDay(shownYear, shownMonth, ++i, false);
 
 					if (!((i + firstMonthDayWeekDayIndex) % 7) && i < lastMonthDay) {
@@ -290,7 +290,7 @@ export class OpalCalendar extends Component {
 					}
 				}
 
-				for (let i = 0, l = 7 - weekDays.length; i < l;) {
+				for (let i = 0, l = 7 - weekDays.length; i < l; ) {
 					pushDay(shownYear + +(shownMonth == 11), (shownMonth + 1) % 12, ++i, true);
 				}
 

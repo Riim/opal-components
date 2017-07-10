@@ -58,7 +58,7 @@ export class OpalInputValidator extends Component {
 		let value = (this.$('text-input') as OpalTextInput).value;
 		let failedRule: OpalInputValidatorRule | undefined;
 
-		rules.forEach(rule => {
+		rules.forEach((rule) => {
 			let ruleInput = rule.input;
 
 			if (!failedRule && (
