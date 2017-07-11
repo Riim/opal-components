@@ -1688,7 +1688,7 @@ var OpalInputMask = (function (_super) {
             this._shiftLeft(start, end - 1);
             if (value != textField.value) {
                 var textInput = this.$('text-input');
-                textInput.constructor.events['text-field'].input.call(textInput, evt);
+                textInput.constructor.oevents['text-field'].input.call(textInput, evt);
             }
         }
         else if (key == 27) {
@@ -1697,7 +1697,7 @@ var OpalInputMask = (function (_super) {
                 textField.value = this._textOnFocus;
                 this._setTextFieldSelection(0, this._checkValue(false));
                 var textInput = this.$('text-input');
-                textInput.constructor.events['text-field'].input.call(textInput, evt);
+                textInput.constructor.oevents['text-field'].input.call(textInput, evt);
             }
         }
     };
@@ -1727,14 +1727,14 @@ var OpalInputMask = (function (_super) {
                     index = this._nextTestIndex(index);
                     this._setTextFieldSelection(index, index);
                     var textInput = this.$('text-input');
-                    textInput.constructor.events['text-field'].input.call(textInput, evt);
+                    textInput.constructor.oevents['text-field'].input.call(textInput, evt);
                     if (index >= bufferLen) {
                         this.emit('complete');
                     }
                 }
                 else if (start != end) {
                     var textInput = this.$('text-input');
-                    textInput.constructor.events['text-field'].input.call(textInput, evt);
+                    textInput.constructor.oevents['text-field'].input.call(textInput, evt);
                 }
             }
         }

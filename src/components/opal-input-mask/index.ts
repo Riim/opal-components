@@ -3,7 +3,7 @@ import {
 	Component,
 	d,
 	IComponentElement,
-	IComponentEvents
+	IComponentOEvents
 	} from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
 import { OpalInputMaskDefinition } from './opal-input-mask-definition';
@@ -157,7 +157,7 @@ export class OpalInputMask extends Component {
 
 			if (value != textField.value) {
 				let textInput = this.$('text-input') as OpalTextInput;
-				((textInput.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
+				((textInput.constructor as typeof OpalTextInput).oevents as IComponentOEvents<OpalTextInput>)
 					['text-field'].input.call(textInput, evt);
 			}
 		} else if (key == 27) { // Escape
@@ -169,7 +169,7 @@ export class OpalInputMask extends Component {
 
 				let textInput = this.$('text-input') as OpalTextInput;
 
-				((textInput.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
+				((textInput.constructor as typeof OpalTextInput).oevents as IComponentOEvents<OpalTextInput>)
 					['text-field'].input.call(textInput, evt);
 			}
 		}
@@ -210,7 +210,7 @@ export class OpalInputMask extends Component {
 					this._setTextFieldSelection(index, index);
 
 					let textInput = this.$('text-input') as OpalTextInput;
-					((textInput.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
+					((textInput.constructor as typeof OpalTextInput).oevents as IComponentOEvents<OpalTextInput>)
 						['text-field'].input.call(textInput, evt);
 
 					if (index >= bufferLen) {
@@ -218,7 +218,7 @@ export class OpalInputMask extends Component {
 					}
 				} else if (start != end) {
 					let textInput = this.$('text-input') as OpalTextInput;
-					((textInput.constructor as typeof OpalTextInput).events as IComponentEvents<OpalTextInput>)
+					((textInput.constructor as typeof OpalTextInput).oevents as IComponentOEvents<OpalTextInput>)
 						['text-field'].input.call(textInput, evt);
 				}
 			}
