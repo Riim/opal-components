@@ -184,7 +184,7 @@ export class OpalLoadedList extends Component {
 		let args = [query];
 
 		if (infinite) {
-			args.unshift(this.input.count, this.list.length ? this.list.get(-1).value : undefined);
+			args.unshift(this.input.count, this.list.length ? (this.list.get(-1) as IItem).value : undefined);
 		}
 
 		this.loading = true;
