@@ -53,7 +53,7 @@ export class OpalInputMask extends Component {
 	}
 
 	ready() {
-		this._textField = (this.$('text-input') as OpalTextInput).textField;
+		this._textField = this.$<OpalTextInput>('text-input').textField;
 
 		let definitions = this._definitions;
 
@@ -126,7 +126,7 @@ export class OpalInputMask extends Component {
 		this._checkValue(false);
 
 		if (this._textField.value != this._textOnFocus) {
-			(this.$('text-input') as OpalTextInput).emit('change');
+			this.$<OpalTextInput>('text-input').emit('change');
 		}
 	}
 
@@ -156,7 +156,7 @@ export class OpalInputMask extends Component {
 			this._shiftLeft(start, end - 1);
 
 			if (value != textField.value) {
-				let textInput = this.$('text-input') as OpalTextInput;
+				let textInput = this.$<OpalTextInput>('text-input');
 				((textInput.constructor as typeof OpalTextInput).oevents as IComponentOEvents<OpalTextInput>)
 					['text-field'].input.call(textInput, evt);
 			}
@@ -167,7 +167,7 @@ export class OpalInputMask extends Component {
 				textField.value = this._textOnFocus;
 				this._setTextFieldSelection(0, this._checkValue(false));
 
-				let textInput = this.$('text-input') as OpalTextInput;
+				let textInput = this.$<OpalTextInput>('text-input');
 
 				((textInput.constructor as typeof OpalTextInput).oevents as IComponentOEvents<OpalTextInput>)
 					['text-field'].input.call(textInput, evt);
@@ -209,7 +209,7 @@ export class OpalInputMask extends Component {
 
 					this._setTextFieldSelection(index, index);
 
-					let textInput = this.$('text-input') as OpalTextInput;
+					let textInput = this.$<OpalTextInput>('text-input');
 					((textInput.constructor as typeof OpalTextInput).oevents as IComponentOEvents<OpalTextInput>)
 						['text-field'].input.call(textInput, evt);
 
@@ -217,7 +217,7 @@ export class OpalInputMask extends Component {
 						this.emit('complete');
 					}
 				} else if (start != end) {
-					let textInput = this.$('text-input') as OpalTextInput;
+					let textInput = this.$<OpalTextInput>('text-input');
 					((textInput.constructor as typeof OpalTextInput).oevents as IComponentOEvents<OpalTextInput>)
 						['text-field'].input.call(textInput, evt);
 				}
@@ -282,9 +282,9 @@ export class OpalInputMask extends Component {
 		} else {
 			if (lastMatchIndex + 1 < partialIndex) {
 				this._clearBuffer(0, bufferLen);
-				(this.$('text-input') as OpalTextInput).value = '';
+				this.$<OpalTextInput>('text-input').value = '';
 			} else {
-				(this.$('text-input') as OpalTextInput).value = buffer.slice(0, lastMatchIndex + 1).join('');
+				this.$<OpalTextInput>('text-input').value = buffer.slice(0, lastMatchIndex + 1).join('');
 			}
 
 			Cell.forceRelease();
@@ -357,7 +357,7 @@ export class OpalInputMask extends Component {
 	_writeBuffer() {
 		let buffer = this._buffer;
 		let toIndex = buffer.indexOf(null);
-		(this.$('text-input') as OpalTextInput).value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
+		this.$<OpalTextInput>('text-input').value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
 		Cell.forceRelease();
 	}
 

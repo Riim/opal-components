@@ -26,11 +26,11 @@ import template = require('./index.nelm');
 	oevents: {
 		'query-input': {
 			input(evt: IEvent) {
-				(this.$('loaded-list') as OpalLoadedList).input.query = (evt.target as OpalTextInput).value;
+				this.$<OpalLoadedList>('loaded-list').input.query = (evt.target as OpalTextInput).value;
 			},
 
 			clear() {
-				(this.$('loaded-list') as OpalLoadedList).input.query = '';
+				this.$<OpalLoadedList>('loaded-list').input.query = '';
 			}
 		}
 	}

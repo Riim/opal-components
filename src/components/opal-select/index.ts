@@ -165,7 +165,7 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 						});
 					}
 
-					let loadedList = this.$('loaded-list') as OpalLoadedList | null;
+					let loadedList = this.$<OpalLoadedList | null>('loaded-list');
 
 					if (loadedList) {
 						loadedList.input.query = '';
@@ -229,10 +229,10 @@ let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' }
 							(focusTarget as HTMLElement).focus();
 						});
 					} else {
-						let filteredList = this.$('filtered-list') as OpalFilteredList | null;
+						let filteredList = this.$<OpalFilteredList | null>('filtered-list');
 
 						if (filteredList) {
-							focusTarget = filteredList.$('query-input') as OpalTextInput | null;
+							focusTarget = filteredList.$<OpalTextInput | null>('query-input');
 						}
 
 						if (focusTarget) {
@@ -519,26 +519,26 @@ export class OpalSelect extends Component {
 			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 		}
 
-		(this.$('button') as OpalButton).check();
-		(this.$('menu') as OpalDropdown).open();
+		this.$<OpalButton>('button').check();
+		this.$<OpalDropdown>('menu').open();
 
-		let loadedList = this.$('loaded-list') as OpalLoadedList;
+		let loadedList = this.$<OpalLoadedList | null>('loaded-list');
 
 		if (loadedList) {
 			nextTick(() => {
-				loadedList.checkLoading();
+				(loadedList as OpalLoadedList).checkLoading();
 			});
 		}
 
-		let focusTarget = this.$('focus') as HTMLElement | OpalTextInput | null;
+		let focusTarget = this.$<HTMLElement | OpalTextInput | null>('focus');
 
 		if (focusTarget) {
 			focusTarget.focus();
 		} else {
-			let filteredList = this.$('filtered-list') as OpalFilteredList | null;
+			let filteredList = this.$<OpalFilteredList | null>('filtered-list');
 
 			if (filteredList) {
-				focusTarget = filteredList.$('query-input') as OpalTextInput | null;
+				focusTarget = filteredList.$<OpalTextInput | null>('query-input');
 			}
 
 			if (focusTarget) {
@@ -565,8 +565,8 @@ export class OpalSelect extends Component {
 			this._documentKeyDownListening = null;
 		}
 
-		(this.$('button') as OpalButton).uncheck();
-		(this.$('menu') as OpalDropdown).close();
+		this.$<OpalButton>('button').uncheck();
+		this.$<OpalDropdown>('menu').close();
 
 		if (this.input.multiple) {
 			if (!isEqualArray(
@@ -715,12 +715,12 @@ export class OpalSelect extends Component {
 	}
 
 	focus(): OpalSelect {
-		(this.$('button') as OpalSelect).focus();
+		this.$<OpalSelect>('button').focus();
 		return this;
 	}
 
 	blur(): OpalSelect {
-		(this.$('button') as OpalSelect).blur();
+		this.$<OpalSelect>('button').blur();
 		return this;
 	}
 }

@@ -112,7 +112,7 @@ export class OpalTextInput extends Component {
 			'input-focused-change': this._onInputFocusedChange
 		});
 
-		this.listenTo(this.$('text-field') as Node, {
+		this.listenTo('text-field', {
 			focus: this._onTextFieldFocus,
 			blur: this._onTextFieldBlur,
 			input: this._onTextFieldInput,

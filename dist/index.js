@@ -790,9 +790,37 @@ var OpalTab = (function (_super) {
             }
         });
     };
+    OpalTab.prototype.elementAttached = function () {
+        this.listenTo(this, 'input-focused-change', this._onInputFocusedChange);
+        this.listenTo('control', {
+            focus: this._onControlFocus,
+            blur: this._onControlBlur,
+            click: this._onControlClick
+        });
+    };
     OpalTab.prototype.ready = function () {
         if (this.input.focused) {
             this.focus();
+        }
+    };
+    OpalTab.prototype._onInputFocusedChange = function (evt) {
+        this[evt.value ? 'focus' : 'blur']();
+    };
+    OpalTab.prototype._onControlFocus = function (evt) {
+        var _this = this;
+        nextTick(function () {
+            if (document.activeElement == evt.target) {
+                _this.input.focused = true;
+            }
+        });
+    };
+    OpalTab.prototype._onControlBlur = function () {
+        this.input.focused = false;
+    };
+    OpalTab.prototype._onControlClick = function (evt) {
+        evt.preventDefault();
+        if (!this.input.disabled) {
+            this.click();
         }
     };
     OpalTab.prototype.click = function () {
@@ -851,33 +879,7 @@ var OpalTab = (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template,
-            oevents: {
-                ':component': {
-                    'input-focused-change': function (evt) {
-                        this[evt.value ? 'focus' : 'blur']();
-                    }
-                },
-                control: {
-                    focus: function (evt) {
-                        var _this = this;
-                        nextTick(function () {
-                            if (document.activeElement == evt.target) {
-                                _this.input.focused = true;
-                            }
-                        });
-                    },
-                    blur: function () {
-                        this.input.focused = false;
-                    },
-                    click: function (evt) {
-                        evt.preventDefault();
-                        if (!this.input.disabled) {
-                            this.click();
-                        }
-                    }
-                }
-            }
+            template: template
         })
     ], OpalTab);
     return OpalTab;
@@ -1401,7 +1403,7 @@ var OpalTextInput = (function (_super) {
             'input-value-change': this._onInputValueChange,
             'input-focused-change': this._onInputFocusedChange
         });
-        this.listenTo(this.$('text-field'), {
+        this.listenTo('text-field', {
             focus: this._onTextFieldFocus,
             blur: this._onTextFieldBlur,
             input: this._onTextFieldInput,
@@ -2052,6 +2054,18 @@ var OpalCheckbox = (function (_super) {
             }
         });
     };
+    OpalCheckbox.prototype.elementAttached = function () {
+        this.listenTo(this, {
+            'input-checked-change': this._onInputCheckedChange,
+            'input-indeterminate-change': this._onInputIndeterminateChange,
+            'input-focused-change': this._onInputFocusedChange
+        });
+        this.listenTo('input', 'change', this._onInputChange);
+        this.listenTo('control', {
+            focus: this._onControlFocus,
+            blur: this._onControlBlur
+        });
+    };
     OpalCheckbox.prototype.ready = function () {
         var input = this.input;
         if (input.checked) {
@@ -2060,6 +2074,27 @@ var OpalCheckbox = (function (_super) {
         }
         if (input.focused) {
             this.focus();
+        }
+    };
+    OpalCheckbox.prototype._onInputCheckedChange = function (evt) {
+        if (evt.value) {
+            this.input.indeterminate = false;
+        }
+        this.$('input').checked = evt.value;
+    };
+    OpalCheckbox.prototype._onInputIndeterminateChange = function (evt) {
+        if (evt.value) {
+            this.input.checked = false;
+        }
+    };
+    OpalCheckbox.prototype._onInputFocusedChange = function (evt) {
+        if (evt.value) {
+            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+            this.focus();
+        }
+        else {
+            this._documentKeyDownListening.stop();
+            this.blur();
         }
     };
     OpalCheckbox.prototype._onDocumentKeyDown = function (evt) {
@@ -2071,6 +2106,23 @@ var OpalCheckbox = (function (_super) {
                 this.emit('change');
             }
         }
+    };
+    OpalCheckbox.prototype._onInputChange = function (evt) {
+        this.emit((this.input.checked = evt.target.checked) ? 'check' : 'uncheck');
+        this.emit('change');
+    };
+    OpalCheckbox.prototype._onControlFocus = function (evt) {
+        var _this = this;
+        nextTick(function () {
+            if (document.activeElement == evt.target) {
+                _this.input.focused = true;
+                _this.emit('focus');
+            }
+        });
+    };
+    OpalCheckbox.prototype._onControlBlur = function () {
+        this.input.focused = false;
+        this.emit('blur');
     };
     Object.defineProperty(OpalCheckbox.prototype, "checked", {
         get: function () {
@@ -2125,53 +2177,7 @@ var OpalCheckbox = (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template,
-            oevents: {
-                ':component': {
-                    'input-checked-change': function (evt) {
-                        if (evt.value) {
-                            this.input.indeterminate = false;
-                        }
-                        this.$('input').checked = evt.value;
-                    },
-                    'input-indeterminate-change': function (evt) {
-                        if (evt.value) {
-                            this.input.checked = false;
-                        }
-                    },
-                    'input-focused-change': function (evt) {
-                        if (evt.value) {
-                            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-                            this.focus();
-                        }
-                        else {
-                            this._documentKeyDownListening.stop();
-                            this.blur();
-                        }
-                    }
-                },
-                input: {
-                    change: function (evt) {
-                        this.emit((this.input.checked = evt.target.checked) ? 'check' : 'uncheck');
-                        this.emit('change');
-                    }
-                },
-                control: {
-                    focus: function (evt) {
-                        var _this = this;
-                        nextTick(function () {
-                            if (document.activeElement == evt.target) {
-                                _this.input.focused = true;
-                                _this.emit('focus');
-                            }
-                        });
-                    },
-                    blur: function () {
-                        this.input.focused = false;
-                        this.emit('blur');
-                    }
-                }
-            }
+            template: template
         })
     ], OpalCheckbox);
     return OpalCheckbox;
@@ -2318,6 +2324,11 @@ var OpalRadioButton = (function (_super) {
             'input-checked-change': this._onInputCheckedChange,
             'input-focused-change': this._onInputFocusedChange
         });
+        this.listenTo('input', 'change', this._onInputChange);
+        this.listenTo('control', {
+            focus: this._onControlFocus,
+            blur: this._onControlBlur
+        });
     };
     OpalRadioButton.prototype._onInputCheckedChange = function (evt) {
         this.$('input').checked = evt.value;
@@ -2341,6 +2352,23 @@ var OpalRadioButton = (function (_super) {
                 this.emit('change');
             }
         }
+    };
+    OpalRadioButton.prototype._onInputChange = function (evt) {
+        this.emit((this.input.checked = evt.target.checked) ? 'check' : 'uncheck');
+        this.emit('change');
+    };
+    OpalRadioButton.prototype._onControlFocus = function (evt) {
+        var _this = this;
+        nextTick(function () {
+            if (document.activeElement == evt.target) {
+                _this.input.focused = true;
+                _this.emit('focus');
+            }
+        });
+    };
+    OpalRadioButton.prototype._onControlBlur = function () {
+        this.input.focused = false;
+        this.emit('blur');
     };
     Object.defineProperty(OpalRadioButton.prototype, "checked", {
         get: function () {
@@ -2394,30 +2422,7 @@ var OpalRadioButton = (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template,
-            oevents: {
-                input: {
-                    change: function (evt) {
-                        this.emit((this.input.checked = evt.target.checked) ? 'check' : 'uncheck');
-                        this.emit('change');
-                    }
-                },
-                control: {
-                    focus: function (evt) {
-                        var _this = this;
-                        nextTick(function () {
-                            if (document.activeElement == evt.target) {
-                                _this.input.focused = true;
-                                _this.emit('focus');
-                            }
-                        });
-                    },
-                    blur: function () {
-                        this.input.focused = false;
-                        this.emit('blur');
-                    }
-                }
-            }
+            template: template
         })
     ], OpalRadioButton);
     return OpalRadioButton;
@@ -2496,6 +2501,30 @@ var OpalSwitch = (function (_super) {
             this.focus();
         }
     };
+    OpalSwitch.prototype.elementAttached = function () {
+        this.listenTo(this, {
+            'input-checked-change': this._onInputCheckedChange,
+            'input-focused-change': this._onInputFocusedChange
+        });
+        this.listenTo('input', 'change', this._onInputChange);
+        this.listenTo('control', {
+            focus: this._onControlFocus,
+            blur: this._onControlBlur
+        });
+    };
+    OpalSwitch.prototype._onInputCheckedChange = function (evt) {
+        this.$('input').checked = evt.value;
+    };
+    OpalSwitch.prototype._onInputFocusedChange = function (evt) {
+        if (evt.value) {
+            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+            this.focus();
+        }
+        else {
+            this._documentKeyDownListening.stop();
+            this.blur();
+        }
+    };
     OpalSwitch.prototype._onDocumentKeyDown = function (evt) {
         if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
             evt.preventDefault();
@@ -2505,6 +2534,23 @@ var OpalSwitch = (function (_super) {
                 this.emit('change');
             }
         }
+    };
+    OpalSwitch.prototype._onInputChange = function (evt) {
+        this.emit((this.input.checked = evt.target.checked) ? 'check' : 'uncheck');
+        this.emit('change');
+    };
+    OpalSwitch.prototype._onControlFocus = function (evt) {
+        var _this = this;
+        nextTick(function () {
+            if (document.activeElement == evt.target) {
+                _this.input.focused = true;
+                _this.emit('focus');
+            }
+        });
+    };
+    OpalSwitch.prototype._onControlBlur = function () {
+        this.input.focused = false;
+        this.emit('blur');
     };
     Object.defineProperty(OpalSwitch.prototype, "checked", {
         get: function () {
@@ -2558,45 +2604,7 @@ var OpalSwitch = (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template,
-            oevents: {
-                ':component': {
-                    'input-checked-change': function (evt) {
-                        this.$('input').checked = evt.value;
-                    },
-                    'input-focused-change': function (evt) {
-                        if (evt.value) {
-                            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-                            this.focus();
-                        }
-                        else {
-                            this._documentKeyDownListening.stop();
-                            this.blur();
-                        }
-                    }
-                },
-                input: {
-                    change: function (evt) {
-                        this.emit((this.input.checked = evt.target.checked) ? 'check' : 'uncheck');
-                        this.emit('change');
-                    }
-                },
-                control: {
-                    focus: function (evt) {
-                        var _this = this;
-                        nextTick(function () {
-                            if (document.activeElement == evt.target) {
-                                _this.input.focused = true;
-                                _this.emit('focus');
-                            }
-                        });
-                    },
-                    blur: function () {
-                        this.input.focused = false;
-                        this.emit('blur');
-                    }
-                }
-            }
+            template: template
         })
     ], OpalSwitch);
     return OpalSwitch;
@@ -2676,8 +2684,8 @@ var OpalSlider = (function (_super) {
     };
     OpalSlider.prototype.elementAttached = function () {
         if (this.input.range) {
-            this.listenTo(this.$('first-input'), 'input', this._onFirstInputInput);
-            this.listenTo(this.$('second-input'), 'input', this._onSecondInputInput);
+            this.listenTo('first-input', 'input', this._onFirstInputInput);
+            this.listenTo('second-input', 'input', this._onSecondInputInput);
         }
     };
     OpalSlider.prototype._onFirstInputInput = function (evt) {
@@ -4402,7 +4410,7 @@ var OpalCalendar = (function (_super) {
         });
     };
     OpalCalendar.prototype.elementAttached = function () {
-        this.listenTo(this.$('days'), {
+        this.listenTo('days', {
             focus: function (evt) {
                 var _this = this;
                 if (evt.target.classList.contains('opal-calendar__day')) {

@@ -16,58 +16,7 @@ let nextTick = Utils.nextTick;
 		disabled: false
 	},
 
-	template,
-
-	oevents: {
-		':component': {
-			'input-checked-change'(evt: IEvent) {
-				if (evt.value) {
-					this.input.indeterminate = false;
-				}
-
-				(this.$('input') as HTMLInputElement).checked = evt.value;
-			},
-
-			'input-indeterminate-change'(evt: IEvent) {
-				if (evt.value) {
-					this.input.checked = false;
-				}
-			},
-
-			'input-focused-change'( evt: IEvent) {
-				if (evt.value) {
-					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-					this.focus();
-				} else {
-					this._documentKeyDownListening.stop();
-					this.blur();
-				}
-			}
-		},
-
-		input: {
-			change(evt: Event) {
-				this.emit((this.input.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
-				this.emit('change');
-			}
-		},
-
-		control: {
-			focus(evt: Event) {
-				nextTick(() => {
-					if (document.activeElement == evt.target) {
-						this.input.focused = true;
-						this.emit('focus');
-					}
-				});
-			},
-
-			blur() {
-				this.input.focused = false;
-				this.emit('blur');
-			}
-		}
-	}
+	template
 })
 export class OpalCheckbox extends Component {
 	_tabIndex: number;
@@ -79,6 +28,21 @@ export class OpalCheckbox extends Component {
 			_tabIndex(this: OpalCheckbox): number {
 				return this.input.disabled ? -1 : this.input.tabIndex;
 			}
+		});
+	}
+
+	elementAttached() {
+		this.listenTo(this, {
+			'input-checked-change': this._onInputCheckedChange,
+			'input-indeterminate-change': this._onInputIndeterminateChange,
+			'input-focused-change': this._onInputFocusedChange
+		});
+
+		this.listenTo('input', 'change', this._onInputChange);
+
+		this.listenTo('control', {
+			focus: this._onControlFocus,
+			blur: this._onControlBlur
 		});
 	}
 
@@ -95,6 +59,30 @@ export class OpalCheckbox extends Component {
 		}
 	}
 
+	_onInputCheckedChange(evt: IEvent) {
+		if (evt.value) {
+			this.input.indeterminate = false;
+		}
+
+		(this.$('input') as HTMLInputElement).checked = evt.value;
+	}
+
+	_onInputIndeterminateChange(evt: IEvent) {
+		if (evt.value) {
+			this.input.checked = false;
+		}
+	}
+
+	_onInputFocusedChange(evt: IEvent) {
+		if (evt.value) {
+			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+			this.focus();
+		} else {
+			this._documentKeyDownListening.stop();
+			this.blur();
+		}
+	}
+
 	_onDocumentKeyDown(evt: KeyboardEvent) {
 		if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
 			evt.preventDefault();
@@ -106,6 +94,25 @@ export class OpalCheckbox extends Component {
 				this.emit('change');
 			}
 		}
+	}
+
+	_onInputChange(evt: Event) {
+		this.emit((this.input.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
+		this.emit('change');
+	}
+
+	_onControlFocus(evt: Event) {
+		nextTick(() => {
+			if (document.activeElement == evt.target) {
+				this.input.focused = true;
+				this.emit('focus');
+			}
+		});
+	}
+
+	_onControlBlur() {
+		this.input.focused = false;
+		this.emit('blur');
 	}
 
 	get checked(): boolean {

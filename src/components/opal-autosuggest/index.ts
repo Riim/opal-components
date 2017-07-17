@@ -59,7 +59,7 @@ function toComparable(str: string): string {
 				this._clearList();
 
 				this.selectedItem = value;
-				(this.$('text-input') as OpalTextInput).value = value ? value.text : '';
+				this.$<OpalTextInput>('text-input').value = value ? value.text : '';
 			}
 		},
 
@@ -177,15 +177,15 @@ export class OpalAutosuggest extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo((this.$('text-input') as OpalTextInput).textField, 'click', this._onTextFieldClick);
-		this.listenTo((this.$('menu') as Component).element as HTMLElement, 'mouseover', this._onMenuMouseOver);
+		this.listenTo(this.$<OpalTextInput>('text-input').textField, 'click', this._onTextFieldClick);
+		this.listenTo(this.$<Component>('menu').element as HTMLElement, 'mouseover', this._onMenuMouseOver);
 		this.listenTo(this.list, 'change', this._onListChange);
 		this.listenTo(this, 'change:isLoaderShown', this._onIsLoaderShownChange);
 	}
 
 	ready() {
 		if (this.selectedItem) {
-			(this.$('text-input') as OpalTextInput).value = this.selectedItem.text;
+			this.$<OpalTextInput>('text-input').value = this.selectedItem.text;
 		}
 	}
 
@@ -241,11 +241,11 @@ export class OpalAutosuggest extends Component {
 				let focusedListItem = this._focusedListItem;
 
 				if (focusedListItem) {
-					let listItems = this.$$('list-item');
+					let listItems = this.$$<HTMLElement>('list-item');
 					let index = listItems.indexOf(focusedListItem);
 
 					if (evt.which == 38 ? index > 0 : index < listItems.length - 1) {
-						let newFocusedListItem = listItems[index + (evt.which == 38 ? -1 : 1)] as HTMLElement;
+						let newFocusedListItem = listItems[index + (evt.which == 38 ? -1 : 1)];
 
 						this._focusedListItem = newFocusedListItem;
 
@@ -265,7 +265,7 @@ export class OpalAutosuggest extends Component {
 				if (focusedListItem) {
 					let focusedListItemDataSet = focusedListItem.dataset;
 
-					(this.$('text-input') as OpalTextInput).value = focusedListItemDataSet.text as string;
+					this.$<OpalTextInput>('text-input').value = focusedListItemDataSet.text as string;
 
 					this._clearList();
 
@@ -294,7 +294,7 @@ export class OpalAutosuggest extends Component {
 	}
 
 	_onListItemClick(evt: Event, listItem: HTMLElement) {
-		let textInput = this.$('text-input') as OpalTextInput;
+		let textInput = this.$<OpalTextInput>('text-input');
 		let listItemDataSet = listItem.dataset;
 
 		textInput.value = listItemDataSet.text as string;
@@ -312,7 +312,7 @@ export class OpalAutosuggest extends Component {
 		this.loading = true;
 
 		let dataProvider = this.dataProvider;
-		let args = [(this.$('text-input') as OpalTextInput).value];
+		let args = [this.$<OpalTextInput>('text-input').value];
 
 		if (dataProvider.getItems.length >= 2) {
 			args.unshift(this.input.count);
@@ -353,20 +353,20 @@ export class OpalAutosuggest extends Component {
 
 	openMenu(force?: boolean): OpalAutosuggest {
 		if (force || this.list.length) {
-			(this.$('menu') as OpalDropdown).open();
+			this.$<OpalDropdown>('menu').open();
 		}
 
 		return this;
 	}
 
 	closeMenu(): OpalAutosuggest {
-		(this.$('menu') as OpalDropdown).close();
+		this.$<OpalDropdown>('menu').close();
 		return this;
 	}
 
 	_setSelectedItemOfList() {
 		if (this._isNotInputConfirmed) {
-			let comparableQuery = toComparable((this.$('text-input') as OpalTextInput).value || '');
+			let comparableQuery = toComparable(this.$<OpalTextInput>('text-input').value || '');
 			let selectedItem = this.list.find((item) => toComparable(item.text) == comparableQuery) || null;
 
 			if (selectedItem && this.list.length > 1) {
@@ -399,7 +399,7 @@ export class OpalAutosuggest extends Component {
 			this.selectedItem = null;
 		}
 
-		(this.$('text-input') as OpalTextInput).clear();
+		this.$<OpalTextInput>('text-input').clear();
 	}
 
 	_clearList() {

@@ -15,32 +15,7 @@ let nextTick = Utils.nextTick;
 		disabled: false
 	},
 
-	template,
-
-	oevents: {
-		input: {
-			change(evt: Event) {
-				this.emit((this.input.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
-				this.emit('change');
-			}
-		},
-
-		control: {
-			focus(evt: Event) {
-				nextTick(() => {
-					if (document.activeElement == evt.target) {
-						this.input.focused = true;
-						this.emit('focus');
-					}
-				});
-			},
-
-			blur() {
-				this.input.focused = false;
-				this.emit('blur');
-			}
-		}
-	}
+	template
 })
 export class OpalRadioButton extends Component {
 	_tabIndex: number;
@@ -70,6 +45,13 @@ export class OpalRadioButton extends Component {
 			'input-checked-change': this._onInputCheckedChange,
 			'input-focused-change': this._onInputFocusedChange
 		});
+
+		this.listenTo('input', 'change', this._onInputChange);
+
+		this.listenTo('control', {
+			focus: this._onControlFocus,
+			blur: this._onControlBlur
+		});
 	}
 
 	_onInputCheckedChange(evt: IEvent) {
@@ -97,6 +79,25 @@ export class OpalRadioButton extends Component {
 				this.emit('change');
 			}
 		}
+	}
+
+	_onInputChange(evt: Event) {
+		this.emit((this.input.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
+		this.emit('change');
+	}
+
+	_onControlFocus(evt: Event) {
+		nextTick(() => {
+			if (document.activeElement == evt.target) {
+				this.input.focused = true;
+				this.emit('focus');
+			}
+		});
+	}
+
+	_onControlBlur() {
+		this.input.focused = false;
+		this.emit('blur');
 	}
 
 	get checked(): boolean {

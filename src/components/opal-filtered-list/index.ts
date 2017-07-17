@@ -17,14 +17,14 @@ import template = require('./index.nelm');
 	oevents: {
 		'query-input': {
 			input(evt: IEvent) {
-				(this.$('loaded-list') as OpalLoadedList).input.query = (evt.target as OpalTextInput).value;
+				this.$<OpalLoadedList>('loaded-list').input.query = (evt.target as OpalTextInput).value;
 			}
 		}
 	}
 })
 export class OpalFilteredList extends Component {
 	focus() {
-		let queryInput = this.$('query-input') as OpalTextInput | null;
+		let queryInput = this.$<OpalTextInput | null>('query-input');
 
 		if (queryInput) {
 			queryInput.focus();

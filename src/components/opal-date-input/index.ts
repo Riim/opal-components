@@ -42,8 +42,8 @@ function pad(num: number): string {
 	oevents: {
 		'text-input': {
 			change(evt) {
-				if ((this.$('input-validator') as OpalInputValidator).valid) {
-					(this.$('calendar') as OpalCalendar).input.value = (evt.target as OpalTextInput).value;
+				if (this.$<OpalInputValidator>('input-validator').valid) {
+					this.$<OpalCalendar>('calendar').input.value = (evt.target as OpalTextInput).value;
 				}
 			}
 		},
@@ -64,9 +64,9 @@ function pad(num: number): string {
 
 		calendar: {
 			change(evt) {
-				(this.$('calendar-menu') as OpalDropdown).close();
+				this.$<OpalDropdown>('calendar-menu').close();
 
-				let textInput = this.$('text-input') as OpalTextInput;
+				let textInput = this.$<OpalTextInput>('text-input');
 
 				textInput.value = (evt.target as OpalCalendar).input.value;
 				textInput.focus();
@@ -78,7 +78,7 @@ export class OpalDateInput extends Component {
 	dateExists = dateExists;
 
 	dateInRange(date: string): boolean {
-		let calendar = this.$('calendar') as OpalCalendar;
+		let calendar = this.$<OpalCalendar>('calendar');
 		let match = date.match(/\d+/g) as RegExpMatchArray;
 		let day = +match[0];
 		let month = +match[1] - 1;
@@ -105,7 +105,7 @@ export class OpalDateInput extends Component {
 	}
 
 	_onTextInputClick() {
-		(this.$('calendar-menu') as OpalDropdown).open();
+		this.$<OpalDropdown>('calendar-menu').open();
 	}
 
 	_onDocumentFocus(evt: Event) {
@@ -114,25 +114,25 @@ export class OpalDateInput extends Component {
 		}
 
 		if (!this.element.contains((evt.target as Node).parentNode as Node)) {
-			(this.$('calendar-menu') as OpalDropdown).close();
+			this.$<OpalDropdown>('calendar-menu').close();
 		}
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {
 		if (evt.which == 27/* Esc */) {
 			evt.preventDefault();
-			(this.$('calendar-menu') as OpalDropdown).close();
+			this.$<OpalDropdown>('calendar-menu').close();
 		}
 	}
 
 	_onDocumentClick(evt: Event) {
 		if (!this.element.contains(evt.target as HTMLElement)) {
-			(this.$('calendar-menu') as OpalDropdown).close();
+			this.$<OpalDropdown>('calendar-menu').close();
 		}
 	}
 
 	get value(): Date | null {
-		return (this.$('calendar') as OpalCalendar).value;
+		return this.$<OpalCalendar>('calendar').value;
 	}
 
 	getISOValue(h?: number, m?: number, s?: number, ms?: number): string | null {
@@ -159,6 +159,6 @@ export class OpalDateInput extends Component {
 	}
 
 	validate(): boolean {
-		return (this.$('input-validator') as OpalInputValidator).validate();
+		return this.$<OpalInputValidator>('input-validator').validate();
 	}
 }

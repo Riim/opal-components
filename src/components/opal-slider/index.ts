@@ -44,8 +44,8 @@ export class OpalSlider extends Component {
 
 	elementAttached() {
 		if (this.input.range) {
-			this.listenTo(this.$('first-input') as Node, 'input', this._onFirstInputInput);
-			this.listenTo(this.$('second-input') as Node, 'input', this._onSecondInputInput);
+			this.listenTo('first-input', 'input', this._onFirstInputInput);
+			this.listenTo('second-input', 'input', this._onSecondInputInput);
 		}
 	}
 

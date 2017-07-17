@@ -300,7 +300,7 @@ export class OpalCalendar extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo(this.$('days') as HTMLElement, {
+		this.listenTo('days', {
 			focus(evt: Event) {
 				if ((evt.target as HTMLElement).classList.contains('opal-calendar__day')) {
 					nextTick(() => {

@@ -33,7 +33,7 @@ let defaultVMItemSchema = OpalSelect.defaultVMItemSchema;
 	oevents: {
 		control: {
 			click(evt: Event) {
-				let select = this.$('select') as OpalSelect;
+				let select = this.$<OpalSelect>('select');
 				let selectEl = select.element;
 				let node = evt.target as Node;
 
@@ -54,17 +54,17 @@ let defaultVMItemSchema = OpalSelect.defaultVMItemSchema;
 
 		select: {
 			input() {
-				(this.$('select') as OpalSelect).close();
+				this.$<OpalSelect>('select').close();
 			},
 
 			// не соединять on-select и on-deselect в on-change,
 			// тк on-change на opal-select[multiple] генерируется только при закрытии
 			'<opal-select-option>select'() {
-				(this.$('select') as OpalSelect).close();
+				this.$<OpalSelect>('select').close();
 			},
 
 			'<opal-select-option>deselect'() {
-				(this.$('select') as OpalSelect).close();
+				this.$<OpalSelect>('select').close();
 			}
 		}
 	}
