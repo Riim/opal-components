@@ -25,7 +25,7 @@ opal-input-validator/input-validator {
 	}
 }
 
-opal-dropdown/calendar-menu {
+opal-dropdown/calendar-menu (auto-height=no) {
 	opal-calendar/calendar (from-date={input.fromDate}, to-date={input.toDate}, value={input.value}, date-delimiter=.)
 }
 
