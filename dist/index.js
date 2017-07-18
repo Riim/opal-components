@@ -1194,9 +1194,39 @@ var OpalSignButton = (function (_super) {
             }
         });
     };
+    OpalSignButton.prototype.elementAttached = function () {
+        this.listenTo(this, 'input-focused-change', this._onInputFocusedChange);
+        this.listenTo('control', {
+            focus: this._onControlFocus,
+            blur: this._onControlBlur,
+            click: this._onControlClick
+        });
+    };
     OpalSignButton.prototype.ready = function () {
         if (this.input.focused) {
             this.focus();
+        }
+    };
+    OpalSignButton.prototype._onInputFocusedChange = function (evt) {
+        this[evt.value ? 'focus' : 'blur']();
+    };
+    OpalSignButton.prototype._onControlFocus = function (evt) {
+        var _this = this;
+        nextTick(function () {
+            if (document.activeElement == evt.target) {
+                _this.input.focused = true;
+                _this.emit('focus');
+            }
+        });
+    };
+    OpalSignButton.prototype._onControlBlur = function () {
+        this.input.focused = false;
+        this.emit('blur');
+    };
+    OpalSignButton.prototype._onControlClick = function (evt) {
+        evt.preventDefault();
+        if (!this.input.disabled) {
+            this.click();
         }
     };
     OpalSignButton.prototype.click = function () {
@@ -1260,35 +1290,7 @@ var OpalSignButton = (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template,
-            oevents: {
-                ':component': {
-                    'input-focused-change': function (evt) {
-                        this[evt.value ? 'focus' : 'blur']();
-                    }
-                },
-                control: {
-                    focus: function (evt) {
-                        var _this = this;
-                        nextTick(function () {
-                            if (document.activeElement == evt.target) {
-                                _this.input.focused = true;
-                                _this.emit('focus');
-                            }
-                        });
-                    },
-                    blur: function () {
-                        this.input.focused = false;
-                        this.emit('blur');
-                    },
-                    click: function (evt) {
-                        evt.preventDefault();
-                        if (!this.input.disabled) {
-                            this.click();
-                        }
-                    }
-                }
-            }
+            template: template
         })
     ], OpalSignButton);
     return OpalSignButton;
@@ -1689,8 +1691,7 @@ var OpalInputMask = (function (_super) {
             this._clearBuffer(start, end);
             this._shiftLeft(start, end - 1);
             if (value != textField.value) {
-                var textInput = this.$('text-input');
-                textInput.constructor.oevents['text-field'].input.call(textInput, evt);
+                this.$('text-input')._onTextFieldInput(evt);
             }
         }
         else if (key == 27) {
@@ -1698,8 +1699,7 @@ var OpalInputMask = (function (_super) {
             if (textField.value != this._textOnFocus) {
                 textField.value = this._textOnFocus;
                 this._setTextFieldSelection(0, this._checkValue(false));
-                var textInput = this.$('text-input');
-                textInput.constructor.oevents['text-field'].input.call(textInput, evt);
+                this.$('text-input')._onTextFieldInput(evt);
             }
         }
     };
@@ -1728,15 +1728,13 @@ var OpalInputMask = (function (_super) {
                     this._writeBuffer();
                     index = this._nextTestIndex(index);
                     this._setTextFieldSelection(index, index);
-                    var textInput = this.$('text-input');
-                    textInput.constructor.oevents['text-field'].input.call(textInput, evt);
+                    this.$('text-input')._onTextFieldInput(evt);
                     if (index >= bufferLen) {
                         this.emit('complete');
                     }
                 }
                 else if (start != end) {
-                    var textInput = this.$('text-input');
-                    textInput.constructor.oevents['text-field'].input.call(textInput, evt);
+                    this.$('text-input')._onTextFieldInput(evt);
                 }
             }
         }
@@ -4438,9 +4436,6 @@ var OpalCalendar = (function (_super) {
             this._click(document.activeElement);
         }
     };
-    OpalCalendar.prototype._onDayClick = function (evt) {
-        this._click(evt.target);
-    };
     OpalCalendar.prototype._click = function (dayEl) {
         if (dayEl.hasAttribute('selected') || dayEl.hasAttribute('disabled')) {
             return;
@@ -4509,6 +4504,13 @@ var OpalCalendar = (function (_super) {
                         this.shownYear = +evt.target.value;
                     }
                 }
+            },
+            domEvents: {
+                day: {
+                    click: function (evt) {
+                        this._click(evt.target);
+                    }
+                }
             }
         })
     ], OpalCalendar);
@@ -4573,7 +4575,7 @@ exports.parseDate = parseDate;
 /* 75 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/s-month (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months, rt-silent) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/s-year (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years, rt-silent) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={isBtnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ndiv/week-days {\ndiv/week-days-row {\n@repeat (for=weekDay of weekDaysShort, rt-silent) {\nspan/week-day { '{weekDay}' }\n}\n}\n}\ndiv/days {\n@repeat (for=weekDays of days, rt-silent) {\ndiv/days-row {\n@repeat (for=day of weekDays, rt-silent) {\nspan/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date},\non-click=_onDayClick\n) { '{day.value}' }\n}\n}\n}\n}\n}\n}"
+module.exports = "@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/s-month (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months, rt-silent) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/s-year (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years, rt-silent) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={isBtnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ndiv/week-days {\ndiv/week-days-row {\n@repeat (for=weekDay of weekDaysShort, rt-silent) {\nspan/week-day { '{weekDay}' }\n}\n}\n}\ndiv/days {\n@repeat (for=weekDays of days, rt-silent) {\ndiv/days-row {\n@repeat (for=day of weekDays, rt-silent) {\nspan/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date}\n) { '{day.value}' }\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 76 */
@@ -5201,8 +5203,16 @@ var OpalAutosuggest = (function (_super) {
         });
     };
     OpalAutosuggest.prototype.elementAttached = function () {
+        this.listenTo(this, 'input-selected-item-change', this._onInputSelectedItemChange);
+        this.listenTo('text-input', {
+            focus: this._onTextInputFocus,
+            blur: this._onTextInputBlur,
+            input: this._onTextInputInput,
+            change: this._onTextInputChange
+        });
         this.listenTo(this.$('text-input').textField, 'click', this._onTextFieldClick);
-        this.listenTo(this.$('menu').element, 'mouseover', this._onMenuMouseOver);
+        this.listenTo('menu', 'input-opened-change', this._onMenuInputOpenedChange);
+        this.listenTo(this.$('menu').element, 'mouseover', this._onMenuElementMouseOver);
         this.listenTo(this.list, 'change', this._onListChange);
         this.listenTo(this, 'change:isLoaderShown', this._onIsLoaderShownChange);
     };
@@ -5211,10 +5221,62 @@ var OpalAutosuggest = (function (_super) {
             this.$('text-input').value = this.selectedItem.text;
         }
     };
+    OpalAutosuggest.prototype._onInputSelectedItemChange = function (evt) {
+        var value = evt.value;
+        this._clearList();
+        this.selectedItem = value;
+        this.$('text-input').value = value ? value.text : '';
+    };
+    OpalAutosuggest.prototype._onTextInputFocus = function () {
+        this.openMenu();
+    };
+    OpalAutosuggest.prototype._onTextInputBlur = function () {
+        this._cancelLoading();
+        // Нужно для следующего случая:
+        // 1. выбираем что-то;
+        // 2. изменяем запрос так чтобы ничего не нашлось;
+        // 3. убираем фокус.
+        if (!this.$('menu').input.opened) {
+            this._setSelectedItemOfList();
+        }
+    };
+    OpalAutosuggest.prototype._onTextInputInput = function (evt) {
+        var _this = this;
+        this._isNotInputConfirmed = true;
+        this._clearList();
+        if ((evt.target.value || '').length >= this.input.minQueryLength) {
+            this._isLoadingPlanned = true;
+            this._loadingTimeout = this.setTimeout(function () {
+                _this._isLoadingPlanned = false;
+                _this._load();
+            }, 300);
+        }
+    };
+    OpalAutosuggest.prototype._onTextInputChange = function (evt) {
+        if (!evt.target.value) {
+            this._clearList();
+            if (this.selectedItem) {
+                this.selectedItem = null;
+                this.emit('change');
+            }
+        }
+    };
     OpalAutosuggest.prototype._onTextFieldClick = function () {
         this.openMenu();
     };
-    OpalAutosuggest.prototype._onMenuMouseOver = function (evt) {
+    OpalAutosuggest.prototype._onMenuInputOpenedChange = function (evt) {
+        if (evt.value) {
+            this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
+            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+            this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+        }
+        else {
+            this._documentFocusListening.stop();
+            this._documentKeyDownListening.stop();
+            this._documentClickListening.stop();
+        }
+    };
+    OpalAutosuggest.prototype._onMenuElementMouseOver = function (evt) {
         var menu = this.$('menu').element;
         var el = evt.target;
         for (; !el.classList.contains('opal-autosuggest__list-item'); el = el.parentNode) {
@@ -5290,17 +5352,6 @@ var OpalAutosuggest = (function (_super) {
             this.closeMenu();
             this._setSelectedItemOfList();
         }
-    };
-    OpalAutosuggest.prototype._onListItemClick = function (evt, listItem) {
-        var textInput = this.$('text-input');
-        var listItemDataSet = listItem.dataset;
-        textInput.value = listItemDataSet.text;
-        textInput.focus();
-        this._clearList();
-        this._setSelectedItem({
-            value: listItemDataSet.value,
-            text: listItemDataSet.text
-        });
     };
     OpalAutosuggest.prototype._load = function () {
         this.loading = true;
@@ -5400,63 +5451,18 @@ var OpalAutosuggest = (function (_super) {
                 nothingFound: rionite_1.getText.t('Ничего не найдено')
             },
             template: template,
-            oevents: {
-                ':component': {
-                    'input-selected-item-change': function (evt) {
-                        var value = evt.value;
+            domEvents: {
+                'list-item': {
+                    click: function (_, listItem) {
+                        var textInput = this.$('text-input');
+                        var listItemDataSet = listItem.dataset;
+                        textInput.value = listItemDataSet.text;
+                        textInput.focus();
                         this._clearList();
-                        this.selectedItem = value;
-                        this.$('text-input').value = value ? value.text : '';
-                    }
-                },
-                'text-input': {
-                    focus: function () {
-                        this.openMenu();
-                    },
-                    blur: function () {
-                        this._cancelLoading();
-                        // Нужно для следующего случая:
-                        // 1. выбираем что-то;
-                        // 2. изменяем запрос так чтобы ничего не нашлось;
-                        // 3. убираем фокус.
-                        if (!this.$('menu').input.opened) {
-                            this._setSelectedItemOfList();
-                        }
-                    },
-                    input: function (evt) {
-                        var _this = this;
-                        this._isNotInputConfirmed = true;
-                        this._clearList();
-                        if ((evt.target.value || '').length >= this.input.minQueryLength) {
-                            this._isLoadingPlanned = true;
-                            this._loadingTimeout = this.setTimeout(function () {
-                                _this._isLoadingPlanned = false;
-                                _this._load();
-                            }, 300);
-                        }
-                    },
-                    change: function (evt) {
-                        if (!evt.target.value) {
-                            this._clearList();
-                            if (this.selectedItem) {
-                                this.selectedItem = null;
-                                this.emit('change');
-                            }
-                        }
-                    }
-                },
-                menu: {
-                    'input-opened-change': function (evt) {
-                        if (evt.value) {
-                            this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
-                            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-                            this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
-                        }
-                        else {
-                            this._documentFocusListening.stop();
-                            this._documentKeyDownListening.stop();
-                            this._documentClickListening.stop();
-                        }
+                        this._setSelectedItem({
+                            value: listItemDataSet.value,
+                            text: listItemDataSet.text
+                        });
                     }
                 }
             }
@@ -5488,7 +5494,7 @@ module.exports = (function(d) {
 /* 90 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue={input.selectedItem.text},\nplaceholder={constructor.i18n.textInputPlaceholder},\nloading={isLoaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of list, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}, on-click=_onListItemClick) {\n'{item.text}'\n}\n}\n}\nspan/nothing-found-message (shown={list.length |not }) { '{constructor.i18n.nothingFound}' }\n}\n}"
+module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue={input.selectedItem.text},\nplaceholder={constructor.i18n.textInputPlaceholder},\nloading={isLoaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of list, rt-silent) {\ndiv/list-item (data-value={item.value}, data-text={item.text}) {\n'{item.text}'\n}\n}\n}\nspan/nothing-found-message (shown={list.length |not }) { '{constructor.i18n.nothingFound}' }\n}\n}"
 
 /***/ }),
 /* 91 */

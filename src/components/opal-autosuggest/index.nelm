@@ -11,7 +11,7 @@ rt-content (select=.opal-autosuggest__text-input) {
 opal-dropdown/menu {
 	div/list {
 		@repeat (for=item of list, rt-silent) {
-			div/list-item (data-value={item.value}, data-text={item.text}, on-click=_onListItemClick) {
+			div/list-item (data-value={item.value}, data-text={item.text}) {
 				'{item.text}'
 			}
 		}

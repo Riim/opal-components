@@ -51,73 +51,21 @@ function toComparable(str: string): string {
 
 	template,
 
-	oevents: {
-		':component': {
-			'input-selected-item-change'(evt: IEvent) {
-				let value = evt.value as IItem;
+	domEvents: {
+		'list-item': {
+			click(_: any, listItem: HTMLElement) {
+				let textInput = this.$<OpalTextInput>('text-input');
+				let listItemDataSet = listItem.dataset;
+
+				textInput.value = listItemDataSet.text as string;
+				textInput.focus();
 
 				this._clearList();
 
-				this.selectedItem = value;
-				this.$<OpalTextInput>('text-input').value = value ? value.text : '';
-			}
-		},
-
-		'text-input': {
-			focus() {
-				this.openMenu();
-			},
-
-			blur() {
-				this._cancelLoading();
-
-				// Нужно для следующего случая:
-				// 1. выбираем что-то;
-				// 2. изменяем запрос так чтобы ничего не нашлось;
-				// 3. убираем фокус.
-				if (!(this.$('menu') as Component).input.opened) {
-					this._setSelectedItemOfList();
-				}
-			},
-
-			input(evt: IEvent) {
-				this._isNotInputConfirmed = true;
-
-				this._clearList();
-
-				if (((evt.target as OpalTextInput).value || '').length >= this.input.minQueryLength) {
-					this._isLoadingPlanned = true;
-
-					this._loadingTimeout = this.setTimeout(() => {
-						this._isLoadingPlanned = false;
-						this._load();
-					}, 300);
-				}
-			},
-
-			change(evt: IEvent) {
-				if (!(evt.target as OpalTextInput).value) {
-					this._clearList();
-
-					if (this.selectedItem) {
-						this.selectedItem = null;
-						this.emit('change');
-					}
-				}
-			}
-		},
-
-		menu: {
-			'input-opened-change'(evt: IEvent) {
-				if (evt.value) {
-					this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
-					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-					this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
-				} else {
-					this._documentFocusListening.stop();
-					this._documentKeyDownListening.stop();
-					this._documentClickListening.stop();
-				}
+				this._setSelectedItem({
+					value: listItemDataSet.value as string,
+					text: listItemDataSet.text as string
+				});
 			}
 		}
 	}
@@ -177,8 +125,16 @@ export class OpalAutosuggest extends Component {
 	}
 
 	elementAttached() {
+		this.listenTo(this, 'input-selected-item-change', this._onInputSelectedItemChange);
+		this.listenTo('text-input', {
+			focus: this._onTextInputFocus,
+			blur: this._onTextInputBlur,
+			input: this._onTextInputInput,
+			change: this._onTextInputChange
+		});
 		this.listenTo(this.$<OpalTextInput>('text-input').textField, 'click', this._onTextFieldClick);
-		this.listenTo(this.$<Component>('menu').element as HTMLElement, 'mouseover', this._onMenuMouseOver);
+		this.listenTo('menu', 'input-opened-change', this._onMenuInputOpenedChange);
+		this.listenTo(this.$<Component>('menu').element, 'mouseover', this._onMenuElementMouseOver);
 		this.listenTo(this.list, 'change', this._onListChange);
 		this.listenTo(this, 'change:isLoaderShown', this._onIsLoaderShownChange);
 	}
@@ -189,12 +145,75 @@ export class OpalAutosuggest extends Component {
 		}
 	}
 
+	_onInputSelectedItemChange(evt: IEvent) {
+		let value = evt.value as IItem;
+
+		this._clearList();
+
+		this.selectedItem = value;
+		this.$<OpalTextInput>('text-input').value = value ? value.text : '';
+	}
+
+	_onTextInputFocus() {
+		this.openMenu();
+	}
+
+	_onTextInputBlur() {
+		this._cancelLoading();
+
+		// Нужно для следующего случая:
+		// 1. выбираем что-то;
+		// 2. изменяем запрос так чтобы ничего не нашлось;
+		// 3. убираем фокус.
+		if (!this.$<Component>('menu').input.opened) {
+			this._setSelectedItemOfList();
+		}
+	}
+
+	_onTextInputInput(evt: IEvent) {
+		this._isNotInputConfirmed = true;
+
+		this._clearList();
+
+		if (((evt.target as OpalTextInput).value || '').length >= this.input.minQueryLength) {
+			this._isLoadingPlanned = true;
+
+			this._loadingTimeout = this.setTimeout(() => {
+				this._isLoadingPlanned = false;
+				this._load();
+			}, 300);
+		}
+	}
+
+	_onTextInputChange(evt: IEvent) {
+		if (!(evt.target as OpalTextInput).value) {
+			this._clearList();
+
+			if (this.selectedItem) {
+				this.selectedItem = null;
+				this.emit('change');
+			}
+		}
+	}
+
 	_onTextFieldClick() {
 		this.openMenu();
 	}
 
-	_onMenuMouseOver(evt: Event) {
-		let menu = (this.$('menu') as Component).element as HTMLElement;
+	_onMenuInputOpenedChange(evt: IEvent) {
+		if (evt.value) {
+			this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
+			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+			this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+		} else {
+			this._documentFocusListening.stop();
+			this._documentKeyDownListening.stop();
+			this._documentClickListening.stop();
+		}
+	}
+
+	_onMenuElementMouseOver(evt: Event) {
+		let menu = this.$<Component>('menu').element as HTMLElement;
 		let el = evt.target as HTMLElement;
 
 		for (; !el.classList.contains('opal-autosuggest__list-item'); el = el.parentNode as HTMLElement) {
@@ -218,7 +237,7 @@ export class OpalAutosuggest extends Component {
 	}
 
 	_onIsLoaderShownChange(evt: IEvent) {
-		(this.$('text-input') as Component).input.loading = evt.value;
+		this.$<Component>('text-input').input.loading = evt.value;
 	}
 
 	_onDocumentFocus(evt: Event) {
@@ -234,8 +253,8 @@ export class OpalAutosuggest extends Component {
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {
 		switch (evt.which) {
-			case 38/* Up */:
-			case 40/* Bottom */: {
+			case 38 /* Up */:
+			case 40 /* Bottom */: {
 				evt.preventDefault();
 
 				let focusedListItem = this._focusedListItem;
@@ -256,8 +275,8 @@ export class OpalAutosuggest extends Component {
 
 				break;
 			}
-			case 13/* Enter */:
-			case 39/* Right */: {
+			case 13 /* Enter */:
+			case 39 /* Right */: {
 				evt.preventDefault();
 
 				let focusedListItem = this._focusedListItem;
@@ -277,7 +296,7 @@ export class OpalAutosuggest extends Component {
 
 				break;
 			}
-			case 27/* Esc */: {
+			case 27 /* Esc */: {
 				evt.preventDefault();
 				this.closeMenu();
 				this._setSelectedItemOfList();
@@ -291,21 +310,6 @@ export class OpalAutosuggest extends Component {
 			this.closeMenu();
 			this._setSelectedItemOfList();
 		}
-	}
-
-	_onListItemClick(evt: Event, listItem: HTMLElement) {
-		let textInput = this.$<OpalTextInput>('text-input');
-		let listItemDataSet = listItem.dataset;
-
-		textInput.value = listItemDataSet.text as string;
-		textInput.focus();
-
-		this._clearList();
-
-		this._setSelectedItem({
-			value: listItemDataSet.value as string,
-			text: listItemDataSet.text as string
-		});
 	}
 
 	_load() {
@@ -331,7 +335,7 @@ export class OpalAutosuggest extends Component {
 			this.list.addRange(items);
 
 			Cell.afterRelease(() => {
-				let focusedListItem = this.$('list-item') as HTMLElement;
+				let focusedListItem = this.$<HTMLElement>('list-item');
 
 				this._focusedListItem = focusedListItem;
 				focusedListItem.setAttribute('focused', '');

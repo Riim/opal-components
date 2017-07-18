@@ -119,7 +119,7 @@ export class OpalDateInput extends Component {
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {
-		if (evt.which == 27/* Esc */) {
+		if (evt.which == 27 /* Esc */) {
 			evt.preventDefault();
 			this.$<OpalDropdown>('calendar-menu').close();
 		}

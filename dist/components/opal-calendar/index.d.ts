@@ -32,6 +32,5 @@ export declare class OpalCalendar extends Component {
     initialize(): void;
     elementAttached(): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
-    _onDayClick(evt: MouseEvent): void;
     _click(dayEl: HTMLElement): void;
 }

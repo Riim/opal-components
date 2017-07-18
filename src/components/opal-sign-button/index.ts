@@ -17,39 +17,7 @@ let nextTick = Utils.nextTick;
 		disabled: false
 	},
 
-	template,
-
-	oevents: {
-		':component': {
-			'input-focused-change'(evt: IEvent) {
-				this[evt.value ? 'focus' : 'blur']();
-			}
-		},
-
-		control: {
-			focus(evt: Event) {
-				nextTick(() => {
-					if (document.activeElement == evt.target) {
-						this.input.focused = true;
-						this.emit('focus');
-					}
-				});
-			},
-
-			blur() {
-				this.input.focused = false;
-				this.emit('blur');
-			},
-
-			click(evt: Event) {
-				evt.preventDefault();
-
-				if (!this.input.disabled) {
-					this.click();
-				}
-			}
-		}
-	}
+	template
 })
 export class OpalSignButton extends Component {
 	_tabIndex: number;
@@ -64,9 +32,45 @@ export class OpalSignButton extends Component {
 		});
 	}
 
+	elementAttached() {
+		this.listenTo(this, 'input-focused-change', this._onInputFocusedChange);
+
+		this.listenTo('control', {
+			focus: this._onControlFocus,
+			blur: this._onControlBlur,
+			click: this._onControlClick
+		});
+	}
+
 	ready() {
 		if (this.input.focused) {
 			this.focus();
+		}
+	}
+
+	_onInputFocusedChange(evt: IEvent) {
+		this[evt.value ? 'focus' : 'blur']();
+	}
+
+	_onControlFocus(evt: Event) {
+		nextTick(() => {
+			if (document.activeElement == evt.target) {
+				this.input.focused = true;
+				this.emit('focus');
+			}
+		});
+	}
+
+	_onControlBlur() {
+		this.input.focused = false;
+		this.emit('blur');
+	}
+
+	_onControlClick(evt: Event) {
+		evt.preventDefault();
+
+		if (!this.input.disabled) {
+			this.click();
 		}
 	}
 

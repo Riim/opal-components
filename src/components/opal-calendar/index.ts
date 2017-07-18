@@ -88,6 +88,14 @@ function getTodayDate() {
 				this.shownYear = +(evt.target as OpalSelectOption).value;
 			}
 		}
+	},
+
+	domEvents: {
+		day: {
+			click(evt: Event) {
+				this._click(evt.target as HTMLElement);
+			}
+		}
 	}
 })
 export class OpalCalendar extends Component {
@@ -327,14 +335,10 @@ export class OpalCalendar extends Component {
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {
-		if (evt.which == 13/* Enter */) {
+		if (evt.which == 13 /* Enter */) {
 			evt.preventDefault();
 			this._click(document.activeElement as HTMLElement);
 		}
-	}
-
-	_onDayClick(evt: MouseEvent) {
-		this._click(evt.target as HTMLElement);
 	}
 
 	_click(dayEl: HTMLElement) {

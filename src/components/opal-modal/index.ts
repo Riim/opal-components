@@ -20,7 +20,7 @@ function onDocumentFocus(evt: Event) {
 }
 
 function onDocumentKeyUp(evt: KeyboardEvent) {
-	if (evt.keyCode == 27/* Esc */) {
+	if (evt.keyCode == 27 /* Esc */) {
 		evt.preventDefault();
 		openedModals[0].close();
 	}

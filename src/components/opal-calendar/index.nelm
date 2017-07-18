@@ -42,8 +42,7 @@ div/body {
 						not-in-current-month={day.notInCurrentMonth},
 						disabled={day.disabled},
 						tabindex={day.tabIndex},
-						data-date={day.date},
-						on-click=_onDayClick
+						data-date={day.date}
 					) { '{day.value}' }
 				}
 			}

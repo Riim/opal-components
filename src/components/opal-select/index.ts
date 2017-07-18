@@ -599,7 +599,7 @@ export class OpalSelect extends Component {
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {
 		switch (evt.which) {
-			case 32/* Space */: {
+			case 32 /* Space */: {
 				evt.preventDefault();
 
 				if (this._opened) {
@@ -612,7 +612,7 @@ export class OpalSelect extends Component {
 
 				break;
 			}
-			case 38/* Up */: {
+			case 38 /* Up */: {
 				evt.preventDefault();
 
 				if (this._opened) {
@@ -645,7 +645,7 @@ export class OpalSelect extends Component {
 
 				break;
 			}
-			case 40/* Down */: {
+			case 40 /* Down */: {
 				evt.preventDefault();
 
 				if (this._opened) {
@@ -678,7 +678,7 @@ export class OpalSelect extends Component {
 
 				break;
 			}
-			case 27/* Esc */: {
+			case 27 /* Esc */: {
 				evt.preventDefault();
 				this.close();
 				this.focus();

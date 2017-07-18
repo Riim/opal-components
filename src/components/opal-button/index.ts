@@ -92,7 +92,7 @@ export class OpalButton extends Component {
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {
-		if (evt.which == 13/* Enter */) {
+		if (evt.which == 13 /* Enter */) {
 			evt.preventDefault();
 
 			if (!this.input.disabled) {

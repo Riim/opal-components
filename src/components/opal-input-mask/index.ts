@@ -1,10 +1,5 @@
 import { Cell, define, Utils } from 'cellx';
-import {
-	Component,
-	d,
-	IComponentElement,
-	IComponentOEvents
-	} from 'rionite';
+import { Component, d, IComponentElement } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
 import { OpalInputMaskDefinition } from './opal-input-mask-definition';
 
@@ -156,9 +151,7 @@ export class OpalInputMask extends Component {
 			this._shiftLeft(start, end - 1);
 
 			if (value != textField.value) {
-				let textInput = this.$<OpalTextInput>('text-input');
-				((textInput.constructor as typeof OpalTextInput).oevents as IComponentOEvents<OpalTextInput>)
-					['text-field'].input.call(textInput, evt);
+				this.$<OpalTextInput>('text-input')._onTextFieldInput(evt);
 			}
 		} else if (key == 27) { // Escape
 			evt.preventDefault();
@@ -166,11 +159,7 @@ export class OpalInputMask extends Component {
 			if (textField.value != this._textOnFocus) {
 				textField.value = this._textOnFocus;
 				this._setTextFieldSelection(0, this._checkValue(false));
-
-				let textInput = this.$<OpalTextInput>('text-input');
-
-				((textInput.constructor as typeof OpalTextInput).oevents as IComponentOEvents<OpalTextInput>)
-					['text-field'].input.call(textInput, evt);
+				this.$<OpalTextInput>('text-input')._onTextFieldInput(evt);
 			}
 		}
 	}
@@ -209,17 +198,13 @@ export class OpalInputMask extends Component {
 
 					this._setTextFieldSelection(index, index);
 
-					let textInput = this.$<OpalTextInput>('text-input');
-					((textInput.constructor as typeof OpalTextInput).oevents as IComponentOEvents<OpalTextInput>)
-						['text-field'].input.call(textInput, evt);
+					this.$<OpalTextInput>('text-input')._onTextFieldInput(evt);
 
 					if (index >= bufferLen) {
 						this.emit('complete');
 					}
 				} else if (start != end) {
-					let textInput = this.$<OpalTextInput>('text-input');
-					((textInput.constructor as typeof OpalTextInput).oevents as IComponentOEvents<OpalTextInput>)
-						['text-field'].input.call(textInput, evt);
+					this.$<OpalTextInput>('text-input')._onTextFieldInput(evt);
 				}
 			}
 		}
