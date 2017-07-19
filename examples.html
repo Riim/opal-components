@@ -343,11 +343,23 @@ body {
 
 <opal-code-listing>
 	<div class="opal-code-listing__example-html">
+		<div style="position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;">
+			<opal-popover auto-direction="no" opened>Popover<br>Popover</opal-popover>
+			<opal-popover to="bottom" auto-direction="no" opened>Popover<br>Popover</opal-popover>
+			<opal-popover to="left" auto-direction="no" opened>Popover<br>Popover</opal-popover>
+			<opal-popover to="top" auto-direction="no" opened>Popover<br>Popover</opal-popover>
+		</div>
+		<div style="position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;">
+			<opal-popover from="top" auto-direction="no" opened>Popover<br>Popover</opal-popover>
+			<opal-popover from="right" to="bottom" auto-direction="no" opened>Popover<br>Popover</opal-popover>
+			<opal-popover from="bottom" to="left" auto-direction="no" opened>Popover<br>Popover</opal-popover>
+			<opal-popover from="left" to="top" auto-direction="no" opened>Popover<br>Popover</opal-popover>
+		</div>
 		<div style="position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;">
-			<opal-popover auto-direction="no" opened>Popover</opal-popover>
-			<opal-popover to="bottom" auto-direction="no" opened>Popover</opal-popover>
-			<opal-popover to="left" auto-direction="no" opened>Popover</opal-popover>
-			<opal-popover to="top" auto-direction="no" opened>Popover</opal-popover>
+			<opal-popover from="bottom" auto-direction="no" opened>Popover<br>Popover</opal-popover>
+			<opal-popover from="left" to="bottom" auto-direction="no" opened>Popover<br>Popover</opal-popover>
+			<opal-popover from="top" to="left" auto-direction="no" opened>Popover<br>Popover</opal-popover>
+			<opal-popover from="right" from="left" to="top" auto-direction="no" opened>Popover<br>Popover</opal-popover>
 		</div>
 	</div>
 	<script class="opal-code-listing__example-js">

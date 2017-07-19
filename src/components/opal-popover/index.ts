@@ -7,6 +7,7 @@ import template = require('./index.nelm');
 	elementIs: 'opal-popover',
 
 	input: {
+		from: 'middle',
 		to: 'right',
 		autoDirection: true,
 		autoClosing: false,
@@ -18,7 +19,7 @@ import template = require('./index.nelm');
 export class OpalPopover extends Component {
 	_toOnOpen: string;
 
-	_documentClickListening: IDisposableListening | undefined;
+	_documentClickListening: IDisposableListening | null | undefined;
 
 	ready() {
 		if (this.input.opened) {
@@ -63,6 +64,8 @@ export class OpalPopover extends Component {
 	}
 
 	_open() {
+		let el = this.element;
+
 		if (this.input.autoDirection) {
 			let to = this.input.to;
 
@@ -70,8 +73,8 @@ export class OpalPopover extends Component {
 
 			let docEl = document.documentElement;
 
-			let containerClientRect = this.element.offsetParent.getBoundingClientRect();
-			let elClientRect = this.element.getBoundingClientRect();
+			let containerClientRect = el.offsetParent.getBoundingClientRect();
+			let elClientRect = el.getBoundingClientRect();
 
 			switch (to) {
 				case 'left': {
@@ -125,6 +128,16 @@ export class OpalPopover extends Component {
 			}
 		}
 
+		let from = this.input.from;
+		let arrowStyle = this.$<HTMLElement>('arrow').style;
+
+		arrowStyle.top = arrowStyle.right = arrowStyle.bottom = arrowStyle.left = '';
+
+		if (from != 'middle') {
+			arrowStyle[from] = el.offsetParent[from == 'left' || from == 'right' ? 'clientWidth' : 'clientHeight'] / 2 +
+				'px';
+		}
+
 		if (this.input.autoClosing) {
 			setTimeout(() => {
 				if (this.input.opened) {
@@ -141,6 +154,7 @@ export class OpalPopover extends Component {
 
 		if (this._documentClickListening) {
 			this._documentClickListening.stop();
+			this._documentClickListening = null;
 		}
 	}
 
