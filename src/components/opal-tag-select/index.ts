@@ -9,7 +9,7 @@ import template = require('./index.nelm');
 let defaultDataListItemSchema = OpalSelect.defaultDataListItemSchema;
 let defaultVMItemSchema = OpalSelect.defaultVMItemSchema;
 
-@d.Component({
+@d.Component<OpalTagSelect>({
 	elementIs: 'opal-tag-select',
 
 	input: {
@@ -30,41 +30,11 @@ let defaultVMItemSchema = OpalSelect.defaultVMItemSchema;
 
 	template,
 
-	oevents: {
-		control: {
-			click(evt: Event) {
-				let select = this.$<OpalSelect>('select');
-				let selectEl = select.element;
-				let node = evt.target as Node;
-
-				if (node != selectEl) {
-					let control = this.$('control') as HTMLElement;
-
-					do {
-						if (node == control) {
-							select.toggle();
-							break;
-						}
-
-						node = node.parentNode as Node;
-					} while (node != selectEl);
-				}
-			}
-		},
-
-		select: {
-			input() {
-				this.$<OpalSelect>('select').close();
-			},
-
-			// не соединять on-select и on-deselect в on-change,
-			// тк on-change на opal-select[multiple] генерируется только при закрытии
-			'<opal-select-option>select'() {
-				this.$<OpalSelect>('select').close();
-			},
-
-			'<opal-select-option>deselect'() {
-				this.$<OpalSelect>('select').close();
+	domEvents: {
+		'btn-remove-tag': {
+			click(evt: Event, btn: HTMLElement) {
+				this.viewModel.remove(this.viewModel.get(btn.dataset.tagValue, this._viewModelItemValueFieldName));
+				this.emit('change');
 			}
 		}
 	}
@@ -163,8 +133,52 @@ export class OpalTagSelect extends Component {
 		});
 	}
 
-	_onBtnRemoveTagClick(evt: Event, btn: HTMLElement) {
-		this.viewModel.remove(this.viewModel.get(btn.dataset.tagValue, this._viewModelItemValueFieldName));
+	elementAttached() {
+		this.listenTo('control', 'click', this._onControlClick);
+
+		this.listenTo('select', {
+			input: this._onSelectInput,
+			change: this._onSelectChange,
+			'<opal-select-option>select': this._onSelectOptionSelect,
+			'<opal-select-option>deselect': this._onSelectOptionDeselect
+		});
+	}
+
+	_onControlClick(evt: Event) {
+		let select = this.$<OpalSelect>('select');
+		let selectEl = select.element;
+		let node = evt.target as Node;
+
+		if (node != selectEl) {
+			let control = this.$('control') as HTMLElement;
+
+			do {
+				if (node == control) {
+					select.toggle();
+					break;
+				}
+
+				node = node.parentNode as Node;
+			} while (node != selectEl);
+		}
+	}
+
+	_onSelectInput() {
+		this.emit('input');
+		this.$<OpalSelect>('select').close();
+	}
+
+	_onSelectChange() {
 		this.emit('change');
+	}
+
+	// закрываем в select/deselect а не в change,
+	// тк. change на opal-select[multiple] генерируется только при закрытии
+	_onSelectOptionSelect() {
+		this.$<OpalSelect>('select').close();
+	}
+
+	_onSelectOptionDeselect() {
+		this.$<OpalSelect>('select').close();
 	}
 }

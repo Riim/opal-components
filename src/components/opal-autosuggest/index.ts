@@ -88,8 +88,7 @@ export class OpalAutosuggest extends Component {
 	selectedItem: IItem | null;
 
 	_documentFocusListening: IDisposableListening;
-	_documentKeyDownListening: IDisposableListening;
-	_documentClickListening: IDisposableListening;
+	_documentListening: IDisposableListening;
 
 	initialize() {
 		let input = this.input;
@@ -203,12 +202,13 @@ export class OpalAutosuggest extends Component {
 	_onMenuInputOpenedChange(evt: IEvent) {
 		if (evt.value) {
 			this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
-			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-			this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+			this._documentListening = this.listenTo(document, {
+				keydown: this._onDocumentKeyDown,
+				click: this._onDocumentClick
+			});
 		} else {
 			this._documentFocusListening.stop();
-			this._documentKeyDownListening.stop();
-			this._documentClickListening.stop();
+			this._documentListening.stop();
 		}
 	}
 

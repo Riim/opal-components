@@ -18,5 +18,10 @@ export declare class OpalTagSelect extends Component {
     isPlaceholderShown: boolean;
     _dataListKeypathParam: string | null;
     initialize(): void;
-    _onBtnRemoveTagClick(evt: Event, btn: HTMLElement): void;
+    elementAttached(): void;
+    _onControlClick(evt: Event): void;
+    _onSelectInput(): void;
+    _onSelectChange(): void;
+    _onSelectOptionSelect(): void;
+    _onSelectOptionDeselect(): void;
 }

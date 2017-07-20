@@ -25,8 +25,7 @@ export declare class OpalAutosuggest extends Component {
     _focusedListItem: HTMLElement | null;
     selectedItem: IItem | null;
     _documentFocusListening: IDisposableListening;
-    _documentKeyDownListening: IDisposableListening;
-    _documentClickListening: IDisposableListening;
+    _documentListening: IDisposableListening;
     initialize(): void;
     elementAttached(): void;
     ready(): void;

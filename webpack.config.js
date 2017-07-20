@@ -1,17 +1,17 @@
-var path = require('path');
-var webpack = require('webpack');
-var cssVariables = require('postcss-css-variables');
-var nested = require('postcss-nested');
-var colorFunction = require('postcss-color-function');
-var autoprefixer = require('autoprefixer');
-var csso = require('postcss-csso');
+let path = require('path');
+let webpack = require('webpack');
+let postcssCSSVariables = require('postcss-css-variables');
+let postcssNested = require('postcss-nested');
+let postcssColorFunction = require('postcss-color-function');
+let autoprefixer = require('autoprefixer');
+let csso = require('postcss-csso');
 
-module.exports = function(env) {
+module.exports = (env) => {
 	if (!env) {
 		env = {};
 	}
 
-	var plugins = [
+	let plugins = [
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
 		})
@@ -64,9 +64,9 @@ module.exports = function(env) {
 						loader: 'postcss-loader',
 						options: {
 							plugins: [
-								cssVariables(),
-								nested(),
-								colorFunction(),
+								postcssCSSVariables(),
+								postcssNested(),
+								postcssColorFunction(),
 								autoprefixer({ browsers: ['last 3 versions'] }),
 								csso({ restructure: false })
 							]
@@ -91,7 +91,7 @@ module.exports = function(env) {
 			'created-browser-history'
 		],
 
-		plugins: plugins,
+		plugins,
 
 		watch: env.dev,
 

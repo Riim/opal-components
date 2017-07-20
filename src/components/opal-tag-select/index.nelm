@@ -8,10 +8,7 @@ span/tags {
 				disabled='{tag |key(_viewModelItemDisabledFieldName) }'
 			) {
 				'{tag |key(_viewModelItemTextFieldName) }'
-				button/btn-remove-tag (
-					data-tag-value='{tag |key(_viewModelItemValueFieldName) }',
-					on-click=_onBtnRemoveTagClick
-				)
+				button/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')
 			}
 			' '
 		}

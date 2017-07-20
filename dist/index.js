@@ -5277,13 +5277,14 @@ var OpalAutosuggest = (function (_super) {
     OpalAutosuggest.prototype._onMenuInputOpenedChange = function (evt) {
         if (evt.value) {
             this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
-            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-            this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+            this._documentListening = this.listenTo(document, {
+                keydown: this._onDocumentKeyDown,
+                click: this._onDocumentClick
+            });
         }
         else {
             this._documentFocusListening.stop();
-            this._documentKeyDownListening.stop();
-            this._documentClickListening.stop();
+            this._documentListening.stop();
         }
     };
     OpalAutosuggest.prototype._onMenuElementMouseOver = function (evt) {
@@ -5598,9 +5599,44 @@ var OpalTagSelect = (function (_super) {
             }
         });
     };
-    OpalTagSelect.prototype._onBtnRemoveTagClick = function (evt, btn) {
-        this.viewModel.remove(this.viewModel.get(btn.dataset.tagValue, this._viewModelItemValueFieldName));
+    OpalTagSelect.prototype.elementAttached = function () {
+        this.listenTo('control', 'click', this._onControlClick);
+        this.listenTo('select', {
+            input: this._onSelectInput,
+            change: this._onSelectChange,
+            '<opal-select-option>select': this._onSelectOptionSelect,
+            '<opal-select-option>deselect': this._onSelectOptionDeselect
+        });
+    };
+    OpalTagSelect.prototype._onControlClick = function (evt) {
+        var select = this.$('select');
+        var selectEl = select.element;
+        var node = evt.target;
+        if (node != selectEl) {
+            var control = this.$('control');
+            do {
+                if (node == control) {
+                    select.toggle();
+                    break;
+                }
+                node = node.parentNode;
+            } while (node != selectEl);
+        }
+    };
+    OpalTagSelect.prototype._onSelectInput = function () {
+        this.emit('input');
+        this.$('select').close();
+    };
+    OpalTagSelect.prototype._onSelectChange = function () {
         this.emit('change');
+    };
+    // закрываем в select/deselect а не в change,
+    // тк. change на opal-select[multiple] генерируется только при закрытии
+    OpalTagSelect.prototype._onSelectOptionSelect = function () {
+        this.$('select').close();
+    };
+    OpalTagSelect.prototype._onSelectOptionDeselect = function () {
+        this.$('select').close();
     };
     OpalTagSelect = __decorate([
         rionite_1.d.Component({
@@ -5621,35 +5657,11 @@ var OpalTagSelect = (function (_super) {
                 disabled: false
             },
             template: template,
-            oevents: {
-                control: {
-                    click: function (evt) {
-                        var select = this.$('select');
-                        var selectEl = select.element;
-                        var node = evt.target;
-                        if (node != selectEl) {
-                            var control = this.$('control');
-                            do {
-                                if (node == control) {
-                                    select.toggle();
-                                    break;
-                                }
-                                node = node.parentNode;
-                            } while (node != selectEl);
-                        }
-                    }
-                },
-                select: {
-                    input: function () {
-                        this.$('select').close();
-                    },
-                    // не соединять on-select и on-deselect в on-change,
-                    // тк on-change на opal-select[multiple] генерируется только при закрытии
-                    '<opal-select-option>select': function () {
-                        this.$('select').close();
-                    },
-                    '<opal-select-option>deselect': function () {
-                        this.$('select').close();
+            domEvents: {
+                'btn-remove-tag': {
+                    click: function (evt, btn) {
+                        this.viewModel.remove(this.viewModel.get(btn.dataset.tagValue, this._viewModelItemValueFieldName));
+                        this.emit('change');
                     }
                 }
             }
@@ -5681,7 +5693,7 @@ module.exports = (function(d) {
 /* 93 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nspan/tags {\n@if-then (if=viewModel.length, rt-silent) {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (\ndata-tag-value='{tag |key(_viewModelItemValueFieldName) }',\non-click=_onBtnRemoveTagClick\n)\n}\n' '\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown, rt-silent) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist-keypath={_dataListKeypathParam},\ndatalist-item-schema={input.datalistItemSchema |json },\nadd-new-item-keypath=_addNewItem,\nvalue={input.value},\nview-model-keypath=viewModel,\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=input.datalistKeypath) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/select-option-of-datalist, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=input.datalistKeypath) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider-keypath=dataProvider\n) {\nopal-select-option/select-option-of-loaded-list, select-option (\nvalue={$item.value},\ntext={$item.text}\n)\n}\n}\n}\n}\n}\n}\n}\n}"
+module.exports = "@section/inner {\nspan/tags {\n@if-then (if=viewModel.length, rt-silent) {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n' '\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown, rt-silent) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist-keypath={_dataListKeypathParam},\ndatalist-item-schema={input.datalistItemSchema |json },\nadd-new-item-keypath=_addNewItem,\nvalue={input.value},\nview-model-keypath=viewModel,\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=input.datalistKeypath) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/select-option-of-datalist, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList.length, rt-silent) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=input.datalistKeypath) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider-keypath=dataProvider\n) {\nopal-select-option/select-option-of-loaded-list, select-option (\nvalue={$item.value},\ntext={$item.text}\n)\n}\n}\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 94 */
