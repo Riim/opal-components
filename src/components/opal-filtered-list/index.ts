@@ -16,7 +16,11 @@ import template = require('./index.nelm');
 })
 export class OpalFilteredList extends Component {
 	elementAttached() {
-		this.listenTo('query-input', 'input', this._onQueryInputInput);
+		let queryInput = this.$('query-input');
+
+		if (queryInput) {
+			this.listenTo(queryInput, 'input', this._onQueryInputInput);
+		}
 	}
 
 	_onQueryInputInput(evt: IEvent) {
