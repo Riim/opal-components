@@ -54,7 +54,7 @@ function getTodayDate() {
 
 	template,
 
-	oevents: {
+	domEvents: {
 		'btn-prev-month': {
 			click() {
 				if (this.shownMonth) {
@@ -77,20 +77,6 @@ function getTodayDate() {
 			}
 		},
 
-		's-month': {
-			'<opal-select-option>select'(evt: IEvent) {
-				this.shownMonth = +(evt.target as OpalSelectOption).value;
-			}
-		},
-
-		's-year': {
-			'<opal-select-option>select'(evt: IEvent) {
-				this.shownYear = +(evt.target as OpalSelectOption).value;
-			}
-		}
-	},
-
-	domEvents: {
 		day: {
 			click(evt: Event) {
 				this._click(evt.target as HTMLElement);
@@ -308,30 +294,40 @@ export class OpalCalendar extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo('days', {
-			focus(evt: Event) {
-				if ((evt.target as HTMLElement).classList.contains('opal-calendar__day')) {
-					nextTick(() => {
-						if (document.activeElement == evt.target && !this._documentKeyDownListening) {
-							this._documentKeyDownListening = this.listenTo(
-								document,
-								'keydown',
-								this._onDocumentKeyDown
-							);
-						}
-					});
-				}
-			},
+		this.listenTo('month-select', '<opal-select-option>select', this._onMonthSelectSelect);
+		this.listenTo('year-select', '<opal-select-option>select', this._onYearSelectSelect);
 
-			blur() {
-				setTimeout(() => {
-					if (!document.activeElement.classList.contains('opal-calendar__day')) {
-						(this._documentKeyDownListening as IDisposableListening).stop();
-						this._documentKeyDownListening = null;
-					}
-				}, 1);
-			}
+		this.listenTo('days', {
+			focus: this._onDaysFocus,
+			blur: this._onDaysBlur
 		}, this, true);
+	}
+
+	_onMonthSelectSelect(evt: IEvent) {
+		this.shownMonth = +(evt.target as OpalSelectOption).value;
+	}
+
+	_onYearSelectSelect(evt: IEvent) {
+		this.shownYear = +(evt.target as OpalSelectOption).value;
+	}
+
+	_onDaysFocus(evt: Event) {
+		if ((evt.target as HTMLElement).classList.contains('opal-calendar__day')) {
+			nextTick(() => {
+				if (document.activeElement == evt.target && !this._documentKeyDownListening) {
+					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+				}
+			});
+		}
+	}
+
+	_onDaysBlur() {
+		setTimeout(() => {
+			if (!document.activeElement.classList.contains('opal-calendar__day')) {
+				(this._documentKeyDownListening as IDisposableListening).stop();
+				this._documentKeyDownListening = null;
+			}
+		}, 1);
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {

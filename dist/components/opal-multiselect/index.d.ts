@@ -1,3 +1,4 @@
+import { IEvent } from 'cellx';
 import '../../assets/icons/opal-components__icon-cross.svg';
 import { IDataProvider } from '../opal-loaded-list';
 import { OpalSelect } from '../opal-select';
@@ -6,5 +7,7 @@ export declare class OpalMultiselect extends OpalSelect {
     dataProvider: IDataProvider | null;
     isNothingSelectedShown: boolean;
     initialize(): void;
-    _onBtnDeselectItemClick(evt: Event, btn: HTMLElement): void;
+    elementAttached(): void;
+    _onQueryInputInput(evt: IEvent): void;
+    _onQueryInputClear(): void;
 }

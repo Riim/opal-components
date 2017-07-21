@@ -213,7 +213,7 @@ export class OpalAutosuggest extends Component {
 	}
 
 	_onMenuElementMouseOver(evt: Event) {
-		let menu = this.$<Component>('menu').element as HTMLElement;
+		let menu = this.$<Component>('menu').element;
 		let el = evt.target as HTMLElement;
 
 		for (; !el.classList.contains('opal-autosuggest__list-item'); el = el.parentNode as HTMLElement) {

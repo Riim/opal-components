@@ -7,7 +7,7 @@ import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 import template = require('./index.nelm');
 
-@d.Component({
+@d.Component<OpalMultiselect>({
 	elementIs: 'opal-multiselect',
 
 	i18n: {
@@ -23,14 +23,19 @@ import template = require('./index.nelm');
 
 	template: (OpalSelect.template as Template).extend(template),
 
-	oevents: {
-		'query-input': {
-			input(evt: IEvent) {
-				this.$<OpalLoadedList>('loaded-list').input.query = (evt.target as OpalTextInput).value;
-			},
+	events: {
+		'btn-close': {
+			click() {
+				this.close();
+				this.focus();
+			}
+		}
+	},
 
-			clear() {
-				this.$<OpalLoadedList>('loaded-list').input.query = '';
+	domEvents: {
+		'btn-deselect-item': {
+			click(_: any, btn: HTMLElement) {
+				this.viewModel.remove(this.viewModel.get(btn.dataset.itemValue, this._viewModelItemValueFieldName));
 			}
 		}
 	}
@@ -64,7 +69,18 @@ export class OpalMultiselect extends OpalSelect {
 		});
 	}
 
-	_onBtnDeselectItemClick(evt: Event, btn: HTMLElement) {
-		this.viewModel.remove(this.viewModel.get(btn.dataset.itemValue, this._viewModelItemValueFieldName));
+	elementAttached() {
+		this.listenTo('query-input', {
+			input: this._onQueryInputInput,
+			clear: this._onQueryInputClear
+		});
+	}
+
+	_onQueryInputInput(evt: IEvent) {
+		this.$<OpalLoadedList>('loaded-list').input.query = (evt.target as OpalTextInput).value;
+	}
+
+	_onQueryInputClear() {
+		this.$<OpalLoadedList>('loaded-list').input.query = '';
 	}
 }

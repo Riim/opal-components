@@ -37,42 +37,7 @@ function pad(num: number): string {
 		invalidDateRange: getText.t('Дата вне допустимого диапазона')
 	},
 
-	template,
-
-	oevents: {
-		'text-input': {
-			change(evt) {
-				if (this.$<OpalInputValidator>('input-validator').valid) {
-					this.$<OpalCalendar>('calendar').input.value = (evt.target as OpalTextInput).value;
-				}
-			}
-		},
-
-		'calendar-menu': {
-			'input-opened-change'(evt: IEvent) {
-				if (evt.value) {
-					this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
-					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-					this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
-				} else {
-					this._documentFocusListening.stop();
-					this._documentKeyDownListening.stop();
-					this._documentClickListening.stop();
-				}
-			}
-		},
-
-		calendar: {
-			change(evt) {
-				this.$<OpalDropdown>('calendar-menu').close();
-
-				let textInput = this.$<OpalTextInput>('text-input');
-
-				textInput.value = (evt.target as OpalCalendar).input.value;
-				textInput.focus();
-			}
-		}
-	}
+	template
 })
 export class OpalDateInput extends Component {
 	dateExists = dateExists;
@@ -97,15 +62,41 @@ export class OpalDateInput extends Component {
 	_documentClickListening: IDisposableListening;
 
 	elementAttached() {
-		this.listenTo(
-			(this.$('text-input') as Component).element as HTMLElement,
-			'click',
-			this._onTextInputClick
-		);
+		this.listenTo('text-input', 'change', this._onTextInputChange);
+		this.listenTo(this.$<Component>('text-input').element, 'click', this._onTextInputElementClick);
+		this.listenTo('calendar-menu', 'input-opened-change', this._onCalendarMenuInputOpenedChange);
+		this.listenTo('calendar', 'change', this._onCalendarChange);
 	}
 
-	_onTextInputClick() {
+	_onTextInputChange(evt: IEvent<OpalTextInput>) {
+		if (this.$<OpalInputValidator>('input-validator').valid) {
+			this.$<OpalCalendar>('calendar').input.value = evt.target.value;
+		}
+	}
+
+	_onTextInputElementClick() {
 		this.$<OpalDropdown>('calendar-menu').open();
+	}
+
+	_onCalendarMenuInputOpenedChange(evt: IEvent) {
+		if (evt.value) {
+			this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
+			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+			this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+		} else {
+			this._documentFocusListening.stop();
+			this._documentKeyDownListening.stop();
+			this._documentClickListening.stop();
+		}
+	}
+
+	_onCalendarChange(evt: IEvent<OpalCalendar>) {
+		this.$<OpalDropdown>('calendar-menu').close();
+
+		let textInput = this.$<OpalTextInput>('text-input');
+
+		textInput.value = evt.target.input.value;
+		textInput.focus();
 	}
 
 	_onDocumentFocus(evt: Event) {

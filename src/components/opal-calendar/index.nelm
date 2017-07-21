@@ -5,13 +5,13 @@ header/header {
 		svg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }
 	}
 
-	opal-select/s-month (size=s, value=['{shownMonth}']) {
+	opal-select/month-select (size=s, value=['{shownMonth}']) {
 		@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months, rt-silent) {
 			opal-select-option (value={$index}, text={month})
 		}
 	}
 	' '
-	opal-select/s-year (size=s, value=['{shownYear}']) {
+	opal-select/year-select (size=s, value=['{shownYear}']) {
 		@repeat (class=opal-select__menu-content, for=year of years, rt-silent) {
 			opal-select-option (value={year}, text={year})
 		}

@@ -46,6 +46,15 @@ export declare class OpalSelect extends Component {
     _onInputValueChange(evt: IEvent): void;
     _onInputFocusedChange(evt: IEvent): void;
     _onViewModelChange(): void;
+    _onButtonFocus(): void;
+    _onButtonBlur(): void;
+    _onButtonClick(evt: IEvent): void;
+    _onMenuInputOpenedChange(evt: IEvent): void;
+    _onMenuSelectOptionSelect(evt: IEvent): void;
+    _onMenuSelectOptionDeselect(evt: IEvent): void;
+    _onMenuTextInputConfirm(evt: IEvent): void;
+    _onMenuChange(evt: IEvent): false | undefined;
+    _onLoadedListLoaded(): void;
     _updateOptions(): void;
     open(): boolean;
     close(): boolean;

@@ -60,7 +60,7 @@ export class OpalMultirow extends Component {
 		let row = evt.target as OpalMultirowRow;
 
 		if (row.input.preset) {
-			(this.$('preset-rows-container') as Component).element.removeChild(row.element);
+			this.$<Component>('preset-rows-container').element.removeChild(row.element);
 			this._presetRowCount--;
 		} else {
 			this._newRows.remove(

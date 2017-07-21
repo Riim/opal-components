@@ -12,17 +12,17 @@ import template = require('./index.nelm');
 		queryInputPlaceholder: getText.t('Поиск')
 	},
 
-	template,
-
-	oevents: {
-		'query-input': {
-			input(evt: IEvent) {
-				this.$<OpalLoadedList>('loaded-list').input.query = (evt.target as OpalTextInput).value;
-			}
-		}
-	}
+	template
 })
 export class OpalFilteredList extends Component {
+	elementAttached() {
+		this.listenTo('query-input', 'input', this._onQueryInputInput);
+	}
+
+	_onQueryInputInput(evt: IEvent) {
+		this.$<OpalLoadedList>('loaded-list').input.query = (evt.target as OpalTextInput).value;
+	}
+
 	focus() {
 		let queryInput = this.$<OpalTextInput | null>('query-input');
 

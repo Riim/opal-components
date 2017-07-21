@@ -8,21 +8,7 @@ let map = Array.prototype.map;
 
 @d.Component<OpalInputValidator>({
 	elementIs: 'opal-input-validator',
-	template: '@section/inner { rt-content/content }',
-
-	oevents: {
-		'text-input': {
-			input() {
-				if (this.failedRule) {
-					this._validate([this.failedRule]);
-				}
-			},
-
-			change() {
-				this.validate();
-			}
-		}
-	}
+	template: '@section/inner { rt-content/content }'
 })
 export class OpalInputValidator extends Component {
 	static OpalInputValidatorRule = OpalInputValidatorRule;
@@ -48,6 +34,23 @@ export class OpalInputValidator extends Component {
 			this.element.getElementsByClassName('opal-input-validator-rule'),
 			(ruleEl: IComponentElement) => ruleEl.$component
 		);
+	}
+
+	elementAttached() {
+		this.listenTo('text-input', {
+			input: this._onTextInputInput,
+			change: this._onTextInputChange
+		});
+	}
+
+	_onTextInputInput() {
+		if (this.failedRule) {
+			this._validate([this.failedRule]);
+		}
+	}
+
+	_onTextInputChange() {
+		this.validate();
 	}
 
 	validate(): boolean {

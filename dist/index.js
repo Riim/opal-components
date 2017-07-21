@@ -272,6 +272,22 @@ var OpalSelect = (function (_super) {
             'input-focused-change': this._onInputFocusedChange
         });
         this.listenTo(this.viewModel, 'change', this._onViewModelChange);
+        this.listenTo('button', {
+            focus: this._onButtonFocus,
+            blur: this._onButtonBlur,
+            click: this._onButtonClick
+        });
+        this.listenTo('menu', {
+            'input-opened-change': this._onMenuInputOpenedChange,
+            '<opal-select-option>select': this._onMenuSelectOptionSelect,
+            '<opal-select-option>deselect': this._onMenuSelectOptionDeselect,
+            '<opal-text-input>confirm': this._onMenuTextInputConfirm,
+            '<*>change': this._onMenuChange
+        });
+        var loadedList = this.$('loaded-list');
+        if (loadedList) {
+            this.listenTo(loadedList, 'loaded', this._onLoadedListLoaded);
+        }
     };
     OpalSelect.prototype._onInputValueChange = function (evt) {
         var vm = this.viewModel;
@@ -347,6 +363,155 @@ var OpalSelect = (function (_super) {
     };
     OpalSelect.prototype._onViewModelChange = function () {
         this._updateOptions();
+    };
+    OpalSelect.prototype._onButtonFocus = function () {
+        this.input.focused = true;
+        this.emit('focus');
+    };
+    OpalSelect.prototype._onButtonBlur = function () {
+        this.input.focused = false;
+        this.emit('blur');
+    };
+    OpalSelect.prototype._onButtonClick = function (evt) {
+        if (evt.target.checked) {
+            this.open();
+        }
+        else {
+            this.close();
+        }
+    };
+    OpalSelect.prototype._onMenuInputOpenedChange = function (evt) {
+        if (!evt.value) {
+            this.close();
+        }
+    };
+    OpalSelect.prototype._onMenuSelectOptionSelect = function (evt) {
+        var vm = this.viewModel;
+        var vmItem = (_a = {},
+            _a[this._viewModelItemValueFieldName] = evt.target.value,
+            _a[this._viewModelItemTextFieldName] = evt.target.text,
+            _a);
+        if (this.input.multiple) {
+            vm.add(vmItem);
+        }
+        else {
+            if (vm.length) {
+                vm.set(0, vmItem);
+            }
+            else {
+                vm.add(vmItem);
+            }
+            this.close();
+            this.focus();
+            this.emit('change');
+        }
+        var _a;
+    };
+    OpalSelect.prototype._onMenuSelectOptionDeselect = function (evt) {
+        if (this.input.multiple) {
+            this.viewModel.remove(this.viewModel.get(evt.target.value, this._viewModelItemValueFieldName));
+        }
+        else {
+            evt.target.select();
+            this.close();
+            this.focus();
+        }
+    };
+    OpalSelect.prototype._onMenuTextInputConfirm = function (evt) {
+        var _this = this;
+        var textInput = evt.target;
+        if (textInput !== this.$('new-item-input')) {
+            return;
+        }
+        var addNewItemKeypath = this.input.addNewItemKeypath;
+        if (!addNewItemKeypath) {
+            throw new TypeError('Input "addNewItemKeypath" is required');
+        }
+        var addNewItem = this._addNewItem || (this._addNewItem = Function("return this." + addNewItemKeypath + ";")
+            .call(this.ownerComponent || window));
+        if (!addNewItem) {
+            throw new TypeError('"addNewItem" is not defined');
+        }
+        var text = textInput.value;
+        textInput.clear();
+        textInput.input.loading = true;
+        textInput.input.disabled = true;
+        addNewItem(text).then(function (newItem) {
+            textInput.input.loading = false;
+            textInput.input.disabled = false;
+            var value = newItem[_this._viewModelItemValueFieldName];
+            var text = newItem[_this._viewModelItemTextFieldName];
+            if (_this.dataList) {
+                _this.dataList.add((_a = {},
+                    _a[_this._dataListItemValueFieldName] = value,
+                    _a[_this._dataListItemTextFieldName] = text,
+                    _a));
+            }
+            var loadedList = _this.$('loaded-list');
+            if (loadedList) {
+                loadedList.input.query = '';
+            }
+            var vm = _this.viewModel;
+            var vmItem = (_b = {},
+                _b[_this._viewModelItemValueFieldName] = value,
+                _b[_this._viewModelItemTextFieldName] = text,
+                _b);
+            if (_this.input.multiple) {
+                vm.add(vmItem);
+                _this.emit('input');
+            }
+            else {
+                if (vm.length) {
+                    vm.set(0, vmItem);
+                }
+                else {
+                    vm.add(vmItem);
+                }
+                _this.close();
+                _this.focus();
+                _this.emit('input');
+                _this.emit('change');
+            }
+            var _a, _b;
+        }, function () {
+            textInput.input.loading = false;
+            textInput.input.disabled = false;
+        });
+    };
+    OpalSelect.prototype._onMenuChange = function (evt) {
+        if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
+            return;
+        }
+        this.optionsCell.pull();
+        this._updateOptions();
+        return false;
+    };
+    OpalSelect.prototype._onLoadedListLoaded = function () {
+        var _this = this;
+        if (this._onсeFocusedAfterLoading) {
+            return;
+        }
+        this._onсeFocusedAfterLoading = true;
+        nextTick(function () {
+            _this._focusOptions();
+            var focusTarget = _this.$('focus');
+            if (focusTarget) {
+                nextTick(function () {
+                    focusTarget.focus();
+                });
+            }
+            else {
+                var filteredList = _this.$('filtered-list');
+                if (filteredList) {
+                    focusTarget = filteredList.$('query-input');
+                }
+                if (focusTarget) {
+                    nextTick(function () {
+                        focusTarget.focus();
+                    });
+                }
+            }
+        });
     };
     OpalSelect.prototype._updateOptions = function () {
         var _this = this;
@@ -567,170 +732,7 @@ var OpalSelect = (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template,
-            oevents: {
-                button: {
-                    focus: function () {
-                        this.input.focused = true;
-                        this.emit('focus');
-                    },
-                    blur: function () {
-                        this.input.focused = false;
-                        this.emit('blur');
-                    },
-                    click: function (evt) {
-                        if (evt.target.checked) {
-                            this.open();
-                        }
-                        else {
-                            this.close();
-                        }
-                    }
-                },
-                menu: {
-                    'input-opened-change': function (evt) {
-                        if (!evt.value) {
-                            this.close();
-                        }
-                    },
-                    '<opal-select-option>select': function (evt) {
-                        var vm = this.viewModel;
-                        var vmItem = (_a = {},
-                            _a[this._viewModelItemValueFieldName] = evt.target.value,
-                            _a[this._viewModelItemTextFieldName] = evt.target.text,
-                            _a);
-                        if (this.input.multiple) {
-                            vm.add(vmItem);
-                        }
-                        else {
-                            if (vm.length) {
-                                vm.set(0, vmItem);
-                            }
-                            else {
-                                vm.add(vmItem);
-                            }
-                            this.close();
-                            this.focus();
-                            this.emit('change');
-                        }
-                        var _a;
-                    },
-                    '<opal-select-option>deselect': function (evt) {
-                        if (this.input.multiple) {
-                            this.viewModel.remove(this.viewModel.get(evt.target.value, this._viewModelItemValueFieldName));
-                        }
-                        else {
-                            evt.target.select();
-                            this.close();
-                            this.focus();
-                        }
-                    },
-                    '<opal-text-input>confirm': function (evt) {
-                        var _this = this;
-                        var textInput = evt.target;
-                        if (textInput !== this.$('new-item-input')) {
-                            return;
-                        }
-                        var addNewItemKeypath = this.input.addNewItemKeypath;
-                        if (!addNewItemKeypath) {
-                            throw new TypeError('Input "addNewItemKeypath" is required');
-                        }
-                        var addNewItem = this._addNewItem || (this._addNewItem = Function("return this." + addNewItemKeypath + ";")
-                            .call(this.ownerComponent || window));
-                        if (!addNewItem) {
-                            throw new TypeError('"addNewItem" is not defined');
-                        }
-                        var text = textInput.value;
-                        textInput.clear();
-                        textInput.input.loading = true;
-                        textInput.input.disabled = true;
-                        addNewItem(text).then(function (newItem) {
-                            textInput.input.loading = false;
-                            textInput.input.disabled = false;
-                            var value = newItem[_this._viewModelItemValueFieldName];
-                            var text = newItem[_this._viewModelItemTextFieldName];
-                            if (_this.dataList) {
-                                _this.dataList.add((_a = {},
-                                    _a[_this._dataListItemValueFieldName] = value,
-                                    _a[_this._dataListItemTextFieldName] = text,
-                                    _a));
-                            }
-                            var loadedList = _this.$('loaded-list');
-                            if (loadedList) {
-                                loadedList.input.query = '';
-                            }
-                            var vm = _this.viewModel;
-                            var vmItem = (_b = {},
-                                _b[_this._viewModelItemValueFieldName] = value,
-                                _b[_this._viewModelItemTextFieldName] = text,
-                                _b);
-                            if (_this.input.multiple) {
-                                vm.add(vmItem);
-                                _this.emit('input');
-                            }
-                            else {
-                                if (vm.length) {
-                                    vm.set(0, vmItem);
-                                }
-                                else {
-                                    vm.add(vmItem);
-                                }
-                                _this.close();
-                                _this.focus();
-                                _this.emit('input');
-                                _this.emit('change');
-                            }
-                            var _a, _b;
-                        }, function () {
-                            textInput.input.loading = false;
-                            textInput.input.disabled = false;
-                        });
-                    },
-                    '<*>change': function (evt) {
-                        if (!(evt.target instanceof RtIfThen) && !(evt.target instanceof RtRepeat)) {
-                            return;
-                        }
-                        this.optionsCell.pull();
-                        this._updateOptions();
-                        return false;
-                    }
-                },
-                'loaded-list': {
-                    loaded: function () {
-                        var _this = this;
-                        if (this._onсeFocusedAfterLoading) {
-                            return;
-                        }
-                        this._onсeFocusedAfterLoading = true;
-                        nextTick(function () {
-                            _this._focusOptions();
-                            var focusTarget = _this.$('focus');
-                            if (focusTarget) {
-                                nextTick(function () {
-                                    focusTarget.focus();
-                                });
-                            }
-                            else {
-                                var filteredList = _this.$('filtered-list');
-                                if (filteredList) {
-                                    focusTarget = filteredList.$('query-input');
-                                }
-                                if (focusTarget) {
-                                    nextTick(function () {
-                                        focusTarget.focus();
-                                    });
-                                }
-                            }
-                        });
-                    }
-                },
-                'btn-close': {
-                    click: function () {
-                        this.close();
-                        this.focus();
-                    }
-                }
-            }
+            template: template
         })
     ], OpalSelect);
     return OpalSelect;
@@ -3771,9 +3773,31 @@ var OpalSelectOption = (function (_super) {
     };
     OpalSelectOption.prototype.elementAttached = function () {
         this.listenTo(this, 'input-focused-change', this._onInputFocusedChange);
+        this.listenTo('control', {
+            focus: this._onControlFocus,
+            blur: this._onControlBlur,
+            click: this._onControlClick
+        });
     };
     OpalSelectOption.prototype._onInputFocusedChange = function (evt) {
         this[evt.value ? 'focus' : 'blur']();
+    };
+    OpalSelectOption.prototype._onControlFocus = function (evt) {
+        var _this = this;
+        nextTick(function () {
+            if (document.activeElement == evt.target) {
+                _this.input.focused = true;
+            }
+        });
+    };
+    OpalSelectOption.prototype._onControlBlur = function () {
+        this.input.focused = false;
+    };
+    OpalSelectOption.prototype._onControlClick = function (evt) {
+        evt.preventDefault();
+        if (!this.input.disabled) {
+            this.click();
+        }
     };
     OpalSelectOption.prototype.click = function () {
         this.emit(this.toggle() ? 'select' : 'deselect');
@@ -3864,28 +3888,7 @@ var OpalSelectOption = (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template,
-            oevents: {
-                control: {
-                    focus: function (evt) {
-                        var _this = this;
-                        nextTick(function () {
-                            if (document.activeElement == evt.target) {
-                                _this.input.focused = true;
-                            }
-                        });
-                    },
-                    blur: function () {
-                        this.input.focused = false;
-                    },
-                    click: function (evt) {
-                        evt.preventDefault();
-                        if (!this.input.disabled) {
-                            this.click();
-                        }
-                    }
-                }
-            }
+            template: template
         })
     ], OpalSelectOption);
     return OpalSelectOption;
@@ -3980,8 +3983,17 @@ var OpalMultiselect = (function (_super) {
             }
         });
     };
-    OpalMultiselect.prototype._onBtnDeselectItemClick = function (evt, btn) {
-        this.viewModel.remove(this.viewModel.get(btn.dataset.itemValue, this._viewModelItemValueFieldName));
+    OpalMultiselect.prototype.elementAttached = function () {
+        this.listenTo('query-input', {
+            input: this._onQueryInputInput,
+            clear: this._onQueryInputClear
+        });
+    };
+    OpalMultiselect.prototype._onQueryInputInput = function (evt) {
+        this.$('loaded-list').input.query = evt.target.value;
+    };
+    OpalMultiselect.prototype._onQueryInputClear = function () {
+        this.$('loaded-list').input.query = '';
     };
     OpalMultiselect = __decorate([
         rionite_1.d.Component({
@@ -3996,13 +4008,18 @@ var OpalMultiselect = (function (_super) {
                 dataproviderKeypath: { type: String, readonly: true }
             },
             template: opal_select_1.OpalSelect.template.extend(template),
-            oevents: {
-                'query-input': {
-                    input: function (evt) {
-                        this.$('loaded-list').input.query = evt.target.value;
-                    },
-                    clear: function () {
-                        this.$('loaded-list').input.query = '';
+            events: {
+                'btn-close': {
+                    click: function () {
+                        this.close();
+                        this.focus();
+                    }
+                }
+            },
+            domEvents: {
+                'btn-deselect-item': {
+                    click: function (_, btn) {
+                        this.viewModel.remove(this.viewModel.get(btn.dataset.itemValue, this._viewModelItemValueFieldName));
                     }
                 }
             }
@@ -4034,7 +4051,7 @@ module.exports = (function(d) {
 /* 64 */
 /***/ (function(module, exports) {
 
-module.exports = "/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=opal-select__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n)\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\ndiv/btn-deselect-item (\ndata-item-value='{item |key(_viewModelItemValueFieldName) }',\non-click=_onBtnDeselectItemClick\n) {\nsvg/btn-deselect-item-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n}\ndiv/nothing-selected (shown={isNothingSelectedShown}) {\nspan/nothing-selected-message { '{constructor.i18n.nothingSelected}' }\n}\n}\ndiv/menu-content {\nopal-loaded-list/loaded-list (dataprovider-keypath=dataProvider) {\nopal-select-option/option (value={$item.value}, text={$item.text})\n}\n}\ndiv/menu-footer {\nopal-button/btn-close { 'Закрыть' }\n}\n}"
+module.exports = "/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=opal-select__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n)\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\ndiv/btn-deselect-item (data-item-value='{item |key(_viewModelItemValueFieldName) }') {\nsvg/btn-deselect-item-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n}\ndiv/nothing-selected (shown={isNothingSelectedShown}) {\nspan/nothing-selected-message { '{constructor.i18n.nothingSelected}' }\n}\n}\ndiv/menu-content {\nopal-loaded-list/loaded-list (dataprovider-keypath=dataProvider) {\nopal-select-option/option (value={$item.value}, text={$item.text})\n}\n}\ndiv/menu-footer {\nopal-button/btn-close { 'Закрыть' }\n}\n}"
 
 /***/ }),
 /* 65 */
@@ -4081,6 +4098,20 @@ var OpalInputValidator = (function (_super) {
     OpalInputValidator.prototype.ready = function () {
         this._rules = map.call(this.element.getElementsByClassName('opal-input-validator-rule'), function (ruleEl) { return ruleEl.$component; });
     };
+    OpalInputValidator.prototype.elementAttached = function () {
+        this.listenTo('text-input', {
+            input: this._onTextInputInput,
+            change: this._onTextInputChange
+        });
+    };
+    OpalInputValidator.prototype._onTextInputInput = function () {
+        if (this.failedRule) {
+            this._validate([this.failedRule]);
+        }
+    };
+    OpalInputValidator.prototype._onTextInputChange = function () {
+        this.validate();
+    };
     OpalInputValidator.prototype.validate = function () {
         return this._validate(this._rules);
     };
@@ -4121,19 +4152,7 @@ var OpalInputValidator = (function (_super) {
     OpalInputValidator = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-input-validator',
-            template: '@section/inner { rt-content/content }',
-            oevents: {
-                'text-input': {
-                    input: function () {
-                        if (this.failedRule) {
-                            this._validate([this.failedRule]);
-                        }
-                    },
-                    change: function () {
-                        this.validate();
-                    }
-                }
-            }
+            template: '@section/inner { rt-content/content }'
         })
     ], OpalInputValidator);
     return OpalInputValidator;
@@ -4418,27 +4437,37 @@ var OpalCalendar = (function (_super) {
         });
     };
     OpalCalendar.prototype.elementAttached = function () {
+        this.listenTo('month-select', '<opal-select-option>select', this._onMonthSelectSelect);
+        this.listenTo('year-select', '<opal-select-option>select', this._onYearSelectSelect);
         this.listenTo('days', {
-            focus: function (evt) {
-                var _this = this;
-                if (evt.target.classList.contains('opal-calendar__day')) {
-                    nextTick(function () {
-                        if (document.activeElement == evt.target && !_this._documentKeyDownListening) {
-                            _this._documentKeyDownListening = _this.listenTo(document, 'keydown', _this._onDocumentKeyDown);
-                        }
-                    });
-                }
-            },
-            blur: function () {
-                var _this = this;
-                setTimeout(function () {
-                    if (!document.activeElement.classList.contains('opal-calendar__day')) {
-                        _this._documentKeyDownListening.stop();
-                        _this._documentKeyDownListening = null;
-                    }
-                }, 1);
-            }
+            focus: this._onDaysFocus,
+            blur: this._onDaysBlur
         }, this, true);
+    };
+    OpalCalendar.prototype._onMonthSelectSelect = function (evt) {
+        this.shownMonth = +evt.target.value;
+    };
+    OpalCalendar.prototype._onYearSelectSelect = function (evt) {
+        this.shownYear = +evt.target.value;
+    };
+    OpalCalendar.prototype._onDaysFocus = function (evt) {
+        var _this = this;
+        if (evt.target.classList.contains('opal-calendar__day')) {
+            nextTick(function () {
+                if (document.activeElement == evt.target && !_this._documentKeyDownListening) {
+                    _this._documentKeyDownListening = _this.listenTo(document, 'keydown', _this._onDocumentKeyDown);
+                }
+            });
+        }
+    };
+    OpalCalendar.prototype._onDaysBlur = function () {
+        var _this = this;
+        setTimeout(function () {
+            if (!document.activeElement.classList.contains('opal-calendar__day')) {
+                _this._documentKeyDownListening.stop();
+                _this._documentKeyDownListening = null;
+            }
+        }, 1);
     };
     OpalCalendar.prototype._onDocumentKeyDown = function (evt) {
         if (evt.which == 13 /* Enter */) {
@@ -4481,7 +4510,7 @@ var OpalCalendar = (function (_super) {
                 sundayFirst: false
             },
             template: template,
-            oevents: {
+            domEvents: {
                 'btn-prev-month': {
                     click: function () {
                         if (this.shownMonth) {
@@ -4504,18 +4533,6 @@ var OpalCalendar = (function (_super) {
                         }
                     }
                 },
-                's-month': {
-                    '<opal-select-option>select': function (evt) {
-                        this.shownMonth = +evt.target.value;
-                    }
-                },
-                's-year': {
-                    '<opal-select-option>select': function (evt) {
-                        this.shownYear = +evt.target.value;
-                    }
-                }
-            },
-            domEvents: {
                 day: {
                     click: function (evt) {
                         this._click(evt.target);
@@ -4585,7 +4602,7 @@ exports.parseDate = parseDate;
 /* 75 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/s-month (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months, rt-silent) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/s-year (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years, rt-silent) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={isBtnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ndiv/week-days {\ndiv/week-days-row {\n@repeat (for=weekDay of weekDaysShort, rt-silent) {\nspan/week-day { '{weekDay}' }\n}\n}\n}\ndiv/days {\n@repeat (for=weekDays of days, rt-silent) {\ndiv/days-row {\n@repeat (for=day of weekDays, rt-silent) {\nspan/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date}\n) { '{day.value}' }\n}\n}\n}\n}\n}\n}"
+module.exports = "@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/month-select (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months, rt-silent) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/year-select (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years, rt-silent) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={isBtnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ndiv/week-days {\ndiv/week-days-row {\n@repeat (for=weekDay of weekDaysShort, rt-silent) {\nspan/week-day { '{weekDay}' }\n}\n}\n}\ndiv/days {\n@repeat (for=weekDays of days, rt-silent) {\ndiv/days-row {\n@repeat (for=day of weekDays, rt-silent) {\nspan/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date}\n) { '{day.value}' }\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 76 */
@@ -4638,10 +4655,36 @@ var OpalDateInput = (function (_super) {
         return d >= calendar.fromDate && d <= calendar.toDate;
     };
     OpalDateInput.prototype.elementAttached = function () {
-        this.listenTo(this.$('text-input').element, 'click', this._onTextInputClick);
+        this.listenTo('text-input', 'change', this._onTextInputChange);
+        this.listenTo(this.$('text-input').element, 'click', this._onTextInputElementClick);
+        this.listenTo('calendar-menu', 'input-opened-change', this._onCalendarMenuInputOpenedChange);
+        this.listenTo('calendar', 'change', this._onCalendarChange);
     };
-    OpalDateInput.prototype._onTextInputClick = function () {
+    OpalDateInput.prototype._onTextInputChange = function (evt) {
+        if (this.$('input-validator').valid) {
+            this.$('calendar').input.value = evt.target.value;
+        }
+    };
+    OpalDateInput.prototype._onTextInputElementClick = function () {
         this.$('calendar-menu').open();
+    };
+    OpalDateInput.prototype._onCalendarMenuInputOpenedChange = function (evt) {
+        if (evt.value) {
+            this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
+            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+            this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+        }
+        else {
+            this._documentFocusListening.stop();
+            this._documentKeyDownListening.stop();
+            this._documentClickListening.stop();
+        }
+    };
+    OpalDateInput.prototype._onCalendarChange = function (evt) {
+        this.$('calendar-menu').close();
+        var textInput = this.$('text-input');
+        textInput.value = evt.target.input.value;
+        textInput.focus();
     };
     OpalDateInput.prototype._onDocumentFocus = function (evt) {
         if (!isFocusable_1.isFocusable(evt.target)) {
@@ -4715,38 +4758,7 @@ var OpalDateInput = (function (_super) {
                 nonExistentDate: rionite_1.getText.t('Несуществующая дата'),
                 invalidDateRange: rionite_1.getText.t('Дата вне допустимого диапазона')
             },
-            template: template,
-            oevents: {
-                'text-input': {
-                    change: function (evt) {
-                        if (this.$('input-validator').valid) {
-                            this.$('calendar').input.value = evt.target.value;
-                        }
-                    }
-                },
-                'calendar-menu': {
-                    'input-opened-change': function (evt) {
-                        if (evt.value) {
-                            this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
-                            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-                            this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
-                        }
-                        else {
-                            this._documentFocusListening.stop();
-                            this._documentKeyDownListening.stop();
-                            this._documentClickListening.stop();
-                        }
-                    }
-                },
-                calendar: {
-                    change: function (evt) {
-                        this.$('calendar-menu').close();
-                        var textInput = this.$('text-input');
-                        textInput.value = evt.target.input.value;
-                        textInput.focus();
-                    }
-                }
-            }
+            template: template
         })
     ], OpalDateInput);
     return OpalDateInput;
@@ -5098,6 +5110,12 @@ var OpalFilteredList = (function (_super) {
     function OpalFilteredList() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    OpalFilteredList.prototype.elementAttached = function () {
+        this.listenTo('query-input', 'input', this._onQueryInputInput);
+    };
+    OpalFilteredList.prototype._onQueryInputInput = function (evt) {
+        this.$('loaded-list').input.query = evt.target.value;
+    };
     OpalFilteredList.prototype.focus = function () {
         var queryInput = this.$('query-input');
         if (queryInput) {
@@ -5110,14 +5128,7 @@ var OpalFilteredList = (function (_super) {
             i18n: {
                 queryInputPlaceholder: rionite_1.getText.t('Поиск')
             },
-            template: template,
-            oevents: {
-                'query-input': {
-                    input: function (evt) {
-                        this.$('loaded-list').input.query = evt.target.value;
-                    }
-                }
-            }
+            template: template
         })
     ], OpalFilteredList);
     return OpalFilteredList;

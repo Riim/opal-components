@@ -166,7 +166,7 @@ export class OpalLoadedList extends Component {
 
 		let elRect = this.element.getBoundingClientRect();
 
-		if (!elRect.height || elRect.bottom < (this.$('loader') as Component).element.getBoundingClientRect().top) {
+		if (!elRect.height || elRect.bottom < this.$<Component>('loader').element.getBoundingClientRect().top) {
 			return;
 		}
 

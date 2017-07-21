@@ -84,10 +84,10 @@
 				transform: scaleX(-1);
 			}
 
-		& .opal-calendar__s-month {
+		& .opal-calendar__month-select {
 		}
 
-		& .opal-calendar__s-year {
+		& .opal-calendar__year-select {
 		}
 			.opal-select__menu-content {
 			}

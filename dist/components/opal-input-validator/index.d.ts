@@ -8,6 +8,9 @@ export declare class OpalInputValidator extends Component {
     _rules: Array<OpalInputValidatorRule>;
     initialize(): void;
     ready(): void;
+    elementAttached(): void;
+    _onTextInputInput(): void;
+    _onTextInputChange(): void;
     validate(): boolean;
     _validate(rules: Array<OpalInputValidatorRule>): boolean;
 }

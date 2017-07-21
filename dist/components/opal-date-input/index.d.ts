@@ -1,5 +1,8 @@
+import { IEvent } from 'cellx';
 import dateExists from 'date-exists';
 import { Component, IDisposableListening } from 'rionite';
+import { OpalCalendar } from '../opal-calendar';
+import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 export declare class OpalDateInput extends Component {
     dateExists: typeof dateExists;
@@ -8,7 +11,10 @@ export declare class OpalDateInput extends Component {
     _documentKeyDownListening: IDisposableListening;
     _documentClickListening: IDisposableListening;
     elementAttached(): void;
-    _onTextInputClick(): void;
+    _onTextInputChange(evt: IEvent<OpalTextInput>): void;
+    _onTextInputElementClick(): void;
+    _onCalendarMenuInputOpenedChange(evt: IEvent): void;
+    _onCalendarChange(evt: IEvent<OpalCalendar>): void;
     _onDocumentFocus(evt: Event): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _onDocumentClick(evt: Event): void;

@@ -18,31 +18,7 @@ let nextTick = Utils.nextTick;
 		disabled: false
 	},
 
-	template,
-
-	oevents: {
-		control: {
-			focus(evt: Event) {
-				nextTick(() => {
-					if (document.activeElement == evt.target) {
-						this.input.focused = true;
-					}
-				});
-			},
-
-			blur() {
-				this.input.focused = false;
-			},
-
-			click(evt: Event) {
-				evt.preventDefault();
-
-				if (!this.input.disabled) {
-					this.click();
-				}
-			}
-		}
-	}
+	template
 })
 export class OpalSelectOption extends Component {
 	_tabIndex: number;
@@ -57,10 +33,36 @@ export class OpalSelectOption extends Component {
 
 	elementAttached() {
 		this.listenTo(this, 'input-focused-change', this._onInputFocusedChange);
+
+		this.listenTo('control', {
+			focus: this._onControlFocus,
+			blur: this._onControlBlur,
+			click: this._onControlClick
+		});
 	}
 
 	_onInputFocusedChange(evt: IEvent) {
 		this[evt.value ? 'focus' : 'blur']();
+	}
+
+	_onControlFocus(evt: Event) {
+		nextTick(() => {
+			if (document.activeElement == evt.target) {
+				this.input.focused = true;
+			}
+		});
+	}
+
+	_onControlBlur() {
+		this.input.focused = false;
+	}
+
+	_onControlClick(evt: Event) {
+		evt.preventDefault();
+
+		if (!this.input.disabled) {
+			this.click();
+		}
 	}
 
 	click(): OpalSelectOption {
