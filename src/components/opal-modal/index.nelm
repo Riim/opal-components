@@ -1,10 +1,7 @@
 @section/inner {
 
 div/window {
-	span/btn-close-wrapper {
-		button/btn-close
-	}
-
+	button/btn-close
 	rt-content/content
 }
 
