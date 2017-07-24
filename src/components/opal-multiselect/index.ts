@@ -70,6 +70,8 @@ export class OpalMultiselect extends OpalSelect {
 	}
 
 	elementAttached() {
+		super.elementAttached();
+
 		this.listenTo('query-input', {
 			input: this._onQueryInputInput,
 			clear: this._onQueryInputClear

@@ -3984,6 +3984,7 @@ var OpalMultiselect = (function (_super) {
         });
     };
     OpalMultiselect.prototype.elementAttached = function () {
+        _super.prototype.elementAttached.call(this);
         this.listenTo('query-input', {
             input: this._onQueryInputInput,
             clear: this._onQueryInputClear
