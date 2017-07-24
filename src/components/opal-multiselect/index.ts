@@ -35,7 +35,9 @@ import template = require('./index.nelm');
 	domEvents: {
 		'btn-deselect-item': {
 			click(_: any, btn: HTMLElement) {
-				this.viewModel.remove(this.viewModel.get(btn.dataset.itemValue, this._viewModelItemValueFieldName));
+				let vmItemValueFieldName = this._viewModelItemValueFieldName;
+				let itemValue = btn.dataset.itemValue;
+				this.viewModel.removeAt(this.viewModel.findIndex((item) => item[vmItemValueFieldName] == itemValue));
 			}
 		}
 	}
@@ -78,8 +80,8 @@ export class OpalMultiselect extends OpalSelect {
 		});
 	}
 
-	_onQueryInputInput(evt: IEvent) {
-		this.$<OpalLoadedList>('loaded-list').input.query = (evt.target as OpalTextInput).value;
+	_onQueryInputInput(evt: IEvent<OpalTextInput>) {
+		this.$<OpalLoadedList>('loaded-list').input.query = evt.target.value;
 	}
 
 	_onQueryInputClear() {

@@ -169,12 +169,12 @@ export class OpalAutosuggest extends Component {
 		}
 	}
 
-	_onTextInputInput(evt: IEvent) {
+	_onTextInputInput(evt: IEvent<OpalTextInput>) {
 		this._isNotInputConfirmed = true;
 
 		this._clearList();
 
-		if (((evt.target as OpalTextInput).value || '').length >= this.input.minQueryLength) {
+		if ((evt.target.value || '').length >= this.input.minQueryLength) {
 			this._isLoadingPlanned = true;
 
 			this._loadingTimeout = this.setTimeout(() => {
@@ -184,8 +184,8 @@ export class OpalAutosuggest extends Component {
 		}
 	}
 
-	_onTextInputChange(evt: IEvent) {
-		if (!(evt.target as OpalTextInput).value) {
+	_onTextInputChange(evt: IEvent<OpalTextInput>) {
+		if (!evt.target.value) {
 			this._clearList();
 
 			if (this.selectedItem) {

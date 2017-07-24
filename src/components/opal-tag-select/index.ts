@@ -1,5 +1,4 @@
-import { define } from 'cellx';
-import { IndexedList } from 'cellx-indexed-collections';
+import { define, ObservableList } from 'cellx';
 import { Component, d, getText } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
 import { OpalSelect, TDataList, TViewModel } from '../opal-select';
@@ -33,7 +32,9 @@ let defaultVMItemSchema = OpalSelect.defaultVMItemSchema;
 	domEvents: {
 		'btn-remove-tag': {
 			click(evt: Event, btn: HTMLElement) {
-				this.viewModel.remove(this.viewModel.get(btn.dataset.tagValue, this._viewModelItemValueFieldName));
+				let vmItemValueFieldName = this._viewModelItemValueFieldName;
+				let tagValue = btn.dataset.tagValue;
+				this.viewModel.removeAt(this.viewModel.findIndex((tag) => tag[vmItemValueFieldName] == tagValue));
 				this.emit('change');
 			}
 		}
@@ -121,7 +122,7 @@ export class OpalTagSelect extends Component {
 				throw new TypeError('"viewModel" is not defined');
 			}
 		} else {
-			vm = new IndexedList(undefined, { indexes: [this._viewModelItemValueFieldName] });
+			vm = new ObservableList();
 		}
 
 		define(this, {

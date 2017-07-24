@@ -4,7 +4,7 @@ import { OpalButton } from '../opal-button';
 import './index.css';
 
 let forEach = Array.prototype.forEach;
-let find = (Array.prototype as any).find;
+let find = Array.prototype.find;
 
 @d.Component<OpalSwitchMenu>({
 	elementIs: 'opal-switch-menu',
@@ -57,8 +57,8 @@ export class OpalSwitchMenu extends Component {
 		});
 	}
 
-	_onButtonCheck(evt: IEvent) {
-		let checkedButton = evt.target as OpalButton;
+	_onButtonCheck(evt: IEvent<OpalButton>) {
+		let checkedButton = evt.target;
 
 		forEach.call(this.buttonElements, (btnEl: IComponentElement) => {
 			if (btnEl.$component != checkedButton) {
@@ -71,8 +71,8 @@ export class OpalSwitchMenu extends Component {
 		this.emit('change');
 	}
 
-	_onButtonUncheck(evt: IEvent) {
-		(evt.target as OpalButton).check();
+	_onButtonUncheck(evt: IEvent<OpalButton>) {
+		evt.target.check();
 	}
 
 	clear() {

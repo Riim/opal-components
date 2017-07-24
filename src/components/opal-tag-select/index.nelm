@@ -1,22 +1,20 @@
 @section/inner {
 
 span/tags {
-	@if-then (if=viewModel.length, rt-silent) {
-		@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}, rt-silent) {
-			span/tag (
-				data-value='{tag |key(_viewModelItemValueFieldName) }',
-				disabled='{tag |key(_viewModelItemDisabledFieldName) }'
-			) {
-				'{tag |key(_viewModelItemTextFieldName) }'
-				button/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')
-			}
-			' '
+	@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {
+		span/tag (
+			data-value='{tag |key(_viewModelItemValueFieldName) }',
+			disabled='{tag |key(_viewModelItemDisabledFieldName) }'
+		) {
+			'{tag |key(_viewModelItemTextFieldName) }'
+			button/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')
 		}
+		' '
 	}
 }
 
 span/control {
-	@if-then (if=isPlaceholderShown, rt-silent) {
+	@if-then (if=isPlaceholderShown) {
 		span/placeholder { '{input.placeholder} ' }
 	}
 
@@ -49,7 +47,7 @@ span/control {
 								select='.opal-select__new-item-input'
 							)
 						}
-						@if-else (if=dataList.length, rt-silent) {
+						@if-else (if=dataList.length) {
 							opal-loader/menu-loader (shown)
 						}
 					}

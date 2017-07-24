@@ -303,12 +303,12 @@ export class OpalCalendar extends Component {
 		}, this, true);
 	}
 
-	_onMonthSelectSelect(evt: IEvent) {
-		this.shownMonth = +(evt.target as OpalSelectOption).value;
+	_onMonthSelectSelect(evt: IEvent<OpalSelectOption>) {
+		this.shownMonth = +evt.target.value;
 	}
 
-	_onYearSelectSelect(evt: IEvent) {
-		this.shownYear = +(evt.target as OpalSelectOption).value;
+	_onYearSelectSelect(evt: IEvent<OpalSelectOption>) {
+		this.shownYear = +evt.target.value;
 	}
 
 	_onDaysFocus(evt: Event) {

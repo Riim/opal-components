@@ -1,5 +1,9 @@
-import { define, IEvent, Utils } from 'cellx';
-import { IndexedList } from 'cellx-indexed-collections';
+import {
+	define,
+	IEvent,
+	ObservableList,
+	Utils
+	} from 'cellx';
 import { Component, d, IComponentElement } from 'rionite';
 import './index.css';
 import { OpalMultirowRow } from './opal-multirow-row';
@@ -17,7 +21,7 @@ export class OpalMultirow extends Component {
 	static OpalMultirowRow = OpalMultirowRow;
 
 	_presetRowCount: number;
-	_newRows: IndexedList<{ key: string }>;
+	_newRows: ObservableList<{ key: string }>;
 
 	_notHavePresetRows: boolean;
 	_notHaveNewRows: boolean;
@@ -26,7 +30,7 @@ export class OpalMultirow extends Component {
 	initialize() {
 		define(this, {
 			_presetRowCount: 0,
-			_newRows: new IndexedList(undefined, { indexes: ['key'] }),
+			_newRows: new ObservableList(),
 
 			_notHaveNewRows(this: OpalMultirow): boolean {
 				return !this._newRows.length;
@@ -56,16 +60,15 @@ export class OpalMultirow extends Component {
 		});
 	}
 
-	_onRemoveRowClick(evt: IEvent) {
-		let row = evt.target as OpalMultirowRow;
+	_onRemoveRowClick(evt: IEvent<OpalMultirowRow>) {
+		let row = evt.target;
 
 		if (row.input.preset) {
 			this.$<Component>('preset-rows-container').element.removeChild(row.element);
 			this._presetRowCount--;
 		} else {
-			this._newRows.remove(
-				this._newRows.get((row.parentComponent as Component).element.dataset.key, 'key')
-			);
+			let	key = (row.parentComponent as Component).element.dataset.key;
+			this._newRows.removeAt(this._newRows.findIndex((row) => row.key == key));
 		}
 
 		setTimeout(() => {

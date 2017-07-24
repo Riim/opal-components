@@ -23,8 +23,8 @@ export class OpalFilteredList extends Component {
 		}
 	}
 
-	_onQueryInputInput(evt: IEvent) {
-		this.$<OpalLoadedList>('loaded-list').input.query = (evt.target as OpalTextInput).value;
+	_onQueryInputInput(evt: IEvent<OpalTextInput>) {
+		this.$<OpalLoadedList>('loaded-list').input.query = evt.target.value;
 	}
 
 	focus() {

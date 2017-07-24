@@ -1,6 +1,7 @@
 import { IEvent } from 'cellx';
 import { Component, IDisposableListening } from 'rionite';
 import '../../assets/icons/opal-components__icon-arrow-left.svg';
+import { OpalSelectOption } from '../opal-select';
 import './index.css';
 export interface IDay {
     date: string;
@@ -32,8 +33,8 @@ export declare class OpalCalendar extends Component {
     _documentKeyDownListening: IDisposableListening | null | undefined;
     initialize(): void;
     elementAttached(): void;
-    _onMonthSelectSelect(evt: IEvent): void;
-    _onYearSelectSelect(evt: IEvent): void;
+    _onMonthSelectSelect(evt: IEvent<OpalSelectOption>): void;
+    _onYearSelectSelect(evt: IEvent<OpalSelectOption>): void;
     _onDaysFocus(evt: Event): void;
     _onDaysBlur(): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;

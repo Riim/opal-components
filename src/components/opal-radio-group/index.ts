@@ -33,8 +33,8 @@ export class OpalRadioGroup extends Component {
 		});
 	}
 
-	_onUncheck(evt: IEvent) {
-		(evt.target as OpalRadioButton).check();
+	_onUncheck(evt: IEvent<OpalRadioButton>) {
+		evt.target.check();
 	}
 }
 

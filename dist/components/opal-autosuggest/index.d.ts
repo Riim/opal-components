@@ -1,5 +1,6 @@
 import { IEvent, ObservableList } from 'cellx';
 import { Component, IDisposableCallback, IDisposableListening, IDisposableTimeout } from 'rionite';
+import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 export interface IItem {
     value: string;
@@ -32,8 +33,8 @@ export declare class OpalAutosuggest extends Component {
     _onInputSelectedItemChange(evt: IEvent): void;
     _onTextInputFocus(): void;
     _onTextInputBlur(): void;
-    _onTextInputInput(evt: IEvent): void;
-    _onTextInputChange(evt: IEvent): void;
+    _onTextInputInput(evt: IEvent<OpalTextInput>): void;
+    _onTextInputChange(evt: IEvent<OpalTextInput>): void;
     _onTextFieldClick(): void;
     _onMenuInputOpenedChange(evt: IEvent): void;
     _onMenuElementMouseOver(evt: Event): void;

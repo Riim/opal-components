@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.27.26",
+  "version": "0.27.28",
   "description": "",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -39,7 +39,7 @@
     "raw-loader": "^0.5.1",
     "require-dir": "^0.3.2",
     "rimraf": "^2.6.1",
-    "run-sequence": "^2.0.0",
+    "run-sequence": "^2.1.0",
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.0.2",
     "trim-lines-loader": "^0.1.0",
@@ -48,12 +48,11 @@
     "webpack": "^3.3.0"
   },
   "dependencies": {
-    "cellx": "^1.7.22",
+    "cellx": "^1.7.26",
     "cellx-decorators": "^1.4.3",
-    "cellx-indexed-collections": "^1.0.14",
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.0",
     "prismjs": "^1.6.0",
-    "rionite": "^0.27.17"
+    "rionite": "^0.27.19"
   }
 }

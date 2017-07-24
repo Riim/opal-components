@@ -7,6 +7,6 @@ export declare class OpalRadioGroup extends Component {
     ready(): void;
     elementAttached(): void;
     _onCheck(evt: IEvent): void;
-    _onUncheck(evt: IEvent): void;
+    _onUncheck(evt: IEvent<OpalRadioButton>): void;
 }
 export { OpalRadioButton };

@@ -6,35 +6,34 @@
 	<title></title>
 
 	<script src="node_modules/cellx/dist/cellx.js"></script>
-	<script src="node_modules/cellx-indexed-collections/dist/index.js"></script>
 	<script src="node_modules/rionite/dist/rionite.polyfills.js"></script>
 
 	<script>
 
 function require() {}
 
-var dataProvider1 = (function() {
-	var items = [];
+var dataProvider1 = (() => {
+	let items = [];
 
-	for (var i = 0, l = 1000; i < l; i++) {
+	for (let i = 0, l = 1000; i < l; i++) {
 		items[i] = { value: i.toString(), text: i.toString() };
 	}
 
 	return {
-		getItems: function(count, after, query) {
+		getItems: (count, after, query) => {
 			if (count === undefined) {
 				count = 50;
 			}
 
-			var filteredItems = query ? items.filter(function(item) {
+			let filteredItems = query ? items.filter((item) => {
 				return item.text.indexOf(query) != -1;
 			}) : items;
-			var from = after ? filteredItems.findIndex(function(item) {
+			let from = after ? filteredItems.findIndex((item) => {
 				return item.value == after;
 			}) + 1 : 0;
 
-			return new Promise(function(resolve) {
-				setTimeout(function() {
+			return new Promise((resolve) => {
+				setTimeout(() => {
 					resolve({
 						items: filteredItems.slice(from, from + count),
 						total: filteredItems.length
@@ -45,8 +44,8 @@ var dataProvider1 = (function() {
 	};
 })();
 
-var dataProvider2 = (function() {
-	var items = [
+var dataProvider2 = (() => {
+	let items = [
 		{ id: '0', name: 'Shanghai' }, { id: '1', name: 'Karachi' }, { id: '2', name: 'Beijing' },
 		{ id: '3', name: 'Delhi' }, { id: '4', name: 'Lagos' }, { id: '5', name: 'Tianjin' },
 		{ id: '6', name: 'Istanbul' }, { id: '7', name: 'Tokyo' }, { id: '8', name: 'Guangzhou' },
@@ -57,15 +56,15 @@ var dataProvider2 = (function() {
 	];
 
 	return {
-		getItems: function(query) {
-			var filteredItems = query ? items.filter(function(item) {
+		getItems(query) {
+			let filteredItems = query ? items.filter((item) => {
 				return item.name.toLowerCase().indexOf(query.toLowerCase()) != -1;
 			}) : items;
 
-			return new Promise(function(resolve) {
-				setTimeout(function() {
+			return new Promise((resolve) => {
+				setTimeout(() => {
 					resolve({
-						items: filteredItems.map(function(item) {
+						items: filteredItems.map((item) => {
 							return { value: item.id, text: item.name };
 						})
 					});
@@ -75,23 +74,23 @@ var dataProvider2 = (function() {
 	};
 })();
 
-var addNewItem1 = function(text) {
+var addNewItem1 = (text) => {
 	return Promise.resolve({ value: '__' + Math.random(), text: text });
 };
 
-var model1 = cellx.define({}, 'dataList', function() {
-	return new cellxIndexedCollections.IndexedList([
+var model1 = cellx.define({}, 'dataList', () => {
+	return new cellx.ObservableList([
 		{ value: '1', text: '1' },
 		{ value: '2', text: '2' },
 		{ value: '3', text: '3' }
-	], { indexes: ['value'] });
+	]);
 });
 
-var selectViewModel1 = (function() {
-	return new cellxIndexedCollections.IndexedList([
+var selectViewModel1 = (() => {
+	return new cellx.ObservableList([
 		{ value: '1', text: '1', disabled: true },
 		{ value: '2', text: '2', disabled: true }
-	], { indexes: ['value'] });
+	]);
 })();
 
 	</script>
@@ -385,7 +384,7 @@ body {
 <opal-code-listing>
 	<div class="opal-code-listing__example-html">
 		<opal-select placeholder="Select">
-			<opal-select-option text="Option 1" selected></opal-select-option>
+			<opal-select-option text="Option 1"></opal-select-option>
 			<opal-select-option text="Option 2"></opal-select-option>
 			<opal-select-option text="Option 3"></opal-select-option>
 			<opal-select-option text="Option 4 (disabled)" disabled></opal-select-option>
@@ -408,7 +407,6 @@ body {
 		</opal-select>
 	</div>
 	<script class="opal-code-listing__example-js">
-		require('cellx-indexed-collections');
 		require('opal-components/dist/opal-button');
 		require('opal-components/dist/opal-dropdown');
 		require('opal-components/dist/opal-select');
@@ -439,7 +437,6 @@ body {
 		</opal-group>
 	</div>
 	<script class="opal-code-listing__example-js">
-		require('cellx-indexed-collections');
 		require('opal-components/dist/opal-button');
 		require('opal-components/dist/opal-popover');
 		require('opal-components/dist/opal-select');
@@ -555,7 +552,6 @@ body {
 		</opal-select>
 	</div>
 	<script class="opal-code-listing__example-js">
-		require('cellx-indexed-collections');
 		require('opal-components/dist/opal-button');
 		require('opal-components/dist/opal-popover');
 		require('opal-components/dist/opal-select');
@@ -572,7 +568,6 @@ body {
 		<opal-autosuggest dataprovider-keypath="dataProvider2" open-menu-on-nothing-found></opal-autosuggest>
 	</div>
 	<script class="opal-code-listing__example-js">
-		require('cellx-indexed-collections');
 		require('opal-components/dist/opal-dropdown');
 		require('opal-components/dist/opal-loader');
 		require('opal-components/dist/opal-loaded-list');
@@ -593,7 +588,6 @@ body {
 		</opal-tag-select>
 	</div>
 	<script class="opal-code-listing__example-js">
-		require('cellx-indexed-collections');
 		require('opal-components/dist/opal-button');
 		require('opal-components/dist/opal-popover');
 		require('opal-components/dist/opal-select');

@@ -86,7 +86,6 @@ module.exports = (env) => {
 
 		externals: [
 			'cellx',
-			'cellx-indexed-collections',
 			'rionite',
 			'created-browser-history'
 		],

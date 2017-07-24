@@ -60,8 +60,8 @@ export class OpalTabs extends Component {
 		});
 	}
 
-	_onTabListSelect(evt: IEvent) {
-		let tab = evt.target as OpalTab;
+	_onTabListSelect(evt: IEvent<OpalTab>) {
+		let tab = evt.target;
 		let selectedTab = this._selectedTab;
 
 		if (selectedTab) {
@@ -73,8 +73,8 @@ export class OpalTabs extends Component {
 		this._selectedTab = tab;
 	}
 
-	_onTabListDeselect(evt: IEvent) {
-		(evt.target as OpalTab).select();
+	_onTabListDeselect(evt: IEvent<OpalTab>) {
+		evt.target.select();
 	}
 }
 

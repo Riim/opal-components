@@ -1,7 +1,7 @@
 @section/inner {
 
 opal-input-validator/input-validator {
-	@if-then (if=input.required, rt-silent) {
+	@if-then (if=input.required) {
 		opal-input-validator-rule/input-validator-rule-required (required, popover-to={input.popoverTo}) {
 			'{constructor.i18n.isRequiredField}'
 		}

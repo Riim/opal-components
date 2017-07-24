@@ -8,7 +8,7 @@ export declare class OpalSwitchMenu extends Component {
     checkedButton: OpalButton | null;
     ready(): void;
     elementAttached(): void;
-    _onButtonCheck(evt: IEvent): void;
-    _onButtonUncheck(evt: IEvent): void;
+    _onButtonCheck(evt: IEvent<OpalButton>): void;
+    _onButtonUncheck(evt: IEvent<OpalButton>): void;
     clear(): void;
 }

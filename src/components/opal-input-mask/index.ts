@@ -71,12 +71,12 @@ export class OpalInputMask extends Component {
 				return index == -1 ? mask.length : index;
 			},
 
-			_tests(this: OpalInputMask): Array<RegExp> {
+			_tests(this: OpalInputMask): Array<RegExp | null> {
 				return this._mask.map((chr: string) => definitions[chr] || null);
 			},
 
 			_firstTestIndex(this: OpalInputMask): number {
-				return (this._tests as any).findIndex((test: string) => test);
+				return this._tests.findIndex((test) => !!test);
 			}
 		});
 
