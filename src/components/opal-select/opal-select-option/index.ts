@@ -122,12 +122,12 @@ export class OpalSelectOption extends Component {
 	}
 
 	focus(): OpalSelectOption {
-		(this.$('control') as HTMLElement).focus();
+		this.$<HTMLElement>('control').focus();
 		return this;
 	}
 
 	blur(): OpalSelectOption {
-		(this.$('control') as HTMLElement).blur();
+		this.$<HTMLElement>('control').blur();
 		return this;
 	}
 

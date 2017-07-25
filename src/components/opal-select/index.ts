@@ -269,7 +269,7 @@ export class OpalSelect extends Component {
 				} else {
 					value = value[0];
 
-					if (!vm.length || value != (vm.get(0) as any)[vmItemValueFieldName]) {
+					if (!vm.length || value != vm.get(0)![vmItemValueFieldName]) {
 						if (!this.options.some((option) => {
 							if (option.value != value) {
 								return false;
@@ -303,7 +303,7 @@ export class OpalSelect extends Component {
 			this.focus();
 		} else {
 			if (!this._opened) {
-				(this._documentKeyDownListening as IDisposableListening).stop();
+				this._documentKeyDownListening!.stop();
 				this._documentKeyDownListening = null;
 			}
 
@@ -479,7 +479,7 @@ export class OpalSelect extends Component {
 
 			if (focusTarget) {
 				nextTick(() => {
-					(focusTarget as HTMLElement).focus();
+					focusTarget!.focus();
 				});
 			}
 		});
@@ -525,7 +525,7 @@ export class OpalSelect extends Component {
 
 		if (loadedList) {
 			nextTick(() => {
-				(loadedList as OpalLoadedList).checkLoading();
+				loadedList!.checkLoading();
 			});
 		}
 
@@ -560,7 +560,7 @@ export class OpalSelect extends Component {
 		this._documentFocusListening.stop();
 
 		if (!this.input.focused) {
-			(this._documentKeyDownListening as IDisposableListening).stop();
+			this._documentKeyDownListening!.stop();
 			this._documentKeyDownListening = null;
 		}
 
@@ -591,7 +591,7 @@ export class OpalSelect extends Component {
 			return;
 		}
 
-		if (!this.element.contains((evt.target as Node).parentNode as Node)) {
+		if (!this.element.contains((evt.target as Node).parentNode!)) {
 			this.close();
 		}
 	}

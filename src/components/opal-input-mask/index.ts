@@ -189,7 +189,7 @@ export class OpalInputMask extends Component {
 			if (index < bufferLen) {
 				let chr = String.fromCharCode(key);
 
-				if ((tests[index] as RegExp).test(chr)) {
+				if (tests[index]!.test(chr)) {
 					this._shiftRight(index);
 					this._buffer[index] = chr;
 					this._writeBuffer();
@@ -240,7 +240,7 @@ export class OpalInputMask extends Component {
 				while (j++ < valueLen) {
 					let chr = value.charAt(j - 1);
 
-					if ((tests[index] as RegExp).test(chr)) {
+					if (tests[index]!.test(chr)) {
 						buffer[index] = chr;
 						lastMatchIndex = index;
 						break;
@@ -318,7 +318,7 @@ export class OpalInputMask extends Component {
 
 				let j = this._nextTestIndex(index);
 
-				if (j < l && nextChr && (tests[j] as RegExp).test(nextChr)) {
+				if (j < l && nextChr && tests[j]!.test(nextChr)) {
 					chr = nextChr;
 				} else {
 					break;

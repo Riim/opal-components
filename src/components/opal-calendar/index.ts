@@ -110,7 +110,7 @@ export class OpalCalendar extends Component {
 	_documentKeyDownListening: IDisposableListening | null | undefined;
 
 	initialize() {
-		let i18n = (this.constructor as typeof OpalCalendar).i18n as any;
+		let i18n = (this.constructor as typeof OpalCalendar).i18n!;
 		let sundayFirst = i18n.sundayFirst;
 
 		this.weekDays = sundayFirst ? i18n.weekDays : i18n.weekDays.slice(1).concat(i18n.weekDays[0]);
@@ -213,7 +213,7 @@ export class OpalCalendar extends Component {
 
 				if (this._currentlyDateSelection) {
 					this._currentlyDateSelection = false;
-					return oldDays as TDays;
+					return oldDays!;
 				}
 
 				let now = new Date();
@@ -324,7 +324,7 @@ export class OpalCalendar extends Component {
 	_onDaysBlur() {
 		setTimeout(() => {
 			if (!document.activeElement.classList.contains('opal-calendar__day')) {
-				(this._documentKeyDownListening as IDisposableListening).stop();
+				this._documentKeyDownListening!.stop();
 				this._documentKeyDownListening = null;
 			}
 		}, 1);
@@ -342,7 +342,7 @@ export class OpalCalendar extends Component {
 			return;
 		}
 
-		let selectedDayEl = (this.$('days') as HTMLElement).querySelector('[selected]');
+		let selectedDayEl = this.$<HTMLElement>('days').querySelector('[selected]');
 
 		if (selectedDayEl) {
 			selectedDayEl.removeAttribute('selected');

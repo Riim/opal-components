@@ -150,9 +150,9 @@ export class OpalRouter extends Component {
 
 			let state: IComponentState = route.properties.reduce((state: IComponentState, prop, index) => {
 				if (prop.optional) {
-					state[prop.name] = !!(match as RegExpMatchArray)[index + 1];
+					state[prop.name] = !!match![index + 1];
 				} else {
-					let value = (match as RegExpMatchArray)[index + 1];
+					let value = match![index + 1];
 					state[prop.name] = value && decodeURIComponent(value);
 				}
 
@@ -160,7 +160,7 @@ export class OpalRouter extends Component {
 			}, Object.create(null));
 
 			if (route === this._route) {
-				let prevState = this._state as IComponentState;
+				let prevState = this._state!;
 				let stateKeys = Object.keys(state);
 
 				if (
@@ -170,7 +170,7 @@ export class OpalRouter extends Component {
 					return;
 				}
 
-				let componentEl = this._componentElement as IComponentElement;
+				let componentEl = this._componentElement!;
 				let inputConfig = (componentEl.$component.constructor as typeof Component).input;
 				let attrs = componentEl.attributes;
 				let writable = true;
@@ -249,8 +249,8 @@ export class OpalRouter extends Component {
 	}
 
 	_applyState() {
-		let state = this._state as IComponentState;
-		let componentEl = this._componentElement as IComponentElement;
+		let state = this._state!;
+		let componentEl = this._componentElement!;
 
 		for (let name in state) {
 			componentEl.setAttribute(hyphenize(name), valueToAttributeValue(state[name]));
@@ -262,7 +262,7 @@ export class OpalRouter extends Component {
 			this._route = null;
 			this._state = null;
 
-			this.element.removeChild(this._componentElement as IComponentElement);
+			this.element.removeChild(this._componentElement!);
 			this._componentElement = null;
 		}
 	}
@@ -271,7 +271,7 @@ export class OpalRouter extends Component {
 		let route = this._route;
 
 		if (route) {
-			this.element.removeChild(this._componentElement as IComponentElement);
+			this.element.removeChild(this._componentElement!);
 
 			let componentEl = this._componentElement = document.createElement(route.componentName) as IComponentElement;
 			this._applyState();

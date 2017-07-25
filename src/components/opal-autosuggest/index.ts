@@ -57,14 +57,14 @@ function toComparable(str: string): string {
 				let textInput = this.$<OpalTextInput>('text-input');
 				let listItemDataSet = listItem.dataset;
 
-				textInput.value = listItemDataSet.text as string;
+				textInput.value = listItemDataSet.text!;
 				textInput.focus();
 
 				this._clearList();
 
 				this._setSelectedItem({
-					value: listItemDataSet.value as string,
-					text: listItemDataSet.text as string
+					value: listItemDataSet.value!,
+					text: listItemDataSet.text!
 				});
 			}
 		}
@@ -222,7 +222,7 @@ export class OpalAutosuggest extends Component {
 			}
 		}
 
-		let focusedListItem = this._focusedListItem as HTMLElement;
+		let focusedListItem = this._focusedListItem!;
 
 		if (el != focusedListItem) {
 			this._focusedListItem = el;
@@ -245,7 +245,7 @@ export class OpalAutosuggest extends Component {
 			return;
 		}
 
-		if (!this.element.contains((evt.target as HTMLElement).parentNode as Node)) {
+		if (!this.element.contains((evt.target as HTMLElement).parentNode!)) {
 			this.closeMenu();
 			this._setSelectedItemOfList();
 		}
@@ -284,13 +284,13 @@ export class OpalAutosuggest extends Component {
 				if (focusedListItem) {
 					let focusedListItemDataSet = focusedListItem.dataset;
 
-					this.$<OpalTextInput>('text-input').value = focusedListItemDataSet.text as string;
+					this.$<OpalTextInput>('text-input').value = focusedListItemDataSet.text!;
 
 					this._clearList();
 
 					this._setSelectedItem({
-						value: focusedListItemDataSet.value as string,
-						text: focusedListItemDataSet.text as string
+						value: focusedListItemDataSet.value!,
+						text: focusedListItemDataSet.text!
 					});
 				}
 

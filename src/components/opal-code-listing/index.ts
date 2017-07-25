@@ -7,7 +7,7 @@ import template = require('./index.nelm');
 function prepareCode(code: string, isHtml?: boolean) {
 	code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
 
-	let tabs = code.match(/^\t*[^\t\r\n]/gm) as RegExpMatchArray;
+	let tabs = code.match(/^\t*[^\t\r\n]/gm)!;
 	let stripTabCount = tabs.slice(1).reduce(
 		(stripTabCount, tabs) => Math.min(stripTabCount, tabs.length),
 		tabs[0].length
@@ -34,11 +34,11 @@ export class OpalCodeListing extends Component {
 
 	initialize() {
 		this.highlightedHTMLCode = Prism.highlight(
-			prepareCode((this.$('example-html') as HTMLElement).innerHTML, true),
+			prepareCode(this.$<HTMLElement>('example-html').innerHTML, true),
 			Prism.languages['html']
 		);
 
-		let exampleJS = this.$('example-js') as HTMLElement | null;
+		let exampleJS = this.$<HTMLElement | null>('example-js');
 
 		if (exampleJS) {
 			this.highlightedJSCode = Prism.highlight(
@@ -49,7 +49,7 @@ export class OpalCodeListing extends Component {
 	}
 
 	ready() {
-		(this.$('html-code') as HTMLElement).innerHTML = this.highlightedHTMLCode;
-		(this.$('js-code') as HTMLElement).innerHTML = this.highlightedJSCode || '';
+		this.$<HTMLElement>('html-code').innerHTML = this.highlightedHTMLCode;
+		this.$<HTMLElement>('js-code').innerHTML = this.highlightedJSCode || '';
 	}
 }

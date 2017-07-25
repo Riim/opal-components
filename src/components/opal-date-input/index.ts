@@ -44,7 +44,7 @@ export class OpalDateInput extends Component {
 
 	dateInRange(date: string): boolean {
 		let calendar = this.$<OpalCalendar>('calendar');
-		let match = date.match(/\d+/g) as RegExpMatchArray;
+		let match = date.match(/\d+/g)!;
 		let day = +match[0];
 		let month = +match[1] - 1;
 		let year = +match[2];
@@ -104,7 +104,7 @@ export class OpalDateInput extends Component {
 			return;
 		}
 
-		if (!this.element.contains((evt.target as Node).parentNode as Node)) {
+		if (!this.element.contains((evt.target as Node).parentNode!)) {
 			this.$<OpalDropdown>('calendar-menu').close();
 		}
 	}

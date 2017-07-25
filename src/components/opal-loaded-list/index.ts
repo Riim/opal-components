@@ -184,7 +184,7 @@ export class OpalLoadedList extends Component {
 		let args = [query];
 
 		if (infinite) {
-			args.unshift(this.input.count, this.list.length ? (this.list.get(-1) as IItem).value : undefined);
+			args.unshift(this.input.count, this.list.length ? this.list.get(-1)!.value : undefined);
 		}
 
 		this.loading = true;
@@ -218,6 +218,6 @@ export class OpalLoadedList extends Component {
 	}
 
 	_getListItemContext(context: object, content: Component): object {
-		return mixin(Object.create(context), content.input.$context as object);
+		return mixin(Object.create(context), content.input.$context!);
 	}
 }

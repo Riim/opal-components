@@ -169,7 +169,7 @@ export class OpalPopover extends Component {
 				break;
 			}
 
-			el = el.parentNode as HTMLElement;
+			el = el.parentNode as HTMLElement | null;
 
 			if (!el) {
 				break;

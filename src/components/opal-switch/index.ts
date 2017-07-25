@@ -32,7 +32,7 @@ export class OpalSwitch extends Component {
 
 	ready() {
 		if (this.input.checked) {
-			(this.$('input') as HTMLInputElement).checked = true;
+			this.$<HTMLInputElement>('input').checked = true;
 		}
 
 		if (this.input.focused) {
@@ -55,7 +55,7 @@ export class OpalSwitch extends Component {
 	}
 
 	_onInputCheckedChange(evt: IEvent) {
-		(this.$('input') as HTMLInputElement).checked = evt.value;
+		this.$<HTMLInputElement>('input').checked = evt.value;
 	}
 
 	_onInputFocusedChange(evt: IEvent) {
@@ -130,12 +130,12 @@ export class OpalSwitch extends Component {
 	}
 
 	focus(): OpalSwitch {
-		(this.$('control') as HTMLElement).focus();
+		this.$<HTMLElement>('control').focus();
 		return this;
 	}
 
 	blur(): OpalSwitch {
-		(this.$('control') as HTMLElement).blur();
+		this.$<HTMLElement>('control').blur();
 		return this;
 	}
 

@@ -68,8 +68,7 @@ export class OpalInputValidator extends Component {
 				value ?
 					ruleInput.minLength && value.length < ruleInput.minLength ||
 						ruleInput.regex && !ruleInput.regex.test(value) ||
-						ruleInput.test &&
-							!((this.ownerComponent as Component)[ruleInput.test] as (value: string) => boolean)(value) :
+						ruleInput.test && !this.ownerComponent![ruleInput.test](value) :
 					ruleInput.required
 			)) {
 				failedRule = rule;

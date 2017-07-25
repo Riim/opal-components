@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.27.28",
+  "version": "0.27.29",
   "description": "",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -45,7 +45,7 @@
     "trim-lines-loader": "^0.1.0",
     "tslint": "^5.5.0",
     "tslint-loader": "^3.5.3",
-    "webpack": "^3.3.0"
+    "webpack": "^3.4.0"
   },
   "dependencies": {
     "cellx": "^1.7.26",
@@ -53,6 +53,6 @@
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.0",
     "prismjs": "^1.6.0",
-    "rionite": "^0.27.19"
+    "rionite": "^0.27.20"
   }
 }

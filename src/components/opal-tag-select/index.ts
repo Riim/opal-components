@@ -151,7 +151,7 @@ export class OpalTagSelect extends Component {
 		let node = evt.target as Node;
 
 		if (node != selectEl) {
-			let control = this.$('control') as HTMLElement;
+			let control = this.$<HTMLElement>('control');
 
 			do {
 				if (node == control) {
@@ -159,7 +159,7 @@ export class OpalTagSelect extends Component {
 					break;
 				}
 
-				node = node.parentNode as Node;
+				node = node.parentNode!;
 			} while (node != selectEl);
 		}
 	}

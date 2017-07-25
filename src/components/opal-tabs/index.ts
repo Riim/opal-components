@@ -50,7 +50,7 @@ export class OpalTabs extends Component {
 			selectedTab.select();
 		}
 
-		tabPanels[selectedTabIndex as number].$component.input.shown = true;
+		tabPanels[selectedTabIndex!].$component.input.shown = true;
 	}
 
 	elementAttached() {

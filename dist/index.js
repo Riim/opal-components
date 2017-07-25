@@ -4115,8 +4115,7 @@ var OpalInputValidator = (function (_super) {
             if (!failedRule && (value ?
                 ruleInput.minLength && value.length < ruleInput.minLength ||
                     ruleInput.regex && !ruleInput.regex.test(value) ||
-                    ruleInput.test &&
-                        !_this.ownerComponent[ruleInput.test](value) :
+                    ruleInput.test && !_this.ownerComponent[ruleInput.test](value) :
                 ruleInput.required)) {
                 failedRule = rule;
                 rule.showMessage();
