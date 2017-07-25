@@ -114,12 +114,12 @@ export class OpalSignButton extends Component {
 	}
 
 	focus(): OpalSignButton {
-		this.$<HTMLElement>('control').focus();
+		this.$<HTMLElement>('control')!.focus();
 		return this;
 	}
 
 	blur(): OpalSignButton {
-		this.$<HTMLElement>('control').blur();
+		this.$<HTMLElement>('control')!.blur();
 		return this;
 	}
 

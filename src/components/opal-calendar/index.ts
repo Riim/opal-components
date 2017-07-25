@@ -342,7 +342,7 @@ export class OpalCalendar extends Component {
 			return;
 		}
 
-		let selectedDayEl = this.$<HTMLElement>('days').querySelector('[selected]');
+		let selectedDayEl = this.$<HTMLElement>('days')!.querySelector('[selected]');
 
 		if (selectedDayEl) {
 			selectedDayEl.removeAttribute('selected');

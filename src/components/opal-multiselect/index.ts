@@ -81,10 +81,10 @@ export class OpalMultiselect extends OpalSelect {
 	}
 
 	_onQueryInputInput(evt: IEvent<OpalTextInput>) {
-		this.$<OpalLoadedList>('loaded-list').input.query = evt.target.value;
+		this.$<OpalLoadedList>('loaded-list')!.input.query = evt.target.value;
 	}
 
 	_onQueryInputClear() {
-		this.$<OpalLoadedList>('loaded-list').input.query = '';
+		this.$<OpalLoadedList>('loaded-list')!.input.query = '';
 	}
 }

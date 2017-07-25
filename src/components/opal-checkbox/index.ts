@@ -51,7 +51,7 @@ export class OpalCheckbox extends Component {
 
 		if (input.checked) {
 			input.indeterminate = false;
-			this.$<HTMLInputElement>('input').checked = true;
+			this.$<HTMLInputElement>('input')!.checked = true;
 		}
 
 		if (input.focused) {
@@ -64,7 +64,7 @@ export class OpalCheckbox extends Component {
 			this.input.indeterminate = false;
 		}
 
-		this.$<HTMLInputElement>('input').checked = evt.value;
+		this.$<HTMLInputElement>('input')!.checked = evt.value;
 	}
 
 	_onInputIndeterminateChange(evt: IEvent) {
@@ -145,12 +145,12 @@ export class OpalCheckbox extends Component {
 	}
 
 	focus(): OpalCheckbox {
-		this.$<HTMLElement>('control').focus();
+		this.$<HTMLElement>('control')!.focus();
 		return this;
 	}
 
 	blur(): OpalCheckbox {
-		this.$<HTMLElement>('control').blur();
+		this.$<HTMLElement>('control')!.blur();
 		return this;
 	}
 

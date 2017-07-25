@@ -414,7 +414,7 @@ export class OpalSelect extends Component {
 				});
 			}
 
-			let loadedList = this.$<OpalLoadedList | null>('loaded-list');
+			let loadedList = this.$<OpalLoadedList>('loaded-list');
 
 			if (loadedList) {
 				loadedList.input.query = '';
@@ -467,13 +467,13 @@ export class OpalSelect extends Component {
 		nextTick(() => {
 			this._focusOptions();
 
-			let focusTarget = this.$<HTMLElement | OpalTextInput | null>('focus');
+			let focusTarget = this.$<HTMLElement | OpalTextInput>('focus');
 
 			if (!focusTarget) {
-				let filteredList = this.$<OpalFilteredList | null>('filtered-list');
+				let filteredList = this.$<OpalFilteredList>('filtered-list');
 
 				if (filteredList) {
-					focusTarget = filteredList.$<OpalTextInput | null>('query-input');
+					focusTarget = filteredList.$<OpalTextInput>('query-input');
 				}
 			}
 
@@ -518,10 +518,10 @@ export class OpalSelect extends Component {
 			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 		}
 
-		this.$<OpalButton>('button').check();
-		this.$<OpalDropdown>('menu').open();
+		this.$<OpalButton>('button')!.check();
+		this.$<OpalDropdown>('menu')!.open();
 
-		let loadedList = this.$<OpalLoadedList | null>('loaded-list');
+		let loadedList = this.$<OpalLoadedList>('loaded-list');
 
 		if (loadedList) {
 			nextTick(() => {
@@ -529,15 +529,15 @@ export class OpalSelect extends Component {
 			});
 		}
 
-		let focusTarget = this.$<HTMLElement | OpalTextInput | null>('focus');
+		let focusTarget = this.$<HTMLElement | OpalTextInput>('focus');
 
 		if (focusTarget) {
 			focusTarget.focus();
 		} else {
-			let filteredList = this.$<OpalFilteredList | null>('filtered-list');
+			let filteredList = this.$<OpalFilteredList>('filtered-list');
 
 			if (filteredList) {
-				focusTarget = filteredList.$<OpalTextInput | null>('query-input');
+				focusTarget = filteredList.$<OpalTextInput>('query-input');
 			}
 
 			if (focusTarget) {
@@ -564,8 +564,8 @@ export class OpalSelect extends Component {
 			this._documentKeyDownListening = null;
 		}
 
-		this.$<OpalButton>('button').uncheck();
-		this.$<OpalDropdown>('menu').close();
+		this.$<OpalButton>('button')!.uncheck();
+		this.$<OpalDropdown>('menu')!.close();
 
 		if (this.input.multiple) {
 			if (!isEqualArray(
@@ -714,12 +714,12 @@ export class OpalSelect extends Component {
 	}
 
 	focus(): OpalSelect {
-		this.$<OpalSelect>('button').focus();
+		this.$<OpalSelect>('button')!.focus();
 		return this;
 	}
 
 	blur(): OpalSelect {
-		this.$<OpalSelect>('button').blur();
+		this.$<OpalSelect>('button')!.blur();
 		return this;
 	}
 }

@@ -64,7 +64,7 @@ export class OpalMultirow extends Component {
 		let row = evt.target;
 
 		if (row.input.preset) {
-			this.$<Component>('preset-rows-container').element.removeChild(row.element);
+			this.$<Component>('preset-rows-container')!.element.removeChild(row.element);
 			this._presetRowCount--;
 		} else {
 			let	key = row.parentComponent!.element.dataset.key;

@@ -70,7 +70,7 @@ export class OpalTextInput extends Component {
 
 	ready() {
 		let input = this.input;
-		let textField = this.textField = this.$<HTMLInputElement>('text-field');
+		let textField = this.textField = this.$<HTMLInputElement>('text-field')!;
 
 		if (this._textFieldValue) {
 			textField.value = this._textFieldValue;

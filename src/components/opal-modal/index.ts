@@ -15,7 +15,7 @@ function onDocumentFocus(evt: Event) {
 	}
 
 	if (!openedModals[0].element.contains((evt.target as Node).parentNode!)) {
-		openedModals[0].$<HTMLElement>('btn-close').focus();
+		openedModals[0].$<HTMLElement>('btn-close')!.focus();
 	}
 }
 
@@ -155,7 +155,7 @@ export class OpalModal extends Component {
 	focus(): OpalModal {
 		if (this == openedModals[0]) {
 			document.body.classList.remove('_no-focus-highlight');
-			(this.$<HTMLElement | null>('focus') || this.$<HTMLElement>('btn-close')).focus();
+			(this.$<HTMLElement>('focus') || this.$<HTMLElement>('btn-close')!).focus();
 		}
 
 		return this;

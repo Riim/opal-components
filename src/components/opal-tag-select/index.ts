@@ -146,7 +146,7 @@ export class OpalTagSelect extends Component {
 	}
 
 	_onControlClick(evt: Event) {
-		let select = this.$<OpalSelect>('select');
+		let select = this.$<OpalSelect>('select')!;
 		let selectEl = select.element;
 		let node = evt.target as Node;
 
@@ -166,7 +166,7 @@ export class OpalTagSelect extends Component {
 
 	_onSelectInput() {
 		this.emit('input');
-		this.$<OpalSelect>('select').close();
+		this.$<OpalSelect>('select')!.close();
 	}
 
 	_onSelectChange() {
@@ -176,10 +176,10 @@ export class OpalTagSelect extends Component {
 	// закрываем в select/deselect а не в change,
 	// тк. change на opal-select[multiple] генерируется только при закрытии
 	_onSelectOptionSelect() {
-		this.$<OpalSelect>('select').close();
+		this.$<OpalSelect>('select')!.close();
 	}
 
 	_onSelectOptionDeselect() {
-		this.$<OpalSelect>('select').close();
+		this.$<OpalSelect>('select')!.close();
 	}
 }

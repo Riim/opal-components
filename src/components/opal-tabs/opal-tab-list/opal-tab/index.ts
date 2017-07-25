@@ -103,12 +103,12 @@ export class OpalTab extends Component {
 	}
 
 	focus(): OpalTab {
-		this.$<HTMLElement>('control').focus();
+		this.$<HTMLElement>('control')!.focus();
 		return this;
 	}
 
 	blur(): OpalTab {
-		this.$<HTMLElement>('control').blur();
+		this.$<HTMLElement>('control')!.blur();
 		return this;
 	}
 

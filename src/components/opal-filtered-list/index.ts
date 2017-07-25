@@ -24,11 +24,11 @@ export class OpalFilteredList extends Component {
 	}
 
 	_onQueryInputInput(evt: IEvent<OpalTextInput>) {
-		this.$<OpalLoadedList>('loaded-list').input.query = evt.target.value;
+		this.$<OpalLoadedList>('loaded-list')!.input.query = evt.target.value;
 	}
 
 	focus() {
-		let queryInput = this.$<OpalTextInput | null>('query-input');
+		let queryInput = this.$<OpalTextInput>('query-input');
 
 		if (queryInput) {
 			queryInput.focus();

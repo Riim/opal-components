@@ -129,7 +129,7 @@ export class OpalPopover extends Component {
 		}
 
 		let from = this.input.from;
-		let arrowStyle = this.$<HTMLElement>('arrow').style;
+		let arrowStyle = this.$<HTMLElement>('arrow')!.style;
 
 		arrowStyle.top = arrowStyle.right = arrowStyle.bottom = arrowStyle.left = '';
 

@@ -18,10 +18,10 @@ import template = require('./index.nelm');
 })
 export class OpalInputValidatorRule extends Component {
 	showMessage() {
-		this.$<OpalPopover>('popover').open();
+		this.$<OpalPopover>('popover')!.open();
 	}
 
 	hideMessage() {
-		this.$<OpalPopover>('popover').close();
+		this.$<OpalPopover>('popover')!.close();
 	}
 }

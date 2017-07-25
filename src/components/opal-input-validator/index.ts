@@ -58,7 +58,7 @@ export class OpalInputValidator extends Component {
 	}
 
 	_validate(rules: Array<OpalInputValidatorRule>): boolean {
-		let value = this.$<OpalTextInput>('text-input').value;
+		let value = this.$<OpalTextInput>('text-input')!.value;
 		let failedRule: OpalInputValidatorRule | undefined;
 
 		rules.forEach((rule) => {

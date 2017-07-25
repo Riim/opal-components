@@ -34,11 +34,11 @@ export class OpalCodeListing extends Component {
 
 	initialize() {
 		this.highlightedHTMLCode = Prism.highlight(
-			prepareCode(this.$<HTMLElement>('example-html').innerHTML, true),
+			prepareCode(this.$<HTMLElement>('example-html')!.innerHTML, true),
 			Prism.languages['html']
 		);
 
-		let exampleJS = this.$<HTMLElement | null>('example-js');
+		let exampleJS = this.$<HTMLElement>('example-js');
 
 		if (exampleJS) {
 			this.highlightedJSCode = Prism.highlight(
@@ -49,7 +49,7 @@ export class OpalCodeListing extends Component {
 	}
 
 	ready() {
-		this.$<HTMLElement>('html-code').innerHTML = this.highlightedHTMLCode;
-		this.$<HTMLElement>('js-code').innerHTML = this.highlightedJSCode || '';
+		this.$<HTMLElement>('html-code')!.innerHTML = this.highlightedHTMLCode;
+		this.$<HTMLElement>('js-code')!.innerHTML = this.highlightedJSCode || '';
 	}
 }
