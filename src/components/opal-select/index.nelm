@@ -21,7 +21,7 @@ rt-content (select=.opal-select__menu) {
 			@if-then (if=input.datalistKeypath) {
 				div/, menu-content {
 					@if-then (if=dataList.length) {
-						@repeat (for=item of dataList) {
+						@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {
 							opal-select-option/option (
 								value='{item |key(_dataListItemValueFieldName) }',
 								text='{item |key(_dataListItemTextFieldName) }',
