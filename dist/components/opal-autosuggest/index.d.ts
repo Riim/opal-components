@@ -45,7 +45,7 @@ export declare class OpalAutosuggest extends Component {
     _onDocumentClick(evt: Event): void;
     _load(): void;
     _itemsRequestCallback(data: {
-        items: Array<IItem>;
+        [name: string]: any;
     }): void;
     _cancelLoading(): void;
     openMenu(force?: boolean): OpalAutosuggest;

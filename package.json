@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.27.32",
+  "version": "0.27.33",
   "description": "",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -53,6 +53,6 @@
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.0",
     "prismjs": "^1.6.0",
-    "rionite": "^0.27.22"
+    "rionite": "^0.27.24"
   }
 }

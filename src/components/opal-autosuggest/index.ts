@@ -326,10 +326,10 @@ export class OpalAutosuggest extends Component {
 			.then(this._requestCallback = this.registerCallback(this._itemsRequestCallback));
 	}
 
-	_itemsRequestCallback(data: { items: Array<IItem> }) {
+	_itemsRequestCallback(data: { [name: string]: any }) {
 		this.loading = false;
 
-		let items = data.items;
+		let items: Array<IItem> = data.items;
 
 		if (items.length) {
 			this.list.addRange(items);
