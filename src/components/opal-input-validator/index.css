@@ -1,15 +1,17 @@
-.opal-input-validator {
+@component opal-input-validator {
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
 
-	& .opal-input-validator__text-input {
+	@el text-input {
 		display: block;
 	}
 
-	/* States */
-
-	&[valid=no] .opal-input-validator__text-input .opal-text-input__text-field {
-		border-color: hsl(0,100%,48%);
+	@mod valid=no {
+		@el text-input {
+			& .opal-text-input__text-field {
+				border-color: hsl(0,100%,48%);
+			}
+		}
 	}
 }

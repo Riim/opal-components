@@ -1,4 +1,4 @@
-.opal-popover {
+@component opal-popover {
 	position: absolute;
 	z-index: 100;
 	display: none;
@@ -11,14 +11,14 @@
 	line-height: 1.5;
 	cursor: default;
 
-	& .opal-popover__arrow {
+	@el arrow {
 		position: absolute;
 		z-index: 1;
 		width: 0;
 		height: 0;
-	}
-		& .opal-popover__arrow::before,
-		& .opal-popover__arrow::after {
+
+		&::before,
+		&::after {
 			position: absolute;
 			width: 0;
 			height: 0;
@@ -26,197 +26,224 @@
 			content: '';
 		}
 
-		& .opal-popover__arrow::after {
+		&::after {
 			border: 8px solid transparent;
 		}
+	}
 
-	& .opal-popover__content {
+	@el content {
 		position: relative;
 		display: block;
 	}
 
-	/* States */
-
-	&[to=top] {
+	@mod to=top {
 		bottom: 100%;
 		margin-bottom: 15px;
 
-		& .opal-popover__arrow {
+		@el arrow {
 			top: 100%;
-		}
-			& .opal-popover__arrow::before,
-			& .opal-popover__arrow::after {
+
+			&::before,
+			&::after {
 				border-top-color: hsl(0,0%,80%);
 				border-bottom-width: 0;
 				transform: translateX(-50%);
 			}
 
-			& .opal-popover__arrow::after {
+			&::after {
 				border-top-color: #fff;
 			}
+		}
 	}
 
-	&[from=middle][to=top] {
-		left: 50%;
-		transform: translateX(-50%);
+	@mod from=left {
+		@mod to=top {
+			left: 0;
 
-		& .opal-popover__arrow {
+			@el arrow {
+				transform: translateX(-1px);
+			}
+		}
+	}
+
+	@mod from=middle {
+		@mod to=top {
 			left: 50%;
+			transform: translateX(-50%);
+
+			@el arrow {
+				left: 50%;
+			}
 		}
 	}
 
-	&[from=left][to=top] {
-		left: 0;
+	@mod from=right {
+		@mod to=top {
+			right: 0;
 
-		& .opal-popover__arrow {
-			transform: translateX(-1px);
+			@el arrow {
+				transform: translateX(1px);
+			}
 		}
 	}
 
-	&[from=right][to=top] {
-		right: 0;
-
-		& .opal-popover__arrow {
-			transform: translateX(1px);
-		}
-	}
-
-	&[to=right] {
+	@mod to=right {
 		left: 100%;
 		margin-left: 15px;
 
-		& .opal-popover__arrow {
+		@el arrow {
 			right: 100%;
-		}
-			& .opal-popover__arrow::before,
-			& .opal-popover__arrow::after {
+
+			&::before,
+			&::after {
 				right: 0;
 				border-right-color: hsl(0,0%,80%);
 				border-left-width: 0;
 				transform: translateY(-50%);
 			}
 
-			& .opal-popover__arrow::after {
+			&::after {
 				border-right-color: #fff;
 			}
+		}
 	}
 
-	&[from=middle][to=right] {
-		top: 50%;
-		transform: translateY(-50%);
+	@mod from=top {
+		@mod to=right {
+			top: 0;
 
-		& .opal-popover__arrow {
+			@el arrow {
+				transform: translateY(-1px);
+			}
+		}
+	}
+
+	@mod from=middle {
+		@mod to=right {
 			top: 50%;
+			transform: translateY(-50%);
+
+			@el arrow {
+				top: 50%;
+			}
 		}
 	}
 
-	&[from=top][to=right] {
-		top: 0;
+	@mod from=bottom {
+		@mod to=right {
+			bottom: 0;
 
-		& .opal-popover__arrow {
-			transform: translateY(-1px);
+			@el arrow {
+				transform: translateY(1px);
+			}
 		}
 	}
 
-	&[from=bottom][to=right] {
-		bottom: 0;
-
-		& .opal-popover__arrow {
-			transform: translateY(1px);
-		}
-	}
-
-	&[to=bottom] {
+	@mod to=bottom {
 		top: 100%;
 		margin-top: 15px;
 
-		& .opal-popover__arrow {
+		@el arrow {
 			bottom: 100%;
-		}
-			& .opal-popover__arrow::before,
-			& .opal-popover__arrow::after {
+
+			&::before,
+			&::after {
 				bottom: 0;
 				border-top-width: 0;
 				border-bottom-color: hsl(0,0%,80%);
 				transform: translateX(-50%);
 			}
 
-			& .opal-popover__arrow::after {
+			&::after {
 				border-bottom-color: #fff;
 			}
+		}
 	}
 
-	&[from=middle][to=bottom] {
-		left: 50%;
-		transform: translateX(-50%);
+	@mod from=left {
+		@mod to=bottom {
+			left: 0;
 
-		& .opal-popover__arrow {
+			@el arrow {
+				transform: translateX(-1px);
+			}
+		}
+	}
+
+	@mod from=middle {
+		@mod to=bottom {
 			left: 50%;
+			transform: translateX(-50%);
+
+			@el arrow {
+				left: 50%;
+			}
 		}
 	}
 
-	&[from=left][to=bottom] {
-		left: 0;
+	@mod from=right {
+		@mod to=bottom {
+			right: 0;
 
-		& .opal-popover__arrow {
-			transform: translateX(-1px);
+			@el arrow {
+				transform: translateX(1px);
+			}
 		}
 	}
 
-	&[from=right][to=bottom] {
-		right: 0;
-
-		& .opal-popover__arrow {
-			transform: translateX(1px);
-		}
-	}
-
-	&[to=left] {
+	@mod to=left {
 		right: 100%;
 		margin-right: 15px;
 
-		& .opal-popover__arrow {
+		@el arrow {
 			left: 100%;
-		}
-			& .opal-popover__arrow::before,
-			& .opal-popover__arrow::after {
+
+			&::before,
+			&::after {
 				left: 0;
 				border-right-width: 0;
 				border-left-color: hsl(0,0%,80%);
 				transform: translateY(-50%);
 			}
 
-			& .opal-popover__arrow::after {
+			&::after {
 				border-left-color: #fff;
 			}
+		}
 	}
 
-	&[from=middle][to=left] {
-		top: 50%;
-		transform: translateY(-50%);
+	@mod from=top {
+		@mod to=left {
+			top: 0;
 
-		& .opal-popover__arrow {
+			@el arrow {
+				transform: translateY(-1px);
+			}
+		}
+	}
+
+	@mod from=middle {
+		@mod to=left {
 			top: 50%;
+			transform: translateY(-50%);
+
+			@el arrow {
+				top: 50%;
+			}
 		}
 	}
 
-	&[from=top][to=left] {
-		top: 0;
+	@mod from=bottom {
+		@mod to=left {
+			bottom: 0;
 
-		& .opal-popover__arrow {
-			transform: translateY(-1px);
+			@el arrow {
+				transform: translateY(1px);
+			}
 		}
 	}
 
-	&[from=bottom][to=left] {
-		bottom: 0;
-
-		& .opal-popover__arrow {
-			transform: translateY(1px);
-		}
-	}
-
-	&[opened] {
+	@mod opened {
 		display: block;
 		animation: opal-popover-fade-in-animation .1s linear;
 	}

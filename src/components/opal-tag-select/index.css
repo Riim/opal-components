@@ -1,9 +1,9 @@
-.opal-tag-select {
+@component opal-tag-select {
 	display: inline-block;
 
-	& .opal-tag-select__tags {
+	@el tags {
 	}
-		& .opal-tag-select__tag {
+		@el tag {
 			position: relative;
 			top: -1px;
 			display: inline-block;
@@ -18,8 +18,19 @@
 			text-shadow: none;
 			font: 16px/32px Verdana, Geneva, sans-serif;
 			font-weight: normal;
+
+			@mod disabled {
+				margin-right: 3px;
+				padding-right: 16px;
+				border-top-right-radius: 16px;
+				border-bottom-right-radius: 16px;
+
+				@el btn-remove-tag {
+					display: none;
+				}
+			}
 		}
-			& .opal-tag-select__btn-remove-tag {
+			@el btn-remove-tag {
 				position: absolute;
 				top: 0;
 				bottom: 0;
@@ -34,8 +45,8 @@
 				box-shadow: inset 1px 0 rgba(0,0,0,.4);
 				cursor: pointer;
 				transition: background .1s linear;
-			}
-				& .opal-tag-select__btn-remove-tag::before {
+
+				&::before {
 					position: absolute;
 					top: 0;
 					right: 0;
@@ -48,86 +59,76 @@
 					content: '';
 				}
 
-			& .opal-tag-select__btn-remove-tag:hover {
-				background: hsl(208,26%,48%);
-			}
-
-			& .opal-tag-select__btn-remove-tag:focus {
-				outline: none;
-			}
-				body:not(._no-focus-highlight) & .opal-tag-select__btn-remove-tag:focus::after {
-					position: absolute;
-					top: 2px;
-					right: 2px;
-					bottom: 2px;
-					left: 2px;
-					border: 1px solid rgba(255,255,255,.8);
-					border-radius: inherit;
-					content: '';
-					pointer-events: none;
+				&:hover {
+					background: hsl(208,26%,48%);
 				}
 
-			& .opal-tag-select__btn-remove-tag:active {
-				background: hsl(208,6%,28%);
+				&:focus {
+					outline: none;
+
+					body:not(._no-focus-highlight) &::after {
+						position: absolute;
+						top: 2px;
+						right: 2px;
+						bottom: 2px;
+						left: 2px;
+						border: 1px solid rgba(255,255,255,.8);
+						border-radius: inherit;
+						content: '';
+						pointer-events: none;
+					}
+				}
+
+				&:active {
+					background: hsl(208,6%,28%);
+				}
 			}
 
-		& .opal-tag-select__tag[disabled] {
-			margin-right: 3px;
-			padding-right: 16px;
-			border-top-right-radius: 16px;
-			border-bottom-right-radius: 16px;
-		}
-			& .opal-tag-select__tag[disabled] .opal-tag-select__btn-remove-tag {
-				display: none;
-			}
-
-	& .opal-tag-select__control {
+	@el control {
 		display: inline-block;
 		white-space: nowrap;
 		cursor: pointer;
 		user-select: none;
 	}
-		& .opal-tag-select__placeholder {
+		@el placeholder {
 		}
 
-		& .opal-tag-select__select {
+		@el select {
 		}
-			& .opal-tag-select__button {
+			@el button {
 			}
 
-	/* States */
-
-	&[view-type=primary] {
-		& .opal-tag-select__tag {
+	@mod view-type=primary {
+		@el tag {
 			background: hsl(208,100%,48%);
 		}
-			& .opal-tag-select__btn-remove-tag {
+			@el btn-remove-tag {
 				background: hsl(208,90%,38%);
-			}
 
-			& .opal-tag-select__btn-remove-tag:hover {
-				background: hsl(208,100%,48%);
-			}
+				&:hover {
+					background: hsl(208,100%,48%);
+				}
 
-			& .opal-tag-select__btn-remove-tag:active {
-				background: hsl(208,80%,28%);
+				&:active {
+					background: hsl(208,80%,28%);
+				}
 			}
 	}
 
-	&[view-type=danger] {
-		& .opal-tag-select__tag {
+	@mod view-type=danger {
+		@el tag {
 			background: hsl(348,96%,52%);
 		}
-			& .opal-tag-select__btn-remove-tag {
+			@el btn-remove-tag {
 				background: hsl(348,86%,42%);
-			}
 
-			& .opal-tag-select__btn-remove-tag:hover {
-				background: hsl(348,96%,52%);
-			}
+				&:hover {
+					background: hsl(348,96%,52%);
+				}
 
-			& .opal-tag-select__btn-remove-tag:active {
-				background: hsl(348,76%,32%);
+				&:active {
+					background: hsl(348,76%,32%);
+				}
 			}
 	}
 }

@@ -1,15 +1,15 @@
-.opal-filtered-list {
-	& .opal-filtered-list__query-input-container {
+@component opal-filtered-list {
+	@el query-input-container {
 		display: block;
 	}
-		& .opal-filtered-list__query-input {
+		@el query-input {
 			display: block;
 			margin-bottom: 15px;
 			width: auto;
 		}
 
-	& .opal-filtered-list__loaded-list-container {
+	@el loaded-list-container {
 	}
-		& .opal-filtered-list__loaded-list {
+		@el loaded-list {
 		}
 }

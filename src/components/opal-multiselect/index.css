@@ -1,20 +1,20 @@
-.opal-multiselect.opal-select {
-	& .opal-select__menu {
+@component opal-multiselect : opal-select {
+	@el menu {
 		padding: 0;
 		width: 600px;
 	}
-		& .opal-select__menu-header {
+		@el menu-header {
 			box-sizing: border-box;
 			padding: 0 10px;
 			border-bottom: 1px solid hsl(0,0%,80%);
 			font-size: 0;
 			line-height: 60px;
 		}
-			& .opal-select__query-input {
+			@el query-input {
 				width: 279px;
 			}
 
-		& .opal-select__menu-selected {
+		@el menu-selected {
 			float: right;
 			overflow: auto;
 			box-sizing: border-box;
@@ -22,7 +22,7 @@
 			height: 304px;
 			border-left: 1px solid hsl(0,0%,80%);
 		}
-			& .opal-select__selected-item {
+			@el selected-item {
 				position: relative;
     			overflow: hidden;
 				padding: 7px 38px 7px 22px;
@@ -40,8 +40,14 @@
 				-webkit-text-size-adjust: 100%;
 				-ms-text-size-adjust: 100%;
 				-webkit-tap-highlight-color: transparent;
+
+				&:hover {
+					@el btn-deselect-item {
+						display: block;
+					}
+				}
 			}
-				& .opal-select__btn-deselect-item {
+				@el btn-deselect-item {
 					position: absolute;
 					top: 0;
 					right: 9px;
@@ -55,35 +61,31 @@
 					color: hsl(0,0%,40%);
 					cursor: pointer;
 					transition: color .1s linear;
+
+					&:hover {
+						color: #000;
+					}
+
+					&:active {
+						transform: translateY(1px);
+					}
 				}
-					& .opal-select__btn-deselect-item-icon {
+					@el btn-deselect-item-icon {
 						display: block;
 						margin: auto;
 						width: 14px;
 						height: 14px;
 					}
 
-				& .opal-select__selected-item:hover .opal-select__btn-deselect-item {
-					display: block;
-				}
-
-				& .opal-select__btn-deselect-item:hover {
-					color: #000;
-				}
-
-				& .opal-select__btn-deselect-item:active {
-					transform: translateY(1px);
-				}
-
-			& .opal-select__nothing-selected {
+			@el nothing-selected {
 				display: none;
 				box-sizing: border-box;
 				padding: 10px;
 				height: 100%;
 				text-align: center;
 				white-space: nowrap;
-			}
-				& .opal-select__nothing-selected::before {
+
+				&::before {
 					display: inline-block;
 					width: 0;
 					height: 100%;
@@ -91,22 +93,22 @@
 					vertical-align: middle;
 				}
 
-				& .opal-select__nothing-selected-message {
+				@mod shown {
+					display: block;
+				}
+			}
+				@el nothing-selected-message {
 					display: inline-block;
 					vertical-align: middle;
 					opacity: .6;
 				}
 
-			& .opal-select__nothing-selected[shown] {
-				display: block;
-			}
-
-		& .opal-select__menu-content {
+		@el menu-content {
 			width: 299px;
 			height: 304px;
 		}
 
-		& .opal-select__menu-footer {
+		@el menu-footer {
 			box-sizing: border-box;
 			padding: 0 10px;
 			width: 100%;
@@ -115,6 +117,6 @@
 			font-size: 0;
 			line-height: 60px;
 		}
-			& .opal-select__btn-close {
+			@el btn-close {
 			}
 }

@@ -1,7 +1,7 @@
-.opal-tab {
+@component opal-tab {
 	display: inline-block;
 
-	& .opal-tab__control {
+	@el control {
 		position: relative;
 		display: block;
 		padding: 5px 22px;
@@ -22,46 +22,48 @@
 		-webkit-text-size-adjust: 100%;
 		-ms-text-size-adjust: 100%;
 		-webkit-tap-highlight-color: transparent;
+
+		&:hover {
+			background: hsl(0,0%,90%);
+		}
+
+		&:focus {
+			outline: none;
+
+			body:not(._no-focus-highlight) &::after {
+				position: absolute;
+				top: 2px;
+				right: 2px;
+				bottom: 2px;
+				left: 2px;
+				border-radius: inherit;
+				box-shadow: inset 0 0 0 1px hsl(208,100%,60%);
+				content: '';
+				pointer-events: none;
+			}
+		}
+
+		&:active {
+			background: hsl(0,0%,80%);
+		}
 	}
-		& .opal-tab__content {
+		@el content {
 			position: relative;
 			display: block;
 		}
 
-	/* States */
-
-	& .opal-tab__control:hover {
-		background: hsl(0,0%,90%);
-	}
-
-	& .opal-tab__control:focus {
-		outline: none;
-	}
-		body:not(._no-focus-highlight) & .opal-tab__control:focus::after {
-			position: absolute;
-			top: 2px;
-			right: 2px;
-			bottom: 2px;
-			left: 2px;
-			border-radius: inherit;
-			box-shadow: inset 0 0 0 1px hsl(208,100%,60%);
-			content: '';
-			pointer-events: none;
+	@mod selected {
+		@el control {
+			box-shadow: 0 3px hsl(208,94%,54%);
 		}
-
-	& .opal-tab__control:active {
-		background: hsl(0,0%,80%);
 	}
 
-	&[selected] .opal-tab__control {
-		box-shadow: 0 3px hsl(208,94%,54%);
-	}
-
-	&[disabled] {
+	@mod disabled {
 		opacity: .5;
 		pointer-events: none;
-	}
-		&[disabled] .opal-tab__control {
+
+		@el control {
 			cursor: default;
 		}
+	}
 }

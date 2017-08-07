@@ -1,17 +1,17 @@
-.opal-autosuggest {
+@component opal-autosuggest {
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
 
-	& .opal-autosuggest__text-input {
+	@el text-input {
 		display: block;
 	}
 
-	& .opal-autosuggest__menu {
+	@el menu {
 	}
-		& .opal-autosuggest__list {
+		@el list {
 		}
-			& .opal-autosuggest__list-item {
+			@el list-item {
 				position: relative;
 				padding: 7px 22px;
 				background: #fff;
@@ -28,18 +28,18 @@
 				-webkit-text-size-adjust: 100%;
 				-ms-text-size-adjust: 100%;
 				-webkit-tap-highlight-color: transparent;
+
+				&:hover,
+				&[focused] {
+					background: hsl(0,0%,90%);
+				}
+
+				&:active {
+					background: hsl(0,0%,80%);
+				}
 			}
 
-			& .opal-autosuggest__list-item:hover,
-			& .opal-autosuggest__list-item[focused] {
-				background: hsl(0,0%,90%);
-			}
-
-			& .opal-autosuggest__list-item:active {
-				background: hsl(0,0%,80%);
-			}
-
-		& .opal-autosuggest__nothing-found-message {
+		@el nothing-found-message {
 			display: none;
 			padding: 10px;
 			text-align: center;
@@ -47,8 +47,10 @@
 			opacity: .6;
 		}
 
-		& .opal-autosuggest__nothing-found-message[shown] {
-			display: block;
+		@el nothing-found-message {
+			@mod shown {
+				display: block;
+			}
 		}
 
 	/* Combinations */

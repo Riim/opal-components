@@ -1,9 +1,10 @@
-.opal-code-listing {
+@component opal-code-listing {
 	display: block;
 	margin-bottom: 30px;
 
-	& .opal-code-listing__html-code-wrapper,
-	& .opal-code-listing__js-code-wrapper {
+	@el html-code-wrapper,
+		js-code-wrapper
+	{
 		overflow: auto;
 		margin: 0;
 		color: #000;
@@ -19,22 +20,20 @@
 		font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 		line-height: 1.5;
 	}
-		& .opal-code-listing__html-code,
-		& .opal-code-listing__js-code {
+		@el html-code,
+			js-code
+		{
 		}
 
-	& .opal-code-listing__example-html-container {
+	@el example-html-container {
 		position: relative;
 		display: block;
 		padding: 29px;
 		border: 1px solid hsl(0,0%,86%);
 		border-radius: 3px;
 		background: #fff;
-	}
 
-	& .opal-code-listing__example-js-container {
-	}
-		& .opal-code-listing__example-html-container::before {
+		&::before {
 			position: absolute;
 			top: 0;
 			left: 29px;
@@ -46,10 +45,13 @@
 			font: 14px/28px Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 			transform: translateY(-50%);
 		}
+	}
 
-		& .opal-code-listing__example-html {
+	@el example-js-container {
+	}
+		@el example-html {
 		}
 
-		& .opal-code-listing__example-js {
+		@el example-js {
 		}
 }

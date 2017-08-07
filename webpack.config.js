@@ -1,6 +1,7 @@
 let path = require('path');
 let webpack = require('webpack');
 let postcssCSSVariables = require('postcss-css-variables');
+let postcssRioniteComponent = require('@riim/postcss-rionite-component');
 let postcssNested = require('postcss-nested');
 let postcssColorFunction = require('postcss-color-function');
 let autoprefixer = require('autoprefixer');
@@ -65,6 +66,7 @@ module.exports = (env) => {
 						options: {
 							plugins: [
 								postcssCSSVariables(),
+								postcssRioniteComponent(),
 								postcssNested(),
 								postcssColorFunction(),
 								autoprefixer({ browsers: ['last 3 versions'] }),

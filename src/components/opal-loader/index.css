@@ -1,4 +1,4 @@
-.opal-loader {
+@component opal-loader {
 	position: relative;
 	display: none;
 	margin: auto;
@@ -33,22 +33,21 @@
 		animation-direction: reverse;
 	}
 
-	/* States */
-
-	&[size=s] {
+	@mod size=s {
 		width: 18px;
 		height: 18px;
 		border-width: 6px;
-	}
-		&[size=s]::before {
+
+		&::before {
 			border-width: 2px;
 		}
 
-		&[size=s]::after {
+		&::after {
 			content: none;
 		}
+	}
 
-	&[shown] {
+	@mod shown {
 		display: block;
 	}
 }

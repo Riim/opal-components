@@ -1,11 +1,9 @@
-.opal-tab-panel {
+@component opal-tab-panel {
 	position: relative;
 	display: none;
 	padding: 30px;
 
-	/* States */
-
-	&[shown] {
+	@mod shown {
 		display: block;
 	}
 }

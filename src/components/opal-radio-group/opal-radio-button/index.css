@@ -1,14 +1,23 @@
-.opal-radio-button {
+@component opal-radio-button {
 	position: relative;
 	display: inline-block;
 
-	& .opal-radio-button__label {
+	@el label {
+		&:hover {
+			@el control {
+				border-color: hsl(0,0%,54%);
+
+				&:focus {
+					border-color: hsl(208,100%,60%);
+				}
+			}
+		}
 	}
-		& .opal-radio-button__input {
+		@el input {
 			display: none;
 		}
 
-		& .opal-radio-button__control {
+		@el control {
 			position: relative;
 			top: -1px;
 			display: inline-block;
@@ -20,42 +29,40 @@
 			background: #fff;
 			vertical-align: middle;
 			user-select: none;
+
+			&:focus {
+				outline: none;
+				border-color: hsl(208,100%,60%);
+			}
 		}
 
-		& .opal-radio-button__content {
+		@el content {
 		}
 
-	/* States */
-
-	& .opal-radio-button__label:hover .opal-radio-button__control {
-		border-color: hsl(0,0%,54%);
+	@mod checked {
+		@el control {
+			&::before {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				margin: auto;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: #000;
+				content: '';
+			}
+		}
 	}
 
-	& .opal-radio-button__control:focus,
-	& .opal-radio-button__label:hover .opal-radio-button__control:focus {
-		outline: none;
-		border-color: hsl(208,100%,60%);
-	}
-
-	&[checked] .opal-radio-button__control::before {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		margin: auto;
-		width: 10px;
-		height: 10px;
-		border-radius: 50%;
-		background: #000;
-		content: '';
-	}
-
-	&[disabled] {
+	@mod disabled {
 		opacity: .5;
 		pointer-events: none;
-	}
-		&[disabled] .opal-radio-button__control {
+
+		@el control {
 			background: hsl(0,0%,90%);
 		}
+	}
 }

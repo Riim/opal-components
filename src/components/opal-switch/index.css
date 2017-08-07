@@ -1,14 +1,19 @@
-.opal-switch {
+@component opal-switch {
 	position: relative;
 	display: inline-block;
 
-	& .opal-switch__label {
+	@el label {
+		&:hover {
+			@el thumb {
+				background: hsl(208,24%,46%);
+			}
+		}
 	}
-		& .opal-switch__input {
+		@el input {
 			display: none;
 		}
 
-		& .opal-switch__control {
+		@el control {
 			position: relative;
 			top: -1px;
 			display: inline-block;
@@ -20,8 +25,27 @@
 			vertical-align: middle;
 			cursor: pointer;
 			user-select: none;
+
+			&:focus {
+				outline: none;
+
+				body:not(._no-focus-highlight) & {
+					@el thumb {
+						&::after {
+							position: absolute;
+							top: 2px;
+							right: 2px;
+							bottom: 2px;
+							left: 2px;
+							border: 1px solid rgba(255,255,255,.8);
+							border-radius: 50%;
+							content: '';
+						}
+					}
+				}
+			}
 		}
-			& .opal-switch__thumb {
+			@el thumb {
 				position: absolute;
 				top: -3px;
 				left: -3px;
@@ -32,39 +56,24 @@
 				transition: background .1s linear, transform .1s linear;
 			}
 
-		& .opal-switch__content {
+		@el content {
 		}
 
-	/* States */
-
-	& .opal-switch__label:hover .opal-switch__thumb {
-		background: hsl(208,24%,46%);
-	}
-
-	& .opal-switch__control:focus {
-		outline: none;
-	}
-		body:not(._no-focus-highlight) & .opal-switch__control:focus .opal-switch__thumb::after {
-			position: absolute;
-			top: 2px;
-			right: 2px;
-			bottom: 2px;
-			left: 2px;
-			border: 1px solid rgba(255,255,255,.8);
-			border-radius: 50%;
-			content: '';
+	@mod checked {
+		@el label {
+			&:hover {
+				@el thumb {
+					background: hsl(208,100%,60%);
+				}
+			}
 		}
-
-	&[checked] .opal-switch__thumb {
-		background: hsl(208,94%,54%);
-		transform: translateX(16px);
+			@el thumb {
+				background: hsl(208,94%,54%);
+				transform: translateX(16px);
+			}
 	}
 
-	&[checked] .opal-switch__label:hover .opal-switch__thumb {
-		background: hsl(208,100%,60%);
-	}
-
-	&[disabled] {
+	@mod disabled {
 		opacity: .5;
 		pointer-events: none;
 	}

@@ -1,13 +1,26 @@
-.opal-select {
+@component opal-select {
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
 
-	& .opal-select__button {
+	@el button {
 		display: block;
 		min-width: 100%;
+
+		@mod size=s {
+			@el icon-chevron-down {
+				width: 12px;
+				height: 12px;
+			}
+		}
+
+		@mod checked {
+			@el icon-chevron-down {
+				transform: scaleY(-1);
+			}
+		}
 	}
-		& .opal-select__icon-chevron-down {
+		@el icon-chevron-down {
 			display: inline-block;
 			margin-left: .25em;
 			width: 14px;
@@ -17,22 +30,13 @@
 			fill: currentColor;
 		}
 
-		& .opal-select__button[size=s] .opal-select__icon-chevron-down {
-			width: 12px;
-			height: 12px;
-		}
-
-	& .opal-select__button[checked] .opal-select__icon-chevron-down {
-		transform: scaleY(-1);
+	@el menu {
 	}
-
-	& .opal-select__menu {
-	}
-		& .opal-select__menu-content {
+		@el menu-content {
 		}
-			& .opal-select__new-item-input-container {
+			@el new-item-input-container {
 			}
-				& .opal-select__new-item-input {
+				@el new-item-input {
 					display: block;
 					margin: 6px 10px 4px;
 					width: auto;

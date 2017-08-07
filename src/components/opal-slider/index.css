@@ -1,4 +1,4 @@
-.opal-slider {
+@component opal-slider {
 	position: relative;
 	top: -1px;
 	display: inline-block;
@@ -17,25 +17,26 @@
 		content: '';
 	}
 
-	& .opal-slider__first-input-wrapper3 {
+	@el first-input-wrapper3 {
 		position: absolute;
 		top: 0;
 		right: 10px;
 		left: 10px;
 		z-index: 2;
 	}
-		& .opal-slider__first-input-wrapper2 {
+		@el first-input-wrapper2 {
 			position: relative;
 		}
-			& .opal-slider__first-input-wrapper {
+			@el first-input-wrapper {
 				position: absolute;
 				top: 0;
 				right: 0;
 				left: -10px;
 				overflow: hidden;
 			}
-				& .opal-slider__first-input,
-				& .opal-slider__second-input {
+				@el first-input,
+					second-input
+				{
 					display: block;
 					margin: 0;
 					padding: 0;
@@ -45,118 +46,118 @@
 					-webkit-appearance: none;
 				}
 
-				& .opal-slider__first-input {
+				@el first-input {
+					&::-moz-focus-outer {
+						border: none;
+					}
+
+					&::-moz-range-track {
+						border: none;
+						background: none;
+					}
+
+					&::-ms-track {
+						border-width: 6px 0;
+						border-color: transparent;
+						background: transparent;
+						color: transparent;
+					}
+
+					&::-ms-fill-lower {
+						background: transparent;
+					}
+
+					&::-webkit-slider-thumb {
+						position: relative;
+						width: 20px;
+						height: 20px;
+						border: 0;
+						border-radius: 50%;
+						background: hsl(208,18%,40%);
+						cursor: pointer;
+						transition: background .1s linear;
+						-webkit-appearance: none;
+					}
+					&::-moz-range-thumb {
+						position: relative;
+						width: 20px;
+						height: 20px;
+						border: 0;
+						border-radius: 50%;
+						background: hsl(208,18%,40%);
+						cursor: pointer;
+						transition: background .1s linear;
+					}
+					&::-ms-thumb {
+						position: relative;
+						width: 20px;
+						height: 20px;
+						border: 0;
+						border-radius: 50%;
+						background: hsl(208,18%,40%);
+						cursor: pointer;
+						transition: background .1s linear;
+					}
 				}
 
-				& .opal-slider__second-input {
+				@el second-input {
 					position: relative;
 					z-index: 1;
+
+					&::-moz-focus-outer {
+						border: none;
+					}
+
+					&::-moz-range-track {
+						border: none;
+						background: none;
+					}
+
+					&::-ms-track {
+						border-width: 6px 0;
+						border-color: transparent;
+						background: transparent;
+						color: transparent;
+					}
+
+					&::-ms-fill-lower {
+						background: transparent;
+					}
+
+					&::-webkit-slider-thumb {
+						position: relative;
+						width: 20px;
+						height: 20px;
+						border: 0;
+						border-radius: 50%;
+						background: hsl(208,94%,54%);
+						cursor: pointer;
+						transition: background .1s linear;
+						-webkit-appearance: none;
+					}
+					&::-moz-range-thumb {
+						position: relative;
+						width: 20px;
+						height: 20px;
+						border: 0;
+						border-radius: 50%;
+						background: hsl(208,94%,54%);
+						cursor: pointer;
+						transition: background .1s linear;
+					}
+					&::-ms-thumb {
+						position: relative;
+						width: 20px;
+						height: 20px;
+						border: 0;
+						border-radius: 50%;
+						background: hsl(208,94%,54%);
+						cursor: pointer;
+						transition: background .1s linear;
+					}
 				}
-					& .opal-slider__first-input::-moz-focus-outer {
-						border: none;
-					}
 
-					& .opal-slider__first-input::-moz-range-track {
-						border: none;
-						background: none;
-					}
-
-					& .opal-slider__first-input::-ms-track {
-						border-width: 6px 0;
-						border-color: transparent;
-						background: transparent;
-						color: transparent;
-					}
-
-					& .opal-slider__first-input::-ms-fill-lower {
-						background: transparent;
-					}
-
-					& .opal-slider__first-input::-webkit-slider-thumb {
-						position: relative;
-						width: 20px;
-						height: 20px;
-						border: 0;
-						border-radius: 50%;
-						background: hsl(208,18%,40%);
-						cursor: pointer;
-						transition: background .1s linear;
-						-webkit-appearance: none;
-					}
-					& .opal-slider__first-input::-moz-range-thumb {
-						position: relative;
-						width: 20px;
-						height: 20px;
-						border: 0;
-						border-radius: 50%;
-						background: hsl(208,18%,40%);
-						cursor: pointer;
-						transition: background .1s linear;
-					}
-					& .opal-slider__first-input::-ms-thumb {
-						position: relative;
-						width: 20px;
-						height: 20px;
-						border: 0;
-						border-radius: 50%;
-						background: hsl(208,18%,40%);
-						cursor: pointer;
-						transition: background .1s linear;
-					}
-
-					& .opal-slider__second-input::-moz-focus-outer {
-						border: none;
-					}
-
-					& .opal-slider__second-input::-moz-range-track {
-						border: none;
-						background: none;
-					}
-
-					& .opal-slider__second-input::-ms-track {
-						border-width: 6px 0;
-						border-color: transparent;
-						background: transparent;
-						color: transparent;
-					}
-
-					& .opal-slider__second-input::-ms-fill-lower {
-						background: transparent;
-					}
-
-					& .opal-slider__second-input::-webkit-slider-thumb {
-						position: relative;
-						width: 20px;
-						height: 20px;
-						border: 0;
-						border-radius: 50%;
-						background: hsl(208,94%,54%);
-						cursor: pointer;
-						transition: background .1s linear;
-						-webkit-appearance: none;
-					}
-					& .opal-slider__second-input::-moz-range-thumb {
-						position: relative;
-						width: 20px;
-						height: 20px;
-						border: 0;
-						border-radius: 50%;
-						background: hsl(208,94%,54%);
-						cursor: pointer;
-						transition: background .1s linear;
-					}
-					& .opal-slider__second-input::-ms-thumb {
-						position: relative;
-						width: 20px;
-						height: 20px;
-						border: 0;
-						border-radius: 50%;
-						background: hsl(208,94%,54%);
-						cursor: pointer;
-						transition: background .1s linear;
-					}
-
-	& .opal-slider__input {
+	@el input {
 		position: relative;
 		z-index: 1;
 		display: block;
@@ -166,28 +167,28 @@
 		height: 20px;
 		background: transparent;
 		-webkit-appearance: none;
-	}
-		& .opal-slider__input::-moz-focus-outer {
+
+		&::-moz-focus-outer {
 			border: none;
 		}
 
-		& .opal-slider__input::-moz-range-track {
+		&::-moz-range-track {
 			border: none;
 			background: none;
 		}
 
-		& .opal-slider__input::-ms-track {
+		&::-ms-track {
 			border-width: 6px 0;
 			border-color: transparent;
 			background: transparent;
 			color: transparent;
 		}
 
-		& .opal-slider__input::-ms-fill-lower {
+		&::-ms-fill-lower {
 			background: transparent;
 		}
 
-		& .opal-slider__input::-webkit-slider-thumb {
+		&::-webkit-slider-thumb {
 			position: relative;
 			width: 20px;
 			height: 20px;
@@ -199,7 +200,7 @@
 			-webkit-appearance: none;
 		}
 
-		& .opal-slider__input::-moz-range-thumb {
+		&::-moz-range-thumb {
 			position: relative;
 			width: 20px;
 			height: 20px;
@@ -210,7 +211,7 @@
 			transition: background .1s linear;
 		}
 
-		& .opal-slider__input::-ms-thumb {
+		&::-ms-thumb {
 			position: relative;
 			width: 20px;
 			height: 20px;
@@ -220,6 +221,7 @@
 			cursor: pointer;
 			transition: background .1s linear;
 		}
+	}
 
 	/* States */
 

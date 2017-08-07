@@ -1,13 +1,13 @@
-.opal-text-input {
+@component opal-text-input {
 	position: relative;
 	display: inline-block;
 	width: 400px;
 	vertical-align: middle;
 
-	& .opal-text-input__text-field {
+	@el text-field {
 		display: block;
 		box-sizing: border-box;
-		padding: 6px 32px 6px 11px;
+		padding: 6px 34px 6px 11px;
 		width: 100%;
 		border: 1px solid hsl(0,0%,68%);
 		border-top-color: hsl(0,0%,66%);
@@ -25,9 +25,33 @@
 		-webkit-text-size-adjust: 100%;
 		-ms-text-size-adjust: 100%;
 		-webkit-tap-highlight-color: transparent;
+
+		&:focus {
+			outline: none;
+			border-color: hsl(208,100%,60%);
+		}
 	}
 
-	& .opal-text-input__btn-clear {
+	@el control-icon-container {
+		@mod shown {
+			@el control-icon {
+				display: block;
+			}
+		}
+	}
+		@el control-icon {
+			position: absolute;
+			top: 0;
+			right: 12px;
+			bottom: 0;
+			display: none;
+			margin: auto;
+			width: 18px;
+			height: 18px;
+			fill: hsl(0,0%,50%);
+		}
+
+	@el btn-clear {
 		position: absolute;
 		top: 0;
 		right: 9px;
@@ -42,35 +66,35 @@
 		color: hsl(0,0%,40%);
 		cursor: pointer;
 		transition: color .1s linear;
+
+		@mod shown {
+			display: block;
+		}
+
+		&:hover {
+			color: #000;
+		}
+
+		&:focus {
+			outline: none;
+
+			body:not(._no-focus-highlight) & {
+				outline: 1px solid hsl(208,100%,60%);
+			}
+		}
+
+		&:active {
+			transform: translateY(1px);
+		}
 	}
-		& .opal-text-input__btn-clear-icon {
+		@el btn-clear-icon {
 			display: block;
 			margin: auto;
 			width: 14px;
 			height: 14px;
 		}
 
-	& .opal-text-input__btn-clear[shown] {
-		display: block;
-	}
-
-	& .opal-text-input__btn-clear:hover {
-		color: #000;
-	}
-
-	& .opal-text-input__btn-clear:focus {
-		outline: none;
-	}
-		body:not(._no-focus-highlight) & .opal-text-input__btn-clear:focus {
-			border-color: hsl(208,100%,60%);
-		}
-
-	& .opal-text-input__btn-clear:active {
-		transform: translateY(1px);
-	}
-
-	& .opal-text-input__loader,
-	& .opal-text-input__loader[size=s] {
+	@el loader {
 		position: absolute;
 		top: 0;
 		right: 12px;
@@ -80,54 +104,54 @@
 		pointer-events: none;
 	}
 
-	& .opal-text-input__control-icon {
-		position: absolute;
-		top: 0;
-		right: 12px;
-		bottom: 0;
-		display: none;
-		margin: auto;
-		width: 18px;
-		height: 18px;
-		fill: hsl(0,0%,50%);
+	&:hover {
+		@el text-field {
+			border-color: hsl(0,0%,58%);
+			border-top-color: hsl(0,0%,56%);
+			border-bottom-color: hsl(0,0%,68%);
+
+			&:focus {
+				border-color: hsl(208,100%,60%);
+			}
+		}
 	}
 
-	& .opal-text-input__control-icon-container[shown] .opal-text-input__control-icon {
-		display: block;
+	@mod multiline {
+		&:not([auto-height=no]) {
+			@el text-field {
+				overflow-y: hidden;
+			}
+		}
 	}
 
-	/* States */
+	@mod valid {
+		@el text-field {
+			border-color: hsl(120,90%,38%);
 
-	&:hover .opal-text-input__text-field {
-		border-color: hsl(0,0%,58%);
-		border-top-color: hsl(0,0%,56%);
-		border-bottom-color: hsl(0,0%,68%);
+			&:focus {
+				border-color: hsl(120,90%,38%);
+			}
+		}
 	}
 
-	& .opal-text-input__text-field:focus {
-		outline: none;
-		border-color: hsl(208,100%,60%);
+	@mod valid=no {
+		@el text-field {
+			border-color: hsl(0,100%,48%);
+
+			&:focus {
+				border-color: hsl(0,100%,48%);
+			}
+		}
 	}
 
-	&[multiline]:not([auto-height=no]) .opal-text-input__text-field {
-		overflow-y: hidden;
-	}
-
-	&[valid] .opal-text-input__text-field {
-		border-color: hsl(120,90%,38%);
-	}
-
-	&[valid=no] .opal-text-input__text-field {
-		border-color: hsl(0,100%,48%);
-	}
-
-	&[disabled] {
+	@mod disabled {
 		opacity: .5;
 		pointer-events: none;
-	}
-		&[disabled] .opal-text-input__text-field {
+
+		@el text-field {
 			background: hsl(0,0%,90%);
 		}
+	}
 
 	/* Combinations */
 

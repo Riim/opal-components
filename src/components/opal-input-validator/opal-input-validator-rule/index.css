@@ -1,9 +1,9 @@
-.opal-input-validator-rule {
+@component opal-input-validator-rule {
 	display: block;
 
-	& .opal-input-validator-rule__popover {
+	@el popover {
 	}
-		& .opal-input-validator-rule__content {
+		@el content {
 			display: block;
 			width: 240px;
 			text-align: center;

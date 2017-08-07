@@ -1,9 +1,9 @@
-.opal-sign-button {
+@component opal-sign-button {
 	position: relative;
 	display: inline-block;
 	line-height: 0;
 
-	& .opal-sign-button__control {
+	@el control {
 		padding: 0;
 		border: 0;
 		background: transparent;
@@ -12,8 +12,30 @@
 		font: inherit;
 		cursor: pointer;
 		user-select: none;
+
+		&:focus {
+			outline: none;
+
+			body:not(._no-focus-highlight) &::after {
+				position: absolute;
+				top: -1px;
+				right: 0;
+				bottom: 1px;
+				left: 0;
+				border: 1px solid hsl(208,100%,60%);
+				border-radius: 3px;
+				content: '';
+				pointer-events: none;
+			}
+		}
+
+		&:active {
+			@el sign {
+				top: 0;
+			}
+		}
 	}
-		& .opal-sign-button__sign {
+		@el sign {
 			position: relative;
 			top: -1px;
 			display: inline-block;
@@ -25,9 +47,9 @@
 			border-radius: 50%;
 			vertical-align: middle;
 			transition: background .1s linear;
-		}
-			& .opal-sign-button__sign::before,
-			& .opal-sign-button__sign::after {
+
+			&::before,
+			&::after {
 				position: absolute;
 				top: 0;
 				right: 0;
@@ -39,87 +61,75 @@
 				transition: background .1s linear;
 			}
 
-			& .opal-sign-button__sign::after {
+			&::after {
 				transform: rotate(90deg);
 			}
-
-		& .opal-sign-button__content {
 		}
 
-	/* States */
-
-	&[sign=plus] {
-		& .opal-sign-button__sign {
-			border-color: hsl(208,86%,46%);
+		@el content {
 		}
 
-		& .opal-sign-button__sign::before,
-		& .opal-sign-button__sign::after {
-			background: hsl(208,86%,46%);
-			content: '';
+	@mod sign=plus {
+		@el control {
+			&:hover,
+			&:active {
+				@el sign {
+					border-color: hsl(208,100%,60%);
+
+					&::before,
+					&::after {
+						background: hsl(208,100%,60%);
+					}
+				}
+			}
+		}
+			@el sign {
+				border-color: hsl(208,86%,46%);
+
+				&::before,
+				&::after {
+					background: hsl(208,86%,46%);
+					content: '';
+				}
+			}
+	}
+
+	@mod sign=minus {
+		@el control {
+			&:hover,
+			&:active {
+				@el sign {
+					border-color: hsl(348,98%,64%);
+
+					&::before,
+					&::after {
+						background: hsl(348,98%,64%);
+					}
+				}
+			}
+		}
+			@el sign {
+				border-color: hsl(348,84%,50%);
+
+				&::before {
+					background: hsl(348,84%,50%);
+					content: '';
+				}
+			}
+	}
+
+	@mod checked {
+		@el sign {
+			top: 0;
 		}
 	}
 
-	&[sign=minus] {
-		& .opal-sign-button__sign {
-			border-color: hsl(348,84%,50%);
-		}
-
-		& .opal-sign-button__sign::before {
-			background: hsl(348,84%,50%);
-			content: '';
-		}
-	}
-
-	&[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign,
-	&[sign=plus] .opal-sign-button__control:active .opal-sign-button__sign {
-		border-color: hsl(208,100%,60%);
-	}
-
-	&[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::before,
-	&[sign=plus] .opal-sign-button__control:hover .opal-sign-button__sign::after,
-	&[sign=plus] .opal-sign-button__control:active .opal-sign-button__sign::before,
-	&[sign=plus] .opal-sign-button__control:active .opal-sign-button__sign::after {
-		background: hsl(208,100%,60%);
-	}
-
-	&[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign,
-	&[sign=minus] .opal-sign-button__control:active .opal-sign-button__sign {
-		border-color: hsl(348,98%,64%);
-	}
-
-	&[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::before,
-	&[sign=minus] .opal-sign-button__control:hover .opal-sign-button__sign::after,
-	&[sign=minus] .opal-sign-button__control:active .opal-sign-button__sign::before,
-	&[sign=minus] .opal-sign-button__control:active .opal-sign-button__sign::after {
-		background: hsl(348,98%,64%);
-	}
-
-	& .opal-sign-button__control:focus {
-		outline: none;
-	}
-		body:not(._no-focus-highlight) & .opal-sign-button__control:focus::after {
-			position: absolute;
-			top: -1px;
-			right: 0;
-			bottom: 1px;
-			left: 0;
-			border: 1px solid hsl(208,100%,60%);
-			border-radius: 3px;
-			content: '';
-			pointer-events: none;
-		}
-
-	& .opal-sign-button__control:active .opal-sign-button__sign,
-	&[checked] .opal-sign-button__control .opal-sign-button__sign {
-		top: 0;
-	}
-
-	&[disabled] {
+	@mod disabled {
 		opacity: .5;
 		pointer-events: none;
-	}
-		&[disabled] .opal-sign-button__control {
+
+		@el control {
 			cursor: default;
 		}
+	}
 }

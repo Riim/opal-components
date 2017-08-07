@@ -1,7 +1,7 @@
-.opal-select-option {
+@component opal-select-option {
 	display: block;
 
-	& .opal-select-option__control {
+	@el control {
 		position: relative;
 		display: block;
 		box-sizing: border-box;
@@ -22,15 +22,37 @@
 		-webkit-text-size-adjust: 100%;
 		-ms-text-size-adjust: 100%;
 		-webkit-tap-highlight-color: transparent;
+
+		&:hover {
+			background: hsl(0,0%,90%);
+		}
+
+		&:focus {
+			outline: none;
+		}
+			&:focus::after {
+				position: absolute;
+				top: 2px;
+				right: 2px;
+				bottom: 2px;
+				left: 2px;
+				box-shadow: inset 0 0 0 1px hsl(208,100%,60%);
+				content: '';
+				pointer-events: none;
+			}
+
+		&:active {
+			background: hsl(0,0%,80%);
+		}
 	}
-		& .opal-select-option__content {
+		@el content {
 			position: relative;
 			display: block;
 			overflow: hidden;
 			text-overflow: ellipsis;
 		}
 
-		& .opal-select-option__icon-check {
+		@el icon-check {
 			position: absolute;
 			top: 0;
 			right: 14px;
@@ -42,42 +64,21 @@
 			color: hsl(0,0%,20%);
 		}
 
-	/* States */
-
-	& .opal-select-option__control:hover {
-		background: hsl(0,0%,90%);
-	}
-
-	& .opal-select-option__control:focus {
-		outline: none;
-	}
-		& .opal-select-option__control:focus::after {
-			position: absolute;
-			top: 2px;
-			right: 2px;
-			bottom: 2px;
-			left: 2px;
-			box-shadow: inset 0 0 0 1px hsl(208,100%,60%);
-			content: '';
-			pointer-events: none;
+	@mod selected {
+		@el control {
+			color: hsl(208,90%,50%);
 		}
-
-	& .opal-select-option__control:active {
-		background: hsl(0,0%,80%);
+			@el icon-check {
+				display: block;
+			}
 	}
 
-	&[selected] .opal-select-option__control {
-		color: hsl(208,90%,50%);
-	}
-		&[selected] .opal-select-option__icon-check {
-			display: block;
-		}
-
-	&[disabled] {
+	@mod disabled {
 		opacity: .5;
 		pointer-events: none;
-	}
-		&[disabled] .opal-select-option__control {
+
+		@el control {
 			cursor: default;
 		}
+	}
 }

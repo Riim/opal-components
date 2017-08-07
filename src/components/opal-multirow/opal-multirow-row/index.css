@@ -1,4 +1,4 @@
-.opal-multirow-row {
+@component opal-multirow-row {
 	display: block;
 	white-space: nowrap;
 
@@ -8,23 +8,24 @@
 		content: '';
 	}
 
-	& .opal-multirow-row__content {
+	@el content {
 		display: inline-block;
 		margin-bottom: 20px;
 		padding-right: 6px;
 	}
 
-	& .opal-multirow-row__btn-remove-row,
-	& .opal-multirow-row__btn-add-row {
+	@el btn-remove-row,
+		btn-add-row
+	{
 		position: relative;
 		top: 1px;
 		display: none;
 	}
 
-	& .opal-multirow-row__btn-remove-row {
+	@el btn-remove-row {
 	}
 
-	& .opal-multirow-row__btn-add-row {
+	@el btn-add-row {
 	}
 
 	.opal-multirow__preset-rows-container[not-have-new-rows] &:last-child .opal-multirow-row__content,

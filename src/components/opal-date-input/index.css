@@ -1,18 +1,18 @@
-.opal-date-input {
+@component opal-date-input {
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
 
-	& .opal-date-input__text-input {
+	@el text-input {
 		display: block;
 	}
 
-	& .opal-date-input__calendar-menu {
+	@el calendar-menu {
 		overflow: visible;
 		padding: 0;
 		min-width: auto;
 	}
-		& .opal-date-input__calendar {
+		@el calendar {
 			border: 0;
 		}
 }
