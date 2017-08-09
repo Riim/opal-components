@@ -4891,7 +4891,6 @@ var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(82);
 var template = __webpack_require__(83);
-var mixin = cellx_1.Utils.mixin;
 var OpalLoadedList = (function (_super) {
     __extends(OpalLoadedList, _super);
     function OpalLoadedList() {
@@ -5022,7 +5021,15 @@ var OpalLoadedList = (function (_super) {
         }));
     };
     OpalLoadedList.prototype._getListItemContext = function (context, content) {
-        return mixin(Object.create(context), content.input.$context);
+        var anotherContext = content.input.$context;
+        var result = Object.create(context);
+        for (var _i = 0, _a = Object.getOwnPropertyNames(anotherContext); _i < _a.length; _i++) {
+            var name_1 = _a[_i];
+            if (name_1 != '$component') {
+                Object.defineProperty(result, name_1, Object.getOwnPropertyDescriptor(anotherContext, name_1));
+            }
+        }
+        return result;
     };
     OpalLoadedList = __decorate([
         rionite_1.d.Component({

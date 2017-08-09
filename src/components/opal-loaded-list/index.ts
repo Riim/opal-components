@@ -1,9 +1,4 @@
-import {
-	Cell,
-	define,
-	ObservableList,
-	Utils
-	} from 'cellx';
+import { Cell, define, ObservableList } from 'cellx';
 import {
 	Component,
 	d,
@@ -13,8 +8,6 @@ import {
 	} from 'rionite';
 import './index.css';
 import template = require('./index.nelm');
-
-let mixin = Utils.mixin;
 
 export interface IItem {
 	value: string;
@@ -218,6 +211,15 @@ export class OpalLoadedList extends Component {
 	}
 
 	_getListItemContext(context: object, content: Component): object {
-		return mixin(Object.create(context), content.input.$context!);
+		let anotherContext = content.input.$context!;
+		let result = Object.create(context);
+
+		for (let name of Object.getOwnPropertyNames(anotherContext)) {
+			if (name != '$component') {
+				Object.defineProperty(result, name, Object.getOwnPropertyDescriptor(anotherContext, name));
+			}
+		}
+
+		return result;
 	}
 }
