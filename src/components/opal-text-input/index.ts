@@ -2,7 +2,7 @@ import { define, IEvent, Utils } from 'cellx';
 import { Component, d } from 'rionite';
 import '../../assets/icons/opal-components__icon-cross.svg';
 import './index.css';
-import template = require('./index.nelm');
+import template = require('./template.nelm');
 
 let nextTick = Utils.nextTick;
 

@@ -23,7 +23,7 @@ import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 import { isEqualArray } from './isEqualArray';
 import { OpalSelectOption } from './opal-select-option';
-import template = require('./index.nelm');
+import template = require('./template.nelm');
 
 let { nextTick } = Utils;
 let { RtIfThen, RtRepeat } = Components;

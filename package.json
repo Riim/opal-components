@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.27.37",
+  "version": "0.27.38",
   "description": "",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -46,7 +46,7 @@
     "trim-lines-loader": "^0.1.0",
     "tslint": "^5.6.0",
     "tslint-loader": "^3.5.3",
-    "webpack": "^3.5.2"
+    "webpack": "^3.5.3"
   },
   "dependencies": {
     "cellx": "^1.7.29",

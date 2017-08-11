@@ -4,7 +4,7 @@ import './index.css';
 import { OpalTabList } from './opal-tab-list';
 import { OpalTab } from './opal-tab-list/opal-tab';
 import { OpalTabPanel } from './opal-tab-panel';
-import template = require('./index.nelm');
+import template = require('./template.nelm');
 
 let indexOf = Array.prototype.indexOf;
 let forEach = Array.prototype.forEach;

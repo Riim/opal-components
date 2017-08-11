@@ -2,7 +2,7 @@ import { IEvent } from 'cellx';
 import { Component, d, IDisposableListening } from 'rionite';
 import { isFocusable } from '../../Utils/isFocusable';
 import './index.css';
-import template = require('./index.nelm');
+import template = require('./template.nelm');
 
 let openedModals: Array<OpalModal> = [];
 

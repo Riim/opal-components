@@ -3,7 +3,7 @@ import { Component, d, getText } from 'rionite';
 import { OpalLoadedList } from '../opal-loaded-list';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-import template = require('./index.nelm');
+import template = require('./template.nelm');
 
 @d.Component({
 	elementIs: 'opal-filtered-list',

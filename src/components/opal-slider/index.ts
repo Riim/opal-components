@@ -1,7 +1,7 @@
 import { define } from 'cellx';
 import { Component, d } from 'rionite';
 import './index.css';
-import template = require('./index.nelm');
+import template = require('./template.nelm');
 
 @d.Component<OpalSlider>({
 	elementIs: 'opal-slider',

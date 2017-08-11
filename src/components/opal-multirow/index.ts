@@ -7,7 +7,7 @@ import {
 import { Component, d, IComponentElement } from 'rionite';
 import './index.css';
 import { OpalMultirowRow } from './opal-multirow-row';
-import template = require('./index.nelm');
+import template = require('./template.nelm');
 
 let nextUID = Utils.nextUID;
 

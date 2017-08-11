@@ -3,7 +3,7 @@ import { Component, d, getText } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
 import { OpalSelect, TDataList, TViewModel } from '../opal-select';
 import './index.css';
-import template = require('./index.nelm');
+import template = require('./template.nelm');
 
 let defaultDataListItemSchema = OpalSelect.defaultDataListItemSchema;
 let defaultVMItemSchema = OpalSelect.defaultVMItemSchema;

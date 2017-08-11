@@ -5,7 +5,7 @@ import { OpalSelectOption } from '../opal-select';
 import { formatDate } from './formatDate';
 import './index.css';
 import { parseDate } from './parseDate';
-import template = require('./index.nelm');
+import template = require('./template.nelm');
 
 let nextTick = Utils.nextTick;
 

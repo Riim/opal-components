@@ -16,7 +16,7 @@ import { isFocusable } from '../../Utils/isFocusable';
 import { OpalDropdown } from '../opal-dropdown';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-import template = require('./index.nelm');
+import template = require('./template.nelm');
 
 export interface IItem {
 	value: string;

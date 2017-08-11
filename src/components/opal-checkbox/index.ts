@@ -1,7 +1,7 @@
 import { define, IEvent, Utils } from 'cellx';
 import { Component, d, IDisposableListening } from 'rionite';
 import './index.css';
-import template = require('./index.nelm');
+import template = require('./template.nelm');
 
 let nextTick = Utils.nextTick;
 

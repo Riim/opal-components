@@ -7,7 +7,7 @@ import {
 	IDisposableTimeout
 	} from 'rionite';
 import './index.css';
-import template = require('./index.nelm');
+import template = require('./template.nelm');
 
 export interface IItem {
 	value: string;
