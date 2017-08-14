@@ -153,8 +153,8 @@ var template = __webpack_require__(60);
 var nextTick = cellx_1.Utils.nextTick;
 var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
 var map = Array.prototype.map;
-var defaultDataListItemSchema = { value: 'id', text: 'name', disabled: 'disabled' };
-var defaultVMItemSchema = { value: 'id', text: 'name', disabled: 'disabled' };
+var defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
+var defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 var OpalSelect = (function (_super) {
     __extends(OpalSelect, _super);
     function OpalSelect() {
