@@ -2,8 +2,7 @@ import { ObservableList } from 'cellx';
 import { Component, IDisposableCallback, IDisposableTimeout } from 'rionite';
 import './index.css';
 export interface IItem {
-    value: string;
-    text: string;
+    [name: string]: string;
 }
 export interface IDataProvider {
     getItems(query?: string): PromiseLike<{

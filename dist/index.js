@@ -153,8 +153,8 @@ var template = __webpack_require__(60);
 var nextTick = cellx_1.Utils.nextTick;
 var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
 var map = Array.prototype.map;
-var defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
-var defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
+var defaultDataListItemSchema = { value: 'id', text: 'name', disabled: 'disabled' };
+var defaultVMItemSchema = { value: 'id', text: 'name', disabled: 'disabled' };
 var OpalSelect = (function (_super) {
     __extends(OpalSelect, _super);
     function OpalSelect() {
@@ -4984,10 +4984,9 @@ var OpalLoadedList = (function (_super) {
             return;
         }
         var elRect = this.element.getBoundingClientRect();
-        if (!elRect.height || elRect.bottom < this.$('loader').element.getBoundingClientRect().top) {
-            return;
+        if (elRect.height && elRect.bottom > this.$('loader').element.getBoundingClientRect().top) {
+            this._load();
         }
-        this._load();
     };
     OpalLoadedList.prototype._load = function () {
         if (this.loading) {
@@ -4998,7 +4997,7 @@ var OpalLoadedList = (function (_super) {
         var infinite = dataProvider.getItems.length >= 2;
         var args = [query];
         if (infinite) {
-            args.unshift(this.input.count, this.list.length ? this.list.get(-1).value : undefined);
+            args.unshift(this.input.count, this.list.length ? this.list.get(-1)[this.input.itemValueName] : undefined);
         }
         this.loading = true;
         dataProvider.getItems.apply(dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {
@@ -5037,6 +5036,7 @@ var OpalLoadedList = (function (_super) {
             input: {
                 dataprovider: { type: Object, readonly: true },
                 dataproviderKeypath: { type: String, readonly: true },
+                itemValueName: { default: 'id', readonly: true },
                 count: 100,
                 query: String,
                 itemAs: { default: '$item', readonly: true },

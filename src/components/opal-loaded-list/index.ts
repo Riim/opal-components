@@ -10,8 +10,7 @@ import './index.css';
 import template = require('./template.nelm');
 
 export interface IItem {
-	value: string;
-	text: string;
+	[name: string]: string;
 }
 
 export interface IDataProvider {
@@ -25,6 +24,7 @@ export interface IDataProvider {
 	input: {
 		dataprovider: { type: Object, readonly: true },
 		dataproviderKeypath: { type: String, readonly: true },
+		itemValueName: { default: 'id', readonly: true },
 		count: 100,
 		query: String,
 		itemAs: { default: '$item', readonly: true },
@@ -159,11 +159,9 @@ export class OpalLoadedList extends Component {
 
 		let elRect = this.element.getBoundingClientRect();
 
-		if (!elRect.height || elRect.bottom < this.$<Component>('loader')!.element.getBoundingClientRect().top) {
-			return;
+		if (elRect.height && elRect.bottom > this.$<Component>('loader')!.element.getBoundingClientRect().top) {
+			this._load();
 		}
-
-		this._load();
 	}
 
 	_load() {
@@ -177,7 +175,7 @@ export class OpalLoadedList extends Component {
 		let args = [query];
 
 		if (infinite) {
-			args.unshift(this.input.count, this.list.length ? this.list.get(-1)!.value : undefined);
+			args.unshift(this.input.count, this.list.length ? this.list.get(-1)![this.input.itemValueName] : undefined);
 		}
 
 		this.loading = true;

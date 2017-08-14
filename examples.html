@@ -16,7 +16,7 @@ var dataProvider1 = (() => {
 	let items = [];
 
 	for (let i = 0, l = 1000; i < l; i++) {
-		items[i] = { value: i.toString(), text: i.toString() };
+		items[i] = { id: i.toString(), name: i.toString() };
 	}
 
 	return {
@@ -26,10 +26,10 @@ var dataProvider1 = (() => {
 			}
 
 			let filteredItems = query ? items.filter((item) => {
-				return item.text.indexOf(query) != -1;
+				return item.name.indexOf(query) != -1;
 			}) : items;
 			let from = after ? filteredItems.findIndex((item) => {
-				return item.value == after;
+				return item.id == after;
 			}) + 1 : 0;
 
 			return new Promise((resolve) => {
@@ -57,16 +57,12 @@ var dataProvider2 = (() => {
 
 	return {
 		getItems(query) {
-			let filteredItems = query ? items.filter((item) => {
-				return item.name.toLowerCase().indexOf(query.toLowerCase()) != -1;
-			}) : items;
-
 			return new Promise((resolve) => {
 				setTimeout(() => {
 					resolve({
-						items: filteredItems.map((item) => {
-							return { value: item.id, text: item.name };
-						})
+						items: query ? items.filter((item) => {
+							return item.name.toLowerCase().indexOf(query.toLowerCase()) != -1;
+						}) : items
 					});
 				}, 500);
 			});
@@ -74,22 +70,22 @@ var dataProvider2 = (() => {
 	};
 })();
 
-var addNewItem1 = (text) => {
-	return Promise.resolve({ value: '__' + Math.random(), text: text });
+var addNewItem1 = (name) => {
+	return Promise.resolve({ id: '__' + Math.random(), name });
 };
 
 var model1 = cellx.define({}, 'dataList', () => {
 	return new cellx.ObservableList([
-		{ value: '1', text: '1' },
-		{ value: '2', text: '2' },
-		{ value: '3', text: '3' }
+		{ id: '1', name: '1' },
+		{ id: '2', name: '2' },
+		{ id: '3', name: '3' }
 	]);
 });
 
 var selectViewModel1 = (() => {
 	return new cellx.ObservableList([
-		{ value: '1', text: '1', disabled: true },
-		{ value: '2', text: '2', disabled: true }
+		{ id: '1', name: '1', disabled: true },
+		{ id: '2', name: '2', disabled: true }
 	]);
 })();
 
@@ -117,6 +113,8 @@ body {
 	</style>
 </head>
 <body>
+
+<opal-tree-select></opal-tree-select>
 
 <h1>opal-button</h1>
 
@@ -487,7 +485,7 @@ body {
 	<div class="opal-code-listing__example-html">
 		<opal-filtered-list>
 			<opal-loaded-list class="opal-filtered-list__loaded-list" dataprovider-keypath="dataProvider1">
-				{$item.text}
+				{$item.name}
 			</opal-loaded-list>
 		</opal-filtered-list>
 	</div>
@@ -507,7 +505,7 @@ body {
 				<opal-filtered-list class="opal-select__filtered-list">
 					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
 							dataprovider-keypath="dataProvider1">
-						<opal-select-option text="{$item.text}"></opal-select-option>
+						<opal-select-option text="{$item.name}"></opal-select-option>
 					</opal-loaded-list>
 				</opal-filtered-list>
 			</opal-dropdown>
@@ -516,7 +514,7 @@ body {
 		<opal-select>
 			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
 				<opal-loaded-list class="opal-select__loaded-list" dataprovider-keypath="dataProvider1">
-					<opal-select-option text="{$item.text}"></opal-select-option>
+					<opal-select-option text="{$item.name}"></opal-select-option>
 				</opal-loaded-list>
 			</opal-popover>
 		</opal-select>
@@ -524,7 +522,7 @@ body {
 		<opal-select multiple view-model-keypath="selectViewModel1">
 			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
 				<opal-loaded-list class="opal-select__loaded-list" dataprovider-keypath="dataProvider1">
-					<opal-select-option text="{$item.text}"></opal-select-option>
+					<opal-select-option text="{$item.name}"></opal-select-option>
 				</opal-loaded-list>
 			</opal-popover>
 		</opal-select>
@@ -534,7 +532,7 @@ body {
 				<opal-filtered-list class="opal-select__filtered-list">
 					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
 							dataprovider-keypath="dataProvider1">
-						<opal-select-option text="{$item.text}"></opal-select-option>
+						<opal-select-option text="{$item.name}"></opal-select-option>
 					</opal-loaded-list>
 				</opal-filtered-list>
 			</opal-popover>
@@ -545,7 +543,7 @@ body {
 				<opal-filtered-list class="opal-select__filtered-list">
 					<opal-loaded-list class="opal-select__loaded-list opal-filtered-list__loaded-list"
 							dataprovider-keypath="dataProvider1">
-						<opal-select-option text="{$item.text}"></opal-select-option>
+						<opal-select-option text="{$item.name}"></opal-select-option>
 					</opal-loaded-list>
 				</opal-filtered-list>
 			</opal-popover>

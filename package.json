@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.27.38",
+  "version": "0.27.39",
   "description": "",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -35,7 +35,7 @@
     "postcss-css-variables": "^0.8.0",
     "postcss-csso": "^2.0.0",
     "postcss-loader": "^2.0.6",
-    "postcss-nested": "^2.1.0",
+    "postcss-nested": "^2.1.1",
     "pump": "^1.0.2",
     "raw-loader": "^0.5.1",
     "require-dir": "^0.3.2",
@@ -46,7 +46,7 @@
     "trim-lines-loader": "^0.1.0",
     "tslint": "^5.6.0",
     "tslint-loader": "^3.5.3",
-    "webpack": "^3.5.3"
+    "webpack": "^3.5.4"
   },
   "dependencies": {
     "cellx": "^1.7.29",

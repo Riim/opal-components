@@ -33,8 +33,8 @@ let map = Array.prototype.map;
 export type TDataList = ObservableList<{ [name: string]: any }>;
 export type TViewModel = ObservableList<{ [name: string]: any }>;
 
-let defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
-let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
+let defaultDataListItemSchema = { value: 'id', text: 'name', disabled: 'disabled' };
+let defaultVMItemSchema = { value: 'id', text: 'name', disabled: 'disabled' };
 
 @d.Component<OpalSelect>({
 	elementIs: 'opal-select',
