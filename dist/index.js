@@ -163,6 +163,7 @@ var OpalSelect = (function (_super) {
         _this._onсeFocusedAfterLoading = false;
         return _this;
     }
+    OpalSelect_1 = OpalSelect;
     OpalSelect.prototype.initialize = function () {
         var input = this.input;
         if (input.datalistKeypath) {
@@ -172,14 +173,16 @@ var OpalSelect = (function (_super) {
                 return getDataList_1.call(context_1);
             });
             var dataListItemSchema = input.datalistItemSchema;
-            this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
-            this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
-            this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
+            var defaultDataListItemSchema_1 = this.constructor.defaultDataListItemSchema;
+            this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema_1.value;
+            this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema_1.text;
+            this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema_1.disabled;
         }
         else {
             this.dataList = null;
         }
         var vmItemSchema = input.viewModelItemSchema;
+        var defaultVMItemSchema = this.constructor.defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
         this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
@@ -705,8 +708,8 @@ var OpalSelect = (function (_super) {
     };
     OpalSelect.OpalSelectOption = opal_select_option_1.OpalSelectOption;
     OpalSelect.defaultDataListItemSchema = defaultDataListItemSchema;
-    OpalSelect.defaultVMItemSchema = defaultVMItemSchema;
-    OpalSelect = __decorate([
+    OpalSelect.defaultViewModelItemSchema = defaultVMItemSchema;
+    OpalSelect = OpalSelect_1 = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-select',
             input: {
@@ -730,6 +733,7 @@ var OpalSelect = (function (_super) {
         })
     ], OpalSelect);
     return OpalSelect;
+    var OpalSelect_1;
 }(rionite_1.Component));
 exports.OpalSelect = OpalSelect;
 
@@ -4915,15 +4919,15 @@ var OpalLoadedList = (function (_super) {
             throw new TypeError('Property "dataprovider" is required');
         }
         cellx_1.define(this, {
-            list: new cellx_1.ObservableList(),
+            dataList: new cellx_1.ObservableList(),
             total: undefined,
             _isLoadingCheckPlanned: false,
             loading: false,
             empty: function () {
-                return !this.list.length;
+                return !this.dataList.length;
             },
             isLoaderShown: function () {
-                return this.total === undefined || this.list.length < this.total || this.loading;
+                return this.total === undefined || this.dataList.length < this.total || this.loading;
             },
             isNothingFoundShown: function () {
                 return this.total === 0 && !this._isLoadingCheckPlanned && !this.loading;
@@ -4946,7 +4950,7 @@ var OpalLoadedList = (function (_super) {
             this._requestCallback.cancel();
             this.loading = false;
         }
-        this.list.clear();
+        this.dataList.clear();
         this.total = undefined;
         if (this._isLoadingCheckPlanned) {
             this._loadingCheckTimeout.clear();
@@ -4980,7 +4984,7 @@ var OpalLoadedList = (function (_super) {
     };
     OpalLoadedList.prototype.checkLoading = function () {
         if (this.input.query === this._lastRequestedQuery &&
-            (this.loading || this.total !== undefined && this.list.length == this.total)) {
+            (this.loading || this.total !== undefined && this.dataList.length == this.total)) {
             return;
         }
         var elRect = this.element.getBoundingClientRect();
@@ -4997,7 +5001,7 @@ var OpalLoadedList = (function (_super) {
         var infinite = dataProvider.getItems.length >= 2;
         var args = [query];
         if (infinite) {
-            args.unshift(this.input.count, this.list.length ? this.list.get(-1)[this.input.itemValueName] : undefined);
+            args.unshift(this.input.count, this.dataList.length ? this.dataList.get(-1)[this.input.dataListItemValueName] : undefined);
         }
         this.loading = true;
         dataProvider.getItems.apply(dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {
@@ -5006,10 +5010,10 @@ var OpalLoadedList = (function (_super) {
             var items = data.items;
             this.total = infinite && data.total !== undefined ? data.total : items.length;
             if (query === this._lastLoadedQuery) {
-                this.list.addRange(items);
+                this.dataList.addRange(items);
             }
             else {
-                this.list.clear().addRange(items);
+                this.dataList.clear().addRange(items);
                 this._lastLoadedQuery = query;
             }
             cellx_1.Cell.forceRelease();
@@ -5036,7 +5040,7 @@ var OpalLoadedList = (function (_super) {
             input: {
                 dataprovider: { type: Object, readonly: true },
                 dataproviderKeypath: { type: String, readonly: true },
-                itemValueName: { default: 'id', readonly: true },
+                dataListItemValueName: { default: 'id', readonly: true },
                 count: 100,
                 query: String,
                 itemAs: { default: '$item', readonly: true },
@@ -5074,7 +5078,7 @@ module.exports = (function(d) {
 /* 83 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\ndiv/list {\n@repeat (for={input.itemAs} of list) {\nrt-content/list-item (clone, get-context=_getListItemContext)\n}\n}\nopal-loader/loader (shown={isLoaderShown}, align-center={empty})\ndiv/nothing-found (shown={isNothingFoundShown}) {\nspan/nothing-found-message { '{constructor.i18n.nothingFound}' }\n}\n}"
+module.exports = "@section/inner {\ndiv/list {\n@repeat (for={input.itemAs} of dataList) {\nrt-content/list-item (clone, get-context=_getListItemContext)\n}\n}\nopal-loader/loader (shown={isLoaderShown}, align-center={empty})\ndiv/nothing-found (shown={isNothingFoundShown}) {\nspan/nothing-found-message { '{constructor.i18n.nothingFound}' }\n}\n}"
 
 /***/ }),
 /* 84 */
@@ -5190,6 +5194,7 @@ var template = __webpack_require__(89);
 function toComparable(str) {
     return str.replace(/\s+/g, ' ').toLowerCase();
 }
+var defaultDataListItemSchema = { value: 'id', text: 'name', disabled: 'disabled' };
 var OpalAutosuggest = (function (_super) {
     __extends(OpalAutosuggest, _super);
     function OpalAutosuggest() {
@@ -5197,6 +5202,7 @@ var OpalAutosuggest = (function (_super) {
         _this._isNotInputConfirmed = false;
         return _this;
     }
+    OpalAutosuggest_1 = OpalAutosuggest;
     OpalAutosuggest.prototype.initialize = function () {
         var input = this.input;
         var dataProvider = input.dataprovider;
@@ -5214,7 +5220,7 @@ var OpalAutosuggest = (function (_super) {
             throw new TypeError('Property "dataprovider" is required');
         }
         cellx_1.define(this, {
-            list: new cellx_1.ObservableList(),
+            dataList: new cellx_1.ObservableList(),
             _isLoadingPlanned: false,
             loading: false,
             isLoaderShown: function () {
@@ -5222,6 +5228,10 @@ var OpalAutosuggest = (function (_super) {
             },
             selectedItem: input.selectedItem
         });
+        var dataListItemSchema = input.datalistItemSchema;
+        var defaultDataListItemSchema = this.constructor.defaultDataListItemSchema;
+        this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+        this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
     };
     OpalAutosuggest.prototype.elementAttached = function () {
         this.listenTo(this, 'input-selected-item-change', this._onInputSelectedItemChange);
@@ -5234,19 +5244,19 @@ var OpalAutosuggest = (function (_super) {
         this.listenTo(this.$('text-input').textField, 'click', this._onTextFieldClick);
         this.listenTo('menu', 'input-opened-change', this._onMenuInputOpenedChange);
         this.listenTo(this.$('menu').element, 'mouseover', this._onMenuElementMouseOver);
-        this.listenTo(this.list, 'change', this._onListChange);
+        this.listenTo(this.dataList, 'change', this._onDataListChange);
         this.listenTo(this, 'change:isLoaderShown', this._onIsLoaderShownChange);
     };
     OpalAutosuggest.prototype.ready = function () {
         if (this.selectedItem) {
-            this.$('text-input').value = this.selectedItem.text;
+            this.$('text-input').value = this.selectedItem[this._dataListItemTextFieldName];
         }
     };
     OpalAutosuggest.prototype._onInputSelectedItemChange = function (evt) {
-        var value = evt.value;
-        this._clearList();
-        this.selectedItem = value;
-        this.$('text-input').value = value ? value.text : '';
+        var item = evt.value;
+        this._clearDataList();
+        this.selectedItem = item;
+        this.$('text-input').value = item ? item[this._dataListItemTextFieldName] : '';
     };
     OpalAutosuggest.prototype._onTextInputFocus = function () {
         this.openMenu();
@@ -5258,13 +5268,13 @@ var OpalAutosuggest = (function (_super) {
         // 2. изменяем запрос так чтобы ничего не нашлось;
         // 3. убираем фокус.
         if (!this.$('menu').input.opened) {
-            this._setSelectedItemOfList();
+            this._selectItem();
         }
     };
     OpalAutosuggest.prototype._onTextInputInput = function (evt) {
         var _this = this;
         this._isNotInputConfirmed = true;
-        this._clearList();
+        this._clearDataList();
         if ((evt.target.value || '').length >= this.input.minQueryLength) {
             this._isLoadingPlanned = true;
             this._loadingTimeout = this.setTimeout(function () {
@@ -5275,7 +5285,7 @@ var OpalAutosuggest = (function (_super) {
     };
     OpalAutosuggest.prototype._onTextInputChange = function (evt) {
         if (!evt.target.value) {
-            this._clearList();
+            this._clearDataList();
             if (this.selectedItem) {
                 this.selectedItem = null;
                 this.emit('change');
@@ -5313,7 +5323,7 @@ var OpalAutosuggest = (function (_super) {
             el.setAttribute('focused', '');
         }
     };
-    OpalAutosuggest.prototype._onListChange = function () {
+    OpalAutosuggest.prototype._onDataListChange = function () {
         this.openMenu();
     };
     OpalAutosuggest.prototype._onIsLoaderShownChange = function (evt) {
@@ -5325,7 +5335,7 @@ var OpalAutosuggest = (function (_super) {
         }
         if (!this.element.contains(evt.target.parentNode)) {
             this.closeMenu();
-            this._setSelectedItemOfList();
+            this._selectItem();
         }
     };
     OpalAutosuggest.prototype._onDocumentKeyDown = function (evt) {
@@ -5353,8 +5363,8 @@ var OpalAutosuggest = (function (_super) {
                 if (focusedListItem) {
                     var focusedListItemDataSet = focusedListItem.dataset;
                     this.$('text-input').value = focusedListItemDataSet.text;
-                    this._clearList();
-                    this._setSelectedItem({
+                    this._clearDataList();
+                    this._selectItem({
                         value: focusedListItemDataSet.value,
                         text: focusedListItemDataSet.text
                     });
@@ -5364,7 +5374,7 @@ var OpalAutosuggest = (function (_super) {
             case 27 /* Esc */: {
                 evt.preventDefault();
                 this.closeMenu();
-                this._setSelectedItemOfList();
+                this._selectItem();
                 break;
             }
         }
@@ -5372,7 +5382,7 @@ var OpalAutosuggest = (function (_super) {
     OpalAutosuggest.prototype._onDocumentClick = function (evt) {
         if (!this.element.contains(evt.target)) {
             this.closeMenu();
-            this._setSelectedItemOfList();
+            this._selectItem();
         }
     };
     OpalAutosuggest.prototype._load = function () {
@@ -5382,15 +5392,14 @@ var OpalAutosuggest = (function (_super) {
         if (dataProvider.getItems.length >= 2) {
             args.unshift(this.input.count);
         }
-        dataProvider.getItems.apply(dataProvider, args)
-            .then(this._requestCallback = this.registerCallback(this._itemsRequestCallback));
+        dataProvider.getItems.apply(dataProvider, args).then((this._requestCallback = this.registerCallback(this._itemsRequestCallback)));
     };
     OpalAutosuggest.prototype._itemsRequestCallback = function (data) {
         var _this = this;
         this.loading = false;
         var items = data.items;
         if (items.length) {
-            this.list.addRange(items);
+            this.dataList.addRange(items);
             cellx_1.Cell.afterRelease(function () {
                 var focusedListItem = _this.$('list-item');
                 _this._focusedListItem = focusedListItem;
@@ -5412,7 +5421,7 @@ var OpalAutosuggest = (function (_super) {
         }
     };
     OpalAutosuggest.prototype.openMenu = function (force) {
-        if (force || this.list.length) {
+        if (force || this.dataList.length) {
             this.$('menu').open();
         }
         return this;
@@ -5421,48 +5430,54 @@ var OpalAutosuggest = (function (_super) {
         this.$('menu').close();
         return this;
     };
-    OpalAutosuggest.prototype._setSelectedItemOfList = function () {
-        if (this._isNotInputConfirmed) {
-            var comparableQuery_1 = toComparable(this.$('text-input').value || '');
-            var selectedItem = this.list.find(function (item) { return toComparable(item.text) == comparableQuery_1; }) || null;
-            if (selectedItem && this.list.length > 1) {
-                this._clearList();
+    OpalAutosuggest.prototype._selectItem = function (item) {
+        var _this = this;
+        if (item === undefined) {
+            if (this._isNotInputConfirmed) {
+                var comparableQuery_1 = toComparable(this.$('text-input').value || '');
+                var item_1 = this.dataList.find(function (item) { return toComparable(item[_this._dataListItemTextFieldName]) == comparableQuery_1; }) || null;
+                if (item_1 && this.dataList.length > 1) {
+                    this._clearDataList();
+                }
+                this._selectItem(item_1);
             }
-            this._setSelectedItem(selectedItem);
         }
-    };
-    OpalAutosuggest.prototype._setSelectedItem = function (selectedItem) {
-        if (selectedItem) {
-            this._isNotInputConfirmed = false;
-            if (this.selectedItem && this.selectedItem.value == selectedItem.value) {
+        else {
+            if (item) {
+                this._isNotInputConfirmed = false;
+                if (this.selectedItem &&
+                    this.selectedItem[this._dataListItemValueFieldName] == item[this._dataListItemValueFieldName]) {
+                    return;
+                }
+            }
+            else if (!this.selectedItem) {
                 return;
             }
+            this.selectedItem = item;
+            this.emit('change');
         }
-        else if (!this.selectedItem) {
-            return;
-        }
-        this.selectedItem = selectedItem;
-        this.emit('change');
     };
     OpalAutosuggest.prototype.clear = function () {
-        this._clearList();
+        this._clearDataList();
         if (this.selectedItem) {
             this.selectedItem = null;
         }
         this.$('text-input').clear();
     };
-    OpalAutosuggest.prototype._clearList = function () {
+    OpalAutosuggest.prototype._clearDataList = function () {
         this._cancelLoading();
         this.closeMenu();
-        this.list.clear();
+        this.dataList.clear();
         this._focusedListItem = null;
     };
-    OpalAutosuggest = __decorate([
+    OpalAutosuggest.defaultDataListItemSchema = defaultDataListItemSchema;
+    OpalAutosuggest = OpalAutosuggest_1 = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-autosuggest',
             input: {
                 dataprovider: { type: Object, readonly: true },
                 dataproviderKeypath: { type: String, readonly: true },
+                datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
                 selectedItem: eval,
                 minQueryLength: 3,
                 count: 5,
@@ -5480,8 +5495,8 @@ var OpalAutosuggest = (function (_super) {
                         var listItemDataSet = listItem.dataset;
                         textInput.value = listItemDataSet.text;
                         textInput.focus();
-                        this._clearList();
-                        this._setSelectedItem({
+                        this._clearDataList();
+                        this._selectItem({
                             value: listItemDataSet.value,
                             text: listItemDataSet.text
                         });
@@ -5491,6 +5506,7 @@ var OpalAutosuggest = (function (_super) {
         })
     ], OpalAutosuggest);
     return OpalAutosuggest;
+    var OpalAutosuggest_1;
 }(rionite_1.Component));
 exports.OpalAutosuggest = OpalAutosuggest;
 
@@ -5516,7 +5532,7 @@ module.exports = (function(d) {
 /* 89 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue={input.selectedItem.text},\nplaceholder={constructor.i18n.textInputPlaceholder},\nloading={isLoaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of list) {\ndiv/list-item (data-value={item.value}, data-text={item.text}) {\n'{item.text}'\n}\n}\n}\nspan/nothing-found-message (shown={list.length |not }) { '{constructor.i18n.nothingFound}' }\n}\n}"
+module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue={input.selectedItem.text},\nplaceholder={constructor.i18n.textInputPlaceholder},\nloading={isLoaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nspan/nothing-found-message (shown={dataList.length |not }) { '{constructor.i18n.nothingFound}' }\n}\n}"
 
 /***/ }),
 /* 90 */
@@ -5547,7 +5563,7 @@ var opal_select_1 = __webpack_require__(3);
 __webpack_require__(91);
 var template = __webpack_require__(92);
 var defaultDataListItemSchema = opal_select_1.OpalSelect.defaultDataListItemSchema;
-var defaultVMItemSchema = opal_select_1.OpalSelect.defaultVMItemSchema;
+var defaultVMItemSchema = opal_select_1.OpalSelect.defaultViewModelItemSchema;
 var OpalTagSelect = (function (_super) {
     __extends(OpalTagSelect, _super);
     function OpalTagSelect() {
@@ -5561,10 +5577,6 @@ var OpalTagSelect = (function (_super) {
             cellx_1.define(this, 'dataList', function () {
                 return getDataList_1.call(context_1);
             });
-            var dataListItemSchema = input.datalistItemSchema;
-            this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
-            this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
-            this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
             this.dataProvider = null;
             this._dataListKeypathParam = 'dataList';
         }
@@ -5588,6 +5600,10 @@ var OpalTagSelect = (function (_super) {
                 throw new TypeError('"addNewItem" is not defined');
             }
         }
+        var dataListItemSchema = input.datalistItemSchema;
+        this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+        this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+        this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
         var vmItemSchema = input.viewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
@@ -5705,7 +5721,7 @@ module.exports = (function(d) {
 /* 92 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n' '\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist-keypath={_dataListKeypathParam},\ndatalist-item-schema={input.datalistItemSchema |json },\nadd-new-item-keypath=_addNewItem,\nvalue={input.value},\nview-model-keypath=viewModel,\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=input.datalistKeypath) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/datalist-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList.length) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=input.datalistKeypath) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider-keypath=dataProvider\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue={$item.value},\ntext={$item.text}\n)\n}\n}\n}\n}\n}\n}\n}\n}"
+module.exports = "@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n' '\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist-keypath={_dataListKeypathParam},\ndatalist-item-schema={input.datalistItemSchema |json },\nadd-new-item-keypath=_addNewItem,\nvalue={input.value},\nview-model-keypath=viewModel,\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=input.datalistKeypath) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList.length) {\n@repeat (for=item of dataList) {\nopal-select-option/datalist-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList.length) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=input.datalistKeypath) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider-keypath=dataProvider\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 93 */

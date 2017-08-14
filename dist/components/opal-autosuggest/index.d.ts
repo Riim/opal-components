@@ -2,21 +2,27 @@ import { IEvent, ObservableList } from 'cellx';
 import { Component, IDisposableCallback, IDisposableListening, IDisposableTimeout } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-export interface IItem {
-    value: string;
-    text: string;
+export interface IDataListItem {
+    [name: string]: string;
 }
 export interface IDataProvider {
     getItems(query: string): PromiseLike<{
-        items: Array<IItem>;
+        items: Array<IDataListItem>;
     }>;
     getItems(count: number, query: string): PromiseLike<{
-        items: Array<IItem>;
+        items: Array<IDataListItem>;
     }>;
 }
 export declare class OpalAutosuggest extends Component {
+    static defaultDataListItemSchema: {
+        value: string;
+        text: string;
+        disabled: string;
+    };
     dataProvider: IDataProvider;
-    list: ObservableList<IItem>;
+    dataList: ObservableList<IDataListItem>;
+    _dataListItemValueFieldName: string;
+    _dataListItemTextFieldName: string;
     _isNotInputConfirmed: boolean;
     _isLoadingPlanned: boolean;
     _loadingTimeout: IDisposableTimeout;
@@ -24,7 +30,7 @@ export declare class OpalAutosuggest extends Component {
     loading: boolean;
     isLoaderShown: boolean;
     _focusedListItem: HTMLElement | null;
-    selectedItem: IItem | null;
+    selectedItem: IDataListItem | null;
     _documentFocusListening: IDisposableListening;
     _documentListening: IDisposableListening;
     initialize(): void;
@@ -38,7 +44,7 @@ export declare class OpalAutosuggest extends Component {
     _onTextFieldClick(): void;
     _onMenuInputOpenedChange(evt: IEvent): void;
     _onMenuElementMouseOver(evt: Event): void;
-    _onListChange(): void;
+    _onDataListChange(): void;
     _onIsLoaderShownChange(evt: IEvent): void;
     _onDocumentFocus(evt: Event): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
@@ -50,8 +56,7 @@ export declare class OpalAutosuggest extends Component {
     _cancelLoading(): void;
     openMenu(force?: boolean): OpalAutosuggest;
     closeMenu(): OpalAutosuggest;
-    _setSelectedItemOfList(): void;
-    _setSelectedItem(selectedItem: IItem | null): void;
+    _selectItem(item?: IDataListItem | null): void;
     clear(): void;
-    _clearList(): void;
+    _clearDataList(): void;
 }

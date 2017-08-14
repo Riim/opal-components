@@ -29,13 +29,13 @@ export {
 export { OpalDateInput } from './components/opal-date-input';
 export { OpalLoader } from './components/opal-loader';
 export {
-	IItem as IOpalLoadedListItem,
+	IDataListItem as IOpalLoadedListDataListItem,
 	IDataProvider as IOpalLoadedListDataProvider,
 	OpalLoadedList
 } from './components/opal-loaded-list';
 export { OpalFilteredList } from './components/opal-filtered-list';
 export {
-	IItem as IOpalAutosuggestItem,
+	IDataListItem as IOpalAutosuggestDataListItem,
 	IDataProvider as IOpalAutosuggestDataProvider,
 	OpalAutosuggest
 } from './components/opal-autosuggest';

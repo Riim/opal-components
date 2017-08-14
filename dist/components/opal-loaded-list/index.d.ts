@@ -1,21 +1,21 @@
 import { ObservableList } from 'cellx';
 import { Component, IDisposableCallback, IDisposableTimeout } from 'rionite';
 import './index.css';
-export interface IItem {
+export interface IDataListItem {
     [name: string]: string;
 }
 export interface IDataProvider {
     getItems(query?: string): PromiseLike<{
-        items: Array<IItem>;
+        items: Array<IDataListItem>;
     }>;
     getItems(count: number, after?: string, query?: string): PromiseLike<{
-        items: Array<IItem>;
+        items: Array<IDataListItem>;
         total?: number;
     }>;
 }
 export declare class OpalLoadedList extends Component {
     dataProvider: IDataProvider;
-    list: ObservableList<IItem>;
+    dataList: ObservableList<IDataListItem>;
     total: number | undefined;
     _scrolling: boolean;
     _isLoadingCheckPlanned: boolean;

@@ -10,14 +10,17 @@ rt-content (select=.opal-autosuggest__text-input) {
 
 opal-dropdown/menu {
 	div/list {
-		@repeat (for=item of list) {
-			div/list-item (data-value={item.value}, data-text={item.text}) {
-				'{item.text}'
+		@repeat (for=item of dataList) {
+			div/list-item (
+				data-value='{item |key(_dataListItemValueFieldName) }',
+				data-text='{item |key(_dataListItemTextFieldName) }'
+			) {
+				'{item |key(_dataListItemTextFieldName) }'
 			}
 		}
 	}
 
-	span/nothing-found-message (shown={list.length |not }) { '{constructor.i18n.nothingFound}' }
+	span/nothing-found-message (shown={dataList.length |not }) { '{constructor.i18n.nothingFound}' }
 }
 
 }

@@ -63,7 +63,7 @@ export class OpalSelect extends Component {
 	static OpalSelectOption = OpalSelectOption;
 
 	static defaultDataListItemSchema = defaultDataListItemSchema;
-	static defaultVMItemSchema = defaultVMItemSchema;
+	static defaultViewModelItemSchema = defaultVMItemSchema;
 
 	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
@@ -102,6 +102,7 @@ export class OpalSelect extends Component {
 			});
 
 			let dataListItemSchema = input.datalistItemSchema;
+			let defaultDataListItemSchema = (this.constructor as typeof OpalSelect).defaultDataListItemSchema;
 
 			this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
 			this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
@@ -111,6 +112,7 @@ export class OpalSelect extends Component {
 		}
 
 		let vmItemSchema = input.viewModelItemSchema;
+		let defaultVMItemSchema = (this.constructor as typeof OpalSelect).defaultViewModelItemSchema;
 
 		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;

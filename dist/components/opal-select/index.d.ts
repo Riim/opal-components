@@ -18,7 +18,7 @@ export declare class OpalSelect extends Component {
         text: string;
         disabled: string;
     };
-    static defaultVMItemSchema: {
+    static defaultViewModelItemSchema: {
         value: string;
         text: string;
         disabled: string;

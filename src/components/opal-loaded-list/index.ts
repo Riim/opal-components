@@ -9,13 +9,16 @@ import {
 import './index.css';
 import template = require('./template.nelm');
 
-export interface IItem {
+export interface IDataListItem {
 	[name: string]: string;
 }
 
 export interface IDataProvider {
-	getItems(query?: string): PromiseLike<{ items: Array<IItem> }>;
-	getItems(count: number, after?: string, query?: string): PromiseLike<{ items: Array<IItem>, total?: number }>;
+	getItems(query?: string): PromiseLike<{ items: Array<IDataListItem> }>;
+	getItems(count: number, after?: string, query?: string): PromiseLike<{
+		items: Array<IDataListItem>;
+		total?: number;
+	}>;
 }
 
 @d.Component<OpalLoadedList>({
@@ -24,7 +27,7 @@ export interface IDataProvider {
 	input: {
 		dataprovider: { type: Object, readonly: true },
 		dataproviderKeypath: { type: String, readonly: true },
-		itemValueName: { default: 'id', readonly: true },
+		dataListItemValueName: { default: 'id', readonly: true },
 		count: 100,
 		query: String,
 		itemAs: { default: '$item', readonly: true },
@@ -40,7 +43,7 @@ export interface IDataProvider {
 export class OpalLoadedList extends Component {
 	dataProvider: IDataProvider;
 
-	list: ObservableList<IItem>;
+	dataList: ObservableList<IDataListItem>;
 	total: number | undefined;
 
 	_scrolling: boolean = false;
@@ -77,18 +80,18 @@ export class OpalLoadedList extends Component {
 		}
 
 		define(this, {
-			list: new ObservableList<IItem>(),
+			dataList: new ObservableList<IDataListItem>(),
 			total: undefined,
 
 			_isLoadingCheckPlanned: false,
 			loading: false,
 
 			empty(this: OpalLoadedList): boolean {
-				return !this.list.length;
+				return !this.dataList.length;
 			},
 
 			isLoaderShown(this: OpalLoadedList): boolean {
-				return this.total === undefined || this.list.length < this.total || this.loading;
+				return this.total === undefined || this.dataList.length < this.total || this.loading;
 			},
 
 			isNothingFoundShown(this: OpalLoadedList): boolean {
@@ -114,7 +117,7 @@ export class OpalLoadedList extends Component {
 			this.loading = false;
 		}
 
-		this.list.clear();
+		this.dataList.clear();
 		this.total = undefined;
 
 		if (this._isLoadingCheckPlanned) {
@@ -152,7 +155,7 @@ export class OpalLoadedList extends Component {
 	checkLoading() {
 		if (
 			this.input.query === this._lastRequestedQuery &&
-				(this.loading || this.total !== undefined && this.list.length == this.total)
+				(this.loading || this.total !== undefined && this.dataList.length == this.total)
 		) {
 			return;
 		}
@@ -175,14 +178,17 @@ export class OpalLoadedList extends Component {
 		let args = [query];
 
 		if (infinite) {
-			args.unshift(this.input.count, this.list.length ? this.list.get(-1)![this.input.itemValueName] : undefined);
+			args.unshift(
+				this.input.count,
+				this.dataList.length ? this.dataList.get(-1)![this.input.dataListItemValueName] : undefined
+			);
 		}
 
 		this.loading = true;
 
 		dataProvider.getItems.apply(dataProvider, args).then(
 			this._requestCallback = this.registerCallback(
-				function(this: OpalLoadedList, data: { items: Array<IItem>, total?: number }) {
+				function(this: OpalLoadedList, data: { items: Array<IDataListItem>, total?: number }) {
 					this.loading = false;
 
 					let items = data.items;
@@ -190,9 +196,9 @@ export class OpalLoadedList extends Component {
 					this.total = infinite && data.total !== undefined ? data.total : items.length;
 
 					if (query === this._lastLoadedQuery) {
-						this.list.addRange(items);
+						this.dataList.addRange(items);
 					} else {
-						this.list.clear().addRange(items);
+						this.dataList.clear().addRange(items);
 						this._lastLoadedQuery = query;
 					}
 

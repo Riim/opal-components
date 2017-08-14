@@ -6,7 +6,7 @@ import './index.css';
 import template = require('./template.nelm');
 
 let defaultDataListItemSchema = OpalSelect.defaultDataListItemSchema;
-let defaultVMItemSchema = OpalSelect.defaultVMItemSchema;
+let defaultVMItemSchema = OpalSelect.defaultViewModelItemSchema;
 
 @d.Component<OpalTagSelect>({
 	elementIs: 'opal-tag-select',
@@ -70,12 +70,6 @@ export class OpalTagSelect extends Component {
 				return getDataList.call(context);
 			});
 
-			let dataListItemSchema = input.datalistItemSchema;
-
-			this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
-			this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
-			this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
-
 			this.dataProvider = null;
 
 			this._dataListKeypathParam = 'dataList';
@@ -106,6 +100,12 @@ export class OpalTagSelect extends Component {
 				throw new TypeError('"addNewItem" is not defined');
 			}
 		}
+
+		let dataListItemSchema = input.datalistItemSchema;
+
+		this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+		this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 
 		let vmItemSchema = input.viewModelItemSchema;
 

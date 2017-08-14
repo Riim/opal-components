@@ -64,8 +64,8 @@ span/control {
 							dataprovider-keypath=dataProvider
 						) {
 							opal-select-option/loaded-list-select-option, select-option (
-								value={$item.value},
-								text={$item.text}
+								value='{$item |key(_dataListItemValueFieldName) }',
+								text='{$item |key(_dataListItemTextFieldName) }'
 							)
 						}
 					}

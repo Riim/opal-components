@@ -18,9 +18,9 @@ export { OpalInputValidator, OpalInputValidatorRule } from './components/opal-in
 export { IDay as IOpalCalendarDay, TWeekDays as TOpalCalendarWeekDays, TDays as TOpalCalendarDays, OpalCalendar } from './components/opal-calendar';
 export { OpalDateInput } from './components/opal-date-input';
 export { OpalLoader } from './components/opal-loader';
-export { IItem as IOpalLoadedListItem, IDataProvider as IOpalLoadedListDataProvider, OpalLoadedList } from './components/opal-loaded-list';
+export { IDataListItem as IOpalLoadedListDataListItem, IDataProvider as IOpalLoadedListDataProvider, OpalLoadedList } from './components/opal-loaded-list';
 export { OpalFilteredList } from './components/opal-filtered-list';
-export { IItem as IOpalAutosuggestItem, IDataProvider as IOpalAutosuggestDataProvider, OpalAutosuggest } from './components/opal-autosuggest';
+export { IDataListItem as IOpalAutosuggestDataListItem, IDataProvider as IOpalAutosuggestDataProvider, OpalAutosuggest } from './components/opal-autosuggest';
 export { OpalTagSelect } from './components/opal-tag-select';
 export { OpalMultirow, OpalMultirowRow } from './components/opal-multirow';
 export { IRouteProperty as IOpalRouterRouteProperty, IRoute as IOpalRouterRoute, IComponentState as IOpalRouterComponentState, OpalRouter, OpalRoute } from './components/opal-router';
