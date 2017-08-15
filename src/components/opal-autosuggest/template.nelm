@@ -2,7 +2,7 @@
 
 rt-content (select=.opal-autosuggest__text-input) {
 	opal-text-input/text-input (
-		value={input.selectedItem.text},
+		value='{input.value |key(_dataListItemTextFieldName) }',
 		placeholder={constructor.i18n.textInputPlaceholder},
 		loading={isLoaderShown}
 	)

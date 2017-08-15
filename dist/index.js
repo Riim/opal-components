@@ -5539,7 +5539,7 @@ module.exports = (function(d) {
 /* 89 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue={input.selectedItem.text},\nplaceholder={constructor.i18n.textInputPlaceholder},\nloading={isLoaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nspan/nothing-found-message (shown={dataList.length |not }) { '{constructor.i18n.nothingFound}' }\n}\n}"
+module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue='{input.value |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nloading={isLoaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nspan/nothing-found-message (shown={dataList.length |not }) { '{constructor.i18n.nothingFound}' }\n}\n}"
 
 /***/ }),
 /* 90 */
