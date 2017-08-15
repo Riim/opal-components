@@ -30,8 +30,12 @@ let { RtIfThen, RtRepeat } = Components;
 
 let map = Array.prototype.map;
 
-export type TDataList = ObservableList<{ [name: string]: any }>;
-export type TViewModel = ObservableList<{ [name: string]: any }>;
+export interface IDataListItem {
+	[name: string]: any;
+}
+
+export type TDataList = ObservableList<IDataListItem>;
+export type TViewModel = ObservableList<IDataListItem>;
 
 let defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
 let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
@@ -76,6 +80,10 @@ export class OpalSelect extends Component {
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 	_viewModelItemDisabledFieldName: string;
+
+	get value(): Array<IDataListItem> {
+		return this.viewModel.toArray();
+	}
 
 	optionElements: NodeListOf<IComponentElement>;
 	options: Array<OpalSelectOption>;

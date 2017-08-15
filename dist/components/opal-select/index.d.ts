@@ -5,12 +5,11 @@ import { OpalButton } from '../opal-button';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 import { OpalSelectOption } from './opal-select-option';
-export declare type TDataList = ObservableList<{
+export interface IDataListItem {
     [name: string]: any;
-}>;
-export declare type TViewModel = ObservableList<{
-    [name: string]: any;
-}>;
+}
+export declare type TDataList = ObservableList<IDataListItem>;
+export declare type TViewModel = ObservableList<IDataListItem>;
 export declare class OpalSelect extends Component {
     static OpalSelectOption: typeof OpalSelectOption;
     static defaultDataListItemSchema: {
@@ -34,6 +33,7 @@ export declare class OpalSelect extends Component {
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _viewModelItemDisabledFieldName: string;
+    readonly value: Array<IDataListItem>;
     optionElements: NodeListOf<IComponentElement>;
     options: Array<OpalSelectOption>;
     optionsCell: Cell<Array<OpalSelectOption>>;

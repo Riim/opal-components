@@ -1,6 +1,6 @@
 import { Component } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
-import { TDataList, TViewModel } from '../opal-select';
+import { IDataListItem, TDataList, TViewModel } from '../opal-select';
 import './index.css';
 export declare class OpalTagSelect extends Component {
     dataList: TDataList | null;
@@ -15,6 +15,7 @@ export declare class OpalTagSelect extends Component {
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _viewModelItemDisabledFieldName: string;
+    readonly value: Array<IDataListItem>;
     isPlaceholderShown: boolean;
     _dataListKeypathParam: string | null;
     initialize(): void;

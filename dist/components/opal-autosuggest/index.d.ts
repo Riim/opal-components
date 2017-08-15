@@ -30,13 +30,13 @@ export declare class OpalAutosuggest extends Component {
     loading: boolean;
     isLoaderShown: boolean;
     _focusedListItem: HTMLElement | null;
-    selectedItem: IDataListItem | null;
+    value: IDataListItem | null;
     _documentFocusListening: IDisposableListening;
     _documentListening: IDisposableListening;
     initialize(): void;
     elementAttached(): void;
     ready(): void;
-    _onInputSelectedItemChange(evt: IEvent): void;
+    _onInputValueChange(evt: IEvent): void;
     _onTextInputFocus(): void;
     _onTextInputBlur(): void;
     _onTextInputInput(evt: IEvent<OpalTextInput>): void;

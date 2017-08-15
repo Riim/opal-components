@@ -12,7 +12,7 @@ export { OpalTabs, OpalTabList, OpalTab } from './components/opal-tabs';
 export { OpalDropdown } from './components/opal-dropdown';
 export { OpalPopover } from './components/opal-popover';
 export { OpalModal } from './components/opal-modal';
-export { TDataList as TOpalSelectDataList, TViewModel as TOpalSelectViewModel, OpalSelect, OpalSelectOption } from './components/opal-select';
+export { IDataListItem as IOpalSelectDataListItem, TDataList as TOpalSelectDataList, TViewModel as TOpalSelectViewModel, OpalSelect, OpalSelectOption } from './components/opal-select';
 export { OpalMultiselect } from './components/opal-multiselect';
 export { OpalInputValidator, OpalInputValidatorRule } from './components/opal-input-validator';
 export { IDay as IOpalCalendarDay, TWeekDays as TOpalCalendarWeekDays, TDays as TOpalCalendarDays, OpalCalendar } from './components/opal-calendar';

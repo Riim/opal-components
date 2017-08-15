@@ -13,6 +13,7 @@ export { OpalDropdown } from './components/opal-dropdown';
 export { OpalPopover } from './components/opal-popover';
 export { OpalModal } from './components/opal-modal';
 export {
+	IDataListItem as IOpalSelectDataListItem,
 	TDataList as TOpalSelectDataList,
 	TViewModel as TOpalSelectViewModel,
 	OpalSelect,

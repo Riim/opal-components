@@ -40,7 +40,7 @@ let defaultDataListItemSchema = { value: 'id', text: 'name', disabled: 'disabled
 		dataprovider: { type: Object, readonly: true },
 		dataproviderKeypath: { type: String, readonly: true },
 		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
-		selectedItem: eval,
+		value: eval,
 		minQueryLength: 3,
 		count: 5,
 		openMenuOnNothingFound: false
@@ -91,7 +91,8 @@ export class OpalAutosuggest extends Component {
 	isLoaderShown: boolean;
 
 	_focusedListItem: HTMLElement | null;
-	selectedItem: IDataListItem | null;
+
+	value: IDataListItem | null;
 
 	_documentFocusListening: IDisposableListening;
 	_documentListening: IDisposableListening;
@@ -125,7 +126,7 @@ export class OpalAutosuggest extends Component {
 				return this._isLoadingPlanned || this.loading;
 			},
 
-			selectedItem: input.selectedItem
+			value: input.value
 		});
 
 		let dataListItemSchema = input.datalistItemSchema;
@@ -136,7 +137,7 @@ export class OpalAutosuggest extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'input-selected-item-change', this._onInputSelectedItemChange);
+		this.listenTo(this, 'input-value-change', this._onInputValueChange);
 		this.listenTo('text-input', {
 			focus: this._onTextInputFocus,
 			blur: this._onTextInputBlur,
@@ -151,17 +152,17 @@ export class OpalAutosuggest extends Component {
 	}
 
 	ready() {
-		if (this.selectedItem) {
-			this.$<OpalTextInput>('text-input')!.value = this.selectedItem[this._dataListItemTextFieldName];
+		if (this.value) {
+			this.$<OpalTextInput>('text-input')!.value = this.value[this._dataListItemTextFieldName];
 		}
 	}
 
-	_onInputSelectedItemChange(evt: IEvent) {
+	_onInputValueChange(evt: IEvent) {
 		let item = evt.value as IDataListItem;
 
 		this._clearDataList();
 
-		this.selectedItem = item;
+		this.value = item;
 		this.$<OpalTextInput>('text-input')!.value = item ? item[this._dataListItemTextFieldName] : '';
 	}
 
@@ -200,8 +201,8 @@ export class OpalAutosuggest extends Component {
 		if (!evt.target.value) {
 			this._clearDataList();
 
-			if (this.selectedItem) {
-				this.selectedItem = null;
+			if (this.value) {
+				this.value = null;
 				this.emit('change');
 			}
 		}
@@ -400,16 +401,16 @@ export class OpalAutosuggest extends Component {
 				this._isNotInputConfirmed = false;
 
 				if (
-					this.selectedItem &&
-						this.selectedItem[this._dataListItemValueFieldName] == item[this._dataListItemValueFieldName]
+					this.value &&
+						this.value[this._dataListItemValueFieldName] == item[this._dataListItemValueFieldName]
 				) {
 					return;
 				}
-			} else if (!this.selectedItem) {
+			} else if (!this.value) {
 				return;
 			}
 
-			this.selectedItem = item;
+			this.value = item;
 			this.emit('change');
 		}
 	}
@@ -417,8 +418,8 @@ export class OpalAutosuggest extends Component {
 	clear() {
 		this._clearDataList();
 
-		if (this.selectedItem) {
-			this.selectedItem = null;
+		if (this.value) {
+			this.value = null;
 		}
 
 		this.$<OpalTextInput>('text-input')!.clear();

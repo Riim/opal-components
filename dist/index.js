@@ -164,6 +164,13 @@ var OpalSelect = (function (_super) {
         return _this;
     }
     OpalSelect_1 = OpalSelect;
+    Object.defineProperty(OpalSelect.prototype, "value", {
+        get: function () {
+            return this.viewModel.toArray();
+        },
+        enumerable: true,
+        configurable: true
+    });
     OpalSelect.prototype.initialize = function () {
         var input = this.input;
         if (input.datalistKeypath) {
@@ -5226,7 +5233,7 @@ var OpalAutosuggest = (function (_super) {
             isLoaderShown: function () {
                 return this._isLoadingPlanned || this.loading;
             },
-            selectedItem: input.selectedItem
+            value: input.value
         });
         var dataListItemSchema = input.datalistItemSchema;
         var defaultDataListItemSchema = this.constructor.defaultDataListItemSchema;
@@ -5234,7 +5241,7 @@ var OpalAutosuggest = (function (_super) {
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
     };
     OpalAutosuggest.prototype.elementAttached = function () {
-        this.listenTo(this, 'input-selected-item-change', this._onInputSelectedItemChange);
+        this.listenTo(this, 'input-value-change', this._onInputValueChange);
         this.listenTo('text-input', {
             focus: this._onTextInputFocus,
             blur: this._onTextInputBlur,
@@ -5248,14 +5255,14 @@ var OpalAutosuggest = (function (_super) {
         this.listenTo(this, 'change:isLoaderShown', this._onIsLoaderShownChange);
     };
     OpalAutosuggest.prototype.ready = function () {
-        if (this.selectedItem) {
-            this.$('text-input').value = this.selectedItem[this._dataListItemTextFieldName];
+        if (this.value) {
+            this.$('text-input').value = this.value[this._dataListItemTextFieldName];
         }
     };
-    OpalAutosuggest.prototype._onInputSelectedItemChange = function (evt) {
+    OpalAutosuggest.prototype._onInputValueChange = function (evt) {
         var item = evt.value;
         this._clearDataList();
-        this.selectedItem = item;
+        this.value = item;
         this.$('text-input').value = item ? item[this._dataListItemTextFieldName] : '';
     };
     OpalAutosuggest.prototype._onTextInputFocus = function () {
@@ -5286,8 +5293,8 @@ var OpalAutosuggest = (function (_super) {
     OpalAutosuggest.prototype._onTextInputChange = function (evt) {
         if (!evt.target.value) {
             this._clearDataList();
-            if (this.selectedItem) {
-                this.selectedItem = null;
+            if (this.value) {
+                this.value = null;
                 this.emit('change');
             }
         }
@@ -5445,22 +5452,22 @@ var OpalAutosuggest = (function (_super) {
         else {
             if (item) {
                 this._isNotInputConfirmed = false;
-                if (this.selectedItem &&
-                    this.selectedItem[this._dataListItemValueFieldName] == item[this._dataListItemValueFieldName]) {
+                if (this.value &&
+                    this.value[this._dataListItemValueFieldName] == item[this._dataListItemValueFieldName]) {
                     return;
                 }
             }
-            else if (!this.selectedItem) {
+            else if (!this.value) {
                 return;
             }
-            this.selectedItem = item;
+            this.value = item;
             this.emit('change');
         }
     };
     OpalAutosuggest.prototype.clear = function () {
         this._clearDataList();
-        if (this.selectedItem) {
-            this.selectedItem = null;
+        if (this.value) {
+            this.value = null;
         }
         this.$('text-input').clear();
     };
@@ -5478,7 +5485,7 @@ var OpalAutosuggest = (function (_super) {
                 dataprovider: { type: Object, readonly: true },
                 dataproviderKeypath: { type: String, readonly: true },
                 datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
-                selectedItem: eval,
+                value: eval,
                 minQueryLength: 3,
                 count: 5,
                 openMenuOnNothingFound: false
@@ -5569,6 +5576,13 @@ var OpalTagSelect = (function (_super) {
     function OpalTagSelect() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    Object.defineProperty(OpalTagSelect.prototype, "value", {
+        get: function () {
+            return this.viewModel.toArray();
+        },
+        enumerable: true,
+        configurable: true
+    });
     OpalTagSelect.prototype.initialize = function () {
         var input = this.input;
         if (input.datalistKeypath) {
@@ -5656,8 +5670,8 @@ var OpalTagSelect = (function (_super) {
     OpalTagSelect.prototype._onSelectChange = function () {
         this.emit('change');
     };
-    // закрываем в select/deselect а не в change,
-    // тк. change на opal-select[multiple] генерируется только при закрытии
+    // Закрываем в select/deselect а не в change,
+    // тк. change на opal-select[multiple] генерируется только при закрытии.
     OpalTagSelect.prototype._onSelectOptionSelect = function () {
         this.$('select').close();
     };

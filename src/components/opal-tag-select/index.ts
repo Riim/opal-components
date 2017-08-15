@@ -1,7 +1,12 @@
 import { define, ObservableList } from 'cellx';
 import { Component, d, getText } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
-import { OpalSelect, TDataList, TViewModel } from '../opal-select';
+import {
+	IDataListItem,
+	OpalSelect,
+	TDataList,
+	TViewModel
+	} from '../opal-select';
 import './index.css';
 import template = require('./template.nelm');
 
@@ -54,6 +59,10 @@ export class OpalTagSelect extends Component {
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 	_viewModelItemDisabledFieldName: string;
+
+	get value(): Array<IDataListItem> {
+		return this.viewModel.toArray();
+	}
 
 	isPlaceholderShown: boolean;
 
@@ -173,8 +182,8 @@ export class OpalTagSelect extends Component {
 		this.emit('change');
 	}
 
-	// закрываем в select/deselect а не в change,
-	// тк. change на opal-select[multiple] генерируется только при закрытии
+	// Закрываем в select/deselect а не в change,
+	// тк. change на opal-select[multiple] генерируется только при закрытии.
 	_onSelectOptionSelect() {
 		this.$<OpalSelect>('select')!.close();
 	}
