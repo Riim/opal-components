@@ -37,8 +37,8 @@ export interface IDataListItem {
 export type TDataList = ObservableList<IDataListItem>;
 export type TViewModel = ObservableList<IDataListItem>;
 
-let defaultDataListItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
-let defaultVMItemSchema = { value: 'value', text: 'text', disabled: 'disabled' };
+let defaultDataListItemSchema = Object.freeze({ value: 'value', text: 'text', disabled: 'disabled' });
+let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled: 'disabled' });
 
 @d.Component<OpalSelect>({
 	elementIs: 'opal-select',
@@ -108,16 +108,16 @@ export class OpalSelect extends Component {
 			define(this, 'dataList', () => {
 				return getDataList.call(context);
 			});
-
-			let dataListItemSchema = input.datalistItemSchema;
-			let defaultDataListItemSchema = (this.constructor as typeof OpalSelect).defaultDataListItemSchema;
-
-			this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
-			this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
-			this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 		} else {
 			this.dataList = null;
 		}
+
+		let dataListItemSchema = input.datalistItemSchema;
+		let defaultDataListItemSchema = (this.constructor as typeof OpalSelect).defaultDataListItemSchema;
+
+		this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+		this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 
 		let vmItemSchema = input.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalSelect).defaultViewModelItemSchema;

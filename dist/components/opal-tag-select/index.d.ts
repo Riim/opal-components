@@ -3,6 +3,16 @@ import { IDataProvider } from '../opal-loaded-list';
 import { IDataListItem, TDataList, TViewModel } from '../opal-select';
 import './index.css';
 export declare class OpalTagSelect extends Component {
+    static defaultDataListItemSchema: Readonly<{
+        value: string;
+        text: string;
+        disabled: string;
+    }>;
+    static defaultViewModelItemSchema: Readonly<{
+        value: string;
+        text: string;
+        disabled: string;
+    }>;
     dataList: TDataList | null;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;

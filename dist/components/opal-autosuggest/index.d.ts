@@ -14,11 +14,11 @@ export interface IDataProvider {
     }>;
 }
 export declare class OpalAutosuggest extends Component {
-    static defaultDataListItemSchema: {
+    static defaultDataListItemSchema: Readonly<{
         value: string;
         text: string;
         disabled: string;
-    };
+    }>;
     dataProvider: IDataProvider;
     dataList: ObservableList<IDataListItem>;
     _dataListItemValueFieldName: string;

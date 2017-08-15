@@ -23,9 +23,15 @@
 		}
 	}
 
-	div/menu-content {
-		opal-loaded-list/loaded-list (dataprovider-keypath=dataProvider) {
-			opal-select-option/option (value={$item.value}, text={$item.text})
+	div/menu-list {
+		opal-loaded-list/loaded-list (
+			dataprovider-keypath=dataProvider,
+			datalist-item-value-name={_dataListItemValueFieldName}
+		) {
+			opal-select-option/option (
+				value='{$item |key(_dataListItemValueFieldName) }',
+				text='{$item |key(_dataListItemTextFieldName) }'
+			)
 		}
 	}
 

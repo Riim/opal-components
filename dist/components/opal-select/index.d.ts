@@ -12,16 +12,16 @@ export declare type TDataList = ObservableList<IDataListItem>;
 export declare type TViewModel = ObservableList<IDataListItem>;
 export declare class OpalSelect extends Component {
     static OpalSelectOption: typeof OpalSelectOption;
-    static defaultDataListItemSchema: {
+    static defaultDataListItemSchema: Readonly<{
         value: string;
         text: string;
         disabled: string;
-    };
-    static defaultViewModelItemSchema: {
+    }>;
+    static defaultViewModelItemSchema: Readonly<{
         value: string;
         text: string;
         disabled: string;
-    };
+    }>;
     dataList: TDataList | null;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;

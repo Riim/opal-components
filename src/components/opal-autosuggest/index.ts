@@ -31,7 +31,7 @@ function toComparable(str: string): string {
 	return str.replace(/\s+/g, ' ').toLowerCase();
 }
 
-let defaultDataListItemSchema = { value: 'id', text: 'name', disabled: 'disabled' };
+let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 
 @d.Component<OpalAutosuggest>({
 	elementIs: 'opal-autosuggest',

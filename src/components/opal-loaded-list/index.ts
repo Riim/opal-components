@@ -27,7 +27,7 @@ export interface IDataProvider {
 	input: {
 		dataprovider: { type: Object, readonly: true },
 		dataproviderKeypath: { type: String, readonly: true },
-		dataListItemValueName: { default: 'id', readonly: true },
+		datalistItemValueName: { default: 'id', readonly: true },
 		count: 100,
 		query: String,
 		itemAs: { default: '$item', readonly: true },
@@ -52,8 +52,8 @@ export class OpalLoadedList extends Component {
 	_requestCallback: IDisposableCallback;
 	loading: boolean;
 
-	_lastRequestedQuery: string | undefined;
-	_lastLoadedQuery: string | undefined;
+	_lastRequestedQuery: string | null = null;
+	_lastLoadedQuery: string | null = null;
 
 	empty: boolean;
 
@@ -172,7 +172,7 @@ export class OpalLoadedList extends Component {
 			this._requestCallback.cancel();
 		}
 
-		let query: string | undefined = this._lastRequestedQuery = this.input.query;
+		let query: string | null = this._lastRequestedQuery = this.input.query;
 		let dataProvider = this.dataProvider;
 		let infinite = dataProvider.getItems.length >= 2;
 		let args = [query];
@@ -180,7 +180,7 @@ export class OpalLoadedList extends Component {
 		if (infinite) {
 			args.unshift(
 				this.input.count,
-				this.dataList.length ? this.dataList.get(-1)![this.input.dataListItemValueName] : undefined
+				this.dataList.length ? this.dataList.get(-1)![this.input.datalistItemValueName] : null
 			);
 		}
 

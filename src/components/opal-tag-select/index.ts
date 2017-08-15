@@ -10,8 +10,8 @@ import {
 import './index.css';
 import template = require('./template.nelm');
 
-let defaultDataListItemSchema = OpalSelect.defaultDataListItemSchema;
-let defaultVMItemSchema = OpalSelect.defaultViewModelItemSchema;
+let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
+let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 
 @d.Component<OpalTagSelect>({
 	elementIs: 'opal-tag-select',
@@ -46,6 +46,9 @@ let defaultVMItemSchema = OpalSelect.defaultViewModelItemSchema;
 	}
 })
 export class OpalTagSelect extends Component {
+	static defaultDataListItemSchema = defaultDataListItemSchema;
+	static defaultViewModelItemSchema = defaultVMItemSchema;
+
 	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;

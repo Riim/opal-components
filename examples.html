@@ -10,6 +10,11 @@
 
 	<script>
 
+Rionite.formatters.log = function(msg) {
+	console.log(msg);
+	return msg;
+};
+
 function require() {}
 
 var dataProvider1 = (() => {
@@ -399,8 +404,8 @@ body {
 			<opal-button class="opal-select__btn-close">Закрыть</opal-button>
 		</opal-select>
 
-		<opal-select multiple datalist-keypath="model1.dataList" add-new-item-keypath="addNewItem1"
-				placeholder="Select">
+		<opal-select multiple datalist-keypath="model1.dataList" datalist-item-schema="{ value: 'id', text: 'name' }"
+				add-new-item-keypath="addNewItem1" placeholder="Select">
 			<opal-text-input class="opal-select__new-item-input"></opal-text-input>
 		</opal-select>
 	</div>
@@ -519,7 +524,8 @@ body {
 			</opal-popover>
 		</opal-select>
 
-		<opal-select multiple view-model-keypath="selectViewModel1">
+		<opal-select multiple view-model-keypath="selectViewModel1"
+				view-model-item-schema="{ value: 'id', text: 'name' }">
 			<opal-popover class="opal-select__menu" to="bottom" auto-closing>
 				<opal-loaded-list class="opal-select__loaded-list" dataprovider-keypath="dataProvider1">
 					<opal-select-option text="{$item.name}"></opal-select-option>

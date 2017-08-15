@@ -22,8 +22,8 @@ export declare class OpalLoadedList extends Component {
     _loadingCheckTimeout: IDisposableTimeout;
     _requestCallback: IDisposableCallback;
     loading: boolean;
-    _lastRequestedQuery: string | undefined;
-    _lastLoadedQuery: string | undefined;
+    _lastRequestedQuery: string | null;
+    _lastLoadedQuery: string | null;
     empty: boolean;
     isLoaderShown: boolean;
     isNothingFoundShown: boolean;
