@@ -19,7 +19,7 @@ import './index.css';
 import template = require('./template.nelm');
 
 export interface IDataListItem {
-	[name: string]: string;
+	[name: string]: any;
 }
 
 export interface IDataProvider {

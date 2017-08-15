@@ -3,7 +3,7 @@ import { Component, IDisposableCallback, IDisposableListening, IDisposableTimeou
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 export interface IDataListItem {
-    [name: string]: string;
+    [name: string]: any;
 }
 export interface IDataProvider {
     getItems(query: string): PromiseLike<{
