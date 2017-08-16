@@ -1,4 +1,4 @@
-import { define, ObservableList } from 'cellx';
+import { define, IEvent, ObservableList } from 'cellx';
 import { Component, d, getText } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
 import {
@@ -25,6 +25,7 @@ let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: '
 		dataproviderKeypath: { type: String, readonly: true },
 		addNewItemKeypath: { type: String, readonly: true },
 		value: eval,
+		viewModel: { type: Object },
 		viewModelKeypath: { type: String, readonly: true },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 		placeholder: getText.t('Не выбрано'),
@@ -127,7 +128,9 @@ export class OpalTagSelect extends Component {
 
 		let vm;
 
-		if (input.viewModelKeypath) {
+		if (input.viewModel) {
+			vm = input.viewModel;
+		} else if (input.viewModelKeypath) {
 			vm = Function(`return this.${ input.viewModelKeypath };`).call(this.ownerComponent || window);
 
 			if (!vm) {
@@ -147,6 +150,8 @@ export class OpalTagSelect extends Component {
 	}
 
 	elementAttached() {
+		this.listenTo(this, 'input-view-model-change', this._onInputViewModelChange);
+
 		this.listenTo('control', 'click', this._onControlClick);
 
 		this.listenTo('select', {
@@ -155,6 +160,12 @@ export class OpalTagSelect extends Component {
 			'<opal-select-option>select': this._onSelectOptionSelect,
 			'<opal-select-option>deselect': this._onSelectOptionDeselect
 		});
+	}
+
+	_onInputViewModelChange(evt: IEvent) {
+		if (evt.value != this.viewModel) {
+			throw new TypeError('Input property "viewModel" is readonly');
+		}
 	}
 
 	_onControlClick(evt: Event) {

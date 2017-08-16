@@ -35,6 +35,7 @@ export {
 	OpalLoadedList
 } from './components/opal-loaded-list';
 export { OpalFilteredList } from './components/opal-filtered-list';
+export { OpalTreeList } from './components/opal-tree-list';
 export {
 	IDataListItem as IOpalAutosuggestDataListItem,
 	IDataProvider as IOpalAutosuggestDataProvider,

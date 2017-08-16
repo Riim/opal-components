@@ -20,6 +20,7 @@ export { OpalDateInput } from './components/opal-date-input';
 export { OpalLoader } from './components/opal-loader';
 export { IDataListItem as IOpalLoadedListDataListItem, IDataProvider as IOpalLoadedListDataProvider, OpalLoadedList } from './components/opal-loaded-list';
 export { OpalFilteredList } from './components/opal-filtered-list';
+export { OpalTreeList } from './components/opal-tree-list';
 export { IDataListItem as IOpalAutosuggestDataListItem, IDataProvider as IOpalAutosuggestDataProvider, OpalAutosuggest } from './components/opal-autosuggest';
 export { OpalTagSelect } from './components/opal-tag-select';
 export { OpalMultirow, OpalMultirowRow } from './components/opal-multirow';

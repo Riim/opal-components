@@ -1,3 +1,4 @@
+import { IEvent } from 'cellx';
 import { Component } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
 import { IDataListItem, TDataList, TViewModel } from '../opal-select';
@@ -30,6 +31,7 @@ export declare class OpalTagSelect extends Component {
     _dataListKeypathParam: string | null;
     initialize(): void;
     elementAttached(): void;
+    _onInputViewModelChange(evt: IEvent): void;
     _onControlClick(evt: Event): void;
     _onSelectInput(): void;
     _onSelectChange(): void;

@@ -51,6 +51,7 @@ let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled
 		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		addNewItemKeypath: { type: String, readonly: true },
 		value: eval,
+		viewModel: { type: Object },
 		viewModelKeypath: { type: String, readonly: true },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 		text: String,
@@ -128,7 +129,9 @@ export class OpalSelect extends Component {
 
 		let vm;
 
-		if (input.viewModelKeypath) {
+		if (input.viewModel) {
+			vm = input.viewModel;
+		} else if (input.viewModelKeypath) {
 			vm = Function(`return this.${ input.viewModelKeypath };`).call(this.ownerComponent || window);
 
 			if (!vm) {
@@ -221,6 +224,7 @@ export class OpalSelect extends Component {
 	elementAttached() {
 		this.listenTo(this, {
 			'input-value-change': this._onInputValueChange,
+			'input-view-model-change': this._onInputViewModelChange,
 			'input-focused-change': this._onInputFocusedChange
 		});
 
@@ -301,6 +305,12 @@ export class OpalSelect extends Component {
 			}
 		} else {
 			vm.clear();
+		}
+	}
+
+	_onInputViewModelChange(evt: IEvent) {
+		if (evt.value != this.viewModel) {
+			throw new TypeError('Input property "viewModel" is readonly');
 		}
 	}
 

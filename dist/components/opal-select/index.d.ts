@@ -46,6 +46,7 @@ export declare class OpalSelect extends Component {
     ready(): void;
     elementAttached(): void;
     _onInputValueChange(evt: IEvent): void;
+    _onInputViewModelChange(evt: IEvent): void;
     _onInputFocusedChange(evt: IEvent): void;
     _onViewModelChange(): void;
     _onButtonFocus(): void;
