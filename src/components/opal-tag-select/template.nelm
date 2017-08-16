@@ -24,7 +24,7 @@ span/control {
 		datalist-item-schema={input.datalistItemSchema |json },
 		add-new-item-keypath=_addNewItem,
 		value={input.value},
-		view-model-keypath=viewModel,
+		view-model={viewModel},
 		view-model-item-schema={input.viewModelItemSchema |json }
 	) {
 		opal-sign-button/button (class=opal-select__button, sign=plus, checkable)
