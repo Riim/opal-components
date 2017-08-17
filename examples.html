@@ -79,12 +79,34 @@ var addNewItem1 = (name) => {
 	return Promise.resolve({ id: '__' + Math.random(), name });
 };
 
-var model1 = cellx.define({}, 'dataList', () => {
-	return new cellx.ObservableList([
-		{ id: '1', name: '1' },
-		{ id: '2', name: '2' },
-		{ id: '3', name: '3' }
-	]);
+var model1 = cellx.define({}, {
+	dataList: () => {
+		return new cellx.ObservableList([
+			{ id: '1', name: '1' },
+			{ id: '2', name: '2' },
+			{ id: '3', name: '3' }
+		]);
+	},
+
+	dataTreeList: () => {
+		return new OpalComponents.ObservableTreeList([
+			{ id: '1', name: '1' },
+			{ id: '2', name: '2' },
+			{ id: '3', name: '3', children: [
+				{ id: '3.1', name: '3.1', children: [
+					{ id: '3.1.1', name: '3.1.1' },
+					{ id: '3.1.2', name: '3.1.2' }
+				] },
+				{ id: '3.2', name: '3.2' },
+				{ id: '3.3', name: '3.3' }
+			] },
+			{ id: '4', name: '4', children: [
+				{ id: '4.1', name: '4.1' },
+				{ id: '4.2', name: '4.2' }
+			] },
+			{ id: '5', name: '5' }
+		]);
+	}
 });
 
 var selectViewModel1 = (() => {
@@ -119,7 +141,7 @@ body {
 </head>
 <body>
 
-<opal-tree-list></opal-tree-list>
+<opal-tree-list datatreelist-keypath="model1.dataTreeList"></opal-tree-list>
 
 <h1>opal-button</h1>
 
@@ -633,8 +655,8 @@ body {
 	</script>
 </opal-code-listing>
 
-<script src="dist/index.js"></script>
-<script src="dist/opal-code-listing.js"></script>
+<script src="dist/OpalComponents.js"></script>
+<script src="dist/OpalCodeListing.js"></script>
 <script src="dist/focusHighlightController.js"></script>
 
 </body>

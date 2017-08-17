@@ -1,1 +1,10 @@
-'123'
+@if-then (if=dataTreeList) {
+	@repeat (for=item of dataTreeList, track-by=id) {
+		opal-tree-list-item (datatreelist={dataTreeList}, indexpath=[{$index}]) {
+			'{item.name}'
+		}
+	}
+}
+@if-else (if=dataTreeList) {
+	opal-loader/loader (shown)
+}

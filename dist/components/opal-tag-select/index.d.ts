@@ -22,6 +22,7 @@ export declare class OpalTagSelect extends Component {
     _addNewItem: ((text: string) => Promise<{
         [name: string]: string;
     }>) | undefined;
+    _addNewItemKeypathParam: string | null;
     viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;

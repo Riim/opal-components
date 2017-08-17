@@ -18,11 +18,13 @@ let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: '
 
 	input: {
 		viewType: String,
+		datalist: { type: Object },
 		datalistKeypath: { type: String, readonly: true },
 		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		// необязательный, так как может указываться на передаваемом opal-loaded-list
 		dataprovider: { type: Object, readonly: true },
 		dataproviderKeypath: { type: String, readonly: true },
+		addNewItem: { type: Object, readonly: true },
 		addNewItemKeypath: { type: String, readonly: true },
 		value: eval,
 		viewModel: { type: Object },
@@ -58,6 +60,7 @@ export class OpalTagSelect extends Component {
 	dataProvider: IDataProvider | null;
 
 	_addNewItem: ((text: string) => Promise<{ [name: string]: string }>) | undefined;
+	_addNewItemKeypathParam: string | null;
 
 	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
@@ -74,14 +77,16 @@ export class OpalTagSelect extends Component {
 
 	initialize() {
 		let input = this.input;
+		let isDataListSpecified = input.$specified.has('datalist');
 
-		if (input.datalistKeypath) {
-			let context = this.ownerComponent || window;
-			let getDataList = Function(`return this.${ input.datalistKeypath };`);
-
-			define(this, 'dataList', () => {
-				return getDataList.call(context);
-			});
+		if (isDataListSpecified || input.datalistKeypath) {
+			if (isDataListSpecified) {
+				define(this, 'dataList', () => input.datalist);
+			} else {
+				let context = this.ownerComponent || window;
+				let getDataList = Function(`return this.${ input.datalistKeypath };`);
+				define(this, 'dataList', () => getDataList.call(context));
+			}
 
 			this.dataProvider = null;
 
@@ -89,29 +94,32 @@ export class OpalTagSelect extends Component {
 		} else {
 			this.dataList = null;
 
-			let dataProvider = input.dataprovider;
+			let isInputDataProviderSpecified = input.$specified.has('dataProvider');
 
-			if (!dataProvider && input.dataproviderKeypath) {
-				dataProvider = Function(`return this.${ input.dataproviderKeypath };`)
-					.call(this.ownerComponent || window);
+			if (isInputDataProviderSpecified || input.dataproviderKeypath) {
+				this.dataProvider = isInputDataProviderSpecified ?
+					input.dataprovider :
+					Function(`return this.${ input.dataproviderKeypath };`).call(this.ownerComponent || window);
 
-				if (!dataProvider) {
+				if (!this.dataProvider) {
 					throw new TypeError('"dataProvider" is not defined');
 				}
+			} else {
+				this.dataProvider = null;
 			}
-
-			this.dataProvider = dataProvider;
 
 			this._dataListKeypathParam = null;
 		}
 
-		if (input.addNewItemKeypath) {
-			let addNewItem = this._addNewItem = Function(`return this.${ input.addNewItemKeypath };`)
+		if (input.$specified.has('addNewItem')) {
+			this._addNewItem = input.addNewItem;
+			this._addNewItemKeypathParam = '_addNewItem';
+		} else if (input.addNewItemKeypath) {
+			this._addNewItem = Function(`return this.${ input.addNewItemKeypath };`)
 				.call(this.ownerComponent || window);
-
-			if (!addNewItem) {
-				throw new TypeError('"addNewItem" is not defined');
-			}
+			this._addNewItemKeypathParam = '_addNewItem';
+		} else {
+			this._addNewItemKeypathParam = null;
 		}
 
 		let dataListItemSchema = input.datalistItemSchema;

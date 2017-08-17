@@ -179,7 +179,7 @@ export class OpalTextInput extends Component {
 	}
 
 	_onTextFieldKeyPress(evt: KeyboardEvent) {
-		if (evt.which == 13 /* Enter */) {
+		if (evt.which == 13 /* Enter */ && this.value) {
 			this.emit('confirm');
 		}
 

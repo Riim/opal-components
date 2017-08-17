@@ -47,8 +47,10 @@ let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled
 		viewType: String,
 		size: 'm',
 		multiple: { default: false, readonly: true },
+		datalist: { type: Object },
 		datalistKeypath: { type: String, readonly: true },
 		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
+		addNewItem: { type: Object, readonly: true },
 		addNewItemKeypath: { type: String, readonly: true },
 		value: eval,
 		viewModel: { type: Object },
@@ -96,21 +98,25 @@ export class OpalSelect extends Component {
 
 	_onсeFocusedAfterLoading: boolean = false;
 
+	_isInputDataListSpecified: boolean;
+
 	_documentFocusListening: IDisposableListening;
 	_documentKeyDownListening: IDisposableListening | null | undefined;
 
 	initialize() {
 		let input = this.input;
 
-		if (input.datalistKeypath) {
+		if (input.$specified.has('datalist')) {
+			define(this, 'dataList', () => input.datalist);
+			this._isInputDataListSpecified = true;
+		} else if (input.datalistKeypath) {
 			let context = this.ownerComponent || window;
 			let getDataList = Function(`return this.${ input.datalistKeypath };`);
-
-			define(this, 'dataList', () => {
-				return getDataList.call(context);
-			});
+			define(this, 'dataList', () => getDataList.call(context));
+			this._isInputDataListSpecified = true;
 		} else {
 			this.dataList = null;
+			this._isInputDataListSpecified = false;
 		}
 
 		let dataListItemSchema = input.datalistItemSchema;
@@ -401,20 +407,25 @@ export class OpalSelect extends Component {
 			return;
 		}
 
-		let addNewItemKeypath = this.input.addNewItemKeypath;
-
-		if (!addNewItemKeypath) {
-			throw new TypeError('Input "addNewItemKeypath" is required');
-		}
-
-		let addNewItem = this._addNewItem ||
-			(this._addNewItem = Function(`return this.${ addNewItemKeypath };`).call(this.ownerComponent || window));
+		let input = this.input;
+		let addNewItem = this._addNewItem;
 
 		if (!addNewItem) {
-			throw new TypeError('"addNewItem" is not defined');
+			if (input.$specified.has('addNewItem')) {
+				addNewItem = this._addNewItem = input.addNewItem;
+			} else if (input.addNewItemKeypath) {
+				addNewItem = this._addNewItem = Function(`return this.${ input.addNewItemKeypath };`)
+					.call(this.ownerComponent || window);
+			} else {
+				throw new TypeError('Input property "addNewItem" is required');
+			}
+
+			if (!addNewItem) {
+				throw new TypeError('"addNewItem" is not defined');
+			}
 		}
 
-		let text = textInput.value;
+		let text = textInput.value!;
 
 		textInput.clear();
 		textInput.input.loading = true;

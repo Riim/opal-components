@@ -20,8 +20,8 @@ module.exports = (env) => {
 
 	return {
 		entry: {
-			index: './src/index.ts',
-			'opal-code-listing': './src/components/opal-code-listing/index.ts',
+			OpalComponents: './src/index.ts',
+			OpalCodeListing: './src/components/opal-code-listing/index.ts',
 			focusHighlightController: './src/focusHighlightController.js'
 		},
 

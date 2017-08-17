@@ -25,7 +25,7 @@
 
 	div/menu-list {
 		opal-loaded-list/loaded-list (
-			dataprovider-keypath=dataProvider,
+			dataprovider={dataProvider},
 			datalist-item-value-name={_dataListItemValueFieldName}
 		) {
 			opal-select-option/option (

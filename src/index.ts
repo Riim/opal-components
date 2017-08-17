@@ -1,3 +1,4 @@
+export { default as ObservableTreeList } from './ObservableTreeList';
 export { OpalButton } from './components/opal-button';
 export { OpalSignButton } from './components/opal-sign-button';
 export { OpalTextInput } from './components/opal-text-input';

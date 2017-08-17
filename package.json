@@ -1,8 +1,8 @@
 {
   "name": "opal-components",
-  "version": "0.27.49",
+  "version": "0.27.52",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/OpalComponents.js",
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "node_modules/.bin/gulp clear && node_modules/.bin/webpack && node_modules/.bin/gulp",
@@ -24,7 +24,7 @@
     "@riim/postcss-rionite-component": "^0.3.5",
     "autoprefixer": "^7.1.2",
     "awesome-typescript-loader": "^3.2.3",
-    "babel-core": "^6.25.0",
+    "babel-core": "^6.26.0",
     "babel-loader": "^7.1.1",
     "collapse-line-breaks-loader": "^0.1.1",
     "gulp": "^3.9.1",
@@ -46,7 +46,7 @@
     "trim-lines-loader": "^0.1.0",
     "tslint": "^5.6.0",
     "tslint-loader": "^3.5.3",
-    "webpack": "^3.5.4"
+    "webpack": "^3.5.5"
   },
   "dependencies": {
     "cellx": "^1.7.29",
@@ -54,6 +54,6 @@
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.0",
     "prismjs": "^1.6.0",
-    "rionite": "^0.27.28"
+    "rionite": "^0.27.29"
   }
 }

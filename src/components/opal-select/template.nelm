@@ -18,9 +18,9 @@ rt-content (select=.opal-select__button) {
 rt-content (select=.opal-select__menu) {
 	opal-dropdown/menu (auto-closing) {
 		rt-content (select=.opal-select__menu-content) {
-			@if-then (if=input.datalistKeypath) {
+			@if-then (if=_isInputDataListSpecified) {
 				div/, menu-content {
-					@if-then (if=dataList.length) {
+					@if-then (if=dataList) {
 						@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {
 							opal-select-option/option (
 								value='{item |key(_dataListItemValueFieldName) }',
@@ -31,12 +31,12 @@ rt-content (select=.opal-select__menu) {
 
 						rt-content/new-item-input-container // доопределяется ниже
 					}
-					@if-else (if=dataList.length) {
+					@if-else (if=dataList) {
 						opal-loader/menu-loader (shown)
 					}
 				}
 			}
-			@if-else (if=input.datalistKeypath) {
+			@if-else (if=_isInputDataListSpecified) {
 				div/, menu-content {
 					rt-content/options (select=opal-select-option)
 					rt-content/new-item-input-container (select=.opal-select__new-item-input)

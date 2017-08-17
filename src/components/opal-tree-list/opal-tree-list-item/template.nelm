@@ -1,0 +1,11 @@
+rt-slot
+
+@if-then (if=children) {
+	div/children {
+		@repeat (for=item of children, track-by=id) {
+			opal-tree-list-item (datatreelist={input.datatreelist}, indexpath='[{input.indexpath},{$index}]') {
+				'{item.name}'
+			}
+		}
+	}
+}

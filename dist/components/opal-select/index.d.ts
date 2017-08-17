@@ -40,6 +40,7 @@ export declare class OpalSelect extends Component {
     _opened: boolean;
     _valueOnOpen: any;
     _onсeFocusedAfterLoading: boolean;
+    _isInputDataListSpecified: boolean;
     _documentFocusListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening | null | undefined;
     initialize(): void;

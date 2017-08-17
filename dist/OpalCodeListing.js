@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["opal-code-listing"] = factory(require("rionite"));
+		exports["OpalCodeListing"] = factory(require("rionite"));
 	else
-		root["opal-code-listing"] = factory(root["rionite"]);
+		root["OpalCodeListing"] = factory(root["rionite"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_0__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 108);
+/******/ 	return __webpack_require__(__webpack_require__.s = 112);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -82,7 +82,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
 
-/***/ 108:
+/***/ 112:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,10 +105,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(109);
-__webpack_require__(110);
-var Prism = __webpack_require__(111);
-var template = __webpack_require__(112);
+__webpack_require__(113);
+__webpack_require__(114);
+var Prism = __webpack_require__(115);
+var template = __webpack_require__(116);
 function prepareCode(code, isHtml) {
     code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
     var tabs = code.match(/^\t*[^\t\r\n]/gm);
@@ -150,7 +150,7 @@ exports.OpalCodeListing = OpalCodeListing;
 
 /***/ }),
 
-/***/ 109:
+/***/ 113:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -168,7 +168,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 110:
+/***/ 114:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -186,7 +186,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 111:
+/***/ 115:
 /***/ (function(module, exports) {
 
 
@@ -988,7 +988,7 @@ Prism.languages.js = Prism.languages.javascript;
 
 /***/ }),
 
-/***/ 112:
+/***/ 116:
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nopal-tabs {\nopal-tab { 'HTML' }\nopal-tab-panel {\npre/html-code-wrapper { code/html-code }\n}\nopal-tab { 'JS' }\nopal-tab-panel {\npre/js-code-wrapper { code/js-code }\n}\n}\nrt-content/example-html-container (select=.opal-code-listing__example-html)\nrt-content/example-js-container (select=.opal-code-listing__example-js)\n}"
