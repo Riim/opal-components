@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.27.55",
+  "version": "0.27.56",
   "description": "",
   "main": "dist/OpalComponents.js",
   "typings": "dist/index.d.ts",
@@ -49,11 +49,11 @@
     "webpack": "^3.5.5"
   },
   "dependencies": {
-    "cellx": "^1.7.32",
+    "cellx": "^1.7.34",
     "cellx-decorators": "^1.4.5",
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.0",
     "prismjs": "^1.6.0",
-    "rionite": "^0.27.32"
+    "rionite": "^0.27.34"
   }
 }
