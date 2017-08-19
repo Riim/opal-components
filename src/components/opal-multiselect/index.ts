@@ -51,19 +51,21 @@ export class OpalMultiselect extends OpalSelect {
 		super.initialize();
 
 		let input = this.input;
-		let isInputDataProviderSpecified = input.$specified.has('dataprovider');
+		let dataProvider;
 
-		if (isInputDataProviderSpecified || input.dataproviderKeypath) {
-			this.dataProvider = isInputDataProviderSpecified ?
-				input.dataprovider :
-				Function(`return this.${ input.dataproviderKeypath };`).call(this.ownerComponent || window);
-
-			if (!this.dataProvider) {
-				throw new TypeError('"dataProvider" is not defined');
-			}
+		if (input.$specified.has('dataprovider')) {
+			dataProvider = input.dataprovider;
+		} else if (input.dataproviderKeypath) {
+			dataProvider = Function(`return this.${ input.dataproviderKeypath };`).call(this.ownerComponent || window);
 		} else {
 			throw new TypeError('Input property "dataprovider" is required');
 		}
+
+		if (!dataProvider) {
+			throw new TypeError('"dataProvider" is not defined');
+		}
+
+		this.dataProvider = dataProvider;
 
 		define(this, {
 			isNothingSelectedShown(this: OpalMultiselect) {

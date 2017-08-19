@@ -321,8 +321,8 @@ var OpalSelect = (function (_super) {
             this._isInputDataListSpecified = true;
         }
         else if (input.datalistKeypath) {
-            var context_1 = this.ownerComponent || window;
             var getDataList_1 = Function("return this." + input.datalistKeypath + ";");
+            var context_1 = this.ownerComponent || window;
             cellx_1.define(this, 'dataList', function () { return getDataList_1.call(context_1); });
             this._isInputDataListSpecified = true;
         }
@@ -335,17 +335,30 @@ var OpalSelect = (function (_super) {
         this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
         this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
+        var inputAddNewItemSpecified = input.$specified.has('addNewItem');
+        if (inputAddNewItemSpecified || input.addNewItemKeypath) {
+            var addNewItem = inputAddNewItemSpecified ?
+                input.addNewItem :
+                Function("return this." + input.addNewItemKeypath + ";").call(this.ownerComponent || window);
+            if (!addNewItem) {
+                throw new TypeError('"addNewItem" is not defined');
+            }
+            this._addNewItem = addNewItem;
+        }
+        else {
+            this._addNewItem = null;
+        }
         var vmItemSchema = input.viewModelItemSchema;
         var defaultVMItemSchema = this.constructor.defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
         this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
+        var isInputViewModelSpecified = input.$specified.has('viewModel');
         var vm;
-        if (input.viewModel) {
-            vm = input.viewModel;
-        }
-        else if (input.viewModelKeypath) {
-            vm = Function("return this." + input.viewModelKeypath + ";").call(this.ownerComponent || window);
+        if (isInputViewModelSpecified || input.viewModelKeypath) {
+            vm = isInputViewModelSpecified ?
+                input.viewModel :
+                Function("return this." + input.viewModelKeypath + ";").call(this.ownerComponent || window);
             if (!vm) {
                 throw new TypeError('"viewModel" is not defined');
             }
@@ -587,28 +600,14 @@ var OpalSelect = (function (_super) {
         if (textInput !== this.$('new-item-input')) {
             return;
         }
-        var input = this.input;
-        var addNewItem = this._addNewItem;
-        if (!addNewItem) {
-            if (input.$specified.has('addNewItem')) {
-                addNewItem = this._addNewItem = input.addNewItem;
-            }
-            else if (input.addNewItemKeypath) {
-                addNewItem = this._addNewItem = Function("return this." + input.addNewItemKeypath + ";")
-                    .call(this.ownerComponent || window);
-            }
-            else {
-                throw new TypeError('Input property "addNewItem" is required');
-            }
-            if (!addNewItem) {
-                throw new TypeError('"addNewItem" is not defined');
-            }
+        if (!this._addNewItem) {
+            throw new TypeError('Input property "addNewItem" is required');
         }
         var text = textInput.value;
         textInput.clear();
         textInput.input.loading = true;
         textInput.input.disabled = true;
-        addNewItem(text).then(function (newItem) {
+        this._addNewItem(text).then(function (newItem) {
             textInput.input.loading = false;
             textInput.input.disabled = false;
             var value = newItem[_this._viewModelItemValueFieldName];
@@ -4086,18 +4085,20 @@ var OpalMultiselect = (function (_super) {
     OpalMultiselect.prototype.initialize = function () {
         _super.prototype.initialize.call(this);
         var input = this.input;
-        var isInputDataProviderSpecified = input.$specified.has('dataprovider');
-        if (isInputDataProviderSpecified || input.dataproviderKeypath) {
-            this.dataProvider = isInputDataProviderSpecified ?
-                input.dataprovider :
-                Function("return this." + input.dataproviderKeypath + ";").call(this.ownerComponent || window);
-            if (!this.dataProvider) {
-                throw new TypeError('"dataProvider" is not defined');
-            }
+        var dataProvider;
+        if (input.$specified.has('dataprovider')) {
+            dataProvider = input.dataprovider;
+        }
+        else if (input.dataproviderKeypath) {
+            dataProvider = Function("return this." + input.dataproviderKeypath + ";").call(this.ownerComponent || window);
         }
         else {
             throw new TypeError('Input property "dataprovider" is required');
         }
+        if (!dataProvider) {
+            throw new TypeError('"dataProvider" is not defined');
+        }
+        this.dataProvider = dataProvider;
         cellx_1.define(this, {
             isNothingSelectedShown: function () {
                 return !this.viewModel.length;
@@ -5035,20 +5036,20 @@ var OpalLoadedList = (function (_super) {
     }
     OpalLoadedList.prototype.initialize = function () {
         var input = this.input;
-        var dataProvider = input.dataprovider;
-        if (dataProvider || input.dataproviderKeypath) {
-            if (!dataProvider) {
-                dataProvider = Function("return this." + input.dataproviderKeypath + ";")
-                    .call(this.ownerComponent || window);
-                if (!dataProvider) {
-                    throw new TypeError('"dataProvider" is not defined');
-                }
-            }
-            this.dataProvider = dataProvider;
+        var dataProvider;
+        if (input.$specified.has('dataprovider')) {
+            dataProvider = input.dataprovider;
+        }
+        else if (input.dataproviderKeypath) {
+            dataProvider = Function("return this." + input.dataproviderKeypath + ";").call(this.ownerComponent || window);
         }
         else {
-            throw new TypeError('Property "dataprovider" is required');
+            throw new TypeError('Input property "dataprovider" is required');
         }
+        if (!dataProvider) {
+            throw new TypeError('"dataProvider" is not defined');
+        }
+        this.dataProvider = dataProvider;
         cellx_1.define(this, {
             dataList: new cellx_1.ObservableList(),
             total: undefined,
@@ -5328,8 +5329,8 @@ var OpalTreeList = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     OpalTreeList.prototype.initialize = function () {
-        var context = this.ownerComponent || window;
         var getDataTreeList = Function("return this." + this.input.datatreelistKeypath + ";");
+        var context = this.ownerComponent || window;
         cellx_1.define(this, 'dataTreeList', function () { return getDataTreeList.call(context); });
         // let x = this.dataTreeList!.get([])!.children![0].children![0].;
     };
@@ -5486,20 +5487,20 @@ var OpalAutosuggest = (function (_super) {
     OpalAutosuggest_1 = OpalAutosuggest;
     OpalAutosuggest.prototype.initialize = function () {
         var input = this.input;
-        var dataProvider = input.dataprovider;
-        if (dataProvider || input.dataproviderKeypath) {
-            if (!dataProvider) {
-                dataProvider = Function("return this." + input.dataproviderKeypath + ";")
-                    .call(this.ownerComponent || window);
-                if (!dataProvider) {
-                    throw new TypeError('"dataProvider" is not defined');
-                }
-            }
-            this.dataProvider = dataProvider;
+        var dataProvider;
+        if (input.$specified.has('dataprovider')) {
+            dataProvider = input.dataprovider;
+        }
+        else if (input.dataproviderKeypath) {
+            dataProvider = Function("return this." + input.dataproviderKeypath + ";").call(this.ownerComponent || window);
         }
         else {
-            throw new TypeError('Property "dataprovider" is required');
+            throw new TypeError('Input property "dataprovider" is required');
         }
+        if (!dataProvider) {
+            throw new TypeError('"dataProvider" is not defined');
+        }
+        this.dataProvider = dataProvider;
         cellx_1.define(this, {
             dataList: new cellx_1.ObservableList(),
             _isLoadingPlanned: false,
@@ -5858,45 +5859,49 @@ var OpalTagSelect = (function (_super) {
     });
     OpalTagSelect.prototype.initialize = function () {
         var input = this.input;
-        var isDataListSpecified = input.$specified.has('datalist');
-        if (isDataListSpecified || input.datalistKeypath) {
-            if (isDataListSpecified) {
+        var isInputDataListSpecified = input.$specified.has('datalist');
+        if (isInputDataListSpecified || input.datalistKeypath) {
+            if (isInputDataListSpecified) {
                 cellx_1.define(this, 'dataList', function () { return input.datalist; });
             }
             else {
-                var context_1 = this.ownerComponent || window;
                 var getDataList_1 = Function("return this." + input.datalistKeypath + ";");
+                var context_1 = this.ownerComponent || window;
                 cellx_1.define(this, 'dataList', function () { return getDataList_1.call(context_1); });
             }
-            this.dataProvider = null;
             this._dataListKeypathParam = 'dataList';
+            this.dataProvider = null;
         }
         else {
             this.dataList = null;
+            this._dataListKeypathParam = null;
             var isInputDataProviderSpecified = input.$specified.has('dataProvider');
             if (isInputDataProviderSpecified || input.dataproviderKeypath) {
-                this.dataProvider = isInputDataProviderSpecified ?
+                var dataProvider = isInputDataProviderSpecified ?
                     input.dataprovider :
                     Function("return this." + input.dataproviderKeypath + ";").call(this.ownerComponent || window);
-                if (!this.dataProvider) {
+                if (!dataProvider) {
                     throw new TypeError('"dataProvider" is not defined');
                 }
+                this.dataProvider = dataProvider;
             }
             else {
                 this.dataProvider = null;
             }
-            this._dataListKeypathParam = null;
         }
-        if (input.$specified.has('addNewItem')) {
-            this._addNewItem = input.addNewItem;
-            this._addNewItemKeypathParam = '_addNewItem';
-        }
-        else if (input.addNewItemKeypath) {
-            this._addNewItem = Function("return this." + input.addNewItemKeypath + ";")
-                .call(this.ownerComponent || window);
+        var inputAddNewItemSpecified = input.$specified.has('addNewItem');
+        if (inputAddNewItemSpecified || input.addNewItemKeypath) {
+            var addNewItem = inputAddNewItemSpecified ?
+                input.addNewItem :
+                Function("return this." + input.addNewItemKeypath + ";").call(this.ownerComponent || window);
+            if (!addNewItem) {
+                throw new TypeError('"addNewItem" is not defined');
+            }
+            this._addNewItem = addNewItem;
             this._addNewItemKeypathParam = '_addNewItem';
         }
         else {
+            this._addNewItem = null;
             this._addNewItemKeypathParam = null;
         }
         var dataListItemSchema = input.datalistItemSchema;
@@ -5907,12 +5912,12 @@ var OpalTagSelect = (function (_super) {
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
         this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
+        var isInputViewModelSpecified = input.$specified.has('viewModel');
         var vm;
-        if (input.viewModel) {
-            vm = input.viewModel;
-        }
-        else if (input.viewModelKeypath) {
-            vm = Function("return this." + input.viewModelKeypath + ";").call(this.ownerComponent || window);
+        if (isInputViewModelSpecified || input.viewModelKeypath) {
+            vm = isInputViewModelSpecified ?
+                input.viewModel :
+                Function("return this." + input.viewModelKeypath + ";").call(this.ownerComponent || window);
             if (!vm) {
                 throw new TypeError('"viewModel" is not defined');
             }

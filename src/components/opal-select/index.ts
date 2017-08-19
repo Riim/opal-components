@@ -77,7 +77,7 @@ export class OpalSelect extends Component {
 	_dataListItemTextFieldName: string;
 	_dataListItemDisabledFieldName: string;
 
-	_addNewItem: ((text: string) => Promise<{ [name: string]: string }>) | undefined;
+	_addNewItem: ((text: string) => Promise<{ [name: string]: string }>) | null;
 
 	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
@@ -110,8 +110,8 @@ export class OpalSelect extends Component {
 			define(this, 'dataList', () => input.datalist);
 			this._isInputDataListSpecified = true;
 		} else if (input.datalistKeypath) {
-			let context = this.ownerComponent || window;
 			let getDataList = Function(`return this.${ input.datalistKeypath };`);
+			let context = this.ownerComponent || window;
 			define(this, 'dataList', () => getDataList.call(context));
 			this._isInputDataListSpecified = true;
 		} else {
@@ -126,6 +126,22 @@ export class OpalSelect extends Component {
 		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
 		this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 
+		let inputAddNewItemSpecified = input.$specified.has('addNewItem');
+
+		if (inputAddNewItemSpecified || input.addNewItemKeypath) {
+			let addNewItem = inputAddNewItemSpecified ?
+				input.addNewItem :
+				Function(`return this.${ input.addNewItemKeypath };`).call(this.ownerComponent || window);
+
+			if (!addNewItem) {
+				throw new TypeError('"addNewItem" is not defined');
+			}
+
+			this._addNewItem = addNewItem;
+		} else {
+			this._addNewItem = null;
+		}
+
 		let vmItemSchema = input.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalSelect).defaultViewModelItemSchema;
 
@@ -133,12 +149,13 @@ export class OpalSelect extends Component {
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 		this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
 
+		let isInputViewModelSpecified = input.$specified.has('viewModel');
 		let vm;
 
-		if (input.viewModel) {
-			vm = input.viewModel;
-		} else if (input.viewModelKeypath) {
-			vm = Function(`return this.${ input.viewModelKeypath };`).call(this.ownerComponent || window);
+		if (isInputViewModelSpecified || input.viewModelKeypath) {
+			vm = isInputViewModelSpecified ?
+				input.viewModel :
+				Function(`return this.${ input.viewModelKeypath };`).call(this.ownerComponent || window);
 
 			if (!vm) {
 				throw new TypeError('"viewModel" is not defined');
@@ -407,22 +424,8 @@ export class OpalSelect extends Component {
 			return;
 		}
 
-		let input = this.input;
-		let addNewItem = this._addNewItem;
-
-		if (!addNewItem) {
-			if (input.$specified.has('addNewItem')) {
-				addNewItem = this._addNewItem = input.addNewItem;
-			} else if (input.addNewItemKeypath) {
-				addNewItem = this._addNewItem = Function(`return this.${ input.addNewItemKeypath };`)
-					.call(this.ownerComponent || window);
-			} else {
-				throw new TypeError('Input property "addNewItem" is required');
-			}
-
-			if (!addNewItem) {
-				throw new TypeError('"addNewItem" is not defined');
-			}
+		if (!this._addNewItem) {
+			throw new TypeError('Input property "addNewItem" is required');
 		}
 
 		let text = textInput.value!;
@@ -431,7 +434,7 @@ export class OpalSelect extends Component {
 		textInput.input.loading = true;
 		textInput.input.disabled = true;
 
-		addNewItem(text).then((newItem: { [name: string]: string }) => {
+		this._addNewItem(text).then((newItem: { [name: string]: string }) => {
 			textInput.input.loading = false;
 			textInput.input.disabled = false;
 

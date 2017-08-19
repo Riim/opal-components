@@ -18,8 +18,8 @@ export class OpalTreeList extends Component {
 	dataTreeList: ObservableTreeList | null;
 
 	initialize() {
-		let context = this.ownerComponent || window;
 		let getDataTreeList = Function(`return this.${ this.input.datatreelistKeypath };`);
+		let context = this.ownerComponent || window;
 		define(this, 'dataTreeList', () => getDataTreeList.call(context));
 
 		// let x = this.dataTreeList!.get([])!.children![0].children![0].;

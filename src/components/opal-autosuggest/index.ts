@@ -99,22 +99,21 @@ export class OpalAutosuggest extends Component {
 
 	initialize() {
 		let input = this.input;
-		let dataProvider = input.dataprovider;
+		let dataProvider;
 
-		if (dataProvider || input.dataproviderKeypath) {
-			if (!dataProvider) {
-				dataProvider = Function(`return this.${ input.dataproviderKeypath };`)
-					.call(this.ownerComponent || window);
-
-				if (!dataProvider) {
-					throw new TypeError('"dataProvider" is not defined');
-				}
-			}
-
-			this.dataProvider = dataProvider;
+		if (input.$specified.has('dataprovider')) {
+			dataProvider = input.dataprovider;
+		} else if (input.dataproviderKeypath) {
+			dataProvider = Function(`return this.${ input.dataproviderKeypath };`).call(this.ownerComponent || window);
 		} else {
-			throw new TypeError('Property "dataprovider" is required');
+			throw new TypeError('Input property "dataprovider" is required');
 		}
+
+		if (!dataProvider) {
+			throw new TypeError('"dataProvider" is not defined');
+		}
+
+		this.dataProvider = dataProvider;
 
 		define(this, {
 			dataList: new ObservableList<IDataListItem>(),
