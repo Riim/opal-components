@@ -8,19 +8,19 @@
 		min-width: 100%;
 
 		@mod size=s {
-			@el icon-chevron-down {
+			@el button-icon {
 				width: 12px;
 				height: 12px;
 			}
 		}
 
 		@mod checked {
-			@el icon-chevron-down {
+			@el button-icon {
 				transform: scaleY(-1);
 			}
 		}
 	}
-		@el icon-chevron-down {
+		@el button-icon {
 			display: inline-block;
 			margin-left: .25em;
 			width: 14px;

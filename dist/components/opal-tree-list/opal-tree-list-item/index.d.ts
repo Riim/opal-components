@@ -1,7 +1,9 @@
 import { Component } from 'rionite';
-import { IItem } from '../../../ObservableTreeList';
+import { IDataTreeListItem } from '../index';
 import './index.css';
 export declare class OpalTreeListItem extends Component {
-    children: IItem;
+    dataTreeListItem: IDataTreeListItem;
+    _dataTreeListItemTextFieldName: string;
     initialize(): void;
+    _getListItemContext(context: object, content: Component): object;
 }

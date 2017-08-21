@@ -1,3 +1,30 @@
 @component opal-tree-list-item {
 	display: block;
+
+	@el btn-toggle-children {
+		visibility: hidden;
+	}
+
+	@el content {
+	}
+
+	@el children {
+		padding-left: 16px;
+	}
+
+	@el selected-control {
+	}
+
+	@mod nesting-level=1 {
+	}
+	@mod nesting-level=2 {
+	}
+	@mod nesting-level=3 {
+	}
+
+	@mod has-children {
+		& > .opal-tree-list-item__btn-toggle-children {
+			visibility: visible;
+		}
+	}
 }

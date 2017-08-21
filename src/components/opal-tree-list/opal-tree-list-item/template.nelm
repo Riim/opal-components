@@ -1,10 +1,21 @@
-rt-slot
+opal-button/btn-toggle-children (view-type=clean, checkable) {
+	svg/btn-toggle-children-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }
+}
 
-@if-then (if=children) {
+rt-slot/content (clone-content)
+
+@if-then (if=dataTreeListItem.children) {
 	div/children {
-		@repeat (for=item of children, track-by=id) {
-			opal-tree-list-item (datatreelist={input.datatreelist}, indexpath='[{input.indexpath},{$index}]') {
-				'{item.name}'
+		@repeat (for=$item of dataTreeListItem.children, track-by={input.dataTreeListItemValueFieldName}) {
+			opal-tree-list-item (
+				datatreelist={input.datatreelist},
+				data-tree-list-item-value-field-name={input.dataTreeListItemValueFieldName},
+				data-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},
+				indexpath='[{input.indexpath},{$index}]',
+				nesting-level={input.indexpath.length},
+				has-children='{$item |has("children") }'
+			) {
+				rt-slot (clone-content, get-context=_getListItemContext)
 			}
 		}
 	}

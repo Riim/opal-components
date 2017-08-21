@@ -14,8 +14,13 @@ export interface IDataProvider {
     }>;
 }
 export declare class OpalLoadedList extends Component {
+    static defaultDataListItemSchema: Readonly<{
+        value: string;
+        text: string;
+    }>;
     dataProvider: IDataProvider;
     dataList: ObservableList<IDataListItem>;
+    _dataListItemTextFieldName: string;
     total: number | undefined;
     _scrolling: boolean;
     _isLoadingCheckPlanned: boolean;

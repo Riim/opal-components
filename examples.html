@@ -9,11 +9,11 @@
 	<script src="node_modules/@riim/map-set-polyfill/index.js"></script>
 	<script>
 
-var _riim_symbolPolyfill = window['@riim/symbol-polyfill'] = {
+var symbolPolyfill = window['@riim/symbol-polyfill'] = {
 	Symbol: Symbol
 };
 
-var _riim_mapSetPolyfill = window['@riim/map-set-polyfill'] = {
+var mapSetPolyfill = window['@riim/map-set-polyfill'] = {
 	Map: Map,
 	Set: Set
 };
@@ -109,7 +109,10 @@ var model1 = cellx.define({}, {
 			{ id: '2', name: '2' },
 			{ id: '3', name: '3', children: [
 				{ id: '3.1', name: '3.1', children: [
-					{ id: '3.1.1', name: '3.1.1' },
+					{ id: '3.1.1', name: '3.1.1', children: [
+						{ id: '3.1.2.1', name: '3.1.2.1' },
+						{ id: '3.1.2.2', name: '3.1.2.2' },
+					] },
 					{ id: '3.1.2', name: '3.1.2' }
 				] },
 				{ id: '3.2', name: '3.2' },
@@ -156,7 +159,9 @@ body {
 </head>
 <body>
 
-<opal-tree-list datatreelist-keypath="model1.dataTreeList"></opal-tree-list>
+<opal-tree-list datatreelist-keypath="model1.dataTreeList">
+	<opal-checkbox>{$item.name}</opal-checkbox>
+</opal-tree-list>
 
 <h1>opal-button</h1>
 

@@ -3817,7 +3817,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-select{position:relative;display:inline-block;vertical-align:middle}.opal-select .opal-select__button{display:block;min-width:100%}.opal-select .opal-select__button[size=s] .opal-select__icon-chevron-down{width:12px;height:12px}.opal-select .opal-select__button[checked] .opal-select__icon-chevron-down{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-select__icon-chevron-down{display:inline-block;margin-left:.25em;width:14px;height:14px;vertical-align:middle;-webkit-transition:-webkit-transform .1s linear;transition:-webkit-transform .1s linear;-o-transition:transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;fill:currentColor}.opal-select .opal-select__new-item-input{display:block;margin:6px 10px 4px;width:auto}.opal-select .opal-popover{padding:6px 0;min-width:140px}.opal-select .opal-popover .opal-popover__content{overflow:auto;max-height:380px}.opal-select .opal-filtered-list .opal-filtered-list__query-input{margin:4px 10px 6px}.opal-select .opal-loaded-list{height:304px}";
+            style.textContent = ".opal-select{position:relative;display:inline-block;vertical-align:middle}.opal-select .opal-select__button{display:block;min-width:100%}.opal-select .opal-select__button[size=s] .opal-select__button-icon{width:12px;height:12px}.opal-select .opal-select__button[checked] .opal-select__button-icon{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}.opal-select .opal-select__button-icon{display:inline-block;margin-left:.25em;width:14px;height:14px;vertical-align:middle;-webkit-transition:-webkit-transform .1s linear;transition:-webkit-transform .1s linear;-o-transition:transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;fill:currentColor}.opal-select .opal-select__new-item-input{display:block;margin:6px 10px 4px;width:auto}.opal-select .opal-popover{padding:6px 0;min-width:140px}.opal-select .opal-popover .opal-popover__content{overflow:auto;max-height:380px}.opal-select .opal-filtered-list .opal-filtered-list__query-input{margin:4px 10px 6px}.opal-select .opal-loaded-list{height:304px}";
             head.appendChild(style);
             return style;
         }
@@ -4046,7 +4046,7 @@ module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-
 /* 61 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content (select=.opal-select__button) {\nopal-button/button (\nview-type={input.viewType},\nsize={input.size},\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n) {\n@if-then (if=input.text) { '{input.text}' }\n@if-else (if=input.text) { '{text}' }\n' '\nsvg/icon-chevron-down (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content) {\n@if-then (if=_isInputDataListSpecified) {\ndiv/, menu-content {\n@if-then (if=dataList) {\n@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isInputDataListSpecified) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}"
+module.exports = "@section/inner {\nrt-content (select=.opal-select__button) {\nopal-button/button (\nview-type={input.viewType},\nsize={input.size},\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n) {\n@if-then (if=input.text) { '{input.text}' }\n@if-else (if=input.text) { '{text}' }\n' '\nsvg/button-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content) {\n@if-then (if=_isInputDataListSpecified) {\ndiv/, menu-content {\n@if-then (if=dataList) {\n@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isInputDataListSpecified) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 62 */
@@ -5025,6 +5025,8 @@ var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(83);
 var template = __webpack_require__(84);
+var mixin = cellx_1.Utils.mixin;
+var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var OpalLoadedList = (function (_super) {
     __extends(OpalLoadedList, _super);
     function OpalLoadedList() {
@@ -5034,6 +5036,7 @@ var OpalLoadedList = (function (_super) {
         _this._lastLoadedQuery = null;
         return _this;
     }
+    OpalLoadedList_1 = OpalLoadedList;
     OpalLoadedList.prototype.initialize = function () {
         var input = this.input;
         var dataProvider;
@@ -5050,6 +5053,8 @@ var OpalLoadedList = (function (_super) {
             throw new TypeError('"dataProvider" is not defined');
         }
         this.dataProvider = dataProvider;
+        this._dataListItemTextFieldName = input.datalistItemSchema.text ||
+            this.constructor.defaultDataListItemSchema.text;
         cellx_1.define(this, {
             dataList: new cellx_1.ObservableList(),
             total: undefined,
@@ -5128,12 +5133,16 @@ var OpalLoadedList = (function (_super) {
         if (this.loading) {
             this._requestCallback.cancel();
         }
-        var query = this._lastRequestedQuery = this.input.query;
+        var input = this.input;
+        var query = this._lastRequestedQuery = input.query;
         var dataProvider = this.dataProvider;
         var infinite = dataProvider.getItems.length >= 2;
         var args = [query];
         if (infinite) {
-            args.unshift(this.input.count, this.dataList.length ? this.dataList.get(-1)[this.input.datalistItemValueName] : null);
+            args.unshift(input.count, this.dataList.length ?
+                this.dataList.get(-1)[input.datalistItemSchema.value ||
+                    this.constructor.defaultDataListItemSchema.value] :
+                null);
         }
         this.loading = true;
         dataProvider.getItems.apply(dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {
@@ -5156,26 +5165,18 @@ var OpalLoadedList = (function (_super) {
         }));
     };
     OpalLoadedList.prototype._getListItemContext = function (context, content) {
-        var anotherContext = content.input.$context;
-        var result = Object.create(context);
-        for (var _i = 0, _a = Object.getOwnPropertyNames(anotherContext); _i < _a.length; _i++) {
-            var name_1 = _a[_i];
-            if (name_1 != '$component') {
-                Object.defineProperty(result, name_1, Object.getOwnPropertyDescriptor(anotherContext, name_1));
-            }
-        }
-        return result;
+        return mixin(Object.create(context), content.input.$context, ['$component']);
     };
-    OpalLoadedList = __decorate([
+    OpalLoadedList.defaultDataListItemSchema = defaultDataListItemSchema;
+    OpalLoadedList = OpalLoadedList_1 = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-loaded-list',
             input: {
                 dataprovider: { type: Object, readonly: true },
                 dataproviderKeypath: { type: String, readonly: true },
-                datalistItemValueName: { default: 'id', readonly: true },
+                datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
                 count: 100,
                 query: String,
-                itemAs: { default: '$item', readonly: true },
                 preloading: { default: false, readonly: true }
             },
             i18n: {
@@ -5185,6 +5186,7 @@ var OpalLoadedList = (function (_super) {
         })
     ], OpalLoadedList);
     return OpalLoadedList;
+    var OpalLoadedList_1;
 }(rionite_1.Component));
 exports.OpalLoadedList = OpalLoadedList;
 
@@ -5210,7 +5212,7 @@ module.exports = (function(d) {
 /* 84 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\ndiv/list {\n@repeat (for={input.itemAs} of dataList) {\nrt-content/list-item (clone, get-context=_getListItemContext)\n}\n}\nopal-loader/loader (shown={isLoaderShown}, align-center={empty})\ndiv/nothing-found (shown={isNothingFoundShown}) {\nspan/nothing-found-message { '{constructor.i18n.nothingFound}' }\n}\n}"
+module.exports = "@section/inner {\ndiv/list {\n@repeat (for=$item of dataList) {\nrt-slot/list-item (clone-content, get-context=_getListItemContext) {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nopal-loader/loader (shown={isLoaderShown}, align-center={empty})\ndiv/nothing-found (shown={isNothingFoundShown}) {\nspan/nothing-found-message { '{constructor.i18n.nothingFound}' }\n}\n}"
 
 /***/ }),
 /* 85 */
@@ -5323,27 +5325,59 @@ var rionite_1 = __webpack_require__(0);
 __webpack_require__(89);
 __webpack_require__(90);
 var template = __webpack_require__(93);
+var mixin = cellx_1.Utils.mixin;
+var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
+var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var OpalTreeList = (function (_super) {
     __extends(OpalTreeList, _super);
     function OpalTreeList() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    OpalTreeList_1 = OpalTreeList;
     OpalTreeList.prototype.initialize = function () {
-        var getDataTreeList = Function("return this." + this.input.datatreelistKeypath + ";");
-        var context = this.ownerComponent || window;
-        cellx_1.define(this, 'dataTreeList', function () { return getDataTreeList.call(context); });
+        var input = this.input;
+        if (input.$specified.has('datatreelist')) {
+            cellx_1.define(this, 'dataTreeList', function () { return input.datatreelist; });
+        }
+        else if (input.datatreelistKeypath) {
+            var getDataTreeList_1 = Function("return this." + input.datatreelistKeypath + ";");
+            var context_1 = this.ownerComponent || window;
+            cellx_1.define(this, 'dataTreeList', function () { return getDataTreeList_1.call(context_1); });
+        }
+        else {
+            this.dataTreeList = null;
+        }
+        var dataTreeListItemSchema = input.datatreelistItemSchema;
+        var defaultDataTreeListItemSchema = this.constructor.defaultDataTreeListItemSchema;
+        this._dataTreeListItemValueFieldName = dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;
+        this._dataTreeListItemTextFieldName = dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
+        var vmItemSchema = input.viewModelItemSchema;
+        var defaultVMItemSchema = this.constructor.defaultViewModelItemSchema;
+        this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
+        this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
         // let x = this.dataTreeList!.get([])!.children![0].children![0].;
     };
-    OpalTreeList = __decorate([
+    OpalTreeList.prototype._getListItemContext = function (context, content) {
+        return mixin(Object.create(context), content.input.$context, ['$component']);
+    };
+    OpalTreeList.defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
+    OpalTreeList.defaultViewModelItemSchema = defaultVMItemSchema;
+    OpalTreeList = OpalTreeList_1 = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-tree-list',
             input: {
-                datatreelistKeypath: { type: String, required: true, readonly: true }
+                datatreelist: { type: Object },
+                datatreelistKeypath: { type: String, required: true, readonly: true },
+                datatreelistItemSchema: { type: eval, default: defaultDataTreeListItemSchema, readonly: true },
+                viewModel: { type: Object },
+                viewModelKeypath: { type: String, readonly: true },
+                viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true }
             },
             template: template
         })
     ], OpalTreeList);
     return OpalTreeList;
+    var OpalTreeList_1;
 }(rionite_1.Component));
 exports.OpalTreeList = OpalTreeList;
 
@@ -5392,21 +5426,27 @@ var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(91);
 var template = __webpack_require__(92);
+var mixin = cellx_1.Utils.mixin;
 var OpalTreeListItem = (function (_super) {
     __extends(OpalTreeListItem, _super);
     function OpalTreeListItem() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     OpalTreeListItem.prototype.initialize = function () {
-        var input = this.input;
-        cellx_1.define(this, 'children', function () { return input.datatreelist.get(input.indexpath).children; });
+        this.dataTreeListItem = this.input.datatreelist.get(this.input.indexpath);
+        this._dataTreeListItemTextFieldName = this.input.dataTreeListItemTextFieldName;
+    };
+    OpalTreeListItem.prototype._getListItemContext = function (context, content) {
+        return mixin(Object.create(context), content.input.$context, ['$component']);
     };
     OpalTreeListItem = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-tree-list-item',
             input: {
                 datatreelist: { type: Object, required: true },
-                indexpath: { type: eval, required: true }
+                dataTreeListItemValueFieldName: { type: String, required: true, readonly: true },
+                dataTreeListItemTextFieldName: { type: String, required: true, readonly: true },
+                indexpath: { type: eval, required: true, readonly: true }
             },
             template: template
         })
@@ -5425,7 +5465,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-tree-list-item{display:block}";
+            style.textContent = ".opal-tree-list-item{display:block}.opal-tree-list-item .opal-tree-list-item__btn-toggle-children{visibility:hidden}.opal-tree-list-item .opal-tree-list-item__children{padding-left:16px}.opal-tree-list-item[has-children]>.opal-tree-list-item__btn-toggle-children{visibility:visible}";
             head.appendChild(style);
             return style;
         }
@@ -5437,13 +5477,13 @@ module.exports = (function(d) {
 /* 92 */
 /***/ (function(module, exports) {
 
-module.exports = "rt-slot\n@if-then (if=children) {\ndiv/children {\n@repeat (for=item of children, track-by=id) {\nopal-tree-list-item (datatreelist={input.datatreelist}, indexpath='[{input.indexpath},{$index}]') {\n'{item.name}'\n}\n}\n}\n}"
+module.exports = "opal-button/btn-toggle-children (view-type=clean, checkable) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\nrt-slot/content (clone-content)\n@if-then (if=dataTreeListItem.children) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children, track-by={input.dataTreeListItemValueFieldName}) {\nopal-tree-list-item (\ndatatreelist={input.datatreelist},\ndata-tree-list-item-value-field-name={input.dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nindexpath='[{input.indexpath},{$index}]',\nnesting-level={input.indexpath.length},\nhas-children='{$item |has(\"children\") }'\n) {\nrt-slot (clone-content, get-context=_getListItemContext)\n}\n}\n}\n}"
 
 /***/ }),
 /* 93 */
 /***/ (function(module, exports) {
 
-module.exports = "@if-then (if=dataTreeList) {\n@repeat (for=item of dataTreeList, track-by=id) {\nopal-tree-list-item (datatreelist={dataTreeList}, indexpath=[{$index}]) {\n'{item.name}'\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}"
+module.exports = "@if-then (if=dataTreeList) {\n@repeat (for=$item of dataTreeList, track-by={_dataTreeListItemValueFieldName}) {\nopal-tree-list-item (\ndatatreelist={dataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nindexpath=[{$index}],\nnesting-level=0,\nhas-children='{$item |has(\"children\") }'\n) {\nrt-slot (clone-content, get-context=_getListItemContext) {\nopal-checkbox/selected-control {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}"
 
 /***/ }),
 /* 94 */

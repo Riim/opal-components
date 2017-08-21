@@ -1,4 +1,9 @@
-import { Cell, define, ObservableList } from 'cellx';
+import {
+	Cell,
+	define,
+	ObservableList,
+	Utils
+	} from 'cellx';
 import {
 	Component,
 	d,
@@ -8,6 +13,8 @@ import {
 	} from 'rionite';
 import './index.css';
 import template = require('./template.nelm');
+
+let mixin = Utils.mixin;
 
 export interface IDataListItem {
 	[name: string]: any;
@@ -21,16 +28,17 @@ export interface IDataProvider {
 	}>;
 }
 
+let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
+
 @d.Component<OpalLoadedList>({
 	elementIs: 'opal-loaded-list',
 
 	input: {
 		dataprovider: { type: Object, readonly: true },
 		dataproviderKeypath: { type: String, readonly: true },
-		datalistItemValueName: { default: 'id', readonly: true },
+		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		count: 100,
 		query: String,
-		itemAs: { default: '$item', readonly: true },
 		preloading: { default: false, readonly: true }
 	},
 
@@ -41,9 +49,13 @@ export interface IDataProvider {
 	template
 })
 export class OpalLoadedList extends Component {
+	static defaultDataListItemSchema = defaultDataListItemSchema;
+
 	dataProvider: IDataProvider;
 
 	dataList: ObservableList<IDataListItem>;
+	_dataListItemTextFieldName: string;
+
 	total: number | undefined;
 
 	_scrolling: boolean = false;
@@ -77,6 +89,8 @@ export class OpalLoadedList extends Component {
 		}
 
 		this.dataProvider = dataProvider;
+		this._dataListItemTextFieldName = input.datalistItemSchema.text ||
+			(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema.text;
 
 		define(this, {
 			dataList: new ObservableList<IDataListItem>(),
@@ -171,15 +185,21 @@ export class OpalLoadedList extends Component {
 			this._requestCallback.cancel();
 		}
 
-		let query: string | null = this._lastRequestedQuery = this.input.query;
+		let input = this.input;
+		let query: string | null = this._lastRequestedQuery = input.query;
 		let dataProvider = this.dataProvider;
 		let infinite = dataProvider.getItems.length >= 2;
 		let args = [query];
 
 		if (infinite) {
 			args.unshift(
-				this.input.count,
-				this.dataList.length ? this.dataList.get(-1)![this.input.datalistItemValueName] : null
+				input.count,
+				this.dataList.length ?
+					this.dataList.get(-1)![
+						input.datalistItemSchema.value ||
+							(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema.value
+					] :
+					null
 			);
 		}
 
@@ -214,15 +234,6 @@ export class OpalLoadedList extends Component {
 	}
 
 	_getListItemContext(context: object, content: Component): object {
-		let anotherContext = content.input.$context!;
-		let result = Object.create(context);
-
-		for (let name of Object.getOwnPropertyNames(anotherContext)) {
-			if (name != '$component') {
-				Object.defineProperty(result, name, Object.getOwnPropertyDescriptor(anotherContext, name));
-			}
-		}
-
-		return result;
+		return mixin(Object.create(context), content.input.$context!, ['$component']);
 	}
 }
