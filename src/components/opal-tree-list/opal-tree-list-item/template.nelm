@@ -6,16 +6,19 @@ rt-slot/content (clone-content)
 
 @if-then (if=dataTreeListItem.children) {
 	div/children {
-		@repeat (for=$item of dataTreeListItem.children, track-by={input.dataTreeListItemValueFieldName}) {
+		@repeat (for=$item of dataTreeListItem.children, track-by={input.datatreelistItemValueFieldName}) {
 			opal-tree-list-item (
 				datatreelist={input.datatreelist},
-				data-tree-list-item-value-field-name={input.dataTreeListItemValueFieldName},
-				data-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},
+				datatreelist-item-value-field-name={_dataTreeListItemValueFieldName},
+				datatreelist-item-text-field-name={_dataTreeListItemTextFieldName},
+				view-model={viewModel},
+				view-model-item-value-field-name={_viewModelItemValueFieldName},
+				view-model-item-text-field-name={_viewModelItemTextFieldName},
 				indexpath='[{input.indexpath},{$index}]',
 				nesting-level={input.indexpath.length},
 				has-children='{$item |has("children") }'
 			) {
-				rt-slot (clone-content, get-context=_getListItemContext)
+				rt-slot (clone-content, get-context={_getListItemContext})
 			}
 		}
 	}

@@ -109,11 +109,11 @@ var model1 = cellx.define({}, {
 			{ id: '2', name: '2' },
 			{ id: '3', name: '3', children: [
 				{ id: '3.1', name: '3.1', children: [
-					{ id: '3.1.1', name: '3.1.1', children: [
+					{ id: '3.1.1', name: '3.1.1'},
+					{ id: '3.1.2', name: '3.1.2', children: [
 						{ id: '3.1.2.1', name: '3.1.2.1' },
 						{ id: '3.1.2.2', name: '3.1.2.2' },
-					] },
-					{ id: '3.1.2', name: '3.1.2' }
+					] }
 				] },
 				{ id: '3.2', name: '3.2' },
 				{ id: '3.3', name: '3.3' }
@@ -158,10 +158,6 @@ body {
 	</style>
 </head>
 <body>
-
-<opal-tree-list datatreelist-keypath="model1.dataTreeList">
-	<opal-checkbox>{$item.name}</opal-checkbox>
-</opal-tree-list>
 
 <h1>opal-button</h1>
 
@@ -535,6 +531,22 @@ body {
 				{$item.name}
 			</opal-loaded-list>
 		</opal-filtered-list>
+	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-loader');
+		require('opal-components/dist/opal-loaded-list');
+		require('opal-components/dist/opal-filtered-list');
+	</script>
+</opal-code-listing>
+
+<h1>opal-tree-list</h1>
+
+<opal-code-listing>
+	<div class="opal-code-listing__example-html">
+		<opal-tree-list datatreelist-keypath="model1.dataTreeList">
+			<opal-checkbox class="opal-tree-list__selection-control" checked="{$selected}"
+					indeterminate="{$indeterminate}">{$item.name}</opal-checkbox>
+		</opal-tree-list>
 	</div>
 	<script class="opal-code-listing__example-js">
 		require('opal-components/dist/opal-loader');

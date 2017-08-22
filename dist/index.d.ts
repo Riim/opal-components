@@ -26,3 +26,4 @@ export { IDataListItem as IOpalAutosuggestDataListItem, IDataProvider as IOpalAu
 export { OpalTagSelect } from './components/opal-tag-select';
 export { OpalMultirow, OpalMultirowRow } from './components/opal-multirow';
 export { IRouteProperty as IOpalRouterRouteProperty, IRoute as IOpalRouterRoute, IComponentState as IOpalRouterComponentState, OpalRouter, OpalRoute } from './components/opal-router';
+export { default as Utils } from './Utils';

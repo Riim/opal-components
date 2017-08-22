@@ -15,6 +15,7 @@ export declare class OpalCheckbox extends Component {
     _onControlFocus(evt: Event): void;
     _onControlBlur(): void;
     checked: boolean;
+    selected: boolean;
     check(): boolean;
     uncheck(): boolean;
     toggle(value?: boolean): boolean;

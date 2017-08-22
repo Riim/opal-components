@@ -38,5 +38,9 @@ export declare class OpalLoadedList extends Component {
     _onElementScroll(): void;
     checkLoading(): void;
     _load(): void;
-    _getListItemContext(context: object, content: Component): object;
+    _getListItemContext(context: {
+        [name: string]: any;
+    }, content: Component): {
+        [name: string]: any;
+    };
 }

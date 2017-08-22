@@ -233,7 +233,7 @@ export class OpalLoadedList extends Component {
 		);
 	}
 
-	_getListItemContext(context: object, content: Component): object {
+	_getListItemContext(context: { [name: string]: any }, content: Component): { [name: string]: any } {
 		return mixin(Object.create(context), content.input.$context!, ['$component']);
 	}
 }

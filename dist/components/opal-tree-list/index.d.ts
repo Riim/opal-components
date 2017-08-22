@@ -1,4 +1,4 @@
-import { ObservableList } from 'cellx';
+import { IEvent, ObservableList } from 'cellx';
 import { Component } from 'rionite';
 import ObservableTreeList from '../../ObservableTreeList';
 import './index.css';
@@ -18,12 +18,13 @@ export declare class OpalTreeList extends Component {
         value: string;
         text: string;
     }>;
-    dataTreeList: TDataTreeList | null;
+    dataTreeList: TDataTreeList;
     _dataTreeListItemValueFieldName: string;
     _dataTreeListItemTextFieldName: string;
     viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     initialize(): void;
-    _getListItemContext(context: object, content: Component): object;
+    elementAttached(): void;
+    _onChange(evt: IEvent<Component>): void;
 }

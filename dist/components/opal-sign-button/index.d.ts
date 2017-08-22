@@ -13,6 +13,7 @@ export declare class OpalSignButton extends Component {
     _onControlClick(evt: Event): void;
     click(): OpalSignButton;
     checked: boolean;
+    selected: boolean;
     check(): boolean;
     uncheck(): boolean;
     toggle(value?: boolean): boolean;

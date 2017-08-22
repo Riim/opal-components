@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 112);
+/******/ 	return __webpack_require__(__webpack_require__.s = 115);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -82,7 +82,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
 
-/***/ 112:
+/***/ 115:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,10 +105,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(113);
-__webpack_require__(114);
-var Prism = __webpack_require__(115);
-var template = __webpack_require__(116);
+__webpack_require__(116);
+__webpack_require__(117);
+var Prism = __webpack_require__(118);
+var template = __webpack_require__(119);
 function prepareCode(code, isHtml) {
     code = code.replace(/^\t+$/gm, '').replace(/^[\r\n]+|[\r\n]+$/g, '');
     var tabs = code.match(/^\t*[^\t\r\n]/gm);
@@ -150,7 +150,7 @@ exports.OpalCodeListing = OpalCodeListing;
 
 /***/ }),
 
-/***/ 113:
+/***/ 116:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -168,7 +168,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 114:
+/***/ 117:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -186,7 +186,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 115:
+/***/ 118:
 /***/ (function(module, exports) {
 
 
@@ -988,7 +988,7 @@ Prism.languages.js = Prism.languages.javascript;
 
 /***/ }),
 
-/***/ 116:
+/***/ 119:
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nopal-tabs {\nopal-tab { 'HTML' }\nopal-tab-panel {\npre/html-code-wrapper { code/html-code }\n}\nopal-tab { 'JS' }\nopal-tab-panel {\npre/js-code-wrapper { code/js-code }\n}\n}\nrt-content/example-html-container (select=.opal-code-listing__example-html)\nrt-content/example-js-container (select=.opal-code-listing__example-js)\n}"

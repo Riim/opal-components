@@ -2,14 +2,17 @@
 	@repeat (for=$item of dataTreeList, track-by={_dataTreeListItemValueFieldName}) {
 		opal-tree-list-item (
 			datatreelist={dataTreeList},
-			data-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},
-			data-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},
+			datatreelist-item-value-field-name={_dataTreeListItemValueFieldName},
+			datatreelist-item-text-field-name={_dataTreeListItemTextFieldName},
+			view-model={viewModel},
+			view-model-item-value-field-name={_viewModelItemValueFieldName},
+			view-model-item-text-field-name={_viewModelItemTextFieldName},
 			indexpath=[{$index}],
 			nesting-level=0,
 			has-children='{$item |has("children") }'
 		) {
-			rt-slot (clone-content, get-context=_getListItemContext) {
-				opal-checkbox/selected-control {
+			rt-slot (clone-content, get-context={_getListItemContext}) {
+				opal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {
 					'{$item |key(_dataTreeListItemTextFieldName) }'
 				}
 			}

@@ -15,6 +15,7 @@ export declare class OpalButton extends Component {
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     click(): OpalButton;
     checked: boolean;
+    selected: boolean;
     check(): boolean;
     uncheck(): boolean;
     toggle(value?: boolean): boolean;

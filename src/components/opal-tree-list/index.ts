@@ -1,11 +1,12 @@
-import { define, ObservableList, Utils } from 'cellx';
+import { define, IEvent, ObservableList } from 'cellx';
 import { Component, d } from 'rionite';
 import ObservableTreeList from '../../ObservableTreeList';
+import { closestComponent } from '../../Utils';
+import _getListItemContext from './_getListItemContext';
 import './index.css';
+import { OpalTreeListItem } from './opal-tree-list-item';
 import './opal-tree-list-item';
 import template = require('./template.nelm');
-
-let mixin = Utils.mixin;
 
 export interface IDataTreeListItem {
 	[name: string]: any;
@@ -17,6 +18,15 @@ export type TViewModel = ObservableList<IDataTreeListItem>;
 
 let defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
+
+function getItemVertices(item: IDataTreeListItem): Array<IDataTreeListItem> {
+	return item.children ?
+		item.children.reduce(
+			(vertices, child) => vertices.concat(getItemVertices(child)),
+			[] as Array<IDataTreeListItem>
+		) :
+		[item];
+}
 
 @d.Component({
 	elementIs: 'opal-tree-list',
@@ -36,7 +46,7 @@ export class OpalTreeList extends Component {
 	static defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
-	dataTreeList: TDataTreeList | null;
+	dataTreeList: TDataTreeList;
 	_dataTreeListItemValueFieldName: string;
 	_dataTreeListItemTextFieldName: string;
 
@@ -54,7 +64,7 @@ export class OpalTreeList extends Component {
 			let context = this.ownerComponent || window;
 			define(this, 'dataTreeList', () => getDataTreeList.call(context));
 		} else {
-			this.dataTreeList = null;
+			throw new TypeError('Input property "dataTreeList" is required');
 		}
 
 		let dataTreeListItemSchema = input.datatreelistItemSchema;
@@ -63,16 +73,54 @@ export class OpalTreeList extends Component {
 		this._dataTreeListItemValueFieldName = dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;
 		this._dataTreeListItemTextFieldName = dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
 
+		define(this, 'viewModel', new ObservableList());
+
 		let vmItemSchema = input.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalTreeList).defaultViewModelItemSchema;
 
 		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
-
-		// let x = this.dataTreeList!.get([])!.children![0].children![0].;
 	}
 
-	_getListItemContext(context: object, content: Component): object {
-		return mixin(Object.create(context), content.input.$context!, ['$component']);
+	elementAttached() {
+		this.listenTo(this, '<*>change', this._onChange);
+	}
+
+	_onChange(evt: IEvent<Component>) {
+		let component = evt.target;
+
+		if (component.element.classList.contains('opal-tree-list__selection-control')) {
+			let dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName;
+			let dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
+			let vm = this.viewModel;
+			let viewModelItemValueFieldName = this._viewModelItemValueFieldName;
+			let viewModelItemTextFieldName = this._viewModelItemTextFieldName;
+			let selected = (component as any).selected;
+
+			getItemVertices(
+				closestComponent(component.parentComponent!, OpalTreeListItem)!.input.$context!.$item
+			).forEach((item) => {
+				if (selected) {
+					if (!vm.find(
+						(vmItem) => vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]
+					)) {
+						vm.add({
+							[viewModelItemValueFieldName]: item[dataTreeListItemValueFieldName],
+							[viewModelItemTextFieldName]: item[dataTreeListItemTextFieldName]
+						});
+					}
+				} else {
+					let index = vm.findIndex(
+						(vmItem) => vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]
+					);
+
+					if (index != -1) {
+						vm.removeAt(index);
+					}
+				}
+			});
+		}
 	}
 }
+
+(OpalTreeList.prototype as any)._getListItemContext = _getListItemContext;

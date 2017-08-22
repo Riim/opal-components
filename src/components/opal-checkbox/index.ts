@@ -122,6 +122,13 @@ export class OpalCheckbox extends Component {
 		this.input.checked = checked;
 	}
 
+	get selected(): boolean {
+		return this.checked;
+	}
+	set selected(selected: boolean) {
+		this.checked = selected;
+	}
+
 	check(): boolean {
 		if (!this.input.checked) {
 			this.input.checked = true;
