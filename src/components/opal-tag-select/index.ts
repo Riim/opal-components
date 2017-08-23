@@ -95,7 +95,7 @@ export class OpalTagSelect extends Component {
 			this.dataList = null;
 			this._dataListKeypathParam = null;
 
-			let isInputDataProviderSpecified = input.$specified.has('dataProvider');
+			let isInputDataProviderSpecified = input.$specified.has('dataprovider');
 
 			if (isInputDataProviderSpecified || input.dataproviderKeypath) {
 				let dataProvider = isInputDataProviderSpecified ?

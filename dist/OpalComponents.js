@@ -6144,7 +6144,7 @@ var OpalTagSelect = (function (_super) {
         else {
             this.dataList = null;
             this._dataListKeypathParam = null;
-            var isInputDataProviderSpecified = input.$specified.has('dataProvider');
+            var isInputDataProviderSpecified = input.$specified.has('dataprovider');
             if (isInputDataProviderSpecified || input.dataproviderKeypath) {
                 var dataProvider = isInputDataProviderSpecified ?
                     input.dataprovider :
