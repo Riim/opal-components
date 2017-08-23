@@ -11,12 +11,14 @@ import template = require('./template.nelm');
 
 	input: {
 		datatreelist: { type: Object, required: true },
+		filteredDatatreelist: { type: Object, required: true },
 		datatreelistItemValueFieldName: { type: String, required: true, readonly: true },
 		datatreelistItemTextFieldName: { type: String, required: true, readonly: true },
 		viewModel: { type: Object, required: true },
 		viewModelItemValueFieldName: { type: String, required: true, readonly: true },
 		viewModelItemTextFieldName: { type: String, required: true, readonly: true },
-		indexpath: { type: eval, required: true, readonly: true }
+		indexpath: { type: eval, required: true, readonly: true },
+		query: String
 	},
 
 	template
@@ -35,7 +37,7 @@ export class OpalTreeListItem extends Component {
 		let input = this.input;
 
 		define(this, 'dataTreeList', () => input.datatreelist);
-		this.dataTreeListItem = (input.datatreelist as ObservableTreeList).get(input.indexpath)!;
+		this.dataTreeListItem = (input.filteredDatatreelist as ObservableTreeList).get(input.indexpath)!;
 		this._dataTreeListItemValueFieldName = input.datatreelistItemValueFieldName;
 		this._dataTreeListItemTextFieldName = input.datatreelistItemTextFieldName;
 

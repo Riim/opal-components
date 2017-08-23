@@ -543,10 +543,12 @@ body {
 
 <opal-code-listing>
 	<div class="opal-code-listing__example-html">
-		<opal-tree-list datatreelist-keypath="model1.dataTreeList">
-			<opal-checkbox class="opal-tree-list__selection-control" checked="{$selected}"
-					indeterminate="{$indeterminate}">{$item.name}</opal-checkbox>
-		</opal-tree-list>
+		<opal-filtered-list>
+			<opal-tree-list class="opal-filtered-list__loaded-list" datatreelist-keypath="model1.dataTreeList">
+				<opal-checkbox class="opal-tree-list__selection-control" checked="{$selected}"
+						indeterminate="{$indeterminate}">{$item.name}</opal-checkbox>
+			</opal-tree-list>
+		</opal-filtered-list>
 	</div>
 	<script class="opal-code-listing__example-js">
 		require('opal-components/dist/opal-loader');

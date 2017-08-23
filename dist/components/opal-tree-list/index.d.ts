@@ -24,6 +24,7 @@ export declare class OpalTreeList extends Component {
     viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
+    filteredDataTreeList: TDataTreeList;
     initialize(): void;
     elementAttached(): void;
     _onChange(evt: IEvent<Component>): void;

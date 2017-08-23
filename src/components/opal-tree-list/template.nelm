@@ -1,22 +1,29 @@
 @if-then (if=dataTreeList) {
-	@repeat (for=$item of dataTreeList, track-by={_dataTreeListItemValueFieldName}) {
-		opal-tree-list-item (
-			datatreelist={dataTreeList},
-			datatreelist-item-value-field-name={_dataTreeListItemValueFieldName},
-			datatreelist-item-text-field-name={_dataTreeListItemTextFieldName},
-			view-model={viewModel},
-			view-model-item-value-field-name={_viewModelItemValueFieldName},
-			view-model-item-text-field-name={_viewModelItemTextFieldName},
-			indexpath=[{$index}],
-			nesting-level=0,
-			has-children='{$item |has("children") }'
-		) {
-			rt-slot (clone-content, get-context={_getListItemContext}) {
-				opal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {
-					'{$item |key(_dataTreeListItemTextFieldName) }'
+	@if-then (if=filteredDataTreeList.length) {
+		@repeat (for=$item of filteredDataTreeList) {
+			opal-tree-list-item (
+				datatreelist={dataTreeList},
+				filtered-datatreelist={filteredDataTreeList},
+				datatreelist-item-value-field-name={_dataTreeListItemValueFieldName},
+				datatreelist-item-text-field-name={_dataTreeListItemTextFieldName},
+				view-model={viewModel},
+				view-model-item-value-field-name={_viewModelItemValueFieldName},
+				view-model-item-text-field-name={_viewModelItemTextFieldName},
+				indexpath=[{$index}],
+				query={input.query},
+				nesting-level=0,
+				has-children='{$item |has("children") }'
+			) {
+				rt-slot (clone-content, get-context={_getListItemContext}) {
+					opal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {
+						'{$item |key(_dataTreeListItemTextFieldName) }'
+					}
 				}
 			}
 		}
+	}
+	@if-else (if=filteredDataTreeList.length) {
+		'TODO'
 	}
 }
 @if-else (if=dataTreeList) {

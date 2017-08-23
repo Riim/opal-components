@@ -62,11 +62,11 @@
 	@el selected-control {
 	}
 
+	@mod nesting-level=0 {
+		font-weight: bold;
+	}
 	@mod nesting-level=1 {
-	}
-	@mod nesting-level=2 {
-	}
-	@mod nesting-level=3 {
+		font-weight: normal;
 	}
 
 	@mod has-children {

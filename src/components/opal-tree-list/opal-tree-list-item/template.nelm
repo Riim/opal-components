@@ -1,4 +1,4 @@
-opal-button/btn-toggle-children (view-type=clean, checkable) {
+opal-button/btn-toggle-children (view-type=clean, checkable, checked={input.query}) {
 	svg/btn-toggle-children-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }
 }
 
@@ -6,15 +6,17 @@ rt-slot/content (clone-content)
 
 @if-then (if=dataTreeListItem.children) {
 	div/children {
-		@repeat (for=$item of dataTreeListItem.children, track-by={input.datatreelistItemValueFieldName}) {
+		@repeat (for=$item of dataTreeListItem.children) {
 			opal-tree-list-item (
 				datatreelist={input.datatreelist},
+				filtered-datatreelist={input.filteredDatatreelist},
 				datatreelist-item-value-field-name={_dataTreeListItemValueFieldName},
 				datatreelist-item-text-field-name={_dataTreeListItemTextFieldName},
 				view-model={viewModel},
 				view-model-item-value-field-name={_viewModelItemValueFieldName},
 				view-model-item-text-field-name={_viewModelItemTextFieldName},
 				indexpath='[{input.indexpath},{$index}]',
+				query={input.query},
 				nesting-level={input.indexpath.length},
 				has-children='{$item |has("children") }'
 			) {

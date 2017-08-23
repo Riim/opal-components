@@ -10,6 +10,10 @@ export interface IItem {
 export default class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 	_items: Array<T>;
 
+	get length(): number {
+		return this._items.length;
+	}
+
 	constructor(items?: Array<T>) {
 		super();
 		this._items = items || [];
@@ -73,7 +77,33 @@ export default class ObservableTreeList<T extends IItem = IItem> extends EventEm
 		return this;
 	}
 
-	forEach(callback: (item: IItem, index: number, list: ObservableTreeList<T>) => void, context?: any) {}
+	forEach(callback: (item: T, index: number, list: ObservableTreeList<T>) => void, context?: any) {}
+
+	map<R = any>(callback: (item: T, index: number, list: ObservableTreeList<T>) => any, context?: any): Array<R> {
+		return [];
+	}
+
+	filter(callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void, context?: any): Array<T> {
+		return [];
+	}
+
+	every(callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void, context?: any): boolean {
+		return false;
+	}
+
+	some(callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void, context?: any): boolean {
+		return false;
+	}
+
+	reduce(
+		callback: (accumulator: any, item: T, index: number, list: ObservableTreeList<T>) => any,
+		initialValue?: any
+	): any {}
+
+	reduceRight(
+		callback: (accumulator: any, item: T, index: number, list: ObservableTreeList<T>) => any,
+		initialValue?: any
+	): any {}
 }
 
 ['forEach', 'map', 'filter', 'every', 'some'].forEach((name) => {

@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -120,12 +120,124 @@ exports.isFocusable = isFocusable;
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var cellx_1 = __webpack_require__(1);
+var INDEXPATH_EMPTY_ERROR_MESSAGE = 'Indexpath cannot be empty';
+var ObservableTreeList = (function (_super) {
+    __extends(ObservableTreeList, _super);
+    function ObservableTreeList(items) {
+        var _this = _super.call(this) || this;
+        _this._items = items || [];
+        return _this;
+    }
+    Object.defineProperty(ObservableTreeList.prototype, "length", {
+        get: function () {
+            return this._items.length;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ObservableTreeList.prototype.get = function (indexpath) {
+        var indexpathLength = indexpath.length;
+        if (!indexpathLength) {
+            throw new TypeError(INDEXPATH_EMPTY_ERROR_MESSAGE);
+        }
+        var items = this._items;
+        var item;
+        for (var i = 0, l = indexpathLength - 1; i < l; i++) {
+            item = items[indexpath[i]];
+            if (!item) {
+                return;
+            }
+            items = item.children;
+            if (!items) {
+                return;
+            }
+        }
+        return items[indexpath[indexpathLength - 1]];
+    };
+    ObservableTreeList.prototype.set = function (indexpath, item) {
+        var indexpathLength = indexpath.length;
+        if (!indexpathLength) {
+            throw new TypeError(INDEXPATH_EMPTY_ERROR_MESSAGE);
+        }
+        var items;
+        if (indexpathLength == 1) {
+            items = this._items;
+        }
+        else {
+            var item_ = this.get(indexpath.slice(0, -1));
+            if (!item_) {
+                throw new TypeError("Item by indexpath \"[" + indexpath.slice(0, -1).join(',') + "]\" is not exist");
+            }
+            items = item_.children || (item_.children = []);
+        }
+        var lastIndexValue = indexpath[indexpathLength - 1];
+        if (item !== items[lastIndexValue]) {
+            items[lastIndexValue] = item;
+            this.emit('change');
+        }
+        return this;
+    };
+    ObservableTreeList.prototype.forEach = function (callback, context) { };
+    ObservableTreeList.prototype.map = function (callback, context) {
+        return [];
+    };
+    ObservableTreeList.prototype.filter = function (callback, context) {
+        return [];
+    };
+    ObservableTreeList.prototype.every = function (callback, context) {
+        return false;
+    };
+    ObservableTreeList.prototype.some = function (callback, context) {
+        return false;
+    };
+    ObservableTreeList.prototype.reduce = function (callback, initialValue) { };
+    ObservableTreeList.prototype.reduceRight = function (callback, initialValue) { };
+    return ObservableTreeList;
+}(cellx_1.EventEmitter));
+exports.default = ObservableTreeList;
+['forEach', 'map', 'filter', 'every', 'some'].forEach(function (name) {
+    ObservableTreeList.prototype[name] = function (callback, context) {
+        return this._items[name](function (item, index) {
+            return callback.call(context, item, index, this);
+        }, this);
+    };
+});
+['reduce', 'reduceRight'].forEach(function (name) {
+    ObservableTreeList.prototype[name] = function (callback, initialValue) {
+        var items = this._items;
+        var list = this;
+        function wrapper(accumulator, item, index) {
+            return callback(accumulator, item, index, list);
+        }
+        return arguments.length >= 2 ? items[name](wrapper, initialValue) : items[name](wrapper);
+    };
+});
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 28 28\" id=\"opal-components__icon-cross\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 2l24 24m0-24L2 26\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -262,7 +374,7 @@ exports.OpalTab = OpalTab;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -912,7 +1024,7 @@ exports.OpalSelect = OpalSelect;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -925,7 +1037,7 @@ exports.isFocusable = isFocusable_1.default;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -948,11 +1060,11 @@ function _getListItemContext(context, slot) {
     return cellx_1.define(mixin(Object.create(context), slot.input.$context, ['$component']), {
         $selected: new cellx_1.Cell(function () {
             this.dataTreeList;
-            return isSelectedItem($item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
+            return isSelectedItem($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
         }, { owner: this }),
         $indeterminate: new cellx_1.Cell(function () {
             this.dataTreeList;
-            return isIndeterminateItem($item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
+            return isIndeterminateItem($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
         }, { owner: this })
     });
 }
@@ -960,7 +1072,7 @@ exports.default = _getListItemContext;
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -984,7 +1096,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var _getListItemContext_1 = __webpack_require__(7);
+var _getListItemContext_1 = __webpack_require__(8);
 __webpack_require__(94);
 var template = __webpack_require__(95);
 var OpalTreeListItem = (function (_super) {
@@ -995,7 +1107,7 @@ var OpalTreeListItem = (function (_super) {
     OpalTreeListItem.prototype.initialize = function () {
         var input = this.input;
         cellx_1.define(this, 'dataTreeList', function () { return input.datatreelist; });
-        this.dataTreeListItem = input.datatreelist.get(input.indexpath);
+        this.dataTreeListItem = input.filteredDatatreelist.get(input.indexpath);
         this._dataTreeListItemValueFieldName = input.datatreelistItemValueFieldName;
         this._dataTreeListItemTextFieldName = input.datatreelistItemTextFieldName;
         cellx_1.define(this, 'viewModel', function () { return input.viewModel; });
@@ -1007,12 +1119,14 @@ var OpalTreeListItem = (function (_super) {
             elementIs: 'opal-tree-list-item',
             input: {
                 datatreelist: { type: Object, required: true },
+                filteredDatatreelist: { type: Object, required: true },
                 datatreelistItemValueFieldName: { type: String, required: true, readonly: true },
                 datatreelistItemTextFieldName: { type: String, required: true, readonly: true },
                 viewModel: { type: Object, required: true },
                 viewModelItemValueFieldName: { type: String, required: true, readonly: true },
                 viewModelItemTextFieldName: { type: String, required: true, readonly: true },
-                indexpath: { type: eval, required: true, readonly: true }
+                indexpath: { type: eval, required: true, readonly: true },
+                query: String
             },
             template: template
         })
@@ -1024,7 +1138,7 @@ OpalTreeListItem.prototype._getListItemContext = _getListItemContext_1.default;
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1039,13 +1153,13 @@ var PathNodeType;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var ObservableTreeList_1 = __webpack_require__(11);
+var ObservableTreeList_1 = __webpack_require__(3);
 exports.ObservableTreeList = ObservableTreeList_1.default;
 var opal_button_1 = __webpack_require__(12);
 exports.OpalButton = opal_button_1.OpalButton;
@@ -1079,7 +1193,7 @@ var opal_popover_1 = __webpack_require__(51);
 exports.OpalPopover = opal_popover_1.OpalPopover;
 var opal_modal_1 = __webpack_require__(54);
 exports.OpalModal = opal_modal_1.OpalModal;
-var opal_select_1 = __webpack_require__(5);
+var opal_select_1 = __webpack_require__(6);
 exports.OpalSelect = opal_select_1.OpalSelect;
 exports.OpalSelectOption = opal_select_1.OpalSelectOption;
 var opal_multiselect_1 = __webpack_require__(65);
@@ -1109,99 +1223,8 @@ exports.OpalMultirowRow = opal_multirow_1.OpalMultirowRow;
 var opal_router_1 = __webpack_require__(109);
 exports.OpalRouter = opal_router_1.OpalRouter;
 exports.OpalRoute = opal_router_1.OpalRoute;
-var Utils_1 = __webpack_require__(6);
+var Utils_1 = __webpack_require__(7);
 exports.Utils = Utils_1.default;
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var INDEXPATH_EMPTY_ERROR_MESSAGE = 'Indexpath cannot be empty';
-var ObservableTreeList = (function (_super) {
-    __extends(ObservableTreeList, _super);
-    function ObservableTreeList(items) {
-        var _this = _super.call(this) || this;
-        _this._items = items || [];
-        return _this;
-    }
-    ObservableTreeList.prototype.get = function (indexpath) {
-        var indexpathLength = indexpath.length;
-        if (!indexpathLength) {
-            throw new TypeError(INDEXPATH_EMPTY_ERROR_MESSAGE);
-        }
-        var items = this._items;
-        var item;
-        for (var i = 0, l = indexpathLength - 1; i < l; i++) {
-            item = items[indexpath[i]];
-            if (!item) {
-                return;
-            }
-            items = item.children;
-            if (!items) {
-                return;
-            }
-        }
-        return items[indexpath[indexpathLength - 1]];
-    };
-    ObservableTreeList.prototype.set = function (indexpath, item) {
-        var indexpathLength = indexpath.length;
-        if (!indexpathLength) {
-            throw new TypeError(INDEXPATH_EMPTY_ERROR_MESSAGE);
-        }
-        var items;
-        if (indexpathLength == 1) {
-            items = this._items;
-        }
-        else {
-            var item_ = this.get(indexpath.slice(0, -1));
-            if (!item_) {
-                throw new TypeError("Item by indexpath \"[" + indexpath.slice(0, -1).join(',') + "]\" is not exist");
-            }
-            items = item_.children || (item_.children = []);
-        }
-        var lastIndexValue = indexpath[indexpathLength - 1];
-        if (item !== items[lastIndexValue]) {
-            items[lastIndexValue] = item;
-            this.emit('change');
-        }
-        return this;
-    };
-    ObservableTreeList.prototype.forEach = function (callback, context) { };
-    return ObservableTreeList;
-}(cellx_1.EventEmitter));
-exports.default = ObservableTreeList;
-['forEach', 'map', 'filter', 'every', 'some'].forEach(function (name) {
-    ObservableTreeList.prototype[name] = function (callback, context) {
-        return this._items[name](function (item, index) {
-            return callback.call(context, item, index, this);
-        }, this);
-    };
-});
-['reduce', 'reduceRight'].forEach(function (name) {
-    ObservableTreeList.prototype[name] = function (callback, initialValue) {
-        var items = this._items;
-        var list = this;
-        function wrapper(accumulator, item, index) {
-            return callback(accumulator, item, index, list);
-        }
-        return arguments.length >= 2 ? items[name](wrapper, initialValue) : items[name](wrapper);
-    };
-});
 
 
 /***/ }),
@@ -1599,7 +1622,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(3);
+__webpack_require__(4);
 __webpack_require__(18);
 var template = __webpack_require__(19);
 var nextTick = cellx_1.Utils.nextTick;
@@ -1734,7 +1757,7 @@ var OpalTextInput = (function (_super) {
     };
     Object.defineProperty(OpalTextInput.prototype, "value", {
         get: function () {
-            return this.textField.value.trim() || null;
+            return (this.textField ? this.textField.value : this._textFieldValue).trim() || null;
         },
         set: function (value) {
             this._textFieldValue = this.textField.value = value || '';
@@ -3184,7 +3207,7 @@ var rionite_1 = __webpack_require__(0);
 __webpack_require__(41);
 var opal_tab_list_1 = __webpack_require__(42);
 exports.OpalTabList = opal_tab_list_1.OpalTabList;
-var opal_tab_1 = __webpack_require__(4);
+var opal_tab_1 = __webpack_require__(5);
 exports.OpalTab = opal_tab_1.OpalTab;
 var opal_tab_panel_1 = __webpack_require__(46);
 exports.OpalTabPanel = opal_tab_panel_1.OpalTabPanel;
@@ -3297,7 +3320,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(43);
-var opal_tab_1 = __webpack_require__(4);
+var opal_tab_1 = __webpack_require__(5);
 exports.OpalTab = opal_tab_1.OpalTab;
 var OpalTabList = (function (_super) {
     __extends(OpalTabList, _super);
@@ -4237,8 +4260,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(3);
-var opal_select_1 = __webpack_require__(5);
+__webpack_require__(4);
+var opal_select_1 = __webpack_require__(6);
 __webpack_require__(66);
 var template = __webpack_require__(67);
 var OpalMultiselect = (function (_super) {
@@ -5486,18 +5509,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var Utils_1 = __webpack_require__(6);
-var _getListItemContext_1 = __webpack_require__(7);
+var ObservableTreeList_1 = __webpack_require__(3);
+var Utils_1 = __webpack_require__(7);
+var _getListItemContext_1 = __webpack_require__(8);
 __webpack_require__(93);
-var opal_tree_list_item_1 = __webpack_require__(8);
-__webpack_require__(8);
+var opal_tree_list_item_1 = __webpack_require__(9);
+__webpack_require__(9);
 var template = __webpack_require__(96);
+var nextTick = cellx_1.Utils.nextTick;
 var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
 function getItemVertices(item) {
     return item.children ?
         item.children.reduce(function (vertices, child) { return vertices.concat(getItemVertices(child)); }, []) :
         [item];
+}
+function toComparable(str) {
+    return str && str.trim().replace(/\s+/g, ' ').toLowerCase();
 }
 var OpalTreeList = (function (_super) {
     __extends(OpalTreeList, _super);
@@ -5520,13 +5548,46 @@ var OpalTreeList = (function (_super) {
         }
         var dataTreeListItemSchema = input.datatreelistItemSchema;
         var defaultDataTreeListItemSchema = this.constructor.defaultDataTreeListItemSchema;
-        this._dataTreeListItemValueFieldName = dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;
-        this._dataTreeListItemTextFieldName = dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
+        var dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName =
+            dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;
+        var dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName =
+            dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
         cellx_1.define(this, 'viewModel', new cellx_1.ObservableList());
         var vmItemSchema = input.viewModelItemSchema;
         var defaultVMItemSchema = this.constructor.defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
+        cellx_1.define(this, 'filteredDataTreeList', function () {
+            var query = toComparable(this.input.query);
+            if (!query) {
+                return this.dataTreeList;
+            }
+            return new ObservableTreeList_1.default(this.dataTreeList.reduce(function _(filteredDataTreeList, item) {
+                if (item.children) {
+                    var filteredChildren = item.children.reduce(_, []);
+                    if (filteredChildren.length ||
+                        toComparable(item[dataTreeListItemValueFieldName]).indexOf(query) != -1) {
+                        filteredDataTreeList.push((_a = {
+                                $original: item
+                            },
+                            _a[dataTreeListItemValueFieldName] = item[dataTreeListItemValueFieldName],
+                            _a[dataTreeListItemTextFieldName] = item[dataTreeListItemTextFieldName],
+                            _a.children = filteredChildren,
+                            _a));
+                    }
+                }
+                else if (toComparable(item[dataTreeListItemValueFieldName]).indexOf(query) != -1) {
+                    filteredDataTreeList.push((_b = {
+                            $original: item
+                        },
+                        _b[dataTreeListItemValueFieldName] = item[dataTreeListItemValueFieldName],
+                        _b[dataTreeListItemTextFieldName] = item[dataTreeListItemTextFieldName],
+                        _b));
+                }
+                return filteredDataTreeList;
+                var _a, _b;
+            }, []));
+        });
     };
     OpalTreeList.prototype.elementAttached = function () {
         this.listenTo(this, '<*>change', this._onChange);
@@ -5539,21 +5600,26 @@ var OpalTreeList = (function (_super) {
             var vm_1 = this.viewModel;
             var viewModelItemValueFieldName_1 = this._viewModelItemValueFieldName;
             var viewModelItemTextFieldName_1 = this._viewModelItemTextFieldName;
+            var $item = Utils_1.closestComponent(component.parentComponent, opal_tree_list_item_1.OpalTreeListItem).input.$context.$item;
             var selected_1 = component.selected;
-            getItemVertices(Utils_1.closestComponent(component.parentComponent, opal_tree_list_item_1.OpalTreeListItem).input.$context.$item).forEach(function (item) {
+            getItemVertices($item.$original || $item).forEach(function (item) {
+                var index = vm_1.findIndex(function (vmItem) { return vmItem[viewModelItemValueFieldName_1] == item[dataTreeListItemValueFieldName_1]; });
                 if (selected_1) {
-                    if (!vm_1.find(function (vmItem) { return vmItem[viewModelItemValueFieldName_1] == item[dataTreeListItemValueFieldName_1]; })) {
+                    if (index == -1) {
                         vm_1.add((_a = {},
                             _a[viewModelItemValueFieldName_1] = item[dataTreeListItemValueFieldName_1],
                             _a[viewModelItemTextFieldName_1] = item[dataTreeListItemTextFieldName_1],
                             _a));
                     }
-                }
-                else {
-                    var index = vm_1.findIndex(function (vmItem) { return vmItem[viewModelItemValueFieldName_1] == item[dataTreeListItemValueFieldName_1]; });
-                    if (index != -1) {
-                        vm_1.removeAt(index);
+                    else {
+                        var vmItem_1 = vm_1.removeAt(index);
+                        nextTick(function () {
+                            vm_1.add(vmItem_1);
+                        });
                     }
+                }
+                else if (index != -1) {
+                    vm_1.removeAt(index);
                 }
                 var _a;
             });
@@ -5570,7 +5636,8 @@ var OpalTreeList = (function (_super) {
                 datatreelistItemSchema: { type: eval, default: defaultDataTreeListItemSchema, readonly: true },
                 viewModel: { type: Object },
                 viewModelKeypath: { type: String, readonly: true },
-                viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true }
+                viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
+                query: String
             },
             template: template
         })
@@ -5624,7 +5691,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-tree-list-item{display:block}.opal-tree-list-item .opal-tree-list-item__btn-toggle-children{position:relative;display:inline-block;visibility:hidden;margin-right:.25em;width:16px;height:16px;vertical-align:middle}.opal-tree-list-item .opal-tree-list-item__btn-toggle-children:focus{outline:none}body:not(._no-focus-highlight) .opal-tree-list-item .opal-tree-list-item__btn-toggle-children:focus::after{position:absolute;top:-2px;right:-2px;bottom:-2px;left:-2px;border-radius:3px;-webkit-box-shadow:inset 0 0 0 1px #33a0ff;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-tree-list-item .opal-tree-list-item__btn-toggle-children[checked] .opal-tree-list-item__btn-toggle-children-icon{-webkit-transform:rotate(0);-ms-transform:rotate(0);transform:rotate(0)}.opal-tree-list-item .opal-tree-list-item__btn-toggle-children[checked]~.opal-tree-list-item__children{display:block;padding-left:16px}.opal-tree-list-item .opal-tree-list-item__btn-toggle-children-icon{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:14px;height:14px;-webkit-transition:-webkit-transform .1s linear;transition:-webkit-transform .1s linear;-o-transition:transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;-webkit-transform:rotate(-90deg);-ms-transform:rotate(-90deg);transform:rotate(-90deg);fill:currentColor}.opal-tree-list-item .opal-tree-list-item__children{display:none;padding-left:16px}.opal-tree-list-item[has-children]>.opal-tree-list-item__btn-toggle-children{visibility:visible}";
+            style.textContent = ".opal-tree-list-item{display:block}.opal-tree-list-item .opal-tree-list-item__btn-toggle-children{position:relative;display:inline-block;visibility:hidden;margin-right:.25em;width:16px;height:16px;vertical-align:middle}.opal-tree-list-item .opal-tree-list-item__btn-toggle-children:focus{outline:none}body:not(._no-focus-highlight) .opal-tree-list-item .opal-tree-list-item__btn-toggle-children:focus::after{position:absolute;top:-2px;right:-2px;bottom:-2px;left:-2px;border-radius:3px;-webkit-box-shadow:inset 0 0 0 1px #33a0ff;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.opal-tree-list-item .opal-tree-list-item__btn-toggle-children[checked] .opal-tree-list-item__btn-toggle-children-icon{-webkit-transform:rotate(0);-ms-transform:rotate(0);transform:rotate(0)}.opal-tree-list-item .opal-tree-list-item__btn-toggle-children[checked]~.opal-tree-list-item__children{display:block;padding-left:16px}.opal-tree-list-item .opal-tree-list-item__btn-toggle-children-icon{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:14px;height:14px;-webkit-transition:-webkit-transform .1s linear;transition:-webkit-transform .1s linear;-o-transition:transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear;-webkit-transform:rotate(-90deg);-ms-transform:rotate(-90deg);transform:rotate(-90deg);fill:currentColor}.opal-tree-list-item .opal-tree-list-item__children{display:none;padding-left:16px}.opal-tree-list-item[nesting-level='0']{font-weight:700}.opal-tree-list-item[nesting-level='1']{font-weight:400}.opal-tree-list-item[has-children]>.opal-tree-list-item__btn-toggle-children{visibility:visible}";
             head.appendChild(style);
             return style;
         }
@@ -5636,13 +5703,13 @@ module.exports = (function(d) {
 /* 95 */
 /***/ (function(module, exports) {
 
-module.exports = "opal-button/btn-toggle-children (view-type=clean, checkable) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\nrt-slot/content (clone-content)\n@if-then (if=dataTreeListItem.children) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children, track-by={input.datatreelistItemValueFieldName}) {\nopal-tree-list-item (\ndatatreelist={input.datatreelist},\ndatatreelist-item-value-field-name={_dataTreeListItemValueFieldName},\ndatatreelist-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{input.indexpath},{$index}]',\nnesting-level={input.indexpath.length},\nhas-children='{$item |has(\"children\") }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext})\n}\n}\n}\n}"
+module.exports = "opal-button/btn-toggle-children (view-type=clean, checkable, checked={input.query}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\nrt-slot/content (clone-content)\n@if-then (if=dataTreeListItem.children) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item (\ndatatreelist={input.datatreelist},\nfiltered-datatreelist={input.filteredDatatreelist},\ndatatreelist-item-value-field-name={_dataTreeListItemValueFieldName},\ndatatreelist-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{input.indexpath},{$index}]',\nquery={input.query},\nnesting-level={input.indexpath.length},\nhas-children='{$item |has(\"children\") }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext})\n}\n}\n}\n}"
 
 /***/ }),
 /* 96 */
 /***/ (function(module, exports) {
 
-module.exports = "@if-then (if=dataTreeList) {\n@repeat (for=$item of dataTreeList, track-by={_dataTreeListItemValueFieldName}) {\nopal-tree-list-item (\ndatatreelist={dataTreeList},\ndatatreelist-item-value-field-name={_dataTreeListItemValueFieldName},\ndatatreelist-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nnesting-level=0,\nhas-children='{$item |has(\"children\") }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}"
+module.exports = "@if-then (if=dataTreeList) {\n@if-then (if=filteredDataTreeList.length) {\n@repeat (for=$item of filteredDataTreeList) {\nopal-tree-list-item (\ndatatreelist={dataTreeList},\nfiltered-datatreelist={filteredDataTreeList},\ndatatreelist-item-value-field-name={_dataTreeListItemValueFieldName},\ndatatreelist-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={input.query},\nnesting-level=0,\nhas-children='{$item |has(\"children\") }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=filteredDataTreeList.length) {\n'TODO'\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}"
 
 /***/ }),
 /* 97 */
@@ -5915,12 +5982,15 @@ var OpalAutosuggest = (function (_super) {
         var _this = this;
         if (item === undefined) {
             if (this._isNotInputConfirmed) {
-                var comparableQuery_1 = toComparable(this.$('text-input').value || '');
-                var item_1 = this.dataList.find(function (item) { return toComparable(item[_this._dataListItemTextFieldName]) == comparableQuery_1; }) || null;
-                if (item_1 && this.dataList.length > 1) {
-                    this._clearDataList();
+                var query_1 = this.$('text-input').value;
+                if (query_1) {
+                    query_1 = toComparable(query_1);
+                    item = this.dataList.find(function (item) { return toComparable(item[_this._dataListItemTextFieldName]) == query_1; });
+                    if (item && this.dataList.length > 1) {
+                        this._clearDataList();
+                    }
                 }
-                this._selectItem(item_1);
+                this._selectItem(item || null);
             }
         }
         else {
@@ -6469,7 +6539,7 @@ __webpack_require__(112);
 var opal_route_1 = __webpack_require__(113);
 exports.OpalRoute = opal_route_1.OpalRoute;
 var parsePath_1 = __webpack_require__(114);
-var PathNodeType_1 = __webpack_require__(9);
+var PathNodeType_1 = __webpack_require__(10);
 var hyphenize = rionite_1.Utils.hyphenize;
 var escapeHTML = rionite_1.Utils.escapeHTML;
 var forEach = Array.prototype.forEach;
@@ -6775,7 +6845,7 @@ exports.OpalRoute = OpalRoute;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType_1 = __webpack_require__(9);
+var PathNodeType_1 = __webpack_require__(10);
 var reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
     var ctx = PathNodeType_1.PathNodeType.SIMPLE;

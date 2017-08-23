@@ -384,16 +384,18 @@ export class OpalAutosuggest extends Component {
 	_selectItem(item?: IDataListItem | null) {
 		if (item === undefined) {
 			if (this._isNotInputConfirmed) {
-				let comparableQuery = toComparable(this.$<OpalTextInput>('text-input')!.value || '');
-				let item = this.dataList.find(
-					(item) => toComparable(item[this._dataListItemTextFieldName]) == comparableQuery
-				) || null;
+				let query = this.$<OpalTextInput>('text-input')!.value;
 
-				if (item && this.dataList.length > 1) {
-					this._clearDataList();
+				if (query) {
+					query = toComparable(query);
+					item = this.dataList.find((item) => toComparable(item[this._dataListItemTextFieldName]) == query);
+
+					if (item && this.dataList.length > 1) {
+						this._clearDataList();
+					}
 				}
 
-				this._selectItem(item);
+				this._selectItem(item || null);
 			}
 		} else {
 			if (item) {

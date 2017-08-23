@@ -43,7 +43,7 @@ export default function _getListItemContext(context: { [name: string]: any }, sl
 			this.dataTreeList;
 
 			return isSelectedItem(
-				$item,
+				$item.$original || $item,
 				this.viewModel,
 				this._dataTreeListItemValueFieldName,
 				this._viewModelItemValueFieldName
@@ -54,7 +54,7 @@ export default function _getListItemContext(context: { [name: string]: any }, sl
 			this.dataTreeList;
 
 			return isIndeterminateItem(
-				$item,
+				$item.$original || $item,
 				this.viewModel,
 				this._dataTreeListItemValueFieldName,
 				this._viewModelItemValueFieldName
