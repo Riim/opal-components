@@ -204,7 +204,7 @@ export class OpalTextInput extends Component {
 	}
 
 	get value(): string | null {
-		return (this.textField ? this.textField.value : this._textFieldValue).trim() || null;
+		return this.textField.value.trim() || null;
 	}
 	set value(value: string | null) {
 		this._textFieldValue = this.textField.value = value || '';

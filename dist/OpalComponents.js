@@ -1757,7 +1757,7 @@ var OpalTextInput = (function (_super) {
     };
     Object.defineProperty(OpalTextInput.prototype, "value", {
         get: function () {
-            return (this.textField ? this.textField.value : this._textFieldValue).trim() || null;
+            return this.textField.value.trim() || null;
         },
         set: function (value) {
             this._textFieldValue = this.textField.value = value || '';
