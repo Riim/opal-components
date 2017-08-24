@@ -32,11 +32,11 @@ function isIndeterminateItem(
 
 export default function _getListItemContext(context: { [name: string]: any }, slot: Component):
 		{ [name: string]: any } {
-	let $item = slot.input.$context!.$item;
+	let $item = slot.input.$context.$item;
 
 	return define(mixin(
 		Object.create(context),
-		slot.input.$context!,
+		slot.input.$context,
 		['$component']
 	) as any, {
 		$selected: new Cell(function(this: OpalTreeList) {

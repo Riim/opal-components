@@ -147,7 +147,7 @@ export class OpalTreeList extends Component {
 			let vm = this.viewModel;
 			let viewModelItemValueFieldName = this._viewModelItemValueFieldName;
 			let viewModelItemTextFieldName = this._viewModelItemTextFieldName;
-			let $item = closestComponent(component.parentComponent!, OpalTreeListItem)!.input.$context!.$item;
+			let $item = closestComponent(component.parentComponent!, OpalTreeListItem)!.input.$context.$item;
 			let selected = (component as any).selected;
 
 			getItemVertices($item.$original || $item).forEach((item) => {
