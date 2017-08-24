@@ -65,8 +65,8 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disab
 				this._clearDataList();
 
 				this._selectItem({
-					value: listItemDataSet.value!,
-					text: listItemDataSet.text!
+					[this._dataListItemValueFieldName]: listItemDataSet.value!,
+					[this._dataListItemTextFieldName]: listItemDataSet.text!
 				});
 			}
 		}
@@ -301,8 +301,8 @@ export class OpalAutosuggest extends Component {
 					this._clearDataList();
 
 					this._selectItem({
-						value: focusedListItemDataSet.value!,
-						text: focusedListItemDataSet.text!
+						[this._dataListItemValueFieldName]: focusedListItemDataSet.value!,
+						[this._dataListItemTextFieldName]: focusedListItemDataSet.text!
 					});
 				}
 

@@ -5912,10 +5912,10 @@ var OpalAutosuggest = (function (_super) {
                     var focusedListItemDataSet = focusedListItem.dataset;
                     this.$('text-input').value = focusedListItemDataSet.text;
                     this._clearDataList();
-                    this._selectItem({
-                        value: focusedListItemDataSet.value,
-                        text: focusedListItemDataSet.text
-                    });
+                    this._selectItem((_a = {},
+                        _a[this._dataListItemValueFieldName] = focusedListItemDataSet.value,
+                        _a[this._dataListItemTextFieldName] = focusedListItemDataSet.text,
+                        _a));
                 }
                 break;
             }
@@ -5926,6 +5926,7 @@ var OpalAutosuggest = (function (_super) {
                 break;
             }
         }
+        var _a;
     };
     OpalAutosuggest.prototype._onDocumentClick = function (evt) {
         if (!this.element.contains(evt.target)) {
@@ -6047,10 +6048,11 @@ var OpalAutosuggest = (function (_super) {
                         textInput.value = listItemDataSet.text;
                         textInput.focus();
                         this._clearDataList();
-                        this._selectItem({
-                            value: listItemDataSet.value,
-                            text: listItemDataSet.text
-                        });
+                        this._selectItem((_a = {},
+                            _a[this._dataListItemValueFieldName] = listItemDataSet.value,
+                            _a[this._dataListItemTextFieldName] = listItemDataSet.text,
+                            _a));
+                        var _a;
                     }
                 }
             }
