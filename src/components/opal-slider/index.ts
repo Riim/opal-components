@@ -1,4 +1,4 @@
-import { define } from 'cellx';
+import { computed, observable } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import './index.css';
 import template = require('./template.nelm');
@@ -17,28 +17,24 @@ import template = require('./template.nelm');
 	template
 })
 export class OpalSlider extends Component {
-	_firstInputValue: number;
-	_secondInputValue: number;
-	_firstInputWidth: number;
+	@observable _firstInputValue: number;
+	@observable _secondInputValue: number;
+
+	@computed get _firstInputWidth(): number {
+		let min = this.input.min;
+		let all = this.input.max - min;
+
+		return Math.round(
+			(((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) / 2) * 1e5
+		) / 1e3;
+	}
 
 	initialize() {
-		let input = this.input;
-		let range = input.range;
+		let range = this.input.range;
 
 		if (range) {
-			define(this, {
-				_firstInputValue: range[0],
-				_secondInputValue: range[1],
-
-				_firstInputWidth(this: OpalSlider): number {
-					let min = input.min;
-					let all = input.max - min;
-
-					return Math.round(
-						(((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) / 2) * 1e5
-					) / 1e3;
-				}
-			});
+			this._firstInputValue = range[0];
+			this._secondInputValue = range[1];
 		}
 	}
 
@@ -72,7 +68,6 @@ export class OpalSlider extends Component {
 			[this._firstInputValue, this._secondInputValue] :
 			+this.$<HTMLInputElement>('input')!.value;
 	}
-
 	set value(value: number | Array<number>) {
 		if (this.input.range) {
 			this.$<HTMLInputElement>('first-input')!.value = this._firstInputValue = value[0];

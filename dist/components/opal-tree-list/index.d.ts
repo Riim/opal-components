@@ -8,7 +8,9 @@ export interface IDataTreeListItem {
     children?: Array<IDataTreeListItem>;
 }
 export declare type TDataTreeList = ObservableTreeList<IDataTreeListItem>;
-export declare type TViewModel = ObservableList<IDataTreeListItem>;
+export declare type TViewModel = ObservableList<{
+    [name: string]: any;
+}>;
 export declare class OpalTreeList extends Component {
     static defaultDataTreeListItemSchema: Readonly<{
         value: string;
@@ -21,10 +23,10 @@ export declare class OpalTreeList extends Component {
     dataTreeList: TDataTreeList;
     _dataTreeListItemValueFieldName: string;
     _dataTreeListItemTextFieldName: string;
+    readonly filteredDataTreeList: TDataTreeList;
     viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
-    filteredDataTreeList: TDataTreeList;
     initialize(): void;
     elementAttached(): void;
     _onChange(evt: IEvent<Component>): void;

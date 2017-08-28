@@ -6,7 +6,7 @@ import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 export declare class OpalDateInput extends Component {
     dateExists: typeof dateExists;
-    dateInRange(date: string): boolean;
+    isDateInRange(date: string): boolean;
     _documentFocusListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening;
     _documentClickListening: IDisposableListening;

@@ -15,21 +15,21 @@ export declare class OpalTagSelect extends Component {
         disabled: string;
     }>;
     dataList: TDataList | null;
-    _dataListKeypathParam: string | null;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
     _dataListItemDisabledFieldName: string;
+    _dataListKeypathParam: string | null;
     dataProvider: IDataProvider | null;
-    _addNewItem: ((text: string) => Promise<{
-        [name: string]: string;
-    }>) | null;
-    _addNewItemKeypathParam: string | null;
     viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _viewModelItemDisabledFieldName: string;
     readonly value: Array<IDataListItem>;
-    isPlaceholderShown: boolean;
+    _addNewItem: ((text: string) => Promise<{
+        [name: string]: string;
+    }>) | null;
+    _addNewItemKeypathParam: string | null;
+    readonly isPlaceholderShown: boolean;
     initialize(): void;
     elementAttached(): void;
     _onInputViewModelChange(evt: IEvent): void;

@@ -1,4 +1,5 @@
-import { Cell, define, Utils } from 'cellx';
+import { Cell, Utils } from 'cellx';
+import { computed } from 'cellx-decorators';
 import { Component, d, IComponentElement } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
 import { OpalInputMaskDefinition } from './opal-input-mask-definition';
@@ -32,10 +33,23 @@ export class OpalInputMask extends Component {
 
 	_definitions: { [chr: string]: RegExp };
 
-	_mask: Array<string>;
-	_partialIndex: number;
-	_tests: Array<RegExp | null>;
-	_firstTestIndex: number;
+	@computed get _mask(): Array<string> {
+		return (this.input.mask as string).split('').filter((chr: string) => chr != '?');
+	}
+
+	@computed get _partialIndex(): number {
+		let mask = this.input.mask as string;
+		let index = mask.indexOf('?');
+		return index == -1 ? mask.length : index;
+	}
+
+	@computed get _tests(): Array<RegExp | null> {
+		return this._mask.map((chr: string) => this._definitions[chr] || null);
+	}
+
+	@computed get _firstTestIndex(): number {
+		return this._tests.findIndex((test) => !!test);
+	}
 
 	_buffer: Array<string | null>;
 
@@ -59,26 +73,6 @@ export class OpalInputMask extends Component {
 				definitions[input.maskChar] = input.regex;
 			}
 		);
-
-		define(this, {
-			_mask(this: OpalInputMask): Array<string> {
-				return this.input.mask.split('').filter((chr: string) => chr != '?');
-			},
-
-			_partialIndex(this: OpalInputMask): number {
-				let mask = this.input.mask;
-				let index = mask.indexOf('?');
-				return index == -1 ? mask.length : index;
-			},
-
-			_tests(this: OpalInputMask): Array<RegExp | null> {
-				return this._mask.map((chr: string) => definitions[chr] || null);
-			},
-
-			_firstTestIndex(this: OpalInputMask): number {
-				return this._tests.findIndex((test) => !!test);
-			}
-		});
 
 		this._initBuffer();
 	}

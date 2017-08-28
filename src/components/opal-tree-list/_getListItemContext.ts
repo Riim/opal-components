@@ -11,9 +11,8 @@ function isSelectedItem(
 	viewModelItemValueFieldName: string
 ): boolean {
 	return item.children ?
-		item.children.every(
-			(child) => isSelectedItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName)
-		) :
+		item.children
+			.every((child) => isSelectedItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName)) :
 		!!vm.find((child) => child[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]);
 }
 
@@ -30,35 +29,40 @@ function isIndeterminateItem(
 		);
 }
 
-export default function _getListItemContext(context: { [name: string]: any }, slot: Component):
-		{ [name: string]: any } {
+export default function _getListItemContext(
+	context: { [name: string]: any },
+	slot: Component
+): { [name: string]: any } {
 	let $item = slot.input.$context.$item;
 
-	return define(mixin(
-		Object.create(context),
-		slot.input.$context,
-		['$component']
-	) as any, {
-		$selected: new Cell(function(this: OpalTreeList) {
-			this.dataTreeList;
+	return define(
+		mixin(
+			Object.create(context),
+			slot.input.$context,
+			['$component']
+		) as any,
+		{
+			$selected: new Cell(function(this: OpalTreeList) {
+				this.dataTreeList;
 
-			return isSelectedItem(
-				$item.$original || $item,
-				this.viewModel,
-				this._dataTreeListItemValueFieldName,
-				this._viewModelItemValueFieldName
-			);
-		}, { owner: this }),
+				return isSelectedItem(
+					$item.$original || $item,
+					this.viewModel,
+					this._dataTreeListItemValueFieldName,
+					this._viewModelItemValueFieldName
+				);
+			}, { owner: this }),
 
-		$indeterminate: new Cell(function(this: OpalTreeList) {
-			this.dataTreeList;
+			$indeterminate: new Cell(function(this: OpalTreeList) {
+				this.dataTreeList;
 
-			return isIndeterminateItem(
-				$item.$original || $item,
-				this.viewModel,
-				this._dataTreeListItemValueFieldName,
-				this._viewModelItemValueFieldName
-			);
-		}, { owner: this })
-	});
+				return isIndeterminateItem(
+					$item.$original || $item,
+					this.viewModel,
+					this._dataTreeListItemValueFieldName,
+					this._viewModelItemValueFieldName
+				);
+			}, { owner: this })
+		}
+	);
 }

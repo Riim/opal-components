@@ -58,6 +58,10 @@
 		margin: 4px 10px 6px;
 	}
 
+	& .opal-modal .opal-filtered-list .opal-filtered-list__query-input {
+		margin: 0 0 10px;
+	}
+
 	& .opal-loaded-list {
 		height: 304px; /* 38 * 8 */
 	}

@@ -6,7 +6,7 @@ import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 export declare class OpalMultiselect extends OpalSelect {
     dataProvider: IDataProvider | null;
-    isNothingSelectedShown: boolean;
+    readonly isNothingSelectedShown: boolean;
     initialize(): void;
     elementAttached(): void;
     _onQueryInputInput(evt: IEvent<OpalTextInput>): void;

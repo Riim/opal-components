@@ -1,8 +1,12 @@
-opal-button/btn-toggle-children (view-type=clean, checkable, checked={input.query}) {
-	svg/btn-toggle-children-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }
-}
+div/head {
+	opal-button/btn-toggle-children (view-type=clean, checkable, checked={input.opened}) {
+		svg/btn-toggle-children-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }
+	}
 
-rt-slot/content (clone-content)
+	span/content-wrapper {
+		rt-slot/content (clone-content)
+	}
+}
 
 @if-then (if=dataTreeListItem.children) {
 	div/children {
@@ -17,6 +21,7 @@ rt-slot/content (clone-content)
 				view-model-item-text-field-name={_viewModelItemTextFieldName},
 				indexpath='[{input.indexpath},{$index}]',
 				query={input.query},
+				opened={input.query},
 				nesting-level={input.indexpath.length},
 				has-children='{$item |has("children") }'
 			) {

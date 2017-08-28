@@ -1,4 +1,5 @@
-import { define, IEvent, Utils } from 'cellx';
+import { IEvent, Utils } from 'cellx';
+import { computed } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import '../../../assets/icons/opal-components__icon-check.svg';
 import './index.css';
@@ -21,14 +22,8 @@ let nextTick = Utils.nextTick;
 	template
 })
 export class OpalSelectOption extends Component {
-	_tabIndex: number;
-
-	initialize() {
-		define(this, {
-			_tabIndex(this: OpalSelectOption): number {
-				return this.input.disabled ? -1 : this.input.tabIndex;
-			}
-		});
+	@computed get _tabIndex(): number {
+		return this.input.disabled ? -1 : this.input.tabIndex;
 	}
 
 	elementAttached() {
@@ -67,6 +62,7 @@ export class OpalSelectOption extends Component {
 
 	click(): OpalSelectOption {
 		this.emit(this.toggle() ? 'select' : 'deselect');
+		this.emit('change');
 		return this;
 	}
 

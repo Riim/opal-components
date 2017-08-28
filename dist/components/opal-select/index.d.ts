@@ -26,19 +26,21 @@ export declare class OpalSelect extends Component {
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
     _dataListItemDisabledFieldName: string;
-    _addNewItem: ((text: string) => Promise<{
-        [name: string]: string;
-    }>) | null;
     viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _viewModelItemDisabledFieldName: string;
     readonly value: Array<IDataListItem>;
+    _addNewItem: ((text: string) => Promise<{
+        [name: string]: string;
+    }>) | null;
+    readonly _buttonText: string;
     optionElements: NodeListOf<IComponentElement>;
-    options: Array<OpalSelectOption>;
     optionsCell: Cell<Array<OpalSelectOption>>;
+    readonly options: Array<OpalSelectOption>;
+    _notUpdateOptions: boolean;
     _opened: boolean;
-    _valueOnOpen: any;
+    _valueOnOpen: Array<string>;
     _onсeFocusedAfterLoading: boolean;
     _isInputDataListSpecified: boolean;
     _documentFocusListening: IDisposableListening;

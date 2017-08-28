@@ -557,6 +557,37 @@ body {
 	</script>
 </opal-code-listing>
 
+<opal-code-listing>
+	<div class="opal-code-listing__example-html">
+		<opal-select multiple>
+			<opal-modal class="opal-select__menu">
+				<opal-filtered-list>
+					<opal-tree-list class="opal-filtered-list__loaded-list" datatreelist-keypath="model1.dataTreeList">
+						<opal-select-option class="opal-tree-list__selection-control" text="{$item.name}"
+								selected="{$selected}"></opal-select-option>
+					</opal-tree-list>
+				</opal-filtered-list>
+			</opal-modal>
+		</opal-select>
+	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-loader');
+		require('opal-components/dist/opal-loaded-list');
+		require('opal-components/dist/opal-filtered-list');
+	</script>
+</opal-code-listing>
+
+<opal-code-listing>
+	<div class="opal-code-listing__example-html">
+		<opal-tree-select datatreelist-keypath="model1.dataTreeList"></opal-tree-select>
+	</div>
+	<script class="opal-code-listing__example-js">
+		require('opal-components/dist/opal-loader');
+		require('opal-components/dist/opal-loaded-list');
+		require('opal-components/dist/opal-filtered-list');
+	</script>
+</opal-code-listing>
+
 <h1>opal-select + opal-filtered-list</h1>
 
 <opal-code-listing>

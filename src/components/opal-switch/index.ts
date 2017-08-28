@@ -1,4 +1,5 @@
-import { define, IEvent, Utils } from 'cellx';
+import { IEvent, Utils } from 'cellx';
+import { computed } from 'cellx-decorators';
 import { Component, d, IDisposableListening } from 'rionite';
 import './index.css';
 import template = require('./template.nelm');
@@ -18,17 +19,11 @@ let nextTick = Utils.nextTick;
 	template
 })
 export class OpalSwitch extends Component {
-	_tabIndex: number;
+	@computed _tabIndex(): number {
+		return this.input.disabled ? -1 : this.input.tabIndex;
+	}
 
 	_documentKeyDownListening: IDisposableListening;
-
-	initialize() {
-		define(this, {
-			_tabIndex(this: OpalSwitch): number {
-				return this.input.disabled ? -1 : this.input.tabIndex;
-			}
-		});
-	}
 
 	ready() {
 		if (this.input.checked) {

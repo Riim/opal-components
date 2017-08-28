@@ -8,10 +8,10 @@ export declare class OpalInputMask extends Component {
     _definitions: {
         [chr: string]: RegExp;
     };
-    _mask: Array<string>;
-    _partialIndex: number;
-    _tests: Array<RegExp | null>;
-    _firstTestIndex: number;
+    readonly _mask: Array<string>;
+    readonly _partialIndex: number;
+    readonly _tests: Array<RegExp | null>;
+    readonly _firstTestIndex: number;
     _buffer: Array<string | null>;
     _textField: HTMLInputElement;
     _textOnFocus: string;

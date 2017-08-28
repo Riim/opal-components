@@ -3,7 +3,7 @@ import './index.css';
 export declare class OpalSlider extends Component {
     _firstInputValue: number;
     _secondInputValue: number;
-    _firstInputWidth: number;
+    readonly _firstInputWidth: number;
     initialize(): void;
     elementAttached(): void;
     _onFirstInputInput(evt: Event): void;

@@ -9,7 +9,7 @@ rt-content (select=.opal-select__button) {
 		disabled={input.disabled}
 	) {
 		@if-then (if=input.text) { '{input.text}' }
-		@if-else (if=input.text) { '{text}' }
+		@if-else (if=input.text) { '{_buttonText}' }
 		' '
 		svg/button-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }
 	}

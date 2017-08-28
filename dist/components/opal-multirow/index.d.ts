@@ -8,10 +8,8 @@ export declare class OpalMultirow extends Component {
     _newRows: ObservableList<{
         key: string;
     }>;
-    _notHavePresetRows: boolean;
-    _notHaveNewRows: boolean;
-    _notSingleRow: boolean;
-    initialize(): void;
+    _notHaveNewRows(): boolean;
+    _notSingleRow(): boolean;
     ready(): void;
     elementAttached(): void;
     _onRemoveRowClick(evt: IEvent<OpalMultirowRow>): void;

@@ -2,9 +2,8 @@ import { IEvent } from 'cellx';
 import { Component, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalRadioButton extends Component {
-    _tabIndex: number;
+    readonly _tabIndex: number;
     _documentKeyDownListening: IDisposableListening;
-    initialize(): void;
     ready(): void;
     elementAttached(): void;
     _onInputCheckedChange(evt: IEvent): void;

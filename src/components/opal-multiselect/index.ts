@@ -1,4 +1,5 @@
-import { define, IEvent } from 'cellx';
+import { IEvent } from 'cellx';
+import { computed } from 'cellx-decorators';
 import { d, getText, Template } from 'rionite';
 import '../../assets/icons/opal-components__icon-cross.svg';
 import { IDataProvider, OpalLoadedList } from '../opal-loaded-list';
@@ -45,7 +46,9 @@ import template = require('./template.nelm');
 export class OpalMultiselect extends OpalSelect {
 	dataProvider: IDataProvider | null;
 
-	isNothingSelectedShown: boolean;
+	@computed get isNothingSelectedShown(): boolean {
+		return !this.viewModel.length;
+	}
 
 	initialize() {
 		super.initialize();
@@ -66,12 +69,6 @@ export class OpalMultiselect extends OpalSelect {
 		}
 
 		this.dataProvider = dataProvider;
-
-		define(this, {
-			isNothingSelectedShown(this: OpalMultiselect) {
-				return !this.viewModel.length;
-			}
-		});
 	}
 
 	elementAttached() {

@@ -1,4 +1,5 @@
-import { define, IEvent, Utils } from 'cellx';
+import { Cell, IEvent, Utils } from 'cellx';
+import { computed } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import '../../assets/icons/opal-components__icon-cross.svg';
 import './index.css';
@@ -43,30 +44,32 @@ let nextTick = Utils.nextTick;
 export class OpalTextInput extends Component {
 	textField: HTMLInputElement;
 
-	_textFieldValue: string;
+	_textFieldValueCell: Cell<string>;
+	@computed get _textFieldValue(): string {
+		return this.input.value;
+	}
+	set _textFieldValue(value: string) {
+		this._textFieldValueCell.set(value);
+	}
+
+	get value(): string | null {
+		return this._textFieldValue.trim() || null;
+	}
+	set value(value: string | null) {
+		this._textFieldValue = this.textField.value = value || '';
+	}
 
 	_prevValue: string | null;
 
-	isControlIconShown: boolean;
-	isBtnClearShown: boolean;
+	@computed get isControlIconShown(): boolean {
+		return !this.isBtnClearShown && !this.input.loading;
+	}
+
+	@computed get isBtnClearShown(): boolean {
+		return !!this._textFieldValue && !this.input.loading;
+	}
 
 	_initialHeight: number;
-
-	initialize() {
-		define(this, {
-			_textFieldValue(this: OpalTextInput): string {
-				return this.input.value;
-			},
-
-			isControlIconShown(this: OpalTextInput): boolean {
-				return !this.isBtnClearShown && !this.input.loading;
-			},
-
-			isBtnClearShown(this: OpalTextInput): boolean {
-				return !!this._textFieldValue && !this.input.loading;
-			}
-		});
-	}
 
 	ready() {
 		let input = this.input;
@@ -74,12 +77,8 @@ export class OpalTextInput extends Component {
 
 		if (this._textFieldValue) {
 			textField.value = this._textFieldValue;
-		} else {
-			let storeKey = input.storeKey;
-
-			if (storeKey) {
-				this._textFieldValue = textField.value = localStorage.getItem(storeKey) || '';
-			}
+		} else if (input.storeKey) {
+			this._textFieldValue = textField.value = localStorage.getItem(input.storeKey) || '';
 		}
 
 		this._prevValue = this.value;
@@ -149,7 +148,11 @@ export class OpalTextInput extends Component {
 
 	_onTextFieldInput(evt: Event) {
 		this._textFieldValue = this.textField.value;
-		this.emit({ type: 'input', initialEvent: evt });
+
+		this.emit({
+			type: 'input',
+			initialEvent: evt
+		});
 	}
 
 	_onTextFieldChange(evt: Event) {
@@ -165,7 +168,10 @@ export class OpalTextInput extends Component {
 			localStorage.setItem(storeKey, this.textField.value);
 		}
 
-		this.emit({ type: 'change', initialEvent: evt });
+		this.emit({
+			type: 'change',
+			initialEvent: evt
+		});
 	}
 
 	_onTextFieldKeyDown(evt: Event) {
@@ -175,7 +181,10 @@ export class OpalTextInput extends Component {
 			}, 1);
 		}
 
-		this.emit({ type: 'keydown', initialEvent: evt });
+		this.emit({
+			type: 'keydown',
+			initialEvent: evt
+		});
 	}
 
 	_onTextFieldKeyPress(evt: KeyboardEvent) {
@@ -183,7 +192,10 @@ export class OpalTextInput extends Component {
 			this.emit('confirm');
 		}
 
-		this.emit({ type: 'keypress', initialEvent: evt });
+		this.emit({
+			type: 'keypress',
+			initialEvent: evt
+		});
 	}
 
 	_onTextFieldKeyUp(evt: Event) {
@@ -191,7 +203,10 @@ export class OpalTextInput extends Component {
 			this._fixHeight();
 		}
 
-		this.emit({ type: 'keyup', initialEvent: evt });
+		this.emit({
+			type: 'keyup',
+			initialEvent: evt
+		});
 	}
 
 	_fixHeight() {
@@ -201,13 +216,6 @@ export class OpalTextInput extends Component {
 		textField.style.height = this._initialHeight - lineHeight + 'px';
 		textField.style.height = textField.offsetHeight + textField.scrollHeight - textField.clientHeight +
 			lineHeight + 'px';
-	}
-
-	get value(): string | null {
-		return this.textField.value.trim() || null;
-	}
-	set value(value: string | null) {
-		this._textFieldValue = this.textField.value = value || '';
 	}
 
 	clear(): OpalTextInput {

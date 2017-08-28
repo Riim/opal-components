@@ -95,15 +95,19 @@ export default class ObservableTreeList<T extends IItem = IItem> extends EventEm
 		return false;
 	}
 
-	reduce(
-		callback: (accumulator: any, item: T, index: number, list: ObservableTreeList<T>) => any,
-		initialValue?: any
-	): any {}
+	reduce<R>(
+		callback: (accumulator: R, item: T, index: number, list: ObservableTreeList<T>) => R,
+		initialValue?: R
+	): R {
+		return undefined as any;
+	}
 
-	reduceRight(
-		callback: (accumulator: any, item: T, index: number, list: ObservableTreeList<T>) => any,
-		initialValue?: any
-	): any {}
+	reduceRight<R>(
+		callback: (accumulator: R, item: T, index: number, list: ObservableTreeList<T>) => R,
+		initialValue?: R
+	): any {
+		return undefined as any;
+	}
 }
 
 ['forEach', 'map', 'filter', 'every', 'some'].forEach((name) => {

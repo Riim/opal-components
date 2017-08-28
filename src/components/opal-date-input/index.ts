@@ -42,7 +42,7 @@ function pad(num: number): string {
 export class OpalDateInput extends Component {
 	dateExists = dateExists;
 
-	dateInRange(date: string): boolean {
+	isDateInRange(date: string): boolean {
 		let calendar = this.$<OpalCalendar>('calendar')!;
 		let match = date.match(/\d+/g)!;
 		let day = +match[0];
@@ -70,7 +70,7 @@ export class OpalDateInput extends Component {
 
 	_onTextInputChange(evt: IEvent<OpalTextInput>) {
 		if (this.$<OpalInputValidator>('input-validator')!.valid) {
-			this.$<OpalCalendar>('calendar')!.input.value = evt.target.value;
+			this.$<OpalCalendar>('calendar')!.stringValue = evt.target.value;
 		}
 	}
 
@@ -95,8 +95,10 @@ export class OpalDateInput extends Component {
 
 		let textInput = this.$<OpalTextInput>('text-input')!;
 
-		textInput.value = evt.target.input.value;
+		textInput.value = evt.target.stringValue;
 		textInput.focus();
+
+		this.$<OpalInputValidator>('input-validator')!.validate();
 	}
 
 	_onDocumentFocus(evt: Event) {

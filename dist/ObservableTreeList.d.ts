@@ -14,6 +14,6 @@ export default class ObservableTreeList<T extends IItem = IItem> extends EventEm
     filter(callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void, context?: any): Array<T>;
     every(callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void, context?: any): boolean;
     some(callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void, context?: any): boolean;
-    reduce(callback: (accumulator: any, item: T, index: number, list: ObservableTreeList<T>) => any, initialValue?: any): any;
-    reduceRight(callback: (accumulator: any, item: T, index: number, list: ObservableTreeList<T>) => any, initialValue?: any): any;
+    reduce<R>(callback: (accumulator: R, item: T, index: number, list: ObservableTreeList<T>) => R, initialValue?: R): R;
+    reduceRight<R>(callback: (accumulator: R, item: T, index: number, list: ObservableTreeList<T>) => R, initialValue?: R): any;
 }

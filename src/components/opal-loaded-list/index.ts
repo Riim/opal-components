@@ -1,9 +1,5 @@
-import {
-	Cell,
-	define,
-	ObservableList,
-	Utils
-	} from 'cellx';
+import { Cell, ObservableList, Utils } from 'cellx';
+import { computed, observable } from 'cellx-decorators';
 import {
 	Component,
 	d,
@@ -34,9 +30,9 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 	elementIs: 'opal-loaded-list',
 
 	input: {
+		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		dataprovider: { type: Object, readonly: true },
 		dataproviderKeypath: { type: String, readonly: true },
-		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		count: 100,
 		query: String,
 		preloading: { default: false, readonly: true }
@@ -51,29 +47,40 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 export class OpalLoadedList extends Component {
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 
-	dataProvider: IDataProvider;
-
-	dataList: ObservableList<IDataListItem>;
+	@observable dataList = new ObservableList<IDataListItem>();
 	_dataListItemTextFieldName: string;
 
-	total: number | undefined;
+	@observable total: number | undefined;
 
-	_scrolling: boolean = false;
-	_isLoadingCheckPlanned: boolean;
+	dataProvider: IDataProvider;
+
+	_isScrollingInProcessing: boolean = false;
+	@observable _isLoadingCheckPlanned = false;
 	_loadingCheckTimeout: IDisposableTimeout;
+	@observable loading = false;
 	_requestCallback: IDisposableCallback;
-	loading: boolean;
 
 	_lastRequestedQuery: string | null = null;
 	_lastLoadedQuery: string | null = null;
 
-	empty: boolean;
+	@computed get empty(): boolean {
+		return !this.dataList.length;
+	}
 
-	isLoaderShown: boolean;
-	isNothingFoundShown: boolean;
+	@computed get isLoaderShown(): boolean {
+		return this.total === undefined || this.dataList.length < this.total || this.loading;
+	}
+
+	@computed get isNothingFoundShown(): boolean {
+		return this.total === 0 && !this._isLoadingCheckPlanned && !this.loading;
+	}
 
 	initialize() {
 		let input = this.input;
+
+		this._dataListItemTextFieldName = input.datalistItemSchema.text ||
+			(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema.text;
+
 		let dataProvider;
 
 		if (input.$specified.has('dataprovider')) {
@@ -89,28 +96,6 @@ export class OpalLoadedList extends Component {
 		}
 
 		this.dataProvider = dataProvider;
-		this._dataListItemTextFieldName = input.datalistItemSchema.text ||
-			(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema.text;
-
-		define(this, {
-			dataList: new ObservableList<IDataListItem>(),
-			total: undefined,
-
-			_isLoadingCheckPlanned: false,
-			loading: false,
-
-			empty(this: OpalLoadedList): boolean {
-				return !this.dataList.length;
-			},
-
-			isLoaderShown(this: OpalLoadedList): boolean {
-				return this.total === undefined || this.dataList.length < this.total || this.loading;
-			},
-
-			isNothingFoundShown(this: OpalLoadedList): boolean {
-				return this.total === 0 && !this._isLoadingCheckPlanned && !this.loading;
-			}
-		});
 	}
 
 	elementAttached() {
@@ -140,17 +125,17 @@ export class OpalLoadedList extends Component {
 		}
 
 		this._loadingCheckTimeout = this.setTimeout(() => {
-			this._scrolling = false;
+			this._isScrollingInProcessing = false;
 			this._isLoadingCheckPlanned = false;
 			this.checkLoading();
 		}, 300);
 	}
 
 	_onElementScroll() {
-		if (this._scrolling) {
+		if (this._isScrollingInProcessing) {
 			return;
 		}
-		this._scrolling = true;
+		this._isScrollingInProcessing = true;
 
 		if (this._isLoadingCheckPlanned) {
 			this._loadingCheckTimeout.clear();
@@ -159,7 +144,7 @@ export class OpalLoadedList extends Component {
 		}
 
 		this._loadingCheckTimeout = this.setTimeout(() => {
-			this._scrolling = false;
+			this._isScrollingInProcessing = false;
 			this._isLoadingCheckPlanned = false;
 			this.checkLoading();
 		}, 150);
@@ -186,9 +171,8 @@ export class OpalLoadedList extends Component {
 		}
 
 		let input = this.input;
+		let infinite = this.dataProvider.getItems.length >= 2;
 		let query: string | null = this._lastRequestedQuery = input.query;
-		let dataProvider = this.dataProvider;
-		let infinite = dataProvider.getItems.length >= 2;
 		let args = [query];
 
 		if (infinite) {
@@ -205,7 +189,7 @@ export class OpalLoadedList extends Component {
 
 		this.loading = true;
 
-		dataProvider.getItems.apply(dataProvider, args).then(
+		this.dataProvider.getItems.apply(this.dataProvider, args).then(
 			this._requestCallback = this.registerCallback(
 				function(this: OpalLoadedList, data: { items: Array<IDataListItem>, total?: number }) {
 					this.loading = false;

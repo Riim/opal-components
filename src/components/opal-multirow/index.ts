@@ -1,9 +1,5 @@
-import {
-	define,
-	IEvent,
-	ObservableList,
-	Utils
-	} from 'cellx';
+import { IEvent, ObservableList, Utils } from 'cellx';
+import { computed, observable } from 'cellx-decorators';
 import { Component, d, IComponentElement } from 'rionite';
 import './index.css';
 import { OpalMultirowRow } from './opal-multirow-row';
@@ -20,26 +16,15 @@ let filter = Array.prototype.filter;
 export class OpalMultirow extends Component {
 	static OpalMultirowRow = OpalMultirowRow;
 
-	_presetRowCount: number;
-	_newRows: ObservableList<{ key: string }>;
+	@observable _presetRowCount = 0;
+	@observable _newRows = new ObservableList<{ key: string }>();
 
-	_notHavePresetRows: boolean;
-	_notHaveNewRows: boolean;
-	_notSingleRow: boolean;
+	@computed _notHaveNewRows(): boolean {
+		return !this._newRows.length;
+	}
 
-	initialize() {
-		define(this, {
-			_presetRowCount: 0,
-			_newRows: new ObservableList(),
-
-			_notHaveNewRows(this: OpalMultirow): boolean {
-				return !this._newRows.length;
-			},
-
-			_notSingleRow(this: OpalMultirow): boolean {
-				return this._presetRowCount + this._newRows.length != 1;
-			}
-		});
+	@computed _notSingleRow(): boolean {
+		return this._presetRowCount + this._newRows.length != 1;
 	}
 
 	ready() {

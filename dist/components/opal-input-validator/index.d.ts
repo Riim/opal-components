@@ -4,9 +4,8 @@ import { OpalInputValidatorRule } from './opal-input-validator-rule';
 export declare class OpalInputValidator extends Component {
     static OpalInputValidatorRule: typeof OpalInputValidatorRule;
     failedRule: OpalInputValidatorRule | null;
-    valid: boolean;
+    readonly valid: boolean;
     _rules: Array<OpalInputValidatorRule>;
-    initialize(): void;
     ready(): void;
     elementAttached(): void;
     _onTextInputInput(): void;

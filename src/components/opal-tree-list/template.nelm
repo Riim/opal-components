@@ -11,6 +11,7 @@
 				view-model-item-text-field-name={_viewModelItemTextFieldName},
 				indexpath=[{$index}],
 				query={input.query},
+				opened={input.query},
 				nesting-level=0,
 				has-children='{$item |has("children") }'
 			) {
@@ -23,7 +24,9 @@
 		}
 	}
 	@if-else (if=filteredDataTreeList.length) {
-		'TODO'
+		span/nothing-found-message {
+			'Ничего не найдено'
+		}
 	}
 }
 @if-else (if=dataTreeList) {

@@ -1,4 +1,4 @@
-export { default as ObservableTreeList } from './ObservableTreeList';
+export { IItem as IObservableTreeListItem, default as ObservableTreeList } from './ObservableTreeList';
 export { OpalButton } from './components/opal-button';
 export { OpalSignButton } from './components/opal-sign-button';
 export { OpalTextInput } from './components/opal-text-input';
@@ -22,8 +22,9 @@ export { OpalLoader } from './components/opal-loader';
 export { IDataListItem as IOpalLoadedListDataListItem, IDataProvider as IOpalLoadedListDataProvider, OpalLoadedList } from './components/opal-loaded-list';
 export { OpalFilteredList } from './components/opal-filtered-list';
 export { OpalTreeList } from './components/opal-tree-list';
-export { IDataListItem as IOpalAutosuggestDataListItem, IDataProvider as IOpalAutosuggestDataProvider, OpalAutosuggest } from './components/opal-autosuggest';
 export { OpalTagSelect } from './components/opal-tag-select';
+export { OpalTreeSelect } from './components/opal-tree-select';
+export { IDataListItem as IOpalAutosuggestDataListItem, IDataProvider as IOpalAutosuggestDataProvider, OpalAutosuggest } from './components/opal-autosuggest';
 export { OpalMultirow, OpalMultirowRow } from './components/opal-multirow';
 export { IRouteProperty as IOpalRouterRouteProperty, IRoute as IOpalRouterRoute, IComponentState as IOpalRouterComponentState, OpalRouter, OpalRoute } from './components/opal-router';
 export { default as Utils } from './Utils';

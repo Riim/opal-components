@@ -20,7 +20,9 @@ opal-dropdown/menu {
 		}
 	}
 
-	span/nothing-found-message (shown={dataList.length |not }) { '{constructor.i18n.nothingFound}' }
+	span/nothing-found-message (shown={dataList.length |not }) {
+		'{constructor.i18n.nothingFound}'
+	}
 }
 
 }

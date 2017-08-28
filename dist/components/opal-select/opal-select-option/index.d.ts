@@ -3,8 +3,7 @@ import { Component } from 'rionite';
 import '../../../assets/icons/opal-components__icon-check.svg';
 import './index.css';
 export declare class OpalSelectOption extends Component {
-    _tabIndex: number;
-    initialize(): void;
+    readonly _tabIndex: number;
     elementAttached(): void;
     _onInputFocusedChange(evt: IEvent): void;
     _onControlFocus(evt: Event): void;

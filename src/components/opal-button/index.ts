@@ -1,4 +1,5 @@
-import { define, IEvent, Utils } from 'cellx';
+import { IEvent, Utils } from 'cellx';
+import { computed } from 'cellx-decorators';
 import { Component, d, IDisposableListening } from 'rionite';
 import './index.css';
 
@@ -19,17 +20,11 @@ let nextTick = Utils.nextTick;
 	}
 })
 export class OpalButton extends Component {
-	_tabIndex: number;
+	@computed get _tabIndex(): number {
+		return this.input.disabled ? -1 : this.input.tabIndex;
+	}
 
 	_documentKeyDownListening: IDisposableListening | undefined;
-
-	initialize() {
-		define(this, {
-			_tabIndex(this: OpalButton): number {
-				return this.input.disabled ? -1 : this.input.tabIndex;
-			}
-		});
-	}
 
 	ready() {
 		if (this.input.focused) {
@@ -104,6 +99,7 @@ export class OpalButton extends Component {
 	click(): OpalButton {
 		if (this.input.checkable) {
 			this.emit(this.toggle() ? 'check' : 'uncheck');
+			this.emit('change');
 		}
 
 		this.emit('click');

@@ -2,8 +2,7 @@ import { IEvent } from 'cellx';
 import { Component } from 'rionite';
 import './index.css';
 export declare class OpalTab extends Component {
-    _tabIndex: number;
-    initialize(): void;
+    readonly _tabIndex: number;
     elementAttached(): void;
     ready(): void;
     _onInputFocusedChange(evt: IEvent): void;

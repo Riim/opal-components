@@ -1,4 +1,5 @@
-import { define, IEvent, Utils } from 'cellx';
+import { IEvent, Utils } from 'cellx';
+import { computed } from 'cellx-decorators';
 import { Component, d, IDisposableListening } from 'rionite';
 import './index.css';
 import template = require('./template.nelm');
@@ -19,17 +20,11 @@ let nextTick = Utils.nextTick;
 	template
 })
 export class OpalCheckbox extends Component {
-	_tabIndex: number;
+	@computed get _tabIndex(): number {
+		return this.input.disabled ? -1 : this.input.tabIndex;
+	}
 
 	_documentKeyDownListening: IDisposableListening;
-
-	initialize() {
-		define(this, {
-			_tabIndex(this: OpalCheckbox): number {
-				return this.input.disabled ? -1 : this.input.tabIndex;
-			}
-		});
-	}
 
 	elementAttached() {
 		this.listenTo(this, {

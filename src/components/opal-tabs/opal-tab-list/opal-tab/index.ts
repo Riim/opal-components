@@ -1,4 +1,5 @@
-import { define, IEvent, Utils } from 'cellx';
+import { IEvent, Utils } from 'cellx';
+import { computed } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import './index.css';
 import template = require('./template.nelm');
@@ -18,14 +19,8 @@ let nextTick = Utils.nextTick;
 	template
 })
 export class OpalTab extends Component {
-	_tabIndex: number;
-
-	initialize() {
-		define(this, {
-			_tabIndex(this: OpalTab): number {
-				return this.input.disabled ? -1 : this.input.tabIndex;
-			}
-		});
+	@computed get _tabIndex(): number {
+		return this.input.disabled ? -1 : this.input.tabIndex;
 	}
 
 	elementAttached() {

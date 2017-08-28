@@ -1,9 +1,5 @@
-import {
-	Cell,
-	define,
-	IEvent,
-	ObservableList
-	} from 'cellx';
+import { Cell, IEvent, ObservableList } from 'cellx';
+import { computed, observable } from 'cellx-decorators';
 import {
 	Component,
 	d,
@@ -75,30 +71,39 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disab
 export class OpalAutosuggest extends Component {
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 
-	dataProvider: IDataProvider;
-
-	dataList: ObservableList<IDataListItem>;
+	@observable dataList = new ObservableList<IDataListItem>();
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;
 
+	dataProvider: IDataProvider;
+
+	@observable value: IDataListItem | null;
+
 	_isNotInputConfirmed = false;
 
-	_isLoadingPlanned: boolean;
+	@observable _isLoadingPlanned = false;
 	_loadingTimeout: IDisposableTimeout;
 	_requestCallback: IDisposableCallback;
-	loading: boolean;
+	@observable loading = false;
 
-	isLoaderShown: boolean;
+	@computed get isLoaderShown(): boolean {
+		return this._isLoadingPlanned || this.loading;
+	}
 
 	_focusedListItem: HTMLElement | null;
-
-	value: IDataListItem | null;
 
 	_documentFocusListening: IDisposableListening;
 	_documentListening: IDisposableListening;
 
 	initialize() {
 		let input = this.input;
+
+		let dataListItemSchema = input.datalistItemSchema;
+		let defaultDataListItemSchema = (this.constructor as typeof OpalAutosuggest).defaultDataListItemSchema;
+
+		this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+
 		let dataProvider;
 
 		if (input.$specified.has('dataprovider')) {
@@ -115,24 +120,7 @@ export class OpalAutosuggest extends Component {
 
 		this.dataProvider = dataProvider;
 
-		define(this, {
-			dataList: new ObservableList<IDataListItem>(),
-
-			_isLoadingPlanned: false,
-			loading: false,
-
-			isLoaderShown(this: OpalAutosuggest): boolean {
-				return this._isLoadingPlanned || this.loading;
-			},
-
-			value: input.value
-		});
-
-		let dataListItemSchema = input.datalistItemSchema;
-		let defaultDataListItemSchema = (this.constructor as typeof OpalAutosuggest).defaultDataListItemSchema;
-
-		this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
-		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+		this.value = input.value;
 	}
 
 	elementAttached() {
@@ -327,14 +315,13 @@ export class OpalAutosuggest extends Component {
 	_load() {
 		this.loading = true;
 
-		let dataProvider = this.dataProvider;
 		let args = [this.$<OpalTextInput>('text-input')!.value];
 
-		if (dataProvider.getItems.length >= 2) {
+		if (this.dataProvider.getItems.length >= 2) {
 			args.unshift(this.input.count);
 		}
 
-		dataProvider.getItems.apply(dataProvider, args).then(
+		this.dataProvider.getItems.apply(this.dataProvider, args).then(
 			(this._requestCallback = this.registerCallback(this._itemsRequestCallback))
 		);
 	}

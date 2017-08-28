@@ -1,4 +1,4 @@
-import { define } from 'cellx';
+import { computed, observable } from 'cellx-decorators';
 import { Component, d, IComponentElement } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
@@ -13,21 +13,13 @@ let map = Array.prototype.map;
 export class OpalInputValidator extends Component {
 	static OpalInputValidatorRule = OpalInputValidatorRule;
 
-	failedRule: OpalInputValidatorRule | null;
+	@observable failedRule: OpalInputValidatorRule | null = null;
 
-	valid: boolean;
+	@computed get valid(): boolean {
+		return !this.failedRule;
+	}
 
 	_rules: Array<OpalInputValidatorRule>;
-
-	initialize() {
-		define(this, {
-			failedRule: null,
-
-			valid(this: OpalInputValidator): boolean {
-				return !this.failedRule;
-			}
-		});
-	}
 
 	ready() {
 		this._rules = map.call(

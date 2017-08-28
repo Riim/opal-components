@@ -1,65 +1,66 @@
 @component opal-tree-list-item {
 	display: block;
 
-	@el btn-toggle-children {
-		position: relative;
-		display: inline-block;
-		visibility: hidden;
-		margin-right: .25em;
-		width: 16px;
-		height: 16px;
-		vertical-align: middle;
+	@el head {
+		display: table;
+	}
+		@el btn-toggle-children {
+			position: relative;
+			display: table-cell;
+			visibility: hidden;
+			padding-right: 4px;
+			vertical-align: middle;
+			text-align: center;
 
-		&:focus {
-			outline: none;
+			&:focus {
+				outline: none;
 
-			body:not(._no-focus-highlight) &::after {
-				position: absolute;
-				top: -2px;
-				right: -2px;
-				bottom: -2px;
-				left: -2px;
-				border-radius: 3px;
-				box-shadow: inset 0 0 0 1px hsl(208,100%,60%);
-				content: '';
-				pointer-events: none;
+				body:not(._no-focus-highlight) &::after {
+					position: absolute;
+					top: 1px;
+					right: 2px;
+					bottom: 1px;
+					left: -2px;
+					border-radius: 2px;
+					box-shadow: inset 0 0 0 1px hsl(208,100%,60%);
+					content: '';
+					pointer-events: none;
+				}
+			}
+
+			@mod checked {
+				@el btn-toggle-children-icon {
+					transform: rotate(0);
+				}
 			}
 		}
-
-		@mod checked {
 			@el btn-toggle-children-icon {
-				transform: rotate(0);
-			}
-
-			& ~ .opal-tree-list-item__children {
 				display: block;
-				padding-left: 16px;
+				width: 14px;
+				height: 14px;
+				transition: transform .1s linear;
+				transform: rotate(-90deg);
+				fill: currentColor;
 			}
-		}
-	}
-		@el btn-toggle-children-icon {
-			position: absolute;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			margin: auto;
-			width: 14px;
-			height: 14px;
-			transition: transform .1s linear;
-			transform: rotate(-90deg);
-			fill: currentColor;
-		}
 
-	@el content {
-	}
+		@el content-wrapper {
+			display: table-cell;
+			width: 100%;
+		}
+			@el content {
+			}
+				@el selection-control {
+				}
 
 	@el children {
 		display: none;
 		padding-left: 16px;
 	}
 
-	@el selected-control {
+	@mod opened {
+		& > .opal-tree-list-item__children {
+			display: block;
+		}
 	}
 
 	@mod nesting-level=0 {
@@ -70,7 +71,7 @@
 	}
 
 	@mod has-children {
-		& > .opal-tree-list-item__btn-toggle-children {
+		& > .opal-tree-list-item__head .opal-tree-list-item__btn-toggle-children {
 			visibility: visible;
 		}
 	}

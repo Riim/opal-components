@@ -11,7 +11,7 @@ opal-input-validator/input-validator {
 		'{constructor.i18n.nonExistentDate}'
 	}
 
-	opal-input-validator-rule/input-validator-rule-date-in-range (test=dateInRange, popover-to={input.popoverTo}) {
+	opal-input-validator-rule/input-validator-rule-date-in-range (test=isDateInRange, popover-to={input.popoverTo}) {
 		'{constructor.i18n.invalidDateRange}'
 	}
 
