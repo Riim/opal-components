@@ -51,6 +51,8 @@ function toComparable(str: string | null): string | null {
 	template
 })
 export class OpalTreeList extends Component {
+	static OpalTreeListItem = OpalTreeListItem;
+
 	static defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
@@ -183,3 +185,5 @@ export class OpalTreeList extends Component {
 }
 
 (OpalTreeList.prototype as any)._getListItemContext = _getListItemContext;
+
+export { OpalTreeListItem };

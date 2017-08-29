@@ -20,9 +20,7 @@ module.exports = (env) => {
 
 	return {
 		entry: {
-			OpalComponents: './src/index.ts',
-			OpalCodeListing: './src/components/opal-code-listing/index.ts',
-			focusHighlightController: './src/focusHighlightController.ts'
+			index: './src/index.ts'
 		},
 
 		output: {
@@ -86,12 +84,7 @@ module.exports = (env) => {
 			extensions: ['.ts', '.tsx', '.js', '.jsx']
 		},
 
-		externals: [
-			'cellx',
-			'cellx-decorators',
-			'rionite',
-			'created-browser-history'
-		],
+		context: __dirname,
 
 		plugins,
 

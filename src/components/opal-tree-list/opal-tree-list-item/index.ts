@@ -2,7 +2,6 @@ import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import _getListItemContext from '../_getListItemContext';
-import ObservableTreeList from '../../../ObservableTreeList';
 import { OpalButton } from '../../opal-button';
 import { IDataTreeListItem, TDataTreeList, TViewModel } from '../index';
 import './index.css';
@@ -51,7 +50,7 @@ export class OpalTreeListItem extends Component {
 	initialize() {
 		let input = this.input;
 
-		this.dataTreeListItem = (input.filteredDatatreelist as ObservableTreeList).get(input.indexpath)!;
+		this.dataTreeListItem = (input.filteredDatatreelist as TDataTreeList).get(input.indexpath)!;
 		this._dataTreeListItemValueFieldName = input.datatreelistItemValueFieldName;
 		this._dataTreeListItemTextFieldName = input.datatreelistItemTextFieldName;
 

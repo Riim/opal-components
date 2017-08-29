@@ -2,6 +2,7 @@ import { IEvent, ObservableList } from 'cellx';
 import { Component } from 'rionite';
 import ObservableTreeList from '../../ObservableTreeList';
 import './index.css';
+import { OpalTreeListItem } from './opal-tree-list-item';
 import './opal-tree-list-item';
 export interface IDataTreeListItem {
     [name: string]: any;
@@ -12,6 +13,7 @@ export declare type TViewModel = ObservableList<{
     [name: string]: any;
 }>;
 export declare class OpalTreeList extends Component {
+    static OpalTreeListItem: typeof OpalTreeListItem;
     static defaultDataTreeListItemSchema: Readonly<{
         value: string;
         text: string;
@@ -31,3 +33,4 @@ export declare class OpalTreeList extends Component {
     elementAttached(): void;
     _onChange(evt: IEvent<Component>): void;
 }
+export { OpalTreeListItem };

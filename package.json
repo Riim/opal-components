@@ -1,12 +1,13 @@
 {
   "name": "opal-components",
-  "version": "0.27.68",
+  "version": "0.27.70",
   "description": "",
   "main": "dist/OpalComponents.js",
-  "typings": "dist/index.d.ts",
+  "typings": "dist/src/index.d.ts",
   "scripts": {
     "build": "node_modules/.bin/gulp clear && node_modules/.bin/webpack && node_modules/.bin/gulp",
     "dev": "node_modules/.bin/webpack --env.dev",
+    "docs": "node_modules/.bin/webpack --config=docs/webpack.config.js --env.dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -54,6 +55,6 @@
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.0",
     "prismjs": "^1.6.0",
-    "rionite": "^0.27.44"
+    "rionite": "^0.27.47"
   }
 }

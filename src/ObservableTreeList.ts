@@ -19,15 +19,15 @@ export default class ObservableTreeList<T extends IItem = IItem> extends EventEm
 		this._items = items || [];
 	}
 
-	get(indexpath: Array<number>): IItem | undefined {
+	get(indexpath: Array<number>): T | undefined {
 		let indexpathLength = indexpath.length;
 
 		if (!indexpathLength) {
 			throw new TypeError(INDEXPATH_EMPTY_ERROR_MESSAGE);
 		}
 
-		let items: Array<IItem> | undefined = this._items;
-		let item: IItem;
+		let items: Array<T> | undefined = this._items;
+		let item: T;
 
 		for (let i = 0, l = indexpathLength - 1; i < l; i++) {
 			item = items[indexpath[i]];
@@ -36,7 +36,7 @@ export default class ObservableTreeList<T extends IItem = IItem> extends EventEm
 				return;
 			}
 
-			items = item.children;
+			items = item.children as Array<T>;
 
 			if (!items) {
 				return;
@@ -46,7 +46,7 @@ export default class ObservableTreeList<T extends IItem = IItem> extends EventEm
 		return items[indexpath[indexpathLength - 1]];
 	}
 
-	set(indexpath: Array<number>, item: IItem): this {
+	set(indexpath: Array<number>, item: T): this {
 		let indexpathLength = indexpath.length;
 
 		if (!indexpathLength) {

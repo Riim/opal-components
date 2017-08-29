@@ -76,30 +76,24 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ({
 
 /***/ 124:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
+/***/ (function(module, exports) {
 
 document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
-	document.removeEventListener('DOMContentLoaded', onDOMContentLoaded);
-
-	var body = document.body;
-
-	body.classList.add('_no-focus-highlight');
-
-	document.addEventListener('keydown', function (evt) {
-		if (evt.which == 9 /* Tab */) {
-				body.classList.remove('_no-focus-highlight');
-			}
-	});
-
-	document.addEventListener('click', function () {
-		if (document.activeElement == body) {
-			body.classList.add('_no-focus-highlight');
-		}
-	});
+    document.removeEventListener('DOMContentLoaded', onDOMContentLoaded);
+    var body = document.body;
+    body.classList.add('_no-focus-highlight');
+    document.addEventListener('keydown', function (evt) {
+        if (evt.which == 9 /* Tab */) {
+            body.classList.remove('_no-focus-highlight');
+        }
+    });
+    document.addEventListener('click', function () {
+        if (document.activeElement == body) {
+            body.classList.add('_no-focus-highlight');
+        }
+    });
 });
+
 
 /***/ })
 
