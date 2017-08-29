@@ -59,7 +59,7 @@ span/control {
 						)
 
 						opal-loaded-list/menu-loaded-list (
-							class=opal-select__loaded-list opal-filtered-list__loaded-list,
+							class=opal-select__loaded-list opal-filtered-list__list,
 							dataprovider={dataProvider}
 						) {
 							opal-select-option/loaded-list-select-option, select-option (

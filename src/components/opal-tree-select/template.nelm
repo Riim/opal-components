@@ -1,14 +1,14 @@
 opal-modal/menu {
-	opal-filtered-list {
-		opal-tree-list (
-			class=opal-filtered-list__loaded-list,
+	opal-filtered-list/filtered-list {
+		opal-tree-list/tree-list (
+			class=opal-filtered-list__list,
 			datatreelist={dataTreeList},
 			datatreelist-item-schema={input.datatreelistItemSchema},
 			view-model={viewModel},
 			view-model-item-schema={input.viewModelItemSchema},
 			query={input.query}
 		) {
-			opal-select-option (class=opal-tree-list__selection-control, text={$item.name}, selected={$selected})
+			opal-select-option/option (class=opal-tree-list__selection-control, text={$item.name}, selected={$selected})
 		}
 	}
 }

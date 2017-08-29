@@ -1,7 +1,7 @@
 @if-then (if=dataTreeList) {
 	@if-then (if=filteredDataTreeList.length) {
 		@repeat (for=$item of filteredDataTreeList) {
-			opal-tree-list-item (
+			opal-tree-list-item/item (
 				datatreelist={dataTreeList},
 				filtered-datatreelist={filteredDataTreeList},
 				datatreelist-item-value-field-name={_dataTreeListItemValueFieldName},

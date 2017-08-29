@@ -11,7 +11,7 @@ div/head {
 @if-then (if=dataTreeListItem.children) {
 	div/children {
 		@repeat (for=$item of dataTreeListItem.children) {
-			opal-tree-list-item (
+			opal-tree-list-item/item (
 				datatreelist={input.datatreelist},
 				filtered-datatreelist={input.filteredDatatreelist},
 				datatreelist-item-value-field-name={_dataTreeListItemValueFieldName},
