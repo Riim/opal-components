@@ -8,8 +8,8 @@
 			width: auto;
 		}
 
-	@el loaded-list-container {
+	@el list-container {
 	}
-		@el loaded-list {
+		@el list {
 		}
 }

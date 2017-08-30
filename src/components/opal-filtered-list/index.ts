@@ -24,7 +24,7 @@ export class OpalFilteredList extends Component {
 	}
 
 	_onQueryInputInput(evt: IEvent<OpalTextInput>) {
-		this.$<OpalLoadedList>('loaded-list')!.input.query = evt.target.value;
+		this.$<OpalLoadedList>('list')!.input.query = evt.target.value;
 	}
 
 	focus() {

@@ -5899,7 +5899,7 @@ var OpalFilteredList = (function (_super) {
         }
     };
     OpalFilteredList.prototype._onQueryInputInput = function (evt) {
-        this.$('loaded-list').input.query = evt.target.value;
+        this.$('list').input.query = evt.target.value;
     };
     OpalFilteredList.prototype.focus = function () {
         var queryInput = this.$('query-input');
@@ -5942,7 +5942,7 @@ module.exports = (function(d) {
 /* 92 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input) {\nopal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder})\n}\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__list)\n}"
+module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input) {\nopal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder})\n}\n}\nrt-content/list-container (select=.opal-filtered-list__list)\n}"
 
 /***/ }),
 /* 93 */
