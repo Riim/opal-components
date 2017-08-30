@@ -5965,7 +5965,6 @@ module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__quer
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-// tslint:disable-next-line
 function closestComponent(component, componentClass) {
     var c = component;
     while (!(c instanceof componentClass) && (c = c.parentComponent)) { }

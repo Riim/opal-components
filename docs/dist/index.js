@@ -1815,12 +1815,8 @@ var Component = (function (_super) {
             }
         }
     };
-    Component.prototype.listenTo = function (target, typeOrListeners, listenerOrContext, contextOrUseCapture, useCapture) {
-        if (typeof target == 'string') {
-            target = this.$(target);
-        }
-        return DisposableMixin_1.DisposableMixin.prototype
-            .listenTo.call(this, target, typeOrListeners, listenerOrContext, contextOrUseCapture, useCapture);
+    Component.prototype.listenTo = function (target, type, listener, context, useCapture) {
+        return DisposableMixin_1.DisposableMixin.prototype.listenTo.call(this, typeof target == 'string' ? this.$(target) : target, type, listener, context, useCapture);
     };
     Component.prototype._listenTo = function (target, type, listener, context, useCapture) {
         if (target instanceof Component) {
@@ -3026,7 +3022,6 @@ exports.keypathToJSExpression = keypathToJSExpression;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(20);
-// tslint:disable-next-line
 exports.formatters = {
     or: function or(value, arg) {
         return value || arg;
@@ -3281,19 +3276,19 @@ var DisposableMixin = (function () {
     function DisposableMixin() {
         this._disposables = {};
     }
-    DisposableMixin.prototype.listenTo = function (target, typeOrListeners, listenerOrContext, contextOrUseCapture, useCapture) {
+    DisposableMixin.prototype.listenTo = function (target, type, listener, context, useCapture) {
         var _this = this;
         var listenings;
-        if (typeof typeOrListeners == 'object') {
+        if (typeof type == 'object') {
             listenings = [];
-            if (Array.isArray(typeOrListeners)) {
-                for (var i = 0, l = typeOrListeners.length; i < l; i++) {
-                    listenings.push(this.listenTo(target, typeOrListeners[i], listenerOrContext, contextOrUseCapture, useCapture));
+            if (Array.isArray(type)) {
+                for (var i = 0, l = type.length; i < l; i++) {
+                    listenings.push(this.listenTo(target, type[i], listener, context, useCapture));
                 }
             }
             else {
-                for (var type in typeOrListeners) {
-                    listenings.push(this.listenTo(target, type, typeOrListeners[type], listenerOrContext, contextOrUseCapture));
+                for (var name_1 in type) {
+                    listenings.push(this.listenTo(target, name_1, type[name_1], listener, context));
                 }
             }
         }
@@ -3301,17 +3296,17 @@ var DisposableMixin = (function () {
             if (Array.isArray(target) || target instanceof NodeList || target instanceof HTMLCollection) {
                 listenings = [];
                 for (var i = 0, l = target.length; i < l; i++) {
-                    listenings.push(this.listenTo(target[i], typeOrListeners, listenerOrContext, contextOrUseCapture, useCapture));
+                    listenings.push(this.listenTo(target[i], type, listener, context, useCapture));
                 }
             }
-            else if (Array.isArray(listenerOrContext)) {
+            else if (Array.isArray(listener)) {
                 listenings = [];
-                for (var i = 0, l = listenerOrContext.length; i < l; i++) {
-                    listenings.push(this.listenTo(target, typeOrListeners, listenerOrContext[i], contextOrUseCapture, useCapture));
+                for (var i = 0, l = listener.length; i < l; i++) {
+                    listenings.push(this.listenTo(target, type, listener[i], context, useCapture));
                 }
             }
             else {
-                return this._listenTo(target, typeOrListeners, listenerOrContext, contextOrUseCapture !== undefined ? contextOrUseCapture : this, useCapture || false);
+                return this._listenTo(target, type, listener, context !== undefined ? context : this, useCapture || false);
             }
         }
         var id = nextUID();
@@ -3359,7 +3354,6 @@ var DisposableMixin = (function () {
         };
         return listening;
     };
-    // tslint:disable-next-line
     DisposableMixin.prototype.setTimeout = function (callback, delay) {
         var _this = this;
         var id = nextUID();
@@ -3379,7 +3373,6 @@ var DisposableMixin = (function () {
         };
         return timeout;
     };
-    // tslint:disable-next-line
     DisposableMixin.prototype.setInterval = function (callback, delay) {
         var _this = this;
         var id = nextUID();
@@ -3398,7 +3391,6 @@ var DisposableMixin = (function () {
         };
         return interval;
     };
-    // tslint:disable-next-line
     DisposableMixin.prototype.registerCallback = function (callback) {
         var _this = this;
         var id = nextUID();
@@ -4446,7 +4438,6 @@ function compileContentTextFragment(contentTextFragment, contentTextFragmentStri
     if (cache[key]) {
         return cache[key];
     }
-    // tslint:disable-next-line
     var inner;
     if (contentTextFragment.length == 1) {
         inner = Function('formatters', "var temp; return " + (contentTextFragment[0].nodeType == ContentTextFragmentNodeType.TEXT ?
@@ -4910,7 +4901,6 @@ exports.registerComponent = registerComponent;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var map_set_polyfill_1 = __webpack_require__(0);
-// tslint:disable-next-line
 exports.elementConstructorMap = new map_set_polyfill_1.Map([
     ['a', window.HTMLAnchorElement],
     ['blockquote', window.HTMLQuoteElement],
@@ -15294,14 +15284,10 @@ exports.throttle = throttle_1.throttle;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-function debounce(delay, immediateOrCallback, callback) {
-    var immediate;
-    if (callback === undefined) {
+function debounce(delay, immediate, callback) {
+    if (typeof immediate == 'function') {
+        callback = immediate;
         immediate = false;
-        callback = immediateOrCallback;
-    }
-    else {
-        immediate = immediateOrCallback;
     }
     var context;
     var args;
@@ -15340,7 +15326,7 @@ function debounce(delay, immediateOrCallback, callback) {
         }
         return result;
     };
-    debounced.flush = function flush() {
+    debounced.flush = function () {
         if (timeoutID) {
             clearTimeout(timeoutID);
             timeoutID = null;
@@ -15351,7 +15337,7 @@ function debounce(delay, immediateOrCallback, callback) {
             }
         }
     };
-    debounced.clear = function clear() {
+    debounced.clear = function () {
         if (timeoutID) {
             clearTimeout(timeoutID);
             timeoutID = null;
@@ -15370,14 +15356,10 @@ exports.debounce = debounce;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-function throttle(delay, noTrailingOrCallback, callback) {
-    var noTrailing;
-    if (callback === undefined) {
+function throttle(delay, noTrailing, callback) {
+    if (typeof noTrailing == 'function') {
+        callback = noTrailing;
         noTrailing = false;
-        callback = noTrailingOrCallback;
-    }
-    else {
-        noTrailing = noTrailingOrCallback;
     }
     var context;
     var args;
@@ -15413,7 +15395,7 @@ function throttle(delay, noTrailingOrCallback, callback) {
         }
         return result;
     };
-    throttled.flush = function flush() {
+    throttled.flush = function () {
         if (timeoutID) {
             clearTimeout(timeoutID);
             timeoutID = null;
@@ -15424,7 +15406,7 @@ function throttle(delay, noTrailingOrCallback, callback) {
             }
         }
     };
-    throttled.clear = function clear() {
+    throttled.clear = function () {
         if (timeoutID) {
             clearTimeout(timeoutID);
             timeoutID = null;
@@ -15466,7 +15448,6 @@ module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__quer
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-// tslint:disable-next-line
 function closestComponent(component, componentClass) {
     var c = component;
     while (!(c instanceof componentClass) && (c = c.parentComponent)) { }
