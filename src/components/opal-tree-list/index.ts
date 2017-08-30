@@ -77,7 +77,7 @@ export class OpalTreeList extends Component {
 
 					if (
 						filteredChildren.length ||
-							toComparable(item[dataTreeListItemValueFieldName])!.indexOf(query!) != -1
+							toComparable(item[dataTreeListItemTextFieldName])!.indexOf(query!) != -1
 					) {
 						filteredDataTreeList.push({
 							$original: item,
@@ -86,7 +86,7 @@ export class OpalTreeList extends Component {
 							children: filteredChildren
 						});
 					}
-				} else if (toComparable(item[dataTreeListItemValueFieldName])!.indexOf(query!) != -1) {
+				} else if (toComparable(item[dataTreeListItemTextFieldName])!.indexOf(query!) != -1) {
 					filteredDataTreeList.push({
 						$original: item,
 						[dataTreeListItemValueFieldName]: item[dataTreeListItemValueFieldName],

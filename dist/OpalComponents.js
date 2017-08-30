@@ -1122,7 +1122,7 @@ var OpalTreeList = (function (_super) {
                 if (item.children) {
                     var filteredChildren = item.children.reduce(_, []);
                     if (filteredChildren.length ||
-                        toComparable(item[dataTreeListItemValueFieldName]).indexOf(query) != -1) {
+                        toComparable(item[dataTreeListItemTextFieldName]).indexOf(query) != -1) {
                         filteredDataTreeList.push((_a = {
                                 $original: item
                             },
@@ -1132,7 +1132,7 @@ var OpalTreeList = (function (_super) {
                             _a));
                     }
                 }
-                else if (toComparable(item[dataTreeListItemValueFieldName]).indexOf(query) != -1) {
+                else if (toComparable(item[dataTreeListItemTextFieldName]).indexOf(query) != -1) {
                     filteredDataTreeList.push((_b = {
                             $original: item
                         },
