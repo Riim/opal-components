@@ -50,6 +50,9 @@ export class OpalTreeSelect extends OpalSelect {
 	_onMenuSelectOptionDeselect() {
 	}
 
+	_onMenuChange() {
+	}
+
 	_updateOptions() {
 	}
 }

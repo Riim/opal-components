@@ -10146,11 +10146,11 @@ var rionite_1 = __webpack_require__(0);
 var ObservableTreeList_1 = __webpack_require__(5);
 var Utils_1 = __webpack_require__(11);
 var _getListItemContext_1 = __webpack_require__(12);
-__webpack_require__(100);
+__webpack_require__(103);
 var opal_tree_list_item_1 = __webpack_require__(13);
 exports.OpalTreeListItem = opal_tree_list_item_1.OpalTreeListItem;
 __webpack_require__(13);
-var template = __webpack_require__(103);
+var template = __webpack_require__(106);
 var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
 function getVertices(item) {
@@ -10179,7 +10179,7 @@ var OpalTreeList = (function (_super) {
                 if (item.children) {
                     var filteredChildren = item.children.reduce(_, []);
                     if (filteredChildren.length ||
-                        toComparable(item[dataTreeListItemValueFieldName]).indexOf(query) != -1) {
+                        toComparable(item[dataTreeListItemTextFieldName]).indexOf(query) != -1) {
                         filteredDataTreeList.push((_a = {
                                 $original: item
                             },
@@ -10189,7 +10189,7 @@ var OpalTreeList = (function (_super) {
                             _a));
                     }
                 }
-                else if (toComparable(item[dataTreeListItemValueFieldName]).indexOf(query) != -1) {
+                else if (toComparable(item[dataTreeListItemTextFieldName]).indexOf(query) != -1) {
                     filteredDataTreeList.push((_b = {
                             $original: item
                         },
@@ -10307,7 +10307,7 @@ OpalTreeList.prototype._getListItemContext = _getListItemContext_1.default;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var closestComponent_1 = __webpack_require__(99);
+var closestComponent_1 = __webpack_require__(102);
 exports.closestComponent = closestComponent_1.default;
 var isFocusable_1 = __webpack_require__(3);
 exports.isFocusable = isFocusable_1.default;
@@ -10375,8 +10375,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
 var _getListItemContext_1 = __webpack_require__(12);
-__webpack_require__(101);
-var template = __webpack_require__(102);
+__webpack_require__(104);
+var template = __webpack_require__(105);
 var OpalTreeListItem = (function (_super) {
     __extends(OpalTreeListItem, _super);
     function OpalTreeListItem() {
@@ -10618,7 +10618,7 @@ var rionite_1 = __webpack_require__(0);
 __webpack_require__(18);
 __webpack_require__(19);
 var ObservableTreeList_1 = __webpack_require__(5);
-var template = __webpack_require__(132);
+var template = __webpack_require__(135);
 rionite_1.formatters.log = function (msg) {
     console.log(msg);
     return msg;
@@ -10805,16 +10805,16 @@ var opal_filtered_list_1 = __webpack_require__(96);
 exports.OpalFilteredList = opal_filtered_list_1.OpalFilteredList;
 var opal_tree_list_1 = __webpack_require__(10);
 exports.OpalTreeList = opal_tree_list_1.OpalTreeList;
-var opal_tag_select_1 = __webpack_require__(104);
+var opal_tag_select_1 = __webpack_require__(107);
 exports.OpalTagSelect = opal_tag_select_1.OpalTagSelect;
-var opal_tree_select_1 = __webpack_require__(107);
+var opal_tree_select_1 = __webpack_require__(110);
 exports.OpalTreeSelect = opal_tree_select_1.OpalTreeSelect;
-var opal_autosuggest_1 = __webpack_require__(110);
+var opal_autosuggest_1 = __webpack_require__(113);
 exports.OpalAutosuggest = opal_autosuggest_1.OpalAutosuggest;
-var opal_multirow_1 = __webpack_require__(113);
+var opal_multirow_1 = __webpack_require__(116);
 exports.OpalMultirow = opal_multirow_1.OpalMultirow;
 exports.OpalMultirowRow = opal_multirow_1.OpalMultirowRow;
-var opal_router_1 = __webpack_require__(119);
+var opal_router_1 = __webpack_require__(122);
 exports.OpalRouter = opal_router_1.OpalRouter;
 exports.OpalRoute = opal_router_1.OpalRoute;
 var Utils_1 = __webpack_require__(11);
@@ -15229,9 +15229,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var debounce_throttle_1 = __webpack_require__(97);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(97);
-var template = __webpack_require__(98);
+__webpack_require__(100);
+var template = __webpack_require__(101);
 var OpalFilteredList = (function (_super) {
     __extends(OpalFilteredList, _super);
     function OpalFilteredList() {
@@ -15240,11 +15241,18 @@ var OpalFilteredList = (function (_super) {
     OpalFilteredList.prototype.elementAttached = function () {
         var queryInput = this.$('query-input');
         if (queryInput) {
-            this.listenTo(queryInput, 'input', this._onQueryInputInput);
+            this.listenTo(queryInput, 'input', debounce_throttle_1.debounce(150, this._onQueryInputInput));
+            this.listenTo(queryInput, 'change', this._onQueryInputChange);
         }
     };
     OpalFilteredList.prototype._onQueryInputInput = function (evt) {
-        this.$('loaded-list').input.query = evt.target.value;
+        this._setListQuery(evt.target.value);
+    };
+    OpalFilteredList.prototype._onQueryInputChange = function (evt) {
+        this._setListQuery(evt.target.value);
+    };
+    OpalFilteredList.prototype._setListQuery = function (query) {
+        this.$('list').input.query = query;
     };
     OpalFilteredList.prototype.focus = function () {
         var queryInput = this.$('query-input');
@@ -15268,6 +15276,168 @@ exports.OpalFilteredList = OpalFilteredList;
 
 /***/ }),
 /* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var debounce_1 = __webpack_require__(98);
+exports.debounce = debounce_1.debounce;
+var throttle_1 = __webpack_require__(99);
+exports.throttle = throttle_1.throttle;
+
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function debounce(delay, immediateOrCallback, callback) {
+    var immediate;
+    if (callback === undefined) {
+        immediate = false;
+        callback = immediateOrCallback;
+    }
+    else {
+        immediate = immediateOrCallback;
+    }
+    var context;
+    var args;
+    var timestamp;
+    var timeoutID;
+    var lastExec = 0;
+    var result;
+    function later() {
+        var now = Date.now();
+        if (now - timestamp < delay) {
+            timeoutID = setTimeout(later, delay - (now - timestamp));
+        }
+        else {
+            timeoutID = null;
+            lastExec = now;
+            result = callback.apply(context, args);
+            if (!timeoutID) {
+                context = args = null;
+            }
+        }
+    }
+    var debounced = function debounced() {
+        timestamp = Date.now();
+        if (immediate && timestamp - lastExec >= delay) {
+            lastExec = timestamp;
+            if (!timeoutID) {
+                result = callback.apply(this, arguments);
+                return result;
+            }
+            result = callback.apply(context, args);
+        }
+        context = this;
+        args = arguments;
+        if (!timeoutID) {
+            timeoutID = setTimeout(later, delay);
+        }
+        return result;
+    };
+    debounced.flush = function flush() {
+        if (timeoutID) {
+            clearTimeout(timeoutID);
+            timeoutID = null;
+            lastExec = Date.now();
+            result = callback.apply(context, args);
+            if (!timeoutID) {
+                context = args = null;
+            }
+        }
+    };
+    debounced.clear = function clear() {
+        if (timeoutID) {
+            clearTimeout(timeoutID);
+            timeoutID = null;
+            context = args = null;
+        }
+    };
+    return debounced;
+}
+exports.debounce = debounce;
+
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function throttle(delay, noTrailingOrCallback, callback) {
+    var noTrailing;
+    if (callback === undefined) {
+        noTrailing = false;
+        callback = noTrailingOrCallback;
+    }
+    else {
+        noTrailing = noTrailingOrCallback;
+    }
+    var context;
+    var args;
+    var timestamp;
+    var timeoutID;
+    var lastExec = 0;
+    var result;
+    function later() {
+        timeoutID = null;
+        lastExec = Date.now();
+        result = callback.apply(context, args);
+        if (!timeoutID) {
+            context = args = null;
+        }
+    }
+    var throttled = function throttled() {
+        timestamp = Date.now();
+        if (timestamp - lastExec >= delay) {
+            lastExec = timestamp;
+            if (!timeoutID) {
+                result = callback.apply(this, arguments);
+                return result;
+            }
+            result = callback.apply(context, args);
+        }
+        if (noTrailing) {
+            return result;
+        }
+        context = this;
+        args = arguments;
+        if (!timeoutID) {
+            timeoutID = setTimeout(later, delay - (timestamp - lastExec));
+        }
+        return result;
+    };
+    throttled.flush = function flush() {
+        if (timeoutID) {
+            clearTimeout(timeoutID);
+            timeoutID = null;
+            lastExec = Date.now();
+            result = callback.apply(context, args);
+            if (!timeoutID) {
+                context = args = null;
+            }
+        }
+    };
+    throttled.clear = function clear() {
+        if (timeoutID) {
+            clearTimeout(timeoutID);
+            timeoutID = null;
+            context = args = null;
+        }
+    };
+    return throttled;
+}
+exports.throttle = throttle;
+
+
+/***/ }),
+/* 100 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15284,13 +15454,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 98 */
+/* 101 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input) {\nopal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder})\n}\n}\nrt-content/loaded-list-container (select=.opal-filtered-list__loaded-list)\n}"
+module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input) {\nopal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder}, clearable)\n}\n}\nrt-content/list-container (select=.opal-filtered-list__list)\n}"
 
 /***/ }),
-/* 99 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15306,7 +15476,7 @@ exports.default = closestComponent;
 
 
 /***/ }),
-/* 100 */
+/* 103 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15323,7 +15493,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 101 */
+/* 104 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15340,19 +15510,19 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 102 */
+/* 105 */
 /***/ (function(module, exports) {
 
-module.exports = "div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={input.opened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\nspan/content-wrapper {\nrt-slot/content (clone-content)\n}\n}\n@if-then (if=dataTreeListItem.children) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item (\ndatatreelist={input.datatreelist},\nfiltered-datatreelist={input.filteredDatatreelist},\ndatatreelist-item-value-field-name={_dataTreeListItemValueFieldName},\ndatatreelist-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{input.indexpath},{$index}]',\nquery={input.query},\nopened={input.query},\nnesting-level={input.indexpath.length},\nhas-children='{$item |has(\"children\") }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext})\n}\n}\n}\n}"
+module.exports = "div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={input.opened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\nspan/content-wrapper {\nrt-slot/content (clone-content)\n}\n}\n@if-then (if=dataTreeListItem.children) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item/item (\ndatatreelist={input.datatreelist},\nfiltered-datatreelist={input.filteredDatatreelist},\ndatatreelist-item-value-field-name={_dataTreeListItemValueFieldName},\ndatatreelist-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{input.indexpath},{$index}]',\nquery={input.query},\nopened={input.query},\nnesting-level={input.indexpath.length},\nhas-children='{$item |has(\"children\") }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext})\n}\n}\n}\n}"
 
 /***/ }),
-/* 103 */
+/* 106 */
 /***/ (function(module, exports) {
 
-module.exports = "@if-then (if=dataTreeList) {\n@if-then (if=filteredDataTreeList.length) {\n@repeat (for=$item of filteredDataTreeList) {\nopal-tree-list-item (\ndatatreelist={dataTreeList},\nfiltered-datatreelist={filteredDataTreeList},\ndatatreelist-item-value-field-name={_dataTreeListItemValueFieldName},\ndatatreelist-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={input.query},\nopened={input.query},\nnesting-level=0,\nhas-children='{$item |has(\"children\") }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=filteredDataTreeList.length) {\nspan/nothing-found-message {\n'Ничего не найдено'\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}"
+module.exports = "@if-then (if=dataTreeList) {\n@if-then (if=filteredDataTreeList.length) {\n@repeat (for=$item of filteredDataTreeList) {\nopal-tree-list-item/item (\ndatatreelist={dataTreeList},\nfiltered-datatreelist={filteredDataTreeList},\ndatatreelist-item-value-field-name={_dataTreeListItemValueFieldName},\ndatatreelist-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={input.query},\nopened={input.query},\nnesting-level=0,\nhas-children='{$item |has(\"children\") }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=filteredDataTreeList.length) {\nspan/nothing-found-message {\n'Ничего не найдено'\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}"
 
 /***/ }),
-/* 104 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15377,8 +15547,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(1);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(105);
-var template = __webpack_require__(106);
+__webpack_require__(108);
+var template = __webpack_require__(109);
 var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 var OpalTagSelect = (function (_super) {
@@ -15563,7 +15733,7 @@ exports.OpalTagSelect = OpalTagSelect;
 
 
 /***/ }),
-/* 105 */
+/* 108 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15580,109 +15750,10 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 106 */
-/***/ (function(module, exports) {
-
-module.exports = "@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist-keypath={_dataListKeypathParam},\ndatalist-item-schema={input.datalistItemSchema |json },\nadd-new-item-keypath={_addNewItemKeypathParam},\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/datalist-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}"
-
-/***/ }),
-/* 107 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var rionite_1 = __webpack_require__(0);
-var opal_select_1 = __webpack_require__(6);
-var opal_tree_list_1 = __webpack_require__(10);
-__webpack_require__(108);
-var template = __webpack_require__(109);
-var OpalTreeSelect = (function (_super) {
-    __extends(OpalTreeSelect, _super);
-    function OpalTreeSelect() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    OpalTreeSelect.prototype.initialize = function () {
-        _super.prototype.initialize.call(this);
-        var input = this.input;
-        if (input.$specified.has('datatreelist')) {
-            cellx_1.define(this, 'dataTreeList', function () { return input.datatreelist; });
-        }
-        else if (input.datatreelistKeypath) {
-            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function("return this." + input.datatreelistKeypath + ";"), {
-                context: this.ownerComponent || window
-            }));
-        }
-        else {
-            throw new TypeError('Input property "dataTreeList" is required');
-        }
-    };
-    OpalTreeSelect.prototype._onMenuSelectOptionSelect = function () {
-    };
-    OpalTreeSelect.prototype._onMenuSelectOptionDeselect = function () {
-    };
-    OpalTreeSelect.prototype._updateOptions = function () {
-    };
-    OpalTreeSelect = __decorate([
-        rionite_1.d.Component({
-            elementIs: 'opal-tree-select',
-            input: {
-                multiple: true,
-                datatreelist: { type: Object },
-                datatreelistKeypath: { type: String, readonly: true },
-                datatreelistItemSchema: { type: eval, default: opal_tree_list_1.OpalTreeList.defaultDataTreeListItemSchema, readonly: true },
-                viewModel: { type: Object },
-                viewModelKeypath: { type: String, readonly: true },
-                viewModelItemSchema: { type: eval, default: opal_tree_list_1.OpalTreeList.defaultViewModelItemSchema, readonly: true },
-                query: String
-            },
-            template: template
-        })
-    ], OpalTreeSelect);
-    return OpalTreeSelect;
-}(opal_select_1.OpalSelect));
-exports.OpalTreeSelect = OpalTreeSelect;
-
-
-/***/ }),
-/* 108 */
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".opal-tree-select .opal-modal__window{max-width:70%}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
 /* 109 */
 /***/ (function(module, exports) {
 
-module.exports = "opal-modal/menu {\nopal-filtered-list {\nopal-tree-list (\nclass=opal-filtered-list__loaded-list,\ndatatreelist={dataTreeList},\ndatatreelist-item-schema={input.datatreelistItemSchema},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema},\nquery={input.query}\n) {\nopal-select-option (class=opal-tree-list__selection-control, text={$item.name}, selected={$selected})\n}\n}\n}"
+module.exports = "@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist-keypath={_dataListKeypathParam},\ndatalist-item-schema={input.datalistItemSchema |json },\nadd-new-item-keypath={_addNewItemKeypathParam},\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/datalist-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndataprovider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 110 */
@@ -15708,11 +15779,112 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(1);
+var rionite_1 = __webpack_require__(0);
+var opal_select_1 = __webpack_require__(6);
+var opal_tree_list_1 = __webpack_require__(10);
+__webpack_require__(111);
+var template = __webpack_require__(112);
+var OpalTreeSelect = (function (_super) {
+    __extends(OpalTreeSelect, _super);
+    function OpalTreeSelect() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    OpalTreeSelect.prototype.initialize = function () {
+        _super.prototype.initialize.call(this);
+        var input = this.input;
+        if (input.$specified.has('datatreelist')) {
+            cellx_1.define(this, 'dataTreeList', function () { return input.datatreelist; });
+        }
+        else if (input.datatreelistKeypath) {
+            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function("return this." + input.datatreelistKeypath + ";"), {
+                context: this.ownerComponent || window
+            }));
+        }
+        else {
+            throw new TypeError('Input property "dataTreeList" is required');
+        }
+    };
+    OpalTreeSelect.prototype._onMenuSelectOptionSelect = function () {
+    };
+    OpalTreeSelect.prototype._onMenuSelectOptionDeselect = function () {
+    };
+    OpalTreeSelect.prototype._onMenuChange = function () {
+    };
+    OpalTreeSelect.prototype._updateOptions = function () {
+    };
+    OpalTreeSelect = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-tree-select',
+            input: {
+                multiple: true,
+                datatreelist: { type: Object },
+                datatreelistKeypath: { type: String, readonly: true },
+                datatreelistItemSchema: { type: eval, default: opal_tree_list_1.OpalTreeList.defaultDataTreeListItemSchema, readonly: true },
+                viewModel: { type: Object },
+                viewModelKeypath: { type: String, readonly: true },
+                viewModelItemSchema: { type: eval, default: opal_tree_list_1.OpalTreeList.defaultViewModelItemSchema, readonly: true },
+                query: String
+            },
+            template: template
+        })
+    ], OpalTreeSelect);
+    return OpalTreeSelect;
+}(opal_select_1.OpalSelect));
+exports.OpalTreeSelect = OpalTreeSelect;
+
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".opal-tree-select .opal-modal__window{max-width:70%}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports) {
+
+module.exports = "opal-modal/menu {\nopal-filtered-list/filtered-list {\nopal-tree-list/tree-list (\nclass=opal-filtered-list__list,\ndatatreelist={dataTreeList},\ndatatreelist-item-schema={input.datatreelistItemSchema},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema},\nquery={input.query}\n) {\nopal-select-option/option (class=opal-tree-list__selection-control, text={$item.name}, selected={$selected})\n}\n}\n}"
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var cellx_1 = __webpack_require__(1);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
 var isFocusable_1 = __webpack_require__(3);
-__webpack_require__(111);
-var template = __webpack_require__(112);
+__webpack_require__(114);
+var template = __webpack_require__(115);
 function toComparable(str) {
     return str.replace(/\s+/g, ' ').toLowerCase();
 }
@@ -16055,7 +16227,7 @@ exports.OpalAutosuggest = OpalAutosuggest;
 
 
 /***/ }),
-/* 111 */
+/* 114 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16072,13 +16244,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 112 */
+/* 115 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue='{input.value |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nloading={isLoaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nspan/nothing-found-message (shown={dataList.length |not }) {\n'{constructor.i18n.nothingFound}'\n}\n}\n}"
 
 /***/ }),
-/* 113 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16103,10 +16275,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(1);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(114);
-var opal_multirow_row_1 = __webpack_require__(115);
+__webpack_require__(117);
+var opal_multirow_row_1 = __webpack_require__(118);
 exports.OpalMultirowRow = opal_multirow_row_1.OpalMultirowRow;
-var template = __webpack_require__(118);
+var template = __webpack_require__(121);
 var nextUID = cellx_1.Utils.nextUID;
 var filter = Array.prototype.filter;
 var OpalMultirow = (function (_super) {
@@ -16184,7 +16356,7 @@ exports.OpalMultirow = OpalMultirow;
 
 
 /***/ }),
-/* 114 */
+/* 117 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16201,7 +16373,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 115 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16224,8 +16396,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(116);
-var template = __webpack_require__(117);
+__webpack_require__(119);
+var template = __webpack_require__(120);
 var OpalMultirowRow = (function (_super) {
     __extends(OpalMultirowRow, _super);
     function OpalMultirowRow() {
@@ -16258,7 +16430,7 @@ exports.OpalMultirowRow = OpalMultirowRow;
 
 
 /***/ }),
-/* 116 */
+/* 119 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16275,19 +16447,19 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 117 */
+/* 120 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content/content\n' '\nopal-sign-button/btn-remove-row (sign=minus)\n' '\nopal-sign-button/btn-add-row (sign=plus)\n}"
 
 /***/ }),
-/* 118 */
+/* 121 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content/preset-rows-container (\nselect='opal-multirow-row[preset], .opal-multirow__preset-rows',\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n)\ndiv/new-rows (not-single-row={_notSingleRow}) {\n@repeat (for=row of _newRows, track-by=key) {\nrt-content/new-row-container (select='opal-multirow-row:not([preset])', clone, data-key={row.key})\n}\n}\n}"
 
 /***/ }),
-/* 119 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16309,13 +16481,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var created_browser_history_1 = __webpack_require__(120);
+var created_browser_history_1 = __webpack_require__(123);
 var rionite_1 = __webpack_require__(0);
-var escapeRegExp_1 = __webpack_require__(128);
-__webpack_require__(129);
-var opal_route_1 = __webpack_require__(130);
+var escapeRegExp_1 = __webpack_require__(131);
+__webpack_require__(132);
+var opal_route_1 = __webpack_require__(133);
 exports.OpalRoute = opal_route_1.OpalRoute;
-var parsePath_1 = __webpack_require__(131);
+var parsePath_1 = __webpack_require__(134);
 var PathNodeType_1 = __webpack_require__(16);
 var hyphenize = rionite_1.Utils.hyphenize;
 var escapeHTML = rionite_1.Utils.escapeHTML;
@@ -16536,20 +16708,20 @@ exports.OpalRouter = OpalRouter;
 
 
 /***/ }),
-/* 120 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var createBrowserHistory_1 = __webpack_require__(121);
+var createBrowserHistory_1 = __webpack_require__(124);
 var history = createBrowserHistory_1.default();
 exports.history = history;
 exports.default = history;
 
 
 /***/ }),
-/* 121 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16565,19 +16737,19 @@ var _warning = __webpack_require__(14);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(122);
+var _invariant = __webpack_require__(125);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _LocationUtils = __webpack_require__(123);
+var _LocationUtils = __webpack_require__(126);
 
 var _PathUtils = __webpack_require__(15);
 
-var _createTransitionManager = __webpack_require__(126);
+var _createTransitionManager = __webpack_require__(129);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
-var _DOMUtils = __webpack_require__(127);
+var _DOMUtils = __webpack_require__(130);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16862,7 +17034,7 @@ var createBrowserHistory = function createBrowserHistory() {
 exports.default = createBrowserHistory;
 
 /***/ }),
-/* 122 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16920,7 +17092,7 @@ module.exports = invariant;
 
 
 /***/ }),
-/* 123 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16931,11 +17103,11 @@ exports.locationsAreEqual = exports.createLocation = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _resolvePathname = __webpack_require__(124);
+var _resolvePathname = __webpack_require__(127);
 
 var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
 
-var _valueEqual = __webpack_require__(125);
+var _valueEqual = __webpack_require__(128);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
@@ -17004,7 +17176,7 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 };
 
 /***/ }),
-/* 124 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17080,7 +17252,7 @@ var resolvePathname = function resolvePathname(to) {
 module.exports = resolvePathname;
 
 /***/ }),
-/* 125 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17126,7 +17298,7 @@ var valueEqual = function valueEqual(a, b) {
 exports.default = valueEqual;
 
 /***/ }),
-/* 126 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17217,7 +17389,7 @@ var createTransitionManager = function createTransitionManager() {
 exports.default = createTransitionManager;
 
 /***/ }),
-/* 127 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17278,7 +17450,7 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 };
 
 /***/ }),
-/* 128 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17292,7 +17464,7 @@ exports.escapeRegExp = escapeRegExp;
 
 
 /***/ }),
-/* 129 */
+/* 132 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -17309,7 +17481,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 130 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17352,7 +17524,7 @@ exports.OpalRoute = OpalRoute;
 
 
 /***/ }),
-/* 131 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17511,10 +17683,10 @@ exports.parsePath = parsePath;
 
 
 /***/ }),
-/* 132 */
+/* 135 */
 /***/ (function(module, exports) {
 
-module.exports = "h1 { 'opal-button' }\np {\nopal-button { 'Button' } ' '\nopal-button (view-type=primary) { 'Button' } ' '\nopal-button (view-type=danger) { 'Button' } ' '\n}\np {\nopal-button (disabled) { 'Button' } ' '\nopal-button (view-type=primary, disabled) { 'Button' } ' '\nopal-button (view-type=danger, disabled) { 'Button' } ' '\n}\np {\nopal-button (size=s) { 'Button' } ' '\nopal-button (view-type=primary, size=s) { 'Button' } ' '\nopal-button (view-type=danger, size=s) { 'Button' } ' '\n}\np {\nopal-button (loading) { 'Button' } ' '\nopal-button (view-type=primary, loading) { 'Button' } ' '\nopal-button (view-type=danger, loading) { 'Button' } ' '\n}\np {\nopal-button (loading, disabled) { 'Button' } ' '\nopal-button (view-type=primary, loading, disabled) { 'Button' } ' '\nopal-button (view-type=danger, loading, disabled) { 'Button' } ' '\n}\nh1 { 'opal-sign-button' }\np {\nopal-sign-button (sign=plus) { 'Button' }\n}\np {\nopal-sign-button (sign=minus) { 'Button' }\n}\nh1 { 'opal-text-input' }\np {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\np {\nopal-text-input (value=Value, disabled)\n}\np {\nopal-text-input (placeholder=Placeholder, disabled)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, clearable)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, loading)\n}\np {\nopal-text-input (multiline, placeholder=Placeholder)\n}\nh1 { 'opal-input-mask' }\np {\nopal-input-mask (mask=99/99/9999) {\nopal-text-input (class=opal-input-mask__text-input, placeholder=dd/mm/yyyy)\n}\n}\np {\nopal-input-mask (mask='+7 (999) 999-9999? доб. 9999') {\nopal-text-input (class=opal-input-mask__text-input, placeholder=Телефон)\n}\n}\np {\nopal-input-mask (mask=#ffffff) {\nopal-input-mask-definition (mask-char=f, regex=/[0-9a-f]/i)\nopal-text-input (class=opal-input-mask__text-input, placeholder=Цвет)\n}\n}\nh1 { 'opal-group' }\np {\nopal-group {\nopal-button { 'Button' }\nopal-button (view-type=primary) { 'Button' }\nopal-button (view-type=danger) { 'Button' }\n}\n}\np {\nopal-group {\nopal-button { 'Button' }\nopal-text-input (value=Value, placeholder=Placeholder)\nopal-button (view-type=primary) { 'Button' }\n}\n}\nh1 { 'opal-checkbox' }\np {\nopal-checkbox { 'Label' } ' '\nopal-checkbox (checked) { 'Label' } ' '\nopal-checkbox (indeterminate) { 'Label' }\nbr br\nopal-checkbox (disabled) { 'Label' } ' '\nopal-checkbox (checked, disabled) { 'Label' } ' '\nopal-checkbox (indeterminate, disabled) { 'Label' }\n}\nh1 { 'opal-radio-group' }\np {\nopal-radio-group {\nopal-radio-button { 'Label' } ' '\nopal-radio-button (checked) { 'Label' }\nbr br\nopal-radio-button (disabled) { 'Label' } ' '\nopal-radio-button (checked, disabled) { 'Label' }\n}\n}\nh1 { 'opal-switch' }\np {\nopal-switch { 'Label' } ' '\nopal-switch (checked) { 'Label' }\nbr br\nopal-switch (disabled) { 'Label' } ' '\nopal-switch (checked, disabled) { 'Label' }\n}\nh1 { 'opal-slider' }\np {\nopal-slider br\nopal-slider (min=-100, max=100, step=20, value=40) br\nopal-slider (range='[20, 80]')\n}\nh1 { 'opal-switch-menu' }\np {\nopal-switch-menu {\nopal-button (checkable, checked) { 'Option 1' }\nopal-button (checkable) { 'Option 2' }\nopal-button (checkable) { 'Option 3' }\n}\n}\nh1 { 'opal-tabs' }\np {\nopal-tabs {\nopal-tab (selected) { 'Foo' }\nopal-tab { 'Bar' }\nopal-tab { 'Baz' }\nopal-tab-panel { 'Hello Foo' }\nopal-tab-panel { 'Hello Bar' }\nopal-tab-panel { 'Hello Baz' }\n}\n}\nh1 { 'opal-popover' }\np {\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (from=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=right, to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=bottom, to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;) {\nopal-popover (from=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=top, to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=right, from=left, to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\n}\nh1 { 'opal-modal' }\np {\nopal-modal (id=modal1) { 'Modal' }\nopal-button (onclick='document.getElementById(\"modal1\").$component.open();') { 'Open' }\n}\nh1 { 'opal-select' }\np {\nopal-select (placeholder=Select) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\nopal-select-option (text='Option 4 (disabled)', disabled)\nopal-select-option (text=Option 5)\nopal-select-option (text='Option 6 (disabled)', disabled)\n}\n}\np {\nopal-select (multiple, placeholder=Select) {\nopal-select-option (text=Option 1, selected)\nopal-select-option (text=Option 2, selected)\nopal-select-option (text=Option 3)\nopal-select-option (text=Option 4)\nopal-select-option (text=Option 5)\n}\n}\np {\nopal-select (\nmultiple,\ndatalist={dataList1},\ndatalist-item-schema='{ value: \"id\", text: \"name\" }',\nview-model-item-schema='{ value: \"id\", text: \"name\" }',\nadd-new-item={addNewItem1},\nplaceholder=Select\n) {\nopal-text-input (class=opal-select__new-item-input)\n}\n}\np {\nopal-group {\nopal-select (placeholder=Select) {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\nopal-select (view-type=primary, placeholder=Select) {\nopal-popover (class=opal-select__menu, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\n}\n}\nh1 { 'opal-calendar' }\np {\nopal-calendar (from-date=today)\n}\nh1 { 'opal-date-input' }\np {\nopal-date-input\n}\np {\nopal-date-input (mask=99.99.9999, placeholder=dd.mm.yyyy, required)\n}\nh1 { 'opal-loader' }\np {\nopal-loader (shown)\nopal-loader (size=s, shown)\n}\nh1 { 'opal-filtered-list' }\np {\nopal-filtered-list {\nopal-loaded-list (class=opal-filtered-list__loaded-list, dataprovider={dataProvider1}) {\n'{$item.name}'\n}\n}\n}\nh1 { 'opal-tree-list' }\np {\nopal-filtered-list {\nopal-tree-list (class=opal-filtered-list__loaded-list, datatreelist={dataTreeList1}) {\nopal-checkbox (\nclass=opal-tree-list__selection-control,\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item.name}'\n}\n}\n}\n}\nh1 { 'opal-tree-select' }\np {\nopal-tree-select (datatreelist={dataTreeList1})\n}\nh1 { 'opal-select + opal-loaded-list' }\np {\nopal-select {\nopal-dropdown (class=opal-select__menu, auto-height=no, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, dataprovider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select (multiple, view-model={viewModel1}, view-model-item-schema='{ value: \"id\", text: \"name\" }') {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, dataprovider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select (multiple) {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__loaded-list,\ndataprovider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n}\n}\nh1 { 'opal-autosuggest' }\np {\nopal-autosuggest (dataprovider={dataProvider2}, open-menu-on-nothing-found)\n}\nh1 { 'opal-tag-select' }\np {\nopal-tag-select (dataprovider={dataProvider1}, placeholder='') br\nopal-tag-select (view-type=primary, dataprovider={dataProvider1}) br\nopal-tag-select (\nview-type=danger,\ndataprovider={dataProvider1},\nadd-new-item={addNewItem1},\nview-model={viewModel1}\n) {\nopal-text-input (class=opal-select__new-item-input opal-filtered-list__query-input)\n}\n}\nh1 { 'opal-multirow' }\np {\nopal-multirow {\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\nopal-multirow-row {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\n}\n}"
+module.exports = "h1 { 'opal-button' }\np {\nopal-button { 'Button' } ' '\nopal-button (view-type=primary) { 'Button' } ' '\nopal-button (view-type=danger) { 'Button' } ' '\n}\np {\nopal-button (disabled) { 'Button' } ' '\nopal-button (view-type=primary, disabled) { 'Button' } ' '\nopal-button (view-type=danger, disabled) { 'Button' } ' '\n}\np {\nopal-button (size=s) { 'Button' } ' '\nopal-button (view-type=primary, size=s) { 'Button' } ' '\nopal-button (view-type=danger, size=s) { 'Button' } ' '\n}\np {\nopal-button (loading) { 'Button' } ' '\nopal-button (view-type=primary, loading) { 'Button' } ' '\nopal-button (view-type=danger, loading) { 'Button' } ' '\n}\np {\nopal-button (loading, disabled) { 'Button' } ' '\nopal-button (view-type=primary, loading, disabled) { 'Button' } ' '\nopal-button (view-type=danger, loading, disabled) { 'Button' } ' '\n}\nh1 { 'opal-sign-button' }\np {\nopal-sign-button (sign=plus) { 'Button' }\n}\np {\nopal-sign-button (sign=minus) { 'Button' }\n}\nh1 { 'opal-text-input' }\np {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\np {\nopal-text-input (value=Value, disabled)\n}\np {\nopal-text-input (placeholder=Placeholder, disabled)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, clearable)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, loading)\n}\np {\nopal-text-input (multiline, placeholder=Placeholder)\n}\nh1 { 'opal-input-mask' }\np {\nopal-input-mask (mask=99/99/9999) {\nopal-text-input (class=opal-input-mask__text-input, placeholder=dd/mm/yyyy)\n}\n}\np {\nopal-input-mask (mask='+7 (999) 999-9999? доб. 9999') {\nopal-text-input (class=opal-input-mask__text-input, placeholder=Телефон)\n}\n}\np {\nopal-input-mask (mask=#ffffff) {\nopal-input-mask-definition (mask-char=f, regex=/[0-9a-f]/i)\nopal-text-input (class=opal-input-mask__text-input, placeholder=Цвет)\n}\n}\nh1 { 'opal-group' }\np {\nopal-group {\nopal-button { 'Button' }\nopal-button (view-type=primary) { 'Button' }\nopal-button (view-type=danger) { 'Button' }\n}\n}\np {\nopal-group {\nopal-button { 'Button' }\nopal-text-input (value=Value, placeholder=Placeholder)\nopal-button (view-type=primary) { 'Button' }\n}\n}\nh1 { 'opal-checkbox' }\np {\nopal-checkbox { 'Label' } ' '\nopal-checkbox (checked) { 'Label' } ' '\nopal-checkbox (indeterminate) { 'Label' }\nbr br\nopal-checkbox (disabled) { 'Label' } ' '\nopal-checkbox (checked, disabled) { 'Label' } ' '\nopal-checkbox (indeterminate, disabled) { 'Label' }\n}\nh1 { 'opal-radio-group' }\np {\nopal-radio-group {\nopal-radio-button { 'Label' } ' '\nopal-radio-button (checked) { 'Label' }\nbr br\nopal-radio-button (disabled) { 'Label' } ' '\nopal-radio-button (checked, disabled) { 'Label' }\n}\n}\nh1 { 'opal-switch' }\np {\nopal-switch { 'Label' } ' '\nopal-switch (checked) { 'Label' }\nbr br\nopal-switch (disabled) { 'Label' } ' '\nopal-switch (checked, disabled) { 'Label' }\n}\nh1 { 'opal-slider' }\np {\nopal-slider br\nopal-slider (min=-100, max=100, step=20, value=40) br\nopal-slider (range='[20, 80]')\n}\nh1 { 'opal-switch-menu' }\np {\nopal-switch-menu {\nopal-button (checkable, checked) { 'Option 1' }\nopal-button (checkable) { 'Option 2' }\nopal-button (checkable) { 'Option 3' }\n}\n}\nh1 { 'opal-tabs' }\np {\nopal-tabs {\nopal-tab (selected) { 'Foo' }\nopal-tab { 'Bar' }\nopal-tab { 'Baz' }\nopal-tab-panel { 'Hello Foo' }\nopal-tab-panel { 'Hello Bar' }\nopal-tab-panel { 'Hello Baz' }\n}\n}\nh1 { 'opal-popover' }\np {\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (from=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=right, to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=bottom, to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;) {\nopal-popover (from=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=top, to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=right, from=left, to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\n}\nh1 { 'opal-modal' }\np {\nopal-modal (id=modal1) { 'Modal' }\nopal-button (onclick='document.getElementById(\"modal1\").$component.open();') { 'Open' }\n}\nh1 { 'opal-select' }\np {\nopal-select (placeholder=Select) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\nopal-select-option (text='Option 4 (disabled)', disabled)\nopal-select-option (text=Option 5)\nopal-select-option (text='Option 6 (disabled)', disabled)\n}\n}\np {\nopal-select (multiple, placeholder=Select) {\nopal-select-option (text=Option 1, selected)\nopal-select-option (text=Option 2, selected)\nopal-select-option (text=Option 3)\nopal-select-option (text=Option 4)\nopal-select-option (text=Option 5)\n}\n}\np {\nopal-select (\nmultiple,\ndatalist={dataList1},\ndatalist-item-schema='{ value: \"id\", text: \"name\" }',\nview-model-item-schema='{ value: \"id\", text: \"name\" }',\nadd-new-item={addNewItem1},\nplaceholder=Select\n) {\nopal-text-input (class=opal-select__new-item-input)\n}\n}\np {\nopal-group {\nopal-select (placeholder=Select) {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\nopal-select (view-type=primary, placeholder=Select) {\nopal-popover (class=opal-select__menu, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\n}\n}\nh1 { 'opal-calendar' }\np {\nopal-calendar (from-date=today)\n}\nh1 { 'opal-date-input' }\np {\nopal-date-input\n}\np {\nopal-date-input (mask=99.99.9999, placeholder=dd.mm.yyyy, required)\n}\nh1 { 'opal-loader' }\np {\nopal-loader (shown)\nopal-loader (size=s, shown)\n}\nh1 { 'opal-filtered-list' }\np {\nopal-filtered-list {\nopal-loaded-list (class=opal-filtered-list__list, dataprovider={dataProvider1}) {\n'{$item.name}'\n}\n}\n}\nh1 { 'opal-tree-list' }\np {\nopal-filtered-list {\nopal-tree-list (class=opal-filtered-list__list, datatreelist={dataTreeList1}) {\nopal-checkbox (\nclass=opal-tree-list__selection-control,\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item.name}'\n}\n}\n}\n}\nh1 { 'opal-tree-select' }\np {\nopal-tree-select (datatreelist={dataTreeList1})\n}\nh1 { 'opal-select + opal-loaded-list' }\np {\nopal-select {\nopal-dropdown (class=opal-select__menu, auto-height=no, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndataprovider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, dataprovider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select (multiple, view-model={viewModel1}, view-model-item-schema='{ value: \"id\", text: \"name\" }') {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, dataprovider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndataprovider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select (multiple) {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndataprovider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n}\n}\nh1 { 'opal-autosuggest' }\np {\nopal-autosuggest (dataprovider={dataProvider2}, open-menu-on-nothing-found)\n}\nh1 { 'opal-tag-select' }\np {\nopal-tag-select (dataprovider={dataProvider1}, placeholder='') br\nopal-tag-select (view-type=primary, dataprovider={dataProvider1}) br\nopal-tag-select (\nview-type=danger,\ndataprovider={dataProvider1},\nadd-new-item={addNewItem1},\nview-model={viewModel1}\n) {\nopal-text-input (class=opal-select__new-item-input opal-filtered-list__query-input)\n}\n}\nh1 { 'opal-multirow' }\np {\nopal-multirow {\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\nopal-multirow-row {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\n}\n}"
 
 /***/ })
 /******/ ]);

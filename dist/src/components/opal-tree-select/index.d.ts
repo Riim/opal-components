@@ -7,5 +7,6 @@ export declare class OpalTreeSelect extends OpalSelect {
     initialize(): void;
     _onMenuSelectOptionSelect(): void;
     _onMenuSelectOptionDeselect(): void;
+    _onMenuChange(): void;
     _updateOptions(): void;
 }

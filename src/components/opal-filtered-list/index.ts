@@ -1,3 +1,4 @@
+import { debounce } from '@riim/debounce-throttle';
 import { IEvent } from 'cellx';
 import { Component, d, getText } from 'rionite';
 import { OpalLoadedList } from '../opal-loaded-list';
@@ -19,12 +20,21 @@ export class OpalFilteredList extends Component {
 		let queryInput = this.$('query-input');
 
 		if (queryInput) {
-			this.listenTo(queryInput, 'input', this._onQueryInputInput);
+			this.listenTo(queryInput, 'input', debounce(150, this._onQueryInputInput));
+			this.listenTo(queryInput, 'change', this._onQueryInputChange);
 		}
 	}
 
 	_onQueryInputInput(evt: IEvent<OpalTextInput>) {
-		this.$<OpalLoadedList>('list')!.input.query = evt.target.value;
+		this._setListQuery(evt.target.value);
+	}
+
+	_onQueryInputChange(evt: IEvent<OpalTextInput>) {
+		this._setListQuery(evt.target.value);
+	}
+
+	_setListQuery(query: string | null) {
+		this.$<OpalLoadedList>('list')!.input.query = query;
 	}
 
 	focus() {

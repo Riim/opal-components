@@ -87,6 +87,7 @@ module.exports = (env) => {
 		},
 
 		externals: [
+			'@riim/debounce-throttle',
 			'cellx',
 			'cellx-decorators',
 			'rionite',
