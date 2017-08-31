@@ -70,8 +70,8 @@ export class OpalSlider extends Component {
 	}
 	set value(value: number | Array<number>) {
 		if (this.input.range) {
-			this.$<HTMLInputElement>('first-input')!.value = this._firstInputValue = value[0];
-			this.$<HTMLInputElement>('second-input')!.value = this._secondInputValue = value[1];
+			this.$<HTMLInputElement>('first-input')!.value = this._firstInputValue = (value as any)[0];
+			this.$<HTMLInputElement>('second-input')!.value = this._secondInputValue = (value as any)[1];
 		} else {
 			this.$<HTMLInputElement>('input')!.value = value as any;
 		}

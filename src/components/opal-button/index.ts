@@ -1,9 +1,8 @@
-import { IEvent, Utils } from 'cellx';
+import { nextTick } from '@riim/next-tick';
+import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
 import { Component, d, IDisposableListening } from 'rionite';
 import './index.css';
-
-let nextTick = Utils.nextTick;
 
 @d.Component<OpalButton>({
 	elementIs: 'opal-button',

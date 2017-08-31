@@ -1,4 +1,5 @@
-import { Cell, ObservableList, Utils } from 'cellx';
+import { mixin } from '@riim/mixin';
+import { Cell, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import {
 	Component,
@@ -9,8 +10,6 @@ import {
 	} from 'rionite';
 import './index.css';
 import template = require('./template.nelm');
-
-let mixin = Utils.mixin;
 
 export interface IDataListItem {
 	[name: string]: any;

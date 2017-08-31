@@ -1,10 +1,9 @@
-import { Cell, Utils } from 'cellx';
+import { nextTick } from '@riim/next-tick';
+import { Cell } from 'cellx';
 import { computed } from 'cellx-decorators';
 import { Component, d, IComponentElement } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
 import { OpalInputMaskDefinition } from './opal-input-mask-definition';
-
-let nextTick = Utils.nextTick;
 
 let forEach = Array.prototype.forEach;
 

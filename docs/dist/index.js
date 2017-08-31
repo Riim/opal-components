@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ 	return __webpack_require__(__webpack_require__.s = 23);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1579,14 +1579,14 @@ THE SOFTWARE.
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__(7), __webpack_require__(1), __webpack_require__(4));
+		module.exports = factory(__webpack_require__(10), __webpack_require__(2), __webpack_require__(6), __webpack_require__(24), __webpack_require__(12), __webpack_require__(30), __webpack_require__(13), __webpack_require__(31), __webpack_require__(3), __webpack_require__(7), __webpack_require__(5));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/map-set-polyfill", "cellx", "@riim/symbol-polyfill"], factory);
+		define(["@riim/map-set-polyfill", "cellx", "@riim/symbol-polyfill", "nelm", "@riim/escape-html", "@riim/gettext", "escape-string", "html-to-fragment", "@riim/next-tick", "@riim/error-logger", "@riim/mixin"], factory);
 	else if(typeof exports === 'object')
-		exports["rionite"] = factory(require("@riim/map-set-polyfill"), require("cellx"), require("@riim/symbol-polyfill"));
+		exports["rionite"] = factory(require("@riim/map-set-polyfill"), require("cellx"), require("@riim/symbol-polyfill"), require("nelm"), require("@riim/escape-html"), require("@riim/gettext"), require("escape-string"), require("html-to-fragment"), require("@riim/next-tick"), require("@riim/error-logger"), require("@riim/mixin"));
 	else
-		root["Rionite"] = root["rionite"] = factory(root["@riim/map-set-polyfill"], root["cellx"], root["@riim/symbol-polyfill"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_9__) {
+		root["Rionite"] = root["rionite"] = factory(root["@riim/map-set-polyfill"], root["cellx"], root["@riim/symbol-polyfill"], root["nelm"], root["@riim/escape-html"], root["@riim/gettext"], root["escape-string"], root["html-to-fragment"], root["@riim/next-tick"], root["@riim/error-logger"], root["@riim/mixin"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_18__, __WEBPACK_EXTERNAL_MODULE_19__, __WEBPACK_EXTERNAL_MODULE_20__, __WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_32__, __WEBPACK_EXTERNAL_MODULE_42__, __WEBPACK_EXTERNAL_MODULE_46__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -1686,19 +1686,19 @@ var cellx_1 = __webpack_require__(1);
 var html_to_fragment_1 = __webpack_require__(21);
 var attachChildComponentElements_1 = __webpack_require__(5);
 var bindContent_1 = __webpack_require__(6);
-var bindEvents_1 = __webpack_require__(43);
-var componentBinding_1 = __webpack_require__(44);
-var componentConstructorMap_1 = __webpack_require__(26);
-var ComponentInput_1 = __webpack_require__(27);
-var DisposableMixin_1 = __webpack_require__(29);
+var bindEvents_1 = __webpack_require__(38);
+var componentBinding_1 = __webpack_require__(39);
+var componentConstructorMap_1 = __webpack_require__(25);
+var ComponentInput_1 = __webpack_require__(26);
+var DisposableMixin_1 = __webpack_require__(28);
 var ElementProtoMixin_1 = __webpack_require__(3);
 var Features_1 = __webpack_require__(7);
-var handledEvents_1 = __webpack_require__(47);
-var handleEvent_1 = __webpack_require__(48);
-var registerComponent_1 = __webpack_require__(49);
-var camelize_1 = __webpack_require__(16);
-var getUID_1 = __webpack_require__(18);
-var moveContent_1 = __webpack_require__(19);
+var handledEvents_1 = __webpack_require__(43);
+var handleEvent_1 = __webpack_require__(44);
+var registerComponent_1 = __webpack_require__(45);
+var camelize_1 = __webpack_require__(14);
+var getUID_1 = __webpack_require__(16);
+var moveContent_1 = __webpack_require__(17);
 var map = Array.prototype.map;
 var reClassBlockElement = / class="([a-zA-Z][\-\w]*)__([a-zA-Z][\-\w]*)(?:\s[^"]*)?"/g;
 var reInputChangeEventName = /input\-([\-0-9a-z]*)\-change/;
@@ -2055,7 +2055,7 @@ document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Features_1 = __webpack_require__(7);
 var KEY_ELEMENT_CONNECTED_1 = __webpack_require__(8);
-var defer_1 = __webpack_require__(30);
+var defer_1 = __webpack_require__(29);
 var isConnectionStatusCallbacksSuppressed = false;
 function suppressConnectionStatusCallbacks() {
     isConnectionStatusCallbacksSuppressed = true;
@@ -2215,10 +2215,10 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var map_set_polyfill_1 = __webpack_require__(0);
 var cellx_1 = __webpack_require__(1);
-var compileContentTextFragment_1 = __webpack_require__(40);
-var ContentTextFragmentParser_1 = __webpack_require__(23);
-var camelize_1 = __webpack_require__(16);
-var setAttribute_1 = __webpack_require__(42);
+var compileContentTextFragment_1 = __webpack_require__(35);
+var ContentTextFragmentParser_1 = __webpack_require__(22);
+var camelize_1 = __webpack_require__(14);
+var setAttribute_1 = __webpack_require__(37);
 var AttributeBindingCell = (function (_super) {
     __extends(AttributeBindingCell, _super);
     function AttributeBindingCell(pull, el, attrName, opts) {
@@ -2372,54 +2372,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
 
 /***/ }),
 /* 10 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-var escapeHTML_1 = __webpack_require__(35);
-exports.escapeHTML = escapeHTML_1.default;
-var unescapeHTML_1 = __webpack_require__(36);
-exports.unescapeHTML = unescapeHTML_1.default;
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = escapeHTML_1.default;
-
+module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var reEscapableChars = /[\\'"\r\n]/g;
-var charToEscapedMap = Object.create(null);
-charToEscapedMap['\\'] = '\\\\';
-charToEscapedMap['\''] = '\\\'';
-charToEscapedMap['"'] = '\\"';
-charToEscapedMap['\r'] = '\\r';
-charToEscapedMap['\n'] = '\\n';
-function escapeString(str) {
-    return reEscapableChars.test(str) ? str.replace(reEscapableChars, function (chr) { return charToEscapedMap[chr]; }) : str;
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = escapeString;
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var nelm_parser_1 = __webpack_require__(22);
-exports.NodeType = nelm_parser_1.NodeType;
-exports.Parser = nelm_parser_1.default;
-var Template_1 = __webpack_require__(38);
-exports.Template = Template_1.default;
-
-
-/***/ }),
-/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2430,18 +2388,18 @@ exports.componentInputValueMap = new map_set_polyfill_1.Map();
 
 
 /***/ }),
-/* 14 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var namePattern_1 = __webpack_require__(15);
+var namePattern_1 = __webpack_require__(13);
 exports.keypathPattern = "(?:" + namePattern_1.namePattern + "|\\d+)(?:\\.(?:" + namePattern_1.namePattern + "|\\d+))*";
 
 
 /***/ }),
-/* 15 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2451,7 +2409,7 @@ exports.namePattern = '[$_a-zA-Z][$\\w]*';
 
 
 /***/ }),
-/* 16 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2468,7 +2426,7 @@ exports.camelize = camelize;
 
 
 /***/ }),
-/* 17 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2489,7 +2447,7 @@ exports.hyphenize = hyphenize;
 
 
 /***/ }),
-/* 18 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2516,7 +2474,7 @@ else {
 
 
 /***/ }),
-/* 19 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2532,128 +2490,28 @@ exports.moveContent = moveContent;
 
 
 /***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_18__;
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_19__;
+
+/***/ }),
 /* 20 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var hasOwn = Object.prototype.hasOwnProperty;
-var reInsert = /\{([1-9]\d*|n)(?::((?:[^|]*\|)+?[^}]*))?\}/;
-var texts;
-var getPluralIndex;
-exports.getText = function getText(context, key, plural, args) {
-    var rawText;
-    if (hasOwn.call(texts, context) && hasOwn.call(texts[context], key)) {
-        rawText = plural ?
-            texts[context][key][getPluralIndex(+args[0])] :
-            texts[context][key];
-    }
-    else {
-        rawText = key;
-    }
-    var data = Object.create(null);
-    for (var i = args.length; i;) {
-        data[i] = args[--i];
-    }
-    if (plural) {
-        data.n = args[0];
-    }
-    var splittedRawText = rawText.split(reInsert);
-    var text = [];
-    for (var i = 0, l = splittedRawText.length; i < l;) {
-        if (i % 3) {
-            text.push(splittedRawText[i + 1] ?
-                splittedRawText[i + 1].split('|')[getPluralIndex(data[splittedRawText[i]])] :
-                data[splittedRawText[i]]);
-            i += 2;
-        }
-        else {
-            text.push(splittedRawText[i]);
-            i++;
-        }
-    }
-    return text.join('');
-};
-function configure(config) {
-    texts = config.texts;
-    getPluralIndex = Function('n', "return " + config.localeSettings.plural + ";");
-    exports.getText.localeSettings = config.localeSettings;
-}
-function t(key) {
-    var args = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        args[_i - 1] = arguments[_i];
-    }
-    return exports.getText('', key, false, args);
-}
-function pt(key, context) {
-    var args = [];
-    for (var _i = 2; _i < arguments.length; _i++) {
-        args[_i - 2] = arguments[_i];
-    }
-    return exports.getText(context, key, false, args);
-}
-function nt(key) {
-    var args = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        args[_i - 1] = arguments[_i];
-    }
-    return exports.getText('', key, true, args);
-}
-function npt(key, context) {
-    var args = [];
-    for (var _i = 2; _i < arguments.length; _i++) {
-        args[_i - 2] = arguments[_i];
-    }
-    return exports.getText(context, key, true, args);
-}
-exports.getText.configure = configure;
-exports.getText.t = t;
-exports.getText.pt = pt;
-exports.getText.nt = nt;
-exports.getText.npt = npt;
-configure({
-    localeSettings: {
-        code: 'ru',
-        plural: '(n%100) >= 5 && (n%100) <= 20 ? 2 : (n%10) == 1 ? 0 : (n%10) >= 2 && (n%10) <= 4 ? 1 : 2'
-    },
-    texts: {}
-});
-
+module.exports = __WEBPACK_EXTERNAL_MODULE_20__;
 
 /***/ }),
 /* 21 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-var range = document.createRange();
-var htmlToFragment;
-if (range.createContextualFragment) {
-    var selected_1 = false;
-    htmlToFragment = function (html) {
-        if (!selected_1) {
-            range.selectNode(document.body);
-            selected_1 = true;
-        }
-        return range.createContextualFragment(html);
-    };
-}
-else {
-    htmlToFragment = function (html) {
-        var el = document.createElement('div');
-        var df = document.createDocumentFragment();
-        el.innerHTML = html;
-        for (var child = void 0; (child = el.firstChild);) {
-            df.appendChild(child);
-        }
-        return df;
-    };
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = htmlToFragment;
-
+module.exports = __WEBPACK_EXTERNAL_MODULE_21__;
 
 /***/ }),
 /* 22 */
@@ -2662,21 +2520,9 @@ exports.default = htmlToFragment;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Parser_1 = __webpack_require__(37);
-exports.NodeType = Parser_1.NodeType;
-exports.Parser = Parser_1.Parser;
-
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var keypathPattern_1 = __webpack_require__(14);
-var keypathToJSExpression_1 = __webpack_require__(24);
-var namePattern_1 = __webpack_require__(15);
+var keypathPattern_1 = __webpack_require__(12);
+var keypathToJSExpression_1 = __webpack_require__(23);
+var namePattern_1 = __webpack_require__(13);
 var ContentTextFragmentNodeType;
 (function (ContentTextFragmentNodeType) {
     ContentTextFragmentNodeType[ContentTextFragmentNodeType["TEXT"] = 1] = "TEXT";
@@ -2988,7 +2834,7 @@ exports.ContentTextFragmentParser = ContentTextFragmentParser;
 
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3015,13 +2861,13 @@ exports.keypathToJSExpression = keypathToJSExpression;
 
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var gettext_1 = __webpack_require__(20);
+var gettext_1 = __webpack_require__(19);
 exports.formatters = {
     or: function or(value, arg) {
         return value || arg;
@@ -3090,7 +2936,7 @@ exports.formatters.seq = exports.formatters.identical;
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3101,16 +2947,16 @@ exports.componentConstructorMap = new map_set_polyfill_1.Map();
 
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(1);
-var componentInputTypeMap_1 = __webpack_require__(45);
-var componentInputTypeSerializerMap_1 = __webpack_require__(46);
-var hyphenize_1 = __webpack_require__(17);
+var componentInputTypeMap_1 = __webpack_require__(40);
+var componentInputTypeSerializerMap_1 = __webpack_require__(41);
+var hyphenize_1 = __webpack_require__(15);
 function initComponentInputProperty(componentInput, name, el) {
     var component = el.$component;
     var cipc = component.constructor.input[name];
@@ -3250,7 +3096,7 @@ exports.ComponentInput = {
 
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3264,7 +3110,7 @@ exports.isRegExp = isRegExp;
 
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3422,13 +3268,13 @@ exports.DisposableMixin = DisposableMixin;
 
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
+var error_logger_1 = __webpack_require__(42);
 var queue;
 function run() {
     var track = queue;
@@ -3439,7 +3285,7 @@ function run() {
             item.callback.call(item.context);
         }
         catch (err) {
-            cellx_1.ErrorLogger.log(err);
+            error_logger_1.logError(err);
         }
     }
 }
@@ -3456,7 +3302,7 @@ exports.defer = defer;
 
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3472,7 +3318,7 @@ exports.clearNode = clearNode;
 
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3494,6 +3340,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var next_tick_1 = __webpack_require__(32);
 var cellx_1 = __webpack_require__(1);
 var attachChildComponentElements_1 = __webpack_require__(5);
 var bindContent_1 = __webpack_require__(6);
@@ -3503,8 +3350,7 @@ var ComponentDecorator_1 = __webpack_require__(4);
 var ElementProtoMixin_1 = __webpack_require__(3);
 var Features_1 = __webpack_require__(7);
 var KEY_ELEMENT_CONNECTED_1 = __webpack_require__(8);
-var keypathPattern_1 = __webpack_require__(14);
-var nextTick = cellx_1.Utils.nextTick;
+var keypathPattern_1 = __webpack_require__(12);
 var slice = Array.prototype.slice;
 var reKeypath = RegExp("^" + keypathPattern_1.keypathPattern + "$");
 var RtIfThen = (function (_super) {
@@ -3536,7 +3382,7 @@ var RtIfThen = (function (_super) {
     };
     RtIfThen.prototype.elementDisconnected = function () {
         var _this = this;
-        nextTick(function () {
+        next_tick_1.nextTick(function () {
             if (!_this.element[KEY_ELEMENT_CONNECTED_1.KEY_ELEMENT_CONNECTED]) {
                 _this._deactivate();
             }
@@ -3626,13 +3472,19 @@ exports.RtIfThen = RtIfThen;
 
 
 /***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_32__;
+
+/***/ }),
 /* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var keypathToJSExpression_1 = __webpack_require__(24);
+var keypathToJSExpression_1 = __webpack_require__(23);
 var cache = Object.create(null);
 function compileKeypath(keypath) {
     return cache[keypath] || (cache[keypath] = Function("var temp; return " + keypathToJSExpression_1.keypathToJSExpression(keypath) + ";"));
@@ -3647,38 +3499,38 @@ exports.compileKeypath = compileKeypath;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var escape_html_1 = __webpack_require__(10);
-var gettext_1 = __webpack_require__(20);
+var escape_html_1 = __webpack_require__(18);
+var gettext_1 = __webpack_require__(19);
 exports.getText = gettext_1.getText;
-var escape_string_1 = __webpack_require__(11);
+var escape_string_1 = __webpack_require__(20);
 var html_to_fragment_1 = __webpack_require__(21);
-var nelm_1 = __webpack_require__(12);
+var nelm_1 = __webpack_require__(10);
 exports.NelmNodeType = nelm_1.NodeType;
 exports.NelmParser = nelm_1.Parser;
 exports.Template = nelm_1.Template;
 var Component_1 = __webpack_require__(2);
 exports.Component = Component_1.Component;
 var ComponentDecorator_1 = __webpack_require__(4);
-var ComponentInput_1 = __webpack_require__(27);
+var ComponentInput_1 = __webpack_require__(26);
 exports.ComponentInput = ComponentInput_1.ComponentInput;
-var componentInputValueMap_1 = __webpack_require__(13);
+var componentInputValueMap_1 = __webpack_require__(11);
 exports.componentInputValueMap = componentInputValueMap_1.componentInputValueMap;
-var rt_content_1 = __webpack_require__(51);
-var rt_if_else_1 = __webpack_require__(52);
-var rt_if_then_1 = __webpack_require__(32);
-var rt_repeat_1 = __webpack_require__(53);
-var rt_slot_1 = __webpack_require__(54);
-var DisposableMixin_1 = __webpack_require__(29);
+var rt_content_1 = __webpack_require__(48);
+var rt_if_else_1 = __webpack_require__(49);
+var rt_if_then_1 = __webpack_require__(31);
+var rt_repeat_1 = __webpack_require__(50);
+var rt_slot_1 = __webpack_require__(51);
+var DisposableMixin_1 = __webpack_require__(28);
 exports.DisposableMixin = DisposableMixin_1.DisposableMixin;
-var formatters_1 = __webpack_require__(25);
+var formatters_1 = __webpack_require__(24);
 exports.formatters = formatters_1.formatters;
 var KEY_ELEMENT_CONNECTED_1 = __webpack_require__(8);
 exports.KEY_ELEMENT_CONNECTED = KEY_ELEMENT_CONNECTED_1.KEY_ELEMENT_CONNECTED;
-__webpack_require__(55);
-var camelize_1 = __webpack_require__(16);
-var defer_1 = __webpack_require__(30);
-var hyphenize_1 = __webpack_require__(17);
-var isRegExp_1 = __webpack_require__(28);
+__webpack_require__(52);
+var camelize_1 = __webpack_require__(14);
+var defer_1 = __webpack_require__(29);
+var hyphenize_1 = __webpack_require__(15);
+var isRegExp_1 = __webpack_require__(27);
 var Components = {
     RtContent: rt_content_1.RtContent,
     RtSlot: rt_slot_1.RtSlot,
@@ -3710,726 +3562,12 @@ exports.Utils = Utils;
 
 "use strict";
 
-var reEscapableChars = /[&<>"]/g;
-var charToEscapedMap = Object.create(null);
-charToEscapedMap['&'] = '&amp;';
-charToEscapedMap['<'] = '&lt;';
-charToEscapedMap['>'] = '&gt;';
-charToEscapedMap['"'] = '&quot;';
-function escapeHTML(str) {
-    return reEscapableChars.test(str) ? str.replace(reEscapableChars, function (chr) { return charToEscapedMap[chr]; }) : str;
-}
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = escapeHTML;
-
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var reEscapableEntities = /&(?:amp|lt|gt|quot);/g;
-var escapedToCharMap = Object.create(null);
-escapedToCharMap['&amp;'] = '&';
-escapedToCharMap['&lt;'] = '<';
-escapedToCharMap['&gt;'] = '>';
-escapedToCharMap['&quot;'] = '"';
-function unescapeHTML(str) {
-    return reEscapableEntities.test(str) ? str.replace(reEscapableEntities, function (entity) { return escapedToCharMap[entity]; }) : str;
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = unescapeHTML;
-
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var NodeType;
-(function (NodeType) {
-    NodeType[NodeType["BLOCK"] = 1] = "BLOCK";
-    NodeType[NodeType["ELEMENT"] = 2] = "ELEMENT";
-    NodeType[NodeType["TEXT"] = 3] = "TEXT";
-    NodeType[NodeType["COMMENT"] = 4] = "COMMENT";
-    NodeType[NodeType["SUPER_CALL"] = 5] = "SUPER_CALL";
-})(NodeType = exports.NodeType || (exports.NodeType = {}));
-var escapee = {
-    __proto__: null,
-    '/': '/',
-    '\\': '\\',
-    b: '\b',
-    f: '\f',
-    n: '\n',
-    r: '\r',
-    t: '\t'
-};
-var reBlockNameOrNothing = /[a-zA-Z][\-\w]*|/g;
-var reTagNameOrNothing = /[a-zA-Z][\-\w]*(?::[a-zA-Z][\-\w]*)?|/g;
-var reElementNameOrNothing = /[a-zA-Z][\-\w]*|/g;
-var reAttributeNameOrNothing = /[_a-zA-Z][\-\w]*(?::[_a-zA-Z][\-\w]*)?|/g;
-var reSuperCallOrNothing = /super(?:\.([a-zA-Z][\-\w]*))?!|/g;
-function normalizeMultilineText(text) {
-    return text.trim().replace(/\s*(?:\r\n?|\n)/g, '\n').replace(/\n\s+/g, '\n');
-}
-var Parser = /** @class */ (function () {
-    function Parser(nelm) {
-        this.nelm = nelm;
-    }
-    Parser.prototype.parse = function () {
-        this.at = 0;
-        this.chr = this.nelm.charAt(0);
-        var content;
-        var nextChr;
-        while (this._skipWhitespaces() == '/' && ((nextChr = this.nelm.charAt(this.at + 1)) == '/' || nextChr == '*')) {
-            (content || (content = [])).push(this._readComment());
-        }
-        var blockName = this.chr == '#' ? this._readBlockName() : null;
-        return {
-            nodeType: NodeType.BLOCK,
-            name: blockName,
-            content: content ? content.concat(this._readContent(false)) : this._readContent(false)
-        };
-    };
-    Parser.prototype._readBlockName = function () {
-        this._next('#');
-        var blockName = this._readName(reBlockNameOrNothing);
-        if (!blockName) {
-            this._throwError('Invalid block declaration');
-            throw 1;
-        }
-        return blockName;
-    };
-    Parser.prototype._readContent = function (brackets) {
-        if (brackets) {
-            this._next('{');
-        }
-        var content = [];
-        for (;;) {
-            switch (this._skipWhitespaces()) {
-                case "'":
-                case '"':
-                case '`': {
-                    content.push(this._readTextNode());
-                    break;
-                }
-                case '': {
-                    if (brackets) {
-                        this._throwError('Missing "}" in compound statement');
-                    }
-                    return content;
-                }
-                default: {
-                    if (this.chr == '/') {
-                        var nextChr = this.nelm.charAt(this.at + 1);
-                        if (nextChr == '/' || nextChr == '*') {
-                            content.push(this._readComment());
-                            break;
-                        }
-                    }
-                    if (brackets) {
-                        if (this.chr == '}') {
-                            this._next();
-                            return content;
-                        }
-                        reSuperCallOrNothing.lastIndex = this.at;
-                        var superCallMatch = reSuperCallOrNothing.exec(this.nelm);
-                        if (superCallMatch[0]) {
-                            this.chr = this.nelm.charAt((this.at = reSuperCallOrNothing.lastIndex));
-                            content.push({
-                                nodeType: NodeType.SUPER_CALL,
-                                elementName: superCallMatch[1] || null
-                            });
-                            break;
-                        }
-                    }
-                    content.push(this._readElement());
-                    break;
-                }
-            }
-        }
-    };
-    Parser.prototype._readElement = function () {
-        var at = this.at;
-        var isHelper = this.chr == '@';
-        if (isHelper) {
-            this._next();
-        }
-        var tagName = this._readName(reTagNameOrNothing);
-        var elNames;
-        if ((tagName ? this._skipWhitespaces() : this.chr) == '/') {
-            var at_1 = this.at;
-            this._next();
-            this._skipWhitespaces();
-            elNames = this._readElementNames();
-            if (!elNames) {
-                this.at = at_1;
-            }
-        }
-        else {
-            elNames = null;
-        }
-        if (!tagName && !elNames) {
-            this._throwError('Expected element', at);
-        }
-        var attrs = this.chr == '(' ? this._readAttributes() : null;
-        if (attrs) {
-            this._skipWhitespaces();
-        }
-        var content = this.chr == '{' ? this._readContent(true) : null;
-        return {
-            nodeType: NodeType.ELEMENT,
-            tagName: tagName,
-            isHelper: isHelper,
-            names: elNames,
-            attributes: attrs,
-            content: content
-        };
-    };
-    Parser.prototype._readAttributes = function () {
-        this._next('(');
-        if (this._skipWhitespacesAndComments() == ')') {
-            this._next();
-            return {
-                superCall: null,
-                list: []
-            };
-        }
-        var superCall;
-        var list = [];
-        for (;;) {
-            if (!superCall && this.chr == 's' && (superCall = this._readSuperCall())) {
-                this._skipWhitespacesAndComments();
-            }
-            else {
-                var name_1 = this._readName(reAttributeNameOrNothing);
-                if (!name_1) {
-                    this._throwError('Invalid attribute name');
-                    throw 1;
-                }
-                if (this._skipWhitespacesAndComments() == '=') {
-                    this._next();
-                    var chr = this._skipWhitespaces();
-                    if (chr == "'" || chr == '"' || chr == '`') {
-                        var str = this._readString();
-                        list.push({
-                            name: name_1,
-                            value: str.multiline ? normalizeMultilineText(str.value) : str.value
-                        });
-                    }
-                    else {
-                        var value = '';
-                        for (;;) {
-                            if (!chr) {
-                                this._throwError('Invalid attribute');
-                            }
-                            if (chr == '\r' || chr == '\n' || chr == ',' || chr == ')') {
-                                list.push({ name: name_1, value: value.trim() });
-                                break;
-                            }
-                            value += chr;
-                            chr = this._next();
-                        }
-                    }
-                    this._skipWhitespacesAndComments();
-                }
-                else {
-                    list.push({ name: name_1, value: '' });
-                }
-            }
-            if (this.chr == ')') {
-                this._next();
-                break;
-            }
-            else if (this.chr == ',') {
-                this._next();
-                this._skipWhitespacesAndComments();
-            }
-            else {
-                this._throwError('Invalid attributes');
-            }
-        }
-        return {
-            superCall: superCall || null,
-            list: list
-        };
-    };
-    Parser.prototype._skipWhitespacesAndComments = function () {
-        var chr = this.chr;
-        var nextChr;
-        for (;;) {
-            if (chr && chr <= ' ') {
-                chr = this._next();
-            }
-            else if (chr == '/' && ((nextChr = this.nelm.charAt(this.at + 1)) == '/' || nextChr == '*')) {
-                this._readComment();
-                chr = this.chr;
-            }
-            else {
-                break;
-            }
-        }
-        return chr;
-    };
-    Parser.prototype._readSuperCall = function () {
-        reSuperCallOrNothing.lastIndex = this.at;
-        var superCallMatch = reSuperCallOrNothing.exec(this.nelm);
-        if (superCallMatch[0]) {
-            this.chr = this.nelm.charAt((this.at = reSuperCallOrNothing.lastIndex));
-            return {
-                nodeType: NodeType.SUPER_CALL,
-                elementName: superCallMatch[1] || null
-            };
-        }
-        return null;
-    };
-    Parser.prototype._readTextNode = function () {
-        var str = this._readString();
-        return {
-            nodeType: NodeType.TEXT,
-            value: str.multiline ? normalizeMultilineText(str.value) : str.value
-        };
-    };
-    Parser.prototype._readString = function () {
-        var quoteChar = this.chr;
-        if (quoteChar != "'" && quoteChar != '"' && quoteChar != '`') {
-            this._throwError("Expected \"'\" instead of \"" + this.chr + "\"");
-        }
-        var str = '';
-        for (var chr = this._next(); chr;) {
-            if (chr == quoteChar) {
-                this._next();
-                return {
-                    value: str,
-                    multiline: quoteChar == '`'
-                };
-            }
-            if (chr == '\\') {
-                chr = this._next();
-                if (chr == 'x' || chr == 'u') {
-                    var at = this.at;
-                    var hexadecimal = chr == 'x';
-                    var code = parseInt(this.nelm.slice(at + 1, at + (hexadecimal ? 3 : 5)), 16);
-                    if (!isFinite(code)) {
-                        this._throwError("Malformed " + (hexadecimal ? 'hexadecimal' : 'unicode') + " escape sequence", at - 1);
-                    }
-                    str += String.fromCharCode(code);
-                    chr = this.chr = this.nelm.charAt((this.at = at + (hexadecimal ? 3 : 5)));
-                }
-                else if (chr in escapee) {
-                    str += escapee[chr];
-                    chr = this._next();
-                }
-                else {
-                    break;
-                }
-            }
-            else {
-                if (quoteChar != '`' && (chr == '\r' || chr == '\n')) {
-                    break;
-                }
-                str += chr;
-                chr = this._next();
-            }
-        }
-        this._throwError('Invalid string');
-        throw 1;
-    };
-    Parser.prototype._readComment = function () {
-        var value = '';
-        var multiline;
-        switch (this._next('/')) {
-            case '/': {
-                for (var chr = void 0; (chr = this._next()) && chr != '\r' && chr != '\n';) {
-                    value += chr;
-                }
-                multiline = false;
-                break;
-            }
-            case '*': {
-                var stop_1 = false;
-                do {
-                    switch (this._next()) {
-                        case '*': {
-                            if (this._next() == '/') {
-                                this._next();
-                                stop_1 = true;
-                            }
-                            else {
-                                value += '*' + this.chr;
-                            }
-                            break;
-                        }
-                        case '': {
-                            this._throwError('Missing "*/" in compound statement');
-                        }
-                        default: {
-                            value += this.chr;
-                        }
-                    }
-                } while (!stop_1);
-                multiline = true;
-                break;
-            }
-            default: {
-                this._throwError("Expected \"/\" instead of \"" + this.chr + "\"");
-                throw 1;
-            }
-        }
-        return {
-            nodeType: NodeType.COMMENT,
-            value: value,
-            multiline: multiline
-        };
-    };
-    Parser.prototype._readElementNames = function () {
-        var names = this.chr == ',' ? (this._next(), this._skipWhitespaces(), [null]) : null;
-        for (var name_2; (name_2 = this._readName(reElementNameOrNothing));) {
-            (names || (names = [])).push(name_2);
-            if (this._skipWhitespaces() != ',') {
-                break;
-            }
-            this._next();
-            this._skipWhitespaces();
-        }
-        return names;
-    };
-    Parser.prototype._readName = function (reNameOrNothing) {
-        reNameOrNothing.lastIndex = this.at;
-        var name = reNameOrNothing.exec(this.nelm)[0];
-        if (name) {
-            this.chr = this.nelm.charAt((this.at = reNameOrNothing.lastIndex));
-            return name;
-        }
-        return null;
-    };
-    Parser.prototype._skipWhitespaces = function () {
-        var chr = this.chr;
-        while (chr && chr <= ' ') {
-            chr = this._next();
-        }
-        return chr;
-    };
-    Parser.prototype._next = function (current) {
-        if (current && current != this.chr) {
-            this._throwError("Expected \"" + current + "\" instead of \"" + this.chr + "\"");
-        }
-        return (this.chr = this.nelm.charAt(++this.at));
-    };
-    Parser.prototype._throwError = function (msg, at) {
-        if (at === void 0) { at = this.at; }
-        var crlfCount = 0;
-        throw new SyntaxError(msg + '\n' + this.nelm.slice(at - 40, at + 20).replace(/\r\n|\r|\n/g, function (match) {
-            if (match.length == 2) {
-                crlfCount++;
-            }
-            return '↵';
-        }) + '\n' + '----------------------------------------'.slice(crlfCount) + '↑');
-    };
-    return Parser;
-}());
-exports.Parser = Parser;
-
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var escape_html_1 = __webpack_require__(10);
-var self_closing_tags_1 = __webpack_require__(39);
-var escape_string_1 = __webpack_require__(11);
-var nelm_parser_1 = __webpack_require__(22);
-var join = Array.prototype.join;
-var elNameDelimiter = '__';
-var Template = /** @class */ (function () {
-    function Template(nelm, opts) {
-        this.parent = opts && opts.parent || null;
-        this.nelm = typeof nelm == 'string' ? new nelm_parser_1.Parser(nelm).parse() : nelm;
-        var blockName = opts && opts.blockName || this.nelm.name;
-        this._elementClassesTemplate = this.parent ?
-            [blockName ? blockName + elNameDelimiter : ''].concat(this.parent._elementClassesTemplate) :
-            [blockName ? blockName + elNameDelimiter : '', ''];
-    }
-    Template.prototype.extend = function (nelm, opts) {
-        return new Template(nelm, { __proto__: opts || null, parent: this });
-    };
-    Template.prototype.setBlockName = function (blockName) {
-        this._elementClassesTemplate[0] = blockName ? blockName + elNameDelimiter : '';
-        return this;
-    };
-    Template.prototype.render = function () {
-        var _this = this;
-        return (this._renderer || this._compileRenderers()).call(this._elementRendererMap).replace(/<<([^>]+)>>/g, function (match, names) { return _this._renderElementClasses(names.split(',')); });
-    };
-    Template.prototype._compileRenderers = function () {
-        var parent = this.parent;
-        this._elements = [(this._currentElement = { name: null, superCall: false, source: null, innerSource: [] })];
-        var elMap = this._elementMap = {};
-        if (parent) {
-            this._renderer = parent._renderer || parent._compileRenderers();
-        }
-        for (var _i = 0, _a = this.nelm.content; _i < _a.length; _i++) {
-            var node = _a[_i];
-            this._compileNode(node);
-        }
-        if (!parent) {
-            this._renderer = Function("return " + this._currentElement.innerSource.join(' + ') + ";");
-        }
-        Object.keys(elMap).forEach(function (name) {
-            var el = elMap[name];
-            this[name] = Function("return " + el.source.join(' + ') + ";");
-            if (el.superCall) {
-                var inner_1 = Function('$super', "return " + (el.innerSource.join(' + ') || "''") + ";");
-                var parentElementRendererMap_1 = parent && parent._elementRendererMap;
-                this[name + '@content'] = function () { return inner_1.call(this, parentElementRendererMap_1); };
-            }
-            else {
-                this[name + '@content'] = Function("return " + (el.innerSource.join(' + ') || "''") + ";");
-            }
-        }, (this._elementRendererMap = { __proto__: parent && parent._elementRendererMap }));
-        return this._renderer;
-    };
-    Template.prototype._compileNode = function (node, parentElName) {
-        switch (node.nodeType) {
-            case nelm_parser_1.NodeType.ELEMENT: {
-                var parent_1 = this.parent;
-                var els = this._elements;
-                var el = node;
-                var tagName = el.tagName;
-                var isHelper = el.isHelper;
-                var elNames = el.names;
-                var elName = elNames && elNames[0];
-                var elAttrs = el.attributes;
-                var content = el.content;
-                if (elNames) {
-                    if (elName) {
-                        if (tagName) {
-                            (this._tagNameMap || (this._tagNameMap = { __proto__: parent_1 && parent_1._tagNameMap || null }))[elName] = tagName;
-                        }
-                        else {
-                            // Не надо добавлять в конец ` || 'div'`, тк. ниже tagName используется как имя хелпера.
-                            tagName = parent_1 && parent_1._tagNameMap && parent_1._tagNameMap[elName];
-                        }
-                        var renderedAttrs = void 0;
-                        if (elAttrs && (elAttrs.list.length || elAttrs.superCall)) {
-                            var attrListMap = this._attributeListMap || (this._attributeListMap = { __proto__: parent_1 && parent_1._attributeListMap || null });
-                            var attrCountMap = this._attributeCountMap || (this._attributeCountMap = {
-                                __proto__: parent_1 && parent_1._attributeCountMap || null
-                            });
-                            var elAttrsSuperCall = elAttrs.superCall;
-                            var attrList = void 0;
-                            var attrCount = void 0;
-                            if (elAttrsSuperCall) {
-                                if (!parent_1) {
-                                    throw new TypeError('Parent template is required when using super');
-                                }
-                                attrList = attrListMap[elName] = {
-                                    __proto__: parent_1._attributeListMap[elAttrsSuperCall.elementName || elName] || null
-                                };
-                                attrCount = attrCountMap[elName] =
-                                    parent_1._attributeCountMap[elAttrsSuperCall.elementName || elName] || 0;
-                            }
-                            else {
-                                attrList = attrListMap[elName] = { __proto__: null };
-                                attrCount = attrCountMap[elName] = 0;
-                            }
-                            for (var _i = 0, _a = elAttrs.list; _i < _a.length; _i++) {
-                                var attr = _a[_i];
-                                var name_1 = attr.name;
-                                var value = attr.value;
-                                var index = attrList[name_1];
-                                if (index === undefined) {
-                                    attrList[attrCount] = " " + name_1 + "=\"" + (value && escape_html_1.default(escape_string_1.default(value))) + "\"";
-                                    attrList[name_1] = attrCount;
-                                    attrCountMap[elName] = ++attrCount;
-                                }
-                                else {
-                                    attrList[index] = " " + name_1 + "=\"" + (value && escape_html_1.default(escape_string_1.default(value))) + "\"";
-                                }
-                            }
-                            if (!isHelper) {
-                                attrList = {
-                                    __proto__: attrList,
-                                    length: attrCount
-                                };
-                                if (attrList['class'] !== undefined) {
-                                    attrList[attrList['class']] = " class=\"<<" + elNames.join(',') + ">> " +
-                                        attrList[attrList['class']].slice(' class="'.length);
-                                    renderedAttrs = join.call(attrList, '');
-                                }
-                                else {
-                                    renderedAttrs = " class=\"<<" + elNames.join(',') + ">>\"" +
-                                        join.call(attrList, '');
-                                }
-                            }
-                        }
-                        else if (!isHelper) {
-                            renderedAttrs = " class=\"<<" + elNames.join(',') + ">>\"";
-                        }
-                        var currentEl = {
-                            name: elName,
-                            superCall: false,
-                            source: isHelper ? ["this['" + elName + "@content']()"] : [
-                                "'<" + (tagName || 'div') + renderedAttrs + ">'",
-                                content && content.length ?
-                                    "this['" + elName + "@content']() + '</" + (tagName || 'div') + ">'" :
-                                    (!content && tagName && tagName in self_closing_tags_1.map ?
-                                        "''" :
-                                        "'</" + (tagName || 'div') + ">'")
-                            ],
-                            innerSource: []
-                        };
-                        els.push((this._currentElement = currentEl));
-                        this._elementMap[elName] = currentEl;
-                    }
-                    else if (!isHelper) {
-                        if (elAttrs && elAttrs.list.length) {
-                            var hasClassAttr = false;
-                            var attrs = '';
-                            for (var _b = 0, _c = elAttrs.list; _b < _c.length; _b++) {
-                                var attr = _c[_b];
-                                var value = attr.value;
-                                if (attr.name == 'class') {
-                                    hasClassAttr = true;
-                                    attrs += " class=\"<<" + elNames.join(',').slice(1) + ">>" + (value ? ' ' + value : '') + "\"";
-                                }
-                                else {
-                                    attrs += " " + attr.name + "=\"" + (value && escape_html_1.default(escape_string_1.default(value))) + "\"";
-                                }
-                            }
-                            this._currentElement.innerSource.push("'<" + (tagName || 'div') + (hasClassAttr ? attrs : " class=\"<<" + elNames.join(',').slice(1) + ">>\"" + attrs) + ">'");
-                        }
-                        else {
-                            this._currentElement.innerSource.push("'<" + (tagName || 'div') + " class=\"<<" + elNames.join(',').slice(1) + ">>\">'");
-                        }
-                    }
-                }
-                else if (!isHelper) {
-                    this._currentElement.innerSource.push("'<" + (tagName || 'div') + (elAttrs ?
-                        elAttrs.list.map(function (attr) { return " " + attr.name + "=\"" + (attr.value && escape_html_1.default(escape_string_1.default(attr.value))) + "\""; }).join('') :
-                        '') + ">'");
-                }
-                if (isHelper) {
-                    if (!tagName) {
-                        throw new TypeError('"tagName" is required');
-                    }
-                    var helper = Template.helpers[tagName];
-                    if (!helper) {
-                        throw new TypeError("Helper \"" + tagName + "\" is not defined");
-                    }
-                    var content_1 = helper(el);
-                    if (content_1) {
-                        for (var _d = 0, content_2 = content_1; _d < content_2.length; _d++) {
-                            var contentNode = content_2[_d];
-                            this._compileNode(contentNode, elName || parentElName);
-                        }
-                    }
-                }
-                else if (content) {
-                    for (var _e = 0, content_3 = content; _e < content_3.length; _e++) {
-                        var contentNode = content_3[_e];
-                        this._compileNode(contentNode, elName || parentElName);
-                    }
-                }
-                if (elName) {
-                    els.pop();
-                    this._currentElement = els[els.length - 1];
-                    this._currentElement.innerSource.push("this['" + elName + "']()");
-                }
-                else if (!isHelper && (content || !tagName || !(tagName in self_closing_tags_1.map))) {
-                    this._currentElement.innerSource.push("'</" + (tagName || 'div') + ">'");
-                }
-                break;
-            }
-            case nelm_parser_1.NodeType.TEXT: {
-                this._currentElement.innerSource.push("'" + escape_string_1.default(node.value) + "'");
-                break;
-            }
-            case nelm_parser_1.NodeType.SUPER_CALL: {
-                this._currentElement.innerSource
-                    .push("$super['" + (node.elementName || parentElName) + "@content'].call(this)");
-                this._currentElement.superCall = true;
-                break;
-            }
-        }
-    };
-    Template.prototype._renderElementClasses = function (elNames) {
-        var elClasses = '';
-        for (var i = 0, l = elNames.length; i < l; i++) {
-            elClasses += this._elementClassesTemplate.join(elNames[i] + ' ');
-        }
-        return elClasses.slice(0, -1);
-    };
-    Template.helpers = {
-        section: function (el) { return el.content; }
-    };
-    return Template;
-}());
-exports.default = Template;
-
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.list = [
-    'area',
-    'base',
-    'basefont',
-    'br',
-    'col',
-    'command',
-    'embed',
-    'frame',
-    'hr',
-    'img',
-    'input',
-    'isindex',
-    'keygen',
-    'link',
-    'meta',
-    'param',
-    'source',
-    'track',
-    'wbr',
-    // svg tags
-    'circle',
-    'ellipse',
-    'line',
-    'path',
-    'polygone',
-    'polyline',
-    'rect',
-    'stop',
-    'use'
-];
-exports.map = exports.list.reduce(function (map, name) {
-    map[name] = true;
-    return map;
-}, Object.create(null));
-
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var escape_string_1 = __webpack_require__(11);
-var bindingToJSExpression_1 = __webpack_require__(41);
-var componentInputValueMap_1 = __webpack_require__(13);
-var ContentTextFragmentParser_1 = __webpack_require__(23);
-var formatters_1 = __webpack_require__(25);
+var escape_string_1 = __webpack_require__(20);
+var bindingToJSExpression_1 = __webpack_require__(36);
+var componentInputValueMap_1 = __webpack_require__(11);
+var ContentTextFragmentParser_1 = __webpack_require__(22);
+var formatters_1 = __webpack_require__(24);
 var ContentTextFragmentNodeType = ContentTextFragmentParser_1.ContentTextFragmentParser.ContentTextFragmentNodeType;
 var keyCounter = 0;
 var cache = Object.create(null);
@@ -4473,7 +3611,7 @@ exports.compileContentTextFragment = compileContentTextFragment;
 
 
 /***/ }),
-/* 41 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4512,7 +3650,7 @@ exports.bindingToJSExpression = bindingToJSExpression;
 
 
 /***/ }),
-/* 42 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4530,7 +3668,7 @@ exports.setAttribute = setAttribute;
 
 
 /***/ }),
-/* 43 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4561,7 +3699,7 @@ exports.bindEvents = bindEvents;
 
 
 /***/ }),
-/* 44 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4614,7 +3752,7 @@ exports.unfreezeBindings = unfreezeBindings;
 
 
 /***/ }),
-/* 45 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4634,16 +3772,16 @@ exports.componentInputTypeMap = new map_set_polyfill_1.Map([
 
 
 /***/ }),
-/* 46 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var escape_html_1 = __webpack_require__(10);
+var escape_html_1 = __webpack_require__(18);
 var map_set_polyfill_1 = __webpack_require__(0);
-var componentInputValueMap_1 = __webpack_require__(13);
-var isRegExp_1 = __webpack_require__(28);
+var componentInputValueMap_1 = __webpack_require__(11);
+var isRegExp_1 = __webpack_require__(27);
 exports.componentInputTypeSerializerMap = new map_set_polyfill_1.Map([
     [Boolean, {
             read: function (value, defaultValue) {
@@ -4703,7 +3841,13 @@ exports.componentInputTypeSerializerMap.set('object', exports.componentInputType
 
 
 /***/ }),
-/* 47 */
+/* 42 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_42__;
+
+/***/ }),
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4723,7 +3867,7 @@ exports.handledEvents = [
 
 
 /***/ }),
-/* 48 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4793,19 +3937,18 @@ exports.handleEvent = handleEvent;
 
 
 /***/ }),
-/* 49 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var nelm_1 = __webpack_require__(12);
-var componentConstructorMap_1 = __webpack_require__(26);
-var elementConstructorMap_1 = __webpack_require__(50);
+var mixin_1 = __webpack_require__(46);
+var nelm_1 = __webpack_require__(10);
+var componentConstructorMap_1 = __webpack_require__(25);
+var elementConstructorMap_1 = __webpack_require__(47);
 var ElementProtoMixin_1 = __webpack_require__(3);
-var hyphenize_1 = __webpack_require__(17);
-var mixin = cellx_1.Utils.mixin;
+var hyphenize_1 = __webpack_require__(15);
 var push = Array.prototype.push;
 function inheritProperty(target, source, name, depth) {
     var obj = target[name];
@@ -4883,7 +4026,7 @@ function registerComponent(componentConstr) {
     });
     var elProto = elConstr.prototype = Object.create(parentElConstr.prototype);
     elProto.constructor = elConstr;
-    mixin(elProto, ElementProtoMixin_1.ElementProtoMixin);
+    mixin_1.mixin(elProto, ElementProtoMixin_1.ElementProtoMixin);
     window.customElements.define(elIs, elConstr, elExtends ? { extends: elExtends } : null);
     componentConstructorMap_1.componentConstructorMap.set(elIs, componentConstr);
     componentConstructorMap_1.componentConstructorMap.set(elIs.toUpperCase(), componentConstr);
@@ -4894,7 +4037,13 @@ exports.registerComponent = registerComponent;
 
 
 /***/ }),
-/* 50 */
+/* 46 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_46__;
+
+/***/ }),
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4947,7 +4096,7 @@ exports.elementConstructorMap = new map_set_polyfill_1.Map([
 
 
 /***/ }),
-/* 51 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4976,9 +4125,9 @@ var bindContent_1 = __webpack_require__(6);
 var Component_1 = __webpack_require__(2);
 var ComponentDecorator_1 = __webpack_require__(4);
 var ElementProtoMixin_1 = __webpack_require__(3);
-var clearNode_1 = __webpack_require__(31);
-var getUID_1 = __webpack_require__(18);
-var moveContent_1 = __webpack_require__(19);
+var clearNode_1 = __webpack_require__(30);
+var getUID_1 = __webpack_require__(16);
+var moveContent_1 = __webpack_require__(17);
 var KEY_CONTENT_MAP = symbol_polyfill_1.Symbol('contentMap');
 var RtContent = (function (_super) {
     __extends(RtContent, _super);
@@ -5106,7 +4255,7 @@ exports.RtContent = RtContent;
 
 
 /***/ }),
-/* 52 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5129,7 +4278,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var ComponentDecorator_1 = __webpack_require__(4);
-var rt_if_then_1 = __webpack_require__(32);
+var rt_if_then_1 = __webpack_require__(31);
 var RtIfElse = (function (_super) {
     __extends(RtIfElse, _super);
     function RtIfElse() {
@@ -5149,7 +4298,7 @@ exports.RtIfElse = RtIfElse;
 
 
 /***/ }),
-/* 53 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5172,6 +4321,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var map_set_polyfill_1 = __webpack_require__(0);
+var next_tick_1 = __webpack_require__(32);
 var cellx_1 = __webpack_require__(1);
 var attachChildComponentElements_1 = __webpack_require__(5);
 var bindContent_1 = __webpack_require__(6);
@@ -5181,9 +4331,8 @@ var ComponentDecorator_1 = __webpack_require__(4);
 var ElementProtoMixin_1 = __webpack_require__(3);
 var Features_1 = __webpack_require__(7);
 var KEY_ELEMENT_CONNECTED_1 = __webpack_require__(8);
-var keypathPattern_1 = __webpack_require__(14);
-var namePattern_1 = __webpack_require__(15);
-var nextTick = cellx_1.Utils.nextTick;
+var keypathPattern_1 = __webpack_require__(12);
+var namePattern_1 = __webpack_require__(13);
 var slice = Array.prototype.slice;
 var reForAttrValue = RegExp("^\\s*(" + namePattern_1.namePattern + ")\\s+of\\s+(" + keypathPattern_1.keypathPattern + ")\\s*$");
 var RtRepeat = (function (_super) {
@@ -5238,7 +4387,7 @@ var RtRepeat = (function (_super) {
     };
     RtRepeat.prototype.elementDisconnected = function () {
         var _this = this;
-        nextTick(function () {
+        next_tick_1.nextTick(function () {
             if (!_this.element[KEY_ELEMENT_CONNECTED_1.KEY_ELEMENT_CONNECTED]) {
                 _this._deactivate();
             }
@@ -5441,7 +4590,7 @@ exports.RtRepeat = RtRepeat;
 
 
 /***/ }),
-/* 54 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5470,9 +4619,9 @@ var bindContent_1 = __webpack_require__(6);
 var Component_1 = __webpack_require__(2);
 var ComponentDecorator_1 = __webpack_require__(4);
 var ElementProtoMixin_1 = __webpack_require__(3);
-var clearNode_1 = __webpack_require__(31);
-var getUID_1 = __webpack_require__(18);
-var moveContent_1 = __webpack_require__(19);
+var clearNode_1 = __webpack_require__(30);
+var getUID_1 = __webpack_require__(16);
+var moveContent_1 = __webpack_require__(17);
 var KEY_SLOT_CONTENT_MAP = symbol_polyfill_1.Symbol('slotContentMap');
 var RtSlot = (function (_super) {
     __extends(RtSlot, _super);
@@ -5609,13 +4758,13 @@ exports.RtSlot = RtSlot;
 
 
 /***/ }),
-/* 55 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var nelm_1 = __webpack_require__(12);
+var nelm_1 = __webpack_require__(10);
 nelm_1.Template.helpers['if-then'] = nelm_1.Template.helpers['if-else'] = nelm_1.Template.helpers['repeat'] = function (el) {
     var origAttrs = el.attributes;
     var attrs = {
@@ -5645,29 +4794,116 @@ nelm_1.Template.helpers['if-then'] = nelm_1.Template.helpers['if-else'] = nelm_1
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-(function (global, factory) {
-	 true ? module.exports = factory(__webpack_require__(7), __webpack_require__(4)) :
-	typeof define === 'function' && define.amd ? define(['@riim/map-set-polyfill', '@riim/symbol-polyfill'], factory) :
-	(global.cellx = factory(global.mapSetPolyfill,global.symbolPolyfill));
-}(this, (function (mapSetPolyfill,symbolPolyfill) { 'use strict';
+"use strict";
 
-var ErrorLogger = {
-	_handler: null,
-
-	/**
-  * @typesign (handler: (...msg));
-  */
-	setHandler: function setHandler(handler) {
-		this._handler = handler;
-	},
-
-	/**
-  * @typesign (...msg);
-  */
-	log: function log() {
-		this._handler.apply(this, arguments);
-	}
+Object.defineProperty(exports, "__esModule", { value: true });
+var cellx_1 = __webpack_require__(2);
+var assign = Object.assign || function (target, source) {
+    for (var name_1 in source) {
+        target[name_1] = source[name_1];
+    }
+    return target;
 };
+function enumerableDecorator(target, name, desc) {
+    if (desc) {
+        desc.enumerable = true;
+        return desc;
+    }
+    return {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        value: undefined
+    };
+}
+exports.enumerable = enumerableDecorator;
+function nonEnumerableDecorator(target, name, desc) {
+    if (desc) {
+        desc.enumerable = false;
+        return desc;
+    }
+    return {
+        configurable: true,
+        enumerable: false,
+        writable: true,
+        value: undefined
+    };
+}
+exports.nonEnumerable = nonEnumerableDecorator;
+function CellDecorator(targetOrOptions, name, desc, opts) {
+    if (arguments.length == 1) {
+        return function (target, name, desc) {
+            return CellDecorator(target, name, desc, targetOrOptions);
+        };
+    }
+    var cellName = name + 'Cell';
+    Object.defineProperty(targetOrOptions, cellName, {
+        configurable: true,
+        enumerable: false,
+        writable: true,
+        value: undefined
+    });
+    return {
+        configurable: true,
+        enumerable: desc ? desc.enumerable : true,
+        get: function () {
+            return (this[cellName] || (this[cellName] = new cellx_1.Cell(desc && (desc.get || (desc.initializer ? desc.initializer() : desc.value)), opts ? (opts.context === undefined ? assign({ context: this }, opts) : opts) : { context: this }))).get();
+        },
+        set: desc && desc.set || function (value) {
+            if (this[cellName]) {
+                this[cellName].set(value);
+            }
+            else if (desc) {
+                (this[cellName] = new cellx_1.Cell(desc.get || (desc.initializer ? desc.initializer() : desc.value), opts ? (opts.context === undefined ? assign({ context: this }, opts) : opts) : { context: this })).set(value);
+            }
+            else {
+                var isFn = typeof value == 'function';
+                this[cellName] = new cellx_1.Cell(isFn ? value : undefined, opts ? (opts.context === undefined ? assign({ context: this }, opts) : opts) : { context: this });
+                if (!isFn) {
+                    this[cellName].set(value);
+                }
+            }
+        }
+    };
+}
+exports.Cell = CellDecorator;
+function observableDecorator(targetOrOptions, name, desc, opts) {
+    if (arguments.length == 1) {
+        return function (target, name, desc) {
+            return observableDecorator(target, name, desc, targetOrOptions);
+        };
+    }
+    if (desc && (desc.get || (desc.value !== undefined && typeof desc.value == 'function'))) {
+        throw new TypeError('Invalid descriptor of observable property');
+    }
+    return CellDecorator(targetOrOptions, name, desc, opts);
+}
+exports.observable = observableDecorator;
+function computedDecorator(targetOrOptions, name, desc, opts) {
+    if (arguments.length == 1) {
+        return function (target, name, desc) {
+            return computedDecorator(target, name, desc, targetOrOptions);
+        };
+    }
+    if (desc && desc.value !== undefined && typeof desc.value != 'function') {
+        throw new TypeError('Invalid descriptor of computed property');
+    }
+    desc = CellDecorator(targetOrOptions, name, desc, opts);
+    desc.enumerable = false;
+    return desc;
+}
+exports.computed = computedDecorator;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function (global, factory) {
+	 true ? module.exports = factory(__webpack_require__(10), __webpack_require__(7), __webpack_require__(6), __webpack_require__(5), __webpack_require__(3)) :
+	typeof define === 'function' && define.amd ? define(['@riim/map-set-polyfill', '@riim/error-logger', '@riim/symbol-polyfill', '@riim/mixin', '@riim/next-tick'], factory) :
+	(global.cellx = factory(global.mapSetPolyfill,global.errorLogger,global.symbolPolyfill,global.mixin,global.nextTick));
+}(this, (function (mapSetPolyfill,errorLogger,symbolPolyfill,mixin,nextTick) { 'use strict';
 
 var IS_EVENT = {};
 
@@ -5994,100 +5230,19 @@ EventEmitter.prototype = {
   * @typesign (...msg);
   */
 	_logError: function _logError() {
-		ErrorLogger.log.apply(ErrorLogger, arguments);
+		errorLogger.logError.apply(this, arguments);
 	}
 };
 
 /**
  * @typesign (a, b) -> boolean;
  */
-var is = Object.is || function is(a, b) {
+var is = Object.is || /* istanbul ignore next */function is(a, b) {
 	if (a === 0 && b === 0) {
 		return 1 / a == 1 / b;
 	}
 	return a === b || a != a && b != b;
 };
-
-/**
- * @typesign (target: Object, sources: Array<Object> | Object, skipProperties?: Array<string>) -> Object;
- */
-function mixin(target, sources, skipProperties) {
-	if (!Array.isArray(sources)) {
-		sources = [sources];
-	}
-
-	for (var i = 0, l = sources.length; i < l; i++) {
-		var source = sources[i];
-		var names = Object.getOwnPropertyNames(source);
-
-		for (var j = 0, m = names.length; j < m; j++) {
-			var name = names[j];
-
-			if (skipProperties && skipProperties.indexOf(name) != -1) {
-				continue;
-			}
-
-			Object.defineProperty(target, name, Object.getOwnPropertyDescriptor(source, name));
-		}
-	}
-
-	return target;
-}
-
-var global = Function('return this;')();
-
-/**
- * @typesign (callback: ());
- */
-var nextTick;
-
-/* istanbul ignore next */
-if (global.process && process.toString() == '[object process]' && process.nextTick) {
-	nextTick = process.nextTick;
-} else if (global.setImmediate) {
-	nextTick = function nextTick(callback) {
-		setImmediate(callback);
-	};
-} else if (global.Promise && Promise.toString().indexOf('[native code]') != -1) {
-	var prm = Promise.resolve();
-
-	nextTick = function nextTick(callback) {
-		prm.then((function () {
-			callback();
-		}));
-	};
-} else {
-	var queue;
-
-	global.addEventListener('message', (function () {
-		if (queue) {
-			var track = queue;
-
-			queue = null;
-
-			for (var i = 0, l = track.length; i < l; i++) {
-				try {
-					track[i]();
-				} catch (err) {
-					ErrorLogger.log(err);
-				}
-			}
-		}
-	}));
-
-	nextTick = function nextTick(callback) {
-		if (queue) {
-			queue.push(callback);
-		} else {
-			queue = [callback];
-			postMessage('__tic__', '*');
-		}
-	};
-}
-
-var nextTick$1 = nextTick;
-
-function noop() {}
 
 var slice$1 = Array.prototype.slice;
 var EventEmitterProto = EventEmitter.prototype;
@@ -6368,7 +5523,7 @@ function Cell(value, opts) {
 	}
 }
 
-mixin(Cell, {
+mixin.mixin(Cell, {
 	/**
   * @typesign (cnfg: { asynchronous?: boolean });
   */
@@ -6415,7 +5570,7 @@ mixin(Cell, {
 			} else {
 				callback.call(context, disposer);
 			}
-		}, { onChange: noop });
+		}, { onChange: function noop() {} });
 
 		return disposer;
 	},
@@ -6440,7 +5595,7 @@ mixin(Cell, {
 		try {
 			callback();
 		} catch (err) {
-			ErrorLogger.log(err);
+			errorLogger.logError(err);
 			transactionFailure = true;
 		}
 
@@ -6751,7 +5906,7 @@ Cell.prototype = {
 			if (!transactionLevel && !config.asynchronous) {
 				release();
 			} else {
-				nextTick$1(release);
+				nextTick.nextTick(release);
 			}
 		}
 	},
@@ -7556,7 +6711,7 @@ function ObservableList(items, opts) {
 	}
 }
 
-ObservableList.prototype = mixin({ __proto__: EventEmitter.prototype }, [FreezableCollectionMixin.prototype, ObservableCollectionMixin.prototype, {
+ObservableList.prototype = mixin.mixin({ __proto__: EventEmitter.prototype }, [FreezableCollectionMixin.prototype, ObservableCollectionMixin.prototype, {
 	constructor: ObservableList,
 
 	/**
@@ -8278,7 +7433,7 @@ function ObservableMap(entries, opts) {
 	}
 }
 
-ObservableMap.prototype = mixin({ __proto__: EventEmitter.prototype }, [FreezableCollectionMixin.prototype, ObservableCollectionMixin.prototype, {
+ObservableMap.prototype = mixin.mixin({ __proto__: EventEmitter.prototype }, [FreezableCollectionMixin.prototype, ObservableCollectionMixin.prototype, {
 	constructor: ObservableMap,
 
 	/**
@@ -8447,20 +7602,9 @@ ObservableMap.prototype = mixin({ __proto__: EventEmitter.prototype }, [Freezabl
 
 ObservableMap.prototype[symbolPolyfill.Symbol.iterator] = ObservableMap.prototype.entries;
 
+var global = Function('return this;')();
+
 var KEY_CELL_MAP = symbolPolyfill.Symbol('cellx.cellMap');
-
-var map$1 = Array.prototype.map;
-
-/**
- * @typesign (...msg);
- */
-function logError() {
-	var console = global.console;
-
-	(console && console.error || noop).call(console || global, map$1.call(arguments, (function (arg) {
-		return arg === Object(arg) && arg.stack || arg;
-	})).join(' '));
-}
 
 var uidCounter = 0;
 
@@ -8474,9 +7618,7 @@ function nextUID() {
 var hasOwn = Object.prototype.hasOwnProperty;
 var slice = Array.prototype.slice;
 
-ErrorLogger.setHandler(logError);
-
-var assign = Object.assign || function (target, source) {
+var assign = Object.assign || /* istanbul ignore next */function (target, source) {
 	for (var name in source) {
 		target[name] = source[name];
 	}
@@ -8584,7 +7726,6 @@ cellx.configure = function (config) {
 	Cell.configure(config);
 };
 
-cellx.ErrorLogger = ErrorLogger;
 cellx.EventEmitter = EventEmitter;
 cellx.ObservableCollectionMixin = ObservableCollectionMixin;
 cellx.ObservableMap = ObservableMap;
@@ -8687,12 +7828,8 @@ function define(obj, name, value) {
 cellx.define = define;
 
 cellx.Utils = {
-	logError: logError,
 	nextUID: nextUID,
-	is: is,
-	mixin: mixin,
-	nextTick: nextTick$1,
-	noop: noop
+	is: is
 };
 
 cellx.cellx = cellx;
@@ -8706,112 +7843,62 @@ return cellx;
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var assign = Object.assign || function (target, source) {
-    for (var name_1 in source) {
-        target[name_1] = source[name_1];
-    }
-    return target;
-};
-function enumerableDecorator(target, name, desc) {
-    if (desc) {
-        desc.enumerable = true;
-        return desc;
-    }
-    return {
-        configurable: true,
-        enumerable: true,
-        writable: true,
-        value: undefined
+var error_logger_1 = __webpack_require__(7);
+var global = Function('return this;')();
+var nextTick;
+exports.nextTick = nextTick;
+if (global.process && global.process.toString() == '[object process]' && global.process.nextTick) {
+    exports.nextTick = nextTick = global.process.nextTick;
+}
+else if (global.setImmediate) {
+    exports.nextTick = nextTick = function nextTick(callback) {
+        setImmediate(callback);
     };
 }
-exports.enumerable = enumerableDecorator;
-function nonEnumerableDecorator(target, name, desc) {
-    if (desc) {
-        desc.enumerable = false;
-        return desc;
-    }
-    return {
-        configurable: true,
-        enumerable: false,
-        writable: true,
-        value: undefined
+else if (global.Promise && Promise.toString().indexOf('[native code]') != -1) {
+    var prm_1 = Promise.resolve();
+    exports.nextTick = nextTick = function nextTick(callback) {
+        prm_1.then(function () {
+            callback();
+        });
     };
 }
-exports.nonEnumerable = nonEnumerableDecorator;
-function CellDecorator(targetOrOptions, name, desc, opts) {
-    if (arguments.length == 1) {
-        return function (target, name, desc) {
-            return CellDecorator(target, name, desc, targetOrOptions);
-        };
-    }
-    var cellName = name + 'Cell';
-    Object.defineProperty(targetOrOptions, cellName, {
-        configurable: true,
-        enumerable: false,
-        writable: true,
-        value: undefined
-    });
-    return {
-        configurable: true,
-        enumerable: desc ? desc.enumerable : true,
-        get: function () {
-            return (this[cellName] || (this[cellName] = new cellx_1.Cell(desc && (desc.get || (desc.initializer ? desc.initializer() : desc.value)), opts ? (opts.context === undefined ? assign({ context: this }, opts) : opts) : { context: this }))).get();
-        },
-        set: desc && desc.set || function (value) {
-            if (this[cellName]) {
-                this[cellName].set(value);
-            }
-            else if (desc) {
-                (this[cellName] = new cellx_1.Cell(desc.get || (desc.initializer ? desc.initializer() : desc.value), opts ? (opts.context === undefined ? assign({ context: this }, opts) : opts) : { context: this })).set(value);
-            }
-            else {
-                var isFn = typeof value == 'function';
-                this[cellName] = new cellx_1.Cell(isFn ? value : undefined, opts ? (opts.context === undefined ? assign({ context: this }, opts) : opts) : { context: this });
-                if (!isFn) {
-                    this[cellName].set(value);
+else {
+    var queue_1;
+    global.addEventListener('message', function () {
+        if (queue_1) {
+            var track = queue_1;
+            queue_1 = null;
+            for (var i = 0, l = track.length; i < l; i++) {
+                try {
+                    track[i]();
+                }
+                catch (err) {
+                    error_logger_1.logError(err);
                 }
             }
         }
+    });
+    exports.nextTick = nextTick = function nextTick(callback) {
+        if (queue_1) {
+            queue_1.push(callback);
+        }
+        else {
+            queue_1 = [callback];
+            postMessage('__tic__', '*');
+        }
     };
 }
-exports.Cell = CellDecorator;
-function observableDecorator(targetOrOptions, name, desc, opts) {
-    if (arguments.length == 1) {
-        return function (target, name, desc) {
-            return observableDecorator(target, name, desc, targetOrOptions);
-        };
-    }
-    if (desc && (desc.get || (desc.value !== undefined && typeof desc.value == 'function'))) {
-        throw new TypeError('Invalid descriptor of observable property');
-    }
-    return CellDecorator(targetOrOptions, name, desc, opts);
-}
-exports.observable = observableDecorator;
-function computedDecorator(targetOrOptions, name, desc, opts) {
-    if (arguments.length == 1) {
-        return function (target, name, desc) {
-            return computedDecorator(target, name, desc, targetOrOptions);
-        };
-    }
-    if (desc && desc.value !== undefined && typeof desc.value != 'function') {
-        throw new TypeError('Invalid descriptor of computed property');
-    }
-    desc = CellDecorator(targetOrOptions, name, desc, opts);
-    desc.enumerable = false;
-    return desc;
-}
-exports.computed = computedDecorator;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8844,7 +7931,33 @@ exports.isFocusable = isFocusable;
 
 
 /***/ }),
-/* 4 */
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function mixin(target, sources, skipProperties) {
+    if (!Array.isArray(sources)) {
+        sources = [sources];
+    }
+    for (var i = 0, l = sources.length; i < l; i++) {
+        var source = sources[i];
+        var names = Object.getOwnPropertyNames(source);
+        for (var j = 0, m = names.length; j < m; j++) {
+            var name_1 = names[j];
+            if (!skipProperties || skipProperties.indexOf(name_1) == -1) {
+                Object.defineProperty(target, name_1, Object.getOwnPropertyDescriptor(source, name_1));
+            }
+        }
+    }
+    return target;
+}
+exports.mixin = mixin;
+
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = Function('return this;')();
@@ -8864,7 +7977,40 @@ if (!Symbol) {
 
 
 /***/ }),
-/* 5 */
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var global = Function('return this;')();
+function noop() { }
+var handler_ = function () {
+    var msg = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        msg[_i] = arguments[_i];
+    }
+    var console = global.console;
+    (console && console.error || noop).call(console || global, msg.map(function (m) { return m === Object(m) && m.stack || m; }).join(' '));
+};
+exports.handler = handler_;
+function setHandler(handler) {
+    exports.handler = handler_ = handler;
+}
+exports.setHandler = setHandler;
+function logError() {
+    var msg = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        msg[_i] = arguments[_i];
+    }
+    handler_.apply(void 0, msg);
+}
+exports.logError = logError;
+exports.log = logError;
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8880,7 +8026,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
+var cellx_1 = __webpack_require__(2);
 var INDEXPATH_EMPTY_ERROR_MESSAGE = 'Indexpath cannot be empty';
 var ObservableTreeList = (function (_super) {
     __extends(ObservableTreeList, _super);
@@ -8980,7 +8126,7 @@ exports.default = ObservableTreeList;
 
 
 /***/ }),
-/* 6 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9002,17 +8148,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var next_tick_1 = __webpack_require__(3);
+var cellx_1 = __webpack_require__(2);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(65);
-var isFocusable_1 = __webpack_require__(3);
-__webpack_require__(66);
-var isEqualArray_1 = __webpack_require__(67);
-var opal_select_option_1 = __webpack_require__(68);
+__webpack_require__(79);
+var isFocusable_1 = __webpack_require__(4);
+__webpack_require__(80);
+var isEqualArray_1 = __webpack_require__(81);
+var opal_select_option_1 = __webpack_require__(82);
 exports.OpalSelectOption = opal_select_option_1.OpalSelectOption;
-var template = __webpack_require__(72);
-var nextTick = cellx_1.Utils.nextTick;
+var template = __webpack_require__(86);
 var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
 var map = Array.prototype.map;
 var defaultDataListItemSchema = Object.freeze({ value: 'value', text: 'text', disabled: 'disabled' });
@@ -9391,7 +8537,7 @@ var OpalSelect = (function (_super) {
             return;
         }
         this._onсeFocusedAfterLoading = true;
-        nextTick(function () {
+        next_tick_1.nextTick(function () {
             _this._focusOptions();
             var focusTarget = _this.$('focus');
             if (!focusTarget) {
@@ -9401,7 +8547,7 @@ var OpalSelect = (function (_super) {
                 }
             }
             if (focusTarget) {
-                nextTick(function () {
+                next_tick_1.nextTick(function () {
                     focusTarget.focus();
                 });
             }
@@ -9438,7 +8584,7 @@ var OpalSelect = (function (_super) {
         this.$('menu').open();
         var loadedList = this.$('loaded-list');
         if (loadedList) {
-            nextTick(function () {
+            next_tick_1.nextTick(function () {
                 loadedList.checkLoading();
             });
         }
@@ -9653,11 +8799,11 @@ exports.OpalSelect = OpalSelect;
 
 
 /***/ }),
-/* 7 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = Function('return this;')();
-var Symbol =  true ? __webpack_require__(4).Symbol : global.Symbol;
+var Symbol =  true ? __webpack_require__(6).Symbol : global.Symbol;
 
 var hasOwn = Object.prototype.hasOwnProperty;
 
@@ -9961,13 +9107,59 @@ if (true) {
 
 
 /***/ }),
-/* 8 */
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Parser_1 = __webpack_require__(25);
+exports.NodeType = Parser_1.NodeType;
+exports.Parser = Parser_1.Parser;
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var escapeHTML_1 = __webpack_require__(27);
+exports.escapeHTML = escapeHTML_1.default;
+var unescapeHTML_1 = __webpack_require__(28);
+exports.unescapeHTML = unescapeHTML_1.default;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = escapeHTML_1.default;
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var reEscapableChars = /[\\'"\r\n]/g;
+var charToEscapedMap = Object.create(null);
+charToEscapedMap['\\'] = '\\\\';
+charToEscapedMap['\''] = '\\\'';
+charToEscapedMap['"'] = '\\"';
+charToEscapedMap['\r'] = '\\r';
+charToEscapedMap['\n'] = '\\n';
+function escapeString(str) {
+    return reEscapableChars.test(str) ? str.replace(reEscapableChars, function (chr) { return charToEscapedMap[chr]; }) : str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = escapeString;
+
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 28 28\" id=\"opal-components__icon-cross\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 2l24 24m0-24L2 26\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 9 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9989,12 +9181,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var next_tick_1 = __webpack_require__(3);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(52);
-var template = __webpack_require__(53);
-var nextTick = cellx_1.Utils.nextTick;
+__webpack_require__(66);
+var template = __webpack_require__(67);
 var OpalTab = (function (_super) {
     __extends(OpalTab, _super);
     function OpalTab() {
@@ -10025,7 +9216,7 @@ var OpalTab = (function (_super) {
     };
     OpalTab.prototype._onControlFocus = function (evt) {
         var _this = this;
-        nextTick(function () {
+        next_tick_1.nextTick(function () {
             if (document.activeElement == evt.target) {
                 _this.input.focused = true;
             }
@@ -10108,7 +9299,7 @@ exports.OpalTab = OpalTab;
 
 
 /***/ }),
-/* 10 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10130,17 +9321,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var cellx_1 = __webpack_require__(2);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var ObservableTreeList_1 = __webpack_require__(5);
-var Utils_1 = __webpack_require__(11);
-var _getListItemContext_1 = __webpack_require__(12);
-__webpack_require__(103);
-var opal_tree_list_item_1 = __webpack_require__(13);
+var ObservableTreeList_1 = __webpack_require__(8);
+var Utils_1 = __webpack_require__(17);
+var _getListItemContext_1 = __webpack_require__(18);
+__webpack_require__(117);
+var opal_tree_list_item_1 = __webpack_require__(19);
 exports.OpalTreeListItem = opal_tree_list_item_1.OpalTreeListItem;
-__webpack_require__(13);
-var template = __webpack_require__(106);
+__webpack_require__(19);
+var template = __webpack_require__(120);
 var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
 function getVertices(item) {
@@ -10291,27 +9482,27 @@ OpalTreeList.prototype._getListItemContext = _getListItemContext_1.default;
 
 
 /***/ }),
-/* 11 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var closestComponent_1 = __webpack_require__(102);
+var closestComponent_1 = __webpack_require__(116);
 exports.closestComponent = closestComponent_1.default;
-var isFocusable_1 = __webpack_require__(3);
+var isFocusable_1 = __webpack_require__(4);
 exports.isFocusable = isFocusable_1.default;
 
 
 /***/ }),
-/* 12 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var mixin = cellx_1.Utils.mixin;
+var mixin_1 = __webpack_require__(5);
+var cellx_1 = __webpack_require__(2);
 function isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
     return item.children ?
         item.children
@@ -10325,7 +9516,7 @@ function isIndeterminateItem(item, vm, dataTreeListItemValueFieldName, viewModel
 }
 function _getListItemContext(context, slot) {
     var $item = slot.input.$context.$item;
-    return cellx_1.define(mixin(Object.create(context), slot.input.$context, ['$component']), {
+    return cellx_1.define(mixin_1.mixin(Object.create(context), slot.input.$context, ['$component']), {
         $selected: new cellx_1.Cell(function () {
             this.dataTreeList;
             return isSelectedItem($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
@@ -10340,7 +9531,7 @@ exports.default = _getListItemContext;
 
 
 /***/ }),
-/* 13 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10362,11 +9553,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_decorators_1 = __webpack_require__(2);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var _getListItemContext_1 = __webpack_require__(12);
-__webpack_require__(104);
-var template = __webpack_require__(105);
+var _getListItemContext_1 = __webpack_require__(18);
+__webpack_require__(118);
+var template = __webpack_require__(119);
 var OpalTreeListItem = (function (_super) {
     __extends(OpalTreeListItem, _super);
     function OpalTreeListItem() {
@@ -10432,7 +9623,7 @@ OpalTreeListItem.prototype._getListItemContext = _getListItemContext_1.default;
 
 
 /***/ }),
-/* 14 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10499,7 +9690,7 @@ module.exports = warning;
 
 
 /***/ }),
-/* 15 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10566,7 +9757,7 @@ var createPath = exports.createPath = function createPath(location) {
 };
 
 /***/ }),
-/* 16 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10581,7 +9772,7 @@ var PathNodeType;
 
 
 /***/ }),
-/* 17 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10603,12 +9794,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
+var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(18);
-__webpack_require__(19);
-var ObservableTreeList_1 = __webpack_require__(5);
-var template = __webpack_require__(135);
+__webpack_require__(32);
+__webpack_require__(33);
+var ObservableTreeList_1 = __webpack_require__(8);
+var template = __webpack_require__(149);
 rionite_1.formatters.log = function (msg) {
     console.log(msg);
     return msg;
@@ -10714,7 +9905,859 @@ exports.OpalComponentsDocs = OpalComponentsDocs;
 
 
 /***/ }),
-/* 18 */
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var nelm_parser_1 = __webpack_require__(11);
+exports.NodeType = nelm_parser_1.NodeType;
+exports.Parser = nelm_parser_1.default;
+var Template_1 = __webpack_require__(26);
+exports.Template = Template_1.default;
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var NodeType;
+(function (NodeType) {
+    NodeType[NodeType["BLOCK"] = 1] = "BLOCK";
+    NodeType[NodeType["ELEMENT"] = 2] = "ELEMENT";
+    NodeType[NodeType["TEXT"] = 3] = "TEXT";
+    NodeType[NodeType["COMMENT"] = 4] = "COMMENT";
+    NodeType[NodeType["SUPER_CALL"] = 5] = "SUPER_CALL";
+})(NodeType = exports.NodeType || (exports.NodeType = {}));
+var escapee = {
+    __proto__: null,
+    '/': '/',
+    '\\': '\\',
+    b: '\b',
+    f: '\f',
+    n: '\n',
+    r: '\r',
+    t: '\t'
+};
+var reBlockNameOrNothing = /[a-zA-Z][\-\w]*|/g;
+var reTagNameOrNothing = /[a-zA-Z][\-\w]*(?::[a-zA-Z][\-\w]*)?|/g;
+var reElementNameOrNothing = /[a-zA-Z][\-\w]*|/g;
+var reAttributeNameOrNothing = /[_a-zA-Z][\-\w]*(?::[_a-zA-Z][\-\w]*)?|/g;
+var reSuperCallOrNothing = /super(?:\.([a-zA-Z][\-\w]*))?!|/g;
+function normalizeMultilineText(text) {
+    return text.trim().replace(/\s*(?:\r\n?|\n)/g, '\n').replace(/\n\s+/g, '\n');
+}
+var Parser = /** @class */ (function () {
+    function Parser(nelm) {
+        this.nelm = nelm;
+    }
+    Parser.prototype.parse = function () {
+        this.at = 0;
+        this.chr = this.nelm.charAt(0);
+        var content;
+        var nextChr;
+        while (this._skipWhitespaces() == '/' && ((nextChr = this.nelm.charAt(this.at + 1)) == '/' || nextChr == '*')) {
+            (content || (content = [])).push(this._readComment());
+        }
+        var blockName = this.chr == '#' ? this._readBlockName() : null;
+        return {
+            nodeType: NodeType.BLOCK,
+            name: blockName,
+            content: content ? content.concat(this._readContent(false)) : this._readContent(false)
+        };
+    };
+    Parser.prototype._readBlockName = function () {
+        this._next('#');
+        var blockName = this._readName(reBlockNameOrNothing);
+        if (!blockName) {
+            this._throwError('Invalid block declaration');
+            throw 1;
+        }
+        return blockName;
+    };
+    Parser.prototype._readContent = function (brackets) {
+        if (brackets) {
+            this._next('{');
+        }
+        var content = [];
+        for (;;) {
+            switch (this._skipWhitespaces()) {
+                case "'":
+                case '"':
+                case '`': {
+                    content.push(this._readTextNode());
+                    break;
+                }
+                case '': {
+                    if (brackets) {
+                        this._throwError('Missing "}" in compound statement');
+                    }
+                    return content;
+                }
+                default: {
+                    if (this.chr == '/') {
+                        var nextChr = this.nelm.charAt(this.at + 1);
+                        if (nextChr == '/' || nextChr == '*') {
+                            content.push(this._readComment());
+                            break;
+                        }
+                    }
+                    if (brackets) {
+                        if (this.chr == '}') {
+                            this._next();
+                            return content;
+                        }
+                        reSuperCallOrNothing.lastIndex = this.at;
+                        var superCallMatch = reSuperCallOrNothing.exec(this.nelm);
+                        if (superCallMatch[0]) {
+                            this.chr = this.nelm.charAt((this.at = reSuperCallOrNothing.lastIndex));
+                            content.push({
+                                nodeType: NodeType.SUPER_CALL,
+                                elementName: superCallMatch[1] || null
+                            });
+                            break;
+                        }
+                    }
+                    content.push(this._readElement());
+                    break;
+                }
+            }
+        }
+    };
+    Parser.prototype._readElement = function () {
+        var at = this.at;
+        var isHelper = this.chr == '@';
+        if (isHelper) {
+            this._next();
+        }
+        var tagName = this._readName(reTagNameOrNothing);
+        var elNames;
+        if ((tagName ? this._skipWhitespaces() : this.chr) == '/') {
+            var at_1 = this.at;
+            this._next();
+            this._skipWhitespaces();
+            elNames = this._readElementNames();
+            if (!elNames) {
+                this.at = at_1;
+            }
+        }
+        else {
+            elNames = null;
+        }
+        if (!tagName && !elNames) {
+            this._throwError('Expected element', at);
+        }
+        var attrs = this.chr == '(' ? this._readAttributes() : null;
+        if (attrs) {
+            this._skipWhitespaces();
+        }
+        var content = this.chr == '{' ? this._readContent(true) : null;
+        return {
+            nodeType: NodeType.ELEMENT,
+            tagName: tagName,
+            isHelper: isHelper,
+            names: elNames,
+            attributes: attrs,
+            content: content
+        };
+    };
+    Parser.prototype._readAttributes = function () {
+        this._next('(');
+        if (this._skipWhitespacesAndComments() == ')') {
+            this._next();
+            return {
+                superCall: null,
+                list: []
+            };
+        }
+        var superCall;
+        var list = [];
+        for (;;) {
+            if (!superCall && this.chr == 's' && (superCall = this._readSuperCall())) {
+                this._skipWhitespacesAndComments();
+            }
+            else {
+                var name_1 = this._readName(reAttributeNameOrNothing);
+                if (!name_1) {
+                    this._throwError('Invalid attribute name');
+                    throw 1;
+                }
+                if (this._skipWhitespacesAndComments() == '=') {
+                    this._next();
+                    var chr = this._skipWhitespaces();
+                    if (chr == "'" || chr == '"' || chr == '`') {
+                        var str = this._readString();
+                        list.push({
+                            name: name_1,
+                            value: str.multiline ? normalizeMultilineText(str.value) : str.value
+                        });
+                    }
+                    else {
+                        var value = '';
+                        for (;;) {
+                            if (!chr) {
+                                this._throwError('Invalid attribute');
+                            }
+                            if (chr == '\r' || chr == '\n' || chr == ',' || chr == ')') {
+                                list.push({ name: name_1, value: value.trim() });
+                                break;
+                            }
+                            value += chr;
+                            chr = this._next();
+                        }
+                    }
+                    this._skipWhitespacesAndComments();
+                }
+                else {
+                    list.push({ name: name_1, value: '' });
+                }
+            }
+            if (this.chr == ')') {
+                this._next();
+                break;
+            }
+            else if (this.chr == ',') {
+                this._next();
+                this._skipWhitespacesAndComments();
+            }
+            else {
+                this._throwError('Invalid attributes');
+            }
+        }
+        return {
+            superCall: superCall || null,
+            list: list
+        };
+    };
+    Parser.prototype._skipWhitespacesAndComments = function () {
+        var chr = this.chr;
+        var nextChr;
+        for (;;) {
+            if (chr && chr <= ' ') {
+                chr = this._next();
+            }
+            else if (chr == '/' && ((nextChr = this.nelm.charAt(this.at + 1)) == '/' || nextChr == '*')) {
+                this._readComment();
+                chr = this.chr;
+            }
+            else {
+                break;
+            }
+        }
+        return chr;
+    };
+    Parser.prototype._readSuperCall = function () {
+        reSuperCallOrNothing.lastIndex = this.at;
+        var superCallMatch = reSuperCallOrNothing.exec(this.nelm);
+        if (superCallMatch[0]) {
+            this.chr = this.nelm.charAt((this.at = reSuperCallOrNothing.lastIndex));
+            return {
+                nodeType: NodeType.SUPER_CALL,
+                elementName: superCallMatch[1] || null
+            };
+        }
+        return null;
+    };
+    Parser.prototype._readTextNode = function () {
+        var str = this._readString();
+        return {
+            nodeType: NodeType.TEXT,
+            value: str.multiline ? normalizeMultilineText(str.value) : str.value
+        };
+    };
+    Parser.prototype._readString = function () {
+        var quoteChar = this.chr;
+        if (quoteChar != "'" && quoteChar != '"' && quoteChar != '`') {
+            this._throwError("Expected \"'\" instead of \"" + this.chr + "\"");
+        }
+        var str = '';
+        for (var chr = this._next(); chr;) {
+            if (chr == quoteChar) {
+                this._next();
+                return {
+                    value: str,
+                    multiline: quoteChar == '`'
+                };
+            }
+            if (chr == '\\') {
+                chr = this._next();
+                if (chr == 'x' || chr == 'u') {
+                    var at = this.at;
+                    var hexadecimal = chr == 'x';
+                    var code = parseInt(this.nelm.slice(at + 1, at + (hexadecimal ? 3 : 5)), 16);
+                    if (!isFinite(code)) {
+                        this._throwError("Malformed " + (hexadecimal ? 'hexadecimal' : 'unicode') + " escape sequence", at - 1);
+                    }
+                    str += String.fromCharCode(code);
+                    chr = this.chr = this.nelm.charAt((this.at = at + (hexadecimal ? 3 : 5)));
+                }
+                else if (chr in escapee) {
+                    str += escapee[chr];
+                    chr = this._next();
+                }
+                else {
+                    break;
+                }
+            }
+            else {
+                if (quoteChar != '`' && (chr == '\r' || chr == '\n')) {
+                    break;
+                }
+                str += chr;
+                chr = this._next();
+            }
+        }
+        this._throwError('Invalid string');
+        throw 1;
+    };
+    Parser.prototype._readComment = function () {
+        var value = '';
+        var multiline;
+        switch (this._next('/')) {
+            case '/': {
+                for (var chr = void 0; (chr = this._next()) && chr != '\r' && chr != '\n';) {
+                    value += chr;
+                }
+                multiline = false;
+                break;
+            }
+            case '*': {
+                var stop_1 = false;
+                do {
+                    switch (this._next()) {
+                        case '*': {
+                            if (this._next() == '/') {
+                                this._next();
+                                stop_1 = true;
+                            }
+                            else {
+                                value += '*' + this.chr;
+                            }
+                            break;
+                        }
+                        case '': {
+                            this._throwError('Missing "*/" in compound statement');
+                        }
+                        default: {
+                            value += this.chr;
+                        }
+                    }
+                } while (!stop_1);
+                multiline = true;
+                break;
+            }
+            default: {
+                this._throwError("Expected \"/\" instead of \"" + this.chr + "\"");
+                throw 1;
+            }
+        }
+        return {
+            nodeType: NodeType.COMMENT,
+            value: value,
+            multiline: multiline
+        };
+    };
+    Parser.prototype._readElementNames = function () {
+        var names = this.chr == ',' ? (this._next(), this._skipWhitespaces(), [null]) : null;
+        for (var name_2; (name_2 = this._readName(reElementNameOrNothing));) {
+            (names || (names = [])).push(name_2);
+            if (this._skipWhitespaces() != ',') {
+                break;
+            }
+            this._next();
+            this._skipWhitespaces();
+        }
+        return names;
+    };
+    Parser.prototype._readName = function (reNameOrNothing) {
+        reNameOrNothing.lastIndex = this.at;
+        var name = reNameOrNothing.exec(this.nelm)[0];
+        if (name) {
+            this.chr = this.nelm.charAt((this.at = reNameOrNothing.lastIndex));
+            return name;
+        }
+        return null;
+    };
+    Parser.prototype._skipWhitespaces = function () {
+        var chr = this.chr;
+        while (chr && chr <= ' ') {
+            chr = this._next();
+        }
+        return chr;
+    };
+    Parser.prototype._next = function (current) {
+        if (current && current != this.chr) {
+            this._throwError("Expected \"" + current + "\" instead of \"" + this.chr + "\"");
+        }
+        return (this.chr = this.nelm.charAt(++this.at));
+    };
+    Parser.prototype._throwError = function (msg, at) {
+        if (at === void 0) { at = this.at; }
+        var crlfCount = 0;
+        throw new SyntaxError(msg + '\n' + this.nelm.slice(at - 40, at + 20).replace(/\r\n|\r|\n/g, function (match) {
+            if (match.length == 2) {
+                crlfCount++;
+            }
+            return '↵';
+        }) + '\n' + '----------------------------------------'.slice(crlfCount) + '↑');
+    };
+    return Parser;
+}());
+exports.Parser = Parser;
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var escape_html_1 = __webpack_require__(12);
+var self_closing_tags_1 = __webpack_require__(29);
+var escape_string_1 = __webpack_require__(13);
+var nelm_parser_1 = __webpack_require__(11);
+var join = Array.prototype.join;
+var elNameDelimiter = '__';
+var Template = /** @class */ (function () {
+    function Template(nelm, opts) {
+        this.parent = opts && opts.parent || null;
+        this.nelm = typeof nelm == 'string' ? new nelm_parser_1.Parser(nelm).parse() : nelm;
+        var blockName = opts && opts.blockName || this.nelm.name;
+        this._elementClassesTemplate = this.parent ?
+            [blockName ? blockName + elNameDelimiter : ''].concat(this.parent._elementClassesTemplate) :
+            [blockName ? blockName + elNameDelimiter : '', ''];
+    }
+    Template.prototype.extend = function (nelm, opts) {
+        return new Template(nelm, { __proto__: opts || null, parent: this });
+    };
+    Template.prototype.setBlockName = function (blockName) {
+        this._elementClassesTemplate[0] = blockName ? blockName + elNameDelimiter : '';
+        return this;
+    };
+    Template.prototype.render = function () {
+        var _this = this;
+        return (this._renderer || this._compileRenderers()).call(this._elementRendererMap).replace(/<<([^>]+)>>/g, function (match, names) { return _this._renderElementClasses(names.split(',')); });
+    };
+    Template.prototype._compileRenderers = function () {
+        var parent = this.parent;
+        this._elements = [(this._currentElement = { name: null, superCall: false, source: null, innerSource: [] })];
+        var elMap = this._elementMap = {};
+        if (parent) {
+            this._renderer = parent._renderer || parent._compileRenderers();
+        }
+        for (var _i = 0, _a = this.nelm.content; _i < _a.length; _i++) {
+            var node = _a[_i];
+            this._compileNode(node);
+        }
+        if (!parent) {
+            this._renderer = Function("return " + this._currentElement.innerSource.join(' + ') + ";");
+        }
+        Object.keys(elMap).forEach(function (name) {
+            var el = elMap[name];
+            this[name] = Function("return " + el.source.join(' + ') + ";");
+            if (el.superCall) {
+                var inner_1 = Function('$super', "return " + (el.innerSource.join(' + ') || "''") + ";");
+                var parentElementRendererMap_1 = parent && parent._elementRendererMap;
+                this[name + '@content'] = function () { return inner_1.call(this, parentElementRendererMap_1); };
+            }
+            else {
+                this[name + '@content'] = Function("return " + (el.innerSource.join(' + ') || "''") + ";");
+            }
+        }, (this._elementRendererMap = { __proto__: parent && parent._elementRendererMap }));
+        return this._renderer;
+    };
+    Template.prototype._compileNode = function (node, parentElName) {
+        switch (node.nodeType) {
+            case nelm_parser_1.NodeType.ELEMENT: {
+                var parent_1 = this.parent;
+                var els = this._elements;
+                var el = node;
+                var tagName = el.tagName;
+                var isHelper = el.isHelper;
+                var elNames = el.names;
+                var elName = elNames && elNames[0];
+                var elAttrs = el.attributes;
+                var content = el.content;
+                if (elNames) {
+                    if (elName) {
+                        if (tagName) {
+                            (this._tagNameMap || (this._tagNameMap = { __proto__: parent_1 && parent_1._tagNameMap || null }))[elName] = tagName;
+                        }
+                        else {
+                            // Не надо добавлять в конец ` || 'div'`, тк. ниже tagName используется как имя хелпера.
+                            tagName = parent_1 && parent_1._tagNameMap && parent_1._tagNameMap[elName];
+                        }
+                        var renderedAttrs = void 0;
+                        if (elAttrs && (elAttrs.list.length || elAttrs.superCall)) {
+                            var attrListMap = this._attributeListMap || (this._attributeListMap = { __proto__: parent_1 && parent_1._attributeListMap || null });
+                            var attrCountMap = this._attributeCountMap || (this._attributeCountMap = {
+                                __proto__: parent_1 && parent_1._attributeCountMap || null
+                            });
+                            var elAttrsSuperCall = elAttrs.superCall;
+                            var attrList = void 0;
+                            var attrCount = void 0;
+                            if (elAttrsSuperCall) {
+                                if (!parent_1) {
+                                    throw new TypeError('Parent template is required when using super');
+                                }
+                                attrList = attrListMap[elName] = {
+                                    __proto__: parent_1._attributeListMap[elAttrsSuperCall.elementName || elName] || null
+                                };
+                                attrCount = attrCountMap[elName] =
+                                    parent_1._attributeCountMap[elAttrsSuperCall.elementName || elName] || 0;
+                            }
+                            else {
+                                attrList = attrListMap[elName] = { __proto__: null };
+                                attrCount = attrCountMap[elName] = 0;
+                            }
+                            for (var _i = 0, _a = elAttrs.list; _i < _a.length; _i++) {
+                                var attr = _a[_i];
+                                var name_1 = attr.name;
+                                var value = attr.value;
+                                var index = attrList[name_1];
+                                if (index === undefined) {
+                                    attrList[attrCount] = " " + name_1 + "=\"" + (value && escape_html_1.default(escape_string_1.default(value))) + "\"";
+                                    attrList[name_1] = attrCount;
+                                    attrCountMap[elName] = ++attrCount;
+                                }
+                                else {
+                                    attrList[index] = " " + name_1 + "=\"" + (value && escape_html_1.default(escape_string_1.default(value))) + "\"";
+                                }
+                            }
+                            if (!isHelper) {
+                                attrList = {
+                                    __proto__: attrList,
+                                    length: attrCount
+                                };
+                                if (attrList['class'] !== undefined) {
+                                    attrList[attrList['class']] = " class=\"<<" + elNames.join(',') + ">> " +
+                                        attrList[attrList['class']].slice(' class="'.length);
+                                    renderedAttrs = join.call(attrList, '');
+                                }
+                                else {
+                                    renderedAttrs = " class=\"<<" + elNames.join(',') + ">>\"" +
+                                        join.call(attrList, '');
+                                }
+                            }
+                        }
+                        else if (!isHelper) {
+                            renderedAttrs = " class=\"<<" + elNames.join(',') + ">>\"";
+                        }
+                        var currentEl = {
+                            name: elName,
+                            superCall: false,
+                            source: isHelper ? ["this['" + elName + "@content']()"] : [
+                                "'<" + (tagName || 'div') + renderedAttrs + ">'",
+                                content && content.length ?
+                                    "this['" + elName + "@content']() + '</" + (tagName || 'div') + ">'" :
+                                    (!content && tagName && tagName in self_closing_tags_1.map ?
+                                        "''" :
+                                        "'</" + (tagName || 'div') + ">'")
+                            ],
+                            innerSource: []
+                        };
+                        els.push((this._currentElement = currentEl));
+                        this._elementMap[elName] = currentEl;
+                    }
+                    else if (!isHelper) {
+                        if (elAttrs && elAttrs.list.length) {
+                            var hasClassAttr = false;
+                            var attrs = '';
+                            for (var _b = 0, _c = elAttrs.list; _b < _c.length; _b++) {
+                                var attr = _c[_b];
+                                var value = attr.value;
+                                if (attr.name == 'class') {
+                                    hasClassAttr = true;
+                                    attrs += " class=\"<<" + elNames.join(',').slice(1) + ">>" + (value ? ' ' + value : '') + "\"";
+                                }
+                                else {
+                                    attrs += " " + attr.name + "=\"" + (value && escape_html_1.default(escape_string_1.default(value))) + "\"";
+                                }
+                            }
+                            this._currentElement.innerSource.push("'<" + (tagName || 'div') + (hasClassAttr ? attrs : " class=\"<<" + elNames.join(',').slice(1) + ">>\"" + attrs) + ">'");
+                        }
+                        else {
+                            this._currentElement.innerSource.push("'<" + (tagName || 'div') + " class=\"<<" + elNames.join(',').slice(1) + ">>\">'");
+                        }
+                    }
+                }
+                else if (!isHelper) {
+                    this._currentElement.innerSource.push("'<" + (tagName || 'div') + (elAttrs ?
+                        elAttrs.list.map(function (attr) { return " " + attr.name + "=\"" + (attr.value && escape_html_1.default(escape_string_1.default(attr.value))) + "\""; }).join('') :
+                        '') + ">'");
+                }
+                if (isHelper) {
+                    if (!tagName) {
+                        throw new TypeError('"tagName" is required');
+                    }
+                    var helper = Template.helpers[tagName];
+                    if (!helper) {
+                        throw new TypeError("Helper \"" + tagName + "\" is not defined");
+                    }
+                    var content_1 = helper(el);
+                    if (content_1) {
+                        for (var _d = 0, content_2 = content_1; _d < content_2.length; _d++) {
+                            var contentNode = content_2[_d];
+                            this._compileNode(contentNode, elName || parentElName);
+                        }
+                    }
+                }
+                else if (content) {
+                    for (var _e = 0, content_3 = content; _e < content_3.length; _e++) {
+                        var contentNode = content_3[_e];
+                        this._compileNode(contentNode, elName || parentElName);
+                    }
+                }
+                if (elName) {
+                    els.pop();
+                    this._currentElement = els[els.length - 1];
+                    this._currentElement.innerSource.push("this['" + elName + "']()");
+                }
+                else if (!isHelper && (content || !tagName || !(tagName in self_closing_tags_1.map))) {
+                    this._currentElement.innerSource.push("'</" + (tagName || 'div') + ">'");
+                }
+                break;
+            }
+            case nelm_parser_1.NodeType.TEXT: {
+                this._currentElement.innerSource.push("'" + escape_string_1.default(node.value) + "'");
+                break;
+            }
+            case nelm_parser_1.NodeType.SUPER_CALL: {
+                this._currentElement.innerSource
+                    .push("$super['" + (node.elementName || parentElName) + "@content'].call(this)");
+                this._currentElement.superCall = true;
+                break;
+            }
+        }
+    };
+    Template.prototype._renderElementClasses = function (elNames) {
+        var elClasses = '';
+        for (var i = 0, l = elNames.length; i < l; i++) {
+            elClasses += this._elementClassesTemplate.join(elNames[i] + ' ');
+        }
+        return elClasses.slice(0, -1);
+    };
+    Template.helpers = {
+        section: function (el) { return el.content; }
+    };
+    return Template;
+}());
+exports.default = Template;
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var reEscapableChars = /[&<>"]/g;
+var charToEscapedMap = Object.create(null);
+charToEscapedMap['&'] = '&amp;';
+charToEscapedMap['<'] = '&lt;';
+charToEscapedMap['>'] = '&gt;';
+charToEscapedMap['"'] = '&quot;';
+function escapeHTML(str) {
+    return reEscapableChars.test(str) ? str.replace(reEscapableChars, function (chr) { return charToEscapedMap[chr]; }) : str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = escapeHTML;
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var reEscapableEntities = /&(?:amp|lt|gt|quot);/g;
+var escapedToCharMap = Object.create(null);
+escapedToCharMap['&amp;'] = '&';
+escapedToCharMap['&lt;'] = '<';
+escapedToCharMap['&gt;'] = '>';
+escapedToCharMap['&quot;'] = '"';
+function unescapeHTML(str) {
+    return reEscapableEntities.test(str) ? str.replace(reEscapableEntities, function (entity) { return escapedToCharMap[entity]; }) : str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = unescapeHTML;
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.list = [
+    'area',
+    'base',
+    'basefont',
+    'br',
+    'col',
+    'command',
+    'embed',
+    'frame',
+    'hr',
+    'img',
+    'input',
+    'isindex',
+    'keygen',
+    'link',
+    'meta',
+    'param',
+    'source',
+    'track',
+    'wbr',
+    // svg tags
+    'circle',
+    'ellipse',
+    'line',
+    'path',
+    'polygone',
+    'polyline',
+    'rect',
+    'stop',
+    'use'
+];
+exports.map = exports.list.reduce(function (map, name) {
+    map[name] = true;
+    return map;
+}, Object.create(null));
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var hasOwn = Object.prototype.hasOwnProperty;
+var reInsert = /\{([1-9]\d*|n)(?::((?:[^|]*\|)+?[^}]*))?\}/;
+var texts;
+var getPluralIndex;
+exports.getText = function getText(context, key, plural, args) {
+    var rawText;
+    if (hasOwn.call(texts, context) && hasOwn.call(texts[context], key)) {
+        rawText = plural ?
+            texts[context][key][getPluralIndex(+args[0])] :
+            texts[context][key];
+    }
+    else {
+        rawText = key;
+    }
+    var data = Object.create(null);
+    for (var i = args.length; i;) {
+        data[i] = args[--i];
+    }
+    if (plural) {
+        data.n = args[0];
+    }
+    var splittedRawText = rawText.split(reInsert);
+    var text = [];
+    for (var i = 0, l = splittedRawText.length; i < l;) {
+        if (i % 3) {
+            text.push(splittedRawText[i + 1] ?
+                splittedRawText[i + 1].split('|')[getPluralIndex(data[splittedRawText[i]])] :
+                data[splittedRawText[i]]);
+            i += 2;
+        }
+        else {
+            text.push(splittedRawText[i]);
+            i++;
+        }
+    }
+    return text.join('');
+};
+function configure(config) {
+    texts = config.texts;
+    getPluralIndex = Function('n', "return " + config.localeSettings.plural + ";");
+    exports.getText.localeSettings = config.localeSettings;
+}
+function t(key) {
+    var args = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        args[_i - 1] = arguments[_i];
+    }
+    return exports.getText('', key, false, args);
+}
+function pt(key, context) {
+    var args = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        args[_i - 2] = arguments[_i];
+    }
+    return exports.getText(context, key, false, args);
+}
+function nt(key) {
+    var args = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        args[_i - 1] = arguments[_i];
+    }
+    return exports.getText('', key, true, args);
+}
+function npt(key, context) {
+    var args = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        args[_i - 2] = arguments[_i];
+    }
+    return exports.getText(context, key, true, args);
+}
+exports.getText.configure = configure;
+exports.getText.t = t;
+exports.getText.pt = pt;
+exports.getText.nt = nt;
+exports.getText.npt = npt;
+configure({
+    localeSettings: {
+        code: 'ru',
+        plural: '(n%100) >= 5 && (n%100) <= 20 ? 2 : (n%10) == 1 ? 0 : (n%10) >= 2 && (n%10) <= 4 ? 1 : 2'
+    },
+    texts: {}
+});
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var range = document.createRange();
+var htmlToFragment;
+if (range.createContextualFragment) {
+    var selected_1 = false;
+    htmlToFragment = function (html) {
+        if (!selected_1) {
+            range.selectNode(document.body);
+            selected_1 = true;
+        }
+        return range.createContextualFragment(html);
+    };
+}
+else {
+    htmlToFragment = function (html) {
+        var el = document.createElement('div');
+        var df = document.createDocumentFragment();
+        el.innerHTML = html;
+        for (var child = void 0; (child = el.firstChild);) {
+            df.appendChild(child);
+        }
+        return df;
+    };
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = htmlToFragment;
+
+
+/***/ }),
+/* 32 */
 /***/ (function(module, exports) {
 
 document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
@@ -10735,84 +10778,84 @@ document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
 
 
 /***/ }),
-/* 19 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var ObservableTreeList_1 = __webpack_require__(5);
+var ObservableTreeList_1 = __webpack_require__(8);
 exports.ObservableTreeList = ObservableTreeList_1.default;
-var opal_button_1 = __webpack_require__(20);
+var opal_button_1 = __webpack_require__(34);
 exports.OpalButton = opal_button_1.OpalButton;
-var opal_sign_button_1 = __webpack_require__(22);
+var opal_sign_button_1 = __webpack_require__(36);
 exports.OpalSignButton = opal_sign_button_1.OpalSignButton;
-var opal_text_input_1 = __webpack_require__(25);
+var opal_text_input_1 = __webpack_require__(39);
 exports.OpalTextInput = opal_text_input_1.OpalTextInput;
-var opal_input_mask_1 = __webpack_require__(28);
+var opal_input_mask_1 = __webpack_require__(42);
 exports.OpalInputMask = opal_input_mask_1.OpalInputMask;
 exports.OpalInputMaskDefinition = opal_input_mask_1.OpalInputMaskDefinition;
-var opal_group_1 = __webpack_require__(31);
+var opal_group_1 = __webpack_require__(45);
 exports.OpalGroup = opal_group_1.OpalGroup;
-var opal_checkbox_1 = __webpack_require__(33);
+var opal_checkbox_1 = __webpack_require__(47);
 exports.OpalCheckbox = opal_checkbox_1.OpalCheckbox;
-var opal_radio_group_1 = __webpack_require__(36);
+var opal_radio_group_1 = __webpack_require__(50);
 exports.OpalRadioGroup = opal_radio_group_1.OpalRadioGroup;
 exports.OpalRadioButton = opal_radio_group_1.OpalRadioButton;
-var opal_switch_1 = __webpack_require__(40);
+var opal_switch_1 = __webpack_require__(54);
 exports.OpalSwitch = opal_switch_1.OpalSwitch;
-var opal_slider_1 = __webpack_require__(43);
+var opal_slider_1 = __webpack_require__(57);
 exports.OpalSlider = opal_slider_1.OpalSlider;
-var opal_switch_menu_1 = __webpack_require__(46);
+var opal_switch_menu_1 = __webpack_require__(60);
 exports.OpalSwitchMenu = opal_switch_menu_1.OpalSwitchMenu;
-var opal_tabs_1 = __webpack_require__(48);
+var opal_tabs_1 = __webpack_require__(62);
 exports.OpalTabs = opal_tabs_1.OpalTabs;
 exports.OpalTabList = opal_tabs_1.OpalTabList;
 exports.OpalTab = opal_tabs_1.OpalTab;
-var opal_dropdown_1 = __webpack_require__(57);
+var opal_dropdown_1 = __webpack_require__(71);
 exports.OpalDropdown = opal_dropdown_1.OpalDropdown;
-var opal_popover_1 = __webpack_require__(59);
+var opal_popover_1 = __webpack_require__(73);
 exports.OpalPopover = opal_popover_1.OpalPopover;
-var opal_modal_1 = __webpack_require__(62);
+var opal_modal_1 = __webpack_require__(76);
 exports.OpalModal = opal_modal_1.OpalModal;
-var opal_select_1 = __webpack_require__(6);
+var opal_select_1 = __webpack_require__(9);
 exports.OpalSelect = opal_select_1.OpalSelect;
 exports.OpalSelectOption = opal_select_1.OpalSelectOption;
-var opal_multiselect_1 = __webpack_require__(73);
+var opal_multiselect_1 = __webpack_require__(87);
 exports.OpalMultiselect = opal_multiselect_1.OpalMultiselect;
-var opal_input_validator_1 = __webpack_require__(76);
+var opal_input_validator_1 = __webpack_require__(90);
 exports.OpalInputValidator = opal_input_validator_1.OpalInputValidator;
 exports.OpalInputValidatorRule = opal_input_validator_1.OpalInputValidatorRule;
-var opal_calendar_1 = __webpack_require__(81);
+var opal_calendar_1 = __webpack_require__(95);
 exports.OpalCalendar = opal_calendar_1.OpalCalendar;
-var opal_date_input_1 = __webpack_require__(87);
+var opal_date_input_1 = __webpack_require__(101);
 exports.OpalDateInput = opal_date_input_1.OpalDateInput;
-var opal_loader_1 = __webpack_require__(91);
+var opal_loader_1 = __webpack_require__(105);
 exports.OpalLoader = opal_loader_1.OpalLoader;
-var opal_loaded_list_1 = __webpack_require__(93);
+var opal_loaded_list_1 = __webpack_require__(107);
 exports.OpalLoadedList = opal_loaded_list_1.OpalLoadedList;
-var opal_filtered_list_1 = __webpack_require__(96);
+var opal_filtered_list_1 = __webpack_require__(110);
 exports.OpalFilteredList = opal_filtered_list_1.OpalFilteredList;
-var opal_tree_list_1 = __webpack_require__(10);
+var opal_tree_list_1 = __webpack_require__(16);
 exports.OpalTreeList = opal_tree_list_1.OpalTreeList;
-var opal_tag_select_1 = __webpack_require__(107);
+var opal_tag_select_1 = __webpack_require__(121);
 exports.OpalTagSelect = opal_tag_select_1.OpalTagSelect;
-var opal_tree_select_1 = __webpack_require__(110);
+var opal_tree_select_1 = __webpack_require__(124);
 exports.OpalTreeSelect = opal_tree_select_1.OpalTreeSelect;
-var opal_autosuggest_1 = __webpack_require__(113);
+var opal_autosuggest_1 = __webpack_require__(127);
 exports.OpalAutosuggest = opal_autosuggest_1.OpalAutosuggest;
-var opal_multirow_1 = __webpack_require__(116);
+var opal_multirow_1 = __webpack_require__(130);
 exports.OpalMultirow = opal_multirow_1.OpalMultirow;
 exports.OpalMultirowRow = opal_multirow_1.OpalMultirowRow;
-var opal_router_1 = __webpack_require__(122);
+var opal_router_1 = __webpack_require__(136);
 exports.OpalRouter = opal_router_1.OpalRouter;
 exports.OpalRoute = opal_router_1.OpalRoute;
-var Utils_1 = __webpack_require__(11);
+var Utils_1 = __webpack_require__(17);
 exports.Utils = Utils_1.default;
 
 
 /***/ }),
-/* 20 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10834,11 +10877,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var next_tick_1 = __webpack_require__(3);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(21);
-var nextTick = cellx_1.Utils.nextTick;
+__webpack_require__(35);
 var OpalButton = (function (_super) {
     __extends(OpalButton, _super);
     function OpalButton() {
@@ -10877,7 +10919,7 @@ var OpalButton = (function (_super) {
     };
     OpalButton.prototype._onElementFocus = function (evt) {
         var _this = this;
-        nextTick(function () {
+        next_tick_1.nextTick(function () {
             if (document.activeElement != _this.element) {
                 return;
             }
@@ -10993,7 +11035,7 @@ exports.OpalButton = OpalButton;
 
 
 /***/ }),
-/* 21 */
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11010,7 +11052,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 22 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11032,12 +11074,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var next_tick_1 = __webpack_require__(3);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(23);
-var template = __webpack_require__(24);
-var nextTick = cellx_1.Utils.nextTick;
+__webpack_require__(37);
+var template = __webpack_require__(38);
 var OpalSignButton = (function (_super) {
     __extends(OpalSignButton, _super);
     function OpalSignButton() {
@@ -11068,7 +11109,7 @@ var OpalSignButton = (function (_super) {
     };
     OpalSignButton.prototype._onControlFocus = function (evt) {
         var _this = this;
-        nextTick(function () {
+        next_tick_1.nextTick(function () {
             if (document.activeElement == evt.target) {
                 _this.input.focused = true;
                 _this.emit('focus');
@@ -11168,7 +11209,7 @@ exports.OpalSignButton = OpalSignButton;
 
 
 /***/ }),
-/* 23 */
+/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11185,13 +11226,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 24 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 25 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11213,13 +11254,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var next_tick_1 = __webpack_require__(3);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(8);
-__webpack_require__(26);
-var template = __webpack_require__(27);
-var nextTick = cellx_1.Utils.nextTick;
+__webpack_require__(14);
+__webpack_require__(40);
+var template = __webpack_require__(41);
 var OpalTextInput = (function (_super) {
     __extends(OpalTextInput, _super);
     function OpalTextInput() {
@@ -11313,7 +11353,7 @@ var OpalTextInput = (function (_super) {
     };
     OpalTextInput.prototype._onTextFieldFocus = function (evt) {
         var _this = this;
-        nextTick(function () {
+        next_tick_1.nextTick(function () {
             if (document.activeElement == evt.target) {
                 _this.input.focused = true;
                 _this.emit('focus');
@@ -11449,7 +11489,7 @@ exports.OpalTextInput = OpalTextInput;
 
 
 /***/ }),
-/* 26 */
+/* 40 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11466,13 +11506,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 27 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\n@if-then (if=input.multiline) {\ntextarea/, text-field (\nrows={input.rows},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-else (if=input.multiline) {\ninput/, text-field (\ntype={input.inputType},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\nrt-content/control-icon-container (select=.opal-text-input__control-icon, shown={isControlIconShown})\n@if-then (if=input.clearable) {\nbutton/btn-clear (shown={isBtnClearShown}) {\nsvg/btn-clear-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n@if-then (if=input.loading) {\nopal-loader/loader (size=s, shown)\n}\n}"
 
 /***/ }),
-/* 28 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11494,12 +11534,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var next_tick_1 = __webpack_require__(3);
+var cellx_1 = __webpack_require__(2);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var opal_input_mask_definition_1 = __webpack_require__(29);
+var opal_input_mask_definition_1 = __webpack_require__(43);
 exports.OpalInputMaskDefinition = opal_input_mask_definition_1.OpalInputMaskDefinition;
-var nextTick = cellx_1.Utils.nextTick;
 var forEach = Array.prototype.forEach;
 var iPhone = /iphone/i.test(navigator.userAgent);
 var ie11 = !(window.ActiveXObject) && 'ActiveXObject' in window;
@@ -11574,7 +11614,7 @@ var OpalInputMask = (function (_super) {
     };
     OpalInputMask.prototype._onTextFieldFocus = function () {
         var _this = this;
-        nextTick(function () {
+        next_tick_1.nextTick(function () {
             if (document.activeElement == _this._textField) {
                 _this._setTextFieldSelection(0, _this._checkValue(false));
                 _this._textOnFocus = _this._textField.value;
@@ -11824,7 +11864,7 @@ exports.OpalInputMask = OpalInputMask;
 
 
 /***/ }),
-/* 29 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11847,7 +11887,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(30);
+__webpack_require__(44);
 var OpalInputMaskDefinition = (function (_super) {
     __extends(OpalInputMaskDefinition, _super);
     function OpalInputMaskDefinition() {
@@ -11868,7 +11908,7 @@ exports.OpalInputMaskDefinition = OpalInputMaskDefinition;
 
 
 /***/ }),
-/* 30 */
+/* 44 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11885,7 +11925,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 31 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11908,7 +11948,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(32);
+__webpack_require__(46);
 var OpalGroup = (function (_super) {
     __extends(OpalGroup, _super);
     function OpalGroup() {
@@ -11926,7 +11966,7 @@ exports.OpalGroup = OpalGroup;
 
 
 /***/ }),
-/* 32 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11943,7 +11983,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 33 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11965,12 +12005,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var next_tick_1 = __webpack_require__(3);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(34);
-var template = __webpack_require__(35);
-var nextTick = cellx_1.Utils.nextTick;
+__webpack_require__(48);
+var template = __webpack_require__(49);
 var OpalCheckbox = (function (_super) {
     __extends(OpalCheckbox, _super);
     function OpalCheckbox() {
@@ -12042,7 +12081,7 @@ var OpalCheckbox = (function (_super) {
     };
     OpalCheckbox.prototype._onControlFocus = function (evt) {
         var _this = this;
-        nextTick(function () {
+        next_tick_1.nextTick(function () {
             if (document.activeElement == evt.target) {
                 _this.input.focused = true;
                 _this.emit('focus');
@@ -12128,7 +12167,7 @@ exports.OpalCheckbox = OpalCheckbox;
 
 
 /***/ }),
-/* 34 */
+/* 48 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12145,13 +12184,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 35 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 36 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12174,7 +12213,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var opal_radio_button_1 = __webpack_require__(37);
+var opal_radio_button_1 = __webpack_require__(51);
 exports.OpalRadioButton = opal_radio_button_1.OpalRadioButton;
 var forEach = Array.prototype.forEach;
 var OpalRadioGroup = (function (_super) {
@@ -12214,7 +12253,7 @@ exports.OpalRadioGroup = OpalRadioGroup;
 
 
 /***/ }),
-/* 37 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12236,12 +12275,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var next_tick_1 = __webpack_require__(3);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(38);
-var template = __webpack_require__(39);
-var nextTick = cellx_1.Utils.nextTick;
+__webpack_require__(52);
+var template = __webpack_require__(53);
 var OpalRadioButton = (function (_super) {
     __extends(OpalRadioButton, _super);
     function OpalRadioButton() {
@@ -12302,7 +12340,7 @@ var OpalRadioButton = (function (_super) {
     };
     OpalRadioButton.prototype._onControlFocus = function (evt) {
         var _this = this;
-        nextTick(function () {
+        next_tick_1.nextTick(function () {
             if (document.activeElement == evt.target) {
                 _this.input.focused = true;
                 _this.emit('focus');
@@ -12387,7 +12425,7 @@ exports.OpalRadioButton = OpalRadioButton;
 
 
 /***/ }),
-/* 38 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12404,13 +12442,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 39 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 40 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12432,12 +12470,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var next_tick_1 = __webpack_require__(3);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(41);
-var template = __webpack_require__(42);
-var nextTick = cellx_1.Utils.nextTick;
+__webpack_require__(55);
+var template = __webpack_require__(56);
 var OpalSwitch = (function (_super) {
     __extends(OpalSwitch, _super);
     function OpalSwitch() {
@@ -12494,7 +12531,7 @@ var OpalSwitch = (function (_super) {
     };
     OpalSwitch.prototype._onControlFocus = function (evt) {
         var _this = this;
-        nextTick(function () {
+        next_tick_1.nextTick(function () {
             if (document.activeElement == evt.target) {
                 _this.input.focused = true;
                 _this.emit('focus');
@@ -12579,7 +12616,7 @@ exports.OpalSwitch = OpalSwitch;
 
 
 /***/ }),
-/* 41 */
+/* 55 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12596,13 +12633,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 42 */
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 43 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12624,10 +12661,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_decorators_1 = __webpack_require__(2);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(44);
-var template = __webpack_require__(45);
+__webpack_require__(58);
+var template = __webpack_require__(59);
 var OpalSlider = (function (_super) {
     __extends(OpalSlider, _super);
     function OpalSlider() {
@@ -12715,7 +12752,7 @@ exports.OpalSlider = OpalSlider;
 
 
 /***/ }),
-/* 44 */
+/* 58 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12732,13 +12769,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 45 */
+/* 59 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\n@if-then (if=input.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={input.min},\nmax={input.max},\nstep={input.step},\nvalue={input.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.range.1})\n}\n}\n@if-else (if=input.range) {\ninput/input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.value})\n}\n}"
 
 /***/ }),
-/* 46 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12761,7 +12798,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(47);
+__webpack_require__(61);
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
 var OpalSwitchMenu = (function (_super) {
@@ -12836,7 +12873,7 @@ exports.OpalSwitchMenu = OpalSwitchMenu;
 
 
 /***/ }),
-/* 47 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12853,7 +12890,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 48 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12876,14 +12913,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(49);
-var opal_tab_list_1 = __webpack_require__(50);
+__webpack_require__(63);
+var opal_tab_list_1 = __webpack_require__(64);
 exports.OpalTabList = opal_tab_list_1.OpalTabList;
-var opal_tab_1 = __webpack_require__(9);
+var opal_tab_1 = __webpack_require__(15);
 exports.OpalTab = opal_tab_1.OpalTab;
-var opal_tab_panel_1 = __webpack_require__(54);
+var opal_tab_panel_1 = __webpack_require__(68);
 exports.OpalTabPanel = opal_tab_panel_1.OpalTabPanel;
-var template = __webpack_require__(56);
+var template = __webpack_require__(70);
 var indexOf = Array.prototype.indexOf;
 var forEach = Array.prototype.forEach;
 var OpalTabs = (function (_super) {
@@ -12951,7 +12988,7 @@ exports.OpalTabs = OpalTabs;
 
 
 /***/ }),
-/* 49 */
+/* 63 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12968,7 +13005,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 50 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12991,8 +13028,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(51);
-var opal_tab_1 = __webpack_require__(9);
+__webpack_require__(65);
+var opal_tab_1 = __webpack_require__(15);
 exports.OpalTab = opal_tab_1.OpalTab;
 var OpalTabList = (function (_super) {
     __extends(OpalTabList, _super);
@@ -13012,7 +13049,7 @@ exports.OpalTabList = OpalTabList;
 
 
 /***/ }),
-/* 51 */
+/* 65 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13029,7 +13066,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 52 */
+/* 66 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13046,13 +13083,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 53 */
+/* 67 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 54 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13075,7 +13112,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(55);
+__webpack_require__(69);
 var OpalTabPanel = (function (_super) {
     __extends(OpalTabPanel, _super);
     function OpalTabPanel() {
@@ -13096,7 +13133,7 @@ exports.OpalTabPanel = OpalTabPanel;
 
 
 /***/ }),
-/* 55 */
+/* 69 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13113,13 +13150,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 56 */
+/* 70 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content/tab-list-container (select=opal-tab-list) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab)\n}\n}\nrt-content/panels (select=opal-tab-panel)\n}"
 
 /***/ }),
-/* 57 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13141,9 +13178,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
+var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(58);
+__webpack_require__(72);
 var openedDropdowns = [];
 var OpalDropdown = (function (_super) {
     __extends(OpalDropdown, _super);
@@ -13272,7 +13309,7 @@ exports.OpalDropdown = OpalDropdown;
 
 
 /***/ }),
-/* 58 */
+/* 72 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13289,7 +13326,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 59 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13311,10 +13348,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
+var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(60);
-var template = __webpack_require__(61);
+__webpack_require__(74);
+var template = __webpack_require__(75);
 var OpalPopover = (function (_super) {
     __extends(OpalPopover, _super);
     function OpalPopover() {
@@ -13454,7 +13491,7 @@ exports.OpalPopover = OpalPopover;
 
 
 /***/ }),
-/* 60 */
+/* 74 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13471,13 +13508,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 61 */
+/* 75 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nspan/arrow\nrt-content/content\n}"
 
 /***/ }),
-/* 62 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13500,9 +13537,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var isFocusable_1 = __webpack_require__(3);
-__webpack_require__(63);
-var template = __webpack_require__(64);
+var isFocusable_1 = __webpack_require__(4);
+__webpack_require__(77);
+var template = __webpack_require__(78);
 var openedModals = [];
 var documentFocusListening;
 var documentKeyUpListening;
@@ -13639,7 +13676,7 @@ exports.OpalModal = OpalModal;
 
 
 /***/ }),
-/* 63 */
+/* 77 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13656,19 +13693,19 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 64 */
+/* 78 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\ndiv/window {\ndiv/btn-close-wrapper {\nbutton/btn-close\n}\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 65 */
+/* 79 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 18\" id=\"opal-components__icon-chevron-down\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 2l14 14L30 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 66 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13685,7 +13722,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 67 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13707,7 +13744,7 @@ exports.isEqualArray = isEqualArray;
 
 
 /***/ }),
-/* 68 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13729,13 +13766,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var next_tick_1 = __webpack_require__(3);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(69);
-__webpack_require__(70);
-var template = __webpack_require__(71);
-var nextTick = cellx_1.Utils.nextTick;
+__webpack_require__(83);
+__webpack_require__(84);
+var template = __webpack_require__(85);
 var OpalSelectOption = (function (_super) {
     __extends(OpalSelectOption, _super);
     function OpalSelectOption() {
@@ -13761,7 +13797,7 @@ var OpalSelectOption = (function (_super) {
     };
     OpalSelectOption.prototype._onControlFocus = function (evt) {
         var _this = this;
-        nextTick(function () {
+        next_tick_1.nextTick(function () {
             if (document.activeElement == evt.target) {
                 _this.input.focused = true;
             }
@@ -13878,13 +13914,13 @@ exports.OpalSelectOption = OpalSelectOption;
 
 
 /***/ }),
-/* 69 */
+/* 83 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 24\" id=\"opal-components__icon-check\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 14l8 8L30 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 70 */
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13901,19 +13937,19 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 71 */
+/* 85 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content { '{input.text}' }\nsvg/icon-check (viewBox=0 0 32 24) { use (xlink:href=#opal-components__icon-check) }\n}\n}"
 
 /***/ }),
-/* 72 */
+/* 86 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content (select=.opal-select__button) {\nopal-button/button (\nview-type={input.viewType},\nsize={input.size},\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n) {\n@if-then (if=input.text) { '{input.text}' }\n@if-else (if=input.text) { '{_buttonText}' }\n' '\nsvg/button-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content) {\n@if-then (if=_isInputDataListSpecified) {\ndiv/, menu-content {\n@if-then (if=dataList) {\n@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isInputDataListSpecified) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
-/* 73 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13935,12 +13971,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_decorators_1 = __webpack_require__(2);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(8);
-var opal_select_1 = __webpack_require__(6);
-__webpack_require__(74);
-var template = __webpack_require__(75);
+__webpack_require__(14);
+var opal_select_1 = __webpack_require__(9);
+__webpack_require__(88);
+var template = __webpack_require__(89);
 var OpalMultiselect = (function (_super) {
     __extends(OpalMultiselect, _super);
     function OpalMultiselect() {
@@ -14025,7 +14061,7 @@ exports.OpalMultiselect = OpalMultiselect;
 
 
 /***/ }),
-/* 74 */
+/* 88 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14042,13 +14078,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 75 */
+/* 89 */
 /***/ (function(module, exports) {
 
 module.exports = "/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=opal-select__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n)\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\ndiv/btn-deselect-item (data-item-value='{item |key(_viewModelItemValueFieldName) }') {\nsvg/btn-deselect-item-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n}\ndiv/nothing-selected (shown={isNothingSelectedShown}) {\nspan/nothing-selected-message { '{constructor.i18n.nothingSelected}' }\n}\n}\ndiv/menu-list {\nopal-loaded-list/loaded-list (\ndataprovider={dataProvider},\ndatalist-item-value-name={_dataListItemValueFieldName}\n) {\nopal-select-option/option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\ndiv/menu-footer {\nopal-button/btn-close { 'Закрыть' }\n}\n}"
 
 /***/ }),
-/* 76 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14070,10 +14106,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_decorators_1 = __webpack_require__(2);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(77);
-var opal_input_validator_rule_1 = __webpack_require__(78);
+__webpack_require__(91);
+var opal_input_validator_rule_1 = __webpack_require__(92);
 exports.OpalInputValidatorRule = opal_input_validator_rule_1.OpalInputValidatorRule;
 var map = Array.prototype.map;
 var OpalInputValidator = (function (_super) {
@@ -14161,7 +14197,7 @@ exports.OpalInputValidator = OpalInputValidator;
 
 
 /***/ }),
-/* 77 */
+/* 91 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14178,7 +14214,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 78 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14201,8 +14237,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(79);
-var template = __webpack_require__(80);
+__webpack_require__(93);
+var template = __webpack_require__(94);
 var OpalInputValidatorRule = (function (_super) {
     __extends(OpalInputValidatorRule, _super);
     function OpalInputValidatorRule() {
@@ -14233,7 +14269,7 @@ exports.OpalInputValidatorRule = OpalInputValidatorRule;
 
 
 /***/ }),
-/* 79 */
+/* 93 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14250,13 +14286,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 80 */
+/* 94 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nopal-popover/popover (to={input.popoverTo}) {\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 81 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14278,15 +14314,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var next_tick_1 = __webpack_require__(3);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(82);
-var formatDate_1 = __webpack_require__(83);
-__webpack_require__(84);
-var parseDate_1 = __webpack_require__(85);
-var template = __webpack_require__(86);
-var nextTick = cellx_1.Utils.nextTick;
+__webpack_require__(96);
+var formatDate_1 = __webpack_require__(97);
+__webpack_require__(98);
+var parseDate_1 = __webpack_require__(99);
+var template = __webpack_require__(100);
 function getTodayDate() {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -14492,7 +14527,7 @@ var OpalCalendar = (function (_super) {
     OpalCalendar.prototype._onDaysFocus = function (evt) {
         var _this = this;
         if (evt.target.classList.contains('opal-calendar__day')) {
-            nextTick(function () {
+            next_tick_1.nextTick(function () {
                 if (document.activeElement == evt.target && !_this._documentKeyDownListening) {
                     _this._documentKeyDownListening = _this.listenTo(document, 'keydown', _this._onDocumentKeyDown);
                 }
@@ -14623,13 +14658,13 @@ exports.OpalCalendar = OpalCalendar;
 
 
 /***/ }),
-/* 82 */
+/* 96 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 28\" id=\"opal-components__icon-arrow-left\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M14 2L2 14l12 12M2 14h28\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 83 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14643,7 +14678,7 @@ exports.formatDate = formatDate;
 
 
 /***/ }),
-/* 84 */
+/* 98 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14660,7 +14695,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 85 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14674,13 +14709,13 @@ exports.parseDate = parseDate;
 
 
 /***/ }),
-/* 86 */
+/* 100 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/month-select (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/year-select (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={isBtnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ndiv/week-days {\ndiv/week-days-row {\n@repeat (for=weekDay of weekDaysShort) {\nspan/week-day { '{weekDay}' }\n}\n}\n}\ndiv/days {\n@repeat (for=weekDays of days) {\ndiv/days-row {\n@repeat (for=day of weekDays) {\nspan/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date}\n) { '{day.value}' }\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
-/* 87 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14702,11 +14737,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var date_exists_1 = __webpack_require__(88);
+var date_exists_1 = __webpack_require__(102);
 var rionite_1 = __webpack_require__(0);
-var isFocusable_1 = __webpack_require__(3);
-__webpack_require__(89);
-var template = __webpack_require__(90);
+var isFocusable_1 = __webpack_require__(4);
+__webpack_require__(103);
+var template = __webpack_require__(104);
 function pad(num) {
     return (num < 10 ? '0' : '') + num;
 }
@@ -14843,7 +14878,7 @@ exports.OpalDateInput = OpalDateInput;
 
 
 /***/ }),
-/* 88 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14867,7 +14902,7 @@ exports.default = dateExists;
 
 
 /***/ }),
-/* 89 */
+/* 103 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14884,13 +14919,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 90 */
+/* 104 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nopal-input-validator/input-validator {\n@if-then (if=input.required) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-to={input.popoverTo}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={input.popoverTo}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (test=isDateInRange, popover-to={input.popoverTo}) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={input.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={input.value},\nplaceholder={input.placeholder},\nclearable\n)\n}\n}\nopal-dropdown/calendar-menu (auto-height=no) {\nopal-calendar/calendar (from-date={input.fromDate}, to-date={input.toDate}, value={input.value}, date-delimiter=.)\n}\n}"
 
 /***/ }),
-/* 91 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14913,7 +14948,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(92);
+__webpack_require__(106);
 var OpalLoader = (function (_super) {
     __extends(OpalLoader, _super);
     function OpalLoader() {
@@ -14934,7 +14969,7 @@ exports.OpalLoader = OpalLoader;
 
 
 /***/ }),
-/* 92 */
+/* 106 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14951,7 +14986,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 93 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14973,12 +15008,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var mixin_1 = __webpack_require__(5);
+var cellx_1 = __webpack_require__(2);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(94);
-var template = __webpack_require__(95);
-var mixin = cellx_1.Utils.mixin;
+__webpack_require__(108);
+var template = __webpack_require__(109);
 var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var OpalLoadedList = (function (_super) {
     __extends(OpalLoadedList, _super);
@@ -15126,7 +15161,7 @@ var OpalLoadedList = (function (_super) {
         }));
     };
     OpalLoadedList.prototype._getListItemContext = function (context, content) {
-        return mixin(Object.create(context), content.input.$context, ['$component']);
+        return mixin_1.mixin(Object.create(context), content.input.$context, ['$component']);
     };
     OpalLoadedList.defaultDataListItemSchema = defaultDataListItemSchema;
     __decorate([
@@ -15174,7 +15209,7 @@ exports.OpalLoadedList = OpalLoadedList;
 
 
 /***/ }),
-/* 94 */
+/* 108 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15191,13 +15226,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 95 */
+/* 109 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\ndiv/list {\n@repeat (for=$item of dataList) {\nrt-slot/list-item (clone-content, get-context={_getListItemContext}) {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nopal-loader/loader (shown={isLoaderShown}, align-center={empty})\ndiv/nothing-found (shown={isNothingFoundShown}) {\nspan/nothing-found-message { '{constructor.i18n.nothingFound}' }\n}\n}"
 
 /***/ }),
-/* 96 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15219,10 +15254,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var debounce_throttle_1 = __webpack_require__(97);
+var debounce_throttle_1 = __webpack_require__(111);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(100);
-var template = __webpack_require__(101);
+__webpack_require__(114);
+var template = __webpack_require__(115);
 var OpalFilteredList = (function (_super) {
     __extends(OpalFilteredList, _super);
     function OpalFilteredList() {
@@ -15265,20 +15300,20 @@ exports.OpalFilteredList = OpalFilteredList;
 
 
 /***/ }),
-/* 97 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var debounce_1 = __webpack_require__(98);
+var debounce_1 = __webpack_require__(112);
 exports.debounce = debounce_1.debounce;
-var throttle_1 = __webpack_require__(99);
+var throttle_1 = __webpack_require__(113);
 exports.throttle = throttle_1.throttle;
 
 
 /***/ }),
-/* 98 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15350,7 +15385,7 @@ exports.debounce = debounce;
 
 
 /***/ }),
-/* 99 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15419,7 +15454,7 @@ exports.throttle = throttle;
 
 
 /***/ }),
-/* 100 */
+/* 114 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15436,13 +15471,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 101 */
+/* 115 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input) {\nopal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder}, clearable)\n}\n}\nrt-content/list-container (select=.opal-filtered-list__list)\n}"
 
 /***/ }),
-/* 102 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15457,7 +15492,7 @@ exports.default = closestComponent;
 
 
 /***/ }),
-/* 103 */
+/* 117 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15474,7 +15509,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 104 */
+/* 118 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15491,19 +15526,19 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 105 */
+/* 119 */
 /***/ (function(module, exports) {
 
 module.exports = "div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={input.opened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\nspan/content-wrapper {\nrt-slot/content (clone-content)\n}\n}\n@if-then (if=dataTreeListItem.children) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item/item (\ndatatreelist={input.datatreelist},\nfiltered-datatreelist={input.filteredDatatreelist},\ndatatreelist-item-value-field-name={_dataTreeListItemValueFieldName},\ndatatreelist-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{input.indexpath},{$index}]',\nquery={input.query},\nopened={input.query},\nnesting-level={input.indexpath.length},\nhas-children='{$item |has(\"children\") }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext})\n}\n}\n}\n}"
 
 /***/ }),
-/* 106 */
+/* 120 */
 /***/ (function(module, exports) {
 
 module.exports = "@if-then (if=dataTreeList) {\n@if-then (if=filteredDataTreeList.length) {\n@repeat (for=$item of filteredDataTreeList) {\nopal-tree-list-item/item (\ndatatreelist={dataTreeList},\nfiltered-datatreelist={filteredDataTreeList},\ndatatreelist-item-value-field-name={_dataTreeListItemValueFieldName},\ndatatreelist-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={input.query},\nopened={input.query},\nnesting-level=0,\nhas-children='{$item |has(\"children\") }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=filteredDataTreeList.length) {\nspan/nothing-found-message {\n'Ничего не найдено'\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}"
 
 /***/ }),
-/* 107 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15525,11 +15560,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var cellx_1 = __webpack_require__(2);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(108);
-var template = __webpack_require__(109);
+__webpack_require__(122);
+var template = __webpack_require__(123);
 var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 var OpalTagSelect = (function (_super) {
@@ -15714,7 +15749,7 @@ exports.OpalTagSelect = OpalTagSelect;
 
 
 /***/ }),
-/* 108 */
+/* 122 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15731,13 +15766,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 109 */
+/* 123 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist-keypath={_dataListKeypathParam},\ndatalist-item-schema={input.datalistItemSchema |json },\nadd-new-item-keypath={_addNewItemKeypathParam},\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/datalist-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndataprovider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
-/* 110 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15759,12 +15794,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
+var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-var opal_select_1 = __webpack_require__(6);
-var opal_tree_list_1 = __webpack_require__(10);
-__webpack_require__(111);
-var template = __webpack_require__(112);
+var opal_select_1 = __webpack_require__(9);
+var opal_tree_list_1 = __webpack_require__(16);
+__webpack_require__(125);
+var template = __webpack_require__(126);
 var OpalTreeSelect = (function (_super) {
     __extends(OpalTreeSelect, _super);
     function OpalTreeSelect() {
@@ -15815,7 +15850,7 @@ exports.OpalTreeSelect = OpalTreeSelect;
 
 
 /***/ }),
-/* 111 */
+/* 125 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15832,13 +15867,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 112 */
+/* 126 */
 /***/ (function(module, exports) {
 
 module.exports = "opal-modal/menu {\nopal-filtered-list/filtered-list {\nopal-tree-list/tree-list (\nclass=opal-filtered-list__list,\ndatatreelist={dataTreeList},\ndatatreelist-item-schema={input.datatreelistItemSchema},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema},\nquery={input.query}\n) {\nopal-select-option/option (class=opal-tree-list__selection-control, text={$item.name}, selected={$selected})\n}\n}\n}"
 
 /***/ }),
-/* 113 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15860,12 +15895,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var cellx_1 = __webpack_require__(2);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var isFocusable_1 = __webpack_require__(3);
-__webpack_require__(114);
-var template = __webpack_require__(115);
+var isFocusable_1 = __webpack_require__(4);
+__webpack_require__(128);
+var template = __webpack_require__(129);
 function toComparable(str) {
     return str.replace(/\s+/g, ' ').toLowerCase();
 }
@@ -16208,7 +16243,7 @@ exports.OpalAutosuggest = OpalAutosuggest;
 
 
 /***/ }),
-/* 114 */
+/* 128 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16225,13 +16260,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 115 */
+/* 129 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue='{input.value |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nloading={isLoaderShown}\n)\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nspan/nothing-found-message (shown={dataList.length |not }) {\n'{constructor.i18n.nothingFound}'\n}\n}\n}"
 
 /***/ }),
-/* 116 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16253,13 +16288,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(1);
-var cellx_decorators_1 = __webpack_require__(2);
+var cellx_1 = __webpack_require__(2);
+var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(117);
-var opal_multirow_row_1 = __webpack_require__(118);
+__webpack_require__(131);
+var opal_multirow_row_1 = __webpack_require__(132);
 exports.OpalMultirowRow = opal_multirow_row_1.OpalMultirowRow;
-var template = __webpack_require__(121);
+var template = __webpack_require__(135);
 var nextUID = cellx_1.Utils.nextUID;
 var filter = Array.prototype.filter;
 var OpalMultirow = (function (_super) {
@@ -16337,7 +16372,7 @@ exports.OpalMultirow = OpalMultirow;
 
 
 /***/ }),
-/* 117 */
+/* 131 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16354,7 +16389,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 118 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16377,8 +16412,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(119);
-var template = __webpack_require__(120);
+__webpack_require__(133);
+var template = __webpack_require__(134);
 var OpalMultirowRow = (function (_super) {
     __extends(OpalMultirowRow, _super);
     function OpalMultirowRow() {
@@ -16411,7 +16446,7 @@ exports.OpalMultirowRow = OpalMultirowRow;
 
 
 /***/ }),
-/* 119 */
+/* 133 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16428,19 +16463,19 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 120 */
+/* 134 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content/content\n' '\nopal-sign-button/btn-remove-row (sign=minus)\n' '\nopal-sign-button/btn-add-row (sign=plus)\n}"
 
 /***/ }),
-/* 121 */
+/* 135 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content/preset-rows-container (\nselect='opal-multirow-row[preset], .opal-multirow__preset-rows',\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n)\ndiv/new-rows (not-single-row={_notSingleRow}) {\n@repeat (for=row of _newRows, track-by=key) {\nrt-content/new-row-container (select='opal-multirow-row:not([preset])', clone, data-key={row.key})\n}\n}\n}"
 
 /***/ }),
-/* 122 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16462,14 +16497,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var created_browser_history_1 = __webpack_require__(123);
+var created_browser_history_1 = __webpack_require__(137);
 var rionite_1 = __webpack_require__(0);
-var escapeRegExp_1 = __webpack_require__(131);
-__webpack_require__(132);
-var opal_route_1 = __webpack_require__(133);
+var escapeRegExp_1 = __webpack_require__(145);
+__webpack_require__(146);
+var opal_route_1 = __webpack_require__(147);
 exports.OpalRoute = opal_route_1.OpalRoute;
-var parsePath_1 = __webpack_require__(134);
-var PathNodeType_1 = __webpack_require__(16);
+var parsePath_1 = __webpack_require__(148);
+var PathNodeType_1 = __webpack_require__(22);
 var hyphenize = rionite_1.Utils.hyphenize;
 var escapeHTML = rionite_1.Utils.escapeHTML;
 var forEach = Array.prototype.forEach;
@@ -16689,20 +16724,20 @@ exports.OpalRouter = OpalRouter;
 
 
 /***/ }),
-/* 123 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var createBrowserHistory_1 = __webpack_require__(124);
+var createBrowserHistory_1 = __webpack_require__(138);
 var history = createBrowserHistory_1.default();
 exports.history = history;
 exports.default = history;
 
 
 /***/ }),
-/* 124 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16714,23 +16749,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _warning = __webpack_require__(14);
+var _warning = __webpack_require__(20);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(125);
+var _invariant = __webpack_require__(139);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _LocationUtils = __webpack_require__(126);
+var _LocationUtils = __webpack_require__(140);
 
-var _PathUtils = __webpack_require__(15);
+var _PathUtils = __webpack_require__(21);
 
-var _createTransitionManager = __webpack_require__(129);
+var _createTransitionManager = __webpack_require__(143);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
-var _DOMUtils = __webpack_require__(130);
+var _DOMUtils = __webpack_require__(144);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17015,7 +17050,7 @@ var createBrowserHistory = function createBrowserHistory() {
 exports.default = createBrowserHistory;
 
 /***/ }),
-/* 125 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17073,7 +17108,7 @@ module.exports = invariant;
 
 
 /***/ }),
-/* 126 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17084,15 +17119,15 @@ exports.locationsAreEqual = exports.createLocation = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _resolvePathname = __webpack_require__(127);
+var _resolvePathname = __webpack_require__(141);
 
 var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
 
-var _valueEqual = __webpack_require__(128);
+var _valueEqual = __webpack_require__(142);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
-var _PathUtils = __webpack_require__(15);
+var _PathUtils = __webpack_require__(21);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17157,7 +17192,7 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 };
 
 /***/ }),
-/* 127 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17233,7 +17268,7 @@ var resolvePathname = function resolvePathname(to) {
 module.exports = resolvePathname;
 
 /***/ }),
-/* 128 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17279,7 +17314,7 @@ var valueEqual = function valueEqual(a, b) {
 exports.default = valueEqual;
 
 /***/ }),
-/* 129 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17287,7 +17322,7 @@ exports.default = valueEqual;
 
 exports.__esModule = true;
 
-var _warning = __webpack_require__(14);
+var _warning = __webpack_require__(20);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -17370,7 +17405,7 @@ var createTransitionManager = function createTransitionManager() {
 exports.default = createTransitionManager;
 
 /***/ }),
-/* 130 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17431,7 +17466,7 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 };
 
 /***/ }),
-/* 131 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17445,7 +17480,7 @@ exports.escapeRegExp = escapeRegExp;
 
 
 /***/ }),
-/* 132 */
+/* 146 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -17462,7 +17497,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 133 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17505,13 +17540,13 @@ exports.OpalRoute = OpalRoute;
 
 
 /***/ }),
-/* 134 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType_1 = __webpack_require__(16);
+var PathNodeType_1 = __webpack_require__(22);
 var reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
     var ctx = PathNodeType_1.PathNodeType.SIMPLE;
@@ -17664,10 +17699,10 @@ exports.parsePath = parsePath;
 
 
 /***/ }),
-/* 135 */
+/* 149 */
 /***/ (function(module, exports) {
 
-module.exports = "h1 { 'opal-button' }\np {\nopal-button { 'Button' } ' '\nopal-button (view-type=primary) { 'Button' } ' '\nopal-button (view-type=danger) { 'Button' } ' '\n}\np {\nopal-button (disabled) { 'Button' } ' '\nopal-button (view-type=primary, disabled) { 'Button' } ' '\nopal-button (view-type=danger, disabled) { 'Button' } ' '\n}\np {\nopal-button (size=s) { 'Button' } ' '\nopal-button (view-type=primary, size=s) { 'Button' } ' '\nopal-button (view-type=danger, size=s) { 'Button' } ' '\n}\np {\nopal-button (loading) { 'Button' } ' '\nopal-button (view-type=primary, loading) { 'Button' } ' '\nopal-button (view-type=danger, loading) { 'Button' } ' '\n}\np {\nopal-button (loading, disabled) { 'Button' } ' '\nopal-button (view-type=primary, loading, disabled) { 'Button' } ' '\nopal-button (view-type=danger, loading, disabled) { 'Button' } ' '\n}\nh1 { 'opal-sign-button' }\np {\nopal-sign-button (sign=plus) { 'Button' }\n}\np {\nopal-sign-button (sign=minus) { 'Button' }\n}\nh1 { 'opal-text-input' }\np {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\np {\nopal-text-input (value=Value, disabled)\n}\np {\nopal-text-input (placeholder=Placeholder, disabled)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, clearable)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, loading)\n}\np {\nopal-text-input (multiline, placeholder=Placeholder)\n}\nh1 { 'opal-input-mask' }\np {\nopal-input-mask (mask=99/99/9999) {\nopal-text-input (class=opal-input-mask__text-input, placeholder=dd/mm/yyyy)\n}\n}\np {\nopal-input-mask (mask='+7 (999) 999-9999? доб. 9999') {\nopal-text-input (class=opal-input-mask__text-input, placeholder=Телефон)\n}\n}\np {\nopal-input-mask (mask=#ffffff) {\nopal-input-mask-definition (mask-char=f, regex=/[0-9a-f]/i)\nopal-text-input (class=opal-input-mask__text-input, placeholder=Цвет)\n}\n}\nh1 { 'opal-group' }\np {\nopal-group {\nopal-button { 'Button' }\nopal-button (view-type=primary) { 'Button' }\nopal-button (view-type=danger) { 'Button' }\n}\n}\np {\nopal-group {\nopal-button { 'Button' }\nopal-text-input (value=Value, placeholder=Placeholder)\nopal-button (view-type=primary) { 'Button' }\n}\n}\nh1 { 'opal-checkbox' }\np {\nopal-checkbox { 'Label' } ' '\nopal-checkbox (checked) { 'Label' } ' '\nopal-checkbox (indeterminate) { 'Label' }\nbr br\nopal-checkbox (disabled) { 'Label' } ' '\nopal-checkbox (checked, disabled) { 'Label' } ' '\nopal-checkbox (indeterminate, disabled) { 'Label' }\n}\nh1 { 'opal-radio-group' }\np {\nopal-radio-group {\nopal-radio-button { 'Label' } ' '\nopal-radio-button (checked) { 'Label' }\nbr br\nopal-radio-button (disabled) { 'Label' } ' '\nopal-radio-button (checked, disabled) { 'Label' }\n}\n}\nh1 { 'opal-switch' }\np {\nopal-switch { 'Label' } ' '\nopal-switch (checked) { 'Label' }\nbr br\nopal-switch (disabled) { 'Label' } ' '\nopal-switch (checked, disabled) { 'Label' }\n}\nh1 { 'opal-slider' }\np {\nopal-slider br\nopal-slider (min=-100, max=100, step=20, value=40) br\nopal-slider (range='[20, 80]')\n}\nh1 { 'opal-switch-menu' }\np {\nopal-switch-menu {\nopal-button (checkable, checked) { 'Option 1' }\nopal-button (checkable) { 'Option 2' }\nopal-button (checkable) { 'Option 3' }\n}\n}\nh1 { 'opal-tabs' }\np {\nopal-tabs {\nopal-tab (selected) { 'Foo' }\nopal-tab { 'Bar' }\nopal-tab { 'Baz' }\nopal-tab-panel { 'Hello Foo' }\nopal-tab-panel { 'Hello Bar' }\nopal-tab-panel { 'Hello Baz' }\n}\n}\nh1 { 'opal-popover' }\np {\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (from=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=right, to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=bottom, to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;) {\nopal-popover (from=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=top, to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=right, from=left, to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\n}\nh1 { 'opal-modal' }\np {\nopal-modal (id=modal1) { 'Modal' }\nopal-button (onclick='document.getElementById(\"modal1\").$component.open();') { 'Open' }\n}\nh1 { 'opal-select' }\np {\nopal-select (placeholder=Select) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\nopal-select-option (text='Option 4 (disabled)', disabled)\nopal-select-option (text=Option 5)\nopal-select-option (text='Option 6 (disabled)', disabled)\n}\n}\np {\nopal-select (multiple, placeholder=Select) {\nopal-select-option (text=Option 1, selected)\nopal-select-option (text=Option 2, selected)\nopal-select-option (text=Option 3)\nopal-select-option (text=Option 4)\nopal-select-option (text=Option 5)\n}\n}\np {\nopal-select (\nmultiple,\ndatalist={dataList1},\ndatalist-item-schema='{ value: \"id\", text: \"name\" }',\nview-model-item-schema='{ value: \"id\", text: \"name\" }',\nadd-new-item={addNewItem1},\nplaceholder=Select\n) {\nopal-text-input (class=opal-select__new-item-input)\n}\n}\np {\nopal-group {\nopal-select (placeholder=Select) {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\nopal-select (view-type=primary, placeholder=Select) {\nopal-popover (class=opal-select__menu, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\n}\n}\nh1 { 'opal-calendar' }\np {\nopal-calendar (from-date=today)\n}\nh1 { 'opal-date-input' }\np {\nopal-date-input\n}\np {\nopal-date-input (mask=99.99.9999, placeholder=dd.mm.yyyy, required)\n}\nh1 { 'opal-loader' }\np {\nopal-loader (shown)\nopal-loader (size=s, shown)\n}\nh1 { 'opal-filtered-list' }\np {\nopal-filtered-list {\nopal-loaded-list (class=opal-filtered-list__list, dataprovider={dataProvider1}) {\n'{$item.name}'\n}\n}\n}\nh1 { 'opal-tree-list' }\np {\nopal-filtered-list {\nopal-tree-list (class=opal-filtered-list__list, datatreelist={dataTreeList1}) {\nopal-checkbox (\nclass=opal-tree-list__selection-control,\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item.name}'\n}\n}\n}\n}\nh1 { 'opal-tree-select' }\np {\nopal-tree-select (datatreelist={dataTreeList1})\n}\nh1 { 'opal-select + opal-loaded-list' }\np {\nopal-select {\nopal-dropdown (class=opal-select__menu, auto-height=no, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndataprovider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, dataprovider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select (multiple, view-model={viewModel1}, view-model-item-schema='{ value: \"id\", text: \"name\" }') {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, dataprovider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndataprovider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select (multiple) {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndataprovider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n}\n}\nh1 { 'opal-autosuggest' }\np {\nopal-autosuggest (dataprovider={dataProvider2}, open-menu-on-nothing-found)\n}\nh1 { 'opal-tag-select' }\np {\nopal-tag-select (dataprovider={dataProvider1}, placeholder='') br\nopal-tag-select (view-type=primary, dataprovider={dataProvider1}) br\nopal-tag-select (\nview-type=danger,\ndataprovider={dataProvider1},\nadd-new-item={addNewItem1},\nview-model={viewModel1}\n) {\nopal-text-input (class=opal-select__new-item-input opal-filtered-list__query-input)\n}\n}\nh1 { 'opal-multirow' }\np {\nopal-multirow {\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\nopal-multirow-row {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\n}\n}"
+module.exports = "h1 { 'opal-button' }\np {\nopal-button { 'Button' } ' '\nopal-button (view-type=primary) { 'Button' } ' '\nopal-button (view-type=danger) { 'Button' } ' '\n}\np {\nopal-button (disabled) { 'Button' } ' '\nopal-button (view-type=primary, disabled) { 'Button' } ' '\nopal-button (view-type=danger, disabled) { 'Button' } ' '\n}\np {\nopal-button (size=s) { 'Button' } ' '\nopal-button (view-type=primary, size=s) { 'Button' } ' '\nopal-button (view-type=danger, size=s) { 'Button' } ' '\n}\np {\nopal-button (loading) { 'Button' } ' '\nopal-button (view-type=primary, loading) { 'Button' } ' '\nopal-button (view-type=danger, loading) { 'Button' } ' '\n}\np {\nopal-button (loading, disabled) { 'Button' } ' '\nopal-button (view-type=primary, loading, disabled) { 'Button' } ' '\nopal-button (view-type=danger, loading, disabled) { 'Button' } ' '\n}\nh1 { 'opal-sign-button' }\np {\nopal-sign-button (sign=plus) { 'Button' }\n}\np {\nopal-sign-button (sign=minus) { 'Button' }\n}\nh1 { 'opal-text-input' }\np {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\np {\nopal-text-input (value=Value, disabled)\n}\np {\nopal-text-input (placeholder=Placeholder, disabled)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, clearable)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, loading)\n}\np {\nopal-text-input (multiline, placeholder=Placeholder)\n}\nh1 { 'opal-input-mask' }\np {\nopal-input-mask (mask=99/99/9999) {\nopal-text-input (class=opal-input-mask__text-input, placeholder=dd/mm/yyyy)\n}\n}\np {\nopal-input-mask (mask='+7 (999) 999-9999? доб. 9999') {\nopal-text-input (class=opal-input-mask__text-input, placeholder=Телефон)\n}\n}\np {\nopal-input-mask (mask=#ffffff) {\nopal-input-mask-definition (mask-char=f, regex=/[0-9a-f]/i)\nopal-text-input (class=opal-input-mask__text-input, placeholder=Цвет)\n}\n}\nh1 { 'opal-group' }\np {\nopal-group {\nopal-button { 'Button' }\nopal-button (view-type=primary) { 'Button' }\nopal-button (view-type=danger) { 'Button' }\n}\n}\np {\nopal-group {\nopal-button { 'Button' }\nopal-text-input (value=Value, placeholder=Placeholder)\nopal-button (view-type=primary) { 'Button' }\n}\n}\nh1 { 'opal-checkbox' }\np {\nopal-checkbox { 'Label' } ' '\nopal-checkbox (checked) { 'Label' } ' '\nopal-checkbox (indeterminate) { 'Label' }\nbr br\nopal-checkbox (disabled) { 'Label' } ' '\nopal-checkbox (checked, disabled) { 'Label' } ' '\nopal-checkbox (indeterminate, disabled) { 'Label' }\n}\nh1 { 'opal-radio-group' }\np {\nopal-radio-group {\nopal-radio-button { 'Label' } ' '\nopal-radio-button (checked) { 'Label' }\nbr br\nopal-radio-button (disabled) { 'Label' } ' '\nopal-radio-button (checked, disabled) { 'Label' }\n}\n}\nh1 { 'opal-switch' }\np {\nopal-switch { 'Label' } ' '\nopal-switch (checked) { 'Label' }\nbr br\nopal-switch (disabled) { 'Label' } ' '\nopal-switch (checked, disabled) { 'Label' }\n}\nh1 { 'opal-slider' }\np {\nopal-slider br\nopal-slider (min=-100, max=100, step=20, value=40) br\nopal-slider (range='[20, 80]')\n}\nh1 { 'opal-switch-menu' }\np {\nopal-switch-menu {\nopal-button (checkable, checked) { 'Option 1' }\nopal-button (checkable) { 'Option 2' }\nopal-button (checkable) { 'Option 3' }\n}\n}\nh1 { 'opal-tabs' }\np {\nopal-tabs {\nopal-tab (selected) { 'Foo' }\nopal-tab { 'Bar' }\nopal-tab { 'Baz' }\nopal-tab-panel { 'Hello Foo' }\nopal-tab-panel { 'Hello Bar' }\nopal-tab-panel { 'Hello Baz' }\n}\n}\nh1 { 'opal-popover' }\np {\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (from=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=right, to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=bottom, to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;) {\nopal-popover (from=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=top, to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=right, from=left, to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\n}\nh1 { 'opal-modal' }\np {\nopal-modal (id=modal1) { 'Modal' }\nopal-button (onclick='document.getElementById(\"modal1\").$component.open();') { 'Open' }\n}\nh1 { 'opal-select' }\np {\nopal-select (placeholder=Select) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\nopal-select-option (text='Option 4 (disabled)', disabled)\nopal-select-option (text=Option 5)\nopal-select-option (text='Option 6 (disabled)', disabled)\n}\n}\np {\nopal-select (multiple, placeholder=Select) {\nopal-select-option (text=Option 1, selected)\nopal-select-option (text=Option 2, selected)\nopal-select-option (text=Option 3)\nopal-select-option (text=Option 4)\nopal-select-option (text=Option 5)\n}\n}\np {\nopal-select (\nmultiple,\ndatalist={dataList1},\ndatalist-item-schema='{ value: \"id\", text: \"name\" }',\nview-model-item-schema='{ value: \"id\", text: \"name\" }',\nadd-new-item={addNewItem1},\nplaceholder=Select\n) {\nopal-text-input (class=opal-select__new-item-input)\n}\n}\np {\nopal-group {\nopal-select (placeholder=Select) {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\nopal-select (view-type=primary, placeholder=Select) {\nopal-popover (class=opal-select__menu, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\n}\n}\nh1 { 'opal-calendar' }\np {\nopal-calendar (from-date=today)\n}\nh1 { 'opal-date-input' }\np {\nopal-date-input\n}\np {\nopal-date-input (mask=99.99.9999, placeholder=dd.mm.yyyy, required)\n}\nh1 { 'opal-loader' }\np {\nopal-loader (shown)\nopal-loader (size=s, shown)\n}\nh1 { 'opal-filtered-list' }\np {\nopal-filtered-list {\nopal-loaded-list (class=opal-filtered-list__list, dataprovider={dataProvider1}) {\n'{$item.name}'\n}\n}\n}\nh1 { 'opal-tree-list' }\np {\nopal-filtered-list {\nopal-tree-list (class=opal-filtered-list__list, datatreelist={dataTreeList1}) {\nopal-checkbox (\nclass=opal-tree-list__selection-control,\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item.name}'\n}\n}\n}\n}\nh1 { 'opal-select + opal-loaded-list' }\np {\nopal-select {\nopal-dropdown (class=opal-select__menu, auto-height=no, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndataprovider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, dataprovider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select (multiple, view-model={viewModel1}, view-model-item-schema='{ value: \"id\", text: \"name\" }') {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, dataprovider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndataprovider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select (multiple) {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndataprovider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n}\n}\nh1 { 'opal-tree-select' }\np {\nopal-tree-select (datatreelist={dataTreeList1})\n}\nh1 { 'opal-autosuggest' }\np {\nopal-autosuggest (dataprovider={dataProvider2}, open-menu-on-nothing-found)\n}\nh1 { 'opal-tag-select' }\np {\nopal-tag-select (dataprovider={dataProvider1}, placeholder='') br\nopal-tag-select (view-type=primary, dataprovider={dataProvider1}) br\nopal-tag-select (\nview-type=danger,\ndataprovider={dataProvider1},\nadd-new-item={addNewItem1},\nview-model={viewModel1}\n) {\nopal-text-input (class=opal-select__new-item-input opal-filtered-list__query-input)\n}\n}\nh1 { 'opal-multirow' }\np {\nopal-multirow {\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\nopal-multirow-row {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\n}\n}"
 
 /***/ })
 /******/ ]);

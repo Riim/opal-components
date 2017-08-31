@@ -1,11 +1,10 @@
-import { Cell, IEvent, Utils } from 'cellx';
+import { nextTick } from '@riim/next-tick';
+import { Cell, IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import '../../assets/icons/opal-components__icon-cross.svg';
 import './index.css';
 import template = require('./template.nelm');
-
-let nextTick = Utils.nextTick;
 
 @d.Component<OpalTextInput>({
 	elementIs: 'opal-text-input',

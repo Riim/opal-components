@@ -1,11 +1,10 @@
-import { IEvent, Utils } from 'cellx';
+import { nextTick } from '@riim/next-tick';
+import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import '../../../assets/icons/opal-components__icon-check.svg';
 import './index.css';
 import template = require('./template.nelm');
-
-let nextTick = Utils.nextTick;
 
 @d.Component<OpalSelectOption>({
 	elementIs: 'opal-select-option',

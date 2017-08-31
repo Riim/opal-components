@@ -1,9 +1,9 @@
+import { nextTick } from '@riim/next-tick';
 import {
 	Cell,
 	define,
 	IEvent,
-	ObservableList,
-	Utils
+	ObservableList
 	} from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import {
@@ -26,7 +26,6 @@ import { isEqualArray } from './isEqualArray';
 import { OpalSelectOption } from './opal-select-option';
 import template = require('./template.nelm');
 
-let { nextTick } = Utils;
 let { RtIfThen, RtRepeat } = Components;
 
 let map = Array.prototype.map;

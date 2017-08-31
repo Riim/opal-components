@@ -1,4 +1,5 @@
-import { Cell, IEvent, Utils } from 'cellx';
+import { nextTick } from '@riim/next-tick';
+import { Cell, IEvent } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import { Component, d, IDisposableListening } from 'rionite';
 import '../../assets/icons/opal-components__icon-arrow-left.svg';
@@ -7,8 +8,6 @@ import { formatDate } from './formatDate';
 import './index.css';
 import { parseDate } from './parseDate';
 import template = require('./template.nelm');
-
-let nextTick = Utils.nextTick;
 
 export interface IDay {
 	date: string;

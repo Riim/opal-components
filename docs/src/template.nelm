@@ -274,11 +274,6 @@ p {
 	}
 }
 
-h1 { 'opal-tree-select' }
-p {
-	opal-tree-select (datatreelist={dataTreeList1})
-}
-
 h1 { 'opal-select + opal-loaded-list' }
 p {
 	opal-select {
@@ -335,6 +330,11 @@ p {
 			}
 		}
 	}
+}
+
+h1 { 'opal-tree-select' }
+p {
+	opal-tree-select (datatreelist={dataTreeList1})
 }
 
 h1 { 'opal-autosuggest' }

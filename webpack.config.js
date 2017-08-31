@@ -21,7 +21,6 @@ module.exports = (env) => {
 	return {
 		entry: {
 			OpalComponents: './src/index.ts',
-			OpalCodeListing: './src/components/opal-code-listing/index.ts',
 			focusHighlightController: './src/focusHighlightController.ts'
 		},
 
@@ -88,10 +87,14 @@ module.exports = (env) => {
 
 		externals: [
 			'@riim/debounce-throttle',
+			'@riim/mixin',
+			'@riim/next-tick',
 			'cellx',
 			'cellx-decorators',
-			'rionite',
-			'created-browser-history'
+			'created-browser-history',
+			'date-exists',
+			'prismjs',
+			'rionite'
 		],
 
 		plugins,

@@ -1,10 +1,9 @@
-import { IEvent, Utils } from 'cellx';
+import { nextTick } from '@riim/next-tick';
+import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
 import { Component, d, IDisposableListening } from 'rionite';
 import './index.css';
 import template = require('./template.nelm');
-
-let nextTick = Utils.nextTick;
 
 @d.Component<OpalRadioButton>({
 	elementIs: 'opal-radio-button',

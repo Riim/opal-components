@@ -1,8 +1,7 @@
-import { Cell, define, Utils } from 'cellx';
+import { mixin } from '@riim/mixin';
+import { Cell, define } from 'cellx';
 import { Component } from 'rionite';
 import { IDataTreeListItem, OpalTreeList, TViewModel } from './index';
-
-let mixin = Utils.mixin;
 
 function isSelectedItem(
 	item: IDataTreeListItem,
