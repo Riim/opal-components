@@ -23,32 +23,23 @@
 	}
 
 	@el nothing-found {
-		display: none;
 		box-sizing: border-box;
 		padding: 12px;
 		height: 100%;
 		text-align: center;
 		white-space: nowrap;
-	}
-		@el nothing-found {
-			&::before {
-				display: inline-block;
-				width: 0;
-				height: 100%;
-				content: '';
-				vertical-align: middle;
-			}
-		}
 
+		&::before {
+			display: inline-block;
+			width: 0;
+			height: 100%;
+			content: '';
+			vertical-align: middle;
+		}
+	}
 		@el nothing-found-message {
 			display: inline-block;
 			vertical-align: middle;
 			opacity: .6;
 		}
-
-	@el nothing-found {
-		@mod shown {
-			display: block;
-		}
-	}
 }

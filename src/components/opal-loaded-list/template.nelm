@@ -10,8 +10,12 @@ div/list {
 
 opal-loader/loader (shown={isLoaderShown}, align-center={empty})
 
-div/nothing-found (shown={isNothingFoundShown}) {
-	span/nothing-found-message { '{constructor.i18n.nothingFound}' }
+@if-then (if=isNothingFoundShown) {
+	div/nothing-found {
+		span/nothing-found-message {
+			'{constructor.i18n.nothingFound}'
+		}
+	}
 }
 
 }

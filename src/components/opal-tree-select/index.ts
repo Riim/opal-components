@@ -1,5 +1,6 @@
 import { Cell, define } from 'cellx';
 import { d } from 'rionite';
+import { OpalModal } from '../opal-modal';
 import { OpalSelect } from '../opal-select';
 import { OpalTreeList, TDataTreeList, TViewModel } from '../opal-tree-list';
 import './index.css';
@@ -19,7 +20,15 @@ import template = require('./template.nelm');
 		query: String
 	},
 
-	template
+	template,
+
+	events: {
+		'btn-close': {
+			click() {
+				this.$<OpalModal>('menu')!.close();
+			}
+		}
+	}
 })
 export class OpalTreeSelect extends OpalSelect {
 	dataTreeList: TDataTreeList;

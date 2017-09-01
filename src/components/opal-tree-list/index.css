@@ -1,11 +1,24 @@
 @component opal-tree-list {
 	display: block;
 
-	@el nothing-found-message {
-		display: block;
-		padding: 20px 10px 10px;
+	@el nothing-found {
+		box-sizing: border-box;
+		padding: 12px;
+		height: 100%;
 		text-align: center;
 		white-space: nowrap;
-		opacity: .6;
+
+		&::before {
+			display: inline-block;
+			width: 0;
+			height: 100%;
+			content: '';
+			vertical-align: middle;
+		}
 	}
+		@el nothing-found-message {
+			display: inline-block;
+			vertical-align: middle;
+			opacity: .6;
+		}
 }

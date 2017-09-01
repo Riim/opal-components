@@ -24,8 +24,10 @@
 		}
 	}
 	@if-else (if=filteredDataTreeList.length) {
-		span/nothing-found-message {
-			'Ничего не найдено'
+		div/nothing-found {
+			span/nothing-found-message {
+				'Ничего не найдено'
+			}
 		}
 	}
 }

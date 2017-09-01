@@ -29,7 +29,11 @@ export class OpalDropdown extends Component {
 	}
 
 	_onInputOpenedChange(evt: IEvent) {
-		this[evt.value ? '_open' : '_close']();
+		if (evt.value) {
+			this._open();
+		} else {
+			this._close();
+		}
 	}
 
 	open(): boolean {
@@ -55,9 +59,10 @@ export class OpalDropdown extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		let opened = this.input.opened = value === undefined ? !this.input.opened : value;
-		Cell.forceRelease();
-		return opened;
+		if (value !== undefined) {
+			return value ? this.open() : !this.close();
+		}
+		return this.open() || !this.close();
 	}
 
 	_open() {

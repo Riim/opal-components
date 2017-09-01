@@ -11,4 +11,10 @@ opal-modal/menu {
 			opal-select-option/option (class=opal-tree-list__selection-control, text={$item.name}, selected={$selected})
 		}
 	}
+
+	div/footer {
+		opal-button/btn-close {
+			'Закрыть'
+		}
+	}
 }

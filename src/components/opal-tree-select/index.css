@@ -1,5 +1,20 @@
-@component opal-tree-select {
+@component opal-tree-select : opal-select {
 	& .opal-modal__window {
-		max-width: 70%;
+		box-sizing: border-box;
+		width: 80%;
 	}
+
+	@el filtered-list {
+	}
+		@el tree-list {
+			overflow: auto;
+			height: 410px;
+		}
+
+	@el footer {
+		padding-top: 10px;
+	}
+		@el btn-close {
+			float: right;
+		}
 }

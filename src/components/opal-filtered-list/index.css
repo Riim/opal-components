@@ -1,4 +1,6 @@
 @component opal-filtered-list {
+	display: block;
+
 	@el query-input-container {
 		display: block;
 	}

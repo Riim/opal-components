@@ -9212,7 +9212,12 @@ var OpalTab = (function (_super) {
         }
     };
     OpalTab.prototype._onInputFocusedChange = function (evt) {
-        this[evt.value ? 'focus' : 'blur']();
+        if (evt.value) {
+            this.focus();
+        }
+        else {
+            this.blur();
+        }
     };
     OpalTab.prototype._onControlFocus = function (evt) {
         var _this = this;
@@ -10912,7 +10917,12 @@ var OpalButton = (function (_super) {
         this.element.tabIndex = this._tabIndex;
     };
     OpalButton.prototype._onInputFocusedChange = function (evt) {
-        this[evt.value ? 'focus' : 'blur']();
+        if (evt.value) {
+            this.focus();
+        }
+        else {
+            this.blur();
+        }
     };
     OpalButton.prototype._onTabIndexChange = function () {
         this.element.tabIndex = this._tabIndex;
@@ -11105,7 +11115,12 @@ var OpalSignButton = (function (_super) {
         }
     };
     OpalSignButton.prototype._onInputFocusedChange = function (evt) {
-        this[evt.value ? 'focus' : 'blur']();
+        if (evt.value) {
+            this.focus();
+        }
+        else {
+            this.blur();
+        }
     };
     OpalSignButton.prototype._onControlFocus = function (evt) {
         var _this = this;
@@ -11349,7 +11364,12 @@ var OpalTextInput = (function (_super) {
         }
     };
     OpalTextInput.prototype._onInputFocusedChange = function (evt) {
-        this[evt.value ? 'focus' : 'blur']();
+        if (evt.value) {
+            this.focus();
+        }
+        else {
+            this.blur();
+        }
     };
     OpalTextInput.prototype._onTextFieldFocus = function (evt) {
         var _this = this;
@@ -13196,7 +13216,12 @@ var OpalDropdown = (function (_super) {
         this.listenTo(this, 'input-opened-change', this._onInputOpenedChange);
     };
     OpalDropdown.prototype._onInputOpenedChange = function (evt) {
-        this[evt.value ? '_open' : '_close']();
+        if (evt.value) {
+            this._open();
+        }
+        else {
+            this._close();
+        }
     };
     OpalDropdown.prototype.open = function () {
         if (this.input.opened) {
@@ -13215,9 +13240,10 @@ var OpalDropdown = (function (_super) {
         return true;
     };
     OpalDropdown.prototype.toggle = function (value) {
-        var opened = this.input.opened = value === undefined ? !this.input.opened : value;
-        cellx_1.Cell.forceRelease();
-        return opened;
+        if (value !== undefined) {
+            return value ? this.open() : !this.close();
+        }
+        return this.open() || !this.close();
     };
     OpalDropdown.prototype._open = function () {
         var _this = this;
@@ -13366,7 +13392,12 @@ var OpalPopover = (function (_super) {
         this.listenTo(this, 'input-opened-change', this._onInputOpenedChange);
     };
     OpalPopover.prototype._onInputOpenedChange = function (evt) {
-        this[evt.value ? '_open' : '_close']();
+        if (evt.value) {
+            this._open();
+        }
+        else {
+            this._close();
+        }
     };
     OpalPopover.prototype.open = function () {
         if (this.input.opened) {
@@ -13385,9 +13416,10 @@ var OpalPopover = (function (_super) {
         return true;
     };
     OpalPopover.prototype.toggle = function (value) {
-        var opened = this.input.opened = value === undefined ? !this.input.opened : value;
-        cellx_1.Cell.forceRelease();
-        return opened;
+        if (value !== undefined) {
+            return value ? this.open() : !this.close();
+        }
+        return this.open() || !this.close();
     };
     OpalPopover.prototype._open = function () {
         var _this = this;
@@ -13536,6 +13568,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
 var isFocusable_1 = __webpack_require__(4);
 __webpack_require__(77);
@@ -13575,7 +13608,12 @@ var OpalModal = (function (_super) {
         this.close();
     };
     OpalModal.prototype._onInputOpenedChange = function (evt) {
-        this[evt.value ? '_open' : '_close']();
+        if (evt.value) {
+            this._open();
+        }
+        else {
+            this._close();
+        }
     };
     OpalModal.prototype._onElementClick = function (evt) {
         var componentEl = this.element;
@@ -13597,6 +13635,7 @@ var OpalModal = (function (_super) {
             return false;
         }
         this.input.opened = true;
+        cellx_1.Cell.forceRelease();
         return true;
     };
     OpalModal.prototype.close = function () {
@@ -13604,10 +13643,14 @@ var OpalModal = (function (_super) {
             return false;
         }
         this.input.opened = false;
+        cellx_1.Cell.forceRelease();
         return true;
     };
     OpalModal.prototype.toggle = function (value) {
-        return (this.input.opened = value === undefined ? !this.input.opened : value);
+        if (value !== undefined) {
+            return value ? this.open() : !this.close();
+        }
+        return this.open() || !this.close();
     };
     OpalModal.prototype._open = function () {
         if (openedModals.length) {
@@ -13793,7 +13836,12 @@ var OpalSelectOption = (function (_super) {
         });
     };
     OpalSelectOption.prototype._onInputFocusedChange = function (evt) {
-        this[evt.value ? 'focus' : 'blur']();
+        if (evt.value) {
+            this.focus();
+        }
+        else {
+            this.blur();
+        }
     };
     OpalSelectOption.prototype._onControlFocus = function (evt) {
         var _this = this;
@@ -15217,7 +15265,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-loaded-list{position:relative;display:block;overflow-x:hidden;overflow-y:auto;height:500px}.opal-loaded-list .opal-loaded-list__list-item{display:block}.opal-loaded-list .opal-loaded-list__loader[align-center]{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto}.opal-loaded-list .opal-loaded-list__nothing-found{display:none;-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;height:100%;text-align:center;white-space:nowrap}.opal-loaded-list .opal-loaded-list__nothing-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-loaded-list .opal-loaded-list__nothing-found-message{display:inline-block;vertical-align:middle;opacity:.6}.opal-loaded-list .opal-loaded-list__nothing-found[shown]{display:block}";
+            style.textContent = ".opal-loaded-list{position:relative;display:block;overflow-x:hidden;overflow-y:auto;height:500px}.opal-loaded-list .opal-loaded-list__list-item{display:block}.opal-loaded-list .opal-loaded-list__loader[align-center]{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto}.opal-loaded-list .opal-loaded-list__nothing-found{-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;height:100%;text-align:center;white-space:nowrap}.opal-loaded-list .opal-loaded-list__nothing-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-loaded-list .opal-loaded-list__nothing-found-message{display:inline-block;vertical-align:middle;opacity:.6}";
             head.appendChild(style);
             return style;
         }
@@ -15229,7 +15277,7 @@ module.exports = (function(d) {
 /* 109 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\ndiv/list {\n@repeat (for=$item of dataList) {\nrt-slot/list-item (clone-content, get-context={_getListItemContext}) {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nopal-loader/loader (shown={isLoaderShown}, align-center={empty})\ndiv/nothing-found (shown={isNothingFoundShown}) {\nspan/nothing-found-message { '{constructor.i18n.nothingFound}' }\n}\n}"
+module.exports = "@section/inner {\ndiv/list {\n@repeat (for=$item of dataList) {\nrt-slot/list-item (clone-content, get-context={_getListItemContext}) {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nopal-loader/loader (shown={isLoaderShown}, align-center={empty})\n@if-then (if=isNothingFoundShown) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}"
 
 /***/ }),
 /* 110 */
@@ -15462,7 +15510,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-filtered-list .opal-filtered-list__query-input-container{display:block}.opal-filtered-list .opal-filtered-list__query-input{display:block;margin-bottom:15px;width:auto}";
+            style.textContent = ".opal-filtered-list{display:block}.opal-filtered-list .opal-filtered-list__query-input-container{display:block}.opal-filtered-list .opal-filtered-list__query-input{display:block;margin-bottom:15px;width:auto}";
             head.appendChild(style);
             return style;
         }
@@ -15500,7 +15548,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-tree-list{display:block}.opal-tree-list .opal-tree-list__nothing-found-message{display:block;padding:20px 10px 10px;text-align:center;white-space:nowrap;opacity:.6}";
+            style.textContent = ".opal-tree-list{display:block}.opal-tree-list .opal-tree-list__nothing-found{-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;height:100%;text-align:center;white-space:nowrap}.opal-tree-list .opal-tree-list__nothing-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-tree-list .opal-tree-list__nothing-found-message{display:inline-block;vertical-align:middle;opacity:.6}";
             head.appendChild(style);
             return style;
         }
@@ -15535,7 +15583,7 @@ module.exports = "div/head {\nopal-button/btn-toggle-children (view-type=clean, 
 /* 120 */
 /***/ (function(module, exports) {
 
-module.exports = "@if-then (if=dataTreeList) {\n@if-then (if=filteredDataTreeList.length) {\n@repeat (for=$item of filteredDataTreeList) {\nopal-tree-list-item/item (\ndatatreelist={dataTreeList},\nfiltered-datatreelist={filteredDataTreeList},\ndatatreelist-item-value-field-name={_dataTreeListItemValueFieldName},\ndatatreelist-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={input.query},\nopened={input.query},\nnesting-level=0,\nhas-children='{$item |has(\"children\") }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=filteredDataTreeList.length) {\nspan/nothing-found-message {\n'Ничего не найдено'\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}"
+module.exports = "@if-then (if=dataTreeList) {\n@if-then (if=filteredDataTreeList.length) {\n@repeat (for=$item of filteredDataTreeList) {\nopal-tree-list-item/item (\ndatatreelist={dataTreeList},\nfiltered-datatreelist={filteredDataTreeList},\ndatatreelist-item-value-field-name={_dataTreeListItemValueFieldName},\ndatatreelist-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={input.query},\nopened={input.query},\nnesting-level=0,\nhas-children='{$item |has(\"children\") }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=filteredDataTreeList.length) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'Ничего не найдено'\n}\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}"
 
 /***/ }),
 /* 121 */
@@ -15841,7 +15889,14 @@ var OpalTreeSelect = (function (_super) {
                 viewModelItemSchema: { type: eval, default: opal_tree_list_1.OpalTreeList.defaultViewModelItemSchema, readonly: true },
                 query: String
             },
-            template: template
+            template: template,
+            events: {
+                'btn-close': {
+                    click: function () {
+                        this.$('menu').close();
+                    }
+                }
+            }
         })
     ], OpalTreeSelect);
     return OpalTreeSelect;
@@ -15858,7 +15913,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-tree-select .opal-modal__window{max-width:70%}";
+            style.textContent = ".opal-tree-select.opal-select .opal-modal__window{-webkit-box-sizing:border-box;box-sizing:border-box;width:80%}.opal-tree-select.opal-select .opal-tree-select__tree-list{overflow:auto;height:410px}.opal-tree-select.opal-select .opal-tree-select__footer{padding-top:10px}.opal-tree-select.opal-select .opal-tree-select__btn-close{float:right}";
             head.appendChild(style);
             return style;
         }
@@ -15870,7 +15925,7 @@ module.exports = (function(d) {
 /* 126 */
 /***/ (function(module, exports) {
 
-module.exports = "opal-modal/menu {\nopal-filtered-list/filtered-list {\nopal-tree-list/tree-list (\nclass=opal-filtered-list__list,\ndatatreelist={dataTreeList},\ndatatreelist-item-schema={input.datatreelistItemSchema},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema},\nquery={input.query}\n) {\nopal-select-option/option (class=opal-tree-list__selection-control, text={$item.name}, selected={$selected})\n}\n}\n}"
+module.exports = "opal-modal/menu {\nopal-filtered-list/filtered-list {\nopal-tree-list/tree-list (\nclass=opal-filtered-list__list,\ndatatreelist={dataTreeList},\ndatatreelist-item-schema={input.datatreelistItemSchema},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema},\nquery={input.query}\n) {\nopal-select-option/option (class=opal-tree-list__selection-control, text={$item.name}, selected={$selected})\n}\n}\ndiv/footer {\nopal-button/btn-close {\n'Закрыть'\n}\n}\n}"
 
 /***/ }),
 /* 127 */

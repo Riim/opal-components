@@ -39,7 +39,11 @@ export class OpalTab extends Component {
 	}
 
 	_onInputFocusedChange(evt: IEvent) {
-		this[evt.value ? 'focus' : 'blur']();
+		if (evt.value) {
+			this.focus();
+		} else {
+			this.blur();
+		}
 	}
 
 	_onControlFocus(evt: Event) {

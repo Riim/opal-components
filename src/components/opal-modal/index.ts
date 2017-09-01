@@ -1,4 +1,4 @@
-import { IEvent } from 'cellx';
+import { Cell, IEvent } from 'cellx';
 import { Component, d, IDisposableListening } from 'rionite';
 import { isFocusable } from '../../Utils/isFocusable';
 import './index.css';
@@ -61,7 +61,11 @@ export class OpalModal extends Component {
 	}
 
 	_onInputOpenedChange(evt: IEvent) {
-		this[evt.value ? '_open' : '_close']();
+		if (evt.value) {
+			this._open();
+		} else {
+			this._close();
+		}
 	}
 
 	_onElementClick(evt: Event) {
@@ -89,6 +93,8 @@ export class OpalModal extends Component {
 		}
 
 		this.input.opened = true;
+		Cell.forceRelease();
+
 		return true;
 	}
 
@@ -98,11 +104,16 @@ export class OpalModal extends Component {
 		}
 
 		this.input.opened = false;
+		Cell.forceRelease();
+
 		return true;
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.input.opened = value === undefined ? !this.input.opened : value);
+		if (value !== undefined) {
+			return value ? this.open() : !this.close();
+		}
+		return this.open() || !this.close();
 	}
 
 	_open() {
