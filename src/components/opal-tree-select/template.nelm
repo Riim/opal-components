@@ -14,7 +14,7 @@ opal-modal/menu {
 
 	div/footer {
 		opal-button/btn-close {
-			'Закрыть'
+			'Готово'
 		}
 	}
 }
