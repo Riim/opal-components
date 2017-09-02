@@ -48,7 +48,7 @@
 			margin: auto;
 			width: 18px;
 			height: 18px;
-			fill: hsl(0,0%,50%);
+			color: hsl(0,0%,50%);
 		}
 
 	@el btn-clear {

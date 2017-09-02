@@ -1,5 +1,6 @@
 import { IEvent } from 'cellx';
 import { Component } from 'rionite';
+import '../../assets/icons/opal-components__icon-search.svg';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 export declare class OpalFilteredList extends Component {

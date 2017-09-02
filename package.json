@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.27.80",
+  "version": "0.27.81",
   "description": "",
   "main": "dist/OpalComponents.js",
   "typings": "dist/src/index.d.ts",
@@ -53,7 +53,7 @@
     "@riim/debounce-throttle": "^1.0.0",
     "@riim/mixin": "^1.0.0",
     "@riim/next-tick": "^1.0.0",
-    "cellx": "^1.7.40",
+    "cellx": "^1.7.42",
     "cellx-decorators": "^1.4.5",
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.0",

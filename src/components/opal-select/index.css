@@ -27,7 +27,6 @@
 			height: 14px;
 			vertical-align: middle;
 			transition: transform .1s linear;
-			fill: currentColor;
 		}
 
 	@el menu {

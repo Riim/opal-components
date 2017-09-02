@@ -1,6 +1,7 @@
 import { debounce } from '@riim/debounce-throttle';
 import { IEvent } from 'cellx';
 import { Component, d, getText } from 'rionite';
+import '../../assets/icons/opal-components__icon-search.svg';
 import { OpalLoadedList } from '../opal-loaded-list';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
