@@ -31,7 +31,6 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 	input: {
 		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		dataprovider: { type: Object, readonly: true },
-		dataproviderKeypath: { type: String, readonly: true },
 		count: 100,
 		query: String,
 		preloading: { default: false, readonly: true }
@@ -80,15 +79,11 @@ export class OpalLoadedList extends Component {
 		this._dataListItemTextFieldName = input.datalistItemSchema.text ||
 			(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema.text;
 
-		let dataProvider;
-
-		if (input.$specified.has('dataprovider')) {
-			dataProvider = input.dataprovider;
-		} else if (input.dataproviderKeypath) {
-			dataProvider = Function(`return this.${ input.dataproviderKeypath };`).call(this.ownerComponent || window);
-		} else {
+		if (!input.$specified.has('dataprovider')) {
 			throw new TypeError('Input property "dataprovider" is required');
 		}
+
+		let dataProvider = input.dataprovider;
 
 		if (!dataProvider) {
 			throw new TypeError('"dataProvider" is not defined');

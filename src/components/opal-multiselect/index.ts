@@ -18,8 +18,7 @@ import template = require('./template.nelm');
 
 	input: {
 		multiple: true,
-		dataprovider: { type: Object, readonly: true },
-		dataproviderKeypath: { type: String, readonly: true }
+		dataprovider: { type: Object, readonly: true }
 	},
 
 	template: (OpalSelect.template as Template).extend(template),
@@ -54,15 +53,12 @@ export class OpalMultiselect extends OpalSelect {
 		super.initialize();
 
 		let input = this.input;
-		let dataProvider;
 
-		if (input.$specified.has('dataprovider')) {
-			dataProvider = input.dataprovider;
-		} else if (input.dataproviderKeypath) {
-			dataProvider = Function(`return this.${ input.dataproviderKeypath };`).call(this.ownerComponent || window);
-		} else {
+		if (!input.$specified.has('dataprovider')) {
 			throw new TypeError('Input property "dataprovider" is required');
 		}
+
+		let dataProvider = input.dataprovider;
 
 		if (!dataProvider) {
 			throw new TypeError('"dataProvider" is not defined');

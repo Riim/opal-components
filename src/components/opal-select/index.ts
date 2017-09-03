@@ -48,14 +48,11 @@ let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled
 		size: 'm',
 		multiple: { default: false, readonly: true },
 		datalist: { type: Object },
-		datalistKeypath: { type: String, readonly: true },
 		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		value: eval,
 		viewModel: { type: Object },
-		viewModelKeypath: { type: String, readonly: true },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 		addNewItem: { type: Object, readonly: true },
-		addNewItemKeypath: { type: String, readonly: true },
 		text: String,
 		maxTextLength: 20,
 		placeholder: getText.t('Не выбрано'),
@@ -128,12 +125,6 @@ export class OpalSelect extends Component {
 		if (input.$specified.has('datalist')) {
 			define(this, 'dataList', () => input.datalist);
 			this._isInputDataListSpecified = true;
-		} else if (input.datalistKeypath) {
-			define(this, 'dataList', new Cell(Function(`return this.${ input.datalistKeypath };`), {
-				context: this.ownerComponent || window
-			}));
-
-			this._isInputDataListSpecified = true;
 		} else {
 			this.dataList = null;
 			this._isInputDataListSpecified = false;
@@ -146,21 +137,7 @@ export class OpalSelect extends Component {
 		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
 		this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 
-		let isInputViewModelSpecified = input.$specified.has('viewModel');
-
-		if (isInputViewModelSpecified || input.viewModelKeypath) {
-			let vm = isInputViewModelSpecified ?
-				input.viewModel :
-				Function(`return this.${ input.viewModelKeypath };`).call(this.ownerComponent || window);
-
-			if (!vm) {
-				throw new TypeError('"viewModel" is not defined');
-			}
-
-			this.viewModel = vm;
-		} else {
-			this.viewModel = new ObservableList();
-		}
+		this.viewModel = input.viewModel || new ObservableList();
 
 		let vmItemSchema = input.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalSelect).defaultViewModelItemSchema;
@@ -169,21 +146,7 @@ export class OpalSelect extends Component {
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 		this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
 
-		let inputAddNewItemSpecified = input.$specified.has('addNewItem');
-
-		if (inputAddNewItemSpecified || input.addNewItemKeypath) {
-			let addNewItem = inputAddNewItemSpecified ?
-				input.addNewItem :
-				Function(`return this.${ input.addNewItemKeypath };`).call(this.ownerComponent || window);
-
-			if (!addNewItem) {
-				throw new TypeError('"addNewItem" is not defined');
-			}
-
-			this._addNewItem = addNewItem;
-		} else {
-			this._addNewItem = null;
-		}
+		this._addNewItem = input.addNewItem;
 	}
 
 	ready() {

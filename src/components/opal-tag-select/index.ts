@@ -1,9 +1,4 @@
-import {
-	Cell,
-	define,
-	IEvent,
-	ObservableList
-	} from 'cellx';
+import { define, IEvent, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import { Component, d, getText } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
@@ -25,16 +20,12 @@ let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: '
 	input: {
 		viewType: String,
 		datalist: { type: Object },
-		datalistKeypath: { type: String, readonly: true },
 		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		// необязательный, так как может указываться на передаваемом opal-loaded-list
 		dataprovider: { type: Object, readonly: true },
-		dataproviderKeypath: { type: String, readonly: true },
 		addNewItem: { type: Object, readonly: true },
-		addNewItemKeypath: { type: String, readonly: true },
 		value: eval,
 		viewModel: { type: Object },
-		viewModelKeypath: { type: String, readonly: true },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 		placeholder: getText.t('Не выбрано'),
 		popoverTo: 'bottom',
@@ -63,8 +54,6 @@ export class OpalTagSelect extends Component {
 	_dataListItemTextFieldName: string;
 	_dataListItemDisabledFieldName: string;
 
-	_dataListKeypathParam: string | null;
-
 	dataProvider: IDataProvider | null;
 
 	@observable viewModel: TViewModel;
@@ -76,50 +65,23 @@ export class OpalTagSelect extends Component {
 		return this.viewModel.toArray();
 	}
 
-	_addNewItem: ((text: string) => Promise<{ [name: string]: string }>) | null;
-	_addNewItemKeypathParam: string | null;
-
 	@computed get isPlaceholderShown(): boolean {
 		return !!this.input.placeholder && !this.viewModel.length;
 	}
 
+	_isInputDataListSpecified: boolean;
+
 	initialize() {
 		let input = this.input;
-		let isInputDataListSpecified = input.$specified.has('datalist');
 
-		if (isInputDataListSpecified || input.datalistKeypath) {
-			define(
-				this,
-				'dataList',
-				isInputDataListSpecified ?
-					() => input.datalist :
-					new Cell(Function(`return this.${ input.datalistKeypath };`), {
-						context: this.ownerComponent || window
-					})
-			);
-
-			this._dataListKeypathParam = 'dataList';
-
+		if (input.$specified.has('datalist')) {
+			define(this, 'dataList', () => input.datalist);
 			this.dataProvider = null;
+			this._isInputDataListSpecified = true;
 		} else {
 			this.dataList = null;
-			this._dataListKeypathParam = null;
-
-			let isInputDataProviderSpecified = input.$specified.has('dataprovider');
-
-			if (isInputDataProviderSpecified || input.dataproviderKeypath) {
-				let dataProvider = isInputDataProviderSpecified ?
-					input.dataprovider :
-					Function(`return this.${ input.dataproviderKeypath };`).call(this.ownerComponent || window);
-
-				if (!dataProvider) {
-					throw new TypeError('"dataProvider" is not defined');
-				}
-
-				this.dataProvider = dataProvider;
-			} else {
-				this.dataProvider = null;
-			}
+			this.dataProvider = input.dataprovider;
+			this._isInputDataListSpecified = false;
 		}
 
 		let dataListItemSchema = input.datalistItemSchema;
@@ -128,21 +90,7 @@ export class OpalTagSelect extends Component {
 		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
 		this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 
-		let isInputViewModelSpecified = input.$specified.has('viewModel');
-
-		if (isInputViewModelSpecified || input.viewModelKeypath) {
-			let vm = isInputViewModelSpecified ?
-				input.viewModel :
-				Function(`return this.${ input.viewModelKeypath };`).call(this.ownerComponent || window);
-
-			if (!vm) {
-				throw new TypeError('"viewModel" is not defined');
-			}
-
-			this.viewModel = vm;
-		} else {
-			this.viewModel = new ObservableList();
-		}
+		this.viewModel = input.viewModel || new ObservableList();
 
 		let vmItemSchema = input.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalSelect).defaultViewModelItemSchema;
@@ -150,24 +98,6 @@ export class OpalTagSelect extends Component {
 		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 		this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
-
-		let inputAddNewItemSpecified = input.$specified.has('addNewItem');
-
-		if (inputAddNewItemSpecified || input.addNewItemKeypath) {
-			let addNewItem = inputAddNewItemSpecified ?
-				input.addNewItem :
-				Function(`return this.${ input.addNewItemKeypath };`).call(this.ownerComponent || window);
-
-			if (!addNewItem) {
-				throw new TypeError('"addNewItem" is not defined');
-			}
-
-			this._addNewItem = addNewItem;
-			this._addNewItemKeypathParam = '_addNewItem';
-		} else {
-			this._addNewItem = null;
-			this._addNewItemKeypathParam = null;
-		}
 	}
 
 	elementAttached() {

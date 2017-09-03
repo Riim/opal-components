@@ -1,9 +1,4 @@
-import {
-	Cell,
-	define,
-	IEvent,
-	ObservableList
-	} from 'cellx';
+import { define, IEvent, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import ObservableTreeList from '../../ObservableTreeList';
@@ -40,10 +35,8 @@ function toComparable(str: string | null): string | null {
 
 	input: {
 		datatreelist: { type: Object },
-		datatreelistKeypath: { type: String, readonly: true },
 		datatreelistItemSchema: { type: eval, default: defaultDataTreeListItemSchema, readonly: true },
 		viewModel: { type: Object },
-		viewModelKeypath: { type: String, readonly: true },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 		query: String
 	},
@@ -106,18 +99,11 @@ export class OpalTreeList extends Component {
 	initialize() {
 		let input = this.input;
 
-		if (input.$specified.has('datatreelist')) {
-			define(this, 'dataTreeList', () => input.datatreelist);
-		} else if (input.datatreelistKeypath) {
-			define(this, 'dataTreeList', new Cell(
-				Function(`return this.${ input.datatreelistKeypath };`),
-				{
-					context: this.ownerComponent || window
-				}
-			));
-		} else {
+		if (!input.$specified.has('datatreelist')) {
 			throw new TypeError('Input property "dataTreeList" is required');
 		}
+
+		define(this, 'dataTreeList', () => input.datatreelist);
 
 		let dataTreeListItemSchema = input.datatreelistItemSchema;
 		let defaultDataTreeListItemSchema = (this.constructor as typeof OpalTreeList).defaultDataTreeListItemSchema;
@@ -125,21 +111,7 @@ export class OpalTreeList extends Component {
 		this._dataTreeListItemValueFieldName = dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;
 		this._dataTreeListItemTextFieldName = dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
 
-		let isInputViewModelSpecified = input.$specified.has('viewModel');
-
-		if (isInputViewModelSpecified || input.viewModelKeypath) {
-			let vm = isInputViewModelSpecified ?
-				input.viewModel :
-				Function(`return this.${ input.viewModelKeypath };`).call(this.ownerComponent || window);
-
-			if (!vm) {
-				throw new TypeError('"viewModel" is not defined');
-			}
-
-			this.viewModel = vm;
-		} else {
-			this.viewModel = new ObservableList();
-		}
+		this.viewModel = input.viewModel || new ObservableList();
 
 		let vmItemSchema = input.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalTreeList).defaultViewModelItemSchema;

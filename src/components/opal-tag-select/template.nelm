@@ -19,9 +19,9 @@ span/control {
 
 	opal-select/select (
 		multiple,
-		datalist-keypath={_dataListKeypathParam},
+		datalist={dataList},
 		datalist-item-schema={input.datalistItemSchema |json },
-		add-new-item-keypath={_addNewItemKeypathParam},
+		add-new-item={input.addNewItem},
 		value={input.value},
 		view-model={viewModel},
 		view-model-item-schema={input.viewModelItemSchema |json }
@@ -30,7 +30,7 @@ span/control {
 
 		opal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {
 			rt-content (select='.opal-select__menu-content') {
-				@if-then (if=_dataListKeypathParam) {
+				@if-then (if=_isInputDataListSpecified) {
 					div (class=opal-select__menu-content) {
 						@if-then (if=dataList) {
 							@repeat (for=item of dataList) {
@@ -51,7 +51,7 @@ span/control {
 						}
 					}
 				}
-				@if-else (if=_dataListKeypathParam) {
+				@if-else (if=_isInputDataListSpecified) {
 					opal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {
 						rt-content (
 							class=opal-filtered-list__query-input-container,

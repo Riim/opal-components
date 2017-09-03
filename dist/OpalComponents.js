@@ -213,12 +213,6 @@ var OpalSelect = /** @class */ (function (_super) {
             cellx_1.define(this, 'dataList', function () { return input.datalist; });
             this._isInputDataListSpecified = true;
         }
-        else if (input.datalistKeypath) {
-            cellx_1.define(this, 'dataList', new cellx_1.Cell(Function("return this." + input.datalistKeypath + ";"), {
-                context: this.ownerComponent || window
-            }));
-            this._isInputDataListSpecified = true;
-        }
         else {
             this.dataList = null;
             this._isInputDataListSpecified = false;
@@ -228,37 +222,13 @@ var OpalSelect = /** @class */ (function (_super) {
         this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
         this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
-        var isInputViewModelSpecified = input.$specified.has('viewModel');
-        if (isInputViewModelSpecified || input.viewModelKeypath) {
-            var vm = isInputViewModelSpecified ?
-                input.viewModel :
-                Function("return this." + input.viewModelKeypath + ";").call(this.ownerComponent || window);
-            if (!vm) {
-                throw new TypeError('"viewModel" is not defined');
-            }
-            this.viewModel = vm;
-        }
-        else {
-            this.viewModel = new cellx_1.ObservableList();
-        }
+        this.viewModel = input.viewModel || new cellx_1.ObservableList();
         var vmItemSchema = input.viewModelItemSchema;
         var defaultVMItemSchema = this.constructor.defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
         this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
-        var inputAddNewItemSpecified = input.$specified.has('addNewItem');
-        if (inputAddNewItemSpecified || input.addNewItemKeypath) {
-            var addNewItem = inputAddNewItemSpecified ?
-                input.addNewItem :
-                Function("return this." + input.addNewItemKeypath + ";").call(this.ownerComponent || window);
-            if (!addNewItem) {
-                throw new TypeError('"addNewItem" is not defined');
-            }
-            this._addNewItem = addNewItem;
-        }
-        else {
-            this._addNewItem = null;
-        }
+        this._addNewItem = input.addNewItem;
     };
     OpalSelect.prototype.ready = function () {
         var _this = this;
@@ -779,14 +749,11 @@ var OpalSelect = /** @class */ (function (_super) {
                 size: 'm',
                 multiple: { default: false, readonly: true },
                 datalist: { type: Object },
-                datalistKeypath: { type: String, readonly: true },
                 datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
                 value: eval,
                 viewModel: { type: Object },
-                viewModelKeypath: { type: String, readonly: true },
                 viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
                 addNewItem: { type: Object, readonly: true },
-                addNewItemKeypath: { type: String, readonly: true },
                 text: String,
                 maxTextLength: 20,
                 placeholder: rionite_1.getText.t('Не выбрано'),
@@ -1165,34 +1132,15 @@ var OpalTreeList = /** @class */ (function (_super) {
     });
     OpalTreeList.prototype.initialize = function () {
         var input = this.input;
-        if (input.$specified.has('datatreelist')) {
-            cellx_1.define(this, 'dataTreeList', function () { return input.datatreelist; });
-        }
-        else if (input.datatreelistKeypath) {
-            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function("return this." + input.datatreelistKeypath + ";"), {
-                context: this.ownerComponent || window
-            }));
-        }
-        else {
+        if (!input.$specified.has('datatreelist')) {
             throw new TypeError('Input property "dataTreeList" is required');
         }
+        cellx_1.define(this, 'dataTreeList', function () { return input.datatreelist; });
         var dataTreeListItemSchema = input.datatreelistItemSchema;
         var defaultDataTreeListItemSchema = this.constructor.defaultDataTreeListItemSchema;
         this._dataTreeListItemValueFieldName = dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;
         this._dataTreeListItemTextFieldName = dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
-        var isInputViewModelSpecified = input.$specified.has('viewModel');
-        if (isInputViewModelSpecified || input.viewModelKeypath) {
-            var vm = isInputViewModelSpecified ?
-                input.viewModel :
-                Function("return this." + input.viewModelKeypath + ";").call(this.ownerComponent || window);
-            if (!vm) {
-                throw new TypeError('"viewModel" is not defined');
-            }
-            this.viewModel = vm;
-        }
-        else {
-            this.viewModel = new cellx_1.ObservableList();
-        }
+        this.viewModel = input.viewModel || new cellx_1.ObservableList();
         var vmItemSchema = input.viewModelItemSchema;
         var defaultVMItemSchema = this.constructor.defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
@@ -1242,10 +1190,8 @@ var OpalTreeList = /** @class */ (function (_super) {
             elementIs: 'opal-tree-list',
             input: {
                 datatreelist: { type: Object },
-                datatreelistKeypath: { type: String, readonly: true },
                 datatreelistItemSchema: { type: eval, default: defaultDataTreeListItemSchema, readonly: true },
                 viewModel: { type: Object },
-                viewModelKeypath: { type: String, readonly: true },
                 viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
                 query: String
             },
@@ -4673,16 +4619,10 @@ var OpalMultiselect = /** @class */ (function (_super) {
     OpalMultiselect.prototype.initialize = function () {
         _super.prototype.initialize.call(this);
         var input = this.input;
-        var dataProvider;
-        if (input.$specified.has('dataprovider')) {
-            dataProvider = input.dataprovider;
-        }
-        else if (input.dataproviderKeypath) {
-            dataProvider = Function("return this." + input.dataproviderKeypath + ";").call(this.ownerComponent || window);
-        }
-        else {
+        if (!input.$specified.has('dataprovider')) {
             throw new TypeError('Input property "dataprovider" is required');
         }
+        var dataProvider = input.dataprovider;
         if (!dataProvider) {
             throw new TypeError('"dataProvider" is not defined');
         }
@@ -4713,8 +4653,7 @@ var OpalMultiselect = /** @class */ (function (_super) {
             },
             input: {
                 multiple: true,
-                dataprovider: { type: Object, readonly: true },
-                dataproviderKeypath: { type: String, readonly: true }
+                dataprovider: { type: Object, readonly: true }
             },
             template: opal_select_1.OpalSelect.template.extend(template),
             events: {
@@ -5716,16 +5655,10 @@ var OpalLoadedList = /** @class */ (function (_super) {
         var input = this.input;
         this._dataListItemTextFieldName = input.datalistItemSchema.text ||
             this.constructor.defaultDataListItemSchema.text;
-        var dataProvider;
-        if (input.$specified.has('dataprovider')) {
-            dataProvider = input.dataprovider;
-        }
-        else if (input.dataproviderKeypath) {
-            dataProvider = Function("return this." + input.dataproviderKeypath + ";").call(this.ownerComponent || window);
-        }
-        else {
+        if (!input.$specified.has('dataprovider')) {
             throw new TypeError('Input property "dataprovider" is required');
         }
+        var dataProvider = input.dataprovider;
         if (!dataProvider) {
             throw new TypeError('"dataProvider" is not defined');
         }
@@ -5854,7 +5787,6 @@ var OpalLoadedList = /** @class */ (function (_super) {
             input: {
                 datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
                 dataprovider: { type: Object, readonly: true },
-                dataproviderKeypath: { type: String, readonly: true },
                 count: 100,
                 query: String,
                 preloading: { default: false, readonly: true }
@@ -6110,70 +6042,26 @@ var OpalTagSelect = /** @class */ (function (_super) {
     });
     OpalTagSelect.prototype.initialize = function () {
         var input = this.input;
-        var isInputDataListSpecified = input.$specified.has('datalist');
-        if (isInputDataListSpecified || input.datalistKeypath) {
-            cellx_1.define(this, 'dataList', isInputDataListSpecified ?
-                function () { return input.datalist; } :
-                new cellx_1.Cell(Function("return this." + input.datalistKeypath + ";"), {
-                    context: this.ownerComponent || window
-                }));
-            this._dataListKeypathParam = 'dataList';
+        if (input.$specified.has('datalist')) {
+            cellx_1.define(this, 'dataList', function () { return input.datalist; });
             this.dataProvider = null;
+            this._isInputDataListSpecified = true;
         }
         else {
             this.dataList = null;
-            this._dataListKeypathParam = null;
-            var isInputDataProviderSpecified = input.$specified.has('dataprovider');
-            if (isInputDataProviderSpecified || input.dataproviderKeypath) {
-                var dataProvider = isInputDataProviderSpecified ?
-                    input.dataprovider :
-                    Function("return this." + input.dataproviderKeypath + ";").call(this.ownerComponent || window);
-                if (!dataProvider) {
-                    throw new TypeError('"dataProvider" is not defined');
-                }
-                this.dataProvider = dataProvider;
-            }
-            else {
-                this.dataProvider = null;
-            }
+            this.dataProvider = input.dataprovider;
+            this._isInputDataListSpecified = false;
         }
         var dataListItemSchema = input.datalistItemSchema;
         this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
         this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
-        var isInputViewModelSpecified = input.$specified.has('viewModel');
-        if (isInputViewModelSpecified || input.viewModelKeypath) {
-            var vm = isInputViewModelSpecified ?
-                input.viewModel :
-                Function("return this." + input.viewModelKeypath + ";").call(this.ownerComponent || window);
-            if (!vm) {
-                throw new TypeError('"viewModel" is not defined');
-            }
-            this.viewModel = vm;
-        }
-        else {
-            this.viewModel = new cellx_1.ObservableList();
-        }
+        this.viewModel = input.viewModel || new cellx_1.ObservableList();
         var vmItemSchema = input.viewModelItemSchema;
         var defaultVMItemSchema = this.constructor.defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
         this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
-        var inputAddNewItemSpecified = input.$specified.has('addNewItem');
-        if (inputAddNewItemSpecified || input.addNewItemKeypath) {
-            var addNewItem = inputAddNewItemSpecified ?
-                input.addNewItem :
-                Function("return this." + input.addNewItemKeypath + ";").call(this.ownerComponent || window);
-            if (!addNewItem) {
-                throw new TypeError('"addNewItem" is not defined');
-            }
-            this._addNewItem = addNewItem;
-            this._addNewItemKeypathParam = '_addNewItem';
-        }
-        else {
-            this._addNewItem = null;
-            this._addNewItemKeypathParam = null;
-        }
     };
     OpalTagSelect.prototype.elementAttached = function () {
         this.listenTo(this, 'input-view-model-change', this._onInputViewModelChange);
@@ -6237,16 +6125,12 @@ var OpalTagSelect = /** @class */ (function (_super) {
             input: {
                 viewType: String,
                 datalist: { type: Object },
-                datalistKeypath: { type: String, readonly: true },
                 datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
                 // необязательный, так как может указываться на передаваемом opal-loaded-list
                 dataprovider: { type: Object, readonly: true },
-                dataproviderKeypath: { type: String, readonly: true },
                 addNewItem: { type: Object, readonly: true },
-                addNewItemKeypath: { type: String, readonly: true },
                 value: eval,
                 viewModel: { type: Object },
-                viewModelKeypath: { type: String, readonly: true },
                 viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
                 placeholder: rionite_1.getText.t('Не выбрано'),
                 popoverTo: 'bottom',
@@ -6291,7 +6175,7 @@ module.exports = (function(d) {
 /* 104 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist-keypath={_dataListKeypathParam},\ndatalist-item-schema={input.datalistItemSchema |json },\nadd-new-item-keypath={_addNewItemKeypathParam},\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/datalist-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndataprovider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}"
+module.exports = "@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndatalist={dataList},\ndatalist-item-schema={input.datalistItemSchema |json },\nadd-new-item={input.addNewItem},\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_isInputDataListSpecified) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/datalist-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isInputDataListSpecified) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndataprovider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 105 */
@@ -6330,17 +6214,10 @@ var OpalTreeSelect = /** @class */ (function (_super) {
     OpalTreeSelect.prototype.initialize = function () {
         _super.prototype.initialize.call(this);
         var input = this.input;
-        if (input.$specified.has('datatreelist')) {
-            cellx_1.define(this, 'dataTreeList', function () { return input.datatreelist; });
-        }
-        else if (input.datatreelistKeypath) {
-            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function("return this." + input.datatreelistKeypath + ";"), {
-                context: this.ownerComponent || window
-            }));
-        }
-        else {
+        if (!input.$specified.has('datatreelist')) {
             throw new TypeError('Input property "dataTreeList" is required');
         }
+        cellx_1.define(this, 'dataTreeList', function () { return input.datatreelist; });
     };
     OpalTreeSelect.prototype._onMenuSelectOptionSelect = function () {
     };
@@ -6356,10 +6233,8 @@ var OpalTreeSelect = /** @class */ (function (_super) {
             input: {
                 multiple: true,
                 datatreelist: { type: Object },
-                datatreelistKeypath: { type: String, readonly: true },
                 datatreelistItemSchema: { type: eval, default: opal_tree_list_1.OpalTreeList.defaultDataTreeListItemSchema, readonly: true },
                 viewModel: { type: Object },
-                viewModelKeypath: { type: String, readonly: true },
                 viewModelItemSchema: { type: eval, default: opal_tree_list_1.OpalTreeList.defaultViewModelItemSchema, readonly: true },
                 query: String
             },
@@ -6458,16 +6333,10 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         var defaultDataListItemSchema = this.constructor.defaultDataListItemSchema;
         this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
-        var dataProvider;
-        if (input.$specified.has('dataprovider')) {
-            dataProvider = input.dataprovider;
-        }
-        else if (input.dataproviderKeypath) {
-            dataProvider = Function("return this." + input.dataproviderKeypath + ";").call(this.ownerComponent || window);
-        }
-        else {
+        if (!input.$specified.has('dataprovider')) {
             throw new TypeError('Input property "dataprovider" is required');
         }
+        var dataProvider = input.dataprovider;
         if (!dataProvider) {
             throw new TypeError('"dataProvider" is not defined');
         }
@@ -6735,7 +6604,6 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             elementIs: 'opal-autosuggest',
             input: {
                 dataprovider: { type: Object, readonly: true },
-                dataproviderKeypath: { type: String, readonly: true },
                 datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
                 value: eval,
                 minQueryLength: 3,

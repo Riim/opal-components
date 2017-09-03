@@ -34,16 +34,6 @@ module.exports = (env) => {
 		module: {
 			rules: [
 				{
-					test: /\.js$/,
-					exclude: /(?:node_modules|bower_components)/,
-					use: {
-						loader: 'babel-loader',
-						options: {
-							presets: ['@riim/babel-preset']
-						}
-					}
-				},
-				{
 					test: /\.ts$/,
 					exclude: /(?:node_modules|bower_components)/,
 					enforce: 'pre',
