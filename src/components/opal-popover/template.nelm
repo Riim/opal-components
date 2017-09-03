@@ -1,6 +1,6 @@
 @section/inner {
 
 span/arrow
-rt-content/content
+rt-slot/content
 
 }

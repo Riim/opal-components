@@ -4204,9 +4204,11 @@ var RtContent = (function (_super) {
                 if (content || el.firstChild) {
                     _a = content ?
                         bindContent_1.bindContent(content, contentOwnerComponent, input.getContext ?
-                            ownerComponent[input.getContext](ownerComponent.input.$context, this) :
+                            input.getContext.call(ownerComponent, ownerComponent.input.$context, this) :
                             ownerComponent.input.$context, { 0: null, 1: null }) :
-                        bindContent_1.bindContent(el, ownerComponent, input.$context, { 0: null, 1: null }), this._bindings = _a[0], childComponents = _a[1];
+                        bindContent_1.bindContent(el, ownerComponent, input.getContext ?
+                            input.getContext.call(ownerComponent, input.$context, this) :
+                            input.$context, { 0: null, 1: null }), this._bindings = _a[0], childComponents = _a[1];
                     this._childComponents = childComponents;
                 }
                 else {
@@ -4244,7 +4246,7 @@ var RtContent = (function (_super) {
             input: {
                 select: { type: String, readonly: true },
                 clone: { default: false, readonly: true },
-                getContext: { type: String, readonly: true }
+                getContext: { type: Object, readonly: true }
             },
             template: ''
         })
@@ -4667,10 +4669,18 @@ var RtSlot = (function (_super) {
                             content = document.createDocumentFragment();
                             for (var i = 0; i < selectedElementCount; i++) {
                                 var selectedElement = (cloneContent ? selectedElements[i].cloneNode(true) : selectedElements[i]);
-                                selectedElement.className += ' ' +
-                                    ownerComponent.constructor
-                                        ._contentBlockNames.join('__' + name_1 + ' ') +
-                                    '__' + name_1;
+                                if (selectedElement instanceof HTMLElement) {
+                                    selectedElement.className += ' ' +
+                                        ownerComponent.constructor
+                                            ._contentBlockNames.join('__' + name_1 + ' ') +
+                                        '__' + name_1;
+                                }
+                                else {
+                                    selectedElement.setAttribute('class', (selectedElement.getAttribute('class') || '') + ' ' +
+                                        ownerComponent.constructor
+                                            ._contentBlockNames.join('__' + name_1 + ' ') +
+                                        '__' + name_1);
+                                }
                                 content.appendChild(selectedElement);
                             }
                         }
@@ -11185,7 +11195,7 @@ module.exports = (function(d) {
 /* 38 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-content/content\n}\n}"
+module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-slot/content\n}\n}"
 
 /***/ }),
 /* 39 */
@@ -11470,7 +11480,7 @@ module.exports = (function(d) {
 /* 41 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\n@if-then (if=input.multiline) {\ntextarea/, text-field (\nrows={input.rows},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-else (if=input.multiline) {\ninput/, text-field (\ntype={input.inputType},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\nrt-content/control-icon-container (select=.opal-text-input__control-icon, shown={isControlIconShown})\n@if-then (if=input.clearable) {\nbutton/btn-clear (shown={isBtnClearShown}) {\nsvg/btn-clear-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n@if-then (if=input.loading) {\nopal-loader/loader (size=s, shown)\n}\n}"
+module.exports = "@section/inner {\n@if-then (if=input.multiline) {\ntextarea/, text-field (\nrows={input.rows},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-else (if=input.multiline) {\ninput/, text-field (\ntype={input.inputType},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\nrt-slot/control-icon-container (name=control-icon, shown={isControlIconShown})\n@if-then (if=input.clearable) {\nbutton/btn-clear (shown={isBtnClearShown}) {\nsvg/btn-clear-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n@if-then (if=input.loading) {\nopal-loader/loader (size=s, shown)\n}\n}"
 
 /***/ }),
 /* 42 */
@@ -11815,7 +11825,7 @@ var OpalInputMask = /** @class */ (function (_super) {
             input: {
                 mask: { type: String, required: true }
             },
-            template: '@section/inner { rt-content/content }'
+            template: '@section/inner { rt-slot/content }'
         })
     ], OpalInputMask);
     return OpalInputMask;
@@ -11918,7 +11928,7 @@ var OpalGroup = /** @class */ (function (_super) {
     OpalGroup = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-group',
-            template: '@section/inner { rt-content/content }'
+            template: '@section/inner { rt-slot/content }'
         })
     ], OpalGroup);
     return OpalGroup;
@@ -12148,7 +12158,7 @@ module.exports = (function(d) {
 /* 49 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}"
+module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-slot/content\n}\n}"
 
 /***/ }),
 /* 50 */
@@ -12406,7 +12416,7 @@ module.exports = (function(d) {
 /* 53 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}"
+module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-slot/content\n}\n}"
 
 /***/ }),
 /* 54 */
@@ -12597,7 +12607,7 @@ module.exports = (function(d) {
 /* 56 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content\n}\n}"
+module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-slot/content\n}\n}"
 
 /***/ }),
 /* 57 */
@@ -12825,7 +12835,7 @@ var OpalSwitchMenu = /** @class */ (function (_super) {
     OpalSwitchMenu = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-switch-menu',
-            template: '@section/inner { rt-content/content }'
+            template: '@section/inner { rt-slot/content }'
         })
     ], OpalSwitchMenu);
     return OpalSwitchMenu;
@@ -13001,7 +13011,7 @@ var OpalTabList = /** @class */ (function (_super) {
     OpalTabList = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-tab-list',
-            template: '@section/inner { rt-content/content }'
+            template: '@section/inner { rt-slot/content }'
         })
     ], OpalTabList);
     return OpalTabList;
@@ -13047,7 +13057,7 @@ module.exports = (function(d) {
 /* 67 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content\n}\n}"
+module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-slot/content\n}\n}"
 
 /***/ }),
 /* 68 */
@@ -13085,7 +13095,7 @@ var OpalTabPanel = /** @class */ (function (_super) {
             input: {
                 shown: false
             },
-            template: '@section/inner { rt-content/content }'
+            template: '@section/inner { rt-slot/content }'
         })
     ], OpalTabPanel);
     return OpalTabPanel;
@@ -13267,7 +13277,7 @@ var OpalDropdown = /** @class */ (function (_super) {
                 autoClosing: false,
                 opened: false
             },
-            template: '@section/inner { rt-content/content }'
+            template: '@section/inner { rt-slot/content }'
         })
     ], OpalDropdown);
     return OpalDropdown;
@@ -13484,7 +13494,7 @@ module.exports = (function(d) {
 /* 75 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nspan/arrow\nrt-content/content\n}"
+module.exports = "@section/inner {\nspan/arrow\nrt-slot/content\n}"
 
 /***/ }),
 /* 76 */
@@ -13680,7 +13690,7 @@ module.exports = (function(d) {
 /* 78 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\ndiv/window {\ndiv/btn-close-wrapper {\nbutton/btn-close\n}\nrt-content/content\n}\n}"
+module.exports = "@section/inner {\ndiv/window {\ndiv/btn-close-wrapper {\nbutton/btn-close\n}\nrt-slot/content\n}\n}"
 
 /***/ }),
 /* 79 */
@@ -14170,7 +14180,7 @@ var OpalInputValidator = /** @class */ (function (_super) {
     OpalInputValidator = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-input-validator',
-            template: '@section/inner { rt-content/content }'
+            template: '@section/inner { rt-slot/content }'
         })
     ], OpalInputValidator);
     return OpalInputValidator;
@@ -14271,7 +14281,7 @@ module.exports = (function(d) {
 /* 94 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nopal-popover/popover (to={input.popoverTo}) {\nrt-content/content\n}\n}"
+module.exports = "@section/inner {\nopal-popover/popover (to={input.popoverTo}) {\nrt-slot/content\n}\n}"
 
 /***/ }),
 /* 95 */
@@ -15456,7 +15466,7 @@ module.exports = (function(d) {
 /* 116 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input) {\nopal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder}, clearable) {\nsvg/control-icon-search (class=opal-text-input__control-icon, viewBox=0 0 28 28) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\n}\nrt-content/list-container (select=.opal-filtered-list__list)\n}"
+module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input) {\nopal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder}, clearable) {\nsvg/control-icon-search (rt-slot=control-icon, viewBox=0 0 28 28) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\n}\nrt-content/list-container (select=.opal-filtered-list__list)\n}"
 
 /***/ }),
 /* 117 */
@@ -16188,7 +16198,7 @@ module.exports = (function(d) {
 /* 130 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-slot (name=text-input) {\nopal-text-input/text-input (\nvalue='{input.value |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nsvg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 28 28) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nspan/nothing-found-message (shown={dataList.length |not }) {\n'{constructor.i18n.nothingFound}'\n}\n}\n}"
+module.exports = "@section/inner {\nrt-slot (name=text-input) {\nopal-text-input/text-input (\nvalue='{input.value |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nsvg/text-input-control-icon (rt-slot=control-icon, viewBox=0 0 28 28) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nspan/nothing-found-message (shown={dataList.length |not }) {\n'{constructor.i18n.nothingFound}'\n}\n}\n}"
 
 /***/ }),
 /* 131 */

@@ -8,7 +8,7 @@ let map = Array.prototype.map;
 
 @d.Component<OpalInputValidator>({
 	elementIs: 'opal-input-validator',
-	template: '@section/inner { rt-content/content }'
+	template: '@section/inner { rt-slot/content }'
 })
 export class OpalInputValidator extends Component {
 	static OpalInputValidatorRule = OpalInputValidatorRule;

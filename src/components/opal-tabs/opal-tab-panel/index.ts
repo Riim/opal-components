@@ -8,7 +8,7 @@ import './index.css';
 		shown: false
 	},
 
-	template: '@section/inner { rt-content/content }'
+	template: '@section/inner { rt-slot/content }'
 })
 export class OpalTabPanel extends Component {
 }
