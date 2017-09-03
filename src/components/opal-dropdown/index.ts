@@ -13,7 +13,7 @@ let openedDropdowns: Array<OpalDropdown> = [];
 		opened: false
 	},
 
-	template: '@section/inner { rt-slot/content }'
+	template: '@section/inner { rt-content/content }'
 })
 export class OpalDropdown extends Component {
 	_documentClickListening: IDisposableListening | undefined;

@@ -5,7 +5,7 @@ div/window {
 		button/btn-close
 	}
 
-	rt-slot/content
+	rt-content/content
 }
 
 }

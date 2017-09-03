@@ -3,7 +3,7 @@
 rt-content (select=.opal-filtered-list__query-input-container) {
 	rt-content/query-input-container (select=.opal-filtered-list__query-input) {
 		opal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder}, clearable) {
-			svg/control-icon-search (rt-slot=control-icon, viewBox=0 0 28 28) {
+			svg/control-icon-search (class=opal-text-input__control-icon, viewBox=0 0 28 28) {
 				use (xlink:href=#opal-components__icon-search)
 			}
 		}

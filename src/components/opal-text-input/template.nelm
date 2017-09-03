@@ -19,7 +19,7 @@
 	)
 }
 
-rt-slot/control-icon-container (name=control-icon, shown={isControlIconShown})
+rt-content/control-icon-container (select=.opal-text-input__control-icon, shown={isControlIconShown})
 
 @if-then (if=input.clearable) {
 	button/btn-clear (shown={isBtnClearShown}) {

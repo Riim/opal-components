@@ -4,7 +4,7 @@ label/label {
 	input/input (type=checkbox)
 	span/control (tabindex={_tabIndex}) { span/thumb }
 	' '
-	rt-slot/content
+	rt-content/content
 }
 
 }

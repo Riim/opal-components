@@ -8,7 +8,7 @@ let find = Array.prototype.find;
 
 @d.Component<OpalSwitchMenu>({
 	elementIs: 'opal-switch-menu',
-	template: '@section/inner { rt-slot/content }'
+	template: '@section/inner { rt-content/content }'
 })
 export class OpalSwitchMenu extends Component {
 	buttonElements: NodeListOf<HTMLElement>;
