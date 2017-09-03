@@ -30,14 +30,14 @@ function isIndeterminateItem(
 
 export default function _getListItemContext(
 	context: { [name: string]: any },
-	slot: Component
+	content: Component
 ): { [name: string]: any } {
-	let $item = slot.input.$context.$item;
+	let $item = content.input.$context.$item;
 
 	return define(
 		mixin(
 			Object.create(context),
-			slot.input.$context,
+			content.input.$context,
 			['$component']
 		) as any,
 		{

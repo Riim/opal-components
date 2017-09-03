@@ -4,7 +4,7 @@ div/head {
 	}
 
 	span/content-wrapper {
-		rt-slot/content (clone-content)
+		rt-content/content (clone)
 	}
 }
 
@@ -25,7 +25,7 @@ div/head {
 				nesting-level={input.indexpath.length},
 				has-children='{$item |has("children") }'
 			) {
-				rt-slot (clone-content, get-context={_getListItemContext})
+				rt-content (clone, get-context={_getListItemContext})
 			}
 		}
 	}
