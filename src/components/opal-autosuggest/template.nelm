@@ -1,6 +1,6 @@
 @section/inner {
 
-rt-content (select=.opal-autosuggest__text-input) {
+rt-slot (name=text-input) {
 	opal-text-input/text-input (
 		value='{input.value |key(_dataListItemTextFieldName) }',
 		placeholder={constructor.i18n.textInputPlaceholder},
