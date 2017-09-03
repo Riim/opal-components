@@ -34,8 +34,8 @@ function toComparable(str: string | null): string | null {
 	elementIs: 'opal-tree-list',
 
 	input: {
-		datatreelist: { type: Object },
-		datatreelistItemSchema: { type: eval, default: defaultDataTreeListItemSchema, readonly: true },
+		dataTreeList: { type: Object },
+		dataTreeListItemSchema: { type: eval, default: defaultDataTreeListItemSchema, readonly: true },
 		viewModel: { type: Object },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 		query: String
@@ -99,13 +99,13 @@ export class OpalTreeList extends Component {
 	initialize() {
 		let input = this.input;
 
-		if (!input.$specified.has('datatreelist')) {
+		if (!input.$specified.has('dataTreeList')) {
 			throw new TypeError('Input property "dataTreeList" is required');
 		}
 
-		define(this, 'dataTreeList', () => input.datatreelist);
+		define(this, 'dataTreeList', () => input.dataTreeList);
 
-		let dataTreeListItemSchema = input.datatreelistItemSchema;
+		let dataTreeListItemSchema = input.dataTreeListItemSchema;
 		let defaultDataTreeListItemSchema = (this.constructor as typeof OpalTreeList).defaultDataTreeListItemSchema;
 
 		this._dataTreeListItemValueFieldName = dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;

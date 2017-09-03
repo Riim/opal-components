@@ -12,10 +12,10 @@ div/head {
 	div/children {
 		@repeat (for=$item of dataTreeListItem.children) {
 			opal-tree-list-item/item (
-				datatreelist={input.datatreelist},
-				filtered-datatreelist={input.filteredDatatreelist},
-				datatreelist-item-value-field-name={_dataTreeListItemValueFieldName},
-				datatreelist-item-text-field-name={_dataTreeListItemTextFieldName},
+				data-tree-list={input.dataTreeList},
+				filtered-data-tree-list={input.filteredDataTreeList},
+				data-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},
+				data-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},
 				view-model={viewModel},
 				view-model-item-value-field-name={_viewModelItemValueFieldName},
 				view-model-item-text-field-name={_viewModelItemTextFieldName},

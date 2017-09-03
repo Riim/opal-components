@@ -19,10 +19,10 @@ let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: '
 
 	input: {
 		viewType: String,
-		datalist: { type: Object },
-		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
+		dataList: { type: Object },
+		dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		// необязательный, так как может указываться на передаваемом opal-loaded-list
-		dataprovider: { type: Object, readonly: true },
+		dataProvider: { type: Object, readonly: true },
 		addNewItem: { type: Object, readonly: true },
 		value: eval,
 		viewModel: { type: Object },
@@ -74,17 +74,17 @@ export class OpalTagSelect extends Component {
 	initialize() {
 		let input = this.input;
 
-		if (input.$specified.has('datalist')) {
-			define(this, 'dataList', () => input.datalist);
+		if (input.$specified.has('dataList')) {
+			define(this, 'dataList', () => input.dataList);
 			this.dataProvider = null;
 			this._isInputDataListSpecified = true;
 		} else {
 			this.dataList = null;
-			this.dataProvider = input.dataprovider;
+			this.dataProvider = input.dataProvider;
 			this._isInputDataListSpecified = false;
 		}
 
-		let dataListItemSchema = input.datalistItemSchema;
+		let dataListItemSchema = input.dataListItemSchema;
 
 		this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
 		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;

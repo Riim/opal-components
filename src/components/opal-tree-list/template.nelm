@@ -2,10 +2,10 @@
 	@if-then (if=filteredDataTreeList.length) {
 		@repeat (for=$item of filteredDataTreeList) {
 			opal-tree-list-item/item (
-				datatreelist={dataTreeList},
-				filtered-datatreelist={filteredDataTreeList},
-				datatreelist-item-value-field-name={_dataTreeListItemValueFieldName},
-				datatreelist-item-text-field-name={_dataTreeListItemTextFieldName},
+				data-tree-list={dataTreeList},
+				filtered-data-tree-list={filteredDataTreeList},
+				data-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},
+				data-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},
 				view-model={viewModel},
 				view-model-item-value-field-name={_viewModelItemValueFieldName},
 				view-model-item-text-field-name={_viewModelItemTextFieldName},

@@ -203,8 +203,8 @@ p {
 p {
 	opal-select (
 		multiple,
-		datalist={dataList1},
-		datalist-item-schema='{ value: "id", text: "name" }',
+		data-list={dataList1},
+		data-list-item-schema='{ value: "id", text: "name" }',
 		view-model-item-schema='{ value: "id", text: "name" }',
 		add-new-item={addNewItem1},
 		placeholder=Select
@@ -253,7 +253,7 @@ p {
 h1 { 'opal-filtered-list' }
 p {
 	opal-filtered-list {
-		opal-loaded-list (class=opal-filtered-list__list, dataprovider={dataProvider1}) {
+		opal-loaded-list (class=opal-filtered-list__list, data-provider={dataProvider1}) {
 			'{$item.name}'
 		}
 	}
@@ -262,7 +262,7 @@ p {
 h1 { 'opal-tree-list' }
 p {
 	opal-filtered-list {
-		opal-tree-list (class=opal-filtered-list__list, datatreelist={dataTreeList1}) {
+		opal-tree-list (class=opal-filtered-list__list, data-tree-list={dataTreeList1}) {
 			opal-checkbox (
 				class=opal-tree-list__selection-control,
 				checked={$selected},
@@ -281,7 +281,7 @@ p {
 			opal-filtered-list (class=opal-select__filtered-list) {
 				opal-loaded-list (
 					class=opal-select__loaded-list opal-filtered-list__list,
-					dataprovider={dataProvider1}
+					data-provider={dataProvider1}
 				) {
 					opal-select-option (text={$item.name})
 				}
@@ -291,7 +291,7 @@ p {
 
 	opal-select {
 		opal-popover (class=opal-select__menu, to=bottom, auto-closing) {
-			opal-loaded-list (class=opal-select__loaded-list, dataprovider={dataProvider1}) {
+			opal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {
 				opal-select-option (text={$item.name})
 			}
 		}
@@ -299,7 +299,7 @@ p {
 
 	opal-select (multiple, view-model={viewModel1}, view-model-item-schema='{ value: "id", text: "name" }') {
 		opal-popover (class=opal-select__menu, to=bottom, auto-closing) {
-			opal-loaded-list (class=opal-select__loaded-list, dataprovider={dataProvider1}) {
+			opal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {
 				opal-select-option (text={$item.name})
 			}
 		}
@@ -310,7 +310,7 @@ p {
 			opal-filtered-list (class=opal-select__filtered-list) {
 				opal-loaded-list (
 					class=opal-select__loaded-list opal-filtered-list__list,
-					dataprovider={dataProvider1}
+					data-provider={dataProvider1}
 				) {
 					opal-select-option (text={$item.name})
 				}
@@ -323,7 +323,7 @@ p {
 			opal-filtered-list (class=opal-select__filtered-list) {
 				opal-loaded-list (
 					class=opal-select__loaded-list opal-filtered-list__list,
-					dataprovider={dataProvider1}
+					data-provider={dataProvider1}
 				) {
 					opal-select-option (text={$item.name})
 				}
@@ -334,21 +334,21 @@ p {
 
 h1 { 'opal-tree-select' }
 p {
-	opal-tree-select (datatreelist={dataTreeList1})
+	opal-tree-select (data-tree-list={dataTreeList1})
 }
 
 h1 { 'opal-autosuggest' }
 p {
-	opal-autosuggest (dataprovider={dataProvider2}, open-menu-on-nothing-found)
+	opal-autosuggest (data-provider={dataProvider2}, open-menu-on-nothing-found)
 }
 
 h1 { 'opal-tag-select' }
 p {
-	opal-tag-select (dataprovider={dataProvider1}, placeholder='') br
-	opal-tag-select (view-type=primary, dataprovider={dataProvider1}) br
+	opal-tag-select (data-provider={dataProvider1}, placeholder='') br
+	opal-tag-select (view-type=primary, data-provider={dataProvider1}) br
 	opal-tag-select (
 		view-type=danger,
-		dataprovider={dataProvider1},
+		data-provider={dataProvider1},
 		add-new-item={addNewItem1},
 		view-model={viewModel1}
 	) {

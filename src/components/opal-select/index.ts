@@ -47,8 +47,8 @@ let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled
 		viewType: String,
 		size: 'm',
 		multiple: { default: false, readonly: true },
-		datalist: { type: Object },
-		datalistItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
+		dataList: { type: Object },
+		dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		value: eval,
 		viewModel: { type: Object },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
@@ -122,15 +122,15 @@ export class OpalSelect extends Component {
 	initialize() {
 		let input = this.input;
 
-		if (input.$specified.has('datalist')) {
-			define(this, 'dataList', () => input.datalist);
+		if (input.$specified.has('dataList')) {
+			define(this, 'dataList', () => input.dataList);
 			this._isInputDataListSpecified = true;
 		} else {
 			this.dataList = null;
 			this._isInputDataListSpecified = false;
 		}
 
-		let dataListItemSchema = input.datalistItemSchema;
+		let dataListItemSchema = input.dataListItemSchema;
 		let defaultDataListItemSchema = (this.constructor as typeof OpalSelect).defaultDataListItemSchema;
 
 		this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;

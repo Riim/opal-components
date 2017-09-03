@@ -11,8 +11,8 @@ import template = require('./template.nelm');
 
 	input: {
 		multiple: true,
-		datatreelist: { type: Object },
-		datatreelistItemSchema: { type: eval, default: OpalTreeList.defaultDataTreeListItemSchema, readonly: true },
+		dataTreeList: { type: Object },
+		dataTreeListItemSchema: { type: eval, default: OpalTreeList.defaultDataTreeListItemSchema, readonly: true },
 		viewModel: { type: Object },
 		viewModelItemSchema: { type: eval, default: OpalTreeList.defaultViewModelItemSchema, readonly: true },
 		query: String
@@ -37,11 +37,11 @@ export class OpalTreeSelect extends OpalSelect {
 
 		let input = this.input;
 
-		if (!input.$specified.has('datatreelist')) {
+		if (!input.$specified.has('dataTreeList')) {
 			throw new TypeError('Input property "dataTreeList" is required');
 		}
 
-		define(this, 'dataTreeList', () => input.datatreelist);
+		define(this, 'dataTreeList', () => input.dataTreeList);
 	}
 
 	_onMenuSelectOptionSelect() {
