@@ -4,9 +4,9 @@ rt-slot (name=text-input) {
 	opal-text-input/text-input (
 		value='{input.value |key(_dataListItemTextFieldName) }',
 		placeholder={constructor.i18n.textInputPlaceholder},
-		loading={isLoaderShown}
+		clearable
 	) {
-		svg/text-input-icon (class=opal-text-input__control-icon, viewBox=0 0 28 28) {
+		svg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 28 28) {
 			use (xlink:href=#opal-components__icon-search)
 		}
 	}

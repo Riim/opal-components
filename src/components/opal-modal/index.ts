@@ -1,6 +1,6 @@
 import { Cell, IEvent } from 'cellx';
 import { Component, d, IDisposableListening } from 'rionite';
-import { isFocusable } from '../../Utils/isFocusable';
+import { isFocusable } from '../../utils/isFocusable';
 import './index.css';
 import template = require('./template.nelm');
 

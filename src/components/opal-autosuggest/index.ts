@@ -8,7 +8,7 @@ import {
 	IDisposableListening,
 	IDisposableTimeout
 	} from 'rionite';
-import { isFocusable } from '../../Utils/isFocusable';
+import { isFocusable } from '../../utils/isFocusable';
 import { OpalDropdown } from '../opal-dropdown';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';

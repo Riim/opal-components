@@ -6,7 +6,7 @@
 	@el text-input {
 		display: block;
 	}
-		@el text-input-icon {
+		@el text-input-control-icon {
 		}
 
 	@el menu {

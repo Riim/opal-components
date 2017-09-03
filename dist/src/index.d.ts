@@ -27,4 +27,4 @@ export { OpalTreeSelect } from './components/opal-tree-select';
 export { IDataListItem as IOpalAutosuggestDataListItem, IDataProvider as IOpalAutosuggestDataProvider, OpalAutosuggest } from './components/opal-autosuggest';
 export { OpalMultirow, OpalMultirowRow } from './components/opal-multirow';
 export { IRouteProperty as IOpalRouterRouteProperty, IRoute as IOpalRouterRoute, IComponentState as IOpalRouterComponentState, OpalRouter, OpalRoute } from './components/opal-router';
-export { default as Utils } from './Utils';
+export { default as Utils } from './utils';

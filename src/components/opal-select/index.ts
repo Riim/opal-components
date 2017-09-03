@@ -15,7 +15,7 @@ import {
 	IDisposableListening
 	} from 'rionite';
 import '../../assets/icons/opal-components__icon-chevron-down.svg';
-import { isFocusable } from '../../Utils/isFocusable';
+import { isFocusable } from '../../utils/isFocusable';
 import { OpalButton } from '../opal-button';
 import { OpalDropdown } from '../opal-dropdown';
 import { OpalFilteredList } from '../opal-filtered-list';

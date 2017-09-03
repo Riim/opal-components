@@ -6,7 +6,7 @@ import {
 	getText,
 	IDisposableListening
 	} from 'rionite';
-import { isFocusable } from '../../Utils/isFocusable';
+import { isFocusable } from '../../utils/isFocusable';
 import { OpalCalendar } from '../opal-calendar';
 import { OpalDropdown } from '../opal-dropdown';
 import { OpalInputValidator } from '../opal-input-validator';

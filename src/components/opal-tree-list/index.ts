@@ -7,7 +7,7 @@ import {
 import { computed, observable } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import ObservableTreeList from '../../ObservableTreeList';
-import { closestComponent } from '../../Utils';
+import { closestComponent } from '../../utils';
 import _getListItemContext from './_getListItemContext';
 import './index.css';
 import { OpalTreeListItem } from './opal-tree-list-item';

@@ -52,4 +52,4 @@ export {
 	OpalRouter,
 	OpalRoute
 } from './components/opal-router';
-export { default as Utils } from './Utils';
+export { default as Utils } from './utils';
