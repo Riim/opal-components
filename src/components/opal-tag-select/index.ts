@@ -1,6 +1,7 @@
+import { getText } from '@riim/gettext';
 import { define, IEvent, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
-import { Component, d, getText } from 'rionite';
+import { Component, d } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
 import {
 	IDataListItem,

@@ -1,11 +1,10 @@
-import { IEvent, ObservableList, Utils } from 'cellx';
+import { nextUID } from '@riim/next-uid';
+import { IEvent, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import { Component, d, IComponentElement } from 'rionite';
 import './index.css';
 import { OpalMultirowRow } from './opal-multirow-row';
 import template = require('./template.nelm');
-
-let nextUID = Utils.nextUID;
 
 let filter = Array.prototype.filter;
 

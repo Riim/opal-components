@@ -1,6 +1,7 @@
+import { getText } from '@riim/gettext';
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { d, getText, Template } from 'rionite';
+import { d, Template } from 'rionite';
 import '../../assets/icons/opal-components__icon-cross.svg';
 import { IDataProvider, OpalLoadedList } from '../opal-loaded-list';
 import { OpalSelect } from '../opal-select';

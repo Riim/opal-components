@@ -1,11 +1,7 @@
+import { getText } from '@riim/gettext';
 import { IEvent } from 'cellx';
 import dateExists from 'date-exists';
-import {
-	Component,
-	d,
-	getText,
-	IDisposableListening
-	} from 'rionite';
+import { Component, d, IDisposableListening } from 'rionite';
 import { isFocusable } from '../../utils/isFocusable';
 import { OpalCalendar } from '../opal-calendar';
 import { OpalDropdown } from '../opal-dropdown';

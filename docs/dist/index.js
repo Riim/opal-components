@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 26);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1579,14 +1579,14 @@ THE SOFTWARE.
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__(10), __webpack_require__(2), __webpack_require__(6), __webpack_require__(24), __webpack_require__(12), __webpack_require__(30), __webpack_require__(13), __webpack_require__(31), __webpack_require__(3), __webpack_require__(7), __webpack_require__(5));
+		module.exports = factory(__webpack_require__(7), __webpack_require__(2), __webpack_require__(8), __webpack_require__(28), __webpack_require__(16), __webpack_require__(3), __webpack_require__(34), __webpack_require__(15), __webpack_require__(4), __webpack_require__(10), __webpack_require__(9), __webpack_require__(6));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/map-set-polyfill", "cellx", "@riim/symbol-polyfill", "nelm", "@riim/escape-html", "@riim/gettext", "escape-string", "html-to-fragment", "@riim/next-tick", "@riim/error-logger", "@riim/mixin"], factory);
+		define(["@riim/map-set-polyfill", "cellx", "@riim/symbol-polyfill", "nelm", "@riim/next-uid", "@riim/next-tick", "html-to-fragment", "escape-string", "@riim/gettext", "@riim/escape-html", "@riim/error-logger", "@riim/mixin"], factory);
 	else if(typeof exports === 'object')
-		exports["rionite"] = factory(require("@riim/map-set-polyfill"), require("cellx"), require("@riim/symbol-polyfill"), require("nelm"), require("@riim/escape-html"), require("@riim/gettext"), require("escape-string"), require("html-to-fragment"), require("@riim/next-tick"), require("@riim/error-logger"), require("@riim/mixin"));
+		exports["rionite"] = factory(require("@riim/map-set-polyfill"), require("cellx"), require("@riim/symbol-polyfill"), require("nelm"), require("@riim/next-uid"), require("@riim/next-tick"), require("html-to-fragment"), require("escape-string"), require("@riim/gettext"), require("@riim/escape-html"), require("@riim/error-logger"), require("@riim/mixin"));
 	else
-		root["Rionite"] = root["rionite"] = factory(root["@riim/map-set-polyfill"], root["cellx"], root["@riim/symbol-polyfill"], root["nelm"], root["@riim/escape-html"], root["@riim/gettext"], root["escape-string"], root["html-to-fragment"], root["@riim/next-tick"], root["@riim/error-logger"], root["@riim/mixin"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_18__, __WEBPACK_EXTERNAL_MODULE_19__, __WEBPACK_EXTERNAL_MODULE_20__, __WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_32__, __WEBPACK_EXTERNAL_MODULE_42__, __WEBPACK_EXTERNAL_MODULE_46__) {
+		root["rionite"] = factory(root["@riim/map-set-polyfill"], root["cellx"], root["@riim/symbol-polyfill"], root["nelm"], root["@riim/next-uid"], root["@riim/next-tick"], root["html-to-fragment"], root["escape-string"], root["@riim/gettext"], root["@riim/escape-html"], root["@riim/error-logger"], root["@riim/mixin"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_25__, __WEBPACK_EXTERNAL_MODULE_29__, __WEBPACK_EXTERNAL_MODULE_32__, __WEBPACK_EXTERNAL_MODULE_34__, __WEBPACK_EXTERNAL_MODULE_36__, __WEBPACK_EXTERNAL_MODULE_42__, __WEBPACK_EXTERNAL_MODULE_43__, __WEBPACK_EXTERNAL_MODULE_47__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -1649,7 +1649,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 34);
+/******/ 	return __webpack_require__(__webpack_require__.s = 31);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1683,19 +1683,19 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var map_set_polyfill_1 = __webpack_require__(0);
 var cellx_1 = __webpack_require__(1);
-var html_to_fragment_1 = __webpack_require__(21);
+var html_to_fragment_1 = __webpack_require__(32);
 var attachChildComponentElements_1 = __webpack_require__(5);
 var bindContent_1 = __webpack_require__(6);
 var bindEvents_1 = __webpack_require__(38);
 var componentBinding_1 = __webpack_require__(39);
-var componentConstructorMap_1 = __webpack_require__(25);
-var ComponentInput_1 = __webpack_require__(26);
-var DisposableMixin_1 = __webpack_require__(28);
+var componentConstructorMap_1 = __webpack_require__(21);
+var ComponentInput_1 = __webpack_require__(22);
+var DisposableMixin_1 = __webpack_require__(24);
 var ElementProtoMixin_1 = __webpack_require__(3);
 var Features_1 = __webpack_require__(7);
-var handledEvents_1 = __webpack_require__(43);
-var handleEvent_1 = __webpack_require__(44);
-var registerComponent_1 = __webpack_require__(45);
+var handledEvents_1 = __webpack_require__(44);
+var handleEvent_1 = __webpack_require__(45);
+var registerComponent_1 = __webpack_require__(46);
 var camelize_1 = __webpack_require__(14);
 var getUID_1 = __webpack_require__(16);
 var moveContent_1 = __webpack_require__(17);
@@ -1740,7 +1740,7 @@ var elementDisconnected;
 var elementAttached;
 var elementDetached;
 var elementMoved;
-var Component = (function (_super) {
+var Component = /** @class */ (function (_super) {
     __extends(Component, _super);
     function Component(el) {
         var _this = _super.call(this) || this;
@@ -1901,7 +1901,7 @@ var Component = (function (_super) {
                     if (constr.domEvents) {
                         contentHTML = contentHTML.replace(reClassBlockElement, createClassBlockElementReplacer(constr._contentBlockNames[0], constr.domEvents, 'on-'));
                     }
-                    rawContent = constr._rawContent = html_to_fragment_1.default(contentHTML);
+                    rawContent = constr._rawContent = html_to_fragment_1.htmlToFragment(contentHTML);
                 }
                 var content = rawContent.cloneNode(true);
                 if (!Features_1.templateTag) {
@@ -2055,7 +2055,7 @@ document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Features_1 = __webpack_require__(7);
 var KEY_ELEMENT_CONNECTED_1 = __webpack_require__(8);
-var defer_1 = __webpack_require__(29);
+var defer_1 = __webpack_require__(26);
 var isConnectionStatusCallbacksSuppressed = false;
 function suppressConnectionStatusCallbacks() {
     isConnectionStatusCallbacksSuppressed = true;
@@ -2215,11 +2215,11 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var map_set_polyfill_1 = __webpack_require__(0);
 var cellx_1 = __webpack_require__(1);
-var compileContentTextFragment_1 = __webpack_require__(35);
-var ContentTextFragmentParser_1 = __webpack_require__(22);
+var compileContentTextFragment_1 = __webpack_require__(33);
+var ContentTextFragmentParser_1 = __webpack_require__(18);
 var camelize_1 = __webpack_require__(14);
 var setAttribute_1 = __webpack_require__(37);
-var AttributeBindingCell = (function (_super) {
+var AttributeBindingCell = /** @class */ (function (_super) {
     __extends(AttributeBindingCell, _super);
     function AttributeBindingCell(pull, el, attrName, opts) {
         var _this = _super.call(this, pull, opts) || this;
@@ -2229,7 +2229,7 @@ var AttributeBindingCell = (function (_super) {
     }
     return AttributeBindingCell;
 }(cellx_1.Cell));
-var TextNodeBindingCell = (function (_super) {
+var TextNodeBindingCell = /** @class */ (function (_super) {
     __extends(TextNodeBindingCell, _super);
     function TextNodeBindingCell(pull, textNode, opts) {
         var _this = _super.call(this, pull, opts) || this;
@@ -2453,20 +2453,19 @@ exports.hyphenize = hyphenize;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var next_uid_1 = __webpack_require__(25);
 var symbol_polyfill_1 = __webpack_require__(9);
-var cellx_1 = __webpack_require__(1);
-var nextUID = cellx_1.Utils.nextUID;
 var hasOwn = Object.prototype.hasOwnProperty;
 var KEY_UID = symbol_polyfill_1.Symbol('uid');
 if (typeof KEY_UID == 'symbol') {
     exports.getUID = function getUID(obj) {
-        return hasOwn.call(obj, KEY_UID) ? obj[KEY_UID] : (obj[KEY_UID] = nextUID());
+        return hasOwn.call(obj, KEY_UID) ? obj[KEY_UID] : (obj[KEY_UID] = next_uid_1.nextUID());
     };
 }
 else {
     exports.getUID = function getUID(obj) {
         if (!hasOwn.call(obj, KEY_UID)) {
-            Object.defineProperty(obj, KEY_UID, { value: nextUID() });
+            Object.defineProperty(obj, KEY_UID, { value: next_uid_1.nextUID() });
         }
         return obj[KEY_UID];
     };
@@ -2491,37 +2490,13 @@ exports.moveContent = moveContent;
 
 /***/ }),
 /* 18 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_18__;
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_19__;
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_20__;
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_21__;
-
-/***/ }),
-/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var keypathPattern_1 = __webpack_require__(12);
-var keypathToJSExpression_1 = __webpack_require__(23);
+var keypathToJSExpression_1 = __webpack_require__(19);
 var namePattern_1 = __webpack_require__(13);
 var ContentTextFragmentNodeType;
 (function (ContentTextFragmentNodeType) {
@@ -2536,7 +2511,7 @@ var reKeypathOrNothing = RegExp(keypathPattern_1.keypathPattern + '|', 'g');
 var reBooleanOrNothing = /false|true|/g;
 var reNumberOrNothing = /(?:[+-]\s*)?(?:0b[01]+|0[0-7]+|0x[0-9a-fA-F]+|(?:(?:0|[1-9]\d*)(?:\.\d+)?|\.\d+)(?:[eE][+-]?\d+)?|Infinity|NaN)|/g;
 var reVacuumOrNothing = /null|undefined|void 0|/g;
-var ContentTextFragmentParser = (function () {
+var ContentTextFragmentParser = /** @class */ (function () {
     function ContentTextFragmentParser(contentTextFragment) {
         this.contentTextFragment = contentTextFragment;
     }
@@ -2834,7 +2809,7 @@ exports.ContentTextFragmentParser = ContentTextFragmentParser;
 
 
 /***/ }),
-/* 23 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2861,13 +2836,13 @@ exports.keypathToJSExpression = keypathToJSExpression;
 
 
 /***/ }),
-/* 24 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var gettext_1 = __webpack_require__(19);
+var gettext_1 = __webpack_require__(36);
 exports.formatters = {
     or: function or(value, arg) {
         return value || arg;
@@ -2936,7 +2911,7 @@ exports.formatters.seq = exports.formatters.identical;
 
 
 /***/ }),
-/* 25 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2947,7 +2922,7 @@ exports.componentConstructorMap = new map_set_polyfill_1.Map();
 
 
 /***/ }),
-/* 26 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3096,7 +3071,7 @@ exports.ComponentInput = {
 
 
 /***/ }),
-/* 27 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3110,15 +3085,15 @@ exports.isRegExp = isRegExp;
 
 
 /***/ }),
-/* 28 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var next_uid_1 = __webpack_require__(25);
 var cellx_1 = __webpack_require__(1);
-var nextUID = cellx_1.Utils.nextUID;
-var DisposableMixin = (function () {
+var DisposableMixin = /** @class */ (function () {
     function DisposableMixin() {
         this._disposables = {};
     }
@@ -3155,7 +3130,7 @@ var DisposableMixin = (function () {
                 return this._listenTo(target, type, listener, context !== undefined ? context : this, useCapture || false);
             }
         }
-        var id = nextUID();
+        var id = next_uid_1.nextUID();
         var stopListening = function () {
             for (var i = listenings.length; i;) {
                 listenings[--i].stop();
@@ -3182,7 +3157,7 @@ var DisposableMixin = (function () {
         else {
             throw new TypeError('Unable to add a listener');
         }
-        var id = nextUID();
+        var id = next_uid_1.nextUID();
         var stopListening = function () {
             if (_this._disposables[id]) {
                 if (target instanceof cellx_1.EventEmitter) {
@@ -3202,7 +3177,7 @@ var DisposableMixin = (function () {
     };
     DisposableMixin.prototype.setTimeout = function (callback, delay) {
         var _this = this;
-        var id = nextUID();
+        var id = next_uid_1.nextUID();
         var timeoutId = setTimeout(function () {
             delete _this._disposables[id];
             callback.call(_this);
@@ -3221,7 +3196,7 @@ var DisposableMixin = (function () {
     };
     DisposableMixin.prototype.setInterval = function (callback, delay) {
         var _this = this;
-        var id = nextUID();
+        var id = next_uid_1.nextUID();
         var intervalId = setInterval(function () {
             callback.call(_this);
         }, delay);
@@ -3239,7 +3214,7 @@ var DisposableMixin = (function () {
     };
     DisposableMixin.prototype.registerCallback = function (callback) {
         var _this = this;
-        var id = nextUID();
+        var id = next_uid_1.nextUID();
         var disposable = this;
         var cancelCallback = function () {
             delete _this._disposables[id];
@@ -3268,13 +3243,19 @@ exports.DisposableMixin = DisposableMixin;
 
 
 /***/ }),
-/* 29 */
+/* 25 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_25__;
+
+/***/ }),
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var error_logger_1 = __webpack_require__(42);
+var error_logger_1 = __webpack_require__(43);
 var queue;
 function run() {
     var track = queue;
@@ -3302,7 +3283,7 @@ exports.defer = defer;
 
 
 /***/ }),
-/* 30 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3318,7 +3299,7 @@ exports.clearNode = clearNode;
 
 
 /***/ }),
-/* 31 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3340,11 +3321,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(32);
+var next_tick_1 = __webpack_require__(29);
 var cellx_1 = __webpack_require__(1);
 var attachChildComponentElements_1 = __webpack_require__(5);
 var bindContent_1 = __webpack_require__(6);
-var compileKeypath_1 = __webpack_require__(33);
+var compileKeypath_1 = __webpack_require__(30);
 var Component_1 = __webpack_require__(2);
 var ComponentDecorator_1 = __webpack_require__(4);
 var ElementProtoMixin_1 = __webpack_require__(3);
@@ -3353,7 +3334,7 @@ var KEY_ELEMENT_CONNECTED_1 = __webpack_require__(8);
 var keypathPattern_1 = __webpack_require__(12);
 var slice = Array.prototype.slice;
 var reKeypath = RegExp("^" + keypathPattern_1.keypathPattern + "$");
-var RtIfThen = (function (_super) {
+var RtIfThen = /** @class */ (function (_super) {
     __extends(RtIfThen, _super);
     function RtIfThen() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -3472,19 +3453,19 @@ exports.RtIfThen = RtIfThen;
 
 
 /***/ }),
-/* 32 */
+/* 29 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_32__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_29__;
 
 /***/ }),
-/* 33 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var keypathToJSExpression_1 = __webpack_require__(23);
+var keypathToJSExpression_1 = __webpack_require__(19);
 var cache = Object.create(null);
 function compileKeypath(keypath) {
     return cache[keypath] || (cache[keypath] = Function("var temp; return " + keypathToJSExpression_1.keypathToJSExpression(keypath) + ";"));
@@ -3493,17 +3474,12 @@ exports.compileKeypath = compileKeypath;
 
 
 /***/ }),
-/* 34 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var escape_html_1 = __webpack_require__(18);
-var gettext_1 = __webpack_require__(19);
-exports.getText = gettext_1.getText;
-var escape_string_1 = __webpack_require__(20);
-var html_to_fragment_1 = __webpack_require__(21);
 var nelm_1 = __webpack_require__(10);
 exports.NelmNodeType = nelm_1.NodeType;
 exports.NelmParser = nelm_1.Parser;
@@ -3511,26 +3487,26 @@ exports.Template = nelm_1.Template;
 var Component_1 = __webpack_require__(2);
 exports.Component = Component_1.Component;
 var ComponentDecorator_1 = __webpack_require__(4);
-var ComponentInput_1 = __webpack_require__(26);
+var ComponentInput_1 = __webpack_require__(22);
 exports.ComponentInput = ComponentInput_1.ComponentInput;
 var componentInputValueMap_1 = __webpack_require__(11);
 exports.componentInputValueMap = componentInputValueMap_1.componentInputValueMap;
-var rt_content_1 = __webpack_require__(48);
-var rt_if_else_1 = __webpack_require__(49);
-var rt_if_then_1 = __webpack_require__(31);
-var rt_repeat_1 = __webpack_require__(50);
-var rt_slot_1 = __webpack_require__(51);
-var DisposableMixin_1 = __webpack_require__(28);
+var rt_content_1 = __webpack_require__(49);
+var rt_if_else_1 = __webpack_require__(50);
+var rt_if_then_1 = __webpack_require__(28);
+var rt_repeat_1 = __webpack_require__(51);
+var rt_slot_1 = __webpack_require__(52);
+var DisposableMixin_1 = __webpack_require__(24);
 exports.DisposableMixin = DisposableMixin_1.DisposableMixin;
-var formatters_1 = __webpack_require__(24);
+var formatters_1 = __webpack_require__(20);
 exports.formatters = formatters_1.formatters;
 var KEY_ELEMENT_CONNECTED_1 = __webpack_require__(8);
 exports.KEY_ELEMENT_CONNECTED = KEY_ELEMENT_CONNECTED_1.KEY_ELEMENT_CONNECTED;
-__webpack_require__(52);
+__webpack_require__(53);
 var camelize_1 = __webpack_require__(14);
-var defer_1 = __webpack_require__(29);
+var defer_1 = __webpack_require__(26);
 var hyphenize_1 = __webpack_require__(15);
-var isRegExp_1 = __webpack_require__(27);
+var isRegExp_1 = __webpack_require__(23);
 var Components = {
     RtContent: rt_content_1.RtContent,
     RtSlot: rt_slot_1.RtSlot,
@@ -3546,28 +3522,30 @@ exports.d = d;
 var Utils = {
     camelize: camelize_1.camelize,
     hyphenize: hyphenize_1.hyphenize,
-    escapeString: escape_string_1.default,
-    escapeHTML: escape_html_1.escapeHTML,
-    unescapeHTML: escape_html_1.unescapeHTML,
     isRegExp: isRegExp_1.isRegExp,
-    defer: defer_1.defer,
-    htmlToFragment: html_to_fragment_1.default
+    defer: defer_1.defer
 };
 exports.Utils = Utils;
 
 
 /***/ }),
-/* 35 */
+/* 32 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_32__;
+
+/***/ }),
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var escape_string_1 = __webpack_require__(20);
-var bindingToJSExpression_1 = __webpack_require__(36);
+var escape_string_1 = __webpack_require__(34);
+var bindingToJSExpression_1 = __webpack_require__(35);
 var componentInputValueMap_1 = __webpack_require__(11);
-var ContentTextFragmentParser_1 = __webpack_require__(22);
-var formatters_1 = __webpack_require__(24);
+var ContentTextFragmentParser_1 = __webpack_require__(18);
+var formatters_1 = __webpack_require__(20);
 var ContentTextFragmentNodeType = ContentTextFragmentParser_1.ContentTextFragmentParser.ContentTextFragmentNodeType;
 var keyCounter = 0;
 var cache = Object.create(null);
@@ -3579,7 +3557,7 @@ function compileContentTextFragment(contentTextFragment, contentTextFragmentStri
     var inner;
     if (contentTextFragment.length == 1) {
         inner = Function('formatters', "var temp; return " + (contentTextFragment[0].nodeType == ContentTextFragmentNodeType.TEXT ?
-            "'" + escape_string_1.default(contentTextFragment[0].value) + "'" :
+            "'" + escape_string_1.escapeString(contentTextFragment[0].value) + "'" :
             bindingToJSExpression_1.bindingToJSExpression(contentTextFragment[0])) + ";");
     }
     else {
@@ -3587,7 +3565,7 @@ function compileContentTextFragment(contentTextFragment, contentTextFragmentStri
         for (var _i = 0, contentTextFragment_1 = contentTextFragment; _i < contentTextFragment_1.length; _i++) {
             var node = contentTextFragment_1[_i];
             jsExpr.push(node.nodeType == ContentTextFragmentNodeType.TEXT ?
-                "'" + escape_string_1.default(node.value) + "'" :
+                "'" + escape_string_1.escapeString(node.value) + "'" :
                 bindingToJSExpression_1.bindingToJSExpression(node));
         }
         inner = Function('formatters', "var temp; return [" + jsExpr.join(', ') + "].join('');");
@@ -3611,7 +3589,13 @@ exports.compileContentTextFragment = compileContentTextFragment;
 
 
 /***/ }),
-/* 36 */
+/* 34 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_34__;
+
+/***/ }),
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3648,6 +3632,12 @@ function bindingToJSExpression(binding) {
 }
 exports.bindingToJSExpression = bindingToJSExpression;
 
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_36__;
 
 /***/ }),
 /* 37 */
@@ -3778,10 +3768,10 @@ exports.componentInputTypeMap = new map_set_polyfill_1.Map([
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var escape_html_1 = __webpack_require__(18);
+var escape_html_1 = __webpack_require__(42);
 var map_set_polyfill_1 = __webpack_require__(0);
 var componentInputValueMap_1 = __webpack_require__(11);
-var isRegExp_1 = __webpack_require__(27);
+var isRegExp_1 = __webpack_require__(23);
 exports.componentInputTypeSerializerMap = new map_set_polyfill_1.Map([
     [Boolean, {
             read: function (value, defaultValue) {
@@ -3848,6 +3838,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_42__;
 
 /***/ }),
 /* 43 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_43__;
+
+/***/ }),
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3867,7 +3863,7 @@ exports.handledEvents = [
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3937,16 +3933,16 @@ exports.handleEvent = handleEvent;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var mixin_1 = __webpack_require__(46);
+var mixin_1 = __webpack_require__(47);
 var nelm_1 = __webpack_require__(10);
-var componentConstructorMap_1 = __webpack_require__(25);
-var elementConstructorMap_1 = __webpack_require__(47);
+var componentConstructorMap_1 = __webpack_require__(21);
+var elementConstructorMap_1 = __webpack_require__(48);
 var ElementProtoMixin_1 = __webpack_require__(3);
 var hyphenize_1 = __webpack_require__(15);
 var push = Array.prototype.push;
@@ -4037,13 +4033,13 @@ exports.registerComponent = registerComponent;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_46__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_47__;
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4096,7 +4092,7 @@ exports.elementConstructorMap = new map_set_polyfill_1.Map([
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4125,11 +4121,11 @@ var bindContent_1 = __webpack_require__(6);
 var Component_1 = __webpack_require__(2);
 var ComponentDecorator_1 = __webpack_require__(4);
 var ElementProtoMixin_1 = __webpack_require__(3);
-var clearNode_1 = __webpack_require__(30);
+var clearNode_1 = __webpack_require__(27);
 var getUID_1 = __webpack_require__(16);
 var moveContent_1 = __webpack_require__(17);
 var KEY_CONTENT_MAP = symbol_polyfill_1.Symbol('contentMap');
-var RtContent = (function (_super) {
+var RtContent = /** @class */ (function (_super) {
     __extends(RtContent, _super);
     function RtContent() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -4257,49 +4253,6 @@ exports.RtContent = RtContent;
 
 
 /***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var ComponentDecorator_1 = __webpack_require__(4);
-var rt_if_then_1 = __webpack_require__(31);
-var RtIfElse = (function (_super) {
-    __extends(RtIfElse, _super);
-    function RtIfElse() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this._elseMode = true;
-        return _this;
-    }
-    RtIfElse = __decorate([
-        ComponentDecorator_1.ComponentDecorator({
-            elementIs: 'rt-if-else',
-            elementExtends: 'template'
-        })
-    ], RtIfElse);
-    return RtIfElse;
-}(rt_if_then_1.RtIfThen));
-exports.RtIfElse = RtIfElse;
-
-
-/***/ }),
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4322,12 +4275,55 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var ComponentDecorator_1 = __webpack_require__(4);
+var rt_if_then_1 = __webpack_require__(28);
+var RtIfElse = /** @class */ (function (_super) {
+    __extends(RtIfElse, _super);
+    function RtIfElse() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this._elseMode = true;
+        return _this;
+    }
+    RtIfElse = __decorate([
+        ComponentDecorator_1.ComponentDecorator({
+            elementIs: 'rt-if-else',
+            elementExtends: 'template'
+        })
+    ], RtIfElse);
+    return RtIfElse;
+}(rt_if_then_1.RtIfThen));
+exports.RtIfElse = RtIfElse;
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 var map_set_polyfill_1 = __webpack_require__(0);
-var next_tick_1 = __webpack_require__(32);
+var next_tick_1 = __webpack_require__(29);
 var cellx_1 = __webpack_require__(1);
 var attachChildComponentElements_1 = __webpack_require__(5);
 var bindContent_1 = __webpack_require__(6);
-var compileKeypath_1 = __webpack_require__(33);
+var compileKeypath_1 = __webpack_require__(30);
 var Component_1 = __webpack_require__(2);
 var ComponentDecorator_1 = __webpack_require__(4);
 var ElementProtoMixin_1 = __webpack_require__(3);
@@ -4337,7 +4333,7 @@ var keypathPattern_1 = __webpack_require__(12);
 var namePattern_1 = __webpack_require__(13);
 var slice = Array.prototype.slice;
 var reForAttrValue = RegExp("^\\s*(" + namePattern_1.namePattern + ")\\s+of\\s+(" + keypathPattern_1.keypathPattern + ")\\s*$");
-var RtRepeat = (function (_super) {
+var RtRepeat = /** @class */ (function (_super) {
     __extends(RtRepeat, _super);
     function RtRepeat() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -4592,7 +4588,7 @@ exports.RtRepeat = RtRepeat;
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4621,11 +4617,11 @@ var bindContent_1 = __webpack_require__(6);
 var Component_1 = __webpack_require__(2);
 var ComponentDecorator_1 = __webpack_require__(4);
 var ElementProtoMixin_1 = __webpack_require__(3);
-var clearNode_1 = __webpack_require__(30);
+var clearNode_1 = __webpack_require__(27);
 var getUID_1 = __webpack_require__(16);
 var moveContent_1 = __webpack_require__(17);
 var KEY_SLOT_CONTENT_MAP = symbol_polyfill_1.Symbol('slotContentMap');
-var RtSlot = (function (_super) {
+var RtSlot = /** @class */ (function (_super) {
     __extends(RtSlot, _super);
     function RtSlot() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -4768,7 +4764,7 @@ exports.RtSlot = RtSlot;
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4807,13 +4803,8 @@ nelm_1.Template.helpers['if-then'] = nelm_1.Template.helpers['if-else'] = nelm_1
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var object_assign_polyfill_1 = __webpack_require__(13);
 var cellx_1 = __webpack_require__(2);
-var assign = Object.assign || function (target, source) {
-    for (var name_1 in source) {
-        target[name_1] = source[name_1];
-    }
-    return target;
-};
 function enumerableDecorator(target, name, desc) {
     if (desc) {
         desc.enumerable = true;
@@ -4857,18 +4848,18 @@ function CellDecorator(targetOrOptions, name, desc, opts) {
         configurable: true,
         enumerable: desc ? desc.enumerable : true,
         get: function () {
-            return (this[cellName] || (this[cellName] = new cellx_1.Cell(desc && (desc.get || (desc.initializer ? desc.initializer() : desc.value)), opts ? (opts.context === undefined ? assign({ context: this }, opts) : opts) : { context: this }))).get();
+            return (this[cellName] || (this[cellName] = new cellx_1.Cell(desc && (desc.get || (desc.initializer ? desc.initializer() : desc.value)), opts ? (opts.context === undefined ? object_assign_polyfill_1.assign({ context: this }, opts) : opts) : { context: this }))).get();
         },
         set: desc && desc.set || function (value) {
             if (this[cellName]) {
                 this[cellName].set(value);
             }
             else if (desc) {
-                (this[cellName] = new cellx_1.Cell(desc.get || (desc.initializer ? desc.initializer() : desc.value), opts ? (opts.context === undefined ? assign({ context: this }, opts) : opts) : { context: this })).set(value);
+                (this[cellName] = new cellx_1.Cell(desc.get || (desc.initializer ? desc.initializer() : desc.value), opts ? (opts.context === undefined ? object_assign_polyfill_1.assign({ context: this }, opts) : opts) : { context: this })).set(value);
             }
             else {
                 var isFn = typeof value == 'function';
-                this[cellName] = new cellx_1.Cell(isFn ? value : undefined, opts ? (opts.context === undefined ? assign({ context: this }, opts) : opts) : { context: this });
+                this[cellName] = new cellx_1.Cell(isFn ? value : undefined, opts ? (opts.context === undefined ? object_assign_polyfill_1.assign({ context: this }, opts) : opts) : { context: this });
                 if (!isFn) {
                     this[cellName].set(value);
                 }
@@ -4910,10 +4901,10 @@ exports.computed = computedDecorator;
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (global, factory) {
-	 true ? module.exports = factory(__webpack_require__(10), __webpack_require__(7), __webpack_require__(6), __webpack_require__(5), __webpack_require__(3)) :
-	typeof define === 'function' && define.amd ? define(['@riim/map-set-polyfill', '@riim/error-logger', '@riim/symbol-polyfill', '@riim/mixin', '@riim/next-tick'], factory) :
-	(global.cellx = factory(global.mapSetPolyfill,global.errorLogger,global.symbolPolyfill,global.mixin,global.nextTick));
-}(this, (function (mapSetPolyfill,errorLogger,symbolPolyfill,mixin,nextTick) { 'use strict';
+	 true ? module.exports = factory(__webpack_require__(13), __webpack_require__(7), __webpack_require__(9), __webpack_require__(8), __webpack_require__(27), __webpack_require__(6), __webpack_require__(3)) :
+	typeof define === 'function' && define.amd ? define(['@riim/object-assign-polyfill', '@riim/map-set-polyfill', '@riim/error-logger', '@riim/symbol-polyfill', '@riim/is', '@riim/mixin', '@riim/next-tick'], factory) :
+	(global.cellx = factory(global.objectAssignPolyfill,global.mapSetPolyfill,global.errorLogger,global.symbolPolyfill,global.is,global.mixin,global.nextTick));
+}(this, (function (objectAssignPolyfill,mapSetPolyfill,errorLogger,symbolPolyfill,is,mixin,nextTick) { 'use strict';
 
 /**
  * @typedef {{
@@ -5237,16 +5228,6 @@ EventEmitter.prototype = {
 	_logError: function _logError() {
 		errorLogger.logError.apply(this, arguments);
 	}
-};
-
-/**
- * @typesign (a, b) -> boolean;
- */
-var is = Object.is || /* istanbul ignore next */function is(a, b) {
-	if (a === 0 && b === 0) {
-		return 1 / a == 1 / b;
-	}
-	return a === b || a != a && b != b;
 };
 
 var slice$1 = Array.prototype.slice;
@@ -6271,7 +6252,7 @@ Cell.prototype = {
 		var oldValue = this._value;
 
 		if (external && currentlyRelease && this._state & STATE_HAS_FOLLOWERS) {
-			if (is(value, oldValue)) {
+			if (is.is(value, oldValue)) {
 				this._setError(null);
 				this._fulfill(value);
 				return false;
@@ -6292,7 +6273,7 @@ Cell.prototype = {
 
 		this._setError(null);
 
-		if (is(value, oldValue)) {
+		if (is.is(value, oldValue)) {
 			if (external || currentlyRelease && pulling) {
 				this._fulfill(value);
 			}
@@ -6311,7 +6292,7 @@ Cell.prototype = {
 
 		if (this._state & STATE_HAS_FOLLOWERS || transactionLevel) {
 			if (this._changeEvent) {
-				if (is(value, this._fixedValue) && this._state & STATE_CAN_CANCEL_CHANGE) {
+				if (is.is(value, this._fixedValue) && this._state & STATE_CAN_CANCEL_CHANGE) {
 					this._levelInRelease = -1;
 					this._changeEvent = null;
 				} else {
@@ -6778,7 +6759,7 @@ ObservableList.prototype = mixin.mixin({ __proto__: EventEmitter.prototype }, [F
 
 		var items = this._items;
 
-		if (is(value, items[index])) {
+		if (is.is(value, items[index])) {
 			return this;
 		}
 
@@ -6823,7 +6804,7 @@ ObservableList.prototype = mixin.mixin({ __proto__: EventEmitter.prototype }, [F
 		for (var i = index + valueCount; i > index;) {
 			var value = values[--i - index];
 
-			if (!is(value, items[i])) {
+			if (!is.is(value, items[i])) {
 				if (!changed) {
 					this._throwIfFrozen();
 				}
@@ -7473,7 +7454,7 @@ ObservableMap.prototype = mixin.mixin({ __proto__: EventEmitter.prototype }, [Fr
 		if (hasKey) {
 			oldValue = entries.get(key);
 
-			if (is(value, oldValue)) {
+			if (is.is(value, oldValue)) {
 				return this;
 			}
 
@@ -7609,27 +7590,10 @@ ObservableMap.prototype[symbolPolyfill.Symbol.iterator] = ObservableMap.prototyp
 
 var KEY_CELL_MAP = symbolPolyfill.Symbol('cellx.cellMap');
 
-var uidCounter = 0;
-
-/**
- * @typesign () -> string;
- */
-function nextUID() {
-  return String(++uidCounter);
-}
-
 var hasOwn = Object.prototype.hasOwnProperty;
 var slice = Array.prototype.slice;
 
 var global = Function('return this;')();
-
-var assign = Object.assign || /* istanbul ignore next */function (target, source) {
-	for (var name in source) {
-		target[name] = source[name];
-	}
-
-	return target;
-};
 
 /**
  * @typesign (value?, opts?: {
@@ -7679,7 +7643,7 @@ function cellx(value, opts) {
 				return;
 			}
 
-			cell = new Cell(initialValue, assign({ context: context }, opts));
+			cell = new Cell(initialValue, objectAssignPolyfill.assign({ context: context }, opts));
 
 			context[KEY_CELL_MAP].set(cx, cell);
 		}
@@ -7832,11 +7796,6 @@ function define(obj, name, value) {
 
 cellx.define = define;
 
-cellx.Utils = {
-	nextUID: nextUID,
-	is: is
-};
-
 cellx.cellx = cellx;
 
 cellx.default = cellx;
@@ -7854,7 +7813,7 @@ return cellx;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var error_logger_1 = __webpack_require__(7);
+var error_logger_1 = __webpack_require__(9);
 var global = Function('return this;')();
 var nextTick;
 exports.nextTick = nextTick;
@@ -7909,6 +7868,97 @@ else {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var hasOwn = Object.prototype.hasOwnProperty;
+var reInsert = /\{([1-9]\d*|n)(?::((?:[^|]*\|)+?[^}]*))?\}/;
+var texts;
+var getPluralIndex;
+exports.getText = function getText(context, key, plural, args) {
+    var rawText;
+    if (hasOwn.call(texts, context) && hasOwn.call(texts[context], key)) {
+        rawText = plural ?
+            texts[context][key][getPluralIndex(+args[0])] :
+            texts[context][key];
+    }
+    else {
+        rawText = key;
+    }
+    var data = Object.create(null);
+    for (var i = args.length; i;) {
+        data[i] = args[--i];
+    }
+    if (plural) {
+        data.n = args[0];
+    }
+    var splittedRawText = rawText.split(reInsert);
+    var text = [];
+    for (var i = 0, l = splittedRawText.length; i < l;) {
+        if (i % 3) {
+            text.push(splittedRawText[i + 1] ?
+                splittedRawText[i + 1].split('|')[getPluralIndex(data[splittedRawText[i]])] :
+                data[splittedRawText[i]]);
+            i += 2;
+        }
+        else {
+            text.push(splittedRawText[i]);
+            i++;
+        }
+    }
+    return text.join('');
+};
+function configure(config) {
+    texts = config.texts;
+    getPluralIndex = Function('n', "return " + config.localeSettings.plural + ";");
+    exports.getText.localeSettings = config.localeSettings;
+}
+function t(key) {
+    var args = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        args[_i - 1] = arguments[_i];
+    }
+    return exports.getText('', key, false, args);
+}
+function pt(key, context) {
+    var args = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        args[_i - 2] = arguments[_i];
+    }
+    return exports.getText(context, key, false, args);
+}
+function nt(key) {
+    var args = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        args[_i - 1] = arguments[_i];
+    }
+    return exports.getText('', key, true, args);
+}
+function npt(key, context) {
+    var args = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        args[_i - 2] = arguments[_i];
+    }
+    return exports.getText(context, key, true, args);
+}
+exports.getText.configure = configure;
+exports.getText.t = t;
+exports.getText.pt = pt;
+exports.getText.nt = nt;
+exports.getText.npt = npt;
+configure({
+    localeSettings: {
+        code: 'ru',
+        plural: '(n%100) >= 5 && (n%100) <= 20 ? 2 : (n%10) == 1 ? 0 : (n%10) >= 2 && (n%10) <= 4 ? 1 : 2'
+    },
+    texts: {}
+});
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 function isFocusable(el) {
     if (el.hasAttribute('tabindex')) {
         return el.tabIndex >= 0;
@@ -7936,7 +7986,7 @@ exports.isFocusable = isFocusable;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7962,7 +8012,315 @@ exports.mixin = mixin;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = Function('return this;')();
+var Symbol =  true ? __webpack_require__(8).Symbol : global.Symbol;
+
+var hasOwn = Object.prototype.hasOwnProperty;
+
+var KEY_MAP_ID = Symbol('map-id');
+var mapIdCounter = 0;
+
+var Map = global.Map;
+
+if (!Map || Map.toString().indexOf('[native code]') == -1 || !new Map([[1, 1]]).size) {
+	var entryStub = {
+		value: undefined
+	};
+
+	Map = function Map(entries) {
+		this._entries = Object.create(null);
+		this._objectStamps = {};
+
+		this._first = null;
+		this._last = null;
+
+		this.size = 0;
+
+		if (entries) {
+			for (var i = 0, l = entries.length; i < l; i++) {
+				this.set(entries[i][0], entries[i][1]);
+			}
+		}
+	};
+
+	Map.prototype = {
+		constructor: Map,
+
+		has: function has(key) {
+			return !!this._entries[this._getValueStamp(key)];
+		},
+
+		get: function get(key) {
+			return (this._entries[this._getValueStamp(key)] || entryStub).value;
+		},
+
+		set: function set(key, value) {
+			var entries = this._entries;
+			var keyStamp = this._getValueStamp(key);
+
+			if (entries[keyStamp]) {
+				entries[keyStamp].value = value;
+			} else {
+				var entry = entries[keyStamp] = {
+					key: key,
+					keyStamp: keyStamp,
+					value: value,
+					prev: this._last,
+					next: null
+				};
+
+				if (this.size++) {
+					this._last.next = entry;
+				} else {
+					this._first = entry;
+				}
+
+				this._last = entry;
+			}
+
+			return this;
+		},
+
+		delete: function delete_(key) {
+			var keyStamp = this._getValueStamp(key);
+			var entry = this._entries[keyStamp];
+
+			if (!entry) {
+				return false;
+			}
+
+			if (--this.size) {
+				var prev = entry.prev;
+				var next = entry.next;
+
+				if (prev) {
+					prev.next = next;
+				} else {
+					this._first = next;
+				}
+
+				if (next) {
+					next.prev = prev;
+				} else {
+					this._last = prev;
+				}
+			} else {
+				this._first = null;
+				this._last = null;
+			}
+
+			delete this._entries[keyStamp];
+			delete this._objectStamps[keyStamp];
+
+			return true;
+		},
+
+		clear: function clear() {
+			var entries = this._entries;
+
+			for (var stamp in entries) {
+				delete entries[stamp];
+			}
+
+			this._objectStamps = {};
+
+			this._first = null;
+			this._last = null;
+
+			this.size = 0;
+		},
+
+		forEach: function forEach(callback, context) {
+			var entry = this._first;
+
+			while (entry) {
+				callback.call(context, entry.value, entry.key, this);
+
+				do {
+					entry = entry.next;
+				} while (entry && !this._entries[entry.keyStamp]);
+			}
+		},
+
+		toString: function toString() {
+			return '[object Map]';
+		},
+
+		_getValueStamp: function _getValueStamp(value) {
+			switch (typeof value) {
+				case 'undefined': {
+					return 'undefined';
+				}
+				case 'object': {
+					if (value === null) {
+						return 'null';
+					}
+
+					break;
+				}
+				case 'boolean': {
+					return '?' + value;
+				}
+				case 'number': {
+					return '+' + value;
+				}
+				case 'string': {
+					return ',' + value;
+				}
+			}
+
+			return this._getObjectStamp(value);
+		},
+
+		_getObjectStamp: function _getObjectStamp(obj) {
+			if (!hasOwn.call(obj, KEY_MAP_ID)) {
+				if (!Object.isExtensible(obj)) {
+					var stamps = this._objectStamps;
+					var stamp;
+
+					for (stamp in stamps) {
+						if (hasOwn.call(stamps, stamp) && stamps[stamp] == obj) {
+							return stamp;
+						}
+					}
+
+					stamp = String(++mapIdCounter);
+					stamps[stamp] = obj;
+
+					return stamp;
+				}
+
+				Object.defineProperty(obj, KEY_MAP_ID, {
+					value: String(++mapIdCounter)
+				});
+			}
+
+			return obj[KEY_MAP_ID];
+		}
+	};
+
+	[
+		['keys', function keys(entry) {
+			return entry.key;
+		}],
+		['values', function values(entry) {
+			return entry.value;
+		}],
+		['entries', function entries(entry) {
+			return [entry.key, entry.value];
+		}]
+	].forEach(function(settings) {
+		var getStepValue = settings[1];
+
+		Map.prototype[settings[0]] = function() {
+			var entries = this._entries;
+			var entry;
+			var done = false;
+			var map = this;
+
+			return {
+				next: function() {
+					if (!done) {
+						if (entry) {
+							do {
+								entry = entry.next;
+							} while (entry && !entries[entry.keyStamp]);
+						} else {
+							entry = map._first;
+						}
+
+						if (entry) {
+							return {
+								value: getStepValue(entry),
+								done: false
+							};
+						}
+
+						done = true;
+					}
+
+					return {
+						value: undefined,
+						done: true
+					};
+				}
+			};
+		};
+	});
+}
+
+if (!Map.prototype[Symbol.iterator]) {
+	Map.prototype[Symbol.iterator] = Map.prototype.entries;
+}
+
+var Set = global.Set;
+
+if (!Set || Set.toString().indexOf('[native code]') == -1 || !new Set([1]).size) {
+	Set = function Set(values) {
+		this._values = new Map(values.map(function(value) {
+			return [value, value];
+		}));
+
+		this.size = 0;
+	};
+
+	Set.prototype = {
+		constructor: Set,
+
+		has: function has(value) {
+			return this._values.has(value);
+		},
+
+		add: function add(value) {
+			this._values.set(value, value);
+			this.size = this._values.size;
+			return this;
+		},
+
+		delete: function _delete(value) {
+			if (this._values.delete(value)) {
+				this.size--;
+				return true;
+			}
+
+			return false;
+		},
+
+		clear: function clear() {
+			this._values.clear();
+			this.size = 0;
+		},
+
+		forEach: function forEach(callback, context) {
+			this._values.forEach(function(value) {
+				callback.call(context, value, value, this);
+			}, this);
+		},
+
+		keys: Map.prototype.keys,
+		values: Map.prototype.values,
+		entries: Map.prototype.entries
+	};
+}
+
+if (!Set.prototype[Symbol.iterator]) {
+	Set.prototype[Symbol.iterator] = Set.prototype.values;
+}
+
+if (true) {
+	exports.Map = Map;
+	exports.Set = Set;
+} else {
+	global.Map = Map;
+	global.Set = Set;
+}
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = Function('return this;')();
@@ -7982,7 +8340,7 @@ if (!Symbol) {
 
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8015,7 +8373,20 @@ exports.log = logError;
 
 
 /***/ }),
-/* 8 */
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var escapeHTML_1 = __webpack_require__(31);
+exports.escapeHTML = escapeHTML_1.escapeHTML;
+var unescapeHTML_1 = __webpack_require__(32);
+exports.unescapeHTML = unescapeHTML_1.unescapeHTML;
+
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8131,7 +8502,7 @@ exports.default = ObservableTreeList;
 
 
 /***/ }),
-/* 9 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8153,17 +8524,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var gettext_1 = __webpack_require__(4);
 var next_tick_1 = __webpack_require__(3);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(79);
-var isFocusable_1 = __webpack_require__(4);
-__webpack_require__(80);
-var isEqualArray_1 = __webpack_require__(81);
-var opal_select_option_1 = __webpack_require__(82);
+__webpack_require__(82);
+var isFocusable_1 = __webpack_require__(5);
+__webpack_require__(83);
+var isEqualArray_1 = __webpack_require__(84);
+var opal_select_option_1 = __webpack_require__(85);
 exports.OpalSelectOption = opal_select_option_1.OpalSelectOption;
-var template = __webpack_require__(86);
+var template = __webpack_require__(89);
 var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
 var map = Array.prototype.map;
 var defaultDataListItemSchema = Object.freeze({ value: 'value', text: 'text', disabled: 'disabled' });
@@ -8193,7 +8565,7 @@ var OpalSelect = /** @class */ (function (_super) {
                 return this.input.placeholder;
             }
             if (text.length > this.input.maxTextLength) {
-                text = rionite_1.getText.nt('Выбран{n:|о|о} {n}', this.viewModel.length);
+                text = gettext_1.getText.nt('Выбран{n:|о|о} {n}', this.viewModel.length);
             }
             return text;
         },
@@ -8756,7 +9128,7 @@ var OpalSelect = /** @class */ (function (_super) {
                 addNewItem: { type: Object, readonly: true },
                 text: String,
                 maxTextLength: 20,
-                placeholder: rionite_1.getText.t('Не выбрано'),
+                placeholder: gettext_1.getText.t('Не выбрано'),
                 tabIndex: 0,
                 focused: false,
                 disabled: false
@@ -8771,345 +9143,40 @@ exports.OpalSelect = OpalSelect;
 
 
 /***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = Function('return this;')();
-var Symbol =  true ? __webpack_require__(6).Symbol : global.Symbol;
-
-var hasOwn = Object.prototype.hasOwnProperty;
-
-var KEY_MAP_ID = Symbol('map-id');
-var mapIdCounter = 0;
-
-var Map = global.Map;
-
-if (!Map || Map.toString().indexOf('[native code]') == -1 || !new Map([[1, 1]]).size) {
-	var entryStub = {
-		value: undefined
-	};
-
-	Map = function Map(entries) {
-		this._entries = Object.create(null);
-		this._objectStamps = {};
-
-		this._first = null;
-		this._last = null;
-
-		this.size = 0;
-
-		if (entries) {
-			for (var i = 0, l = entries.length; i < l; i++) {
-				this.set(entries[i][0], entries[i][1]);
-			}
-		}
-	};
-
-	Map.prototype = {
-		constructor: Map,
-
-		has: function has(key) {
-			return !!this._entries[this._getValueStamp(key)];
-		},
-
-		get: function get(key) {
-			return (this._entries[this._getValueStamp(key)] || entryStub).value;
-		},
-
-		set: function set(key, value) {
-			var entries = this._entries;
-			var keyStamp = this._getValueStamp(key);
-
-			if (entries[keyStamp]) {
-				entries[keyStamp].value = value;
-			} else {
-				var entry = entries[keyStamp] = {
-					key: key,
-					keyStamp: keyStamp,
-					value: value,
-					prev: this._last,
-					next: null
-				};
-
-				if (this.size++) {
-					this._last.next = entry;
-				} else {
-					this._first = entry;
-				}
-
-				this._last = entry;
-			}
-
-			return this;
-		},
-
-		delete: function delete_(key) {
-			var keyStamp = this._getValueStamp(key);
-			var entry = this._entries[keyStamp];
-
-			if (!entry) {
-				return false;
-			}
-
-			if (--this.size) {
-				var prev = entry.prev;
-				var next = entry.next;
-
-				if (prev) {
-					prev.next = next;
-				} else {
-					this._first = next;
-				}
-
-				if (next) {
-					next.prev = prev;
-				} else {
-					this._last = prev;
-				}
-			} else {
-				this._first = null;
-				this._last = null;
-			}
-
-			delete this._entries[keyStamp];
-			delete this._objectStamps[keyStamp];
-
-			return true;
-		},
-
-		clear: function clear() {
-			var entries = this._entries;
-
-			for (var stamp in entries) {
-				delete entries[stamp];
-			}
-
-			this._objectStamps = {};
-
-			this._first = null;
-			this._last = null;
-
-			this.size = 0;
-		},
-
-		forEach: function forEach(callback, context) {
-			var entry = this._first;
-
-			while (entry) {
-				callback.call(context, entry.value, entry.key, this);
-
-				do {
-					entry = entry.next;
-				} while (entry && !this._entries[entry.keyStamp]);
-			}
-		},
-
-		toString: function toString() {
-			return '[object Map]';
-		},
-
-		_getValueStamp: function _getValueStamp(value) {
-			switch (typeof value) {
-				case 'undefined': {
-					return 'undefined';
-				}
-				case 'object': {
-					if (value === null) {
-						return 'null';
-					}
-
-					break;
-				}
-				case 'boolean': {
-					return '?' + value;
-				}
-				case 'number': {
-					return '+' + value;
-				}
-				case 'string': {
-					return ',' + value;
-				}
-			}
-
-			return this._getObjectStamp(value);
-		},
-
-		_getObjectStamp: function _getObjectStamp(obj) {
-			if (!hasOwn.call(obj, KEY_MAP_ID)) {
-				if (!Object.isExtensible(obj)) {
-					var stamps = this._objectStamps;
-					var stamp;
-
-					for (stamp in stamps) {
-						if (hasOwn.call(stamps, stamp) && stamps[stamp] == obj) {
-							return stamp;
-						}
-					}
-
-					stamp = String(++mapIdCounter);
-					stamps[stamp] = obj;
-
-					return stamp;
-				}
-
-				Object.defineProperty(obj, KEY_MAP_ID, {
-					value: String(++mapIdCounter)
-				});
-			}
-
-			return obj[KEY_MAP_ID];
-		}
-	};
-
-	[
-		['keys', function keys(entry) {
-			return entry.key;
-		}],
-		['values', function values(entry) {
-			return entry.value;
-		}],
-		['entries', function entries(entry) {
-			return [entry.key, entry.value];
-		}]
-	].forEach(function(settings) {
-		var getStepValue = settings[1];
-
-		Map.prototype[settings[0]] = function() {
-			var entries = this._entries;
-			var entry;
-			var done = false;
-			var map = this;
-
-			return {
-				next: function() {
-					if (!done) {
-						if (entry) {
-							do {
-								entry = entry.next;
-							} while (entry && !entries[entry.keyStamp]);
-						} else {
-							entry = map._first;
-						}
-
-						if (entry) {
-							return {
-								value: getStepValue(entry),
-								done: false
-							};
-						}
-
-						done = true;
-					}
-
-					return {
-						value: undefined,
-						done: true
-					};
-				}
-			};
-		};
-	});
-}
-
-if (!Map.prototype[Symbol.iterator]) {
-	Map.prototype[Symbol.iterator] = Map.prototype.entries;
-}
-
-var Set = global.Set;
-
-if (!Set || Set.toString().indexOf('[native code]') == -1 || !new Set([1]).size) {
-	Set = function Set(values) {
-		this._values = new Map(values.map(function(value) {
-			return [value, value];
-		}));
-
-		this.size = 0;
-	};
-
-	Set.prototype = {
-		constructor: Set,
-
-		has: function has(value) {
-			return this._values.has(value);
-		},
-
-		add: function add(value) {
-			this._values.set(value, value);
-			this.size = this._values.size;
-			return this;
-		},
-
-		delete: function _delete(value) {
-			if (this._values.delete(value)) {
-				this.size--;
-				return true;
-			}
-
-			return false;
-		},
-
-		clear: function clear() {
-			this._values.clear();
-			this.size = 0;
-		},
-
-		forEach: function forEach(callback, context) {
-			this._values.forEach(function(value) {
-				callback.call(context, value, value, this);
-			}, this);
-		},
-
-		keys: Map.prototype.keys,
-		values: Map.prototype.values,
-		entries: Map.prototype.entries
-	};
-}
-
-if (!Set.prototype[Symbol.iterator]) {
-	Set.prototype[Symbol.iterator] = Set.prototype.values;
-}
-
-if (true) {
-	exports.Map = Map;
-	exports.Set = Set;
-} else {
-	global.Map = Map;
-	global.Set = Set;
-}
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Parser_1 = __webpack_require__(25);
-exports.NodeType = Parser_1.NodeType;
-exports.Parser = Parser_1.Parser;
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var escapeHTML_1 = __webpack_require__(27);
-exports.escapeHTML = escapeHTML_1.default;
-var unescapeHTML_1 = __webpack_require__(28);
-exports.unescapeHTML = unescapeHTML_1.default;
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = escapeHTML_1.default;
-
-
-/***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
+var assign = Object.assign || (function (target, source) {
+    for (var name_1 in source) {
+        target[name_1] = source[name_1];
+    }
+    return target;
+});
+exports.assign = assign;
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Parser_1 = __webpack_require__(29);
+exports.NodeType = Parser_1.NodeType;
+exports.Parser = Parser_1.Parser;
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 var reEscapableChars = /[\\'"\r\n]/g;
 var charToEscapedMap = Object.create(null);
 charToEscapedMap['\\'] = '\\\\';
@@ -9120,18 +9187,31 @@ charToEscapedMap['\n'] = '\\n';
 function escapeString(str) {
     return reEscapableChars.test(str) ? str.replace(reEscapableChars, function (chr) { return charToEscapedMap[chr]; }) : str;
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = escapeString;
+exports.escapeString = escapeString;
 
 
 /***/ }),
-/* 14 */
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var uidCounter = 0;
+function nextUID() {
+    return String(++uidCounter);
+}
+exports.nextUID = nextUID;
+
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 28 28\" id=\"opal-components__icon-cross\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 2l24 24m0-24L2 26\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 15 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9156,8 +9236,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(66);
-var template = __webpack_require__(67);
+__webpack_require__(69);
+var template = __webpack_require__(70);
 var OpalTab = /** @class */ (function (_super) {
     __extends(OpalTab, _super);
     function OpalTab() {
@@ -9276,7 +9356,7 @@ exports.OpalTab = OpalTab;
 
 
 /***/ }),
-/* 16 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9301,14 +9381,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var ObservableTreeList_1 = __webpack_require__(8);
-var utils_1 = __webpack_require__(17);
-var _getListItemContext_1 = __webpack_require__(18);
-__webpack_require__(118);
-var opal_tree_list_item_1 = __webpack_require__(19);
+var ObservableTreeList_1 = __webpack_require__(11);
+var utils_1 = __webpack_require__(20);
+var _getListItemContext_1 = __webpack_require__(21);
+__webpack_require__(121);
+var opal_tree_list_item_1 = __webpack_require__(22);
 exports.OpalTreeListItem = opal_tree_list_item_1.OpalTreeListItem;
-__webpack_require__(19);
-var template = __webpack_require__(121);
+__webpack_require__(22);
+var template = __webpack_require__(124);
 var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
 function getVertices(item) {
@@ -9438,26 +9518,26 @@ OpalTreeList.prototype._getListItemContext = _getListItemContext_1.default;
 
 
 /***/ }),
-/* 17 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var closestComponent_1 = __webpack_require__(117);
+var closestComponent_1 = __webpack_require__(120);
 exports.closestComponent = closestComponent_1.default;
-var isFocusable_1 = __webpack_require__(4);
+var isFocusable_1 = __webpack_require__(5);
 exports.isFocusable = isFocusable_1.default;
 
 
 /***/ }),
-/* 18 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var mixin_1 = __webpack_require__(5);
+var mixin_1 = __webpack_require__(6);
 var cellx_1 = __webpack_require__(2);
 function isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
     return item.children ?
@@ -9487,7 +9567,7 @@ exports.default = _getListItemContext;
 
 
 /***/ }),
-/* 19 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9511,9 +9591,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var _getListItemContext_1 = __webpack_require__(18);
-__webpack_require__(119);
-var template = __webpack_require__(120);
+var _getListItemContext_1 = __webpack_require__(21);
+__webpack_require__(122);
+var template = __webpack_require__(123);
 var OpalTreeListItem = /** @class */ (function (_super) {
     __extends(OpalTreeListItem, _super);
     function OpalTreeListItem() {
@@ -9579,7 +9659,7 @@ OpalTreeListItem.prototype._getListItemContext = _getListItemContext_1.default;
 
 
 /***/ }),
-/* 20 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9646,7 +9726,7 @@ module.exports = warning;
 
 
 /***/ }),
-/* 21 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9713,7 +9793,7 @@ var createPath = exports.createPath = function createPath(location) {
 };
 
 /***/ }),
-/* 22 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9728,7 +9808,7 @@ var PathNodeType;
 
 
 /***/ }),
-/* 23 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9752,10 +9832,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(32);
-__webpack_require__(33);
-var ObservableTreeList_1 = __webpack_require__(8);
-var template = __webpack_require__(150);
+__webpack_require__(35);
+__webpack_require__(36);
+var ObservableTreeList_1 = __webpack_require__(11);
+var template = __webpack_require__(153);
 rionite_1.formatters.log = function (msg) {
     console.log(msg);
     return msg;
@@ -9861,21 +9941,34 @@ exports.OpalComponentsDocs = OpalComponentsDocs;
 
 
 /***/ }),
-/* 24 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var nelm_parser_1 = __webpack_require__(11);
+var is = Object.is || (function (a, b) {
+    return a === b ? a !== 0 || 1 / a == 1 / b : a != a && b != b;
+});
+exports.is = is;
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var nelm_parser_1 = __webpack_require__(14);
 exports.NodeType = nelm_parser_1.NodeType;
 exports.Parser = nelm_parser_1.default;
-var Template_1 = __webpack_require__(26);
+var Template_1 = __webpack_require__(30);
 exports.Template = Template_1.default;
 
 
 /***/ }),
-/* 25 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10267,16 +10360,16 @@ exports.Parser = Parser;
 
 
 /***/ }),
-/* 26 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var escape_html_1 = __webpack_require__(12);
-var self_closing_tags_1 = __webpack_require__(29);
-var escape_string_1 = __webpack_require__(13);
-var nelm_parser_1 = __webpack_require__(11);
+var escape_html_1 = __webpack_require__(10);
+var self_closing_tags_1 = __webpack_require__(33);
+var escape_string_1 = __webpack_require__(15);
+var nelm_parser_1 = __webpack_require__(14);
 var join = Array.prototype.join;
 var elNameDelimiter = '__';
 var Template = /** @class */ (function () {
@@ -10377,12 +10470,12 @@ var Template = /** @class */ (function () {
                                 var value = attr.value;
                                 var index = attrList[name_1];
                                 if (index === undefined) {
-                                    attrList[attrCount] = " " + name_1 + "=\"" + (value && escape_html_1.default(escape_string_1.default(value))) + "\"";
+                                    attrList[attrCount] = " " + name_1 + "=\"" + (value && escape_html_1.escapeHTML(escape_string_1.escapeString(value))) + "\"";
                                     attrList[name_1] = attrCount;
                                     attrCountMap[elName] = ++attrCount;
                                 }
                                 else {
-                                    attrList[index] = " " + name_1 + "=\"" + (value && escape_html_1.default(escape_string_1.default(value))) + "\"";
+                                    attrList[index] = " " + name_1 + "=\"" + (value && escape_html_1.escapeHTML(escape_string_1.escapeString(value))) + "\"";
                                 }
                             }
                             if (!isHelper) {
@@ -10411,7 +10504,7 @@ var Template = /** @class */ (function () {
                                 "'<" + (tagName || 'div') + renderedAttrs + ">'",
                                 content && content.length ?
                                     "this['" + elName + "@content']() + '</" + (tagName || 'div') + ">'" :
-                                    (!content && tagName && tagName in self_closing_tags_1.map ?
+                                    (!content && tagName && self_closing_tags_1.map.has(tagName) ?
                                         "''" :
                                         "'</" + (tagName || 'div') + ">'")
                             ],
@@ -10432,7 +10525,7 @@ var Template = /** @class */ (function () {
                                     attrs += " class=\"<<" + elNames.join(',').slice(1) + ">>" + (value ? ' ' + value : '') + "\"";
                                 }
                                 else {
-                                    attrs += " " + attr.name + "=\"" + (value && escape_html_1.default(escape_string_1.default(value))) + "\"";
+                                    attrs += " " + attr.name + "=\"" + (value && escape_html_1.escapeHTML(escape_string_1.escapeString(value))) + "\"";
                                 }
                             }
                             this._currentElement.innerSource.push("'<" + (tagName || 'div') + (hasClassAttr ? attrs : " class=\"<<" + elNames.join(',').slice(1) + ">>\"" + attrs) + ">'");
@@ -10444,7 +10537,7 @@ var Template = /** @class */ (function () {
                 }
                 else if (!isHelper) {
                     this._currentElement.innerSource.push("'<" + (tagName || 'div') + (elAttrs ?
-                        elAttrs.list.map(function (attr) { return " " + attr.name + "=\"" + (attr.value && escape_html_1.default(escape_string_1.default(attr.value))) + "\""; }).join('') :
+                        elAttrs.list.map(function (attr) { return " " + attr.name + "=\"" + (attr.value && escape_html_1.escapeHTML(escape_string_1.escapeString(attr.value))) + "\""; }).join('') :
                         '') + ">'");
                 }
                 if (isHelper) {
@@ -10474,13 +10567,13 @@ var Template = /** @class */ (function () {
                     this._currentElement = els[els.length - 1];
                     this._currentElement.innerSource.push("this['" + elName + "']()");
                 }
-                else if (!isHelper && (content || !tagName || !(tagName in self_closing_tags_1.map))) {
+                else if (!isHelper && (content || !tagName || !self_closing_tags_1.map.has(tagName))) {
                     this._currentElement.innerSource.push("'</" + (tagName || 'div') + ">'");
                 }
                 break;
             }
             case nelm_parser_1.NodeType.TEXT: {
-                this._currentElement.innerSource.push("'" + escape_string_1.default(node.value) + "'");
+                this._currentElement.innerSource.push("'" + escape_string_1.escapeString(node.value) + "'");
                 break;
             }
             case nelm_parser_1.NodeType.SUPER_CALL: {
@@ -10507,11 +10600,12 @@ exports.default = Template;
 
 
 /***/ }),
-/* 27 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
 var reEscapableChars = /[&<>"]/g;
 var charToEscapedMap = Object.create(null);
 charToEscapedMap['&'] = '&amp;';
@@ -10521,16 +10615,16 @@ charToEscapedMap['"'] = '&quot;';
 function escapeHTML(str) {
     return reEscapableChars.test(str) ? str.replace(reEscapableChars, function (chr) { return charToEscapedMap[chr]; }) : str;
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = escapeHTML;
+exports.escapeHTML = escapeHTML;
 
 
 /***/ }),
-/* 28 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
 var reEscapableEntities = /&(?:amp|lt|gt|quot);/g;
 var escapedToCharMap = Object.create(null);
 escapedToCharMap['&amp;'] = '&';
@@ -10540,17 +10634,17 @@ escapedToCharMap['&quot;'] = '"';
 function unescapeHTML(str) {
     return reEscapableEntities.test(str) ? str.replace(reEscapableEntities, function (entity) { return escapedToCharMap[entity]; }) : str;
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = unescapeHTML;
+exports.unescapeHTML = unescapeHTML;
 
 
 /***/ }),
-/* 29 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var map_set_polyfill_1 = __webpack_require__(7);
 exports.list = [
     'area',
     'base',
@@ -10582,114 +10676,22 @@ exports.list = [
     'stop',
     'use'
 ];
-exports.map = exports.list.reduce(function (map, name) {
-    map[name] = true;
-    return map;
-}, Object.create(null));
+exports.map = exports.list.reduce(function (map, name) { return map.set(name, true); }, new map_set_polyfill_1.Map());
 
 
 /***/ }),
-/* 30 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var hasOwn = Object.prototype.hasOwnProperty;
-var reInsert = /\{([1-9]\d*|n)(?::((?:[^|]*\|)+?[^}]*))?\}/;
-var texts;
-var getPluralIndex;
-exports.getText = function getText(context, key, plural, args) {
-    var rawText;
-    if (hasOwn.call(texts, context) && hasOwn.call(texts[context], key)) {
-        rawText = plural ?
-            texts[context][key][getPluralIndex(+args[0])] :
-            texts[context][key];
-    }
-    else {
-        rawText = key;
-    }
-    var data = Object.create(null);
-    for (var i = args.length; i;) {
-        data[i] = args[--i];
-    }
-    if (plural) {
-        data.n = args[0];
-    }
-    var splittedRawText = rawText.split(reInsert);
-    var text = [];
-    for (var i = 0, l = splittedRawText.length; i < l;) {
-        if (i % 3) {
-            text.push(splittedRawText[i + 1] ?
-                splittedRawText[i + 1].split('|')[getPluralIndex(data[splittedRawText[i]])] :
-                data[splittedRawText[i]]);
-            i += 2;
-        }
-        else {
-            text.push(splittedRawText[i]);
-            i++;
-        }
-    }
-    return text.join('');
-};
-function configure(config) {
-    texts = config.texts;
-    getPluralIndex = Function('n', "return " + config.localeSettings.plural + ";");
-    exports.getText.localeSettings = config.localeSettings;
-}
-function t(key) {
-    var args = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        args[_i - 1] = arguments[_i];
-    }
-    return exports.getText('', key, false, args);
-}
-function pt(key, context) {
-    var args = [];
-    for (var _i = 2; _i < arguments.length; _i++) {
-        args[_i - 2] = arguments[_i];
-    }
-    return exports.getText(context, key, false, args);
-}
-function nt(key) {
-    var args = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        args[_i - 1] = arguments[_i];
-    }
-    return exports.getText('', key, true, args);
-}
-function npt(key, context) {
-    var args = [];
-    for (var _i = 2; _i < arguments.length; _i++) {
-        args[_i - 2] = arguments[_i];
-    }
-    return exports.getText(context, key, true, args);
-}
-exports.getText.configure = configure;
-exports.getText.t = t;
-exports.getText.pt = pt;
-exports.getText.nt = nt;
-exports.getText.npt = npt;
-configure({
-    localeSettings: {
-        code: 'ru',
-        plural: '(n%100) >= 5 && (n%100) <= 20 ? 2 : (n%10) == 1 ? 0 : (n%10) >= 2 && (n%10) <= 4 ? 1 : 2'
-    },
-    texts: {}
-});
-
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 var range = document.createRange();
 var htmlToFragment;
+exports.htmlToFragment = htmlToFragment;
 if (range.createContextualFragment) {
     var selected_1 = false;
-    htmlToFragment = function (html) {
+    exports.htmlToFragment = htmlToFragment = function (html) {
         if (!selected_1) {
             range.selectNode(document.body);
             selected_1 = true;
@@ -10698,7 +10700,7 @@ if (range.createContextualFragment) {
     };
 }
 else {
-    htmlToFragment = function (html) {
+    exports.htmlToFragment = htmlToFragment = function (html) {
         var el = document.createElement('div');
         var df = document.createDocumentFragment();
         el.innerHTML = html;
@@ -10708,12 +10710,10 @@ else {
         return df;
     };
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = htmlToFragment;
 
 
 /***/ }),
-/* 32 */
+/* 35 */
 /***/ (function(module, exports) {
 
 document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
@@ -10734,84 +10734,84 @@ document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
 
 
 /***/ }),
-/* 33 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var ObservableTreeList_1 = __webpack_require__(8);
+var ObservableTreeList_1 = __webpack_require__(11);
 exports.ObservableTreeList = ObservableTreeList_1.default;
-var opal_button_1 = __webpack_require__(34);
+var opal_button_1 = __webpack_require__(37);
 exports.OpalButton = opal_button_1.OpalButton;
-var opal_sign_button_1 = __webpack_require__(36);
+var opal_sign_button_1 = __webpack_require__(39);
 exports.OpalSignButton = opal_sign_button_1.OpalSignButton;
-var opal_text_input_1 = __webpack_require__(39);
+var opal_text_input_1 = __webpack_require__(42);
 exports.OpalTextInput = opal_text_input_1.OpalTextInput;
-var opal_input_mask_1 = __webpack_require__(42);
+var opal_input_mask_1 = __webpack_require__(45);
 exports.OpalInputMask = opal_input_mask_1.OpalInputMask;
 exports.OpalInputMaskDefinition = opal_input_mask_1.OpalInputMaskDefinition;
-var opal_group_1 = __webpack_require__(45);
+var opal_group_1 = __webpack_require__(48);
 exports.OpalGroup = opal_group_1.OpalGroup;
-var opal_checkbox_1 = __webpack_require__(47);
+var opal_checkbox_1 = __webpack_require__(50);
 exports.OpalCheckbox = opal_checkbox_1.OpalCheckbox;
-var opal_radio_group_1 = __webpack_require__(50);
+var opal_radio_group_1 = __webpack_require__(53);
 exports.OpalRadioGroup = opal_radio_group_1.OpalRadioGroup;
 exports.OpalRadioButton = opal_radio_group_1.OpalRadioButton;
-var opal_switch_1 = __webpack_require__(54);
+var opal_switch_1 = __webpack_require__(57);
 exports.OpalSwitch = opal_switch_1.OpalSwitch;
-var opal_slider_1 = __webpack_require__(57);
+var opal_slider_1 = __webpack_require__(60);
 exports.OpalSlider = opal_slider_1.OpalSlider;
-var opal_switch_menu_1 = __webpack_require__(60);
+var opal_switch_menu_1 = __webpack_require__(63);
 exports.OpalSwitchMenu = opal_switch_menu_1.OpalSwitchMenu;
-var opal_tabs_1 = __webpack_require__(62);
+var opal_tabs_1 = __webpack_require__(65);
 exports.OpalTabs = opal_tabs_1.OpalTabs;
 exports.OpalTabList = opal_tabs_1.OpalTabList;
 exports.OpalTab = opal_tabs_1.OpalTab;
-var opal_dropdown_1 = __webpack_require__(71);
+var opal_dropdown_1 = __webpack_require__(74);
 exports.OpalDropdown = opal_dropdown_1.OpalDropdown;
-var opal_popover_1 = __webpack_require__(73);
+var opal_popover_1 = __webpack_require__(76);
 exports.OpalPopover = opal_popover_1.OpalPopover;
-var opal_modal_1 = __webpack_require__(76);
+var opal_modal_1 = __webpack_require__(79);
 exports.OpalModal = opal_modal_1.OpalModal;
-var opal_select_1 = __webpack_require__(9);
+var opal_select_1 = __webpack_require__(12);
 exports.OpalSelect = opal_select_1.OpalSelect;
 exports.OpalSelectOption = opal_select_1.OpalSelectOption;
-var opal_multiselect_1 = __webpack_require__(87);
+var opal_multiselect_1 = __webpack_require__(90);
 exports.OpalMultiselect = opal_multiselect_1.OpalMultiselect;
-var opal_input_validator_1 = __webpack_require__(90);
+var opal_input_validator_1 = __webpack_require__(93);
 exports.OpalInputValidator = opal_input_validator_1.OpalInputValidator;
 exports.OpalInputValidatorRule = opal_input_validator_1.OpalInputValidatorRule;
-var opal_calendar_1 = __webpack_require__(95);
+var opal_calendar_1 = __webpack_require__(98);
 exports.OpalCalendar = opal_calendar_1.OpalCalendar;
-var opal_date_input_1 = __webpack_require__(101);
+var opal_date_input_1 = __webpack_require__(104);
 exports.OpalDateInput = opal_date_input_1.OpalDateInput;
-var opal_loader_1 = __webpack_require__(105);
+var opal_loader_1 = __webpack_require__(108);
 exports.OpalLoader = opal_loader_1.OpalLoader;
-var opal_loaded_list_1 = __webpack_require__(107);
+var opal_loaded_list_1 = __webpack_require__(110);
 exports.OpalLoadedList = opal_loaded_list_1.OpalLoadedList;
-var opal_filtered_list_1 = __webpack_require__(110);
+var opal_filtered_list_1 = __webpack_require__(113);
 exports.OpalFilteredList = opal_filtered_list_1.OpalFilteredList;
-var opal_tree_list_1 = __webpack_require__(16);
+var opal_tree_list_1 = __webpack_require__(19);
 exports.OpalTreeList = opal_tree_list_1.OpalTreeList;
-var opal_tag_select_1 = __webpack_require__(122);
+var opal_tag_select_1 = __webpack_require__(125);
 exports.OpalTagSelect = opal_tag_select_1.OpalTagSelect;
-var opal_tree_select_1 = __webpack_require__(125);
+var opal_tree_select_1 = __webpack_require__(128);
 exports.OpalTreeSelect = opal_tree_select_1.OpalTreeSelect;
-var opal_autosuggest_1 = __webpack_require__(128);
+var opal_autosuggest_1 = __webpack_require__(131);
 exports.OpalAutosuggest = opal_autosuggest_1.OpalAutosuggest;
-var opal_multirow_1 = __webpack_require__(131);
+var opal_multirow_1 = __webpack_require__(134);
 exports.OpalMultirow = opal_multirow_1.OpalMultirow;
 exports.OpalMultirowRow = opal_multirow_1.OpalMultirowRow;
-var opal_router_1 = __webpack_require__(137);
+var opal_router_1 = __webpack_require__(140);
 exports.OpalRouter = opal_router_1.OpalRouter;
 exports.OpalRoute = opal_router_1.OpalRoute;
-var utils_1 = __webpack_require__(17);
+var utils_1 = __webpack_require__(20);
 exports.Utils = utils_1.default;
 
 
 /***/ }),
-/* 34 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10836,7 +10836,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(35);
+__webpack_require__(38);
 var OpalButton = /** @class */ (function (_super) {
     __extends(OpalButton, _super);
     function OpalButton() {
@@ -10996,7 +10996,7 @@ exports.OpalButton = OpalButton;
 
 
 /***/ }),
-/* 35 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11013,7 +11013,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 36 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11038,8 +11038,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(37);
-var template = __webpack_require__(38);
+__webpack_require__(40);
+var template = __webpack_require__(41);
 var OpalSignButton = /** @class */ (function (_super) {
     __extends(OpalSignButton, _super);
     function OpalSignButton() {
@@ -11175,7 +11175,7 @@ exports.OpalSignButton = OpalSignButton;
 
 
 /***/ }),
-/* 37 */
+/* 40 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11192,13 +11192,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 38 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 39 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11223,9 +11223,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(14);
-__webpack_require__(40);
-var template = __webpack_require__(41);
+__webpack_require__(17);
+__webpack_require__(43);
+var template = __webpack_require__(44);
 var OpalTextInput = /** @class */ (function (_super) {
     __extends(OpalTextInput, _super);
     function OpalTextInput() {
@@ -11460,7 +11460,7 @@ exports.OpalTextInput = OpalTextInput;
 
 
 /***/ }),
-/* 40 */
+/* 43 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11477,13 +11477,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 41 */
+/* 44 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\n@if-then (if=input.multiline) {\ntextarea/, text-field (\nrows={input.rows},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-else (if=input.multiline) {\ninput/, text-field (\ntype={input.inputType},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\nrt-content/control-icon-container (select=.opal-text-input__control-icon, shown={isControlIconShown})\n@if-then (if=input.clearable) {\nbutton/btn-clear (shown={isBtnClearShown}) {\nsvg/btn-clear-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n@if-then (if=input.loading) {\nopal-loader/loader (size=s, shown)\n}\n}"
 
 /***/ }),
-/* 42 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11509,7 +11509,7 @@ var next_tick_1 = __webpack_require__(3);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var opal_input_mask_definition_1 = __webpack_require__(43);
+var opal_input_mask_definition_1 = __webpack_require__(46);
 exports.OpalInputMaskDefinition = opal_input_mask_definition_1.OpalInputMaskDefinition;
 var forEach = Array.prototype.forEach;
 var iPhone = /iphone/i.test(navigator.userAgent);
@@ -11835,7 +11835,7 @@ exports.OpalInputMask = OpalInputMask;
 
 
 /***/ }),
-/* 43 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11858,7 +11858,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(44);
+__webpack_require__(47);
 var OpalInputMaskDefinition = /** @class */ (function (_super) {
     __extends(OpalInputMaskDefinition, _super);
     function OpalInputMaskDefinition() {
@@ -11879,7 +11879,7 @@ exports.OpalInputMaskDefinition = OpalInputMaskDefinition;
 
 
 /***/ }),
-/* 44 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11896,7 +11896,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 45 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11919,7 +11919,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(46);
+__webpack_require__(49);
 var OpalGroup = /** @class */ (function (_super) {
     __extends(OpalGroup, _super);
     function OpalGroup() {
@@ -11937,7 +11937,7 @@ exports.OpalGroup = OpalGroup;
 
 
 /***/ }),
-/* 46 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11954,7 +11954,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 47 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11979,8 +11979,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(48);
-var template = __webpack_require__(49);
+__webpack_require__(51);
+var template = __webpack_require__(52);
 var OpalCheckbox = /** @class */ (function (_super) {
     __extends(OpalCheckbox, _super);
     function OpalCheckbox() {
@@ -12138,7 +12138,7 @@ exports.OpalCheckbox = OpalCheckbox;
 
 
 /***/ }),
-/* 48 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12155,13 +12155,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 49 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 50 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12184,7 +12184,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var opal_radio_button_1 = __webpack_require__(51);
+var opal_radio_button_1 = __webpack_require__(54);
 exports.OpalRadioButton = opal_radio_button_1.OpalRadioButton;
 var forEach = Array.prototype.forEach;
 var OpalRadioGroup = /** @class */ (function (_super) {
@@ -12224,7 +12224,7 @@ exports.OpalRadioGroup = OpalRadioGroup;
 
 
 /***/ }),
-/* 51 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12249,8 +12249,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(52);
-var template = __webpack_require__(53);
+__webpack_require__(55);
+var template = __webpack_require__(56);
 var OpalRadioButton = /** @class */ (function (_super) {
     __extends(OpalRadioButton, _super);
     function OpalRadioButton() {
@@ -12396,7 +12396,7 @@ exports.OpalRadioButton = OpalRadioButton;
 
 
 /***/ }),
-/* 52 */
+/* 55 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12413,13 +12413,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 53 */
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 54 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12444,8 +12444,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(55);
-var template = __webpack_require__(56);
+__webpack_require__(58);
+var template = __webpack_require__(59);
 var OpalSwitch = /** @class */ (function (_super) {
     __extends(OpalSwitch, _super);
     function OpalSwitch() {
@@ -12587,7 +12587,7 @@ exports.OpalSwitch = OpalSwitch;
 
 
 /***/ }),
-/* 55 */
+/* 58 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12604,13 +12604,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 56 */
+/* 59 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 57 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12634,8 +12634,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(58);
-var template = __webpack_require__(59);
+__webpack_require__(61);
+var template = __webpack_require__(62);
 var OpalSlider = /** @class */ (function (_super) {
     __extends(OpalSlider, _super);
     function OpalSlider() {
@@ -12723,7 +12723,7 @@ exports.OpalSlider = OpalSlider;
 
 
 /***/ }),
-/* 58 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12740,13 +12740,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 59 */
+/* 62 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\n@if-then (if=input.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={input.min},\nmax={input.max},\nstep={input.step},\nvalue={input.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.range.1})\n}\n}\n@if-else (if=input.range) {\ninput/input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.value})\n}\n}"
 
 /***/ }),
-/* 60 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12769,7 +12769,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(61);
+__webpack_require__(64);
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
 var OpalSwitchMenu = /** @class */ (function (_super) {
@@ -12844,7 +12844,7 @@ exports.OpalSwitchMenu = OpalSwitchMenu;
 
 
 /***/ }),
-/* 61 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12861,7 +12861,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 62 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12884,14 +12884,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(63);
-var opal_tab_list_1 = __webpack_require__(64);
+__webpack_require__(66);
+var opal_tab_list_1 = __webpack_require__(67);
 exports.OpalTabList = opal_tab_list_1.OpalTabList;
-var opal_tab_1 = __webpack_require__(15);
+var opal_tab_1 = __webpack_require__(18);
 exports.OpalTab = opal_tab_1.OpalTab;
-var opal_tab_panel_1 = __webpack_require__(68);
+var opal_tab_panel_1 = __webpack_require__(71);
 exports.OpalTabPanel = opal_tab_panel_1.OpalTabPanel;
-var template = __webpack_require__(70);
+var template = __webpack_require__(73);
 var indexOf = Array.prototype.indexOf;
 var forEach = Array.prototype.forEach;
 var OpalTabs = /** @class */ (function (_super) {
@@ -12959,7 +12959,7 @@ exports.OpalTabs = OpalTabs;
 
 
 /***/ }),
-/* 63 */
+/* 66 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12976,7 +12976,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 64 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12999,8 +12999,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(65);
-var opal_tab_1 = __webpack_require__(15);
+__webpack_require__(68);
+var opal_tab_1 = __webpack_require__(18);
 exports.OpalTab = opal_tab_1.OpalTab;
 var OpalTabList = /** @class */ (function (_super) {
     __extends(OpalTabList, _super);
@@ -13020,7 +13020,7 @@ exports.OpalTabList = OpalTabList;
 
 
 /***/ }),
-/* 65 */
+/* 68 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13037,7 +13037,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 66 */
+/* 69 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13054,77 +13054,10 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 67 */
-/***/ (function(module, exports) {
-
-module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content\n}\n}"
-
-/***/ }),
-/* 68 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(0);
-__webpack_require__(69);
-var OpalTabPanel = /** @class */ (function (_super) {
-    __extends(OpalTabPanel, _super);
-    function OpalTabPanel() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    OpalTabPanel = __decorate([
-        rionite_1.d.Component({
-            elementIs: 'opal-tab-panel',
-            input: {
-                shown: false
-            },
-            template: '@section/inner { rt-content/content }'
-        })
-    ], OpalTabPanel);
-    return OpalTabPanel;
-}(rionite_1.Component));
-exports.OpalTabPanel = OpalTabPanel;
-
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".opal-tab-panel{position:relative;display:none;padding:30px}.opal-tab-panel[shown]{display:block}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
 /* 70 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content/tab-list-container (select=opal-tab-list) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab)\n}\n}\nrt-content/panels (select=opal-tab-panel)\n}"
+module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content\n}\n}"
 
 /***/ }),
 /* 71 */
@@ -13149,9 +13082,76 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(72);
+var OpalTabPanel = /** @class */ (function (_super) {
+    __extends(OpalTabPanel, _super);
+    function OpalTabPanel() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    OpalTabPanel = __decorate([
+        rionite_1.d.Component({
+            elementIs: 'opal-tab-panel',
+            input: {
+                shown: false
+            },
+            template: '@section/inner { rt-content/content }'
+        })
+    ], OpalTabPanel);
+    return OpalTabPanel;
+}(rionite_1.Component));
+exports.OpalTabPanel = OpalTabPanel;
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".opal-tab-panel{position:relative;display:none;padding:30px}.opal-tab-panel[shown]{display:block}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports) {
+
+module.exports = "@section/inner {\nrt-content/tab-list-container (select=opal-tab-list) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab)\n}\n}\nrt-content/panels (select=opal-tab-panel)\n}"
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var cellx_1 = __webpack_require__(2);
+var rionite_1 = __webpack_require__(0);
+__webpack_require__(75);
 var openedDropdowns = [];
 var OpalDropdown = /** @class */ (function (_super) {
     __extends(OpalDropdown, _super);
@@ -13286,7 +13286,7 @@ exports.OpalDropdown = OpalDropdown;
 
 
 /***/ }),
-/* 72 */
+/* 75 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13303,7 +13303,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 73 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13327,8 +13327,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(74);
-var template = __webpack_require__(75);
+__webpack_require__(77);
+var template = __webpack_require__(78);
 var OpalPopover = /** @class */ (function (_super) {
     __extends(OpalPopover, _super);
     function OpalPopover() {
@@ -13474,7 +13474,7 @@ exports.OpalPopover = OpalPopover;
 
 
 /***/ }),
-/* 74 */
+/* 77 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13491,13 +13491,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 75 */
+/* 78 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nspan/arrow\nrt-content/content\n}"
 
 /***/ }),
-/* 76 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13521,9 +13521,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-var isFocusable_1 = __webpack_require__(4);
-__webpack_require__(77);
-var template = __webpack_require__(78);
+var isFocusable_1 = __webpack_require__(5);
+__webpack_require__(80);
+var template = __webpack_require__(81);
 var openedModals = [];
 var documentFocusListening;
 var documentKeyUpListening;
@@ -13670,7 +13670,7 @@ exports.OpalModal = OpalModal;
 
 
 /***/ }),
-/* 77 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13687,19 +13687,19 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 78 */
+/* 81 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\ndiv/window {\ndiv/btn-close-wrapper {\nbutton/btn-close\n}\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 79 */
+/* 82 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 18\" id=\"opal-components__icon-chevron-down\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 2l14 14L30 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 80 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13716,7 +13716,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 81 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13738,7 +13738,7 @@ exports.isEqualArray = isEqualArray;
 
 
 /***/ }),
-/* 82 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13763,9 +13763,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(83);
-__webpack_require__(84);
-var template = __webpack_require__(85);
+__webpack_require__(86);
+__webpack_require__(87);
+var template = __webpack_require__(88);
 var OpalSelectOption = /** @class */ (function (_super) {
     __extends(OpalSelectOption, _super);
     function OpalSelectOption() {
@@ -13913,13 +13913,13 @@ exports.OpalSelectOption = OpalSelectOption;
 
 
 /***/ }),
-/* 83 */
+/* 86 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 24\" id=\"opal-components__icon-check\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M2 14l8 8L30 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 84 */
+/* 87 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13936,19 +13936,19 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 85 */
+/* 88 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content { '{input.text}' }\nsvg/icon-check (viewBox=0 0 32 24) { use (xlink:href=#opal-components__icon-check) }\n}\n}"
 
 /***/ }),
-/* 86 */
+/* 89 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content (select=.opal-select__button) {\nopal-button/button (\nview-type={input.viewType},\nsize={input.size},\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n) {\n@if-then (if=input.text) { '{input.text}' }\n@if-else (if=input.text) { '{_buttonText}' }\n' '\nsvg/button-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\n}\nrt-content (select=.opal-select__menu) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content) {\n@if-then (if=_isInputDataListSpecified) {\ndiv/, menu-content {\n@if-then (if=dataList) {\n@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isInputDataListSpecified) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
-/* 87 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13970,12 +13970,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var gettext_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(14);
-var opal_select_1 = __webpack_require__(9);
-__webpack_require__(88);
-var template = __webpack_require__(89);
+__webpack_require__(17);
+var opal_select_1 = __webpack_require__(12);
+__webpack_require__(91);
+var template = __webpack_require__(92);
 var OpalMultiselect = /** @class */ (function (_super) {
     __extends(OpalMultiselect, _super);
     function OpalMultiselect() {
@@ -14020,8 +14021,8 @@ var OpalMultiselect = /** @class */ (function (_super) {
         rionite_1.d.Component({
             elementIs: 'opal-multiselect',
             i18n: {
-                queryInputPlaceholder: rionite_1.getText.t('Поиск'),
-                nothingSelected: rionite_1.getText.t('Ничего не выбрано')
+                queryInputPlaceholder: gettext_1.getText.t('Поиск'),
+                nothingSelected: gettext_1.getText.t('Ничего не выбрано')
             },
             input: {
                 multiple: true,
@@ -14053,7 +14054,7 @@ exports.OpalMultiselect = OpalMultiselect;
 
 
 /***/ }),
-/* 88 */
+/* 91 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14070,13 +14071,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 89 */
+/* 92 */
 /***/ (function(module, exports) {
 
 module.exports = "/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=opal-select__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n)\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\ndiv/btn-deselect-item (data-item-value='{item |key(_viewModelItemValueFieldName) }') {\nsvg/btn-deselect-item-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }\n}\n}\n}\ndiv/nothing-selected (shown={isNothingSelectedShown}) {\nspan/nothing-selected-message { '{constructor.i18n.nothingSelected}' }\n}\n}\ndiv/menu-list {\nopal-loaded-list/loaded-list (\ndata-provider={dataProvider},\ndata-list-item-value-name={_dataListItemValueFieldName}\n) {\nopal-select-option/option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\ndiv/menu-footer {\nopal-button/btn-close { 'Закрыть' }\n}\n}"
 
 /***/ }),
-/* 90 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14100,8 +14101,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(91);
-var opal_input_validator_rule_1 = __webpack_require__(92);
+__webpack_require__(94);
+var opal_input_validator_rule_1 = __webpack_require__(95);
 exports.OpalInputValidatorRule = opal_input_validator_rule_1.OpalInputValidatorRule;
 var map = Array.prototype.map;
 var OpalInputValidator = /** @class */ (function (_super) {
@@ -14189,7 +14190,7 @@ exports.OpalInputValidator = OpalInputValidator;
 
 
 /***/ }),
-/* 91 */
+/* 94 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14206,7 +14207,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 92 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14229,8 +14230,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(93);
-var template = __webpack_require__(94);
+__webpack_require__(96);
+var template = __webpack_require__(97);
 var OpalInputValidatorRule = /** @class */ (function (_super) {
     __extends(OpalInputValidatorRule, _super);
     function OpalInputValidatorRule() {
@@ -14261,7 +14262,7 @@ exports.OpalInputValidatorRule = OpalInputValidatorRule;
 
 
 /***/ }),
-/* 93 */
+/* 96 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14278,13 +14279,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 94 */
+/* 97 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nopal-popover/popover (to={input.popoverTo}) {\nrt-content/content\n}\n}"
 
 /***/ }),
-/* 95 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14309,11 +14310,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(96);
-var formatDate_1 = __webpack_require__(97);
-__webpack_require__(98);
-var parseDate_1 = __webpack_require__(99);
-var template = __webpack_require__(100);
+__webpack_require__(99);
+var formatDate_1 = __webpack_require__(100);
+__webpack_require__(101);
+var parseDate_1 = __webpack_require__(102);
+var template = __webpack_require__(103);
 function getTodayDate() {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -14650,13 +14651,13 @@ exports.OpalCalendar = OpalCalendar;
 
 
 /***/ }),
-/* 96 */
+/* 99 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 28\" id=\"opal-components__icon-arrow-left\"><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M14 2L2 14l12 12M2 14h28\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 97 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14670,7 +14671,7 @@ exports.formatDate = formatDate;
 
 
 /***/ }),
-/* 98 */
+/* 101 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14687,7 +14688,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 99 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14701,13 +14702,13 @@ exports.parseDate = parseDate;
 
 
 /***/ }),
-/* 100 */
+/* 103 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\nopal-select/month-select (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/year-select (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={isBtnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }\n}\n}\ndiv/body {\ndiv/week-days {\ndiv/week-days-row {\n@repeat (for=weekDay of weekDaysShort) {\nspan/week-day { '{weekDay}' }\n}\n}\n}\ndiv/days {\n@repeat (for=weekDays of days) {\ndiv/days-row {\n@repeat (for=day of weekDays) {\nspan/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date}\n) { '{day.value}' }\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
-/* 101 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14729,11 +14730,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var date_exists_1 = __webpack_require__(102);
+var gettext_1 = __webpack_require__(4);
+var date_exists_1 = __webpack_require__(105);
 var rionite_1 = __webpack_require__(0);
-var isFocusable_1 = __webpack_require__(4);
-__webpack_require__(103);
-var template = __webpack_require__(104);
+var isFocusable_1 = __webpack_require__(5);
+__webpack_require__(106);
+var template = __webpack_require__(107);
 function pad(num) {
     return (num < 10 ? '0' : '') + num;
 }
@@ -14857,9 +14859,9 @@ var OpalDateInput = /** @class */ (function (_super) {
                 popoverTo: 'right'
             },
             i18n: {
-                isRequiredField: rionite_1.getText.t('Поле обязательно для заполнения'),
-                nonExistentDate: rionite_1.getText.t('Несуществующая дата'),
-                invalidDateRange: rionite_1.getText.t('Дата вне допустимого диапазона')
+                isRequiredField: gettext_1.getText.t('Поле обязательно для заполнения'),
+                nonExistentDate: gettext_1.getText.t('Несуществующая дата'),
+                invalidDateRange: gettext_1.getText.t('Дата вне допустимого диапазона')
             },
             template: template
         })
@@ -14870,15 +14872,16 @@ exports.OpalDateInput = OpalDateInput;
 
 
 /***/ }),
-/* 102 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
 function dateExists(date) {
     var match = date.match(/\d+/g);
     if (!match) {
-        return false;
+        throw new SyntaxError('Date must be in format "(d)d.(m)m.(yy)yy"');
     }
     var day = +match[0];
     var month = +match[1] - 1;
@@ -14889,12 +14892,11 @@ function dateExists(date) {
     var d = new Date(year, month, day);
     return day == d.getDate() && month == d.getMonth() && year == d.getFullYear();
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = dateExists;
+exports.dateExists = dateExists;
 
 
 /***/ }),
-/* 103 */
+/* 106 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14911,13 +14913,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 104 */
+/* 107 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nopal-input-validator/input-validator {\n@if-then (if=input.required) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-to={input.popoverTo}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={input.popoverTo}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (test=isDateInRange, popover-to={input.popoverTo}) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={input.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={input.value},\nplaceholder={input.placeholder},\nclearable\n)\n}\n}\nopal-dropdown/calendar-menu (auto-height=no) {\nopal-calendar/calendar (from-date={input.fromDate}, to-date={input.toDate}, value={input.value}, date-delimiter=.)\n}\n}"
 
 /***/ }),
-/* 105 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14940,7 +14942,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(106);
+__webpack_require__(109);
 var OpalLoader = /** @class */ (function (_super) {
     __extends(OpalLoader, _super);
     function OpalLoader() {
@@ -14961,7 +14963,7 @@ exports.OpalLoader = OpalLoader;
 
 
 /***/ }),
-/* 106 */
+/* 109 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14978,7 +14980,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 107 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15000,12 +15002,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var mixin_1 = __webpack_require__(5);
+var gettext_1 = __webpack_require__(4);
+var mixin_1 = __webpack_require__(6);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(108);
-var template = __webpack_require__(109);
+__webpack_require__(111);
+var template = __webpack_require__(112);
 var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var OpalLoadedList = /** @class */ (function (_super) {
     __extends(OpalLoadedList, _super);
@@ -15182,7 +15185,7 @@ var OpalLoadedList = /** @class */ (function (_super) {
                 preloading: { default: false, readonly: true }
             },
             i18n: {
-                nothingFound: rionite_1.getText.t('Ничего не найдено')
+                nothingFound: gettext_1.getText.t('Ничего не найдено')
             },
             template: template
         })
@@ -15194,7 +15197,7 @@ exports.OpalLoadedList = OpalLoadedList;
 
 
 /***/ }),
-/* 108 */
+/* 111 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15211,13 +15214,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 109 */
+/* 112 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\ndiv/list {\n@repeat (for=$item of dataList) {\nrt-content/list-item (clone, get-context={_getListItemContext}) {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nopal-loader/loader (shown={isLoaderShown}, align-center={empty})\n@if-then (if=isNothingFoundShown) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}"
 
 /***/ }),
-/* 110 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15239,11 +15242,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var debounce_throttle_1 = __webpack_require__(111);
+var debounce_throttle_1 = __webpack_require__(114);
+var gettext_1 = __webpack_require__(4);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(114);
-__webpack_require__(115);
-var template = __webpack_require__(116);
+__webpack_require__(117);
+__webpack_require__(118);
+var template = __webpack_require__(119);
 var OpalFilteredList = /** @class */ (function (_super) {
     __extends(OpalFilteredList, _super);
     function OpalFilteredList() {
@@ -15275,7 +15279,7 @@ var OpalFilteredList = /** @class */ (function (_super) {
         rionite_1.d.Component({
             elementIs: 'opal-filtered-list',
             i18n: {
-                queryInputPlaceholder: rionite_1.getText.t('Поиск')
+                queryInputPlaceholder: gettext_1.getText.t('Поиск')
             },
             template: template
         })
@@ -15286,20 +15290,20 @@ exports.OpalFilteredList = OpalFilteredList;
 
 
 /***/ }),
-/* 111 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var debounce_1 = __webpack_require__(112);
+var debounce_1 = __webpack_require__(115);
 exports.debounce = debounce_1.debounce;
-var throttle_1 = __webpack_require__(113);
+var throttle_1 = __webpack_require__(116);
 exports.throttle = throttle_1.throttle;
 
 
 /***/ }),
-/* 112 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15371,7 +15375,7 @@ exports.debounce = debounce;
 
 
 /***/ }),
-/* 113 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15440,13 +15444,13 @@ exports.throttle = throttle;
 
 
 /***/ }),
-/* 114 */
+/* 117 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 28 28\" id=\"opal-components__icon-search\"><circle cx=\"11\" cy=\"11\" r=\"9\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"currentcolor\" stroke-width=\"3\" fill=\"none\"/><path stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" fill=\"none\" d=\"M18 18l8 8\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 115 */
+/* 118 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15463,13 +15467,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 116 */
+/* 119 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input) {\nopal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder}, clearable) {\nsvg/control-icon-search (class=opal-text-input__control-icon, viewBox=0 0 28 28) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\n}\nrt-content/list-container (select=.opal-filtered-list__list)\n}"
 
 /***/ }),
-/* 117 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15484,7 +15488,7 @@ exports.default = closestComponent;
 
 
 /***/ }),
-/* 118 */
+/* 121 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15501,7 +15505,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 119 */
+/* 122 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15518,19 +15522,19 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 120 */
+/* 123 */
 /***/ (function(module, exports) {
 
 module.exports = "div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={input.opened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }\n}\nspan/content-wrapper {\nrt-content/content (clone)\n}\n}\n@if-then (if=dataTreeListItem.children) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item/item (\ndata-tree-list={input.dataTreeList},\nfiltered-data-tree-list={input.filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{input.indexpath},{$index}]',\nquery={input.query},\nopened={input.query},\nnesting-level={input.indexpath.length},\nhas-children='{$item |has(\"children\") }'\n) {\nrt-content (clone, get-context={_getListItemContext})\n}\n}\n}\n}"
 
 /***/ }),
-/* 121 */
+/* 124 */
 /***/ (function(module, exports) {
 
 module.exports = "@if-then (if=dataTreeList) {\n@if-then (if=filteredDataTreeList.length) {\n@repeat (for=$item of filteredDataTreeList) {\nopal-tree-list-item/item (\ndata-tree-list={dataTreeList},\nfiltered-data-tree-list={filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={input.query},\nopened={input.query},\nnesting-level=0,\nhas-children='{$item |has(\"children\") }'\n) {\nrt-content (clone, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=filteredDataTreeList.length) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'Ничего не найдено'\n}\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}"
 
 /***/ }),
-/* 122 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15552,11 +15556,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var gettext_1 = __webpack_require__(4);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(123);
-var template = __webpack_require__(124);
+__webpack_require__(126);
+var template = __webpack_require__(127);
 var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 var OpalTagSelect = /** @class */ (function (_super) {
@@ -15670,7 +15675,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
                 value: eval,
                 viewModel: { type: Object },
                 viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
-                placeholder: rionite_1.getText.t('Не выбрано'),
+                placeholder: gettext_1.getText.t('Не выбрано'),
                 popoverTo: 'bottom',
                 disabled: false
             },
@@ -15693,7 +15698,7 @@ exports.OpalTagSelect = OpalTagSelect;
 
 
 /***/ }),
-/* 123 */
+/* 126 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15710,13 +15715,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 124 */
+/* 127 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndata-list={dataList},\ndata-list-item-schema={input.dataListItemSchema |json },\nadd-new-item={input.addNewItem},\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_isInputDataListSpecified) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/data-list-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isInputDataListSpecified) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
-/* 125 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15740,10 +15745,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-var opal_select_1 = __webpack_require__(9);
-var opal_tree_list_1 = __webpack_require__(16);
-__webpack_require__(126);
-var template = __webpack_require__(127);
+var opal_select_1 = __webpack_require__(12);
+var opal_tree_list_1 = __webpack_require__(19);
+__webpack_require__(129);
+var template = __webpack_require__(130);
 var OpalTreeSelect = /** @class */ (function (_super) {
     __extends(OpalTreeSelect, _super);
     function OpalTreeSelect() {
@@ -15792,7 +15797,7 @@ exports.OpalTreeSelect = OpalTreeSelect;
 
 
 /***/ }),
-/* 126 */
+/* 129 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15809,13 +15814,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 127 */
+/* 130 */
 /***/ (function(module, exports) {
 
 module.exports = "opal-modal/menu {\nopal-filtered-list/filtered-list {\nopal-tree-list/tree-list (\nclass=opal-filtered-list__list,\ndata-tree-list={dataTreeList},\ndata-tree-list-item-schema={input.dataTreeListItemSchema},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema},\nquery={input.query}\n) {\nopal-select-option/option (class=opal-tree-list__selection-control, text={$item.name}, selected={$selected})\n}\n}\ndiv/footer {\nopal-button/btn-close {\n'Готово'\n}\n}\n}"
 
 /***/ }),
-/* 128 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15837,12 +15842,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var gettext_1 = __webpack_require__(4);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var isFocusable_1 = __webpack_require__(4);
-__webpack_require__(129);
-var template = __webpack_require__(130);
+var isFocusable_1 = __webpack_require__(5);
+__webpack_require__(132);
+var template = __webpack_require__(133);
 function toComparable(str) {
     return str.replace(/\s+/g, ' ').toLowerCase();
 }
@@ -16149,8 +16155,8 @@ var OpalAutosuggest = /** @class */ (function (_super) {
                 openMenuOnNothingFound: false
             },
             i18n: {
-                textInputPlaceholder: rionite_1.getText.t('Начните вводить для поиска'),
-                nothingFound: rionite_1.getText.t('Ничего не найдено')
+                textInputPlaceholder: gettext_1.getText.t('Начните вводить для поиска'),
+                nothingFound: gettext_1.getText.t('Ничего не найдено')
             },
             template: template,
             domEvents: {
@@ -16178,7 +16184,7 @@ exports.OpalAutosuggest = OpalAutosuggest;
 
 
 /***/ }),
-/* 129 */
+/* 132 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16195,13 +16201,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 130 */
+/* 133 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue='{input.value |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nsvg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 28 28) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nspan/nothing-found-message (shown={dataList.length |not }) {\n'{constructor.i18n.nothingFound}'\n}\n}\n}"
 
 /***/ }),
-/* 131 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16223,14 +16229,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var next_uid_1 = __webpack_require__(16);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(132);
-var opal_multirow_row_1 = __webpack_require__(133);
+__webpack_require__(135);
+var opal_multirow_row_1 = __webpack_require__(136);
 exports.OpalMultirowRow = opal_multirow_row_1.OpalMultirowRow;
-var template = __webpack_require__(136);
-var nextUID = cellx_1.Utils.nextUID;
+var template = __webpack_require__(139);
 var filter = Array.prototype.filter;
 var OpalMultirow = /** @class */ (function (_super) {
     __extends(OpalMultirow, _super);
@@ -16249,7 +16255,7 @@ var OpalMultirow = /** @class */ (function (_super) {
     OpalMultirow.prototype.ready = function () {
         var presetRowCount = this._presetRowCount = filter.call(this.element.getElementsByClassName('opal-multirow-row'), function (rowEl) { return rowEl.$component.input.preset; }).length;
         if (!presetRowCount) {
-            this._newRows.add({ key: nextUID() });
+            this._newRows.add({ key: next_uid_1.nextUID() });
         }
     };
     OpalMultirow.prototype.elementAttached = function () {
@@ -16276,7 +16282,7 @@ var OpalMultirow = /** @class */ (function (_super) {
     };
     OpalMultirow.prototype._onAddRowClick = function () {
         var _this = this;
-        this._newRows.add({ key: nextUID() });
+        this._newRows.add({ key: next_uid_1.nextUID() });
         setTimeout(function () {
             _this.emit('add-row');
             _this.emit('change');
@@ -16307,7 +16313,7 @@ exports.OpalMultirow = OpalMultirow;
 
 
 /***/ }),
-/* 132 */
+/* 135 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16324,7 +16330,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 133 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16347,8 +16353,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(134);
-var template = __webpack_require__(135);
+__webpack_require__(137);
+var template = __webpack_require__(138);
 var OpalMultirowRow = /** @class */ (function (_super) {
     __extends(OpalMultirowRow, _super);
     function OpalMultirowRow() {
@@ -16381,7 +16387,7 @@ exports.OpalMultirowRow = OpalMultirowRow;
 
 
 /***/ }),
-/* 134 */
+/* 137 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16398,19 +16404,19 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 135 */
+/* 138 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content/content\n' '\nopal-sign-button/btn-remove-row (sign=minus)\n' '\nopal-sign-button/btn-add-row (sign=plus)\n}"
 
 /***/ }),
-/* 136 */
+/* 139 */
 /***/ (function(module, exports) {
 
 module.exports = "@section/inner {\nrt-content/preset-rows-container (\nselect='opal-multirow-row[preset], .opal-multirow__preset-rows',\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n)\ndiv/new-rows (not-single-row={_notSingleRow}) {\n@repeat (for=row of _newRows, track-by=key) {\nrt-content/new-row-container (select='opal-multirow-row:not([preset])', clone, data-key={row.key})\n}\n}\n}"
 
 /***/ }),
-/* 137 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16432,23 +16438,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var created_browser_history_1 = __webpack_require__(138);
+var escape_html_1 = __webpack_require__(10);
+var created_browser_history_1 = __webpack_require__(141);
 var rionite_1 = __webpack_require__(0);
-var escapeRegExp_1 = __webpack_require__(146);
-__webpack_require__(147);
-var opal_route_1 = __webpack_require__(148);
+var escapeRegExp_1 = __webpack_require__(149);
+__webpack_require__(150);
+var opal_route_1 = __webpack_require__(151);
 exports.OpalRoute = opal_route_1.OpalRoute;
-var parsePath_1 = __webpack_require__(149);
-var PathNodeType_1 = __webpack_require__(22);
+var parsePath_1 = __webpack_require__(152);
+var PathNodeType_1 = __webpack_require__(25);
 var hyphenize = rionite_1.Utils.hyphenize;
-var escapeHTML = rionite_1.Utils.escapeHTML;
 var forEach = Array.prototype.forEach;
 function isReadonlyProperty(propConfig) {
     return propConfig && typeof propConfig == 'object' &&
         (propConfig.type !== undefined || propConfig.default !== undefined) && propConfig.readonly;
 }
 function valueToAttributeValue(value) {
-    return "" + (value === false ? 'no' : (value === true ? 'yes' : escapeHTML(value)));
+    return "" + (value === false ? 'no' : (value === true ? 'yes' : escape_html_1.escapeHTML(value)));
 }
 var OpalRouter = /** @class */ (function (_super) {
     __extends(OpalRouter, _super);
@@ -16659,20 +16665,20 @@ exports.OpalRouter = OpalRouter;
 
 
 /***/ }),
-/* 138 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var createBrowserHistory_1 = __webpack_require__(139);
+var createBrowserHistory_1 = __webpack_require__(142);
 var history = createBrowserHistory_1.default();
 exports.history = history;
 exports.default = history;
 
 
 /***/ }),
-/* 139 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16684,23 +16690,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _warning = __webpack_require__(20);
+var _warning = __webpack_require__(23);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(140);
+var _invariant = __webpack_require__(143);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _LocationUtils = __webpack_require__(141);
+var _LocationUtils = __webpack_require__(144);
 
-var _PathUtils = __webpack_require__(21);
+var _PathUtils = __webpack_require__(24);
 
-var _createTransitionManager = __webpack_require__(144);
+var _createTransitionManager = __webpack_require__(147);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
-var _DOMUtils = __webpack_require__(145);
+var _DOMUtils = __webpack_require__(148);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16985,7 +16991,7 @@ var createBrowserHistory = function createBrowserHistory() {
 exports.default = createBrowserHistory;
 
 /***/ }),
-/* 140 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17043,7 +17049,7 @@ module.exports = invariant;
 
 
 /***/ }),
-/* 141 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17054,15 +17060,15 @@ exports.locationsAreEqual = exports.createLocation = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _resolvePathname = __webpack_require__(142);
+var _resolvePathname = __webpack_require__(145);
 
 var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
 
-var _valueEqual = __webpack_require__(143);
+var _valueEqual = __webpack_require__(146);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
-var _PathUtils = __webpack_require__(21);
+var _PathUtils = __webpack_require__(24);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17127,7 +17133,7 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 };
 
 /***/ }),
-/* 142 */
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17204,7 +17210,7 @@ function resolvePathname(to) {
 /* harmony default export */ __webpack_exports__["default"] = (resolvePathname);
 
 /***/ }),
-/* 143 */
+/* 146 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17249,7 +17255,7 @@ function valueEqual(a, b) {
 /* harmony default export */ __webpack_exports__["default"] = (valueEqual);
 
 /***/ }),
-/* 144 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17257,7 +17263,7 @@ function valueEqual(a, b) {
 
 exports.__esModule = true;
 
-var _warning = __webpack_require__(20);
+var _warning = __webpack_require__(23);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -17340,7 +17346,7 @@ var createTransitionManager = function createTransitionManager() {
 exports.default = createTransitionManager;
 
 /***/ }),
-/* 145 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17401,7 +17407,7 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 };
 
 /***/ }),
-/* 146 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17415,7 +17421,7 @@ exports.escapeRegExp = escapeRegExp;
 
 
 /***/ }),
-/* 147 */
+/* 150 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -17432,7 +17438,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 148 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17475,13 +17481,13 @@ exports.OpalRoute = OpalRoute;
 
 
 /***/ }),
-/* 149 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType_1 = __webpack_require__(22);
+var PathNodeType_1 = __webpack_require__(25);
 var reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
     var ctx = PathNodeType_1.PathNodeType.SIMPLE;
@@ -17634,7 +17640,7 @@ exports.parsePath = parsePath;
 
 
 /***/ }),
-/* 150 */
+/* 153 */
 /***/ (function(module, exports) {
 
 module.exports = "h1 { 'opal-button' }\np {\nopal-button { 'Button' } ' '\nopal-button (view-type=primary) { 'Button' } ' '\nopal-button (view-type=danger) { 'Button' } ' '\n}\np {\nopal-button (disabled) { 'Button' } ' '\nopal-button (view-type=primary, disabled) { 'Button' } ' '\nopal-button (view-type=danger, disabled) { 'Button' } ' '\n}\np {\nopal-button (size=s) { 'Button' } ' '\nopal-button (view-type=primary, size=s) { 'Button' } ' '\nopal-button (view-type=danger, size=s) { 'Button' } ' '\n}\np {\nopal-button (loading) { 'Button' } ' '\nopal-button (view-type=primary, loading) { 'Button' } ' '\nopal-button (view-type=danger, loading) { 'Button' } ' '\n}\np {\nopal-button (loading, disabled) { 'Button' } ' '\nopal-button (view-type=primary, loading, disabled) { 'Button' } ' '\nopal-button (view-type=danger, loading, disabled) { 'Button' } ' '\n}\nh1 { 'opal-sign-button' }\np {\nopal-sign-button (sign=plus) { 'Button' }\n}\np {\nopal-sign-button (sign=minus) { 'Button' }\n}\nh1 { 'opal-text-input' }\np {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\np {\nopal-text-input (value=Value, disabled)\n}\np {\nopal-text-input (placeholder=Placeholder, disabled)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, clearable)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, loading)\n}\np {\nopal-text-input (multiline, placeholder=Placeholder)\n}\nh1 { 'opal-input-mask' }\np {\nopal-input-mask (mask=99/99/9999) {\nopal-text-input (class=opal-input-mask__text-input, placeholder=dd/mm/yyyy)\n}\n}\np {\nopal-input-mask (mask='+7 (999) 999-9999? доб. 9999') {\nopal-text-input (class=opal-input-mask__text-input, placeholder=Телефон)\n}\n}\np {\nopal-input-mask (mask=#ffffff) {\nopal-input-mask-definition (mask-char=f, regex=/[0-9a-f]/i)\nopal-text-input (class=opal-input-mask__text-input, placeholder=Цвет)\n}\n}\nh1 { 'opal-group' }\np {\nopal-group {\nopal-button { 'Button' }\nopal-button (view-type=primary) { 'Button' }\nopal-button (view-type=danger) { 'Button' }\n}\n}\np {\nopal-group {\nopal-button { 'Button' }\nopal-text-input (value=Value, placeholder=Placeholder)\nopal-button (view-type=primary) { 'Button' }\n}\n}\nh1 { 'opal-checkbox' }\np {\nopal-checkbox { 'Label' } ' '\nopal-checkbox (checked) { 'Label' } ' '\nopal-checkbox (indeterminate) { 'Label' }\nbr br\nopal-checkbox (disabled) { 'Label' } ' '\nopal-checkbox (checked, disabled) { 'Label' } ' '\nopal-checkbox (indeterminate, disabled) { 'Label' }\n}\nh1 { 'opal-radio-group' }\np {\nopal-radio-group {\nopal-radio-button { 'Label' } ' '\nopal-radio-button (checked) { 'Label' }\nbr br\nopal-radio-button (disabled) { 'Label' } ' '\nopal-radio-button (checked, disabled) { 'Label' }\n}\n}\nh1 { 'opal-switch' }\np {\nopal-switch { 'Label' } ' '\nopal-switch (checked) { 'Label' }\nbr br\nopal-switch (disabled) { 'Label' } ' '\nopal-switch (checked, disabled) { 'Label' }\n}\nh1 { 'opal-slider' }\np {\nopal-slider br\nopal-slider (min=-100, max=100, step=20, value=40) br\nopal-slider (range='[20, 80]')\n}\nh1 { 'opal-switch-menu' }\np {\nopal-switch-menu {\nopal-button (checkable, checked) { 'Option 1' }\nopal-button (checkable) { 'Option 2' }\nopal-button (checkable) { 'Option 3' }\n}\n}\nh1 { 'opal-tabs' }\np {\nopal-tabs {\nopal-tab (selected) { 'Foo' }\nopal-tab { 'Bar' }\nopal-tab { 'Baz' }\nopal-tab-panel { 'Hello Foo' }\nopal-tab-panel { 'Hello Bar' }\nopal-tab-panel { 'Hello Baz' }\n}\n}\nh1 { 'opal-popover' }\np {\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (from=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=right, to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=bottom, to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;) {\nopal-popover (from=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=top, to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=right, from=left, to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\n}\nh1 { 'opal-modal' }\np {\nopal-modal (id=modal1) { 'Modal' }\nopal-button (onclick='document.getElementById(\"modal1\").$component.open();') { 'Open' }\n}\nh1 { 'opal-select' }\np {\nopal-select (placeholder=Select) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\nopal-select-option (text='Option 4 (disabled)', disabled)\nopal-select-option (text=Option 5)\nopal-select-option (text='Option 6 (disabled)', disabled)\n}\n}\np {\nopal-select (multiple, placeholder=Select) {\nopal-select-option (text=Option 1, selected)\nopal-select-option (text=Option 2, selected)\nopal-select-option (text=Option 3)\nopal-select-option (text=Option 4)\nopal-select-option (text=Option 5)\n}\n}\np {\nopal-select (\nmultiple,\ndata-list={dataList1},\ndata-list-item-schema='{ value: \"id\", text: \"name\" }',\nview-model-item-schema='{ value: \"id\", text: \"name\" }',\nadd-new-item={addNewItem1},\nplaceholder=Select\n) {\nopal-text-input (class=opal-select__new-item-input)\n}\n}\np {\nopal-group {\nopal-select (placeholder=Select) {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\nopal-select (view-type=primary, placeholder=Select) {\nopal-popover (class=opal-select__menu, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\n}\n}\nh1 { 'opal-calendar' }\np {\nopal-calendar (from-date=today)\n}\nh1 { 'opal-date-input' }\np {\nopal-date-input\n}\np {\nopal-date-input (mask=99.99.9999, placeholder=dd.mm.yyyy, required)\n}\nh1 { 'opal-loader' }\np {\nopal-loader (shown)\nopal-loader (size=s, shown)\n}\nh1 { 'opal-filtered-list' }\np {\nopal-filtered-list {\nopal-loaded-list (class=opal-filtered-list__list, data-provider={dataProvider1}) {\n'{$item.name}'\n}\n}\n}\nh1 { 'opal-tree-list' }\np {\nopal-filtered-list {\nopal-tree-list (class=opal-filtered-list__list, data-tree-list={dataTreeList1}) {\nopal-checkbox (\nclass=opal-tree-list__selection-control,\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item.name}'\n}\n}\n}\n}\nh1 { 'opal-select + opal-loaded-list' }\np {\nopal-select {\nopal-dropdown (class=opal-select__menu, auto-height=no, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select (multiple, view-model={viewModel1}, view-model-item-schema='{ value: \"id\", text: \"name\" }') {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select (multiple) {\nopal-popover (class=opal-select__menu, to=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n}\n}\nh1 { 'opal-tree-select' }\np {\nopal-tree-select (data-tree-list={dataTreeList1})\n}\nh1 { 'opal-autosuggest' }\np {\nopal-autosuggest (data-provider={dataProvider2}, open-menu-on-nothing-found)\n}\nh1 { 'opal-tag-select' }\np {\nopal-tag-select (data-provider={dataProvider1}, placeholder='') br\nopal-tag-select (view-type=primary, data-provider={dataProvider1}) br\nopal-tag-select (\nview-type=danger,\ndata-provider={dataProvider1},\nadd-new-item={addNewItem1},\nview-model={viewModel1}\n) {\nopal-text-input (class=opal-select__new-item-input opal-filtered-list__query-input)\n}\n}\nh1 { 'opal-multirow' }\np {\nopal-multirow {\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\nopal-multirow-row {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\n}\n}"

@@ -1,9 +1,9 @@
+import { getText } from '@riim/gettext';
 import { Cell, IEvent, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import {
 	Component,
 	d,
-	getText,
 	IDisposableCallback,
 	IDisposableListening,
 	IDisposableTimeout

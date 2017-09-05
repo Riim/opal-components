@@ -77,8 +77,11 @@ module.exports = (env) => {
 
 		externals: [
 			'@riim/debounce-throttle',
+			'@riim/escape-html',
+			'@riim/gettext',
 			'@riim/mixin',
 			'@riim/next-tick',
+			'@riim/next-uid',
 			'cellx',
 			'cellx-decorators',
 			'created-browser-history',

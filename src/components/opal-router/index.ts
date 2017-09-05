@@ -1,3 +1,4 @@
+import { escapeHTML } from '@riim/escape-html';
 import { history, Location } from 'created-browser-history';
 import {
 	Component,
@@ -12,7 +13,6 @@ import { parsePath } from './parsePath';
 import { PathNodeType } from './PathNodeType';
 
 let hyphenize = Utils.hyphenize;
-let escapeHTML = Utils.escapeHTML;
 
 let forEach = Array.prototype.forEach;
 

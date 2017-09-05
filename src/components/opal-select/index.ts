@@ -1,3 +1,4 @@
+import { getText } from '@riim/gettext';
 import { nextTick } from '@riim/next-tick';
 import {
 	Cell,
@@ -10,7 +11,6 @@ import {
 	Component,
 	Components,
 	d,
-	getText,
 	IComponentElement,
 	IDisposableListening
 	} from 'rionite';

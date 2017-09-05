@@ -1,10 +1,10 @@
+import { getText } from '@riim/gettext';
 import { mixin } from '@riim/mixin';
 import { Cell, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import {
 	Component,
 	d,
-	getText,
 	IDisposableCallback,
 	IDisposableTimeout
 	} from 'rionite';
