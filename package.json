@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.27.90",
+  "version": "0.27.91",
   "description": "",
   "main": "dist/OpalComponents.js",
   "typings": "dist/src/index.d.ts",
@@ -50,6 +50,7 @@
     "@riim/debounce-throttle": "^1.0.0",
     "@riim/escape-html": "^1.1.1",
     "@riim/gettext": "^1.1.1",
+    "@riim/hyphenize": "^1.0.0",
     "@riim/mixin": "^1.0.0",
     "@riim/next-tick": "^1.0.0",
     "@riim/next-uid": "^1.0.0",
@@ -58,6 +59,6 @@
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.1",
     "prismjs": "^1.6.0",
-    "rionite": "^0.27.61"
+    "rionite": "^0.27.62"
   }
 }

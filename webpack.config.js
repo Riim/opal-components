@@ -79,6 +79,7 @@ module.exports = (env) => {
 			'@riim/debounce-throttle',
 			'@riim/escape-html',
 			'@riim/gettext',
+			'@riim/hyphenize',
 			'@riim/mixin',
 			'@riim/next-tick',
 			'@riim/next-uid',

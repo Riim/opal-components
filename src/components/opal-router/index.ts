@@ -1,18 +1,12 @@
 import { escapeHTML } from '@riim/escape-html';
+import { hyphenize } from '@riim/hyphenize';
 import { history, Location } from 'created-browser-history';
-import {
-	Component,
-	d,
-	IComponentElement,
-	Utils
-	} from 'rionite';
+import { Component, d, IComponentElement } from 'rionite';
 import { escapeRegExp } from './escapeRegExp';
 import './index.css';
 import { OpalRoute } from './opal-route';
 import { parsePath } from './parsePath';
 import { PathNodeType } from './PathNodeType';
-
-let hyphenize = Utils.hyphenize;
 
 let forEach = Array.prototype.forEach;
 
@@ -188,8 +182,8 @@ export class OpalRouter extends Component {
 					if (writable) {
 						for (let name in state) {
 							if (
-								componentEl.getAttribute(hyphenize(name)) !== valueToAttributeValue(state[name]) &&
-									isReadonlyProperty(inputConfig[name])
+								componentEl.getAttribute(hyphenize(name, true)) !==
+									valueToAttributeValue(state[name]) && isReadonlyProperty(inputConfig[name])
 							) {
 								writable = false;
 								break;
@@ -253,7 +247,7 @@ export class OpalRouter extends Component {
 		let componentEl = this._componentElement!;
 
 		for (let name in state) {
-			componentEl.setAttribute(hyphenize(name), valueToAttributeValue(state[name]));
+			componentEl.setAttribute(hyphenize(name, true), valueToAttributeValue(state[name]));
 		}
 	}
 
