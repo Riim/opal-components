@@ -10,7 +10,6 @@ rt-content (select=.opal-select__button) {
 	) {
 		@if-then (if=input.text) { '{input.text}' }
 		@if-else (if=input.text) { '{_buttonText}' }
-		' '
 		svg/button-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-bottom) }
 	}
 }
