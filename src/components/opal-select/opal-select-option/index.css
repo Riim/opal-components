@@ -62,7 +62,11 @@
 			margin: auto;
 			width: 16px;
 			height: 16px;
-			color: hsl(0,0%,20%);
+			stroke-width: 3px;
+			stroke: #000;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			fill: none;
 		}
 
 	@mod selected {

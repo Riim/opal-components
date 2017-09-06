@@ -1,6 +1,6 @@
 div/head {
 	opal-button/btn-toggle-children (view-type=clean, checkable, checked={input.opened}) {
-		svg/btn-toggle-children-icon (viewBox=0 0 32 18) { use (xlink:href=#opal-components__icon-chevron-down) }
+		svg/btn-toggle-children-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-bottom) }
 	}
 
 	span/content-wrapper {

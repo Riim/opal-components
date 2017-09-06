@@ -1,10 +1,10 @@
 import { Cell, IEvent, ObservableList } from 'cellx';
 import { Component, IComponentElement, IDisposableListening } from 'rionite';
-import '../../assets/icons/opal-components__icon-chevron-down.svg';
 import { OpalButton } from '../opal-button';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 import { OpalSelectOption } from './opal-select-option';
+import '../../../node_modules/bytesize-icons/dist/icons/chevron-bottom.svg?id=opal-components__icon-chevron-bottom';
 export interface IDataListItem {
     [name: string]: any;
 }

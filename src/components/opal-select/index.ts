@@ -14,7 +14,6 @@ import {
 	IComponentElement,
 	IDisposableListening
 	} from 'rionite';
-import '../../assets/icons/opal-components__icon-chevron-down.svg';
 import { isFocusable } from '../../utils/isFocusable';
 import { OpalButton } from '../opal-button';
 import { OpalDropdown } from '../opal-dropdown';
@@ -24,6 +23,7 @@ import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 import { isEqualArray } from './isEqualArray';
 import { OpalSelectOption } from './opal-select-option';
+import '../../../node_modules/bytesize-icons/dist/icons/chevron-bottom.svg?id=opal-components__icon-chevron-bottom';
 import template = require('./template.nelm');
 
 let { RtIfThen, RtRepeat } = Components;

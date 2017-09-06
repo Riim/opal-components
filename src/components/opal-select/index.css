@@ -21,12 +21,19 @@
 		}
 	}
 		@el button-icon {
+			position: relative;
+			top: -1px;
 			display: inline-block;
 			margin-left: .25em;
 			width: 14px;
 			height: 14px;
 			vertical-align: middle;
 			transition: transform .1s linear;
+			stroke-width: 3px;
+			stroke: currentColor;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			fill: none;
 		}
 
 	@el menu {

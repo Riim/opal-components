@@ -1,6 +1,6 @@
 import { getText } from '@riim/gettext';
 import { IEvent } from 'cellx';
-import dateExists from 'date-exists';
+import { dateExists } from 'date-exists';
 import { Component, d, IDisposableListening } from 'rionite';
 import { isFocusable } from '../../utils/isFocusable';
 import { OpalCalendar } from '../opal-calendar';
@@ -8,6 +8,7 @@ import { OpalDropdown } from '../opal-dropdown';
 import { OpalInputValidator } from '../opal-input-validator';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
+import '../../../node_modules/bytesize-icons/dist/icons/calendar.svg?id=opal-components__icon-calendar';
 import template = require('./template.nelm');
 
 function pad(num: number): string {

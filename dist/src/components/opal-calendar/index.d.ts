@@ -1,8 +1,8 @@
 import { Cell, IEvent } from 'cellx';
 import { Component, IDisposableListening } from 'rionite';
-import '../../assets/icons/opal-components__icon-arrow-left.svg';
 import { OpalSelectOption } from '../opal-select';
 import './index.css';
+import '../../../node_modules/bytesize-icons/dist/icons/chevron-left.svg?id=opal-components__icon-chevron-left';
 export interface IDay {
     date: string;
     value: number;

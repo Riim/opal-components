@@ -73,8 +73,13 @@
 					@el btn-deselect-item-icon {
 						display: block;
 						margin: auto;
-						width: 14px;
-						height: 14px;
+						width: 16px;
+						height: 16px;
+						stroke-width: 3px;
+						stroke: currentColor;
+						stroke-linecap: round;
+						stroke-linejoin: round;
+						fill: none;
 					}
 
 			@el nothing-selected {

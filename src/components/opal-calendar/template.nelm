@@ -2,7 +2,7 @@
 
 header/header {
 	button/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {
-		svg/btn-prev-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }
+		svg/btn-prev-month-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-left) }
 	}
 
 	opal-select/month-select (size=s, value=['{shownMonth}']) {
@@ -18,7 +18,7 @@ header/header {
 	}
 
 	button/btn-next-month (disabled={isBtnNextMonthDisabled}) {
-		svg/btn-next-month-icon (viewBox=0 0 32 28) { use (xlink:href=#opal-components__icon-arrow-left) }
+		svg/btn-next-month-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-left) }
 	}
 }
 

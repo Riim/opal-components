@@ -2,8 +2,8 @@ import { nextTick } from '@riim/next-tick';
 import { Cell, IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
 import { Component, d } from 'rionite';
-import '../../assets/icons/opal-components__icon-cross.svg';
 import './index.css';
+import '../../../node_modules/bytesize-icons/dist/icons/close.svg?id=opal-components__icon-close';
 import template = require('./template.nelm');
 
 @d.Component<OpalTextInput>({

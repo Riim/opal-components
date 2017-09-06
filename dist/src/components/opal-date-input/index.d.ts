@@ -1,9 +1,10 @@
 import { IEvent } from 'cellx';
-import dateExists from 'date-exists';
+import { dateExists } from 'date-exists';
 import { Component, IDisposableListening } from 'rionite';
 import { OpalCalendar } from '../opal-calendar';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
+import '../../../node_modules/bytesize-icons/dist/icons/calendar.svg?id=opal-components__icon-calendar';
 export declare class OpalDateInput extends Component {
     dateExists: typeof dateExists;
     isDateInRange(date: string): boolean;

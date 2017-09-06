@@ -8,7 +8,8 @@
 			position: relative;
 			display: table-cell;
 			visibility: hidden;
-			padding-right: 4px;
+			padding-right: 6px;
+			padding-left: 2px;
 			vertical-align: middle;
 			text-align: center;
 
@@ -18,9 +19,9 @@
 				body:not(._no-focus-highlight) &::after {
 					position: absolute;
 					top: 1px;
-					right: 2px;
+					right: 4px;
 					bottom: 1px;
-					left: -2px;
+					left: 0;
 					border-radius: 2px;
 					box-shadow: inset 0 0 0 1px hsl(208,100%,60%);
 					content: '';
@@ -40,6 +41,11 @@
 				height: 14px;
 				transition: transform .1s linear;
 				transform: rotate(-90deg);
+				stroke-width: 3px;
+				stroke: currentColor;
+				stroke-linecap: round;
+				stroke-linejoin: round;
+				fill: none;
 			}
 
 		@el content-wrapper {
@@ -53,7 +59,7 @@
 
 	@el children {
 		display: none;
-		padding-left: 16px;
+		padding-left: 24px;
 	}
 
 	@mod opened {

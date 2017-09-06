@@ -2,11 +2,11 @@ import { getText } from '@riim/gettext';
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
 import { d, Template } from 'rionite';
-import '../../assets/icons/opal-components__icon-cross.svg';
 import { IDataProvider, OpalLoadedList } from '../opal-loaded-list';
 import { OpalSelect } from '../opal-select';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
+import '../../../node_modules/bytesize-icons/dist/icons/close.svg?id=opal-components__icon-close';
 import template = require('./template.nelm');
 
 @d.Component<OpalMultiselect>({

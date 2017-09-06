@@ -27,10 +27,12 @@
 			border: 0;
 			border-radius: 50%;
 			background: none;
+			color: hsl(0,0%,50%);
 			cursor: pointer;
 
 			&:hover {
 				background: hsl(0,0%,90%);
+				color: #000;
 			}
 
 			&:focus {
@@ -57,7 +59,7 @@
 				background: none;
 				color: #000;
 				opacity: .3;
-				cursor: default;
+				pointer-events: none;
 			}
 		}
 
@@ -73,8 +75,13 @@
 			{
 				display: block;
 				margin: auto;
-				width: 16px;
-				height: 16px;
+				width: 18px;
+				height: 18px;
+				stroke-width: 3px;
+				stroke: currentColor;
+				stroke-linecap: round;
+				stroke-linejoin: round;
+				fill: none;
 			}
 
 			@el btn-next-month-icon {

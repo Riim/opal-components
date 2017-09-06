@@ -1,7 +1,7 @@
 import { Cell, IEvent } from 'cellx';
 import { Component } from 'rionite';
-import '../../assets/icons/opal-components__icon-cross.svg';
 import './index.css';
+import '../../../node_modules/bytesize-icons/dist/icons/close.svg?id=opal-components__icon-close';
 export declare class OpalTextInput extends Component {
     textField: HTMLInputElement;
     _textFieldValueCell: Cell<string>;

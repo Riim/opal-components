@@ -23,7 +23,7 @@ rt-content/control-icon-container (select=.opal-text-input__control-icon, shown=
 
 @if-then (if=input.clearable) {
 	button/btn-clear (shown={isBtnClearShown}) {
-		svg/btn-clear-icon (viewBox=0 0 28 28) { use (xlink:href=#opal-components__icon-cross) }
+		svg/btn-clear-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }
 	}
 }
 

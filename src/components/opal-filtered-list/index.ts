@@ -2,10 +2,10 @@ import { debounce } from '@riim/debounce-throttle';
 import { getText } from '@riim/gettext';
 import { IEvent } from 'cellx';
 import { Component, d } from 'rionite';
-import '../../assets/icons/opal-components__icon-search.svg';
 import { OpalLoadedList } from '../opal-loaded-list';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
+import '../../../node_modules/bytesize-icons/dist/icons/search.svg?id=opal-components__icon-search';
 import template = require('./template.nelm');
 
 @d.Component({

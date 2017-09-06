@@ -10,7 +10,7 @@ import template = require('./template.nelm');
 		required: { default: false, readonly: true },
 		minLength: { type: Number, readonly: true },
 		regex: { type: eval, readonly: true },
-		test: { type: String, readonly: true },
+		test: { type: Object, readonly: true },
 		popoverTo: 'right'
 	},
 

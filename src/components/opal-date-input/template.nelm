@@ -7,11 +7,11 @@ opal-input-validator/input-validator {
 		}
 	}
 
-	opal-input-validator-rule/input-validator-rule-date-exists (test=dateExists, popover-to={input.popoverTo}) {
+	opal-input-validator-rule/input-validator-rule-date-exists (test={dateExists}, popover-to={input.popoverTo}) {
 		'{constructor.i18n.nonExistentDate}'
 	}
 
-	opal-input-validator-rule/input-validator-rule-date-in-range (test=isDateInRange, popover-to={input.popoverTo}) {
+	opal-input-validator-rule/input-validator-rule-date-in-range (test={isDateInRange}, popover-to={input.popoverTo}) {
 		'{constructor.i18n.invalidDateRange}'
 	}
 
@@ -21,7 +21,11 @@ opal-input-validator/input-validator {
 			value={input.value},
 			placeholder={input.placeholder},
 			clearable
-		)
+		) {
+			svg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {
+				use (xlink:href=#opal-components__icon-calendar)
+			}
+		}
 	}
 }
 
