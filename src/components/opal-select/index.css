@@ -71,4 +71,8 @@
 	& .opal-loaded-list {
 		height: 304px; /* 38 * 8 */
 	}
+
+	& .opal-loader {
+		border-width: 100px 15px;
+	}
 }
