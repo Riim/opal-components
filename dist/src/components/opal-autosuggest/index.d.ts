@@ -2,7 +2,6 @@ import { IEvent, ObservableList } from 'cellx';
 import { Component, IDisposableCallback, IDisposableListening, IDisposableTimeout } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-import '../../../node_modules/bytesize-icons/dist/icons/search.svg?id=opal-components__icon-search';
 export interface IDataListItem {
     [name: string]: any;
 }

@@ -12,7 +12,6 @@ import { isFocusable } from '../../utils/isFocusable';
 import { OpalDropdown } from '../opal-dropdown';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-import '../../../node_modules/bytesize-icons/dist/icons/search.svg?id=opal-components__icon-search';
 import template = require('./template.nelm');
 
 export interface IDataListItem {

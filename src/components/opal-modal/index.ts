@@ -1,4 +1,5 @@
 import { Cell, IEvent } from 'cellx';
+import { observable } from 'cellx-decorators';
 import { Component, d, IDisposableListening } from 'rionite';
 import { isFocusable } from '../../utils/isFocusable';
 import './index.css';
@@ -45,6 +46,8 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 	}
 })
 export class OpalModal extends Component {
+	@observable isContentRendered = false;
+
 	ready() {
 		if (this.input.opened) {
 			this._open();
@@ -85,6 +88,10 @@ export class OpalModal extends Component {
 				break;
 			}
 		}
+	}
+
+	renderContent() {
+		this.isContentRendered = true;
 	}
 
 	open(): boolean {
@@ -133,7 +140,8 @@ export class OpalModal extends Component {
 			}
 		}
 
-		this.input.opened = true;
+		this.isContentRendered = true;
+
 		openedModals.unshift(this);
 
 		this.focus();
@@ -146,7 +154,6 @@ export class OpalModal extends Component {
 			openedModals[index - 1].close();
 		}
 
-		this.input.opened = false;
 		openedModals.shift();
 
 		if (openedModals.length) {

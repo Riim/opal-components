@@ -4,7 +4,6 @@ import { OpalButton } from '../opal-button';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 import { OpalSelectOption } from './opal-select-option';
-import '../../../node_modules/bytesize-icons/dist/icons/chevron-bottom.svg?id=opal-components__icon-chevron-bottom';
 export interface IDataListItem {
     [name: string]: any;
 }
@@ -38,6 +37,7 @@ export declare class OpalSelect extends Component {
     optionElements: NodeListOf<IComponentElement>;
     optionsCell: Cell<Array<OpalSelectOption>>;
     readonly options: Array<OpalSelectOption>;
+    _needOptionsUpdating: boolean;
     _notUpdateOptions: boolean;
     _opened: boolean;
     _valueOnOpen: Array<string>;
@@ -47,8 +47,10 @@ export declare class OpalSelect extends Component {
     _documentKeyDownListening: IDisposableListening | null | undefined;
     initialize(): void;
     ready(): void;
+    _initViewModel(): void;
     elementAttached(): void;
     _onInputValueChange(evt: IEvent): void;
+    _updateViewModel(value: any, multiple: boolean): void;
     _onInputViewModelChange(evt: IEvent): void;
     _onInputFocusedChange(evt: IEvent): void;
     _onViewModelChange(): void;

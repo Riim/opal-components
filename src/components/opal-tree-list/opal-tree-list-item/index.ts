@@ -5,7 +5,6 @@ import _getListItemContext from '../_getListItemContext';
 import { OpalButton } from '../../opal-button';
 import { IDataTreeListItem, TDataTreeList, TViewModel } from '../index';
 import './index.css';
-import '../../../../node_modules/bytesize-icons/dist/icons/chevron-bottom.svg?id=opal-components__icon-chevron-bottom';
 import template = require('./template.nelm');
 
 @d.Component<OpalTreeListItem>({

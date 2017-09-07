@@ -5,7 +5,6 @@ import { Component, d } from 'rionite';
 import { OpalLoadedList } from '../opal-loaded-list';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-import '../../../node_modules/bytesize-icons/dist/icons/search.svg?id=opal-components__icon-search';
 import template = require('./template.nelm');
 
 @d.Component({

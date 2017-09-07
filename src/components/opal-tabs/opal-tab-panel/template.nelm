@@ -1,7 +1,5 @@
 @section/inner {
 
-span/arrow
-
 @if-then (if=isContentRendered) {
 	rt-content/content
 }

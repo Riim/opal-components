@@ -5,7 +5,9 @@ div/window {
 		button/btn-close
 	}
 
-	rt-content/content
+	@if-then (if=isContentRendered) {
+		rt-content/content
+	}
 }
 
 }

@@ -1,4 +1,6 @@
+import { nextTick } from '@riim/next-tick';
 import { Cell, IEvent } from 'cellx';
+import { observable } from 'cellx-decorators';
 import { Component, d, IDisposableListening } from 'rionite';
 import './index.css';
 import template = require('./template.nelm');
@@ -17,6 +19,8 @@ import template = require('./template.nelm');
 	template
 })
 export class OpalPopover extends Component {
+	@observable isContentRendered = false;
+
 	_toOnOpen: string;
 
 	_documentClickListening: IDisposableListening | null | undefined;
@@ -37,6 +41,10 @@ export class OpalPopover extends Component {
 		} else {
 			this._close();
 		}
+	}
+
+	renderContent() {
+		this.isContentRendered = true;
 	}
 
 	open(): boolean {
@@ -69,6 +77,17 @@ export class OpalPopover extends Component {
 	}
 
 	_open() {
+		if (this.isContentRendered) {
+			this._open$();
+		} else {
+			this.isContentRendered = true;
+			nextTick(() => {
+				this._open$();
+			});
+		}
+	}
+
+	_open$() {
 		let el = this.element;
 
 		if (this.input.autoDirection) {

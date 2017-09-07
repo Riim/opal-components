@@ -6,7 +6,6 @@ import { OpalSelectOption } from '../opal-select';
 import { formatDate } from './formatDate';
 import './index.css';
 import { parseDate } from './parseDate';
-import '../../../node_modules/bytesize-icons/dist/icons/chevron-left.svg?id=opal-components__icon-chevron-left';
 import template = require('./template.nelm');
 
 export interface IDay {

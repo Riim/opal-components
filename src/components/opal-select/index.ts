@@ -23,7 +23,6 @@ import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 import { isEqualArray } from './isEqualArray';
 import { OpalSelectOption } from './opal-select-option';
-import '../../../node_modules/bytesize-icons/dist/icons/chevron-bottom.svg?id=opal-components__icon-chevron-bottom';
 import template = require('./template.nelm');
 
 let { RtIfThen, RtRepeat } = Components;
@@ -106,6 +105,8 @@ export class OpalSelect extends Component {
 		return map.call(this.optionElements, (option: IComponentElement) => option.$component);
 	}
 
+	_needOptionsUpdating = false;
+
 	_notUpdateOptions = false;
 
 	_opened: boolean = false;
@@ -153,54 +154,63 @@ export class OpalSelect extends Component {
 		this.optionElements = this.element.getElementsByClassName('opal-select-option') as
 			NodeListOf<IComponentElement>;
 
-		let input = this.input;
-
-		if (input.viewModel) {
-			this._updateOptions();
+		if (this.input.viewModel && !this.input.value) {
+			this._needOptionsUpdating = true;
 		} else {
-			let value = input.value;
-			let selectedOptions: Array<OpalSelectOption> | undefined;
+			this.$<OpalDropdown>('menu')!.renderContent();
+			Cell.afterRelease(() => {
+				this._initViewModel();
+			});
+		}
+	}
 
-			if (value) {
-				if (!Array.isArray(value)) {
-					throw new TypeError('value must be an array');
-				}
+	_initViewModel() {
+		let value = this.input.value;
+		let selectedOptions: Array<OpalSelectOption> | undefined;
 
-				if (value.length) {
-					if (input.multiple) {
-						selectedOptions = this.options.filter((option) => value.indexOf(option.value) != -1);
-					} else {
-						value = value[0];
+		if (value) {
+			if (!Array.isArray(value)) {
+				throw new TypeError('value must be an array');
+			}
 
-						let selectedOption = this.options.find((option) => option.value == value);
+			this._notUpdateOptions = true;
+			this.viewModel.clear();
 
-						if (selectedOption) {
-							selectedOptions = [selectedOption];
-						}
-					}
-				}
-			} else {
-				if (input.multiple) {
-					selectedOptions = this.options.filter((option) => option.selected);
+			if (value.length) {
+				if (this.input.multiple) {
+					selectedOptions = this.options.filter((option) => value.indexOf(option.value) != -1);
 				} else {
-					let selectedOption = this.options.find((option) => option.selected);
+					value = value[0];
+
+					let selectedOption = this.options.find((option) => option.value == value);
 
 					if (selectedOption) {
 						selectedOptions = [selectedOption];
 					}
 				}
 			}
+		} else if (this.input.multiple) {
+			selectedOptions = this.options.filter((option) => option.selected);
+		} else {
+			let selectedOption = this.options.find((option) => option.selected);
 
-			if (selectedOptions && selectedOptions.length) {
-				this.viewModel.addRange(selectedOptions.map((option) => ({
-					[this._viewModelItemValueFieldName]: option.value,
-					[this._viewModelItemTextFieldName]: option.text
-				})));
+			if (selectedOption) {
+				selectedOptions = [selectedOption];
 			}
+		}
 
-			if (value) {
-				this._updateOptions();
-			}
+		if (selectedOptions && selectedOptions.length) {
+			this._notUpdateOptions = true;
+			this.viewModel.addRange(selectedOptions.map((option) => ({
+				[this._viewModelItemValueFieldName]: option.value,
+				[this._viewModelItemTextFieldName]: option.text
+			})));
+		}
+
+		this._notUpdateOptions = false;
+
+		if (value) {
+			this._updateOptions();
 		}
 	}
 
@@ -244,50 +254,64 @@ export class OpalSelect extends Component {
 			}
 
 			if (value.length) {
-				let vmItemValueFieldName = this._viewModelItemValueFieldName;
-				let vmItemTextFieldName = this._viewModelItemTextFieldName;
+				let multiple = this.input.multiple;
 
-				if (this.input.multiple) {
-					this.options.forEach((option) => {
-						let optionValue = option.value;
-						let itemIndex = vm.findIndex((item) => item[vmItemValueFieldName] == optionValue);
-
-						if (value.indexOf(optionValue) == -1) {
-							if (itemIndex != -1) {
-								vm.removeAt(itemIndex);
-							}
-						} else if (itemIndex == -1) {
-							vm.add({
-								[vmItemValueFieldName]: optionValue,
-								[vmItemTextFieldName]: option.text
-							});
-						}
-					});
-				} else {
-					value = value[0];
-
-					if (!vm.length || value != vm.get(0)![vmItemValueFieldName]) {
-						if (!this.options.some((option) => {
-							if (option.value != value) {
-								return false;
-							}
-
-							vm.set(0, {
-								[vmItemValueFieldName]: value,
-								[vmItemTextFieldName]: option.text
-							});
-
-							return true;
-						})) {
-							vm.clear();
-						}
+				if (multiple || !vm.length || value[0] != vm.get(0)![this._viewModelItemValueFieldName]) {
+					if (this._needOptionsUpdating) {
+						this.$<OpalDropdown>('menu')!.renderContent();
+						nextTick(() => {
+							this._updateViewModel(value, multiple);
+						});
+					} else {
+						this._updateViewModel(value, multiple);
 					}
 				}
-			} else {
+
+				return;
+			}
+		}
+
+		vm.clear();
+	}
+
+	_updateViewModel(value: any, multiple: boolean) {
+		let vm = this.viewModel;
+		let vmItemValueFieldName = this._viewModelItemValueFieldName;
+		let vmItemTextFieldName = this._viewModelItemTextFieldName;
+
+		if (multiple) {
+			this.options.forEach((option) => {
+				let optionValue = option.value;
+				let itemIndex = vm.findIndex((item) => item[vmItemValueFieldName] == optionValue);
+
+				if (value.indexOf(optionValue) == -1) {
+					if (itemIndex != -1) {
+						vm.removeAt(itemIndex);
+					}
+				} else if (itemIndex == -1) {
+					vm.add({
+						[vmItemValueFieldName]: optionValue,
+						[vmItemTextFieldName]: option.text
+					});
+				}
+			});
+		} else {
+			value = value[0];
+
+			if (!this.options.some((option) => {
+				if (option.value != value) {
+					return false;
+				}
+
+				vm.set(0, {
+					[vmItemValueFieldName]: value,
+					[vmItemTextFieldName]: option.text
+				});
+
+				return true;
+			})) {
 				vm.clear();
 			}
-		} else {
-			vm.clear();
 		}
 	}
 
@@ -315,7 +339,7 @@ export class OpalSelect extends Component {
 	}
 
 	_onViewModelChange() {
-		if (!this._notUpdateOptions) {
+		if (!this._notUpdateOptions && !this._needOptionsUpdating) {
 			this._updateOptions();
 		}
 	}
@@ -520,6 +544,11 @@ export class OpalSelect extends Component {
 
 		this.$<OpalButton>('button')!.check();
 		this.$<OpalDropdown>('menu')!.open();
+
+		if (this._needOptionsUpdating) {
+			this._needOptionsUpdating = false;
+			this._updateOptions();
+		}
 
 		let loadedList = this.$<OpalLoadedList>('loaded-list');
 

@@ -8,7 +8,6 @@ import { OpalDropdown } from '../opal-dropdown';
 import { OpalInputValidator } from '../opal-input-validator';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-import '../../../node_modules/bytesize-icons/dist/icons/calendar.svg?id=opal-components__icon-calendar';
 import template = require('./template.nelm');
 
 function pad(num: number): string {
@@ -34,7 +33,22 @@ function pad(num: number): string {
 		invalidDateRange: getText.t('Дата вне допустимого диапазона')
 	},
 
-	template
+	template,
+
+	events: {
+		calendar: {
+			change(evt: IEvent<OpalCalendar>) {
+				this.$<OpalDropdown>('calendar-menu')!.close();
+
+				let textInput = this.$<OpalTextInput>('text-input')!;
+
+				textInput.value = evt.target.stringValue;
+				textInput.focus();
+
+				this.$<OpalInputValidator>('input-validator')!.validate();
+			}
+		}
+	}
 })
 export class OpalDateInput extends Component {
 	dateExists = dateExists;
@@ -62,7 +76,6 @@ export class OpalDateInput extends Component {
 		this.listenTo('text-input', 'change', this._onTextInputChange);
 		this.listenTo(this.$<Component>('text-input')!.element, 'click', this._onTextInputElementClick);
 		this.listenTo('calendar-menu', 'input-opened-change', this._onCalendarMenuInputOpenedChange);
-		this.listenTo('calendar', 'change', this._onCalendarChange);
 	}
 
 	_onTextInputChange(evt: IEvent<OpalTextInput>) {
@@ -85,17 +98,6 @@ export class OpalDateInput extends Component {
 			this._documentKeyDownListening.stop();
 			this._documentClickListening.stop();
 		}
-	}
-
-	_onCalendarChange(evt: IEvent<OpalCalendar>) {
-		this.$<OpalDropdown>('calendar-menu')!.close();
-
-		let textInput = this.$<OpalTextInput>('text-input')!;
-
-		textInput.value = evt.target.stringValue;
-		textInput.focus();
-
-		this.$<OpalInputValidator>('input-validator')!.validate();
 	}
 
 	_onDocumentFocus(evt: Event) {

@@ -1,6 +1,9 @@
+import { nextTick } from '@riim/next-tick';
 import { Cell, IEvent } from 'cellx';
+import { observable } from 'cellx-decorators';
 import { Component, d, IDisposableListening } from 'rionite';
 import './index.css';
+import template = require('./template.nelm');
 
 let openedDropdowns: Array<OpalDropdown> = [];
 
@@ -13,9 +16,11 @@ let openedDropdowns: Array<OpalDropdown> = [];
 		opened: false
 	},
 
-	template: '@section/inner { rt-content/content }'
+	template
 })
 export class OpalDropdown extends Component {
+	@observable isContentRendered = false;
+
 	_documentClickListening: IDisposableListening | undefined;
 
 	ready() {
@@ -34,6 +39,10 @@ export class OpalDropdown extends Component {
 		} else {
 			this._close();
 		}
+	}
+
+	renderContent() {
+		this.isContentRendered = true;
 	}
 
 	open(): boolean {
@@ -68,6 +77,17 @@ export class OpalDropdown extends Component {
 	_open() {
 		openedDropdowns.push(this);
 
+		if (this.isContentRendered) {
+			this._open$();
+		} else {
+			this.isContentRendered = true;
+			nextTick(() => {
+				this._open$();
+			});
+		}
+	}
+
+	_open$() {
 		let el = this.element;
 		let elStyle = el.style;
 

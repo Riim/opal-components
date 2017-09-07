@@ -3,7 +3,6 @@ import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import './index.css';
-import '../../../../node_modules/bytesize-icons/dist/icons/checkmark.svg?id=opal-components__icon-checkmark';
 import template = require('./template.nelm');
 
 @d.Component<OpalSelectOption>({
