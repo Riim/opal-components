@@ -1,4 +1,9 @@
-import { define, IEvent, ObservableList } from 'cellx';
+import {
+	Cell,
+	define,
+	IEvent,
+	ObservableList
+	} from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import ObservableTreeList from '../../ObservableTreeList';
@@ -35,6 +40,7 @@ function toComparable(str: string | null): string | null {
 
 	input: {
 		dataTreeList: { type: Object },
+		dataTreeListKeypath: { type: String, readonly: true },
 		dataTreeListItemSchema: { type: eval, default: defaultDataTreeListItemSchema, readonly: true },
 		viewModel: { type: Object },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
@@ -99,11 +105,20 @@ export class OpalTreeList extends Component {
 	initialize() {
 		let input = this.input;
 
-		if (!input.$specified.has('dataTreeList')) {
-			throw new TypeError('Input property "dataTreeList" is required');
-		}
+		if (input.dataTreeListKeypath) {
+			define(this, 'dataTreeList', new Cell(
+				Function(`return this.${ input.dataTreeListKeypath };`),
+				{
+					context: this.ownerComponent || window
+				}
+			));
+		} else {
+			if (!input.$specified.has('dataTreeList')) {
+				throw new TypeError('Input property "dataTreeList" is required');
+			}
 
-		define(this, 'dataTreeList', () => input.dataTreeList);
+			define(this, 'dataTreeList', () => input.dataTreeList);
+		}
 
 		let dataTreeListItemSchema = input.dataTreeListItemSchema;
 		let defaultDataTreeListItemSchema = (this.constructor as typeof OpalTreeList).defaultDataTreeListItemSchema;
