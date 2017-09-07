@@ -25,7 +25,7 @@ export declare class OpalTagSelect extends Component {
     _viewModelItemDisabledFieldName: string;
     readonly value: Array<IDataListItem>;
     readonly isPlaceholderShown: boolean;
-    _isInputDataListSpecified: boolean;
+    _dataListKeypathParam: string | null;
     initialize(): void;
     elementAttached(): void;
     _onInputViewModelChange(evt: IEvent): void;

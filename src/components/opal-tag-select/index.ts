@@ -76,7 +76,7 @@ export class OpalTagSelect extends Component {
 		return !!this.input.placeholder && !this.viewModel.length;
 	}
 
-	_isInputDataListSpecified: boolean;
+	_dataListKeypathParam: string | null;
 
 	initialize() {
 		let input = this.input;
@@ -94,11 +94,11 @@ export class OpalTagSelect extends Component {
 
 			this.dataProvider = null;
 
-			this._isInputDataListSpecified = true;
+			this._dataListKeypathParam = 'dataList';
 		} else {
 			this.dataList = null;
 			this.dataProvider = input.dataProvider;
-			this._isInputDataListSpecified = false;
+			this._dataListKeypathParam = null;
 		}
 
 		let dataListItemSchema = input.dataListItemSchema;
