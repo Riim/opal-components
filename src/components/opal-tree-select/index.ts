@@ -39,12 +39,9 @@ export class OpalTreeSelect extends OpalSelect {
 		let input = this.input;
 
 		if (input.dataTreeListKeypath) {
-			define(this, 'dataTreeList', new Cell(
-				Function(`return this.${ input.dataTreeListKeypath };`),
-				{
-					context: this.ownerComponent || window
-				}
-			));
+			define(this, 'dataTreeList', new Cell(Function(`return this.${ input.dataTreeListKeypath };`), {
+				context: this.ownerComponent || window
+			}));
 		} else {
 			if (!input.$specified.has('dataTreeList')) {
 				throw new TypeError('Input property "dataTreeList" is required');

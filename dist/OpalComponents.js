@@ -216,7 +216,13 @@ var OpalSelect = /** @class */ (function (_super) {
     });
     OpalSelect.prototype.initialize = function () {
         var input = this.input;
-        if (input.$specified.has('dataList')) {
+        if (input.dataListKeypath) {
+            cellx_1.define(this, 'dataList', new cellx_1.Cell(Function("return this." + input.dataListKeypath + ";"), {
+                context: this.ownerComponent || window
+            }));
+            this._isInputDataListSpecified = true;
+        }
+        else if (input.$specified.has('dataList')) {
             cellx_1.define(this, 'dataList', function () { return input.dataList; });
             this._isInputDataListSpecified = true;
         }
@@ -778,6 +784,7 @@ var OpalSelect = /** @class */ (function (_super) {
                 size: 'm',
                 multiple: { default: false, readonly: true },
                 dataList: { type: Object },
+                dataListKeypath: { type: String, readonly: true },
                 dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
                 value: eval,
                 viewModel: { type: Object },
@@ -5947,7 +5954,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-loaded-list{position:relative;display:block;overflow-x:hidden;overflow-y:auto;height:500px}.opal-loaded-list .opal-loaded-list__list-item{display:block}.opal-loaded-list .opal-loaded-list__loader[align-center]{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto}.opal-loaded-list .opal-loaded-list__nothing-found{-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;height:100%;text-align:center;white-space:nowrap}.opal-loaded-list .opal-loaded-list__nothing-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-loaded-list .opal-loaded-list__nothing-found-message{display:inline-block;vertical-align:middle;opacity:.6}";
+            style.textContent = ".opal-loaded-list{position:relative;display:block;overflow-x:hidden;overflow-y:auto;height:500px}.opal-loaded-list .opal-loaded-list__list-item{display:block}.opal-loaded-list .opal-loaded-list__loader[align-center]{position:absolute;top:0;right:0;bottom:0;left:0}.opal-loaded-list .opal-loaded-list__nothing-found{-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;height:100%;text-align:center;white-space:nowrap}.opal-loaded-list .opal-loaded-list__nothing-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-loaded-list .opal-loaded-list__nothing-found-message{display:inline-block;vertical-align:middle;opacity:.6}";
             head.appendChild(style);
             return style;
         }
@@ -6083,7 +6090,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-tree-list{display:block}.opal-tree-list .opal-tree-list__nothing-found{-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;height:100%;text-align:center;white-space:nowrap}.opal-tree-list .opal-tree-list__nothing-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-tree-list .opal-tree-list__nothing-found-message{display:inline-block;vertical-align:middle;opacity:.6}";
+            style.textContent = ".opal-tree-list{position:relative;display:block}.opal-tree-list .opal-tree-list__nothing-found{-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;height:100%;text-align:center;white-space:nowrap}.opal-tree-list .opal-tree-list__nothing-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.opal-tree-list .opal-tree-list__nothing-found-message{display:inline-block;vertical-align:middle;opacity:.6}.opal-tree-list .opal-tree-list__loader{position:absolute;top:0;right:0;bottom:0;left:0}";
             head.appendChild(style);
             return style;
         }
@@ -6172,8 +6179,12 @@ var OpalTagSelect = /** @class */ (function (_super) {
     });
     OpalTagSelect.prototype.initialize = function () {
         var input = this.input;
-        if (input.$specified.has('dataList')) {
-            cellx_1.define(this, 'dataList', function () { return input.dataList; });
+        if (input.dataListKeypath || input.$specified.has('dataList')) {
+            cellx_1.define(this, 'dataList', input.dataListKeypath ?
+                new cellx_1.Cell(Function("return this." + input.dataListKeypath + ";"), {
+                    context: this.ownerComponent || window
+                }) :
+                function () { return input.dataList; });
             this.dataProvider = null;
             this._isInputDataListSpecified = true;
         }
@@ -6255,6 +6266,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
             input: {
                 viewType: String,
                 dataList: { type: Object },
+                dataListKeypath: { type: String, readonly: true },
                 dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
                 // необязательный, так как может указываться на передаваемом opal-loaded-list
                 dataProvider: { type: Object, readonly: true },

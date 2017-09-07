@@ -47,6 +47,7 @@ let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled
 		size: 'm',
 		multiple: { default: false, readonly: true },
 		dataList: { type: Object },
+		dataListKeypath: { type: String, readonly: true },
 		dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		value: eval,
 		viewModel: { type: Object },
@@ -123,7 +124,13 @@ export class OpalSelect extends Component {
 	initialize() {
 		let input = this.input;
 
-		if (input.$specified.has('dataList')) {
+		if (input.dataListKeypath) {
+			define(this, 'dataList', new Cell(Function(`return this.${ input.dataListKeypath };`), {
+				context: this.ownerComponent || window
+			}));
+
+			this._isInputDataListSpecified = true;
+		} else if (input.$specified.has('dataList')) {
 			define(this, 'dataList', () => input.dataList);
 			this._isInputDataListSpecified = true;
 		} else {

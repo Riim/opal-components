@@ -1,5 +1,10 @@
 import { getText } from '@riim/gettext';
-import { define, IEvent, ObservableList } from 'cellx';
+import {
+	Cell,
+	define,
+	IEvent,
+	ObservableList
+	} from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
@@ -21,6 +26,7 @@ let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: '
 	input: {
 		viewType: String,
 		dataList: { type: Object },
+		dataListKeypath: { type: String, readonly: true },
 		dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		// необязательный, так как может указываться на передаваемом opal-loaded-list
 		dataProvider: { type: Object, readonly: true },
@@ -75,9 +81,19 @@ export class OpalTagSelect extends Component {
 	initialize() {
 		let input = this.input;
 
-		if (input.$specified.has('dataList')) {
-			define(this, 'dataList', () => input.dataList);
+		if (input.dataListKeypath || input.$specified.has('dataList')) {
+			define(
+				this,
+				'dataList',
+				input.dataListKeypath ?
+					new Cell(Function(`return this.${ input.dataListKeypath };`), {
+						context: this.ownerComponent || window
+					}) :
+					() => input.dataList
+			);
+
 			this.dataProvider = null;
+
 			this._isInputDataListSpecified = true;
 		} else {
 			this.dataList = null;
