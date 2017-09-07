@@ -24,6 +24,16 @@ import template = require('./template.nelm');
 	template: (OpalSelect.template as Template).extend(template),
 
 	events: {
+		'query-input': {
+			input(evt: IEvent<OpalTextInput>) {
+				this.$<OpalLoadedList>('loaded-list')!.input.query = evt.target.value;
+			},
+
+			clear() {
+				this.$<OpalLoadedList>('loaded-list')!.input.query = '';
+			}
+		},
+
 		'btn-close': {
 			click() {
 				this.close();
@@ -65,22 +75,5 @@ export class OpalMultiselect extends OpalSelect {
 		}
 
 		this.dataProvider = dataProvider;
-	}
-
-	elementAttached() {
-		super.elementAttached();
-
-		this.listenTo('query-input', {
-			input: this._onQueryInputInput,
-			clear: this._onQueryInputClear
-		});
-	}
-
-	_onQueryInputInput(evt: IEvent<OpalTextInput>) {
-		this.$<OpalLoadedList>('loaded-list')!.input.query = evt.target.value;
-	}
-
-	_onQueryInputClear() {
-		this.$<OpalLoadedList>('loaded-list')!.input.query = '';
 	}
 }

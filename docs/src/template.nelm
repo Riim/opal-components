@@ -332,6 +332,14 @@ p {
 	}
 }
 
+h1 { 'opal-multiselect' }
+p {
+	opal-multiselect (
+		data-provider={dataProvider1},
+		data-list-item-schema='{ value: "id", text: "name" }'
+	)
+}
+
 h1 { 'opal-tree-select' }
 p {
 	opal-tree-select (data-tree-list={dataTreeList1})

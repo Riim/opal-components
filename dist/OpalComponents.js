@@ -4762,19 +4762,6 @@ var OpalMultiselect = /** @class */ (function (_super) {
         }
         this.dataProvider = dataProvider;
     };
-    OpalMultiselect.prototype.elementAttached = function () {
-        _super.prototype.elementAttached.call(this);
-        this.listenTo('query-input', {
-            input: this._onQueryInputInput,
-            clear: this._onQueryInputClear
-        });
-    };
-    OpalMultiselect.prototype._onQueryInputInput = function (evt) {
-        this.$('loaded-list').input.query = evt.target.value;
-    };
-    OpalMultiselect.prototype._onQueryInputClear = function () {
-        this.$('loaded-list').input.query = '';
-    };
     __decorate([
         cellx_decorators_1.computed
     ], OpalMultiselect.prototype, "isNothingSelectedShown", null);
@@ -4791,6 +4778,14 @@ var OpalMultiselect = /** @class */ (function (_super) {
             },
             template: opal_select_1.OpalSelect.template.extend(template),
             events: {
+                'query-input': {
+                    input: function (evt) {
+                        this.$('loaded-list').input.query = evt.target.value;
+                    },
+                    clear: function () {
+                        this.$('loaded-list').input.query = '';
+                    }
+                },
                 'btn-close': {
                     click: function () {
                         this.close();
@@ -4835,7 +4830,7 @@ module.exports = (function(d) {
 /* 77 */
 /***/ (function(module, exports) {
 
-module.exports = "/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=opal-select__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n)\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\ndiv/btn-deselect-item (data-item-value='{item |key(_viewModelItemValueFieldName) }') {\nsvg/btn-deselect-item-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }\n}\n}\n}\ndiv/nothing-selected (shown={isNothingSelectedShown}) {\nspan/nothing-selected-message { '{constructor.i18n.nothingSelected}' }\n}\n}\ndiv/menu-list {\nopal-loaded-list/loaded-list (\ndata-provider={dataProvider},\ndata-list-item-value-name={_dataListItemValueFieldName}\n) {\nopal-select-option/option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\ndiv/menu-footer {\nopal-button/btn-close { 'Закрыть' }\n}\n}"
+module.exports = "/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=opal-select__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n) {\nsvg/query-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\ndiv/btn-deselect-item (data-item-value='{item |key(_viewModelItemValueFieldName) }') {\nsvg/btn-deselect-item-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }\n}\n}\n}\ndiv/nothing-selected (shown={isNothingSelectedShown}) {\nspan/nothing-selected-message { '{constructor.i18n.nothingSelected}' }\n}\n}\ndiv/menu-list {\nopal-loaded-list/loaded-list (\ndata-provider={dataProvider},\ndata-list-item-value-name={_dataListItemValueFieldName}\n) {\nopal-select-option/option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\ndiv/menu-footer {\nopal-button/btn-close { 'Закрыть' }\n}\n}"
 
 /***/ }),
 /* 78 */

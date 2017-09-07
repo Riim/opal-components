@@ -4,7 +4,11 @@
 			class=opal-select__focus,
 			clearable,
 			placeholder={constructor.i18n.queryInputPlaceholder}
-		)
+		) {
+			svg/query-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {
+				use (xlink:href=#opal-components__icon-search)
+			}
+		}
 	}
 
 	div/menu-selected {
