@@ -9349,10 +9349,17 @@ var OpalTreeList = /** @class */ (function (_super) {
     });
     OpalTreeList.prototype.initialize = function () {
         var input = this.input;
-        if (!input.$specified.has('dataTreeList')) {
-            throw new TypeError('Input property "dataTreeList" is required');
+        if (input.dataTreeListKeypath) {
+            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function("return this." + input.dataTreeListKeypath + ";"), {
+                context: this.ownerComponent || window
+            }));
         }
-        cellx_1.define(this, 'dataTreeList', function () { return input.dataTreeList; });
+        else {
+            if (!input.$specified.has('dataTreeList')) {
+                throw new TypeError('Input property "dataTreeList" is required');
+            }
+            cellx_1.define(this, 'dataTreeList', function () { return input.dataTreeList; });
+        }
         var dataTreeListItemSchema = input.dataTreeListItemSchema;
         var defaultDataTreeListItemSchema = this.constructor.defaultDataTreeListItemSchema;
         this._dataTreeListItemValueFieldName = dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;
@@ -9407,6 +9414,7 @@ var OpalTreeList = /** @class */ (function (_super) {
             elementIs: 'opal-tree-list',
             input: {
                 dataTreeList: { type: Object },
+                dataTreeListKeypath: { type: String, readonly: true },
                 dataTreeListItemSchema: { type: eval, default: defaultDataTreeListItemSchema, readonly: true },
                 viewModel: { type: Object },
                 viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
@@ -15902,10 +15910,17 @@ var OpalTreeSelect = /** @class */ (function (_super) {
     OpalTreeSelect.prototype.initialize = function () {
         _super.prototype.initialize.call(this);
         var input = this.input;
-        if (!input.$specified.has('dataTreeList')) {
-            throw new TypeError('Input property "dataTreeList" is required');
+        if (input.dataTreeListKeypath) {
+            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function("return this." + input.dataTreeListKeypath + ";"), {
+                context: this.ownerComponent || window
+            }));
         }
-        cellx_1.define(this, 'dataTreeList', function () { return input.dataTreeList; });
+        else {
+            if (!input.$specified.has('dataTreeList')) {
+                throw new TypeError('Input property "dataTreeList" is required');
+            }
+            cellx_1.define(this, 'dataTreeList', function () { return input.dataTreeList; });
+        }
     };
     OpalTreeSelect.prototype._onMenuSelectOptionSelect = function () {
     };
@@ -15921,6 +15936,7 @@ var OpalTreeSelect = /** @class */ (function (_super) {
             input: {
                 multiple: true,
                 dataTreeList: { type: Object },
+                dataTreeListKeypath: { type: String, readonly: true },
                 dataTreeListItemSchema: { type: eval, default: opal_tree_list_1.OpalTreeList.defaultDataTreeListItemSchema, readonly: true },
                 viewModel: { type: Object },
                 viewModelItemSchema: { type: eval, default: opal_tree_list_1.OpalTreeList.defaultViewModelItemSchema, readonly: true },

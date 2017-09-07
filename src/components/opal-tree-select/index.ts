@@ -1,4 +1,4 @@
-import { define } from 'cellx';
+import { Cell, define } from 'cellx';
 import { d } from 'rionite';
 import { OpalModal } from '../opal-modal';
 import { OpalSelect } from '../opal-select';
@@ -12,6 +12,7 @@ import template = require('./template.nelm');
 	input: {
 		multiple: true,
 		dataTreeList: { type: Object },
+		dataTreeListKeypath: { type: String, readonly: true },
 		dataTreeListItemSchema: { type: eval, default: OpalTreeList.defaultDataTreeListItemSchema, readonly: true },
 		viewModel: { type: Object },
 		viewModelItemSchema: { type: eval, default: OpalTreeList.defaultViewModelItemSchema, readonly: true },
@@ -37,11 +38,20 @@ export class OpalTreeSelect extends OpalSelect {
 
 		let input = this.input;
 
-		if (!input.$specified.has('dataTreeList')) {
-			throw new TypeError('Input property "dataTreeList" is required');
-		}
+		if (input.dataTreeListKeypath) {
+			define(this, 'dataTreeList', new Cell(
+				Function(`return this.${ input.dataTreeListKeypath };`),
+				{
+					context: this.ownerComponent || window
+				}
+			));
+		} else {
+			if (!input.$specified.has('dataTreeList')) {
+				throw new TypeError('Input property "dataTreeList" is required');
+			}
 
-		define(this, 'dataTreeList', () => input.dataTreeList);
+			define(this, 'dataTreeList', () => input.dataTreeList);
+		}
 	}
 
 	_onMenuSelectOptionSelect() {
