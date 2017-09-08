@@ -250,8 +250,11 @@ var OpalSelect = /** @class */ (function (_super) {
             this._needOptionsUpdating = true;
         }
         else {
-            this.$('menu').renderContent();
             cellx_1.Cell.afterRelease(function () {
+                _this._notUpdateOptions = true;
+                _this.$('menu').renderContent();
+                cellx_1.Cell.forceRelease();
+                _this._notUpdateOptions = false;
                 _this._initViewModel();
             });
         }
@@ -339,8 +342,11 @@ var OpalSelect = /** @class */ (function (_super) {
                 var multiple_1 = this.input.multiple;
                 if (multiple_1 || !vm.length || value[0] != vm.get(0)[this._viewModelItemValueFieldName]) {
                     if (this._needOptionsUpdating) {
-                        this.$('menu').renderContent();
-                        next_tick_1.nextTick(function () {
+                        cellx_1.Cell.afterRelease(function () {
+                            _this._notUpdateOptions = true;
+                            _this.$('menu').renderContent();
+                            cellx_1.Cell.forceRelease();
+                            _this._notUpdateOptions = false;
                             _this._updateViewModel(value, multiple_1);
                         });
                     }
@@ -532,7 +538,7 @@ var OpalSelect = /** @class */ (function (_super) {
         });
     };
     OpalSelect.prototype._onMenuChange = function (evt) {
-        if (evt.target instanceof RtIfThen || evt.target instanceof RtRepeat) {
+        if (!this._notUpdateOptions && (evt.target instanceof RtIfThen || evt.target instanceof RtRepeat)) {
             this.optionsCell.pull();
             this._updateOptions();
         }

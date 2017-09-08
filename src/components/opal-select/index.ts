@@ -164,8 +164,11 @@ export class OpalSelect extends Component {
 		if (this.input.viewModel && !this.input.value) {
 			this._needOptionsUpdating = true;
 		} else {
-			this.$<OpalDropdown>('menu')!.renderContent();
 			Cell.afterRelease(() => {
+				this._notUpdateOptions = true;
+				this.$<OpalDropdown>('menu')!.renderContent();
+				Cell.forceRelease();
+				this._notUpdateOptions = false;
 				this._initViewModel();
 			});
 		}
@@ -265,8 +268,11 @@ export class OpalSelect extends Component {
 
 				if (multiple || !vm.length || value[0] != vm.get(0)![this._viewModelItemValueFieldName]) {
 					if (this._needOptionsUpdating) {
-						this.$<OpalDropdown>('menu')!.renderContent();
-						nextTick(() => {
+						Cell.afterRelease(() => {
+							this._notUpdateOptions = true;
+							this.$<OpalDropdown>('menu')!.renderContent();
+							Cell.forceRelease();
+							this._notUpdateOptions = false;
 							this._updateViewModel(value, multiple);
 						});
 					} else {
@@ -482,7 +488,7 @@ export class OpalSelect extends Component {
 	}
 
 	_onMenuChange(evt: IEvent) {
-		if (evt.target instanceof RtIfThen || evt.target instanceof RtRepeat) {
+		if (!this._notUpdateOptions && (evt.target instanceof RtIfThen || evt.target instanceof RtRepeat)) {
 			this.optionsCell.pull();
 			this._updateOptions();
 		}
