@@ -21,7 +21,7 @@ export class OpalTabPanel extends Component {
 	}
 
 	_onInputShownChange(evt: IEvent) {
-		if (evt.value) {
+		if (evt.data.value) {
 			this.isContentRendered = true;
 		}
 	}

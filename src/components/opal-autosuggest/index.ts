@@ -140,7 +140,7 @@ export class OpalAutosuggest extends Component {
 	}
 
 	_onInputValueChange(evt: IEvent) {
-		let item = evt.value as IDataListItem;
+		let item = evt.data.value as IDataListItem;
 
 		this._clearDataList();
 
@@ -195,7 +195,7 @@ export class OpalAutosuggest extends Component {
 	}
 
 	_onMenuInputOpenedChange(evt: IEvent) {
-		if (evt.value) {
+		if (evt.data.value) {
 			this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
 			this._documentListening = this.listenTo(document, {
 				keydown: this._onDocumentKeyDown,
@@ -232,7 +232,7 @@ export class OpalAutosuggest extends Component {
 	}
 
 	_onIsLoaderShownChange(evt: IEvent) {
-		this.$<Component>('text-input')!.input.loading = evt.value;
+		this.$<Component>('text-input')!.input.loading = evt.data.value;
 	}
 
 	_onDocumentFocus(evt: Event) {

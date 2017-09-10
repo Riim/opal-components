@@ -49,11 +49,11 @@ export class OpalSwitch extends Component {
 	}
 
 	_onInputCheckedChange(evt: IEvent) {
-		this.$<HTMLInputElement>('input')!.checked = evt.value;
+		this.$<HTMLInputElement>('input')!.checked = evt.data.value;
 	}
 
 	_onInputFocusedChange(evt: IEvent) {
-		if (evt.value) {
+		if (evt.data.value) {
 			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 			this.focus();
 		} else {

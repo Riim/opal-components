@@ -121,13 +121,13 @@ export class OpalTextInput extends Component {
 	}
 
 	_onInputValueChange(evt: IEvent) {
-		if (this.textField.value != evt.value) {
-			this.textField.value = evt.value;
+		if (this.textField.value != evt.data.value) {
+			this.textField.value = evt.data.value;
 		}
 	}
 
 	_onInputFocusedChange(evt: IEvent) {
-		if (evt.value) {
+		if (evt.data.value) {
 			this.focus();
 		} else {
 			this.blur();
@@ -153,7 +153,9 @@ export class OpalTextInput extends Component {
 
 		this.emit({
 			type: 'input',
-			initialEvent: evt
+			data: {
+				initialEvent: evt
+			}
 		});
 	}
 
@@ -172,7 +174,9 @@ export class OpalTextInput extends Component {
 
 		this.emit({
 			type: 'change',
-			initialEvent: evt
+			data: {
+				initialEvent: evt
+			}
 		});
 	}
 
@@ -185,7 +189,9 @@ export class OpalTextInput extends Component {
 
 		this.emit({
 			type: 'keydown',
-			initialEvent: evt
+			data: {
+				initialEvent: evt
+			}
 		});
 	}
 
@@ -196,7 +202,9 @@ export class OpalTextInput extends Component {
 
 		this.emit({
 			type: 'keypress',
-			initialEvent: evt
+			data: {
+				initialEvent: evt
+			}
 		});
 	}
 
@@ -207,7 +215,9 @@ export class OpalTextInput extends Component {
 
 		this.emit({
 			type: 'keyup',
-			initialEvent: evt
+			data: {
+				initialEvent: evt
+			}
 		});
 	}
 

@@ -54,21 +54,21 @@ export class OpalCheckbox extends Component {
 	}
 
 	_onInputCheckedChange(evt: IEvent) {
-		if (evt.value) {
+		if (evt.data.value) {
 			this.input.indeterminate = false;
 		}
 
-		this.$<HTMLInputElement>('input')!.checked = evt.value;
+		this.$<HTMLInputElement>('input')!.checked = evt.data.value;
 	}
 
 	_onInputIndeterminateChange(evt: IEvent) {
-		if (evt.value) {
+		if (evt.data.value) {
 			this.input.checked = false;
 		}
 	}
 
 	_onInputFocusedChange(evt: IEvent) {
-		if (evt.value) {
+		if (evt.data.value) {
 			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 			this.focus();
 		} else {

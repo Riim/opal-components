@@ -131,7 +131,7 @@ export class OpalTagSelect extends Component {
 	}
 
 	_onInputViewModelChange(evt: IEvent) {
-		if (evt.value != this.viewModel) {
+		if (evt.data.value != this.viewModel) {
 			throw new TypeError('Input property "viewModel" is readonly');
 		}
 	}

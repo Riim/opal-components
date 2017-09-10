@@ -333,7 +333,7 @@ var OpalSelect = /** @class */ (function (_super) {
     OpalSelect.prototype._onInputValueChange = function (evt) {
         var _this = this;
         var vm = this.viewModel;
-        var value = evt.value;
+        var value = evt.data.value;
         if (value) {
             if (!Array.isArray(value)) {
                 throw new TypeError('value must be an array');
@@ -399,12 +399,12 @@ var OpalSelect = /** @class */ (function (_super) {
         }
     };
     OpalSelect.prototype._onInputViewModelChange = function (evt) {
-        if (evt.value != this.viewModel) {
+        if (evt.data.value != this.viewModel) {
             throw new TypeError('Input property "viewModel" is readonly');
         }
     };
     OpalSelect.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             if (!this._documentKeyDownListening) {
                 this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             }
@@ -440,7 +440,7 @@ var OpalSelect = /** @class */ (function (_super) {
         }
     };
     OpalSelect.prototype._onMenuInputOpenedChange = function (evt) {
-        if (!evt.value) {
+        if (!evt.data.value) {
             this.close();
         }
     };
@@ -982,7 +982,7 @@ var OpalTab = /** @class */ (function (_super) {
         }
     };
     OpalTab.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.focus();
         }
         else {
@@ -1582,7 +1582,7 @@ var OpalButton = /** @class */ (function (_super) {
         this.element.tabIndex = this._tabIndex;
     };
     OpalButton.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.focus();
         }
         else {
@@ -1780,7 +1780,7 @@ var OpalSignButton = /** @class */ (function (_super) {
         }
     };
     OpalSignButton.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.focus();
         }
         else {
@@ -2023,12 +2023,12 @@ var OpalTextInput = /** @class */ (function (_super) {
         });
     };
     OpalTextInput.prototype._onInputValueChange = function (evt) {
-        if (this.textField.value != evt.value) {
-            this.textField.value = evt.value;
+        if (this.textField.value != evt.data.value) {
+            this.textField.value = evt.data.value;
         }
     };
     OpalTextInput.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.focus();
         }
         else {
@@ -2052,7 +2052,9 @@ var OpalTextInput = /** @class */ (function (_super) {
         this._textFieldValue = this.textField.value;
         this.emit({
             type: 'input',
-            initialEvent: evt
+            data: {
+                initialEvent: evt
+            }
         });
     };
     OpalTextInput.prototype._onTextFieldChange = function (evt) {
@@ -2066,7 +2068,9 @@ var OpalTextInput = /** @class */ (function (_super) {
         }
         this.emit({
             type: 'change',
-            initialEvent: evt
+            data: {
+                initialEvent: evt
+            }
         });
     };
     OpalTextInput.prototype._onTextFieldKeyDown = function (evt) {
@@ -2078,7 +2082,9 @@ var OpalTextInput = /** @class */ (function (_super) {
         }
         this.emit({
             type: 'keydown',
-            initialEvent: evt
+            data: {
+                initialEvent: evt
+            }
         });
     };
     OpalTextInput.prototype._onTextFieldKeyPress = function (evt) {
@@ -2087,7 +2093,9 @@ var OpalTextInput = /** @class */ (function (_super) {
         }
         this.emit({
             type: 'keypress',
-            initialEvent: evt
+            data: {
+                initialEvent: evt
+            }
         });
     };
     OpalTextInput.prototype._onTextFieldKeyUp = function (evt) {
@@ -2096,7 +2104,9 @@ var OpalTextInput = /** @class */ (function (_super) {
         }
         this.emit({
             type: 'keyup',
-            initialEvent: evt
+            data: {
+                initialEvent: evt
+            }
         });
     };
     OpalTextInput.prototype._fixHeight = function () {
@@ -2729,18 +2739,18 @@ var OpalCheckbox = /** @class */ (function (_super) {
         }
     };
     OpalCheckbox.prototype._onInputCheckedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.input.indeterminate = false;
         }
-        this.$('input').checked = evt.value;
+        this.$('input').checked = evt.data.value;
     };
     OpalCheckbox.prototype._onInputIndeterminateChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.input.checked = false;
         }
     };
     OpalCheckbox.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             this.focus();
         }
@@ -2996,10 +3006,10 @@ var OpalRadioButton = /** @class */ (function (_super) {
         });
     };
     OpalRadioButton.prototype._onInputCheckedChange = function (evt) {
-        this.$('input').checked = evt.value;
+        this.$('input').checked = evt.data.value;
     };
     OpalRadioButton.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             this.focus();
         }
@@ -3187,10 +3197,10 @@ var OpalSwitch = /** @class */ (function (_super) {
         });
     };
     OpalSwitch.prototype._onInputCheckedChange = function (evt) {
-        this.$('input').checked = evt.value;
+        this.$('input').checked = evt.data.value;
     };
     OpalSwitch.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             this.focus();
         }
@@ -3810,7 +3820,7 @@ var OpalTabPanel = /** @class */ (function (_super) {
         this.listenTo(this, 'input-shown-change', this._onInputShownChange);
     };
     OpalTabPanel.prototype._onInputShownChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.isContentRendered = true;
         }
     };
@@ -3909,7 +3919,7 @@ var OpalDropdown = /** @class */ (function (_super) {
         this.listenTo(this, 'input-opened-change', this._onInputOpenedChange);
     };
     OpalDropdown.prototype._onInputOpenedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._open();
         }
         else {
@@ -4113,7 +4123,7 @@ var OpalPopover = /** @class */ (function (_super) {
         this.listenTo(this, 'input-opened-change', this._onInputOpenedChange);
     };
     OpalPopover.prototype._onInputOpenedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._open();
         }
         else {
@@ -4350,7 +4360,7 @@ var OpalModal = /** @class */ (function (_super) {
         this.close();
     };
     OpalModal.prototype._onInputOpenedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._open();
         }
         else {
@@ -4576,7 +4586,7 @@ var OpalSelectOption = /** @class */ (function (_super) {
         });
     };
     OpalSelectOption.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.focus();
         }
         else {
@@ -5542,7 +5552,7 @@ var OpalDateInput = /** @class */ (function (_super) {
         this.$('calendar-menu').open();
     };
     OpalDateInput.prototype._onCalendarMenuInputOpenedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
@@ -6221,7 +6231,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
         });
     };
     OpalTagSelect.prototype._onInputViewModelChange = function (evt) {
-        if (evt.value != this.viewModel) {
+        if (evt.data.value != this.viewModel) {
             throw new TypeError('Input property "viewModel" is readonly');
         }
     };
@@ -6520,7 +6530,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         }
     };
     OpalAutosuggest.prototype._onInputValueChange = function (evt) {
-        var item = evt.value;
+        var item = evt.data.value;
         this._clearDataList();
         this.value = item;
         this.$('text-input').value = item ? item[this._dataListItemTextFieldName] : '';
@@ -6563,7 +6573,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         this.openMenu();
     };
     OpalAutosuggest.prototype._onMenuInputOpenedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
             this._documentListening = this.listenTo(document, {
                 keydown: this._onDocumentKeyDown,
@@ -6594,7 +6604,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         this.openMenu();
     };
     OpalAutosuggest.prototype._onIsLoaderShownChange = function (evt) {
-        this.$('text-input').input.loading = evt.value;
+        this.$('text-input').input.loading = evt.data.value;
     };
     OpalAutosuggest.prototype._onDocumentFocus = function (evt) {
         if (!isFocusable_1.isFocusable(evt.target)) {

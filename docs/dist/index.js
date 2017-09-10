@@ -2239,10 +2239,10 @@ var TextNodeBindingCell = /** @class */ (function (_super) {
     return TextNodeBindingCell;
 }(cellx_1.Cell));
 function onAttributeBindingCellChange(evt) {
-    set_attribute_1.setAttribute(evt.target.element, evt.target.attributeName, evt.value);
+    set_attribute_1.setAttribute(evt.target.element, evt.target.attributeName, evt.data.value);
 }
 function onTextNodeBindingCellChange(evt) {
-    evt.target.textNode.nodeValue = evt.value;
+    evt.target.textNode.nodeValue = evt.data.value;
 }
 var ContentTextFragmentNodeType = ContentTextFragmentParser_1.ContentTextFragmentParser.ContentTextFragmentNodeType;
 function bindContent(node, ownerComponent, context, result) {
@@ -2809,6 +2809,16 @@ exports.formatters = {
     gte: function gte(value, arg) {
         return value >= arg;
     },
+    has: function has(obj, key) {
+        return !!obj && (typeof obj.has == 'function' ? obj.has(key) : obj.hasOwnProperty(key));
+    },
+    get: function get(obj, key) {
+        return obj && (typeof obj.get == 'function' ? obj.get(key) : obj[key]);
+    },
+    // Safary: "Cannot declare a parameter named 'key' as it shadows the name of a strict mode function."
+    key: function key_(obj, key) {
+        return obj && obj[key];
+    },
     join: function join(arr, separator) {
         if (separator === void 0) { separator = ', '; }
         return arr && arr.join(separator);
@@ -2830,16 +2840,6 @@ exports.formatters = {
         }
         args.unshift(count);
         return gettext_1.getText(context, key, true, args);
-    },
-    has: function has(obj, key) {
-        return !!obj && (typeof obj.has == 'function' ? obj.has(key) : obj.hasOwnProperty(key));
-    },
-    get: function get(obj, key) {
-        return obj && (typeof obj.get == 'function' ? obj.get(key) : obj[key]);
-    },
-    // Safary: "Cannot declare a parameter named 'key' as it shadows the name of a strict mode function."
-    key: function key_(obj, key) {
-        return obj && obj[key];
     },
     json: function json(value) {
         return JSON.stringify(value);
@@ -2958,13 +2958,14 @@ function initComponentInputProperty(componentInput, name, el) {
                             component.emit(evt.target == valueCell_1 ?
                                 {
                                     type: "input-" + hyphenizedName + "-change",
-                                    oldValue: evt.oldValue,
-                                    value: evt.value
+                                    data: evt.data
                                 } :
                                 {
                                     type: "input-" + hyphenizedName + "-change",
-                                    oldValue: evt.target,
-                                    value: evt.target
+                                    data: {
+                                        oldValue: evt.target,
+                                        value: evt.target
+                                    }
                                 });
                         }
                     });
@@ -3570,9 +3571,11 @@ function unfreezeBinding(binding) {
         binding._changeEvent = {
             target: binding,
             type: 'change',
-            oldValue: frozenState.value,
-            value: binding._value,
-            prev: null
+            data: {
+                oldValue: frozenState.value,
+                value: binding._value,
+                prev: null
+            }
         };
         binding._canCancelChange = true;
         binding._addToRelease();
@@ -4771,15 +4774,15 @@ exports.computed = computedDecorator;
 
 (function (global, factory) {
 	 true ? module.exports = factory(__webpack_require__(14), __webpack_require__(8), __webpack_require__(9), __webpack_require__(6), __webpack_require__(27), __webpack_require__(7), __webpack_require__(3)) :
-	typeof define === 'function' && define.amd ? define(['@riim/object-assign-polyfill', '@riim/map-set-polyfill', '@riim/error-logger', '@riim/symbol-polyfill', '@riim/is', '@riim/mixin', '@riim/next-tick'], factory) :
+	typeof define === 'function' && define.amd ? define(['@riim/object-assign-polyfill', '@riim/map-set-polyfill', '@riim/logger', '@riim/symbol-polyfill', '@riim/is', '@riim/mixin', '@riim/next-tick'], factory) :
 	(global.cellx = factory(global.objectAssignPolyfill,global.mapSetPolyfill,global.errorLogger,global.symbolPolyfill,global.is,global.mixin,global.nextTick));
-}(this, (function (objectAssignPolyfill,mapSetPolyfill,errorLogger,symbolPolyfill,is,mixin,nextTick) { 'use strict';
+}(this, (function (objectAssignPolyfill,mapSetPolyfill,logger,symbolPolyfill,is,mixin,nextTick) { 'use strict';
 
 /**
  * @typedef {{
  *     listener: (evt: cellx~Event) -> ?boolean,
  *     context
- * }} cellx~EmitterEvent
+ * }} cellx~RegisteredEvent
  */
 
 /**
@@ -4798,7 +4801,7 @@ exports.computed = computedDecorator;
  */
 function EventEmitter() {
 	/**
-  * @type {{ [type: string]: cellx~EmitterEvent | Array<cellx~EmitterEvent> }}
+  * @type {{ [type: string]: cellx~RegisteredEvent | Array<cellx~RegisteredEvent> }}
   */
 	this._events = new mapSetPolyfill.Map();
 }
@@ -4809,8 +4812,8 @@ EventEmitter.prototype = {
 	constructor: EventEmitter,
 
 	/**
-  * @typesign () -> { [type: string]: Array<cellx~EmitterEvent> };
-  * @typesign (type: string) -> Array<cellx~EmitterEvent>;
+  * @typesign () -> { [type: string]: Array<cellx~RegisteredEvent> };
+  * @typesign (type: string) -> Array<cellx~RegisteredEvent>;
   */
 	getEvents: function getEvents(type) {
 		var events;
@@ -5081,25 +5084,17 @@ EventEmitter.prototype = {
 	},
 
 	/**
-  * @typesign (emEvt: cellx~EmitterEvent, evt: cellx~Event);
+  * @typesign (emEvt: cellx~RegisteredEvent, evt: cellx~Event);
   */
 	_tryEventListener: function _tryEventListener(emEvt, evt) {
 		try {
 			return emEvt.listener.call(emEvt.context, evt);
 		} catch (err) {
-			this._logError(err);
+			logger.error(err);
 		}
-	},
-
-	/**
-  * @typesign (...msg);
-  */
-	_logError: function _logError() {
-		errorLogger.logError.apply(this, arguments);
 	}
 };
 
-var slice$1 = Array.prototype.slice;
 var EventEmitterProto = EventEmitter.prototype;
 
 var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 0x1fffffffffffff;
@@ -5114,7 +5109,7 @@ var releasePlanToIndex = -1;
 var releasePlanned = false;
 var currentlyRelease = false;
 var currentCell = null;
-var error = { original: null };
+var $error = { error: null };
 var releaseVersion = 1;
 
 var transactionLevel = 0;
@@ -5450,7 +5445,7 @@ mixin.mixin(Cell, {
 		try {
 			callback();
 		} catch (err) {
-			errorLogger.logError(err);
+			logger.error(err);
 			transactionFailure = true;
 		}
 
@@ -5690,8 +5685,8 @@ Cell.prototype = {
 			var value = this._tryPull();
 
 			if (masters || this._masters || !(this._state & STATE_INITED)) {
-				if (value === error) {
-					this._fail(error.original, false);
+				if (value === $error) {
+					this._fail($error.error, false);
 				} else {
 					this._push(value, false, false);
 				}
@@ -5812,8 +5807,8 @@ Cell.prototype = {
 					this._state |= STATE_ACTIVE;
 				}
 
-				if (value === error) {
-					this._fail(error.original, false);
+				if (value === $error) {
+					this._fail($error.error, false);
 				} else {
 					this._push(value, false, false);
 				}
@@ -5904,8 +5899,8 @@ Cell.prototype = {
 			}
 		}
 
-		if (value === error) {
-			this._fail(error.original, false);
+		if (value === $error) {
+			this._fail($error.error, false);
 			return true;
 		}
 
@@ -5941,8 +5936,8 @@ Cell.prototype = {
 		try {
 			return pull.length ? pull.call(this.context, this, this._value) : pull.call(this.context);
 		} catch (err) {
-			error.original = err;
-			return error;
+			$error.error = err;
+			return $error;
 		} finally {
 			currentCell = prevCell;
 
@@ -6168,18 +6163,22 @@ Cell.prototype = {
 					this._changeEvent = {
 						target: this,
 						type: 'change',
-						oldValue: oldValue,
-						value: value,
-						prev: this._changeEvent
+						data: {
+							oldValue: oldValue,
+							value: value,
+							prev: this._changeEvent
+						}
 					};
 				}
 			} else {
 				this._changeEvent = {
 					target: this,
 					type: 'change',
-					oldValue: oldValue,
-					value: value,
-					prev: null
+					data: {
+						oldValue: oldValue,
+						value: value,
+						prev: null
+					}
 				};
 				this._state |= STATE_CAN_CANCEL_CHANGE;
 
@@ -6232,7 +6231,7 @@ Cell.prototype = {
 			transactionFailure = true;
 		}
 
-		this._logError(err);
+		logger.error('[' + this.debugKey + ']', err);
 
 		if (!(err instanceof Error)) {
 			err = new Error(String(err));
@@ -6263,7 +6262,9 @@ Cell.prototype = {
 
 			this._handleErrorEvent({
 				type: 'error',
-				error: err
+				data: {
+					error: err
+				}
 			});
 		}
 	},
@@ -6371,19 +6372,6 @@ Cell.prototype = {
   */
 	catch: function catch_(onRejected) {
 		return this.then(null, onRejected);
-	},
-
-	/**
-  * @override
-  */
-	_logError: function _logError() {
-		var msg = slice$1.call(arguments);
-
-		if (this.debugKey) {
-			msg.unshift('[' + this.debugKey + ']');
-		}
-
-		EventEmitterProto._logError.apply(this, msg);
 	},
 
 	/**
@@ -6994,7 +6982,9 @@ ObservableList.prototype = mixin.mixin({ __proto__: EventEmitter.prototype }, [F
 
 		this.emit({
 			type: 'change',
-			subtype: 'clear'
+			data: {
+				subtype: 'clear'
+			}
 		});
 
 		return this;
@@ -7343,10 +7333,12 @@ ObservableMap.prototype = mixin.mixin({ __proto__: EventEmitter.prototype }, [Fr
 
 		this.emit({
 			type: 'change',
-			subtype: hasKey ? 'update' : 'add',
-			key: key,
-			oldValue: oldValue,
-			value: value
+			data: {
+				subtype: hasKey ? 'update' : 'add',
+				key: key,
+				oldValue: oldValue,
+				value: value
+			}
 		});
 
 		return this;
@@ -7372,10 +7364,12 @@ ObservableMap.prototype = mixin.mixin({ __proto__: EventEmitter.prototype }, [Fr
 
 		this.emit({
 			type: 'change',
-			subtype: 'delete',
-			key: key,
-			oldValue: value,
-			value: undefined
+			data: {
+				subtype: 'delete',
+				key: key,
+				oldValue: value,
+				value: undefined
+			}
 		});
 
 		return true;
@@ -7406,7 +7400,9 @@ ObservableMap.prototype = mixin.mixin({ __proto__: EventEmitter.prototype }, [Fr
 
 		this.emit({
 			type: 'change',
-			subtype: 'clear'
+			data: {
+				subtype: 'clear'
+			}
 		});
 
 		return this;
@@ -7682,7 +7678,7 @@ return cellx;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var error_logger_1 = __webpack_require__(9);
+var logger_1 = __webpack_require__(9);
 var global = Function('return this;')();
 var nextTick;
 exports.nextTick = nextTick;
@@ -7713,7 +7709,7 @@ else {
                     track[i]();
                 }
                 catch (err) {
-                    error_logger_1.logError(err);
+                    logger_1.error(err);
                 }
             }
         }
@@ -8217,28 +8213,43 @@ if (true) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var global = Function('return this;')();
 function noop() { }
-var handler_ = function () {
-    var msg = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        msg[_i] = arguments[_i];
+exports.logger = {
+    _handler: function (type) {
+        var msg = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            msg[_i - 1] = arguments[_i];
+        }
+        var console = global.console;
+        (console && console[type] || noop).call(console || null, (type == 'error' ? msg.map(function (m) { return m === Object(m) && m.stack || m; }) : msg).join(' '));
+    },
+    setHandler: function (handler) {
+        exports.logger._handler = handler;
+    },
+    log: function () {
+        var msg = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            msg[_i] = arguments[_i];
+        }
+        exports.logger._handler.apply(exports.logger, ['log'].concat(msg));
+    },
+    warn: function () {
+        var msg = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            msg[_i] = arguments[_i];
+        }
+        exports.logger._handler.apply(exports.logger, ['warn'].concat(msg));
+    },
+    error: function () {
+        var msg = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            msg[_i] = arguments[_i];
+        }
+        exports.logger._handler.apply(exports.logger, ['error'].concat(msg));
     }
-    var console = global.console;
-    (console && console.error || noop).call(console || global, msg.map(function (m) { return m === Object(m) && m.stack || m; }).join(' '));
 };
-exports.handler = handler_;
-function setHandler(handler) {
-    exports.handler = handler_ = handler;
-}
-exports.setHandler = setHandler;
-function logError() {
-    var msg = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        msg[_i] = arguments[_i];
-    }
-    handler_.apply(void 0, msg);
-}
-exports.logError = logError;
-exports.log = logError;
+exports.log = exports.logger.log;
+exports.warn = exports.logger.warn;
+exports.error = exports.logger.error;
 
 
 /***/ }),
@@ -8581,7 +8592,7 @@ var OpalSelect = /** @class */ (function (_super) {
     OpalSelect.prototype._onInputValueChange = function (evt) {
         var _this = this;
         var vm = this.viewModel;
-        var value = evt.value;
+        var value = evt.data.value;
         if (value) {
             if (!Array.isArray(value)) {
                 throw new TypeError('value must be an array');
@@ -8647,12 +8658,12 @@ var OpalSelect = /** @class */ (function (_super) {
         }
     };
     OpalSelect.prototype._onInputViewModelChange = function (evt) {
-        if (evt.value != this.viewModel) {
+        if (evt.data.value != this.viewModel) {
             throw new TypeError('Input property "viewModel" is readonly');
         }
     };
     OpalSelect.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             if (!this._documentKeyDownListening) {
                 this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             }
@@ -8688,7 +8699,7 @@ var OpalSelect = /** @class */ (function (_super) {
         }
     };
     OpalSelect.prototype._onMenuInputOpenedChange = function (evt) {
-        if (!evt.value) {
+        if (!evt.data.value) {
             this.close();
         }
     };
@@ -9182,7 +9193,7 @@ var OpalTab = /** @class */ (function (_super) {
         }
     };
     OpalTab.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.focus();
         }
         else {
@@ -10757,7 +10768,7 @@ exports.isRegExp = isRegExp;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var error_logger_1 = __webpack_require__(9);
+var logger_1 = __webpack_require__(9);
 var queue;
 function run() {
     var track = queue;
@@ -10768,7 +10779,7 @@ function run() {
             item.callback.call(item.context);
         }
         catch (err) {
-            error_logger_1.logError(err);
+            logger_1.error(err);
         }
     }
 }
@@ -10982,7 +10993,7 @@ var OpalButton = /** @class */ (function (_super) {
         this.element.tabIndex = this._tabIndex;
     };
     OpalButton.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.focus();
         }
         else {
@@ -11180,7 +11191,7 @@ var OpalSignButton = /** @class */ (function (_super) {
         }
     };
     OpalSignButton.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.focus();
         }
         else {
@@ -11423,12 +11434,12 @@ var OpalTextInput = /** @class */ (function (_super) {
         });
     };
     OpalTextInput.prototype._onInputValueChange = function (evt) {
-        if (this.textField.value != evt.value) {
-            this.textField.value = evt.value;
+        if (this.textField.value != evt.data.value) {
+            this.textField.value = evt.data.value;
         }
     };
     OpalTextInput.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.focus();
         }
         else {
@@ -11452,7 +11463,9 @@ var OpalTextInput = /** @class */ (function (_super) {
         this._textFieldValue = this.textField.value;
         this.emit({
             type: 'input',
-            initialEvent: evt
+            data: {
+                initialEvent: evt
+            }
         });
     };
     OpalTextInput.prototype._onTextFieldChange = function (evt) {
@@ -11466,7 +11479,9 @@ var OpalTextInput = /** @class */ (function (_super) {
         }
         this.emit({
             type: 'change',
-            initialEvent: evt
+            data: {
+                initialEvent: evt
+            }
         });
     };
     OpalTextInput.prototype._onTextFieldKeyDown = function (evt) {
@@ -11478,7 +11493,9 @@ var OpalTextInput = /** @class */ (function (_super) {
         }
         this.emit({
             type: 'keydown',
-            initialEvent: evt
+            data: {
+                initialEvent: evt
+            }
         });
     };
     OpalTextInput.prototype._onTextFieldKeyPress = function (evt) {
@@ -11487,7 +11504,9 @@ var OpalTextInput = /** @class */ (function (_super) {
         }
         this.emit({
             type: 'keypress',
-            initialEvent: evt
+            data: {
+                initialEvent: evt
+            }
         });
     };
     OpalTextInput.prototype._onTextFieldKeyUp = function (evt) {
@@ -11496,7 +11515,9 @@ var OpalTextInput = /** @class */ (function (_super) {
         }
         this.emit({
             type: 'keyup',
-            initialEvent: evt
+            data: {
+                initialEvent: evt
+            }
         });
     };
     OpalTextInput.prototype._fixHeight = function () {
@@ -12129,18 +12150,18 @@ var OpalCheckbox = /** @class */ (function (_super) {
         }
     };
     OpalCheckbox.prototype._onInputCheckedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.input.indeterminate = false;
         }
-        this.$('input').checked = evt.value;
+        this.$('input').checked = evt.data.value;
     };
     OpalCheckbox.prototype._onInputIndeterminateChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.input.checked = false;
         }
     };
     OpalCheckbox.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             this.focus();
         }
@@ -12396,10 +12417,10 @@ var OpalRadioButton = /** @class */ (function (_super) {
         });
     };
     OpalRadioButton.prototype._onInputCheckedChange = function (evt) {
-        this.$('input').checked = evt.value;
+        this.$('input').checked = evt.data.value;
     };
     OpalRadioButton.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             this.focus();
         }
@@ -12587,10 +12608,10 @@ var OpalSwitch = /** @class */ (function (_super) {
         });
     };
     OpalSwitch.prototype._onInputCheckedChange = function (evt) {
-        this.$('input').checked = evt.value;
+        this.$('input').checked = evt.data.value;
     };
     OpalSwitch.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             this.focus();
         }
@@ -13210,7 +13231,7 @@ var OpalTabPanel = /** @class */ (function (_super) {
         this.listenTo(this, 'input-shown-change', this._onInputShownChange);
     };
     OpalTabPanel.prototype._onInputShownChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.isContentRendered = true;
         }
     };
@@ -13309,7 +13330,7 @@ var OpalDropdown = /** @class */ (function (_super) {
         this.listenTo(this, 'input-opened-change', this._onInputOpenedChange);
     };
     OpalDropdown.prototype._onInputOpenedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._open();
         }
         else {
@@ -13513,7 +13534,7 @@ var OpalPopover = /** @class */ (function (_super) {
         this.listenTo(this, 'input-opened-change', this._onInputOpenedChange);
     };
     OpalPopover.prototype._onInputOpenedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._open();
         }
         else {
@@ -13750,7 +13771,7 @@ var OpalModal = /** @class */ (function (_super) {
         this.close();
     };
     OpalModal.prototype._onInputOpenedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._open();
         }
         else {
@@ -13976,7 +13997,7 @@ var OpalSelectOption = /** @class */ (function (_super) {
         });
     };
     OpalSelectOption.prototype._onInputFocusedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this.focus();
         }
         else {
@@ -14942,7 +14963,7 @@ var OpalDateInput = /** @class */ (function (_super) {
         this.$('calendar-menu').open();
     };
     OpalDateInput.prototype._onCalendarMenuInputOpenedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
@@ -15787,7 +15808,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
         });
     };
     OpalTagSelect.prototype._onInputViewModelChange = function (evt) {
-        if (evt.value != this.viewModel) {
+        if (evt.data.value != this.viewModel) {
             throw new TypeError('Input property "viewModel" is readonly');
         }
     };
@@ -16086,7 +16107,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         }
     };
     OpalAutosuggest.prototype._onInputValueChange = function (evt) {
-        var item = evt.value;
+        var item = evt.data.value;
         this._clearDataList();
         this.value = item;
         this.$('text-input').value = item ? item[this._dataListItemTextFieldName] : '';
@@ -16129,7 +16150,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         this.openMenu();
     };
     OpalAutosuggest.prototype._onMenuInputOpenedChange = function (evt) {
-        if (evt.value) {
+        if (evt.data.value) {
             this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
             this._documentListening = this.listenTo(document, {
                 keydown: this._onDocumentKeyDown,
@@ -16160,7 +16181,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         this.openMenu();
     };
     OpalAutosuggest.prototype._onIsLoaderShownChange = function (evt) {
-        this.$('text-input').input.loading = evt.value;
+        this.$('text-input').input.loading = evt.data.value;
     };
     OpalAutosuggest.prototype._onDocumentFocus = function (evt) {
         if (!isFocusable_1.isFocusable(evt.target)) {

@@ -89,7 +89,7 @@ export class OpalDateInput extends Component {
 	}
 
 	_onCalendarMenuInputOpenedChange(evt: IEvent) {
-		if (evt.value) {
+		if (evt.data.value) {
 			this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
 			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 			this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);

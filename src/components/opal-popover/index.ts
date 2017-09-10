@@ -36,7 +36,7 @@ export class OpalPopover extends Component {
 	}
 
 	_onInputOpenedChange(evt: IEvent) {
-		if (evt.value) {
+		if (evt.data.value) {
 			this._open();
 		} else {
 			this._close();

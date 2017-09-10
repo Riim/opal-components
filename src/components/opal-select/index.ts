@@ -256,7 +256,7 @@ export class OpalSelect extends Component {
 
 	_onInputValueChange(evt: IEvent) {
 		let vm = this.viewModel;
-		let value = evt.value;
+		let value = evt.data.value;
 
 		if (value) {
 			if (!Array.isArray(value)) {
@@ -329,13 +329,13 @@ export class OpalSelect extends Component {
 	}
 
 	_onInputViewModelChange(evt: IEvent) {
-		if (evt.value != this.viewModel) {
+		if (evt.data.value != this.viewModel) {
 			throw new TypeError('Input property "viewModel" is readonly');
 		}
 	}
 
 	_onInputFocusedChange(evt: IEvent) {
-		if (evt.value) {
+		if (evt.data.value) {
 			if (!this._documentKeyDownListening) {
 				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
 			}
@@ -376,7 +376,7 @@ export class OpalSelect extends Component {
 	}
 
 	_onMenuInputOpenedChange(evt: IEvent) {
-		if (!evt.value) {
+		if (!evt.data.value) {
 			this.close();
 		}
 	}

@@ -43,7 +43,7 @@ export class OpalSignButton extends Component {
 	}
 
 	_onInputFocusedChange(evt: IEvent) {
-		if (evt.value) {
+		if (evt.data.value) {
 			this.focus();
 		} else {
 			this.blur();
