@@ -36,7 +36,7 @@
 		display: block;
 	}
 
-	@mod to=top {
+	@mod from=top {
 		bottom: 100%;
 		margin-bottom: 15px;
 
@@ -54,20 +54,8 @@
 				border-top-color: #fff;
 			}
 		}
-	}
 
-	@mod from=left {
-		@mod to=top {
-			left: 0;
-
-			@el arrow {
-				transform: translateX(-1px);
-			}
-		}
-	}
-
-	@mod from=middle {
-		@mod to=top {
+		@mod align=center {
 			left: 50%;
 			transform: translateX(-50%);
 
@@ -75,10 +63,16 @@
 				left: 50%;
 			}
 		}
-	}
 
-	@mod from=right {
-		@mod to=top {
+		@mod align=left {
+			left: 0;
+
+			@el arrow {
+				transform: translateX(-1px);
+			}
+		}
+
+		@mod align=right {
 			right: 0;
 
 			@el arrow {
@@ -87,7 +81,7 @@
 		}
 	}
 
-	@mod to=right {
+	@mod from=right {
 		left: 100%;
 		margin-left: 15px;
 
@@ -106,20 +100,8 @@
 				border-right-color: #fff;
 			}
 		}
-	}
 
-	@mod from=top {
-		@mod to=right {
-			top: 0;
-
-			@el arrow {
-				transform: translateY(-1px);
-			}
-		}
-	}
-
-	@mod from=middle {
-		@mod to=right {
+		@mod align=center {
 			top: 50%;
 			transform: translateY(-50%);
 
@@ -127,10 +109,16 @@
 				top: 50%;
 			}
 		}
-	}
 
-	@mod from=bottom {
-		@mod to=right {
+		@mod align=top {
+			top: 0;
+
+			@el arrow {
+				transform: translateY(-1px);
+			}
+		}
+
+		@mod align=bottom {
 			bottom: 0;
 
 			@el arrow {
@@ -139,7 +127,7 @@
 		}
 	}
 
-	@mod to=bottom {
+	@mod from=bottom {
 		top: 100%;
 		margin-top: 15px;
 
@@ -158,20 +146,8 @@
 				border-bottom-color: #fff;
 			}
 		}
-	}
 
-	@mod from=left {
-		@mod to=bottom {
-			left: 0;
-
-			@el arrow {
-				transform: translateX(-1px);
-			}
-		}
-	}
-
-	@mod from=middle {
-		@mod to=bottom {
+		@mod align=center {
 			left: 50%;
 			transform: translateX(-50%);
 
@@ -179,10 +155,16 @@
 				left: 50%;
 			}
 		}
-	}
 
-	@mod from=right {
-		@mod to=bottom {
+		@mod align=left {
+			left: 0;
+
+			@el arrow {
+				transform: translateX(-1px);
+			}
+		}
+
+		@mod align=right {
 			right: 0;
 
 			@el arrow {
@@ -191,7 +173,7 @@
 		}
 	}
 
-	@mod to=left {
+	@mod from=left {
 		right: 100%;
 		margin-right: 15px;
 
@@ -210,20 +192,8 @@
 				border-left-color: #fff;
 			}
 		}
-	}
 
-	@mod from=top {
-		@mod to=left {
-			top: 0;
-
-			@el arrow {
-				transform: translateY(-1px);
-			}
-		}
-	}
-
-	@mod from=middle {
-		@mod to=left {
+		@mod align=center {
 			top: 50%;
 			transform: translateY(-50%);
 
@@ -231,10 +201,16 @@
 				top: 50%;
 			}
 		}
-	}
 
-	@mod from=bottom {
-		@mod to=left {
+		@mod align=top {
+			top: 0;
+
+			@el arrow {
+				transform: translateY(-1px);
+			}
+		}
+
+		@mod align=bottom {
 			bottom: 0;
 
 			@el arrow {

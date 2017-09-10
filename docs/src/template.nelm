@@ -156,21 +156,21 @@ h1 { 'opal-popover' }
 p {
 	div (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {
 		opal-popover (auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
 	}
 	div (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {
-		opal-popover (from=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (from=right, to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (from=bottom, to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (from=left, to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (align=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=bottom, align=right, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=left, align=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=top, align=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
 	}
 	div (style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;) {
-		opal-popover (from=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (from=left, to=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (from=top, to=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (from=right, from=left, to=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (align=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=bottom, align=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=left, align=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=top, align=right, auto-direction=no, opened) { 'Popover' br 'Popover' }
 	}
 }
 
@@ -215,7 +215,7 @@ p {
 p {
 	opal-group {
 		opal-select (placeholder=Select) {
-			opal-popover (class=opal-select__menu, to=bottom, auto-closing) {
+			opal-popover (class=opal-select__menu, from=bottom, auto-closing) {
 				opal-select-option (text=Option 1)
 				opal-select-option (text=Option 2)
 				opal-select-option (text=Option 3)
@@ -290,7 +290,7 @@ p {
 	} ' '
 
 	opal-select {
-		opal-popover (class=opal-select__menu, to=bottom, auto-closing) {
+		opal-popover (class=opal-select__menu, from=bottom, auto-closing) {
 			opal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {
 				opal-select-option (text={$item.name})
 			}
@@ -298,7 +298,7 @@ p {
 	} ' '
 
 	opal-select (multiple, view-model={viewModel1}, view-model-item-schema='{ value: "id", text: "name" }') {
-		opal-popover (class=opal-select__menu, to=bottom, auto-closing) {
+		opal-popover (class=opal-select__menu, from=bottom, auto-closing) {
 			opal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {
 				opal-select-option (text={$item.name})
 			}
@@ -306,7 +306,7 @@ p {
 	} ' '
 
 	opal-select {
-		opal-popover (class=opal-select__menu, to=bottom, auto-closing) {
+		opal-popover (class=opal-select__menu, from=bottom, auto-closing) {
 			opal-filtered-list (class=opal-select__filtered-list) {
 				opal-loaded-list (
 					class=opal-select__loaded-list opal-filtered-list__list,
@@ -319,7 +319,7 @@ p {
 	} ' '
 
 	opal-select (multiple) {
-		opal-popover (class=opal-select__menu, to=bottom, auto-closing) {
+		opal-popover (class=opal-select__menu, from=bottom, auto-closing) {
 			opal-filtered-list (class=opal-select__filtered-list) {
 				opal-loaded-list (
 					class=opal-select__loaded-list opal-filtered-list__list,

@@ -2,16 +2,19 @@
 
 opal-input-validator/input-validator {
 	@if-then (if=input.required) {
-		opal-input-validator-rule/input-validator-rule-required (required, popover-to={input.popoverTo}) {
+		opal-input-validator-rule/input-validator-rule-required (required, popover-from={input.popoverFrom}) {
 			'{constructor.i18n.isRequiredField}'
 		}
 	}
 
-	opal-input-validator-rule/input-validator-rule-date-exists (test={dateExists}, popover-to={input.popoverTo}) {
+	opal-input-validator-rule/input-validator-rule-date-exists (test={dateExists}, popover-from={input.popoverFrom}) {
 		'{constructor.i18n.nonExistentDate}'
 	}
 
-	opal-input-validator-rule/input-validator-rule-date-in-range (test={isDateInRange}, popover-to={input.popoverTo}) {
+	opal-input-validator-rule/input-validator-rule-date-in-range (
+		test={isDateInRange},
+		popover-from={input.popoverFrom}
+	) {
 		'{constructor.i18n.invalidDateRange}'
 	}
 

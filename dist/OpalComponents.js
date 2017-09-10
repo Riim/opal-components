@@ -4171,23 +4171,22 @@ var OpalPopover = /** @class */ (function (_super) {
         var _this = this;
         var el = this.element;
         if (this.input.autoDirection) {
-            var to = this.input.to;
-            this._toOnOpen = to;
             var docEl = document.documentElement;
             var containerClientRect = el.offsetParent.getBoundingClientRect();
             var elClientRect = el.getBoundingClientRect();
-            switch (to) {
+            var from = this._fromOnOpen = this.input.from;
+            switch (from) {
                 case 'left': {
                     if (elClientRect.left + document.body.scrollLeft < 0 || (elClientRect.left < 0 &&
                         containerClientRect.left < docEl.clientWidth - containerClientRect.right)) {
-                        this.input.to = 'right';
+                        this.input.align = 'right';
                     }
                     break;
                 }
                 case 'top': {
                     if (elClientRect.top + document.body.scrollTop < 0 || (elClientRect.top < 0 &&
                         containerClientRect.top < docEl.clientHeight - containerClientRect.bottom)) {
-                        this.input.to = 'bottom';
+                        this.input.align = 'bottom';
                     }
                     break;
                 }
@@ -4196,7 +4195,7 @@ var OpalPopover = /** @class */ (function (_super) {
                         containerClientRect.left > docEl.clientWidth - containerClientRect.right &&
                         containerClientRect.left + document.body.scrollLeft >=
                             elClientRect.right - containerClientRect.right) {
-                        this.input.to = 'left';
+                        this.input.align = 'left';
                     }
                     break;
                 }
@@ -4205,18 +4204,17 @@ var OpalPopover = /** @class */ (function (_super) {
                         containerClientRect.top > docEl.clientHeight - containerClientRect.bottom &&
                         containerClientRect.top + document.body.scrollTop >=
                             elClientRect.bottom - containerClientRect.bottom) {
-                        this.input.to = 'top';
+                        this.input.align = 'top';
                     }
                     break;
                 }
             }
         }
-        var from = this.input.from;
+        var align = this.input.align;
         var arrowStyle = this.$('arrow').style;
         arrowStyle.top = arrowStyle.right = arrowStyle.bottom = arrowStyle.left = '';
-        if (from != 'middle') {
-            arrowStyle[from] = el.offsetParent[from == 'left' || from == 'right' ? 'clientWidth' : 'clientHeight'] / 2 +
-                'px';
+        if (align != 'center') {
+            arrowStyle[align] = el.offsetParent[align == 'left' || align == 'right' ? 'clientWidth' : 'clientHeight'] / 2 + 'px';
         }
         if (this.input.autoClosing) {
             setTimeout(function () {
@@ -4228,7 +4226,7 @@ var OpalPopover = /** @class */ (function (_super) {
     };
     OpalPopover.prototype._close = function () {
         if (this.input.autoDirection) {
-            this.input.to = this._toOnOpen;
+            this.input.from = this._fromOnOpen;
         }
         if (this._documentClickListening) {
             this._documentClickListening.stop();
@@ -4257,8 +4255,8 @@ var OpalPopover = /** @class */ (function (_super) {
         rionite_1.d.Component({
             elementIs: 'opal-popover',
             input: {
-                from: 'middle',
-                to: 'right',
+                from: 'right',
+                align: 'center',
                 autoDirection: true,
                 autoClosing: false,
                 opened: false
@@ -4280,7 +4278,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-popover{position:absolute;z-index:100;display:none;-webkit-box-sizing:border-box;box-sizing:border-box;padding:15px;border:1px solid #ccc;border-radius:6px;background:#fff;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.2);box-shadow:0 1px 3px rgba(0,0,0,.2);line-height:1.5;cursor:default}.opal-popover .opal-popover__arrow{position:absolute;z-index:1;width:0;height:0}.opal-popover .opal-popover__arrow::before,.opal-popover .opal-popover__arrow::after{position:absolute;width:0;height:0;border:10px solid transparent;content:''}.opal-popover .opal-popover__arrow::after{border:8px solid transparent}.opal-popover .opal-popover__content{position:relative;display:block}.opal-popover[to=top]{bottom:100%;margin-bottom:15px}.opal-popover[to=top] .opal-popover__arrow{top:100%}.opal-popover[to=top] .opal-popover__arrow::before,.opal-popover[to=top] .opal-popover__arrow::after{border-top-color:#ccc;border-bottom-width:0;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[to=top] .opal-popover__arrow::after{border-top-color:#fff}.opal-popover[from=left][to=top]{left:0}.opal-popover[from=left][to=top] .opal-popover__arrow{-webkit-transform:translateX(-1px);-ms-transform:translateX(-1px);transform:translateX(-1px)}.opal-popover[from=middle][to=top]{left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[from=middle][to=top] .opal-popover__arrow{left:50%}.opal-popover[from=right][to=top]{right:0}.opal-popover[from=right][to=top] .opal-popover__arrow{-webkit-transform:translateX(1px);-ms-transform:translateX(1px);transform:translateX(1px)}.opal-popover[to=right]{left:100%;margin-left:15px}.opal-popover[to=right] .opal-popover__arrow{right:100%}.opal-popover[to=right] .opal-popover__arrow::before,.opal-popover[to=right] .opal-popover__arrow::after{right:0;border-right-color:#ccc;border-left-width:0;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[to=right] .opal-popover__arrow::after{border-right-color:#fff}.opal-popover[from=top][to=right]{top:0}.opal-popover[from=top][to=right] .opal-popover__arrow{-webkit-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px)}.opal-popover[from=middle][to=right]{top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[from=middle][to=right] .opal-popover__arrow{top:50%}.opal-popover[from=bottom][to=right]{bottom:0}.opal-popover[from=bottom][to=right] .opal-popover__arrow{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.opal-popover[to=bottom]{top:100%;margin-top:15px}.opal-popover[to=bottom] .opal-popover__arrow{bottom:100%}.opal-popover[to=bottom] .opal-popover__arrow::before,.opal-popover[to=bottom] .opal-popover__arrow::after{bottom:0;border-top-width:0;border-bottom-color:#ccc;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[to=bottom] .opal-popover__arrow::after{border-bottom-color:#fff}.opal-popover[from=left][to=bottom]{left:0}.opal-popover[from=left][to=bottom] .opal-popover__arrow{-webkit-transform:translateX(-1px);-ms-transform:translateX(-1px);transform:translateX(-1px)}.opal-popover[from=middle][to=bottom]{left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[from=middle][to=bottom] .opal-popover__arrow{left:50%}.opal-popover[from=right][to=bottom]{right:0}.opal-popover[from=right][to=bottom] .opal-popover__arrow{-webkit-transform:translateX(1px);-ms-transform:translateX(1px);transform:translateX(1px)}.opal-popover[to=left]{right:100%;margin-right:15px}.opal-popover[to=left] .opal-popover__arrow{left:100%}.opal-popover[to=left] .opal-popover__arrow::before,.opal-popover[to=left] .opal-popover__arrow::after{left:0;border-right-width:0;border-left-color:#ccc;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[to=left] .opal-popover__arrow::after{border-left-color:#fff}.opal-popover[from=top][to=left]{top:0}.opal-popover[from=top][to=left] .opal-popover__arrow{-webkit-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px)}.opal-popover[from=middle][to=left]{top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[from=middle][to=left] .opal-popover__arrow{top:50%}.opal-popover[from=bottom][to=left]{bottom:0}.opal-popover[from=bottom][to=left] .opal-popover__arrow{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.opal-popover[opened]{display:block;-webkit-animation:opal-popover-fade-in-animation .1s linear;animation:opal-popover-fade-in-animation .1s linear}@-webkit-keyframes opal-popover-fade-in-animation{0%{opacity:0}to{opacity:1}}@keyframes opal-popover-fade-in-animation{0%{opacity:0}to{opacity:1}}";
+            style.textContent = ".opal-popover{position:absolute;z-index:100;display:none;-webkit-box-sizing:border-box;box-sizing:border-box;padding:15px;border:1px solid #ccc;border-radius:6px;background:#fff;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.2);box-shadow:0 1px 3px rgba(0,0,0,.2);line-height:1.5;cursor:default}.opal-popover .opal-popover__arrow{position:absolute;z-index:1;width:0;height:0}.opal-popover .opal-popover__arrow::before,.opal-popover .opal-popover__arrow::after{position:absolute;width:0;height:0;border:10px solid transparent;content:''}.opal-popover .opal-popover__arrow::after{border:8px solid transparent}.opal-popover .opal-popover__content{position:relative;display:block}.opal-popover[from=top]{bottom:100%;margin-bottom:15px}.opal-popover[from=top] .opal-popover__arrow{top:100%}.opal-popover[from=top] .opal-popover__arrow::before,.opal-popover[from=top] .opal-popover__arrow::after{border-top-color:#ccc;border-bottom-width:0;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[from=top] .opal-popover__arrow::after{border-top-color:#fff}.opal-popover[from=top][align=center]{left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[from=top][align=center] .opal-popover__arrow{left:50%}.opal-popover[from=top][align=left]{left:0}.opal-popover[from=top][align=left] .opal-popover__arrow{-webkit-transform:translateX(-1px);-ms-transform:translateX(-1px);transform:translateX(-1px)}.opal-popover[from=top][align=right]{right:0}.opal-popover[from=top][align=right] .opal-popover__arrow{-webkit-transform:translateX(1px);-ms-transform:translateX(1px);transform:translateX(1px)}.opal-popover[from=right]{left:100%;margin-left:15px}.opal-popover[from=right] .opal-popover__arrow{right:100%}.opal-popover[from=right] .opal-popover__arrow::before,.opal-popover[from=right] .opal-popover__arrow::after{right:0;border-right-color:#ccc;border-left-width:0;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[from=right] .opal-popover__arrow::after{border-right-color:#fff}.opal-popover[from=right][align=center]{top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[from=right][align=center] .opal-popover__arrow{top:50%}.opal-popover[from=right][align=top]{top:0}.opal-popover[from=right][align=top] .opal-popover__arrow{-webkit-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px)}.opal-popover[from=right][align=bottom]{bottom:0}.opal-popover[from=right][align=bottom] .opal-popover__arrow{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.opal-popover[from=bottom]{top:100%;margin-top:15px}.opal-popover[from=bottom] .opal-popover__arrow{bottom:100%}.opal-popover[from=bottom] .opal-popover__arrow::before,.opal-popover[from=bottom] .opal-popover__arrow::after{bottom:0;border-top-width:0;border-bottom-color:#ccc;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[from=bottom] .opal-popover__arrow::after{border-bottom-color:#fff}.opal-popover[from=bottom][align=center]{left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[from=bottom][align=center] .opal-popover__arrow{left:50%}.opal-popover[from=bottom][align=left]{left:0}.opal-popover[from=bottom][align=left] .opal-popover__arrow{-webkit-transform:translateX(-1px);-ms-transform:translateX(-1px);transform:translateX(-1px)}.opal-popover[from=bottom][align=right]{right:0}.opal-popover[from=bottom][align=right] .opal-popover__arrow{-webkit-transform:translateX(1px);-ms-transform:translateX(1px);transform:translateX(1px)}.opal-popover[from=left]{right:100%;margin-right:15px}.opal-popover[from=left] .opal-popover__arrow{left:100%}.opal-popover[from=left] .opal-popover__arrow::before,.opal-popover[from=left] .opal-popover__arrow::after{left:0;border-right-width:0;border-left-color:#ccc;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[from=left] .opal-popover__arrow::after{border-left-color:#fff}.opal-popover[from=left][align=center]{top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[from=left][align=center] .opal-popover__arrow{top:50%}.opal-popover[from=left][align=top]{top:0}.opal-popover[from=left][align=top] .opal-popover__arrow{-webkit-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px)}.opal-popover[from=left][align=bottom]{bottom:0}.opal-popover[from=left][align=bottom] .opal-popover__arrow{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.opal-popover[opened]{display:block;-webkit-animation:opal-popover-fade-in-animation .1s linear;animation:opal-popover-fade-in-animation .1s linear}@-webkit-keyframes opal-popover-fade-in-animation{0%{opacity:0}to{opacity:1}}@keyframes opal-popover-fade-in-animation{0%{opacity:0}to{opacity:1}}";
             head.appendChild(style);
             return style;
         }
@@ -5038,7 +5036,7 @@ var OpalInputValidatorRule = /** @class */ (function (_super) {
                 minLength: { type: Number, readonly: true },
                 regex: { type: eval, readonly: true },
                 test: { type: Object, readonly: true },
-                popoverTo: 'right'
+                popoverFrom: 'right'
             },
             template: template
         })
@@ -5069,7 +5067,7 @@ module.exports = (function(d) {
 /* 82 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nopal-popover/popover (to={input.popoverTo}) {\nrt-content/content\n}\n}"
+module.exports = "@section/inner {\nopal-popover/popover (from={input.popoverFrom}) {\nrt-content/content\n}\n}"
 
 /***/ }),
 /* 83 */
@@ -5628,7 +5626,7 @@ var OpalDateInput = /** @class */ (function (_super) {
                 placeholder: 'dd.mm.yyyy',
                 mask: '99.99.9999',
                 required: { default: false, readonly: true },
-                popoverTo: 'right'
+                popoverFrom: 'right'
             },
             i18n: {
                 isRequiredField: gettext_1.getText.t('Поле обязательно для заполнения'),
@@ -5681,7 +5679,7 @@ module.exports = (function(d) {
 /* 91 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nopal-input-validator/input-validator {\n@if-then (if=input.required) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-to={input.popoverTo}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test={dateExists}, popover-to={input.popoverTo}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (test={isDateInRange}, popover-to={input.popoverTo}) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={input.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={input.value},\nplaceholder={input.placeholder},\nclearable\n) {\nsvg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-calendar)\n}\n}\n}\n}\nopal-dropdown/calendar-menu (auto-height=no) {\nopal-calendar/calendar (from-date={input.fromDate}, to-date={input.toDate}, value={input.value}, date-delimiter=.)\n}\n}"
+module.exports = "@section/inner {\nopal-input-validator/input-validator {\n@if-then (if=input.required) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-from={input.popoverFrom}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test={dateExists}, popover-from={input.popoverFrom}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (\ntest={isDateInRange},\npopover-from={input.popoverFrom}\n) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={input.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={input.value},\nplaceholder={input.placeholder},\nclearable\n) {\nsvg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-calendar)\n}\n}\n}\n}\nopal-dropdown/calendar-menu (auto-height=no) {\nopal-calendar/calendar (from-date={input.fromDate}, to-date={input.toDate}, value={input.value}, date-delimiter=.)\n}\n}"
 
 /***/ }),
 /* 92 */
@@ -6291,7 +6289,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
                 viewModel: { type: Object },
                 viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
                 placeholder: gettext_1.getText.t('Не выбрано'),
-                popoverTo: 'bottom',
+                popoverFrom: 'bottom',
                 disabled: false
             },
             template: template,
@@ -6333,7 +6331,7 @@ module.exports = (function(d) {
 /* 108 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndata-list-keypath={_dataListKeypathParam},\ndata-list-item-schema={input.dataListItemSchema |json },\nadd-new-item={input.addNewItem},\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, to={input.popoverTo}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/data-list-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}"
+module.exports = "@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndata-list-keypath={_dataListKeypathParam},\ndata-list-item-schema={input.dataListItemSchema |json },\nadd-new-item={input.addNewItem},\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, from={input.popoverFrom}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/data-list-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 109 */

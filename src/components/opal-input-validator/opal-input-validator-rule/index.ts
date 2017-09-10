@@ -11,7 +11,7 @@ import template = require('./template.nelm');
 		minLength: { type: Number, readonly: true },
 		regex: { type: eval, readonly: true },
 		test: { type: Object, readonly: true },
-		popoverTo: 'right'
+		popoverFrom: 'right'
 	},
 
 	template

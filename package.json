@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.27.103",
+  "version": "0.27.106",
   "description": "",
   "main": "dist/OpalComponents.js",
   "typings": "dist/src/index.d.ts",
@@ -55,10 +55,10 @@
     "@riim/next-tick": "^1.0.1",
     "@riim/next-uid": "^1.0.0",
     "bytesize-icons": "^1.2.0",
-    "cellx": "^1.7.46",
+    "cellx": "^1.7.47",
     "cellx-decorators": "^1.4.6",
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.1",
-    "rionite": "^0.27.64"
+    "rionite": "^0.27.65"
   }
 }
