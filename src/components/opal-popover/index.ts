@@ -104,7 +104,7 @@ export class OpalPopover extends Component {
 								containerClientRect.left < docEl.clientWidth - containerClientRect.right
 						)
 					) {
-						this.input.align = 'right';
+						this.input.from = 'right';
 					}
 
 					break;
@@ -116,7 +116,7 @@ export class OpalPopover extends Component {
 								containerClientRect.top < docEl.clientHeight - containerClientRect.bottom
 						)
 					) {
-						this.input.align = 'bottom';
+						this.input.from = 'bottom';
 					}
 
 					break;
@@ -128,7 +128,7 @@ export class OpalPopover extends Component {
 							containerClientRect.left + document.body.scrollLeft >=
 								elClientRect.right - containerClientRect.right
 					) {
-						this.input.align = 'left';
+						this.input.from = 'left';
 					}
 
 					break;
@@ -140,7 +140,7 @@ export class OpalPopover extends Component {
 							containerClientRect.top + document.body.scrollTop >=
 								elClientRect.bottom - containerClientRect.bottom
 					) {
-						this.input.align = 'top';
+						this.input.from = 'top';
 					}
 
 					break;

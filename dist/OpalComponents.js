@@ -4179,14 +4179,14 @@ var OpalPopover = /** @class */ (function (_super) {
                 case 'left': {
                     if (elClientRect.left + document.body.scrollLeft < 0 || (elClientRect.left < 0 &&
                         containerClientRect.left < docEl.clientWidth - containerClientRect.right)) {
-                        this.input.align = 'right';
+                        this.input.from = 'right';
                     }
                     break;
                 }
                 case 'top': {
                     if (elClientRect.top + document.body.scrollTop < 0 || (elClientRect.top < 0 &&
                         containerClientRect.top < docEl.clientHeight - containerClientRect.bottom)) {
-                        this.input.align = 'bottom';
+                        this.input.from = 'bottom';
                     }
                     break;
                 }
@@ -4195,7 +4195,7 @@ var OpalPopover = /** @class */ (function (_super) {
                         containerClientRect.left > docEl.clientWidth - containerClientRect.right &&
                         containerClientRect.left + document.body.scrollLeft >=
                             elClientRect.right - containerClientRect.right) {
-                        this.input.align = 'left';
+                        this.input.from = 'left';
                     }
                     break;
                 }
@@ -4204,7 +4204,7 @@ var OpalPopover = /** @class */ (function (_super) {
                         containerClientRect.top > docEl.clientHeight - containerClientRect.bottom &&
                         containerClientRect.top + document.body.scrollTop >=
                             elClientRect.bottom - containerClientRect.bottom) {
-                        this.input.align = 'top';
+                        this.input.from = 'top';
                     }
                     break;
                 }
