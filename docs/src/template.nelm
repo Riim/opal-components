@@ -59,6 +59,13 @@ p {
 	opal-text-input (multiline, placeholder=Placeholder)
 }
 
+h1 { 'opal-editable-text' }
+p {
+	opal-editable-text {
+		'Editable text'
+	}
+}
+
 h1 { 'opal-input-mask' }
 p {
 	opal-input-mask (mask=99/99/9999) {

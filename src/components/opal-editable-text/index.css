@@ -1,0 +1,44 @@
+@component opal-editable-text {
+	display: block;
+	cursor: text;
+
+	@el content-wrapper {
+		position: relative;
+		display: inline-block;
+		padding-right: 24px;
+	}
+		@el content {
+			display: inline-block;
+			padding-right: 2px;
+
+			&:focus {
+				outline: solid 1px #000;
+			}
+		}
+
+		@el icon-editable {
+			position: absolute;
+			top: 0;
+			right: 0;
+			display: block;
+			width: 16px;
+			height: 16px;
+			border: solid 2px transparent;
+			border-left-width: 6px;
+			cursor: pointer;
+			stroke-width: 2.5px;
+			stroke: hsl(208,86%,46%);
+			stroke-linecap: square;
+			stroke-linejoin: miter;
+			fill: none;
+
+			&:hover,
+			&:active {
+				stroke: hsl(208,100%,60%);
+			}
+
+			&:active {
+				top: 1px;
+			}
+		}
+}

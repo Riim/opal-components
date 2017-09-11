@@ -3,11 +3,13 @@ import '../node_modules/bytesize-icons/dist/icons/checkmark.svg?id=opal-componen
 import '../node_modules/bytesize-icons/dist/icons/chevron-bottom.svg?id=opal-components__icon-chevron-bottom';
 import '../node_modules/bytesize-icons/dist/icons/chevron-left.svg?id=opal-components__icon-chevron-left';
 import '../node_modules/bytesize-icons/dist/icons/close.svg?id=opal-components__icon-close';
+import '../node_modules/bytesize-icons/dist/icons/compose.svg?id=opal-components__icon-compose';
 import '../node_modules/bytesize-icons/dist/icons/search.svg?id=opal-components__icon-search';
 export { IItem as IObservableTreeListItem, default as ObservableTreeList } from './ObservableTreeList';
 export { OpalButton } from './components/opal-button';
 export { OpalSignButton } from './components/opal-sign-button';
 export { OpalTextInput } from './components/opal-text-input';
+export { OpalEditableText } from './components/opal-editable-text';
 export { OpalInputMask, OpalInputMaskDefinition } from './components/opal-input-mask';
 export { OpalGroup } from './components/opal-group';
 export { OpalCheckbox } from './components/opal-checkbox';
