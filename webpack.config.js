@@ -80,6 +80,7 @@ module.exports = (env) => {
 			'@riim/escape-html',
 			'@riim/gettext',
 			'@riim/hyphenize',
+			'@riim/map-set-polyfill',
 			'@riim/mixin',
 			'@riim/next-tick',
 			'@riim/next-uid',

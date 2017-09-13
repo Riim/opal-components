@@ -1,6 +1,6 @@
 @component opal-popover {
 	position: absolute;
-	z-index: 100;
+	z-index: 600;
 	display: none;
 	box-sizing: border-box;
 	padding: 15px;
@@ -13,7 +13,6 @@
 
 	@el arrow {
 		position: absolute;
-		z-index: 1;
 		width: 0;
 		height: 0;
 

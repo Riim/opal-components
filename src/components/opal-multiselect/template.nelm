@@ -16,7 +16,7 @@
 			div/selected-item {
 				'{item |key(_viewModelItemTextFieldName) }'
 
-				div/btn-deselect-item (data-item-value='{item |key(_viewModelItemValueFieldName) }') {
+				button/btn-deselect-item (tabindex=-1, data-item-value='{item |key(_viewModelItemValueFieldName) }') {
 					svg/btn-deselect-item-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }
 				}
 			}

@@ -1,3 +1,65 @@
+opal-notification (shown) {
+	'default'
+}
+
+opal-notification (view-type=primary, shown) {
+	'primary'
+}
+
+opal-notification (view-type=primary, shown) {
+	'primary '
+	'primary '
+	'primary '
+	'primary '
+	'primary '
+	'primary '
+	'primary '
+	'primary '
+	'primary '
+	'primary '
+	'primary '
+	'primary '
+	'primary '
+	'primary '
+	'primary '
+	'primary '
+	'primary '
+}
+
+opal-notification (view-type=success, shown) {
+	svg (class=opal-notification__icon, viewBox=0 0 32 32) {
+		use (xlink:href=#opal-components__icon-calendar)
+	}
+	'success'
+}
+
+opal-notification (view-type=success, shown) {
+	svg (class=opal-notification__icon, viewBox=0 0 32 32) {
+		use (xlink:href=#opal-components__icon-calendar)
+	}
+	'success '
+	'success '
+	'success '
+	'success '
+	'success '
+	'success '
+	'success '
+	'success '
+	'success '
+	'success '
+	'success '
+	'success '
+	'success '
+	'success '
+	'success '
+	'success '
+	'success '
+}
+
+opal-notification (view-type=danger, shown) {
+	'danger'
+}
+
 h1 { 'opal-button' }
 p {
 	opal-button { 'Button' } ' '

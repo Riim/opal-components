@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.27.109",
+  "version": "0.27.114",
   "description": "",
   "main": "dist/OpalComponents.js",
   "typings": "dist/src/index.d.ts",
@@ -51,6 +51,7 @@
     "@riim/escape-html": "^1.1.1",
     "@riim/gettext": "^1.1.1",
     "@riim/hyphenize": "^1.0.0",
+    "@riim/map-set-polyfill": "^1.0.0",
     "@riim/mixin": "^1.0.0",
     "@riim/next-tick": "^1.0.1",
     "@riim/next-uid": "^1.0.0",

@@ -1,0 +1,110 @@
+.opal-notification__container {
+	position: fixed;
+	top: 10px;
+	right: 20px;
+	z-index: 300;
+	width: 400px;
+}
+	.opal-notification__container .opal-notification__bar {
+		position: relative;
+		right: -200px;
+		box-sizing: border-box;
+		margin: 10px 0;
+		padding: 10px 40px 10px 20px;
+		width: 400px;
+		border-radius: 3px;
+		background: hsl(208,18%,40%);
+		box-shadow: 0 2px 4px rgba(0,0,0,.3);
+		color: #fff;
+		opacity: 0;
+		transition: right .2s linear, opacity .2s linear;
+	}
+
+	.opal-notification__container .opal-notification__bar[view-type=primary] {
+		background: hsl(208,94%,54%);
+	}
+
+	.opal-notification__container .opal-notification__bar[view-type=success] {
+		background: hsl(148,76%,40%);
+	}
+
+	.opal-notification__container .opal-notification__bar[view-type=danger] {
+		background: hsl(348,92%,58%);
+	}
+
+	.opal-notification__container .opal-notification__bar[has-icon] {
+		padding-left: 48px;
+	}
+
+	.opal-notification__container .opal-notification__bar[shown] {
+		right: 0;
+		opacity: 1;
+	}
+		.opal-notification__container .opal-notification__icon-container {
+		}
+			.opal-notification__container .opal-notification__icon {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 16px;
+				margin: auto;
+				width: 18px;
+				height: 18px;
+				stroke-width: 3px;
+				stroke: #fff;
+				stroke-linecap: round;
+				stroke-linejoin: round;
+				fill: none;
+			}
+
+		.opal-notification__container .opal-notification__btn-hide {
+			position: absolute;
+			top: 0;
+			right: 10px;
+			bottom: 0;
+			margin: auto;
+			padding: 0;
+			width: 24px;
+			height: 24px;
+			border: 0;
+			background: transparent;
+			color: #fff;
+			opacity: .7;
+			cursor: pointer;
+			transition: opacity .1s linear;
+
+			&:hover {
+				opacity: 1;
+			}
+
+			&:focus {
+				outline: none;
+
+				body:not(._no-focus-highlight) & {
+					outline: 1px solid hsl(208,94%,54%);
+				}
+			}
+
+			&:active {
+				transform: translateY(1px);
+			}
+		}
+			.opal-notification__container .opal-notification__btn-hide-icon {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				display: block;
+				margin: auto;
+				width: 16px;
+				height: 16px;
+				stroke-width: 3px;
+				stroke: currentColor;
+				stroke-linecap: round;
+				stroke-linejoin: round;
+				fill: none;
+			}
+
+@component opal-notification {
+}

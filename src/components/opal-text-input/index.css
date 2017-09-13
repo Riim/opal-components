@@ -62,7 +62,7 @@
 		bottom: 0;
 		display: none;
 		margin: auto;
-		padding: 4px;
+		padding: 0;
 		width: 24px;
 		height: 24px;
 		border: 0;
@@ -83,7 +83,7 @@
 			outline: none;
 
 			body:not(._no-focus-highlight) & {
-				outline: 1px solid hsl(208,100%,60%);
+				outline: 1px solid hsl(208,94%,54%);
 			}
 		}
 
@@ -92,6 +92,11 @@
 		}
 	}
 		@el btn-clear-icon {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
 			display: block;
 			margin: auto;
 			width: 16px;
@@ -120,7 +125,7 @@
 			border-bottom-color: hsl(0,0%,68%);
 
 			&:focus {
-				border-color: hsl(208,100%,60%);
+				border-color: hsl(208,94%,54%);
 			}
 		}
 	}
@@ -135,20 +140,18 @@
 
 	@mod valid {
 		@el text-field {
-			border-color: hsl(120,90%,38%);
-
+			&,
 			&:focus {
-				border-color: hsl(120,90%,38%);
+				border-color: hsl(148,76%,40%);
 			}
 		}
 	}
 
 	@mod valid=no {
 		@el text-field {
-			border-color: hsl(0,100%,48%);
-
+			&,
 			&:focus {
-				border-color: hsl(0,100%,48%);
+				border-color: hsl(348,92%,58%);
 			}
 		}
 	}

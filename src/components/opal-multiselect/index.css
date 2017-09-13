@@ -53,12 +53,13 @@
 					right: 9px;
 					bottom: 0;
 					display: none;
-					box-sizing: border-box;
 					margin: auto;
-					padding: 5px;
+					padding: 0;
 					width: 24px;
 					height: 24px;
-					color: hsl(0,0%,40%);
+					border: 0;
+					background: transparent;
+					color: hsl(0,0%,50%);
 					cursor: pointer;
 					transition: color .1s linear;
 
@@ -66,11 +67,20 @@
 						color: #000;
 					}
 
+					&:focus {
+						outline: none;
+					}
+
 					&:active {
 						transform: translateY(1px);
 					}
 				}
 					@el btn-deselect-item-icon {
+						position: absolute;
+						top: 0;
+						right: 0;
+						bottom: 0;
+						left: 0;
 						display: block;
 						margin: auto;
 						width: 16px;
