@@ -4,10 +4,8 @@ div/bar {
 	rt-content/icon-container (select=.opal-notificaion__icon)
 	rt-content/content
 
-	@if-then (if=input.buttonHide) {
-		button/btn-hide {
-			svg/btn-hide-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }
-		}
+	button/btn-hide (hide={input.buttonHide |not }) {
+		svg/btn-hide-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }
 	}
 }
 

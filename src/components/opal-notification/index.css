@@ -88,6 +88,10 @@
 			&:active {
 				transform: translateY(1px);
 			}
+
+			&[hide] {
+				display: none;
+			}
 		}
 			.opal-notification__container .opal-notification__btn-hide-icon {
 				position: absolute;

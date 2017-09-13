@@ -2,7 +2,6 @@ import { IEvent } from 'cellx';
 import { Component } from 'rionite';
 import './index.css';
 export declare class OpalNotification extends Component {
-    isContentRendered: boolean;
     bar: HTMLElement;
     $<R>(name: string, container?: Component | Element): R | null;
     ready(): void;
@@ -10,7 +9,6 @@ export declare class OpalNotification extends Component {
     elementDetached(): void;
     _onInputShownChange(evt: IEvent): void;
     _onBtnHideClick(): void;
-    renderContent(): void;
     show(): boolean;
     hide(): boolean;
     open(): boolean;

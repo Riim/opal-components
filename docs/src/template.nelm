@@ -1,65 +1,3 @@
-opal-notification (shown) {
-	'default'
-}
-
-opal-notification (view-type=primary, shown) {
-	'primary'
-}
-
-opal-notification (view-type=primary, shown) {
-	'primary '
-	'primary '
-	'primary '
-	'primary '
-	'primary '
-	'primary '
-	'primary '
-	'primary '
-	'primary '
-	'primary '
-	'primary '
-	'primary '
-	'primary '
-	'primary '
-	'primary '
-	'primary '
-	'primary '
-}
-
-opal-notification (view-type=success, shown) {
-	svg (class=opal-notification__icon, viewBox=0 0 32 32) {
-		use (xlink:href=#opal-components__icon-calendar)
-	}
-	'success'
-}
-
-opal-notification (view-type=success, shown) {
-	svg (class=opal-notification__icon, viewBox=0 0 32 32) {
-		use (xlink:href=#opal-components__icon-calendar)
-	}
-	'success '
-	'success '
-	'success '
-	'success '
-	'success '
-	'success '
-	'success '
-	'success '
-	'success '
-	'success '
-	'success '
-	'success '
-	'success '
-	'success '
-	'success '
-	'success '
-	'success '
-}
-
-opal-notification (view-type=danger, shown) {
-	'danger'
-}
-
 h1 { 'opal-button' }
 p {
 	opal-button { 'Button' } ' '
@@ -247,6 +185,78 @@ h1 { 'opal-modal' }
 p {
 	opal-modal (id=modal1) { 'Modal' }
 	opal-button (onclick='document.getElementById("modal1").$component.open();') { 'Open' }
+}
+
+h1 { 'opal-notification' }
+p {
+	opal-notification (id=notification1) {
+		'default'
+	}
+
+	opal-notification (id=notification2, view-type=primary, button-hide=no, timeout=5000) {
+		'primary'
+	}
+
+	opal-notification (id=notification3, view-type=primary, button-hide=no, timeout=10000) {
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+	}
+
+	opal-notification (id=notification4, view-type=success) {
+		svg (class=opal-notification__icon, viewBox=0 0 32 32) {
+			use (xlink:href=#opal-components__icon-calendar)
+		}
+		'success'
+	}
+
+	opal-notification (id=notification5, view-type=success) {
+		svg (class=opal-notification__icon, viewBox=0 0 32 32) {
+			use (xlink:href=#opal-components__icon-calendar)
+		}
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+	}
+
+	opal-notification (id=notification6, view-type=danger) {
+		'danger'
+	}
+
+	opal-button (onclick='document.getElementById("notification1").$component.show();') { 'Show 1' } ' '
+	opal-button (onclick='document.getElementById("notification2").$component.show();') { 'Show 2' } ' '
+	opal-button (onclick='document.getElementById("notification3").$component.show();') { 'Show 3' } ' '
+	opal-button (onclick='document.getElementById("notification4").$component.show();') { 'Show 4' } ' '
+	opal-button (onclick='document.getElementById("notification5").$component.show();') { 'Show 5' } ' '
+	opal-button (onclick='document.getElementById("notification6").$component.show();') { 'Show 6' }
 }
 
 h1 { 'opal-select' }

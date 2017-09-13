@@ -1,6 +1,5 @@
 import { Set } from '@riim/map-set-polyfill';
 import { Cell, IEvent } from 'cellx';
-import { observable } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import './index.css';
 import template = require('./template.nelm');
@@ -28,23 +27,13 @@ function initContainer(notification: OpalNotification): HTMLElement {
 		viewType: 'default',
 		iconSize: 'm',
 		buttonHide: true,
+		timeout: 0,
 		shown: false
 	},
 
-	template,
-
-	domEvents: {
-		'btn-hide': {
-			click() {
-				this.input.shown = false;
-				this.emit('hide');
-			}
-		}
-	}
+	template
 })
 export class OpalNotification extends Component {
-	@observable isContentRendered = false;
-
 	bar: HTMLElement;
 
 	$<R>(name: string, container: Component | Element = this.bar): R | null {
@@ -86,13 +75,9 @@ export class OpalNotification extends Component {
 	}
 
 	_onBtnHideClick() {
-		this.input.shown = false;
+		this.hide();
 		this.emit('hide');
 		this.emit('close');
-	}
-
-	renderContent() {
-		this.isContentRendered = true;
 	}
 
 	show(): boolean {
@@ -138,6 +123,12 @@ export class OpalNotification extends Component {
 
 		setTimeout(() => {
 			this.bar.setAttribute('shown', '');
+
+			if (this.input.timeout) {
+				setTimeout(() => {
+					this.hide();
+				}, this.input.timeout);
+			}
 		}, 100);
 	}
 

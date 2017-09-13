@@ -39,7 +39,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 	domEvents: {
 		'btn-close': {
 			click() {
-				this.input.opened = false;
+				this.close();
 				this.emit('close');
 			}
 		}

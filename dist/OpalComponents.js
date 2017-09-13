@@ -4628,7 +4628,7 @@ var OpalModal = /** @class */ (function (_super) {
             domEvents: {
                 'btn-close': {
                     click: function () {
-                        this.input.opened = false;
+                        this.close();
                         this.emit('close');
                     }
                 }
@@ -4688,7 +4688,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var map_set_polyfill_1 = __webpack_require__(74);
 var cellx_1 = __webpack_require__(2);
-var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(75);
 var template = __webpack_require__(76);
@@ -4707,9 +4706,7 @@ function initContainer(notification) {
 var OpalNotification = /** @class */ (function (_super) {
     __extends(OpalNotification, _super);
     function OpalNotification() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.isContentRendered = false;
-        return _this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     OpalNotification.prototype.$ = function (name, container) {
         if (container === void 0) { container = this.bar; }
@@ -4745,12 +4742,9 @@ var OpalNotification = /** @class */ (function (_super) {
         }
     };
     OpalNotification.prototype._onBtnHideClick = function () {
-        this.input.shown = false;
+        this.hide();
         this.emit('hide');
         this.emit('close');
-    };
-    OpalNotification.prototype.renderContent = function () {
-        this.isContentRendered = true;
     };
     OpalNotification.prototype.show = function () {
         if (this.input.shown) {
@@ -4786,6 +4780,11 @@ var OpalNotification = /** @class */ (function (_super) {
         container.appendChild(this.bar);
         setTimeout(function () {
             _this.bar.setAttribute('shown', '');
+            if (_this.input.timeout) {
+                setTimeout(function () {
+                    _this.hide();
+                }, _this.input.timeout);
+            }
         }, 100);
     };
     OpalNotification.prototype._hide = function () {
@@ -4801,9 +4800,6 @@ var OpalNotification = /** @class */ (function (_super) {
         }
         return this;
     };
-    __decorate([
-        cellx_decorators_1.observable
-    ], OpalNotification.prototype, "isContentRendered", void 0);
     OpalNotification = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-notification',
@@ -4811,17 +4807,10 @@ var OpalNotification = /** @class */ (function (_super) {
                 viewType: 'default',
                 iconSize: 'm',
                 buttonHide: true,
+                timeout: 0,
                 shown: false
             },
-            template: template,
-            domEvents: {
-                'btn-hide': {
-                    click: function () {
-                        this.input.shown = false;
-                        this.emit('hide');
-                    }
-                }
-            }
+            template: template
         })
     ], OpalNotification);
     return OpalNotification;
@@ -4844,7 +4833,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-notification__container{position:fixed;top:10px;right:20px;z-index:300;width:400px}.opal-notification__container .opal-notification__bar{position:relative;right:-200px;-webkit-box-sizing:border-box;box-sizing:border-box;margin:10px 0;padding:10px 40px 10px 20px;width:400px;border-radius:3px;background:#546778;-webkit-box-shadow:0 2px 4px rgba(0,0,0,.3);box-shadow:0 2px 4px rgba(0,0,0,.3);color:#fff;opacity:0;-webkit-transition:right .2s linear,opacity .2s linear;-o-transition:right .2s linear,opacity .2s linear;transition:right .2s linear,opacity .2s linear}.opal-notification__container .opal-notification__bar[view-type=primary]{background:#1b91f8}.opal-notification__container .opal-notification__bar[view-type=success]{background:#18b461}.opal-notification__container .opal-notification__bar[view-type=danger]{background:#f63159}.opal-notification__container .opal-notification__bar[has-icon]{padding-left:48px}.opal-notification__container .opal-notification__bar[shown]{right:0;opacity:1}.opal-notification__container .opal-notification__icon{position:absolute;top:0;bottom:0;left:16px;margin:auto;width:18px;height:18px;stroke-width:3px;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;fill:none}.opal-notification__container .opal-notification__btn-hide{position:absolute;top:0;right:10px;bottom:0;margin:auto;padding:0;width:24px;height:24px;border:0;background:0 0;color:#fff;opacity:.7;cursor:pointer;-webkit-transition:opacity .1s linear;-o-transition:opacity .1s linear;transition:opacity .1s linear}.opal-notification__container .opal-notification__btn-hide:hover{opacity:1}.opal-notification__container .opal-notification__btn-hide:focus{outline:none}body:not(._no-focus-highlight) .opal-notification__container .opal-notification__btn-hide:focus{outline:1px solid #1b91f8}.opal-notification__container .opal-notification__btn-hide:active{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.opal-notification__container .opal-notification__btn-hide-icon{position:absolute;top:0;right:0;bottom:0;left:0;display:block;margin:auto;width:16px;height:16px;stroke-width:3px;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;fill:none}";
+            style.textContent = ".opal-notification__container{position:fixed;top:10px;right:20px;z-index:300;width:400px}.opal-notification__container .opal-notification__bar{position:relative;right:-200px;-webkit-box-sizing:border-box;box-sizing:border-box;margin:10px 0;padding:10px 40px 10px 20px;width:400px;border-radius:3px;background:#546778;-webkit-box-shadow:0 2px 4px rgba(0,0,0,.3);box-shadow:0 2px 4px rgba(0,0,0,.3);color:#fff;opacity:0;-webkit-transition:right .2s linear,opacity .2s linear;-o-transition:right .2s linear,opacity .2s linear;transition:right .2s linear,opacity .2s linear}.opal-notification__container .opal-notification__bar[view-type=primary]{background:#1b91f8}.opal-notification__container .opal-notification__bar[view-type=success]{background:#18b461}.opal-notification__container .opal-notification__bar[view-type=danger]{background:#f63159}.opal-notification__container .opal-notification__bar[has-icon]{padding-left:48px}.opal-notification__container .opal-notification__bar[shown]{right:0;opacity:1}.opal-notification__container .opal-notification__icon{position:absolute;top:0;bottom:0;left:16px;margin:auto;width:18px;height:18px;stroke-width:3px;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;fill:none}.opal-notification__container .opal-notification__btn-hide{position:absolute;top:0;right:10px;bottom:0;margin:auto;padding:0;width:24px;height:24px;border:0;background:0 0;color:#fff;opacity:.7;cursor:pointer;-webkit-transition:opacity .1s linear;-o-transition:opacity .1s linear;transition:opacity .1s linear}.opal-notification__container .opal-notification__btn-hide:hover{opacity:1}.opal-notification__container .opal-notification__btn-hide:focus{outline:none}body:not(._no-focus-highlight) .opal-notification__container .opal-notification__btn-hide:focus{outline:1px solid #1b91f8}.opal-notification__container .opal-notification__btn-hide:active{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.opal-notification__container .opal-notification__btn-hide[hide]{display:none}.opal-notification__container .opal-notification__btn-hide-icon{position:absolute;top:0;right:0;bottom:0;left:0;display:block;margin:auto;width:16px;height:16px;stroke-width:3px;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;fill:none}";
             head.appendChild(style);
             return style;
         }
@@ -4856,7 +4845,7 @@ module.exports = (function(d) {
 /* 76 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\ndiv/bar {\nrt-content/icon-container (select=.opal-notificaion__icon)\nrt-content/content\n@if-then (if=input.buttonHide) {\nbutton/btn-hide {\nsvg/btn-hide-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }\n}\n}\n}\n}"
+module.exports = "@section/inner {\ndiv/bar {\nrt-content/icon-container (select=.opal-notificaion__icon)\nrt-content/content\nbutton/btn-hide (hide={input.buttonHide |not }) {\nsvg/btn-hide-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }\n}\n}\n}"
 
 /***/ }),
 /* 77 */
