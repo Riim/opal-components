@@ -14173,7 +14173,8 @@ var shownNotifications = new map_set_polyfill_1.Set();
 function initContainer(notification) {
     if (!container) {
         container = document.createElement('div');
-        container.className = 'opal-notification__container';
+        container.className = notification.constructor._contentBlockNames.join('__container ') +
+            '__container';
         document.body.appendChild(container);
         containerOnTop = getComputedStyle(container).top != 'auto';
     }

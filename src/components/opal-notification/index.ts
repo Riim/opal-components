@@ -12,7 +12,10 @@ let shownNotifications = new Set<OpalNotification>();
 function initContainer(notification: OpalNotification): HTMLElement {
 	if (!container) {
 		container = document.createElement('div');
-		container.className = 'opal-notification__container';
+
+		container.className = (notification.constructor as typeof Component)._contentBlockNames.join('__container ') +
+			'__container';
+
 		document.body.appendChild(container);
 		containerOnTop = getComputedStyle(container).top != 'auto';
 	}
