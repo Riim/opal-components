@@ -180,7 +180,7 @@ export class OpalSelect extends Component {
 
 		if (value) {
 			if (!Array.isArray(value)) {
-				throw new TypeError('value must be an array');
+				throw new TypeError('Input "value" must be an array');
 			}
 
 			this._notUpdateOptions = true;
@@ -256,11 +256,11 @@ export class OpalSelect extends Component {
 
 	_onInputValueChange(evt: IEvent) {
 		let vm = this.viewModel;
-		let value = evt.data.value;
+		let value: Array<string> | null = evt.data.value;
 
 		if (value) {
 			if (!Array.isArray(value)) {
-				throw new TypeError('value must be an array');
+				throw new TypeError('Input "value" must be an array');
 			}
 
 			if (value.length) {
@@ -269,6 +269,7 @@ export class OpalSelect extends Component {
 				if (multiple || !vm.length || value[0] != vm.get(0)![this._viewModelItemValueFieldName]) {
 					if (this._needOptionsUpdating) {
 						Cell.afterRelease(() => {
+							this._needOptionsUpdating = false;
 							this._notUpdateOptions = true;
 							this.$<OpalDropdown>('menu')!.renderContent();
 							Cell.forceRelease();
@@ -352,7 +353,7 @@ export class OpalSelect extends Component {
 	}
 
 	_onViewModelChange() {
-		if (!this._notUpdateOptions && !this._needOptionsUpdating) {
+		if (!this._needOptionsUpdating && !this._notUpdateOptions) {
 			this._updateOptions();
 		}
 	}
@@ -388,9 +389,8 @@ export class OpalSelect extends Component {
 			[this._viewModelItemTextFieldName]: evt.target.text
 		};
 
-		this._notUpdateOptions = true;
-
 		if (this.input.multiple) {
+			this._notUpdateOptions = true;
 			vm.add(vmItem);
 			this._notUpdateOptions = false;
 		} else {
@@ -399,7 +399,6 @@ export class OpalSelect extends Component {
 			} else {
 				vm.add(vmItem);
 			}
-			this._notUpdateOptions = false;
 
 			this.close();
 			this.focus();

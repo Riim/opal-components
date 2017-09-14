@@ -265,7 +265,7 @@ var OpalSelect = /** @class */ (function (_super) {
         var selectedOptions;
         if (value) {
             if (!Array.isArray(value)) {
-                throw new TypeError('value must be an array');
+                throw new TypeError('Input "value" must be an array');
             }
             this._notUpdateOptions = true;
             this.viewModel.clear();
@@ -336,13 +336,14 @@ var OpalSelect = /** @class */ (function (_super) {
         var value = evt.data.value;
         if (value) {
             if (!Array.isArray(value)) {
-                throw new TypeError('value must be an array');
+                throw new TypeError('Input "value" must be an array');
             }
             if (value.length) {
                 var multiple_1 = this.input.multiple;
                 if (multiple_1 || !vm.length || value[0] != vm.get(0)[this._viewModelItemValueFieldName]) {
                     if (this._needOptionsUpdating) {
                         cellx_1.Cell.afterRelease(function () {
+                            _this._needOptionsUpdating = false;
                             _this._notUpdateOptions = true;
                             _this.$('menu').renderContent();
                             cellx_1.Cell.forceRelease();
@@ -419,7 +420,7 @@ var OpalSelect = /** @class */ (function (_super) {
         }
     };
     OpalSelect.prototype._onViewModelChange = function () {
-        if (!this._notUpdateOptions && !this._needOptionsUpdating) {
+        if (!this._needOptionsUpdating && !this._notUpdateOptions) {
             this._updateOptions();
         }
     };
@@ -450,8 +451,8 @@ var OpalSelect = /** @class */ (function (_super) {
             _a[this._viewModelItemValueFieldName] = evt.target.value,
             _a[this._viewModelItemTextFieldName] = evt.target.text,
             _a);
-        this._notUpdateOptions = true;
         if (this.input.multiple) {
+            this._notUpdateOptions = true;
             vm.add(vmItem);
             this._notUpdateOptions = false;
         }
@@ -462,7 +463,6 @@ var OpalSelect = /** @class */ (function (_super) {
             else {
                 vm.add(vmItem);
             }
-            this._notUpdateOptions = false;
             this.close();
             this.focus();
             this.emit('change');
