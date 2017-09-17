@@ -109,7 +109,7 @@ export class OpalTextInput extends Component {
 			'input-focused-change': this._onInputFocusedChange
 		});
 
-		this.listenTo('text-field', {
+		this.listenTo(this.textField, {
 			focus: this._onTextFieldFocus,
 			blur: this._onTextFieldBlur,
 			input: this._onTextFieldInput,
@@ -136,7 +136,7 @@ export class OpalTextInput extends Component {
 
 	_onTextFieldFocus(evt: Event) {
 		nextTick(() => {
-			if (document.activeElement == evt.target) {
+			if (document.activeElement == this.textField) {
 				this.input.focused = true;
 				this.emit('focus');
 			}

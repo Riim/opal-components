@@ -253,7 +253,6 @@ var OpalSelect = /** @class */ (function (_super) {
             cellx_1.Cell.afterRelease(function () {
                 _this._notUpdateOptions = true;
                 _this.$('menu').renderContent();
-                cellx_1.Cell.forceRelease();
                 _this._notUpdateOptions = false;
                 _this._initViewModel();
             });
@@ -325,10 +324,6 @@ var OpalSelect = /** @class */ (function (_super) {
             '<opal-text-input>confirm': this._onMenuTextInputConfirm,
             '<*>change': this._onMenuChange
         });
-        var loadedList = this.$('loaded-list');
-        if (loadedList) {
-            this.listenTo(loadedList, 'loaded', this._onLoadedListLoaded);
-        }
     };
     OpalSelect.prototype._onInputValueChange = function (evt) {
         var _this = this;
@@ -346,7 +341,6 @@ var OpalSelect = /** @class */ (function (_super) {
                             _this._needOptionsUpdating = false;
                             _this._notUpdateOptions = true;
                             _this.$('menu').renderContent();
-                            cellx_1.Cell.forceRelease();
                             _this._notUpdateOptions = false;
                             _this._updateViewModel(value, multiple_1);
                         });
@@ -543,28 +537,6 @@ var OpalSelect = /** @class */ (function (_super) {
             this._updateOptions();
         }
     };
-    OpalSelect.prototype._onLoadedListLoaded = function () {
-        var _this = this;
-        if (this._onсeFocusedAfterLoading) {
-            return;
-        }
-        this._onсeFocusedAfterLoading = true;
-        next_tick_1.nextTick(function () {
-            _this._focusOptions();
-            var focusTarget = _this.$('focus');
-            if (!focusTarget) {
-                var filteredList = _this.$('filtered-list');
-                if (filteredList) {
-                    focusTarget = filteredList.$('query-input');
-                }
-            }
-            if (focusTarget) {
-                next_tick_1.nextTick(function () {
-                    focusTarget.focus();
-                });
-            }
-        });
-    };
     OpalSelect.prototype._updateOptions = function () {
         var vm = this.viewModel;
         var vmItemValueFieldName = this._viewModelItemValueFieldName;
@@ -593,14 +565,16 @@ var OpalSelect = /** @class */ (function (_super) {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
         }
         this.$('button').check();
+        this._notUpdateOptions = true;
         this.$('menu').open();
+        this._notUpdateOptions = false;
         if (this._needOptionsUpdating) {
             this._needOptionsUpdating = false;
             this._updateOptions();
         }
         var loadedList = this.$('loaded-list');
         if (loadedList) {
-            next_tick_1.nextTick(function () {
+            cellx_1.Cell.afterRelease(function () {
                 loadedList.checkLoading();
             });
         }
@@ -803,7 +777,30 @@ var OpalSelect = /** @class */ (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template
+            template: template,
+            events: {
+                'menu-wrapper': {
+                    loaded: function (evt) {
+                        if (this._onсeFocusedAfterLoading || evt.target !== this.$('loaded-list')) {
+                            return;
+                        }
+                        this._onсeFocusedAfterLoading = true;
+                        this._focusOptions();
+                        var focusTarget = this.$('focus');
+                        if (!focusTarget) {
+                            var filteredList = this.$('filtered-list');
+                            if (filteredList) {
+                                focusTarget = filteredList.$('query-input');
+                            }
+                        }
+                        if (focusTarget) {
+                            next_tick_1.nextTick(function () {
+                                focusTarget.focus();
+                            });
+                        }
+                    }
+                }
+            }
         })
     ], OpalSelect);
     return OpalSelect;
@@ -2023,7 +2020,7 @@ var OpalTextInput = /** @class */ (function (_super) {
             'input-value-change': this._onInputValueChange,
             'input-focused-change': this._onInputFocusedChange
         });
-        this.listenTo('text-field', {
+        this.listenTo(this.textField, {
             focus: this._onTextFieldFocus,
             blur: this._onTextFieldBlur,
             input: this._onTextFieldInput,
@@ -2049,7 +2046,7 @@ var OpalTextInput = /** @class */ (function (_super) {
     OpalTextInput.prototype._onTextFieldFocus = function (evt) {
         var _this = this;
         next_tick_1.nextTick(function () {
-            if (document.activeElement == evt.target) {
+            if (document.activeElement == _this.textField) {
                 _this.input.focused = true;
                 _this.emit('focus');
             }
@@ -2445,7 +2442,7 @@ var OpalInputMask = /** @class */ (function (_super) {
         this._definitions = Object.create(this.constructor.defaultDefinitions);
     };
     OpalInputMask.prototype.ready = function () {
-        this._textField = this.$('text-input').textField;
+        this.textField = this.$('text-input').textField;
         var definitions = this._definitions;
         forEach.call(this.element.querySelectorAll('opal-input-mask-definition'), function (inputMaskDefinition) {
             var input = inputMaskDefinition.$component.input;
@@ -2455,7 +2452,7 @@ var OpalInputMask = /** @class */ (function (_super) {
     };
     OpalInputMask.prototype.elementAttached = function () {
         this.listenTo(this, 'change:_mask', this._onMaskChange);
-        this.listenTo(this._textField, {
+        this.listenTo(this.textField, {
             focus: this._onTextFieldFocus,
             blur: this._onTextFieldBlur,
             keydown: this._onTextFieldKeyDown,
@@ -2476,21 +2473,21 @@ var OpalInputMask = /** @class */ (function (_super) {
     OpalInputMask.prototype._onTextFieldFocus = function () {
         var _this = this;
         next_tick_1.nextTick(function () {
-            if (document.activeElement == _this._textField) {
+            if (document.activeElement == _this.textField) {
                 _this._setTextFieldSelection(0, _this._checkValue(false));
-                _this._textOnFocus = _this._textField.value;
+                _this._textOnFocus = _this.textField.value;
                 _this._writeBuffer();
             }
         });
     };
     OpalInputMask.prototype._onTextFieldBlur = function () {
         this._checkValue(false);
-        if (this._textField.value != this._textOnFocus) {
+        if (this.textField.value != this._textOnFocus) {
             this.$('text-input').emit('change');
         }
     };
     OpalInputMask.prototype._onTextFieldKeyDown = function (evt) {
-        var textField = this._textField;
+        var textField = this.textField;
         var key = evt.which;
         // Backspace, delete, and escape get special treatment
         if (key == 8 || key == 46 || iPhone && key == 127) {
@@ -2525,7 +2522,7 @@ var OpalInputMask = /** @class */ (function (_super) {
     OpalInputMask.prototype._onTextFieldKeyPress = function (evt) {
         var tests = this._tests;
         var bufferLen = this._buffer.length;
-        var textField = this._textField;
+        var textField = this.textField;
         var start = textField.selectionStart;
         var end = textField.selectionEnd;
         var key = evt.which;
@@ -2573,7 +2570,7 @@ var OpalInputMask = /** @class */ (function (_super) {
         var tests = this._tests;
         var buffer = this._buffer;
         var bufferLen = buffer.length;
-        var value = this._textField.value;
+        var value = this.textField.value;
         var valueLen = value.length;
         var index = 0;
         var lastMatchIndex = -1;
@@ -2613,7 +2610,6 @@ var OpalInputMask = /** @class */ (function (_super) {
             else {
                 this.$('text-input').value = buffer.slice(0, lastMatchIndex + 1).join('');
             }
-            cellx_1.Cell.forceRelease();
         }
         return index;
     };
@@ -2672,7 +2668,6 @@ var OpalInputMask = /** @class */ (function (_super) {
         var buffer = this._buffer;
         var toIndex = buffer.indexOf(null);
         this.$('text-input').value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
-        cellx_1.Cell.forceRelease();
     };
     OpalInputMask.prototype._clearBuffer = function (start, end) {
         var tests = this._tests;
@@ -2688,7 +2683,7 @@ var OpalInputMask = /** @class */ (function (_super) {
     };
     OpalInputMask.prototype._setTextFieldSelection = function (start, end) {
         if (end === void 0) { end = start; }
-        this._textField.setSelectionRange(start, end);
+        this.textField.setSelectionRange(start, end);
     };
     OpalInputMask.OpalInputMaskDefinition = opal_input_mask_definition_1.OpalInputMaskDefinition;
     OpalInputMask.defaultDefinitions = {
@@ -4063,7 +4058,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(3);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
@@ -4126,7 +4120,7 @@ var OpalDropdown = /** @class */ (function (_super) {
         }
         else {
             this.isContentRendered = true;
-            next_tick_1.nextTick(function () {
+            cellx_1.Cell.afterRelease(function () {
                 _this._open$();
             });
         }
@@ -4268,7 +4262,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(3);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
@@ -4329,7 +4322,7 @@ var OpalPopover = /** @class */ (function (_super) {
         }
         else {
             this.isContentRendered = true;
-            next_tick_1.nextTick(function () {
+            cellx_1.Cell.afterRelease(function () {
                 _this._open$();
             });
         }
@@ -5088,7 +5081,7 @@ module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-
 /* 82 */
 /***/ (function(module, exports) {
 
-module.exports = "@section/inner {\nrt-content (select=.opal-select__button) {\nopal-button/button (\nview-type={input.viewType},\nsize={input.size},\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n) {\n@if-then (if=input.text) { '{input.text}' }\n@if-else (if=input.text) { '{_buttonText}' }\nsvg/button-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-bottom) }\n}\n}\nrt-content (select=.opal-select__menu) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content) {\n@if-then (if=_isInputDataListSpecified) {\ndiv/, menu-content {\n@if-then (if=dataList) {\n@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isInputDataListSpecified) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}"
+module.exports = "@section/inner {\nrt-content (select=.opal-select__button) {\nopal-button/button (\nview-type={input.viewType},\nsize={input.size},\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n) {\n@if-then (if=input.text) { '{input.text}' }\n@if-else (if=input.text) { '{_buttonText}' }\nsvg/button-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-bottom) }\n}\n}\ndiv/menu-wrapper {\nrt-content (select=.opal-select__menu) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content) {\n@if-then (if=_isInputDataListSpecified) {\ndiv/, menu-content {\n@if-then (if=dataList) {\n@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isInputDataListSpecified) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}\n}"
 
 /***/ }),
 /* 83 */
@@ -6119,6 +6112,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(4);
 var mixin_1 = __webpack_require__(9);
+var next_tick_1 = __webpack_require__(3);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
@@ -6259,9 +6253,9 @@ var OpalLoadedList = /** @class */ (function (_super) {
             }
             cellx_1.Cell.forceRelease();
             this.emit('loaded');
-            setTimeout(function () {
+            next_tick_1.nextTick(function () {
                 _this.checkLoading();
-            }, 1);
+            });
         }));
     };
     OpalLoadedList.prototype._getListItemContext = function (context, content) {
@@ -7022,16 +7016,13 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         this.dataProvider.getItems.apply(this.dataProvider, args).then((this._requestCallback = this.registerCallback(this._itemsRequestCallback)));
     };
     OpalAutosuggest.prototype._itemsRequestCallback = function (data) {
-        var _this = this;
         this.loading = false;
         var items = data.items;
         if (items.length) {
             this.dataList.addRange(items);
-            cellx_1.Cell.afterRelease(function () {
-                var focusedListItem = _this.$('list-item');
-                _this._focusedListItem = focusedListItem;
-                focusedListItem.setAttribute('focused', '');
-            });
+            var focusedListItem = this.$('list-item');
+            this._focusedListItem = focusedListItem;
+            focusedListItem.setAttribute('focused', '');
         }
         else if (this.input.openMenuOnNothingFound) {
             this.openMenu(true);
@@ -7238,7 +7229,6 @@ var OpalMultirow = /** @class */ (function (_super) {
         });
     };
     OpalMultirow.prototype._onRemoveRowClick = function (evt) {
-        var _this = this;
         var row = evt.target;
         if (row.input.preset) {
             this.$('preset-rows-container').element.removeChild(row.element);
@@ -7248,18 +7238,15 @@ var OpalMultirow = /** @class */ (function (_super) {
             var key_1 = row.parentComponent.element.dataset.key;
             this._newRows.removeAt(this._newRows.findIndex(function (row) { return row.key == key_1; }));
         }
-        setTimeout(function () {
-            _this.emit('remove-row');
-            _this.emit('change');
-        }, 1);
+        cellx_1.Cell.forceRelease();
+        this.emit('remove-row');
+        this.emit('change');
     };
     OpalMultirow.prototype._onAddRowClick = function () {
-        var _this = this;
         this._newRows.add({ key: next_uid_1.nextUID() });
-        setTimeout(function () {
-            _this.emit('add-row');
-            _this.emit('change');
-        }, 1);
+        cellx_1.Cell.forceRelease();
+        this.emit('add-row');
+        this.emit('change');
     };
     OpalMultirow.OpalMultirowRow = opal_multirow_row_1.OpalMultirowRow;
     __decorate([

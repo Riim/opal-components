@@ -1,5 +1,5 @@
 import { getText } from '@riim/gettext';
-import { Cell, IEvent, ObservableList } from 'cellx';
+import { IEvent, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import {
 	Component,
@@ -329,12 +329,10 @@ export class OpalAutosuggest extends Component {
 		if (items.length) {
 			this.dataList.addRange(items);
 
-			Cell.afterRelease(() => {
-				let focusedListItem = this.$<HTMLElement>('list-item')!;
+			let focusedListItem = this.$<HTMLElement>('list-item')!;
 
-				this._focusedListItem = focusedListItem;
-				focusedListItem.setAttribute('focused', '');
-			});
+			this._focusedListItem = focusedListItem;
+			focusedListItem.setAttribute('focused', '');
 		} else if (this.input.openMenuOnNothingFound) {
 			this.openMenu(true);
 		}

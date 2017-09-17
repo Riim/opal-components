@@ -1,4 +1,3 @@
-import { nextTick } from '@riim/next-tick';
 import { Cell, IEvent } from 'cellx';
 import { observable } from 'cellx-decorators';
 import { Component, d, IDisposableListening } from 'rionite';
@@ -81,7 +80,7 @@ export class OpalPopover extends Component {
 			this._open$();
 		} else {
 			this.isContentRendered = true;
-			nextTick(() => {
+			Cell.afterRelease(() => {
 				this._open$();
 			});
 		}

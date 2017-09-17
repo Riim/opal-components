@@ -61,7 +61,37 @@ let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled
 		disabled: false
 	},
 
-	template
+	template,
+
+	events: {
+		'menu-wrapper': {
+			loaded(evt: IEvent) {
+				if (this._onсeFocusedAfterLoading || evt.target !== this.$('loaded-list')) {
+					return;
+				}
+
+				this._onсeFocusedAfterLoading = true;
+
+				this._focusOptions();
+
+				let focusTarget = this.$<HTMLElement | OpalTextInput>('focus');
+
+				if (!focusTarget) {
+					let filteredList = this.$<OpalFilteredList>('filtered-list');
+
+					if (filteredList) {
+						focusTarget = filteredList.$<OpalTextInput>('query-input');
+					}
+				}
+
+				if (focusTarget) {
+					nextTick(() => {
+						focusTarget!.focus();
+					});
+				}
+			}
+		}
+	}
 })
 export class OpalSelect extends Component {
 	static OpalSelectOption = OpalSelectOption;
@@ -167,7 +197,6 @@ export class OpalSelect extends Component {
 			Cell.afterRelease(() => {
 				this._notUpdateOptions = true;
 				this.$<OpalDropdown>('menu')!.renderContent();
-				Cell.forceRelease();
 				this._notUpdateOptions = false;
 				this._initViewModel();
 			});
@@ -246,12 +275,6 @@ export class OpalSelect extends Component {
 			'<opal-text-input>confirm': this._onMenuTextInputConfirm,
 			'<*>change': this._onMenuChange
 		});
-
-		let loadedList = this.$('loaded-list');
-
-		if (loadedList) {
-			this.listenTo(loadedList, 'loaded', this._onLoadedListLoaded);
-		}
 	}
 
 	_onInputValueChange(evt: IEvent) {
@@ -272,7 +295,6 @@ export class OpalSelect extends Component {
 							this._needOptionsUpdating = false;
 							this._notUpdateOptions = true;
 							this.$<OpalDropdown>('menu')!.renderContent();
-							Cell.forceRelease();
 							this._notUpdateOptions = false;
 							this._updateViewModel(value, multiple);
 						});
@@ -493,34 +515,6 @@ export class OpalSelect extends Component {
 		}
 	}
 
-	_onLoadedListLoaded() {
-		if (this._onсeFocusedAfterLoading) {
-			return;
-		}
-
-		this._onсeFocusedAfterLoading = true;
-
-		nextTick(() => {
-			this._focusOptions();
-
-			let focusTarget = this.$<HTMLElement | OpalTextInput>('focus');
-
-			if (!focusTarget) {
-				let filteredList = this.$<OpalFilteredList>('filtered-list');
-
-				if (filteredList) {
-					focusTarget = filteredList.$<OpalTextInput>('query-input');
-				}
-			}
-
-			if (focusTarget) {
-				nextTick(() => {
-					focusTarget!.focus();
-				});
-			}
-		});
-	}
-
 	_updateOptions() {
 		let vm = this.viewModel;
 		let vmItemValueFieldName = this._viewModelItemValueFieldName;
@@ -555,7 +549,9 @@ export class OpalSelect extends Component {
 		}
 
 		this.$<OpalButton>('button')!.check();
+		this._notUpdateOptions = true;
 		this.$<OpalDropdown>('menu')!.open();
+		this._notUpdateOptions = false;
 
 		if (this._needOptionsUpdating) {
 			this._needOptionsUpdating = false;
@@ -565,7 +561,7 @@ export class OpalSelect extends Component {
 		let loadedList = this.$<OpalLoadedList>('loaded-list');
 
 		if (loadedList) {
-			nextTick(() => {
+			Cell.afterRelease(() => {
 				loadedList!.checkLoading();
 			});
 		}

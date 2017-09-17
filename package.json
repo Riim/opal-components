@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.27.117",
+  "version": "0.27.119",
   "description": "",
   "main": "dist/OpalComponents.js",
   "typings": "dist/src/index.d.ts",
@@ -37,14 +37,14 @@
     "pump": "^1.0.2",
     "raw-loader": "^0.5.1",
     "require-dir": "^0.3.2",
-    "run-sequence": "^2.1.0",
+    "run-sequence": "^2.2.0",
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.1.0",
     "trim-lines-loader": "^0.1.0",
     "tslint": "^5.7.0",
     "tslint-loader": "^3.5.3",
     "typescript": "^2.5.2",
-    "webpack": "^3.5.6"
+    "webpack": "^3.6.0"
   },
   "dependencies": {
     "@riim/debounce-throttle": "^1.0.0",
@@ -56,10 +56,10 @@
     "@riim/next-tick": "^1.0.1",
     "@riim/next-uid": "^1.0.0",
     "bytesize-icons": "^1.2.0",
-    "cellx": "^1.7.47",
+    "cellx": "^1.7.49",
     "cellx-decorators": "^1.4.6",
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.1",
-    "rionite": "^0.27.66"
+    "rionite": "^0.27.67"
   }
 }

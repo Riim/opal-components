@@ -1,5 +1,5 @@
 import { nextUID } from '@riim/next-uid';
-import { IEvent, ObservableList } from 'cellx';
+import { Cell, IEvent, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import { Component, d, IComponentElement } from 'rionite';
 import './index.css';
@@ -55,19 +55,19 @@ export class OpalMultirow extends Component {
 			this._newRows.removeAt(this._newRows.findIndex((row) => row.key == key));
 		}
 
-		setTimeout(() => {
-			this.emit('remove-row');
-			this.emit('change');
-		}, 1);
+		Cell.forceRelease();
+
+		this.emit('remove-row');
+		this.emit('change');
 	}
 
 	_onAddRowClick() {
 		this._newRows.add({ key: nextUID() });
 
-		setTimeout(() => {
-			this.emit('add-row');
-			this.emit('change');
-		}, 1);
+		Cell.forceRelease();
+
+		this.emit('add-row');
+		this.emit('change');
 	}
 }
 

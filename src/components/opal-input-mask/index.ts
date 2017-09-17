@@ -52,7 +52,7 @@ export class OpalInputMask extends Component {
 
 	_buffer: Array<string | null>;
 
-	_textField: HTMLInputElement;
+	textField: HTMLInputElement;
 
 	_textOnFocus: string;
 
@@ -61,7 +61,7 @@ export class OpalInputMask extends Component {
 	}
 
 	ready() {
-		this._textField = this.$<OpalTextInput>('text-input')!.textField;
+		this.textField = this.$<OpalTextInput>('text-input')!.textField;
 
 		let definitions = this._definitions;
 
@@ -79,7 +79,7 @@ export class OpalInputMask extends Component {
 	elementAttached() {
 		this.listenTo(this, 'change:_mask', this._onMaskChange);
 
-		this.listenTo(this._textField, {
+		this.listenTo(this.textField, {
 			focus: this._onTextFieldFocus,
 			blur: this._onTextFieldBlur,
 			keydown: this._onTextFieldKeyDown,
@@ -102,9 +102,9 @@ export class OpalInputMask extends Component {
 
 	_onTextFieldFocus() {
 		nextTick(() => {
-			if (document.activeElement == this._textField) {
+			if (document.activeElement == this.textField) {
 				this._setTextFieldSelection(0, this._checkValue(false));
-				this._textOnFocus = this._textField.value;
+				this._textOnFocus = this.textField.value;
 				this._writeBuffer();
 			}
 		});
@@ -113,13 +113,13 @@ export class OpalInputMask extends Component {
 	_onTextFieldBlur() {
 		this._checkValue(false);
 
-		if (this._textField.value != this._textOnFocus) {
+		if (this.textField.value != this._textOnFocus) {
 			this.$<OpalTextInput>('text-input')!.emit('change');
 		}
 	}
 
 	_onTextFieldKeyDown(evt: KeyboardEvent) {
-		let textField = this._textField;
+		let textField = this.textField;
 		let key = evt.which;
 
 		// Backspace, delete, and escape get special treatment
@@ -160,7 +160,7 @@ export class OpalInputMask extends Component {
 	_onTextFieldKeyPress(evt: KeyboardEvent) {
 		let tests = this._tests;
 		let bufferLen = this._buffer.length;
-		let textField = this._textField;
+		let textField = this.textField;
 		let start = textField.selectionStart;
 		let end = textField.selectionEnd;
 		let key = evt.which;
@@ -221,7 +221,7 @@ export class OpalInputMask extends Component {
 		let tests = this._tests;
 		let buffer = this._buffer;
 		let bufferLen = buffer.length;
-		let value = this._textField.value;
+		let value = this.textField.value;
 		let valueLen = value.length;
 		let index = 0;
 		let lastMatchIndex = -1;
@@ -264,8 +264,6 @@ export class OpalInputMask extends Component {
 			} else {
 				this.$<OpalTextInput>('text-input')!.value = buffer.slice(0, lastMatchIndex + 1).join('');
 			}
-
-			Cell.forceRelease();
 		}
 
 		return index;
@@ -336,7 +334,6 @@ export class OpalInputMask extends Component {
 		let buffer = this._buffer;
 		let toIndex = buffer.indexOf(null);
 		this.$<OpalTextInput>('text-input')!.value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
-		Cell.forceRelease();
 	}
 
 	_clearBuffer(start: number, end: number) {
@@ -355,7 +352,7 @@ export class OpalInputMask extends Component {
 	}
 
 	_setTextFieldSelection(start: number, end: number = start) {
-		this._textField.setSelectionRange(start, end);
+		this.textField.setSelectionRange(start, end);
 	}
 }
 

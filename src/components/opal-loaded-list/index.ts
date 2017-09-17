@@ -1,5 +1,6 @@
 import { getText } from '@riim/gettext';
 import { mixin } from '@riim/mixin';
+import { nextTick } from '@riim/next-tick';
 import { Cell, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import {
@@ -203,9 +204,9 @@ export class OpalLoadedList extends Component {
 
 					this.emit('loaded');
 
-					setTimeout(() => {
+					nextTick(() => {
 						this.checkLoading();
-					}, 1);
+					});
 				}
 			)
 		);

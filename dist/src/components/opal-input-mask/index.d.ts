@@ -13,7 +13,7 @@ export declare class OpalInputMask extends Component {
     readonly _tests: Array<RegExp | null>;
     readonly _firstTestIndex: number;
     _buffer: Array<string | null>;
-    _textField: HTMLInputElement;
+    textField: HTMLInputElement;
     _textOnFocus: string;
     initialize(): void;
     ready(): void;
