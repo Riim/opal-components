@@ -44,6 +44,7 @@ export class OpalPopover extends Component {
 
 	renderContent() {
 		this.isContentRendered = true;
+		Cell.forceRelease();
 	}
 
 	open(): boolean {

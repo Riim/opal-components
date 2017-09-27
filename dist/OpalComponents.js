@@ -4030,6 +4030,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(62);
@@ -4051,6 +4052,7 @@ var OpalTabPanel = /** @class */ (function (_super) {
     };
     OpalTabPanel.prototype.renderContent = function () {
         this.isContentRendered = true;
+        cellx_1.Cell.forceRelease();
     };
     __decorate([
         cellx_decorators_1.observable
@@ -4152,6 +4154,7 @@ var OpalDropdown = /** @class */ (function (_super) {
     };
     OpalDropdown.prototype.renderContent = function () {
         this.isContentRendered = true;
+        cellx_1.Cell.forceRelease();
     };
     OpalDropdown.prototype.open = function () {
         if (this.input.opened) {
@@ -4353,6 +4356,7 @@ var OpalPopover = /** @class */ (function (_super) {
     };
     OpalPopover.prototype.renderContent = function () {
         this.isContentRendered = true;
+        cellx_1.Cell.forceRelease();
     };
     OpalPopover.prototype.open = function () {
         if (this.input.opened) {
@@ -4601,6 +4605,7 @@ var OpalModal = /** @class */ (function (_super) {
     };
     OpalModal.prototype.renderContent = function () {
         this.isContentRendered = true;
+        cellx_1.Cell.forceRelease();
     };
     OpalModal.prototype.open = function () {
         if (this.input.opened) {

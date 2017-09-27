@@ -42,6 +42,7 @@ export class OpalDropdown extends Component {
 
 	renderContent() {
 		this.isContentRendered = true;
+		Cell.forceRelease();
 	}
 
 	open(): boolean {

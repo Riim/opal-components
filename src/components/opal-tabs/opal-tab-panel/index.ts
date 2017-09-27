@@ -1,4 +1,4 @@
-import { IEvent } from 'cellx';
+import { Cell, IEvent } from 'cellx';
 import { observable } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import './index.css';
@@ -28,5 +28,6 @@ export class OpalTabPanel extends Component {
 
 	renderContent() {
 		this.isContentRendered = true;
+		Cell.forceRelease();
 	}
 }

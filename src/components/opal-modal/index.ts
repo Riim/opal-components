@@ -92,6 +92,7 @@ export class OpalModal extends Component {
 
 	renderContent() {
 		this.isContentRendered = true;
+		Cell.forceRelease();
 	}
 
 	open(): boolean {
