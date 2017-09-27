@@ -1,12 +1,14 @@
 import { IEvent, ObservableList } from 'cellx';
 import { Component } from 'rionite';
-import ObservableTreeList from '../../ObservableTreeList';
+import { ObservableTreeList } from '../../ObservableTreeList';
+import { OpalCheckbox } from '../opal-checkbox';
 import './index.css';
 import { OpalTreeListItem } from './opal-tree-list-item';
 import './opal-tree-list-item';
 export interface IDataTreeListItem {
     [name: string]: any;
-    children?: Array<IDataTreeListItem>;
+    parent?: IDataTreeListItem | null;
+    children: Array<IDataTreeListItem>;
 }
 export declare type TDataTreeList = ObservableTreeList<IDataTreeListItem>;
 export declare type TViewModel = ObservableList<{
@@ -31,6 +33,6 @@ export declare class OpalTreeList extends Component {
     _viewModelItemTextFieldName: string;
     initialize(): void;
     elementAttached(): void;
-    _onChange(evt: IEvent<Component>): void;
+    _onChange(evt: IEvent<OpalCheckbox>): void;
 }
 export { OpalTreeListItem };

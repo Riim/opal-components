@@ -6,7 +6,7 @@ import '../node_modules/bytesize-icons/dist/icons/close.svg?id=opal-components__
 import '../node_modules/bytesize-icons/dist/icons/compose.svg?id=opal-components__icon-compose';
 import '../node_modules/bytesize-icons/dist/icons/search.svg?id=opal-components__icon-search';
 
-export { IItem as IObservableTreeListItem, default as ObservableTreeList } from './ObservableTreeList';
+export { IItem as IObservableTreeListItem, ObservableTreeList } from './ObservableTreeList';
 export { OpalButton } from './components/opal-button';
 export { OpalSignButton } from './components/opal-sign-button';
 export { OpalTextInput } from './components/opal-text-input';

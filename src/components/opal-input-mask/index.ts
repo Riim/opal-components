@@ -1,9 +1,9 @@
 import { nextTick } from '@riim/next-tick';
-import { Cell } from 'cellx';
 import { computed } from 'cellx-decorators';
 import { Component, d, IComponentElement } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
 import { OpalInputMaskDefinition } from './opal-input-mask-definition';
+// import { Cell } from 'cellx';
 
 let forEach = Array.prototype.forEach;
 
@@ -94,10 +94,7 @@ export class OpalInputMask extends Component {
 
 	_onMaskChange() {
 		this._initBuffer();
-
-		Cell.afterRelease(() => {
-			this._checkValue(false);
-		});
+		this._checkValue(false);
 	}
 
 	_onTextFieldFocus() {

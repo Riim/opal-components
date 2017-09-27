@@ -8,7 +8,7 @@ div/head {
 	}
 }
 
-@if-then (if=dataTreeListItem.children) {
+@if-then (if=dataTreeListItem.children.length) {
 	div/children {
 		@repeat (for=$item of dataTreeListItem.children) {
 			opal-tree-list-item/item (
@@ -23,7 +23,7 @@ div/head {
 				query={input.query},
 				opened={input.query},
 				nesting-level={input.indexpath.length},
-				has-children='{$item |has("children") }'
+				has-children='{$item.children.length |gt(0) }'
 			) {
 				rt-content (clone, get-context={_getListItemContext})
 			}

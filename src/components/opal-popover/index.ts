@@ -80,9 +80,8 @@ export class OpalPopover extends Component {
 			this._open$();
 		} else {
 			this.isContentRendered = true;
-			Cell.afterRelease(() => {
-				this._open$();
-			});
+			Cell.forceRelease();
+			this._open$();
 		}
 	}
 

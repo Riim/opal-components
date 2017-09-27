@@ -194,12 +194,10 @@ export class OpalSelect extends Component {
 		if (this.input.viewModel && !this.input.value) {
 			this._needOptionsUpdating = true;
 		} else {
-			Cell.afterRelease(() => {
-				this._notUpdateOptions = true;
-				this.$<OpalDropdown>('menu')!.renderContent();
-				this._notUpdateOptions = false;
-				this._initViewModel();
-			});
+			this._notUpdateOptions = true;
+			this.$<OpalDropdown>('menu')!.renderContent();
+			this._notUpdateOptions = false;
+			this._initViewModel();
 		}
 	}
 
@@ -291,13 +289,11 @@ export class OpalSelect extends Component {
 
 				if (multiple || !vm.length || value[0] != vm.get(0)![this._viewModelItemValueFieldName]) {
 					if (this._needOptionsUpdating) {
-						Cell.afterRelease(() => {
-							this._needOptionsUpdating = false;
-							this._notUpdateOptions = true;
-							this.$<OpalDropdown>('menu')!.renderContent();
-							this._notUpdateOptions = false;
-							this._updateViewModel(value, multiple);
-						});
+						this._needOptionsUpdating = false;
+						this._notUpdateOptions = true;
+						this.$<OpalDropdown>('menu')!.renderContent();
+						this._notUpdateOptions = false;
+						this._updateViewModel(value, multiple);
 					} else {
 						this._updateViewModel(value, multiple);
 					}
@@ -561,9 +557,7 @@ export class OpalSelect extends Component {
 		let loadedList = this.$<OpalLoadedList>('loaded-list');
 
 		if (loadedList) {
-			Cell.afterRelease(() => {
-				loadedList!.checkLoading();
-			});
+			loadedList!.checkLoading();
 		}
 
 		let focusTarget = this.$<HTMLElement | OpalTextInput>('focus');

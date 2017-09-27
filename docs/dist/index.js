@@ -1579,7 +1579,7 @@ THE SOFTWARE.
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__(6), __webpack_require__(2), __webpack_require__(29), __webpack_require__(35), __webpack_require__(36), __webpack_require__(7), __webpack_require__(37), __webpack_require__(16), __webpack_require__(38), __webpack_require__(3), __webpack_require__(39), __webpack_require__(40), __webpack_require__(41), __webpack_require__(15), __webpack_require__(4), __webpack_require__(9), __webpack_require__(42), __webpack_require__(10), __webpack_require__(43), __webpack_require__(8));
+		module.exports = factory(__webpack_require__(6), __webpack_require__(2), __webpack_require__(29), __webpack_require__(35), __webpack_require__(36), __webpack_require__(7), __webpack_require__(37), __webpack_require__(16), __webpack_require__(38), __webpack_require__(3), __webpack_require__(39), __webpack_require__(40), __webpack_require__(41), __webpack_require__(15), __webpack_require__(4), __webpack_require__(10), __webpack_require__(42), __webpack_require__(11), __webpack_require__(43), __webpack_require__(8));
 	else if(typeof define === 'function' && define.amd)
 		define(["@riim/map-set-polyfill", "cellx", "nelm", "@riim/get-uid", "@riim/move-content", "@riim/symbol-polyfill", "@riim/camelize", "@riim/hyphenize", "@riim/clear-node", "@riim/next-tick", "@riim/logger", "html-to-fragment", "@riim/set-attribute", "escape-string", "@riim/gettext", "@riim/escape-html", "@riim/is-regexp", "@riim/next-uid", "@riim/defer", "@riim/mixin"], factory);
 	else if(typeof exports === 'object')
@@ -3292,7 +3292,6 @@ var RtIfThen = /** @class */ (function (_super) {
         this._attached = false;
     };
     RtIfThen.prototype._render = function (changed) {
-        var _this = this;
         if (this._elseMode ? !this._if.get() : this._if.get()) {
             var content = document.importNode(this.element.content, true);
             if (!Features_1.templateTag) {
@@ -3326,9 +3325,8 @@ var RtIfThen = /** @class */ (function (_super) {
             }
         }
         if (changed) {
-            cellx_1.Cell.afterRelease(function () {
-                _this.emit('change');
-            });
+            cellx_1.Cell.forceRelease();
+            this.emit('change');
         }
     };
     RtIfThen.prototype._deactivate = function () {
@@ -3686,13 +3684,11 @@ function freezeBindings(bindings) {
 }
 exports.freezeBindings = freezeBindings;
 function unfreezeBindings(bindings) {
-    cellx_1.Cell.afterRelease(function () {
-        for (var _i = 0, bindings_2 = bindings; _i < bindings_2.length; _i++) {
-            var binding = bindings_2[_i];
-            unfreezeBinding(binding);
-        }
-        cellx_1.Cell.forceRelease();
-    });
+    for (var _i = 0, bindings_2 = bindings; _i < bindings_2.length; _i++) {
+        var binding = bindings_2[_i];
+        unfreezeBinding(binding);
+    }
+    cellx_1.Cell.forceRelease();
 }
 exports.unfreezeBindings = unfreezeBindings;
 
@@ -4387,9 +4383,8 @@ var RtRepeat = /** @class */ (function (_super) {
             return;
         }
         if (changed) {
-            cellx_1.Cell.afterRelease(function () {
-                _this.emit('change');
-            });
+            cellx_1.Cell.forceRelease();
+            this.emit('change');
         }
     };
     RtRepeat.prototype._renderItem = function (item, index) {
@@ -4771,7 +4766,7 @@ nelm_1.Template.helpers['if-then'] = nelm_1.Template.helpers['if-else'] = nelm_1
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var object_assign_polyfill_1 = __webpack_require__(13);
+var object_assign_polyfill_1 = __webpack_require__(9);
 var cellx_1 = __webpack_require__(2);
 function enumerableDecorator(target, name, desc) {
     if (desc) {
@@ -4869,7 +4864,7 @@ exports.computed = computedDecorator;
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (global, factory) {
-	 true ? module.exports = factory(__webpack_require__(13), __webpack_require__(6), __webpack_require__(26), __webpack_require__(7), __webpack_require__(27), __webpack_require__(8), __webpack_require__(3)) :
+	 true ? module.exports = factory(__webpack_require__(9), __webpack_require__(6), __webpack_require__(26), __webpack_require__(7), __webpack_require__(27), __webpack_require__(8), __webpack_require__(3)) :
 	typeof define === 'function' && define.amd ? define(['@riim/object-assign-polyfill', '@riim/map-set-polyfill', '@riim/logger', '@riim/symbol-polyfill', '@riim/is', '@riim/mixin', '@riim/next-tick'], factory) :
 	(global.cellx = factory(global.objectAssignPolyfill,global.mapSetPolyfill,global.errorLogger,global.symbolPolyfill,global.is,global.mixin,global.nextTick));
 }(this, (function (objectAssignPolyfill,mapSetPolyfill,logger,symbolPolyfill,is,mixin,nextTick) { 'use strict';
@@ -5143,33 +5138,28 @@ var releasePlan = new mapSetPolyfill.Map();
 var releasePlanIndex = MAX_SAFE_INTEGER;
 var releasePlanToIndex = -1;
 var releasePlanned = false;
-var currentlyRelease = false;
+var currentlyRelease = 0;
 var currentCell = null;
 var $error = { error: null };
 var releaseVersion = 1;
 
-var transactionLevel = 0;
-var transactionFailure = false;
-var pendingReactions = [];
-
-var afterReleaseCallbacks;
+var afterRelease;
 
 var STATE_INITED = 1;
-var STATE_CURRENTLY_PULLING = 1 << 1;
-var STATE_ACTIVE = 1 << 2;
-var STATE_HAS_FOLLOWERS = 1 << 3;
-var STATE_PENDING = 1 << 4;
-var STATE_FULFILLED = 1 << 5;
-var STATE_REJECTED = 1 << 6;
-var STATE_CAN_CANCEL_CHANGE = 1 << 7;
+var STATE_NOT_RELEASED = 1 << 1;
+var STATE_CURRENTLY_PULLING = 1 << 2;
+var STATE_ACTIVE = 1 << 3;
+var STATE_HAS_FOLLOWERS = 1 << 4;
+var STATE_PENDING = 1 << 5;
+var STATE_CAN_CANCEL_CHANGE = 1 << 6;
 
-function release() {
-	if (!releasePlanned) {
+function release(force) {
+	if (!releasePlanned && !force) {
 		return;
 	}
 
 	releasePlanned = false;
-	currentlyRelease = true;
+	currentlyRelease++;
 
 	var queue = releasePlan.get(releasePlanIndex);
 
@@ -5228,8 +5218,6 @@ function release() {
 			cell._fixedValue = cell._value;
 			cell._changeEvent = null;
 
-			cell._handleEvent(changeEvent);
-
 			var pushingIndex = cell._pushingIndex;
 			var slaves = cell._slaves;
 
@@ -5240,12 +5228,25 @@ function release() {
 					slave._level = level + 1;
 				}
 
-				if (pushingIndex >= slave._pushingIndex) {
+				if (pushingIndex > slave._pushingIndex) {
 					slave._pushingIndex = pushingIndex;
 					slave._changeEvent = null;
 
 					slave._addToRelease();
 				}
+			}
+
+			cell._state |= STATE_NOT_RELEASED;
+			cell._handleEvent(changeEvent);
+
+			if (!(cell._state & STATE_NOT_RELEASED)) {
+				break;
+			}
+
+			cell._state ^= STATE_NOT_RELEASED;
+
+			if (releasePlanIndex == MAX_SAFE_INTEGER) {
+				break;
 			}
 		}
 
@@ -5262,18 +5263,25 @@ function release() {
 		}
 	}
 
-	releasePlanIndex = MAX_SAFE_INTEGER;
-	releasePlanToIndex = -1;
-	currentlyRelease = false;
-	releaseVersion++;
+	if (! --currentlyRelease) {
+		releasePlanIndex = MAX_SAFE_INTEGER;
+		releasePlanToIndex = -1;
+		releaseVersion++;
 
-	if (afterReleaseCallbacks) {
-		var callbacks = afterReleaseCallbacks;
+		if (afterRelease) {
+			var afterRelease_ = afterRelease;
 
-		afterReleaseCallbacks = null;
+			afterRelease = null;
 
-		for (var i = 0, l = callbacks.length; i < l; i++) {
-			callbacks[i]();
+			for (var i = 0, l = afterRelease_.length; i < l; i++) {
+				var item = afterRelease_[i];
+
+				if (typeof item == 'function') {
+					item();
+				} else {
+					item[0]._push(item[1], true, false);
+				}
+			}
 		}
 	}
 }
@@ -5284,10 +5292,6 @@ function release() {
 function defaultPut(cell, value) {
 	cell.push(value);
 }
-
-var config = {
-	asynchronous: true
-};
 
 /**
  * @class cellx.Cell
@@ -5348,8 +5352,6 @@ function Cell(value, opts) {
 	this._merge = opts && opts.merge || null;
 	this._put = opts && opts.put || defaultPut;
 
-	this._onFulfilled = this._onRejected = null;
-
 	this._reap = opts && opts.reap || null;
 
 	if (this._pull) {
@@ -5394,8 +5396,6 @@ function Cell(value, opts) {
 	this._selfPendingStatusCell = null;
 	this._pendingStatusCell = null;
 
-	this._status = null;
-
 	this._changeEvent = null;
 	this._lastErrorEvent = null;
 
@@ -5412,19 +5412,6 @@ function Cell(value, opts) {
 }
 
 mixin.mixin(Cell, {
-	/**
-  * @typesign (cnfg: { asynchronous?: boolean });
-  */
-	configure: function configure(cnfg) {
-		if (cnfg.asynchronous !== undefined) {
-			if (releasePlanned) {
-				release();
-			}
-
-			config.asynchronous = cnfg.asynchronous;
-		}
-	},
-
 	/**
   * @type {boolean}
   */
@@ -5447,18 +5434,10 @@ mixin.mixin(Cell, {
 				};
 			}
 
-			if (transactionLevel) {
-				var index = pendingReactions.indexOf(this);
-
-				if (index != -1) {
-					pendingReactions.splice(index, 1);
-				}
-
-				pendingReactions.push(this);
-			} else {
-				callback.call(context, disposer);
-			}
-		}, { onChange: function noop() {} });
+			callback.call(context, disposer);
+		}, {
+			onChange: function noop() {}
+		});
 
 		return disposer;
 	},
@@ -5467,70 +5446,16 @@ mixin.mixin(Cell, {
   * @typesign ();
   */
 	forceRelease: function forceRelease() {
-		if (releasePlanned) {
-			release();
+		if (releasePlanned || currentlyRelease) {
+			release(true);
 		}
 	},
 
 	/**
   * @typesign (callback: ());
   */
-	transaction: function transaction(callback) {
-		if (!transactionLevel++ && releasePlanned) {
-			release();
-		}
-
-		try {
-			callback();
-		} catch (err) {
-			logger.error(err);
-			transactionFailure = true;
-		}
-
-		if (transactionFailure) {
-			for (var iterator = releasePlan.values(), step; !(step = iterator.next()).done;) {
-				var queue = step.value;
-
-				for (var i = queue.length; i;) {
-					var cell = queue[--i];
-					cell._value = cell._fixedValue;
-					cell._levelInRelease = -1;
-					cell._changeEvent = null;
-				}
-			}
-
-			releasePlan.clear();
-			releasePlanIndex = MAX_SAFE_INTEGER;
-			releasePlanToIndex = -1;
-			releasePlanned = false;
-			pendingReactions.length = 0;
-		}
-
-		if (! --transactionLevel && !transactionFailure) {
-			for (var i = 0, l = pendingReactions.length; i < l; i++) {
-				var reaction = pendingReactions[i];
-
-				if (reaction instanceof Cell) {
-					reaction.pull();
-				} else {
-					EventEmitterProto._handleEvent.call(reaction[1], reaction[0]);
-				}
-			}
-
-			transactionFailure = false;
-			pendingReactions.length = 0;
-
-			if (releasePlanned) {
-				release();
-			}
-		}
-	},
-
-	/**
-  * @typesign (callback: ());
-  */
-	afterRelease: function afterRelease(callback) {
-		(afterReleaseCallbacks || (afterReleaseCallbacks = [])).push(callback);
+	afterRelease: function afterRelease_(callback) {
+		(afterRelease || (afterRelease = [])).push(callback);
 	}
 });
 
@@ -5539,20 +5464,12 @@ Cell.prototype = {
 
 	constructor: Cell,
 
-	_handleEvent: function _handleEvent(evt) {
-		if (transactionLevel) {
-			pendingReactions.push([evt, this]);
-		} else {
-			EventEmitterProto._handleEvent.call(this, evt);
-		}
-	},
-
 	/**
   * @override
   */
 	on: function on(type, listener, context) {
-		if (releasePlanned) {
-			release();
+		if (releasePlanned || currentlyRelease) {
+			release(true);
 		}
 
 		this._activate();
@@ -5572,8 +5489,8 @@ Cell.prototype = {
   * @override
   */
 	off: function off(type, listener, context) {
-		if (releasePlanned) {
-			release();
+		if (releasePlanned || currentlyRelease) {
+			release(true);
 		}
 
 		if (type) {
@@ -5778,12 +5695,7 @@ Cell.prototype = {
 
 		if (!releasePlanned && !currentlyRelease) {
 			releasePlanned = true;
-
-			if (!transactionLevel && !config.asynchronous) {
-				release();
-			} else {
-				nextTick.nextTick(release);
-			}
+			nextTick.nextTick(release);
 		}
 	},
 
@@ -5791,17 +5703,37 @@ Cell.prototype = {
   * @typesign (evt: cellx~Event);
   */
 	_onValueChange: function _onValueChange(evt) {
+		if (this._state & STATE_HAS_FOLLOWERS) {
+			if (currentCell) {
+				var cell = this;
+
+				(afterRelease || (afterRelease = [])).push(this, (function () {
+					cell._onValueChange$(evt);
+				}));
+			} else {
+				this._onValueChange$(evt);
+			}
+		} else {
+			this._pushingIndex = ++pushingIndexCounter;
+			this._version = ++releaseVersion + (currentlyRelease > 0);
+		}
+	},
+
+	/**
+  * @typesign (evt: cellx~Event);
+  */
+	_onValueChange$: function _onValueChange$(evt) {
 		this._pushingIndex = ++pushingIndexCounter;
 
 		if (this._changeEvent) {
-			evt.prev = this._changeEvent;
+			(evt.data || (evt.data = {})).prev = this._changeEvent;
 			this._changeEvent = evt;
 
 			if (this._value === this._fixedValue) {
 				this._state &= ~STATE_CAN_CANCEL_CHANGE;
 			}
 		} else {
-			evt.prev = null;
+			(evt.data || (evt.data = {})).prev = null;
 			this._changeEvent = evt;
 			this._state &= ~STATE_CAN_CANCEL_CHANGE;
 
@@ -5813,30 +5745,32 @@ Cell.prototype = {
   * @typesign () -> *;
   */
 	get: function get() {
-		if (releasePlanned && this._pull) {
-			release();
-		}
-
-		if (this._pull && !(this._state & STATE_ACTIVE) && this._version < releaseVersion && this._masters !== null) {
-			var oldMasters = this._masters;
-			var value = this._tryPull();
-			var masters = this._masters;
-
-			if (oldMasters || masters || !(this._state & STATE_INITED)) {
-				if (masters && this._state & STATE_HAS_FOLLOWERS) {
-					var i = masters.length;
-
-					do {
-						masters[--i]._registerSlave(this);
-					} while (i);
-
-					this._state |= STATE_ACTIVE;
+		if (this._pull) {
+			if (this._state & STATE_ACTIVE) {
+				if (releasePlanned || currentlyRelease && !currentCell) {
+					release(true);
 				}
+			} else if (this._version < releaseVersion + (currentlyRelease > 0) && this._masters !== null) {
+				var oldMasters = this._masters;
+				var value = this._tryPull();
+				var masters = this._masters;
 
-				if (value === $error) {
-					this._fail($error.error, false);
-				} else {
-					this._push(value, false, false);
+				if (oldMasters || masters || !(this._state & STATE_INITED)) {
+					if (masters && this._state & STATE_HAS_FOLLOWERS) {
+						var i = masters.length;
+
+						do {
+							masters[--i]._registerSlave(this);
+						} while (i);
+
+						this._state |= STATE_ACTIVE;
+					}
+
+					if (value === $error) {
+						this._fail($error.error, false);
+					} else {
+						this._push(value, false, false);
+					}
 				}
 			}
 		}
@@ -5948,8 +5882,6 @@ Cell.prototype = {
 			if (this._selfPendingStatusCell) {
 				this._selfPendingStatusCell.set(true);
 			}
-
-			this._state &= ~(STATE_FULFILLED | STATE_REJECTED);
 		}
 
 		var prevCell = currentCell;
@@ -5967,7 +5899,7 @@ Cell.prototype = {
 		} finally {
 			currentCell = prevCell;
 
-			this._version = releaseVersion + currentlyRelease;
+			this._version = releaseVersion + (currentlyRelease > 0);
 
 			var pendingStatusCell = this._pendingStatusCell;
 
@@ -6000,12 +5932,12 @@ Cell.prototype = {
 				this.get();
 
 				var err = this._selfErrorCell.get();
-				var index;
+				var errorIndex;
 
 				if (err) {
-					index = this._errorIndex;
+					errorIndex = this._errorIndex;
 
-					if (index == errorIndexCounter) {
+					if (errorIndex == errorIndexCounter) {
 						return err;
 					}
 				}
@@ -6026,9 +5958,9 @@ Cell.prototype = {
 								return masterError;
 							}
 
-							if (!err || index < masterErrorIndex) {
+							if (!err || errorIndex < masterErrorIndex) {
 								err = masterError;
-								index = masterErrorIndex;
+								errorIndex = masterErrorIndex;
 							}
 						}
 					} while (i);
@@ -6078,26 +6010,6 @@ Cell.prototype = {
 		return pendingStatusCell.get();
 	},
 
-	getStatus: function getStatus() {
-		var status = this._status;
-
-		if (!status) {
-			var cell = this;
-
-			status = this._status = {
-				get success() {
-					return !cell.getError();
-				},
-
-				get pending() {
-					return cell.isPending();
-				}
-			};
-		}
-
-		return status;
-	},
-
 	/**
   * @typesign (value) -> this;
   */
@@ -6113,8 +6025,6 @@ Cell.prototype = {
 		if (this._selfPendingStatusCell) {
 			this._selfPendingStatusCell.set(true);
 		}
-
-		this._state &= ~(STATE_FULFILLED | STATE_REJECTED);
 
 		if (this._put.length >= 3) {
 			this._put.call(this.context, this, value, this._value);
@@ -6139,17 +6049,29 @@ Cell.prototype = {
 	_push: function _push(value, external, pulling) {
 		this._state |= STATE_INITED;
 
+		var oldValue = this._value;
+
+		if (external && currentCell && this._state & STATE_HAS_FOLLOWERS) {
+			if (is.is(value, oldValue)) {
+				this._setError(null);
+				this._resolvePending();
+				return false;
+			}
+
+			(afterRelease || (afterRelease = [])).push([this, value]);
+
+			return true;
+		}
+
 		if (external || !currentlyRelease && pulling) {
 			this._pushingIndex = ++pushingIndexCounter;
 		}
 
 		this._setError(null);
 
-		var oldValue = this._value;
-
 		if (is.is(value, oldValue)) {
 			if (external || currentlyRelease && pulling) {
-				this._fulfill(value);
+				this._resolvePending();
 			}
 
 			return false;
@@ -6164,7 +6086,7 @@ Cell.prototype = {
 			value.on('change', this._onValueChange, this);
 		}
 
-		if (this._state & STATE_HAS_FOLLOWERS || transactionLevel) {
+		if (this._state & STATE_HAS_FOLLOWERS) {
 			if (this._changeEvent) {
 				if (is.is(value, this._fixedValue) && this._state & STATE_CAN_CANCEL_CHANGE) {
 					this._levelInRelease = -1;
@@ -6200,29 +6122,14 @@ Cell.prototype = {
 			}
 
 			this._fixedValue = value;
-			this._version = releaseVersion + currentlyRelease;
+			this._version = releaseVersion + (currentlyRelease > 0);
 		}
 
 		if (external || currentlyRelease && pulling) {
-			this._fulfill(value);
+			this._resolvePending();
 		}
 
 		return true;
-	},
-
-	/**
-  * @typesign (value);
-  */
-	_fulfill: function _fulfill(value) {
-		this._resolvePending();
-
-		if (!(this._state & STATE_FULFILLED)) {
-			this._state |= STATE_FULFILLED;
-
-			if (this._onFulfilled) {
-				this._onFulfilled(value);
-			}
-		}
 	},
 
 	/**
@@ -6237,10 +6144,6 @@ Cell.prototype = {
   * @typesign (err, external: boolean);
   */
 	_fail: function _fail(err, external) {
-		if (transactionLevel) {
-			transactionFailure = true;
-		}
-
 		logger.error('[' + this.debugKey + ']', err);
 
 		if (!(err instanceof Error)) {
@@ -6250,7 +6153,7 @@ Cell.prototype = {
 		this._setError(err);
 
 		if (external) {
-			this._reject(err);
+			this._resolvePending();
 		}
 	},
 
@@ -6298,21 +6201,6 @@ Cell.prototype = {
 	},
 
 	/**
-  * @typesign (err: Error);
-  */
-	_reject: function _reject(err) {
-		this._resolvePending();
-
-		if (!(this._state & STATE_REJECTED)) {
-			this._state |= STATE_REJECTED;
-
-			if (this._onRejected) {
-				this._onRejected(err);
-			}
-		}
-	},
-
-	/**
   * @typesign ();
   */
 	_resolvePending: function _resolvePending() {
@@ -6323,65 +6211,6 @@ Cell.prototype = {
 				this._selfPendingStatusCell.set(false);
 			}
 		}
-	},
-
-	/**
-  * @typesign (onFulfilled: ?(value) -> *, onRejected?: (err) -> *) -> Promise;
-  */
-	then: function then(onFulfilled, onRejected) {
-		if (releasePlanned) {
-			release();
-		}
-
-		if (!this._pull || this._state & STATE_FULFILLED) {
-			return Promise.resolve(this._get ? this._get(this._value) : this._value).then(onFulfilled);
-		}
-		if (this._state & STATE_REJECTED) {
-			return Promise.reject(this._error).catch(onRejected);
-		}
-
-		var cell = this;
-
-		var promise = new Promise(function (resolve, reject) {
-			cell._onFulfilled = function onFulfilled(value) {
-				cell._onFulfilled = cell._onRejected = null;
-				resolve(cell._get ? cell._get(value) : value);
-			};
-
-			cell._onRejected = function onRejected(err) {
-				cell._onFulfilled = cell._onRejected = null;
-				reject(err);
-			};
-		}).then(onFulfilled, onRejected);
-
-		if (!(this._state & STATE_PENDING)) {
-			this.pull();
-		}
-
-		if (cell.isPending()) {
-			cell._pendingStatusCell.on('change', (function onPendingStatusCellChange() {
-				cell._pendingStatusCell.off('change', onPendingStatusCellChange);
-
-				if (!(cell._state & STATE_FULFILLED) && !(cell._state & STATE_REJECTED)) {
-					var err = cell.getError();
-
-					if (err) {
-						cell._reject(err);
-					} else {
-						cell._fulfill(cell._get ? cell._get(cell._value) : cell._value);
-					}
-				}
-			}));
-		}
-
-		return promise;
-	},
-
-	/**
-  * @typesign (onRejected: (err) -> *) -> Promise;
-  */
-	catch: function catch_(onRejected) {
-		return this.then(null, onRejected);
 	},
 
 	/**
@@ -7560,10 +7389,6 @@ function cellx(value, opts) {
 	return cx;
 }
 
-cellx.configure = function (config) {
-	Cell.configure(config);
-};
-
 cellx.EventEmitter = EventEmitter;
 cellx.FreezableCollectionMixin = FreezableCollectionMixin;
 cellx.ObservableCollectionMixin = ObservableCollectionMixin;
@@ -7571,7 +7396,6 @@ cellx.ObservableMap = ObservableMap;
 cellx.ObservableList = ObservableList;
 cellx.Cell = Cell;
 cellx.autorun = Cell.autorun;
-cellx.transact = cellx.transaction = Cell.transaction;
 cellx.KEY_CELL_MAP = KEY_CELL_MAP;
 
 /**
@@ -8102,9 +7926,9 @@ var Set = global.Set;
 
 if (!Set || Set.toString().indexOf('[native code]') == -1 || !new Set([1]).size) {
 	Set = function Set(values) {
-		this._values = new Map(values.map(function(value) {
+		this._values = new Map(values ? values.map(function(value) {
 			return [value, value];
-		}));
+		}) : []);
 
 		this.size = 0;
 	};
@@ -8214,6 +8038,22 @@ exports.mixin = mixin;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var assign = Object.assign || (function (target, source) {
+    for (var name_1 in source) {
+        target[name_1] = source[name_1];
+    }
+    return target;
+});
+exports.assign = assign;
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 var escapeHTML_1 = __webpack_require__(32);
 exports.escapeHTML = escapeHTML_1.escapeHTML;
 var unescapeHTML_1 = __webpack_require__(33);
@@ -8221,7 +8061,7 @@ exports.unescapeHTML = unescapeHTML_1.unescapeHTML;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8235,7 +8075,7 @@ exports.nextUID = nextUID;
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8251,13 +8091,28 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+var object_assign_polyfill_1 = __webpack_require__(9);
 var cellx_1 = __webpack_require__(2);
 var INDEXPATH_EMPTY_ERROR_MESSAGE = 'Indexpath cannot be empty';
+function fixParent(items, parent) {
+    if (parent === void 0) { parent = null; }
+    for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
+        var item = items_1[_i];
+        item.parent = parent;
+        fixParent(item.children, item);
+    }
+    return items;
+}
+exports.fixParent = fixParent;
 var ObservableTreeList = /** @class */ (function (_super) {
     __extends(ObservableTreeList, _super);
     function ObservableTreeList(items) {
         var _this = _super.call(this) || this;
-        _this._items = items || [];
+        _this._items = items ? fixParent(items.map(function _(item) {
+            return object_assign_polyfill_1.assign(object_assign_polyfill_1.assign({}, item), {
+                children: item.children ? item.children.map(_) : []
+            });
+        })) : [];
         return _this;
     }
     Object.defineProperty(ObservableTreeList.prototype, "length", {
@@ -8296,11 +8151,12 @@ var ObservableTreeList = /** @class */ (function (_super) {
             items = this._items;
         }
         else {
-            var item_ = this.get(indexpath.slice(0, -1));
-            if (!item_) {
+            var parent_1 = this.get(indexpath.slice(0, -1));
+            if (!parent_1) {
                 throw new TypeError("Item by indexpath \"[" + indexpath.slice(0, -1).join(',') + "]\" is not exist");
             }
-            items = item_.children || (item_.children = []);
+            items = parent_1.children;
+            item.parent = parent_1;
         }
         var lastIndexValue = indexpath[indexpathLength - 1];
         if (item !== items[lastIndexValue]) {
@@ -8330,7 +8186,7 @@ var ObservableTreeList = /** @class */ (function (_super) {
     };
     return ObservableTreeList;
 }(cellx_1.EventEmitter));
-exports.default = ObservableTreeList;
+exports.ObservableTreeList = ObservableTreeList;
 ['forEach', 'map', 'filter', 'every', 'some'].forEach(function (name) {
     ObservableTreeList.prototype[name] = function (callback, context) {
         return this._items[name](function (item, index) {
@@ -8351,7 +8207,7 @@ exports.default = ObservableTreeList;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8458,18 +8314,15 @@ var OpalSelect = /** @class */ (function (_super) {
         this._addNewItem = input.addNewItem;
     };
     OpalSelect.prototype.ready = function () {
-        var _this = this;
         this.optionElements = this.element.getElementsByClassName('opal-select-option');
         if (this.input.viewModel && !this.input.value) {
             this._needOptionsUpdating = true;
         }
         else {
-            cellx_1.Cell.afterRelease(function () {
-                _this._notUpdateOptions = true;
-                _this.$('menu').renderContent();
-                _this._notUpdateOptions = false;
-                _this._initViewModel();
-            });
+            this._notUpdateOptions = true;
+            this.$('menu').renderContent();
+            this._notUpdateOptions = false;
+            this._initViewModel();
         }
     };
     OpalSelect.prototype._initViewModel = function () {
@@ -8540,7 +8393,6 @@ var OpalSelect = /** @class */ (function (_super) {
         });
     };
     OpalSelect.prototype._onInputValueChange = function (evt) {
-        var _this = this;
         var vm = this.viewModel;
         var value = evt.data.value;
         if (value) {
@@ -8548,19 +8400,17 @@ var OpalSelect = /** @class */ (function (_super) {
                 throw new TypeError('Input "value" must be an array');
             }
             if (value.length) {
-                var multiple_1 = this.input.multiple;
-                if (multiple_1 || !vm.length || value[0] != vm.get(0)[this._viewModelItemValueFieldName]) {
+                var multiple = this.input.multiple;
+                if (multiple || !vm.length || value[0] != vm.get(0)[this._viewModelItemValueFieldName]) {
                     if (this._needOptionsUpdating) {
-                        cellx_1.Cell.afterRelease(function () {
-                            _this._needOptionsUpdating = false;
-                            _this._notUpdateOptions = true;
-                            _this.$('menu').renderContent();
-                            _this._notUpdateOptions = false;
-                            _this._updateViewModel(value, multiple_1);
-                        });
+                        this._needOptionsUpdating = false;
+                        this._notUpdateOptions = true;
+                        this.$('menu').renderContent();
+                        this._notUpdateOptions = false;
+                        this._updateViewModel(value, multiple);
                     }
                     else {
-                        this._updateViewModel(value, multiple_1);
+                        this._updateViewModel(value, multiple);
                     }
                 }
                 return;
@@ -8788,9 +8638,7 @@ var OpalSelect = /** @class */ (function (_super) {
         }
         var loadedList = this.$('loaded-list');
         if (loadedList) {
-            cellx_1.Cell.afterRelease(function () {
-                loadedList.checkLoading();
-            });
+            loadedList.checkLoading();
         }
         var focusTarget = this.$('focus');
         if (focusTarget) {
@@ -9024,22 +8872,6 @@ exports.OpalSelect = OpalSelect;
 
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var assign = Object.assign || (function (target, source) {
-    for (var name_1 in source) {
-        target[name_1] = source[name_1];
-    }
-    return target;
-});
-exports.assign = assign;
-
-
-/***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9262,7 +9094,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var ObservableTreeList_1 = __webpack_require__(11);
+var ObservableTreeList_1 = __webpack_require__(12);
 var utils_1 = __webpack_require__(19);
 var _getListItemContext_1 = __webpack_require__(20);
 __webpack_require__(142);
@@ -9272,11 +9104,6 @@ __webpack_require__(21);
 var template = __webpack_require__(145);
 var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
-function getVertices(item) {
-    return item.children ?
-        item.children.reduce(function (vertices, child) { return vertices.concat(getVertices(child)); }, []) :
-        [item];
-}
 function toComparable(str) {
     return str && str.trim().replace(/\s+/g, ' ').toLowerCase();
 }
@@ -9294,8 +9121,8 @@ var OpalTreeList = /** @class */ (function (_super) {
             }
             var dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName;
             var dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
-            return new ObservableTreeList_1.default(this.dataTreeList.reduce(function _(filteredDataTreeList, item) {
-                if (item.children) {
+            return new ObservableTreeList_1.ObservableTreeList(ObservableTreeList_1.fixParent(this.dataTreeList.reduce(function _(filteredDataTreeList, item) {
+                if (item.children.length) {
                     var filteredChildren = item.children.reduce(_, []);
                     if (filteredChildren.length ||
                         toComparable(item[dataTreeListItemTextFieldName]).indexOf(query) != -1) {
@@ -9314,11 +9141,12 @@ var OpalTreeList = /** @class */ (function (_super) {
                         },
                         _b[dataTreeListItemValueFieldName] = item[dataTreeListItemValueFieldName],
                         _b[dataTreeListItemTextFieldName] = item[dataTreeListItemTextFieldName],
+                        _b.children = [],
                         _b));
                 }
                 return filteredDataTreeList;
                 var _a, _b;
-            }, []));
+            }, [])));
         },
         enumerable: true,
         configurable: true
@@ -9357,24 +9185,63 @@ var OpalTreeList = /** @class */ (function (_super) {
             var vm_1 = this.viewModel;
             var viewModelItemValueFieldName_1 = this._viewModelItemValueFieldName;
             var viewModelItemTextFieldName_1 = this._viewModelItemTextFieldName;
-            var $item = utils_1.closestComponent(component.parentComponent, opal_tree_list_item_1.OpalTreeListItem).input.$context.$item;
-            var selected_1 = component.selected;
-            getVertices($item.$original || $item).forEach(function (item) {
-                var index = vm_1.findIndex(function (vmItem) { return vmItem[viewModelItemValueFieldName_1] == item[dataTreeListItemValueFieldName_1]; });
-                if (selected_1) {
-                    if (index == -1) {
-                        vm_1.add((_a = {},
-                            _a[viewModelItemValueFieldName_1] = item[dataTreeListItemValueFieldName_1],
-                            _a[viewModelItemTextFieldName_1] = item[dataTreeListItemTextFieldName_1],
-                            _a));
+            var item_1 = utils_1.closestComponent(component.parentComponent, opal_tree_list_item_1.OpalTreeListItem)
+                .input.$context.$item;
+            if (component.selected) {
+                for (var parent_1; (parent_1 = item_1.parent) && parent_1.children.every(function (child) {
+                    return child == item_1 || !!vm_1.find(function (vmItem) {
+                        return vmItem[viewModelItemValueFieldName_1] == child[dataTreeListItemValueFieldName_1];
+                    });
+                });) {
+                    item_1 = parent_1;
+                }
+                item_1.children.forEach(function _(child) {
+                    var childIndex = vm_1.findIndex(function (vmItem) {
+                        return vmItem[viewModelItemValueFieldName_1] == child[dataTreeListItemValueFieldName_1];
+                    });
+                    if (childIndex != -1) {
+                        vm_1.removeAt(childIndex);
+                    }
+                    child.children.forEach(_);
+                });
+                vm_1.add((_a = {},
+                    _a[viewModelItemValueFieldName_1] = item_1[dataTreeListItemValueFieldName_1],
+                    _a[viewModelItemTextFieldName_1] = item_1[dataTreeListItemTextFieldName_1],
+                    _a));
+            }
+            else {
+                var itemIndex = vm_1.findIndex(function (vmItem) {
+                    return vmItem[viewModelItemValueFieldName_1] == item_1[dataTreeListItemValueFieldName_1];
+                });
+                if (itemIndex != -1) {
+                    vm_1.removeAt(itemIndex);
+                }
+                else {
+                    var parent_2 = item_1.parent;
+                    for (;;) {
+                        var parentIndex = vm_1.findIndex(function (vmItem) {
+                            return vmItem[viewModelItemValueFieldName_1] == parent_2[dataTreeListItemValueFieldName_1];
+                        });
+                        vm_1.addRange(parent_2.children
+                            .filter(function (child) { return child != item_1; })
+                            .map(function (child) {
+                            return (_a = {},
+                                _a[viewModelItemValueFieldName_1] = child[dataTreeListItemValueFieldName_1],
+                                _a[viewModelItemTextFieldName_1] = child[dataTreeListItemTextFieldName_1],
+                                _a);
+                            var _a;
+                        }));
+                        if (parentIndex != -1) {
+                            vm_1.removeAt(parentIndex);
+                            break;
+                        }
+                        item_1 = parent_2;
+                        parent_2 = item_1.parent;
                     }
                 }
-                else if (index != -1) {
-                    vm_1.removeAt(index);
-                }
-                var _a;
-            });
+            }
         }
+        var _a;
     };
     OpalTreeList.OpalTreeListItem = opal_tree_list_item_1.OpalTreeListItem;
     OpalTreeList.defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
@@ -9429,15 +9296,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var mixin_1 = __webpack_require__(8);
 var cellx_1 = __webpack_require__(2);
 function isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
-    return item.children ?
-        item.children
-            .every(function (child) { return isSelectedItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName); }) :
-        !!vm.find(function (child) { return child[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]; });
+    do {
+        if (vm.find(function (vmItem) { return vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]; })) {
+            return true;
+        }
+    } while ((item = item.parent));
+    return false;
 }
 function isIndeterminateItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
-    return !!item.children && !isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
-        item.children.some(function (child) { return isSelectedItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) ||
-            isIndeterminateItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName); });
+    return !!item.children.length &&
+        !isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
+        item.children.some(function (child) {
+            return !!vm.find(function (vmItem) { return vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]; }) ||
+                isIndeterminateItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName);
+        });
 }
 function _getListItemContext(context, content) {
     var $item = content.input.$context.$item;
@@ -9723,7 +9595,7 @@ var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(45);
 __webpack_require__(46);
-var ObservableTreeList_1 = __webpack_require__(11);
+var ObservableTreeList_1 = __webpack_require__(12);
 var template = __webpack_require__(174);
 rionite_1.formatters.log = function (msg) {
     console.log(msg);
@@ -9738,7 +9610,7 @@ var OpalComponentsDocs = /** @class */ (function (_super) {
             { id: '2', name: '2' },
             { id: '3', name: '3' }
         ]);
-        _this.dataTreeList1 = new ObservableTreeList_1.default([
+        _this.dataTreeList1 = new ObservableTreeList_1.ObservableTreeList([
             { id: '1', name: '1' },
             { id: '2', name: '2' },
             { id: '3', name: '3', children: [
@@ -10354,7 +10226,7 @@ exports.Parser = Parser;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var escape_html_1 = __webpack_require__(9);
+var escape_html_1 = __webpack_require__(10);
 var self_closing_tags_1 = __webpack_require__(34);
 var escape_string_1 = __webpack_require__(15);
 var nelm_parser_1 = __webpack_require__(14);
@@ -10674,7 +10546,7 @@ exports.map = exports.list.reduce(function (map, name) { return map.set(name, tr
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_uid_1 = __webpack_require__(10);
+var next_uid_1 = __webpack_require__(11);
 var symbol_polyfill_1 = __webpack_require__(7);
 var hasOwn = Object.prototype.hasOwnProperty;
 var KEY_UID = symbol_polyfill_1.Symbol('uid');
@@ -10983,8 +10855,8 @@ __webpack_require__(50);
 __webpack_require__(51);
 __webpack_require__(52);
 __webpack_require__(53);
-var ObservableTreeList_1 = __webpack_require__(11);
-exports.ObservableTreeList = ObservableTreeList_1.default;
+var ObservableTreeList_1 = __webpack_require__(12);
+exports.ObservableTreeList = ObservableTreeList_1.ObservableTreeList;
 var opal_button_1 = __webpack_require__(54);
 exports.OpalButton = opal_button_1.OpalButton;
 var opal_sign_button_1 = __webpack_require__(56);
@@ -11021,7 +10893,7 @@ var opal_modal_1 = __webpack_require__(101);
 exports.OpalModal = opal_modal_1.OpalModal;
 var opal_notification_1 = __webpack_require__(104);
 exports.OpalNotification = opal_notification_1.OpalNotification;
-var opal_select_1 = __webpack_require__(12);
+var opal_select_1 = __webpack_require__(13);
 exports.OpalSelect = opal_select_1.OpalSelect;
 exports.OpalSelectOption = opal_select_1.OpalSelectOption;
 var opal_multiselect_1 = __webpack_require__(113);
@@ -11960,11 +11832,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
-var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 var opal_input_mask_definition_1 = __webpack_require__(66);
 exports.OpalInputMaskDefinition = opal_input_mask_definition_1.OpalInputMaskDefinition;
+// import { Cell } from 'cellx';
 var forEach = Array.prototype.forEach;
 var iPhone = /iphone/i.test(navigator.userAgent);
 var ie11 = !(window.ActiveXObject) && 'ActiveXObject' in window;
@@ -12031,11 +11903,8 @@ var OpalInputMask = /** @class */ (function (_super) {
         }
     };
     OpalInputMask.prototype._onMaskChange = function () {
-        var _this = this;
         this._initBuffer();
-        cellx_1.Cell.afterRelease(function () {
-            _this._checkValue(false);
-        });
+        this._checkValue(false);
     };
     OpalInputMask.prototype._onTextFieldFocus = function () {
         var _this = this;
@@ -13234,7 +13103,9 @@ var OpalSwitchMenu = /** @class */ (function (_super) {
             if (this._checkedButton !== undefined) {
                 return this._checkedButton;
             }
-            return (this._checkedButton = find.call(this.buttonElements, function (btnEl) { return btnEl.$component.checked; }) || null);
+            return (this._checkedButton = find.call(this.buttonElements, function (btnEl) {
+                return btnEl.$component.checked;
+            }) || null);
         },
         set: function (checkedButton) {
             if (checkedButton === this._checkedButton) {
@@ -13680,16 +13551,14 @@ var OpalDropdown = /** @class */ (function (_super) {
         return this.open() || !this.close();
     };
     OpalDropdown.prototype._open = function () {
-        var _this = this;
         openedDropdowns.push(this);
         if (this.isContentRendered) {
             this._open$();
         }
         else {
             this.isContentRendered = true;
-            cellx_1.Cell.afterRelease(function () {
-                _this._open$();
-            });
+            cellx_1.Cell.forceRelease();
+            this._open$();
         }
     };
     OpalDropdown.prototype._open$ = function () {
@@ -13883,15 +13752,13 @@ var OpalPopover = /** @class */ (function (_super) {
         return this.open() || !this.close();
     };
     OpalPopover.prototype._open = function () {
-        var _this = this;
         if (this.isContentRendered) {
             this._open$();
         }
         else {
             this.isContentRendered = true;
-            cellx_1.Cell.afterRelease(function () {
-                _this._open$();
-            });
+            cellx_1.Cell.forceRelease();
+            this._open$();
         }
     };
     OpalPopover.prototype._open$ = function () {
@@ -14670,7 +14537,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var opal_select_1 = __webpack_require__(12);
+var opal_select_1 = __webpack_require__(13);
 __webpack_require__(114);
 var template = __webpack_require__(115);
 var OpalMultiselect = /** @class */ (function (_super) {
@@ -16206,13 +16073,13 @@ module.exports = (function(d) {
 /* 144 */
 /***/ (function(module, exports) {
 
-module.exports = "div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={input.opened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-bottom) }\n}\nspan/content-wrapper {\nrt-content/content (clone)\n}\n}\n@if-then (if=dataTreeListItem.children) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item/item (\ndata-tree-list={input.dataTreeList},\nfiltered-data-tree-list={input.filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{input.indexpath},{$index}]',\nquery={input.query},\nopened={input.query},\nnesting-level={input.indexpath.length},\nhas-children='{$item |has(\"children\") }'\n) {\nrt-content (clone, get-context={_getListItemContext})\n}\n}\n}\n}"
+module.exports = "div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={input.opened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-bottom) }\n}\nspan/content-wrapper {\nrt-content/content (clone)\n}\n}\n@if-then (if=dataTreeListItem.children.length) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item/item (\ndata-tree-list={input.dataTreeList},\nfiltered-data-tree-list={input.filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{input.indexpath},{$index}]',\nquery={input.query},\nopened={input.query},\nnesting-level={input.indexpath.length},\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-content (clone, get-context={_getListItemContext})\n}\n}\n}\n}"
 
 /***/ }),
 /* 145 */
 /***/ (function(module, exports) {
 
-module.exports = "@if-then (if=dataTreeList) {\n@if-then (if=filteredDataTreeList.length) {\n@repeat (for=$item of filteredDataTreeList) {\nopal-tree-list-item/item (\ndata-tree-list={dataTreeList},\nfiltered-data-tree-list={filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={input.query},\nopened={input.query},\nnesting-level=0,\nhas-children='{$item |has(\"children\") }'\n) {\nrt-content (clone, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=filteredDataTreeList.length) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'Ничего не найдено'\n}\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}"
+module.exports = "@if-then (if=dataTreeList) {\n@if-then (if=filteredDataTreeList.length) {\n@repeat (for=$item of filteredDataTreeList) {\nopal-tree-list-item/item (\ndata-tree-list={dataTreeList},\nfiltered-data-tree-list={filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={input.query},\nopened={input.query},\nnesting-level=0,\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-content (clone, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=filteredDataTreeList.length) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'Ничего не найдено'\n}\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}"
 
 /***/ }),
 /* 146 */
@@ -16431,7 +16298,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-var opal_select_1 = __webpack_require__(12);
+var opal_select_1 = __webpack_require__(13);
 var opal_tree_list_1 = __webpack_require__(18);
 __webpack_require__(150);
 var template = __webpack_require__(151);
@@ -16920,7 +16787,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_uid_1 = __webpack_require__(10);
+var next_uid_1 = __webpack_require__(11);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
@@ -17125,7 +16992,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var escape_html_1 = __webpack_require__(9);
+var escape_html_1 = __webpack_require__(10);
 var hyphenize_1 = __webpack_require__(16);
 var created_browser_history_1 = __webpack_require__(162);
 var rionite_1 = __webpack_require__(0);

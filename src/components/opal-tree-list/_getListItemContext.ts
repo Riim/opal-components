@@ -9,10 +9,13 @@ function isSelectedItem(
 	dataTreeListItemValueFieldName: string,
 	viewModelItemValueFieldName: string
 ): boolean {
-	return item.children ?
-		item.children
-			.every((child) => isSelectedItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName)) :
-		!!vm.find((child) => child[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]);
+	do {
+		if (vm.find((vmItem) => vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName])) {
+			return true;
+		}
+	} while ((item = item.parent!));
+
+	return false;
 }
 
 function isIndeterminateItem(
@@ -21,9 +24,10 @@ function isIndeterminateItem(
 	dataTreeListItemValueFieldName: string,
 	viewModelItemValueFieldName: string
 ): boolean {
-	return !!item.children && !isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
-		item.children.some(
-			(child) => isSelectedItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) ||
+	return !!item.children.length &&
+		!isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
+		item.children.some((child) =>
+			!!vm.find((vmItem) => vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]) ||
 				isIndeterminateItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName)
 		);
 }

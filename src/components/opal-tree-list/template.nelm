@@ -13,7 +13,7 @@
 				query={input.query},
 				opened={input.query},
 				nesting-level=0,
-				has-children='{$item |has("children") }'
+				has-children='{$item.children.length |gt(0) }'
 			) {
 				rt-content (clone, get-context={_getListItemContext}) {
 					opal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {

@@ -1,9 +1,11 @@
 import { EventEmitter } from 'cellx';
 export interface IItem {
     [name: string]: any;
+    parent?: IItem | null;
     children?: Array<IItem>;
 }
-export default class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
+export declare function fixParent<T extends IItem>(items: Array<T>, parent?: T | null): Array<T>;
+export declare class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
     _items: Array<T>;
     readonly length: number;
     constructor(items?: Array<T>);

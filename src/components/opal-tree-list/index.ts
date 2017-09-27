@@ -6,8 +6,9 @@ import {
 	} from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import { Component, d } from 'rionite';
-import ObservableTreeList from '../../ObservableTreeList';
+import { fixParent, ObservableTreeList } from '../../ObservableTreeList';
 import { closestComponent } from '../../utils';
+import { OpalCheckbox } from '../opal-checkbox';
 import _getListItemContext from './_getListItemContext';
 import './index.css';
 import { OpalTreeListItem } from './opal-tree-list-item';
@@ -16,7 +17,8 @@ import template = require('./template.nelm');
 
 export interface IDataTreeListItem {
 	[name: string]: any;
-	children?: Array<IDataTreeListItem>;
+	parent?: IDataTreeListItem | null;
+	children: Array<IDataTreeListItem>;
 }
 
 export type TDataTreeList = ObservableTreeList<IDataTreeListItem>;
@@ -24,12 +26,6 @@ export type TViewModel = ObservableList<{ [name: string]: any }>;
 
 let defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
-
-function getVertices(item: IDataTreeListItem): Array<IDataTreeListItem> {
-	return item.children ?
-		item.children.reduce((vertices, child) => vertices.concat(getVertices(child)), [] as Array<IDataTreeListItem>) :
-		[item];
-}
 
 function toComparable(str: string | null): string | null {
 	return str && str.trim().replace(/\s+/g, ' ').toLowerCase();
@@ -70,8 +66,8 @@ export class OpalTreeList extends Component {
 		let dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
 
 		return new ObservableTreeList(
-			this.dataTreeList.reduce(function _(filteredDataTreeList, item) {
-				if (item.children) {
+			fixParent(this.dataTreeList.reduce(function _(filteredDataTreeList, item) {
+				if (item.children.length) {
 					let filteredChildren = item.children.reduce(_, []);
 
 					if (
@@ -89,12 +85,13 @@ export class OpalTreeList extends Component {
 					filteredDataTreeList.push({
 						$original: item,
 						[dataTreeListItemValueFieldName]: item[dataTreeListItemValueFieldName],
-						[dataTreeListItemTextFieldName]: item[dataTreeListItemTextFieldName]
+						[dataTreeListItemTextFieldName]: item[dataTreeListItemTextFieldName],
+						children: []
 					});
 				}
 
 				return filteredDataTreeList;
-			}, [] as Array<IDataTreeListItem>)
+			}, [] as Array<IDataTreeListItem>))
 		);
 	}
 
@@ -136,7 +133,7 @@ export class OpalTreeList extends Component {
 		this.listenTo(this, '<*>change', this._onChange);
 	}
 
-	_onChange(evt: IEvent<Component>) {
+	_onChange(evt: IEvent<OpalCheckbox>) {
 		let component = evt.target;
 
 		if (component.element.classList.contains('opal-tree-list__selection-control')) {
@@ -145,25 +142,71 @@ export class OpalTreeList extends Component {
 			let vm = this.viewModel;
 			let viewModelItemValueFieldName = this._viewModelItemValueFieldName;
 			let viewModelItemTextFieldName = this._viewModelItemTextFieldName;
-			let $item = closestComponent(component.parentComponent!, OpalTreeListItem)!.input.$context.$item;
-			let selected = (component as any).selected;
+			let item: IDataTreeListItem = closestComponent(component.parentComponent!, OpalTreeListItem)!
+				.input.$context.$item;
 
-			getVertices($item.$original || $item).forEach((item) => {
-				let index = vm.findIndex(
-					(vmItem) => vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]
+			if (component.selected) {
+				for (
+					let parent;
+					(parent = item.parent) && parent.children.every((child) =>
+						child == item || !!vm.find((vmItem) =>
+							vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]
+						)
+					);
+				) {
+					item = parent;
+				}
+
+				item.children.forEach(function _(child) {
+					let childIndex = vm.findIndex((vmItem) =>
+						vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]
+					);
+
+					if (childIndex != -1) {
+						vm.removeAt(childIndex);
+					}
+
+					child.children.forEach(_);
+				});
+
+				vm.add({
+					[viewModelItemValueFieldName]: item[dataTreeListItemValueFieldName],
+					[viewModelItemTextFieldName]: item[dataTreeListItemTextFieldName]
+				});
+			} else {
+				let itemIndex = vm.findIndex((vmItem) =>
+					vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]
 				);
 
-				if (selected) {
-					if (index == -1) {
-						vm.add({
-							[viewModelItemValueFieldName]: item[dataTreeListItemValueFieldName],
-							[viewModelItemTextFieldName]: item[dataTreeListItemTextFieldName]
-						});
+				if (itemIndex != -1) {
+					vm.removeAt(itemIndex);
+				} else {
+					let parent = item.parent!;
+
+					for (; ; ) {
+						let parentIndex = vm.findIndex((vmItem) =>
+							vmItem[viewModelItemValueFieldName] == parent[dataTreeListItemValueFieldName]
+						);
+
+						vm.addRange(
+							parent.children
+								.filter((child) => child != item)
+								.map((child) => ({
+									[viewModelItemValueFieldName]: child[dataTreeListItemValueFieldName],
+									[viewModelItemTextFieldName]: child[dataTreeListItemTextFieldName]
+								}))
+						);
+
+						if (parentIndex != -1) {
+							vm.removeAt(parentIndex);
+							break;
+						}
+
+						item = parent;
+						parent = item.parent!;
 					}
-				} else if (index != -1) {
-					vm.removeAt(index);
 				}
-			});
+			}
 		}
 	}
 }

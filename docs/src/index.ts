@@ -2,7 +2,7 @@ import { ObservableList } from 'cellx';
 import { Component, d, formatters } from 'rionite';
 import '../../src/focusHighlightController';
 import '../../src/index';
-import ObservableTreeList from '../../src/ObservableTreeList';
+import { ObservableTreeList } from '../../src/ObservableTreeList';
 import template = require('./template.nelm');
 
 formatters.log = (msg: any): any => {

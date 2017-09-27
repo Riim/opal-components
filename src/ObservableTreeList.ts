@@ -1,13 +1,24 @@
+import { assign } from '@riim/object-assign-polyfill';
 import { EventEmitter } from 'cellx';
 
 let INDEXPATH_EMPTY_ERROR_MESSAGE = 'Indexpath cannot be empty';
 
 export interface IItem {
 	[name: string]: any;
+	parent?: IItem | null;
 	children?: Array<IItem>;
 }
 
-export default class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
+export function fixParent<T extends IItem>(items: Array<T>, parent: T | null = null): Array<T> {
+	for (let item of items) {
+		item.parent = parent;
+		fixParent(item.children!, item);
+	}
+
+	return items;
+}
+
+export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 	_items: Array<T>;
 
 	get length(): number {
@@ -16,7 +27,15 @@ export default class ObservableTreeList<T extends IItem = IItem> extends EventEm
 
 	constructor(items?: Array<T>) {
 		super();
-		this._items = items || [];
+
+		this._items = items ? fixParent(items.map(function _(item): T {
+			return assign(
+				assign({}, item),
+				{
+					children: item.children ? item.children.map(_) : []
+				}
+			);
+		})) : [];
 	}
 
 	get(indexpath: Array<number>): T | undefined {
@@ -58,13 +77,15 @@ export default class ObservableTreeList<T extends IItem = IItem> extends EventEm
 		if (indexpathLength == 1) {
 			items = this._items;
 		} else {
-			let item_ = this.get(indexpath.slice(0, -1));
+			let parent = this.get(indexpath.slice(0, -1));
 
-			if (!item_) {
+			if (!parent) {
 				throw new TypeError(`Item by indexpath "[${ indexpath.slice(0, -1).join(',') }]" is not exist`);
 			}
 
-			items = item_.children || (item_.children = []);
+			items = parent.children!;
+
+			item.parent = parent;
 		}
 
 		let lastIndexValue = indexpath[indexpathLength - 1];
