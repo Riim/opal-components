@@ -1,5 +1,459 @@
+h1 { 'opal-button' }
+p {
+	opal-button { 'Button' } ' '
+	opal-button (view-type=primary) { 'Button' } ' '
+	opal-button (view-type=danger) { 'Button' } ' '
+}
+p {
+	opal-button (disabled) { 'Button' } ' '
+	opal-button (view-type=primary, disabled) { 'Button' } ' '
+	opal-button (view-type=danger, disabled) { 'Button' } ' '
+}
+p {
+	opal-button (size=s) { 'Button' } ' '
+	opal-button (view-type=primary, size=s) { 'Button' } ' '
+	opal-button (view-type=danger, size=s) { 'Button' } ' '
+}
+p {
+	opal-button (loading) { 'Button' } ' '
+	opal-button (view-type=primary, loading) { 'Button' } ' '
+	opal-button (view-type=danger, loading) { 'Button' } ' '
+}
+p {
+	opal-button (loading, disabled) { 'Button' } ' '
+	opal-button (view-type=primary, loading, disabled) { 'Button' } ' '
+	opal-button (view-type=danger, loading, disabled) { 'Button' } ' '
+}
+
+h1 { 'opal-sign-button' }
+p {
+	opal-sign-button (sign=plus) { 'Button' }
+}
+p {
+	opal-sign-button (sign=minus) { 'Button' }
+}
+
+h1 { 'opal-text-input' }
+p {
+	opal-text-input (value=Value, placeholder=Placeholder)
+}
+p {
+	opal-text-input (value=Value, placeholder=Placeholder, valid)
+}
+p {
+	opal-text-input (value=Value, placeholder=Placeholder, valid=no)
+}
+p {
+	opal-text-input (value=Value, disabled)
+}
+p {
+	opal-text-input (placeholder=Placeholder, disabled)
+}
+p {
+	opal-text-input (value=Value, placeholder=Placeholder, clearable)
+}
+p {
+	opal-text-input (value=Value, placeholder=Placeholder, loading)
+}
+p {
+	opal-text-input (multiline, placeholder=Placeholder)
+}
+
+h1 { 'opal-editable-text' }
+p {
+	opal-editable-text {
+		'Editable text'
+	}
+}
+
+h1 { 'opal-input-mask' }
+p {
+	opal-input-mask (mask=99/99/9999) {
+		opal-text-input (class=opal-input-mask__text-input, placeholder=dd/mm/yyyy)
+	}
+}
+p {
+	opal-input-mask (mask='+7 (999) 999-9999? доб. 9999') {
+		opal-text-input (class=opal-input-mask__text-input, placeholder=Телефон)
+	}
+}
+p {
+	opal-input-mask (mask=#ffffff) {
+		opal-input-mask-definition (mask-char=f, regex=/[0-9a-f]/i)
+		opal-text-input (class=opal-input-mask__text-input, placeholder=Цвет)
+	}
+}
+
+h1 { 'opal-group' }
+p {
+	opal-group {
+		opal-button { 'Button' }
+		opal-button (view-type=primary) { 'Button' }
+		opal-button (view-type=danger) { 'Button' }
+	}
+}
+p {
+	opal-group {
+		opal-button { 'Button' }
+		opal-text-input (value=Value, placeholder=Placeholder)
+		opal-button (view-type=primary) { 'Button' }
+	}
+}
+
+h1 { 'opal-checkbox' }
+p {
+	opal-checkbox { 'Label' } ' '
+	opal-checkbox (checked) { 'Label' } ' '
+	opal-checkbox (indeterminate) { 'Label' }
+	br br
+	opal-checkbox (disabled) { 'Label' } ' '
+	opal-checkbox (checked, disabled) { 'Label' } ' '
+	opal-checkbox (indeterminate, disabled) { 'Label' }
+}
+
+h1 { 'opal-radio-group' }
+p {
+	opal-radio-group {
+		opal-radio-button { 'Label' } ' '
+		opal-radio-button (checked) { 'Label' }
+		br br
+		opal-radio-button (disabled) { 'Label' } ' '
+		opal-radio-button (checked, disabled) { 'Label' }
+	}
+}
+
+h1 { 'opal-switch' }
+p {
+	opal-switch { 'Label' } ' '
+	opal-switch (checked) { 'Label' }
+	br br
+	opal-switch (disabled) { 'Label' } ' '
+	opal-switch (checked, disabled) { 'Label' }
+}
+
+h1 { 'opal-slider' }
+p {
+	opal-slider br
+	opal-slider (min=-100, max=100, step=20, value=40) br
+	opal-slider (range='[20, 80]')
+}
+
+h1 { 'opal-switch-menu' }
+p {
+	opal-switch-menu {
+		opal-button (checkable, checked) { 'Option 1' }
+		opal-button (checkable) { 'Option 2' }
+		opal-button (checkable) { 'Option 3' }
+	}
+}
+
+h1 { 'opal-tabs' }
+p {
+	opal-tabs {
+		opal-tab (selected) { 'Foo' }
+		opal-tab { 'Bar' }
+		opal-tab { 'Baz' }
+		opal-tab-panel { 'Hello Foo' }
+		opal-tab-panel { 'Hello Bar' }
+		opal-tab-panel { 'Hello Baz' }
+	}
+}
+
+h1 { 'opal-popover' }
+p {
+	div (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {
+		opal-popover (auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
+	}
+	div (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {
+		opal-popover (align=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=bottom, align=right, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=left, align=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=top, align=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
+	}
+	div (style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;) {
+		opal-popover (align=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=bottom, align=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=left, align=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=top, align=right, auto-direction=no, opened) { 'Popover' br 'Popover' }
+	}
+}
+
+h1 { 'opal-modal' }
+p {
+	opal-modal (id=modal1) { 'Modal' }
+	opal-button (onclick='document.getElementById("modal1").$component.open();') { 'Open' }
+}
+
+h1 { 'opal-notification' }
+p {
+	opal-notification (id=notification1) {
+		'default'
+	}
+
+	opal-notification (id=notification2, view-type=primary, button-hide=no, timeout=5000) {
+		'primary'
+	}
+
+	opal-notification (id=notification3, view-type=primary, button-hide=no, timeout=10000) {
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+		'primary '
+	}
+
+	opal-notification (id=notification4, view-type=success) {
+		svg (class=opal-notification__icon, viewBox=0 0 32 32) {
+			use (xlink:href=#opal-components__icon-calendar)
+		}
+		'success'
+	}
+
+	opal-notification (id=notification5, view-type=success) {
+		svg (class=opal-notification__icon, viewBox=0 0 32 32) {
+			use (xlink:href=#opal-components__icon-calendar)
+		}
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+		'success '
+	}
+
+	opal-notification (id=notification6, view-type=danger) {
+		'danger'
+	}
+
+	opal-button (onclick='document.getElementById("notification1").$component.show();') { 'Show 1' } ' '
+	opal-button (onclick='document.getElementById("notification2").$component.show();') { 'Show 2' } ' '
+	opal-button (onclick='document.getElementById("notification3").$component.show();') { 'Show 3' } ' '
+	opal-button (onclick='document.getElementById("notification4").$component.show();') { 'Show 4' } ' '
+	opal-button (onclick='document.getElementById("notification5").$component.show();') { 'Show 5' } ' '
+	opal-button (onclick='document.getElementById("notification6").$component.show();') { 'Show 6' }
+}
+
+h1 { 'opal-select' }
+p {
+	opal-select (placeholder=Select) {
+		opal-select-option (text=Option 1)
+		opal-select-option (text=Option 2)
+		opal-select-option (text=Option 3)
+		opal-select-option (text='Option 4 (disabled)', disabled)
+		opal-select-option (text=Option 5)
+		opal-select-option (text='Option 6 (disabled)', disabled)
+	}
+}
+p {
+	opal-select (multiple, placeholder=Select) {
+		opal-select-option (text=Option 1, selected)
+		opal-select-option (text=Option 2, selected)
+		opal-select-option (text=Option 3)
+		opal-select-option (text=Option 4)
+		opal-select-option (text=Option 5)
+	}
+}
+p {
+	opal-select (
+		multiple,
+		data-list={dataList1},
+		data-list-item-schema='{ value: "id", text: "name" }',
+		view-model-item-schema='{ value: "id", text: "name" }',
+		add-new-item={addNewItem1},
+		placeholder=Select
+	) {
+		opal-text-input (class=opal-select__new-item-input)
+	}
+}
+p {
+	opal-group {
+		opal-select (placeholder=Select) {
+			opal-popover (class=opal-select__menu, from=bottom, auto-closing) {
+				opal-select-option (text=Option 1)
+				opal-select-option (text=Option 2)
+				opal-select-option (text=Option 3)
+			}
+		}
+		opal-select (view-type=primary, placeholder=Select) {
+			opal-popover (class=opal-select__menu, auto-closing) {
+				opal-select-option (text=Option 1)
+				opal-select-option (text=Option 2)
+				opal-select-option (text=Option 3)
+			}
+		}
+	}
+}
 
 h1 { 'opal-calendar' }
 p {
 	opal-calendar (from-date=today)
+}
+
+h1 { 'opal-date-input' }
+p {
+	opal-date-input
+}
+p {
+	opal-date-input (mask=99.99.9999, placeholder=dd.mm.yyyy, required)
+}
+
+h1 { 'opal-loader' }
+p {
+	opal-loader (shown)
+	opal-loader (size=s, shown)
+}
+
+h1 { 'opal-filtered-list' }
+p {
+	opal-filtered-list {
+		opal-loaded-list (class=opal-filtered-list__list, data-provider={dataProvider1}) {
+			'{$item.name}'
+		}
+	}
+}
+
+h1 { 'opal-tree-list' }
+p {
+	opal-filtered-list {
+		opal-tree-list (class=opal-filtered-list__list, data-tree-list={dataTreeList1}) {
+			opal-checkbox (
+				class=opal-tree-list__selection-control,
+				checked={$selected},
+				indeterminate={$indeterminate}
+			) {
+				'{$item.name}'
+			}
+		}
+	}
+}
+
+h1 { 'opal-select + opal-loaded-list' }
+p {
+	opal-select {
+		opal-dropdown (class=opal-select__menu, auto-height=no, auto-closing) {
+			opal-filtered-list (class=opal-select__filtered-list) {
+				opal-loaded-list (
+					class=opal-select__loaded-list opal-filtered-list__list,
+					data-provider={dataProvider1}
+				) {
+					opal-select-option (text={$item.name})
+				}
+			}
+		}
+	} ' '
+
+	opal-select {
+		opal-popover (class=opal-select__menu, from=bottom, auto-closing) {
+			opal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {
+				opal-select-option (text={$item.name})
+			}
+		}
+	} ' '
+
+	opal-select (multiple, view-model={viewModel1}, view-model-item-schema='{ value: "id", text: "name" }') {
+		opal-popover (class=opal-select__menu, from=bottom, auto-closing) {
+			opal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {
+				opal-select-option (text={$item.name})
+			}
+		}
+	} ' '
+
+	opal-select {
+		opal-popover (class=opal-select__menu, from=bottom, auto-closing) {
+			opal-filtered-list (class=opal-select__filtered-list) {
+				opal-loaded-list (
+					class=opal-select__loaded-list opal-filtered-list__list,
+					data-provider={dataProvider1}
+				) {
+					opal-select-option (text={$item.name})
+				}
+			}
+		}
+	} ' '
+
+	opal-select (multiple) {
+		opal-popover (class=opal-select__menu, from=bottom, auto-closing) {
+			opal-filtered-list (class=opal-select__filtered-list) {
+				opal-loaded-list (
+					class=opal-select__loaded-list opal-filtered-list__list,
+					data-provider={dataProvider1}
+				) {
+					opal-select-option (text={$item.name})
+				}
+			}
+		}
+	}
+}
+
+h1 { 'opal-multiselect' }
+p {
+	opal-multiselect (
+		data-provider={dataProvider1},
+		data-list-item-schema='{ value: "id", text: "name" }'
+	)
+}
+
+h1 { 'opal-tree-select' }
+p {
+	opal-tree-select (data-tree-list={dataTreeList1})
+}
+
+h1 { 'opal-autosuggest' }
+p {
+	opal-autosuggest (data-provider={dataProvider2}, open-menu-on-nothing-found)
+}
+
+h1 { 'opal-tag-select' }
+p {
+	opal-tag-select (data-provider={dataProvider1}, placeholder='') br
+	opal-tag-select (view-type=primary, data-provider={dataProvider1}) br
+	opal-tag-select (
+		view-type=danger,
+		data-provider={dataProvider1},
+		add-new-item={addNewItem1},
+		view-model={viewModel1}
+	) {
+		opal-text-input (class=opal-select__new-item-input opal-filtered-list__query-input)
+	}
+}
+
+h1 { 'opal-multirow' }
+p {
+	opal-multirow {
+		opal-multirow-row (preset) {
+			opal-text-input (value=Value, placeholder=Placeholder)
+		}
+		opal-multirow-row (preset) {
+			opal-text-input (value=Value, placeholder=Placeholder, valid=no)
+		}
+		opal-multirow-row {
+			opal-text-input (value=Value, placeholder=Placeholder, valid)
+		}
+	}
 }

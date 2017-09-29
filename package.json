@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.27.123",
+  "version": "0.27.124",
   "description": "",
   "main": "dist/OpalComponents.js",
   "typings": "dist/src/index.d.ts",
@@ -39,7 +39,7 @@
     "require-dir": "^0.3.2",
     "run-sequence": "^2.2.0",
     "simple-css-loader": "^0.1.1",
-    "simple-svg-loader": "^1.1.0",
+    "simple-svg-loader": "^1.1.1",
     "trim-lines-loader": "^0.1.0",
     "tslint": "^5.7.0",
     "tslint-loader": "^3.5.3",
@@ -57,10 +57,10 @@
     "@riim/next-uid": "^1.0.0",
     "@riim/object-assign-polyfill": "^1.0.0",
     "bytesize-icons": "^1.2.0",
-    "cellx": "^1.7.56",
+    "cellx": "^1.7.57",
     "cellx-decorators": "^1.4.6",
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.1",
-    "rionite": "^0.27.68"
+    "rionite": "^0.27.70"
   }
 }

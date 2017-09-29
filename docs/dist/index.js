@@ -4734,25 +4734,27 @@ exports.RtSlot = RtSlot;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var nelm_1 = __webpack_require__(10);
-nelm_1.Template.helpers['if-then'] = nelm_1.Template.helpers['if-else'] = nelm_1.Template.helpers['repeat'] = function (el) {
-    var origAttrs = el.attributes;
-    var attrs = {
-        superCall: origAttrs && origAttrs.superCall,
-        list: origAttrs ? origAttrs.list.slice() : []
+['if-then', 'if-else', 'repeat'].forEach(function (tagName) {
+    nelm_1.Template.helpers[tagName] = function (el) {
+        var origAttrs = el.attributes;
+        var attrs = {
+            superCall: origAttrs && origAttrs.superCall,
+            list: origAttrs ? origAttrs.list.slice() : []
+        };
+        attrs.list.push({
+            name: 'is',
+            value: 'rt-' + tagName
+        });
+        return [{
+                nodeType: nelm_1.NodeType.ELEMENT,
+                isHelper: false,
+                tagName: 'template',
+                names: el.names && el.names[0] ? ['$' + el.names[0]].concat(el.names) : el.names,
+                attributes: attrs,
+                content: el.content
+            }];
     };
-    attrs.list.push({
-        name: 'is',
-        value: 'rt-' + el.tagName
-    });
-    return [{
-            nodeType: nelm_1.NodeType.ELEMENT,
-            isHelper: false,
-            tagName: 'template',
-            names: el.names && el.names[0] ? ['$' + el.names[0]].concat(el.names) : el.names,
-            attributes: attrs,
-            content: el.content
-        }];
-};
+});
 
 
 /***/ })
@@ -5146,12 +5148,11 @@ var releaseVersion = 1;
 var afterRelease;
 
 var STATE_INITED = 1;
-var STATE_NOT_RELEASED = 1 << 1;
-var STATE_CURRENTLY_PULLING = 1 << 2;
-var STATE_ACTIVE = 1 << 3;
-var STATE_HAS_FOLLOWERS = 1 << 4;
-var STATE_PENDING = 1 << 5;
-var STATE_CAN_CANCEL_CHANGE = 1 << 6;
+var STATE_CURRENTLY_PULLING = 1 << 1;
+var STATE_ACTIVE = 1 << 2;
+var STATE_HAS_FOLLOWERS = 1 << 3;
+var STATE_PENDING = 1 << 4;
+var STATE_CAN_CANCEL_CHANGE = 1 << 5;
 
 function release(force) {
 	if (!releasePlanned && !force) {
@@ -5197,13 +5198,9 @@ function release(force) {
 
 			level = cell._level;
 
-			if (level > oldReleasePlanIndex) {
-				if (releasePlanIndex == oldReleasePlanIndex) {
-					if (!queue.length) {
-						queue = releasePlan.get(++releasePlanIndex);
-					}
-				} else {
-					queue = releasePlan.get(releasePlanIndex);
+			if (level > releasePlanIndex) {
+				if (!queue.length) {
+					queue = releasePlan.get(++releasePlanIndex);
 				}
 
 				continue;
@@ -5236,30 +5233,26 @@ function release(force) {
 				}
 			}
 
-			cell._state |= STATE_NOT_RELEASED;
+			var oldReleasePlanIndex = releasePlanIndex;
+
 			cell._handleEvent(changeEvent);
-
-			if (!(cell._state & STATE_NOT_RELEASED)) {
-				break;
-			}
-
-			cell._state ^= STATE_NOT_RELEASED;
 
 			if (releasePlanIndex == MAX_SAFE_INTEGER) {
 				break;
 			}
+
+			if (releasePlanIndex != oldReleasePlanIndex) {
+				queue = releasePlan.get(releasePlanIndex);
+				continue;
+			}
 		}
 
-		if (releasePlanIndex == oldReleasePlanIndex) {
-			if (!queue.length) {
-				if (releasePlanIndex == releasePlanToIndex) {
-					break;
-				}
-
-				queue = releasePlan.get(++releasePlanIndex);
+		if (!queue.length) {
+			if (releasePlanIndex == releasePlanToIndex) {
+				break;
 			}
-		} else {
-			queue = releasePlan.get(releasePlanIndex);
+
+			queue = releasePlan.get(++releasePlanIndex);
 		}
 	}
 
@@ -18202,7 +18195,7 @@ exports.parsePath = parsePath;
 /* 174 */
 /***/ (function(module, exports) {
 
-module.exports = "h1 { 'opal-calendar' }\np {\nopal-calendar (from-date=today)\n}"
+module.exports = "h1 { 'opal-button' }\np {\nopal-button { 'Button' } ' '\nopal-button (view-type=primary) { 'Button' } ' '\nopal-button (view-type=danger) { 'Button' } ' '\n}\np {\nopal-button (disabled) { 'Button' } ' '\nopal-button (view-type=primary, disabled) { 'Button' } ' '\nopal-button (view-type=danger, disabled) { 'Button' } ' '\n}\np {\nopal-button (size=s) { 'Button' } ' '\nopal-button (view-type=primary, size=s) { 'Button' } ' '\nopal-button (view-type=danger, size=s) { 'Button' } ' '\n}\np {\nopal-button (loading) { 'Button' } ' '\nopal-button (view-type=primary, loading) { 'Button' } ' '\nopal-button (view-type=danger, loading) { 'Button' } ' '\n}\np {\nopal-button (loading, disabled) { 'Button' } ' '\nopal-button (view-type=primary, loading, disabled) { 'Button' } ' '\nopal-button (view-type=danger, loading, disabled) { 'Button' } ' '\n}\nh1 { 'opal-sign-button' }\np {\nopal-sign-button (sign=plus) { 'Button' }\n}\np {\nopal-sign-button (sign=minus) { 'Button' }\n}\nh1 { 'opal-text-input' }\np {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\np {\nopal-text-input (value=Value, disabled)\n}\np {\nopal-text-input (placeholder=Placeholder, disabled)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, clearable)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, loading)\n}\np {\nopal-text-input (multiline, placeholder=Placeholder)\n}\nh1 { 'opal-editable-text' }\np {\nopal-editable-text {\n'Editable text'\n}\n}\nh1 { 'opal-input-mask' }\np {\nopal-input-mask (mask=99/99/9999) {\nopal-text-input (class=opal-input-mask__text-input, placeholder=dd/mm/yyyy)\n}\n}\np {\nopal-input-mask (mask='+7 (999) 999-9999? доб. 9999') {\nopal-text-input (class=opal-input-mask__text-input, placeholder=Телефон)\n}\n}\np {\nopal-input-mask (mask=#ffffff) {\nopal-input-mask-definition (mask-char=f, regex=/[0-9a-f]/i)\nopal-text-input (class=opal-input-mask__text-input, placeholder=Цвет)\n}\n}\nh1 { 'opal-group' }\np {\nopal-group {\nopal-button { 'Button' }\nopal-button (view-type=primary) { 'Button' }\nopal-button (view-type=danger) { 'Button' }\n}\n}\np {\nopal-group {\nopal-button { 'Button' }\nopal-text-input (value=Value, placeholder=Placeholder)\nopal-button (view-type=primary) { 'Button' }\n}\n}\nh1 { 'opal-checkbox' }\np {\nopal-checkbox { 'Label' } ' '\nopal-checkbox (checked) { 'Label' } ' '\nopal-checkbox (indeterminate) { 'Label' }\nbr br\nopal-checkbox (disabled) { 'Label' } ' '\nopal-checkbox (checked, disabled) { 'Label' } ' '\nopal-checkbox (indeterminate, disabled) { 'Label' }\n}\nh1 { 'opal-radio-group' }\np {\nopal-radio-group {\nopal-radio-button { 'Label' } ' '\nopal-radio-button (checked) { 'Label' }\nbr br\nopal-radio-button (disabled) { 'Label' } ' '\nopal-radio-button (checked, disabled) { 'Label' }\n}\n}\nh1 { 'opal-switch' }\np {\nopal-switch { 'Label' } ' '\nopal-switch (checked) { 'Label' }\nbr br\nopal-switch (disabled) { 'Label' } ' '\nopal-switch (checked, disabled) { 'Label' }\n}\nh1 { 'opal-slider' }\np {\nopal-slider br\nopal-slider (min=-100, max=100, step=20, value=40) br\nopal-slider (range='[20, 80]')\n}\nh1 { 'opal-switch-menu' }\np {\nopal-switch-menu {\nopal-button (checkable, checked) { 'Option 1' }\nopal-button (checkable) { 'Option 2' }\nopal-button (checkable) { 'Option 3' }\n}\n}\nh1 { 'opal-tabs' }\np {\nopal-tabs {\nopal-tab (selected) { 'Foo' }\nopal-tab { 'Bar' }\nopal-tab { 'Baz' }\nopal-tab-panel { 'Hello Foo' }\nopal-tab-panel { 'Hello Bar' }\nopal-tab-panel { 'Hello Baz' }\n}\n}\nh1 { 'opal-popover' }\np {\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (align=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=bottom, align=right, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, align=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=top, align=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;) {\nopal-popover (align=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=bottom, align=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, align=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=top, align=right, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\n}\nh1 { 'opal-modal' }\np {\nopal-modal (id=modal1) { 'Modal' }\nopal-button (onclick='document.getElementById(\"modal1\").$component.open();') { 'Open' }\n}\nh1 { 'opal-notification' }\np {\nopal-notification (id=notification1) {\n'default'\n}\nopal-notification (id=notification2, view-type=primary, button-hide=no, timeout=5000) {\n'primary'\n}\nopal-notification (id=notification3, view-type=primary, button-hide=no, timeout=10000) {\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n}\nopal-notification (id=notification4, view-type=success) {\nsvg (class=opal-notification__icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-calendar)\n}\n'success'\n}\nopal-notification (id=notification5, view-type=success) {\nsvg (class=opal-notification__icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-calendar)\n}\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n}\nopal-notification (id=notification6, view-type=danger) {\n'danger'\n}\nopal-button (onclick='document.getElementById(\"notification1\").$component.show();') { 'Show 1' } ' '\nopal-button (onclick='document.getElementById(\"notification2\").$component.show();') { 'Show 2' } ' '\nopal-button (onclick='document.getElementById(\"notification3\").$component.show();') { 'Show 3' } ' '\nopal-button (onclick='document.getElementById(\"notification4\").$component.show();') { 'Show 4' } ' '\nopal-button (onclick='document.getElementById(\"notification5\").$component.show();') { 'Show 5' } ' '\nopal-button (onclick='document.getElementById(\"notification6\").$component.show();') { 'Show 6' }\n}\nh1 { 'opal-select' }\np {\nopal-select (placeholder=Select) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\nopal-select-option (text='Option 4 (disabled)', disabled)\nopal-select-option (text=Option 5)\nopal-select-option (text='Option 6 (disabled)', disabled)\n}\n}\np {\nopal-select (multiple, placeholder=Select) {\nopal-select-option (text=Option 1, selected)\nopal-select-option (text=Option 2, selected)\nopal-select-option (text=Option 3)\nopal-select-option (text=Option 4)\nopal-select-option (text=Option 5)\n}\n}\np {\nopal-select (\nmultiple,\ndata-list={dataList1},\ndata-list-item-schema='{ value: \"id\", text: \"name\" }',\nview-model-item-schema='{ value: \"id\", text: \"name\" }',\nadd-new-item={addNewItem1},\nplaceholder=Select\n) {\nopal-text-input (class=opal-select__new-item-input)\n}\n}\np {\nopal-group {\nopal-select (placeholder=Select) {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\nopal-select (view-type=primary, placeholder=Select) {\nopal-popover (class=opal-select__menu, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\n}\n}\nh1 { 'opal-calendar' }\np {\nopal-calendar (from-date=today)\n}\nh1 { 'opal-date-input' }\np {\nopal-date-input\n}\np {\nopal-date-input (mask=99.99.9999, placeholder=dd.mm.yyyy, required)\n}\nh1 { 'opal-loader' }\np {\nopal-loader (shown)\nopal-loader (size=s, shown)\n}\nh1 { 'opal-filtered-list' }\np {\nopal-filtered-list {\nopal-loaded-list (class=opal-filtered-list__list, data-provider={dataProvider1}) {\n'{$item.name}'\n}\n}\n}\nh1 { 'opal-tree-list' }\np {\nopal-filtered-list {\nopal-tree-list (class=opal-filtered-list__list, data-tree-list={dataTreeList1}) {\nopal-checkbox (\nclass=opal-tree-list__selection-control,\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item.name}'\n}\n}\n}\n}\nh1 { 'opal-select + opal-loaded-list' }\np {\nopal-select {\nopal-dropdown (class=opal-select__menu, auto-height=no, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select (multiple, view-model={viewModel1}, view-model-item-schema='{ value: \"id\", text: \"name\" }') {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select (multiple) {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n}\n}\nh1 { 'opal-multiselect' }\np {\nopal-multiselect (\ndata-provider={dataProvider1},\ndata-list-item-schema='{ value: \"id\", text: \"name\" }'\n)\n}\nh1 { 'opal-tree-select' }\np {\nopal-tree-select (data-tree-list={dataTreeList1})\n}\nh1 { 'opal-autosuggest' }\np {\nopal-autosuggest (data-provider={dataProvider2}, open-menu-on-nothing-found)\n}\nh1 { 'opal-tag-select' }\np {\nopal-tag-select (data-provider={dataProvider1}, placeholder='') br\nopal-tag-select (view-type=primary, data-provider={dataProvider1}) br\nopal-tag-select (\nview-type=danger,\ndata-provider={dataProvider1},\nadd-new-item={addNewItem1},\nview-model={viewModel1}\n) {\nopal-text-input (class=opal-select__new-item-input opal-filtered-list__query-input)\n}\n}\nh1 { 'opal-multirow' }\np {\nopal-multirow {\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\nopal-multirow-row {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\n}\n}"
 
 /***/ })
 /******/ ]);
