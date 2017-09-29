@@ -25,11 +25,6 @@
 		-webkit-text-size-adjust: 100%;
 		-ms-text-size-adjust: 100%;
 		-webkit-tap-highlight-color: transparent;
-
-		&:focus {
-			outline: none;
-			border-color: hsl(208,100%,60%);
-		}
 	}
 
 	@el control-icon-container {
@@ -123,10 +118,13 @@
 			border-color: hsl(0,0%,58%);
 			border-top-color: hsl(0,0%,56%);
 			border-bottom-color: hsl(0,0%,68%);
+		}
+	}
 
-			&:focus {
-				border-color: hsl(208,94%,54%);
-			}
+	@el text-field {
+		&:focus {
+			outline: none;
+			border-color: hsl(208,94%,54%);
 		}
 	}
 
