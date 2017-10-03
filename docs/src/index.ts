@@ -3,7 +3,7 @@ import { Component, d, formatters } from 'rionite';
 import '../../src/focusHighlightController';
 import '../../src/index';
 import { ObservableTreeList } from '../../src/ObservableTreeList';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 formatters.log = (msg: any): any => {
 	console.log(msg);

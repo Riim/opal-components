@@ -6,7 +6,7 @@ import { OpalSelectOption } from '../opal-select';
 import { formatDate } from './formatDate';
 import './index.css';
 import { parseDate } from './parseDate';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 export interface IDay {
 	date: string;

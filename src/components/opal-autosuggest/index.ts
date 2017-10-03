@@ -12,7 +12,7 @@ import { isFocusable } from '../../utils/isFocusable';
 import { OpalDropdown } from '../opal-dropdown';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 export interface IDataListItem {
 	[name: string]: any;

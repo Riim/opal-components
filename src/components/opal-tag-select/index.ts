@@ -15,7 +15,7 @@ import {
 	TViewModel
 	} from '../opal-select';
 import './index.css';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });

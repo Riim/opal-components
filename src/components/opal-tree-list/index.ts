@@ -13,7 +13,7 @@ import _getListItemContext from './_getListItemContext';
 import './index.css';
 import { OpalTreeListItem } from './opal-tree-list-item';
 import './opal-tree-list-item';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 export interface IDataTreeListItem {
 	[name: string]: any;

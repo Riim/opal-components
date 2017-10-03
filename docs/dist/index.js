@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 25);
+/******/ 	return __webpack_require__(__webpack_require__.s = 35);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1579,7 +1579,7 @@ THE SOFTWARE.
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__(6), __webpack_require__(2), __webpack_require__(29), __webpack_require__(35), __webpack_require__(36), __webpack_require__(7), __webpack_require__(37), __webpack_require__(16), __webpack_require__(38), __webpack_require__(3), __webpack_require__(39), __webpack_require__(40), __webpack_require__(41), __webpack_require__(15), __webpack_require__(4), __webpack_require__(10), __webpack_require__(42), __webpack_require__(11), __webpack_require__(43), __webpack_require__(8));
+		module.exports = factory(__webpack_require__(4), __webpack_require__(2), __webpack_require__(37), __webpack_require__(43), __webpack_require__(44), __webpack_require__(45), __webpack_require__(46), __webpack_require__(26), __webpack_require__(47), __webpack_require__(3), __webpack_require__(48), __webpack_require__(49), __webpack_require__(50), __webpack_require__(25), __webpack_require__(5), __webpack_require__(14), __webpack_require__(51), __webpack_require__(15), __webpack_require__(52), __webpack_require__(7));
 	else if(typeof define === 'function' && define.amd)
 		define(["@riim/map-set-polyfill", "cellx", "nelm", "@riim/get-uid", "@riim/move-content", "@riim/symbol-polyfill", "@riim/camelize", "@riim/hyphenize", "@riim/clear-node", "@riim/next-tick", "@riim/logger", "html-to-fragment", "@riim/set-attribute", "escape-string", "@riim/gettext", "@riim/escape-html", "@riim/is-regexp", "@riim/next-uid", "@riim/defer", "@riim/mixin"], factory);
 	else if(typeof exports === 'object')
@@ -1809,12 +1809,12 @@ var Component = /** @class */ (function (_super) {
         }
         _super.prototype._on.call(this, type, listener, context);
     };
-    Component.prototype._handleEvent = function (evt) {
-        _super.prototype._handleEvent.call(this, evt);
+    Component.prototype.handleEvent = function (evt) {
+        _super.prototype.handleEvent.call(this, evt);
         if (evt.bubbles !== false && !evt.isPropagationStopped) {
             var parentComponent = this.parentComponent;
             if (parentComponent) {
-                parentComponent._handleEvent(evt);
+                parentComponent.handleEvent(evt);
             }
             else {
                 var targetOwnerComponent = evt.target.ownerComponent;
@@ -4768,7 +4768,7 @@ var nelm_1 = __webpack_require__(10);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var object_assign_polyfill_1 = __webpack_require__(9);
+var object_assign_polyfill_1 = __webpack_require__(10);
 var cellx_1 = __webpack_require__(2);
 function enumerableDecorator(target, name, desc) {
     if (desc) {
@@ -4865,2630 +4865,133 @@ exports.computed = computedDecorator;
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-(function (global, factory) {
-	 true ? module.exports = factory(__webpack_require__(9), __webpack_require__(6), __webpack_require__(26), __webpack_require__(7), __webpack_require__(27), __webpack_require__(8), __webpack_require__(3)) :
-	typeof define === 'function' && define.amd ? define(['@riim/object-assign-polyfill', '@riim/map-set-polyfill', '@riim/logger', '@riim/symbol-polyfill', '@riim/is', '@riim/mixin', '@riim/next-tick'], factory) :
-	(global.cellx = factory(global.objectAssignPolyfill,global.mapSetPolyfill,global.errorLogger,global.symbolPolyfill,global.is,global.mixin,global.nextTick));
-}(this, (function (objectAssignPolyfill,mapSetPolyfill,logger,symbolPolyfill,is,mixin,nextTick) { 'use strict';
-
-/**
- * @typedef {{
- *     target?: Object,
- *     type: string,
- *     bubbles?: boolean,
- *     isPropagationStopped?: boolean
- * }} cellx~Event
- */
-
-/**
- * @typedef {(evt: cellx~Event) -> ?boolean} cellx~Listener
- */
-
-/**
- * @typedef {{
- *     listener: cellx~Listener,
- *     context
- * }} cellx~RegisteredEvent
- */
-
-/**
- * @class cellx.EventEmitter
- * @extends {Object}
- * @typesign new EventEmitter();
- */
-function EventEmitter() {
-	/**
-  * @type {{ [type: string]: cellx~RegisteredEvent | Array<cellx~RegisteredEvent> }}
-  */
-	this._events = new mapSetPolyfill.Map();
-}
-
-EventEmitter.currentlySubscribing = false;
-
-EventEmitter.prototype = {
-	constructor: EventEmitter,
-
-	/**
-  * @typesign () -> { [type: string]: Array<cellx~RegisteredEvent> };
-  * @typesign (type: string) -> Array<cellx~RegisteredEvent>;
-  */
-	getEvents: function getEvents(type) {
-		var events;
-
-		if (type) {
-			events = this._events.get(type);
-
-			if (!events) {
-				return [];
-			}
-
-			return Array.isArray(events) ? events : [events];
-		}
-
-		events = Object.create(null);
-
-		this._events.forEach((function (typeEvents, type) {
-			events[type] = Array.isArray(typeEvents) ? typeEvents : [typeEvents];
-		}));
-
-		return events;
-	},
-
-	/**
-  * @typesign (type: string, listener: cellx~Listener, context?) -> this;
-  * @typesign (listeners: { [type: string]: cellx~Listener }, context?) -> this;
-  */
-	on: function on(type, listener, context) {
-		if (typeof type == 'object') {
-			context = listener !== undefined ? listener : this;
-
-			var listeners = type;
-
-			for (type in listeners) {
-				this._on(type, listeners[type], context);
-			}
-		} else {
-			this._on(type, listener, context !== undefined ? context : this);
-		}
-
-		return this;
-	},
-
-	/**
-  * @typesign (type: string, listener: cellx~Listener, context?) -> this;
-  * @typesign (listeners?: { [type: string]: cellx~Listener }, context?) -> this;
-  */
-	off: function off(type, listener, context) {
-		if (type) {
-			if (typeof type == 'object') {
-				context = listener !== undefined ? listener : this;
-
-				var listeners = type;
-
-				for (type in listeners) {
-					this._off(type, listeners[type], context);
-				}
-			} else {
-				this._off(type, listener, context !== undefined ? context : this);
-			}
-		} else {
-			this._events.clear();
-		}
-
-		return this;
-	},
-
-	/**
-  * @typesign (type: string, listener: cellx~Listener, context);
-  */
-	_on: function _on(type, listener, context) {
-		var index = type.indexOf(':');
-
-		if (index != -1) {
-			var propName = type.slice(index + 1);
-
-			EventEmitter.currentlySubscribing = true;
-			(this[propName + 'Cell'] || (this[propName], this[propName + 'Cell'])).on(type.slice(0, index), listener, context);
-			EventEmitter.currentlySubscribing = false;
-		} else {
-			var events = this._events.get(type);
-			var evt = { listener: listener, context: context };
-
-			if (!events) {
-				this._events.set(type, evt);
-			} else if (Array.isArray(events)) {
-				events.push(evt);
-			} else {
-				this._events.set(type, [events, evt]);
-			}
-		}
-	},
-
-	/**
-  * @typesign (type: string, listener: cellx~Listener, context);
-  */
-	_off: function _off(type, listener, context) {
-		var index = type.indexOf(':');
-
-		if (index != -1) {
-			var propName = type.slice(index + 1);
-
-			(this[propName + 'Cell'] || (this[propName], this[propName + 'Cell'])).off(type.slice(0, index), listener, context);
-		} else {
-			var events = this._events.get(type);
-
-			if (!events) {
-				return;
-			}
-
-			var evt;
-
-			if (!Array.isArray(events)) {
-				evt = events;
-			} else if (events.length == 1) {
-				evt = events[0];
-			} else {
-				for (var i = events.length; i;) {
-					evt = events[--i];
-
-					if (evt.listener == listener && evt.context === context) {
-						events.splice(i, 1);
-						break;
-					}
-				}
-
-				return;
-			}
-
-			if (evt.listener == listener && evt.context === context) {
-				this._events.delete(type);
-			}
-		}
-	},
-
-	/**
-  * @typesign (type: string, listener: cellx~Listener, context?) -> cellx~Listener;
-  */
-	once: function once(type, listener, context) {
-		if (context === undefined) {
-			context = this;
-		}
-
-		function wrapper(evt) {
-			this._off(type, wrapper, context);
-			return listener.call(this, evt);
-		}
-
-		this._on(type, wrapper, context);
-
-		return wrapper;
-	},
-
-	/**
-  * @typesign (evt: cellx~Event) -> cellx~Event;
-  * @typesign (type: string) -> cellx~Event;
-  */
-	emit: function emit(evt) {
-		if (typeof evt == 'string') {
-			evt = {
-				target: this,
-				type: evt
-			};
-		} else if (!evt.target) {
-			evt.target = this;
-		} else if (evt.target != this) {
-			throw new TypeError('Event cannot be emitted on this object');
-		}
-
-		this._handleEvent(evt);
-
-		return evt;
-	},
-
-	/**
-  * @typesign (evt: cellx~Event);
-  */
-	_handleEvent: function _handleEvent(evt) {
-		var events = this._events.get(evt.type);
-
-		if (!events) {
-			return;
-		}
-
-		if (Array.isArray(events)) {
-			var eventCount = events.length;
-
-			if (eventCount == 1) {
-				if (this._tryEventListener(events[0], evt) === false) {
-					evt.isPropagationStopped = true;
-				}
-			} else {
-				events = events.slice();
-
-				for (var i = 0; i < eventCount; i++) {
-					if (this._tryEventListener(events[i], evt) === false) {
-						evt.isPropagationStopped = true;
-					}
-				}
-			}
-		} else if (this._tryEventListener(events, evt) === false) {
-			evt.isPropagationStopped = true;
-		}
-	},
-
-	/**
-  * @typesign (emEvt: cellx~RegisteredEvent, evt: cellx~Event);
-  */
-	_tryEventListener: function _tryEventListener(emEvt, evt) {
-		try {
-			return emEvt.listener.call(emEvt.context, evt);
-		} catch (err) {
-			logger.error(err);
-		}
-	}
-};
-
-var EventEmitterProto = EventEmitter.prototype;
-
-var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 0x1fffffffffffff;
-var KEY_WRAPPERS = symbolPolyfill.Symbol('wrappers');
-
-var errorIndexCounter = 0;
-var pushingIndexCounter = 0;
-
-var releasePlan = new mapSetPolyfill.Map();
-var releasePlanIndex = MAX_SAFE_INTEGER;
-var releasePlanToIndex = -1;
-var releasePlanned = false;
-var currentlyRelease = 0;
-var currentCell = null;
-var $error = { error: null };
-var releaseVersion = 1;
-
-var afterRelease;
-
-var STATE_INITED = 1;
-var STATE_CURRENTLY_PULLING = 1 << 1;
-var STATE_ACTIVE = 1 << 2;
-var STATE_HAS_FOLLOWERS = 1 << 3;
-var STATE_PENDING = 1 << 4;
-var STATE_CAN_CANCEL_CHANGE = 1 << 5;
-
-function release(force) {
-	if (!releasePlanned && !force) {
-		return;
-	}
-
-	releasePlanned = false;
-	currentlyRelease++;
-
-	var queue = releasePlan.get(releasePlanIndex);
-
-	for (;;) {
-		var cell = queue && queue.shift();
-
-		if (!cell) {
-			if (releasePlanIndex == releasePlanToIndex) {
-				break;
-			}
-
-			queue = releasePlan.get(++releasePlanIndex);
-			continue;
-		}
-
-		var oldReleasePlanIndex = releasePlanIndex;
-
-		var level = cell._level;
-		var changeEvent = cell._changeEvent;
-
-		if (!changeEvent) {
-			if (level > releasePlanIndex || cell._levelInRelease == -1) {
-				if (!queue.length) {
-					if (releasePlanIndex == releasePlanToIndex) {
-						break;
-					}
-
-					queue = releasePlan.get(++releasePlanIndex);
-				}
-
-				continue;
-			}
-
-			cell.pull();
-
-			level = cell._level;
-
-			if (level > releasePlanIndex) {
-				if (!queue.length) {
-					queue = releasePlan.get(++releasePlanIndex);
-				}
-
-				continue;
-			}
-
-			changeEvent = cell._changeEvent;
-		}
-
-		cell._levelInRelease = -1;
-
-		if (changeEvent) {
-			cell._fixedValue = cell._value;
-			cell._changeEvent = null;
-
-			var pushingIndex = cell._pushingIndex;
-			var slaves = cell._slaves;
-
-			for (var i = 0, l = slaves.length; i < l; i++) {
-				var slave = slaves[i];
-
-				if (slave._level <= level) {
-					slave._level = level + 1;
-				}
-
-				if (pushingIndex > slave._pushingIndex) {
-					slave._pushingIndex = pushingIndex;
-					slave._changeEvent = null;
-
-					slave._addToRelease();
-				}
-			}
-
-			var oldReleasePlanIndex = releasePlanIndex;
-
-			cell._handleEvent(changeEvent);
-
-			if (releasePlanIndex == MAX_SAFE_INTEGER) {
-				break;
-			}
-
-			if (releasePlanIndex != oldReleasePlanIndex) {
-				queue = releasePlan.get(releasePlanIndex);
-				continue;
-			}
-		}
-
-		if (!queue.length) {
-			if (releasePlanIndex == releasePlanToIndex) {
-				break;
-			}
-
-			queue = releasePlan.get(++releasePlanIndex);
-		}
-	}
-
-	if (! --currentlyRelease) {
-		releasePlanIndex = MAX_SAFE_INTEGER;
-		releasePlanToIndex = -1;
-		releaseVersion++;
-
-		if (afterRelease) {
-			var afterRelease_ = afterRelease;
-
-			afterRelease = null;
-
-			for (var i = 0, l = afterRelease_.length; i < l; i++) {
-				var item = afterRelease_[i];
-
-				if (typeof item == 'function') {
-					item();
-				} else {
-					item[0]._push(item[1], true, false);
-				}
-			}
-		}
-	}
-}
-
-/**
- * @typesign (cell: Cell, value);
- */
-function defaultPut(cell, value) {
-	cell.push(value);
-}
-
-/**
- * @class cellx.Cell
- * @extends {cellx.EventEmitter}
- *
- * @example
- * var a = new Cell(1);
- * var b = new Cell(2);
- * var c = new Cell(function() {
- *     return a.get() + b.get();
- * });
- *
- * c.on('change', function() {
- *     console.log('c = ' + c.get());
- * });
- *
- * console.log(c.get());
- * // => 3
- *
- * a.set(5);
- * b.set(10);
- * // => 'c = 15'
- *
- * @typesign new Cell(value?, opts?: {
- *     debugKey?: string,
- *     context?: Object,
- *     get?: (value) -> *,
- *     validate?: (value, oldValue),
- *     merge: (value, oldValue) -> *,
- *     put?: (cell: Cell, value, oldValue),
- *     reap?: (),
- *     onChange?: (evt: cellx~Event) -> ?boolean,
- *     onError?: (evt: cellx~Event) -> ?boolean
- * });
- * @typesign new Cell(pull: (cell: Cell, next) -> *, opts?: {
- *     debugKey?: string,
- *     context?: Object,
- *     get?: (value) -> *,
- *     validate?: (value, oldValue),
- *     merge: (value, oldValue) -> *,
- *     put?: (cell: Cell, value, oldValue),
- *     reap?: (),
- *     onChange?: (evt: cellx~Event) -> ?boolean,
- *     onError?: (evt: cellx~Event) -> ?boolean
- * });
- */
-function Cell(value, opts) {
-	EventEmitter.call(this);
-
-	this.debugKey = opts && opts.debugKey;
-
-	this.context = opts && (opts.context || opts.owner) || this;
-
-	this._pull = typeof value == 'function' ? value : null;
-	this._get = opts && opts.get || null;
-
-	this._validate = opts && opts.validate || null;
-	this._merge = opts && opts.merge || null;
-	this._put = opts && opts.put || defaultPut;
-
-	this._reap = opts && opts.reap || null;
-
-	if (this._pull) {
-		this._fixedValue = this._value = undefined;
-	} else {
-		if (this._validate) {
-			this._validate(value, undefined);
-		}
-		if (this._merge) {
-			value = this._merge(value, undefined);
-		}
-
-		this._fixedValue = this._value = value;
-
-		if (value instanceof EventEmitter) {
-			value.on('change', this._onValueChange, this);
-		}
-	}
-
-	this._error = null;
-	this._selfErrorCell = null;
-	this._errorCell = null;
-
-	this._errorIndex = 0;
-	this._pushingIndex = 0;
-	this._version = 0;
-
-	/**
-  * Ведущие ячейки.
-  * @type {?Array<cellx.Cell>}
-  */
-	this._masters = undefined;
-	/**
-  * Ведомые ячейки.
-  * @type {Array<cellx.Cell>}
-  */
-	this._slaves = [];
-
-	this._level = 0;
-	this._levelInRelease = -1;
-
-	this._selfPendingStatusCell = null;
-	this._pendingStatusCell = null;
-
-	this._changeEvent = null;
-	this._lastErrorEvent = null;
-
-	this._state = STATE_CAN_CANCEL_CHANGE;
-
-	if (opts) {
-		if (opts.onChange) {
-			this.on('change', opts.onChange);
-		}
-		if (opts.onError) {
-			this.on('error', opts.onError);
-		}
-	}
-}
-
-mixin.mixin(Cell, {
-	/**
-  * @type {boolean}
-  */
-	get currentlyPulling() {
-		return !!currentCell;
-	},
-
-	/**
-  * @typesign (callback: (), context?) -> ();
-  */
-	autorun: function autorun(callback, context) {
-		var disposer;
-
-		new Cell(function () {
-			var cell = this;
-
-			if (!disposer) {
-				disposer = function disposer() {
-					cell.dispose();
-				};
-			}
-
-			callback.call(context, disposer);
-		}, {
-			onChange: function noop() {}
-		});
-
-		return disposer;
-	},
-
-	/**
-  * @typesign ();
-  */
-	forceRelease: function forceRelease() {
-		if (releasePlanned || currentlyRelease) {
-			release(true);
-		}
-	},
-
-	/**
-  * @typesign (callback: ());
-  */
-	afterRelease: function afterRelease_(callback) {
-		(afterRelease || (afterRelease = [])).push(callback);
-	}
-});
-
-Cell.prototype = {
-	__proto__: EventEmitter.prototype,
-
-	constructor: Cell,
-
-	/**
-  * @override
-  */
-	on: function on(type, listener, context) {
-		if (releasePlanned || currentlyRelease) {
-			release(true);
-		}
-
-		this._activate();
-
-		if (typeof type == 'object') {
-			EventEmitterProto.on.call(this, type, listener !== undefined ? listener : this.context);
-		} else {
-			EventEmitterProto.on.call(this, type, listener, context !== undefined ? context : this.context);
-		}
-
-		this._state |= STATE_HAS_FOLLOWERS;
-
-		return this;
-	},
-
-	/**
-  * @override
-  */
-	off: function off(type, listener, context) {
-		if (releasePlanned || currentlyRelease) {
-			release(true);
-		}
-
-		if (type) {
-			if (typeof type == 'object') {
-				EventEmitterProto.off.call(this, type, listener !== undefined ? listener : this.context);
-			} else {
-				EventEmitterProto.off.call(this, type, listener, context !== undefined ? context : this.context);
-			}
-		} else {
-			EventEmitterProto.off.call(this);
-		}
-
-		if (!this._slaves.length && !this._events.has('change') && !this._events.has('error') && this._state & STATE_HAS_FOLLOWERS) {
-			this._state ^= STATE_HAS_FOLLOWERS;
-
-			this._deactivate();
-
-			if (this._reap) {
-				this._reap.call(this.context);
-			}
-		}
-
-		return this;
-	},
-
-	/**
-  * @typesign (listener: (evt: cellx~Event) -> ?boolean, context?) -> this;
-  */
-	addChangeListener: function addChangeListener(listener, context) {
-		return this.on('change', listener, context !== undefined ? context : this.context);
-	},
-
-	/**
-  * @typesign (listener: (evt: cellx~Event) -> ?boolean, context?) -> this;
-  */
-	removeChangeListener: function removeChangeListener(listener, context) {
-		return this.off('change', listener, context !== undefined ? context : this.context);
-	},
-
-	/**
-  * @typesign (listener: (evt: cellx~Event) -> ?boolean, context?) -> this;
-  */
-	addErrorListener: function addErrorListener(listener, context) {
-		return this.on('error', listener, context !== undefined ? context : this.context);
-	},
-
-	/**
-  * @typesign (listener: (evt: cellx~Event) -> ?boolean, context?) -> this;
-  */
-	removeErrorListener: function removeErrorListener(listener, context) {
-		return this.off('error', listener, context !== undefined ? context : this.context);
-	},
-
-	/**
-  * @typesign (listener: (err: ?Error, evt: cellx~Event) -> ?boolean, context?) -> this;
-  */
-	subscribe: function subscribe(listener, context) {
-		var wrappers = listener[KEY_WRAPPERS];
-
-		if (wrappers && wrappers.has(listener)) {
-			return this;
-		}
-
-		function wrapper(evt) {
-			return listener.call(this, evt.error || null, evt);
-		}
-		(wrappers || (listener[KEY_WRAPPERS] = new mapSetPolyfill.Map())).set(this, wrapper);
-
-		if (context === undefined) {
-			context = this.context;
-		}
-
-		return this.on('change', wrapper, context).on('error', wrapper, context);
-	},
-
-	/**
-  * @typesign (listener: (err: ?Error, evt: cellx~Event) -> ?boolean, context?) -> this;
-  */
-	unsubscribe: function unsubscribe(listener, context) {
-		var wrappers = listener[KEY_WRAPPERS];
-		var wrapper = wrappers && wrappers.get(this);
-
-		if (!wrapper) {
-			return this;
-		}
-
-		wrappers.delete(this);
-
-		if (context === undefined) {
-			context = this.context;
-		}
-
-		return this.off('change', wrapper, context).off('error', wrapper, context);
-	},
-
-	/**
-  * @typesign (slave: cellx.Cell);
-  */
-	_registerSlave: function _registerSlave(slave) {
-		this._activate();
-
-		this._slaves.push(slave);
-		this._state |= STATE_HAS_FOLLOWERS;
-	},
-
-	/**
-  * @typesign (slave: cellx.Cell);
-  */
-	_unregisterSlave: function _unregisterSlave(slave) {
-		this._slaves.splice(this._slaves.indexOf(slave), 1);
-
-		if (!this._slaves.length && !this._events.has('change') && !this._events.has('error')) {
-			this._state ^= STATE_HAS_FOLLOWERS;
-
-			this._deactivate();
-
-			if (this._reap) {
-				this._reap.call(this.context);
-			}
-		}
-	},
-
-	/**
-  * @typesign ();
-  */
-	_activate: function _activate() {
-		if (!this._pull || this._state & STATE_ACTIVE || this._masters === null) {
-			return;
-		}
-
-		var masters = this._masters;
-
-		if (this._version < releaseVersion) {
-			var value = this._tryPull();
-
-			if (masters || this._masters || !(this._state & STATE_INITED)) {
-				if (value === $error) {
-					this._fail($error.error, false);
-				} else {
-					this._push(value, false, false);
-				}
-			}
-
-			masters = this._masters;
-		}
-
-		if (masters) {
-			var i = masters.length;
-
-			do {
-				masters[--i]._registerSlave(this);
-			} while (i);
-
-			this._state |= STATE_ACTIVE;
-		}
-	},
-
-	/**
-  * @typesign ();
-  */
-	_deactivate: function _deactivate() {
-		if (!(this._state & STATE_ACTIVE)) {
-			return;
-		}
-
-		var masters = this._masters;
-		var i = masters.length;
-
-		do {
-			masters[--i]._unregisterSlave(this);
-		} while (i);
-
-		if (this._levelInRelease != -1 && !this._changeEvent) {
-			this._levelInRelease = -1;
-		}
-
-		this._state ^= STATE_ACTIVE;
-	},
-
-	/**
-  * @typesign ();
-  */
-	_addToRelease: function _addToRelease() {
-		var level = this._level;
-
-		if (level <= this._levelInRelease) {
-			return;
-		}
-
-		var queue;
-
-		(releasePlan.get(level) || (releasePlan.set(level, queue = []), queue)).push(this);
-
-		if (releasePlanIndex > level) {
-			releasePlanIndex = level;
-		}
-		if (releasePlanToIndex < level) {
-			releasePlanToIndex = level;
-		}
-
-		this._levelInRelease = level;
-
-		if (!releasePlanned && !currentlyRelease) {
-			releasePlanned = true;
-			nextTick.nextTick(release);
-		}
-	},
-
-	/**
-  * @typesign (evt: cellx~Event);
-  */
-	_onValueChange: function _onValueChange(evt) {
-		if (this._state & STATE_HAS_FOLLOWERS) {
-			if (currentCell) {
-				var cell = this;
-
-				(afterRelease || (afterRelease = [])).push(this, (function () {
-					cell._onValueChange$(evt);
-				}));
-			} else {
-				this._onValueChange$(evt);
-			}
-		} else {
-			this._pushingIndex = ++pushingIndexCounter;
-			this._version = ++releaseVersion + (currentlyRelease > 0);
-		}
-	},
-
-	/**
-  * @typesign (evt: cellx~Event);
-  */
-	_onValueChange$: function _onValueChange$(evt) {
-		this._pushingIndex = ++pushingIndexCounter;
-
-		if (this._changeEvent) {
-			(evt.data || (evt.data = {})).prev = this._changeEvent;
-			this._changeEvent = evt;
-
-			if (this._value === this._fixedValue) {
-				this._state &= ~STATE_CAN_CANCEL_CHANGE;
-			}
-		} else {
-			(evt.data || (evt.data = {})).prev = null;
-			this._changeEvent = evt;
-			this._state &= ~STATE_CAN_CANCEL_CHANGE;
-
-			this._addToRelease();
-		}
-	},
-
-	/**
-  * @typesign () -> *;
-  */
-	get: function get() {
-		if (this._pull) {
-			if (this._state & STATE_ACTIVE) {
-				if (releasePlanned || currentlyRelease && !currentCell) {
-					release(true);
-				}
-			} else if (this._version < releaseVersion + (currentlyRelease > 0) && this._masters !== null) {
-				var oldMasters = this._masters;
-				var value = this._tryPull();
-				var masters = this._masters;
-
-				if (oldMasters || masters || !(this._state & STATE_INITED)) {
-					if (masters && this._state & STATE_HAS_FOLLOWERS) {
-						var i = masters.length;
-
-						do {
-							masters[--i]._registerSlave(this);
-						} while (i);
-
-						this._state |= STATE_ACTIVE;
-					}
-
-					if (value === $error) {
-						this._fail($error.error, false);
-					} else {
-						this._push(value, false, false);
-					}
-				}
-			}
-		}
-
-		if (currentCell) {
-			var currentCellMasters = currentCell._masters;
-			var level = this._level;
-
-			if (currentCellMasters) {
-				if (currentCellMasters.indexOf(this) == -1) {
-					currentCellMasters.push(this);
-
-					if (currentCell._level <= level) {
-						currentCell._level = level + 1;
-					}
-				}
-			} else {
-				currentCell._masters = [this];
-				currentCell._level = level + 1;
-			}
-		}
-
-		return this._get ? this._get(this._value) : this._value;
-	},
-
-	/**
-  * @typesign () -> boolean;
-  */
-	pull: function pull() {
-		if (!this._pull) {
-			return false;
-		}
-
-		if (releasePlanned) {
-			release();
-		}
-
-		var hasFollowers = this._state & STATE_HAS_FOLLOWERS;
-
-		var oldMasters;
-		var oldLevel;
-
-		if (hasFollowers) {
-			oldMasters = this._masters;
-			oldLevel = this._level;
-		}
-
-		var value = this._tryPull();
-
-		if (hasFollowers) {
-			var masters = this._masters;
-			var newMasterCount = 0;
-
-			if (masters) {
-				var i = masters.length;
-
-				do {
-					var master = masters[--i];
-
-					if (!oldMasters || oldMasters.indexOf(master) == -1) {
-						master._registerSlave(this);
-						newMasterCount++;
-					}
-				} while (i);
-			}
-
-			if (oldMasters && (masters ? masters.length - newMasterCount : 0) < oldMasters.length) {
-				for (var i = oldMasters.length; i;) {
-					var oldMaster = oldMasters[--i];
-
-					if (!masters || masters.indexOf(oldMaster) == -1) {
-						oldMaster._unregisterSlave(this);
-					}
-				}
-			}
-
-			if (masters && masters.length) {
-				this._state |= STATE_ACTIVE;
-			} else {
-				this._state &= ~STATE_ACTIVE;
-			}
-
-			if (currentlyRelease && this._level > oldLevel) {
-				this._addToRelease();
-				return false;
-			}
-		}
-
-		if (value === $error) {
-			this._fail($error.error, false);
-			return true;
-		}
-
-		return this._push(value, false, true);
-	},
-
-	/**
-  * @typesign () -> *;
-  */
-	_tryPull: function _tryPull() {
-		if (this._state & STATE_CURRENTLY_PULLING) {
-			throw new TypeError('Circular pulling detected');
-		}
-
-		var pull = this._pull;
-
-		if (pull.length) {
-			this._state |= STATE_PENDING;
-			if (this._selfPendingStatusCell) {
-				this._selfPendingStatusCell.set(true);
-			}
-		}
-
-		var prevCell = currentCell;
-		currentCell = this;
-
-		this._state |= STATE_CURRENTLY_PULLING;
-		this._masters = null;
-		this._level = 0;
-
-		try {
-			return pull.length ? pull.call(this.context, this, this._value) : pull.call(this.context);
-		} catch (err) {
-			$error.error = err;
-			return $error;
-		} finally {
-			currentCell = prevCell;
-
-			this._version = releaseVersion + (currentlyRelease > 0);
-
-			var pendingStatusCell = this._pendingStatusCell;
-
-			if (pendingStatusCell && pendingStatusCell._state & STATE_ACTIVE) {
-				pendingStatusCell.pull();
-			}
-
-			var errorCell = this._errorCell;
-
-			if (errorCell && errorCell._state & STATE_ACTIVE) {
-				errorCell.pull();
-			}
-
-			this._state ^= STATE_CURRENTLY_PULLING;
-		}
-	},
-
-	/**
-  * @typesign () -> ?Error;
-  */
-	getError: function getError() {
-		var errorCell = this._errorCell;
-
-		if (!errorCell) {
-			var debugKey = this.debugKey;
-
-			this._selfErrorCell = new Cell(this._error, debugKey ? { debugKey: debugKey + '._selfErrorCell' } : null);
-
-			errorCell = this._errorCell = new Cell(function () {
-				this.get();
-
-				var err = this._selfErrorCell.get();
-				var errorIndex;
-
-				if (err) {
-					errorIndex = this._errorIndex;
-
-					if (errorIndex == errorIndexCounter) {
-						return err;
-					}
-				}
-
-				var masters = this._masters;
-
-				if (masters) {
-					var i = masters.length;
-
-					do {
-						var master = masters[--i];
-						var masterError = master.getError();
-
-						if (masterError) {
-							var masterErrorIndex = master._errorIndex;
-
-							if (masterErrorIndex == errorIndexCounter) {
-								return masterError;
-							}
-
-							if (!err || errorIndex < masterErrorIndex) {
-								err = masterError;
-								errorIndex = masterErrorIndex;
-							}
-						}
-					} while (i);
-				}
-
-				return err;
-			}, debugKey ? { debugKey: debugKey + '._errorCell', context: this } : { context: this });
-		}
-
-		return errorCell.get();
-	},
-
-	/**
-  * @typesign () -> boolean;
-  */
-	isPending: function isPending() {
-		var pendingStatusCell = this._pendingStatusCell;
-
-		if (!pendingStatusCell) {
-			var debugKey = this.debugKey;
-
-			this._selfPendingStatusCell = new Cell(!!(this._state & STATE_PENDING), debugKey ? { debugKey: debugKey + '._selfPendingStatusCell' } : null);
-
-			pendingStatusCell = this._pendingStatusCell = new Cell(function () {
-				if (this._selfPendingStatusCell.get()) {
-					return true;
-				}
-
-				this.get();
-
-				var masters = this._masters;
-
-				if (masters) {
-					var i = masters.length;
-
-					do {
-						if (masters[--i].isPending()) {
-							return true;
-						}
-					} while (i);
-				}
-
-				return false;
-			}, debugKey ? { debugKey: debugKey + '._pendingStatusCell', context: this } : { context: this });
-		}
-
-		return pendingStatusCell.get();
-	},
-
-	/**
-  * @typesign (value) -> this;
-  */
-	set: function set(value) {
-		if (this._validate) {
-			this._validate(value, this._value);
-		}
-		if (this._merge) {
-			value = this._merge(value, this._value);
-		}
-
-		this._state |= STATE_PENDING;
-		if (this._selfPendingStatusCell) {
-			this._selfPendingStatusCell.set(true);
-		}
-
-		if (this._put.length >= 3) {
-			this._put.call(this.context, this, value, this._value);
-		} else {
-			this._put.call(this.context, this, value);
-		}
-
-		return this;
-	},
-
-	/**
-  * @typesign (value) -> this;
-  */
-	push: function push(value) {
-		this._push(value, true, false);
-		return this;
-	},
-
-	/**
-  * @typesign (value, external: boolean, pulling: boolean) -> boolean;
-  */
-	_push: function _push(value, external, pulling) {
-		this._state |= STATE_INITED;
-
-		var oldValue = this._value;
-
-		if (external && currentCell && this._state & STATE_HAS_FOLLOWERS) {
-			if (is.is(value, oldValue)) {
-				this._setError(null);
-				this._resolvePending();
-				return false;
-			}
-
-			(afterRelease || (afterRelease = [])).push([this, value]);
-
-			return true;
-		}
-
-		if (external || !currentlyRelease && pulling) {
-			this._pushingIndex = ++pushingIndexCounter;
-		}
-
-		this._setError(null);
-
-		if (is.is(value, oldValue)) {
-			if (external || currentlyRelease && pulling) {
-				this._resolvePending();
-			}
-
-			return false;
-		}
-
-		this._value = value;
-
-		if (oldValue instanceof EventEmitter) {
-			oldValue.off('change', this._onValueChange, this);
-		}
-		if (value instanceof EventEmitter) {
-			value.on('change', this._onValueChange, this);
-		}
-
-		if (this._state & STATE_HAS_FOLLOWERS) {
-			if (this._changeEvent) {
-				if (is.is(value, this._fixedValue) && this._state & STATE_CAN_CANCEL_CHANGE) {
-					this._levelInRelease = -1;
-					this._changeEvent = null;
-				} else {
-					this._changeEvent = {
-						target: this,
-						type: 'change',
-						data: {
-							oldValue: oldValue,
-							value: value,
-							prev: this._changeEvent
-						}
-					};
-				}
-			} else {
-				this._changeEvent = {
-					target: this,
-					type: 'change',
-					data: {
-						oldValue: oldValue,
-						value: value,
-						prev: null
-					}
-				};
-				this._state |= STATE_CAN_CANCEL_CHANGE;
-
-				this._addToRelease();
-			}
-		} else {
-			if (external || !currentlyRelease && pulling) {
-				releaseVersion++;
-			}
-
-			this._fixedValue = value;
-			this._version = releaseVersion + (currentlyRelease > 0);
-		}
-
-		if (external || currentlyRelease && pulling) {
-			this._resolvePending();
-		}
-
-		return true;
-	},
-
-	/**
-  * @typesign (err) -> this;
-  */
-	fail: function fail(err) {
-		this._fail(err, true);
-		return this;
-	},
-
-	/**
-  * @typesign (err, external: boolean);
-  */
-	_fail: function _fail(err, external) {
-		logger.error('[' + this.debugKey + ']', err);
-
-		if (!(err instanceof Error)) {
-			err = new Error(String(err));
-		}
-
-		this._setError(err);
-
-		if (external) {
-			this._resolvePending();
-		}
-	},
-
-	/**
-  * @typesign (err: ?Error);
-  */
-	_setError: function _setError(err) {
-		if (!err && !this._error) {
-			return;
-		}
-
-		this._error = err;
-		if (this._selfErrorCell) {
-			this._selfErrorCell.set(err);
-		}
-
-		if (err) {
-			this._errorIndex = ++errorIndexCounter;
-
-			this._handleErrorEvent({
-				type: 'error',
-				data: {
-					error: err
-				}
-			});
-		}
-	},
-
-	/**
-  * @typesign (evt: cellx~Event{ error: Error });
-  */
-	_handleErrorEvent: function _handleErrorEvent(evt) {
-		if (this._lastErrorEvent === evt) {
-			return;
-		}
-
-		this._lastErrorEvent = evt;
-		this._handleEvent(evt);
-
-		var slaves = this._slaves;
-
-		for (var i = 0, l = slaves.length; i < l; i++) {
-			slaves[i]._handleErrorEvent(evt);
-		}
-	},
-
-	/**
-  * @typesign ();
-  */
-	_resolvePending: function _resolvePending() {
-		if (this._state & STATE_PENDING) {
-			this._state ^= STATE_PENDING;
-
-			if (this._selfPendingStatusCell) {
-				this._selfPendingStatusCell.set(false);
-			}
-		}
-	},
-
-	/**
-  * @typesign () -> this;
-  */
-	reap: function reap() {
-		var slaves = this._slaves;
-
-		for (var i = 0, l = slaves.length; i < l; i++) {
-			slaves[i].reap();
-		}
-
-		return this.off();
-	},
-
-	/**
-  * @typesign () -> this;
-  */
-	dispose: function dispose() {
-		return this.reap();
-	}
-};
-
-Cell.prototype[symbolPolyfill.Symbol.iterator] = function () {
-	return this._value[symbolPolyfill.Symbol.iterator]();
-};
-
-function FreezableCollectionMixin() {
-	/**
-  * @type {boolean}
-  */
-	this._isFrozen = false;
-}
-
-FreezableCollectionMixin.prototype = {
-	/**
-  * @type {boolean}
-  */
-	get isFrozen() {
-		return this._isFrozen;
-	},
-
-	/**
-  * @typesign () -> this;
-  */
-	freeze: function freeze() {
-		this._isFrozen = true;
-		return this;
-	},
-
-	/**
-  * @typesign () -> this;
-  */
-	unfreeze: function unfreeze() {
-		this._isFrozen = false;
-		return this;
-	},
-
-	/**
-  * @typesign (msg: string);
-  */
-	_throwIfFrozen: function _throwIfFrozen(msg) {
-		if (this._isFrozen) {
-			throw new TypeError(msg || 'Frozen collection cannot be mutated');
-		}
-	}
-};
-
-function ObservableCollectionMixin() {
-	/**
-  * @type {Map<*, uint>}
-  */
-	this._valueCounts = new mapSetPolyfill.Map();
-}
-
-ObservableCollectionMixin.prototype = {
-	/**
-  * @typesign (evt: cellx~Event);
-  */
-	_onItemChange: function _onItemChange(evt) {
-		this._handleEvent(evt);
-	},
-
-	/**
-  * @typesign (value);
-  */
-	_registerValue: function _registerValue(value) {
-		var valueCounts = this._valueCounts;
-		var valueCount = valueCounts.get(value);
-
-		if (valueCount) {
-			valueCounts.set(value, valueCount + 1);
-		} else {
-			valueCounts.set(value, 1);
-
-			if (this.adoptsValueChanges && value instanceof EventEmitter) {
-				value.on('change', this._onItemChange, this);
-			}
-		}
-	},
-
-	/**
-  * @typesign (value);
-  */
-	_unregisterValue: function _unregisterValue(value) {
-		var valueCounts = this._valueCounts;
-		var valueCount = valueCounts.get(value);
-
-		if (valueCount > 1) {
-			valueCounts.set(value, valueCount - 1);
-		} else {
-			valueCounts.delete(value);
-
-			if (this.adoptsValueChanges && value instanceof EventEmitter) {
-				value.off('change', this._onItemChange, this);
-			}
-		}
-	}
-};
-
-var push = Array.prototype.push;
-var splice = Array.prototype.splice;
-
-/**
- * @typesign (a, b) -> -1 | 1 | 0;
- */
-function defaultComparator(a, b) {
-	return a < b ? -1 : a > b ? 1 : 0;
-}
-
-/**
- * @class cellx.ObservableList
- * @extends {cellx.EventEmitter}
- * @implements {cellx.FreezableCollectionMixin}
- * @implements {cellx.ObservableCollectionMixin}
- *
- * @typesign new ObservableList(items?: Array | cellx.ObservableList, opts?: {
- *     adoptsValueChanges?: boolean,
- *     comparator?: (a, b) -> int,
- *     sorted?: boolean
- * });
- * @typesign new ObservableList(items?: Array | cellx.ObservableList, adoptsValueChanges?: boolean);
- */
-function ObservableList(items, opts) {
-	EventEmitter.call(this);
-	FreezableCollectionMixin.call(this);
-	ObservableCollectionMixin.call(this);
-
-	if (typeof opts == 'boolean') {
-		opts = { adoptsValueChanges: opts };
-	}
-
-	this._items = [];
-
-	this.length = 0;
-
-	/**
-  * @type {boolean}
-  */
-	this.adoptsValueChanges = !!(opts && opts.adoptsValueChanges);
-
-	/**
-  * @type {?(a, b) -> int}
-  */
-	this.comparator = null;
-
-	this.sorted = false;
-
-	if (opts && (opts.sorted || opts.comparator && opts.sorted !== false)) {
-		this.comparator = opts.comparator || defaultComparator;
-		this.sorted = true;
-	}
-
-	if (items) {
-		this._addRange(items);
-	}
-}
-
-ObservableList.prototype = mixin.mixin({ __proto__: EventEmitter.prototype }, [FreezableCollectionMixin.prototype, ObservableCollectionMixin.prototype, {
-	constructor: ObservableList,
-
-	/**
-  * @typesign (value) -> boolean;
-  */
-	contains: function contains(value) {
-		return this._valueCounts.has(value);
-	},
-
-	/**
-  * @typesign (value, fromIndex?: int) -> int;
-  */
-	indexOf: function indexOf(value, fromIndex) {
-		return this._items.indexOf(value, this._validateIndex(fromIndex, true));
-	},
-
-	/**
-  * @typesign (value, fromIndex?: int) -> int;
-  */
-	lastIndexOf: function lastIndexOf(value, fromIndex) {
-		return this._items.lastIndexOf(value, fromIndex === undefined ? -1 : this._validateIndex(fromIndex, true));
-	},
-
-	/**
-  * @typesign (index: int) -> *;
-  */
-	get: function get(index) {
-		return this._items[this._validateIndex(index, true)];
-	},
-
-	/**
-  * @typesign (index: int, count?: uint) -> Array;
-  */
-	getRange: function getRange(index, count) {
-		index = this._validateIndex(index, true);
-
-		var items = this._items;
-
-		if (count === undefined) {
-			return items.slice(index);
-		}
-
-		if (index + count > items.length) {
-			throw new RangeError('Sum of "index" and "count" out of valid range');
-		}
-
-		return items.slice(index, index + count);
-	},
-
-	/**
-  * @typesign (index: int, value) -> this;
-  */
-	set: function set(index, value) {
-		if (this.sorted) {
-			throw new TypeError('Cannot set to sorted list');
-		}
-
-		index = this._validateIndex(index, true);
-
-		var items = this._items;
-
-		if (is.is(value, items[index])) {
-			return this;
-		}
-
-		this._throwIfFrozen();
-
-		this._unregisterValue(items[index]);
-		this._registerValue(value);
-		items[index] = value;
-
-		this.emit('change');
-
-		return this;
-	},
-
-	/**
-  * @typesign (index: int, values: Array | cellx.ObservableList) -> this;
-  */
-	setRange: function setRange(index, values) {
-		if (this.sorted) {
-			throw new TypeError('Cannot set to sorted list');
-		}
-
-		index = this._validateIndex(index, true);
-
-		var valueCount = values.length;
-
-		if (!valueCount) {
-			return this;
-		}
-
-		if (index + valueCount > this.length) {
-			throw new RangeError('Sum of "index" and "values.length" out of valid range');
-		}
-
-		if (values instanceof ObservableList) {
-			values = values._items.slice();
-		}
-
-		var items = this._items;
-		var changed = false;
-
-		for (var i = index + valueCount; i > index;) {
-			var value = values[--i - index];
-
-			if (!is.is(value, items[i])) {
-				if (!changed) {
-					this._throwIfFrozen();
-				}
-
-				this._unregisterValue(items[i]);
-				this._registerValue(value);
-				items[i] = value;
-				changed = true;
-			}
-		}
-
-		if (changed) {
-			this.emit('change');
-		}
-
-		return this;
-	},
-
-	/**
-  * @typesign (value) -> this;
-  */
-	add: function add(value) {
-		this._throwIfFrozen();
-
-		if (this.sorted) {
-			this._insertSortedValue(value);
-		} else {
-			this._registerValue(value);
-			this._items.push(value);
-		}
-
-		this.length++;
-
-		this.emit('change');
-
-		return this;
-	},
-
-	/**
-  * @typesign (values: Array | cellx.ObservableList) -> this;
-  */
-	addRange: function addRange(values) {
-		if (values.length) {
-			this._throwIfFrozen();
-
-			this._addRange(values);
-			this.emit('change');
-		}
-
-		return this;
-	},
-
-	/**
-  * @typesign (values: Array | cellx.ObservableList);
-  */
-	_addRange: function _addRange(values) {
-		if (values instanceof ObservableList) {
-			values = values._items.slice();
-		}
-
-		if (this.sorted) {
-			for (var i = 0, l = values.length; i < l; i++) {
-				this._insertSortedValue(values[i]);
-			}
-
-			this.length += values.length;
-		} else {
-			for (var i = values.length; i;) {
-				this._registerValue(values[--i]);
-			}
-
-			this.length = push.apply(this._items, values);
-		}
-	},
-
-	/**
-  * @typesign (index: int, value) -> this;
-  */
-	insert: function insert(index, value) {
-		if (this.sorted) {
-			throw new TypeError('Cannot insert to sorted list');
-		}
-
-		index = this._validateIndex(index, true);
-
-		this._throwIfFrozen();
-
-		this._registerValue(value);
-		this._items.splice(index, 0, value);
-		this.length++;
-
-		this.emit('change');
-
-		return this;
-	},
-
-	/**
-  * @typesign (index: int, values: Array | cellx.ObservableList) -> this;
-  */
-	insertRange: function insertRange(index, values) {
-		if (this.sorted) {
-			throw new TypeError('Cannot insert to sorted list');
-		}
-
-		index = this._validateIndex(index, true);
-
-		var valueCount = values.length;
-
-		if (!valueCount) {
-			return this;
-		}
-
-		this._throwIfFrozen();
-
-		if (values instanceof ObservableList) {
-			values = values._items;
-		}
-
-		for (var i = valueCount; i;) {
-			this._registerValue(values[--i]);
-		}
-
-		splice.apply(this._items, [index, 0].concat(values));
-		this.length += valueCount;
-
-		this.emit('change');
-
-		return this;
-	},
-
-	/**
-  * @typesign (value, fromIndex?: int) -> boolean;
-  */
-	remove: function remove(value, fromIndex) {
-		var index = this._items.indexOf(value, this._validateIndex(fromIndex, true));
-
-		if (index == -1) {
-			return false;
-		}
-
-		this._throwIfFrozen();
-
-		this._unregisterValue(value);
-		this._items.splice(index, 1);
-		this.length--;
-
-		this.emit('change');
-
-		return true;
-	},
-
-	/**
-  * @typesign (value, fromIndex?: int) -> boolean;
-  */
-	removeAll: function removeAll(value, fromIndex) {
-		var index = this._validateIndex(fromIndex, true);
-		var items = this._items;
-		var changed = false;
-
-		while ((index = items.indexOf(value, index)) != -1) {
-			if (!changed) {
-				this._throwIfFrozen();
-			}
-
-			this._unregisterValue(value);
-			items.splice(index, 1);
-			changed = true;
-		}
-
-		if (changed) {
-			this.length = items.length;
-			this.emit('change');
-		}
-
-		return changed;
-	},
-
-	/**
-  * @typesign (values: Array | cellx.ObservableList, fromIndex?: int) -> boolean;
-  */
-	removeEach: function removeEach(values, fromIndex) {
-		fromIndex = this._validateIndex(fromIndex, true);
-
-		if (values instanceof ObservableList) {
-			values = values._items.slice();
-		}
-
-		var items = this._items;
-		var changed = false;
-
-		for (var i = 0, l = values.length; i < l; i++) {
-			var value = values[i];
-			var index = items.indexOf(value, fromIndex);
-
-			if (index != -1) {
-				if (!changed) {
-					this._throwIfFrozen();
-				}
-
-				this._unregisterValue(value);
-				items.splice(index, 1);
-				changed = true;
-			}
-		}
-
-		if (changed) {
-			this.length = items.length;
-			this.emit('change');
-		}
-
-		return changed;
-	},
-
-	/**
-  * @typesign (values: Array | cellx.ObservableList, fromIndex?: int) -> boolean;
-  */
-	removeAllEach: function removeAllEach(values, fromIndex) {
-		fromIndex = this._validateIndex(fromIndex, true);
-
-		if (values instanceof ObservableList) {
-			values = values._items.slice();
-		}
-
-		var items = this._items;
-		var changed = false;
-
-		for (var i = 0, l = values.length; i < l; i++) {
-			var value = values[i];
-
-			for (var index = fromIndex; (index = items.indexOf(value, index)) != -1;) {
-				if (!changed) {
-					this._throwIfFrozen();
-				}
-
-				this._unregisterValue(value);
-				items.splice(index, 1);
-				changed = true;
-			}
-		}
-
-		if (changed) {
-			this.length = items.length;
-			this.emit('change');
-		}
-
-		return changed;
-	},
-
-	/**
-  * @typesign (index: int) -> *;
-  */
-	removeAt: function removeAt(index) {
-		var value = this._items.splice(this._validateIndex(index), 1)[0];
-
-		this._throwIfFrozen();
-
-		this._unregisterValue(value);
-		this.length--;
-
-		this.emit('change');
-
-		return value;
-	},
-
-	/**
-  * @typesign (index: int, count?: uint) -> Array;
-  */
-	removeRange: function removeRange(index, count) {
-		index = this._validateIndex(index, true);
-
-		var items = this._items;
-
-		if (count === undefined) {
-			count = items.length - index;
-		} else if (index + count > items.length) {
-			throw new RangeError('Sum of "index" and "count" out of valid range');
-		}
-
-		if (!count) {
-			return [];
-		}
-
-		this._throwIfFrozen();
-
-		for (var i = index + count; i > index;) {
-			this._unregisterValue(items[--i]);
-		}
-		var values = items.splice(index, count);
-		this.length -= count;
-
-		this.emit('change');
-
-		return values;
-	},
-
-	/**
-  * @typesign () -> this;
-  */
-	clear: function clear() {
-		if (!this.length) {
-			return this;
-		}
-
-		this._throwIfFrozen();
-
-		if (this.adoptsValueChanges) {
-			this._valueCounts.forEach((function (value) {
-				if (value instanceof EventEmitter) {
-					value.off('change', this._onItemChange, this);
-				}
-			}), this);
-		}
-
-		this._items.length = 0;
-		this._valueCounts.clear();
-
-		this.length = 0;
-
-		this.emit({
-			type: 'change',
-			data: {
-				subtype: 'clear'
-			}
-		});
-
-		return this;
-	},
-
-	/**
-  * @typesign (separator?: string) -> string;
-  */
-	join: function join(separator) {
-		return this._items.join(separator);
-	},
-
-	/**
-  * @typesign (
-  *     callback: (item, index: uint, list: cellx.ObservableList),
-  *     context?
-  * );
-  */
-	forEach: null,
-
-	/**
-  * @typesign (
-  *     callback: (item, index: uint, list: cellx.ObservableList) -> *,
-  *     context?
-  * ) -> Array;
-  */
-	map: null,
-
-	/**
-  * @typesign (
-  *     callback: (item, index: uint, list: cellx.ObservableList) -> ?boolean,
-  *     context?
-  * ) -> Array;
-  */
-	filter: null,
-
-	/**
-  * @typesign (
-  *     callback: (item, index: uint, list: cellx.ObservableList) -> ?boolean,
-  *     context?
-  * ) -> *;
-  */
-	find: function (callback, context) {
-		var items = this._items;
-
-		for (var i = 0, l = items.length; i < l; i++) {
-			var item = items[i];
-
-			if (callback.call(context, item, i, this)) {
-				return item;
-			}
-		}
-	},
-
-	/**
-  * @typesign (
-  *     callback: (item, index: uint, list: cellx.ObservableList) -> ?boolean,
-  *     context?
-  * ) -> int;
-  */
-	findIndex: function (callback, context) {
-		var items = this._items;
-
-		for (var i = 0, l = items.length; i < l; i++) {
-			if (callback.call(context, items[i], i, this)) {
-				return i;
-			}
-		}
-
-		return -1;
-	},
-
-	/**
-  * @typesign (
-  *     callback: (item, index: uint, list: cellx.ObservableList) -> ?boolean,
-  *     context?
-  * ) -> boolean;
-  */
-	every: null,
-
-	/**
-  * @typesign (
-  *     callback: (item, index: uint, list: cellx.ObservableList) -> ?boolean,
-  *     context?
-  * ) -> boolean;
-  */
-	some: null,
-
-	/**
-  * @typesign (
-  *     callback: (accumulator, item, index: uint, list: cellx.ObservableList) -> *,
-  *     initialValue?
-  * ) -> *;
-  */
-	reduce: null,
-
-	/**
-  * @typesign (
-  *     callback: (accumulator, item, index: uint, list: cellx.ObservableList) -> *,
-  *     initialValue?
-  * ) -> *;
-  */
-	reduceRight: null,
-
-	/**
-  * @typesign () -> this;
-  */
-	clone: function clone() {
-		return new this.constructor(this, {
-			adoptsValueChanges: this.adoptsValueChanges,
-			comparator: this.comparator,
-			sorted: this.sorted
-		});
-	},
-
-	/**
-  * @typesign () -> Array;
-  */
-	toArray: function toArray() {
-		return this._items.slice();
-	},
-
-	/**
-  * @typesign () -> string;
-  */
-	toString: function toString() {
-		return this._items.join();
-	},
-
-	/**
-  * @typesign (index: ?int, allowEndIndex?: boolean) -> ?uint;
-  */
-	_validateIndex: function _validateIndex(index, allowEndIndex) {
-		if (index === undefined) {
-			return index;
-		}
-
-		if (index < 0) {
-			index += this.length;
-
-			if (index < 0) {
-				throw new RangeError('Index out of valid range');
-			}
-		} else if (index >= this.length + (allowEndIndex ? 1 : 0)) {
-			throw new RangeError('Index out of valid range');
-		}
-
-		return index;
-	},
-
-	/**
-  * @typesign (value);
-  */
-	_insertSortedValue: function _insertSortedValue(value) {
-		this._registerValue(value);
-
-		var items = this._items;
-		var comparator = this.comparator;
-		var low = 0;
-		var high = items.length;
-
-		while (low != high) {
-			var mid = low + high >> 1;
-
-			if (comparator(value, items[mid]) < 0) {
-				high = mid;
-			} else {
-				low = mid + 1;
-			}
-		}
-
-		items.splice(low, 0, value);
-	}
-}]);
-
-['forEach', 'map', 'filter', 'every', 'some'].forEach((function (name) {
-	ObservableList.prototype[name] = function (callback, context) {
-		return this._items[name]((function (item, index) {
-			return callback.call(context, item, index, this);
-		}), this);
-	};
-}));
-
-['reduce', 'reduceRight'].forEach((function (name) {
-	ObservableList.prototype[name] = function (callback, initialValue) {
-		var items = this._items;
-		var list = this;
-
-		function wrapper(accumulator, item, index) {
-			return callback(accumulator, item, index, list);
-		}
-
-		return arguments.length >= 2 ? items[name](wrapper, initialValue) : items[name](wrapper);
-	};
-}));
-
-[['keys', function keys(index) {
-	return index;
-}], ['values', function values(index, item) {
-	return item;
-}], ['entries', function entries(index, item) {
-	return [index, item];
-}]].forEach((function (settings) {
-	var getStepValue = settings[1];
-
-	ObservableList.prototype[settings[0]] = function () {
-		var items = this._items;
-		var index = 0;
-		var done = false;
-
-		return {
-			next: function () {
-				if (!done) {
-					if (index < items.length) {
-						return {
-							value: getStepValue(index, items[index++]),
-							done: false
-						};
-					}
-
-					done = true;
-				}
-
-				return {
-					value: undefined,
-					done: true
-				};
-			}
-		};
-	};
-}));
-
-ObservableList.prototype[symbolPolyfill.Symbol.iterator] = ObservableList.prototype.values;
-
-/**
- * @class cellx.ObservableMap
- * @extends {cellx.EventEmitter}
- * @implements {cellx.FreezableCollectionMixin}
- * @implements {cellx.ObservableCollectionMixin}
- *
- * @typesign new ObservableMap(entries?: Object | cellx.ObservableMap | Map | Array<{ 0, 1 }>, opts?: {
- *     adoptsValueChanges?: boolean
- * });
- * @typesign new ObservableMap(
- *     entries?: Object | cellx.ObservableMap | Map | Array<{ 0, 1 }>,
- *     adoptsValueChanges?: boolean
- * );
- */
-function ObservableMap(entries, opts) {
-	EventEmitter.call(this);
-	FreezableCollectionMixin.call(this);
-	ObservableCollectionMixin.call(this);
-
-	if (typeof opts == 'boolean') {
-		opts = { adoptsValueChanges: opts };
-	}
-
-	this._entries = new mapSetPolyfill.Map();
-
-	this.size = 0;
-
-	/**
-  * @type {boolean}
-  */
-	this.adoptsValueChanges = !!(opts && opts.adoptsValueChanges);
-
-	if (entries) {
-		var mapEntries = this._entries;
-
-		if (entries instanceof ObservableMap || entries instanceof mapSetPolyfill.Map) {
-			entries._entries.forEach((function (value, key) {
-				this._registerValue(value);
-				mapEntries.set(key, value);
-			}), this);
-		} else if (Array.isArray(entries)) {
-			for (var i = 0, l = entries.length; i < l; i++) {
-				var entry = entries[i];
-
-				this._registerValue(entry[1]);
-				mapEntries.set(entry[0], entry[1]);
-			}
-		} else {
-			for (var key in entries) {
-				this._registerValue(entries[key]);
-				mapEntries.set(key, entries[key]);
-			}
-		}
-
-		this.size = mapEntries.size;
-	}
-}
-
-ObservableMap.prototype = mixin.mixin({ __proto__: EventEmitter.prototype }, [FreezableCollectionMixin.prototype, ObservableCollectionMixin.prototype, {
-	constructor: ObservableMap,
-
-	/**
-  * @typesign (key) -> boolean;
-  */
-	has: function has(key) {
-		return this._entries.has(key);
-	},
-
-	/**
-  * @typesign (value) -> boolean;
-  */
-	contains: function contains(value) {
-		return this._valueCounts.has(value);
-	},
-
-	/**
-  * @typesign (key) -> *;
-  */
-	get: function get(key) {
-		return this._entries.get(key);
-	},
-
-	/**
-  * @typesign (key, value) -> this;
-  */
-	set: function set(key, value) {
-		var entries = this._entries;
-		var hasKey = entries.has(key);
-		var oldValue;
-
-		if (hasKey) {
-			oldValue = entries.get(key);
-
-			if (is.is(value, oldValue)) {
-				return this;
-			}
-
-			this._throwIfFrozen();
-
-			this._unregisterValue(oldValue);
-		} else {
-			this._throwIfFrozen();
-		}
-
-		this._registerValue(value);
-		entries.set(key, value);
-
-		if (!hasKey) {
-			this.size++;
-		}
-
-		this.emit({
-			type: 'change',
-			data: {
-				subtype: hasKey ? 'update' : 'add',
-				key: key,
-				oldValue: oldValue,
-				value: value
-			}
-		});
-
-		return this;
-	},
-
-	/**
-  * @typesign (key) -> boolean;
-  */
-	delete: function delete_(key) {
-		var entries = this._entries;
-
-		if (!entries.has(key)) {
-			return false;
-		}
-
-		this._throwIfFrozen();
-
-		var value = entries.get(key);
-
-		this._unregisterValue(value);
-		entries.delete(key);
-		this.size--;
-
-		this.emit({
-			type: 'change',
-			data: {
-				subtype: 'delete',
-				key: key,
-				oldValue: value,
-				value: undefined
-			}
-		});
-
-		return true;
-	},
-
-	/**
-  * @typesign () -> this;
-  */
-	clear: function clear() {
-		if (!this.size) {
-			return this;
-		}
-
-		this._throwIfFrozen();
-
-		if (this.adoptsValueChanges) {
-			this._valueCounts.forEach((function (value) {
-				if (value instanceof EventEmitter) {
-					value.off('change', this._onItemChange, this);
-				}
-			}), this);
-		}
-
-		this._entries.clear();
-		this._valueCounts.clear();
-
-		this.size = 0;
-
-		this.emit({
-			type: 'change',
-			data: {
-				subtype: 'clear'
-			}
-		});
-
-		return this;
-	},
-
-	/**
-  * @typesign (
-  *     callback: (value, key, map: cellx.ObservableMap),
-  *     context?
-  * );
-  */
-	forEach: function forEach(callback, context) {
-		this._entries.forEach((function (value, key) {
-			callback.call(context, value, key, this);
-		}), this);
-	},
-
-	/**
-  * @typesign () -> { next: () -> { value, done: boolean } };
-  */
-	keys: function keys() {
-		return this._entries.keys();
-	},
-
-	/**
-  * @typesign () -> { next: () -> { value, done: boolean } };
-  */
-	values: function values() {
-		return this._entries.values();
-	},
-
-	/**
-  * @typesign () -> { next: () -> { value: { 0, 1 }, done: boolean } };
-  */
-	entries: function entries() {
-		return this._entries.entries();
-	},
-
-	/**
-  * @typesign () -> this;
-  */
-	clone: function clone() {
-		return new this.constructor(this, {
-			adoptsValueChanges: this.adoptsValueChanges
-		});
-	}
-}]);
-
-ObservableMap.prototype[symbolPolyfill.Symbol.iterator] = ObservableMap.prototype.entries;
-
-var KEY_CELL_MAP = symbolPolyfill.Symbol('cellx.cellMap');
-
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var map_set_polyfill_1 = __webpack_require__(4);
+var object_assign_polyfill_1 = __webpack_require__(10);
+var Cell_1 = __webpack_require__(19);
+var ObservableList_1 = __webpack_require__(21);
+var ObservableMap_1 = __webpack_require__(22);
+var keys_1 = __webpack_require__(23);
+var EventEmitter_1 = __webpack_require__(6);
+exports.EventEmitter = EventEmitter_1.EventEmitter;
+var FreezableCollection_1 = __webpack_require__(12);
+exports.FreezableCollection = FreezableCollection_1.FreezableCollection;
+var ObservableCollection_1 = __webpack_require__(13);
+exports.ObservableCollection = ObservableCollection_1.ObservableCollection;
+var ObservableMap_2 = __webpack_require__(22);
+exports.ObservableMap = ObservableMap_2.ObservableMap;
+var ObservableList_2 = __webpack_require__(21);
+exports.ObservableList = ObservableList_2.ObservableList;
+var Cell_2 = __webpack_require__(19);
+exports.Cell = Cell_2.Cell;
+var keys_2 = __webpack_require__(23);
+exports.KEY_CELL_MAP = keys_2.KEY_CELL_MAP;
 var hasOwn = Object.prototype.hasOwnProperty;
 var slice = Array.prototype.slice;
-
 var global = Function('return this;')();
-
-/**
- * @typesign (value?, opts?: {
- *     debugKey?: string,
- *     context?: Object,
- *     validate?: (value, oldValue),
- *     merge: (value, oldValue) -> *,
- *     put?: (cell: Cell, value, oldValue),
- *     reap?: (),
- *     onChange?: (evt: cellx~Event) -> ?boolean,
- *     onError?: (evt: cellx~Event) -> ?boolean
- * }) -> cellx;
- * @typesign (pull: (cell: Cell, next) -> *, opts?: {
- *     debugKey?: string,
- *     context?: Object,
- *     validate?: (value, oldValue),
- *     merge: (value, oldValue) -> *,
- *     put?: (cell: Cell, value, oldValue),
- *     reap?: (),
- *     onChange?: (evt: cellx~Event) -> ?boolean,
- *     onError?: (evt: cellx~Event) -> ?boolean
- * }) -> cellx;
- */
-function cellx(value, opts) {
-	if (!opts) {
-		opts = {};
-	}
-
-	var initialValue = value;
-
-	function cx(value) {
-		var context = this;
-
-		if (!context || context == global) {
-			context = cx;
-		}
-
-		if (!hasOwn.call(context, KEY_CELL_MAP)) {
-			Object.defineProperty(context, KEY_CELL_MAP, { value: new mapSetPolyfill.Map() });
-		}
-
-		var cell = context[KEY_CELL_MAP].get(cx);
-
-		if (!cell) {
-			if (value === 'dispose' && arguments.length >= 2) {
-				return;
-			}
-
-			cell = new Cell(initialValue, objectAssignPolyfill.assign({ context: context }, opts));
-
-			context[KEY_CELL_MAP].set(cx, cell);
-		}
-
-		switch (arguments.length) {
-			case 0:
-				{
-					return cell.get();
-				}
-			case 1:
-				{
-					cell.set(value);
-					return value;
-				}
-			default:
-				{
-					var method = value;
-
-					switch (method) {
-						case 'bind':
-							{
-								cx = cx.bind(context);
-								cx.constructor = cellx;
-								return cx;
-							}
-						case 'unwrap':
-							{
-								return cell;
-							}
-						default:
-							{
-								var result = Cell.prototype[method].apply(cell, slice.call(arguments, 1));
-								return result === cell ? cx : result;
-							}
-					}
-				}
-		}
-	}
-	cx.constructor = cellx;
-
-	if (opts.onChange || opts.onError) {
-		cx.call(opts.context || global);
-	}
-
-	return cx;
-}
-
-cellx.EventEmitter = EventEmitter;
-cellx.FreezableCollectionMixin = FreezableCollectionMixin;
-cellx.ObservableCollectionMixin = ObservableCollectionMixin;
-cellx.ObservableMap = ObservableMap;
-cellx.ObservableList = ObservableList;
-cellx.Cell = Cell;
-cellx.autorun = Cell.autorun;
-cellx.KEY_CELL_MAP = KEY_CELL_MAP;
-
-/**
- * @typesign (
- *     entries?: Object | Array<{ 0, 1 }> | cellx.ObservableMap,
- *     opts?: { adoptsValueChanges?: boolean }
- * ) -> cellx.ObservableMap;
- * @typesign (
- *     entries?: Object | Array<{ 0, 1 }> | cellx.ObservableMap,
- *     adoptsValueChanges?: boolean
- * ) -> cellx.ObservableMap;
- */
 function map(entries, opts) {
-	return new ObservableMap(entries, opts);
+    return new ObservableMap_1.ObservableMap(entries, opts);
 }
-
-cellx.map = map;
-
-/**
- * @typesign (items?: Array | cellx.ObservableList, opts?: {
- *     adoptsValueChanges?: boolean,
- *     comparator?: (a, b) -> int,
- *     sorted?: boolean
- * }) -> cellx.ObservableList;
- * @typesign (items?: Array | cellx.ObservableList, adoptsValueChanges?: boolean) -> cellx.ObservableList;
- */
+exports.map = map;
 function list(items, opts) {
-	return new ObservableList(items, opts);
+    return new ObservableList_1.ObservableList(items, opts);
 }
-
-cellx.list = list;
-
-/**
- * @typesign (obj: cellx.EventEmitter, name: string, value) -> cellx.EventEmitter;
- */
+exports.list = list;
+function cellx(value, opts) {
+    if (!opts) {
+        opts = {};
+    }
+    var initialValue = value;
+    var cx = function (value) {
+        var context = this;
+        if (!context || context == global) {
+            context = cx;
+        }
+        if (!hasOwn.call(context, keys_1.KEY_CELL_MAP)) {
+            Object.defineProperty(context, keys_1.KEY_CELL_MAP, { value: new map_set_polyfill_1.Map() });
+        }
+        var cell = context[keys_1.KEY_CELL_MAP].get(cx);
+        if (!cell) {
+            if (value === 'dispose' && arguments.length >= 2) {
+                return;
+            }
+            cell = new Cell_1.Cell(initialValue, object_assign_polyfill_1.assign({ context: context }, opts));
+            context[keys_1.KEY_CELL_MAP].set(cx, cell);
+        }
+        switch (arguments.length) {
+            case 0: {
+                return cell.get();
+            }
+            case 1: {
+                cell.set(value);
+                return value;
+            }
+            default: {
+                var method = value;
+                switch (method) {
+                    case 'bind': {
+                        cx = cx.bind(context);
+                        cx.constructor = cellx;
+                        return cx;
+                    }
+                    case 'unwrap': {
+                        return cell;
+                    }
+                    default: {
+                        var result = Cell_1.Cell.prototype[method].apply(cell, slice.call(arguments, 1));
+                        return result === cell ? cx : result;
+                    }
+                }
+            }
+        }
+    };
+    cx.constructor = cellx;
+    if (opts.onChange || opts.onError) {
+        cx.call(opts.context || global);
+    }
+    return cx;
+}
+exports.cellx = cellx;
 function defineObservableProperty(obj, name, value) {
-	var cellName = name + 'Cell';
-
-	Object.defineProperty(obj, cellName, {
-		configurable: true,
-		enumerable: false,
-		writable: true,
-		value: value instanceof Cell ? value : new Cell(value, { context: obj })
-	});
-
-	Object.defineProperty(obj, name, {
-		configurable: true,
-		enumerable: true,
-
-		get: function () {
-			return this[cellName].get();
-		},
-
-		set: function (value) {
-			this[cellName].set(value);
-		}
-	});
-
-	return obj;
+    var cellName = name + 'Cell';
+    Object.defineProperty(obj, cellName, {
+        configurable: true,
+        enumerable: false,
+        writable: true,
+        value: value instanceof Cell_1.Cell ? value : new Cell_1.Cell(value, { context: obj })
+    });
+    Object.defineProperty(obj, name, {
+        configurable: true,
+        enumerable: true,
+        get: function () {
+            return this[cellName].get();
+        },
+        set: function (value) {
+            this[cellName].set(value);
+        }
+    });
+    return obj;
 }
-
-cellx.defineObservableProperty = defineObservableProperty;
-
-/**
- * @typesign (obj: cellx.EventEmitter, props: Object) -> cellx.EventEmitter;
- */
+exports.defineObservableProperty = defineObservableProperty;
 function defineObservableProperties(obj, props) {
-	Object.keys(props).forEach((function (name) {
-		defineObservableProperty(obj, name, props[name]);
-	}));
-
-	return obj;
+    Object.keys(props).forEach(function (name) {
+        defineObservableProperty(obj, name, props[name]);
+    });
+    return obj;
 }
-
-cellx.defineObservableProperties = defineObservableProperties;
-
-/**
- * @typesign (obj: cellx.EventEmitter, name: string, value) -> cellx.EventEmitter;
- * @typesign (obj: cellx.EventEmitter, props: Object) -> cellx.EventEmitter;
- */
+exports.defineObservableProperties = defineObservableProperties;
 function define(obj, name, value) {
-	if (typeof name == 'string') {
-		defineObservableProperty(obj, name, value);
-	} else {
-		defineObservableProperties(obj, name);
-	}
-
-	return obj;
+    if (typeof name == 'string') {
+        defineObservableProperty(obj, name, value);
+    }
+    else {
+        defineObservableProperties(obj, name);
+    }
+    return obj;
 }
-
-cellx.define = define;
-
-cellx.cellx = cellx;
-
-cellx.default = cellx;
-cellx.__esModule = true;
-
-return cellx;
-
-})));
+exports.define = define;
 
 
 /***/ }),
@@ -7498,7 +5001,7 @@ return cellx;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var logger_1 = __webpack_require__(28);
+var logger_1 = __webpack_require__(36);
 var global = Function('return this;')();
 var nextTick;
 exports.nextTick = nextTick;
@@ -7550,132 +5053,8 @@ else {
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var hasOwn = Object.prototype.hasOwnProperty;
-var reInsert = /\{([1-9]\d*|n)(?::((?:[^|]*\|)+?[^}]*))?\}/;
-var texts;
-var getPluralIndex;
-exports.getText = function getText(context, key, plural, args) {
-    var rawText;
-    if (hasOwn.call(texts, context) && hasOwn.call(texts[context], key)) {
-        rawText = plural ?
-            texts[context][key][getPluralIndex(+args[0])] :
-            texts[context][key];
-    }
-    else {
-        rawText = key;
-    }
-    var data = Object.create(null);
-    for (var i = args.length; i;) {
-        data[i] = args[--i];
-    }
-    if (plural) {
-        data.n = args[0];
-    }
-    var splittedRawText = rawText.split(reInsert);
-    var text = [];
-    for (var i = 0, l = splittedRawText.length; i < l;) {
-        if (i % 3) {
-            text.push(splittedRawText[i + 1] ?
-                splittedRawText[i + 1].split('|')[getPluralIndex(data[splittedRawText[i]])] :
-                data[splittedRawText[i]]);
-            i += 2;
-        }
-        else {
-            text.push(splittedRawText[i]);
-            i++;
-        }
-    }
-    return text.join('');
-};
-function configure(config) {
-    texts = config.texts;
-    getPluralIndex = Function('n', "return " + config.localeSettings.plural + ";");
-    exports.getText.localeSettings = config.localeSettings;
-}
-function t(key) {
-    var args = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        args[_i - 1] = arguments[_i];
-    }
-    return exports.getText('', key, false, args);
-}
-function pt(key, context) {
-    var args = [];
-    for (var _i = 2; _i < arguments.length; _i++) {
-        args[_i - 2] = arguments[_i];
-    }
-    return exports.getText(context, key, false, args);
-}
-function nt(key) {
-    var args = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        args[_i - 1] = arguments[_i];
-    }
-    return exports.getText('', key, true, args);
-}
-function npt(key, context) {
-    var args = [];
-    for (var _i = 2; _i < arguments.length; _i++) {
-        args[_i - 2] = arguments[_i];
-    }
-    return exports.getText(context, key, true, args);
-}
-exports.getText.configure = configure;
-exports.getText.t = t;
-exports.getText.pt = pt;
-exports.getText.nt = nt;
-exports.getText.npt = npt;
-configure({
-    localeSettings: {
-        code: 'ru',
-        plural: '(n%100) >= 5 && (n%100) <= 20 ? 2 : (n%10) == 1 ? 0 : (n%10) >= 2 && (n%10) <= 4 ? 1 : 2'
-    },
-    texts: {}
-});
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-function isFocusable(el) {
-    if (el.hasAttribute('tabindex')) {
-        return el.tabIndex >= 0;
-    }
-    switch (el.tagName) {
-        case 'a':
-        case 'area': {
-            return el.hasAttribute('href') && el.tabIndex >= 0;
-        }
-        case 'button':
-        case 'input':
-        case 'textarea':
-        case 'select': {
-            return !el.hasAttribute('disabled') && el.tabIndex >= 0;
-        }
-        case 'iframe':
-        case 'object':
-        case 'embed': {
-            return el.tabIndex >= 0;
-        }
-    }
-    return el.hasAttribute('contenteditable') && el.tabIndex >= 0;
-}
-exports.isFocusable = isFocusable;
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var global = Function('return this;')();
-var Symbol =  true ? __webpack_require__(7).Symbol : global.Symbol;
+var Symbol =  true ? __webpack_require__(18).Symbol : global.Symbol;
 
 var hasOwn = Object.prototype.hasOwnProperty;
 
@@ -7979,27 +5358,283 @@ if (true) {
 
 
 /***/ }),
-/* 7 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = Function('return this;')();
-var Symbol = global.Symbol;
+"use strict";
 
-var idCounter = 0;
-
-if (!Symbol) {
-	Symbol = function Symbol(key) {
-		return '__' + key + '_' + Math.floor(Math.random() * 1e9) + '_' + (++idCounter) + '__';
-	};
-
-	Symbol.iterator = Symbol('Symbol.iterator');
+Object.defineProperty(exports, "__esModule", { value: true });
+var hasOwn = Object.prototype.hasOwnProperty;
+var reInsert = /\{([1-9]\d*|n)(?::((?:[^|]*\|)+?[^}]*))?\}/;
+var texts;
+var getPluralIndex;
+exports.getText = function getText(context, key, plural, args) {
+    var rawText;
+    if (hasOwn.call(texts, context) && hasOwn.call(texts[context], key)) {
+        rawText = plural ?
+            texts[context][key][getPluralIndex(+args[0])] :
+            texts[context][key];
+    }
+    else {
+        rawText = key;
+    }
+    var data = Object.create(null);
+    for (var i = args.length; i;) {
+        data[i] = args[--i];
+    }
+    if (plural) {
+        data.n = args[0];
+    }
+    var splittedRawText = rawText.split(reInsert);
+    var text = [];
+    for (var i = 0, l = splittedRawText.length; i < l;) {
+        if (i % 3) {
+            text.push(splittedRawText[i + 1] ?
+                splittedRawText[i + 1].split('|')[getPluralIndex(data[splittedRawText[i]])] :
+                data[splittedRawText[i]]);
+            i += 2;
+        }
+        else {
+            text.push(splittedRawText[i]);
+            i++;
+        }
+    }
+    return text.join('');
+};
+function configure(config) {
+    texts = config.texts;
+    getPluralIndex = Function('n', "return " + config.localeSettings.plural + ";");
+    exports.getText.localeSettings = config.localeSettings;
 }
-
-( true ? exports : global).Symbol = Symbol;
+function t(key) {
+    var args = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        args[_i - 1] = arguments[_i];
+    }
+    return exports.getText('', key, false, args);
+}
+function pt(key, context) {
+    var args = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        args[_i - 2] = arguments[_i];
+    }
+    return exports.getText(context, key, false, args);
+}
+function nt(key) {
+    var args = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        args[_i - 1] = arguments[_i];
+    }
+    return exports.getText('', key, true, args);
+}
+function npt(key, context) {
+    var args = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        args[_i - 2] = arguments[_i];
+    }
+    return exports.getText(context, key, true, args);
+}
+exports.getText.configure = configure;
+exports.getText.t = t;
+exports.getText.pt = pt;
+exports.getText.nt = nt;
+exports.getText.npt = npt;
+configure({
+    localeSettings: {
+        code: 'ru',
+        plural: '(n%100) >= 5 && (n%100) <= 20 ? 2 : (n%10) == 1 ? 0 : (n%10) >= 2 && (n%10) <= 4 ? 1 : 2'
+    },
+    texts: {}
+});
 
 
 /***/ }),
-/* 8 */
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var logger_1 = __webpack_require__(20);
+var map_set_polyfill_1 = __webpack_require__(4);
+var EventEmitter = /** @class */ (function () {
+    function EventEmitter() {
+        this._events = new map_set_polyfill_1.Map();
+    }
+    EventEmitter.prototype.getEvents = function (type) {
+        var events;
+        if (type) {
+            events = this._events.get(type);
+            if (!events) {
+                return [];
+            }
+            return Array.isArray(events) ? events : [events];
+        }
+        events = Object.create(null);
+        this._events.forEach(function (typeEvents, type) {
+            events[type] = Array.isArray(typeEvents) ? typeEvents : [typeEvents];
+        });
+        return events;
+    };
+    EventEmitter.prototype.on = function (type, listener, context) {
+        if (typeof type == 'object') {
+            context = listener !== undefined ? listener : this;
+            var listeners = type;
+            for (type in listeners) {
+                this._on(type, listeners[type], context);
+            }
+        }
+        else {
+            this._on(type, listener, context !== undefined ? context : this);
+        }
+        return this;
+    };
+    EventEmitter.prototype.off = function (type, listener, context) {
+        if (type) {
+            if (typeof type == 'object') {
+                context = listener !== undefined ? listener : this;
+                var listeners = type;
+                for (type in listeners) {
+                    this._off(type, listeners[type], context);
+                }
+            }
+            else {
+                this._off(type, listener, context !== undefined ? context : this);
+            }
+        }
+        else {
+            this._events.clear();
+        }
+        return this;
+    };
+    EventEmitter.prototype._on = function (type, listener, context) {
+        var index = type.indexOf(':');
+        if (index != -1) {
+            var propName = type.slice(index + 1);
+            EventEmitter.currentlySubscribing = true;
+            (this[propName + 'Cell'] || (this[propName], this[propName + 'Cell']))
+                .on(type.slice(0, index), listener, context);
+            EventEmitter.currentlySubscribing = false;
+        }
+        else {
+            var events = this._events.get(type);
+            var evt = { listener: listener, context: context };
+            if (!events) {
+                this._events.set(type, evt);
+            }
+            else if (Array.isArray(events)) {
+                events.push(evt);
+            }
+            else {
+                this._events.set(type, [events, evt]);
+            }
+        }
+    };
+    EventEmitter.prototype._off = function (type, listener, context) {
+        var index = type.indexOf(':');
+        if (index != -1) {
+            var propName = type.slice(index + 1);
+            (this[propName + 'Cell'] || (this[propName], this[propName + 'Cell']))
+                .off(type.slice(0, index), listener, context);
+        }
+        else {
+            var events = this._events.get(type);
+            if (!events) {
+                return;
+            }
+            var evt = void 0;
+            if (!Array.isArray(events)) {
+                evt = events;
+            }
+            else if (events.length == 1) {
+                evt = events[0];
+            }
+            else {
+                for (var i = events.length; i;) {
+                    evt = events[--i];
+                    if (evt.listener == listener && evt.context === context) {
+                        events.splice(i, 1);
+                        break;
+                    }
+                }
+                return;
+            }
+            if (evt.listener == listener && evt.context === context) {
+                this._events.delete(type);
+            }
+        }
+    };
+    EventEmitter.prototype.once = function (type, listener, context) {
+        if (context === undefined) {
+            context = this;
+        }
+        function wrapper(evt) {
+            this._off(type, wrapper, context);
+            return listener.call(this, evt);
+        }
+        this._on(type, wrapper, context);
+        return wrapper;
+    };
+    EventEmitter.prototype.emit = function (evt, data) {
+        if (typeof evt == 'string') {
+            evt = {
+                target: this,
+                type: evt
+            };
+        }
+        else if (!evt.target) {
+            evt.target = this;
+        }
+        else if (evt.target != this) {
+            throw new TypeError('Event cannot be emitted on this object');
+        }
+        if (data) {
+            evt.data = data;
+        }
+        this.handleEvent(evt);
+        return evt;
+    };
+    EventEmitter.prototype.handleEvent = function (evt) {
+        var events = this._events.get(evt.type);
+        if (!events) {
+            return;
+        }
+        if (Array.isArray(events)) {
+            var eventCount = events.length;
+            if (eventCount == 1) {
+                if (this._tryEventListener(events[0], evt) === false) {
+                    evt.isPropagationStopped = true;
+                }
+            }
+            else {
+                events = events.slice();
+                for (var i = 0; i < eventCount; i++) {
+                    if (this._tryEventListener(events[i], evt) === false) {
+                        evt.isPropagationStopped = true;
+                    }
+                }
+            }
+        }
+        else if (this._tryEventListener(events, evt) === false) {
+            evt.isPropagationStopped = true;
+        }
+    };
+    EventEmitter.prototype._tryEventListener = function (emEvt, evt) {
+        try {
+            return emEvt.listener.call(emEvt.context, evt);
+        }
+        catch (err) {
+            logger_1.error(err);
+        }
+    };
+    EventEmitter.currentlySubscribing = false;
+    return EventEmitter;
+}());
+exports.EventEmitter = EventEmitter;
+
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8025,7 +5660,60 @@ exports.mixin = mixin;
 
 
 /***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function isFocusable(el) {
+    if (el.hasAttribute('tabindex')) {
+        return el.tabIndex >= 0;
+    }
+    switch (el.tagName) {
+        case 'a':
+        case 'area': {
+            return el.hasAttribute('href') && el.tabIndex >= 0;
+        }
+        case 'button':
+        case 'input':
+        case 'textarea':
+        case 'select': {
+            return !el.hasAttribute('disabled') && el.tabIndex >= 0;
+        }
+        case 'iframe':
+        case 'object':
+        case 'embed': {
+            return el.tabIndex >= 0;
+        }
+    }
+    return el.hasAttribute('contenteditable') && el.tabIndex >= 0;
+}
+exports.isFocusable = isFocusable;
+
+
+/***/ }),
 /* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = Function('return this;')();
+var Symbol = global.Symbol;
+
+var idCounter = 0;
+
+if (!Symbol) {
+	Symbol = function Symbol(key) {
+		return '__' + key + '_' + Math.floor(Math.random() * 1e9) + '_' + (++idCounter) + '__';
+	};
+
+	Symbol.iterator = Symbol('Symbol.iterator');
+}
+
+( true ? exports : global).Symbol = Symbol;
+
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8041,30 +5729,16 @@ exports.assign = assign;
 
 
 /***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var escapeHTML_1 = __webpack_require__(32);
-exports.escapeHTML = escapeHTML_1.escapeHTML;
-var unescapeHTML_1 = __webpack_require__(33);
-exports.unescapeHTML = unescapeHTML_1.unescapeHTML;
-
-
-/***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var uidCounter = 0;
-function nextUID() {
-    return String(++uidCounter);
-}
-exports.nextUID = nextUID;
+var is = Object.is || (function (a, b) {
+    return a === b ? a !== 0 || 1 / a == 1 / b : a != a && b != b;
+});
+exports.is = is;
 
 
 /***/ }),
@@ -8084,7 +5758,152 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var object_assign_polyfill_1 = __webpack_require__(9);
+var EventEmitter_1 = __webpack_require__(6);
+var FreezableCollection = /** @class */ (function (_super) {
+    __extends(FreezableCollection, _super);
+    function FreezableCollection() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this._isFrozen = false;
+        return _this;
+    }
+    Object.defineProperty(FreezableCollection.prototype, "isFrozen", {
+        get: function () {
+            return this._isFrozen;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    FreezableCollection.prototype.freeze = function () {
+        this._isFrozen = true;
+        return this;
+    };
+    FreezableCollection.prototype.unfreeze = function () {
+        this._isFrozen = false;
+        return this;
+    };
+    FreezableCollection.prototype._throwIfFrozen = function (msg) {
+        if (this._isFrozen) {
+            throw new TypeError(msg || 'Frozen collection cannot be mutated');
+        }
+    };
+    return FreezableCollection;
+}(EventEmitter_1.EventEmitter));
+exports.FreezableCollection = FreezableCollection;
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var map_set_polyfill_1 = __webpack_require__(4);
+var EventEmitter_1 = __webpack_require__(6);
+var ObservableCollection = /** @class */ (function (_super) {
+    __extends(ObservableCollection, _super);
+    function ObservableCollection() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this._valueCounts = new map_set_polyfill_1.Map();
+        return _this;
+    }
+    Object.defineProperty(ObservableCollection.prototype, "adoptsValueChanges", {
+        get: function () {
+            return this._adoptsValueChanges;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ObservableCollection.prototype._onItemChange = function (evt) {
+        this.handleEvent(evt);
+    };
+    ObservableCollection.prototype._registerValue = function (value) {
+        var valueCounts = this._valueCounts;
+        var valueCount = valueCounts.get(value);
+        if (valueCount) {
+            valueCounts.set(value, valueCount + 1);
+        }
+        else {
+            valueCounts.set(value, 1);
+            if (this._adoptsValueChanges && value instanceof EventEmitter_1.EventEmitter) {
+                value.on('change', this._onItemChange, this);
+            }
+        }
+        return value;
+    };
+    ObservableCollection.prototype._unregisterValue = function (value) {
+        var valueCounts = this._valueCounts;
+        var valueCount = valueCounts.get(value);
+        if (valueCount == 1) {
+            valueCounts.delete(value);
+            if (this._adoptsValueChanges && value instanceof EventEmitter_1.EventEmitter) {
+                value.off('change', this._onItemChange, this);
+            }
+        }
+        else {
+            valueCounts.set(value, valueCount - 1);
+        }
+    };
+    return ObservableCollection;
+}(EventEmitter_1.EventEmitter));
+exports.ObservableCollection = ObservableCollection;
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var escapeHTML_1 = __webpack_require__(40);
+exports.escapeHTML = escapeHTML_1.escapeHTML;
+var unescapeHTML_1 = __webpack_require__(41);
+exports.unescapeHTML = unescapeHTML_1.unescapeHTML;
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var uidCounter = 0;
+function nextUID() {
+    return String(++uidCounter);
+}
+exports.nextUID = nextUID;
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var object_assign_polyfill_1 = __webpack_require__(10);
 var cellx_1 = __webpack_require__(2);
 var INDEXPATH_EMPTY_ERROR_MESSAGE = 'Indexpath cannot be empty';
 function fixParent(items, parent) {
@@ -8200,7 +6019,7 @@ exports.ObservableTreeList = ObservableTreeList;
 
 
 /***/ }),
-/* 13 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8222,17 +6041,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var gettext_1 = __webpack_require__(4);
+var gettext_1 = __webpack_require__(5);
 var next_tick_1 = __webpack_require__(3);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var isFocusable_1 = __webpack_require__(5);
-__webpack_require__(107);
-var isEqualArray_1 = __webpack_require__(108);
-var opal_select_option_1 = __webpack_require__(109);
+var isFocusable_1 = __webpack_require__(8);
+__webpack_require__(116);
+var isEqualArray_1 = __webpack_require__(117);
+var opal_select_option_1 = __webpack_require__(118);
 exports.OpalSelectOption = opal_select_option_1.OpalSelectOption;
-var template = __webpack_require__(112);
+var template_nelm_1 = __webpack_require__(121);
 var RtIfThen = rionite_1.Components.RtIfThen, RtRepeat = rionite_1.Components.RtRepeat;
 var map = Array.prototype.map;
 var defaultDataListItemSchema = Object.freeze({ value: 'value', text: 'text', disabled: 'disabled' });
@@ -8832,7 +6651,7 @@ var OpalSelect = /** @class */ (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template,
+            template: template_nelm_1.default,
             events: {
                 'menu-wrapper': {
                     loaded: function (evt) {
@@ -8865,19 +6684,1565 @@ exports.OpalSelect = OpalSelect;
 
 
 /***/ }),
-/* 14 */
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = Function('return this;')();
+var Symbol = global.Symbol;
+
+var idCounter = 0;
+
+if (!Symbol) {
+	Symbol = function Symbol(key) {
+		return '__' + key + '_' + Math.floor(Math.random() * 1e9) + '_' + (++idCounter) + '__';
+	};
+
+	Symbol.iterator = Symbol('Symbol.iterator');
+}
+
+( true ? exports : global).Symbol = Symbol;
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var is_1 = __webpack_require__(11);
+var logger_1 = __webpack_require__(20);
+var map_set_polyfill_1 = __webpack_require__(4);
+var next_tick_1 = __webpack_require__(3);
+var symbol_polyfill_1 = __webpack_require__(9);
+var EventEmitter_1 = __webpack_require__(6);
+var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 0x1fffffffffffff;
+var KEY_WRAPPERS = symbol_polyfill_1.Symbol('wrappers');
+var errorIndexCounter = 0;
+var pushingIndexCounter = 0;
+var releasePlan = new map_set_polyfill_1.Map();
+var releasePlanIndex = MAX_SAFE_INTEGER;
+var releasePlanToIndex = -1;
+var releasePlanned = false;
+var currentlyRelease = 0;
+var currentCell = null;
+var $error = { error: null };
+var releaseVersion = 1;
+var afterRelease;
+var STATE_INITED = 1;
+var STATE_CURRENTLY_PULLING = 1 << 1;
+var STATE_ACTIVE = 1 << 2;
+var STATE_HAS_FOLLOWERS = 1 << 3;
+var STATE_PENDING = 1 << 4;
+var STATE_CAN_CANCEL_CHANGE = 1 << 5;
+function release(force) {
+    if (!releasePlanned && !force) {
+        return;
+    }
+    releasePlanned = false;
+    currentlyRelease++;
+    var queue = releasePlan.get(releasePlanIndex);
+    for (;;) {
+        var cell = queue && queue.shift();
+        if (!cell) {
+            if (releasePlanIndex == releasePlanToIndex) {
+                break;
+            }
+            queue = releasePlan.get(++releasePlanIndex);
+            continue;
+        }
+        var oldReleasePlanIndex = releasePlanIndex;
+        var level = cell._level;
+        var changeEvent = cell._changeEvent;
+        if (!changeEvent) {
+            if (level > releasePlanIndex || cell._levelInRelease == -1) {
+                if (!queue.length) {
+                    if (releasePlanIndex == releasePlanToIndex) {
+                        break;
+                    }
+                    queue = releasePlan.get(++releasePlanIndex);
+                }
+                continue;
+            }
+            cell.pull();
+            level = cell._level;
+            if (level > releasePlanIndex) {
+                if (!queue.length) {
+                    queue = releasePlan.get(++releasePlanIndex);
+                }
+                continue;
+            }
+            changeEvent = cell._changeEvent;
+        }
+        cell._levelInRelease = -1;
+        if (changeEvent) {
+            cell._fixedValue = cell._value;
+            cell._changeEvent = null;
+            var pushingIndex = cell._pushingIndex;
+            var slaves = cell._slaves;
+            for (var i = 0, l = slaves.length; i < l; i++) {
+                var slave = slaves[i];
+                if (slave._level <= level) {
+                    slave._level = level + 1;
+                }
+                if (pushingIndex > slave._pushingIndex) {
+                    slave._pushingIndex = pushingIndex;
+                    slave._changeEvent = null;
+                    slave._addToRelease();
+                }
+            }
+            cell.handleEvent(changeEvent);
+            if (releasePlanIndex == MAX_SAFE_INTEGER) {
+                break;
+            }
+            if (releasePlanIndex != oldReleasePlanIndex) {
+                queue = releasePlan.get(releasePlanIndex);
+                continue;
+            }
+        }
+        if (!queue.length) {
+            if (releasePlanIndex == releasePlanToIndex) {
+                break;
+            }
+            queue = releasePlan.get(++releasePlanIndex);
+        }
+    }
+    if (!--currentlyRelease) {
+        releasePlanIndex = MAX_SAFE_INTEGER;
+        releasePlanToIndex = -1;
+        releaseVersion++;
+        if (afterRelease) {
+            var after = afterRelease;
+            afterRelease = null;
+            for (var i = 0, l = after.length; i < l; i++) {
+                var item = after[i];
+                if (typeof item == 'function') {
+                    item();
+                }
+                else {
+                    item[0]._push(item[1], true, false);
+                }
+            }
+        }
+    }
+}
+function defaultPut(cell, value) {
+    cell.push(value);
+}
+var Cell = /** @class */ (function (_super) {
+    __extends(Cell, _super);
+    function Cell(value, opts) {
+        var _this = _super.call(this) || this;
+        _this._error = null;
+        _this._selfErrorCell = null;
+        _this._errorCell = null;
+        _this._pushingIndex = 0;
+        _this._errorIndex = 0;
+        _this._version = 0;
+        _this._masters = undefined;
+        _this._slaves = [];
+        _this._level = 0;
+        _this._levelInRelease = -1;
+        _this._selfPendingStatusCell = null;
+        _this._pendingStatusCell = null;
+        _this._state = STATE_CAN_CANCEL_CHANGE;
+        _this._changeEvent = null;
+        _this._lastErrorEvent = null;
+        _this.debugKey = opts && opts.debugKey;
+        _this.context = opts && opts.context || _this;
+        _this._pull = typeof value == 'function' ? value : null;
+        _this._get = opts && opts.get || null;
+        _this._validate = opts && opts.validate || null;
+        _this._merge = opts && opts.merge || null;
+        _this._put = opts && opts.put || defaultPut;
+        _this._reap = opts && opts.reap || null;
+        if (_this._pull) {
+            _this._fixedValue = _this._value = undefined;
+        }
+        else {
+            if (_this._validate) {
+                _this._validate(value, undefined);
+            }
+            if (_this._merge) {
+                value = _this._merge(value, undefined);
+            }
+            _this._fixedValue = _this._value = value;
+            if (value instanceof EventEmitter_1.EventEmitter) {
+                value.on('change', _this._onValueChange, _this);
+            }
+        }
+        if (opts) {
+            if (opts.onChange) {
+                _this.on('change', opts.onChange);
+            }
+            if (opts.onError) {
+                _this.on('error', opts.onError);
+            }
+        }
+        return _this;
+    }
+    Object.defineProperty(Cell, "currentlyPulling", {
+        get: function () {
+            return !!currentCell;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Cell.autorun = function (callback, context) {
+        var disposer;
+        new Cell(function () {
+            var cell = this;
+            if (!disposer) {
+                disposer = function () {
+                    cell.dispose();
+                };
+            }
+            callback.call(context, disposer);
+        }, {
+            onChange: function () { }
+        });
+        return disposer;
+    };
+    Cell.forceRelease = function () {
+        if (releasePlanned || currentlyRelease) {
+            release(true);
+        }
+    };
+    Cell.afterRelease = function (callback) {
+        (afterRelease || (afterRelease = [])).push(callback);
+    };
+    Cell.prototype.on = function (type, listener, context) {
+        if (releasePlanned || currentlyRelease) {
+            release(true);
+        }
+        this._activate();
+        if (typeof type == 'object') {
+            _super.prototype.on.call(this, type, listener !== undefined ? listener : this.context);
+        }
+        else {
+            _super.prototype.on.call(this, type, listener, context !== undefined ? context : this.context);
+        }
+        this._state |= STATE_HAS_FOLLOWERS;
+        return this;
+    };
+    Cell.prototype.off = function (type, listener, context) {
+        if (releasePlanned || currentlyRelease) {
+            release(true);
+        }
+        if (type) {
+            if (typeof type == 'object') {
+                _super.prototype.off.call(this, type, listener !== undefined ? listener : this.context);
+            }
+            else {
+                _super.prototype.off.call(this, type, listener, context !== undefined ? context : this.context);
+            }
+        }
+        else {
+            _super.prototype.off.call(this);
+        }
+        if (!this._slaves.length && !this._events.has('change') && !this._events.has('error') &&
+            (this._state & STATE_HAS_FOLLOWERS)) {
+            this._state ^= STATE_HAS_FOLLOWERS;
+            this._deactivate();
+            if (this._reap) {
+                this._reap.call(this.context);
+            }
+        }
+        return this;
+    };
+    Cell.prototype.addChangeListener = function (listener, context) {
+        return this.on('change', listener, context !== undefined ? context : this.context);
+    };
+    Cell.prototype.removeChangeListener = function (listener, context) {
+        return this.off('change', listener, context !== undefined ? context : this.context);
+    };
+    Cell.prototype.addErrorListener = function (listener, context) {
+        return this.on('error', listener, context !== undefined ? context : this.context);
+    };
+    Cell.prototype.removeErrorListener = function (listener, context) {
+        return this.off('error', listener, context !== undefined ? context : this.context);
+    };
+    Cell.prototype.subscribe = function (listener, context) {
+        var wrappers = listener[KEY_WRAPPERS] ||
+            (listener[KEY_WRAPPERS] = new map_set_polyfill_1.Map());
+        if (wrappers.has(this)) {
+            return this;
+        }
+        function wrapper(evt) {
+            return listener.call(this, evt.data.error || null, evt);
+        }
+        wrappers.set(this, wrapper);
+        if (context === undefined) {
+            context = this.context;
+        }
+        return this
+            .on('change', wrapper, context)
+            .on('error', wrapper, context);
+    };
+    Cell.prototype.unsubscribe = function (listener, context) {
+        var wrappers = listener[KEY_WRAPPERS];
+        var wrapper = wrappers && wrappers.get(this);
+        if (!wrapper) {
+            return this;
+        }
+        wrappers.delete(this);
+        if (context === undefined) {
+            context = this.context;
+        }
+        return this
+            .off('change', wrapper, context)
+            .off('error', wrapper, context);
+    };
+    Cell.prototype._registerSlave = function (slave) {
+        this._activate();
+        this._slaves.push(slave);
+        this._state |= STATE_HAS_FOLLOWERS;
+    };
+    Cell.prototype._unregisterSlave = function (slave) {
+        this._slaves.splice(this._slaves.indexOf(slave), 1);
+        if (!this._slaves.length && !this._events.has('change') && !this._events.has('error')) {
+            this._state ^= STATE_HAS_FOLLOWERS;
+            this._deactivate();
+            if (this._reap) {
+                this._reap.call(this.context);
+            }
+        }
+    };
+    Cell.prototype._activate = function () {
+        if (!this._pull || this._state & STATE_ACTIVE) {
+            return;
+        }
+        var masters = this._masters;
+        if (masters === null) {
+            return;
+        }
+        if (this._version < releaseVersion) {
+            var value = this._tryPull();
+            if (masters || this._masters || !(this._state & STATE_INITED)) {
+                if (value === $error) {
+                    this._fail($error.error, false);
+                }
+                else {
+                    this._push(value, false, false);
+                }
+            }
+            masters = this._masters;
+        }
+        if (masters) {
+            var i = masters.length;
+            do {
+                masters[--i]._registerSlave(this);
+            } while (i);
+            this._state |= STATE_ACTIVE;
+        }
+    };
+    Cell.prototype._deactivate = function () {
+        if (!(this._state & STATE_ACTIVE)) {
+            return;
+        }
+        var masters = this._masters;
+        var i = masters.length;
+        do {
+            masters[--i]._unregisterSlave(this);
+        } while (i);
+        if (this._levelInRelease != -1) {
+            this._levelInRelease = -1;
+            this._changeEvent = null;
+        }
+        this._state ^= STATE_ACTIVE;
+    };
+    Cell.prototype._addToRelease = function () {
+        var level = this._level;
+        if (level <= this._levelInRelease) {
+            return;
+        }
+        var queue;
+        (releasePlan.get(level) || (releasePlan.set(level, (queue = [])), queue)).push(this);
+        if (releasePlanIndex > level) {
+            releasePlanIndex = level;
+        }
+        if (releasePlanToIndex < level) {
+            releasePlanToIndex = level;
+        }
+        this._levelInRelease = level;
+        if (!releasePlanned && !currentlyRelease) {
+            releasePlanned = true;
+            next_tick_1.nextTick(release);
+        }
+    };
+    Cell.prototype._onValueChange = function (evt) {
+        var _this = this;
+        if (this._state & STATE_HAS_FOLLOWERS) {
+            if (currentCell) {
+                (afterRelease || (afterRelease = [])).push(function () {
+                    _this._onValueChange$(evt);
+                });
+            }
+            else {
+                this._onValueChange$(evt);
+            }
+        }
+        else {
+            this._pushingIndex = ++pushingIndexCounter;
+            this._version = ++releaseVersion + +(currentlyRelease > 0);
+        }
+    };
+    Cell.prototype._onValueChange$ = function (evt) {
+        this._pushingIndex = ++pushingIndexCounter;
+        var changeEvent = (evt.data || (evt.data = {})).prev = this._changeEvent;
+        this._changeEvent = evt;
+        if (changeEvent) {
+            if (this._value === this._fixedValue) {
+                this._state &= ~STATE_CAN_CANCEL_CHANGE;
+            }
+        }
+        else {
+            this._state &= ~STATE_CAN_CANCEL_CHANGE;
+            this._addToRelease();
+        }
+    };
+    Cell.prototype.get = function () {
+        if (this._pull) {
+            if (this._state & STATE_ACTIVE) {
+                if (releasePlanned || currentlyRelease && !currentCell) {
+                    release(true);
+                }
+            }
+            else if (this._version < releaseVersion + +(currentlyRelease > 0)) {
+                var oldMasters = this._masters;
+                if (oldMasters !== null) {
+                    var value = this._tryPull();
+                    var masters = this._masters;
+                    if (oldMasters || masters || !(this._state & STATE_INITED)) {
+                        if (masters && (this._state & STATE_HAS_FOLLOWERS)) {
+                            var i = masters.length;
+                            do {
+                                masters[--i]._registerSlave(this);
+                            } while (i);
+                            this._state |= STATE_ACTIVE;
+                        }
+                        if (value === $error) {
+                            this._fail($error.error, false);
+                        }
+                        else {
+                            this._push(value, false, false);
+                        }
+                    }
+                }
+            }
+        }
+        if (currentCell) {
+            var currentCellMasters = currentCell._masters;
+            var level = this._level;
+            if (currentCellMasters) {
+                if (currentCellMasters.indexOf(this) == -1) {
+                    currentCellMasters.push(this);
+                    if (currentCell._level <= level) {
+                        currentCell._level = level + 1;
+                    }
+                }
+            }
+            else {
+                currentCell._masters = [this];
+                currentCell._level = level + 1;
+            }
+        }
+        return this._get ? this._get(this._value) : this._value;
+    };
+    Cell.prototype.pull = function () {
+        if (!this._pull) {
+            return false;
+        }
+        if (releasePlanned) {
+            release();
+        }
+        var oldMasters;
+        var oldLevel;
+        var value;
+        if (this._state & STATE_HAS_FOLLOWERS) {
+            oldMasters = this._masters;
+            oldLevel = this._level;
+            value = this._tryPull();
+            var masters = this._masters;
+            var newMasterCount = 0;
+            if (masters) {
+                var i = masters.length;
+                do {
+                    var master = masters[--i];
+                    if (!oldMasters || oldMasters.indexOf(master) == -1) {
+                        master._registerSlave(this);
+                        newMasterCount++;
+                    }
+                } while (i);
+            }
+            if (oldMasters && (masters ? masters.length - newMasterCount : 0) < oldMasters.length) {
+                for (var i = oldMasters.length; i;) {
+                    var oldMaster = oldMasters[--i];
+                    if (!masters || masters.indexOf(oldMaster) == -1) {
+                        oldMaster._unregisterSlave(this);
+                    }
+                }
+            }
+            if (masters && masters.length) {
+                this._state |= STATE_ACTIVE;
+            }
+            else {
+                this._state &= ~STATE_ACTIVE;
+            }
+            if (currentlyRelease && this._level > oldLevel) {
+                this._addToRelease();
+                return false;
+            }
+        }
+        else {
+            value = this._tryPull();
+        }
+        if (value === $error) {
+            this._fail($error.error, false);
+            return true;
+        }
+        return this._push(value, false, true);
+    };
+    Cell.prototype._tryPull = function () {
+        if (this._state & STATE_CURRENTLY_PULLING) {
+            throw new TypeError('Circular pulling detected');
+        }
+        var pull = this._pull;
+        if (pull.length) {
+            if (this._selfPendingStatusCell) {
+                this._selfPendingStatusCell.set(true);
+            }
+            this._state |= STATE_PENDING;
+        }
+        var prevCell = currentCell;
+        currentCell = this;
+        this._masters = null;
+        this._level = 0;
+        this._state |= STATE_CURRENTLY_PULLING;
+        try {
+            return pull.length ? pull.call(this.context, this, this._value) : pull.call(this.context);
+        }
+        catch (err) {
+            $error.error = err;
+            return $error;
+        }
+        finally {
+            currentCell = prevCell;
+            this._version = releaseVersion + +(currentlyRelease > 0);
+            var pendingStatusCell = this._pendingStatusCell;
+            if (pendingStatusCell && (pendingStatusCell._state & STATE_ACTIVE)) {
+                pendingStatusCell.pull();
+            }
+            var errorCell = this._errorCell;
+            if (errorCell && (errorCell._state & STATE_ACTIVE)) {
+                errorCell.pull();
+            }
+            this._state ^= STATE_CURRENTLY_PULLING;
+        }
+    };
+    Cell.prototype.getError = function () {
+        var errorCell = this._errorCell;
+        if (!errorCell) {
+            var debugKey = this.debugKey;
+            this._selfErrorCell = new Cell(this._error, debugKey ? { debugKey: debugKey + '._selfErrorCell' } : undefined);
+            errorCell = this._errorCell = new Cell(function () {
+                this.get();
+                var err = this._selfErrorCell.get();
+                var errorIndex;
+                if (err) {
+                    errorIndex = this._errorIndex;
+                    if (errorIndex == errorIndexCounter) {
+                        return err;
+                    }
+                }
+                var masters = this._masters;
+                if (masters) {
+                    var i = masters.length;
+                    do {
+                        var master = masters[--i];
+                        var masterError = master.getError();
+                        if (masterError) {
+                            var masterErrorIndex = master._errorIndex;
+                            if (masterErrorIndex == errorIndexCounter) {
+                                return masterError;
+                            }
+                            if (!err || errorIndex < masterErrorIndex) {
+                                err = masterError;
+                                errorIndex = masterErrorIndex;
+                            }
+                        }
+                    } while (i);
+                }
+                return err;
+            }, debugKey ? { debugKey: debugKey + '._errorCell', context: this } : { context: this });
+        }
+        return errorCell.get();
+    };
+    Cell.prototype.isPending = function () {
+        var pendingStatusCell = this._pendingStatusCell;
+        if (!pendingStatusCell) {
+            var debugKey = this.debugKey;
+            this._selfPendingStatusCell = new Cell(!!(this._state & STATE_PENDING), debugKey ? { debugKey: debugKey + '._selfPendingStatusCell' } : undefined);
+            pendingStatusCell = this._pendingStatusCell = new Cell(function () {
+                if (this._selfPendingStatusCell.get()) {
+                    return true;
+                }
+                this.get();
+                var masters = this._masters;
+                if (masters) {
+                    var i = masters.length;
+                    do {
+                        if (masters[--i].isPending()) {
+                            return true;
+                        }
+                    } while (i);
+                }
+                return false;
+            }, debugKey ? { debugKey: debugKey + '._pendingStatusCell', context: this } : { context: this });
+        }
+        return pendingStatusCell.get();
+    };
+    Cell.prototype.set = function (value) {
+        if (this._validate) {
+            this._validate(value, this._value);
+        }
+        if (this._merge) {
+            value = this._merge(value, this._value);
+        }
+        if (this._selfPendingStatusCell) {
+            this._selfPendingStatusCell.set(true);
+        }
+        this._state |= STATE_PENDING;
+        if (this._put.length >= 3) {
+            this._put.call(this.context, this, value, this._value);
+        }
+        else {
+            this._put.call(this.context, this, value);
+        }
+        return this;
+    };
+    Cell.prototype.push = function (value) {
+        this._push(value, true, false);
+        return this;
+    };
+    Cell.prototype._push = function (value, external, pulling) {
+        this._state |= STATE_INITED;
+        var oldValue = this._value;
+        if (external && currentCell && (this._state & STATE_HAS_FOLLOWERS)) {
+            if (is_1.is(value, oldValue)) {
+                this._setError(null);
+                this._resolvePending();
+                return false;
+            }
+            (afterRelease || (afterRelease = [])).push([this, value]);
+            return true;
+        }
+        if (external || !currentlyRelease && pulling) {
+            this._pushingIndex = ++pushingIndexCounter;
+        }
+        this._setError(null);
+        if (is_1.is(value, oldValue)) {
+            if (external || currentlyRelease && pulling) {
+                this._resolvePending();
+            }
+            return false;
+        }
+        this._value = value;
+        if (oldValue instanceof EventEmitter_1.EventEmitter) {
+            oldValue.off('change', this._onValueChange, this);
+        }
+        if (value instanceof EventEmitter_1.EventEmitter) {
+            value.on('change', this._onValueChange, this);
+        }
+        if (this._state & STATE_HAS_FOLLOWERS) {
+            if (this._changeEvent) {
+                if (is_1.is(value, this._fixedValue) && (this._state & STATE_CAN_CANCEL_CHANGE)) {
+                    this._levelInRelease = -1;
+                    this._changeEvent = null;
+                }
+                else {
+                    this._changeEvent = {
+                        target: this,
+                        type: 'change',
+                        data: {
+                            oldValue: oldValue,
+                            value: value,
+                            prev: this._changeEvent
+                        }
+                    };
+                }
+            }
+            else {
+                this._state |= STATE_CAN_CANCEL_CHANGE;
+                this._changeEvent = {
+                    target: this,
+                    type: 'change',
+                    data: {
+                        oldValue: oldValue,
+                        value: value,
+                        prev: null
+                    }
+                };
+                this._addToRelease();
+            }
+        }
+        else {
+            if (external || !currentlyRelease && pulling) {
+                releaseVersion++;
+            }
+            this._fixedValue = value;
+            this._version = releaseVersion + +(currentlyRelease > 0);
+        }
+        if (external || currentlyRelease && pulling) {
+            this._resolvePending();
+        }
+        return true;
+    };
+    Cell.prototype.fail = function (err) {
+        this._fail(err, true);
+        return this;
+    };
+    Cell.prototype._fail = function (err, external) {
+        logger_1.error('[' + this.debugKey + ']', err);
+        if (!(err instanceof Error)) {
+            err = new Error(String(err));
+        }
+        this._setError(err);
+        if (external) {
+            this._resolvePending();
+        }
+    };
+    Cell.prototype._setError = function (err) {
+        if (!err && !this._error) {
+            return;
+        }
+        this._error = err;
+        if (this._selfErrorCell) {
+            this._selfErrorCell.set(err);
+        }
+        if (err) {
+            this._errorIndex = ++errorIndexCounter;
+            this._handleErrorEvent({
+                target: this,
+                type: 'error',
+                data: {
+                    error: err
+                }
+            });
+        }
+    };
+    Cell.prototype._handleErrorEvent = function (evt) {
+        if (this._lastErrorEvent === evt) {
+            return;
+        }
+        this._lastErrorEvent = evt;
+        this.handleEvent(evt);
+        var slaves = this._slaves;
+        for (var i = 0, l = slaves.length; i < l; i++) {
+            slaves[i]._handleErrorEvent(evt);
+        }
+    };
+    Cell.prototype._resolvePending = function () {
+        if (this._state & STATE_PENDING) {
+            if (this._selfPendingStatusCell) {
+                this._selfPendingStatusCell.set(false);
+            }
+            this._state ^= STATE_PENDING;
+        }
+    };
+    Cell.prototype.reap = function () {
+        var slaves = this._slaves;
+        for (var i = 0, l = slaves.length; i < l; i++) {
+            slaves[i].reap();
+        }
+        return this.off();
+    };
+    Cell.prototype.dispose = function () {
+        return this.reap();
+    };
+    return Cell;
+}(EventEmitter_1.EventEmitter));
+exports.Cell = Cell;
+Cell.prototype[symbol_polyfill_1.Symbol.iterator] = function () {
+    return this._value[symbol_polyfill_1.Symbol.iterator]();
+};
+
+
+/***/ }),
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Parser_1 = __webpack_require__(30);
+var global = Function('return this;')();
+function noop() { }
+var defaultHandler = function (type) {
+    var msg = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        msg[_i - 1] = arguments[_i];
+    }
+    var console = global.console;
+    (console && console[type] || noop).call(console || null, (type == 'error' ? msg.map(function (m) { return m === Object(m) && m.stack || m; }) : msg).join(' '));
+};
+var Logger = /** @class */ (function () {
+    function Logger(handler) {
+        this.handler = handler || defaultHandler;
+    }
+    Logger.prototype.log = function () {
+        var msg = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            msg[_i] = arguments[_i];
+        }
+        this.handler.apply(this, ['log'].concat(msg));
+    };
+    Logger.prototype.warn = function () {
+        var msg = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            msg[_i] = arguments[_i];
+        }
+        this.handler.apply(this, ['warn'].concat(msg));
+    };
+    Logger.prototype.error = function () {
+        var msg = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            msg[_i] = arguments[_i];
+        }
+        this.handler.apply(this, ['error'].concat(msg));
+    };
+    return Logger;
+}());
+exports.Logger = Logger;
+exports.logger = new Logger();
+exports.log = exports.logger.log.bind(exports.logger);
+exports.warn = exports.logger.warn.bind(exports.logger);
+exports.error = exports.logger.error.bind(exports.logger);
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var is_1 = __webpack_require__(11);
+var mixin_1 = __webpack_require__(7);
+var symbol_polyfill_1 = __webpack_require__(9);
+var EventEmitter_1 = __webpack_require__(6);
+var FreezableCollection_1 = __webpack_require__(12);
+var ObservableCollection_1 = __webpack_require__(13);
+var splice = Array.prototype.splice;
+function defaultComparator(a, b) {
+    return a < b ? -1 : (a > b ? 1 : 0);
+}
+var ObservableList = /** @class */ (function (_super) {
+    __extends(ObservableList, _super);
+    function ObservableList(items, opts) {
+        var _this = _super.call(this) || this;
+        _this._items = [];
+        _this._length = 0;
+        FreezableCollection_1.FreezableCollection.call(_this);
+        ObservableCollection_1.ObservableCollection.call(_this);
+        if (typeof opts == 'boolean') {
+            opts = { adoptsValueChanges: opts };
+        }
+        _this._adoptsValueChanges = !!(opts && opts.adoptsValueChanges);
+        if (opts && (opts.sorted || opts.comparator && opts.sorted !== false)) {
+            _this._comparator = opts.comparator || defaultComparator;
+            _this._sorted = true;
+        }
+        else {
+            _this._comparator = null;
+            _this._sorted = false;
+        }
+        if (items) {
+            _this._addRange(items);
+        }
+        return _this;
+    }
+    Object.defineProperty(ObservableList.prototype, "length", {
+        get: function () {
+            return this._length;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ObservableList.prototype._validateIndex = function (index, allowEndIndex) {
+        if (index === undefined) {
+            return index;
+        }
+        if (index < 0) {
+            index += this._length;
+            if (index < 0) {
+                throw new RangeError('Index out of valid range');
+            }
+        }
+        else if (index > this._length - (allowEndIndex ? 0 : 1)) {
+            throw new RangeError('Index out of valid range');
+        }
+        return index;
+    };
+    ObservableList.prototype.contains = function (value) {
+        return this._valueCounts.has(value);
+    };
+    ObservableList.prototype.indexOf = function (value, fromIndex) {
+        return this._items.indexOf(value, this._validateIndex(fromIndex, true));
+    };
+    ObservableList.prototype.lastIndexOf = function (value, fromIndex) {
+        return this._items.lastIndexOf(value, fromIndex === undefined ? -1 : this._validateIndex(fromIndex, true));
+    };
+    ObservableList.prototype.get = function (index) {
+        return this._items[this._validateIndex(index, true)];
+    };
+    ObservableList.prototype.getRange = function (index, count) {
+        index = this._validateIndex(index, true);
+        var items = this._items;
+        if (count === undefined) {
+            return items.slice(index);
+        }
+        if (index + count > items.length) {
+            throw new RangeError('Sum of "index" and "count" out of valid range');
+        }
+        return items.slice(index, index + count);
+    };
+    ObservableList.prototype.set = function (index, value) {
+        if (this._sorted) {
+            throw new TypeError('Cannot set to sorted list');
+        }
+        index = this._validateIndex(index, true);
+        var items = this._items;
+        if (is_1.is(value, items[index])) {
+            return this;
+        }
+        this._throwIfFrozen();
+        this._unregisterValue(items[index]);
+        items[index] = this._registerValue(value);
+        this.emit('change');
+        return this;
+    };
+    ObservableList.prototype.setRange = function (index, values) {
+        if (this._sorted) {
+            throw new TypeError('Cannot set to sorted list');
+        }
+        index = this._validateIndex(index, true);
+        var valueCount = values.length;
+        if (!valueCount) {
+            return this;
+        }
+        if (index + valueCount > this._length) {
+            throw new RangeError('Sum of "index" and "values.length" out of valid range');
+        }
+        if (values instanceof ObservableList) {
+            values = values._items.slice();
+        }
+        var items = this._items;
+        var changed = false;
+        for (var i = index + valueCount; i > index;) {
+            var value = values[--i - index];
+            if (!is_1.is(value, items[i])) {
+                if (!changed) {
+                    this._throwIfFrozen();
+                }
+                this._unregisterValue(items[i]);
+                items[i] = this._registerValue(value);
+                changed = true;
+            }
+        }
+        if (changed) {
+            this.emit('change');
+        }
+        return this;
+    };
+    ObservableList.prototype.add = function (value) {
+        this._throwIfFrozen();
+        if (this._sorted) {
+            this._insertSortedValue(value);
+        }
+        else {
+            this._items.push(this._registerValue(value));
+        }
+        this._length++;
+        this.emit('change');
+        return this;
+    };
+    ObservableList.prototype.addRange = function (values) {
+        if (values.length) {
+            this._throwIfFrozen();
+            this._addRange(values);
+            this.emit('change');
+        }
+        return this;
+    };
+    ObservableList.prototype._addRange = function (values) {
+        if (values instanceof ObservableList) {
+            values = values._items.slice();
+        }
+        var valueCount = values.length;
+        if (this._sorted) {
+            for (var i = 0; i < valueCount; i++) {
+                this._insertSortedValue(values[i]);
+            }
+        }
+        else {
+            var items = this._items;
+            var itemCount = items.length;
+            for (var i = itemCount + valueCount; i > itemCount;) {
+                items[--i] = this._registerValue(values[i - itemCount]);
+            }
+        }
+        this._length += valueCount;
+    };
+    ObservableList.prototype.insert = function (index, value) {
+        if (this._sorted) {
+            throw new TypeError('Cannot insert to sorted list');
+        }
+        index = this._validateIndex(index, true);
+        this._throwIfFrozen();
+        this._items.splice(index, 0, this._registerValue(value));
+        this._length++;
+        this.emit('change');
+        return this;
+    };
+    ObservableList.prototype.insertRange = function (index, values) {
+        if (this._sorted) {
+            throw new TypeError('Cannot insert to sorted list');
+        }
+        index = this._validateIndex(index, true);
+        var valueCount = values.length;
+        if (!valueCount) {
+            return this;
+        }
+        this._throwIfFrozen();
+        if (values instanceof ObservableList) {
+            values = values._items;
+        }
+        for (var i = valueCount; i;) {
+            this._registerValue(values[--i]);
+        }
+        splice.apply(this._items, [index, 0].concat(values));
+        this._length += valueCount;
+        this.emit('change');
+        return this;
+    };
+    ObservableList.prototype.remove = function (value, fromIndex) {
+        var index = this._items.indexOf(value, this._validateIndex(fromIndex, true));
+        if (index == -1) {
+            return false;
+        }
+        this._throwIfFrozen();
+        this._unregisterValue(value);
+        this._items.splice(index, 1);
+        this._length--;
+        this.emit('change');
+        return true;
+    };
+    ObservableList.prototype.removeAll = function (value, fromIndex) {
+        var index = this._validateIndex(fromIndex, true);
+        var items = this._items;
+        var changed = false;
+        while ((index = items.indexOf(value, index)) != -1) {
+            if (!changed) {
+                this._throwIfFrozen();
+            }
+            this._unregisterValue(value);
+            items.splice(index, 1);
+            changed = true;
+        }
+        if (changed) {
+            this._length = items.length;
+            this.emit('change');
+        }
+        return changed;
+    };
+    ObservableList.prototype.removeEach = function (values, fromIndex) {
+        fromIndex = this._validateIndex(fromIndex, true);
+        if (values instanceof ObservableList) {
+            values = values._items.slice();
+        }
+        var items = this._items;
+        var changed = false;
+        for (var i = 0, l = values.length; i < l; i++) {
+            var value = values[i];
+            var index = items.indexOf(value, fromIndex);
+            if (index != -1) {
+                if (!changed) {
+                    this._throwIfFrozen();
+                }
+                this._unregisterValue(value);
+                items.splice(index, 1);
+                changed = true;
+            }
+        }
+        if (changed) {
+            this._length = items.length;
+            this.emit('change');
+        }
+        return changed;
+    };
+    ObservableList.prototype.removeAllEach = function (values, fromIndex) {
+        fromIndex = this._validateIndex(fromIndex, true);
+        if (values instanceof ObservableList) {
+            values = values._items.slice();
+        }
+        var items = this._items;
+        var changed = false;
+        for (var i = 0, l = values.length; i < l; i++) {
+            var value = values[i];
+            for (var index = fromIndex; (index = items.indexOf(value, index)) != -1;) {
+                if (!changed) {
+                    this._throwIfFrozen();
+                }
+                this._unregisterValue(value);
+                items.splice(index, 1);
+                changed = true;
+            }
+        }
+        if (changed) {
+            this._length = items.length;
+            this.emit('change');
+        }
+        return changed;
+    };
+    ObservableList.prototype.removeAt = function (index) {
+        index = this._validateIndex(index);
+        this._throwIfFrozen();
+        var value = this._items.splice(index, 1)[0];
+        this._unregisterValue(value);
+        this._length--;
+        this.emit('change');
+        return value;
+    };
+    ObservableList.prototype.removeRange = function (index, count) {
+        index = this._validateIndex(index, true);
+        var items = this._items;
+        if (count === undefined) {
+            count = items.length - index;
+        }
+        else if (index + count > items.length) {
+            throw new RangeError('Sum of "index" and "count" out of valid range');
+        }
+        if (!count) {
+            return [];
+        }
+        this._throwIfFrozen();
+        for (var i = index + count; i > index;) {
+            this._unregisterValue(items[--i]);
+        }
+        var values = items.splice(index, count);
+        this._length -= count;
+        this.emit('change');
+        return values;
+    };
+    ObservableList.prototype.clear = function () {
+        if (!this._length) {
+            return this;
+        }
+        this._throwIfFrozen();
+        if (this._adoptsValueChanges) {
+            this._valueCounts.forEach(function (valueCount, value) {
+                if (value instanceof EventEmitter_1.EventEmitter) {
+                    value.off('change', this._onItemChange, this);
+                }
+            }, this);
+        }
+        this._valueCounts.clear();
+        this._items.length = 0;
+        this._length = 0;
+        this.emit('change', {
+            subtype: 'clear'
+        });
+        return this;
+    };
+    ObservableList.prototype.join = function (separator) {
+        return this._items.join(separator);
+    };
+    ObservableList.prototype.forEach = function (callback, context) { };
+    ObservableList.prototype.map = function (callback, context) {
+        return [];
+    };
+    ObservableList.prototype.filter = function () {
+        return [];
+    };
+    ObservableList.prototype.find = function (callback, context) {
+        var items = this._items;
+        for (var i = 0, l = items.length; i < l; i++) {
+            var item = items[i];
+            if (callback.call(context, item, i, this)) {
+                return item;
+            }
+        }
+        return;
+    };
+    ObservableList.prototype.findIndex = function (callback, context) {
+        var items = this._items;
+        for (var i = 0, l = items.length; i < l; i++) {
+            if (callback.call(context, items[i], i, this)) {
+                return i;
+            }
+        }
+        return -1;
+    };
+    ObservableList.prototype.every = function (callback, context) {
+        return false;
+    };
+    ObservableList.prototype.some = function (callback, context) {
+        return false;
+    };
+    ObservableList.prototype.reduce = function (callback, initialValue) {
+        return 0;
+    };
+    ObservableList.prototype.reduceRight = function (callback, initialValue) {
+        return 0;
+    };
+    ObservableList.prototype.keys = function () {
+        return 0;
+    };
+    ObservableList.prototype.values = function () {
+        return 0;
+    };
+    ObservableList.prototype.entries = function () {
+        return 0;
+    };
+    ObservableList.prototype.clone = function () {
+        return new this.constructor(this, {
+            adoptsValueChanges: this._adoptsValueChanges,
+            comparator: this._comparator || undefined,
+            sorted: this._sorted
+        });
+    };
+    ObservableList.prototype.toArray = function () {
+        return this._items.slice();
+    };
+    ObservableList.prototype.toString = function () {
+        return this._items.join();
+    };
+    ObservableList.prototype._insertSortedValue = function (value) {
+        var items = this._items;
+        var comparator = this._comparator;
+        var low = 0;
+        var high = items.length;
+        while (low != high) {
+            var mid = (low + high) >> 1;
+            if (comparator(value, items[mid]) < 0) {
+                high = mid;
+            }
+            else {
+                low = mid + 1;
+            }
+        }
+        items.splice(low, 0, this._registerValue(value));
+    };
+    Object.defineProperty(ObservableList.prototype, "isFrozen", {
+        get: function () {
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ObservableList.prototype.freeze = function () {
+        return this;
+    };
+    ObservableList.prototype.unfreeze = function () {
+        return this;
+    };
+    ObservableList.prototype._throwIfFrozen = function (msg) { };
+    Object.defineProperty(ObservableList.prototype, "adoptsValueChanges", {
+        get: function () {
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ObservableList.prototype._onItemChange = function (evt) { };
+    ObservableList.prototype._registerValue = function (value) { };
+    ObservableList.prototype._unregisterValue = function (value) { };
+    return ObservableList;
+}(EventEmitter_1.EventEmitter));
+exports.ObservableList = ObservableList;
+mixin_1.mixin(ObservableList.prototype, FreezableCollection_1.FreezableCollection.prototype, ['constructor']);
+mixin_1.mixin(ObservableList.prototype, ObservableCollection_1.ObservableCollection.prototype, ['constructor']);
+['forEach', 'map', 'filter', 'every', 'some'].forEach(function (name) {
+    ObservableList.prototype[name] = function (callback, context) {
+        return this._items[name](function (item, index) {
+            return callback.call(context, item, index, this);
+        }, this);
+    };
+});
+['reduce', 'reduceRight'].forEach(function (name) {
+    ObservableList.prototype[name] = function (callback, initialValue) {
+        var list = this;
+        function wrapper(accumulator, item, index) {
+            return callback(accumulator, item, index, list);
+        }
+        return arguments.length >= 2 ? this._items[name](wrapper, initialValue) : this._items[name](wrapper);
+    };
+});
+[
+    ['keys', function (index) { return index; }],
+    ['values', function (index, item) { return item; }],
+    ['entries', function (index, item) { return [index, item]; }]
+].forEach(function (settings) {
+    var getStepValue = settings[1];
+    ObservableList.prototype[settings[0]] = function () {
+        var items = this._items;
+        var index = 0;
+        var done = false;
+        return {
+            next: function () {
+                if (!done) {
+                    if (index < items.length) {
+                        return {
+                            value: getStepValue(index, items[index++]),
+                            done: false
+                        };
+                    }
+                    done = true;
+                }
+                return {
+                    value: undefined,
+                    done: true
+                };
+            }
+        };
+    };
+});
+ObservableList.prototype[symbol_polyfill_1.Symbol.iterator] = ObservableList.prototype.values;
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var is_1 = __webpack_require__(11);
+var map_set_polyfill_1 = __webpack_require__(4);
+var mixin_1 = __webpack_require__(7);
+var symbol_polyfill_1 = __webpack_require__(9);
+var EventEmitter_1 = __webpack_require__(6);
+var FreezableCollection_1 = __webpack_require__(12);
+var ObservableCollection_1 = __webpack_require__(13);
+var ObservableMap = /** @class */ (function (_super) {
+    __extends(ObservableMap, _super);
+    function ObservableMap(entries, opts) {
+        var _this = _super.call(this) || this;
+        _this._entries = new map_set_polyfill_1.Map();
+        FreezableCollection_1.FreezableCollection.call(_this);
+        ObservableCollection_1.ObservableCollection.call(_this);
+        if (typeof opts == 'boolean') {
+            opts = { adoptsValueChanges: opts };
+        }
+        _this._adoptsValueChanges = !!(opts && opts.adoptsValueChanges);
+        if (entries) {
+            var mapEntries_1 = _this._entries;
+            if (entries instanceof map_set_polyfill_1.Map || entries instanceof ObservableMap) {
+                (entries instanceof map_set_polyfill_1.Map ? entries : entries._entries).forEach(function (value, key) {
+                    mapEntries_1.set(key, this._registerValue(value));
+                }, _this);
+            }
+            else if (Array.isArray(entries)) {
+                for (var i = 0, l = entries.length; i < l; i++) {
+                    mapEntries_1.set(entries[i][0], _this._registerValue(entries[i][1]));
+                }
+            }
+            else {
+                for (var key in entries) {
+                    mapEntries_1.set(key, _this._registerValue(entries[key]));
+                }
+            }
+            _this._size = mapEntries_1.size;
+        }
+        else {
+            _this._size = 0;
+        }
+        return _this;
+    }
+    Object.defineProperty(ObservableMap.prototype, "size", {
+        get: function () {
+            return this._size;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ObservableMap.prototype.has = function (key) {
+        return this._entries.has(key);
+    };
+    ObservableMap.prototype.contains = function (value) {
+        return this._valueCounts.has(value);
+    };
+    ObservableMap.prototype.get = function (key) {
+        return this._entries.get(key);
+    };
+    ObservableMap.prototype.set = function (key, value) {
+        var entries = this._entries;
+        var hasKey = entries.has(key);
+        var oldValue;
+        if (hasKey) {
+            oldValue = entries.get(key);
+            if (is_1.is(value, oldValue)) {
+                return this;
+            }
+            this._throwIfFrozen();
+            this._unregisterValue(oldValue);
+        }
+        else {
+            this._throwIfFrozen();
+        }
+        entries.set(key, this._registerValue(value));
+        if (!hasKey) {
+            this._size++;
+        }
+        this.emit('change', {
+            subtype: hasKey ? 'update' : 'add',
+            key: key,
+            oldValue: oldValue,
+            value: value
+        });
+        return this;
+    };
+    ObservableMap.prototype.delete = function (key) {
+        var entries = this._entries;
+        if (!entries.has(key)) {
+            return false;
+        }
+        this._throwIfFrozen();
+        var value = entries.get(key);
+        this._unregisterValue(value);
+        entries.delete(key);
+        this._size--;
+        this.emit('change', {
+            subtype: 'delete',
+            key: key,
+            value: value
+        });
+        return true;
+    };
+    ObservableMap.prototype.clear = function () {
+        if (!this._size) {
+            return this;
+        }
+        this._throwIfFrozen();
+        if (this._adoptsValueChanges) {
+            this._valueCounts.forEach(function (valueCount, value) {
+                if (value instanceof EventEmitter_1.EventEmitter) {
+                    value.off('change', this._onItemChange, this);
+                }
+            }, this);
+        }
+        this._entries.clear();
+        this._valueCounts.clear();
+        this._size = 0;
+        this.emit('change', {
+            subtype: 'clear'
+        });
+        return this;
+    };
+    ObservableMap.prototype.forEach = function (callback, context) {
+        this._entries.forEach(function (value, key) {
+            callback.call(context, value, key, this);
+        }, this);
+    };
+    ObservableMap.prototype.keys = function () {
+        return this._entries.keys();
+    };
+    ObservableMap.prototype.values = function () {
+        return this._entries.values();
+    };
+    ObservableMap.prototype.entries = function () {
+        return this._entries.entries();
+    };
+    ObservableMap.prototype.clone = function () {
+        return new this.constructor(this, this._adoptsValueChanges);
+    };
+    Object.defineProperty(ObservableMap.prototype, "isFrozen", {
+        get: function () {
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ObservableMap.prototype.freeze = function () {
+        return this;
+    };
+    ObservableMap.prototype.unfreeze = function () {
+        return this;
+    };
+    ObservableMap.prototype._throwIfFrozen = function (msg) { };
+    Object.defineProperty(ObservableMap.prototype, "adoptsValueChanges", {
+        get: function () {
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ObservableMap.prototype._onItemChange = function (evt) { };
+    ObservableMap.prototype._registerValue = function (value) { };
+    ObservableMap.prototype._unregisterValue = function (value) { };
+    return ObservableMap;
+}(EventEmitter_1.EventEmitter));
+exports.ObservableMap = ObservableMap;
+mixin_1.mixin(ObservableMap.prototype, FreezableCollection_1.FreezableCollection.prototype, ['constructor']);
+mixin_1.mixin(ObservableMap.prototype, ObservableCollection_1.ObservableCollection.prototype, ['constructor']);
+ObservableMap.prototype[symbol_polyfill_1.Symbol.iterator] = ObservableMap.prototype.entries;
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var symbol_polyfill_1 = __webpack_require__(9);
+exports.KEY_CELL_MAP = symbol_polyfill_1.Symbol('cellx.cellMap');
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Parser_1 = __webpack_require__(38);
 exports.NodeType = Parser_1.NodeType;
 exports.Parser = Parser_1.Parser;
 
 
 /***/ }),
-/* 15 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8897,7 +8262,7 @@ exports.escapeString = escapeString;
 
 
 /***/ }),
-/* 16 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8917,7 +8282,7 @@ exports.hyphenize = hyphenize;
 
 
 /***/ }),
-/* 17 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8942,8 +8307,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(89);
-var template = __webpack_require__(90);
+__webpack_require__(98);
+var template_nelm_1 = __webpack_require__(99);
 var OpalTab = /** @class */ (function (_super) {
     __extends(OpalTab, _super);
     function OpalTab() {
@@ -9053,7 +8418,7 @@ var OpalTab = /** @class */ (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalTab);
     return OpalTab;
@@ -9062,7 +8427,7 @@ exports.OpalTab = OpalTab;
 
 
 /***/ }),
-/* 18 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9087,14 +8452,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var ObservableTreeList_1 = __webpack_require__(12);
-var utils_1 = __webpack_require__(19);
-var _getListItemContext_1 = __webpack_require__(20);
-__webpack_require__(142);
-var opal_tree_list_item_1 = __webpack_require__(21);
+var ObservableTreeList_1 = __webpack_require__(16);
+var utils_1 = __webpack_require__(29);
+var _getListItemContext_1 = __webpack_require__(30);
+__webpack_require__(151);
+var opal_tree_list_item_1 = __webpack_require__(31);
 exports.OpalTreeListItem = opal_tree_list_item_1.OpalTreeListItem;
-__webpack_require__(21);
-var template = __webpack_require__(145);
+__webpack_require__(31);
+var template_nelm_1 = __webpack_require__(154);
 var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
 function toComparable(str) {
@@ -9256,7 +8621,7 @@ var OpalTreeList = /** @class */ (function (_super) {
                 viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
                 query: String
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalTreeList);
     return OpalTreeList;
@@ -9267,26 +8632,26 @@ OpalTreeList.prototype._getListItemContext = _getListItemContext_1.default;
 
 
 /***/ }),
-/* 19 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var closestComponent_1 = __webpack_require__(141);
+var closestComponent_1 = __webpack_require__(150);
 exports.closestComponent = closestComponent_1.default;
-var isFocusable_1 = __webpack_require__(5);
+var isFocusable_1 = __webpack_require__(8);
 exports.isFocusable = isFocusable_1.default;
 
 
 /***/ }),
-/* 20 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var mixin_1 = __webpack_require__(8);
+var mixin_1 = __webpack_require__(7);
 var cellx_1 = __webpack_require__(2);
 function isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
     do {
@@ -9310,18 +8675,18 @@ function _getListItemContext(context, content) {
         $selected: new cellx_1.Cell(function () {
             this.dataTreeList;
             return isSelectedItem($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
-        }, { owner: this }),
+        }, { context: this }),
         $indeterminate: new cellx_1.Cell(function () {
             this.dataTreeList;
             return isIndeterminateItem($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
-        }, { owner: this })
+        }, { context: this })
     });
 }
 exports.default = _getListItemContext;
 
 
 /***/ }),
-/* 21 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9345,9 +8710,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var _getListItemContext_1 = __webpack_require__(20);
-__webpack_require__(143);
-var template = __webpack_require__(144);
+var _getListItemContext_1 = __webpack_require__(30);
+__webpack_require__(152);
+var template_nelm_1 = __webpack_require__(153);
 var OpalTreeListItem = /** @class */ (function (_super) {
     __extends(OpalTreeListItem, _super);
     function OpalTreeListItem() {
@@ -9396,7 +8761,7 @@ var OpalTreeListItem = /** @class */ (function (_super) {
                 query: String,
                 opened: false
             },
-            template: template,
+            template: template_nelm_1.default,
             events: {
                 'btn-toggle-children': {
                     change: function (evt) {
@@ -9413,7 +8778,7 @@ OpalTreeListItem.prototype._getListItemContext = _getListItemContext_1.default;
 
 
 /***/ }),
-/* 22 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9480,7 +8845,7 @@ module.exports = warning;
 
 
 /***/ }),
-/* 23 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9547,7 +8912,7 @@ var createPath = exports.createPath = function createPath(location) {
 };
 
 /***/ }),
-/* 24 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9562,7 +8927,7 @@ var PathNodeType;
 
 
 /***/ }),
-/* 25 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9586,10 +8951,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(45);
-__webpack_require__(46);
-var ObservableTreeList_1 = __webpack_require__(12);
-var template = __webpack_require__(174);
+__webpack_require__(54);
+__webpack_require__(55);
+var ObservableTreeList_1 = __webpack_require__(16);
+var template_nelm_1 = __webpack_require__(183);
 rionite_1.formatters.log = function (msg) {
     console.log(msg);
     return msg;
@@ -9686,7 +9051,7 @@ var OpalComponentsDocs = /** @class */ (function (_super) {
     OpalComponentsDocs = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-components-docs',
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalComponentsDocs);
     return OpalComponentsDocs;
@@ -9695,71 +9060,7 @@ exports.OpalComponentsDocs = OpalComponentsDocs;
 
 
 /***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var global = Function('return this;')();
-function noop() { }
-var defaultHandler = function (type) {
-    var msg = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        msg[_i - 1] = arguments[_i];
-    }
-    var console = global.console;
-    (console && console[type] || noop).call(console || null, (type == 'error' ? msg.map(function (m) { return m === Object(m) && m.stack || m; }) : msg).join(' '));
-};
-var Logger = /** @class */ (function () {
-    function Logger(handler) {
-        this.handler = handler || defaultHandler;
-    }
-    Logger.prototype.log = function () {
-        var msg = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            msg[_i] = arguments[_i];
-        }
-        this.handler.apply(this, ['log'].concat(msg));
-    };
-    Logger.prototype.warn = function () {
-        var msg = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            msg[_i] = arguments[_i];
-        }
-        this.handler.apply(this, ['warn'].concat(msg));
-    };
-    Logger.prototype.error = function () {
-        var msg = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            msg[_i] = arguments[_i];
-        }
-        this.handler.apply(this, ['error'].concat(msg));
-    };
-    return Logger;
-}());
-exports.Logger = Logger;
-exports.logger = new Logger();
-exports.log = exports.logger.log.bind(exports.logger);
-exports.warn = exports.logger.warn.bind(exports.logger);
-exports.error = exports.logger.error.bind(exports.logger);
-
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var is = Object.is || (function (a, b) {
-    return a === b ? a !== 0 || 1 / a == 1 / b : a != a && b != b;
-});
-exports.is = is;
-
-
-/***/ }),
-/* 28 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9807,21 +9108,21 @@ exports.error = exports.logger.error;
 
 
 /***/ }),
-/* 29 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var nelm_parser_1 = __webpack_require__(14);
+var nelm_parser_1 = __webpack_require__(24);
 exports.NodeType = nelm_parser_1.NodeType;
 exports.Parser = nelm_parser_1.default;
-var Template_1 = __webpack_require__(31);
+var Template_1 = __webpack_require__(39);
 exports.Template = Template_1.default;
 
 
 /***/ }),
-/* 30 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10213,16 +9514,16 @@ exports.Parser = Parser;
 
 
 /***/ }),
-/* 31 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var escape_html_1 = __webpack_require__(10);
-var self_closing_tags_1 = __webpack_require__(34);
-var escape_string_1 = __webpack_require__(15);
-var nelm_parser_1 = __webpack_require__(14);
+var escape_html_1 = __webpack_require__(14);
+var self_closing_tags_1 = __webpack_require__(42);
+var escape_string_1 = __webpack_require__(25);
+var nelm_parser_1 = __webpack_require__(24);
 var join = Array.prototype.join;
 var elNameDelimiter = '__';
 var Template = /** @class */ (function () {
@@ -10453,7 +9754,7 @@ exports.default = Template;
 
 
 /***/ }),
-/* 32 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10472,7 +9773,7 @@ exports.escapeHTML = escapeHTML;
 
 
 /***/ }),
-/* 33 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10491,13 +9792,13 @@ exports.unescapeHTML = unescapeHTML;
 
 
 /***/ }),
-/* 34 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var map_set_polyfill_1 = __webpack_require__(6);
+var map_set_polyfill_1 = __webpack_require__(4);
 exports.list = [
     'area',
     'base',
@@ -10533,14 +9834,14 @@ exports.map = exports.list.reduce(function (map, name) { return map.set(name, tr
 
 
 /***/ }),
-/* 35 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_uid_1 = __webpack_require__(11);
-var symbol_polyfill_1 = __webpack_require__(7);
+var next_uid_1 = __webpack_require__(15);
+var symbol_polyfill_1 = __webpack_require__(18);
 var hasOwn = Object.prototype.hasOwnProperty;
 var KEY_UID = symbol_polyfill_1.Symbol('uid');
 if (typeof KEY_UID == 'symbol') {
@@ -10564,7 +9865,7 @@ else {
 
 
 /***/ }),
-/* 36 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10580,7 +9881,27 @@ exports.moveContent = moveContent;
 
 
 /***/ }),
-/* 37 */
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = Function('return this;')();
+var Symbol = global.Symbol;
+
+var idCounter = 0;
+
+if (!Symbol) {
+	Symbol = function Symbol(key) {
+		return '__' + key + '_' + Math.floor(Math.random() * 1e9) + '_' + (++idCounter) + '__';
+	};
+
+	Symbol.iterator = Symbol('Symbol.iterator');
+}
+
+( true ? exports : global).Symbol = Symbol;
+
+
+/***/ }),
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10596,7 +9917,7 @@ exports.camelize = camelize;
 
 
 /***/ }),
-/* 38 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10612,7 +9933,7 @@ exports.clearNode = clearNode;
 
 
 /***/ }),
-/* 39 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10663,7 +9984,7 @@ exports.error = exports.logger.error.bind(exports.logger);
 
 
 /***/ }),
-/* 40 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10696,7 +10017,7 @@ else {
 
 
 /***/ }),
-/* 41 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10715,7 +10036,7 @@ exports.setAttribute = setAttribute;
 
 
 /***/ }),
-/* 42 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10729,13 +10050,13 @@ exports.isRegExp = isRegExp;
 
 
 /***/ }),
-/* 43 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var logger_1 = __webpack_require__(44);
+var logger_1 = __webpack_require__(53);
 var queue;
 function run() {
     var track = queue;
@@ -10763,7 +10084,7 @@ exports.defer = defer;
 
 
 /***/ }),
-/* 44 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10814,7 +10135,7 @@ exports.error = exports.logger.error.bind(exports.logger);
 
 
 /***/ }),
-/* 45 */
+/* 54 */
 /***/ (function(module, exports) {
 
 document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
@@ -10835,137 +10156,137 @@ document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
 
 
 /***/ }),
-/* 46 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(47);
-__webpack_require__(48);
-__webpack_require__(49);
-__webpack_require__(50);
-__webpack_require__(51);
-__webpack_require__(52);
-__webpack_require__(53);
-var ObservableTreeList_1 = __webpack_require__(12);
+__webpack_require__(56);
+__webpack_require__(57);
+__webpack_require__(58);
+__webpack_require__(59);
+__webpack_require__(60);
+__webpack_require__(61);
+__webpack_require__(62);
+var ObservableTreeList_1 = __webpack_require__(16);
 exports.ObservableTreeList = ObservableTreeList_1.ObservableTreeList;
-var opal_button_1 = __webpack_require__(54);
+var opal_button_1 = __webpack_require__(63);
 exports.OpalButton = opal_button_1.OpalButton;
-var opal_sign_button_1 = __webpack_require__(56);
+var opal_sign_button_1 = __webpack_require__(65);
 exports.OpalSignButton = opal_sign_button_1.OpalSignButton;
-var opal_text_input_1 = __webpack_require__(59);
+var opal_text_input_1 = __webpack_require__(68);
 exports.OpalTextInput = opal_text_input_1.OpalTextInput;
-var opal_editable_text_1 = __webpack_require__(62);
+var opal_editable_text_1 = __webpack_require__(71);
 exports.OpalEditableText = opal_editable_text_1.OpalEditableText;
-var opal_input_mask_1 = __webpack_require__(65);
+var opal_input_mask_1 = __webpack_require__(74);
 exports.OpalInputMask = opal_input_mask_1.OpalInputMask;
 exports.OpalInputMaskDefinition = opal_input_mask_1.OpalInputMaskDefinition;
-var opal_group_1 = __webpack_require__(68);
+var opal_group_1 = __webpack_require__(77);
 exports.OpalGroup = opal_group_1.OpalGroup;
-var opal_checkbox_1 = __webpack_require__(70);
+var opal_checkbox_1 = __webpack_require__(79);
 exports.OpalCheckbox = opal_checkbox_1.OpalCheckbox;
-var opal_radio_group_1 = __webpack_require__(73);
+var opal_radio_group_1 = __webpack_require__(82);
 exports.OpalRadioGroup = opal_radio_group_1.OpalRadioGroup;
 exports.OpalRadioButton = opal_radio_group_1.OpalRadioButton;
-var opal_switch_1 = __webpack_require__(77);
+var opal_switch_1 = __webpack_require__(86);
 exports.OpalSwitch = opal_switch_1.OpalSwitch;
-var opal_slider_1 = __webpack_require__(80);
+var opal_slider_1 = __webpack_require__(89);
 exports.OpalSlider = opal_slider_1.OpalSlider;
-var opal_switch_menu_1 = __webpack_require__(83);
+var opal_switch_menu_1 = __webpack_require__(92);
 exports.OpalSwitchMenu = opal_switch_menu_1.OpalSwitchMenu;
-var opal_tabs_1 = __webpack_require__(85);
+var opal_tabs_1 = __webpack_require__(94);
 exports.OpalTabs = opal_tabs_1.OpalTabs;
 exports.OpalTabList = opal_tabs_1.OpalTabList;
 exports.OpalTab = opal_tabs_1.OpalTab;
-var opal_dropdown_1 = __webpack_require__(95);
+var opal_dropdown_1 = __webpack_require__(104);
 exports.OpalDropdown = opal_dropdown_1.OpalDropdown;
-var opal_popover_1 = __webpack_require__(98);
+var opal_popover_1 = __webpack_require__(107);
 exports.OpalPopover = opal_popover_1.OpalPopover;
-var opal_modal_1 = __webpack_require__(101);
+var opal_modal_1 = __webpack_require__(110);
 exports.OpalModal = opal_modal_1.OpalModal;
-var opal_notification_1 = __webpack_require__(104);
+var opal_notification_1 = __webpack_require__(113);
 exports.OpalNotification = opal_notification_1.OpalNotification;
-var opal_select_1 = __webpack_require__(13);
+var opal_select_1 = __webpack_require__(17);
 exports.OpalSelect = opal_select_1.OpalSelect;
 exports.OpalSelectOption = opal_select_1.OpalSelectOption;
-var opal_multiselect_1 = __webpack_require__(113);
+var opal_multiselect_1 = __webpack_require__(122);
 exports.OpalMultiselect = opal_multiselect_1.OpalMultiselect;
-var opal_input_validator_1 = __webpack_require__(116);
+var opal_input_validator_1 = __webpack_require__(125);
 exports.OpalInputValidator = opal_input_validator_1.OpalInputValidator;
 exports.OpalInputValidatorRule = opal_input_validator_1.OpalInputValidatorRule;
-var opal_calendar_1 = __webpack_require__(121);
+var opal_calendar_1 = __webpack_require__(130);
 exports.OpalCalendar = opal_calendar_1.OpalCalendar;
-var opal_date_input_1 = __webpack_require__(126);
+var opal_date_input_1 = __webpack_require__(135);
 exports.OpalDateInput = opal_date_input_1.OpalDateInput;
-var opal_loader_1 = __webpack_require__(130);
+var opal_loader_1 = __webpack_require__(139);
 exports.OpalLoader = opal_loader_1.OpalLoader;
-var opal_loaded_list_1 = __webpack_require__(132);
+var opal_loaded_list_1 = __webpack_require__(141);
 exports.OpalLoadedList = opal_loaded_list_1.OpalLoadedList;
-var opal_filtered_list_1 = __webpack_require__(135);
+var opal_filtered_list_1 = __webpack_require__(144);
 exports.OpalFilteredList = opal_filtered_list_1.OpalFilteredList;
-var opal_tree_list_1 = __webpack_require__(18);
+var opal_tree_list_1 = __webpack_require__(28);
 exports.OpalTreeList = opal_tree_list_1.OpalTreeList;
-var opal_tag_select_1 = __webpack_require__(146);
+var opal_tag_select_1 = __webpack_require__(155);
 exports.OpalTagSelect = opal_tag_select_1.OpalTagSelect;
-var opal_tree_select_1 = __webpack_require__(149);
+var opal_tree_select_1 = __webpack_require__(158);
 exports.OpalTreeSelect = opal_tree_select_1.OpalTreeSelect;
-var opal_autosuggest_1 = __webpack_require__(152);
+var opal_autosuggest_1 = __webpack_require__(161);
 exports.OpalAutosuggest = opal_autosuggest_1.OpalAutosuggest;
-var opal_multirow_1 = __webpack_require__(155);
+var opal_multirow_1 = __webpack_require__(164);
 exports.OpalMultirow = opal_multirow_1.OpalMultirow;
 exports.OpalMultirowRow = opal_multirow_1.OpalMultirowRow;
-var opal_router_1 = __webpack_require__(161);
+var opal_router_1 = __webpack_require__(170);
 exports.OpalRouter = opal_router_1.OpalRouter;
 exports.OpalRoute = opal_router_1.OpalRoute;
-var utils_1 = __webpack_require__(19);
+var utils_1 = __webpack_require__(29);
 exports.Utils = utils_1.default;
 
 
 /***/ }),
-/* 47 */
+/* 56 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-calendar\"><path d=\"M2 6v24h28V6zm0 9h28M7 3v6m6-6v6m6-6v6m6-6v6\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 48 */
+/* 57 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-checkmark\"><path d=\"M2 20l10 8L30 4\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 49 */
+/* 58 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-chevron-bottom\"><path d=\"M30 12L16 24 2 12\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 50 */
+/* 59 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-chevron-left\"><path d=\"M20 30L8 16 20 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 51 */
+/* 60 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-close\"><path d=\"M2 30L30 2m0 28L2 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 52 */
+/* 61 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-compose\"><path d=\"M27 15v15H2V5h15m13 1l-4-4L9 19l-2 6 6-2zm-8 0l4 4zM9 19l4 4z\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 53 */
+/* 62 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-search\"><circle cx=\"14\" cy=\"14\" r=\"12\" xmlns=\"http://www.w3.org/2000/svg\"/><path d=\"M23 23l7 7\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 54 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10990,7 +10311,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(55);
+__webpack_require__(64);
 var OpalButton = /** @class */ (function (_super) {
     __extends(OpalButton, _super);
     function OpalButton() {
@@ -11150,7 +10471,7 @@ exports.OpalButton = OpalButton;
 
 
 /***/ }),
-/* 55 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11167,7 +10488,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 56 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11192,8 +10513,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(57);
-var template = __webpack_require__(58);
+__webpack_require__(66);
+var template_nelm_1 = __webpack_require__(67);
 var OpalSignButton = /** @class */ (function (_super) {
     __extends(OpalSignButton, _super);
     function OpalSignButton() {
@@ -11320,7 +10641,7 @@ var OpalSignButton = /** @class */ (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalSignButton);
     return OpalSignButton;
@@ -11329,7 +10650,7 @@ exports.OpalSignButton = OpalSignButton;
 
 
 /***/ }),
-/* 57 */
+/* 66 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11346,13 +10667,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 58 */
-/***/ (function(module, exports) {
+/* 67 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-content/content\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 59 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11377,8 +10700,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(60);
-var template = __webpack_require__(61);
+__webpack_require__(69);
+var template_nelm_1 = __webpack_require__(70);
 var OpalTextInput = /** @class */ (function (_super) {
     __extends(OpalTextInput, _super);
     function OpalTextInput() {
@@ -11604,7 +10927,7 @@ var OpalTextInput = /** @class */ (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template,
+            template: template_nelm_1.default,
             domEvents: {
                 'btn-clear': {
                     click: function (evt) {
@@ -11623,7 +10946,7 @@ exports.OpalTextInput = OpalTextInput;
 
 
 /***/ }),
-/* 60 */
+/* 69 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11640,13 +10963,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 61 */
-/***/ (function(module, exports) {
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\n@if-then (if=input.multiline) {\ntextarea/, text-field (\nrows={input.rows},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-else (if=input.multiline) {\ninput/, text-field (\ntype={input.inputType},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\nrt-content/control-icon-container (select=.opal-text-input__control-icon, shown={isControlIconShown})\n@if-then (if=input.clearable) {\nbutton/btn-clear (shown={isBtnClearShown}) {\nsvg/btn-clear-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }\n}\n}\n@if-then (if=input.loading) {\nopal-loader/loader (size=s, shown)\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=input.multiline) {\ntextarea/, text-field (\nrows={input.rows},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-else (if=input.multiline) {\ninput/, text-field (\ntype={input.inputType},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\nrt-content/control-icon-container (select=.opal-text-input__control-icon, shown={isControlIconShown})\n@if-then (if=input.clearable) {\nbutton/btn-clear (shown={isBtnClearShown}) {\nsvg/btn-clear-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }\n}\n}\n@if-then (if=input.loading) {\nopal-loader/loader (size=s, shown)\n}\n}");
 
 /***/ }),
-/* 62 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11669,8 +10994,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(63);
-var template = __webpack_require__(64);
+__webpack_require__(72);
+var template_nelm_1 = __webpack_require__(73);
 var OpalEditableText = /** @class */ (function (_super) {
     __extends(OpalEditableText, _super);
     function OpalEditableText() {
@@ -11763,7 +11088,7 @@ var OpalEditableText = /** @class */ (function (_super) {
     OpalEditableText = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-editable-text',
-            template: template,
+            template: template_nelm_1.default,
             domEvents: {
                 'icon-editable': {
                     click: function () {
@@ -11779,7 +11104,7 @@ exports.OpalEditableText = OpalEditableText;
 
 
 /***/ }),
-/* 63 */
+/* 72 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11796,13 +11121,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 64 */
-/***/ (function(module, exports) {
+/* 73 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nspan/content-wrapper {\nrt-content/content (contenteditable, spellcheck=false)\nsvg/icon-editable (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-compose) }\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/content-wrapper {\nrt-content/content (contenteditable, spellcheck=false)\nsvg/icon-editable (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-compose) }\n}\n}");
 
 /***/ }),
-/* 65 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11827,7 +11154,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var opal_input_mask_definition_1 = __webpack_require__(66);
+var opal_input_mask_definition_1 = __webpack_require__(75);
 exports.OpalInputMaskDefinition = opal_input_mask_definition_1.OpalInputMaskDefinition;
 // import { Cell } from 'cellx';
 var forEach = Array.prototype.forEach;
@@ -12149,7 +11476,7 @@ exports.OpalInputMask = OpalInputMask;
 
 
 /***/ }),
-/* 66 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12172,7 +11499,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(67);
+__webpack_require__(76);
 var OpalInputMaskDefinition = /** @class */ (function (_super) {
     __extends(OpalInputMaskDefinition, _super);
     function OpalInputMaskDefinition() {
@@ -12193,7 +11520,7 @@ exports.OpalInputMaskDefinition = OpalInputMaskDefinition;
 
 
 /***/ }),
-/* 67 */
+/* 76 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12210,7 +11537,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 68 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12233,7 +11560,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(69);
+__webpack_require__(78);
 var OpalGroup = /** @class */ (function (_super) {
     __extends(OpalGroup, _super);
     function OpalGroup() {
@@ -12251,7 +11578,7 @@ exports.OpalGroup = OpalGroup;
 
 
 /***/ }),
-/* 69 */
+/* 78 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12268,7 +11595,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 70 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12293,8 +11620,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(71);
-var template = __webpack_require__(72);
+__webpack_require__(80);
+var template_nelm_1 = __webpack_require__(81);
 var OpalCheckbox = /** @class */ (function (_super) {
     __extends(OpalCheckbox, _super);
     function OpalCheckbox() {
@@ -12443,7 +11770,7 @@ var OpalCheckbox = /** @class */ (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalCheckbox);
     return OpalCheckbox;
@@ -12452,7 +11779,7 @@ exports.OpalCheckbox = OpalCheckbox;
 
 
 /***/ }),
-/* 71 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12469,13 +11796,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 72 */
-/***/ (function(module, exports) {
+/* 81 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 73 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12498,7 +11827,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var opal_radio_button_1 = __webpack_require__(74);
+var opal_radio_button_1 = __webpack_require__(83);
 exports.OpalRadioButton = opal_radio_button_1.OpalRadioButton;
 var forEach = Array.prototype.forEach;
 var OpalRadioGroup = /** @class */ (function (_super) {
@@ -12538,7 +11867,7 @@ exports.OpalRadioGroup = OpalRadioGroup;
 
 
 /***/ }),
-/* 74 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12563,8 +11892,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(75);
-var template = __webpack_require__(76);
+__webpack_require__(84);
+var template_nelm_1 = __webpack_require__(85);
 var OpalRadioButton = /** @class */ (function (_super) {
     __extends(OpalRadioButton, _super);
     function OpalRadioButton() {
@@ -12701,7 +12030,7 @@ var OpalRadioButton = /** @class */ (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalRadioButton);
     return OpalRadioButton;
@@ -12710,7 +12039,7 @@ exports.OpalRadioButton = OpalRadioButton;
 
 
 /***/ }),
-/* 75 */
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12727,13 +12056,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 76 */
-/***/ (function(module, exports) {
+/* 85 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 77 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12758,8 +12089,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(78);
-var template = __webpack_require__(79);
+__webpack_require__(87);
+var template_nelm_1 = __webpack_require__(88);
 var OpalSwitch = /** @class */ (function (_super) {
     __extends(OpalSwitch, _super);
     function OpalSwitch() {
@@ -12892,7 +12223,7 @@ var OpalSwitch = /** @class */ (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalSwitch);
     return OpalSwitch;
@@ -12901,7 +12232,7 @@ exports.OpalSwitch = OpalSwitch;
 
 
 /***/ }),
-/* 78 */
+/* 87 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12918,13 +12249,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 79 */
-/***/ (function(module, exports) {
+/* 88 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 80 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12948,8 +12281,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(81);
-var template = __webpack_require__(82);
+__webpack_require__(90);
+var template_nelm_1 = __webpack_require__(91);
 var OpalSlider = /** @class */ (function (_super) {
     __extends(OpalSlider, _super);
     function OpalSlider() {
@@ -13028,7 +12361,7 @@ var OpalSlider = /** @class */ (function (_super) {
                 value: 0,
                 range: eval
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalSlider);
     return OpalSlider;
@@ -13037,7 +12370,7 @@ exports.OpalSlider = OpalSlider;
 
 
 /***/ }),
-/* 81 */
+/* 90 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13054,13 +12387,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 82 */
-/***/ (function(module, exports) {
+/* 91 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\n@if-then (if=input.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={input.min},\nmax={input.max},\nstep={input.step},\nvalue={input.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.range.1})\n}\n}\n@if-else (if=input.range) {\ninput/input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.value})\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=input.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={input.min},\nmax={input.max},\nstep={input.step},\nvalue={input.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.range.1})\n}\n}\n@if-else (if=input.range) {\ninput/input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.value})\n}\n}");
 
 /***/ }),
-/* 83 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13083,7 +12418,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(84);
+__webpack_require__(93);
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
 var OpalSwitchMenu = /** @class */ (function (_super) {
@@ -13160,7 +12495,7 @@ exports.OpalSwitchMenu = OpalSwitchMenu;
 
 
 /***/ }),
-/* 84 */
+/* 93 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13177,7 +12512,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 85 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13200,14 +12535,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(86);
-var opal_tab_list_1 = __webpack_require__(87);
+__webpack_require__(95);
+var opal_tab_list_1 = __webpack_require__(96);
 exports.OpalTabList = opal_tab_list_1.OpalTabList;
-var opal_tab_1 = __webpack_require__(17);
+var opal_tab_1 = __webpack_require__(27);
 exports.OpalTab = opal_tab_1.OpalTab;
-var opal_tab_panel_1 = __webpack_require__(91);
+var opal_tab_panel_1 = __webpack_require__(100);
 exports.OpalTabPanel = opal_tab_panel_1.OpalTabPanel;
-var template = __webpack_require__(94);
+var template_nelm_1 = __webpack_require__(103);
 var indexOf = Array.prototype.indexOf;
 var forEach = Array.prototype.forEach;
 var OpalTabs = /** @class */ (function (_super) {
@@ -13266,7 +12601,7 @@ var OpalTabs = /** @class */ (function (_super) {
     OpalTabs = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-tabs',
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalTabs);
     return OpalTabs;
@@ -13275,7 +12610,7 @@ exports.OpalTabs = OpalTabs;
 
 
 /***/ }),
-/* 86 */
+/* 95 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13292,7 +12627,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 87 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13315,8 +12650,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(88);
-var opal_tab_1 = __webpack_require__(17);
+__webpack_require__(97);
+var opal_tab_1 = __webpack_require__(27);
 exports.OpalTab = opal_tab_1.OpalTab;
 var OpalTabList = /** @class */ (function (_super) {
     __extends(OpalTabList, _super);
@@ -13336,7 +12671,7 @@ exports.OpalTabList = OpalTabList;
 
 
 /***/ }),
-/* 88 */
+/* 97 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13353,7 +12688,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 89 */
+/* 98 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13370,13 +12705,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 90 */
-/***/ (function(module, exports) {
+/* 99 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 91 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13401,8 +12738,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(92);
-var template = __webpack_require__(93);
+__webpack_require__(101);
+var template_nelm_1 = __webpack_require__(102);
 var OpalTabPanel = /** @class */ (function (_super) {
     __extends(OpalTabPanel, _super);
     function OpalTabPanel() {
@@ -13431,7 +12768,7 @@ var OpalTabPanel = /** @class */ (function (_super) {
             input: {
                 shown: false
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalTabPanel);
     return OpalTabPanel;
@@ -13440,7 +12777,7 @@ exports.OpalTabPanel = OpalTabPanel;
 
 
 /***/ }),
-/* 92 */
+/* 101 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13457,19 +12794,23 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 93 */
-/***/ (function(module, exports) {
+/* 102 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\n@if-then (if=isContentRendered) {\nrt-content/content\n}\n}"
-
-/***/ }),
-/* 94 */
-/***/ (function(module, exports) {
-
-module.exports = "@section/inner {\nrt-content/tab-list-container (select=opal-tab-list) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab)\n}\n}\nrt-content/panels (select=opal-tab-panel)\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=isContentRendered) {\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 95 */
+/* 103 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-content/tab-list-container (select=opal-tab-list) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab)\n}\n}\nrt-content/panels (select=opal-tab-panel)\n}");
+
+/***/ }),
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13494,8 +12835,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(96);
-var template = __webpack_require__(97);
+__webpack_require__(105);
+var template_nelm_1 = __webpack_require__(106);
 var openedDropdowns = [];
 var OpalDropdown = /** @class */ (function (_super) {
     __extends(OpalDropdown, _super);
@@ -13640,7 +12981,7 @@ var OpalDropdown = /** @class */ (function (_super) {
                 autoClosing: false,
                 opened: false
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalDropdown);
     return OpalDropdown;
@@ -13649,7 +12990,7 @@ exports.OpalDropdown = OpalDropdown;
 
 
 /***/ }),
-/* 96 */
+/* 105 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13666,13 +13007,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 97 */
-/***/ (function(module, exports) {
+/* 106 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\n@if-then (if=isContentRendered) {\nrt-content/content\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=isContentRendered) {\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 98 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13697,8 +13040,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(99);
-var template = __webpack_require__(100);
+__webpack_require__(108);
+var template_nelm_1 = __webpack_require__(109);
 var OpalPopover = /** @class */ (function (_super) {
     __extends(OpalPopover, _super);
     function OpalPopover() {
@@ -13852,7 +13195,7 @@ var OpalPopover = /** @class */ (function (_super) {
                 autoClosing: false,
                 opened: false
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalPopover);
     return OpalPopover;
@@ -13861,7 +13204,7 @@ exports.OpalPopover = OpalPopover;
 
 
 /***/ }),
-/* 99 */
+/* 108 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13878,13 +13221,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 100 */
-/***/ (function(module, exports) {
+/* 109 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nspan/arrow\n@if-then (if=isContentRendered) {\nrt-content/content\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/arrow\n@if-then (if=isContentRendered) {\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 101 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13909,9 +13254,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var isFocusable_1 = __webpack_require__(5);
-__webpack_require__(102);
-var template = __webpack_require__(103);
+var isFocusable_1 = __webpack_require__(8);
+__webpack_require__(111);
+var template_nelm_1 = __webpack_require__(112);
 var openedModals = [];
 var documentFocusListening;
 var documentKeyUpListening;
@@ -14049,7 +13394,7 @@ var OpalModal = /** @class */ (function (_super) {
             input: {
                 opened: false
             },
-            template: template,
+            template: template_nelm_1.default,
             domEvents: {
                 'btn-close': {
                     click: function () {
@@ -14066,7 +13411,7 @@ exports.OpalModal = OpalModal;
 
 
 /***/ }),
-/* 102 */
+/* 111 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14083,13 +13428,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 103 */
-/***/ (function(module, exports) {
+/* 112 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\ndiv/window {\ndiv/btn-close-wrapper {\nbutton/btn-close\n}\n@if-then (if=isContentRendered) {\nrt-content/content\n}\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/window {\ndiv/btn-close-wrapper {\nbutton/btn-close\n}\n@if-then (if=isContentRendered) {\nrt-content/content\n}\n}\n}");
 
 /***/ }),
-/* 104 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14111,11 +13458,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var map_set_polyfill_1 = __webpack_require__(6);
+var map_set_polyfill_1 = __webpack_require__(4);
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(105);
-var template = __webpack_require__(106);
+__webpack_require__(114);
+var template_nelm_1 = __webpack_require__(115);
 var container;
 var containerOnTop = false;
 var shownNotifications = new map_set_polyfill_1.Set();
@@ -14236,7 +13583,7 @@ var OpalNotification = /** @class */ (function (_super) {
                 timeout: 0,
                 shown: false
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalNotification);
     return OpalNotification;
@@ -14245,7 +13592,7 @@ exports.OpalNotification = OpalNotification;
 
 
 /***/ }),
-/* 105 */
+/* 114 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14262,13 +13609,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 106 */
-/***/ (function(module, exports) {
+/* 115 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\ndiv/bar {\nrt-content/icon-container (select=.opal-notificaion__icon)\nrt-content/content\nbutton/btn-hide (hide={input.buttonHide |not }) {\nsvg/btn-hide-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }\n}\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/bar {\nrt-content/icon-container (select=.opal-notificaion__icon)\nrt-content/content\nbutton/btn-hide (hide={input.buttonHide |not }) {\nsvg/btn-hide-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }\n}\n}\n}");
 
 /***/ }),
-/* 107 */
+/* 116 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14285,7 +13634,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 108 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14307,7 +13656,7 @@ exports.isEqualArray = isEqualArray;
 
 
 /***/ }),
-/* 109 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14332,8 +13681,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(110);
-var template = __webpack_require__(111);
+__webpack_require__(119);
+var template_nelm_1 = __webpack_require__(120);
 var OpalSelectOption = /** @class */ (function (_super) {
     __extends(OpalSelectOption, _super);
     function OpalSelectOption() {
@@ -14472,7 +13821,7 @@ var OpalSelectOption = /** @class */ (function (_super) {
                 focused: false,
                 disabled: false
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalSelectOption);
     return OpalSelectOption;
@@ -14481,7 +13830,7 @@ exports.OpalSelectOption = OpalSelectOption;
 
 
 /***/ }),
-/* 110 */
+/* 119 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14498,19 +13847,23 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 111 */
-/***/ (function(module, exports) {
+/* 120 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content { '{input.text}' }\nsvg/icon-check (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-checkmark) }\n}\n}"
-
-/***/ }),
-/* 112 */
-/***/ (function(module, exports) {
-
-module.exports = "@section/inner {\nrt-content (select=.opal-select__button) {\nopal-button/button (\nview-type={input.viewType},\nsize={input.size},\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n) {\n@if-then (if=input.text) { '{input.text}' }\n@if-else (if=input.text) { '{_buttonText}' }\nsvg/button-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-bottom) }\n}\n}\ndiv/menu-wrapper {\nrt-content (select=.opal-select__menu) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content) {\n@if-then (if=_isInputDataListSpecified) {\ndiv/, menu-content {\n@if-then (if=dataList) {\n@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isInputDataListSpecified) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content { '{input.text}' }\nsvg/icon-check (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-checkmark) }\n}\n}");
 
 /***/ }),
-/* 113 */
+/* 121 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-content (select=.opal-select__button) {\nopal-button/button (\nview-type={input.viewType},\nsize={input.size},\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n) {\n@if-then (if=input.text) { '{input.text}' }\n@if-else (if=input.text) { '{_buttonText}' }\nsvg/button-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-bottom) }\n}\n}\ndiv/menu-wrapper {\nrt-content (select=.opal-select__menu) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content) {\n@if-then (if=_isInputDataListSpecified) {\ndiv/, menu-content {\n@if-then (if=dataList) {\n@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isInputDataListSpecified) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}\n}");
+
+/***/ }),
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14532,12 +13885,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var gettext_1 = __webpack_require__(4);
+var gettext_1 = __webpack_require__(5);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var opal_select_1 = __webpack_require__(13);
-__webpack_require__(114);
-var template = __webpack_require__(115);
+var opal_select_1 = __webpack_require__(17);
+__webpack_require__(123);
+var template_nelm_1 = __webpack_require__(124);
 var OpalMultiselect = /** @class */ (function (_super) {
     __extends(OpalMultiselect, _super);
     function OpalMultiselect() {
@@ -14576,7 +13929,7 @@ var OpalMultiselect = /** @class */ (function (_super) {
                 multiple: true,
                 dataProvider: { type: Object, readonly: true }
             },
-            template: opal_select_1.OpalSelect.template.extend(template),
+            template: opal_select_1.OpalSelect.template.extend(template_nelm_1.default),
             events: {
                 'query-input': {
                     input: function (evt) {
@@ -14610,7 +13963,7 @@ exports.OpalMultiselect = OpalMultiselect;
 
 
 /***/ }),
-/* 114 */
+/* 123 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14627,13 +13980,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 115 */
-/***/ (function(module, exports) {
+/* 124 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=opal-select__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n) {\nsvg/query-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\nbutton/btn-deselect-item (tabindex=-1, data-item-value='{item |key(_viewModelItemValueFieldName) }') {\nsvg/btn-deselect-item-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }\n}\n}\n}\ndiv/nothing-selected (shown={isNothingSelectedShown}) {\nspan/nothing-selected-message { '{constructor.i18n.nothingSelected}' }\n}\n}\ndiv/menu-list {\nopal-loaded-list/loaded-list (\ndata-provider={dataProvider},\ndata-list-item-value-name={_dataListItemValueFieldName}\n) {\nopal-select-option/option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\ndiv/menu-footer {\nopal-button/btn-close { 'Закрыть' }\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=opal-select__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n) {\nsvg/query-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\nbutton/btn-deselect-item (tabindex=-1, data-item-value='{item |key(_viewModelItemValueFieldName) }') {\nsvg/btn-deselect-item-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }\n}\n}\n}\ndiv/nothing-selected (shown={isNothingSelectedShown}) {\nspan/nothing-selected-message { '{constructor.i18n.nothingSelected}' }\n}\n}\ndiv/menu-list {\nopal-loaded-list/loaded-list (\ndata-provider={dataProvider},\ndata-list-item-value-name={_dataListItemValueFieldName}\n) {\nopal-select-option/option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\ndiv/menu-footer {\nopal-button/btn-close { 'Закрыть' }\n}\n}");
 
 /***/ }),
-/* 116 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14657,8 +14012,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(117);
-var opal_input_validator_rule_1 = __webpack_require__(118);
+__webpack_require__(126);
+var opal_input_validator_rule_1 = __webpack_require__(127);
 exports.OpalInputValidatorRule = opal_input_validator_rule_1.OpalInputValidatorRule;
 var map = Array.prototype.map;
 var OpalInputValidator = /** @class */ (function (_super) {
@@ -14746,7 +14101,7 @@ exports.OpalInputValidator = OpalInputValidator;
 
 
 /***/ }),
-/* 117 */
+/* 126 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14763,7 +14118,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 118 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14786,8 +14141,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(119);
-var template = __webpack_require__(120);
+__webpack_require__(128);
+var template_nelm_1 = __webpack_require__(129);
 var OpalInputValidatorRule = /** @class */ (function (_super) {
     __extends(OpalInputValidatorRule, _super);
     function OpalInputValidatorRule() {
@@ -14809,7 +14164,7 @@ var OpalInputValidatorRule = /** @class */ (function (_super) {
                 test: { type: Object, readonly: true },
                 popoverFrom: 'right'
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalInputValidatorRule);
     return OpalInputValidatorRule;
@@ -14818,7 +14173,7 @@ exports.OpalInputValidatorRule = OpalInputValidatorRule;
 
 
 /***/ }),
-/* 119 */
+/* 128 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14835,13 +14190,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 120 */
-/***/ (function(module, exports) {
+/* 129 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nopal-popover/popover (from={input.popoverFrom}) {\nrt-content/content\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-popover/popover (from={input.popoverFrom}) {\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 121 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14866,10 +14223,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var formatDate_1 = __webpack_require__(122);
-__webpack_require__(123);
-var parseDate_1 = __webpack_require__(124);
-var template = __webpack_require__(125);
+var formatDate_1 = __webpack_require__(131);
+__webpack_require__(132);
+var parseDate_1 = __webpack_require__(133);
+var template_nelm_1 = __webpack_require__(134);
 function getTodayDate() {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -15167,7 +14524,7 @@ var OpalCalendar = /** @class */ (function (_super) {
                 weekDaysShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
                 sundayFirst: false
             },
-            template: template,
+            template: template_nelm_1.default,
             domEvents: {
                 'btn-prev-month': {
                     click: function () {
@@ -15206,7 +14563,7 @@ exports.OpalCalendar = OpalCalendar;
 
 
 /***/ }),
-/* 122 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15220,7 +14577,7 @@ exports.formatDate = formatDate;
 
 
 /***/ }),
-/* 123 */
+/* 132 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15237,7 +14594,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 124 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15251,13 +14608,15 @@ exports.parseDate = parseDate;
 
 
 /***/ }),
-/* 125 */
-/***/ (function(module, exports) {
+/* 134 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-left) }\n}\nopal-select/month-select (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/year-select (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={isBtnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-left) }\n}\n}\ndiv/body {\ndiv/week-days {\ndiv/week-days-row {\n@repeat (for=weekDay of weekDaysShort) {\nspan/week-day { '{weekDay}' }\n}\n}\n}\ndiv/days {\n@repeat (for=weekDays of days) {\ndiv/days-row {\n@repeat (for=day of weekDays) {\nspan/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date}\n) { '{day.value}' }\n}\n}\n}\n}\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-left) }\n}\nopal-select/month-select (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/year-select (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={isBtnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-left) }\n}\n}\ndiv/body {\ndiv/week-days {\ndiv/week-days-row {\n@repeat (for=weekDay of weekDaysShort) {\nspan/week-day { '{weekDay}' }\n}\n}\n}\ndiv/days {\n@repeat (for=weekDays of days) {\ndiv/days-row {\n@repeat (for=day of weekDays) {\nspan/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date}\n) { '{day.value}' }\n}\n}\n}\n}\n}\n}");
 
 /***/ }),
-/* 126 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15279,12 +14638,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var gettext_1 = __webpack_require__(4);
-var date_exists_1 = __webpack_require__(127);
+var gettext_1 = __webpack_require__(5);
+var date_exists_1 = __webpack_require__(136);
 var rionite_1 = __webpack_require__(0);
-var isFocusable_1 = __webpack_require__(5);
-__webpack_require__(128);
-var template = __webpack_require__(129);
+var isFocusable_1 = __webpack_require__(8);
+__webpack_require__(137);
+var template_nelm_1 = __webpack_require__(138);
 function pad(num) {
     return (num < 10 ? '0' : '') + num;
 }
@@ -15404,7 +14763,7 @@ var OpalDateInput = /** @class */ (function (_super) {
                 nonExistentDate: gettext_1.getText.t('Несуществующая дата'),
                 invalidDateRange: gettext_1.getText.t('Дата вне допустимого диапазона')
             },
-            template: template,
+            template: template_nelm_1.default,
             events: {
                 calendar: {
                     change: function (evt) {
@@ -15424,7 +14783,7 @@ exports.OpalDateInput = OpalDateInput;
 
 
 /***/ }),
-/* 127 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15448,7 +14807,7 @@ exports.dateExists = dateExists;
 
 
 /***/ }),
-/* 128 */
+/* 137 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15465,13 +14824,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 129 */
-/***/ (function(module, exports) {
+/* 138 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nopal-input-validator/input-validator {\n@if-then (if=input.required) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-from={input.popoverFrom}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test={dateExists}, popover-from={input.popoverFrom}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (\ntest={isDateInRange},\npopover-from={input.popoverFrom}\n) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={input.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={input.value},\nplaceholder={input.placeholder},\nclearable\n) {\nsvg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-calendar)\n}\n}\n}\n}\nopal-dropdown/calendar-menu (auto-height=no) {\nopal-calendar/calendar (from-date={input.fromDate}, to-date={input.toDate}, value={input.value}, date-delimiter=.)\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-input-validator/input-validator {\n@if-then (if=input.required) {\nopal-input-validator-rule/input-validator-rule-required (required, popover-from={input.popoverFrom}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-input-validator-rule/input-validator-rule-date-exists (test={dateExists}, popover-from={input.popoverFrom}) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-input-validator-rule/input-validator-rule-date-in-range (\ntest={isDateInRange},\npopover-from={input.popoverFrom}\n) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={input.mask}) {\nopal-text-input/text-input (\nclass=opal-input-validator__text-input opal-input-mask__text-input,\nvalue={input.value},\nplaceholder={input.placeholder},\nclearable\n) {\nsvg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-calendar)\n}\n}\n}\n}\nopal-dropdown/calendar-menu (auto-height=no) {\nopal-calendar/calendar (from-date={input.fromDate}, to-date={input.toDate}, value={input.value}, date-delimiter=.)\n}\n}");
 
 /***/ }),
-/* 130 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15494,7 +14855,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(131);
+__webpack_require__(140);
 var OpalLoader = /** @class */ (function (_super) {
     __extends(OpalLoader, _super);
     function OpalLoader() {
@@ -15515,7 +14876,7 @@ exports.OpalLoader = OpalLoader;
 
 
 /***/ }),
-/* 131 */
+/* 140 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15532,7 +14893,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 132 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15554,14 +14915,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var gettext_1 = __webpack_require__(4);
-var mixin_1 = __webpack_require__(8);
+var gettext_1 = __webpack_require__(5);
+var mixin_1 = __webpack_require__(7);
 var next_tick_1 = __webpack_require__(3);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(133);
-var template = __webpack_require__(134);
+__webpack_require__(142);
+var template_nelm_1 = __webpack_require__(143);
 var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var OpalLoadedList = /** @class */ (function (_super) {
     __extends(OpalLoadedList, _super);
@@ -15740,7 +15101,7 @@ var OpalLoadedList = /** @class */ (function (_super) {
             i18n: {
                 nothingFound: gettext_1.getText.t('Ничего не найдено')
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalLoadedList);
     return OpalLoadedList;
@@ -15750,7 +15111,7 @@ exports.OpalLoadedList = OpalLoadedList;
 
 
 /***/ }),
-/* 133 */
+/* 142 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15767,13 +15128,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 134 */
-/***/ (function(module, exports) {
+/* 143 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\ndiv/list {\n@repeat (for=$item of dataList) {\nrt-content/list-item (clone, get-context={_getListItemContext}) {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nopal-loader/loader (shown={isLoaderShown}, align-center={empty})\n@if-then (if=isNothingFoundShown) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/list {\n@repeat (for=$item of dataList) {\nrt-content/list-item (clone, get-context={_getListItemContext}) {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nopal-loader/loader (shown={isLoaderShown}, align-center={empty})\n@if-then (if=isNothingFoundShown) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}");
 
 /***/ }),
-/* 135 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15795,11 +15158,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var debounce_throttle_1 = __webpack_require__(136);
-var gettext_1 = __webpack_require__(4);
+var debounce_throttle_1 = __webpack_require__(145);
+var gettext_1 = __webpack_require__(5);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(139);
-var template = __webpack_require__(140);
+__webpack_require__(148);
+var template_nelm_1 = __webpack_require__(149);
 var OpalFilteredList = /** @class */ (function (_super) {
     __extends(OpalFilteredList, _super);
     function OpalFilteredList() {
@@ -15833,7 +15196,7 @@ var OpalFilteredList = /** @class */ (function (_super) {
             i18n: {
                 queryInputPlaceholder: gettext_1.getText.t('Поиск')
             },
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalFilteredList);
     return OpalFilteredList;
@@ -15842,20 +15205,20 @@ exports.OpalFilteredList = OpalFilteredList;
 
 
 /***/ }),
-/* 136 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var debounce_1 = __webpack_require__(137);
+var debounce_1 = __webpack_require__(146);
 exports.debounce = debounce_1.debounce;
-var throttle_1 = __webpack_require__(138);
+var throttle_1 = __webpack_require__(147);
 exports.throttle = throttle_1.throttle;
 
 
 /***/ }),
-/* 137 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15927,7 +15290,7 @@ exports.debounce = debounce;
 
 
 /***/ }),
-/* 138 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15996,7 +15359,7 @@ exports.throttle = throttle;
 
 
 /***/ }),
-/* 139 */
+/* 148 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16013,13 +15376,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 140 */
-/***/ (function(module, exports) {
+/* 149 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input) {\nopal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder}, clearable) {\nsvg/query-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\n}\nrt-content/list-container (select=.opal-filtered-list__list)\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input) {\nopal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder}, clearable) {\nsvg/query-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\n}\nrt-content/list-container (select=.opal-filtered-list__list)\n}");
 
 /***/ }),
-/* 141 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16034,7 +15399,7 @@ exports.default = closestComponent;
 
 
 /***/ }),
-/* 142 */
+/* 151 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16051,7 +15416,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 143 */
+/* 152 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16068,19 +15433,23 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 144 */
-/***/ (function(module, exports) {
+/* 153 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={input.opened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-bottom) }\n}\nspan/content-wrapper {\nrt-content/content (clone)\n}\n}\n@if-then (if=dataTreeListItem.children.length) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item/item (\ndata-tree-list={input.dataTreeList},\nfiltered-data-tree-list={input.filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{input.indexpath},{$index}]',\nquery={input.query},\nopened={input.query},\nnesting-level={input.indexpath.length},\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-content (clone, get-context={_getListItemContext})\n}\n}\n}\n}"
-
-/***/ }),
-/* 145 */
-/***/ (function(module, exports) {
-
-module.exports = "@if-then (if=dataTreeList) {\n@if-then (if=filteredDataTreeList.length) {\n@repeat (for=$item of filteredDataTreeList) {\nopal-tree-list-item/item (\ndata-tree-list={dataTreeList},\nfiltered-data-tree-list={filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={input.query},\nopened={input.query},\nnesting-level=0,\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-content (clone, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=filteredDataTreeList.length) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'Ничего не найдено'\n}\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={input.opened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-bottom) }\n}\nspan/content-wrapper {\nrt-content/content (clone)\n}\n}\n@if-then (if=dataTreeListItem.children.length) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item/item (\ndata-tree-list={input.dataTreeList},\nfiltered-data-tree-list={input.filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{input.indexpath},{$index}]',\nquery={input.query},\nopened={input.query},\nnesting-level={input.indexpath.length},\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-content (clone, get-context={_getListItemContext})\n}\n}\n}\n}");
 
 /***/ }),
-/* 146 */
+/* 154 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@if-then (if=dataTreeList) {\n@if-then (if=filteredDataTreeList.length) {\n@repeat (for=$item of filteredDataTreeList) {\nopal-tree-list-item/item (\ndata-tree-list={dataTreeList},\nfiltered-data-tree-list={filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={input.query},\nopened={input.query},\nnesting-level=0,\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-content (clone, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=filteredDataTreeList.length) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'Ничего не найдено'\n}\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}");
+
+/***/ }),
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16102,12 +15471,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var gettext_1 = __webpack_require__(4);
+var gettext_1 = __webpack_require__(5);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(147);
-var template = __webpack_require__(148);
+__webpack_require__(156);
+var template_nelm_1 = __webpack_require__(157);
 var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 var OpalTagSelect = /** @class */ (function (_super) {
@@ -16230,7 +15599,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
                 popoverFrom: 'bottom',
                 disabled: false
             },
-            template: template,
+            template: template_nelm_1.default,
             domEvents: {
                 'btn-remove-tag': {
                     click: function (evt, btn) {
@@ -16249,7 +15618,7 @@ exports.OpalTagSelect = OpalTagSelect;
 
 
 /***/ }),
-/* 147 */
+/* 156 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16266,13 +15635,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 148 */
-/***/ (function(module, exports) {
+/* 157 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndata-list-keypath={_dataListKeypathParam},\ndata-list-item-schema={input.dataListItemSchema |json },\nadd-new-item={input.addNewItem},\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, from={input.popoverFrom}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/data-list-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndata-list-keypath={_dataListKeypathParam},\ndata-list-item-schema={input.dataListItemSchema |json },\nadd-new-item={input.addNewItem},\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nopal-popover/menu (class=opal-select__menu, from={input.popoverFrom}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/data-list-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}");
 
 /***/ }),
-/* 149 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16296,10 +15667,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-var opal_select_1 = __webpack_require__(13);
-var opal_tree_list_1 = __webpack_require__(18);
-__webpack_require__(150);
-var template = __webpack_require__(151);
+var opal_select_1 = __webpack_require__(17);
+var opal_tree_list_1 = __webpack_require__(28);
+__webpack_require__(159);
+var template_nelm_1 = __webpack_require__(160);
 var OpalTreeSelect = /** @class */ (function (_super) {
     __extends(OpalTreeSelect, _super);
     function OpalTreeSelect() {
@@ -16340,7 +15711,7 @@ var OpalTreeSelect = /** @class */ (function (_super) {
                 viewModelItemSchema: { type: eval, default: opal_tree_list_1.OpalTreeList.defaultViewModelItemSchema, readonly: true },
                 query: String
             },
-            template: template,
+            template: template_nelm_1.default,
             events: {
                 'btn-close': {
                     click: function () {
@@ -16356,7 +15727,7 @@ exports.OpalTreeSelect = OpalTreeSelect;
 
 
 /***/ }),
-/* 150 */
+/* 159 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16373,13 +15744,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 151 */
-/***/ (function(module, exports) {
+/* 160 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "opal-modal/menu {\nopal-filtered-list/filtered-list {\nopal-tree-list/tree-list (\nclass=opal-filtered-list__list,\ndata-tree-list={dataTreeList},\ndata-tree-list-item-schema={input.dataTreeListItemSchema},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema},\nquery={input.query}\n) {\nopal-select-option/option (class=opal-tree-list__selection-control, text={$item.name}, selected={$selected})\n}\n}\ndiv/footer {\nopal-button/btn-close {\n'Готово'\n}\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("opal-modal/menu {\nopal-filtered-list/filtered-list {\nopal-tree-list/tree-list (\nclass=opal-filtered-list__list,\ndata-tree-list={dataTreeList},\ndata-tree-list-item-schema={input.dataTreeListItemSchema},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema},\nquery={input.query}\n) {\nopal-select-option/option (class=opal-tree-list__selection-control, text={$item.name}, selected={$selected})\n}\n}\ndiv/footer {\nopal-button/btn-close {\n'Готово'\n}\n}\n}");
 
 /***/ }),
-/* 152 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16401,13 +15774,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var gettext_1 = __webpack_require__(4);
+var gettext_1 = __webpack_require__(5);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var isFocusable_1 = __webpack_require__(5);
-__webpack_require__(153);
-var template = __webpack_require__(154);
+var isFocusable_1 = __webpack_require__(8);
+__webpack_require__(162);
+var template_nelm_1 = __webpack_require__(163);
 function toComparable(str) {
     return str.replace(/\s+/g, ' ').toLowerCase();
 }
@@ -16714,7 +16087,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
                 textInputPlaceholder: gettext_1.getText.t('Начните вводить для поиска'),
                 nothingFound: gettext_1.getText.t('Ничего не найдено')
             },
-            template: template,
+            template: template_nelm_1.default,
             domEvents: {
                 'list-item': {
                     click: function (_, listItem) {
@@ -16740,7 +16113,7 @@ exports.OpalAutosuggest = OpalAutosuggest;
 
 
 /***/ }),
-/* 153 */
+/* 162 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16757,13 +16130,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 154 */
-/***/ (function(module, exports) {
+/* 163 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue='{input.value |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nsvg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nspan/nothing-found-message (shown={dataList.length |not }) {\n'{constructor.i18n.nothingFound}'\n}\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-content (select=.opal-autosuggest__text-input) {\nopal-text-input/text-input (\nvalue='{input.value |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nsvg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nspan/nothing-found-message (shown={dataList.length |not }) {\n'{constructor.i18n.nothingFound}'\n}\n}\n}");
 
 /***/ }),
-/* 155 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16785,14 +16160,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_uid_1 = __webpack_require__(11);
+var next_uid_1 = __webpack_require__(15);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(156);
-var opal_multirow_row_1 = __webpack_require__(157);
+__webpack_require__(165);
+var opal_multirow_row_1 = __webpack_require__(166);
 exports.OpalMultirowRow = opal_multirow_row_1.OpalMultirowRow;
-var template = __webpack_require__(160);
+var template_nelm_1 = __webpack_require__(169);
 var filter = Array.prototype.filter;
 var OpalMultirow = /** @class */ (function (_super) {
     __extends(OpalMultirow, _super);
@@ -16856,7 +16231,7 @@ var OpalMultirow = /** @class */ (function (_super) {
     OpalMultirow = __decorate([
         rionite_1.d.Component({
             elementIs: 'opal-multirow',
-            template: template
+            template: template_nelm_1.default
         })
     ], OpalMultirow);
     return OpalMultirow;
@@ -16865,7 +16240,7 @@ exports.OpalMultirow = OpalMultirow;
 
 
 /***/ }),
-/* 156 */
+/* 165 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16882,7 +16257,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 157 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16905,8 +16280,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(158);
-var template = __webpack_require__(159);
+__webpack_require__(167);
+var template_nelm_1 = __webpack_require__(168);
 var OpalMultirowRow = /** @class */ (function (_super) {
     __extends(OpalMultirowRow, _super);
     function OpalMultirowRow() {
@@ -16918,7 +16293,7 @@ var OpalMultirowRow = /** @class */ (function (_super) {
             input: {
                 preset: { default: false, readonly: true }
             },
-            template: template,
+            template: template_nelm_1.default,
             events: {
                 'btn-remove-row': {
                     click: function () {
@@ -16939,7 +16314,7 @@ exports.OpalMultirowRow = OpalMultirowRow;
 
 
 /***/ }),
-/* 158 */
+/* 167 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -16956,19 +16331,23 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 159 */
-/***/ (function(module, exports) {
+/* 168 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@section/inner {\nrt-content/content\n' '\nopal-sign-button/btn-remove-row (sign=minus)\n' '\nopal-sign-button/btn-add-row (sign=plus)\n}"
-
-/***/ }),
-/* 160 */
-/***/ (function(module, exports) {
-
-module.exports = "@section/inner {\nrt-content/preset-rows-container (\nselect='opal-multirow-row[preset], .opal-multirow__preset-rows',\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n)\ndiv/new-rows (not-single-row={_notSingleRow}) {\n@repeat (for=row of _newRows, track-by=key) {\nrt-content/new-row-container (select='opal-multirow-row:not([preset])', clone, data-key={row.key})\n}\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-content/content\n' '\nopal-sign-button/btn-remove-row (sign=minus)\n' '\nopal-sign-button/btn-add-row (sign=plus)\n}");
 
 /***/ }),
-/* 161 */
+/* 169 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-content/preset-rows-container (\nselect='opal-multirow-row[preset], .opal-multirow__preset-rows',\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n)\ndiv/new-rows (not-single-row={_notSingleRow}) {\n@repeat (for=row of _newRows, track-by=key) {\nrt-content/new-row-container (select='opal-multirow-row:not([preset])', clone, data-key={row.key})\n}\n}\n}");
+
+/***/ }),
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16990,16 +16369,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var escape_html_1 = __webpack_require__(10);
-var hyphenize_1 = __webpack_require__(16);
-var created_browser_history_1 = __webpack_require__(162);
+var escape_html_1 = __webpack_require__(14);
+var hyphenize_1 = __webpack_require__(26);
+var created_browser_history_1 = __webpack_require__(171);
 var rionite_1 = __webpack_require__(0);
-var escapeRegExp_1 = __webpack_require__(170);
-__webpack_require__(171);
-var opal_route_1 = __webpack_require__(172);
+var escapeRegExp_1 = __webpack_require__(179);
+__webpack_require__(180);
+var opal_route_1 = __webpack_require__(181);
 exports.OpalRoute = opal_route_1.OpalRoute;
-var parsePath_1 = __webpack_require__(173);
-var PathNodeType_1 = __webpack_require__(24);
+var parsePath_1 = __webpack_require__(182);
+var PathNodeType_1 = __webpack_require__(34);
 var forEach = Array.prototype.forEach;
 function isReadonlyProperty(propConfig) {
     return propConfig && typeof propConfig == 'object' &&
@@ -17217,20 +16596,20 @@ exports.OpalRouter = OpalRouter;
 
 
 /***/ }),
-/* 162 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var createBrowserHistory_1 = __webpack_require__(163);
+var createBrowserHistory_1 = __webpack_require__(172);
 var history = createBrowserHistory_1.default();
 exports.history = history;
 exports.default = history;
 
 
 /***/ }),
-/* 163 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17242,23 +16621,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _warning = __webpack_require__(22);
+var _warning = __webpack_require__(32);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(164);
+var _invariant = __webpack_require__(173);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _LocationUtils = __webpack_require__(165);
+var _LocationUtils = __webpack_require__(174);
 
-var _PathUtils = __webpack_require__(23);
+var _PathUtils = __webpack_require__(33);
 
-var _createTransitionManager = __webpack_require__(168);
+var _createTransitionManager = __webpack_require__(177);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
-var _DOMUtils = __webpack_require__(169);
+var _DOMUtils = __webpack_require__(178);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17543,7 +16922,7 @@ var createBrowserHistory = function createBrowserHistory() {
 exports.default = createBrowserHistory;
 
 /***/ }),
-/* 164 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17601,7 +16980,7 @@ module.exports = invariant;
 
 
 /***/ }),
-/* 165 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17612,15 +16991,15 @@ exports.locationsAreEqual = exports.createLocation = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _resolvePathname = __webpack_require__(166);
+var _resolvePathname = __webpack_require__(175);
 
 var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
 
-var _valueEqual = __webpack_require__(167);
+var _valueEqual = __webpack_require__(176);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
-var _PathUtils = __webpack_require__(23);
+var _PathUtils = __webpack_require__(33);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17685,7 +17064,7 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 };
 
 /***/ }),
-/* 166 */
+/* 175 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17762,7 +17141,7 @@ function resolvePathname(to) {
 /* harmony default export */ __webpack_exports__["default"] = (resolvePathname);
 
 /***/ }),
-/* 167 */
+/* 176 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17807,7 +17186,7 @@ function valueEqual(a, b) {
 /* harmony default export */ __webpack_exports__["default"] = (valueEqual);
 
 /***/ }),
-/* 168 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17815,7 +17194,7 @@ function valueEqual(a, b) {
 
 exports.__esModule = true;
 
-var _warning = __webpack_require__(22);
+var _warning = __webpack_require__(32);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -17898,7 +17277,7 @@ var createTransitionManager = function createTransitionManager() {
 exports.default = createTransitionManager;
 
 /***/ }),
-/* 169 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17959,7 +17338,7 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 };
 
 /***/ }),
-/* 170 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17973,7 +17352,7 @@ exports.escapeRegExp = escapeRegExp;
 
 
 /***/ }),
-/* 171 */
+/* 180 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -17990,7 +17369,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 172 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18033,13 +17412,13 @@ exports.OpalRoute = OpalRoute;
 
 
 /***/ }),
-/* 173 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType_1 = __webpack_require__(24);
+var PathNodeType_1 = __webpack_require__(34);
 var reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
     var ctx = PathNodeType_1.PathNodeType.SIMPLE;
@@ -18192,10 +17571,12 @@ exports.parsePath = parsePath;
 
 
 /***/ }),
-/* 174 */
-/***/ (function(module, exports) {
+/* 183 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "h1 { 'opal-button' }\np {\nopal-button { 'Button' } ' '\nopal-button (view-type=primary) { 'Button' } ' '\nopal-button (view-type=danger) { 'Button' } ' '\n}\np {\nopal-button (disabled) { 'Button' } ' '\nopal-button (view-type=primary, disabled) { 'Button' } ' '\nopal-button (view-type=danger, disabled) { 'Button' } ' '\n}\np {\nopal-button (size=s) { 'Button' } ' '\nopal-button (view-type=primary, size=s) { 'Button' } ' '\nopal-button (view-type=danger, size=s) { 'Button' } ' '\n}\np {\nopal-button (loading) { 'Button' } ' '\nopal-button (view-type=primary, loading) { 'Button' } ' '\nopal-button (view-type=danger, loading) { 'Button' } ' '\n}\np {\nopal-button (loading, disabled) { 'Button' } ' '\nopal-button (view-type=primary, loading, disabled) { 'Button' } ' '\nopal-button (view-type=danger, loading, disabled) { 'Button' } ' '\n}\nh1 { 'opal-sign-button' }\np {\nopal-sign-button (sign=plus) { 'Button' }\n}\np {\nopal-sign-button (sign=minus) { 'Button' }\n}\nh1 { 'opal-text-input' }\np {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\np {\nopal-text-input (value=Value, disabled)\n}\np {\nopal-text-input (placeholder=Placeholder, disabled)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, clearable)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, loading)\n}\np {\nopal-text-input (multiline, placeholder=Placeholder)\n}\nh1 { 'opal-editable-text' }\np {\nopal-editable-text {\n'Editable text'\n}\n}\nh1 { 'opal-input-mask' }\np {\nopal-input-mask (mask=99/99/9999) {\nopal-text-input (class=opal-input-mask__text-input, placeholder=dd/mm/yyyy)\n}\n}\np {\nopal-input-mask (mask='+7 (999) 999-9999? доб. 9999') {\nopal-text-input (class=opal-input-mask__text-input, placeholder=Телефон)\n}\n}\np {\nopal-input-mask (mask=#ffffff) {\nopal-input-mask-definition (mask-char=f, regex=/[0-9a-f]/i)\nopal-text-input (class=opal-input-mask__text-input, placeholder=Цвет)\n}\n}\nh1 { 'opal-group' }\np {\nopal-group {\nopal-button { 'Button' }\nopal-button (view-type=primary) { 'Button' }\nopal-button (view-type=danger) { 'Button' }\n}\n}\np {\nopal-group {\nopal-button { 'Button' }\nopal-text-input (value=Value, placeholder=Placeholder)\nopal-button (view-type=primary) { 'Button' }\n}\n}\nh1 { 'opal-checkbox' }\np {\nopal-checkbox { 'Label' } ' '\nopal-checkbox (checked) { 'Label' } ' '\nopal-checkbox (indeterminate) { 'Label' }\nbr br\nopal-checkbox (disabled) { 'Label' } ' '\nopal-checkbox (checked, disabled) { 'Label' } ' '\nopal-checkbox (indeterminate, disabled) { 'Label' }\n}\nh1 { 'opal-radio-group' }\np {\nopal-radio-group {\nopal-radio-button { 'Label' } ' '\nopal-radio-button (checked) { 'Label' }\nbr br\nopal-radio-button (disabled) { 'Label' } ' '\nopal-radio-button (checked, disabled) { 'Label' }\n}\n}\nh1 { 'opal-switch' }\np {\nopal-switch { 'Label' } ' '\nopal-switch (checked) { 'Label' }\nbr br\nopal-switch (disabled) { 'Label' } ' '\nopal-switch (checked, disabled) { 'Label' }\n}\nh1 { 'opal-slider' }\np {\nopal-slider br\nopal-slider (min=-100, max=100, step=20, value=40) br\nopal-slider (range='[20, 80]')\n}\nh1 { 'opal-switch-menu' }\np {\nopal-switch-menu {\nopal-button (checkable, checked) { 'Option 1' }\nopal-button (checkable) { 'Option 2' }\nopal-button (checkable) { 'Option 3' }\n}\n}\nh1 { 'opal-tabs' }\np {\nopal-tabs {\nopal-tab (selected) { 'Foo' }\nopal-tab { 'Bar' }\nopal-tab { 'Baz' }\nopal-tab-panel { 'Hello Foo' }\nopal-tab-panel { 'Hello Bar' }\nopal-tab-panel { 'Hello Baz' }\n}\n}\nh1 { 'opal-popover' }\np {\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (align=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=bottom, align=right, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, align=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=top, align=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;) {\nopal-popover (align=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=bottom, align=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, align=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=top, align=right, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\n}\nh1 { 'opal-modal' }\np {\nopal-modal (id=modal1) { 'Modal' }\nopal-button (onclick='document.getElementById(\"modal1\").$component.open();') { 'Open' }\n}\nh1 { 'opal-notification' }\np {\nopal-notification (id=notification1) {\n'default'\n}\nopal-notification (id=notification2, view-type=primary, button-hide=no, timeout=5000) {\n'primary'\n}\nopal-notification (id=notification3, view-type=primary, button-hide=no, timeout=10000) {\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n}\nopal-notification (id=notification4, view-type=success) {\nsvg (class=opal-notification__icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-calendar)\n}\n'success'\n}\nopal-notification (id=notification5, view-type=success) {\nsvg (class=opal-notification__icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-calendar)\n}\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n}\nopal-notification (id=notification6, view-type=danger) {\n'danger'\n}\nopal-button (onclick='document.getElementById(\"notification1\").$component.show();') { 'Show 1' } ' '\nopal-button (onclick='document.getElementById(\"notification2\").$component.show();') { 'Show 2' } ' '\nopal-button (onclick='document.getElementById(\"notification3\").$component.show();') { 'Show 3' } ' '\nopal-button (onclick='document.getElementById(\"notification4\").$component.show();') { 'Show 4' } ' '\nopal-button (onclick='document.getElementById(\"notification5\").$component.show();') { 'Show 5' } ' '\nopal-button (onclick='document.getElementById(\"notification6\").$component.show();') { 'Show 6' }\n}\nh1 { 'opal-select' }\np {\nopal-select (placeholder=Select) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\nopal-select-option (text='Option 4 (disabled)', disabled)\nopal-select-option (text=Option 5)\nopal-select-option (text='Option 6 (disabled)', disabled)\n}\n}\np {\nopal-select (multiple, placeholder=Select) {\nopal-select-option (text=Option 1, selected)\nopal-select-option (text=Option 2, selected)\nopal-select-option (text=Option 3)\nopal-select-option (text=Option 4)\nopal-select-option (text=Option 5)\n}\n}\np {\nopal-select (\nmultiple,\ndata-list={dataList1},\ndata-list-item-schema='{ value: \"id\", text: \"name\" }',\nview-model-item-schema='{ value: \"id\", text: \"name\" }',\nadd-new-item={addNewItem1},\nplaceholder=Select\n) {\nopal-text-input (class=opal-select__new-item-input)\n}\n}\np {\nopal-group {\nopal-select (placeholder=Select) {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\nopal-select (view-type=primary, placeholder=Select) {\nopal-popover (class=opal-select__menu, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\n}\n}\nh1 { 'opal-calendar' }\np {\nopal-calendar (from-date=today)\n}\nh1 { 'opal-date-input' }\np {\nopal-date-input\n}\np {\nopal-date-input (mask=99.99.9999, placeholder=dd.mm.yyyy, required)\n}\nh1 { 'opal-loader' }\np {\nopal-loader (shown)\nopal-loader (size=s, shown)\n}\nh1 { 'opal-filtered-list' }\np {\nopal-filtered-list {\nopal-loaded-list (class=opal-filtered-list__list, data-provider={dataProvider1}) {\n'{$item.name}'\n}\n}\n}\nh1 { 'opal-tree-list' }\np {\nopal-filtered-list {\nopal-tree-list (class=opal-filtered-list__list, data-tree-list={dataTreeList1}) {\nopal-checkbox (\nclass=opal-tree-list__selection-control,\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item.name}'\n}\n}\n}\n}\nh1 { 'opal-select + opal-loaded-list' }\np {\nopal-select {\nopal-dropdown (class=opal-select__menu, auto-height=no, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select (multiple, view-model={viewModel1}, view-model-item-schema='{ value: \"id\", text: \"name\" }') {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select (multiple) {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n}\n}\nh1 { 'opal-multiselect' }\np {\nopal-multiselect (\ndata-provider={dataProvider1},\ndata-list-item-schema='{ value: \"id\", text: \"name\" }'\n)\n}\nh1 { 'opal-tree-select' }\np {\nopal-tree-select (data-tree-list={dataTreeList1})\n}\nh1 { 'opal-autosuggest' }\np {\nopal-autosuggest (data-provider={dataProvider2}, open-menu-on-nothing-found)\n}\nh1 { 'opal-tag-select' }\np {\nopal-tag-select (data-provider={dataProvider1}, placeholder='') br\nopal-tag-select (view-type=primary, data-provider={dataProvider1}) br\nopal-tag-select (\nview-type=danger,\ndata-provider={dataProvider1},\nadd-new-item={addNewItem1},\nview-model={viewModel1}\n) {\nopal-text-input (class=opal-select__new-item-input opal-filtered-list__query-input)\n}\n}\nh1 { 'opal-multirow' }\np {\nopal-multirow {\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\nopal-multirow-row {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\n}\n}"
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("h1 { 'opal-button' }\np {\nopal-button { 'Button' } ' '\nopal-button (view-type=primary) { 'Button' } ' '\nopal-button (view-type=danger) { 'Button' } ' '\n}\np {\nopal-button (disabled) { 'Button' } ' '\nopal-button (view-type=primary, disabled) { 'Button' } ' '\nopal-button (view-type=danger, disabled) { 'Button' } ' '\n}\np {\nopal-button (size=s) { 'Button' } ' '\nopal-button (view-type=primary, size=s) { 'Button' } ' '\nopal-button (view-type=danger, size=s) { 'Button' } ' '\n}\np {\nopal-button (loading) { 'Button' } ' '\nopal-button (view-type=primary, loading) { 'Button' } ' '\nopal-button (view-type=danger, loading) { 'Button' } ' '\n}\np {\nopal-button (loading, disabled) { 'Button' } ' '\nopal-button (view-type=primary, loading, disabled) { 'Button' } ' '\nopal-button (view-type=danger, loading, disabled) { 'Button' } ' '\n}\nh1 { 'opal-sign-button' }\np {\nopal-sign-button (sign=plus) { 'Button' }\n}\np {\nopal-sign-button (sign=minus) { 'Button' }\n}\nh1 { 'opal-text-input' }\np {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\np {\nopal-text-input (value=Value, disabled)\n}\np {\nopal-text-input (placeholder=Placeholder, disabled)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, clearable)\n}\np {\nopal-text-input (value=Value, placeholder=Placeholder, loading)\n}\np {\nopal-text-input (multiline, placeholder=Placeholder)\n}\nh1 { 'opal-editable-text' }\np {\nopal-editable-text {\n'Editable text'\n}\n}\nh1 { 'opal-input-mask' }\np {\nopal-input-mask (mask=99/99/9999) {\nopal-text-input (class=opal-input-mask__text-input, placeholder=dd/mm/yyyy)\n}\n}\np {\nopal-input-mask (mask='+7 (999) 999-9999? доб. 9999') {\nopal-text-input (class=opal-input-mask__text-input, placeholder=Телефон)\n}\n}\np {\nopal-input-mask (mask=#ffffff) {\nopal-input-mask-definition (mask-char=f, regex=/[0-9a-f]/i)\nopal-text-input (class=opal-input-mask__text-input, placeholder=Цвет)\n}\n}\nh1 { 'opal-group' }\np {\nopal-group {\nopal-button { 'Button' }\nopal-button (view-type=primary) { 'Button' }\nopal-button (view-type=danger) { 'Button' }\n}\n}\np {\nopal-group {\nopal-button { 'Button' }\nopal-text-input (value=Value, placeholder=Placeholder)\nopal-button (view-type=primary) { 'Button' }\n}\n}\nh1 { 'opal-checkbox' }\np {\nopal-checkbox { 'Label' } ' '\nopal-checkbox (checked) { 'Label' } ' '\nopal-checkbox (indeterminate) { 'Label' }\nbr br\nopal-checkbox (disabled) { 'Label' } ' '\nopal-checkbox (checked, disabled) { 'Label' } ' '\nopal-checkbox (indeterminate, disabled) { 'Label' }\n}\nh1 { 'opal-radio-group' }\np {\nopal-radio-group {\nopal-radio-button { 'Label' } ' '\nopal-radio-button (checked) { 'Label' }\nbr br\nopal-radio-button (disabled) { 'Label' } ' '\nopal-radio-button (checked, disabled) { 'Label' }\n}\n}\nh1 { 'opal-switch' }\np {\nopal-switch { 'Label' } ' '\nopal-switch (checked) { 'Label' }\nbr br\nopal-switch (disabled) { 'Label' } ' '\nopal-switch (checked, disabled) { 'Label' }\n}\nh1 { 'opal-slider' }\np {\nopal-slider br\nopal-slider (min=-100, max=100, step=20, value=40) br\nopal-slider (range='[20, 80]')\n}\nh1 { 'opal-switch-menu' }\np {\nopal-switch-menu {\nopal-button (checkable, checked) { 'Option 1' }\nopal-button (checkable) { 'Option 2' }\nopal-button (checkable) { 'Option 3' }\n}\n}\nh1 { 'opal-tabs' }\np {\nopal-tabs {\nopal-tab (selected) { 'Foo' }\nopal-tab { 'Bar' }\nopal-tab { 'Baz' }\nopal-tab-panel { 'Hello Foo' }\nopal-tab-panel { 'Hello Bar' }\nopal-tab-panel { 'Hello Baz' }\n}\n}\nh1 { 'opal-popover' }\np {\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {\nopal-popover (align=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=bottom, align=right, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, align=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=top, align=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\ndiv (style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;) {\nopal-popover (align=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=bottom, align=left, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=left, align=top, auto-direction=no, opened) { 'Popover' br 'Popover' }\nopal-popover (from=top, align=right, auto-direction=no, opened) { 'Popover' br 'Popover' }\n}\n}\nh1 { 'opal-modal' }\np {\nopal-modal (id=modal1) { 'Modal' }\nopal-button (onclick='document.getElementById(\"modal1\").$component.open();') { 'Open' }\n}\nh1 { 'opal-notification' }\np {\nopal-notification (id=notification1) {\n'default'\n}\nopal-notification (id=notification2, view-type=primary, button-hide=no, timeout=5000) {\n'primary'\n}\nopal-notification (id=notification3, view-type=primary, button-hide=no, timeout=10000) {\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n'primary '\n}\nopal-notification (id=notification4, view-type=success) {\nsvg (class=opal-notification__icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-calendar)\n}\n'success'\n}\nopal-notification (id=notification5, view-type=success) {\nsvg (class=opal-notification__icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-calendar)\n}\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n'success '\n}\nopal-notification (id=notification6, view-type=danger) {\n'danger'\n}\nopal-button (onclick='document.getElementById(\"notification1\").$component.show();') { 'Show 1' } ' '\nopal-button (onclick='document.getElementById(\"notification2\").$component.show();') { 'Show 2' } ' '\nopal-button (onclick='document.getElementById(\"notification3\").$component.show();') { 'Show 3' } ' '\nopal-button (onclick='document.getElementById(\"notification4\").$component.show();') { 'Show 4' } ' '\nopal-button (onclick='document.getElementById(\"notification5\").$component.show();') { 'Show 5' } ' '\nopal-button (onclick='document.getElementById(\"notification6\").$component.show();') { 'Show 6' }\n}\nh1 { 'opal-select' }\np {\nopal-select (placeholder=Select) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\nopal-select-option (text='Option 4 (disabled)', disabled)\nopal-select-option (text=Option 5)\nopal-select-option (text='Option 6 (disabled)', disabled)\n}\n}\np {\nopal-select (multiple, placeholder=Select) {\nopal-select-option (text=Option 1, selected)\nopal-select-option (text=Option 2, selected)\nopal-select-option (text=Option 3)\nopal-select-option (text=Option 4)\nopal-select-option (text=Option 5)\n}\n}\np {\nopal-select (\nmultiple,\ndata-list={dataList1},\ndata-list-item-schema='{ value: \"id\", text: \"name\" }',\nview-model-item-schema='{ value: \"id\", text: \"name\" }',\nadd-new-item={addNewItem1},\nplaceholder=Select\n) {\nopal-text-input (class=opal-select__new-item-input)\n}\n}\np {\nopal-group {\nopal-select (placeholder=Select) {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\nopal-select (view-type=primary, placeholder=Select) {\nopal-popover (class=opal-select__menu, auto-closing) {\nopal-select-option (text=Option 1)\nopal-select-option (text=Option 2)\nopal-select-option (text=Option 3)\n}\n}\n}\n}\nh1 { 'opal-calendar' }\np {\nopal-calendar (from-date=today)\n}\nh1 { 'opal-date-input' }\np {\nopal-date-input\n}\np {\nopal-date-input (mask=99.99.9999, placeholder=dd.mm.yyyy, required)\n}\nh1 { 'opal-loader' }\np {\nopal-loader (shown)\nopal-loader (size=s, shown)\n}\nh1 { 'opal-filtered-list' }\np {\nopal-filtered-list {\nopal-loaded-list (class=opal-filtered-list__list, data-provider={dataProvider1}) {\n'{$item.name}'\n}\n}\n}\nh1 { 'opal-tree-list' }\np {\nopal-filtered-list {\nopal-tree-list (class=opal-filtered-list__list, data-tree-list={dataTreeList1}) {\nopal-checkbox (\nclass=opal-tree-list__selection-control,\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item.name}'\n}\n}\n}\n}\nh1 { 'opal-select + opal-loaded-list' }\np {\nopal-select {\nopal-dropdown (class=opal-select__menu, auto-height=no, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select (multiple, view-model={viewModel1}, view-model-item-schema='{ value: \"id\", text: \"name\" }') {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {\nopal-select-option (text={$item.name})\n}\n}\n} ' '\nopal-select {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n} ' '\nopal-select (multiple) {\nopal-popover (class=opal-select__menu, from=bottom, auto-closing) {\nopal-filtered-list (class=opal-select__filtered-list) {\nopal-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider1}\n) {\nopal-select-option (text={$item.name})\n}\n}\n}\n}\n}\nh1 { 'opal-multiselect' }\np {\nopal-multiselect (\ndata-provider={dataProvider1},\ndata-list-item-schema='{ value: \"id\", text: \"name\" }'\n)\n}\nh1 { 'opal-tree-select' }\np {\nopal-tree-select (data-tree-list={dataTreeList1})\n}\nh1 { 'opal-autosuggest' }\np {\nopal-autosuggest (data-provider={dataProvider2}, open-menu-on-nothing-found)\n}\nh1 { 'opal-tag-select' }\np {\nopal-tag-select (data-provider={dataProvider1}, placeholder='') br\nopal-tag-select (view-type=primary, data-provider={dataProvider1}) br\nopal-tag-select (\nview-type=danger,\ndata-provider={dataProvider1},\nadd-new-item={addNewItem1},\nview-model={viewModel1}\n) {\nopal-text-input (class=opal-select__new-item-input opal-filtered-list__query-input)\n}\n}\nh1 { 'opal-multirow' }\np {\nopal-multirow {\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder)\n}\nopal-multirow-row (preset) {\nopal-text-input (value=Value, placeholder=Placeholder, valid=no)\n}\nopal-multirow-row {\nopal-text-input (value=Value, placeholder=Placeholder, valid)\n}\n}\n}");
 
 /***/ })
 /******/ ]);

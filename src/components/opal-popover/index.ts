@@ -2,7 +2,7 @@ import { Cell, IEvent } from 'cellx';
 import { observable } from 'cellx-decorators';
 import { Component, d, IDisposableListening } from 'rionite';
 import './index.css';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 @d.Component({
 	elementIs: 'opal-popover',

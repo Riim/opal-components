@@ -4,7 +4,7 @@ import { computed, observable } from 'cellx-decorators';
 import { Component, d, IComponentElement } from 'rionite';
 import './index.css';
 import { OpalMultirowRow } from './opal-multirow-row';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 let filter = Array.prototype.filter;
 

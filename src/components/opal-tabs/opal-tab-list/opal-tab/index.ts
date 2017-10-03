@@ -3,7 +3,7 @@ import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
 import { Component, d } from 'rionite';
 import './index.css';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 @d.Component<OpalTab>({
 	elementIs: 'opal-tab',

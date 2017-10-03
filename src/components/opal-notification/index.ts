@@ -2,7 +2,7 @@ import { Set } from '@riim/map-set-polyfill';
 import { Cell, IEvent } from 'cellx';
 import { Component, d } from 'rionite';
 import './index.css';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 let container: HTMLElement | undefined;
 let containerOnTop = false;

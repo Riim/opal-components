@@ -1,7 +1,7 @@
 import { Component, d } from 'rionite';
 import { OpalPopover } from '../../opal-popover';
 import './index.css';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 @d.Component({
 	elementIs: 'opal-input-validator-rule',

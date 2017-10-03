@@ -10,7 +10,7 @@ import {
 	IDisposableTimeout
 	} from 'rionite';
 import './index.css';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 export interface IDataListItem {
 	[name: string]: any;

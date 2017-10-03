@@ -54,7 +54,7 @@ export default function _getListItemContext(
 					this._dataTreeListItemValueFieldName,
 					this._viewModelItemValueFieldName
 				);
-			}, { owner: this }),
+			}, { context: this }),
 
 			$indeterminate: new Cell(function(this: OpalTreeList) {
 				this.dataTreeList;
@@ -65,7 +65,7 @@ export default function _getListItemContext(
 					this._dataTreeListItemValueFieldName,
 					this._viewModelItemValueFieldName
 				);
-			}, { owner: this })
+			}, { context: this })
 		}
 	);
 }

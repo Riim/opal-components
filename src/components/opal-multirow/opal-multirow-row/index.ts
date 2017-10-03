@@ -1,6 +1,6 @@
 import { Component, d } from 'rionite';
 import './index.css';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 @d.Component({
 	elementIs: 'opal-multirow-row',

@@ -8,7 +8,7 @@ import { OpalDropdown } from '../opal-dropdown';
 import { OpalInputValidator } from '../opal-input-validator';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 function pad(num: number): string {
 	return (num < 10 ? '0' : '') + num;

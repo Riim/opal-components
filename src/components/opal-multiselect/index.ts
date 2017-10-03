@@ -6,7 +6,7 @@ import { IDataProvider, OpalLoadedList } from '../opal-loaded-list';
 import { OpalSelect } from '../opal-select';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 @d.Component<OpalMultiselect>({
 	elementIs: 'opal-multiselect',

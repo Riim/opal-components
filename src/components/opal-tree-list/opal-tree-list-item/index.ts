@@ -5,7 +5,7 @@ import _getListItemContext from '../_getListItemContext';
 import { OpalButton } from '../../opal-button';
 import { IDataTreeListItem, TDataTreeList, TViewModel } from '../index';
 import './index.css';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 @d.Component<OpalTreeListItem>({
 	elementIs: 'opal-tree-list-item',

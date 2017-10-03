@@ -4,7 +4,7 @@ import { OpalModal } from '../opal-modal';
 import { OpalSelect } from '../opal-select';
 import { OpalTreeList, TDataTreeList, TViewModel } from '../opal-tree-list';
 import './index.css';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 @d.Component({
 	elementIs: 'opal-tree-select',

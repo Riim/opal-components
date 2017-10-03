@@ -5,7 +5,7 @@ import { Component, d } from 'rionite';
 import { OpalLoadedList } from '../opal-loaded-list';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-import template = require('./template.nelm');
+import template from './template.nelm';
 
 @d.Component({
 	elementIs: 'opal-filtered-list',
