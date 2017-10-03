@@ -14,8 +14,8 @@ rt-content (select=.opal-select__button) {
 	}
 }
 
-div/menu-wrapper {
-	rt-content (select=.opal-select__menu) {
+rt-content (select=.opal-select__menu-container) {
+	rt-content/menu-container (select=.opal-select__menu) {
 		opal-dropdown/menu (auto-closing) {
 			rt-content (select=.opal-select__menu-content) {
 				@if-then (if=_isInputDataListSpecified) {

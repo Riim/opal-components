@@ -28,44 +28,48 @@ span/control {
 	) {
 		opal-sign-button/button (class=opal-select__button, sign=plus, checkable)
 
-		opal-popover/menu (class=opal-select__menu, from={input.popoverFrom}, auto-closing) {
-			rt-content (select='.opal-select__menu-content') {
-				@if-then (if=_dataListKeypathParam) {
-					div (class=opal-select__menu-content) {
-						@if-then (if=dataList) {
-							@repeat (for=item of dataList) {
-								opal-select-option/data-list-select-option, select-option (
-									value='{item |key(_dataListItemValueFieldName) }',
-									text='{item |key(_dataListItemTextFieldName) }',
-									disabled='{item |key(_dataListItemDisabledFieldName) }'
+		rt-content (class=opal-select__menu-container, select=.opal-select__menu) {
+			opal-popover/menu (class=opal-select__menu, from={input.popoverFrom}, auto-closing) {
+				rt-content (select='.opal-select__menu-content') {
+					@if-then (if=_dataListKeypathParam) {
+						div (class=opal-select__menu-content) {
+							@if-then (if=dataList) {
+								@repeat (for=item of dataList) {
+									opal-select-option/data-list-select-option, select-option (
+										value='{item |key(_dataListItemValueFieldName) }',
+										text='{item |key(_dataListItemTextFieldName) }',
+										disabled='{item |key(_dataListItemDisabledFieldName) }'
+									)
+								}
+
+								rt-content (
+									class=opal-select__new-item-input-container,
+									select='.opal-select__new-item-input'
 								)
 							}
-
-							rt-content (
-								class=opal-select__new-item-input-container,
-								select='.opal-select__new-item-input'
-							)
-						}
-						@if-else (if=dataList) {
-							opal-loader/menu-loader (shown)
+							@if-else (if=dataList) {
+								opal-loader/menu-loader (shown)
+							}
 						}
 					}
-				}
-				@if-else (if=_dataListKeypathParam) {
-					opal-filtered-list/menu-filtered-list (class=opal-select__menu-content opal-select__filtered-list) {
-						rt-content (
-							class=opal-filtered-list__query-input-container,
-							select=.opal-filtered-list__query-input
-						)
-
-						opal-loaded-list/menu-loaded-list (
-							class=opal-select__loaded-list opal-filtered-list__list,
-							data-provider={dataProvider}
+					@if-else (if=_dataListKeypathParam) {
+						opal-filtered-list/menu-filtered-list (
+							class=opal-select__menu-content opal-select__filtered-list
 						) {
-							opal-select-option/loaded-list-select-option, select-option (
-								value='{$item |key(_dataListItemValueFieldName) }',
-								text='{$item |key(_dataListItemTextFieldName) }'
+							rt-content (
+								class=opal-filtered-list__query-input-container,
+								select=.opal-filtered-list__query-input
 							)
+
+							opal-loaded-list/menu-loaded-list (
+								class=opal-select__loaded-list opal-filtered-list__list,
+								data-provider={dataProvider}
+							) {
+								opal-select-option/loaded-list-select-option, select-option (
+									value='{$item |key(_dataListItemValueFieldName) }',
+									text='{$item |key(_dataListItemTextFieldName) }'
+								)
+							}
 						}
 					}
 				}
