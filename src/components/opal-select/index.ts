@@ -630,13 +630,13 @@ export class OpalSelect extends Component {
 	_onDocumentKeyDown(evt: KeyboardEvent) {
 		switch (evt.which) {
 			case 32 /* Space */: {
-				evt.preventDefault();
-
 				if (this._opened) {
 					if (this.input.focused) {
+						evt.preventDefault();
 						this.close();
 					}
 				} else {
+					evt.preventDefault();
 					this.open();
 				}
 

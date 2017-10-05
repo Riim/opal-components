@@ -6507,13 +6507,14 @@ var OpalSelect = /** @class */ (function (_super) {
     OpalSelect.prototype._onDocumentKeyDown = function (evt) {
         switch (evt.which) {
             case 32 /* Space */: {
-                evt.preventDefault();
                 if (this._opened) {
                     if (this.input.focused) {
+                        evt.preventDefault();
                         this.close();
                     }
                 }
                 else {
+                    evt.preventDefault();
                     this.open();
                 }
                 break;
