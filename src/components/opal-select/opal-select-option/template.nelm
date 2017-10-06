@@ -1,7 +1,13 @@
 @section/inner {
 
 button/control (tabindex={_tabIndex}) {
-	rt-content/content { '{input.text}' }
+	rt-content/content {
+		'{input.text}'
+
+		@if-then (if=input.subtext) {
+			sub { '{input.subtext}' }
+		}
+	}
 	svg/icon-check (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-checkmark) }
 }
 

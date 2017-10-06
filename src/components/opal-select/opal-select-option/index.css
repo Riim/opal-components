@@ -51,6 +51,12 @@
 			display: block;
 			overflow: hidden;
 			text-overflow: ellipsis;
+
+			& sub {
+				display: block;
+				font-size: .9em;
+				opacity: .5;
+			}
 		}
 
 		@el icon-check {

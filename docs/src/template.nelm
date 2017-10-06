@@ -295,9 +295,9 @@ p {
 	opal-group {
 		opal-select (placeholder=Select) {
 			opal-popover (class=opal-select__menu, from=bottom, auto-closing) {
-				opal-select-option (text=Option 1)
-				opal-select-option (text=Option 2)
-				opal-select-option (text=Option 3)
+				opal-select-option (text=Option 1, subtext=Subtext 1)
+				opal-select-option (text=Option 2, subtext=Subtext 2)
+				opal-select-option (text=Option 3, subtext=Subtext 3)
 			}
 		}
 		opal-select (view-type=primary, placeholder=Select) {

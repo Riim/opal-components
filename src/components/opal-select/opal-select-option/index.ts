@@ -11,6 +11,7 @@ import template from './template.nelm';
 	input: {
 		value: String,
 		text: { type: String, required: true },
+		subtext: String,
 		selected: false,
 		tabIndex: 0,
 		focused: false,
