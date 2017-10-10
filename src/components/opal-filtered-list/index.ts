@@ -1,13 +1,13 @@
 import { debounce } from '@riim/debounce-throttle';
 import { getText } from '@riim/gettext';
 import { IEvent } from 'cellx';
-import { Component, d } from 'rionite';
+import { Component, ComponentConfig } from 'rionite';
 import { OpalLoadedList } from '../opal-loaded-list';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 import template from './template.nelm';
 
-@d.Component({
+@ComponentConfig({
 	elementIs: 'opal-filtered-list',
 
 	i18n: {

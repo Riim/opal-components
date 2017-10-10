@@ -3,7 +3,7 @@ import { IEvent, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import {
 	Component,
-	d,
+	ComponentConfig,
 	IDisposableCallback,
 	IDisposableListening,
 	IDisposableTimeout
@@ -29,7 +29,7 @@ function toComparable(str: string): string {
 
 let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 
-@d.Component<OpalAutosuggest>({
+@ComponentConfig<OpalAutosuggest>({
 	elementIs: 'opal-autosuggest',
 
 	input: {
@@ -50,7 +50,7 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disab
 
 	domEvents: {
 		'list-item': {
-			click(_: any, listItem: HTMLElement) {
+			click(evt, listItem: HTMLElement) {
 				let textInput = this.$<OpalTextInput>('text-input')!;
 				let listItemDataSet = listItem.dataset;
 

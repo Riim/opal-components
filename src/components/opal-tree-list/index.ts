@@ -5,7 +5,7 @@ import {
 	ObservableList
 	} from 'cellx';
 import { computed, observable } from 'cellx-decorators';
-import { Component, d } from 'rionite';
+import { Component, ComponentConfig } from 'rionite';
 import { fixParent, ObservableTreeList } from '../../ObservableTreeList';
 import { closestComponent } from '../../utils';
 import { OpalCheckbox } from '../opal-checkbox';
@@ -31,7 +31,7 @@ function toComparable(str: string | null): string | null {
 	return str && str.trim().replace(/\s+/g, ' ').toLowerCase();
 }
 
-@d.Component({
+@ComponentConfig({
 	elementIs: 'opal-tree-list',
 
 	input: {

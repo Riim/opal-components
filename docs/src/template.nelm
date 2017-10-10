@@ -259,6 +259,49 @@ p {
 	opal-button (onclick='document.getElementById("notification6").$component.show();') { 'Show 6' }
 }
 
+h1 { 'opal-calendar' }
+p {
+	opal-calendar (from-date=today)
+}
+
+h1 { 'opal-date-input' }
+p {
+	opal-date-input
+}
+p {
+	opal-date-input (mask=99.99.9999, placeholder=dd.mm.yyyy, required)
+}
+
+h1 { 'opal-loader' }
+p {
+	opal-loader (shown)
+	opal-loader (size=s, shown)
+}
+
+h1 { 'opal-filtered-list' }
+p {
+	opal-filtered-list {
+		opal-loaded-list (class=opal-filtered-list__list, data-provider={dataProvider1}) {
+			'{$item.name}'
+		}
+	}
+}
+
+h1 { 'opal-tree-list' }
+p {
+	opal-filtered-list {
+		opal-tree-list (class=opal-filtered-list__list, data-tree-list={dataTreeList1}) {
+			opal-checkbox (
+				class=opal-tree-list__selection-control,
+				checked={$selected},
+				indeterminate={$indeterminate}
+			) {
+				'{$item.name}'
+			}
+		}
+	}
+}
+
 h1 { 'opal-select' }
 p {
 	opal-select (placeholder=Select) {
@@ -305,49 +348,6 @@ p {
 				opal-select-option (text=Option 1)
 				opal-select-option (text=Option 2)
 				opal-select-option (text=Option 3)
-			}
-		}
-	}
-}
-
-h1 { 'opal-calendar' }
-p {
-	opal-calendar (from-date=today)
-}
-
-h1 { 'opal-date-input' }
-p {
-	opal-date-input
-}
-p {
-	opal-date-input (mask=99.99.9999, placeholder=dd.mm.yyyy, required)
-}
-
-h1 { 'opal-loader' }
-p {
-	opal-loader (shown)
-	opal-loader (size=s, shown)
-}
-
-h1 { 'opal-filtered-list' }
-p {
-	opal-filtered-list {
-		opal-loaded-list (class=opal-filtered-list__list, data-provider={dataProvider1}) {
-			'{$item.name}'
-		}
-	}
-}
-
-h1 { 'opal-tree-list' }
-p {
-	opal-filtered-list {
-		opal-tree-list (class=opal-filtered-list__list, data-tree-list={dataTreeList1}) {
-			opal-checkbox (
-				class=opal-tree-list__selection-control,
-				checked={$selected},
-				indeterminate={$indeterminate}
-			) {
-				'{$item.name}'
 			}
 		}
 	}
@@ -441,6 +441,11 @@ p {
 	) {
 		opal-text-input (class=opal-select__new-item-input opal-filtered-list__query-input)
 	}
+}
+
+h1 { 'opal-tree-tag-select' }
+p {
+	opal-tree-tag-select (data-list={dataTreeList1})
 }
 
 h1 { 'opal-multirow' }

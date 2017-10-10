@@ -1,6 +1,6 @@
 import { Cell, IEvent } from 'cellx';
 import { observable } from 'cellx-decorators';
-import { Component, d, IDisposableListening } from 'rionite';
+import { Component, ComponentConfig, IDisposableListening } from 'rionite';
 import { isFocusable } from '../../utils/isFocusable';
 import './index.css';
 import template from './template.nelm';
@@ -27,7 +27,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 	}
 }
 
-@d.Component<OpalModal>({
+@ComponentConfig<OpalModal>({
 	elementIs: 'opal-modal',
 
 	input: {

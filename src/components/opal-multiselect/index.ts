@@ -1,14 +1,14 @@
 import { getText } from '@riim/gettext';
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { d, Template } from 'rionite';
+import { ComponentConfig, Template } from 'rionite';
 import { IDataProvider, OpalLoadedList } from '../opal-loaded-list';
 import { OpalSelect } from '../opal-select';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 import template from './template.nelm';
 
-@d.Component<OpalMultiselect>({
+@ComponentConfig<OpalMultiselect>({
 	elementIs: 'opal-multiselect',
 
 	i18n: {
@@ -44,7 +44,7 @@ import template from './template.nelm';
 
 	domEvents: {
 		'btn-deselect-item': {
-			click(_: any, btn: HTMLElement) {
+			click(evt, btn: HTMLElement) {
 				let vmItemValueFieldName = this._viewModelItemValueFieldName;
 				let itemValue = btn.dataset.itemValue;
 				this.viewModel.removeAt(this.viewModel.findIndex((item) => item[vmItemValueFieldName] == itemValue));

@@ -23,14 +23,6 @@ export { OpalDropdown } from './components/opal-dropdown';
 export { OpalPopover } from './components/opal-popover';
 export { OpalModal } from './components/opal-modal';
 export { OpalNotification } from './components/opal-notification';
-export {
-	IDataListItem as IOpalSelectDataListItem,
-	TDataList as TOpalSelectDataList,
-	TViewModel as TOpalSelectViewModel,
-	OpalSelect,
-	OpalSelectOption
-} from './components/opal-select';
-export { OpalMultiselect } from './components/opal-multiselect';
 export { OpalInputValidator, OpalInputValidatorRule } from './components/opal-input-validator';
 export {
 	IDay as IOpalCalendarDay,
@@ -47,8 +39,17 @@ export {
 } from './components/opal-loaded-list';
 export { OpalFilteredList } from './components/opal-filtered-list';
 export { OpalTreeList } from './components/opal-tree-list';
+export {
+	IDataListItem as IOpalSelectDataListItem,
+	TDataList as TOpalSelectDataList,
+	TViewModel as TOpalSelectViewModel,
+	OpalSelect,
+	OpalSelectOption
+} from './components/opal-select';
+export { OpalMultiselect } from './components/opal-multiselect';
 export { OpalTagSelect } from './components/opal-tag-select';
 export { OpalTreeSelect } from './components/opal-tree-select';
+export { OpalTreeTagSelect } from './components/opal-tree-tag-select';
 export {
 	IDataListItem as IOpalAutosuggestDataListItem,
 	IDataProvider as IOpalAutosuggestDataProvider,

@@ -1,0 +1,10 @@
+opal-tree-select/select (
+	data-tree-list-keypath={_dataListKeypathParam},
+	data-tree-list-item-schema={input.dataListItemSchema |json },
+	add-new-item={input.addNewItem},
+	value={input.value},
+	view-model={viewModel},
+	view-model-item-schema={input.viewModelItemSchema |json }
+) {
+	opal-sign-button/button (class=opal-select__button, sign=plus, checkable)
+}

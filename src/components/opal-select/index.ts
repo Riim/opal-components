@@ -9,10 +9,11 @@ import {
 import { computed, observable } from 'cellx-decorators';
 import {
 	Component,
-	Components,
-	d,
+	ComponentConfig,
 	IComponentElement,
-	IDisposableListening
+	IDisposableListening,
+	RtIfThen,
+	RtRepeat
 	} from 'rionite';
 import { isFocusable } from '../../utils/isFocusable';
 import { OpalButton } from '../opal-button';
@@ -24,8 +25,6 @@ import './index.css';
 import { isEqualArray } from './isEqualArray';
 import { OpalSelectOption } from './opal-select-option';
 import template from './template.nelm';
-
-let { RtIfThen, RtRepeat } = Components;
 
 let map = Array.prototype.map;
 
@@ -39,7 +38,7 @@ export type TViewModel = ObservableList<IDataListItem>;
 let defaultDataListItemSchema = Object.freeze({ value: 'value', text: 'text', disabled: 'disabled' });
 let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled: 'disabled' });
 
-@d.Component<OpalSelect>({
+@ComponentConfig<OpalSelect>({
 	elementIs: 'opal-select',
 
 	input: {
@@ -65,7 +64,7 @@ let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled
 
 	events: {
 		'menu-container': {
-			loaded(evt: IEvent) {
+			loaded(evt) {
 				if (this._onсeFocusedAfterLoading || evt.target !== this.$('loaded-list')) {
 					return;
 				}

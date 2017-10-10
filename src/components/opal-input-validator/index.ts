@@ -1,12 +1,12 @@
 import { computed, observable } from 'cellx-decorators';
-import { Component, d, IComponentElement } from 'rionite';
+import { Component, ComponentConfig, IComponentElement } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 import { OpalInputValidatorRule } from './opal-input-validator-rule';
 
 let map = Array.prototype.map;
 
-@d.Component<OpalInputValidator>({
+@ComponentConfig<OpalInputValidator>({
 	elementIs: 'opal-input-validator',
 	template: '@section/inner { rt-content/content }'
 })

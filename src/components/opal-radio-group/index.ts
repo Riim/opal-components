@@ -1,10 +1,10 @@
 import { IEvent } from 'cellx';
-import { Component, d, IComponentElement } from 'rionite';
+import { Component, ComponentConfig, IComponentElement } from 'rionite';
 import { OpalRadioButton } from './opal-radio-button';
 
 let forEach = Array.prototype.forEach;
 
-@d.Component<OpalRadioGroup>({
+@ComponentConfig<OpalRadioGroup>({
 	elementIs: 'opal-radio-group'
 })
 export class OpalRadioGroup extends Component {

@@ -1,7 +1,7 @@
 import { nextTick } from '@riim/next-tick';
 import { Cell, IEvent } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
-import { Component, d, IDisposableListening } from 'rionite';
+import { Component, ComponentConfig, IDisposableListening } from 'rionite';
 import { OpalSelectOption } from '../opal-select';
 import { formatDate } from './formatDate';
 import './index.css';
@@ -28,7 +28,7 @@ function getTodayDate() {
 	return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 }
 
-@d.Component<OpalCalendar>({
+@ComponentConfig<OpalCalendar>({
 	elementIs: 'opal-calendar',
 
 	input: {
@@ -77,8 +77,8 @@ function getTodayDate() {
 		},
 
 		day: {
-			click(evt: Event) {
-				this._click(evt.target as HTMLElement);
+			click(evt, dayEl: HTMLElement) {
+				this._click(dayEl);
 			}
 		}
 	}

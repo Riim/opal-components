@@ -1,5 +1,5 @@
 import { IEvent } from 'cellx';
-import { Component, d, IComponentElement } from 'rionite';
+import { Component, ComponentConfig, IComponentElement } from 'rionite';
 import './index.css';
 import { OpalTabList } from './opal-tab-list';
 import { OpalTab } from './opal-tab-list/opal-tab';
@@ -9,7 +9,7 @@ import template from './template.nelm';
 let indexOf = Array.prototype.indexOf;
 let forEach = Array.prototype.forEach;
 
-@d.Component({
+@ComponentConfig({
 	elementIs: 'opal-tabs',
 	template
 })

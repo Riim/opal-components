@@ -5,7 +5,7 @@ import { Cell, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import {
 	Component,
-	d,
+	ComponentConfig,
 	IDisposableCallback,
 	IDisposableTimeout
 	} from 'rionite';
@@ -26,7 +26,7 @@ export interface IDataProvider {
 
 let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 
-@d.Component<OpalLoadedList>({
+@ComponentConfig<OpalLoadedList>({
 	elementIs: 'opal-loaded-list',
 
 	input: {

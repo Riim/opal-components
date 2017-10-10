@@ -1,11 +1,11 @@
 import { nextTick } from '@riim/next-tick';
 import { Cell, IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { Component, d } from 'rionite';
+import { Component, ComponentConfig } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
-@d.Component<OpalTextInput>({
+@ComponentConfig<OpalTextInput>({
 	elementIs: 'opal-text-input',
 
 	input: {
@@ -29,7 +29,7 @@ import template from './template.nelm';
 
 	domEvents: {
 		'btn-clear': {
-			click(evt: Event) {
+			click() {
 				this.value = null;
 				this.textField.focus();
 

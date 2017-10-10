@@ -1,7 +1,7 @@
-import { Component, d } from 'rionite';
+import { Component, ComponentConfig } from 'rionite';
 import './index.css';
 
-@d.Component({
+@ComponentConfig({
 	elementIs: 'opal-loader',
 
 	input: {

@@ -6,7 +6,7 @@ import {
 	ObservableList
 	} from 'cellx';
 import { computed, observable } from 'cellx-decorators';
-import { Component, d } from 'rionite';
+import { Component, ComponentConfig } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
 import {
 	IDataListItem,
@@ -20,7 +20,7 @@ import template from './template.nelm';
 let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 
-@d.Component<OpalTagSelect>({
+@ComponentConfig<OpalTagSelect>({
 	elementIs: 'opal-tag-select',
 
 	input: {
@@ -43,7 +43,7 @@ let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: '
 
 	domEvents: {
 		'btn-remove-tag': {
-			click(evt: Event, btn: HTMLElement) {
+			click(evt, btn: HTMLElement) {
 				let vmItemValueFieldName = this._viewModelItemValueFieldName;
 				let tagValue = btn.dataset.tagValue;
 				this.viewModel.removeAt(this.viewModel.findIndex((tag) => tag[vmItemValueFieldName] == tagValue));

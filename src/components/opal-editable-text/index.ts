@@ -1,8 +1,8 @@
-import { Component, d, IDisposableListening } from 'rionite';
+import { Component, ComponentConfig, IDisposableListening } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
-@d.Component<OpalEditableText>({
+@ComponentConfig<OpalEditableText>({
 	elementIs: 'opal-editable-text',
 
 	template,

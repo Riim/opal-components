@@ -1,12 +1,12 @@
 import { Cell, IEvent } from 'cellx';
 import { observable } from 'cellx-decorators';
-import { Component, d, IDisposableListening } from 'rionite';
+import { Component, ComponentConfig, IDisposableListening } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
 let openedDropdowns: Array<OpalDropdown> = [];
 
-@d.Component({
+@ComponentConfig({
 	elementIs: 'opal-dropdown',
 
 	input: {

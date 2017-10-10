@@ -1,8 +1,8 @@
-import { Component, d } from 'rionite';
+import { Component, ComponentConfig } from 'rionite';
 import './index.css';
 import { OpalTab } from './opal-tab';
 
-@d.Component({
+@ComponentConfig({
 	elementIs: 'opal-tab-list',
 	template: '@section/inner { rt-content/content }'
 })

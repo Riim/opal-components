@@ -1,11 +1,11 @@
 import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { Component, d, IDisposableListening } from 'rionite';
+import { Component, ComponentConfig, IDisposableListening } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
-@d.Component<OpalCheckbox>({
+@ComponentConfig<OpalCheckbox>({
 	elementIs: 'opal-checkbox',
 
 	input: {

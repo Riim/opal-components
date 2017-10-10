@@ -1,12 +1,12 @@
 import { IEvent } from 'cellx';
-import { Component, d, IComponentElement } from 'rionite';
+import { Component, ComponentConfig, IComponentElement } from 'rionite';
 import { OpalButton } from '../opal-button';
 import './index.css';
 
 let forEach = Array.prototype.forEach;
 let find = Array.prototype.find;
 
-@d.Component<OpalSwitchMenu>({
+@ComponentConfig<OpalSwitchMenu>({
 	elementIs: 'opal-switch-menu',
 	template: '@section/inner { rt-content/content }'
 })

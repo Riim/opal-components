@@ -1,10 +1,10 @@
 import { Cell, IEvent } from 'cellx';
 import { observable } from 'cellx-decorators';
-import { Component, d } from 'rionite';
+import { Component, ComponentConfig } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
-@d.Component({
+@ComponentConfig({
 	elementIs: 'opal-tab-panel',
 
 	input: {

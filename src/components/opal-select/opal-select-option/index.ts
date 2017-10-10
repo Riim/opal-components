@@ -1,11 +1,11 @@
 import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { Component, d } from 'rionite';
+import { Component, ComponentConfig } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
-@d.Component<OpalSelectOption>({
+@ComponentConfig<OpalSelectOption>({
 	elementIs: 'opal-select-option',
 
 	input: {

@@ -1,14 +1,14 @@
 import { nextUID } from '@riim/next-uid';
 import { Cell, IEvent, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
-import { Component, d, IComponentElement } from 'rionite';
+import { Component, ComponentConfig, IComponentElement } from 'rionite';
 import './index.css';
 import { OpalMultirowRow } from './opal-multirow-row';
 import template from './template.nelm';
 
 let filter = Array.prototype.filter;
 
-@d.Component<OpalMultirow>({
+@ComponentConfig<OpalMultirow>({
 	elementIs: 'opal-multirow',
 	template
 })
