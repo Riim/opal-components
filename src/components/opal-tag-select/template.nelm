@@ -4,7 +4,7 @@ span/tags {
 	@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {
 		span/tag (
 			data-value='{tag |key(_viewModelItemValueFieldName) }',
-			disabled='{tag |key(_viewModelItemDisabledFieldName) }'
+			disabled='{tag |_isItemDisabled }'
 		) {
 			'{tag |key(_viewModelItemTextFieldName) }'
 			button/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')
@@ -21,12 +21,19 @@ span/control {
 		multiple,
 		data-list-keypath={_dataListKeypathParam},
 		data-list-item-schema={input.dataListItemSchema |json },
-		add-new-item={input.addNewItem},
 		value={input.value},
 		view-model={viewModel},
-		view-model-item-schema={input.viewModelItemSchema |json }
+		view-model-item-schema={input.viewModelItemSchema |json },
+		add-new-item={input.addNewItem},
+		focused={input.focused}
 	) {
-		opal-sign-button/button (class=opal-select__button, sign=plus, checkable)
+		opal-sign-button/button (
+			class=opal-select__button,
+			sign=plus,
+			checkable,
+			tab-index={input.tabIndex},
+			disabled={input.disabled}
+		)
 
 		rt-content (class=opal-select__menu-container, select=.opal-select__menu) {
 			opal-popover/menu (class=opal-select__menu, from={input.popoverFrom}, auto-closing) {

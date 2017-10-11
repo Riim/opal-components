@@ -30,12 +30,14 @@ let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: '
 		dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		// необязательный, так как может указываться на передаваемом opal-loaded-list
 		dataProvider: { type: Object, readonly: true },
-		addNewItem: { type: Object, readonly: true },
 		value: eval,
 		viewModel: { type: Object },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
+		addNewItem: { type: Object, readonly: true },
 		placeholder: getText.t('Не выбрано'),
 		popoverFrom: 'bottom',
+		tabIndex: 0,
+		focused: false,
 		disabled: false
 	},
 
@@ -172,5 +174,11 @@ export class OpalTagSelect extends Component {
 
 	_onSelectOptionDeselect() {
 		this.$<OpalSelect>('select')!.close();
+	}
+
+	// helpers
+
+	_isItemDisabled(item: IDataListItem) {
+		return this.input.disabled || item[this._viewModelItemDisabledFieldName];
 	}
 }

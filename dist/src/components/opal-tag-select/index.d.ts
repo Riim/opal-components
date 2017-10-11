@@ -34,4 +34,5 @@ export declare class OpalTagSelect extends Component {
     _onSelectChange(): void;
     _onSelectOptionSelect(): void;
     _onSelectOptionDeselect(): void;
+    _isItemDisabled(item: IDataListItem): any;
 }

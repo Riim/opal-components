@@ -302,6 +302,10 @@ var OpalSelect = /** @class */ (function (_super) {
         }
     };
     OpalSelect.prototype.elementAttached = function () {
+        if (this.input.focused) {
+            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+            this.focus();
+        }
         this.listenTo(this, {
             'input-value-change': this._onInputValueChange,
             'input-view-model-change': this._onInputViewModelChange,
@@ -397,6 +401,7 @@ var OpalSelect = /** @class */ (function (_super) {
                 this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             }
             this.focus();
+            this.emit('focus');
         }
         else {
             if (!this._opened) {
@@ -404,6 +409,7 @@ var OpalSelect = /** @class */ (function (_super) {
                 this._documentKeyDownListening = null;
             }
             this.blur();
+            this.emit('blur');
         }
     };
     OpalSelect.prototype._onViewModelChange = function () {
@@ -413,11 +419,9 @@ var OpalSelect = /** @class */ (function (_super) {
     };
     OpalSelect.prototype._onButtonFocus = function () {
         this.input.focused = true;
-        this.emit('focus');
     };
     OpalSelect.prototype._onButtonBlur = function () {
         this.input.focused = false;
-        this.emit('blur');
     };
     OpalSelect.prototype._onButtonClick = function (evt) {
         if (evt.target.checked) {
@@ -1557,6 +1561,10 @@ var OpalTagSelect = /** @class */ (function (_super) {
     OpalTagSelect.prototype._onSelectOptionDeselect = function () {
         this.$('select').close();
     };
+    // helpers
+    OpalTagSelect.prototype._isItemDisabled = function (item) {
+        return this.input.disabled || item[this._viewModelItemDisabledFieldName];
+    };
     OpalTagSelect.defaultDataListItemSchema = defaultDataListItemSchema;
     OpalTagSelect.defaultViewModelItemSchema = defaultVMItemSchema;
     __decorate([
@@ -1578,12 +1586,14 @@ var OpalTagSelect = /** @class */ (function (_super) {
                 dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
                 // необязательный, так как может указываться на передаваемом opal-loaded-list
                 dataProvider: { type: Object, readonly: true },
-                addNewItem: { type: Object, readonly: true },
                 value: eval,
                 viewModel: { type: Object },
                 viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
+                addNewItem: { type: Object, readonly: true },
                 placeholder: gettext_1.getText.t('Не выбрано'),
                 popoverFrom: 'bottom',
+                tabIndex: 0,
+                focused: false,
                 disabled: false
             },
             template: template_nelm_1.default,
@@ -6793,7 +6803,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |key(_viewModelItemDisabledFieldName) }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndata-list-keypath={_dataListKeypathParam},\ndata-list-item-schema={input.dataListItemSchema |json },\nadd-new-item={input.addNewItem},\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\nrt-content (class=opal-select__menu-container, select=.opal-select__menu) {\nopal-popover/menu (class=opal-select__menu, from={input.popoverFrom}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/data-list-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (\nclass=opal-select__menu-content opal-select__filtered-list\n) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |_isItemDisabled }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndata-list-keypath={_dataListKeypathParam},\ndata-list-item-schema={input.dataListItemSchema |json },\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json },\nadd-new-item={input.addNewItem},\nfocused={input.focused}\n) {\nopal-sign-button/button (\nclass=opal-select__button,\nsign=plus,\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n)\nrt-content (class=opal-select__menu-container, select=.opal-select__menu) {\nopal-popover/menu (class=opal-select__menu, from={input.popoverFrom}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/data-list-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (\nclass=opal-select__menu-content opal-select__filtered-list\n) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}\n}");
 
 /***/ }),
 /* 118 */
@@ -6956,7 +6966,7 @@ exports.OpalTreeTagSelect = OpalTreeTagSelect;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("opal-tree-select/select (\ndata-tree-list-keypath={_dataListKeypathParam},\ndata-tree-list-item-schema={input.dataListItemSchema |json },\nadd-new-item={input.addNewItem},\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json }\n) {\nopal-sign-button/button (class=opal-select__button, sign=plus, checkable)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("opal-tree-select/select (\nview-type={input.viewType},\ndata-tree-list-keypath={_dataListKeypathParam},\ndata-tree-list-item-schema={input.dataListItemSchema |json },\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json },\nadd-new-item={input.addNewItem},\nfocused={input.focused}\n) {\nopal-sign-button/button (\nclass=opal-select__button,\nsign=plus,\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n)\n}");
 
 /***/ }),
 /* 123 */

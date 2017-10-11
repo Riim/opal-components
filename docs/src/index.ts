@@ -105,7 +105,8 @@ export class OpalComponentsDocs extends Component {
 
 	viewModel1 = new ObservableList([
 		{ id: '1', name: '1', disabled: true },
-		{ id: '2', name: '2', disabled: true }
+		{ id: '2', name: '2', disabled: true },
+		{ id: '5', name: '5' }
 	]);
 
 	addNewItem1(name: string): Promise<{ id: string; name: string }> {

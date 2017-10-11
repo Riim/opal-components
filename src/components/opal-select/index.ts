@@ -251,6 +251,11 @@ export class OpalSelect extends Component {
 	}
 
 	elementAttached() {
+		if (this.input.focused) {
+			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+			this.focus();
+		}
+
 		this.listenTo(this, {
 			'input-value-change': this._onInputValueChange,
 			'input-view-model-change': this._onInputViewModelChange,
@@ -359,6 +364,8 @@ export class OpalSelect extends Component {
 			}
 
 			this.focus();
+
+			this.emit('focus');
 		} else {
 			if (!this._opened) {
 				this._documentKeyDownListening!.stop();
@@ -366,6 +373,8 @@ export class OpalSelect extends Component {
 			}
 
 			this.blur();
+
+			this.emit('blur');
 		}
 	}
 
@@ -377,12 +386,10 @@ export class OpalSelect extends Component {
 
 	_onButtonFocus() {
 		this.input.focused = true;
-		this.emit('focus');
 	}
 
 	_onButtonBlur() {
 		this.input.focused = false;
-		this.emit('blur');
 	}
 
 	_onButtonClick(evt: IEvent<OpalButton>) {
