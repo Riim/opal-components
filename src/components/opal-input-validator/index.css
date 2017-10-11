@@ -9,7 +9,7 @@
 
 	@mod valid=no {
 		@el text-input {
-			& .opal-text-input__text-field {
+			.opal-text-input__text-field {
 				border-color: hsl(0,100%,48%);
 			}
 		}

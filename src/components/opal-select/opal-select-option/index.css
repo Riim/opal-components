@@ -52,7 +52,7 @@
 			overflow: hidden;
 			text-overflow: ellipsis;
 
-			& sub {
+			sub {
 				display: block;
 				font-size: .9em;
 				opacity: .5;
