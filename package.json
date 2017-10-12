@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.28.2",
+  "version": "0.28.5",
   "description": "",
   "main": "dist/OpalComponents.js",
   "typings": "dist/src/index.d.ts",
@@ -31,7 +31,7 @@
     "gulp-uglify": "^3.0.0",
     "postcss-color-function": "^4.0.0",
     "postcss-css-variables": "^0.8.0",
-    "postcss-csso": "^2.0.0",
+    "postcss-csso": "^3.0.0",
     "postcss-loader": "^2.0.7",
     "postcss-nested": "^2.1.2",
     "pump": "^1.0.2",
@@ -44,7 +44,7 @@
     "tslint": "^5.7.0",
     "tslint-loader": "^3.5.3",
     "typescript": "^2.5.3",
-    "webpack": "^3.6.0"
+    "webpack": "^3.7.1"
   },
   "dependencies": {
     "@riim/debounce-throttle": "^1.0.0",

@@ -89,6 +89,137 @@ let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled
 					});
 				}
 			}
+		},
+
+		menu: {
+			'input-opened-change'(evt) {
+				if (!evt.data.value) {
+					this.close();
+				}
+			},
+
+			select(evt) {
+				if (!(evt.target instanceof OpalSelectOption)) {
+					return;
+				}
+
+				let vm = this.viewModel;
+				let vmItem = {
+					[this._viewModelItemValueFieldName]: evt.target.value,
+					[this._viewModelItemTextFieldName]: evt.target.text
+				};
+
+				if (this.input.multiple) {
+					this._notUpdateOptions = true;
+					vm.add(vmItem);
+					this._notUpdateOptions = false;
+				} else {
+					if (vm.length) {
+						vm.set(0, vmItem);
+					} else {
+						vm.add(vmItem);
+					}
+
+					this.close();
+					this.focus();
+
+					this.emit('change');
+				}
+			},
+
+			deselect(evt) {
+				if (!(evt.target instanceof OpalSelectOption)) {
+					return;
+				}
+
+				if (this.input.multiple) {
+					let value = evt.target.value;
+					this._notUpdateOptions = true;
+					this.viewModel.removeAt(this.viewModel.findIndex((item) => item.value == value));
+					this._notUpdateOptions = false;
+				} else {
+					evt.target.select();
+
+					this.close();
+					this.focus();
+				}
+			},
+
+			confirm(evt: IEvent<OpalTextInput>) {
+				let textInput = evt.target;
+
+				if (!(textInput instanceof OpalTextInput)) {
+					return;
+				}
+
+				if (textInput !== this.$('new-item-input')) {
+					return;
+				}
+
+				if (!this._addNewItem) {
+					throw new TypeError('Input property "addNewItem" is required');
+				}
+
+				let text = textInput.value!;
+
+				textInput.clear();
+				textInput.input.loading = true;
+				textInput.input.disabled = true;
+
+				this._addNewItem(text).then((newItem: { [name: string]: string }) => {
+					textInput.input.loading = false;
+					textInput.input.disabled = false;
+
+					let value = newItem[this._viewModelItemValueFieldName];
+					let text = newItem[this._viewModelItemTextFieldName];
+
+					if (this.dataList) {
+						this.dataList.add({
+							[this._dataListItemValueFieldName]: value,
+							[this._dataListItemTextFieldName]: text
+						});
+					}
+
+					let loadedList = this.$<OpalLoadedList>('loaded-list');
+
+					if (loadedList) {
+						loadedList.input.query = '';
+					}
+
+					let vm = this.viewModel;
+					let vmItem = {
+						[this._viewModelItemValueFieldName]: value,
+						[this._viewModelItemTextFieldName]: text
+					};
+
+					if (this.input.multiple) {
+						vm.add(vmItem);
+						this.emit('input');
+					} else {
+						if (vm.length) {
+							vm.set(0, vmItem);
+						} else {
+							vm.add(vmItem);
+						}
+
+						this.close();
+						this.focus();
+
+						this.emit('input');
+						this.emit('change');
+					}
+				}, () => {
+					textInput.input.loading = false;
+					textInput.input.disabled = false;
+				});
+			},
+
+			change(evt) {
+				if (!this._notUpdateOptions && (evt.target instanceof RtIfThen || evt.target instanceof RtRepeat)) {
+					this.optionsCell.pull();
+					this._updateOptions();
+				}
+			}
 		}
 	}
 })
@@ -269,14 +400,6 @@ export class OpalSelect extends Component {
 			blur: this._onButtonBlur,
 			click: this._onButtonClick
 		});
-
-		this.listenTo('menu', {
-			'input-opened-change': this._onMenuInputOpenedChange,
-			'<opal-select-option>select': this._onMenuSelectOptionSelect,
-			'<opal-select-option>deselect': this._onMenuSelectOptionDeselect,
-			'<opal-text-input>confirm': this._onMenuTextInputConfirm,
-			'<*>change': this._onMenuChange
-		});
 	}
 
 	_onInputValueChange(evt: IEvent) {
@@ -308,47 +431,6 @@ export class OpalSelect extends Component {
 		}
 
 		vm.clear();
-	}
-
-	_updateViewModel(value: any, multiple: boolean) {
-		let vm = this.viewModel;
-		let vmItemValueFieldName = this._viewModelItemValueFieldName;
-		let vmItemTextFieldName = this._viewModelItemTextFieldName;
-
-		if (multiple) {
-			this.options.forEach((option) => {
-				let optionValue = option.value;
-				let itemIndex = vm.findIndex((item) => item[vmItemValueFieldName] == optionValue);
-
-				if (value.indexOf(optionValue) == -1) {
-					if (itemIndex != -1) {
-						vm.removeAt(itemIndex);
-					}
-				} else if (itemIndex == -1) {
-					vm.add({
-						[vmItemValueFieldName]: optionValue,
-						[vmItemTextFieldName]: option.text
-					});
-				}
-			});
-		} else {
-			value = value[0];
-
-			if (!this.options.some((option) => {
-				if (option.value != value) {
-					return false;
-				}
-
-				vm.set(0, {
-					[vmItemValueFieldName]: value,
-					[vmItemTextFieldName]: option.text
-				});
-
-				return true;
-			})) {
-				vm.clear();
-			}
-		}
 	}
 
 	_onInputViewModelChange(evt: IEvent) {
@@ -400,120 +482,44 @@ export class OpalSelect extends Component {
 		}
 	}
 
-	_onMenuInputOpenedChange(evt: IEvent) {
-		if (!evt.data.value) {
-			this.close();
-		}
-	}
-
-	_onMenuSelectOptionSelect(evt: IEvent<OpalSelectOption>) {
+	_updateViewModel(value: any, multiple: boolean) {
 		let vm = this.viewModel;
-		let vmItem = {
-			[this._viewModelItemValueFieldName]: evt.target.value,
-			[this._viewModelItemTextFieldName]: evt.target.text
-		};
+		let vmItemValueFieldName = this._viewModelItemValueFieldName;
+		let vmItemTextFieldName = this._viewModelItemTextFieldName;
 
-		if (this.input.multiple) {
-			this._notUpdateOptions = true;
-			vm.add(vmItem);
-			this._notUpdateOptions = false;
+		if (multiple) {
+			this.options.forEach((option) => {
+				let optionValue = option.value;
+				let itemIndex = vm.findIndex((item) => item[vmItemValueFieldName] == optionValue);
+
+				if (value.indexOf(optionValue) == -1) {
+					if (itemIndex != -1) {
+						vm.removeAt(itemIndex);
+					}
+				} else if (itemIndex == -1) {
+					vm.add({
+						[vmItemValueFieldName]: optionValue,
+						[vmItemTextFieldName]: option.text
+					});
+				}
+			});
 		} else {
-			if (vm.length) {
-				vm.set(0, vmItem);
-			} else {
-				vm.add(vmItem);
-			}
+			value = value[0];
 
-			this.close();
-			this.focus();
-
-			this.emit('change');
-		}
-	}
-
-	_onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>) {
-		if (this.input.multiple) {
-			let value = evt.target.value;
-			this._notUpdateOptions = true;
-			this.viewModel.removeAt(this.viewModel.findIndex((item) => item.value == value));
-			this._notUpdateOptions = false;
-		} else {
-			evt.target.select();
-
-			this.close();
-			this.focus();
-		}
-	}
-
-	_onMenuTextInputConfirm(evt: IEvent<OpalTextInput>) {
-		let textInput = evt.target;
-
-		if (textInput !== this.$('new-item-input')) {
-			return;
-		}
-
-		if (!this._addNewItem) {
-			throw new TypeError('Input property "addNewItem" is required');
-		}
-
-		let text = textInput.value!;
-
-		textInput.clear();
-		textInput.input.loading = true;
-		textInput.input.disabled = true;
-
-		this._addNewItem(text).then((newItem: { [name: string]: string }) => {
-			textInput.input.loading = false;
-			textInput.input.disabled = false;
-
-			let value = newItem[this._viewModelItemValueFieldName];
-			let text = newItem[this._viewModelItemTextFieldName];
-
-			if (this.dataList) {
-				this.dataList.add({
-					[this._dataListItemValueFieldName]: value,
-					[this._dataListItemTextFieldName]: text
-				});
-			}
-
-			let loadedList = this.$<OpalLoadedList>('loaded-list');
-
-			if (loadedList) {
-				loadedList.input.query = '';
-			}
-
-			let vm = this.viewModel;
-			let vmItem = {
-				[this._viewModelItemValueFieldName]: value,
-				[this._viewModelItemTextFieldName]: text
-			};
-
-			if (this.input.multiple) {
-				vm.add(vmItem);
-				this.emit('input');
-			} else {
-				if (vm.length) {
-					vm.set(0, vmItem);
-				} else {
-					vm.add(vmItem);
+			if (!this.options.some((option) => {
+				if (option.value != value) {
+					return false;
 				}
 
-				this.close();
-				this.focus();
+				vm.set(0, {
+					[vmItemValueFieldName]: value,
+					[vmItemTextFieldName]: option.text
+				});
 
-				this.emit('input');
-				this.emit('change');
+				return true;
+			})) {
+				vm.clear();
 			}
-		}, () => {
-			textInput.input.loading = false;
-			textInput.input.disabled = false;
-		});
-	}
-
-	_onMenuChange(evt: IEvent) {
-		if (!this._notUpdateOptions && (evt.target instanceof RtIfThen || evt.target instanceof RtRepeat)) {
-			this.optionsCell.pull();
-			this._updateOptions();
 		}
 	}
 
