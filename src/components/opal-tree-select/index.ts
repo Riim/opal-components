@@ -22,12 +22,6 @@ import template from './template.nelm';
 	template,
 
 	events: {
-		menu: {
-			select() {},
-			deselect() {},
-			change() {}
-		},
-
 		'btn-close': {
 			click() {
 				this.$<OpalModal>('menu')!.close();
@@ -55,6 +49,18 @@ export class OpalTreeSelect extends OpalSelect {
 
 			define(this, 'dataTreeList', () => input.dataTreeList);
 		}
+	}
+
+	_onMenuSelectOptionSelect(): false {
+		return false;
+	}
+
+	_onMenuSelectOptionDeselect(): false {
+		return false;
+	}
+
+	_onMenuChange(): false {
+		return false;
 	}
 
 	_updateOptions() {

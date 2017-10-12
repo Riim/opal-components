@@ -5,5 +5,8 @@ export declare class OpalTreeSelect extends OpalSelect {
     dataTreeList: TDataTreeList;
     viewModel: TViewModel;
     initialize(): void;
+    _onMenuSelectOptionSelect(): false;
+    _onMenuSelectOptionDeselect(): false;
+    _onMenuChange(): false;
     _updateOptions(): void;
 }

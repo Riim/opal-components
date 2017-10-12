@@ -7,9 +7,11 @@ import template from './template.nelm';
 	template
 })
 export class OpalTreeTagSelect extends OpalTagSelect {
-	_onSelectOptionSelect() {
+	_onSelectSelect(): false {
+		return false;
 	}
 
-	_onSelectOptionDeselect() {
+	_onSelectDeselect(): false {
+		return false;
 	}
 }

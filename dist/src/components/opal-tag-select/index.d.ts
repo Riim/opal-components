@@ -30,9 +30,9 @@ export declare class OpalTagSelect extends Component {
     elementAttached(): void;
     _onInputViewModelChange(evt: IEvent): void;
     _onControlClick(evt: Event): void;
-    _onSelectInput(): void;
-    _onSelectChange(): void;
-    _onSelectOptionSelect(): void;
-    _onSelectOptionDeselect(): void;
+    _onSelectInput(): false;
+    _onSelectChange(): false;
+    _onSelectSelect(): false;
+    _onSelectDeselect(): false;
     _isItemDisabled(item: IDataListItem): any;
 }

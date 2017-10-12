@@ -127,8 +127,8 @@ export class OpalTagSelect extends Component {
 		this.listenTo('select', {
 			input: this._onSelectInput,
 			change: this._onSelectChange,
-			'<opal-select-option>select': this._onSelectOptionSelect,
-			'<opal-select-option>deselect': this._onSelectOptionDeselect
+			select: this._onSelectSelect,
+			deselect: this._onSelectDeselect
 		});
 	}
 
@@ -157,23 +157,25 @@ export class OpalTagSelect extends Component {
 		}
 	}
 
-	_onSelectInput() {
+	_onSelectInput(): false {
+		this.$<OpalSelect>('select')!.close();
 		this.emit('input');
-		this.$<OpalSelect>('select')!.close();
+		return false;
 	}
 
-	_onSelectChange() {
+	_onSelectChange(): false {
 		this.emit('change');
+		return false;
 	}
 
-	// Закрываем в select/deselect а не в change,
-	// тк. change на opal-select[multiple] генерируется только при закрытии.
-	_onSelectOptionSelect() {
+	_onSelectSelect(): false {
 		this.$<OpalSelect>('select')!.close();
+		return false;
 	}
 
-	_onSelectOptionDeselect() {
+	_onSelectDeselect(): false {
 		this.$<OpalSelect>('select')!.close();
+		return false;
 	}
 
 	// helpers

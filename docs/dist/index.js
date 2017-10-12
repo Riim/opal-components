@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 37);
+/******/ 	return __webpack_require__(__webpack_require__.s = 36);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1579,7 +1579,7 @@ THE SOFTWARE.
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__(4), __webpack_require__(2), __webpack_require__(39), __webpack_require__(45), __webpack_require__(46), __webpack_require__(47), __webpack_require__(48), __webpack_require__(26), __webpack_require__(49), __webpack_require__(3), __webpack_require__(50), __webpack_require__(51), __webpack_require__(52), __webpack_require__(25), __webpack_require__(5), __webpack_require__(14), __webpack_require__(53), __webpack_require__(15), __webpack_require__(54), __webpack_require__(7));
+		module.exports = factory(__webpack_require__(4), __webpack_require__(2), __webpack_require__(38), __webpack_require__(44), __webpack_require__(45), __webpack_require__(46), __webpack_require__(47), __webpack_require__(26), __webpack_require__(48), __webpack_require__(3), __webpack_require__(49), __webpack_require__(50), __webpack_require__(51), __webpack_require__(25), __webpack_require__(5), __webpack_require__(14), __webpack_require__(52), __webpack_require__(15), __webpack_require__(53), __webpack_require__(7));
 	else if(typeof define === 'function' && define.amd)
 		define(["@riim/map-set-polyfill", "cellx", "nelm", "@riim/get-uid", "@riim/move-content", "@riim/symbol-polyfill", "@riim/camelize", "@riim/hyphenize", "@riim/clear-node", "@riim/next-tick", "@riim/logger", "html-to-fragment", "@riim/set-attribute", "escape-string", "@riim/gettext", "@riim/escape-html", "@riim/is-regexp", "@riim/next-uid", "@riim/defer", "@riim/mixin"], factory);
 	else if(typeof exports === 'object')
@@ -4995,7 +4995,7 @@ exports.define = define;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var logger_1 = __webpack_require__(38);
+var logger_1 = __webpack_require__(37);
 var global = Function('return this;')();
 var nextTick;
 exports.nextTick = nextTick;
@@ -5902,9 +5902,9 @@ exports.ObservableCollection = ObservableCollection;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var escapeHTML_1 = __webpack_require__(42);
+var escapeHTML_1 = __webpack_require__(41);
 exports.escapeHTML = escapeHTML_1.escapeHTML;
-var unescapeHTML_1 = __webpack_require__(43);
+var unescapeHTML_1 = __webpack_require__(42);
 exports.unescapeHTML = unescapeHTML_1.unescapeHTML;
 
 
@@ -6083,7 +6083,6 @@ var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 var isFocusable_1 = __webpack_require__(8);
-var opal_text_input_1 = __webpack_require__(27);
 __webpack_require__(147);
 var isEqualArray_1 = __webpack_require__(148);
 var opal_select_option_1 = __webpack_require__(149);
@@ -6236,6 +6235,13 @@ var OpalSelect = /** @class */ (function (_super) {
             blur: this._onButtonBlur,
             click: this._onButtonClick
         });
+        this.listenTo('menu', {
+            'input-opened-change': this._onMenuInputOpenedChange,
+            '<opal-select-option>select': this._onMenuSelectOptionSelect,
+            '<opal-select-option>deselect': this._onMenuSelectOptionDeselect,
+            '<opal-text-input>confirm': this._onMenuTextInputConfirm,
+            '<*>change': this._onMenuChange
+        });
     };
     OpalSelect.prototype._onInputValueChange = function (evt) {
         var vm = this.viewModel;
@@ -6262,6 +6268,45 @@ var OpalSelect = /** @class */ (function (_super) {
             }
         }
         vm.clear();
+    };
+    OpalSelect.prototype._updateViewModel = function (value, multiple) {
+        var vm = this.viewModel;
+        var vmItemValueFieldName = this._viewModelItemValueFieldName;
+        var vmItemTextFieldName = this._viewModelItemTextFieldName;
+        if (multiple) {
+            this.options.forEach(function (option) {
+                var optionValue = option.value;
+                var itemIndex = vm.findIndex(function (item) { return item[vmItemValueFieldName] == optionValue; });
+                if (value.indexOf(optionValue) == -1) {
+                    if (itemIndex != -1) {
+                        vm.removeAt(itemIndex);
+                    }
+                }
+                else if (itemIndex == -1) {
+                    vm.add((_a = {},
+                        _a[vmItemValueFieldName] = optionValue,
+                        _a[vmItemTextFieldName] = option.text,
+                        _a));
+                }
+                var _a;
+            });
+        }
+        else {
+            value = value[0];
+            if (!this.options.some(function (option) {
+                if (option.value != value) {
+                    return false;
+                }
+                vm.set(0, (_a = {},
+                    _a[vmItemValueFieldName] = value,
+                    _a[vmItemTextFieldName] = option.text,
+                    _a));
+                return true;
+                var _a;
+            })) {
+                vm.clear();
+            }
+        }
     };
     OpalSelect.prototype._onInputViewModelChange = function (evt) {
         if (evt.data.value != this.viewModel) {
@@ -6304,60 +6349,115 @@ var OpalSelect = /** @class */ (function (_super) {
             this.close();
         }
     };
-    OpalSelect.prototype._updateViewModel = function (value, multiple) {
+    OpalSelect.prototype._onMenuInputOpenedChange = function (evt) {
+        if (!evt.data.value) {
+            this.close();
+        }
+        return false;
+    };
+    OpalSelect.prototype._onMenuSelectOptionSelect = function (evt) {
         var vm = this.viewModel;
-        var vmItemValueFieldName = this._viewModelItemValueFieldName;
-        var vmItemTextFieldName = this._viewModelItemTextFieldName;
-        if (multiple) {
-            this.options.forEach(function (option) {
-                var optionValue = option.value;
-                var itemIndex = vm.findIndex(function (item) { return item[vmItemValueFieldName] == optionValue; });
-                if (value.indexOf(optionValue) == -1) {
-                    if (itemIndex != -1) {
-                        vm.removeAt(itemIndex);
-                    }
-                }
-                else if (itemIndex == -1) {
-                    vm.add((_a = {},
-                        _a[vmItemValueFieldName] = optionValue,
-                        _a[vmItemTextFieldName] = option.text,
-                        _a));
-                }
-                var _a;
-            });
+        var vmItem = (_a = {},
+            _a[this._viewModelItemValueFieldName] = evt.target.value,
+            _a[this._viewModelItemTextFieldName] = evt.target.text,
+            _a);
+        if (this.input.multiple) {
+            this._notUpdateOptions = true;
+            vm.add(vmItem);
+            this._notUpdateOptions = false;
+            this.emit('select');
         }
         else {
-            value = value[0];
-            if (!this.options.some(function (option) {
-                if (option.value != value) {
-                    return false;
-                }
-                vm.set(0, (_a = {},
-                    _a[vmItemValueFieldName] = value,
-                    _a[vmItemTextFieldName] = option.text,
-                    _a));
-                return true;
-                var _a;
-            })) {
-                vm.clear();
-            }
-        }
-    };
-    OpalSelect.prototype._updateOptions = function () {
-        var vm = this.viewModel;
-        var vmItemValueFieldName = this._viewModelItemValueFieldName;
-        var vmItemDisabledFieldName = this._viewModelItemDisabledFieldName;
-        this.options.forEach(function (option) {
-            var value = option.value;
-            var item = vm.find(function (item) { return item[vmItemValueFieldName] == value; });
-            if (item) {
-                option.selected = true;
-                option.disabled = item[vmItemDisabledFieldName];
+            if (vm.length) {
+                vm.set(0, vmItem);
             }
             else {
-                option.selected = false;
+                vm.add(vmItem);
             }
+            this.close();
+            this.focus();
+            this.emit('select');
+            this.emit('change');
+        }
+        return false;
+        var _a;
+    };
+    OpalSelect.prototype._onMenuSelectOptionDeselect = function (evt) {
+        if (this.input.multiple) {
+            var value_1 = evt.target.value;
+            this._notUpdateOptions = true;
+            this.viewModel.removeAt(this.viewModel.findIndex(function (item) { return item.value == value_1; }));
+            this._notUpdateOptions = false;
+        }
+        else {
+            evt.target.select();
+            this.close();
+            this.focus();
+        }
+        this.emit('deselect');
+        return false;
+    };
+    OpalSelect.prototype._onMenuTextInputConfirm = function (evt) {
+        var _this = this;
+        var textInput = evt.target;
+        if (textInput !== this.$('new-item-input')) {
+            return;
+        }
+        if (!this._addNewItem) {
+            throw new TypeError('Input property "addNewItem" is required');
+        }
+        var text = textInput.value;
+        textInput.clear();
+        textInput.input.loading = true;
+        textInput.input.disabled = true;
+        this._addNewItem(text).then(function (newItem) {
+            textInput.input.loading = false;
+            textInput.input.disabled = false;
+            var value = newItem[_this._viewModelItemValueFieldName];
+            var text = newItem[_this._viewModelItemTextFieldName];
+            if (_this.dataList) {
+                _this.dataList.add((_a = {},
+                    _a[_this._dataListItemValueFieldName] = value,
+                    _a[_this._dataListItemTextFieldName] = text,
+                    _a));
+            }
+            var loadedList = _this.$('loaded-list');
+            if (loadedList) {
+                loadedList.input.query = '';
+            }
+            var vm = _this.viewModel;
+            var vmItem = (_b = {},
+                _b[_this._viewModelItemValueFieldName] = value,
+                _b[_this._viewModelItemTextFieldName] = text,
+                _b);
+            if (_this.input.multiple) {
+                vm.add(vmItem);
+                _this.emit('input');
+            }
+            else {
+                if (vm.length) {
+                    vm.set(0, vmItem);
+                }
+                else {
+                    vm.add(vmItem);
+                }
+                _this.close();
+                _this.focus();
+                _this.emit('input');
+                _this.emit('change');
+            }
+            var _a, _b;
+        }, function () {
+            textInput.input.loading = false;
+            textInput.input.disabled = false;
         });
+        return false;
+    };
+    OpalSelect.prototype._onMenuChange = function (evt) {
+        if (!this._notUpdateOptions && (evt.target instanceof rionite_1.RtIfThen || evt.target instanceof rionite_1.RtRepeat)) {
+            this.optionsCell.pull();
+            this._updateOptions();
+        }
     };
     OpalSelect.prototype.open = function () {
         var _this = this;
@@ -6517,6 +6617,22 @@ var OpalSelect = /** @class */ (function (_super) {
             }
         }
     };
+    OpalSelect.prototype._updateOptions = function () {
+        var vm = this.viewModel;
+        var vmItemValueFieldName = this._viewModelItemValueFieldName;
+        var vmItemDisabledFieldName = this._viewModelItemDisabledFieldName;
+        this.options.forEach(function (option) {
+            var value = option.value;
+            var item = vm.find(function (item) { return item[vmItemValueFieldName] == value; });
+            if (item) {
+                option.selected = true;
+                option.disabled = item[vmItemDisabledFieldName];
+            }
+            else {
+                option.selected = false;
+            }
+        });
+    };
     OpalSelect.prototype._focusOptions = function () {
         var options = this.options;
         var optionForFocus;
@@ -6602,120 +6718,6 @@ var OpalSelect = /** @class */ (function (_super) {
                             next_tick_1.nextTick(function () {
                                 focusTarget.focus();
                             });
-                        }
-                    }
-                },
-                menu: {
-                    'input-opened-change': function (evt) {
-                        if (!evt.data.value) {
-                            this.close();
-                        }
-                    },
-                    select: function (evt) {
-                        if (!(evt.target instanceof opal_select_option_1.OpalSelectOption)) {
-                            return;
-                        }
-                        var vm = this.viewModel;
-                        var vmItem = (_a = {},
-                            _a[this._viewModelItemValueFieldName] = evt.target.value,
-                            _a[this._viewModelItemTextFieldName] = evt.target.text,
-                            _a);
-                        if (this.input.multiple) {
-                            this._notUpdateOptions = true;
-                            vm.add(vmItem);
-                            this._notUpdateOptions = false;
-                        }
-                        else {
-                            if (vm.length) {
-                                vm.set(0, vmItem);
-                            }
-                            else {
-                                vm.add(vmItem);
-                            }
-                            this.close();
-                            this.focus();
-                            this.emit('change');
-                        }
-                        var _a;
-                    },
-                    deselect: function (evt) {
-                        if (!(evt.target instanceof opal_select_option_1.OpalSelectOption)) {
-                            return;
-                        }
-                        if (this.input.multiple) {
-                            var value_1 = evt.target.value;
-                            this._notUpdateOptions = true;
-                            this.viewModel.removeAt(this.viewModel.findIndex(function (item) { return item.value == value_1; }));
-                            this._notUpdateOptions = false;
-                        }
-                        else {
-                            evt.target.select();
-                            this.close();
-                            this.focus();
-                        }
-                    },
-                    confirm: function (evt) {
-                        var _this = this;
-                        var textInput = evt.target;
-                        if (!(textInput instanceof opal_text_input_1.OpalTextInput)) {
-                            return;
-                        }
-                        if (textInput !== this.$('new-item-input')) {
-                            return;
-                        }
-                        if (!this._addNewItem) {
-                            throw new TypeError('Input property "addNewItem" is required');
-                        }
-                        var text = textInput.value;
-                        textInput.clear();
-                        textInput.input.loading = true;
-                        textInput.input.disabled = true;
-                        this._addNewItem(text).then(function (newItem) {
-                            textInput.input.loading = false;
-                            textInput.input.disabled = false;
-                            var value = newItem[_this._viewModelItemValueFieldName];
-                            var text = newItem[_this._viewModelItemTextFieldName];
-                            if (_this.dataList) {
-                                _this.dataList.add((_a = {},
-                                    _a[_this._dataListItemValueFieldName] = value,
-                                    _a[_this._dataListItemTextFieldName] = text,
-                                    _a));
-                            }
-                            var loadedList = _this.$('loaded-list');
-                            if (loadedList) {
-                                loadedList.input.query = '';
-                            }
-                            var vm = _this.viewModel;
-                            var vmItem = (_b = {},
-                                _b[_this._viewModelItemValueFieldName] = value,
-                                _b[_this._viewModelItemTextFieldName] = text,
-                                _b);
-                            if (_this.input.multiple) {
-                                vm.add(vmItem);
-                                _this.emit('input');
-                            }
-                            else {
-                                if (vm.length) {
-                                    vm.set(0, vmItem);
-                                }
-                                else {
-                                    vm.add(vmItem);
-                                }
-                                _this.close();
-                                _this.focus();
-                                _this.emit('input');
-                                _this.emit('change');
-                            }
-                            var _a, _b;
-                        }, function () {
-                            textInput.input.loading = false;
-                            textInput.input.disabled = false;
-                        });
-                    },
-                    change: function (evt) {
-                        if (!this._notUpdateOptions && (evt.target instanceof rionite_1.RtIfThen || evt.target instanceof rionite_1.RtRepeat)) {
-                            this.optionsCell.pull();
-                            this._updateOptions();
                         }
                     }
                 }
@@ -8279,7 +8281,7 @@ exports.KEY_CELL_MAP = symbol_polyfill_1.Symbol('cellx.cellMap');
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Parser_1 = __webpack_require__(40);
+var Parser_1 = __webpack_require__(39);
 exports.NodeType = Parser_1.NodeType;
 exports.Parser = Parser_1.Parser;
 
@@ -8326,277 +8328,6 @@ exports.hyphenize = hyphenize;
 
 /***/ }),
 /* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(3);
-var cellx_decorators_1 = __webpack_require__(1);
-var rionite_1 = __webpack_require__(0);
-__webpack_require__(70);
-var template_nelm_1 = __webpack_require__(71);
-var OpalTextInput = /** @class */ (function (_super) {
-    __extends(OpalTextInput, _super);
-    function OpalTextInput() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Object.defineProperty(OpalTextInput.prototype, "_textFieldValue", {
-        get: function () {
-            return this.input.value;
-        },
-        set: function (value) {
-            this._textFieldValueCell.set(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalTextInput.prototype, "value", {
-        get: function () {
-            return this._textFieldValue.trim() || null;
-        },
-        set: function (value) {
-            this._textFieldValue = this.textField.value = value || '';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalTextInput.prototype, "isControlIconShown", {
-        get: function () {
-            return !this.isBtnClearShown && !this.input.loading;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalTextInput.prototype, "isBtnClearShown", {
-        get: function () {
-            return !!this._textFieldValue && !this.input.loading;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalTextInput.prototype.ready = function () {
-        var input = this.input;
-        var textField = this.textField = this.$('text-field');
-        if (this._textFieldValue) {
-            textField.value = this._textFieldValue;
-        }
-        else if (input.storeKey) {
-            this._textFieldValue = textField.value = localStorage.getItem(input.storeKey) || '';
-        }
-        this._prevValue = this.value;
-        if (input.multiline && input.autoHeight) {
-            var offsetHeight = textField.offsetHeight;
-            if (offsetHeight) {
-                this._initialHeight = offsetHeight + textField.scrollHeight - textField.clientHeight;
-                this._fixHeight();
-            }
-            else {
-                this._initialHeight = parseInt(getComputedStyle(textField).lineHeight, 10) * this.input.rows +
-                    parseInt(getComputedStyle(textField).borderTop, 10) +
-                    parseInt(getComputedStyle(textField).borderBottom, 10) +
-                    parseInt(getComputedStyle(textField).paddingTop, 10) +
-                    parseInt(getComputedStyle(textField).paddingBottom, 10);
-                textField.style.height = this._initialHeight + 'px';
-            }
-        }
-        if (input.focused) {
-            this.focus();
-        }
-    };
-    OpalTextInput.prototype.elementAttached = function () {
-        this.listenTo(this, {
-            'input-value-change': this._onInputValueChange,
-            'input-focused-change': this._onInputFocusedChange
-        });
-        this.listenTo(this.textField, {
-            focus: this._onTextFieldFocus,
-            blur: this._onTextFieldBlur,
-            input: this._onTextFieldInput,
-            change: this._onTextFieldChange,
-            keydown: this._onTextFieldKeyDown,
-            keypress: this._onTextFieldKeyPress,
-            keyup: this._onTextFieldKeyUp
-        });
-    };
-    OpalTextInput.prototype._onInputValueChange = function (evt) {
-        if (this.textField.value != evt.data.value) {
-            this.textField.value = evt.data.value;
-        }
-    };
-    OpalTextInput.prototype._onInputFocusedChange = function (evt) {
-        if (evt.data.value) {
-            this.focus();
-        }
-        else {
-            this.blur();
-        }
-    };
-    OpalTextInput.prototype._onTextFieldFocus = function (evt) {
-        var _this = this;
-        next_tick_1.nextTick(function () {
-            if (document.activeElement == _this.textField) {
-                _this.input.focused = true;
-                _this.emit('focus');
-            }
-        });
-    };
-    OpalTextInput.prototype._onTextFieldBlur = function () {
-        this.input.focused = false;
-        this.emit('blur');
-    };
-    OpalTextInput.prototype._onTextFieldInput = function (evt) {
-        this._textFieldValue = this.textField.value;
-        this.emit({
-            type: 'input',
-            data: {
-                initialEvent: evt
-            }
-        });
-    };
-    OpalTextInput.prototype._onTextFieldChange = function (evt) {
-        if (this.value === this._prevValue) {
-            return;
-        }
-        this._prevValue = this.value;
-        var storeKey = this.input.storeKey;
-        if (storeKey) {
-            localStorage.setItem(storeKey, this.textField.value);
-        }
-        this.emit({
-            type: 'change',
-            data: {
-                initialEvent: evt
-            }
-        });
-    };
-    OpalTextInput.prototype._onTextFieldKeyDown = function (evt) {
-        var _this = this;
-        if (this.input.multiline && this.input.autoHeight) {
-            setTimeout(function () {
-                _this._fixHeight();
-            }, 1);
-        }
-        this.emit({
-            type: 'keydown',
-            data: {
-                initialEvent: evt
-            }
-        });
-    };
-    OpalTextInput.prototype._onTextFieldKeyPress = function (evt) {
-        if (evt.which == 13 /* Enter */ && this.value) {
-            this.emit('confirm');
-        }
-        this.emit({
-            type: 'keypress',
-            data: {
-                initialEvent: evt
-            }
-        });
-    };
-    OpalTextInput.prototype._onTextFieldKeyUp = function (evt) {
-        if (this.input.multiline && this.input.autoHeight) {
-            this._fixHeight();
-        }
-        this.emit({
-            type: 'keyup',
-            data: {
-                initialEvent: evt
-            }
-        });
-    };
-    OpalTextInput.prototype._fixHeight = function () {
-        var textField = this.textField;
-        var lineHeight = parseInt(getComputedStyle(textField).lineHeight, 10);
-        textField.style.height = this._initialHeight - lineHeight + 'px';
-        textField.style.height = textField.offsetHeight + textField.scrollHeight - textField.clientHeight +
-            lineHeight + 'px';
-    };
-    OpalTextInput.prototype.clear = function () {
-        this.value = null;
-        return this;
-    };
-    OpalTextInput.prototype.focus = function () {
-        this.textField.focus();
-        return this;
-    };
-    OpalTextInput.prototype.blur = function () {
-        this.textField.blur();
-        return this;
-    };
-    OpalTextInput.prototype.enable = function () {
-        this.input.disabled = false;
-        return this;
-    };
-    OpalTextInput.prototype.disable = function () {
-        this.input.disabled = true;
-        return this;
-    };
-    __decorate([
-        cellx_decorators_1.computed
-    ], OpalTextInput.prototype, "_textFieldValue", null);
-    __decorate([
-        cellx_decorators_1.computed
-    ], OpalTextInput.prototype, "isControlIconShown", null);
-    __decorate([
-        cellx_decorators_1.computed
-    ], OpalTextInput.prototype, "isBtnClearShown", null);
-    OpalTextInput = __decorate([
-        rionite_1.ComponentConfig({
-            elementIs: 'opal-text-input',
-            input: {
-                inputType: 'text',
-                size: 'm',
-                multiline: false,
-                rows: 5,
-                autoHeight: true,
-                inputName: String,
-                value: '',
-                storeKey: String,
-                placeholder: String,
-                clearable: false,
-                loading: false,
-                tabIndex: 0,
-                focused: false,
-                disabled: false
-            },
-            template: template_nelm_1.default,
-            domEvents: {
-                'btn-clear': {
-                    click: function () {
-                        this.value = null;
-                        this.textField.focus();
-                        this.emit('clear');
-                        this.emit('change');
-                    }
-                }
-            }
-        })
-    ], OpalTextInput);
-    return OpalTextInput;
-}(rionite_1.Component));
-exports.OpalTextInput = OpalTextInput;
-
-
-/***/ }),
-/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8741,7 +8472,7 @@ exports.OpalTab = OpalTab;
 
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8767,12 +8498,12 @@ var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 var ObservableTreeList_1 = __webpack_require__(16);
-var utils_1 = __webpack_require__(30);
-var _getListItemContext_1 = __webpack_require__(31);
+var utils_1 = __webpack_require__(29);
+var _getListItemContext_1 = __webpack_require__(30);
 __webpack_require__(143);
-var opal_tree_list_item_1 = __webpack_require__(32);
+var opal_tree_list_item_1 = __webpack_require__(31);
 exports.OpalTreeListItem = opal_tree_list_item_1.OpalTreeListItem;
-__webpack_require__(32);
+__webpack_require__(31);
 var template_nelm_1 = __webpack_require__(146);
 var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
@@ -8946,7 +8677,7 @@ OpalTreeList.prototype._getListItemContext = _getListItemContext_1.default;
 
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8959,7 +8690,7 @@ exports.isFocusable = isFocusable_1.default;
 
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9000,7 +8731,7 @@ exports.default = _getListItemContext;
 
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9024,7 +8755,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var _getListItemContext_1 = __webpack_require__(31);
+var _getListItemContext_1 = __webpack_require__(30);
 __webpack_require__(144);
 var template_nelm_1 = __webpack_require__(145);
 var OpalTreeListItem = /** @class */ (function (_super) {
@@ -9092,7 +8823,7 @@ OpalTreeListItem.prototype._getListItemContext = _getListItemContext_1.default;
 
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9174,8 +8905,8 @@ var OpalTagSelect = /** @class */ (function (_super) {
         this.listenTo('select', {
             input: this._onSelectInput,
             change: this._onSelectChange,
-            '<opal-select-option>select': this._onSelectOptionSelect,
-            '<opal-select-option>deselect': this._onSelectOptionDeselect
+            select: this._onSelectSelect,
+            deselect: this._onSelectDeselect
         });
     };
     OpalTagSelect.prototype._onInputViewModelChange = function (evt) {
@@ -9199,19 +8930,21 @@ var OpalTagSelect = /** @class */ (function (_super) {
         }
     };
     OpalTagSelect.prototype._onSelectInput = function () {
-        this.emit('input');
         this.$('select').close();
+        this.emit('input');
+        return false;
     };
     OpalTagSelect.prototype._onSelectChange = function () {
         this.emit('change');
+        return false;
     };
-    // Закрываем в select/deselect а не в change,
-    // тк. change на opal-select[multiple] генерируется только при закрытии.
-    OpalTagSelect.prototype._onSelectOptionSelect = function () {
+    OpalTagSelect.prototype._onSelectSelect = function () {
         this.$('select').close();
+        return false;
     };
-    OpalTagSelect.prototype._onSelectOptionDeselect = function () {
+    OpalTagSelect.prototype._onSelectDeselect = function () {
         this.$('select').close();
+        return false;
     };
     // helpers
     OpalTagSelect.prototype._isItemDisabled = function (item) {
@@ -9267,7 +9000,7 @@ exports.OpalTagSelect = OpalTagSelect;
 
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9334,7 +9067,7 @@ module.exports = warning;
 
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9401,7 +9134,7 @@ var createPath = exports.createPath = function createPath(location) {
 };
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9416,7 +9149,7 @@ var PathNodeType;
 
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9440,8 +9173,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
+__webpack_require__(55);
 __webpack_require__(56);
-__webpack_require__(57);
 var ObservableTreeList_1 = __webpack_require__(16);
 var template_nelm_1 = __webpack_require__(185);
 rionite_1.formatters.log = function (msg) {
@@ -9550,7 +9283,7 @@ exports.OpalComponentsDocs = OpalComponentsDocs;
 
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9598,7 +9331,7 @@ exports.error = exports.logger.error;
 
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9607,12 +9340,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var nelm_parser_1 = __webpack_require__(24);
 exports.NodeType = nelm_parser_1.NodeType;
 exports.Parser = nelm_parser_1.default;
-var Template_1 = __webpack_require__(41);
+var Template_1 = __webpack_require__(40);
 exports.Template = Template_1.default;
 
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10004,14 +9737,14 @@ exports.Parser = Parser;
 
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var escape_html_1 = __webpack_require__(14);
-var self_closing_tags_1 = __webpack_require__(44);
+var self_closing_tags_1 = __webpack_require__(43);
 var escape_string_1 = __webpack_require__(25);
 var nelm_parser_1 = __webpack_require__(24);
 var join = Array.prototype.join;
@@ -10244,7 +9977,7 @@ exports.default = Template;
 
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10263,7 +9996,7 @@ exports.escapeHTML = escapeHTML;
 
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10282,7 +10015,7 @@ exports.unescapeHTML = unescapeHTML;
 
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10324,7 +10057,7 @@ exports.map = exports.list.reduce(function (map, name) { return map.set(name, tr
 
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10355,7 +10088,7 @@ else {
 
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10371,7 +10104,7 @@ exports.moveContent = moveContent;
 
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = Function('return this;')();
@@ -10391,7 +10124,7 @@ if (!Symbol) {
 
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10407,7 +10140,7 @@ exports.camelize = camelize;
 
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10423,7 +10156,7 @@ exports.clearNode = clearNode;
 
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10474,7 +10207,7 @@ exports.error = exports.logger.error.bind(exports.logger);
 
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10507,7 +10240,7 @@ else {
 
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10526,7 +10259,7 @@ exports.setAttribute = setAttribute;
 
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10540,13 +10273,13 @@ exports.isRegExp = isRegExp;
 
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var logger_1 = __webpack_require__(55);
+var logger_1 = __webpack_require__(54);
 var queue;
 function run() {
     var track = queue;
@@ -10574,7 +10307,7 @@ exports.defer = defer;
 
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10625,7 +10358,7 @@ exports.error = exports.logger.error.bind(exports.logger);
 
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports) {
 
 document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
@@ -10646,26 +10379,26 @@ document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
 
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(57);
 __webpack_require__(58);
 __webpack_require__(59);
 __webpack_require__(60);
 __webpack_require__(61);
 __webpack_require__(62);
 __webpack_require__(63);
-__webpack_require__(64);
 var ObservableTreeList_1 = __webpack_require__(16);
 exports.ObservableTreeList = ObservableTreeList_1.ObservableTreeList;
-var opal_button_1 = __webpack_require__(65);
+var opal_button_1 = __webpack_require__(64);
 exports.OpalButton = opal_button_1.OpalButton;
-var opal_sign_button_1 = __webpack_require__(67);
+var opal_sign_button_1 = __webpack_require__(66);
 exports.OpalSignButton = opal_sign_button_1.OpalSignButton;
-var opal_text_input_1 = __webpack_require__(27);
+var opal_text_input_1 = __webpack_require__(69);
 exports.OpalTextInput = opal_text_input_1.OpalTextInput;
 var opal_editable_text_1 = __webpack_require__(72);
 exports.OpalEditableText = opal_editable_text_1.OpalEditableText;
@@ -10710,14 +10443,14 @@ var opal_loaded_list_1 = __webpack_require__(133);
 exports.OpalLoadedList = opal_loaded_list_1.OpalLoadedList;
 var opal_filtered_list_1 = __webpack_require__(136);
 exports.OpalFilteredList = opal_filtered_list_1.OpalFilteredList;
-var opal_tree_list_1 = __webpack_require__(29);
+var opal_tree_list_1 = __webpack_require__(28);
 exports.OpalTreeList = opal_tree_list_1.OpalTreeList;
 var opal_select_1 = __webpack_require__(17);
 exports.OpalSelect = opal_select_1.OpalSelect;
 exports.OpalSelectOption = opal_select_1.OpalSelectOption;
 var opal_multiselect_1 = __webpack_require__(153);
 exports.OpalMultiselect = opal_multiselect_1.OpalMultiselect;
-var opal_tag_select_1 = __webpack_require__(33);
+var opal_tag_select_1 = __webpack_require__(32);
 exports.OpalTagSelect = opal_tag_select_1.OpalTagSelect;
 var opal_tree_select_1 = __webpack_require__(158);
 exports.OpalTreeSelect = opal_tree_select_1.OpalTreeSelect;
@@ -10731,54 +10464,54 @@ exports.OpalMultirowRow = opal_multirow_1.OpalMultirowRow;
 var opal_router_1 = __webpack_require__(172);
 exports.OpalRouter = opal_router_1.OpalRouter;
 exports.OpalRoute = opal_router_1.OpalRoute;
-var utils_1 = __webpack_require__(30);
+var utils_1 = __webpack_require__(29);
 exports.Utils = utils_1.default;
 
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-calendar\"><path d=\"M2 6v24h28V6zm0 9h28M7 3v6m6-6v6m6-6v6m6-6v6\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 59 */
+/* 58 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-checkmark\"><path d=\"M2 20l10 8L30 4\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-chevron-bottom\"><path d=\"M30 12L16 24 2 12\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 61 */
+/* 60 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-chevron-left\"><path d=\"M20 30L8 16 20 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-close\"><path d=\"M2 30L30 2m0 28L2 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-compose\"><path d=\"M27 15v15H2V5h15m13 1l-4-4L9 19l-2 6 6-2zm-8 0l4 4zM9 19l4 4z\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-search\"><circle cx=\"14\" cy=\"14\" r=\"12\" xmlns=\"http://www.w3.org/2000/svg\"/><path d=\"M23 23l7 7\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
-/* 65 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10803,7 +10536,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(66);
+__webpack_require__(65);
 var OpalButton = /** @class */ (function (_super) {
     __extends(OpalButton, _super);
     function OpalButton() {
@@ -10963,7 +10696,7 @@ exports.OpalButton = OpalButton;
 
 
 /***/ }),
-/* 66 */
+/* 65 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -10980,7 +10713,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11005,8 +10738,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(68);
-var template_nelm_1 = __webpack_require__(69);
+__webpack_require__(67);
+var template_nelm_1 = __webpack_require__(68);
 var OpalSignButton = /** @class */ (function (_super) {
     __extends(OpalSignButton, _super);
     function OpalSignButton() {
@@ -11142,7 +10875,7 @@ exports.OpalSignButton = OpalSignButton;
 
 
 /***/ }),
-/* 68 */
+/* 67 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11159,12 +10892,283 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-content/content\n}\n}");
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var next_tick_1 = __webpack_require__(3);
+var cellx_decorators_1 = __webpack_require__(1);
+var rionite_1 = __webpack_require__(0);
+__webpack_require__(70);
+var template_nelm_1 = __webpack_require__(71);
+var OpalTextInput = /** @class */ (function (_super) {
+    __extends(OpalTextInput, _super);
+    function OpalTextInput() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Object.defineProperty(OpalTextInput.prototype, "_textFieldValue", {
+        get: function () {
+            return this.input.value;
+        },
+        set: function (value) {
+            this._textFieldValueCell.set(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OpalTextInput.prototype, "value", {
+        get: function () {
+            return this._textFieldValue.trim() || null;
+        },
+        set: function (value) {
+            this._textFieldValue = this.textField.value = value || '';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OpalTextInput.prototype, "isControlIconShown", {
+        get: function () {
+            return !this.isBtnClearShown && !this.input.loading;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OpalTextInput.prototype, "isBtnClearShown", {
+        get: function () {
+            return !!this._textFieldValue && !this.input.loading;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    OpalTextInput.prototype.ready = function () {
+        var input = this.input;
+        var textField = this.textField = this.$('text-field');
+        if (this._textFieldValue) {
+            textField.value = this._textFieldValue;
+        }
+        else if (input.storeKey) {
+            this._textFieldValue = textField.value = localStorage.getItem(input.storeKey) || '';
+        }
+        this._prevValue = this.value;
+        if (input.multiline && input.autoHeight) {
+            var offsetHeight = textField.offsetHeight;
+            if (offsetHeight) {
+                this._initialHeight = offsetHeight + textField.scrollHeight - textField.clientHeight;
+                this._fixHeight();
+            }
+            else {
+                this._initialHeight = parseInt(getComputedStyle(textField).lineHeight, 10) * this.input.rows +
+                    parseInt(getComputedStyle(textField).borderTop, 10) +
+                    parseInt(getComputedStyle(textField).borderBottom, 10) +
+                    parseInt(getComputedStyle(textField).paddingTop, 10) +
+                    parseInt(getComputedStyle(textField).paddingBottom, 10);
+                textField.style.height = this._initialHeight + 'px';
+            }
+        }
+        if (input.focused) {
+            this.focus();
+        }
+    };
+    OpalTextInput.prototype.elementAttached = function () {
+        this.listenTo(this, {
+            'input-value-change': this._onInputValueChange,
+            'input-focused-change': this._onInputFocusedChange
+        });
+        this.listenTo(this.textField, {
+            focus: this._onTextFieldFocus,
+            blur: this._onTextFieldBlur,
+            input: this._onTextFieldInput,
+            change: this._onTextFieldChange,
+            keydown: this._onTextFieldKeyDown,
+            keypress: this._onTextFieldKeyPress,
+            keyup: this._onTextFieldKeyUp
+        });
+    };
+    OpalTextInput.prototype._onInputValueChange = function (evt) {
+        if (this.textField.value != evt.data.value) {
+            this.textField.value = evt.data.value;
+        }
+    };
+    OpalTextInput.prototype._onInputFocusedChange = function (evt) {
+        if (evt.data.value) {
+            this.focus();
+        }
+        else {
+            this.blur();
+        }
+    };
+    OpalTextInput.prototype._onTextFieldFocus = function (evt) {
+        var _this = this;
+        next_tick_1.nextTick(function () {
+            if (document.activeElement == _this.textField) {
+                _this.input.focused = true;
+                _this.emit('focus');
+            }
+        });
+    };
+    OpalTextInput.prototype._onTextFieldBlur = function () {
+        this.input.focused = false;
+        this.emit('blur');
+    };
+    OpalTextInput.prototype._onTextFieldInput = function (evt) {
+        this._textFieldValue = this.textField.value;
+        this.emit({
+            type: 'input',
+            data: {
+                initialEvent: evt
+            }
+        });
+    };
+    OpalTextInput.prototype._onTextFieldChange = function (evt) {
+        if (this.value === this._prevValue) {
+            return;
+        }
+        this._prevValue = this.value;
+        var storeKey = this.input.storeKey;
+        if (storeKey) {
+            localStorage.setItem(storeKey, this.textField.value);
+        }
+        this.emit({
+            type: 'change',
+            data: {
+                initialEvent: evt
+            }
+        });
+    };
+    OpalTextInput.prototype._onTextFieldKeyDown = function (evt) {
+        var _this = this;
+        if (this.input.multiline && this.input.autoHeight) {
+            setTimeout(function () {
+                _this._fixHeight();
+            }, 1);
+        }
+        this.emit({
+            type: 'keydown',
+            data: {
+                initialEvent: evt
+            }
+        });
+    };
+    OpalTextInput.prototype._onTextFieldKeyPress = function (evt) {
+        if (evt.which == 13 /* Enter */ && this.value) {
+            this.emit('confirm');
+        }
+        this.emit({
+            type: 'keypress',
+            data: {
+                initialEvent: evt
+            }
+        });
+    };
+    OpalTextInput.prototype._onTextFieldKeyUp = function (evt) {
+        if (this.input.multiline && this.input.autoHeight) {
+            this._fixHeight();
+        }
+        this.emit({
+            type: 'keyup',
+            data: {
+                initialEvent: evt
+            }
+        });
+    };
+    OpalTextInput.prototype._fixHeight = function () {
+        var textField = this.textField;
+        var lineHeight = parseInt(getComputedStyle(textField).lineHeight, 10);
+        textField.style.height = this._initialHeight - lineHeight + 'px';
+        textField.style.height = textField.offsetHeight + textField.scrollHeight - textField.clientHeight +
+            lineHeight + 'px';
+    };
+    OpalTextInput.prototype.clear = function () {
+        this.value = null;
+        return this;
+    };
+    OpalTextInput.prototype.focus = function () {
+        this.textField.focus();
+        return this;
+    };
+    OpalTextInput.prototype.blur = function () {
+        this.textField.blur();
+        return this;
+    };
+    OpalTextInput.prototype.enable = function () {
+        this.input.disabled = false;
+        return this;
+    };
+    OpalTextInput.prototype.disable = function () {
+        this.input.disabled = true;
+        return this;
+    };
+    __decorate([
+        cellx_decorators_1.computed
+    ], OpalTextInput.prototype, "_textFieldValue", null);
+    __decorate([
+        cellx_decorators_1.computed
+    ], OpalTextInput.prototype, "isControlIconShown", null);
+    __decorate([
+        cellx_decorators_1.computed
+    ], OpalTextInput.prototype, "isBtnClearShown", null);
+    OpalTextInput = __decorate([
+        rionite_1.ComponentConfig({
+            elementIs: 'opal-text-input',
+            input: {
+                inputType: 'text',
+                size: 'm',
+                multiline: false,
+                rows: 5,
+                autoHeight: true,
+                inputName: String,
+                value: '',
+                storeKey: String,
+                placeholder: String,
+                clearable: false,
+                loading: false,
+                tabIndex: 0,
+                focused: false,
+                disabled: false
+            },
+            template: template_nelm_1.default,
+            domEvents: {
+                'btn-clear': {
+                    click: function () {
+                        this.value = null;
+                        this.textField.focus();
+                        this.emit('clear');
+                        this.emit('change');
+                    }
+                }
+            }
+        })
+    ], OpalTextInput);
+    return OpalTextInput;
+}(rionite_1.Component));
+exports.OpalTextInput = OpalTextInput;
+
 
 /***/ }),
 /* 70 */
@@ -12758,7 +12762,7 @@ var rionite_1 = __webpack_require__(0);
 __webpack_require__(96);
 var opal_tab_list_1 = __webpack_require__(97);
 exports.OpalTabList = opal_tab_list_1.OpalTabList;
-var opal_tab_1 = __webpack_require__(28);
+var opal_tab_1 = __webpack_require__(27);
 exports.OpalTab = opal_tab_1.OpalTab;
 var opal_tab_panel_1 = __webpack_require__(101);
 exports.OpalTabPanel = opal_tab_panel_1.OpalTabPanel;
@@ -12871,7 +12875,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(98);
-var opal_tab_1 = __webpack_require__(28);
+var opal_tab_1 = __webpack_require__(27);
 exports.OpalTab = opal_tab_1.OpalTab;
 var OpalTabList = /** @class */ (function (_super) {
     __extends(OpalTabList, _super);
@@ -15720,7 +15724,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
 var opal_select_1 = __webpack_require__(17);
-var opal_tree_list_1 = __webpack_require__(29);
+var opal_tree_list_1 = __webpack_require__(28);
 __webpack_require__(159);
 var template_nelm_1 = __webpack_require__(160);
 var OpalTreeSelect = /** @class */ (function (_super) {
@@ -15743,6 +15747,15 @@ var OpalTreeSelect = /** @class */ (function (_super) {
             cellx_1.define(this, 'dataTreeList', function () { return input.dataTreeList; });
         }
     };
+    OpalTreeSelect.prototype._onMenuSelectOptionSelect = function () {
+        return false;
+    };
+    OpalTreeSelect.prototype._onMenuSelectOptionDeselect = function () {
+        return false;
+    };
+    OpalTreeSelect.prototype._onMenuChange = function () {
+        return false;
+    };
     OpalTreeSelect.prototype._updateOptions = function () {
     };
     OpalTreeSelect = __decorate([
@@ -15759,11 +15772,6 @@ var OpalTreeSelect = /** @class */ (function (_super) {
             },
             template: template_nelm_1.default,
             events: {
-                menu: {
-                    select: function () { },
-                    deselect: function () { },
-                    change: function () { }
-                },
                 'btn-close': {
                     click: function () {
                         this.$('menu').close();
@@ -15826,16 +15834,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var opal_tag_select_1 = __webpack_require__(33);
+var opal_tag_select_1 = __webpack_require__(32);
 var template_nelm_1 = __webpack_require__(162);
 var OpalTreeTagSelect = /** @class */ (function (_super) {
     __extends(OpalTreeTagSelect, _super);
     function OpalTreeTagSelect() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    OpalTreeTagSelect.prototype._onSelectOptionSelect = function () {
+    OpalTreeTagSelect.prototype._onSelectSelect = function () {
+        return false;
     };
-    OpalTreeTagSelect.prototype._onSelectOptionDeselect = function () {
+    OpalTreeTagSelect.prototype._onSelectDeselect = function () {
+        return false;
     };
     OpalTreeTagSelect = __decorate([
         rionite_1.ComponentConfig({
@@ -16483,7 +16493,7 @@ __webpack_require__(182);
 var opal_route_1 = __webpack_require__(183);
 exports.OpalRoute = opal_route_1.OpalRoute;
 var parsePath_1 = __webpack_require__(184);
-var PathNodeType_1 = __webpack_require__(36);
+var PathNodeType_1 = __webpack_require__(35);
 var forEach = Array.prototype.forEach;
 function isReadonlyProperty(propConfig) {
     return propConfig && typeof propConfig == 'object' &&
@@ -16726,7 +16736,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _warning = __webpack_require__(34);
+var _warning = __webpack_require__(33);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -16736,7 +16746,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _LocationUtils = __webpack_require__(176);
 
-var _PathUtils = __webpack_require__(35);
+var _PathUtils = __webpack_require__(34);
 
 var _createTransitionManager = __webpack_require__(179);
 
@@ -17104,7 +17114,7 @@ var _valueEqual = __webpack_require__(178);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
-var _PathUtils = __webpack_require__(35);
+var _PathUtils = __webpack_require__(34);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17299,7 +17309,7 @@ function valueEqual(a, b) {
 
 exports.__esModule = true;
 
-var _warning = __webpack_require__(34);
+var _warning = __webpack_require__(33);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -17523,7 +17533,7 @@ exports.OpalRoute = OpalRoute;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType_1 = __webpack_require__(36);
+var PathNodeType_1 = __webpack_require__(35);
 var reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
     var ctx = PathNodeType_1.PathNodeType.SIMPLE;
