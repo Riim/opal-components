@@ -23,6 +23,7 @@ export { OpalDropdown } from './components/opal-dropdown';
 export { OpalPopover } from './components/opal-popover';
 export { OpalModal } from './components/opal-modal';
 export { OpalNotification } from './components/opal-notification';
+export { OpalInputValidator, OpalInputValidatorRule } from './components/opal-input-validator';
 export { OpalTextInputValidator, OpalTextInputValidatorRule } from './components/opal-text-input-validator';
 export {
 	IDay as IOpalCalendarDay,

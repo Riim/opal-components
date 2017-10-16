@@ -1,7 +1,0 @@
-@section/inner {
-
-opal-popover/popover (from={input.popoverFrom}) {
-	rt-content/content
-}
-
-}

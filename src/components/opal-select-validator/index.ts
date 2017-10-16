@@ -1,81 +1,24 @@
-import { computed, observable } from 'cellx-decorators';
-import { Component, ComponentConfig, IComponentElement } from 'rionite';
+import { ComponentConfig } from 'rionite';
+import { OpalInputValidator, OpalInputValidatorRule } from '../opal-input-validator';
 import { OpalSelect } from '../opal-select';
-import './index.css';
-import { OpalSelectValidatorRule } from './opal-select-validator-rule';
 
-export { OpalSelectValidatorRule };
-
-let map = Array.prototype.map;
+export { OpalSelectValidatorRule } from './opal-select-validator-rule';
 
 @ComponentConfig<OpalSelectValidator>({
-	elementIs: 'opal-select-validator',
-	template: '@section/inner { rt-content/content }'
+	elementIs: 'opal-select-validator'
 })
-export class OpalSelectValidator extends Component {
-	static OpalSelectValidatorRule = OpalSelectValidatorRule;
+export class OpalSelectValidator extends OpalInputValidator {
+	target: OpalSelect;
 
-	@observable failedRule: OpalSelectValidatorRule | null = null;
+	_checkValue(rule: OpalInputValidatorRule): boolean {
+		let vm = this.target.viewModel;
+		let ruleInput = rule.input;
 
-	@computed get valid(): boolean {
-		return !this.failedRule;
-	}
-
-	_rules: Array<OpalSelectValidatorRule>;
-
-	ready() {
-		this._rules = map.call(
-			this.element.getElementsByClassName('opal-select-validator-rule'),
-			(ruleEl: IComponentElement) => ruleEl.$component
+		return !(
+			vm.length ?
+				ruleInput.minCount && vm.length < ruleInput.minCount ||
+					ruleInput.test && !ruleInput.test.call(this.ownerComponent, vm) :
+				ruleInput.required
 		);
-	}
-
-	elementAttached() {
-		this.listenTo('select', 'change', this._onSelectChange);
-	}
-
-	_onSelectChange() {
-		this.validate();
-	}
-
-	validate(): boolean {
-		return this._validate(this._rules);
-	}
-
-	_validate(rules: Array<OpalSelectValidatorRule>): boolean {
-		let vm = this.$<OpalSelect>('select')!.viewModel;
-		let failedRule: OpalSelectValidatorRule | undefined;
-
-		rules.forEach((rule) => {
-			let ruleInput = rule.input;
-
-			if (!failedRule && (
-				vm.length ?
-					ruleInput.minCount && vm.length < ruleInput.minCount ||
-						ruleInput.test && !ruleInput.test.call(this.ownerComponent, vm) :
-					ruleInput.required
-			)) {
-				failedRule = rule;
-				rule.showMessage();
-			} else {
-				rule.hideMessage();
-			}
-		});
-
-		let prevFailedRule = this.failedRule;
-
-		this.failedRule = failedRule || null;
-
-		if (+!!failedRule ^ +!!prevFailedRule) {
-			if (failedRule) {
-				this.element.setAttribute('valid', 'no');
-				this.emit('select-validation-error');
-			} else {
-				this.element.removeAttribute('valid');
-				this.emit('select-validation-valid');
-			}
-		}
-
-		return !failedRule;
 	}
 }

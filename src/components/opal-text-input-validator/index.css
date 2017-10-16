@@ -1,12 +1,4 @@
-@component opal-text-input-validator {
-	position: relative;
-	display: inline-block;
-	vertical-align: middle;
-
-	@el text-input {
-		display: block;
-	}
-
+@component opal-text-input-validator : opal-input-validator {
 	@mod valid=no {
 		@el text-input {
 			.opal-text-input__text-field {

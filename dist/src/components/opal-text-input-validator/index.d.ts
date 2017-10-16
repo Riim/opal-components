@@ -1,16 +1,10 @@
-import { Component } from 'rionite';
+import { OpalInputValidator, OpalInputValidatorRule } from '../opal-input-validator';
+import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-import { OpalTextInputValidatorRule } from './opal-text-input-validator-rule';
-export { OpalTextInputValidatorRule };
-export declare class OpalTextInputValidator extends Component {
-    static OpalTextInputValidatorRule: typeof OpalTextInputValidatorRule;
-    failedRule: OpalTextInputValidatorRule | null;
-    readonly valid: boolean;
-    _rules: Array<OpalTextInputValidatorRule>;
-    ready(): void;
+export { OpalTextInputValidatorRule } from './opal-text-input-validator-rule';
+export declare class OpalTextInputValidator extends OpalInputValidator {
+    target: OpalTextInput;
     elementAttached(): void;
     _onTextInputInput(): void;
-    _onTextInputChange(): void;
-    validate(): boolean;
-    _validate(rules: Array<OpalTextInputValidatorRule>): boolean;
+    _checkValue(rule: OpalInputValidatorRule): boolean;
 }

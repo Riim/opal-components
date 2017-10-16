@@ -1,40 +1,19 @@
-import { computed, observable } from 'cellx-decorators';
-import { Component, ComponentConfig, IComponentElement } from 'rionite';
+import { ComponentConfig } from 'rionite';
+import { OpalInputValidator, OpalInputValidatorRule } from '../opal-input-validator';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-import { OpalTextInputValidatorRule } from './opal-text-input-validator-rule';
 
-export { OpalTextInputValidatorRule };
-
-let map = Array.prototype.map;
+export { OpalTextInputValidatorRule } from './opal-text-input-validator-rule';
 
 @ComponentConfig<OpalTextInputValidator>({
-	elementIs: 'opal-text-input-validator',
-	template: '@section/inner { rt-content/content }'
+	elementIs: 'opal-text-input-validator'
 })
-export class OpalTextInputValidator extends Component {
-	static OpalTextInputValidatorRule = OpalTextInputValidatorRule;
-
-	@observable failedRule: OpalTextInputValidatorRule | null = null;
-
-	@computed get valid(): boolean {
-		return !this.failedRule;
-	}
-
-	_rules: Array<OpalTextInputValidatorRule>;
-
-	ready() {
-		this._rules = map.call(
-			this.element.getElementsByClassName('opal-text-input-validator-rule'),
-			(ruleEl: IComponentElement) => ruleEl.$component
-		);
-	}
+export class OpalTextInputValidator extends OpalInputValidator {
+	target: OpalTextInput;
 
 	elementAttached() {
-		this.listenTo('text-input', {
-			input: this._onTextInputInput,
-			change: this._onTextInputChange
-		});
+		super.elementAttached();
+		this.listenTo(this.target, 'input', this._onTextInputInput);
 	}
 
 	_onTextInputInput() {
@@ -43,49 +22,16 @@ export class OpalTextInputValidator extends Component {
 		}
 	}
 
-	_onTextInputChange() {
-		this.validate();
-	}
+	_checkValue(rule: OpalInputValidatorRule): boolean {
+		let value = this.target.value;
+		let ruleInput = rule.input;
 
-	validate(): boolean {
-		return this._validate(this._rules);
-	}
-
-	_validate(rules: Array<OpalTextInputValidatorRule>): boolean {
-		let value = this.$<OpalTextInput>('text-input')!.value;
-		let failedRule: OpalTextInputValidatorRule | undefined;
-
-		rules.forEach((rule) => {
-			let ruleInput = rule.input;
-
-			if (!failedRule && (
-				value ?
-					ruleInput.minLength && value.length < ruleInput.minLength ||
-						ruleInput.regex && !ruleInput.regex.test(value) ||
-						ruleInput.test && !ruleInput.test.call(this.ownerComponent, value) :
-					ruleInput.required
-			)) {
-				failedRule = rule;
-				rule.showMessage();
-			} else {
-				rule.hideMessage();
-			}
-		});
-
-		let prevFailedRule = this.failedRule;
-
-		this.failedRule = failedRule || null;
-
-		if (+!!failedRule ^ +!!prevFailedRule) {
-			if (failedRule) {
-				this.element.setAttribute('valid', 'no');
-				this.emit('text-input-validation-error');
-			} else {
-				this.element.removeAttribute('valid');
-				this.emit('text-input-validation-valid');
-			}
-		}
-
-		return !failedRule;
+		return !(
+			value ?
+				ruleInput.minLength && value.length < ruleInput.minLength ||
+					ruleInput.regex && !ruleInput.regex.test(value) ||
+					ruleInput.test && !ruleInput.test.call(this.ownerComponent, value) :
+				ruleInput.required
+		);
 	}
 }

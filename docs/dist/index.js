@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 36);
+/******/ 	return __webpack_require__(__webpack_require__.s = 37);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1579,7 +1579,7 @@ THE SOFTWARE.
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__(4), __webpack_require__(2), __webpack_require__(38), __webpack_require__(41), __webpack_require__(47), __webpack_require__(48), __webpack_require__(49), __webpack_require__(50), __webpack_require__(26), __webpack_require__(51), __webpack_require__(3), __webpack_require__(52), __webpack_require__(53), __webpack_require__(54), __webpack_require__(25), __webpack_require__(5), __webpack_require__(14), __webpack_require__(55), __webpack_require__(15), __webpack_require__(56), __webpack_require__(7));
+		module.exports = factory(__webpack_require__(4), __webpack_require__(2), __webpack_require__(39), __webpack_require__(42), __webpack_require__(48), __webpack_require__(49), __webpack_require__(50), __webpack_require__(51), __webpack_require__(27), __webpack_require__(52), __webpack_require__(3), __webpack_require__(53), __webpack_require__(54), __webpack_require__(55), __webpack_require__(26), __webpack_require__(5), __webpack_require__(15), __webpack_require__(56), __webpack_require__(16), __webpack_require__(57), __webpack_require__(7));
 	else if(typeof define === 'function' && define.amd)
 		define(["@riim/map-set-polyfill", "cellx", "@riim/di", "nelm", "@riim/get-uid", "@riim/move-content", "@riim/symbol-polyfill", "@riim/camelize", "@riim/hyphenize", "@riim/clear-node", "@riim/next-tick", "@riim/logger", "html-to-fragment", "@riim/set-attribute", "escape-string", "@riim/gettext", "@riim/escape-html", "@riim/is-regexp", "@riim/next-uid", "@riim/defer", "@riim/mixin"], factory);
 	else if(typeof exports === 'object')
@@ -4711,7 +4711,7 @@ var nelm_1 = __webpack_require__(10);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var object_assign_polyfill_1 = __webpack_require__(10);
+var object_assign_polyfill_1 = __webpack_require__(11);
 var cellx_1 = __webpack_require__(2);
 function enumerableDecorator(target, name, desc) {
     if (desc) {
@@ -4812,24 +4812,24 @@ exports.computed = computedDecorator;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var map_set_polyfill_1 = __webpack_require__(4);
-var object_assign_polyfill_1 = __webpack_require__(10);
-var Cell_1 = __webpack_require__(19);
-var ObservableList_1 = __webpack_require__(21);
-var ObservableMap_1 = __webpack_require__(22);
-var keys_1 = __webpack_require__(23);
+var object_assign_polyfill_1 = __webpack_require__(11);
+var Cell_1 = __webpack_require__(20);
+var ObservableList_1 = __webpack_require__(22);
+var ObservableMap_1 = __webpack_require__(23);
+var keys_1 = __webpack_require__(24);
 var EventEmitter_1 = __webpack_require__(6);
 exports.EventEmitter = EventEmitter_1.EventEmitter;
-var FreezableCollection_1 = __webpack_require__(12);
+var FreezableCollection_1 = __webpack_require__(13);
 exports.FreezableCollection = FreezableCollection_1.FreezableCollection;
-var ObservableCollection_1 = __webpack_require__(13);
+var ObservableCollection_1 = __webpack_require__(14);
 exports.ObservableCollection = ObservableCollection_1.ObservableCollection;
-var ObservableMap_2 = __webpack_require__(22);
+var ObservableMap_2 = __webpack_require__(23);
 exports.ObservableMap = ObservableMap_2.ObservableMap;
-var ObservableList_2 = __webpack_require__(21);
+var ObservableList_2 = __webpack_require__(22);
 exports.ObservableList = ObservableList_2.ObservableList;
-var Cell_2 = __webpack_require__(19);
+var Cell_2 = __webpack_require__(20);
 exports.Cell = Cell_2.Cell;
-var keys_2 = __webpack_require__(23);
+var keys_2 = __webpack_require__(24);
 exports.KEY_CELL_MAP = keys_2.KEY_CELL_MAP;
 var hasOwn = Object.prototype.hasOwnProperty;
 var slice = Array.prototype.slice;
@@ -4944,7 +4944,7 @@ exports.define = define;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var logger_1 = __webpack_require__(37);
+var logger_1 = __webpack_require__(38);
 var global = Function('return this;')();
 var nextTick;
 exports.nextTick = nextTick;
@@ -4997,7 +4997,7 @@ else {
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = Function('return this;')();
-var Symbol =  true ? __webpack_require__(18).Symbol : global.Symbol;
+var Symbol =  true ? __webpack_require__(19).Symbol : global.Symbol;
 
 var hasOwn = Object.prototype.hasOwnProperty;
 
@@ -5398,7 +5398,7 @@ configure({
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var logger_1 = __webpack_require__(20);
+var logger_1 = __webpack_require__(21);
 var map_set_polyfill_1 = __webpack_require__(4);
 var currentlySubscribing = false;
 var transactionLevel = 0;
@@ -5681,6 +5681,110 @@ exports.isFocusable = isFocusable;
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var cellx_decorators_1 = __webpack_require__(1);
+var rionite_1 = __webpack_require__(0);
+__webpack_require__(121);
+var opal_input_validator_rule_1 = __webpack_require__(122);
+exports.OpalInputValidatorRule = opal_input_validator_rule_1.OpalInputValidatorRule;
+var OpalInputValidator = /** @class */ (function (_super) {
+    __extends(OpalInputValidator, _super);
+    function OpalInputValidator() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.failedRule = null;
+        return _this;
+    }
+    Object.defineProperty(OpalInputValidator.prototype, "valid", {
+        get: function () {
+            return !this.failedRule;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    OpalInputValidator.prototype.ready = function () {
+        this.target = this.$('target');
+        this.rules = Array.prototype.map.call(this.element.getElementsByClassName('opal-input-validator-rule'), function (ruleEl) { return ruleEl.$component; });
+    };
+    OpalInputValidator.prototype.elementAttached = function () {
+        this.listenTo(this.target, 'change', this._onTargetChange);
+    };
+    OpalInputValidator.prototype._onTargetChange = function () {
+        this.validate();
+    };
+    OpalInputValidator.prototype.validate = function () {
+        return this._validate(this.rules);
+    };
+    OpalInputValidator.prototype._validate = function (rules) {
+        var _this = this;
+        var failedRule;
+        rules.forEach(function (rule) {
+            if (failedRule || _this._checkValue(rule)) {
+                rule.hideMessage();
+            }
+            else {
+                failedRule = rule;
+                rule.showMessage();
+            }
+        });
+        var prevFailedRule = this.failedRule;
+        this.failedRule = failedRule || null;
+        if (+!!failedRule ^ +!!prevFailedRule) {
+            if (failedRule) {
+                this.element.setAttribute('valid', 'no');
+                this.emit('input-validation-error');
+            }
+            else {
+                this.element.removeAttribute('valid');
+                this.emit('input-validation-valid');
+            }
+        }
+        return !failedRule;
+    };
+    OpalInputValidator.prototype._checkValue = function (rule) {
+        return false;
+    };
+    OpalInputValidator.prototype.focusTarget = function () {
+        this.target.focus();
+    };
+    __decorate([
+        cellx_decorators_1.observable
+    ], OpalInputValidator.prototype, "failedRule", void 0);
+    __decorate([
+        cellx_decorators_1.computed
+    ], OpalInputValidator.prototype, "valid", null);
+    OpalInputValidator = __decorate([
+        rionite_1.ComponentConfig({
+            elementIs: 'opal-input-validator',
+            template: '@section/inner { rt-content/content }'
+        })
+    ], OpalInputValidator);
+    return OpalInputValidator;
+}(rionite_1.Component));
+exports.OpalInputValidator = OpalInputValidator;
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var global = Function('return this;')();
 var Symbol = global.Symbol;
 
@@ -5698,7 +5802,7 @@ if (!Symbol) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5714,7 +5818,7 @@ exports.assign = assign;
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5727,7 +5831,7 @@ exports.is = is;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5777,7 +5881,7 @@ exports.FreezableCollection = FreezableCollection;
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5845,20 +5949,20 @@ exports.ObservableCollection = ObservableCollection;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var escapeHTML_1 = __webpack_require__(44);
+var escapeHTML_1 = __webpack_require__(45);
 exports.escapeHTML = escapeHTML_1.escapeHTML;
-var unescapeHTML_1 = __webpack_require__(45);
+var unescapeHTML_1 = __webpack_require__(46);
 exports.unescapeHTML = unescapeHTML_1.unescapeHTML;
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5872,7 +5976,7 @@ exports.nextUID = nextUID;
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5888,7 +5992,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var object_assign_polyfill_1 = __webpack_require__(10);
+var object_assign_polyfill_1 = __webpack_require__(11);
 var cellx_1 = __webpack_require__(2);
 var INDEXPATH_EMPTY_ERROR_MESSAGE = 'Indexpath cannot be empty';
 function fixParent(items, parent) {
@@ -6004,7 +6108,7 @@ exports.ObservableTreeList = ObservableTreeList;
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6032,11 +6136,11 @@ var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 var isFocusable_1 = __webpack_require__(8);
-__webpack_require__(150);
-var isEqualArray_1 = __webpack_require__(151);
-var opal_select_option_1 = __webpack_require__(152);
+__webpack_require__(153);
+var isEqualArray_1 = __webpack_require__(154);
+var opal_select_option_1 = __webpack_require__(155);
 exports.OpalSelectOption = opal_select_option_1.OpalSelectOption;
-var template_nelm_1 = __webpack_require__(155);
+var template_nelm_1 = __webpack_require__(158);
 var map = Array.prototype.map;
 var defaultDataListItemSchema = Object.freeze({ value: 'value', text: 'text', disabled: 'disabled' });
 var defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled: 'disabled' });
@@ -6680,7 +6784,7 @@ exports.OpalSelect = OpalSelect;
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = Function('return this;')();
@@ -6700,7 +6804,7 @@ if (!Symbol) {
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6716,11 +6820,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var is_1 = __webpack_require__(11);
-var logger_1 = __webpack_require__(20);
+var is_1 = __webpack_require__(12);
+var logger_1 = __webpack_require__(21);
 var map_set_polyfill_1 = __webpack_require__(4);
 var next_tick_1 = __webpack_require__(3);
-var symbol_polyfill_1 = __webpack_require__(9);
+var symbol_polyfill_1 = __webpack_require__(10);
 var EventEmitter_1 = __webpack_require__(6);
 var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 0x1fffffffffffff;
 var KEY_WRAPPERS = symbol_polyfill_1.Symbol('wrappers');
@@ -7473,7 +7577,7 @@ exports.Cell = Cell;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7524,7 +7628,7 @@ exports.error = exports.logger.error.bind(exports.logger);
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7540,12 +7644,12 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var is_1 = __webpack_require__(11);
+var is_1 = __webpack_require__(12);
 var mixin_1 = __webpack_require__(7);
-var symbol_polyfill_1 = __webpack_require__(9);
+var symbol_polyfill_1 = __webpack_require__(10);
 var EventEmitter_1 = __webpack_require__(6);
-var FreezableCollection_1 = __webpack_require__(12);
-var ObservableCollection_1 = __webpack_require__(13);
+var FreezableCollection_1 = __webpack_require__(13);
+var ObservableCollection_1 = __webpack_require__(14);
 var splice = Array.prototype.splice;
 function defaultComparator(a, b) {
     return a < b ? -1 : (a > b ? 1 : 0);
@@ -8025,7 +8129,7 @@ ObservableList.prototype[symbol_polyfill_1.Symbol.iterator] = ObservableList.pro
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8041,13 +8145,13 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var is_1 = __webpack_require__(11);
+var is_1 = __webpack_require__(12);
 var map_set_polyfill_1 = __webpack_require__(4);
 var mixin_1 = __webpack_require__(7);
-var symbol_polyfill_1 = __webpack_require__(9);
+var symbol_polyfill_1 = __webpack_require__(10);
 var EventEmitter_1 = __webpack_require__(6);
-var FreezableCollection_1 = __webpack_require__(12);
-var ObservableCollection_1 = __webpack_require__(13);
+var FreezableCollection_1 = __webpack_require__(13);
+var ObservableCollection_1 = __webpack_require__(14);
 var ObservableMap = /** @class */ (function (_super) {
     __extends(ObservableMap, _super);
     function ObservableMap(entries, opts) {
@@ -8213,30 +8317,30 @@ ObservableMap.prototype[symbol_polyfill_1.Symbol.iterator] = ObservableMap.proto
 
 
 /***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var symbol_polyfill_1 = __webpack_require__(9);
-exports.KEY_CELL_MAP = symbol_polyfill_1.Symbol('cellx.cellMap');
-
-
-/***/ }),
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Parser_1 = __webpack_require__(42);
+var symbol_polyfill_1 = __webpack_require__(10);
+exports.KEY_CELL_MAP = symbol_polyfill_1.Symbol('cellx.cellMap');
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Parser_1 = __webpack_require__(43);
 exports.NodeType = Parser_1.NodeType;
 exports.Parser = Parser_1.Parser;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8256,7 +8360,7 @@ exports.escapeString = escapeString;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8276,7 +8380,7 @@ exports.hyphenize = hyphenize;
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8301,8 +8405,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(102);
-var template_nelm_1 = __webpack_require__(103);
+__webpack_require__(103);
+var template_nelm_1 = __webpack_require__(104);
 var OpalTab = /** @class */ (function (_super) {
     __extends(OpalTab, _super);
     function OpalTab() {
@@ -8421,7 +8525,7 @@ exports.OpalTab = OpalTab;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8446,14 +8550,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var ObservableTreeList_1 = __webpack_require__(16);
-var utils_1 = __webpack_require__(29);
-var _getListItemContext_1 = __webpack_require__(30);
-__webpack_require__(146);
-var opal_tree_list_item_1 = __webpack_require__(31);
+var ObservableTreeList_1 = __webpack_require__(17);
+var utils_1 = __webpack_require__(30);
+var _getListItemContext_1 = __webpack_require__(31);
+__webpack_require__(149);
+var opal_tree_list_item_1 = __webpack_require__(32);
 exports.OpalTreeListItem = opal_tree_list_item_1.OpalTreeListItem;
-__webpack_require__(31);
-var template_nelm_1 = __webpack_require__(149);
+__webpack_require__(32);
+var template_nelm_1 = __webpack_require__(152);
 var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
 function toComparable(str) {
@@ -8626,20 +8730,20 @@ OpalTreeList.prototype._getListItemContext = _getListItemContext_1.default;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var closestComponent_1 = __webpack_require__(145);
+var closestComponent_1 = __webpack_require__(148);
 exports.closestComponent = closestComponent_1.default;
 var isFocusable_1 = __webpack_require__(8);
 exports.isFocusable = isFocusable_1.default;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8680,7 +8784,7 @@ exports.default = _getListItemContext;
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8704,9 +8808,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var _getListItemContext_1 = __webpack_require__(30);
-__webpack_require__(147);
-var template_nelm_1 = __webpack_require__(148);
+var _getListItemContext_1 = __webpack_require__(31);
+__webpack_require__(150);
+var template_nelm_1 = __webpack_require__(151);
 var OpalTreeListItem = /** @class */ (function (_super) {
     __extends(OpalTreeListItem, _super);
     function OpalTreeListItem() {
@@ -8772,7 +8876,7 @@ OpalTreeListItem.prototype._getListItemContext = _getListItemContext_1.default;
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8798,8 +8902,8 @@ var gettext_1 = __webpack_require__(5);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(159);
-var template_nelm_1 = __webpack_require__(160);
+__webpack_require__(162);
+var template_nelm_1 = __webpack_require__(163);
 var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 var OpalTagSelect = /** @class */ (function (_super) {
@@ -8949,7 +9053,7 @@ exports.OpalTagSelect = OpalTagSelect;
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9016,7 +9120,7 @@ module.exports = warning;
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9083,7 +9187,7 @@ var createPath = exports.createPath = function createPath(location) {
 };
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9098,7 +9202,7 @@ var PathNodeType;
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9122,9 +9226,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(58);
 __webpack_require__(59);
-var ObservableTreeList_1 = __webpack_require__(16);
+__webpack_require__(60);
+var ObservableTreeList_1 = __webpack_require__(17);
 var template_nelm_1 = __webpack_require__(193);
 rionite_1.formatters.log = function (msg) {
     console.log(msg);
@@ -9232,7 +9336,7 @@ exports.OpalComponentsDocs = OpalComponentsDocs;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9280,22 +9384,22 @@ exports.error = exports.logger.error;
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Container_1 = __webpack_require__(39);
+var Container_1 = __webpack_require__(40);
 exports.Container = Container_1.Container;
-var InjectDecorator_1 = __webpack_require__(40);
+var InjectDecorator_1 = __webpack_require__(41);
 exports.Inject = InjectDecorator_1.InjectDecorator;
 var container = new Container_1.Container();
 exports.container = container;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9333,7 +9437,7 @@ exports.Container = Container;
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9352,21 +9456,21 @@ exports.InjectDecorator = InjectDecorator;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var nelm_parser_1 = __webpack_require__(24);
+var nelm_parser_1 = __webpack_require__(25);
 exports.NodeType = nelm_parser_1.NodeType;
 exports.Parser = nelm_parser_1.default;
-var Template_1 = __webpack_require__(43);
+var Template_1 = __webpack_require__(44);
 exports.Template = Template_1.default;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9758,16 +9862,16 @@ exports.Parser = Parser;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var escape_html_1 = __webpack_require__(14);
-var self_closing_tags_1 = __webpack_require__(46);
-var escape_string_1 = __webpack_require__(25);
-var nelm_parser_1 = __webpack_require__(24);
+var escape_html_1 = __webpack_require__(15);
+var self_closing_tags_1 = __webpack_require__(47);
+var escape_string_1 = __webpack_require__(26);
+var nelm_parser_1 = __webpack_require__(25);
 var join = Array.prototype.join;
 var elNameDelimiter = '__';
 var Template = /** @class */ (function () {
@@ -9998,7 +10102,7 @@ exports.default = Template;
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10017,7 +10121,7 @@ exports.escapeHTML = escapeHTML;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10036,7 +10140,7 @@ exports.unescapeHTML = unescapeHTML;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10078,14 +10182,14 @@ exports.map = exports.list.reduce(function (map, name) { return map.set(name, tr
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_uid_1 = __webpack_require__(15);
-var symbol_polyfill_1 = __webpack_require__(18);
+var next_uid_1 = __webpack_require__(16);
+var symbol_polyfill_1 = __webpack_require__(19);
 var hasOwn = Object.prototype.hasOwnProperty;
 var KEY_UID = symbol_polyfill_1.Symbol('uid');
 if (typeof KEY_UID == 'symbol') {
@@ -10109,7 +10213,7 @@ else {
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10125,7 +10229,7 @@ exports.moveContent = moveContent;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = Function('return this;')();
@@ -10145,7 +10249,7 @@ if (!Symbol) {
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10161,7 +10265,7 @@ exports.camelize = camelize;
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10177,7 +10281,7 @@ exports.clearNode = clearNode;
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10228,7 +10332,7 @@ exports.error = exports.logger.error.bind(exports.logger);
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10261,7 +10365,7 @@ else {
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10280,7 +10384,7 @@ exports.setAttribute = setAttribute;
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10294,13 +10398,13 @@ exports.isRegExp = isRegExp;
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var logger_1 = __webpack_require__(57);
+var logger_1 = __webpack_require__(58);
 var queue;
 function run() {
     var track = queue;
@@ -10328,7 +10432,7 @@ exports.defer = defer;
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10379,7 +10483,7 @@ exports.error = exports.logger.error.bind(exports.logger);
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports) {
 
 document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
@@ -10400,84 +10504,87 @@ document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(60);
 __webpack_require__(61);
 __webpack_require__(62);
 __webpack_require__(63);
 __webpack_require__(64);
 __webpack_require__(65);
 __webpack_require__(66);
-var ObservableTreeList_1 = __webpack_require__(16);
+__webpack_require__(67);
+var ObservableTreeList_1 = __webpack_require__(17);
 exports.ObservableTreeList = ObservableTreeList_1.ObservableTreeList;
-var opal_button_1 = __webpack_require__(67);
+var opal_button_1 = __webpack_require__(68);
 exports.OpalButton = opal_button_1.OpalButton;
-var opal_sign_button_1 = __webpack_require__(69);
+var opal_sign_button_1 = __webpack_require__(70);
 exports.OpalSignButton = opal_sign_button_1.OpalSignButton;
-var opal_text_input_1 = __webpack_require__(72);
+var opal_text_input_1 = __webpack_require__(73);
 exports.OpalTextInput = opal_text_input_1.OpalTextInput;
-var opal_editable_text_1 = __webpack_require__(75);
+var opal_editable_text_1 = __webpack_require__(76);
 exports.OpalEditableText = opal_editable_text_1.OpalEditableText;
-var opal_input_mask_1 = __webpack_require__(78);
+var opal_input_mask_1 = __webpack_require__(79);
 exports.OpalInputMask = opal_input_mask_1.OpalInputMask;
 exports.OpalInputMaskDefinition = opal_input_mask_1.OpalInputMaskDefinition;
-var opal_group_1 = __webpack_require__(81);
+var opal_group_1 = __webpack_require__(82);
 exports.OpalGroup = opal_group_1.OpalGroup;
-var opal_checkbox_1 = __webpack_require__(83);
+var opal_checkbox_1 = __webpack_require__(84);
 exports.OpalCheckbox = opal_checkbox_1.OpalCheckbox;
-var opal_radio_group_1 = __webpack_require__(86);
+var opal_radio_group_1 = __webpack_require__(87);
 exports.OpalRadioGroup = opal_radio_group_1.OpalRadioGroup;
 exports.OpalRadioButton = opal_radio_group_1.OpalRadioButton;
-var opal_switch_1 = __webpack_require__(90);
+var opal_switch_1 = __webpack_require__(91);
 exports.OpalSwitch = opal_switch_1.OpalSwitch;
-var opal_slider_1 = __webpack_require__(93);
+var opal_slider_1 = __webpack_require__(94);
 exports.OpalSlider = opal_slider_1.OpalSlider;
-var opal_switch_menu_1 = __webpack_require__(96);
+var opal_switch_menu_1 = __webpack_require__(97);
 exports.OpalSwitchMenu = opal_switch_menu_1.OpalSwitchMenu;
-var opal_tabs_1 = __webpack_require__(98);
+var opal_tabs_1 = __webpack_require__(99);
 exports.OpalTabs = opal_tabs_1.OpalTabs;
 exports.OpalTabList = opal_tabs_1.OpalTabList;
 exports.OpalTab = opal_tabs_1.OpalTab;
-var opal_dropdown_1 = __webpack_require__(108);
+var opal_dropdown_1 = __webpack_require__(109);
 exports.OpalDropdown = opal_dropdown_1.OpalDropdown;
-var opal_popover_1 = __webpack_require__(111);
+var opal_popover_1 = __webpack_require__(112);
 exports.OpalPopover = opal_popover_1.OpalPopover;
-var opal_modal_1 = __webpack_require__(114);
+var opal_modal_1 = __webpack_require__(115);
 exports.OpalModal = opal_modal_1.OpalModal;
-var opal_notification_1 = __webpack_require__(117);
+var opal_notification_1 = __webpack_require__(118);
 exports.OpalNotification = opal_notification_1.OpalNotification;
-var opal_text_input_validator_1 = __webpack_require__(120);
+var opal_input_validator_1 = __webpack_require__(9);
+exports.OpalInputValidator = opal_input_validator_1.OpalInputValidator;
+exports.OpalInputValidatorRule = opal_input_validator_1.OpalInputValidatorRule;
+var opal_text_input_validator_1 = __webpack_require__(125);
 exports.OpalTextInputValidator = opal_text_input_validator_1.OpalTextInputValidator;
 exports.OpalTextInputValidatorRule = opal_text_input_validator_1.OpalTextInputValidatorRule;
-var opal_calendar_1 = __webpack_require__(125);
+var opal_calendar_1 = __webpack_require__(128);
 exports.OpalCalendar = opal_calendar_1.OpalCalendar;
-var opal_date_input_1 = __webpack_require__(130);
+var opal_date_input_1 = __webpack_require__(133);
 exports.OpalDateInput = opal_date_input_1.OpalDateInput;
-var opal_loader_1 = __webpack_require__(134);
+var opal_loader_1 = __webpack_require__(137);
 exports.OpalLoader = opal_loader_1.OpalLoader;
-var opal_loaded_list_1 = __webpack_require__(136);
+var opal_loaded_list_1 = __webpack_require__(139);
 exports.OpalLoadedList = opal_loaded_list_1.OpalLoadedList;
-var opal_filtered_list_1 = __webpack_require__(139);
+var opal_filtered_list_1 = __webpack_require__(142);
 exports.OpalFilteredList = opal_filtered_list_1.OpalFilteredList;
-var opal_tree_list_1 = __webpack_require__(28);
+var opal_tree_list_1 = __webpack_require__(29);
 exports.OpalTreeList = opal_tree_list_1.OpalTreeList;
-var opal_select_1 = __webpack_require__(17);
+var opal_select_1 = __webpack_require__(18);
 exports.OpalSelect = opal_select_1.OpalSelect;
 exports.OpalSelectOption = opal_select_1.OpalSelectOption;
-var opal_multiselect_1 = __webpack_require__(156);
+var opal_multiselect_1 = __webpack_require__(159);
 exports.OpalMultiselect = opal_multiselect_1.OpalMultiselect;
-var opal_tag_select_1 = __webpack_require__(32);
+var opal_tag_select_1 = __webpack_require__(33);
 exports.OpalTagSelect = opal_tag_select_1.OpalTagSelect;
-var opal_tree_select_1 = __webpack_require__(161);
+var opal_tree_select_1 = __webpack_require__(164);
 exports.OpalTreeSelect = opal_tree_select_1.OpalTreeSelect;
-var opal_tree_tag_select_1 = __webpack_require__(164);
+var opal_tree_tag_select_1 = __webpack_require__(167);
 exports.OpalTreeTagSelect = opal_tree_tag_select_1.OpalTreeTagSelect;
-var opal_select_validator_1 = __webpack_require__(166);
+var opal_select_validator_1 = __webpack_require__(169);
 exports.OpalSelectValidator = opal_select_validator_1.OpalSelectValidator;
 exports.OpalSelectValidatorRule = opal_select_validator_1.OpalSelectValidatorRule;
 var opal_autosuggest_1 = __webpack_require__(171);
@@ -10488,54 +10595,54 @@ exports.OpalMultirowRow = opal_multirow_1.OpalMultirowRow;
 var opal_router_1 = __webpack_require__(180);
 exports.OpalRouter = opal_router_1.OpalRouter;
 exports.OpalRoute = opal_router_1.OpalRoute;
-var utils_1 = __webpack_require__(29);
+var utils_1 = __webpack_require__(30);
 exports.Utils = utils_1.default;
 
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports) {
-
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-calendar\"><path d=\"M2 6v24h28V6zm0 9h28M7 3v6m6-6v6m6-6v6m6-6v6\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 61 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-checkmark\"><path d=\"M2 20l10 8L30 4\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-calendar\"><path d=\"M2 6v24h28V6zm0 9h28M7 3v6m6-6v6m6-6v6m6-6v6\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 62 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-chevron-bottom\"><path d=\"M30 12L16 24 2 12\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-checkmark\"><path d=\"M2 20l10 8L30 4\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 63 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-chevron-left\"><path d=\"M20 30L8 16 20 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-chevron-bottom\"><path d=\"M30 12L16 24 2 12\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 64 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-close\"><path d=\"M2 30L30 2m0 28L2 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-chevron-left\"><path d=\"M20 30L8 16 20 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 65 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-compose\"><path d=\"M27 15v15H2V5h15m13 1l-4-4L9 19l-2 6 6-2zm-8 0l4 4zM9 19l4 4z\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-close\"><path d=\"M2 30L30 2m0 28L2 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 66 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-search\"><circle cx=\"14\" cy=\"14\" r=\"12\" xmlns=\"http://www.w3.org/2000/svg\"/><path d=\"M23 23l7 7\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-compose\"><path d=\"M27 15v15H2V5h15m13 1l-4-4L9 19l-2 6 6-2zm-8 0l4 4zM9 19l4 4z\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 67 */
+/***/ (function(module, exports) {
+
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-search\"><circle cx=\"14\" cy=\"14\" r=\"12\" xmlns=\"http://www.w3.org/2000/svg\"/><path d=\"M23 23l7 7\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+
+/***/ }),
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10560,7 +10667,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(68);
+__webpack_require__(69);
 var OpalButton = /** @class */ (function (_super) {
     __extends(OpalButton, _super);
     function OpalButton() {
@@ -10720,7 +10827,7 @@ exports.OpalButton = OpalButton;
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -10737,7 +10844,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10762,8 +10869,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(70);
-var template_nelm_1 = __webpack_require__(71);
+__webpack_require__(71);
+var template_nelm_1 = __webpack_require__(72);
 var OpalSignButton = /** @class */ (function (_super) {
     __extends(OpalSignButton, _super);
     function OpalSignButton() {
@@ -10899,7 +11006,7 @@ exports.OpalSignButton = OpalSignButton;
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -10916,7 +11023,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10924,7 +11031,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10949,8 +11056,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(73);
-var template_nelm_1 = __webpack_require__(74);
+__webpack_require__(74);
+var template_nelm_1 = __webpack_require__(75);
 var OpalTextInput = /** @class */ (function (_super) {
     __extends(OpalTextInput, _super);
     function OpalTextInput() {
@@ -11195,7 +11302,7 @@ exports.OpalTextInput = OpalTextInput;
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11212,7 +11319,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11220,7 +11327,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=input.multiline) {\ntextarea/, text-field (\nrows={input.rows},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\n@if-else (if=input.multiline) {\ninput/, text-field (\ntype={input.inputType},\nname={input.inputName},\nplaceholder={input.placeholder},\ntabindex={input.tabIndex},\ndisabled={input.disabled}\n)\n}\nrt-content/control-icon-container (select=.opal-text-input__control-icon, shown={isControlIconShown})\n@if-then (if=input.clearable) {\nbutton/btn-clear (shown={isBtnClearShown}) {\nsvg/btn-clear-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }\n}\n}\n@if-then (if=input.loading) {\nopal-loader/loader (size=s, shown)\n}\n}");
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11243,8 +11350,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(76);
-var template_nelm_1 = __webpack_require__(77);
+__webpack_require__(77);
+var template_nelm_1 = __webpack_require__(78);
 var OpalEditableText = /** @class */ (function (_super) {
     __extends(OpalEditableText, _super);
     function OpalEditableText() {
@@ -11353,7 +11460,7 @@ exports.OpalEditableText = OpalEditableText;
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11370,7 +11477,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11378,7 +11485,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/content-wrapper {\nrt-content/content (contenteditable, spellcheck=false)\nsvg/icon-editable (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-compose) }\n}\n}");
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11403,7 +11510,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var opal_input_mask_definition_1 = __webpack_require__(79);
+var opal_input_mask_definition_1 = __webpack_require__(80);
 exports.OpalInputMaskDefinition = opal_input_mask_definition_1.OpalInputMaskDefinition;
 var forEach = Array.prototype.forEach;
 var iPhone = /iphone/i.test(navigator.userAgent);
@@ -11724,7 +11831,7 @@ exports.OpalInputMask = OpalInputMask;
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11747,7 +11854,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(80);
+__webpack_require__(81);
 var OpalInputMaskDefinition = /** @class */ (function (_super) {
     __extends(OpalInputMaskDefinition, _super);
     function OpalInputMaskDefinition() {
@@ -11768,7 +11875,7 @@ exports.OpalInputMaskDefinition = OpalInputMaskDefinition;
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11785,7 +11892,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11808,7 +11915,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(82);
+__webpack_require__(83);
 var OpalGroup = /** @class */ (function (_super) {
     __extends(OpalGroup, _super);
     function OpalGroup() {
@@ -11826,7 +11933,7 @@ exports.OpalGroup = OpalGroup;
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -11843,7 +11950,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11868,8 +11975,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(84);
-var template_nelm_1 = __webpack_require__(85);
+__webpack_require__(85);
+var template_nelm_1 = __webpack_require__(86);
 var OpalCheckbox = /** @class */ (function (_super) {
     __extends(OpalCheckbox, _super);
     function OpalCheckbox() {
@@ -12027,7 +12134,7 @@ exports.OpalCheckbox = OpalCheckbox;
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12044,7 +12151,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12052,7 +12159,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12075,7 +12182,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var opal_radio_button_1 = __webpack_require__(87);
+var opal_radio_button_1 = __webpack_require__(88);
 exports.OpalRadioButton = opal_radio_button_1.OpalRadioButton;
 var forEach = Array.prototype.forEach;
 var OpalRadioGroup = /** @class */ (function (_super) {
@@ -12115,7 +12222,7 @@ exports.OpalRadioGroup = OpalRadioGroup;
 
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12140,8 +12247,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(88);
-var template_nelm_1 = __webpack_require__(89);
+__webpack_require__(89);
+var template_nelm_1 = __webpack_require__(90);
 var OpalRadioButton = /** @class */ (function (_super) {
     __extends(OpalRadioButton, _super);
     function OpalRadioButton() {
@@ -12287,7 +12394,7 @@ exports.OpalRadioButton = OpalRadioButton;
 
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12304,7 +12411,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12312,7 +12419,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12337,8 +12444,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(91);
-var template_nelm_1 = __webpack_require__(92);
+__webpack_require__(92);
+var template_nelm_1 = __webpack_require__(93);
 var OpalSwitch = /** @class */ (function (_super) {
     __extends(OpalSwitch, _super);
     function OpalSwitch() {
@@ -12480,7 +12587,7 @@ exports.OpalSwitch = OpalSwitch;
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12497,7 +12604,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12505,7 +12612,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) { span/thumb }\n' '\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12529,8 +12636,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(94);
-var template_nelm_1 = __webpack_require__(95);
+__webpack_require__(95);
+var template_nelm_1 = __webpack_require__(96);
 var OpalSlider = /** @class */ (function (_super) {
     __extends(OpalSlider, _super);
     function OpalSlider() {
@@ -12618,7 +12725,7 @@ exports.OpalSlider = OpalSlider;
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12635,7 +12742,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12643,7 +12750,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=input.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={input.min},\nmax={input.max},\nstep={input.step},\nvalue={input.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.range.1})\n}\n}\n@if-else (if=input.range) {\ninput/input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.value})\n}\n}");
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12666,7 +12773,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(97);
+__webpack_require__(98);
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
 var OpalSwitchMenu = /** @class */ (function (_super) {
@@ -12743,7 +12850,7 @@ exports.OpalSwitchMenu = OpalSwitchMenu;
 
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12760,7 +12867,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12783,14 +12890,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(99);
-var opal_tab_list_1 = __webpack_require__(100);
+__webpack_require__(100);
+var opal_tab_list_1 = __webpack_require__(101);
 exports.OpalTabList = opal_tab_list_1.OpalTabList;
-var opal_tab_1 = __webpack_require__(27);
+var opal_tab_1 = __webpack_require__(28);
 exports.OpalTab = opal_tab_1.OpalTab;
-var opal_tab_panel_1 = __webpack_require__(104);
+var opal_tab_panel_1 = __webpack_require__(105);
 exports.OpalTabPanel = opal_tab_panel_1.OpalTabPanel;
-var template_nelm_1 = __webpack_require__(107);
+var template_nelm_1 = __webpack_require__(108);
 var indexOf = Array.prototype.indexOf;
 var forEach = Array.prototype.forEach;
 var OpalTabs = /** @class */ (function (_super) {
@@ -12858,7 +12965,7 @@ exports.OpalTabs = OpalTabs;
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12875,7 +12982,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12898,8 +13005,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(101);
-var opal_tab_1 = __webpack_require__(27);
+__webpack_require__(102);
+var opal_tab_1 = __webpack_require__(28);
 exports.OpalTab = opal_tab_1.OpalTab;
 var OpalTabList = /** @class */ (function (_super) {
     __extends(OpalTabList, _super);
@@ -12919,7 +13026,7 @@ exports.OpalTabList = OpalTabList;
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12936,7 +13043,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -12953,7 +13060,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12961,7 +13068,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12986,8 +13093,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(105);
-var template_nelm_1 = __webpack_require__(106);
+__webpack_require__(106);
+var template_nelm_1 = __webpack_require__(107);
 var OpalTabPanel = /** @class */ (function (_super) {
     __extends(OpalTabPanel, _super);
     function OpalTabPanel() {
@@ -13025,7 +13132,7 @@ exports.OpalTabPanel = OpalTabPanel;
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13042,7 +13149,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13050,7 +13157,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=isContentRendered) {\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13058,7 +13165,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-content/tab-list-container (select=opal-tab-list) {\nopal-tab-list/tab-list {\nrt-content/tabs (select=opal-tab)\n}\n}\nrt-content/panels (select=opal-tab-panel)\n}");
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13083,8 +13190,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(109);
-var template_nelm_1 = __webpack_require__(110);
+__webpack_require__(110);
+var template_nelm_1 = __webpack_require__(111);
 var openedDropdowns = [];
 var OpalDropdown = /** @class */ (function (_super) {
     __extends(OpalDropdown, _super);
@@ -13238,7 +13345,7 @@ exports.OpalDropdown = OpalDropdown;
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13255,7 +13362,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13263,7 +13370,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=isContentRendered) {\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13288,8 +13395,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(112);
-var template_nelm_1 = __webpack_require__(113);
+__webpack_require__(113);
+var template_nelm_1 = __webpack_require__(114);
 var OpalPopover = /** @class */ (function (_super) {
     __extends(OpalPopover, _super);
     function OpalPopover() {
@@ -13452,7 +13559,7 @@ exports.OpalPopover = OpalPopover;
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13469,7 +13576,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13477,7 +13584,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/arrow\n@if-then (if=isContentRendered) {\nrt-content/content\n}\n}");
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13503,8 +13610,8 @@ var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 var isFocusable_1 = __webpack_require__(8);
-__webpack_require__(115);
-var template_nelm_1 = __webpack_require__(116);
+__webpack_require__(116);
+var template_nelm_1 = __webpack_require__(117);
 var openedModals = [];
 var documentFocusListening;
 var documentKeyUpListening;
@@ -13659,7 +13766,7 @@ exports.OpalModal = OpalModal;
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13676,7 +13783,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13684,7 +13791,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/window {\ndiv/btn-close-wrapper {\nbutton/btn-close\n}\n@if-then (if=isContentRendered) {\nrt-content/content\n}\n}\n}");
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13709,8 +13816,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var map_set_polyfill_1 = __webpack_require__(4);
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(118);
-var template_nelm_1 = __webpack_require__(119);
+__webpack_require__(119);
+var template_nelm_1 = __webpack_require__(120);
 var container;
 var containerOnTop = false;
 var shownNotifications = new map_set_polyfill_1.Set();
@@ -13840,7 +13947,7 @@ exports.OpalNotification = OpalNotification;
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -13857,125 +13964,12 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/bar {\nrt-content/icon-container (select=.opal-notificaion__icon)\nrt-content/content\nbutton/btn-hide (hide={input.buttonHide |not }) {\nsvg/btn-hide-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }\n}\n}\n}");
-
-/***/ }),
-/* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_decorators_1 = __webpack_require__(1);
-var rionite_1 = __webpack_require__(0);
-__webpack_require__(121);
-var opal_text_input_validator_rule_1 = __webpack_require__(122);
-exports.OpalTextInputValidatorRule = opal_text_input_validator_rule_1.OpalTextInputValidatorRule;
-var map = Array.prototype.map;
-var OpalTextInputValidator = /** @class */ (function (_super) {
-    __extends(OpalTextInputValidator, _super);
-    function OpalTextInputValidator() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.failedRule = null;
-        return _this;
-    }
-    Object.defineProperty(OpalTextInputValidator.prototype, "valid", {
-        get: function () {
-            return !this.failedRule;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalTextInputValidator.prototype.ready = function () {
-        this._rules = map.call(this.element.getElementsByClassName('opal-text-input-validator-rule'), function (ruleEl) { return ruleEl.$component; });
-    };
-    OpalTextInputValidator.prototype.elementAttached = function () {
-        this.listenTo('text-input', {
-            input: this._onTextInputInput,
-            change: this._onTextInputChange
-        });
-    };
-    OpalTextInputValidator.prototype._onTextInputInput = function () {
-        if (this.failedRule) {
-            this._validate([this.failedRule]);
-        }
-    };
-    OpalTextInputValidator.prototype._onTextInputChange = function () {
-        this.validate();
-    };
-    OpalTextInputValidator.prototype.validate = function () {
-        return this._validate(this._rules);
-    };
-    OpalTextInputValidator.prototype._validate = function (rules) {
-        var _this = this;
-        var value = this.$('text-input').value;
-        var failedRule;
-        rules.forEach(function (rule) {
-            var ruleInput = rule.input;
-            if (!failedRule && (value ?
-                ruleInput.minLength && value.length < ruleInput.minLength ||
-                    ruleInput.regex && !ruleInput.regex.test(value) ||
-                    ruleInput.test && !ruleInput.test.call(_this.ownerComponent, value) :
-                ruleInput.required)) {
-                failedRule = rule;
-                rule.showMessage();
-            }
-            else {
-                rule.hideMessage();
-            }
-        });
-        var prevFailedRule = this.failedRule;
-        this.failedRule = failedRule || null;
-        if (+!!failedRule ^ +!!prevFailedRule) {
-            if (failedRule) {
-                this.element.setAttribute('valid', 'no');
-                this.emit('text-input-validation-error');
-            }
-            else {
-                this.element.removeAttribute('valid');
-                this.emit('text-input-validation-valid');
-            }
-        }
-        return !failedRule;
-    };
-    OpalTextInputValidator.OpalTextInputValidatorRule = opal_text_input_validator_rule_1.OpalTextInputValidatorRule;
-    __decorate([
-        cellx_decorators_1.observable
-    ], OpalTextInputValidator.prototype, "failedRule", void 0);
-    __decorate([
-        cellx_decorators_1.computed
-    ], OpalTextInputValidator.prototype, "valid", null);
-    OpalTextInputValidator = __decorate([
-        rionite_1.ComponentConfig({
-            elementIs: 'opal-text-input-validator',
-            template: '@section/inner { rt-content/content }'
-        })
-    ], OpalTextInputValidator);
-    return OpalTextInputValidator;
-}(rionite_1.Component));
-exports.OpalTextInputValidator = OpalTextInputValidator;
-
 
 /***/ }),
 /* 121 */
@@ -13986,7 +13980,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-text-input-validator{position:relative;display:inline-block;vertical-align:middle}.opal-text-input-validator .opal-text-input-validator__text-input{display:block}.opal-text-input-validator[valid=no] .opal-text-input-validator__text-input .opal-text-input__text-field{border-color:#f50000}";
+            style.textContent = ".opal-input-validator{position:relative;display:inline-block;vertical-align:middle}.opal-input-validator .opal-input-validator__target{display:block}";
             head.appendChild(style);
             return style;
         }
@@ -14020,33 +14014,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(123);
 var template_nelm_1 = __webpack_require__(124);
-var OpalTextInputValidatorRule = /** @class */ (function (_super) {
-    __extends(OpalTextInputValidatorRule, _super);
-    function OpalTextInputValidatorRule() {
+var OpalInputValidatorRule = /** @class */ (function (_super) {
+    __extends(OpalInputValidatorRule, _super);
+    function OpalInputValidatorRule() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    OpalTextInputValidatorRule.prototype.showMessage = function () {
+    OpalInputValidatorRule.prototype.showMessage = function () {
         this.$('popover').open();
     };
-    OpalTextInputValidatorRule.prototype.hideMessage = function () {
+    OpalInputValidatorRule.prototype.hideMessage = function () {
         this.$('popover').close();
     };
-    OpalTextInputValidatorRule = __decorate([
+    OpalInputValidatorRule = __decorate([
         rionite_1.ComponentConfig({
-            elementIs: 'opal-text-input-validator-rule',
+            elementIs: 'opal-input-validator-rule',
             input: {
                 required: { default: false, readonly: true },
-                minLength: { type: Number, readonly: true },
-                regex: { type: eval, readonly: true },
                 test: { type: Object, readonly: true },
                 popoverFrom: 'right'
             },
             template: template_nelm_1.default
         })
-    ], OpalTextInputValidatorRule);
-    return OpalTextInputValidatorRule;
+    ], OpalInputValidatorRule);
+    return OpalInputValidatorRule;
 }(rionite_1.Component));
-exports.OpalTextInputValidatorRule = OpalTextInputValidatorRule;
+exports.OpalInputValidatorRule = OpalInputValidatorRule;
 
 
 /***/ }),
@@ -14058,7 +14050,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-text-input-validator-rule{display:block}.opal-text-input-validator-rule .opal-text-input-validator-rule__content{display:block;width:240px;text-align:center}";
+            style.textContent = ".opal-input-validator-rule{display:block}.opal-input-validator-rule .opal-input-validator-rule__content{display:block;width:240px;text-align:center}";
             head.appendChild(style);
             return style;
         }
@@ -14097,13 +14089,134 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var rionite_1 = __webpack_require__(0);
+var opal_input_validator_1 = __webpack_require__(9);
+__webpack_require__(126);
+var opal_text_input_validator_rule_1 = __webpack_require__(127);
+exports.OpalTextInputValidatorRule = opal_text_input_validator_rule_1.OpalTextInputValidatorRule;
+var OpalTextInputValidator = /** @class */ (function (_super) {
+    __extends(OpalTextInputValidator, _super);
+    function OpalTextInputValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    OpalTextInputValidator.prototype.elementAttached = function () {
+        _super.prototype.elementAttached.call(this);
+        this.listenTo(this.target, 'input', this._onTextInputInput);
+    };
+    OpalTextInputValidator.prototype._onTextInputInput = function () {
+        if (this.failedRule) {
+            this._validate([this.failedRule]);
+        }
+    };
+    OpalTextInputValidator.prototype._checkValue = function (rule) {
+        var value = this.target.value;
+        var ruleInput = rule.input;
+        return !(value ?
+            ruleInput.minLength && value.length < ruleInput.minLength ||
+                ruleInput.regex && !ruleInput.regex.test(value) ||
+                ruleInput.test && !ruleInput.test.call(this.ownerComponent, value) :
+            ruleInput.required);
+    };
+    OpalTextInputValidator = __decorate([
+        rionite_1.ComponentConfig({
+            elementIs: 'opal-text-input-validator'
+        })
+    ], OpalTextInputValidator);
+    return OpalTextInputValidator;
+}(opal_input_validator_1.OpalInputValidator));
+exports.OpalTextInputValidator = OpalTextInputValidator;
+
+
+/***/ }),
+/* 126 */
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".opal-text-input-validator.opal-input-validator[valid=no] .opal-text-input-validator__text-input .opal-text-input__text-field{border-color:#f50000}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+/* 127 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var rionite_1 = __webpack_require__(0);
+var opal_input_validator_1 = __webpack_require__(9);
+var OpalTextInputValidatorRule = /** @class */ (function (_super) {
+    __extends(OpalTextInputValidatorRule, _super);
+    function OpalTextInputValidatorRule() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    OpalTextInputValidatorRule = __decorate([
+        rionite_1.ComponentConfig({
+            elementIs: 'opal-text-input-validator-rule',
+            input: {
+                minLength: { type: Number, readonly: true }
+            }
+        })
+    ], OpalTextInputValidatorRule);
+    return OpalTextInputValidatorRule;
+}(opal_input_validator_1.OpalInputValidatorRule));
+exports.OpalTextInputValidatorRule = OpalTextInputValidatorRule;
+
+
+/***/ }),
+/* 128 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var formatDate_1 = __webpack_require__(126);
-__webpack_require__(127);
-var parseDate_1 = __webpack_require__(128);
-var template_nelm_1 = __webpack_require__(129);
+var formatDate_1 = __webpack_require__(129);
+__webpack_require__(130);
+var parseDate_1 = __webpack_require__(131);
+var template_nelm_1 = __webpack_require__(132);
 function getTodayDate() {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -14440,7 +14553,7 @@ exports.OpalCalendar = OpalCalendar;
 
 
 /***/ }),
-/* 126 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14454,7 +14567,7 @@ exports.formatDate = formatDate;
 
 
 /***/ }),
-/* 127 */
+/* 130 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14471,7 +14584,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 128 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14485,7 +14598,7 @@ exports.parseDate = parseDate;
 
 
 /***/ }),
-/* 129 */
+/* 132 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14493,7 +14606,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-left) }\n}\nopal-select/month-select (size=s, value=['{shownMonth}']) {\n@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/year-select (size=s, value=['{shownYear}']) {\n@repeat (class=opal-select__menu-content, for=year of years) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={isBtnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-left) }\n}\n}\ndiv/body {\ndiv/week-days {\ndiv/week-days-row {\n@repeat (for=weekDay of weekDaysShort) {\nspan/week-day { '{weekDay}' }\n}\n}\n}\ndiv/days {\n@repeat (for=weekDays of days) {\ndiv/days-row {\n@repeat (for=day of weekDays) {\nspan/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date}\n) { '{day.value}' }\n}\n}\n}\n}\n}\n}");
 
 /***/ }),
-/* 130 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14516,11 +14629,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(5);
-var date_exists_1 = __webpack_require__(131);
+var date_exists_1 = __webpack_require__(134);
 var rionite_1 = __webpack_require__(0);
 var isFocusable_1 = __webpack_require__(8);
-__webpack_require__(132);
-var template_nelm_1 = __webpack_require__(133);
+__webpack_require__(135);
+var template_nelm_1 = __webpack_require__(136);
 function pad(num) {
     return (num < 10 ? '0' : '') + num;
 }
@@ -14660,7 +14773,7 @@ exports.OpalDateInput = OpalDateInput;
 
 
 /***/ }),
-/* 131 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14684,7 +14797,7 @@ exports.dateExists = dateExists;
 
 
 /***/ }),
-/* 132 */
+/* 135 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14701,7 +14814,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 133 */
+/* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14709,7 +14822,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-text-input-validator/text-input-validator {\n@if-then (if=input.required) {\nopal-text-input-validator-rule/text-input-validator-rule-required (required, popover-from={input.popoverFrom}) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-text-input-validator-rule/text-input-validator-rule-date-exists (\ntest={dateExists},\npopover-from={input.popoverFrom}\n) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-text-input-validator-rule/text-input-validator-rule-date-in-range (\ntest={isDateInRange},\npopover-from={input.popoverFrom}\n) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={input.mask}) {\nopal-text-input/text-input (\nclass=opal-text-input-validator__text-input opal-input-mask__text-input,\nvalue={input.value},\nplaceholder={input.placeholder},\nclearable\n) {\nsvg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-calendar)\n}\n}\n}\n}\nopal-dropdown/calendar-menu (auto-height=no) {\nopal-calendar/calendar (from-date={input.fromDate}, to-date={input.toDate}, value={input.value}, date-delimiter=.)\n}\n}");
 
 /***/ }),
-/* 134 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14732,7 +14845,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(135);
+__webpack_require__(138);
 var OpalLoader = /** @class */ (function (_super) {
     __extends(OpalLoader, _super);
     function OpalLoader() {
@@ -14753,7 +14866,7 @@ exports.OpalLoader = OpalLoader;
 
 
 /***/ }),
-/* 135 */
+/* 138 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -14770,7 +14883,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 136 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14798,8 +14911,8 @@ var next_tick_1 = __webpack_require__(3);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(137);
-var template_nelm_1 = __webpack_require__(138);
+__webpack_require__(140);
+var template_nelm_1 = __webpack_require__(141);
 var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var OpalLoadedList = /** @class */ (function (_super) {
     __extends(OpalLoadedList, _super);
@@ -14988,7 +15101,7 @@ exports.OpalLoadedList = OpalLoadedList;
 
 
 /***/ }),
-/* 137 */
+/* 140 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15005,7 +15118,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 138 */
+/* 141 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15013,7 +15126,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/list {\n@repeat (for=$item of dataList) {\nrt-content/list-item (clone, get-context={_getListItemContext}) {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nopal-loader/loader (shown={isLoaderShown}, align-center={empty})\n@if-then (if=isNothingFoundShown) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}");
 
 /***/ }),
-/* 139 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15035,11 +15148,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var debounce_throttle_1 = __webpack_require__(140);
+var debounce_throttle_1 = __webpack_require__(143);
 var gettext_1 = __webpack_require__(5);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(143);
-var template_nelm_1 = __webpack_require__(144);
+__webpack_require__(146);
+var template_nelm_1 = __webpack_require__(147);
 var OpalFilteredList = /** @class */ (function (_super) {
     __extends(OpalFilteredList, _super);
     function OpalFilteredList() {
@@ -15082,20 +15195,20 @@ exports.OpalFilteredList = OpalFilteredList;
 
 
 /***/ }),
-/* 140 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var debounce_1 = __webpack_require__(141);
+var debounce_1 = __webpack_require__(144);
 exports.debounce = debounce_1.debounce;
-var throttle_1 = __webpack_require__(142);
+var throttle_1 = __webpack_require__(145);
 exports.throttle = throttle_1.throttle;
 
 
 /***/ }),
-/* 141 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15167,7 +15280,7 @@ exports.debounce = debounce;
 
 
 /***/ }),
-/* 142 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15236,7 +15349,7 @@ exports.throttle = throttle;
 
 
 /***/ }),
-/* 143 */
+/* 146 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15253,7 +15366,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 144 */
+/* 147 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15261,7 +15374,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-content (select=.opal-filtered-list__query-input-container) {\nrt-content/query-input-container (select=.opal-filtered-list__query-input) {\nopal-text-input/query-input (placeholder={constructor.i18n.queryInputPlaceholder}, clearable) {\nsvg/query-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\n}\nrt-content/list-container (select=.opal-filtered-list__list)\n}");
 
 /***/ }),
-/* 145 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15276,7 +15389,7 @@ exports.default = closestComponent;
 
 
 /***/ }),
-/* 146 */
+/* 149 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15293,7 +15406,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 147 */
+/* 150 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15310,7 +15423,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 148 */
+/* 151 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15318,7 +15431,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={input.opened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-bottom) }\n}\nspan/content-wrapper {\nrt-content/content (clone)\n}\n}\n@if-then (if=dataTreeListItem.children.length) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item/item (\ndata-tree-list={input.dataTreeList},\nfiltered-data-tree-list={input.filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{input.indexpath},{$index}]',\nquery={input.query},\nopened={input.query},\nnesting-level={input.indexpath.length},\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-content (clone, get-context={_getListItemContext})\n}\n}\n}\n}");
 
 /***/ }),
-/* 149 */
+/* 152 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15326,7 +15439,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@if-then (if=dataTreeList) {\n@if-then (if=filteredDataTreeList.length) {\n@repeat (for=$item of filteredDataTreeList) {\nopal-tree-list-item/item (\ndata-tree-list={dataTreeList},\nfiltered-data-tree-list={filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={input.query},\nopened={input.query},\nnesting-level=0,\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-content (clone, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=filteredDataTreeList.length) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'Ничего не найдено'\n}\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}");
 
 /***/ }),
-/* 150 */
+/* 153 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15343,7 +15456,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 151 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15365,7 +15478,7 @@ exports.isEqualArray = isEqualArray;
 
 
 /***/ }),
-/* 152 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15390,8 +15503,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(153);
-var template_nelm_1 = __webpack_require__(154);
+__webpack_require__(156);
+var template_nelm_1 = __webpack_require__(157);
 var OpalSelectOption = /** @class */ (function (_super) {
     __extends(OpalSelectOption, _super);
     function OpalSelectOption() {
@@ -15540,7 +15653,7 @@ exports.OpalSelectOption = OpalSelectOption;
 
 
 /***/ }),
-/* 153 */
+/* 156 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15557,7 +15670,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 154 */
+/* 157 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15565,7 +15678,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-content/content {\n'{input.text}'\n@if-then (if=input.subtext) {\nsub { '{input.subtext}' }\n}\n}\nsvg/icon-check (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-checkmark) }\n}\n}");
 
 /***/ }),
-/* 155 */
+/* 158 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15573,7 +15686,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-content (select=.opal-select__button) {\nopal-button/button (\nview-type={input.viewType},\nsize={input.size},\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n) {\n@if-then (if=input.text) { '{input.text}' }\n@if-else (if=input.text) { '{_buttonText}' }\nsvg/button-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-bottom) }\n}\n}\nrt-content (select=.opal-select__menu-container) {\nrt-content/menu-container (select=.opal-select__menu) {\nopal-dropdown/menu (auto-closing) {\nrt-content (select=.opal-select__menu-content) {\n@if-then (if=_isInputDataListSpecified) {\ndiv/, menu-content {\n@if-then (if=dataList) {\n@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content/new-item-input-container // доопределяется ниже\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isInputDataListSpecified) {\ndiv/, menu-content {\nrt-content/options (select=opal-select-option)\nrt-content/new-item-input-container (select=.opal-select__new-item-input)\n}\n}\n}\n}\n}\n}\n}");
 
 /***/ }),
-/* 156 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15598,9 +15711,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(5);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var opal_select_1 = __webpack_require__(17);
-__webpack_require__(157);
-var template_nelm_1 = __webpack_require__(158);
+var opal_select_1 = __webpack_require__(18);
+__webpack_require__(160);
+var template_nelm_1 = __webpack_require__(161);
 var OpalMultiselect = /** @class */ (function (_super) {
     __extends(OpalMultiselect, _super);
     function OpalMultiselect() {
@@ -15673,7 +15786,7 @@ exports.OpalMultiselect = OpalMultiselect;
 
 
 /***/ }),
-/* 157 */
+/* 160 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15690,7 +15803,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 158 */
+/* 161 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15698,7 +15811,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=opal-select__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n) {\nsvg/query-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\nbutton/btn-deselect-item (tabindex=-1, data-item-value='{item |key(_viewModelItemValueFieldName) }') {\nsvg/btn-deselect-item-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }\n}\n}\n}\ndiv/nothing-selected (shown={isNothingSelectedShown}) {\nspan/nothing-selected-message { '{constructor.i18n.nothingSelected}' }\n}\n}\ndiv/menu-list {\nopal-loaded-list/loaded-list (\ndata-provider={dataProvider},\ndata-list-item-value-name={_dataListItemValueFieldName}\n) {\nopal-select-option/option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\ndiv/menu-footer {\nopal-button/btn-close { 'Закрыть' }\n}\n}");
 
 /***/ }),
-/* 159 */
+/* 162 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15715,7 +15828,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 160 */
+/* 163 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15723,7 +15836,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |_isItemDisabled }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder { '{input.placeholder} ' }\n}\nopal-select/select (\nmultiple,\ndata-list-keypath={_dataListKeypathParam},\ndata-list-item-schema={input.dataListItemSchema |json },\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json },\nadd-new-item={input.addNewItem},\nfocused={input.focused}\n) {\nopal-sign-button/button (\nclass=opal-select__button,\nsign=plus,\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n)\nrt-content (class=opal-select__menu-container, select=.opal-select__menu) {\nopal-popover/menu (class=opal-select__menu, from={input.popoverFrom}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/data-list-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (\nclass=opal-select__menu-content opal-select__filtered-list\n) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}\n}");
 
 /***/ }),
-/* 161 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15747,10 +15860,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-var opal_select_1 = __webpack_require__(17);
-var opal_tree_list_1 = __webpack_require__(28);
-__webpack_require__(162);
-var template_nelm_1 = __webpack_require__(163);
+var opal_select_1 = __webpack_require__(18);
+var opal_tree_list_1 = __webpack_require__(29);
+__webpack_require__(165);
+var template_nelm_1 = __webpack_require__(166);
 var OpalTreeSelect = /** @class */ (function (_super) {
     __extends(OpalTreeSelect, _super);
     function OpalTreeSelect() {
@@ -15810,7 +15923,7 @@ exports.OpalTreeSelect = OpalTreeSelect;
 
 
 /***/ }),
-/* 162 */
+/* 165 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -15827,7 +15940,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 163 */
+/* 166 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15835,7 +15948,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("opal-modal/menu {\nopal-filtered-list/filtered-list {\nopal-tree-list/tree-list (\nclass=opal-filtered-list__list,\ndata-tree-list={dataTreeList},\ndata-tree-list-item-schema={input.dataTreeListItemSchema},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema},\nquery={input.query}\n) {\nopal-select-option/option (class=opal-tree-list__selection-control, text={$item.name}, selected={$selected})\n}\n}\ndiv/footer {\nopal-button/btn-close {\n'Готово'\n}\n}\n}");
 
 /***/ }),
-/* 164 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15858,8 +15971,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var opal_tag_select_1 = __webpack_require__(32);
-var template_nelm_1 = __webpack_require__(165);
+var opal_tag_select_1 = __webpack_require__(33);
+var template_nelm_1 = __webpack_require__(168);
 var OpalTreeTagSelect = /** @class */ (function (_super) {
     __extends(OpalTreeTagSelect, _super);
     function OpalTreeTagSelect() {
@@ -15883,7 +15996,7 @@ exports.OpalTreeTagSelect = OpalTreeTagSelect;
 
 
 /***/ }),
-/* 165 */
+/* 168 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15891,7 +16004,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("opal-tree-select/select (\nview-type={input.viewType},\ndata-tree-list-keypath={_dataListKeypathParam},\ndata-tree-list-item-schema={input.dataListItemSchema |json },\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json },\nadd-new-item={input.addNewItem},\nfocused={input.focused}\n) {\nopal-sign-button/button (\nclass=opal-select__button,\nsign=plus,\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n)\n}");
 
 /***/ }),
-/* 166 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15913,106 +16026,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(167);
-var opal_select_validator_rule_1 = __webpack_require__(168);
+var opal_input_validator_1 = __webpack_require__(9);
+var opal_select_validator_rule_1 = __webpack_require__(170);
 exports.OpalSelectValidatorRule = opal_select_validator_rule_1.OpalSelectValidatorRule;
-var map = Array.prototype.map;
 var OpalSelectValidator = /** @class */ (function (_super) {
     __extends(OpalSelectValidator, _super);
     function OpalSelectValidator() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.failedRule = null;
-        return _this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    Object.defineProperty(OpalSelectValidator.prototype, "valid", {
-        get: function () {
-            return !this.failedRule;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalSelectValidator.prototype.ready = function () {
-        this._rules = map.call(this.element.getElementsByClassName('opal-select-validator-rule'), function (ruleEl) { return ruleEl.$component; });
+    OpalSelectValidator.prototype._checkValue = function (rule) {
+        var vm = this.target.viewModel;
+        var ruleInput = rule.input;
+        return !(vm.length ?
+            ruleInput.minCount && vm.length < ruleInput.minCount ||
+                ruleInput.test && !ruleInput.test.call(this.ownerComponent, vm) :
+            ruleInput.required);
     };
-    OpalSelectValidator.prototype.elementAttached = function () {
-        this.listenTo('select', 'change', this._onSelectChange);
-    };
-    OpalSelectValidator.prototype._onSelectChange = function () {
-        this.validate();
-    };
-    OpalSelectValidator.prototype.validate = function () {
-        return this._validate(this._rules);
-    };
-    OpalSelectValidator.prototype._validate = function (rules) {
-        var _this = this;
-        var vm = this.$('select').viewModel;
-        var failedRule;
-        rules.forEach(function (rule) {
-            var ruleInput = rule.input;
-            if (!failedRule && (vm.length ?
-                ruleInput.minCount && vm.length < ruleInput.minCount ||
-                    ruleInput.test && !ruleInput.test.call(_this.ownerComponent, vm) :
-                ruleInput.required)) {
-                failedRule = rule;
-                rule.showMessage();
-            }
-            else {
-                rule.hideMessage();
-            }
-        });
-        var prevFailedRule = this.failedRule;
-        this.failedRule = failedRule || null;
-        if (+!!failedRule ^ +!!prevFailedRule) {
-            if (failedRule) {
-                this.element.setAttribute('valid', 'no');
-                this.emit('select-validation-error');
-            }
-            else {
-                this.element.removeAttribute('valid');
-                this.emit('select-validation-valid');
-            }
-        }
-        return !failedRule;
-    };
-    OpalSelectValidator.OpalSelectValidatorRule = opal_select_validator_rule_1.OpalSelectValidatorRule;
-    __decorate([
-        cellx_decorators_1.observable
-    ], OpalSelectValidator.prototype, "failedRule", void 0);
-    __decorate([
-        cellx_decorators_1.computed
-    ], OpalSelectValidator.prototype, "valid", null);
     OpalSelectValidator = __decorate([
         rionite_1.ComponentConfig({
-            elementIs: 'opal-select-validator',
-            template: '@section/inner { rt-content/content }'
+            elementIs: 'opal-select-validator'
         })
     ], OpalSelectValidator);
     return OpalSelectValidator;
-}(rionite_1.Component));
+}(opal_input_validator_1.OpalInputValidator));
 exports.OpalSelectValidator = OpalSelectValidator;
 
 
 /***/ }),
-/* 167 */
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".opal-select-validator{position:relative;display:inline-block;vertical-align:middle}.opal-select-validator .opal-select-validator__select{display:block}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 168 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16035,60 +16077,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(169);
-var template_nelm_1 = __webpack_require__(170);
+var opal_input_validator_1 = __webpack_require__(9);
 var OpalSelectValidatorRule = /** @class */ (function (_super) {
     __extends(OpalSelectValidatorRule, _super);
     function OpalSelectValidatorRule() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    OpalSelectValidatorRule.prototype.showMessage = function () {
-        this.$('popover').open();
-    };
-    OpalSelectValidatorRule.prototype.hideMessage = function () {
-        this.$('popover').close();
-    };
     OpalSelectValidatorRule = __decorate([
         rionite_1.ComponentConfig({
             elementIs: 'opal-select-validator-rule',
             input: {
-                required: { default: false, readonly: true },
-                minCount: { type: Number, readonly: true },
-                test: { type: Object, readonly: true },
-                popoverFrom: 'right'
-            },
-            template: template_nelm_1.default
+                minCount: { type: Number, readonly: true }
+            }
         })
     ], OpalSelectValidatorRule);
     return OpalSelectValidatorRule;
-}(rionite_1.Component));
+}(opal_input_validator_1.OpalInputValidatorRule));
 exports.OpalSelectValidatorRule = OpalSelectValidatorRule;
 
-
-/***/ }),
-/* 169 */
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".opal-select-validator-rule{display:block}.opal-select-validator-rule .opal-select-validator-rule__content{display:block;width:240px;text-align:center}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 170 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-popover/popover (from={input.popoverFrom}) {\nrt-content/content\n}\n}");
 
 /***/ }),
 /* 171 */
@@ -16499,7 +16505,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_uid_1 = __webpack_require__(15);
+var next_uid_1 = __webpack_require__(16);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
@@ -16708,8 +16714,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var escape_html_1 = __webpack_require__(14);
-var hyphenize_1 = __webpack_require__(26);
+var escape_html_1 = __webpack_require__(15);
+var hyphenize_1 = __webpack_require__(27);
 var created_browser_history_1 = __webpack_require__(181);
 var rionite_1 = __webpack_require__(0);
 var escapeRegExp_1 = __webpack_require__(189);
@@ -16717,7 +16723,7 @@ __webpack_require__(190);
 var opal_route_1 = __webpack_require__(191);
 exports.OpalRoute = opal_route_1.OpalRoute;
 var parsePath_1 = __webpack_require__(192);
-var PathNodeType_1 = __webpack_require__(35);
+var PathNodeType_1 = __webpack_require__(36);
 var forEach = Array.prototype.forEach;
 function isReadonlyProperty(propConfig) {
     return propConfig && typeof propConfig == 'object' &&
@@ -16960,7 +16966,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _warning = __webpack_require__(33);
+var _warning = __webpack_require__(34);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -16970,7 +16976,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _LocationUtils = __webpack_require__(184);
 
-var _PathUtils = __webpack_require__(34);
+var _PathUtils = __webpack_require__(35);
 
 var _createTransitionManager = __webpack_require__(187);
 
@@ -17338,7 +17344,7 @@ var _valueEqual = __webpack_require__(186);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
-var _PathUtils = __webpack_require__(34);
+var _PathUtils = __webpack_require__(35);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17533,7 +17539,7 @@ function valueEqual(a, b) {
 
 exports.__esModule = true;
 
-var _warning = __webpack_require__(33);
+var _warning = __webpack_require__(34);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -17757,7 +17763,7 @@ exports.OpalRoute = OpalRoute;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType_1 = __webpack_require__(35);
+var PathNodeType_1 = __webpack_require__(36);
 var reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
     var ctx = PathNodeType_1.PathNodeType.SIMPLE;

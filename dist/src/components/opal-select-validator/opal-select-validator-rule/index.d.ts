@@ -1,6 +1,3 @@
-import { Component } from 'rionite';
-import './index.css';
-export declare class OpalSelectValidatorRule extends Component {
-    showMessage(): void;
-    hideMessage(): void;
+import { OpalInputValidatorRule } from '../../opal-input-validator';
+export declare class OpalSelectValidatorRule extends OpalInputValidatorRule {
 }
