@@ -23,7 +23,7 @@ export { OpalDropdown } from './components/opal-dropdown';
 export { OpalPopover } from './components/opal-popover';
 export { OpalModal } from './components/opal-modal';
 export { OpalNotification } from './components/opal-notification';
-export { OpalInputValidator, OpalInputValidatorRule } from './components/opal-input-validator';
+export { OpalTextInputValidator, OpalTextInputValidatorRule } from './components/opal-text-input-validator';
 export {
 	IDay as IOpalCalendarDay,
 	TWeekDays as TOpalCalendarWeekDays,
@@ -50,6 +50,7 @@ export { OpalMultiselect } from './components/opal-multiselect';
 export { OpalTagSelect } from './components/opal-tag-select';
 export { OpalTreeSelect } from './components/opal-tree-select';
 export { OpalTreeTagSelect } from './components/opal-tree-tag-select';
+export { OpalSelectValidator, OpalSelectValidatorRule } from './components/opal-select-validator';
 export {
 	IDataListItem as IOpalAutosuggestDataListItem,
 	IDataProvider as IOpalAutosuggestDataProvider,

@@ -1,4 +1,4 @@
-@component opal-input-validator {
+@component opal-text-input-validator {
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;

@@ -24,7 +24,6 @@ export class OpalSwitchMenu extends Component {
 			(btnEl.$component as OpalButton).checked) || null
 		);
 	}
-
 	set checkedButton(checkedButton: OpalButton | null) {
 		if (checkedButton === this._checkedButton) {
 			return;

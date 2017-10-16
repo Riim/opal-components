@@ -5,8 +5,8 @@ import { Component, ComponentConfig, IDisposableListening } from 'rionite';
 import { isFocusable } from '../../utils/isFocusable';
 import { OpalCalendar } from '../opal-calendar';
 import { OpalDropdown } from '../opal-dropdown';
-import { OpalInputValidator } from '../opal-input-validator';
 import { OpalTextInput } from '../opal-text-input';
+import { OpalTextInputValidator } from '../opal-text-input-validator';
 import './index.css';
 import template from './template.nelm';
 
@@ -45,7 +45,7 @@ function pad(num: number): string {
 				textInput.value = evt.target.stringValue;
 				textInput.focus();
 
-				this.$<OpalInputValidator>('input-validator')!.validate();
+				this.$<OpalTextInputValidator>('text-input-validator')!.validate();
 			}
 		}
 	}
@@ -79,7 +79,7 @@ export class OpalDateInput extends Component {
 	}
 
 	_onTextInputChange(evt: IEvent<OpalTextInput>) {
-		if (this.$<OpalInputValidator>('input-validator')!.valid) {
+		if (this.$<OpalTextInputValidator>('text-input-validator')!.valid) {
 			this.$<OpalCalendar>('calendar')!.stringValue = evt.target.value;
 		}
 	}
@@ -151,6 +151,6 @@ export class OpalDateInput extends Component {
 	}
 
 	validate(): boolean {
-		return this.$<OpalInputValidator>('input-validator')!.validate();
+		return this.$<OpalTextInputValidator>('text-input-validator')!.validate();
 	}
 }

@@ -2,28 +2,30 @@ import { computed, observable } from 'cellx-decorators';
 import { Component, ComponentConfig, IComponentElement } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-import { OpalInputValidatorRule } from './opal-input-validator-rule';
+import { OpalTextInputValidatorRule } from './opal-text-input-validator-rule';
+
+export { OpalTextInputValidatorRule };
 
 let map = Array.prototype.map;
 
-@ComponentConfig<OpalInputValidator>({
-	elementIs: 'opal-input-validator',
+@ComponentConfig<OpalTextInputValidator>({
+	elementIs: 'opal-text-input-validator',
 	template: '@section/inner { rt-content/content }'
 })
-export class OpalInputValidator extends Component {
-	static OpalInputValidatorRule = OpalInputValidatorRule;
+export class OpalTextInputValidator extends Component {
+	static OpalTextInputValidatorRule = OpalTextInputValidatorRule;
 
-	@observable failedRule: OpalInputValidatorRule | null = null;
+	@observable failedRule: OpalTextInputValidatorRule | null = null;
 
 	@computed get valid(): boolean {
 		return !this.failedRule;
 	}
 
-	_rules: Array<OpalInputValidatorRule>;
+	_rules: Array<OpalTextInputValidatorRule>;
 
 	ready() {
 		this._rules = map.call(
-			this.element.getElementsByClassName('opal-input-validator-rule'),
+			this.element.getElementsByClassName('opal-text-input-validator-rule'),
 			(ruleEl: IComponentElement) => ruleEl.$component
 		);
 	}
@@ -49,9 +51,9 @@ export class OpalInputValidator extends Component {
 		return this._validate(this._rules);
 	}
 
-	_validate(rules: Array<OpalInputValidatorRule>): boolean {
+	_validate(rules: Array<OpalTextInputValidatorRule>): boolean {
 		let value = this.$<OpalTextInput>('text-input')!.value;
-		let failedRule: OpalInputValidatorRule | undefined;
+		let failedRule: OpalTextInputValidatorRule | undefined;
 
 		rules.forEach((rule) => {
 			let ruleInput = rule.input;
@@ -70,22 +72,20 @@ export class OpalInputValidator extends Component {
 			}
 		});
 
-		let oldFailedRule = this.failedRule;
+		let prevFailedRule = this.failedRule;
 
 		this.failedRule = failedRule || null;
 
-		if (+!!failedRule ^ +!!oldFailedRule) {
+		if (+!!failedRule ^ +!!prevFailedRule) {
 			if (failedRule) {
 				this.element.setAttribute('valid', 'no');
-				this.emit('input-validation-error');
+				this.emit('text-input-validation-error');
 			} else {
 				this.element.removeAttribute('valid');
-				this.emit('input-validation-valid');
+				this.emit('text-input-validation-valid');
 			}
 		}
 
 		return !failedRule;
 	}
 }
-
-export { OpalInputValidatorRule };

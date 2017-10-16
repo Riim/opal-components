@@ -1,0 +1,9 @@
+@component opal-select-validator {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+
+	@el select {
+		display: block;
+	}
+}

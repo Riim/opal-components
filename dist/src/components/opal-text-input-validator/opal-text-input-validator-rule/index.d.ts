@@ -1,6 +1,6 @@
 import { Component } from 'rionite';
 import './index.css';
-export declare class OpalInputValidatorRule extends Component {
+export declare class OpalTextInputValidatorRule extends Component {
     showMessage(): void;
     hideMessage(): void;
 }

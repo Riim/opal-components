@@ -149,7 +149,7 @@ export class OpalCalendar extends Component {
 		return this.shownYear == this.toYear && this.shownMonth == 11;
 	}
 
-	@computed days: TDays = function(this: OpalCalendar, _: any, oldDays: TDays | undefined): TDays {
+	@computed days: TDays = function(this: OpalCalendar, _: any, next: TDays | undefined): TDays {
 		let dateDelimiter = this.input.dateDelimiter;
 
 		let fromDate = this.fromDate;
@@ -162,7 +162,7 @@ export class OpalCalendar extends Component {
 
 		if (this._currentlyDateSelection) {
 			this._currentlyDateSelection = false;
-			return oldDays!;
+			return next!;
 		}
 
 		let now = new Date();

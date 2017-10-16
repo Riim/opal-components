@@ -57,7 +57,7 @@
 
 	/* Combinations */
 
-	.opal-input-validator & {
+	.opal-text-input-validator & {
 		display: block;
 	}
 }

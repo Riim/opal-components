@@ -1,17 +1,20 @@
 @section/inner {
 
-opal-input-validator/input-validator {
+opal-text-input-validator/text-input-validator {
 	@if-then (if=input.required) {
-		opal-input-validator-rule/input-validator-rule-required (required, popover-from={input.popoverFrom}) {
+		opal-text-input-validator-rule/text-input-validator-rule-required (required, popover-from={input.popoverFrom}) {
 			'{constructor.i18n.isRequiredField}'
 		}
 	}
 
-	opal-input-validator-rule/input-validator-rule-date-exists (test={dateExists}, popover-from={input.popoverFrom}) {
+	opal-text-input-validator-rule/text-input-validator-rule-date-exists (
+		test={dateExists},
+		popover-from={input.popoverFrom}
+	) {
 		'{constructor.i18n.nonExistentDate}'
 	}
 
-	opal-input-validator-rule/input-validator-rule-date-in-range (
+	opal-text-input-validator-rule/text-input-validator-rule-date-in-range (
 		test={isDateInRange},
 		popover-from={input.popoverFrom}
 	) {
@@ -20,7 +23,7 @@ opal-input-validator/input-validator {
 
 	opal-input-mask/input-mask (mask={input.mask}) {
 		opal-text-input/text-input (
-			class=opal-input-validator__text-input opal-input-mask__text-input,
+			class=opal-text-input-validator__text-input opal-input-mask__text-input,
 			value={input.value},
 			placeholder={input.placeholder},
 			clearable
