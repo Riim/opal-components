@@ -5397,7 +5397,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-text-input-validator.opal-input-validator[valid=no] .opal-text-input-validator__text-input .opal-text-input__text-field{border-color:#f50000}";
+            style.textContent = ".opal-text-input-validator.opal-input-validator[valid=no] .opal-text-input-validator__target .opal-text-input__text-field{border-color:#f50000}";
             head.appendChild(style);
             return style;
         }
