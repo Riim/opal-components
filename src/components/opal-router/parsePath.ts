@@ -82,7 +82,7 @@ export function parsePath(path: string): Array<TPathNode> {
 
 		let name;
 
-		if (chr == ':') {
+		if (chr == '|') {
 			name = readOptionalNodeName();
 		}
 
@@ -119,13 +119,13 @@ export function parsePath(path: string): Array<TPathNode> {
 	}
 
 	function readOptionalNodeName(): string {
-		next(':');
+		next('|');
 
 		let optionalNodeNameAt = at;
 		let name = '';
 
 		while (chr) {
-			if (chr == ':') {
+			if (chr == '|') {
 				if (!reName.test(name) || name == 'class') {
 					throw {
 						name: 'SyntaxError',

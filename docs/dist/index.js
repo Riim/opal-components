@@ -17818,7 +17818,7 @@ function parsePath(path) {
         var optionalNodeAt = at;
         next('(');
         var name;
-        if (chr == ':') {
+        if (chr == '|') {
             name = readOptionalNodeName();
         }
         var childNodes = [];
@@ -17852,11 +17852,11 @@ function parsePath(path) {
         };
     }
     function readOptionalNodeName() {
-        next(':');
+        next('|');
         var optionalNodeNameAt = at;
         var name = '';
         while (chr) {
-            if (chr == ':') {
+            if (chr == '|') {
                 if (!reName.test(name) || name == 'class') {
                     throw {
                         name: 'SyntaxError',
