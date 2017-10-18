@@ -5439,7 +5439,8 @@ var OpalTextInputValidatorRule = /** @class */ (function (_super) {
         rionite_1.ComponentConfig({
             elementIs: 'opal-text-input-validator-rule',
             input: {
-                minLength: { type: Number, readonly: true }
+                minLength: { type: Number, readonly: true },
+                regex: { type: eval, readonly: true }
             }
         })
     ], OpalTextInputValidatorRule);

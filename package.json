@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.28.11",
+  "version": "0.28.12",
   "description": "",
   "main": "dist/OpalComponents.js",
   "typings": "dist/src/index.d.ts",
@@ -44,7 +44,7 @@
     "tslint": "^5.7.0",
     "tslint-loader": "^3.5.3",
     "typescript": "^2.5.3",
-    "webpack": "^3.8.0"
+    "webpack": "^3.8.1"
   },
   "dependencies": {
     "@riim/debounce-throttle": "^1.0.0",

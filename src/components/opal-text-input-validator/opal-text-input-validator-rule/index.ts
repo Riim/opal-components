@@ -5,7 +5,8 @@ import { OpalInputValidatorRule } from '../../opal-input-validator';
 	elementIs: 'opal-text-input-validator-rule',
 
 	input: {
-		minLength: { type: Number, readonly: true }
+		minLength: { type: Number, readonly: true },
+		regex: { type: eval, readonly: true }
 	}
 })
 export class OpalTextInputValidatorRule extends OpalInputValidatorRule {
