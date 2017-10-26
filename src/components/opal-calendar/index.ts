@@ -1,5 +1,5 @@
 import { nextTick } from '@riim/next-tick';
-import { Cell, IEvent } from 'cellx';
+import { Cell } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import { Component, ComponentConfig, IDisposableListening } from 'rionite';
 import { OpalSelect } from '../opal-select';
@@ -72,13 +72,21 @@ function getTodayDate() {
 
 	events: {
 		'month-select': {
-			select(evt: IEvent<OpalSelect>) {
+			select(evt) {
+				if (!(evt.target instanceof OpalSelect)) {
+					return;
+				}
+
 				this.shownMonth = +evt.target.viewModel.get(0)!.value;
 			}
 		},
 
 		'year-select': {
-			select(evt: IEvent<OpalSelect>) {
+			select(evt) {
+				if (!(evt.target instanceof OpalSelect)) {
+					return;
+				}
+
 				this.shownYear = +evt.target.viewModel.get(0)!.value;
 			}
 		}
