@@ -5668,18 +5668,10 @@ var OpalCalendar = /** @class */ (function (_super) {
         this.shownMonth = shownDate.getMonth();
     };
     OpalCalendar.prototype.elementAttached = function () {
-        this.listenTo('month-select', '<opal-select-option>select', this._onMonthSelectSelect);
-        this.listenTo('year-select', '<opal-select-option>select', this._onYearSelectSelect);
         this.listenTo('days', {
             focus: this._onDaysFocus,
             blur: this._onDaysBlur
         }, this, true);
-    };
-    OpalCalendar.prototype._onMonthSelectSelect = function (evt) {
-        this.shownMonth = +evt.target.value;
-    };
-    OpalCalendar.prototype._onYearSelectSelect = function (evt) {
-        this.shownYear = +evt.target.value;
     };
     OpalCalendar.prototype._onDaysFocus = function (evt) {
         var _this = this;
@@ -5777,6 +5769,18 @@ var OpalCalendar = /** @class */ (function (_super) {
                 sundayFirst: false
             },
             template: template_nelm_1.default,
+            events: {
+                'month-select': {
+                    select: function (evt) {
+                        this.shownMonth = +evt.target.viewModel.get(0).value;
+                    }
+                },
+                'year-select': {
+                    select: function (evt) {
+                        this.shownYear = +evt.target.viewModel.get(0).value;
+                    }
+                }
+            },
             domEvents: {
                 'btn-prev-month': {
                     click: function () {

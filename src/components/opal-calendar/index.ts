@@ -2,7 +2,7 @@ import { nextTick } from '@riim/next-tick';
 import { Cell, IEvent } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import { Component, ComponentConfig, IDisposableListening } from 'rionite';
-import { OpalSelectOption } from '../opal-select';
+import { OpalSelect } from '../opal-select';
 import { formatDate } from './formatDate';
 import './index.css';
 import { parseDate } from './parseDate';
@@ -52,6 +52,20 @@ function getTodayDate() {
 	},
 
 	template,
+
+	events: {
+		'month-select': {
+			select(evt: IEvent<OpalSelect>) {
+				this.shownMonth = +evt.target.viewModel.get(0)!.value;
+			}
+		},
+
+		'year-select': {
+			select(evt: IEvent<OpalSelect>) {
+				this.shownYear = +evt.target.viewModel.get(0)!.value;
+			}
+		}
+	},
 
 	domEvents: {
 		'btn-prev-month': {
@@ -278,21 +292,10 @@ export class OpalCalendar extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo('month-select', '<opal-select-option>select', this._onMonthSelectSelect);
-		this.listenTo('year-select', '<opal-select-option>select', this._onYearSelectSelect);
-
 		this.listenTo('days', {
 			focus: this._onDaysFocus,
 			blur: this._onDaysBlur
 		}, this, true);
-	}
-
-	_onMonthSelectSelect(evt: IEvent<OpalSelectOption>) {
-		this.shownMonth = +evt.target.value;
-	}
-
-	_onYearSelectSelect(evt: IEvent<OpalSelectOption>) {
-		this.shownYear = +evt.target.value;
 	}
 
 	_onDaysFocus(evt: Event) {
