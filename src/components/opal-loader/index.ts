@@ -9,5 +9,4 @@ import './index.css';
 		shown: false
 	}
 })
-export class OpalLoader extends Component {
-}
+export class OpalLoader extends Component {}

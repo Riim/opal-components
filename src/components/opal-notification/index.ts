@@ -5,19 +5,17 @@ import './index.css';
 import template from './template.nelm';
 
 let container: HTMLElement | undefined;
-let containerOnTop = false;
 
 let shownNotifications = new Set<OpalNotification>();
 
 function initContainer(notification: OpalNotification): HTMLElement {
 	if (!container) {
 		container = document.createElement('div');
-
-		container.className = (notification.constructor as typeof Component)._contentBlockNames.join('__container ') +
+		container.className =
+			(notification.constructor as typeof Component)._contentBlockNames.join('__container ') +
 			'__container';
 
 		document.body.appendChild(container);
-		containerOnTop = getComputedStyle(container).top != 'auto';
 	}
 
 	return container;
@@ -46,7 +44,7 @@ export class OpalNotification extends Component {
 	ready() {
 		initContainer(this);
 
-		let bar = this.bar = this.$<HTMLElement>('bar', this)!;
+		let bar = (this.bar = this.$<HTMLElement>('bar', this)!);
 		this.element.removeChild(bar);
 		bar.setAttribute('view-type', this.input.viewType);
 		bar.setAttribute('icon-size', this.input.iconSize);

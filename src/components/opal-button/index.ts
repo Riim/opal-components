@@ -19,7 +19,8 @@ import './index.css';
 	}
 })
 export class OpalButton extends Component {
-	@computed get _tabIndex(): number {
+	@computed
+	get _tabIndex(): number {
 		return this.input.disabled ? -1 : this.input.tabIndex;
 	}
 
@@ -66,7 +67,11 @@ export class OpalButton extends Component {
 			}
 
 			if (this.element.tagName.indexOf('-', 1) != -1) {
-				this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+				this._documentKeyDownListening = this.listenTo(
+					document,
+					'keydown',
+					this._onDocumentKeyDown
+				);
 			}
 
 			this.input.focused = true;

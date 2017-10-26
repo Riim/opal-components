@@ -23,7 +23,7 @@ export class OpalEditableText extends Component {
 		return this._value;
 	}
 	set value(value: string | null) {
-		this._value = this._fixedValue = value && value.trim() || null;
+		this._value = this._fixedValue = (value && value.trim()) || null;
 		this._textNode.nodeValue = value || '';
 	}
 
@@ -60,7 +60,11 @@ export class OpalEditableText extends Component {
 	}
 
 	_onContentElementFocus() {
-		this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+		this._documentKeyDownListening = this.listenTo(
+			document,
+			'keydown',
+			this._onDocumentKeyDown
+		);
 	}
 
 	_onContentElementBlur() {

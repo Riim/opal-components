@@ -4,10 +4,12 @@ import { Component, ComponentConfig, IComponentElement } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
 import { OpalInputMaskDefinition } from './opal-input-mask-definition';
 
+export { OpalInputMaskDefinition };
+
 let forEach = Array.prototype.forEach;
 
 let iPhone = /iphone/i.test(navigator.userAgent);
-let ie11 = !((window as any).ActiveXObject) && 'ActiveXObject' in window;
+let ie11 = !(window as any).ActiveXObject && 'ActiveXObject' in window;
 
 @ComponentConfig({
 	elementIs: 'opal-input-mask',
@@ -31,22 +33,26 @@ export class OpalInputMask extends Component {
 
 	_definitions: { [chr: string]: RegExp };
 
-	@computed get _mask(): Array<string> {
+	@computed
+	get _mask(): Array<string> {
 		return (this.input.mask as string).split('').filter((chr: string) => chr != '?');
 	}
 
-	@computed get _partialIndex(): number {
+	@computed
+	get _partialIndex(): number {
 		let mask = this.input.mask as string;
 		let index = mask.indexOf('?');
 		return index == -1 ? mask.length : index;
 	}
 
-	@computed get _tests(): Array<RegExp | null> {
+	@computed
+	get _tests(): Array<RegExp | null> {
 		return this._mask.map((chr: string) => this._definitions[chr] || null);
 	}
 
-	@computed get _firstTestIndex(): number {
-		return this._tests.findIndex((test) => !!test);
+	@computed
+	get _firstTestIndex(): number {
+		return this._tests.findIndex(test => !!test);
 	}
 
 	_buffer: Array<string | null>;
@@ -56,7 +62,9 @@ export class OpalInputMask extends Component {
 	_textOnFocus: string;
 
 	initialize() {
-		this._definitions = Object.create((this.constructor as typeof OpalInputMask).defaultDefinitions);
+		this._definitions = Object.create(
+			(this.constructor as typeof OpalInputMask).defaultDefinitions
+		);
 	}
 
 	ready() {
@@ -119,7 +127,7 @@ export class OpalInputMask extends Component {
 		let key = evt.which;
 
 		// Backspace, delete, and escape get special treatment
-		if (key == 8 || key == 46 || iPhone && key == 127) {
+		if (key == 8 || key == 46 || (iPhone && key == 127)) {
 			evt.preventDefault();
 
 			let start = textField.selectionStart;
@@ -142,7 +150,7 @@ export class OpalInputMask extends Component {
 			if (value != textField.value) {
 				this.$<OpalTextInput>('text-input')!._onTextFieldInput(evt);
 			}
-		} else if (key == 27) { // Escape
+		} else if (key == 27 /* Escape */) {
 			evt.preventDefault();
 
 			if (textField.value != this._textOnFocus) {
@@ -161,7 +169,7 @@ export class OpalInputMask extends Component {
 		let end = textField.selectionEnd;
 		let key = evt.which;
 
-		if (evt.ctrlKey || evt.altKey || evt.metaKey || key < 32) { // Ignore
+		if (evt.ctrlKey || evt.altKey || evt.metaKey || key < 32 /* Ignore */) {
 			return;
 		}
 
@@ -209,7 +217,7 @@ export class OpalInputMask extends Component {
 
 	_initBuffer() {
 		let definitions = this._definitions;
-		this._buffer = this._mask.map((chr: string) => definitions[chr] ? null : chr);
+		this._buffer = this._mask.map((chr: string) => (definitions[chr] ? null : chr));
 	}
 
 	_checkValue(allowNotCompleted: boolean): number {
@@ -258,7 +266,9 @@ export class OpalInputMask extends Component {
 				this._clearBuffer(0, bufferLen);
 				this.$<OpalTextInput>('text-input')!.value = '';
 			} else {
-				this.$<OpalTextInput>('text-input')!.value = buffer.slice(0, lastMatchIndex + 1).join('');
+				this.$<OpalTextInput>('text-input')!.value = buffer
+					.slice(0, lastMatchIndex + 1)
+					.join('');
 			}
 		}
 
@@ -329,7 +339,11 @@ export class OpalInputMask extends Component {
 	_writeBuffer() {
 		let buffer = this._buffer;
 		let toIndex = buffer.indexOf(null);
-		this.$<OpalTextInput>('text-input')!.value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
+
+		this.$<OpalTextInput>('text-input')!.value = (toIndex == -1
+			? buffer
+			: buffer.slice(0, toIndex)
+		).join('');
 	}
 
 	_clearBuffer(start: number, end: number) {
@@ -351,5 +365,3 @@ export class OpalInputMask extends Component {
 		this.textField.setSelectionRange(start, end);
 	}
 }
-
-export { OpalInputMaskDefinition };

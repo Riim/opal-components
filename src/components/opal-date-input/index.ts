@@ -74,8 +74,16 @@ export class OpalDateInput extends Component {
 
 	elementAttached() {
 		this.listenTo('text-input', 'change', this._onTextInputChange);
-		this.listenTo(this.$<Component>('text-input')!.element, 'click', this._onTextInputElementClick);
-		this.listenTo('calendar-menu', 'input-opened-change', this._onCalendarMenuInputOpenedChange);
+		this.listenTo(
+			this.$<Component>('text-input')!.element,
+			'click',
+			this._onTextInputElementClick
+		);
+		this.listenTo(
+			'calendar-menu',
+			'input-opened-change',
+			this._onCalendarMenuInputOpenedChange
+		);
 	}
 
 	_onTextInputChange(evt: IEvent<OpalTextInput>) {
@@ -90,8 +98,18 @@ export class OpalDateInput extends Component {
 
 	_onCalendarMenuInputOpenedChange(evt: IEvent) {
 		if (evt.data.value) {
-			this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
-			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+			this._documentFocusListening = this.listenTo(
+				document,
+				'focus',
+				this._onDocumentFocus,
+				this,
+				true
+			);
+			this._documentKeyDownListening = this.listenTo(
+				document,
+				'keydown',
+				this._onDocumentKeyDown
+			);
 			this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
 		} else {
 			this._documentFocusListening.stop();
@@ -136,18 +154,35 @@ export class OpalDateInput extends Component {
 
 		date = new Date(date);
 
-		if (h) { date.setHours(h); }
-		if (m) { date.setMinutes(m); }
-		if (s) { date.setSeconds(s); }
-		if (ms) { date.setMilliseconds(ms); }
+		if (h) {
+			date.setHours(h);
+		}
+		if (m) {
+			date.setMinutes(m);
+		}
+		if (s) {
+			date.setSeconds(s);
+		}
+		if (ms) {
+			date.setMilliseconds(ms);
+		}
 
-		return ('000' + date.getUTCFullYear()).slice(-4) + '-' +
-			pad(date.getUTCMonth() + 1) + '-' +
-			pad(date.getUTCDate()) + 'T' +
-			pad(date.getUTCHours()) + ':' +
-			pad(date.getUTCMinutes()) + ':' +
-			pad(date.getUTCSeconds()) + '.' +
-			('00' + date.getUTCMilliseconds()).slice(-3) + 'Z';
+		return (
+			('000' + date.getUTCFullYear()).slice(-4) +
+			'-' +
+			pad(date.getUTCMonth() + 1) +
+			'-' +
+			pad(date.getUTCDate()) +
+			'T' +
+			pad(date.getUTCHours()) +
+			':' +
+			pad(date.getUTCMinutes()) +
+			':' +
+			pad(date.getUTCSeconds()) +
+			'.' +
+			('00' + date.getUTCMilliseconds()).slice(-3) +
+			'Z'
+		);
 	}
 
 	validate(): boolean {

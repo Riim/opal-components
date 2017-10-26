@@ -48,7 +48,10 @@ let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: '
 			click(evt, btn: HTMLElement) {
 				let vmItemValueFieldName = this._viewModelItemValueFieldName;
 				let tagValue = btn.dataset.tagValue;
-				this.viewModel.removeAt(this.viewModel.findIndex((tag) => tag[vmItemValueFieldName] == tagValue));
+
+				this.viewModel.removeAt(
+					this.viewModel.findIndex(tag => tag[vmItemValueFieldName] == tagValue)
+				);
 				this.emit('change');
 			}
 		}
@@ -70,11 +73,13 @@ export class OpalTagSelect extends Component {
 	_viewModelItemTextFieldName: string;
 	_viewModelItemDisabledFieldName: string;
 
-	@computed get value(): Array<IDataListItem> {
+	@computed
+	get value(): Array<IDataListItem> {
 		return this.viewModel.toArray();
 	}
 
-	@computed get isPlaceholderShown(): boolean {
+	@computed
+	get isPlaceholderShown(): boolean {
 		return !!this.input.placeholder && !this.viewModel.length;
 	}
 
@@ -87,11 +92,11 @@ export class OpalTagSelect extends Component {
 			define(
 				this,
 				'dataList',
-				input.dataListKeypath ?
-					new Cell(Function(`return this.${ input.dataListKeypath };`), {
-						context: this.ownerComponent || window
-					}) :
-					() => input.dataList
+				input.dataListKeypath
+					? new Cell(Function(`return this.${input.dataListKeypath};`), {
+							context: this.ownerComponent || window
+						})
+					: () => input.dataList
 			);
 
 			this.dataProvider = null;
@@ -105,18 +110,22 @@ export class OpalTagSelect extends Component {
 
 		let dataListItemSchema = input.dataListItemSchema;
 
-		this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+		this._dataListItemValueFieldName =
+			dataListItemSchema.value || defaultDataListItemSchema.value;
 		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
-		this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
+		this._dataListItemDisabledFieldName =
+			dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 
 		this.viewModel = input.viewModel || new ObservableList();
 
 		let vmItemSchema = input.viewModelItemSchema;
-		let defaultVMItemSchema = (this.constructor as typeof OpalSelect).defaultViewModelItemSchema;
+		let defaultVMItemSchema = (this.constructor as typeof OpalSelect)
+			.defaultViewModelItemSchema;
 
 		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
-		this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
+		this._viewModelItemDisabledFieldName =
+			vmItemSchema.disabled || defaultVMItemSchema.disabled;
 	}
 
 	elementAttached() {

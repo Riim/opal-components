@@ -10,7 +10,12 @@ function isSelectedItem(
 	viewModelItemValueFieldName: string
 ): boolean {
 	do {
-		if (vm.find((vmItem) => vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName])) {
+		if (
+			vm.find(
+				vmItem =>
+					vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]
+			)
+		) {
 			return true;
 		}
 	} while ((item = item.parent!));
@@ -24,12 +29,23 @@ function isIndeterminateItem(
 	dataTreeListItemValueFieldName: string,
 	viewModelItemValueFieldName: string
 ): boolean {
-	return !!item.children.length &&
+	return (
+		!!item.children.length &&
 		!isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
-		item.children.some((child) =>
-			!!vm.find((vmItem) => vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]) ||
-				isIndeterminateItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName)
-		);
+		item.children.some(
+			child =>
+				!!vm.find(
+					vmItem =>
+						vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]
+				) ||
+				isIndeterminateItem(
+					child,
+					vm,
+					dataTreeListItemValueFieldName,
+					viewModelItemValueFieldName
+				)
+		)
+	);
 }
 
 export default function _getListItemContext(
@@ -38,14 +54,9 @@ export default function _getListItemContext(
 ): { [name: string]: any } {
 	let $item = content.input.$context.$item;
 
-	return define(
-		mixin(
-			Object.create(context),
-			content.input.$context,
-			['$component']
-		) as any,
-		{
-			$selected: new Cell(function(this: OpalTreeList) {
+	return define(mixin(Object.create(context), content.input.$context, ['$component']) as any, {
+		$selected: new Cell(
+			function(this: OpalTreeList) {
 				this.dataTreeList;
 
 				return isSelectedItem(
@@ -54,9 +65,12 @@ export default function _getListItemContext(
 					this._dataTreeListItemValueFieldName,
 					this._viewModelItemValueFieldName
 				);
-			}, { context: this }),
+			},
+			{ context: this }
+		),
 
-			$indeterminate: new Cell(function(this: OpalTreeList) {
+		$indeterminate: new Cell(
+			function(this: OpalTreeList) {
 				this.dataTreeList;
 
 				return isIndeterminateItem(
@@ -65,7 +79,8 @@ export default function _getListItemContext(
 					this._dataTreeListItemValueFieldName,
 					this._viewModelItemValueFieldName
 				);
-			}, { context: this })
-		}
-	);
+			},
+			{ context: this }
+		)
+	});
 }

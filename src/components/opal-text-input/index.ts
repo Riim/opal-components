@@ -43,7 +43,8 @@ export class OpalTextInput extends Component {
 	textField: HTMLInputElement;
 
 	_textFieldValueCell: Cell<string>;
-	@computed get _textFieldValue(): string {
+	@computed
+	get _textFieldValue(): string {
 		return this.input.value;
 	}
 	set _textFieldValue(value: string) {
@@ -59,11 +60,13 @@ export class OpalTextInput extends Component {
 
 	_prevValue: string | null;
 
-	@computed get isControlIconShown(): boolean {
+	@computed
+	get isControlIconShown(): boolean {
 		return !this.isBtnClearShown && !this.input.loading;
 	}
 
-	@computed get isBtnClearShown(): boolean {
+	@computed
+	get isBtnClearShown(): boolean {
 		return !!this._textFieldValue && !this.input.loading;
 	}
 
@@ -71,7 +74,7 @@ export class OpalTextInput extends Component {
 
 	ready() {
 		let input = this.input;
-		let textField = this.textField = this.$<HTMLInputElement>('text-field')!;
+		let textField = (this.textField = this.$<HTMLInputElement>('text-field')!);
 
 		if (this._textFieldValue) {
 			textField.value = this._textFieldValue;
@@ -85,10 +88,12 @@ export class OpalTextInput extends Component {
 			let offsetHeight = textField.offsetHeight;
 
 			if (offsetHeight) {
-				this._initialHeight = offsetHeight + textField.scrollHeight - textField.clientHeight;
+				this._initialHeight =
+					offsetHeight + textField.scrollHeight - textField.clientHeight;
 				this._fixHeight();
 			} else {
-				this._initialHeight = parseInt(getComputedStyle(textField).lineHeight!, 10) * this.input.rows +
+				this._initialHeight =
+					parseInt(getComputedStyle(textField).lineHeight!, 10) * this.input.rows +
 					parseInt(getComputedStyle(textField).borderTop!, 10) +
 					parseInt(getComputedStyle(textField).borderBottom!, 10) +
 					parseInt(getComputedStyle(textField).paddingTop!, 10) +
@@ -226,8 +231,12 @@ export class OpalTextInput extends Component {
 		let lineHeight = parseInt(getComputedStyle(textField).lineHeight!, 10);
 
 		textField.style.height = this._initialHeight - lineHeight + 'px';
-		textField.style.height = textField.offsetHeight + textField.scrollHeight - textField.clientHeight +
-			lineHeight + 'px';
+		textField.style.height =
+			textField.offsetHeight +
+			textField.scrollHeight -
+			textField.clientHeight +
+			lineHeight +
+			'px';
 	}
 
 	clear(): OpalTextInput {

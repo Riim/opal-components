@@ -18,7 +18,11 @@ export interface IDataListItem {
 
 export interface IDataProvider {
 	getItems(query?: string): PromiseLike<{ items: Array<IDataListItem> }>;
-	getItems(count: number, after?: string, query?: string): PromiseLike<{
+	getItems(
+		count: number,
+		after?: string,
+		query?: string
+	): PromiseLike<{
 		items: Array<IDataListItem>;
 		total?: number;
 	}>;
@@ -62,22 +66,26 @@ export class OpalLoadedList extends Component {
 	_lastRequestedQuery: string | null = null;
 	_lastLoadedQuery: string | null = null;
 
-	@computed get empty(): boolean {
+	@computed
+	get empty(): boolean {
 		return !this.dataList.length;
 	}
 
-	@computed get isLoaderShown(): boolean {
+	@computed
+	get isLoaderShown(): boolean {
 		return this.total === undefined || this.dataList.length < this.total || this.loading;
 	}
 
-	@computed get isNothingFoundShown(): boolean {
+	@computed
+	get isNothingFoundShown(): boolean {
 		return this.total === 0 && !this._isLoadingCheckPlanned && !this.loading;
 	}
 
 	initialize() {
 		let input = this.input;
 
-		this._dataListItemTextFieldName = input.dataListItemSchema.text ||
+		this._dataListItemTextFieldName =
+			input.dataListItemSchema.text ||
 			(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema.text;
 
 		if (!input.$specified.has('dataProvider')) {
@@ -148,14 +156,17 @@ export class OpalLoadedList extends Component {
 	checkLoading() {
 		if (
 			this.input.query === this._lastRequestedQuery &&
-				(this.loading || this.total !== undefined && this.dataList.length == this.total)
+			(this.loading || (this.total !== undefined && this.dataList.length == this.total))
 		) {
 			return;
 		}
 
 		let elRect = this.element.getBoundingClientRect();
 
-		if (elRect.height && elRect.bottom > this.$<Component>('loader')!.element.getBoundingClientRect().top) {
+		if (
+			elRect.height &&
+			elRect.bottom > this.$<Component>('loader')!.element.getBoundingClientRect().top
+		) {
 			this._load();
 		}
 	}
@@ -167,52 +178,57 @@ export class OpalLoadedList extends Component {
 
 		let input = this.input;
 		let infinite = this.dataProvider.getItems.length >= 2;
-		let query: string | null = this._lastRequestedQuery = input.query;
+		let query: string | null = (this._lastRequestedQuery = input.query);
 		let args = [query];
 
 		if (infinite) {
 			args.unshift(
 				input.count,
-				this.dataList.length ?
-					this.dataList.get(-1)![
-						input.dataListItemSchema.value ||
-							(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema.value
-					] :
-					null
+				this.dataList.length
+					? this.dataList.get(-1)![
+							input.dataListItemSchema.value ||
+								(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema
+									.value
+						]
+					: null
 			);
 		}
 
 		this.loading = true;
 
 		this.dataProvider.getItems.apply(this.dataProvider, args).then(
-			this._requestCallback = this.registerCallback(
-				function(this: OpalLoadedList, data: { items: Array<IDataListItem>, total?: number }) {
-					this.loading = false;
+			(this._requestCallback = this.registerCallback(function(
+				this: OpalLoadedList,
+				data: { items: Array<IDataListItem>; total?: number }
+			) {
+				this.loading = false;
 
-					let items = data.items;
+				let items = data.items;
 
-					this.total = infinite && data.total !== undefined ? data.total : items.length;
+				this.total = infinite && data.total !== undefined ? data.total : items.length;
 
-					if (query === this._lastLoadedQuery) {
-						this.dataList.addRange(items);
-					} else {
-						this.dataList.clear().addRange(items);
-						this._lastLoadedQuery = query;
-					}
-
-					Cell.forceRelease();
-
-					this.emit('loaded');
-
-					nextTick(() => {
-						this.checkLoading();
-					});
+				if (query === this._lastLoadedQuery) {
+					this.dataList.addRange(items);
+				} else {
+					this.dataList.clear().addRange(items);
+					this._lastLoadedQuery = query;
 				}
-			)
+
+				Cell.forceRelease();
+
+				this.emit('loaded');
+
+				nextTick(() => {
+					this.checkLoading();
+				});
+			}))
 		);
 	}
 
-	_getListItemContext(context: { [name: string]: any }, content: Component): { [name: string]: any } {
+	_getListItemContext(
+		context: { [name: string]: any },
+		content: Component
+	): { [name: string]: any } {
 		return mixin(Object.create(context), content.input.$context, ['$component']);
 	}
 }

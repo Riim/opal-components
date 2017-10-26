@@ -15,6 +15,8 @@ import { OpalTreeListItem } from './opal-tree-list-item';
 import './opal-tree-list-item';
 import template from './template.nelm';
 
+export { OpalTreeListItem };
+
 export interface IDataTreeListItem {
 	[name: string]: any;
 	parent?: IDataTreeListItem | null;
@@ -28,7 +30,13 @@ let defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' })
 let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
 
 function toComparable(str: string | null): string | null {
-	return str && str.trim().replace(/\s+/g, ' ').toLowerCase();
+	return (
+		str &&
+		str
+			.trim()
+			.replace(/\s+/g, ' ')
+			.toLowerCase()
+	);
 }
 
 @ComponentConfig({
@@ -37,7 +45,11 @@ function toComparable(str: string | null): string | null {
 	input: {
 		dataTreeList: { type: Object },
 		dataTreeListKeypath: { type: String, readonly: true },
-		dataTreeListItemSchema: { type: eval, default: defaultDataTreeListItemSchema, readonly: true },
+		dataTreeListItemSchema: {
+			type: eval,
+			default: defaultDataTreeListItemSchema,
+			readonly: true
+		},
 		viewModel: { type: Object },
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 		query: String
@@ -55,7 +67,8 @@ export class OpalTreeList extends Component {
 	_dataTreeListItemValueFieldName: string;
 	_dataTreeListItemTextFieldName: string;
 
-	@computed get filteredDataTreeList(): TDataTreeList {
+	@computed
+	get filteredDataTreeList(): TDataTreeList {
 		let query = toComparable(this.input.query);
 
 		if (!query) {
@@ -66,32 +79,45 @@ export class OpalTreeList extends Component {
 		let dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
 
 		return new ObservableTreeList(
-			fixParent(this.dataTreeList.reduce(function _(filteredDataTreeList, item) {
-				if (item.children.length) {
-					let filteredChildren = item.children.reduce(_, []);
+			fixParent(
+				this.dataTreeList.reduce(
+					function _(filteredDataTreeList, item) {
+						if (item.children.length) {
+							let filteredChildren = item.children.reduce(_, []);
 
-					if (
-						filteredChildren.length ||
+							if (
+								filteredChildren.length ||
+								toComparable(item[dataTreeListItemTextFieldName])!.indexOf(
+									query!
+								) != -1
+							) {
+								filteredDataTreeList.push({
+									$original: item,
+									[dataTreeListItemValueFieldName]:
+										item[dataTreeListItemValueFieldName],
+									[dataTreeListItemTextFieldName]:
+										item[dataTreeListItemTextFieldName],
+									children: filteredChildren
+								});
+							}
+						} else if (
 							toComparable(item[dataTreeListItemTextFieldName])!.indexOf(query!) != -1
-					) {
-						filteredDataTreeList.push({
-							$original: item,
-							[dataTreeListItemValueFieldName]: item[dataTreeListItemValueFieldName],
-							[dataTreeListItemTextFieldName]: item[dataTreeListItemTextFieldName],
-							children: filteredChildren
-						});
-					}
-				} else if (toComparable(item[dataTreeListItemTextFieldName])!.indexOf(query!) != -1) {
-					filteredDataTreeList.push({
-						$original: item,
-						[dataTreeListItemValueFieldName]: item[dataTreeListItemValueFieldName],
-						[dataTreeListItemTextFieldName]: item[dataTreeListItemTextFieldName],
-						children: []
-					});
-				}
+						) {
+							filteredDataTreeList.push({
+								$original: item,
+								[dataTreeListItemValueFieldName]:
+									item[dataTreeListItemValueFieldName],
+								[dataTreeListItemTextFieldName]:
+									item[dataTreeListItemTextFieldName],
+								children: []
+							});
+						}
 
-				return filteredDataTreeList;
-			}, [] as Array<IDataTreeListItem>))
+						return filteredDataTreeList;
+					},
+					[] as Array<IDataTreeListItem>
+				)
+			)
 		);
 	}
 
@@ -103,9 +129,13 @@ export class OpalTreeList extends Component {
 		let input = this.input;
 
 		if (input.dataTreeListKeypath) {
-			define(this, 'dataTreeList', new Cell(Function(`return this.${ input.dataTreeListKeypath };`), {
-				context: this.ownerComponent || window
-			}));
+			define(
+				this,
+				'dataTreeList',
+				new Cell(Function(`return this.${input.dataTreeListKeypath};`), {
+					context: this.ownerComponent || window
+				})
+			);
 		} else {
 			if (!input.$specified.has('dataTreeList')) {
 				throw new TypeError('Input property "dataTreeList" is required');
@@ -115,15 +145,19 @@ export class OpalTreeList extends Component {
 		}
 
 		let dataTreeListItemSchema = input.dataTreeListItemSchema;
-		let defaultDataTreeListItemSchema = (this.constructor as typeof OpalTreeList).defaultDataTreeListItemSchema;
+		let defaultDataTreeListItemSchema = (this.constructor as typeof OpalTreeList)
+			.defaultDataTreeListItemSchema;
 
-		this._dataTreeListItemValueFieldName = dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;
-		this._dataTreeListItemTextFieldName = dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
+		this._dataTreeListItemValueFieldName =
+			dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;
+		this._dataTreeListItemTextFieldName =
+			dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
 
 		this.viewModel = input.viewModel || new ObservableList();
 
 		let vmItemSchema = input.viewModelItemSchema;
-		let defaultVMItemSchema = (this.constructor as typeof OpalTreeList).defaultViewModelItemSchema;
+		let defaultVMItemSchema = (this.constructor as typeof OpalTreeList)
+			.defaultViewModelItemSchema;
 
 		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
@@ -142,24 +176,34 @@ export class OpalTreeList extends Component {
 			let vm = this.viewModel;
 			let viewModelItemValueFieldName = this._viewModelItemValueFieldName;
 			let viewModelItemTextFieldName = this._viewModelItemTextFieldName;
-			let item: IDataTreeListItem = closestComponent(component.parentComponent!, OpalTreeListItem)!
-				.input.$context.$item;
+			let item: IDataTreeListItem = closestComponent(
+				component.parentComponent!,
+				OpalTreeListItem
+			)!.input.$context.$item;
 
 			if (component.selected) {
 				for (
 					let parent;
-					(parent = item.parent) && parent.children.every((child) =>
-						child == item || !!vm.find((vmItem) =>
-							vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]
-						)
+					(parent = item.parent) &&
+					parent.children.every(
+						child =>
+							child == item ||
+							!!vm.find(
+								vmItem =>
+									vmItem[viewModelItemValueFieldName] ==
+									child[dataTreeListItemValueFieldName]
+							)
 					);
+
 				) {
 					item = parent;
 				}
 
 				item.children.forEach(function _(child) {
-					let childIndex = vm.findIndex((vmItem) =>
-						vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]
+					let childIndex = vm.findIndex(
+						vmItem =>
+							vmItem[viewModelItemValueFieldName] ==
+							child[dataTreeListItemValueFieldName]
 					);
 
 					if (childIndex != -1) {
@@ -174,8 +218,9 @@ export class OpalTreeList extends Component {
 					[viewModelItemTextFieldName]: item[dataTreeListItemTextFieldName]
 				});
 			} else {
-				let itemIndex = vm.findIndex((vmItem) =>
-					vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]
+				let itemIndex = vm.findIndex(
+					vmItem =>
+						vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]
 				);
 
 				if (itemIndex != -1) {
@@ -183,18 +228,19 @@ export class OpalTreeList extends Component {
 				} else {
 					let parent = item.parent!;
 
-					for (; ; ) {
-						let parentIndex = vm.findIndex((vmItem) =>
-							vmItem[viewModelItemValueFieldName] == parent[dataTreeListItemValueFieldName]
+					for (;;) {
+						let parentIndex = vm.findIndex(
+							vmItem =>
+								vmItem[viewModelItemValueFieldName] ==
+								parent[dataTreeListItemValueFieldName]
 						);
 
 						vm.addRange(
-							parent.children
-								.filter((child) => child != item)
-								.map((child) => ({
-									[viewModelItemValueFieldName]: child[dataTreeListItemValueFieldName],
-									[viewModelItemTextFieldName]: child[dataTreeListItemTextFieldName]
-								}))
+							parent.children.filter(child => child != item).map(child => ({
+								[viewModelItemValueFieldName]:
+									child[dataTreeListItemValueFieldName],
+								[viewModelItemTextFieldName]: child[dataTreeListItemTextFieldName]
+							}))
 						);
 
 						if (parentIndex != -1) {
@@ -212,5 +258,3 @@ export class OpalTreeList extends Component {
 }
 
 (OpalTreeList.prototype as any)._getListItemContext = _getListItemContext;
-
-export { OpalTreeListItem };

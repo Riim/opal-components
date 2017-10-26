@@ -6,6 +6,8 @@ import { OpalTab } from './opal-tab-list/opal-tab';
 import { OpalTabPanel } from './opal-tab-panel';
 import template from './template.nelm';
 
+export { OpalTabList, OpalTab, OpalTabPanel };
+
 let indexOf = Array.prototype.indexOf;
 let forEach = Array.prototype.forEach;
 
@@ -23,9 +25,12 @@ export class OpalTabs extends Component {
 	_selectedTab: OpalTab | null = null;
 
 	ready() {
-		let tabs = this.tabs = this.element.getElementsByClassName('opal-tab') as NodeListOf<IComponentElement>;
-		let tabPanels = this.tabPanels = this.element.getElementsByClassName('opal-tab-panel') as
-			NodeListOf<IComponentElement>;
+		let tabs = (this.tabs = this.element.getElementsByClassName('opal-tab') as NodeListOf<
+			IComponentElement
+		>);
+		let tabPanels = (this.tabPanels = this.element.getElementsByClassName(
+			'opal-tab-panel'
+		) as NodeListOf<IComponentElement>);
 
 		let selectedTab: OpalTab | undefined;
 		let selectedTabIndex: number | undefined;
@@ -54,10 +59,14 @@ export class OpalTabs extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo((this.element.getElementsByClassName('opal-tab-list')[0] as IComponentElement).$component, {
-			'<opal-tab>select': this._onTabListSelect,
-			'<opal-tab>deselect': this._onTabListDeselect
-		});
+		this.listenTo(
+			(this.element.getElementsByClassName('opal-tab-list')[0] as IComponentElement)
+				.$component,
+			{
+				'<opal-tab>select': this._onTabListSelect,
+				'<opal-tab>deselect': this._onTabListDeselect
+			}
+		);
 	}
 
 	_onTabListSelect(evt: IEvent<OpalTab>) {
@@ -65,7 +74,9 @@ export class OpalTabs extends Component {
 		let selectedTab = this._selectedTab;
 
 		if (selectedTab) {
-			this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$component.input.shown = false;
+			this.tabPanels[
+				indexOf.call(this.tabs, selectedTab.element)
+			].$component.input.shown = false;
 			selectedTab.deselect();
 		}
 
@@ -77,5 +88,3 @@ export class OpalTabs extends Component {
 		evt.target.select();
 	}
 }
-
-export { OpalTabList, OpalTab, OpalTabPanel };

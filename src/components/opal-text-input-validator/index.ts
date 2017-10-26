@@ -26,12 +26,10 @@ export class OpalTextInputValidator extends OpalInputValidator {
 		let value = this.target.value;
 		let ruleInput = rule.input;
 
-		return !(
-			value ?
-				ruleInput.minLength && value.length < ruleInput.minLength ||
-					ruleInput.regex && !ruleInput.regex.test(value) ||
-					ruleInput.test && !ruleInput.test.call(this.ownerComponent, value) :
-				ruleInput.required
-		);
+		return !(value
+			? (ruleInput.minLength && value.length < ruleInput.minLength) ||
+				(ruleInput.regex && !ruleInput.regex.test(value)) ||
+				(ruleInput.test && !ruleInput.test.call(this.ownerComponent, value))
+			: ruleInput.required);
 	}
 }

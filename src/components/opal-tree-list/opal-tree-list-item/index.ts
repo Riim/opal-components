@@ -34,16 +34,20 @@ import template from './template.nelm';
 	}
 })
 export class OpalTreeListItem extends Component {
-	@computed get dataTreeList(): TDataTreeList {
+	@computed
+	get dataTreeList(): TDataTreeList {
 		return this.input.dataTreeList;
 	}
+
 	dataTreeListItem: IDataTreeListItem;
 	_dataTreeListItemValueFieldName: string;
 	_dataTreeListItemTextFieldName: string;
 
-	@computed get viewModel(): TViewModel {
+	@computed
+	get viewModel(): TViewModel {
 		return this.input.viewModel;
 	}
+
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 

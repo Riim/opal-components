@@ -9,5 +9,4 @@ import './index.css';
 		regex: { type: eval, required: true, readonly: true }
 	}
 })
-export class OpalInputMaskDefinition extends Component {
-}
+export class OpalInputMaskDefinition extends Component {}

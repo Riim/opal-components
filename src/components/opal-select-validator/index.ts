@@ -14,11 +14,9 @@ export class OpalSelectValidator extends OpalInputValidator {
 		let vm = this.target.viewModel;
 		let ruleInput = rule.input;
 
-		return !(
-			vm.length ?
-				ruleInput.minCount && vm.length < ruleInput.minCount ||
-					ruleInput.test && !ruleInput.test.call(this.ownerComponent, vm) :
-				ruleInput.required
-		);
+		return !(vm.length
+			? (ruleInput.minCount && vm.length < ruleInput.minCount) ||
+				(ruleInput.test && !ruleInput.test.call(this.ownerComponent, vm))
+			: ruleInput.required);
 	}
 }

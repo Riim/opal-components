@@ -47,7 +47,10 @@ import template from './template.nelm';
 			click(evt, btn: HTMLElement) {
 				let vmItemValueFieldName = this._viewModelItemValueFieldName;
 				let itemValue = btn.dataset.itemValue;
-				this.viewModel.removeAt(this.viewModel.findIndex((item) => item[vmItemValueFieldName] == itemValue));
+
+				this.viewModel.removeAt(
+					this.viewModel.findIndex(item => item[vmItemValueFieldName] == itemValue)
+				);
 			}
 		}
 	}
@@ -55,7 +58,8 @@ import template from './template.nelm';
 export class OpalMultiselect extends OpalSelect {
 	dataProvider: IDataProvider | null;
 
-	@computed get isNothingSelectedShown(): boolean {
+	@computed
+	get isNothingSelectedShown(): boolean {
 		return !this.viewModel.length;
 	}
 

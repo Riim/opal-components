@@ -1,10 +1,11 @@
-var gulp = require('gulp');
-var sizereport = require('gulp-sizereport');
+let gulp = require('gulp');
+let sizereport = require('gulp-sizereport');
 
-gulp.task('sizereport', function() {
-	return gulp.src('dist/*.min.js')
-		.pipe(sizereport({
+gulp.task('sizereport', () => {
+	return gulp.src('dist/*.min.js').pipe(
+		sizereport({
 			total: true,
 			gzip: true
-		}));
+		})
+	);
 });

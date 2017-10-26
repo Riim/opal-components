@@ -32,7 +32,7 @@ export function parsePath(path: string): Array<TPathNode> {
 		if (c && c != chr) {
 			throw {
 				name: 'SyntaxError',
-				message: `Expected "${ c }" instead of "${ chr }"`,
+				message: `Expected "${c}" instead of "${chr}"`,
 				at,
 				path
 			};
@@ -62,7 +62,7 @@ export function parsePath(path: string): Array<TPathNode> {
 		let value = chr;
 
 		while (next()) {
-			if (chr == '(' || chr == '[' || ctx == PathNodeType.OPTIONAL && chr == ')') {
+			if (chr == '(' || chr == '[' || (ctx == PathNodeType.OPTIONAL && chr == ')')) {
 				break;
 			}
 
@@ -129,7 +129,7 @@ export function parsePath(path: string): Array<TPathNode> {
 				if (!reName.test(name) || name == 'class') {
 					throw {
 						name: 'SyntaxError',
-						message: `Invalid name "${ name }"`,
+						message: `Invalid name "${name}"`,
 						at: optionalNodeNameAt,
 						path
 					};
@@ -167,7 +167,7 @@ export function parsePath(path: string): Array<TPathNode> {
 				if (!reName.test(name) || name == 'class') {
 					throw {
 						name: 'SyntaxError',
-						message: `Invalid name "${ name }"`,
+						message: `Invalid name "${name}"`,
 						at: insertAt + 1,
 						path
 					};

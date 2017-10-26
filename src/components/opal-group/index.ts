@@ -5,5 +5,4 @@ import './index.css';
 	elementIs: 'opal-group',
 	template: '@section/inner { rt-content/content }'
 })
-export class OpalGroup extends Component {
-}
+export class OpalGroup extends Component {}

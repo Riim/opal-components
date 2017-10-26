@@ -21,7 +21,8 @@ import template from './template.nelm';
 	template
 })
 export class OpalSelectOption extends Component {
-	@computed get _tabIndex(): number {
+	@computed
+	get _tabIndex(): number {
 		return this.input.disabled ? -1 : this.input.tabIndex;
 	}
 

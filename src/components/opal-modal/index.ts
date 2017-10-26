@@ -128,7 +128,13 @@ export class OpalModal extends Component {
 		if (openedModals.length) {
 			openedModals[0].element.classList.add('_overlapped');
 		} else {
-			documentFocusListening = this.listenTo(document, 'focus', onDocumentFocus, document, true);
+			documentFocusListening = this.listenTo(
+				document,
+				'focus',
+				onDocumentFocus,
+				document,
+				true
+			);
 			documentKeyUpListening = this.listenTo(document, 'keyup', onDocumentKeyUp, document);
 
 			let body = document.body;

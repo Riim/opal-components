@@ -85,7 +85,8 @@ export class OpalAutosuggest extends Component {
 	_requestCallback: IDisposableCallback;
 	@observable loading = false;
 
-	@computed get isLoaderShown(): boolean {
+	@computed
+	get isLoaderShown(): boolean {
 		return this._isLoadingPlanned || this.loading;
 	}
 
@@ -98,9 +99,11 @@ export class OpalAutosuggest extends Component {
 		let input = this.input;
 
 		let dataListItemSchema = input.dataListItemSchema;
-		let defaultDataListItemSchema = (this.constructor as typeof OpalAutosuggest).defaultDataListItemSchema;
+		let defaultDataListItemSchema = (this.constructor as typeof OpalAutosuggest)
+			.defaultDataListItemSchema;
 
-		this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+		this._dataListItemValueFieldName =
+			dataListItemSchema.value || defaultDataListItemSchema.value;
 		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
 
 		if (!input.$specified.has('dataProvider')) {
@@ -126,16 +129,26 @@ export class OpalAutosuggest extends Component {
 			input: this._onTextInputInput,
 			change: this._onTextInputChange
 		});
-		this.listenTo(this.$<OpalTextInput>('text-input')!.textField, 'click', this._onTextFieldClick);
+		this.listenTo(
+			this.$<OpalTextInput>('text-input')!.textField,
+			'click',
+			this._onTextFieldClick
+		);
 		this.listenTo('menu', 'input-opened-change', this._onMenuInputOpenedChange);
-		this.listenTo(this.$<Component>('menu')!.element, 'mouseover', this._onMenuElementMouseOver);
+		this.listenTo(
+			this.$<Component>('menu')!.element,
+			'mouseover',
+			this._onMenuElementMouseOver
+		);
 		this.listenTo(this.dataList, 'change', this._onDataListChange);
 		this.listenTo(this, 'change:isLoaderShown', this._onIsLoaderShownChange);
 	}
 
 	ready() {
 		if (this.value) {
-			this.$<OpalTextInput>('text-input')!.value = this.value[this._dataListItemTextFieldName];
+			this.$<OpalTextInput>('text-input')!.value = this.value[
+				this._dataListItemTextFieldName
+			];
 		}
 	}
 
@@ -145,7 +158,9 @@ export class OpalAutosuggest extends Component {
 		this._clearDataList();
 
 		this.value = item;
-		this.$<OpalTextInput>('text-input')!.value = item ? item[this._dataListItemTextFieldName] : '';
+		this.$<OpalTextInput>('text-input')!.value = item
+			? item[this._dataListItemTextFieldName]
+			: '';
 	}
 
 	_onTextInputFocus() {
@@ -196,7 +211,13 @@ export class OpalAutosuggest extends Component {
 
 	_onMenuInputOpenedChange(evt: IEvent) {
 		if (evt.data.value) {
-			this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
+			this._documentFocusListening = this.listenTo(
+				document,
+				'focus',
+				this._onDocumentFocus,
+				this,
+				true
+			);
 			this._documentListening = this.listenTo(document, {
 				keydown: this._onDocumentKeyDown,
 				click: this._onDocumentClick
@@ -211,7 +232,11 @@ export class OpalAutosuggest extends Component {
 		let menu = this.$<Component>('menu')!.element;
 		let el = evt.target as HTMLElement;
 
-		for (; !el.classList.contains('opal-autosuggest__list-item'); el = el.parentNode as HTMLElement) {
+		for (
+			;
+			!el.classList.contains('opal-autosuggest__list-item');
+			el = el.parentNode as HTMLElement
+		) {
 			if (el == menu) {
 				return;
 			}
@@ -316,9 +341,9 @@ export class OpalAutosuggest extends Component {
 			args.unshift(this.input.count);
 		}
 
-		this.dataProvider.getItems.apply(this.dataProvider, args).then(
-			(this._requestCallback = this.registerCallback(this._itemsRequestCallback))
-		);
+		this.dataProvider.getItems
+			.apply(this.dataProvider, args)
+			.then((this._requestCallback = this.registerCallback(this._itemsRequestCallback)));
 	}
 
 	_itemsRequestCallback(data: { [name: string]: any }) {
@@ -368,7 +393,9 @@ export class OpalAutosuggest extends Component {
 
 				if (query) {
 					query = toComparable(query);
-					item = this.dataList.find((item) => toComparable(item[this._dataListItemTextFieldName]) == query);
+					item = this.dataList.find(
+						item => toComparable(item[this._dataListItemTextFieldName]) == query
+					);
 
 					if (item && this.dataList.length > 1) {
 						this._clearDataList();
@@ -383,7 +410,8 @@ export class OpalAutosuggest extends Component {
 
 				if (
 					this.value &&
-						this.value[this._dataListItemValueFieldName] == item[this._dataListItemValueFieldName]
+					this.value[this._dataListItemValueFieldName] ==
+						item[this._dataListItemValueFieldName]
 				) {
 					return;
 				}

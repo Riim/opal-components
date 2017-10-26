@@ -9,5 +9,4 @@ import { OpalInputValidatorRule } from '../../opal-input-validator';
 		regex: { type: eval, readonly: true }
 	}
 })
-export class OpalTextInputValidatorRule extends OpalInputValidatorRule {
-}
+export class OpalTextInputValidatorRule extends OpalInputValidatorRule {}

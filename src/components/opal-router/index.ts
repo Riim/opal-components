@@ -8,6 +8,8 @@ import { OpalRoute } from './opal-route';
 import { parsePath } from './parsePath';
 import { PathNodeType } from './PathNodeType';
 
+export { OpalRoute };
+
 let forEach = Array.prototype.forEach;
 
 export interface IRouteProperty {
@@ -27,12 +29,16 @@ export interface IComponentState {
 }
 
 function isReadonlyProperty(propConfig: any): boolean {
-	return propConfig && typeof propConfig == 'object' &&
-		(propConfig.type !== undefined || propConfig.default !== undefined) && propConfig.readonly;
+	return (
+		propConfig &&
+		typeof propConfig == 'object' &&
+		(propConfig.type !== undefined || propConfig.default !== undefined) &&
+		propConfig.readonly
+	);
 }
 
 function valueToAttributeValue(value: boolean | string): string {
-	return `${ value === false ? 'no' : (value === true ? 'yes' : escapeHTML(value)) }`;
+	return `${value === false ? 'no' : value === true ? 'yes' : escapeHTML(value)}`;
 }
 
 @ComponentConfig<OpalRouter>({
@@ -99,7 +105,9 @@ export class OpalRouter extends Component {
 
 			routes.push({
 				path,
-				rePath: RegExp(`^${ rePath }${ rePath.charAt(rePath.length - 1) == '\/' ? '?' : '\/?' }$`),
+				rePath: RegExp(
+					`^${rePath}${rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?'}$`
+				),
 				properties: props,
 				componentName: routeEl.$component.input.component
 			});
@@ -112,7 +120,7 @@ export class OpalRouter extends Component {
 		this._update(location.hash);
 
 		this._historyListening = {
-			unlisten: history.listen((location) => {
+			unlisten: history.listen(location => {
 				this._onWindowPopState(location);
 			})
 		};
@@ -142,16 +150,19 @@ export class OpalRouter extends Component {
 				continue;
 			}
 
-			let state: IComponentState = route.properties.reduce((state, prop, index) => {
-				if (prop.optional) {
-					state[prop.name] = !!match![index + 1];
-				} else {
-					let value = match![index + 1];
-					state[prop.name] = value && decodeURIComponent(value);
-				}
+			let state: IComponentState = route.properties.reduce(
+				(state, prop, index) => {
+					if (prop.optional) {
+						state[prop.name] = !!match![index + 1];
+					} else {
+						let value = match![index + 1];
+						state[prop.name] = value && decodeURIComponent(value);
+					}
 
-				return state;
-			}, Object.create(null) as IComponentState);
+					return state;
+				},
+				Object.create(null) as IComponentState
+			);
 
 			if (route === this._route) {
 				let prevState = this._state!;
@@ -159,7 +170,7 @@ export class OpalRouter extends Component {
 
 				if (
 					stateKeys.length == Object.keys(prevState).length &&
-						stateKeys.every((name) => state[name] === prevState[name])
+					stateKeys.every(name => state[name] === prevState[name])
 				) {
 					return;
 				}
@@ -173,7 +184,11 @@ export class OpalRouter extends Component {
 					for (let i = attrs.length; i; ) {
 						let name = attrs.item(--i).name;
 
-						if (name != 'class' && !(name in state) && isReadonlyProperty(inputConfig[name])) {
+						if (
+							name != 'class' &&
+							!(name in state) &&
+							isReadonlyProperty(inputConfig[name])
+						) {
 							writable = false;
 							break;
 						}
@@ -183,7 +198,8 @@ export class OpalRouter extends Component {
 						for (let name in state) {
 							if (
 								componentEl.getAttribute(hyphenize(name, true)) !==
-									valueToAttributeValue(state[name]) && isReadonlyProperty(inputConfig[name])
+									valueToAttributeValue(state[name]) &&
+								isReadonlyProperty(inputConfig[name])
 							) {
 								writable = false;
 								break;
@@ -222,7 +238,9 @@ export class OpalRouter extends Component {
 			this._route = route;
 			this._state = state;
 
-			let componentEl = this._componentElement = document.createElement(route.componentName) as IComponentElement;
+			let componentEl = (this._componentElement = document.createElement(
+				route.componentName
+			) as IComponentElement);
 			this._applyState();
 			componentEl.$component.ownerComponent = this;
 			this.element.appendChild(componentEl);
@@ -267,7 +285,9 @@ export class OpalRouter extends Component {
 		if (route) {
 			this.element.removeChild(this._componentElement!);
 
-			let componentEl = this._componentElement = document.createElement(route.componentName) as IComponentElement;
+			let componentEl = (this._componentElement = document.createElement(
+				route.componentName
+			) as IComponentElement);
 			this._applyState();
 			componentEl.$component.ownerComponent = this;
 			this.element.appendChild(componentEl);
@@ -278,5 +298,3 @@ export class OpalRouter extends Component {
 		}
 	}
 }
-
-export { OpalRoute };

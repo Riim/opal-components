@@ -2,6 +2,8 @@ import { IEvent } from 'cellx';
 import { Component, ComponentConfig, IComponentElement } from 'rionite';
 import { OpalRadioButton } from './opal-radio-button';
 
+export { OpalRadioButton };
+
 let forEach = Array.prototype.forEach;
 
 @ComponentConfig<OpalRadioGroup>({
@@ -13,7 +15,9 @@ export class OpalRadioGroup extends Component {
 	buttonElements: NodeListOf<IComponentElement>;
 
 	ready() {
-		this.buttonElements = this.element.getElementsByClassName('opal-radio-button') as NodeListOf<IComponentElement>;
+		this.buttonElements = this.element.getElementsByClassName(
+			'opal-radio-button'
+		) as NodeListOf<IComponentElement>;
 	}
 
 	elementAttached() {
@@ -37,5 +41,3 @@ export class OpalRadioGroup extends Component {
 		evt.target.check();
 	}
 }
-
-export { OpalRadioButton };

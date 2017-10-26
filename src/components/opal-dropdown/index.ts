@@ -105,7 +105,9 @@ export class OpalDropdown extends Component {
 				elStyle.right = '0';
 				elStyle.left = 'auto';
 			} else {
-				elStyle.left = Math.max(-containerClientRect.left, docElClientWidth - elClientRect.right) + 'px';
+				elStyle.left =
+					Math.max(-containerClientRect.left, docElClientWidth - elClientRect.right) +
+					'px';
 			}
 		}
 
@@ -113,7 +115,9 @@ export class OpalDropdown extends Component {
 		let excess = elClientRect.bottom + margin - document.documentElement.clientHeight;
 
 		if (excess > 0) {
-			let diff = containerClientRect.top - (document.documentElement.clientHeight - containerClientRect.bottom);
+			let diff =
+				containerClientRect.top -
+				(document.documentElement.clientHeight - containerClientRect.bottom);
 
 			if (this.input.autoHeight) {
 				if (diff > 0) {
@@ -137,7 +141,11 @@ export class OpalDropdown extends Component {
 		if (this.input.autoClosing) {
 			setTimeout(() => {
 				if (this.input.opened) {
-					this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+					this._documentClickListening = this.listenTo(
+						document,
+						'click',
+						this._onDocumentClick
+					);
 				}
 			}, 1);
 		}

@@ -28,14 +28,15 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 	constructor(items?: Array<T>) {
 		super();
 
-		this._items = items ? fixParent(items.map(function _(item): T {
-			return assign(
-				assign({}, item),
-				{
-					children: item.children ? item.children.map(_) : []
-				}
-			);
-		})) : [];
+		this._items = items
+			? fixParent(
+					items.map(function _(item): T {
+						return assign(assign({}, item), {
+							children: item.children ? item.children.map(_) : []
+						});
+					})
+				)
+			: [];
 	}
 
 	get(indexpath: Array<number>): T | undefined {
@@ -80,7 +81,9 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 			let parent = this.get(indexpath.slice(0, -1));
 
 			if (!parent) {
-				throw new TypeError(`Item by indexpath "[${ indexpath.slice(0, -1).join(',') }]" is not exist`);
+				throw new TypeError(
+					`Item by indexpath "[${indexpath.slice(0, -1).join(',')}]" is not exist`
+				);
 			}
 
 			items = parent.children!;
@@ -98,21 +101,36 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 		return this;
 	}
 
-	forEach(callback: (item: T, index: number, list: ObservableTreeList<T>) => void, context?: any) {}
+	forEach(
+		callback: (item: T, index: number, list: ObservableTreeList<T>) => void,
+		context?: any
+	) {}
 
-	map<R = any>(callback: (item: T, index: number, list: ObservableTreeList<T>) => any, context?: any): Array<R> {
+	map<R = any>(
+		callback: (item: T, index: number, list: ObservableTreeList<T>) => any,
+		context?: any
+	): Array<R> {
 		return [];
 	}
 
-	filter(callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void, context?: any): Array<T> {
+	filter(
+		callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void,
+		context?: any
+	): Array<T> {
 		return [];
 	}
 
-	every(callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void, context?: any): boolean {
+	every(
+		callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void,
+		context?: any
+	): boolean {
 		return false;
 	}
 
-	some(callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void, context?: any): boolean {
+	some(
+		callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void,
+		context?: any
+	): boolean {
 		return false;
 	}
 
@@ -131,7 +149,7 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 	}
 }
 
-['forEach', 'map', 'filter', 'every', 'some'].forEach((name) => {
+['forEach', 'map', 'filter', 'every', 'some'].forEach(name => {
 	(ObservableTreeList.prototype as any)[name] = function(callback: any, context: any) {
 		return this._items[name](function(item: any, index: any) {
 			return callback.call(context, item, index, this);
@@ -139,7 +157,7 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 	};
 });
 
-['reduce', 'reduceRight'].forEach((name) => {
+['reduce', 'reduceRight'].forEach(name => {
 	(ObservableTreeList.prototype as any)[name] = function(callback: any, initialValue: any) {
 		let items = this._items;
 		let list = this;

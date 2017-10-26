@@ -6,6 +6,8 @@ import './index.css';
 import { OpalMultirowRow } from './opal-multirow-row';
 import template from './template.nelm';
 
+export { OpalMultirowRow };
+
 let filter = Array.prototype.filter;
 
 @ComponentConfig<OpalMultirow>({
@@ -18,19 +20,21 @@ export class OpalMultirow extends Component {
 	@observable _presetRowCount = 0;
 	@observable _newRows = new ObservableList<{ key: string }>();
 
-	@computed _notHaveNewRows(): boolean {
+	@computed
+	_notHaveNewRows(): boolean {
 		return !this._newRows.length;
 	}
 
-	@computed _notSingleRow(): boolean {
+	@computed
+	_notSingleRow(): boolean {
 		return this._presetRowCount + this._newRows.length != 1;
 	}
 
 	ready() {
-		let presetRowCount = this._presetRowCount = filter.call(
+		let presetRowCount = (this._presetRowCount = filter.call(
 			this.element.getElementsByClassName('opal-multirow-row'),
 			(rowEl: IComponentElement): boolean => rowEl.$component.input.preset
-		).length;
+		).length);
 
 		if (!presetRowCount) {
 			this._newRows.add({ key: nextUID() });
@@ -51,8 +55,8 @@ export class OpalMultirow extends Component {
 			this.$<Component>('preset-rows-container')!.element.removeChild(row.element);
 			this._presetRowCount--;
 		} else {
-			let	key = row.parentComponent!.element.dataset.key;
-			this._newRows.removeAt(this._newRows.findIndex((row) => row.key == key));
+			let key = row.parentComponent!.element.dataset.key;
+			this._newRows.removeAt(this._newRows.findIndex(row => row.key == key));
 		}
 
 		Cell.forceRelease();
@@ -70,5 +74,3 @@ export class OpalMultirow extends Component {
 		this.emit('change');
 	}
 }
-
-export { OpalMultirowRow };

@@ -16,7 +16,8 @@ export class OpalInputValidator extends Component {
 
 	@observable failedRule: OpalInputValidatorRule | null = null;
 
-	@computed get valid(): boolean {
+	@computed
+	get valid(): boolean {
 		return !this.failedRule;
 	}
 
@@ -44,7 +45,7 @@ export class OpalInputValidator extends Component {
 	_validate(rules: Array<OpalInputValidatorRule>): boolean {
 		let failedRule: OpalInputValidatorRule | undefined;
 
-		rules.forEach((rule) => {
+		rules.forEach(rule => {
 			if (failedRule || this._checkValue(rule)) {
 				rule.hideMessage();
 			} else {

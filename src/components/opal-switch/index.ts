@@ -18,7 +18,8 @@ import template from './template.nelm';
 	template
 })
 export class OpalSwitch extends Component {
-	@computed _tabIndex(): number {
+	@computed
+	_tabIndex(): number {
 		return this.input.disabled ? -1 : this.input.tabIndex;
 	}
 
@@ -54,7 +55,11 @@ export class OpalSwitch extends Component {
 
 	_onInputFocusedChange(evt: IEvent) {
 		if (evt.data.value) {
-			this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+			this._documentKeyDownListening = this.listenTo(
+				document,
+				'keydown',
+				this._onDocumentKeyDown
+			);
 			this.focus();
 		} else {
 			this._documentKeyDownListening.stop();
@@ -76,7 +81,9 @@ export class OpalSwitch extends Component {
 	}
 
 	_onInputChange(evt: Event) {
-		this.emit((this.input.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
+		this.emit(
+			(this.input.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck'
+		);
 		this.emit('change');
 	}
 

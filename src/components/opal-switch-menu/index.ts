@@ -20,9 +20,11 @@ export class OpalSwitchMenu extends Component {
 			return this._checkedButton;
 		}
 
-		return (this._checkedButton = find.call(this.buttonElements, (btnEl: IComponentElement) =>
-			(btnEl.$component as OpalButton).checked) || null
-		);
+		return (this._checkedButton =
+			find.call(
+				this.buttonElements,
+				(btnEl: IComponentElement) => (btnEl.$component as OpalButton).checked
+			) || null);
 	}
 	set checkedButton(checkedButton: OpalButton | null) {
 		if (checkedButton === this._checkedButton) {
@@ -45,7 +47,9 @@ export class OpalSwitchMenu extends Component {
 	}
 
 	ready() {
-		this.buttonElements = this.element.getElementsByClassName('opal-button') as NodeListOf<HTMLElement>;
+		this.buttonElements = this.element.getElementsByClassName('opal-button') as NodeListOf<
+			HTMLElement
+		>;
 	}
 
 	elementAttached() {

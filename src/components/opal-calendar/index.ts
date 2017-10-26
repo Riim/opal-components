@@ -42,11 +42,28 @@ function getTodayDate() {
 		previousMonth: 'Предыдущий месяц',
 		nextMonth: 'Следующий месяц',
 		months: [
-			'Январь', 'Февраль', 'Март', 'Апрель',
-			'Май', 'Июнь', 'Июль', 'Август',
-			'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+			'Январь',
+			'Февраль',
+			'Март',
+			'Апрель',
+			'Май',
+			'Июнь',
+			'Июль',
+			'Август',
+			'Сентябрь',
+			'Октябрь',
+			'Ноябрь',
+			'Декабрь'
 		],
-		weekDays: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+		weekDays: [
+			'Воскресенье',
+			'Понедельник',
+			'Вторник',
+			'Среда',
+			'Четверг',
+			'Пятница',
+			'Суббота'
+		],
 		weekDaysShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
 		sundayFirst: false
 	},
@@ -101,7 +118,8 @@ export class OpalCalendar extends Component {
 	weekDays: Array<string>;
 	weekDaysShort: Array<string>;
 
-	@computed get fromDate(): Date {
+	@computed
+	get fromDate(): Date {
 		let fromDate: string | null = this.input.fromDate;
 
 		if (fromDate) {
@@ -112,7 +130,9 @@ export class OpalCalendar extends Component {
 		let date = toDate && toDate != 'today' ? parseDate(toDate) : new Date();
 		return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
 	}
-	@computed get toDate(): Date {
+
+	@computed
+	get toDate(): Date {
 		let toDate: string | undefined = this.input.toDate;
 
 		if (toDate) {
@@ -124,13 +144,18 @@ export class OpalCalendar extends Component {
 		return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
 	}
 
-	@computed get fromYear(): number {
+	@computed
+	get fromYear(): number {
 		return this.fromDate.getFullYear();
 	}
-	@computed get toYear(): number {
+
+	@computed
+	get toYear(): number {
 		return this.toDate.getFullYear();
 	}
-	@computed get years(): Array<number> {
+
+	@computed
+	get years(): Array<number> {
 		let years: Array<number> = [];
 
 		for (let year = this.fromYear, toYear = this.toYear; year <= toYear; year++) {
@@ -141,14 +166,16 @@ export class OpalCalendar extends Component {
 	}
 
 	stringValueCell: Cell<string | null>;
-	@computed get stringValue(): string | null {
+	@computed
+	get stringValue(): string | null {
 		return this.input.value;
 	}
 	set stringValue(value: string | null) {
 		this.stringValueCell.set(value);
 	}
 
-	@computed get value(): Date | null {
+	@computed
+	get value(): Date | null {
 		let value = this.stringValue;
 		return value ? parseDate(value) : null;
 	}
@@ -156,14 +183,18 @@ export class OpalCalendar extends Component {
 	@observable shownYear: number;
 	@observable shownMonth: number;
 
-	@computed get isBtnPrevMonthDisabled(): boolean {
+	@computed
+	get isBtnPrevMonthDisabled(): boolean {
 		return this.shownYear == this.fromYear && !this.shownMonth;
 	}
-	@computed get isBtnNextMonthDisabled(): boolean {
+
+	@computed
+	get isBtnNextMonthDisabled(): boolean {
 		return this.shownYear == this.toYear && this.shownMonth == 11;
 	}
 
-	@computed days: TDays = function(this: OpalCalendar, _: any, next: TDays | undefined): TDays {
+	@computed
+	days: TDays = function(this: OpalCalendar, _: any, next: TDays | undefined): TDays {
 		let dateDelimiter = this.input.dateDelimiter;
 
 		let fromDate = this.fromDate;
@@ -222,8 +253,8 @@ export class OpalCalendar extends Component {
 					'saturday'
 				][date.getDay()],
 				today: year == nowYear && month == nowMonth && day == nowDay,
-				selected: !!value && year == selectedYear && month == selectedMonth &&
-					day == selectedDay,
+				selected:
+					!!value && year == selectedYear && month == selectedMonth && day == selectedDay,
 				notInCurrentMonth,
 				disabled,
 				tabIndex: disabled ? null : 0
@@ -234,7 +265,7 @@ export class OpalCalendar extends Component {
 			pushDay(
 				shownYear - +!shownMonth,
 				shownMonth ? shownMonth - 1 : 11,
-				lastPrevMonthDay - (--i),
+				lastPrevMonthDay - --i,
 				true
 			);
 		}
@@ -261,10 +292,12 @@ export class OpalCalendar extends Component {
 	initialize() {
 		let i18n = (this.constructor as typeof OpalCalendar).i18n!;
 
-		this.weekDays = i18n.sundayFirst ? i18n.weekDays : i18n.weekDays.slice(1).concat(i18n.weekDays[0]);
-		this.weekDaysShort = i18n.sundayFirst ?
-			i18n.weekDaysShort :
-			i18n.weekDaysShort.slice(1).concat(i18n.weekDaysShort[0]);
+		this.weekDays = i18n.sundayFirst
+			? i18n.weekDays
+			: i18n.weekDays.slice(1).concat(i18n.weekDays[0]);
+		this.weekDaysShort = i18n.sundayFirst
+			? i18n.weekDaysShort
+			: i18n.weekDaysShort.slice(1).concat(i18n.weekDaysShort[0]);
 
 		let fromDate = this.fromDate;
 		let toDate = this.toDate;
@@ -284,7 +317,7 @@ export class OpalCalendar extends Component {
 			shownDate = value;
 		} else {
 			let today = getTodayDate();
-			shownDate = today < fromDate ? fromDate : (today > toDate ? toDate : today);
+			shownDate = today < fromDate ? fromDate : today > toDate ? toDate : today;
 		}
 
 		this.shownYear = shownDate.getFullYear();
@@ -292,17 +325,26 @@ export class OpalCalendar extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo('days', {
-			focus: this._onDaysFocus,
-			blur: this._onDaysBlur
-		}, this, true);
+		this.listenTo(
+			'days',
+			{
+				focus: this._onDaysFocus,
+				blur: this._onDaysBlur
+			},
+			this,
+			true
+		);
 	}
 
 	_onDaysFocus(evt: Event) {
 		if ((evt.target as HTMLElement).classList.contains('opal-calendar__day')) {
 			nextTick(() => {
 				if (document.activeElement == evt.target && !this._documentKeyDownListening) {
-					this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+					this._documentKeyDownListening = this.listenTo(
+						document,
+						'keydown',
+						this._onDocumentKeyDown
+					);
 				}
 			});
 		}

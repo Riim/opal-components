@@ -25,5 +25,4 @@ import template from './template.nelm';
 		}
 	}
 })
-export class OpalMultirowRow extends Component {
-}
+export class OpalMultirowRow extends Component {}

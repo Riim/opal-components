@@ -2,6 +2,8 @@ import { Component, ComponentConfig } from 'rionite';
 import './index.css';
 import { OpalTab } from './opal-tab';
 
+export { OpalTab };
+
 @ComponentConfig({
 	elementIs: 'opal-tab-list',
 	template: '@section/inner { rt-content/content }'
@@ -9,5 +11,3 @@ import { OpalTab } from './opal-tab';
 export class OpalTabList extends Component {
 	static OpalTab = OpalTab;
 }
-
-export { OpalTab };

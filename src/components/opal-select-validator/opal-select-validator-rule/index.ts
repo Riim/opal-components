@@ -8,5 +8,4 @@ import { OpalInputValidatorRule } from '../../opal-input-validator';
 		minCount: { type: Number, readonly: true }
 	}
 })
-export class OpalSelectValidatorRule extends OpalInputValidatorRule {
-}
+export class OpalSelectValidatorRule extends OpalInputValidatorRule {}
