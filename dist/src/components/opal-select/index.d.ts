@@ -4,6 +4,7 @@ import { OpalButton } from '../opal-button';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 import { OpalSelectOption } from './opal-select-option';
+export { OpalSelectOption };
 export interface IDataListItem {
     [name: string]: any;
 }
@@ -72,4 +73,3 @@ export declare class OpalSelect extends Component {
     focus(): OpalSelect;
     blur(): OpalSelect;
 }
-export { OpalSelectOption };

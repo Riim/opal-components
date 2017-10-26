@@ -5,6 +5,7 @@ import { OpalCheckbox } from '../opal-checkbox';
 import './index.css';
 import { OpalTreeListItem } from './opal-tree-list-item';
 import './opal-tree-list-item';
+export { OpalTreeListItem };
 export interface IDataTreeListItem {
     [name: string]: any;
     parent?: IDataTreeListItem | null;
@@ -35,4 +36,3 @@ export declare class OpalTreeList extends Component {
     elementAttached(): void;
     _onChange(evt: IEvent<OpalCheckbox>): void;
 }
-export { OpalTreeListItem };

@@ -275,7 +275,11 @@ var opal_select_option_1 = __webpack_require__(112);
 exports.OpalSelectOption = opal_select_option_1.OpalSelectOption;
 var template_nelm_1 = __webpack_require__(115);
 var map = Array.prototype.map;
-var defaultDataListItemSchema = Object.freeze({ value: 'value', text: 'text', disabled: 'disabled' });
+var defaultDataListItemSchema = Object.freeze({
+    value: 'value',
+    text: 'text',
+    disabled: 'disabled'
+});
 var defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled: 'disabled' });
 var OpalSelect = /** @class */ (function (_super) {
     __extends(OpalSelect, _super);
@@ -298,7 +302,9 @@ var OpalSelect = /** @class */ (function (_super) {
     Object.defineProperty(OpalSelect.prototype, "_buttonText", {
         get: function () {
             var _this = this;
-            var text = this.viewModel.map(function (item) { return item[_this._viewModelItemTextFieldName]; }).join(', ');
+            var text = this.viewModel
+                .map(function (item) { return item[_this._viewModelItemTextFieldName]; })
+                .join(', ');
             if (!text) {
                 return this.input.placeholder;
             }
@@ -334,16 +340,21 @@ var OpalSelect = /** @class */ (function (_super) {
             this._isInputDataListSpecified = false;
         }
         var dataListItemSchema = input.dataListItemSchema;
-        var defaultDataListItemSchema = this.constructor.defaultDataListItemSchema;
-        this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+        var defaultDataListItemSchema = this.constructor
+            .defaultDataListItemSchema;
+        this._dataListItemValueFieldName =
+            dataListItemSchema.value || defaultDataListItemSchema.value;
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
-        this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
+        this._dataListItemDisabledFieldName =
+            dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
         this.viewModel = input.viewModel || new cellx_1.ObservableList();
         var vmItemSchema = input.viewModelItemSchema;
-        var defaultVMItemSchema = this.constructor.defaultViewModelItemSchema;
+        var defaultVMItemSchema = this.constructor
+            .defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
-        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
+        this._viewModelItemDisabledFieldName =
+            vmItemSchema.disabled || defaultVMItemSchema.disabled;
         this._addNewItem = input.addNewItem;
     };
     OpalSelect.prototype.ready = function () {
@@ -438,7 +449,9 @@ var OpalSelect = /** @class */ (function (_super) {
             }
             if (value.length) {
                 var multiple = this.input.multiple;
-                if (multiple || !vm.length || value[0] != vm.get(0)[this._viewModelItemValueFieldName]) {
+                if (multiple ||
+                    !vm.length ||
+                    value[0] != vm.get(0)[this._viewModelItemValueFieldName]) {
                     if (this._needOptionsUpdating) {
                         this._needOptionsUpdating = false;
                         this._notUpdateOptions = true;
@@ -640,7 +653,8 @@ var OpalSelect = /** @class */ (function (_super) {
         return false;
     };
     OpalSelect.prototype._onMenuChange = function (evt) {
-        if (!this._notUpdateOptions && (evt.target instanceof rionite_1.RtIfThen || evt.target instanceof rionite_1.RtRepeat)) {
+        if (!this._notUpdateOptions &&
+            (evt.target instanceof rionite_1.RtIfThen || evt.target instanceof rionite_1.RtRepeat)) {
             this.optionsCell.pull();
             this._updateOptions();
         }
@@ -950,11 +964,13 @@ var ObservableTreeList = /** @class */ (function (_super) {
     __extends(ObservableTreeList, _super);
     function ObservableTreeList(items) {
         var _this = _super.call(this) || this;
-        _this._items = items ? fixParent(items.map(function _(item) {
-            return object_assign_polyfill_1.assign(object_assign_polyfill_1.assign({}, item), {
-                children: item.children ? item.children.map(_) : []
-            });
-        })) : [];
+        _this._items = items
+            ? fixParent(items.map(function _(item) {
+                return object_assign_polyfill_1.assign(object_assign_polyfill_1.assign({}, item), {
+                    children: item.children ? item.children.map(_) : []
+                });
+            }))
+            : [];
         return _this;
     }
     Object.defineProperty(ObservableTreeList.prototype, "length", {
@@ -1236,7 +1252,11 @@ var template_nelm_1 = __webpack_require__(109);
 var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
 function toComparable(str) {
-    return str && str.trim().replace(/\s+/g, ' ').toLowerCase();
+    return (str &&
+        str
+            .trim()
+            .replace(/\s+/g, ' ')
+            .toLowerCase());
 }
 var OpalTreeList = /** @class */ (function (_super) {
     __extends(OpalTreeList, _super);
@@ -1296,12 +1316,16 @@ var OpalTreeList = /** @class */ (function (_super) {
             cellx_1.define(this, 'dataTreeList', function () { return input.dataTreeList; });
         }
         var dataTreeListItemSchema = input.dataTreeListItemSchema;
-        var defaultDataTreeListItemSchema = this.constructor.defaultDataTreeListItemSchema;
-        this._dataTreeListItemValueFieldName = dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;
-        this._dataTreeListItemTextFieldName = dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
+        var defaultDataTreeListItemSchema = this.constructor
+            .defaultDataTreeListItemSchema;
+        this._dataTreeListItemValueFieldName =
+            dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;
+        this._dataTreeListItemTextFieldName =
+            dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
         this.viewModel = input.viewModel || new cellx_1.ObservableList();
         var vmItemSchema = input.viewModelItemSchema;
-        var defaultVMItemSchema = this.constructor.defaultViewModelItemSchema;
+        var defaultVMItemSchema = this.constructor
+            .defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
     };
@@ -1316,19 +1340,22 @@ var OpalTreeList = /** @class */ (function (_super) {
             var vm_1 = this.viewModel;
             var viewModelItemValueFieldName_1 = this._viewModelItemValueFieldName;
             var viewModelItemTextFieldName_1 = this._viewModelItemTextFieldName;
-            var item_1 = utils_1.closestComponent(component.parentComponent, opal_tree_list_item_1.OpalTreeListItem)
-                .input.$context.$item;
+            var item_1 = utils_1.closestComponent(component.parentComponent, opal_tree_list_item_1.OpalTreeListItem).input.$context.$item;
             if (component.selected) {
-                for (var parent_1; (parent_1 = item_1.parent) && parent_1.children.every(function (child) {
-                    return child == item_1 || !!vm_1.find(function (vmItem) {
-                        return vmItem[viewModelItemValueFieldName_1] == child[dataTreeListItemValueFieldName_1];
-                    });
-                });) {
+                for (var parent_1; (parent_1 = item_1.parent) &&
+                    parent_1.children.every(function (child) {
+                        return child == item_1 ||
+                            !!vm_1.find(function (vmItem) {
+                                return vmItem[viewModelItemValueFieldName_1] ==
+                                    child[dataTreeListItemValueFieldName_1];
+                            });
+                    });) {
                     item_1 = parent_1;
                 }
                 item_1.children.forEach(function _(child) {
                     var childIndex = vm_1.findIndex(function (vmItem) {
-                        return vmItem[viewModelItemValueFieldName_1] == child[dataTreeListItemValueFieldName_1];
+                        return vmItem[viewModelItemValueFieldName_1] ==
+                            child[dataTreeListItemValueFieldName_1];
                     });
                     if (childIndex != -1) {
                         vm_1.removeAt(childIndex);
@@ -1351,11 +1378,10 @@ var OpalTreeList = /** @class */ (function (_super) {
                     var parent_2 = item_1.parent;
                     for (;;) {
                         var parentIndex = vm_1.findIndex(function (vmItem) {
-                            return vmItem[viewModelItemValueFieldName_1] == parent_2[dataTreeListItemValueFieldName_1];
+                            return vmItem[viewModelItemValueFieldName_1] ==
+                                parent_2[dataTreeListItemValueFieldName_1];
                         });
-                        vm_1.addRange(parent_2.children
-                            .filter(function (child) { return child != item_1; })
-                            .map(function (child) {
+                        vm_1.addRange(parent_2.children.filter(function (child) { return child != item_1; }).map(function (child) {
                             return (_a = {},
                                 _a[viewModelItemValueFieldName_1] = child[dataTreeListItemValueFieldName_1],
                                 _a[viewModelItemTextFieldName_1] = child[dataTreeListItemTextFieldName_1],
@@ -1389,7 +1415,11 @@ var OpalTreeList = /** @class */ (function (_super) {
             input: {
                 dataTreeList: { type: Object },
                 dataTreeListKeypath: { type: String, readonly: true },
-                dataTreeListItemSchema: { type: eval, default: defaultDataTreeListItemSchema, readonly: true },
+                dataTreeListItemSchema: {
+                    type: eval,
+                    default: defaultDataTreeListItemSchema,
+                    readonly: true
+                },
                 viewModel: { type: Object },
                 viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
                 query: String
@@ -1428,19 +1458,23 @@ var mixin_1 = __webpack_require__(10);
 var cellx_1 = __webpack_require__(2);
 function isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
     do {
-        if (vm.find(function (vmItem) { return vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]; })) {
+        if (vm.find(function (vmItem) {
+            return vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName];
+        })) {
             return true;
         }
     } while ((item = item.parent));
     return false;
 }
 function isIndeterminateItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
-    return !!item.children.length &&
+    return (!!item.children.length &&
         !isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
         item.children.some(function (child) {
-            return !!vm.find(function (vmItem) { return vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]; }) ||
+            return !!vm.find(function (vmItem) {
+                return vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName];
+            }) ||
                 isIndeterminateItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName);
-        });
+        }));
 }
 function _getListItemContext(context, content) {
     var $item = content.input.$context.$item;
@@ -1603,11 +1637,11 @@ var OpalTagSelect = /** @class */ (function (_super) {
     OpalTagSelect.prototype.initialize = function () {
         var input = this.input;
         if (input.dataListKeypath || input.$specified.has('dataList')) {
-            cellx_1.define(this, 'dataList', input.dataListKeypath ?
-                new cellx_1.Cell(Function("return this." + input.dataListKeypath + ";"), {
+            cellx_1.define(this, 'dataList', input.dataListKeypath
+                ? new cellx_1.Cell(Function("return this." + input.dataListKeypath + ";"), {
                     context: this.ownerComponent || window
-                }) :
-                function () { return input.dataList; });
+                })
+                : function () { return input.dataList; });
             this.dataProvider = null;
             this._dataListKeypathParam = 'dataList';
         }
@@ -1617,15 +1651,19 @@ var OpalTagSelect = /** @class */ (function (_super) {
             this._dataListKeypathParam = null;
         }
         var dataListItemSchema = input.dataListItemSchema;
-        this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+        this._dataListItemValueFieldName =
+            dataListItemSchema.value || defaultDataListItemSchema.value;
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
-        this._dataListItemDisabledFieldName = dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
+        this._dataListItemDisabledFieldName =
+            dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
         this.viewModel = input.viewModel || new cellx_1.ObservableList();
         var vmItemSchema = input.viewModelItemSchema;
-        var defaultVMItemSchema = this.constructor.defaultViewModelItemSchema;
+        var defaultVMItemSchema = this.constructor
+            .defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
-        this._viewModelItemDisabledFieldName = vmItemSchema.disabled || defaultVMItemSchema.disabled;
+        this._viewModelItemDisabledFieldName =
+            vmItemSchema.disabled || defaultVMItemSchema.disabled;
     };
     OpalTagSelect.prototype.elementAttached = function () {
         this.listenTo(this, 'input-view-model-change', this._onInputViewModelChange);
@@ -2354,7 +2392,7 @@ var OpalTextInput = /** @class */ (function (_super) {
     });
     OpalTextInput.prototype.ready = function () {
         var input = this.input;
-        var textField = this.textField = this.$('text-field');
+        var textField = (this.textField = this.$('text-field'));
         if (this._textFieldValue) {
             textField.value = this._textFieldValue;
         }
@@ -2365,15 +2403,17 @@ var OpalTextInput = /** @class */ (function (_super) {
         if (input.multiline && input.autoHeight) {
             var offsetHeight = textField.offsetHeight;
             if (offsetHeight) {
-                this._initialHeight = offsetHeight + textField.scrollHeight - textField.clientHeight;
+                this._initialHeight =
+                    offsetHeight + textField.scrollHeight - textField.clientHeight;
                 this._fixHeight();
             }
             else {
-                this._initialHeight = parseInt(getComputedStyle(textField).lineHeight, 10) * this.input.rows +
-                    parseInt(getComputedStyle(textField).borderTop, 10) +
-                    parseInt(getComputedStyle(textField).borderBottom, 10) +
-                    parseInt(getComputedStyle(textField).paddingTop, 10) +
-                    parseInt(getComputedStyle(textField).paddingBottom, 10);
+                this._initialHeight =
+                    parseInt(getComputedStyle(textField).lineHeight, 10) * this.input.rows +
+                        parseInt(getComputedStyle(textField).borderTop, 10) +
+                        parseInt(getComputedStyle(textField).borderBottom, 10) +
+                        parseInt(getComputedStyle(textField).paddingTop, 10) +
+                        parseInt(getComputedStyle(textField).paddingBottom, 10);
                 textField.style.height = this._initialHeight + 'px';
             }
         }
@@ -2487,8 +2527,12 @@ var OpalTextInput = /** @class */ (function (_super) {
         var textField = this.textField;
         var lineHeight = parseInt(getComputedStyle(textField).lineHeight, 10);
         textField.style.height = this._initialHeight - lineHeight + 'px';
-        textField.style.height = textField.offsetHeight + textField.scrollHeight - textField.clientHeight +
-            lineHeight + 'px';
+        textField.style.height =
+            textField.offsetHeight +
+                textField.scrollHeight -
+                textField.clientHeight +
+                lineHeight +
+                'px';
     };
     OpalTextInput.prototype.clear = function () {
         this.value = null;
@@ -2617,7 +2661,7 @@ var OpalEditableText = /** @class */ (function (_super) {
             return this._value;
         },
         set: function (value) {
-            this._value = this._fixedValue = value && value.trim() || null;
+            this._value = this._fixedValue = (value && value.trim()) || null;
             this._textNode.nodeValue = value || '';
         },
         enumerable: true,
@@ -2769,7 +2813,7 @@ var opal_input_mask_definition_1 = __webpack_require__(38);
 exports.OpalInputMaskDefinition = opal_input_mask_definition_1.OpalInputMaskDefinition;
 var forEach = Array.prototype.forEach;
 var iPhone = /iphone/i.test(navigator.userAgent);
-var ie11 = !(window.ActiveXObject) && 'ActiveXObject' in window;
+var ie11 = !window.ActiveXObject && 'ActiveXObject' in window;
 var OpalInputMask = /** @class */ (function (_super) {
     __extends(OpalInputMask, _super);
     function OpalInputMask() {
@@ -2856,7 +2900,7 @@ var OpalInputMask = /** @class */ (function (_super) {
         var textField = this.textField;
         var key = evt.which;
         // Backspace, delete, and escape get special treatment
-        if (key == 8 || key == 46 || iPhone && key == 127) {
+        if (key == 8 || key == 46 || (iPhone && key == 127)) {
             evt.preventDefault();
             var start = textField.selectionStart;
             var end = textField.selectionEnd;
@@ -2876,7 +2920,7 @@ var OpalInputMask = /** @class */ (function (_super) {
                 this.$('text-input')._onTextFieldInput(evt);
             }
         }
-        else if (key == 27) {
+        else if (key == 27 /* Escape */) {
             evt.preventDefault();
             if (textField.value != this._textOnFocus) {
                 textField.value = this._textOnFocus;
@@ -2892,7 +2936,7 @@ var OpalInputMask = /** @class */ (function (_super) {
         var start = textField.selectionStart;
         var end = textField.selectionEnd;
         var key = evt.which;
-        if (evt.ctrlKey || evt.altKey || evt.metaKey || key < 32) {
+        if (evt.ctrlKey || evt.altKey || evt.metaKey || key < 32 /* Ignore */) {
             return;
         }
         if (key) {
@@ -2929,7 +2973,7 @@ var OpalInputMask = /** @class */ (function (_super) {
     };
     OpalInputMask.prototype._initBuffer = function () {
         var definitions = this._definitions;
-        this._buffer = this._mask.map(function (chr) { return definitions[chr] ? null : chr; });
+        this._buffer = this._mask.map(function (chr) { return (definitions[chr] ? null : chr); });
     };
     OpalInputMask.prototype._checkValue = function (allowNotCompleted) {
         var partialIndex = this._partialIndex;
@@ -2974,7 +3018,9 @@ var OpalInputMask = /** @class */ (function (_super) {
                 this.$('text-input').value = '';
             }
             else {
-                this.$('text-input').value = buffer.slice(0, lastMatchIndex + 1).join('');
+                this.$('text-input').value = buffer
+                    .slice(0, lastMatchIndex + 1)
+                    .join('');
             }
         }
         return index;
@@ -3033,7 +3079,9 @@ var OpalInputMask = /** @class */ (function (_super) {
     OpalInputMask.prototype._writeBuffer = function () {
         var buffer = this._buffer;
         var toIndex = buffer.indexOf(null);
-        this.$('text-input').value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
+        this.$('text-input').value = (toIndex == -1
+            ? buffer
+            : buffer.slice(0, toIndex)).join('');
     };
     OpalInputMask.prototype._clearBuffer = function (start, end) {
         var tests = this._tests;
@@ -3902,7 +3950,9 @@ var OpalSlider = /** @class */ (function (_super) {
         get: function () {
             var min = this.input.min;
             var all = this.input.max - min;
-            return Math.round((((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) / 2) * 1e5) / 1e3;
+            return (Math.round(((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) /
+                2 *
+                1e5) / 1e3);
         },
         enumerable: true,
         configurable: true
@@ -3922,23 +3972,23 @@ var OpalSlider = /** @class */ (function (_super) {
     };
     OpalSlider.prototype._onFirstInputInput = function (evt) {
         var secondInput = this.$('second-input');
-        var value = this._firstInputValue = +evt.target.value;
+        var value = (this._firstInputValue = +evt.target.value);
         if (+secondInput.value < value) {
             secondInput.value = this._secondInputValue = value;
         }
     };
     OpalSlider.prototype._onSecondInputInput = function (evt) {
         var firstInput = this.$('first-input');
-        var value = this._secondInputValue = +evt.target.value;
+        var value = (this._secondInputValue = +evt.target.value);
         if (+firstInput.value > value) {
             firstInput.value = this._firstInputValue = value;
         }
     };
     Object.defineProperty(OpalSlider.prototype, "value", {
         get: function () {
-            return this.input.range ?
-                [this._firstInputValue, this._secondInputValue] :
-                +this.$('input').value;
+            return this.input.range
+                ? [this._firstInputValue, this._secondInputValue]
+                : +this.$('input').value;
         },
         set: function (value) {
             if (this.input.range) {
@@ -4041,9 +4091,8 @@ var OpalSwitchMenu = /** @class */ (function (_super) {
             if (this._checkedButton !== undefined) {
                 return this._checkedButton;
             }
-            return (this._checkedButton = find.call(this.buttonElements, function (btnEl) {
-                return btnEl.$component.checked;
-            }) || null);
+            return (this._checkedButton =
+                find.call(this.buttonElements, function (btnEl) { return btnEl.$component.checked; }) || null);
         },
         set: function (checkedButton) {
             if (checkedButton === this._checkedButton) {
@@ -4164,8 +4213,8 @@ var OpalTabs = /** @class */ (function (_super) {
     }
     OpalTabs.prototype.ready = function () {
         var _this = this;
-        var tabs = this.tabs = this.element.getElementsByClassName('opal-tab');
-        var tabPanels = this.tabPanels = this.element.getElementsByClassName('opal-tab-panel');
+        var tabs = (this.tabs = this.element.getElementsByClassName('opal-tab'));
+        var tabPanels = (this.tabPanels = this.element.getElementsByClassName('opal-tab-panel'));
         var selectedTab;
         var selectedTabIndex;
         forEach.call(tabs, function (tabEl, index) {
@@ -4188,7 +4237,8 @@ var OpalTabs = /** @class */ (function (_super) {
         tabPanels[selectedTabIndex].$component.input.shown = true;
     };
     OpalTabs.prototype.elementAttached = function () {
-        this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0].$component, {
+        this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0]
+            .$component, {
             '<opal-tab>select': this._onTabListSelect,
             '<opal-tab>deselect': this._onTabListDeselect
         });
@@ -4526,13 +4576,16 @@ var OpalDropdown = /** @class */ (function (_super) {
                 elStyle.left = 'auto';
             }
             else {
-                elStyle.left = Math.max(-containerClientRect.left, docElClientWidth - elClientRect.right) + 'px';
+                elStyle.left =
+                    Math.max(-containerClientRect.left, docElClientWidth - elClientRect.right) +
+                        'px';
             }
         }
         var margin = elClientRect.top - containerClientRect.bottom;
         var excess = elClientRect.bottom + margin - document.documentElement.clientHeight;
         if (excess > 0) {
-            var diff = containerClientRect.top - (document.documentElement.clientHeight - containerClientRect.bottom);
+            var diff = containerClientRect.top -
+                (document.documentElement.clientHeight - containerClientRect.bottom);
             if (this.input.autoHeight) {
                 if (diff > 0) {
                     elStyle.top = 'auto';
@@ -4718,18 +4771,22 @@ var OpalPopover = /** @class */ (function (_super) {
             var docEl = document.documentElement;
             var containerClientRect = el.offsetParent.getBoundingClientRect();
             var elClientRect = el.getBoundingClientRect();
-            var from = this._fromOnOpen = this.input.from;
+            var from = (this._fromOnOpen = this.input.from);
             switch (from) {
                 case 'left': {
-                    if (elClientRect.left + document.body.scrollLeft < 0 || (elClientRect.left < 0 &&
-                        containerClientRect.left < docEl.clientWidth - containerClientRect.right)) {
+                    if (elClientRect.left + document.body.scrollLeft < 0 ||
+                        (elClientRect.left < 0 &&
+                            containerClientRect.left <
+                                docEl.clientWidth - containerClientRect.right)) {
                         this.input.from = 'right';
                     }
                     break;
                 }
                 case 'top': {
-                    if (elClientRect.top + document.body.scrollTop < 0 || (elClientRect.top < 0 &&
-                        containerClientRect.top < docEl.clientHeight - containerClientRect.bottom)) {
+                    if (elClientRect.top + document.body.scrollTop < 0 ||
+                        (elClientRect.top < 0 &&
+                            containerClientRect.top <
+                                docEl.clientHeight - containerClientRect.bottom)) {
                         this.input.from = 'bottom';
                     }
                     break;
@@ -4758,7 +4815,10 @@ var OpalPopover = /** @class */ (function (_super) {
         var arrowStyle = this.$('arrow').style;
         arrowStyle.top = arrowStyle.right = arrowStyle.bottom = arrowStyle.left = '';
         if (align != 'center') {
-            arrowStyle[align] = el.offsetParent[align == 'left' || align == 'right' ? 'clientWidth' : 'clientHeight'] / 2 + 'px';
+            arrowStyle[align] =
+                el.offsetParent[align == 'left' || align == 'right' ? 'clientWidth' : 'clientHeight'] /
+                    2 +
+                    'px';
         }
         if (this.input.autoClosing) {
             setTimeout(function () {
@@ -5074,15 +5134,14 @@ var rionite_1 = __webpack_require__(0);
 __webpack_require__(78);
 var template_nelm_1 = __webpack_require__(79);
 var container;
-var containerOnTop = false;
 var shownNotifications = new map_set_polyfill_1.Set();
 function initContainer(notification) {
     if (!container) {
         container = document.createElement('div');
-        container.className = notification.constructor._contentBlockNames.join('__container ') +
-            '__container';
+        container.className =
+            notification.constructor._contentBlockNames.join('__container ') +
+                '__container';
         document.body.appendChild(container);
-        containerOnTop = getComputedStyle(container).top != 'auto';
     }
     return container;
 }
@@ -5097,7 +5156,7 @@ var OpalNotification = /** @class */ (function (_super) {
     };
     OpalNotification.prototype.ready = function () {
         initContainer(this);
-        var bar = this.bar = this.$('bar', this);
+        var bar = (this.bar = this.$('bar', this));
         this.element.removeChild(bar);
         bar.setAttribute('view-type', this.input.viewType);
         bar.setAttribute('icon-size', this.input.iconSize);
@@ -5372,11 +5431,11 @@ var OpalTextInputValidator = /** @class */ (function (_super) {
     OpalTextInputValidator.prototype._checkValue = function (rule) {
         var value = this.target.value;
         var ruleInput = rule.input;
-        return !(value ?
-            ruleInput.minLength && value.length < ruleInput.minLength ||
-                ruleInput.regex && !ruleInput.regex.test(value) ||
-                ruleInput.test && !ruleInput.test.call(this.ownerComponent, value) :
-            ruleInput.required);
+        return !(value
+            ? (ruleInput.minLength && value.length < ruleInput.minLength) ||
+                (ruleInput.regex && !ruleInput.regex.test(value)) ||
+                (ruleInput.test && !ruleInput.test.call(this.ownerComponent, value))
+            : ruleInput.required);
     };
     OpalTextInputValidator = __decorate([
         rionite_1.ComponentConfig({
@@ -5534,15 +5593,14 @@ var OpalCalendar = /** @class */ (function (_super) {
                         'saturday'
                     ][date.getDay()],
                     today: year == nowYear && month == nowMonth && day == nowDay,
-                    selected: !!value && year == selectedYear && month == selectedMonth &&
-                        day == selectedDay,
+                    selected: !!value && year == selectedYear && month == selectedMonth && day == selectedDay,
                     notInCurrentMonth: notInCurrentMonth,
                     disabled: disabled,
                     tabIndex: disabled ? null : 0
                 });
             }
             for (var i = firstMonthDayWeekDayIndex; i;) {
-                pushDay(shownYear - +!shownMonth, shownMonth ? shownMonth - 1 : 11, lastPrevMonthDay - (--i), true);
+                pushDay(shownYear - +!shownMonth, shownMonth ? shownMonth - 1 : 11, lastPrevMonthDay - --i, true);
             }
             for (var i = 0; i < lastMonthDay;) {
                 pushDay(shownYear, shownMonth, ++i, false);
@@ -5643,10 +5701,12 @@ var OpalCalendar = /** @class */ (function (_super) {
     });
     OpalCalendar.prototype.initialize = function () {
         var i18n = this.constructor.i18n;
-        this.weekDays = i18n.sundayFirst ? i18n.weekDays : i18n.weekDays.slice(1).concat(i18n.weekDays[0]);
-        this.weekDaysShort = i18n.sundayFirst ?
-            i18n.weekDaysShort :
-            i18n.weekDaysShort.slice(1).concat(i18n.weekDaysShort[0]);
+        this.weekDays = i18n.sundayFirst
+            ? i18n.weekDays
+            : i18n.weekDays.slice(1).concat(i18n.weekDays[0]);
+        this.weekDaysShort = i18n.sundayFirst
+            ? i18n.weekDaysShort
+            : i18n.weekDaysShort.slice(1).concat(i18n.weekDaysShort[0]);
         var fromDate = this.fromDate;
         var toDate = this.toDate;
         if (fromDate > toDate) {
@@ -5662,7 +5722,7 @@ var OpalCalendar = /** @class */ (function (_super) {
         }
         else {
             var today = getTodayDate();
-            shownDate = today < fromDate ? fromDate : (today > toDate ? toDate : today);
+            shownDate = today < fromDate ? fromDate : today > toDate ? toDate : today;
         }
         this.shownYear = shownDate.getFullYear();
         this.shownMonth = shownDate.getMonth();
@@ -5760,11 +5820,28 @@ var OpalCalendar = /** @class */ (function (_super) {
                 previousMonth: 'Предыдущий месяц',
                 nextMonth: 'Следующий месяц',
                 months: [
-                    'Январь', 'Февраль', 'Март', 'Апрель',
-                    'Май', 'Июнь', 'Июль', 'Август',
-                    'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+                    'Январь',
+                    'Февраль',
+                    'Март',
+                    'Апрель',
+                    'Май',
+                    'Июнь',
+                    'Июль',
+                    'Август',
+                    'Сентябрь',
+                    'Октябрь',
+                    'Ноябрь',
+                    'Декабрь'
                 ],
-                weekDays: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+                weekDays: [
+                    'Воскресенье',
+                    'Понедельник',
+                    'Вторник',
+                    'Среда',
+                    'Четверг',
+                    'Пятница',
+                    'Суббота'
+                ],
                 weekDaysShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
                 sundayFirst: false
             },
@@ -5827,7 +5904,11 @@ exports.OpalCalendar = OpalCalendar;
 Object.defineProperty(exports, "__esModule", { value: true });
 function formatDate(year, month, day, delimiter) {
     if (delimiter === void 0) { delimiter = '/'; }
-    return ('0' + day).slice(-2) + delimiter + ('0' + (month + 1)).slice(-2) + delimiter + ('000' + year).slice(-4);
+    return (('0' + day).slice(-2) +
+        delimiter +
+        ('0' + (month + 1)).slice(-2) +
+        delimiter +
+        ('000' + year).slice(-4));
 }
 exports.formatDate = formatDate;
 
@@ -5991,13 +6072,20 @@ var OpalDateInput = /** @class */ (function (_super) {
         if (ms) {
             date.setMilliseconds(ms);
         }
-        return ('000' + date.getUTCFullYear()).slice(-4) + '-' +
-            pad(date.getUTCMonth() + 1) + '-' +
-            pad(date.getUTCDate()) + 'T' +
-            pad(date.getUTCHours()) + ':' +
-            pad(date.getUTCMinutes()) + ':' +
-            pad(date.getUTCSeconds()) + '.' +
-            ('00' + date.getUTCMilliseconds()).slice(-3) + 'Z';
+        return (('000' + date.getUTCFullYear()).slice(-4) +
+            '-' +
+            pad(date.getUTCMonth() + 1) +
+            '-' +
+            pad(date.getUTCDate()) +
+            'T' +
+            pad(date.getUTCHours()) +
+            ':' +
+            pad(date.getUTCMinutes()) +
+            ':' +
+            pad(date.getUTCSeconds()) +
+            '.' +
+            ('00' + date.getUTCMilliseconds()).slice(-3) +
+            'Z');
     };
     OpalDateInput.prototype.validate = function () {
         return this.$('text-input-validator').validate();
@@ -6198,8 +6286,9 @@ var OpalLoadedList = /** @class */ (function (_super) {
     });
     OpalLoadedList.prototype.initialize = function () {
         var input = this.input;
-        this._dataListItemTextFieldName = input.dataListItemSchema.text ||
-            this.constructor.defaultDataListItemSchema.text;
+        this._dataListItemTextFieldName =
+            input.dataListItemSchema.text ||
+                this.constructor.defaultDataListItemSchema.text;
         if (!input.$specified.has('dataProvider')) {
             throw new TypeError('Input property "dataProvider" is required');
         }
@@ -6259,11 +6348,12 @@ var OpalLoadedList = /** @class */ (function (_super) {
     };
     OpalLoadedList.prototype.checkLoading = function () {
         if (this.input.query === this._lastRequestedQuery &&
-            (this.loading || this.total !== undefined && this.dataList.length == this.total)) {
+            (this.loading || (this.total !== undefined && this.dataList.length == this.total))) {
             return;
         }
         var elRect = this.element.getBoundingClientRect();
-        if (elRect.height && elRect.bottom > this.$('loader').element.getBoundingClientRect().top) {
+        if (elRect.height &&
+            elRect.bottom > this.$('loader').element.getBoundingClientRect().top) {
             this._load();
         }
     };
@@ -6273,16 +6363,17 @@ var OpalLoadedList = /** @class */ (function (_super) {
         }
         var input = this.input;
         var infinite = this.dataProvider.getItems.length >= 2;
-        var query = this._lastRequestedQuery = input.query;
+        var query = (this._lastRequestedQuery = input.query);
         var args = [query];
         if (infinite) {
-            args.unshift(input.count, this.dataList.length ?
-                this.dataList.get(-1)[input.dataListItemSchema.value ||
-                    this.constructor.defaultDataListItemSchema.value] :
-                null);
+            args.unshift(input.count, this.dataList.length
+                ? this.dataList.get(-1)[input.dataListItemSchema.value ||
+                    this.constructor.defaultDataListItemSchema
+                        .value]
+                : null);
         }
         this.loading = true;
-        this.dataProvider.getItems.apply(this.dataProvider, args).then(this._requestCallback = this.registerCallback(function (data) {
+        this.dataProvider.getItems.apply(this.dataProvider, args).then((this._requestCallback = this.registerCallback(function (data) {
             var _this = this;
             this.loading = false;
             var items = data.items;
@@ -6299,7 +6390,7 @@ var OpalLoadedList = /** @class */ (function (_super) {
             next_tick_1.nextTick(function () {
                 _this.checkLoading();
             });
-        }));
+        })));
     };
     OpalLoadedList.prototype._getListItemContext = function (context, content) {
         return mixin_1.mixin(Object.create(context), content.input.$context, ['$component']);
@@ -6993,8 +7084,7 @@ var OpalTreeSelect = /** @class */ (function (_super) {
     OpalTreeSelect.prototype._onMenuChange = function () {
         return false;
     };
-    OpalTreeSelect.prototype._updateOptions = function () {
-    };
+    OpalTreeSelect.prototype._updateOptions = function () { };
     OpalTreeSelect = __decorate([
         rionite_1.ComponentConfig({
             elementIs: 'opal-tree-select',
@@ -7002,9 +7092,17 @@ var OpalTreeSelect = /** @class */ (function (_super) {
                 multiple: true,
                 dataTreeList: { type: Object },
                 dataTreeListKeypath: { type: String, readonly: true },
-                dataTreeListItemSchema: { type: eval, default: opal_tree_list_1.OpalTreeList.defaultDataTreeListItemSchema, readonly: true },
+                dataTreeListItemSchema: {
+                    type: eval,
+                    default: opal_tree_list_1.OpalTreeList.defaultDataTreeListItemSchema,
+                    readonly: true
+                },
                 viewModel: { type: Object },
-                viewModelItemSchema: { type: eval, default: opal_tree_list_1.OpalTreeList.defaultViewModelItemSchema, readonly: true },
+                viewModelItemSchema: {
+                    type: eval,
+                    default: opal_tree_list_1.OpalTreeList.defaultViewModelItemSchema,
+                    readonly: true
+                },
                 query: String
             },
             template: template_nelm_1.default,
@@ -7138,10 +7236,10 @@ var OpalSelectValidator = /** @class */ (function (_super) {
     OpalSelectValidator.prototype._checkValue = function (rule) {
         var vm = this.target.viewModel;
         var ruleInput = rule.input;
-        return !(vm.length ?
-            ruleInput.minCount && vm.length < ruleInput.minCount ||
-                ruleInput.test && !ruleInput.test.call(this.ownerComponent, vm) :
-            ruleInput.required);
+        return !(vm.length
+            ? (ruleInput.minCount && vm.length < ruleInput.minCount) ||
+                (ruleInput.test && !ruleInput.test.call(this.ownerComponent, vm))
+            : ruleInput.required);
     };
     OpalSelectValidator = __decorate([
         rionite_1.ComponentConfig({
@@ -7251,8 +7349,10 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     OpalAutosuggest.prototype.initialize = function () {
         var input = this.input;
         var dataListItemSchema = input.dataListItemSchema;
-        var defaultDataListItemSchema = this.constructor.defaultDataListItemSchema;
-        this._dataListItemValueFieldName = dataListItemSchema.value || defaultDataListItemSchema.value;
+        var defaultDataListItemSchema = this.constructor
+            .defaultDataListItemSchema;
+        this._dataListItemValueFieldName =
+            dataListItemSchema.value || defaultDataListItemSchema.value;
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
         if (!input.$specified.has('dataProvider')) {
             throw new TypeError('Input property "dataProvider" is required');
@@ -7287,7 +7387,9 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         var item = evt.data.value;
         this._clearDataList();
         this.value = item;
-        this.$('text-input').value = item ? item[this._dataListItemTextFieldName] : '';
+        this.$('text-input').value = item
+            ? item[this._dataListItemTextFieldName]
+            : '';
     };
     OpalAutosuggest.prototype._onTextInputFocus = function () {
         this.openMenu();
@@ -7423,13 +7525,16 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         if (this.dataProvider.getItems.length >= 2) {
             args.unshift(this.input.count);
         }
-        this.dataProvider.getItems.apply(this.dataProvider, args).then((this._requestCallback = this.registerCallback(this._itemsRequestCallback)));
+        this.dataProvider.getItems
+            .apply(this.dataProvider, args)
+            .then((this._requestCallback = this.registerCallback(this._itemsRequestCallback)));
     };
     OpalAutosuggest.prototype._itemsRequestCallback = function (data) {
         this.loading = false;
         var items = data.items;
         if (items.length) {
             this.dataList.addRange(items);
+            cellx_1.Cell.forceRelease();
             var focusedListItem = this.$('list-item');
             this._focusedListItem = focusedListItem;
             focusedListItem.setAttribute('focused', '');
@@ -7477,7 +7582,8 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             if (item) {
                 this._isNotInputConfirmed = false;
                 if (this.value &&
-                    this.value[this._dataListItemValueFieldName] == item[this._dataListItemValueFieldName]) {
+                    this.value[this._dataListItemValueFieldName] ==
+                        item[this._dataListItemValueFieldName]) {
                     return;
                 }
             }
@@ -7629,7 +7735,7 @@ var OpalMultirow = /** @class */ (function (_super) {
         return this._presetRowCount + this._newRows.length != 1;
     };
     OpalMultirow.prototype.ready = function () {
-        var presetRowCount = this._presetRowCount = filter.call(this.element.getElementsByClassName('opal-multirow-row'), function (rowEl) { return rowEl.$component.input.preset; }).length;
+        var presetRowCount = (this._presetRowCount = filter.call(this.element.getElementsByClassName('opal-multirow-row'), function (rowEl) { return rowEl.$component.input.preset; }).length);
         if (!presetRowCount) {
             this._newRows.add({ key: next_uid_1.nextUID() });
         }
@@ -7832,11 +7938,13 @@ var parsePath_1 = __webpack_require__(145);
 var PathNodeType_1 = __webpack_require__(16);
 var forEach = Array.prototype.forEach;
 function isReadonlyProperty(propConfig) {
-    return propConfig && typeof propConfig == 'object' &&
-        (propConfig.type !== undefined || propConfig.default !== undefined) && propConfig.readonly;
+    return (propConfig &&
+        typeof propConfig == 'object' &&
+        (propConfig.type !== undefined || propConfig.default !== undefined) &&
+        propConfig.readonly);
 }
 function valueToAttributeValue(value) {
-    return "" + (value === false ? 'no' : (value === true ? 'yes' : escape_html_1.escapeHTML(value)));
+    return "" + (value === false ? 'no' : value === true ? 'yes' : escape_html_1.escapeHTML(value));
 }
 var OpalRouter = /** @class */ (function (_super) {
     __extends(OpalRouter, _super);
@@ -7887,7 +7995,7 @@ var OpalRouter = /** @class */ (function (_super) {
             rePath = rePath.join('');
             routes.push({
                 path: path,
-                rePath: RegExp("^" + rePath + (rePath.charAt(rePath.length - 1) == '\/' ? '?' : '\/?') + "$"),
+                rePath: RegExp("^" + rePath + (rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?') + "$"),
                 properties: props,
                 componentName: routeEl.$component.input.component
             });
@@ -7945,7 +8053,9 @@ var OpalRouter = /** @class */ (function (_super) {
                 if (inputConfig) {
                     for (var i = attrs.length; i;) {
                         var name_1 = attrs.item(--i).name;
-                        if (name_1 != 'class' && !(name_1 in state) && isReadonlyProperty(inputConfig[name_1])) {
+                        if (name_1 != 'class' &&
+                            !(name_1 in state) &&
+                            isReadonlyProperty(inputConfig[name_1])) {
                             writable = false;
                             break;
                         }
@@ -7953,7 +8063,8 @@ var OpalRouter = /** @class */ (function (_super) {
                     if (writable) {
                         for (var name_2 in state) {
                             if (componentEl_1.getAttribute(hyphenize_1.hyphenize(name_2, true)) !==
-                                valueToAttributeValue(state[name_2]) && isReadonlyProperty(inputConfig[name_2])) {
+                                valueToAttributeValue(state[name_2]) &&
+                                isReadonlyProperty(inputConfig[name_2])) {
                                 writable = false;
                                 break;
                             }
@@ -7981,7 +8092,7 @@ var OpalRouter = /** @class */ (function (_super) {
             }
             this_1._route = route;
             this_1._state = state;
-            var componentEl = this_1._componentElement = document.createElement(route.componentName);
+            var componentEl = (this_1._componentElement = document.createElement(route.componentName));
             this_1._applyState();
             componentEl.$component.ownerComponent = this_1;
             this_1.element.appendChild(componentEl);
@@ -8022,7 +8133,7 @@ var OpalRouter = /** @class */ (function (_super) {
         var route = this._route;
         if (route) {
             this.element.removeChild(this._componentElement);
-            var componentEl = this._componentElement = document.createElement(route.componentName);
+            var componentEl = (this._componentElement = document.createElement(route.componentName));
             this._applyState();
             componentEl.$component.ownerComponent = this;
             this.element.appendChild(componentEl);
@@ -8182,7 +8293,7 @@ function parsePath(path) {
     function readSimpleNode() {
         var value = chr;
         while (next()) {
-            if (chr == '(' || chr == '[' || ctx == PathNodeType_1.PathNodeType.OPTIONAL && chr == ')') {
+            if (chr == '(' || chr == '[' || (ctx == PathNodeType_1.PathNodeType.OPTIONAL && chr == ')')) {
                 break;
             }
             value += chr;

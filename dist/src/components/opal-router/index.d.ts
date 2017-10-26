@@ -2,6 +2,7 @@ import { Location } from 'created-browser-history';
 import { Component, IComponentElement } from 'rionite';
 import './index.css';
 import { OpalRoute } from './opal-route';
+export { OpalRoute };
 export interface IRouteProperty {
     name: string;
     optional: boolean;
@@ -35,4 +36,3 @@ export declare class OpalRouter extends Component {
     _clear(): void;
     refresh(): void;
 }
-export { OpalRoute };

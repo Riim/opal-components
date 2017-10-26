@@ -4,6 +4,7 @@ import './index.css';
 import { OpalTabList } from './opal-tab-list';
 import { OpalTab } from './opal-tab-list/opal-tab';
 import { OpalTabPanel } from './opal-tab-panel';
+export { OpalTabList, OpalTab, OpalTabPanel };
 export declare class OpalTabs extends Component {
     static OpalTabList: typeof OpalTabList;
     static OpalTabPanel: typeof OpalTabPanel;
@@ -15,4 +16,3 @@ export declare class OpalTabs extends Component {
     _onTabListSelect(evt: IEvent<OpalTab>): void;
     _onTabListDeselect(evt: IEvent<OpalTab>): void;
 }
-export { OpalTabList, OpalTab, OpalTabPanel };

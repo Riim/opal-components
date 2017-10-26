@@ -1,5 +1,6 @@
 import { Component } from 'rionite';
 import { OpalInputMaskDefinition } from './opal-input-mask-definition';
+export { OpalInputMaskDefinition };
 export declare class OpalInputMask extends Component {
     static OpalInputMaskDefinition: typeof OpalInputMaskDefinition;
     static defaultDefinitions: {
@@ -34,4 +35,3 @@ export declare class OpalInputMask extends Component {
     _clearBuffer(start: number, end: number): void;
     _setTextFieldSelection(start: number, end?: number): void;
 }
-export { OpalInputMaskDefinition };

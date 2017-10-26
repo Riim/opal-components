@@ -1,5 +1,5 @@
 import { getText } from '@riim/gettext';
-import { IEvent, ObservableList } from 'cellx';
+import { Cell, IEvent, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
 import {
 	Component,
@@ -353,6 +353,7 @@ export class OpalAutosuggest extends Component {
 
 		if (items.length) {
 			this.dataList.addRange(items);
+			Cell.forceRelease();
 
 			let focusedListItem = this.$<HTMLElement>('list-item')!;
 
