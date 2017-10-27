@@ -294,7 +294,8 @@ var OpalSelect = /** @class */ (function (_super) {
     OpalSelect_1 = OpalSelect;
     Object.defineProperty(OpalSelect.prototype, "value", {
         get: function () {
-            return this.viewModel.toArray();
+            var _this = this;
+            return this.viewModel.map(function (item) { return item[_this._viewModelItemValueFieldName]; });
         },
         enumerable: true,
         configurable: true
@@ -1622,7 +1623,8 @@ var OpalTagSelect = /** @class */ (function (_super) {
     }
     Object.defineProperty(OpalTagSelect.prototype, "value", {
         get: function () {
-            return this.viewModel.toArray();
+            var _this = this;
+            return this.viewModel.map(function (item) { return item[_this._viewModelItemValueFieldName]; });
         },
         enumerable: true,
         configurable: true

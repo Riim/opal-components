@@ -23,7 +23,7 @@ export declare class OpalTagSelect extends Component {
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _viewModelItemDisabledFieldName: string;
-    readonly value: Array<IDataListItem>;
+    readonly value: Array<string>;
     readonly isPlaceholderShown: boolean;
     _dataListKeypathParam: string | null;
     initialize(): void;

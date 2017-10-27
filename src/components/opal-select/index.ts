@@ -115,8 +115,8 @@ export class OpalSelect extends Component {
 	_viewModelItemDisabledFieldName: string;
 
 	@computed
-	get value(): Array<IDataListItem> {
-		return this.viewModel.toArray();
+	get value(): Array<string> {
+		return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
 	}
 
 	_addNewItem: ((text: string) => Promise<{ [name: string]: string }>) | null;

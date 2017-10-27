@@ -30,7 +30,7 @@ export declare class OpalSelect extends Component {
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _viewModelItemDisabledFieldName: string;
-    readonly value: Array<IDataListItem>;
+    readonly value: Array<string>;
     _addNewItem: ((text: string) => Promise<{
         [name: string]: string;
     }>) | null;
