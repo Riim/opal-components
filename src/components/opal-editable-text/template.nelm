@@ -2,7 +2,10 @@
 
 span/content-wrapper {
 	rt-content/content (contenteditable, spellcheck=false)
-	svg/icon-editable (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-compose) }
+
+	svg/icon-editable (viewBox=0 0 32 32) {
+		use (xlink:href=#opal-components__icon-compose)
+	}
 }
 
 }

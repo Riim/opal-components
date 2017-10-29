@@ -2,7 +2,9 @@
 
 header/header {
 	button/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {
-		svg/btn-prev-month-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-left) }
+		svg/btn-prev-month-icon (viewBox=0 0 32 32) {
+			use (xlink:href=#opal-components__icon-chevron-left)
+		}
 	}
 
 	opal-select/month-select (size=s, value=['{shownMonth}']) {
@@ -11,6 +13,7 @@ header/header {
 		}
 	}
 	' '
+
 	opal-select/year-select (size=s, value=['{shownYear}']) {
 		@repeat (class=opal-select__menu-content, for=year of years) {
 			opal-select-option (value={year}, text={year})
@@ -18,7 +21,9 @@ header/header {
 	}
 
 	button/btn-next-month (disabled={isBtnNextMonthDisabled}) {
-		svg/btn-next-month-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-left) }
+		svg/btn-next-month-icon (viewBox=0 0 32 32) {
+			use (xlink:href=#opal-components__icon-chevron-left)
+		}
 	}
 }
 
@@ -26,7 +31,9 @@ div/body {
 	div/week-days {
 		div/week-days-row {
 			@repeat (for=weekDay of weekDaysShort) {
-				span/week-day { '{weekDay}' }
+				span/week-day {
+					'{weekDay}'
+				}
 			}
 		}
 	}
@@ -43,7 +50,9 @@ div/body {
 						disabled={day.disabled},
 						tabindex={day.tabIndex},
 						data-date={day.date}
-					) { '{day.value}' }
+					) {
+						'{day.value}'
+					}
 				}
 			}
 		}

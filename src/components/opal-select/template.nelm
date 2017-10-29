@@ -8,9 +8,16 @@ rt-content (select=.opal-select__button) {
 		tab-index={input.tabIndex},
 		disabled={input.disabled}
 	) {
-		@if-then (if=input.text) { '{input.text}' }
-		@if-else (if=input.text) { '{_buttonText}' }
-		svg/button-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-chevron-bottom) }
+		@if-then (if=input.text) {
+			'{input.text}'
+		}
+		@if-else (if=input.text) {
+			'{_buttonText}'
+		}
+
+		svg/button-icon (viewBox=0 0 32 32) {
+			use (xlink:href=#opal-components__icon-chevron-bottom)
+		}
 	}
 }
 
@@ -29,7 +36,7 @@ rt-content (select=.opal-select__menu-container) {
 								)
 							}
 
-							rt-content/new-item-input-container // доопределяется ниже
+							rt-content/new-item-input-container // ...
 						}
 						@if-else (if=dataList) {
 							opal-loader/menu-loader (shown)

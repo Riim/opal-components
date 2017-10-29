@@ -8,7 +8,11 @@ opal-modal/menu {
 			view-model-item-schema={input.viewModelItemSchema},
 			query={input.query}
 		) {
-			opal-select-option/option (class=opal-tree-list__selection-control, text={$item.name}, selected={$selected})
+			opal-select-option/option (
+				class=opal-tree-list__selection-control,
+				text={$item.name},
+				selected={$selected}
+			)
 		}
 	}
 

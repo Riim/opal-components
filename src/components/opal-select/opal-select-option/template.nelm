@@ -5,10 +5,15 @@ button/control (tabindex={_tabIndex}) {
 		'{input.text}'
 
 		@if-then (if=input.subtext) {
-			sub { '{input.subtext}' }
+			sub {
+				'{input.subtext}'
+			}
 		}
 	}
-	svg/icon-check (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-checkmark) }
+
+	svg/icon-check (viewBox=0 0 32 32) {
+		use (xlink:href=#opal-components__icon-checkmark)
+	}
 }
 
 }

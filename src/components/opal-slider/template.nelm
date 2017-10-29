@@ -16,12 +16,24 @@
 	}
 
 	div/second-input-wrapper {
-		input/second-input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.range.1})
+		input/second-input (
+			type=range,
+			min={input.min},
+			max={input.max},
+			step={input.step},
+			value={input.range.1}
+		)
 	}
 }
 
 @if-else (if=input.range) {
-	input/input (type=range, min={input.min}, max={input.max}, step={input.step}, value={input.value})
+	input/input (
+		type=range,
+		min={input.min},
+		max={input.max},
+		step={input.step},
+		value={input.value}
+	)
 }
 
 }

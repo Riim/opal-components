@@ -2,8 +2,12 @@
 
 label/label {
 	input/input (type=checkbox)
-	span/control (tabindex={_tabIndex}) { span/thumb }
+
+	span/control (tabindex={_tabIndex}) {
+		span/thumb
+	}
 	' '
+
 	rt-content/content
 }
 

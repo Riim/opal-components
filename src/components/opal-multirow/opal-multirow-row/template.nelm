@@ -2,7 +2,6 @@
 
 rt-content/content
 ' '
-
 opal-sign-button/btn-remove-row (sign=minus)
 ' '
 opal-sign-button/btn-add-row (sign=plus)

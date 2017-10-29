@@ -16,7 +16,10 @@
 				has-children='{$item.children.length |gt(0) }'
 			) {
 				rt-content (clone, get-context={_getListItemContext}) {
-					opal-checkbox/selection-control (checked={$selected}, indeterminate={$indeterminate}) {
+					opal-checkbox/selection-control (
+						checked={$selected},
+						indeterminate={$indeterminate}
+					) {
 						'{$item |key(_dataTreeListItemTextFieldName) }'
 					}
 				}

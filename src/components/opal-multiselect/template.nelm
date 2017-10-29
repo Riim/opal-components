@@ -16,14 +16,21 @@
 			div/selected-item {
 				'{item |key(_viewModelItemTextFieldName) }'
 
-				button/btn-deselect-item (tabindex=-1, data-item-value='{item |key(_viewModelItemValueFieldName) }') {
-					svg/btn-deselect-item-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }
+				button/btn-deselect-item (
+					tabindex=-1,
+					data-item-value='{item |key(_viewModelItemValueFieldName) }'
+				) {
+					svg/btn-deselect-item-icon (viewBox=0 0 32 32) {
+						use (xlink:href=#opal-components__icon-close)
+					}
 				}
 			}
 		}
 
 		div/nothing-selected (shown={isNothingSelectedShown}) {
-			span/nothing-selected-message { '{constructor.i18n.nothingSelected}' }
+			span/nothing-selected-message {
+				'{constructor.i18n.nothingSelected}'
+			}
 		}
 	}
 
@@ -40,6 +47,8 @@
 	}
 
 	div/menu-footer {
-		opal-button/btn-close { 'Закрыть' }
+		opal-button/btn-close {
+			'Закрыть'
+		}
 	}
 }

@@ -14,7 +14,9 @@ span/tags {
 
 span/control {
 	@if-then (if=isPlaceholderShown) {
-		span/placeholder { '{input.placeholder} ' }
+		span/placeholder {
+			'{input.placeholder} '
+		}
 	}
 
 	opal-select/select (

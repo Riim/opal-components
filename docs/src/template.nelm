@@ -161,19 +161,27 @@ p {
 
 h1 { 'opal-popover' }
 p {
-	div (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {
+	div (
+		style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;
+	) {
 		opal-popover (auto-direction=no, opened) { 'Popover' br 'Popover' }
 		opal-popover (from=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
 		opal-popover (from=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
 		opal-popover (from=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
 	}
-	div (style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;) {
+	div (
+		style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;
+	) {
 		opal-popover (align=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (from=bottom, align=right, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		opal-popover (from=bottom, align=right, auto-direction=no, opened) {
+			'Popover' br 'Popover'
+		}
 		opal-popover (from=left, align=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
 		opal-popover (from=top, align=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
 	}
-	div (style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;) {
+	div (
+		style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;
+	) {
 		opal-popover (align=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
 		opal-popover (from=bottom, align=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
 		opal-popover (from=left, align=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
@@ -183,8 +191,13 @@ p {
 
 h1 { 'opal-modal' }
 p {
-	opal-modal (id=modal1) { 'Modal' }
-	opal-button (onclick='document.getElementById("modal1").$component.open();') { 'Open' }
+	opal-modal (id=modal1) {
+		'Modal'
+	}
+
+	opal-button (onclick='document.getElementById("modal1").$component.open();') {
+		'Open'
+	}
 }
 
 h1 { 'opal-notification' }
@@ -251,11 +264,16 @@ p {
 		'danger'
 	}
 
-	opal-button (onclick='document.getElementById("notification1").$component.show();') { 'Show 1' } ' '
-	opal-button (onclick='document.getElementById("notification2").$component.show();') { 'Show 2' } ' '
-	opal-button (onclick='document.getElementById("notification3").$component.show();') { 'Show 3' } ' '
-	opal-button (onclick='document.getElementById("notification4").$component.show();') { 'Show 4' } ' '
-	opal-button (onclick='document.getElementById("notification5").$component.show();') { 'Show 5' } ' '
+	opal-button (onclick='document.getElementById("notification1").$component.show();') { 'Show 1' }
+	' '
+	opal-button (onclick='document.getElementById("notification2").$component.show();') { 'Show 2' }
+	' '
+	opal-button (onclick='document.getElementById("notification3").$component.show();') { 'Show 3' }
+	' '
+	opal-button (onclick='document.getElementById("notification4").$component.show();') { 'Show 4' }
+	' '
+	opal-button (onclick='document.getElementById("notification5").$component.show();') { 'Show 5' }
+	' '
 	opal-button (onclick='document.getElementById("notification6").$component.show();') { 'Show 6' }
 }
 
@@ -366,7 +384,8 @@ p {
 				}
 			}
 		}
-	} ' '
+	}
+	' '
 
 	opal-select {
 		opal-popover (class=opal-select__menu, from=bottom, auto-closing) {
@@ -374,15 +393,21 @@ p {
 				opal-select-option (text={$item.name})
 			}
 		}
-	} ' '
+	}
+	' '
 
-	opal-select (multiple, view-model={viewModel1}, view-model-item-schema='{ value: "id", text: "name" }') {
+	opal-select (
+		multiple,
+		view-model={viewModel1},
+		view-model-item-schema='{ value: "id", text: "name" }'
+	) {
 		opal-popover (class=opal-select__menu, from=bottom, auto-closing) {
 			opal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {
 				opal-select-option (text={$item.name})
 			}
 		}
-	} ' '
+	}
+	' '
 
 	opal-select {
 		opal-popover (class=opal-select__menu, from=bottom, auto-closing) {
@@ -395,7 +420,8 @@ p {
 				}
 			}
 		}
-	} ' '
+	}
+	' '
 
 	opal-select (multiple) {
 		opal-popover (class=opal-select__menu, from=bottom, auto-closing) {

@@ -2,7 +2,10 @@
 
 opal-text-input-validator/text-input-validator {
 	@if-then (if=input.required) {
-		opal-text-input-validator-rule/text-input-validator-rule-required (required, popover-from={input.popoverFrom}) {
+		opal-text-input-validator-rule/text-input-validator-rule-required (
+			required,
+			popover-from={input.popoverFrom}
+		) {
 			'{constructor.i18n.isRequiredField}'
 		}
 	}
@@ -36,7 +39,12 @@ opal-text-input-validator/text-input-validator {
 }
 
 opal-dropdown/calendar-menu (auto-height=no) {
-	opal-calendar/calendar (from-date={input.fromDate}, to-date={input.toDate}, value={input.value}, date-delimiter=.)
+	opal-calendar/calendar (
+		from-date={input.fromDate},
+		to-date={input.toDate},
+		value={input.value},
+		date-delimiter=.
+	)
 }
 
 }

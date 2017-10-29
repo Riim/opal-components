@@ -5,7 +5,9 @@ div/bar {
 	rt-content/content
 
 	button/btn-hide (hide={input.buttonHide |not }) {
-		svg/btn-hide-icon (viewBox=0 0 32 32) { use (xlink:href=#opal-components__icon-close) }
+		svg/btn-hide-icon (viewBox=0 0 32 32) {
+			use (xlink:href=#opal-components__icon-close)
+		}
 	}
 }
 
