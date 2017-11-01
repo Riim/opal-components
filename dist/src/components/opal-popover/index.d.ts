@@ -3,7 +3,7 @@ import { Component, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalPopover extends Component {
     isContentRendered: boolean;
-    _fromOnOpen: string;
+    _positionOnOpen: string;
     _documentClickListening: IDisposableListening | null | undefined;
     ready(): void;
     elementAttached(): void;

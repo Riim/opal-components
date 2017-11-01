@@ -1744,7 +1744,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
                 viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
                 addNewItem: { type: Object, readonly: true },
                 placeholder: gettext_1.getText.t('Не выбрано'),
-                popoverFrom: 'bottom',
+                popoverPosition: 'bottom',
                 tabIndex: 0,
                 focused: false,
                 disabled: false
@@ -4773,14 +4773,15 @@ var OpalPopover = /** @class */ (function (_super) {
             var docEl = document.documentElement;
             var containerClientRect = el.offsetParent.getBoundingClientRect();
             var elClientRect = el.getBoundingClientRect();
-            var from = (this._fromOnOpen = this.input.from);
-            switch (from) {
+            var position_1 = (this._positionOnOpen = this.input.position).split('-');
+            switch (position_1[0]) {
                 case 'left': {
                     if (elClientRect.left + document.body.scrollLeft < 0 ||
                         (elClientRect.left < 0 &&
                             containerClientRect.left <
                                 docEl.clientWidth - containerClientRect.right)) {
-                        this.input.from = 'right';
+                        this.input.position =
+                            'right' + (position_1.length == 2 ? '-' + position_1[1] : '');
                     }
                     break;
                 }
@@ -4789,7 +4790,8 @@ var OpalPopover = /** @class */ (function (_super) {
                         (elClientRect.top < 0 &&
                             containerClientRect.top <
                                 docEl.clientHeight - containerClientRect.bottom)) {
-                        this.input.from = 'bottom';
+                        this.input.position =
+                            'bottom' + (position_1.length == 2 ? '-' + position_1[1] : '');
                     }
                     break;
                 }
@@ -4798,7 +4800,8 @@ var OpalPopover = /** @class */ (function (_super) {
                         containerClientRect.left > docEl.clientWidth - containerClientRect.right &&
                         containerClientRect.left + document.body.scrollLeft >=
                             elClientRect.right - containerClientRect.right) {
-                        this.input.from = 'left';
+                        this.input.position =
+                            'left' + (position_1.length == 2 ? '-' + position_1[1] : '');
                     }
                     break;
                 }
@@ -4807,18 +4810,19 @@ var OpalPopover = /** @class */ (function (_super) {
                         containerClientRect.top > docEl.clientHeight - containerClientRect.bottom &&
                         containerClientRect.top + document.body.scrollTop >=
                             elClientRect.bottom - containerClientRect.bottom) {
-                        this.input.from = 'top';
+                        this.input.position =
+                            'top' + (position_1.length == 2 ? '-' + position_1[1] : '');
                     }
                     break;
                 }
             }
         }
-        var align = this.input.align;
+        var position = this.input.position.split('-');
         var arrowStyle = this.$('arrow').style;
         arrowStyle.top = arrowStyle.right = arrowStyle.bottom = arrowStyle.left = '';
-        if (align != 'center') {
-            arrowStyle[align] =
-                el.offsetParent[align == 'left' || align == 'right' ? 'clientWidth' : 'clientHeight'] /
+        if (position.length == 2) {
+            arrowStyle[position[1]] =
+                el.offsetParent[position[1] == 'left' || position[1] == 'right' ? 'clientWidth' : 'clientHeight'] /
                     2 +
                     'px';
         }
@@ -4832,7 +4836,7 @@ var OpalPopover = /** @class */ (function (_super) {
     };
     OpalPopover.prototype._close = function () {
         if (this.input.autoDirection) {
-            this.input.from = this._fromOnOpen;
+            this.input.position = this._positionOnOpen;
         }
         if (this._documentClickListening) {
             this._documentClickListening.stop();
@@ -4861,8 +4865,7 @@ var OpalPopover = /** @class */ (function (_super) {
         rionite_1.ComponentConfig({
             elementIs: 'opal-popover',
             input: {
-                from: 'right',
-                align: 'center',
+                position: 'right',
                 autoDirection: true,
                 autoClosing: false,
                 opened: false
@@ -4884,7 +4887,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-popover{position:absolute;z-index:600;display:none;-webkit-box-sizing:border-box;box-sizing:border-box;padding:15px;border:1px solid #ccc;border-radius:6px;background:#fff;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.2);box-shadow:0 1px 3px rgba(0,0,0,.2);line-height:1.5;cursor:default}.opal-popover .opal-popover__arrow{position:absolute;width:0;height:0}.opal-popover .opal-popover__arrow::before,.opal-popover .opal-popover__arrow::after{position:absolute;width:0;height:0;border:10px solid transparent;content:''}.opal-popover .opal-popover__arrow::after{border:8px solid transparent}.opal-popover .opal-popover__content{position:relative;display:block}.opal-popover[from=top]{bottom:100%;margin-bottom:15px}.opal-popover[from=top] .opal-popover__arrow{top:100%}.opal-popover[from=top] .opal-popover__arrow::before,.opal-popover[from=top] .opal-popover__arrow::after{border-top-color:#ccc;border-bottom-width:0;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[from=top] .opal-popover__arrow::after{border-top-color:#fff}.opal-popover[from=top][align=center]{left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[from=top][align=center] .opal-popover__arrow{left:50%}.opal-popover[from=top][align=left]{left:0}.opal-popover[from=top][align=left] .opal-popover__arrow{-webkit-transform:translateX(-1px);-ms-transform:translateX(-1px);transform:translateX(-1px)}.opal-popover[from=top][align=right]{right:0}.opal-popover[from=top][align=right] .opal-popover__arrow{-webkit-transform:translateX(1px);-ms-transform:translateX(1px);transform:translateX(1px)}.opal-popover[from=right]{left:100%;margin-left:15px}.opal-popover[from=right] .opal-popover__arrow{right:100%}.opal-popover[from=right] .opal-popover__arrow::before,.opal-popover[from=right] .opal-popover__arrow::after{right:0;border-right-color:#ccc;border-left-width:0;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[from=right] .opal-popover__arrow::after{border-right-color:#fff}.opal-popover[from=right][align=center]{top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[from=right][align=center] .opal-popover__arrow{top:50%}.opal-popover[from=right][align=top]{top:0}.opal-popover[from=right][align=top] .opal-popover__arrow{-webkit-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px)}.opal-popover[from=right][align=bottom]{bottom:0}.opal-popover[from=right][align=bottom] .opal-popover__arrow{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.opal-popover[from=bottom]{top:100%;margin-top:15px}.opal-popover[from=bottom] .opal-popover__arrow{bottom:100%}.opal-popover[from=bottom] .opal-popover__arrow::before,.opal-popover[from=bottom] .opal-popover__arrow::after{bottom:0;border-top-width:0;border-bottom-color:#ccc;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[from=bottom] .opal-popover__arrow::after{border-bottom-color:#fff}.opal-popover[from=bottom][align=center]{left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[from=bottom][align=center] .opal-popover__arrow{left:50%}.opal-popover[from=bottom][align=left]{left:0}.opal-popover[from=bottom][align=left] .opal-popover__arrow{-webkit-transform:translateX(-1px);-ms-transform:translateX(-1px);transform:translateX(-1px)}.opal-popover[from=bottom][align=right]{right:0}.opal-popover[from=bottom][align=right] .opal-popover__arrow{-webkit-transform:translateX(1px);-ms-transform:translateX(1px);transform:translateX(1px)}.opal-popover[from=left]{right:100%;margin-right:15px}.opal-popover[from=left] .opal-popover__arrow{left:100%}.opal-popover[from=left] .opal-popover__arrow::before,.opal-popover[from=left] .opal-popover__arrow::after{left:0;border-right-width:0;border-left-color:#ccc;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[from=left] .opal-popover__arrow::after{border-left-color:#fff}.opal-popover[from=left][align=center]{top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[from=left][align=center] .opal-popover__arrow{top:50%}.opal-popover[from=left][align=top]{top:0}.opal-popover[from=left][align=top] .opal-popover__arrow{-webkit-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px)}.opal-popover[from=left][align=bottom]{bottom:0}.opal-popover[from=left][align=bottom] .opal-popover__arrow{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.opal-popover[opened]{display:block;-webkit-animation:opal-popover-fade-in-animation .1s linear;animation:opal-popover-fade-in-animation .1s linear}@-webkit-keyframes opal-popover-fade-in-animation{0%{opacity:0}to{opacity:1}}@keyframes opal-popover-fade-in-animation{0%{opacity:0}to{opacity:1}}";
+            style.textContent = ".opal-popover{position:absolute;z-index:600;display:none;-webkit-box-sizing:border-box;box-sizing:border-box;padding:15px;border:1px solid #ccc;border-radius:6px;background:#fff;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.2);box-shadow:0 1px 3px rgba(0,0,0,.2);line-height:1.5;cursor:default}.opal-popover .opal-popover__arrow{position:absolute;width:0;height:0}.opal-popover .opal-popover__arrow::before,.opal-popover .opal-popover__arrow::after{position:absolute;width:0;height:0;border:10px solid transparent;content:''}.opal-popover .opal-popover__arrow::after{border:8px solid transparent}.opal-popover .opal-popover__content{position:relative;display:block}.opal-popover[position=top],.opal-popover[position=top-left],.opal-popover[position=top-right]{bottom:100%;margin-bottom:15px}.opal-popover[position=top] .opal-popover__arrow,.opal-popover[position=top-left] .opal-popover__arrow,.opal-popover[position=top-right] .opal-popover__arrow{top:100%}.opal-popover[position=top] .opal-popover__arrow::before,.opal-popover[position=top] .opal-popover__arrow::after,.opal-popover[position=top-left] .opal-popover__arrow::before,.opal-popover[position=top-left] .opal-popover__arrow::after,.opal-popover[position=top-right] .opal-popover__arrow::before,.opal-popover[position=top-right] .opal-popover__arrow::after{border-top-color:#ccc;border-bottom-width:0;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[position=top] .opal-popover__arrow::after,.opal-popover[position=top-left] .opal-popover__arrow::after,.opal-popover[position=top-right] .opal-popover__arrow::after{border-top-color:#fff}.opal-popover[position=top]{left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[position=top] .opal-popover__arrow{left:50%}.opal-popover[position=top-left]{left:0}.opal-popover[position=top-left] .opal-popover__arrow{-webkit-transform:translateX(-1px);-ms-transform:translateX(-1px);transform:translateX(-1px)}.opal-popover[position=top-right]{right:0}.opal-popover[position=top-right] .opal-popover__arrow{-webkit-transform:translateX(1px);-ms-transform:translateX(1px);transform:translateX(1px)}.opal-popover[position=right],.opal-popover[position=right-top],.opal-popover[position=right-bottom]{left:100%;margin-left:15px}.opal-popover[position=right] .opal-popover__arrow,.opal-popover[position=right-top] .opal-popover__arrow,.opal-popover[position=right-bottom] .opal-popover__arrow{right:100%}.opal-popover[position=right] .opal-popover__arrow::before,.opal-popover[position=right] .opal-popover__arrow::after,.opal-popover[position=right-top] .opal-popover__arrow::before,.opal-popover[position=right-top] .opal-popover__arrow::after,.opal-popover[position=right-bottom] .opal-popover__arrow::before,.opal-popover[position=right-bottom] .opal-popover__arrow::after{right:0;border-right-color:#ccc;border-left-width:0;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[position=right] .opal-popover__arrow::after,.opal-popover[position=right-top] .opal-popover__arrow::after,.opal-popover[position=right-bottom] .opal-popover__arrow::after{border-right-color:#fff}.opal-popover[position=right]{top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[position=right] .opal-popover__arrow{top:50%}.opal-popover[position=right-top]{top:0}.opal-popover[position=right-top] .opal-popover__arrow{-webkit-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px)}.opal-popover[position=right-bottom]{bottom:0}.opal-popover[position=right-bottom] .opal-popover__arrow{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.opal-popover[position=bottom],.opal-popover[position=bottom-left],.opal-popover[position=bottom-right]{top:100%;margin-top:15px}.opal-popover[position=bottom] .opal-popover__arrow,.opal-popover[position=bottom-left] .opal-popover__arrow,.opal-popover[position=bottom-right] .opal-popover__arrow{bottom:100%}.opal-popover[position=bottom] .opal-popover__arrow::before,.opal-popover[position=bottom] .opal-popover__arrow::after,.opal-popover[position=bottom-left] .opal-popover__arrow::before,.opal-popover[position=bottom-left] .opal-popover__arrow::after,.opal-popover[position=bottom-right] .opal-popover__arrow::before,.opal-popover[position=bottom-right] .opal-popover__arrow::after{bottom:0;border-top-width:0;border-bottom-color:#ccc;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[position=bottom] .opal-popover__arrow::after,.opal-popover[position=bottom-left] .opal-popover__arrow::after,.opal-popover[position=bottom-right] .opal-popover__arrow::after{border-bottom-color:#fff}.opal-popover[position=bottom]{left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}.opal-popover[position=bottom] .opal-popover__arrow{left:50%}.opal-popover[position=bottom-left]{left:0}.opal-popover[position=bottom-left] .opal-popover__arrow{-webkit-transform:translateX(-1px);-ms-transform:translateX(-1px);transform:translateX(-1px)}.opal-popover[position=bottom-right]{right:0}.opal-popover[position=bottom-right] .opal-popover__arrow{-webkit-transform:translateX(1px);-ms-transform:translateX(1px);transform:translateX(1px)}.opal-popover[position=left],.opal-popover[position=left-top],.opal-popover[position=left-bottom]{right:100%;margin-right:15px}.opal-popover[position=left] .opal-popover__arrow,.opal-popover[position=left-top] .opal-popover__arrow,.opal-popover[position=left-bottom] .opal-popover__arrow{left:100%}.opal-popover[position=left] .opal-popover__arrow::before,.opal-popover[position=left] .opal-popover__arrow::after,.opal-popover[position=left-top] .opal-popover__arrow::before,.opal-popover[position=left-top] .opal-popover__arrow::after,.opal-popover[position=left-bottom] .opal-popover__arrow::before,.opal-popover[position=left-bottom] .opal-popover__arrow::after{left:0;border-right-width:0;border-left-color:#ccc;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[position=left] .opal-popover__arrow::after,.opal-popover[position=left-top] .opal-popover__arrow::after,.opal-popover[position=left-bottom] .opal-popover__arrow::after{border-left-color:#fff}.opal-popover[position=left]{top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.opal-popover[position=left] .opal-popover__arrow{top:50%}.opal-popover[position=left-top]{top:0}.opal-popover[position=left-top] .opal-popover__arrow{-webkit-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px)}.opal-popover[position=left-bottom]{bottom:0}.opal-popover[position=left-bottom] .opal-popover__arrow{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.opal-popover[opened]{display:block;-webkit-animation:opal-popover-fade-in-animation .1s linear;animation:opal-popover-fade-in-animation .1s linear}@-webkit-keyframes opal-popover-fade-in-animation{0%{opacity:0}to{opacity:1}}@keyframes opal-popover-fade-in-animation{0%{opacity:0}to{opacity:1}}";
             head.appendChild(style);
             return style;
         }
@@ -5353,7 +5356,7 @@ var OpalInputValidatorRule = /** @class */ (function (_super) {
             input: {
                 required: { default: false, readonly: true },
                 test: { type: Object, readonly: true },
-                popoverFrom: 'right'
+                popoverPosition: 'right'
             },
             template: template_nelm_1.default
         })
@@ -5386,7 +5389,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-popover/popover (from={input.popoverFrom}) {\nrt-content/content\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-popover/popover (position={input.popoverPosition}) {\nrt-content/content\n}\n}");
 
 /***/ }),
 /* 84 */
@@ -6356,7 +6359,7 @@ var OpalDateInput = /** @class */ (function (_super) {
                 placeholder: 'dd.mm.yyyy',
                 mask: '99.99.9999',
                 required: { default: false, readonly: true },
-                popoverFrom: 'right'
+                popoverPosition: 'right'
             },
             i18n: {
                 isRequiredField: gettext_1.getText.t('Поле обязательно для заполнения'),
@@ -6411,7 +6414,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-text-input-validator/text-input-validator {\n@if-then (if=input.required) {\nopal-text-input-validator-rule/text-input-validator-rule-required (\nrequired,\npopover-from={input.popoverFrom}\n) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-text-input-validator-rule/text-input-validator-rule-date-exists (\ntest={dateExists},\npopover-from={input.popoverFrom}\n) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-text-input-validator-rule/text-input-validator-rule-date-in-range (\ntest={isDateInRange},\npopover-from={input.popoverFrom}\n) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={input.mask}) {\nopal-text-input/text-input (\nclass=opal-text-input-validator__target opal-input-mask__text-input,\nvalue={input.value},\nplaceholder={input.placeholder},\nclearable\n) {\nsvg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-calendar)\n}\n}\n}\n}\nopal-dropdown/calendar-menu (auto-height=no) {\nopal-calendar/calendar (\nfrom-date={input.fromDate},\nto-date={input.toDate},\nvalue={input.value},\ndate-delimiter=.\n)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-text-input-validator/text-input-validator {\n@if-then (if=input.required) {\nopal-text-input-validator-rule/text-input-validator-rule-required (\nrequired,\npopover-position={input.popoverPosition}\n) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-text-input-validator-rule/text-input-validator-rule-date-exists (\ntest={dateExists},\npopover-position={input.popoverPosition}\n) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-text-input-validator-rule/text-input-validator-rule-date-in-range (\ntest={isDateInRange},\npopover-position={input.popoverPosition}\n) {\n'{constructor.i18n.invalidDateRange}'\n}\nopal-input-mask/input-mask (mask={input.mask}) {\nopal-text-input/text-input (\nclass=opal-text-input-validator__target opal-input-mask__text-input,\nvalue={input.value},\nplaceholder={input.placeholder},\nclearable\n) {\nsvg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-calendar)\n}\n}\n}\n}\nopal-dropdown/calendar-menu (auto-height=no) {\nopal-calendar/calendar (\nfrom-date={input.fromDate},\nto-date={input.toDate},\nvalue={input.value},\ndate-delimiter=.\n)\n}\n}");
 
 /***/ }),
 /* 102 */
@@ -7033,7 +7036,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |_isItemDisabled }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder {\n'{input.placeholder} '\n}\n}\nopal-select/select (\nmultiple,\ndata-list-keypath={_dataListKeypathParam},\ndata-list-item-schema={input.dataListItemSchema |json },\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json },\nadd-new-item={input.addNewItem},\nfocused={input.focused}\n) {\nopal-sign-button/button (\nclass=opal-select__button,\nsign=plus,\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n)\nrt-content (class=opal-select__menu-container, select=.opal-select__menu) {\nopal-popover/menu (class=opal-select__menu, from={input.popoverFrom}, auto-closing) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/data-list-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (\nclass=opal-select__menu-content opal-select__filtered-list\n) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |_isItemDisabled }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder {\n'{input.placeholder} '\n}\n}\nopal-select/select (\nmultiple,\ndata-list-keypath={_dataListKeypathParam},\ndata-list-item-schema={input.dataListItemSchema |json },\nvalue={input.value},\nview-model={viewModel},\nview-model-item-schema={input.viewModelItemSchema |json },\nadd-new-item={input.addNewItem},\nfocused={input.focused}\n) {\nopal-sign-button/button (\nclass=opal-select__button,\nsign=plus,\ncheckable,\ntab-index={input.tabIndex},\ndisabled={input.disabled}\n)\nrt-content (class=opal-select__menu-container, select=.opal-select__menu) {\nopal-popover/menu (\nclass=opal-select__menu,\nposition={input.popoverPosition},\nauto-closing\n) {\nrt-content (select='.opal-select__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=opal-select__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/data-list-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-content (\nclass=opal-select__new-item-input-container,\nselect='.opal-select__new-item-input'\n)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (\nclass=opal-select__menu-content opal-select__filtered-list\n) {\nrt-content (\nclass=opal-filtered-list__query-input-container,\nselect=.opal-filtered-list__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=opal-select__loaded-list opal-filtered-list__list,\ndata-provider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}\n}");
 
 /***/ }),
 /* 121 */

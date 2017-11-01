@@ -35,7 +35,7 @@ let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: '
 		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
 		addNewItem: { type: Object, readonly: true },
 		placeholder: getText.t('Не выбрано'),
-		popoverFrom: 'bottom',
+		popoverPosition: 'bottom',
 		tabIndex: 0,
 		focused: false,
 		disabled: false

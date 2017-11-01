@@ -1,6 +1,6 @@
 @section/inner {
 
-opal-popover/popover (from={input.popoverFrom}) {
+opal-popover/popover (position={input.popoverPosition}) {
 	rt-content/content
 }
 

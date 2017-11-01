@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.28.25",
+  "version": "0.28.27",
   "description": "",
   "main": "dist/OpalComponents.js",
   "typings": "dist/src/index.d.ts",
@@ -23,7 +23,7 @@
   "devDependencies": {
     "@riim/postcss-rionite-component": "^0.3.5",
     "autoprefixer": "^7.1.6",
-    "awesome-typescript-loader": "^3.2.3",
+    "awesome-typescript-loader": "^3.3.0",
     "collapse-line-breaks-loader": "^0.1.1",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
@@ -43,7 +43,7 @@
     "trim-lines-loader": "^0.1.0",
     "tslint": "^5.8.0",
     "tslint-loader": "^3.5.3",
-    "typescript": "^2.5.3",
+    "typescript": "^2.6.1",
     "webpack": "^3.8.1"
   },
   "dependencies": {
@@ -57,7 +57,7 @@
     "@riim/next-uid": "^1.0.0",
     "@riim/object-assign-polyfill": "^1.0.0",
     "bytesize-icons": "^1.2.0",
-    "cellx": "^1.7.68",
+    "cellx": "^1.7.70",
     "cellx-decorators": "^1.4.7",
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.1",

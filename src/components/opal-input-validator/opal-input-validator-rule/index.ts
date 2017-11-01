@@ -9,7 +9,7 @@ import template from './template.nelm';
 	input: {
 		required: { default: false, readonly: true },
 		test: { type: Object, readonly: true },
-		popoverFrom: 'right'
+		popoverPosition: 'right'
 	},
 
 	template

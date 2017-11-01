@@ -8,8 +8,7 @@ import template from './template.nelm';
 	elementIs: 'opal-popover',
 
 	input: {
-		from: 'right',
-		align: 'center',
+		position: 'right',
 		autoDirection: true,
 		autoClosing: false,
 		opened: false
@@ -20,7 +19,7 @@ import template from './template.nelm';
 export class OpalPopover extends Component {
 	@observable isContentRendered = false;
 
-	_fromOnOpen: string;
+	_positionOnOpen: string;
 
 	_documentClickListening: IDisposableListening | null | undefined;
 
@@ -93,9 +92,9 @@ export class OpalPopover extends Component {
 			let docEl = document.documentElement;
 			let containerClientRect = el.offsetParent.getBoundingClientRect();
 			let elClientRect = el.getBoundingClientRect();
-			let from = (this._fromOnOpen = this.input.from);
+			let position = (this._positionOnOpen = this.input.position).split('-');
 
-			switch (from) {
+			switch (position[0]) {
 				case 'left': {
 					if (
 						elClientRect.left + document.body.scrollLeft < 0 ||
@@ -103,7 +102,8 @@ export class OpalPopover extends Component {
 							containerClientRect.left <
 								docEl.clientWidth - containerClientRect.right)
 					) {
-						this.input.from = 'right';
+						this.input.position =
+							'right' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
 					break;
@@ -115,7 +115,8 @@ export class OpalPopover extends Component {
 							containerClientRect.top <
 								docEl.clientHeight - containerClientRect.bottom)
 					) {
-						this.input.from = 'bottom';
+						this.input.position =
+							'bottom' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
 					break;
@@ -127,7 +128,8 @@ export class OpalPopover extends Component {
 						containerClientRect.left + document.body.scrollLeft >=
 							elClientRect.right - containerClientRect.right
 					) {
-						this.input.from = 'left';
+						this.input.position =
+							'left' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
 					break;
@@ -139,7 +141,8 @@ export class OpalPopover extends Component {
 						containerClientRect.top + document.body.scrollTop >=
 							elClientRect.bottom - containerClientRect.bottom
 					) {
-						this.input.from = 'top';
+						this.input.position =
+							'top' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
 					break;
@@ -147,15 +150,15 @@ export class OpalPopover extends Component {
 			}
 		}
 
-		let align = this.input.align;
+		let position = this.input.position.split('-');
 		let arrowStyle = this.$<HTMLElement>('arrow')!.style;
 
 		arrowStyle.top = arrowStyle.right = arrowStyle.bottom = arrowStyle.left = '';
 
-		if (align != 'center') {
-			arrowStyle[align] =
+		if (position.length == 2) {
+			arrowStyle[position[1]] =
 				el.offsetParent[
-					align == 'left' || align == 'right' ? 'clientWidth' : 'clientHeight'
+					position[1] == 'left' || position[1] == 'right' ? 'clientWidth' : 'clientHeight'
 				] /
 					2 +
 				'px';
@@ -176,7 +179,7 @@ export class OpalPopover extends Component {
 
 	_close() {
 		if (this.input.autoDirection) {
-			this.input.from = this._fromOnOpen;
+			this.input.position = this._positionOnOpen;
 		}
 
 		if (this._documentClickListening) {

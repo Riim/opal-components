@@ -38,7 +38,11 @@ span/control {
 		)
 
 		rt-content (class=opal-select__menu-container, select=.opal-select__menu) {
-			opal-popover/menu (class=opal-select__menu, from={input.popoverFrom}, auto-closing) {
+			opal-popover/menu (
+				class=opal-select__menu,
+				position={input.popoverPosition},
+				auto-closing
+			) {
 				rt-content (select='.opal-select__menu-content') {
 					@if-then (if=_dataListKeypathParam) {
 						div (class=opal-select__menu-content) {

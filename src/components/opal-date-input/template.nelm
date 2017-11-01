@@ -4,7 +4,7 @@ opal-text-input-validator/text-input-validator {
 	@if-then (if=input.required) {
 		opal-text-input-validator-rule/text-input-validator-rule-required (
 			required,
-			popover-from={input.popoverFrom}
+			popover-position={input.popoverPosition}
 		) {
 			'{constructor.i18n.isRequiredField}'
 		}
@@ -12,14 +12,14 @@ opal-text-input-validator/text-input-validator {
 
 	opal-text-input-validator-rule/text-input-validator-rule-date-exists (
 		test={dateExists},
-		popover-from={input.popoverFrom}
+		popover-position={input.popoverPosition}
 	) {
 		'{constructor.i18n.nonExistentDate}'
 	}
 
 	opal-text-input-validator-rule/text-input-validator-rule-date-in-range (
 		test={isDateInRange},
-		popover-from={input.popoverFrom}
+		popover-position={input.popoverPosition}
 	) {
 		'{constructor.i18n.invalidDateRange}'
 	}

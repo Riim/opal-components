@@ -24,7 +24,7 @@ function pad(num: number): string {
 		placeholder: 'dd.mm.yyyy',
 		mask: '99.99.9999',
 		required: { default: false, readonly: true },
-		popoverFrom: 'right'
+		popoverPosition: 'right'
 	},
 
 	i18n: {
