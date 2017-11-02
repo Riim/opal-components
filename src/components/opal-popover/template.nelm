@@ -3,7 +3,7 @@
 span/arrow
 
 @if-then (if=isContentRendered) {
-	rt-content/content
+	rt-slot/content-slot
 }
 
 }
