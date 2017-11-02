@@ -13,5 +13,5 @@ export declare class OpalInputValidator extends Component {
     validate(): boolean;
     _validate(rules: Array<OpalInputValidatorRule>): boolean;
     _checkValue(rule: OpalInputValidatorRule): boolean;
-    focusTarget(): void;
+    focusTarget(): this;
 }

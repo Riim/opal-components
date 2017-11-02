@@ -3,7 +3,8 @@ import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 export { OpalTextInputValidatorRule } from './opal-text-input-validator-rule';
 export declare class OpalTextInputValidator extends OpalInputValidator {
-    target: OpalTextInput;
+    textInput: OpalTextInput;
+    ready(): void;
     elementAttached(): void;
     _onTextInputInput(): void;
     _checkValue(rule: OpalInputValidatorRule): boolean;

@@ -5,7 +5,4 @@
 
 	@el content-slot {
 	}
-		@el target {
-			display: block;
-		}
 }

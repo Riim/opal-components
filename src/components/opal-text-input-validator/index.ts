@@ -8,11 +8,16 @@ export { OpalTextInputValidatorRule } from './opal-text-input-validator-rule';
 	elementIs: 'opal-text-input-validator'
 })
 export class OpalTextInputValidator extends OpalInputValidator {
-	target: OpalTextInput;
+	textInput: OpalTextInput;
+
+	ready() {
+		super.ready();
+		this.target = this.textInput = this.$<OpalTextInput>('text-input')!;
+	}
 
 	elementAttached() {
 		super.elementAttached();
-		this.listenTo(this.target, 'input', this._onTextInputInput);
+		this.listenTo(this.textInput, 'input', this._onTextInputInput);
 	}
 
 	_onTextInputInput() {
@@ -22,7 +27,7 @@ export class OpalTextInputValidator extends OpalInputValidator {
 	}
 
 	_checkValue(rule: OpalInputValidatorRule): boolean {
-		let value = this.target.value;
+		let value = this.textInput.value;
 		let ruleInput = rule.input;
 
 		return !(value

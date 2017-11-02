@@ -1,8 +1,12 @@
 @component opal-text-input-validator : opal-input-validator {
+	@el text-input {
+		display: block;
+	}
+
 	@mod valid=no {
-		@el target {
+		@el text-input {
 			.opal-text-input__text-field {
-				border-color: hsl(0,100%,48%);
+				border-color: hsl(348,92%,58%);
 			}
 		}
 	}

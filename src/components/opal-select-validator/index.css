@@ -1,0 +1,5 @@
+@component opal-select-validator : opal-input-validator {
+	@el select {
+		display: block;
+	}
+}

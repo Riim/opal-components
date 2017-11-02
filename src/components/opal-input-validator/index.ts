@@ -22,8 +22,6 @@ export class OpalInputValidator extends Component {
 	}
 
 	ready() {
-		this.target = this.$<Component>('target')!;
-
 		this.rules = Array.prototype.map.call(
 			this.element.getElementsByClassName('opal-input-validator-rule'),
 			(ruleEl: IComponentElement) => ruleEl.$component
@@ -75,7 +73,8 @@ export class OpalInputValidator extends Component {
 		return false;
 	}
 
-	focusTarget() {
+	focusTarget(): this {
 		(this.target as any).focus();
+		return this;
 	}
 }
