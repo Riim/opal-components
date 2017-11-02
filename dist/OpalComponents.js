@@ -2670,20 +2670,20 @@ var OpalEditableText = /** @class */ (function (_super) {
         configurable: true
     });
     OpalEditableText.prototype.ready = function () {
-        var contentEl = this.$('content').element;
-        var firstChild = contentEl.firstChild;
+        var contentSlotEl = this.$('content-slot').element;
+        var firstChild = contentSlotEl.firstChild;
         if (!firstChild || firstChild.nodeType != Node.TEXT_NODE) {
             throw new TypeError('Content must be text node');
         }
         this._textNode = firstChild;
-        this._value = this._fixedValue = contentEl.textContent.trim() || null;
+        this._value = this._fixedValue = contentSlotEl.textContent.trim() || null;
     };
     OpalEditableText.prototype.elementAttached = function () {
         this.listenTo(this.element, 'click', this._onElementClick);
-        this.listenTo(this.$('content').element, {
-            focus: this._onContentElementFocus,
-            blur: this._onContentElementBlur,
-            input: this._onContentElementInput
+        this.listenTo(this.$('content-slot').element, {
+            focus: this._onContentSlotElementFocus,
+            blur: this._onContentSlotElementBlur,
+            input: this._onContentSlotElementInput
         });
     };
     OpalEditableText.prototype._onElementClick = function (evt) {
@@ -2691,35 +2691,35 @@ var OpalEditableText = /** @class */ (function (_super) {
             this.focus();
         }
     };
-    OpalEditableText.prototype._onContentElementFocus = function () {
+    OpalEditableText.prototype._onContentSlotElementFocus = function () {
         this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
     };
-    OpalEditableText.prototype._onContentElementBlur = function () {
+    OpalEditableText.prototype._onContentSlotElementBlur = function () {
         this._documentKeyDownListening.stop();
         if (this._fixedValue != this._value) {
             this._fixedValue = this._value;
             this.emit('change');
         }
     };
-    OpalEditableText.prototype._onContentElementInput = function () {
-        var contentEl = this.$('content').element;
-        var text = contentEl.textContent;
-        if (contentEl.innerHTML != text) {
-            while (contentEl.lastChild) {
-                contentEl.removeChild(contentEl.lastChild);
+    OpalEditableText.prototype._onContentSlotElementInput = function () {
+        var contentSlotEl = this.$('content-slot').element;
+        var text = contentSlotEl.textContent;
+        if (contentSlotEl.innerHTML != text) {
+            while (contentSlotEl.lastChild) {
+                contentSlotEl.removeChild(contentSlotEl.lastChild);
             }
             var textNode = this._textNode;
             textNode.nodeValue = text;
-            contentEl.appendChild(textNode);
+            contentSlotEl.appendChild(textNode);
             var sel = window.getSelection();
             var rng = document.createRange();
             rng.setStart(textNode, text.length);
             sel.removeAllRanges();
             sel.addRange(rng);
         }
-        else if (!contentEl.firstChild) {
+        else if (!contentSlotEl.firstChild) {
             this._textNode.nodeValue = '';
-            contentEl.appendChild(this._textNode);
+            contentSlotEl.appendChild(this._textNode);
         }
         this._value = text.trim() || null;
         this.emit('input');
@@ -2769,7 +2769,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-editable-text{display:block;cursor:text}.opal-editable-text .opal-editable-text__content-wrapper{position:relative;display:inline-block;padding-right:24px}.opal-editable-text .opal-editable-text__content{display:inline-block;padding-right:2px}.opal-editable-text .opal-editable-text__content:focus{outline:solid 1px #000}.opal-editable-text .opal-editable-text__icon-editable{position:absolute;top:0;right:0;display:block;width:16px;height:16px;border:solid 2px transparent;border-left-width:6px;cursor:pointer;stroke-width:2.5px;stroke:#107cda;stroke-linecap:square;stroke-linejoin:miter;fill:none}.opal-editable-text .opal-editable-text__icon-editable:hover,.opal-editable-text .opal-editable-text__icon-editable:active{stroke:#33a0ff}.opal-editable-text .opal-editable-text__icon-editable:active{top:1px}";
+            style.textContent = ".opal-editable-text{display:block;cursor:text}.opal-editable-text .opal-editable-text__content-wrapper{position:relative;display:inline-block;padding-right:24px}.opal-editable-text .opal-editable-text__content-slot{display:inline-block;padding-right:2px}.opal-editable-text .opal-editable-text__content-slot:focus{outline:solid 1px #000}.opal-editable-text .opal-editable-text__icon-editable{position:absolute;top:0;right:0;display:block;width:16px;height:16px;border:solid 2px transparent;border-left-width:6px;cursor:pointer;stroke-width:2.5px;stroke:#107cda;stroke-linecap:square;stroke-linejoin:miter;fill:none}.opal-editable-text .opal-editable-text__icon-editable:hover,.opal-editable-text .opal-editable-text__icon-editable:active{stroke:#33a0ff}.opal-editable-text .opal-editable-text__icon-editable:active{top:1px}";
             head.appendChild(style);
             return style;
         }
@@ -2783,7 +2783,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/content-wrapper {\nrt-content/content (contenteditable, spellcheck=false)\nsvg/icon-editable (viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-compose)\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/content-wrapper {\nrt-slot/content-slot (contenteditable, spellcheck=false)\nsvg/icon-editable (viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-compose)\n}\n}\n}");
 
 /***/ }),
 /* 37 */
@@ -4663,7 +4663,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-dropdown{position:absolute;top:100%;left:0;z-index:600;display:none;overflow-x:hidden;overflow-y:auto;-webkit-box-sizing:border-box;box-sizing:border-box;margin:2px 0;padding:6px 0;min-width:100%;border:1px solid #ccc;border-radius:3px;background:#fff;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.2);box-shadow:0 1px 3px rgba(0,0,0,.2);line-height:1.5;cursor:default}.opal-dropdown .opal-dropdown__content{position:relative;display:block}.opal-dropdown[opened]{display:block}";
+            style.textContent = ".opal-dropdown{position:absolute;top:100%;left:0;z-index:600;display:none;overflow-x:hidden;overflow-y:auto;-webkit-box-sizing:border-box;box-sizing:border-box;margin:2px 0;padding:6px 0;min-width:100%;border:1px solid #ccc;border-radius:3px;background:#fff;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.2);box-shadow:0 1px 3px rgba(0,0,0,.2);line-height:1.5;cursor:default}.opal-dropdown .opal-dropdown__content-slot{position:relative;display:block}.opal-dropdown[opened]{display:block}";
             head.appendChild(style);
             return style;
         }
@@ -4677,7 +4677,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=isContentRendered) {\nrt-content/content\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=isContentRendered) {\nrt-slot/content-slot\n}\n}");
 
 /***/ }),
 /* 70 */

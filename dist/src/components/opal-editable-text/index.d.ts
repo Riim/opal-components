@@ -9,9 +9,9 @@ export declare class OpalEditableText extends Component {
     ready(): void;
     elementAttached(): void;
     _onElementClick(evt: Event): void;
-    _onContentElementFocus(): void;
-    _onContentElementBlur(): void;
-    _onContentElementInput(): void;
+    _onContentSlotElementFocus(): void;
+    _onContentSlotElementBlur(): void;
+    _onContentSlotElementInput(): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     focus(selectAll?: boolean): void;
 }

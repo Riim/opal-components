@@ -32,24 +32,24 @@ export class OpalEditableText extends Component {
 	_documentKeyDownListening: IDisposableListening;
 
 	ready() {
-		let contentEl = this.$<Component>('content')!.element;
-		let firstChild = contentEl.firstChild;
+		let contentSlotEl = this.$<Component>('content-slot')!.element;
+		let firstChild = contentSlotEl.firstChild;
 
 		if (!firstChild || firstChild.nodeType != Node.TEXT_NODE) {
 			throw new TypeError('Content must be text node');
 		}
 
 		this._textNode = firstChild as Text;
-		this._value = this._fixedValue = (contentEl.textContent as string).trim() || null;
+		this._value = this._fixedValue = (contentSlotEl.textContent as string).trim() || null;
 	}
 
 	elementAttached() {
 		this.listenTo(this.element, 'click', this._onElementClick);
 
-		this.listenTo(this.$<Component>('content')!.element, {
-			focus: this._onContentElementFocus,
-			blur: this._onContentElementBlur,
-			input: this._onContentElementInput
+		this.listenTo(this.$<Component>('content-slot')!.element, {
+			focus: this._onContentSlotElementFocus,
+			blur: this._onContentSlotElementBlur,
+			input: this._onContentSlotElementInput
 		});
 	}
 
@@ -59,7 +59,7 @@ export class OpalEditableText extends Component {
 		}
 	}
 
-	_onContentElementFocus() {
+	_onContentSlotElementFocus() {
 		this._documentKeyDownListening = this.listenTo(
 			document,
 			'keydown',
@@ -67,7 +67,7 @@ export class OpalEditableText extends Component {
 		);
 	}
 
-	_onContentElementBlur() {
+	_onContentSlotElementBlur() {
 		this._documentKeyDownListening.stop();
 
 		if (this._fixedValue != this._value) {
@@ -76,28 +76,28 @@ export class OpalEditableText extends Component {
 		}
 	}
 
-	_onContentElementInput() {
-		let contentEl = this.$<Component>('content')!.element;
-		let text = contentEl.textContent as string;
+	_onContentSlotElementInput() {
+		let contentSlotEl = this.$<Component>('content-slot')!.element;
+		let text = contentSlotEl.textContent!;
 
-		if (contentEl.innerHTML != text) {
-			while (contentEl.lastChild) {
-				contentEl.removeChild(contentEl.lastChild as Node);
+		if (contentSlotEl.innerHTML != text) {
+			while (contentSlotEl.lastChild) {
+				contentSlotEl.removeChild(contentSlotEl.lastChild as Node);
 			}
 
 			let textNode = this._textNode;
 
 			textNode.nodeValue = text;
-			contentEl.appendChild(textNode);
+			contentSlotEl.appendChild(textNode);
 
 			let sel = window.getSelection();
 			let rng = document.createRange();
 			rng.setStart(textNode, text.length);
 			sel.removeAllRanges();
 			sel.addRange(rng);
-		} else if (!contentEl.firstChild) {
+		} else if (!contentSlotEl.firstChild) {
 			this._textNode.nodeValue = '';
-			contentEl.appendChild(this._textNode);
+			contentSlotEl.appendChild(this._textNode);
 		}
 
 		this._value = text.trim() || null;
