@@ -8,7 +8,7 @@ import template from './template.nelm';
 	template,
 
 	domEvents: {
-		'icon-editable': {
+		'icon-edit': {
 			click() {
 				this.focus(true);
 			}

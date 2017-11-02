@@ -3,7 +3,7 @@
 span/content-wrapper {
 	rt-slot/content-slot (contenteditable, spellcheck=false)
 
-	svg/icon-editable (viewBox=0 0 32 32) {
+	svg/icon-edit (viewBox=0 0 32 32) {
 		use (xlink:href=#opal-components__icon-compose)
 	}
 }
