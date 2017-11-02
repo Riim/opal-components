@@ -1,11 +1,12 @@
 import { IEvent } from 'cellx';
 import { Component, IComponentElement } from 'rionite';
 import './index.css';
-import { OpalTab, OpalTabList } from './opal-tab-list';
-import { OpalTabPanel } from './opal-tab-panel';
+import { OpalTab } from './opal-tab-list';
 import template from './template.nelm';
 
-export { OpalTab, OpalTabList, OpalTabPanel };
+export { OpalTab };
+export { OpalTabList } from './opal-tab-list';
+export { OpalTabPanel } from './opal-tab-panel';
 
 let indexOf = Array.prototype.indexOf;
 let forEach = Array.prototype.forEach;
