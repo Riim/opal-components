@@ -1,12 +1,11 @@
 import { Cell, define } from 'cellx';
-import { ComponentConfig } from 'rionite';
 import { OpalModal } from '../opal-modal';
 import { OpalSelect } from '../opal-select';
 import { OpalTreeList, TDataTreeList, TViewModel } from '../opal-tree-list';
 import './index.css';
 import template from './template.nelm';
 
-@ComponentConfig({
+@OpalSelect.Config({
 	elementIs: 'opal-tree-select',
 
 	input: {

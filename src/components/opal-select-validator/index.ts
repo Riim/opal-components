@@ -1,10 +1,9 @@
-import { ComponentConfig } from 'rionite';
 import { OpalInputValidator, OpalInputValidatorRule } from '../opal-input-validator';
 import { OpalSelect } from '../opal-select';
 
 export { OpalSelectValidatorRule } from './opal-select-validator-rule';
 
-@ComponentConfig<OpalSelectValidator>({
+@OpalInputValidator.Config<OpalSelectValidator>({
 	elementIs: 'opal-select-validator'
 })
 export class OpalSelectValidator extends OpalInputValidator {

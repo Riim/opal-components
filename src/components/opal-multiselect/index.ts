@@ -1,14 +1,14 @@
 import { getText } from '@riim/gettext';
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { ComponentConfig, Template } from 'rionite';
+import { Template } from 'rionite';
 import { IDataProvider, OpalLoadedList } from '../opal-loaded-list';
 import { OpalSelect } from '../opal-select';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 import template from './template.nelm';
 
-@ComponentConfig<OpalMultiselect>({
+@OpalSelect.Config<OpalMultiselect>({
 	elementIs: 'opal-multiselect',
 
 	i18n: {

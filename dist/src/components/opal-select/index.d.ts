@@ -11,7 +11,6 @@ export interface IDataListItem {
 export declare type TDataList = ObservableList<IDataListItem>;
 export declare type TViewModel = ObservableList<IDataListItem>;
 export declare class OpalSelect extends Component {
-    static OpalSelectOption: typeof OpalSelectOption;
     static defaultDataListItemSchema: Readonly<{
         value: string;
         text: string;

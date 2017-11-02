@@ -1,11 +1,10 @@
-import { ComponentConfig } from 'rionite';
 import { OpalInputValidator, OpalInputValidatorRule } from '../opal-input-validator';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 
 export { OpalTextInputValidatorRule } from './opal-text-input-validator-rule';
 
-@ComponentConfig<OpalTextInputValidator>({
+@OpalInputValidator.Config<OpalTextInputValidator>({
 	elementIs: 'opal-text-input-validator'
 })
 export class OpalTextInputValidator extends OpalInputValidator {

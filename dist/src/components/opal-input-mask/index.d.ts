@@ -2,7 +2,6 @@ import { Component } from 'rionite';
 import { OpalInputMaskDefinition } from './opal-input-mask-definition';
 export { OpalInputMaskDefinition };
 export declare class OpalInputMask extends Component {
-    static OpalInputMaskDefinition: typeof OpalInputMaskDefinition;
     static defaultDefinitions: {
         [chr: string]: RegExp;
     };

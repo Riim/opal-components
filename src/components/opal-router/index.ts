@@ -1,7 +1,7 @@
 import { escapeHTML } from '@riim/escape-html';
 import { hyphenize } from '@riim/hyphenize';
 import { history, Location } from 'created-browser-history';
-import { Component, ComponentConfig, IComponentElement } from 'rionite';
+import { Component, IComponentElement } from 'rionite';
 import { escapeRegExp } from './escapeRegExp';
 import './index.css';
 import { OpalRoute } from './opal-route';
@@ -41,7 +41,7 @@ function valueToAttributeValue(value: boolean | string): string {
 	return `${value === false ? 'no' : value === true ? 'yes' : escapeHTML(value)}`;
 }
 
-@ComponentConfig<OpalRouter>({
+@Component.Config<OpalRouter>({
 	elementIs: 'opal-router',
 
 	input: {
@@ -50,8 +50,6 @@ function valueToAttributeValue(value: boolean | string): string {
 	}
 })
 export class OpalRouter extends Component {
-	static OpalRoute = OpalRoute;
-
 	_routes: Array<IRoute>;
 	_route: IRoute | null = null;
 	_state: IComponentState | null = null;

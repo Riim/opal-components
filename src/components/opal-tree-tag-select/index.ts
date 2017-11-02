@@ -1,8 +1,7 @@
-import { ComponentConfig } from 'rionite';
 import { OpalTagSelect } from '../opal-tag-select';
 import template from './template.nelm';
 
-@ComponentConfig({
+@OpalTagSelect.Config({
 	elementIs: 'opal-tree-tag-select',
 	template
 })

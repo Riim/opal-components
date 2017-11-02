@@ -1,7 +1,7 @@
-import { Component, ComponentConfig } from 'rionite';
+import { Component } from 'rionite';
 import './index.css';
 
-@ComponentConfig({
+@Component.Config({
 	elementIs: 'opal-input-mask-definition',
 
 	input: {

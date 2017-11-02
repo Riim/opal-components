@@ -11,22 +11,22 @@ export { OpalButton } from './components/opal-button';
 export { OpalSignButton } from './components/opal-sign-button';
 export { OpalTextInput } from './components/opal-text-input';
 export { OpalEditableText } from './components/opal-editable-text';
-export { OpalInputMask, OpalInputMaskDefinition } from './components/opal-input-mask';
+export { OpalInputMaskDefinition, OpalInputMask } from './components/opal-input-mask';
 export { OpalGroup } from './components/opal-group';
 export { OpalCheckbox } from './components/opal-checkbox';
-export { OpalRadioGroup, OpalRadioButton } from './components/opal-radio-group';
+export { OpalRadioButton, OpalRadioGroup } from './components/opal-radio-group';
 export { OpalSwitch } from './components/opal-switch';
 export { OpalSlider } from './components/opal-slider';
 export { OpalSwitchMenu } from './components/opal-switch-menu';
-export { OpalTabs, OpalTabList, OpalTab } from './components/opal-tabs';
+export { OpalTab, OpalTabList, OpalTabPanel, OpalTabs } from './components/opal-tabs';
 export { OpalDropdown } from './components/opal-dropdown';
 export { OpalPopover } from './components/opal-popover';
 export { OpalModal } from './components/opal-modal';
 export { OpalNotification } from './components/opal-notification';
-export { OpalInputValidator, OpalInputValidatorRule } from './components/opal-input-validator';
+export { OpalInputValidatorRule, OpalInputValidator } from './components/opal-input-validator';
 export {
-	OpalTextInputValidator,
-	OpalTextInputValidatorRule
+	OpalTextInputValidatorRule,
+	OpalTextInputValidator
 } from './components/opal-text-input-validator';
 export {
 	IDay as IOpalCalendarDay,
@@ -44,28 +44,28 @@ export {
 export { OpalFilteredList } from './components/opal-filtered-list';
 export { OpalTreeList } from './components/opal-tree-list';
 export {
+	OpalSelectOption,
 	IDataListItem as IOpalSelectDataListItem,
 	TDataList as TOpalSelectDataList,
 	TViewModel as TOpalSelectViewModel,
-	OpalSelect,
-	OpalSelectOption
+	OpalSelect
 } from './components/opal-select';
 export { OpalMultiselect } from './components/opal-multiselect';
 export { OpalTagSelect } from './components/opal-tag-select';
 export { OpalTreeSelect } from './components/opal-tree-select';
 export { OpalTreeTagSelect } from './components/opal-tree-tag-select';
-export { OpalSelectValidator, OpalSelectValidatorRule } from './components/opal-select-validator';
+export { OpalSelectValidatorRule, OpalSelectValidator } from './components/opal-select-validator';
 export {
 	IDataListItem as IOpalAutosuggestDataListItem,
 	IDataProvider as IOpalAutosuggestDataProvider,
 	OpalAutosuggest
 } from './components/opal-autosuggest';
-export { OpalMultirow, OpalMultirowRow } from './components/opal-multirow';
+export { OpalMultirowRow, OpalMultirow } from './components/opal-multirow';
 export {
+	OpalRoute,
 	IRouteProperty as IOpalRouterRouteProperty,
 	IRoute as IOpalRouterRoute,
 	IComponentState as IOpalRouterComponentState,
-	OpalRouter,
-	OpalRoute
+	OpalRouter
 } from './components/opal-router';
 export { default as Utils } from './utils';

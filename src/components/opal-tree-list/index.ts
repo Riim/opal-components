@@ -5,7 +5,7 @@ import {
 	ObservableList
 	} from 'cellx';
 import { computed, observable } from 'cellx-decorators';
-import { Component, ComponentConfig } from 'rionite';
+import { Component } from 'rionite';
 import { fixParent, ObservableTreeList } from '../../ObservableTreeList';
 import { closestComponent } from '../../utils';
 import { OpalCheckbox } from '../opal-checkbox';
@@ -39,7 +39,7 @@ function toComparable(str: string | null): string | null {
 	);
 }
 
-@ComponentConfig({
+@Component.Config({
 	elementIs: 'opal-tree-list',
 
 	input: {
@@ -58,8 +58,6 @@ function toComparable(str: string | null): string | null {
 	template
 })
 export class OpalTreeList extends Component {
-	static OpalTreeListItem = OpalTreeListItem;
-
 	static defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 

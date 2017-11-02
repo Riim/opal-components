@@ -1,7 +1,7 @@
 import { getText } from '@riim/gettext';
 import { IEvent } from 'cellx';
 import { dateExists } from 'date-exists';
-import { Component, ComponentConfig, IDisposableListening } from 'rionite';
+import { Component, IDisposableListening } from 'rionite';
 import { isFocusable } from '../../utils/isFocusable';
 import { OpalCalendar } from '../opal-calendar';
 import { OpalDropdown } from '../opal-dropdown';
@@ -14,7 +14,7 @@ function pad(num: number): string {
 	return (num < 10 ? '0' : '') + num;
 }
 
-@ComponentConfig<OpalDateInput>({
+@Component.Config<OpalDateInput>({
 	elementIs: 'opal-date-input',
 
 	input: {

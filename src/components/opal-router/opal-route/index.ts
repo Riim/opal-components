@@ -1,6 +1,6 @@
-import { Component, ComponentConfig } from 'rionite';
+import { Component } from 'rionite';
 
-@ComponentConfig({
+@Component.Config({
 	elementIs: 'opal-route',
 
 	input: {

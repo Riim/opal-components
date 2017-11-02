@@ -3,7 +3,6 @@ import { Component, IComponentElement } from 'rionite';
 import { OpalRadioButton } from './opal-radio-button';
 export { OpalRadioButton };
 export declare class OpalRadioGroup extends Component {
-    static OpalRadioButton: typeof OpalRadioButton;
     buttonElements: NodeListOf<IComponentElement>;
     ready(): void;
     elementAttached(): void;

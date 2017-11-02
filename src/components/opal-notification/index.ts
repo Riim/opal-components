@@ -1,6 +1,6 @@
 import { Set } from '@riim/map-set-polyfill';
 import { Cell, IEvent } from 'cellx';
-import { Component, ComponentConfig } from 'rionite';
+import { Component } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
@@ -21,7 +21,7 @@ function initContainer(notification: OpalNotification): HTMLElement {
 	return container;
 }
 
-@ComponentConfig({
+@Component.Config({
 	elementIs: 'opal-notification',
 
 	input: {

@@ -1,11 +1,11 @@
 import { computed, observable } from 'cellx-decorators';
-import { Component, ComponentConfig, IComponentElement } from 'rionite';
+import { Component, IComponentElement } from 'rionite';
 import './index.css';
 import { OpalInputValidatorRule } from './opal-input-validator-rule';
 
 export { OpalInputValidatorRule };
 
-@ComponentConfig<OpalInputValidator>({
+@Component.Config<OpalInputValidator>({
 	elementIs: 'opal-input-validator',
 	template: '@section/inner { rt-content/content }'
 })

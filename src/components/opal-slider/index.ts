@@ -1,9 +1,9 @@
 import { computed, observable } from 'cellx-decorators';
-import { Component, ComponentConfig } from 'rionite';
+import { Component } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
-@ComponentConfig<OpalSlider>({
+@Component.Config<OpalSlider>({
 	elementIs: 'opal-slider',
 
 	input: {

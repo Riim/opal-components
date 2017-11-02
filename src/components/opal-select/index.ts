@@ -9,7 +9,6 @@ import {
 import { computed, observable } from 'cellx-decorators';
 import {
 	Component,
-	ComponentConfig,
 	IComponentElement,
 	IDisposableListening,
 	RtIfThen,
@@ -44,7 +43,7 @@ let defaultDataListItemSchema = Object.freeze({
 });
 let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled: 'disabled' });
 
-@ComponentConfig<OpalSelect>({
+@Component.Config<OpalSelect>({
 	elementIs: 'opal-select',
 
 	input: {
@@ -99,8 +98,6 @@ let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled
 	}
 })
 export class OpalSelect extends Component {
-	static OpalSelectOption = OpalSelectOption;
-
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 

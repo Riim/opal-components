@@ -1,9 +1,9 @@
-import { Component, ComponentConfig } from 'rionite';
+import { Component } from 'rionite';
 import { OpalPopover } from '../../opal-popover';
 import './index.css';
 import template from './template.nelm';
 
-@ComponentConfig({
+@Component.Config({
 	elementIs: 'opal-input-validator-rule',
 
 	input: {

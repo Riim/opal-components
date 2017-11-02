@@ -16,7 +16,6 @@ export declare type TViewModel = ObservableList<{
     [name: string]: any;
 }>;
 export declare class OpalTreeList extends Component {
-    static OpalTreeListItem: typeof OpalTreeListItem;
     static defaultDataTreeListItemSchema: Readonly<{
         value: string;
         text: string;

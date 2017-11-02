@@ -1,5 +1,5 @@
 import { ObservableList } from 'cellx';
-import { Component, ComponentConfig, formatters } from 'rionite';
+import { Component, formatters } from 'rionite';
 import '../../src/focusHighlightController';
 import '../../src/index';
 import { ObservableTreeList } from '../../src/ObservableTreeList';
@@ -10,7 +10,7 @@ formatters.log = (msg: any): any => {
 	return msg;
 };
 
-@ComponentConfig({
+@Component.Config({
 	elementIs: 'opal-components-docs',
 	template
 })

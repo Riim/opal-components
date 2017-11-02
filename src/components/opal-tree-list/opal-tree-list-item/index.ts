@@ -1,13 +1,13 @@
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { Component, ComponentConfig } from 'rionite';
+import { Component } from 'rionite';
 import _getListItemContext from '../_getListItemContext';
 import { OpalButton } from '../../opal-button';
 import { IDataTreeListItem, TDataTreeList, TViewModel } from '../index';
 import './index.css';
 import template from './template.nelm';
 
-@ComponentConfig<OpalTreeListItem>({
+@Component.Config<OpalTreeListItem>({
 	elementIs: 'opal-tree-list-item',
 
 	input: {

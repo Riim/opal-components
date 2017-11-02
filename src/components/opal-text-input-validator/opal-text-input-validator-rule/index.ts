@@ -1,7 +1,6 @@
-import { ComponentConfig } from 'rionite';
 import { OpalInputValidatorRule } from '../../opal-input-validator';
 
-@ComponentConfig({
+@OpalInputValidatorRule.Config({
 	elementIs: 'opal-text-input-validator-rule',
 
 	input: {

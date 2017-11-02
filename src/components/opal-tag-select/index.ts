@@ -6,7 +6,7 @@ import {
 	ObservableList
 	} from 'cellx';
 import { computed, observable } from 'cellx-decorators';
-import { Component, ComponentConfig } from 'rionite';
+import { Component } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
 import {
 	IDataListItem,
@@ -20,7 +20,7 @@ import template from './template.nelm';
 let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 
-@ComponentConfig<OpalTagSelect>({
+@Component.Config<OpalTagSelect>({
 	elementIs: 'opal-tag-select',
 
 	input: {

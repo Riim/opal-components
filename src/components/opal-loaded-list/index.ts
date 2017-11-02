@@ -3,12 +3,7 @@ import { mixin } from '@riim/mixin';
 import { nextTick } from '@riim/next-tick';
 import { Cell, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
-import {
-	Component,
-	ComponentConfig,
-	IDisposableCallback,
-	IDisposableTimeout
-	} from 'rionite';
+import { Component, IDisposableCallback, IDisposableTimeout } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
@@ -30,7 +25,7 @@ export interface IDataProvider {
 
 let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 
-@ComponentConfig<OpalLoadedList>({
+@Component.Config<OpalLoadedList>({
 	elementIs: 'opal-loaded-list',
 
 	input: {

@@ -1,24 +1,20 @@
 import { IEvent } from 'cellx';
-import { Component, ComponentConfig, IComponentElement } from 'rionite';
+import { Component, IComponentElement } from 'rionite';
 import './index.css';
-import { OpalTabList } from './opal-tab-list';
-import { OpalTab } from './opal-tab-list/opal-tab';
+import { OpalTab, OpalTabList } from './opal-tab-list';
 import { OpalTabPanel } from './opal-tab-panel';
 import template from './template.nelm';
 
-export { OpalTabList, OpalTab, OpalTabPanel };
+export { OpalTab, OpalTabList, OpalTabPanel };
 
 let indexOf = Array.prototype.indexOf;
 let forEach = Array.prototype.forEach;
 
-@ComponentConfig({
+@Component.Config({
 	elementIs: 'opal-tabs',
 	template
 })
 export class OpalTabs extends Component {
-	static OpalTabList = OpalTabList;
-	static OpalTabPanel = OpalTabPanel;
-
 	tabs: NodeListOf<IComponentElement>;
 	tabPanels: NodeListOf<IComponentElement>;
 

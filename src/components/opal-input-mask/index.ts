@@ -1,6 +1,6 @@
 import { nextTick } from '@riim/next-tick';
 import { computed } from 'cellx-decorators';
-import { Component, ComponentConfig, IComponentElement } from 'rionite';
+import { Component, IComponentElement } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
 import { OpalInputMaskDefinition } from './opal-input-mask-definition';
 
@@ -11,7 +11,7 @@ let forEach = Array.prototype.forEach;
 let iPhone = /iphone/i.test(navigator.userAgent);
 let ie11 = !(window as any).ActiveXObject && 'ActiveXObject' in window;
 
-@ComponentConfig({
+@Component.Config({
 	elementIs: 'opal-input-mask',
 
 	input: {
@@ -21,8 +21,6 @@ let ie11 = !(window as any).ActiveXObject && 'ActiveXObject' in window;
 	template: '@section/inner { rt-content/content }'
 })
 export class OpalInputMask extends Component {
-	static OpalInputMaskDefinition = OpalInputMaskDefinition;
-
 	static defaultDefinitions: { [chr: string]: RegExp } = {
 		__proto__: null,
 

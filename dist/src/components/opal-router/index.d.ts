@@ -17,7 +17,6 @@ export interface IComponentState {
     [name: string]: boolean | string;
 }
 export declare class OpalRouter extends Component {
-    static OpalRoute: typeof OpalRoute;
     _routes: Array<IRoute>;
     _route: IRoute | null;
     _state: IComponentState | null;

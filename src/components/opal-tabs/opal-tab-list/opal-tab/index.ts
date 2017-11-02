@@ -1,11 +1,11 @@
 import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { Component, ComponentConfig } from 'rionite';
+import { Component } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
-@ComponentConfig<OpalTab>({
+@Component.Config<OpalTab>({
 	elementIs: 'opal-tab',
 
 	input: {
