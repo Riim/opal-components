@@ -232,7 +232,7 @@ var OpalInputValidator = /** @class */ (function (_super) {
     OpalInputValidator = __decorate([
         rionite_1.Component.Config({
             elementIs: 'opal-input-validator',
-            template: '@section/inner { rt-content/content }'
+            template: '@section/inner { rt-slot/content-slot }'
         })
     ], OpalInputValidator);
     return OpalInputValidator;
@@ -2979,7 +2979,7 @@ var OpalInputMask = /** @class */ (function (_super) {
             input: {
                 mask: { type: String, required: true }
             },
-            template: '@section/inner { rt-content/content }'
+            template: '@section/inner { rt-slot/content-slot }'
         })
     ], OpalInputMask);
     return OpalInputMask;
@@ -3082,7 +3082,7 @@ var OpalGroup = /** @class */ (function (_super) {
     OpalGroup = __decorate([
         rionite_1.Component.Config({
             elementIs: 'opal-group',
-            template: '@section/inner { rt-content/content }'
+            template: '@section/inner { rt-slot/content-slot }'
         })
     ], OpalGroup);
     return OpalGroup;
@@ -5368,7 +5368,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".opal-input-validator-rule{display:block}.opal-input-validator-rule .opal-input-validator-rule__content{display:block;width:240px;text-align:center}";
+            style.textContent = ".opal-input-validator-rule{display:block}.opal-input-validator-rule .opal-input-validator-rule__content-slot{display:block;width:240px;text-align:center}";
             head.appendChild(style);
             return style;
         }
@@ -5382,7 +5382,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-popover/popover (position={input.popoverPosition}) {\nrt-content/content\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-popover/popover (position={input.popoverPosition}) {\nrt-slot/content-slot\n}\n}");
 
 /***/ }),
 /* 84 */

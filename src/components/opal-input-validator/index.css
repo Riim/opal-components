@@ -3,7 +3,9 @@
 	display: inline-block;
 	vertical-align: middle;
 
-	@el target {
-		display: block;
+	@el content-slot {
 	}
+		@el target {
+			display: block;
+		}
 }

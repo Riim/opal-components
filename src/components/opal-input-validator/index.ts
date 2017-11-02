@@ -7,7 +7,7 @@ export { OpalInputValidatorRule };
 
 @Component.Config<OpalInputValidator>({
 	elementIs: 'opal-input-validator',
-	template: '@section/inner { rt-content/content }'
+	template: '@section/inner { rt-slot/content-slot }'
 })
 export class OpalInputValidator extends Component {
 	target: Component;

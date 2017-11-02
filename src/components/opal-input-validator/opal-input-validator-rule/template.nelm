@@ -1,7 +1,7 @@
 @section/inner {
 
 opal-popover/popover (position={input.popoverPosition}) {
-	rt-content/content
+	rt-slot/content-slot
 }
 
 }

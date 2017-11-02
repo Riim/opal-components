@@ -5,6 +5,6 @@
 	white-space: nowrap;
 	font-size: 0;
 
-	@el content {
+	@el content-slot {
 	}
 }

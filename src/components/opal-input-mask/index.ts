@@ -18,7 +18,7 @@ let ie11 = !(window as any).ActiveXObject && 'ActiveXObject' in window;
 		mask: { type: String, required: true }
 	},
 
-	template: '@section/inner { rt-content/content }'
+	template: '@section/inner { rt-slot/content-slot }'
 })
 export class OpalInputMask extends Component {
 	static defaultDefinitions: { [chr: string]: RegExp } = {
