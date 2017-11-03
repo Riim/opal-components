@@ -46,15 +46,17 @@
 			background: hsl(0,0%,80%);
 		}
 	}
-		@el content {
+		@el content-slot {
 			position: relative;
 			display: block;
 			overflow: hidden;
 			text-overflow: ellipsis;
 
 			sub {
+				bottom: 0;
 				display: block;
 				font-size: .9em;
+				line-height: 1.5;
 				opacity: .5;
 			}
 		}

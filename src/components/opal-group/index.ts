@@ -1,8 +1,9 @@
 import { Component } from 'rionite';
 import './index.css';
+import template from './template.nelm';
 
 @Component.Config({
 	elementIs: 'opal-group',
-	template: '@section/inner { rt-slot/content-slot }'
+	template
 })
 export class OpalGroup extends Component {}

@@ -2,13 +2,14 @@ import { IEvent } from 'cellx';
 import { Component, IComponentElement } from 'rionite';
 import { OpalButton } from '../opal-button';
 import './index.css';
+import template from './template.nelm';
 
 let forEach = Array.prototype.forEach;
 let find = Array.prototype.find;
 
 @Component.Config<OpalSwitchMenu>({
 	elementIs: 'opal-switch-menu',
-	template: '@section/inner { rt-content/content }'
+	template
 })
 export class OpalSwitchMenu extends Component {
 	buttonElements: NodeListOf<HTMLElement>;

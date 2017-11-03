@@ -56,7 +56,7 @@
 				transition: background .1s linear, transform .1s linear;
 			}
 
-		@el content {
+		@el content-slot {
 		}
 
 	@mod checked {

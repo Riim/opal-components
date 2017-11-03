@@ -2,6 +2,7 @@ import { nextTick } from '@riim/next-tick';
 import { computed } from 'cellx-decorators';
 import { Component, IComponentElement } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
+import template from './template.nelm';
 
 export { OpalInputMaskDefinition } from './opal-input-mask-definition';
 
@@ -17,7 +18,7 @@ let ie11 = !(window as any).ActiveXObject && 'ActiveXObject' in window;
 		mask: { type: String, required: true }
 	},
 
-	template: '@section/inner { rt-slot/content-slot }'
+	template
 })
 export class OpalInputMask extends Component {
 	static defaultDefinitions: { [chr: string]: RegExp } = {

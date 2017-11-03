@@ -8,7 +8,7 @@ label/label {
 	}
 	' '
 
-	rt-content/content
+	rt-slot/content-slot
 }
 
 }

@@ -2,12 +2,13 @@ import { computed, observable } from 'cellx-decorators';
 import { Component, IComponentElement } from 'rionite';
 import './index.css';
 import { OpalInputValidatorRule } from './opal-input-validator-rule';
+import template from './template.nelm';
 
 export { OpalInputValidatorRule };
 
 @Component.Config<OpalInputValidator>({
 	elementIs: 'opal-input-validator',
-	template: '@section/inner { rt-slot/content-slot }'
+	template
 })
 export class OpalInputValidator extends Component {
 	target: Component;
