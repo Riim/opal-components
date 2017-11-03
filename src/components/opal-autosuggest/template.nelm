@@ -6,7 +6,7 @@ rt-slot (for=text-input) {
 		placeholder={constructor.i18n.textInputPlaceholder},
 		clearable
 	) {
-		svg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {
+		svg/text-input-control-icon (rt-element=control-icon, viewBox=0 0 32 32) {
 			use (xlink:href=#opal-components__icon-search)
 		}
 	}

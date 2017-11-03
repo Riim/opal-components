@@ -27,11 +27,11 @@
 		-webkit-tap-highlight-color: transparent;
 	}
 
-	@el control-icon-container {
+	@el control-icon-slot {
+		display: none;
+
 		@mod shown {
-			@el control-icon {
-				display: block;
-			}
+			display: block;
 		}
 	}
 		@el control-icon {
@@ -39,7 +39,6 @@
 			top: 0;
 			right: 12px;
 			bottom: 0;
-			display: none;
 			margin: auto;
 			width: 18px;
 			height: 18px;

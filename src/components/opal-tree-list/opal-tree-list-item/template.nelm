@@ -5,8 +5,8 @@ div/head {
 		}
 	}
 
-	span/content-wrapper {
-		rt-content/content (clone)
+	span/content-slot-wrapper {
+		rt-slot/content-slot (clone)
 	}
 }
 

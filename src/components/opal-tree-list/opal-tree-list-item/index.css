@@ -48,11 +48,11 @@
 				fill: none;
 			}
 
-		@el content-wrapper {
+		@el content-slot-wrapper {
 			display: table-cell;
 			width: 100%;
 		}
-			@el content {
+			@el content-slot {
 			}
 				@el selection-control {
 				}
