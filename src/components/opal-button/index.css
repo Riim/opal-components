@@ -83,15 +83,15 @@
 
 		/* Combinations */
 
-		.opal-group .opal-group__content > &:not(:first-child),
-		.opal-group .opal-group__content > *:not(:first-child) & {
+		.opal-group .opal-group__content-slot > &:not(:first-child),
+		.opal-group .opal-group__content-slot > *:not(:first-child) & {
 			border-top-left-radius: 0;
 			border-bottom-left-radius: 0;
 			box-shadow: inset 1px 0 rgba(0,0,0,.4);
 		}
 
-		.opal-group .opal-group__content > &:not(:last-child),
-		.opal-group .opal-group__content > *:not(:last-child) & {
+		.opal-group .opal-group__content-slot > &:not(:last-child),
+		.opal-group .opal-group__content-slot > *:not(:last-child) & {
 			border-top-right-radius: 0;
 			border-bottom-right-radius: 0;
 		}

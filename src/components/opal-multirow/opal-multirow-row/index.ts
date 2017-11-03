@@ -5,10 +5,6 @@ import template from './template.nelm';
 @Component.Config({
 	elementIs: 'opal-multirow-row',
 
-	input: {
-		preset: { default: false, readonly: true }
-	},
-
 	template,
 
 	events: {

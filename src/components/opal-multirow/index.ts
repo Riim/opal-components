@@ -31,7 +31,7 @@ export class OpalMultirow extends Component {
 	ready() {
 		let presetRowCount = (this._presetRowCount = filter.call(
 			this.element.getElementsByClassName('opal-multirow-row'),
-			(rowEl: IComponentElement): boolean => rowEl.$component.input.preset
+			(rowEl: IComponentElement): boolean => rowEl.getAttribute('rt-element') === 'preset-row'
 		).length);
 
 		if (!presetRowCount) {
@@ -49,8 +49,8 @@ export class OpalMultirow extends Component {
 	_onRemoveRowClick(evt: IEvent<OpalMultirowRow>) {
 		let row = evt.target;
 
-		if (row.input.preset) {
-			this.$<Component>('preset-rows-container')!.element.removeChild(row.element);
+		if (row.element.getAttribute('rt-element') === 'preset-row') {
+			row.element.parentNode!.removeChild(row.element);
 			this._presetRowCount--;
 		} else {
 			let key = row.parentComponent!.element.dataset.key;

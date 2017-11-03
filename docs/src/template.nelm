@@ -475,12 +475,13 @@ p {
 h1 { 'opal-multirow' }
 p {
 	opal-multirow {
-		opal-multirow-row (preset) {
+		opal-multirow-row (rt-element=preset-row) {
 			opal-text-input (value=Value, placeholder=Placeholder)
 		}
-		opal-multirow-row (preset) {
+		opal-multirow-row (rt-element=preset-row) {
 			opal-text-input (value=Value, placeholder=Placeholder, valid=no)
 		}
+
 		opal-multirow-row {
 			opal-text-input (value=Value, placeholder=Placeholder, valid)
 		}

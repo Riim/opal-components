@@ -164,19 +164,19 @@
 
 	/* Combinations */
 
-	.opal-group .opal-group__content > &:not(:first-child),
-	.opal-group .opal-group__content > *:not(:first-child) & {
+	.opal-group .opal-group__content-slot > &:not(:first-child),
+	.opal-group .opal-group__content-slot > *:not(:first-child) & {
 		margin-right: -1px;
 	}
 
-	.opal-group__content &:not(:first-child) .opal-text-input__text-field,
-	.opal-group__content *:not(:first-child) & .opal-text-input__text-field {
+	.opal-group__content-slot &:not(:first-child) .opal-text-input__text-field,
+	.opal-group__content-slot *:not(:first-child) & .opal-text-input__text-field {
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
 	}
 
-	.opal-group__content &:not(:last-child) .opal-text-input__text-field,
-	.opal-group__content *:not(:last-child) & .opal-text-input__text-field {
+	.opal-group__content-slot &:not(:last-child) .opal-text-input__text-field,
+	.opal-group__content-slot *:not(:last-child) & .opal-text-input__text-field {
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
 	}

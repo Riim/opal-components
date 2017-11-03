@@ -15,7 +15,7 @@
 				nesting-level=0,
 				has-children='{$item.children.length |gt(0) }'
 			) {
-				rt-content (clone, get-context={_getListItemContext}) {
+				rt-slot (clone-content, get-context={_getListItemContext}) {
 					opal-checkbox/selection-control (
 						checked={$selected},
 						indeterminate={$indeterminate}

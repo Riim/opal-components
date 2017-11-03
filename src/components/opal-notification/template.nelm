@@ -1,8 +1,8 @@
 @section/inner {
 
 div/bar {
-	rt-content/icon-container (select=.opal-notificaion__icon)
-	rt-content/content
+	rt-slot/icon-slot (for=icon)
+	rt-slot/content-slot
 
 	button/btn-hide (hide={input.buttonHide |not }) {
 		svg/btn-hide-icon (viewBox=0 0 32 32) {
