@@ -15,6 +15,8 @@ let filter = Array.prototype.filter;
 	template
 })
 export class OpalMultirow extends Component {
+	_presetRowClassName: string;
+
 	@observable _presetRowCount = 0;
 	@observable _newRows = new ObservableList<{ key: string }>();
 
@@ -28,10 +30,16 @@ export class OpalMultirow extends Component {
 		return this._presetRowCount + this._newRows.length != 1;
 	}
 
+	initialize() {
+		this._presetRowClassName =
+			(this.constructor as typeof Component).elementIs + '__preset-row';
+	}
+
 	ready() {
+		let presetRowClassName = this._presetRowClassName;
 		let presetRowCount = (this._presetRowCount = filter.call(
 			this.element.getElementsByClassName('opal-multirow-row'),
-			(rowEl: IComponentElement): boolean => rowEl.getAttribute('rt-element') === 'preset-row'
+			(rowEl: IComponentElement): boolean => rowEl.classList.contains(presetRowClassName)
 		).length);
 
 		if (!presetRowCount) {
@@ -49,7 +57,7 @@ export class OpalMultirow extends Component {
 	_onRemoveRowClick(evt: IEvent<OpalMultirowRow>) {
 		let row = evt.target;
 
-		if (row.element.getAttribute('rt-element') === 'preset-row') {
+		if (row.element.classList.contains(this._presetRowClassName)) {
 			row.element.parentNode!.removeChild(row.element);
 			this._presetRowCount--;
 		} else {

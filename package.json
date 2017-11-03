@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.28.42",
+  "version": "0.28.43",
   "description": "",
   "main": "dist/OpalComponents.js",
   "typings": "dist/src/index.d.ts",
@@ -29,7 +29,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sizereport": "^1.2.0",
     "gulp-uglify": "^3.0.0",
-    "postcss-color-function": "^4.0.0",
+    "postcss-color-function": "^4.0.1",
     "postcss-css-variables": "^0.8.0",
     "postcss-csso": "^3.0.0",
     "postcss-loader": "^2.0.8",
@@ -61,6 +61,6 @@
     "cellx-decorators": "^1.4.7",
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.1",
-    "rionite": "^0.28.19"
+    "rionite": "^0.28.20"
   }
 }

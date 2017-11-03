@@ -7805,8 +7805,13 @@ var OpalMultirow = /** @class */ (function (_super) {
     OpalMultirow.prototype._notSingleRow = function () {
         return this._presetRowCount + this._newRows.length != 1;
     };
+    OpalMultirow.prototype.initialize = function () {
+        this._presetRowClassName =
+            this.constructor.elementIs + '__preset-row';
+    };
     OpalMultirow.prototype.ready = function () {
-        var presetRowCount = (this._presetRowCount = filter.call(this.element.getElementsByClassName('opal-multirow-row'), function (rowEl) { return rowEl.getAttribute('rt-element') === 'preset-row'; }).length);
+        var presetRowClassName = this._presetRowClassName;
+        var presetRowCount = (this._presetRowCount = filter.call(this.element.getElementsByClassName('opal-multirow-row'), function (rowEl) { return rowEl.classList.contains(presetRowClassName); }).length);
         if (!presetRowCount) {
             this._newRows.add({ key: next_uid_1.nextUID() });
         }
@@ -7819,7 +7824,7 @@ var OpalMultirow = /** @class */ (function (_super) {
     };
     OpalMultirow.prototype._onRemoveRowClick = function (evt) {
         var row = evt.target;
-        if (row.element.getAttribute('rt-element') === 'preset-row') {
+        if (row.element.classList.contains(this._presetRowClassName)) {
             row.element.parentNode.removeChild(row.element);
             this._presetRowCount--;
         }
