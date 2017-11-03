@@ -1,6 +1,6 @@
 @section/inner {
 
-rt-content/content
+rt-slot/content-slot
 ' '
 opal-sign-button/btn-remove-row (sign=minus)
 ' '

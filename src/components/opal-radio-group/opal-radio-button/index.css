@@ -36,7 +36,7 @@
 			}
 		}
 
-		@el content {
+		@el content-slot {
 		}
 
 	@mod checked {

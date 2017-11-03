@@ -8,7 +8,7 @@
 		content: '';
 	}
 
-	@el content {
+	@el content-slot {
 		display: inline-block;
 		margin-bottom: 20px;
 		padding-right: 6px;
@@ -28,8 +28,8 @@
 	@el btn-add-row {
 	}
 
-	.opal-multirow__preset-rows-container[not-have-new-rows] &:last-child .opal-multirow-row__content,
-	.opal-multirow__new-rows rt-content:last-child & .opal-multirow-row__content {
+	.opal-multirow__preset-rows-container[not-have-new-rows] &:last-child .opal-multirow-row__content-slot,
+	.opal-multirow__new-rows rt-content:last-child & .opal-multirow-row__content-slot {
 		margin-bottom: 0;
 	}
 
