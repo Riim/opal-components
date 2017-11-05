@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.28.43",
+  "version": "0.28.45",
   "description": "",
   "main": "dist/OpalComponents.js",
   "typings": "dist/src/index.d.ts",
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/Riim/opal-components#readme",
   "devDependencies": {
-    "@riim/postcss-rionite-component": "^0.3.5",
+    "@riim/postcss-rionite-component": "^0.4.0",
     "autoprefixer": "^7.1.6",
     "awesome-typescript-loader": "^3.3.0",
     "collapse-line-breaks-loader": "^0.1.1",
@@ -61,6 +61,6 @@
     "cellx-decorators": "^1.4.7",
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.1",
-    "rionite": "^0.28.20"
+    "rionite": "^0.28.22"
   }
 }

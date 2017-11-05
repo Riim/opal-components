@@ -10,7 +10,7 @@ rt-slot/preset-rows-slot (
 
 div/new-rows (not-single-row={_notSingleRow}) {
 	@repeat (for=row of _newRows, track-by=key) {
-		rt-content/new-row-container (select='opal-multirow-row', clone, data-key={row.key})
+		rt-slot/new-row-slot (clone-content, data-key={row.key})
 	}
 }
 

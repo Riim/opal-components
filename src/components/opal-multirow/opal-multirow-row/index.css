@@ -29,14 +29,14 @@
 	}
 
 	.opal-multirow__preset-rows-slot[not-have-new-rows] &:last-child .opal-multirow-row__content-slot,
-	.opal-multirow__new-rows rt-content:last-child & .opal-multirow-row__content-slot {
+	.opal-multirow__new-rows rt-slot:last-child & .opal-multirow-row__content-slot {
 		margin-bottom: 0;
 	}
 
 	.opal-multirow__preset-rows-slot[not-single-row] & .opal-multirow-row__btn-remove-row,
 	.opal-multirow__new-rows[not-single-row] & .opal-multirow-row__btn-remove-row,
 	.opal-multirow__preset-rows-slot[not-have-new-rows] &:last-child .opal-multirow-row__btn-add-row,
-	.opal-multirow__new-rows rt-content:last-child & .opal-multirow-row__btn-add-row {
+	.opal-multirow__new-rows rt-slot:last-child & .opal-multirow-row__btn-add-row {
 		display: inline-block;
 	}
 

@@ -13,6 +13,6 @@ rt-content (select=.opal-filtered-list__query-input-container) {
 	}
 }
 
-rt-content/list-container (select=.opal-filtered-list__list)
+rt-slot/list-slot (for=list)
 
 }

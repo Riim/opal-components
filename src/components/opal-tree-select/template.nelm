@@ -1,7 +1,7 @@
 opal-modal/menu {
 	opal-filtered-list/filtered-list {
 		opal-tree-list/tree-list (
-			class=opal-filtered-list__list,
+			rt-element=list,
 			data-tree-list={dataTreeList},
 			data-tree-list-item-schema={input.dataTreeListItemSchema},
 			view-model={viewModel},

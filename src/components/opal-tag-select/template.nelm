@@ -30,7 +30,7 @@ span/control {
 		focused={input.focused}
 	) {
 		opal-sign-button/button (
-			class=opal-select__button,
+			rt-element=button,
 			sign=plus,
 			checkable,
 			tab-index={input.tabIndex},
@@ -75,7 +75,8 @@ span/control {
 							)
 
 							opal-loaded-list/menu-loaded-list (
-								class=opal-select__loaded-list opal-filtered-list__list,
+								class=opal-select__loaded-list,
+								rt-element=list,
 								data-provider={dataProvider}
 							) {
 								opal-select-option/loaded-list-select-option, select-option (

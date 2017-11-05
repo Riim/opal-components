@@ -10,7 +10,7 @@
 			width: auto;
 		}
 
-	@el list-container {
+	@el list-slot {
 	}
 		@el list {
 		}

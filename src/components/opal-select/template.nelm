@@ -1,6 +1,6 @@
 @section/inner {
 
-rt-content (select=.opal-select__button) {
+rt-slot (for=button) {
 	opal-button/button (
 		view-type={input.viewType},
 		size={input.size},
