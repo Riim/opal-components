@@ -1,14 +1,12 @@
 import { nextUID } from '@riim/next-uid';
 import { Cell, IEvent, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
-import { Component, IComponentElement } from 'rionite';
+import { Component } from 'rionite';
 import './index.css';
 import { OpalMultirowRow } from './opal-multirow-row';
 import template from './template.nelm';
 
 export { OpalMultirowRow };
-
-let filter = Array.prototype.filter;
 
 @Component.Config<OpalMultirow>({
 	elementIs: 'opal-multirow',
@@ -32,15 +30,13 @@ export class OpalMultirow extends Component {
 
 	initialize() {
 		this._presetRowClassName =
-			(this.constructor as typeof Component).elementIs + '__preset-row';
+			(this.constructor as typeof Component)._contentBlockNames[
+				(this.constructor as typeof Component)._contentBlockNames.length - 1
+			] + '__preset-row';
 	}
 
 	ready() {
-		let presetRowClassName = this._presetRowClassName;
-		let presetRowCount = (this._presetRowCount = filter.call(
-			this.element.getElementsByClassName('opal-multirow-row'),
-			(rowEl: IComponentElement): boolean => rowEl.classList.contains(presetRowClassName)
-		).length);
+		let presetRowCount = (this._presetRowCount = this.$$('preset-row').length);
 
 		if (!presetRowCount) {
 			this._newRows.add({ key: nextUID() });
@@ -55,13 +51,13 @@ export class OpalMultirow extends Component {
 	}
 
 	_onRemoveRowClick(evt: IEvent<OpalMultirowRow>) {
-		let row = evt.target;
+		let rowEl = evt.target.element;
 
-		if (row.element.classList.contains(this._presetRowClassName)) {
-			row.element.parentNode!.removeChild(row.element);
+		if (rowEl.classList.contains(this._presetRowClassName)) {
+			rowEl.parentNode!.removeChild(rowEl);
 			this._presetRowCount--;
 		} else {
-			let key = row.parentComponent!.element.dataset.key;
+			let key = evt.target.parentComponent!.element.dataset.key;
 			this._newRows.removeAt(this._newRows.findIndex(row => row.key == key));
 		}
 

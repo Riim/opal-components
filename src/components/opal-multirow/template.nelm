@@ -5,7 +5,7 @@ rt-slot/preset-rows-slot (
 	not-have-new-rows={_notHaveNewRows},
 	not-single-row={_notSingleRow}
 ) {
-	rt-slot/preset-row-slot (for=preset-row)
+	rt-slot/preset-row-slot, preset-rows (for=preset-row)
 }
 
 div/new-rows (not-single-row={_notSingleRow}) {

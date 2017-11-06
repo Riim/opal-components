@@ -7790,7 +7790,6 @@ __webpack_require__(139);
 var opal_multirow_row_1 = __webpack_require__(140);
 exports.OpalMultirowRow = opal_multirow_row_1.OpalMultirowRow;
 var template_nelm_1 = __webpack_require__(143);
-var filter = Array.prototype.filter;
 var OpalMultirow = /** @class */ (function (_super) {
     __extends(OpalMultirow, _super);
     function OpalMultirow() {
@@ -7807,11 +7806,10 @@ var OpalMultirow = /** @class */ (function (_super) {
     };
     OpalMultirow.prototype.initialize = function () {
         this._presetRowClassName =
-            this.constructor.elementIs + '__preset-row';
+            this.constructor._contentBlockNames[this.constructor._contentBlockNames.length - 1] + '__preset-row';
     };
     OpalMultirow.prototype.ready = function () {
-        var presetRowClassName = this._presetRowClassName;
-        var presetRowCount = (this._presetRowCount = filter.call(this.element.getElementsByClassName('opal-multirow-row'), function (rowEl) { return rowEl.classList.contains(presetRowClassName); }).length);
+        var presetRowCount = (this._presetRowCount = this.$$('preset-row').length);
         if (!presetRowCount) {
             this._newRows.add({ key: next_uid_1.nextUID() });
         }
@@ -7823,13 +7821,13 @@ var OpalMultirow = /** @class */ (function (_super) {
         });
     };
     OpalMultirow.prototype._onRemoveRowClick = function (evt) {
-        var row = evt.target;
-        if (row.element.classList.contains(this._presetRowClassName)) {
-            row.element.parentNode.removeChild(row.element);
+        var rowEl = evt.target.element;
+        if (rowEl.classList.contains(this._presetRowClassName)) {
+            rowEl.parentNode.removeChild(rowEl);
             this._presetRowCount--;
         }
         else {
-            var key_1 = row.parentComponent.element.dataset.key;
+            var key_1 = evt.target.parentComponent.element.dataset.key;
             this._newRows.removeAt(this._newRows.findIndex(function (row) { return row.key == key_1; }));
         }
         cellx_1.Cell.forceRelease();
@@ -7973,7 +7971,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot/preset-rows-slot (\nfor=preset-rows,\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n) {\nrt-slot/preset-row-slot (for=preset-row)\n}\ndiv/new-rows (not-single-row={_notSingleRow}) {\n@repeat (for=row of _newRows, track-by=key) {\nrt-slot/new-row-slot (clone-content, data-key={row.key})\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot/preset-rows-slot (\nfor=preset-rows,\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n) {\nrt-slot/preset-row-slot, preset-rows (for=preset-row)\n}\ndiv/new-rows (not-single-row={_notSingleRow}) {\n@repeat (for=row of _newRows, track-by=key) {\nrt-slot/new-row-slot (clone-content, data-key={row.key})\n}\n}\n}");
 
 /***/ }),
 /* 144 */
