@@ -9,7 +9,7 @@ opal-tree-select/select (
 	focused={input.focused}
 ) {
 	opal-sign-button/button (
-		rt-element=button,
+		class=opal-select__button,
 		sign=plus,
 		checkable,
 		tab-index={input.tabIndex},

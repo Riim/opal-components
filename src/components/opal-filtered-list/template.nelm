@@ -6,7 +6,7 @@ rt-content (select=.opal-filtered-list__query-input-container) {
 			placeholder={constructor.i18n.queryInputPlaceholder},
 			clearable
 		) {
-			svg/query-input-control-icon (rt-element=control-icon, viewBox=0 0 32 32) {
+			svg/query-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {
 				use (xlink:href=#opal-components__icon-search)
 			}
 		}
