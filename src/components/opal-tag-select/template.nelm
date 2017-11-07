@@ -66,9 +66,9 @@ span/control {
 						opal-filtered-list/menu-filtered-list (
 							class=opal-select__menu-content opal-select__filtered-list
 						) {
-							rt-content (
-								class=opal-filtered-list__query-input-container,
-								select=.opal-filtered-list__query-input
+							rt-slot (
+								class=opal-filtered-list__query-input-slot,
+								for=opal-filtered-list__query-input
 							)
 
 							opal-loaded-list/menu-loaded-list (

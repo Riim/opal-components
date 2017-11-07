@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.28.50",
+  "version": "0.28.51",
   "description": "",
   "main": "dist/OpalComponents.js",
   "typings": "dist/src/index.d.ts",
@@ -61,6 +61,6 @@
     "cellx-decorators": "^1.4.7",
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.1",
-    "rionite": "^0.28.26"
+    "rionite": "^0.28.27"
   }
 }

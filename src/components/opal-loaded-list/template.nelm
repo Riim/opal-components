@@ -2,7 +2,7 @@
 
 div/list {
 	@repeat (for=$item of dataList) {
-		rt-slot/list-item-slot (clone-content, get-context={_getListItemContext}) {
+		rt-slot/list-items (clone-content, get-context={_getListItemContext}) {
 			'{$item |key(_dataListItemTextFieldName) }'
 		}
 	}

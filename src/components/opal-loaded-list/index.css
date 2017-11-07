@@ -7,7 +7,7 @@
 
 	@el list {
 	}
-		@el list-item-slot {
+		@el list-items {
 			display: block;
 		}
 

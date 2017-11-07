@@ -1,7 +1,7 @@
 @section/inner {
 
-rt-content (select=.opal-filtered-list__query-input-container) {
-	rt-content/query-input-container (select=.opal-filtered-list__query-input) {
+rt-slot (for=query-input-slot) {
+	rt-slot/query-input-slot (for=query-input) {
 		opal-text-input/query-input (
 			placeholder={constructor.i18n.queryInputPlaceholder},
 			clearable
