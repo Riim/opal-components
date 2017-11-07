@@ -40,7 +40,7 @@
 	}
 		@el menu-content {
 		}
-			@el new-item-input-container {
+			@el new-item-input-slot {
 			}
 				@el new-item-input {
 					display: block;

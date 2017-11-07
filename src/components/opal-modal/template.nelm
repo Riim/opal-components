@@ -6,7 +6,9 @@ div/window {
 	}
 
 	@if-then (if=isContentRendered) {
-		rt-content/content
+		@section/content {
+			rt-slot/content-slot
+		}
 	}
 }
 

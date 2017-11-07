@@ -98,7 +98,7 @@
 				}
 			}
 
-		@el content {
+		@el content-slot {
 			position: relative;
 			display: block;
 		}

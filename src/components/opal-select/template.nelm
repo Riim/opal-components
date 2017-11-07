@@ -36,7 +36,7 @@ rt-content (select=.opal-select__menu-container) {
 								)
 							}
 
-							rt-content/new-item-input-container // ...
+							rt-slot/new-item-input-slot // ...
 						}
 						@if-else (if=dataList) {
 							opal-loader/menu-loader (shown)
@@ -46,7 +46,7 @@ rt-content (select=.opal-select__menu-container) {
 				@if-else (if=_isInputDataListSpecified) {
 					div/, menu-content {
 						rt-content/options (select=opal-select-option)
-						rt-content/new-item-input-container (select=.opal-select__new-item-input)
+						rt-slot/new-item-input-slot (for=new-item-input)
 					}
 				}
 			}
