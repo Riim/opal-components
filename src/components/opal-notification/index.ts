@@ -12,7 +12,7 @@ function initContainer(notification: OpalNotification): HTMLElement {
 	if (!container) {
 		container = document.createElement('div');
 		container.className =
-			(notification.constructor as typeof Component)._contentBlockNames.join('__container ') +
+			(notification.constructor as typeof Component)._elementBlockNames.join('__container ') +
 			'__container';
 
 		document.body.appendChild(container);

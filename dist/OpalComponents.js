@@ -5176,7 +5176,7 @@ function initContainer(notification) {
     if (!container) {
         container = document.createElement('div');
         container.className =
-            notification.constructor._contentBlockNames.join('__container ') +
+            notification.constructor._elementBlockNames.join('__container ') +
                 '__container';
         document.body.appendChild(container);
     }
@@ -6920,7 +6920,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={input.opened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-chevron-bottom)\n}\n}\nspan/content-slot-wrapper {\nrt-slot/content-slot (clone)\n}\n}\n@if-then (if=dataTreeListItem.children.length) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item/item (\ndata-tree-list={input.dataTreeList},\nfiltered-data-tree-list={input.filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{input.indexpath},{$index}]',\nquery={input.query},\nopened={input.query},\nnesting-level={input.indexpath.length},\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext})\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={input.opened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-chevron-bottom)\n}\n}\nspan/content-slot-wrapper {\nrt-slot/content-slot (clone-content)\n}\n}\n@if-then (if=dataTreeListItem.children.length) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item/item (\ndata-tree-list={input.dataTreeList},\nfiltered-data-tree-list={input.filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{input.indexpath},{$index}]',\nquery={input.query},\nopened={input.query},\nnesting-level={input.indexpath.length},\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext})\n}\n}\n}\n}");
 
 /***/ }),
 /* 120 */
@@ -7805,8 +7805,8 @@ var OpalMultirow = /** @class */ (function (_super) {
         return this._presetRowCount + this._newRows.length != 1;
     };
     OpalMultirow.prototype.initialize = function () {
-        this._presetRowClassName =
-            this.constructor._contentBlockNames[this.constructor._contentBlockNames.length - 1] + '__preset-row';
+        var elementBlockNames = this.constructor._elementBlockNames;
+        this._presetRowClassName = elementBlockNames[elementBlockNames.length - 1] + '__preset-row';
     };
     OpalMultirow.prototype.ready = function () {
         var presetRowCount = (this._presetRowCount = this.$$('preset-row').length);

@@ -6,7 +6,7 @@ div/head {
 	}
 
 	span/content-slot-wrapper {
-		rt-slot/content-slot (clone)
+		rt-slot/content-slot (clone-content)
 	}
 }
 

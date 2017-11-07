@@ -29,10 +29,8 @@ export class OpalMultirow extends Component {
 	}
 
 	initialize() {
-		this._presetRowClassName =
-			(this.constructor as typeof Component)._contentBlockNames[
-				(this.constructor as typeof Component)._contentBlockNames.length - 1
-			] + '__preset-row';
+		let elementBlockNames = (this.constructor as typeof Component)._elementBlockNames;
+		this._presetRowClassName = elementBlockNames[elementBlockNames.length - 1] + '__preset-row';
 	}
 
 	ready() {
