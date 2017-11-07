@@ -37,7 +37,7 @@ span/control {
 			disabled={input.disabled}
 		)
 
-		rt-content (class=opal-select__menu-container, select=.opal-select__menu) {
+		rt-slot (class=opal-select__menu-slot, for=opal-select__menu) {
 			opal-popover/menu (
 				class=opal-select__menu,
 				position={input.popoverPosition},

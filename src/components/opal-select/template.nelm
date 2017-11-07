@@ -21,10 +21,10 @@ rt-slot (for=button) {
 	}
 }
 
-rt-content (select=.opal-select__menu-container) {
-	rt-content/menu-container (select=.opal-select__menu) {
+rt-slot (for=menu-slot) {
+	rt-slot/menu-slot (for=menu) {
 		opal-dropdown/menu (auto-closing) {
-			rt-content (select=.opal-select__menu-content) {
+			rt-slot (for=menu-content) {
 				@if-then (if=_isInputDataListSpecified) {
 					div/, menu-content {
 						@if-then (if=dataList) {
@@ -45,7 +45,7 @@ rt-content (select=.opal-select__menu-container) {
 				}
 				@if-else (if=_isInputDataListSpecified) {
 					div/, menu-content {
-						rt-content/options (select=opal-select-option)
+						rt-slot/options (for-tag=opal-select-option)
 						rt-slot/new-item-input-slot (for=new-item-input)
 					}
 				}

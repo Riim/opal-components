@@ -68,7 +68,7 @@ let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled
 	template,
 
 	events: {
-		'menu-container': {
+		'menu-slot': {
 			loaded(evt) {
 				if (this._onсeFocusedAfterLoading || evt.target !== this.$('loaded-list')) {
 					return;
