@@ -1,9 +1,9 @@
 @component opal-sign-button {
-	position: relative;
 	display: inline-block;
 	line-height: 0;
 
 	@el control {
+		position: relative;
 		padding: 0;
 		border: 0;
 		background: transparent;
@@ -30,9 +30,7 @@
 		}
 
 		&:active {
-			@el sign {
-				top: 0;
-			}
+			top: 1px;
 		}
 	}
 		@el sign {
@@ -46,7 +44,7 @@
 			border: 2px solid;
 			border-radius: 50%;
 			vertical-align: middle;
-			transition: background .1s linear;
+			transition: border-color .1s linear;
 
 			&::before,
 			&::after {
@@ -119,8 +117,8 @@
 	}
 
 	@mod checked {
-		@el sign {
-			top: 0;
+		@el control {
+			top: 1px;
 		}
 	}
 
