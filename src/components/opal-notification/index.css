@@ -48,6 +48,9 @@
 				bottom: 0;
 				left: 16px;
 				margin: auto;
+			}
+			.opal-notification__container svg.opal-notification__icon {
+				display: block;
 				width: 18px;
 				height: 18px;
 				stroke-width: 3px;
