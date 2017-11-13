@@ -147,9 +147,10 @@ export class OpalModal extends Component {
 			}
 		}
 
-		this.isContentRendered = true;
-
 		openedModals.unshift(this);
+
+		this.isContentRendered = true;
+		Cell.forceRelease();
 
 		this.focus();
 	}

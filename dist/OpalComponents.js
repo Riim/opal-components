@@ -5063,8 +5063,9 @@ var OpalModal = /** @class */ (function (_super) {
                 body.style.marginRight = body.offsetWidth - initialBodyWidth + 'px';
             }
         }
-        this.isContentRendered = true;
         openedModals.unshift(this);
+        this.isContentRendered = true;
+        cellx_1.Cell.forceRelease();
         this.focus();
     };
     OpalModal.prototype._close = function () {
