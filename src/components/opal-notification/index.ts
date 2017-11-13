@@ -24,7 +24,7 @@ function initContainer(notification: OpalNotification): HTMLElement {
 @Component.Config({
 	elementIs: 'opal-notification',
 
-	input: {
+	inputs: {
 		viewType: 'default',
 		iconSize: 'm',
 		buttonHide: true,
@@ -46,14 +46,14 @@ export class OpalNotification extends Component {
 
 		let bar = (this.bar = this.$<HTMLElement>('bar', this)!);
 		this.element.removeChild(bar);
-		bar.setAttribute('view-type', this.input.viewType);
-		bar.setAttribute('icon-size', this.input.iconSize);
-		bar.setAttribute('button-hide', this.input.buttonHide);
+		bar.setAttribute('view-type', this.inputs.viewType);
+		bar.setAttribute('icon-size', this.inputs.iconSize);
+		bar.setAttribute('button-hide', this.inputs.buttonHide);
 		if (this.$('icon')) {
 			bar.setAttribute('has-icon', '');
 		}
 
-		if (this.input.shown) {
+		if (this.inputs.shown) {
 			this._show();
 		}
 	}
@@ -82,22 +82,22 @@ export class OpalNotification extends Component {
 	}
 
 	show(): boolean {
-		if (this.input.shown) {
+		if (this.inputs.shown) {
 			return false;
 		}
 
-		this.input.shown = true;
+		this.inputs.shown = true;
 		Cell.forceRelease();
 
 		return true;
 	}
 
 	hide(): boolean {
-		if (!this.input.shown) {
+		if (!this.inputs.shown) {
 			return false;
 		}
 
-		this.input.shown = false;
+		this.inputs.shown = false;
 		Cell.forceRelease();
 
 		return true;
@@ -125,10 +125,10 @@ export class OpalNotification extends Component {
 		setTimeout(() => {
 			this.bar.setAttribute('shown', '');
 
-			if (this.input.timeout) {
+			if (this.inputs.timeout) {
 				setTimeout(() => {
 					this.hide();
-				}, this.input.timeout);
+				}, this.inputs.timeout);
 			}
 		}, 100);
 	}

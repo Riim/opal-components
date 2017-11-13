@@ -14,7 +14,7 @@ let ie11 = !(window as any).ActiveXObject && 'ActiveXObject' in window;
 @Component.Config({
 	elementIs: 'opal-input-mask',
 
-	input: {
+	inputs: {
 		mask: { type: String, required: true }
 	},
 
@@ -33,12 +33,12 @@ export class OpalInputMask extends Component {
 
 	@computed
 	get _mask(): Array<string> {
-		return (this.input.mask as string).split('').filter((chr: string) => chr != '?');
+		return (this.inputs.mask as string).split('').filter((chr: string) => chr != '?');
 	}
 
 	@computed
 	get _partialIndex(): number {
-		let mask = this.input.mask as string;
+		let mask = this.inputs.mask as string;
 		let index = mask.indexOf('?');
 		return index == -1 ? mask.length : index;
 	}
@@ -73,8 +73,8 @@ export class OpalInputMask extends Component {
 		forEach.call(
 			this.element.querySelectorAll('opal-input-mask-definition'),
 			(inputMaskDefinition: IComponentElement) => {
-				let input = inputMaskDefinition.$component.input;
-				definitions[input.maskChar] = input.regex;
+				let inputs = inputMaskDefinition.$component.inputs;
+				definitions[inputs.maskChar] = inputs.regex;
 			}
 		);
 

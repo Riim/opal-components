@@ -28,7 +28,7 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 @Component.Config<OpalLoadedList>({
 	elementIs: 'opal-loaded-list',
 
-	input: {
+	inputs: {
 		dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		dataProvider: { type: Object, readonly: true },
 		count: 100,
@@ -77,17 +77,17 @@ export class OpalLoadedList extends Component {
 	}
 
 	initialize() {
-		let input = this.input;
+		let inputs = this.inputs;
 
 		this._dataListItemTextFieldName =
-			input.dataListItemSchema.text ||
+			inputs.dataListItemSchema.text ||
 			(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema.text;
 
-		if (!input.$specified.has('dataProvider')) {
+		if (!inputs.$specified.has('dataProvider')) {
 			throw new TypeError('Input property "dataProvider" is required');
 		}
 
-		let dataProvider = input.dataProvider;
+		let dataProvider = inputs.dataProvider;
 
 		if (!dataProvider) {
 			throw new TypeError('"dataProvider" is not defined');
@@ -100,7 +100,7 @@ export class OpalLoadedList extends Component {
 		this.listenTo(this, 'input-query-change', this._onInputQueryChange);
 		this.listenTo(this.element, 'scroll', this._onElementScroll);
 
-		if (this.input.preloading) {
+		if (this.inputs.preloading) {
 			this._load();
 		} else {
 			this.checkLoading();
@@ -150,7 +150,7 @@ export class OpalLoadedList extends Component {
 
 	checkLoading() {
 		if (
-			this.input.query === this._lastRequestedQuery &&
+			this.inputs.query === this._lastRequestedQuery &&
 			(this.loading || (this.total !== undefined && this.dataList.length == this.total))
 		) {
 			return;
@@ -171,17 +171,17 @@ export class OpalLoadedList extends Component {
 			this._requestCallback.cancel();
 		}
 
-		let input = this.input;
+		let inputs = this.inputs;
 		let infinite = this.dataProvider.getItems.length >= 2;
-		let query: string | null = (this._lastRequestedQuery = input.query);
+		let query: string | null = (this._lastRequestedQuery = inputs.query);
 		let args = [query];
 
 		if (infinite) {
 			args.unshift(
-				input.count,
+				inputs.count,
 				this.dataList.length
 					? this.dataList.get(-1)![
-							input.dataListItemSchema.value ||
+							inputs.dataListItemSchema.value ||
 								(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema
 									.value
 						]
@@ -224,6 +224,6 @@ export class OpalLoadedList extends Component {
 		context: { [name: string]: any },
 		content: Component
 	): { [name: string]: any } {
-		return mixin(Object.create(context), content.input.$context, ['$component']);
+		return mixin(Object.create(context), content.inputs.$context, ['$component']);
 	}
 }

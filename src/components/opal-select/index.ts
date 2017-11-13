@@ -46,7 +46,7 @@ let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled
 @Component.Config<OpalSelect>({
 	elementIs: 'opal-select',
 
-	input: {
+	inputs: {
 		viewType: String,
 		size: 'm',
 		multiple: { default: false, readonly: true },
@@ -125,10 +125,10 @@ export class OpalSelect extends Component {
 			.join(', ');
 
 		if (!text) {
-			return this.input.placeholder;
+			return this.inputs.placeholder;
 		}
 
-		if (text.length > this.input.maxTextLength) {
+		if (text.length > this.inputs.maxTextLength) {
 			text = getText.nt('Выбран{n:|о|о} {n}', this.viewModel.length);
 		}
 
@@ -158,27 +158,27 @@ export class OpalSelect extends Component {
 	_documentKeyDownListening: IDisposableListening | null | undefined;
 
 	initialize() {
-		let input = this.input;
+		let inputs = this.inputs;
 
-		if (input.dataListKeypath) {
+		if (inputs.dataListKeypath) {
 			define(
 				this,
 				'dataList',
-				new Cell(Function(`return this.${input.dataListKeypath};`), {
+				new Cell(Function(`return this.${inputs.dataListKeypath};`), {
 					context: this.ownerComponent || window
 				})
 			);
 
 			this._isInputDataListSpecified = true;
-		} else if (input.$specified.has('dataList')) {
-			define(this, 'dataList', () => input.dataList);
+		} else if (inputs.$specified.has('dataList')) {
+			define(this, 'dataList', () => inputs.dataList);
 			this._isInputDataListSpecified = true;
 		} else {
 			this.dataList = null;
 			this._isInputDataListSpecified = false;
 		}
 
-		let dataListItemSchema = input.dataListItemSchema;
+		let dataListItemSchema = inputs.dataListItemSchema;
 		let defaultDataListItemSchema = (this.constructor as typeof OpalSelect)
 			.defaultDataListItemSchema;
 
@@ -188,9 +188,9 @@ export class OpalSelect extends Component {
 		this._dataListItemDisabledFieldName =
 			dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 
-		this.viewModel = input.viewModel || new ObservableList();
+		this.viewModel = inputs.viewModel || new ObservableList();
 
-		let vmItemSchema = input.viewModelItemSchema;
+		let vmItemSchema = inputs.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalSelect)
 			.defaultViewModelItemSchema;
 
@@ -199,7 +199,7 @@ export class OpalSelect extends Component {
 		this._viewModelItemDisabledFieldName =
 			vmItemSchema.disabled || defaultVMItemSchema.disabled;
 
-		this._addNewItem = input.addNewItem;
+		this._addNewItem = inputs.addNewItem;
 	}
 
 	ready() {
@@ -207,7 +207,7 @@ export class OpalSelect extends Component {
 			'opal-select-option'
 		) as NodeListOf<IComponentElement>;
 
-		if (this.input.viewModel && !this.input.value) {
+		if (this.inputs.viewModel && !this.inputs.value) {
 			this._needOptionsUpdating = true;
 		} else {
 			this._notUpdateOptions = true;
@@ -218,19 +218,19 @@ export class OpalSelect extends Component {
 	}
 
 	_initViewModel() {
-		let value = this.input.value;
+		let value = this.inputs.value;
 		let selectedOptions: Array<OpalSelectOption> | undefined;
 
 		if (value) {
 			if (!Array.isArray(value)) {
-				throw new TypeError('Input "value" must be an array');
+				throw new TypeError('Input property "value" must be an array');
 			}
 
 			this._notUpdateOptions = true;
 			this.viewModel.clear();
 
 			if (value.length) {
-				if (this.input.multiple) {
+				if (this.inputs.multiple) {
 					selectedOptions = this.options.filter(
 						option => value.indexOf(option.value) != -1
 					);
@@ -244,7 +244,7 @@ export class OpalSelect extends Component {
 					}
 				}
 			}
-		} else if (this.input.multiple) {
+		} else if (this.inputs.multiple) {
 			selectedOptions = this.options.filter(option => option.selected);
 		} else {
 			let selectedOption = this.options.find(option => option.selected);
@@ -272,7 +272,7 @@ export class OpalSelect extends Component {
 	}
 
 	elementAttached() {
-		if (this.input.focused) {
+		if (this.inputs.focused) {
 			this._documentKeyDownListening = this.listenTo(
 				document,
 				'keydown',
@@ -310,11 +310,11 @@ export class OpalSelect extends Component {
 
 		if (value) {
 			if (!Array.isArray(value)) {
-				throw new TypeError('Input "value" must be an array');
+				throw new TypeError('Input property "value" must be an array');
 			}
 
 			if (value.length) {
-				let multiple = this.input.multiple;
+				let multiple = this.inputs.multiple;
 
 				if (
 					multiple ||
@@ -420,11 +420,11 @@ export class OpalSelect extends Component {
 	}
 
 	_onButtonFocus() {
-		this.input.focused = true;
+		this.inputs.focused = true;
 	}
 
 	_onButtonBlur() {
-		this.input.focused = false;
+		this.inputs.focused = false;
 	}
 
 	_onButtonClick(evt: IEvent<OpalButton>) {
@@ -450,7 +450,7 @@ export class OpalSelect extends Component {
 			[this._viewModelItemTextFieldName]: evt.target.text
 		};
 
-		if (this.input.multiple) {
+		if (this.inputs.multiple) {
 			this._notUpdateOptions = true;
 			vm.add(vmItem);
 			this._notUpdateOptions = false;
@@ -474,7 +474,7 @@ export class OpalSelect extends Component {
 	}
 
 	_onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>): false {
-		if (this.input.multiple) {
+		if (this.inputs.multiple) {
 			let value = evt.target.value;
 			this._notUpdateOptions = true;
 			this.viewModel.removeAt(this.viewModel.findIndex(item => item.value == value));
@@ -505,13 +505,13 @@ export class OpalSelect extends Component {
 		let text = textInput.value!;
 
 		textInput.clear();
-		textInput.input.loading = true;
-		textInput.input.disabled = true;
+		textInput.inputs.loading = true;
+		textInput.inputs.disabled = true;
 
 		this._addNewItem(text).then(
 			(newItem: { [name: string]: string }) => {
-				textInput.input.loading = false;
-				textInput.input.disabled = false;
+				textInput.inputs.loading = false;
+				textInput.inputs.disabled = false;
 
 				let value = newItem[this._viewModelItemValueFieldName];
 				let text = newItem[this._viewModelItemTextFieldName];
@@ -526,7 +526,7 @@ export class OpalSelect extends Component {
 				let loadedList = this.$<OpalLoadedList>('loaded-list');
 
 				if (loadedList) {
-					loadedList.input.query = '';
+					loadedList.inputs.query = '';
 				}
 
 				let vm = this.viewModel;
@@ -535,7 +535,7 @@ export class OpalSelect extends Component {
 					[this._viewModelItemTextFieldName]: text
 				};
 
-				if (this.input.multiple) {
+				if (this.inputs.multiple) {
 					vm.add(vmItem);
 					this.emit('input');
 				} else {
@@ -553,8 +553,8 @@ export class OpalSelect extends Component {
 				}
 			},
 			() => {
-				textInput.input.loading = false;
-				textInput.input.disabled = false;
+				textInput.inputs.loading = false;
+				textInput.inputs.disabled = false;
 			}
 		);
 
@@ -643,7 +643,7 @@ export class OpalSelect extends Component {
 
 		this._documentFocusListening.stop();
 
-		if (!this.input.focused) {
+		if (!this.inputs.focused) {
 			this._documentKeyDownListening!.stop();
 			this._documentKeyDownListening = null;
 		}
@@ -651,7 +651,7 @@ export class OpalSelect extends Component {
 		this.$<OpalButton>('button')!.uncheck();
 		this.$<OpalDropdown>('menu')!.close();
 
-		if (this.input.multiple) {
+		if (this.inputs.multiple) {
 			if (
 				!isEqualArray(
 					this.viewModel.map((item): string => item[this._viewModelItemValueFieldName]),
@@ -686,7 +686,7 @@ export class OpalSelect extends Component {
 		switch (evt.which) {
 			case 32 /* Space */: {
 				if (this._opened) {
-					if (this.input.focused) {
+					if (this.inputs.focused) {
 						evt.preventDefault();
 						this.close();
 					}
@@ -709,11 +709,11 @@ export class OpalSelect extends Component {
 						let options = this.options;
 
 						for (let i = 1, l = options.length; i < l; i++) {
-							if (options[i].input.focused) {
+							if (options[i].inputs.focused) {
 								do {
 									let option = options[--i];
 
-									if (!option.input.disabled && option.element.offsetWidth) {
+									if (!option.inputs.disabled && option.element.offsetWidth) {
 										document.body.classList.remove('_no-focus-highlight');
 										option.focus();
 										break;
@@ -742,11 +742,11 @@ export class OpalSelect extends Component {
 						let options = this.options;
 
 						for (let i = 0, l = options.length - 1; i < l; i++) {
-							if (options[i].input.focused) {
+							if (options[i].inputs.focused) {
 								do {
 									let option = options[++i];
 
-									if (!option.input.disabled && option.element.offsetWidth) {
+									if (!option.inputs.disabled && option.element.offsetWidth) {
 										document.body.classList.remove('_no-focus-highlight');
 										option.focus();
 										break;
@@ -797,7 +797,7 @@ export class OpalSelect extends Component {
 		for (let i = 0, l = options.length; i < l; i++) {
 			let option = options[i];
 
-			if (!option.input.disabled) {
+			if (!option.inputs.disabled) {
 				if (option.selected) {
 					optionForFocus = option;
 					break;

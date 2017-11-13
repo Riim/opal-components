@@ -17,7 +17,7 @@ function pad(num: number): string {
 @Component.Config<OpalDateInput>({
 	elementIs: 'opal-date-input',
 
-	input: {
+	inputs: {
 		fromDate: String,
 		toDate: String,
 		value: String,

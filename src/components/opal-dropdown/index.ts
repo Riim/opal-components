@@ -9,7 +9,7 @@ let openedDropdowns: Array<OpalDropdown> = [];
 @Component.Config({
 	elementIs: 'opal-dropdown',
 
-	input: {
+	inputs: {
 		autoHeight: true,
 		autoClosing: false,
 		opened: false
@@ -23,7 +23,7 @@ export class OpalDropdown extends Component {
 	_documentClickListening: IDisposableListening | undefined;
 
 	ready() {
-		if (this.input.opened) {
+		if (this.inputs.opened) {
 			this._open();
 		}
 	}
@@ -46,22 +46,22 @@ export class OpalDropdown extends Component {
 	}
 
 	open(): boolean {
-		if (this.input.opened) {
+		if (this.inputs.opened) {
 			return false;
 		}
 
-		this.input.opened = true;
+		this.inputs.opened = true;
 		Cell.forceRelease();
 
 		return true;
 	}
 
 	close(): boolean {
-		if (!this.input.opened) {
+		if (!this.inputs.opened) {
 			return false;
 		}
 
-		this.input.opened = false;
+		this.inputs.opened = false;
 		Cell.forceRelease();
 
 		return true;
@@ -119,7 +119,7 @@ export class OpalDropdown extends Component {
 				containerClientRect.top -
 				(document.documentElement.clientHeight - containerClientRect.bottom);
 
-			if (this.input.autoHeight) {
+			if (this.inputs.autoHeight) {
 				if (diff > 0) {
 					elStyle.top = 'auto';
 					elStyle.bottom = '100%';
@@ -138,9 +138,9 @@ export class OpalDropdown extends Component {
 			}
 		}
 
-		if (this.input.autoClosing) {
+		if (this.inputs.autoClosing) {
 			setTimeout(() => {
-				if (this.input.opened) {
+				if (this.inputs.opened) {
 					this._documentClickListening = this.listenTo(
 						document,
 						'click',

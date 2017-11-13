@@ -8,7 +8,7 @@ import template from './template.nelm';
 @Component.Config<OpalTab>({
 	elementIs: 'opal-tab',
 
-	input: {
+	inputs: {
 		selected: false,
 		tabIndex: 0,
 		focused: false,
@@ -20,7 +20,7 @@ import template from './template.nelm';
 export class OpalTab extends Component {
 	@computed
 	get _tabIndex(): number {
-		return this.input.disabled ? -1 : this.input.tabIndex;
+		return this.inputs.disabled ? -1 : this.inputs.tabIndex;
 	}
 
 	elementAttached() {
@@ -34,7 +34,7 @@ export class OpalTab extends Component {
 	}
 
 	ready() {
-		if (this.input.focused) {
+		if (this.inputs.focused) {
 			this.focus();
 		}
 	}
@@ -50,19 +50,19 @@ export class OpalTab extends Component {
 	_onControlFocus(evt: Event) {
 		nextTick(() => {
 			if (document.activeElement == evt.target) {
-				this.input.focused = true;
+				this.inputs.focused = true;
 			}
 		});
 	}
 
 	_onControlBlur() {
-		this.input.focused = false;
+		this.inputs.focused = false;
 	}
 
 	_onControlClick(evt: Event) {
 		evt.preventDefault();
 
-		if (!this.input.disabled) {
+		if (!this.inputs.disabled) {
 			this.click();
 		}
 	}
@@ -73,15 +73,15 @@ export class OpalTab extends Component {
 	}
 
 	get selected(): boolean {
-		return this.input.selected;
+		return this.inputs.selected;
 	}
 	set selected(selected: boolean) {
-		this.input.selected = selected;
+		this.inputs.selected = selected;
 	}
 
 	select(): boolean {
-		if (!this.input.selected) {
-			this.input.selected = true;
+		if (!this.inputs.selected) {
+			this.inputs.selected = true;
 			return true;
 		}
 
@@ -89,8 +89,8 @@ export class OpalTab extends Component {
 	}
 
 	deselect(): boolean {
-		if (this.input.selected) {
-			this.input.selected = false;
+		if (this.inputs.selected) {
+			this.inputs.selected = false;
 			return true;
 		}
 
@@ -98,7 +98,7 @@ export class OpalTab extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.input.selected = value === undefined ? !this.input.selected : value);
+		return (this.inputs.selected = value === undefined ? !this.inputs.selected : value);
 	}
 
 	focus(): OpalTab {
@@ -112,12 +112,12 @@ export class OpalTab extends Component {
 	}
 
 	enable(): OpalTab {
-		this.input.disabled = false;
+		this.inputs.disabled = false;
 		return this;
 	}
 
 	disable(): OpalTab {
-		this.input.disabled = true;
+		this.inputs.disabled = true;
 		return this;
 	}
 }

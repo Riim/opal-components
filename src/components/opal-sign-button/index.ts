@@ -8,7 +8,7 @@ import template from './template.nelm';
 @Component.Config<OpalSignButton>({
 	elementIs: 'opal-sign-button',
 
-	input: {
+	inputs: {
 		sign: { type: String, required: true },
 		checkable: false,
 		checked: false,
@@ -22,7 +22,7 @@ import template from './template.nelm';
 export class OpalSignButton extends Component {
 	@computed
 	get _tabIndex(): number {
-		return this.input.disabled ? -1 : this.input.tabIndex;
+		return this.inputs.disabled ? -1 : this.inputs.tabIndex;
 	}
 
 	_documentKeyDownListening: IDisposableListening;
@@ -38,7 +38,7 @@ export class OpalSignButton extends Component {
 	}
 
 	ready() {
-		if (this.input.focused) {
+		if (this.inputs.focused) {
 			this.focus();
 		}
 	}
@@ -54,27 +54,27 @@ export class OpalSignButton extends Component {
 	_onControlFocus(evt: Event) {
 		nextTick(() => {
 			if (document.activeElement == evt.target) {
-				this.input.focused = true;
+				this.inputs.focused = true;
 				this.emit('focus');
 			}
 		});
 	}
 
 	_onControlBlur() {
-		this.input.focused = false;
+		this.inputs.focused = false;
 		this.emit('blur');
 	}
 
 	_onControlClick(evt: Event) {
 		evt.preventDefault();
 
-		if (!this.input.disabled) {
+		if (!this.inputs.disabled) {
 			this.click();
 		}
 	}
 
 	click(): OpalSignButton {
-		if (this.input.checkable) {
+		if (this.inputs.checkable) {
 			this.emit(this.toggle() ? 'check' : 'uncheck');
 		}
 
@@ -84,10 +84,10 @@ export class OpalSignButton extends Component {
 	}
 
 	get checked(): boolean {
-		return this.input.checked;
+		return this.inputs.checked;
 	}
 	set checked(checked: boolean) {
-		this.input.checked = checked;
+		this.inputs.checked = checked;
 	}
 
 	get selected(): boolean {
@@ -98,8 +98,8 @@ export class OpalSignButton extends Component {
 	}
 
 	check(): boolean {
-		if (!this.input.checked) {
-			this.input.checked = true;
+		if (!this.inputs.checked) {
+			this.inputs.checked = true;
 			return true;
 		}
 
@@ -107,8 +107,8 @@ export class OpalSignButton extends Component {
 	}
 
 	uncheck(): boolean {
-		if (this.input.checked) {
-			this.input.checked = false;
+		if (this.inputs.checked) {
+			this.inputs.checked = false;
 			return true;
 		}
 
@@ -116,7 +116,7 @@ export class OpalSignButton extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.input.checked = value === undefined ? !this.input.checked : value);
+		return (this.inputs.checked = value === undefined ? !this.inputs.checked : value);
 	}
 
 	focus(): OpalSignButton {
@@ -130,12 +130,12 @@ export class OpalSignButton extends Component {
 	}
 
 	enable(): OpalSignButton {
-		this.input.disabled = false;
+		this.inputs.disabled = false;
 		return this;
 	}
 
 	disable(): OpalSignButton {
-		this.input.disabled = true;
+		this.inputs.disabled = true;
 		return this;
 	}
 }

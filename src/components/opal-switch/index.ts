@@ -8,7 +8,7 @@ import template from './template.nelm';
 @Component.Config<OpalSwitch>({
 	elementIs: 'opal-switch',
 
-	input: {
+	inputs: {
 		checked: false,
 		tabIndex: 0,
 		focused: false,
@@ -20,17 +20,17 @@ import template from './template.nelm';
 export class OpalSwitch extends Component {
 	@computed
 	_tabIndex(): number {
-		return this.input.disabled ? -1 : this.input.tabIndex;
+		return this.inputs.disabled ? -1 : this.inputs.tabIndex;
 	}
 
 	_documentKeyDownListening: IDisposableListening;
 
 	ready() {
-		if (this.input.checked) {
+		if (this.inputs.checked) {
 			this.$<HTMLInputElement>('input')!.checked = true;
 		}
 
-		if (this.input.focused) {
+		if (this.inputs.focused) {
 			this.focus();
 		}
 	}
@@ -71,10 +71,10 @@ export class OpalSwitch extends Component {
 		if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
 			evt.preventDefault();
 
-			let input = this.input;
+			let inputs = this.inputs;
 
-			if (!input.disabled) {
-				this.emit((input.checked = !input.checked) ? 'check' : 'uncheck');
+			if (!inputs.disabled) {
+				this.emit((inputs.checked = !inputs.checked) ? 'check' : 'uncheck');
 				this.emit('change');
 			}
 		}
@@ -82,7 +82,7 @@ export class OpalSwitch extends Component {
 
 	_onInputChange(evt: Event) {
 		this.emit(
-			(this.input.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck'
+			(this.inputs.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck'
 		);
 		this.emit('change');
 	}
@@ -90,22 +90,22 @@ export class OpalSwitch extends Component {
 	_onControlFocus(evt: Event) {
 		nextTick(() => {
 			if (document.activeElement == evt.target) {
-				this.input.focused = true;
+				this.inputs.focused = true;
 				this.emit('focus');
 			}
 		});
 	}
 
 	_onControlBlur() {
-		this.input.focused = false;
+		this.inputs.focused = false;
 		this.emit('blur');
 	}
 
 	get checked(): boolean {
-		return this.input.checked;
+		return this.inputs.checked;
 	}
 	set checked(checked: boolean) {
-		this.input.checked = checked;
+		this.inputs.checked = checked;
 	}
 
 	get selected(): boolean {
@@ -116,8 +116,8 @@ export class OpalSwitch extends Component {
 	}
 
 	check(): boolean {
-		if (!this.input.checked) {
-			this.input.checked = true;
+		if (!this.inputs.checked) {
+			this.inputs.checked = true;
 			return true;
 		}
 
@@ -125,8 +125,8 @@ export class OpalSwitch extends Component {
 	}
 
 	uncheck(): boolean {
-		if (this.input.checked) {
-			this.input.checked = false;
+		if (this.inputs.checked) {
+			this.inputs.checked = false;
 			return true;
 		}
 
@@ -134,7 +134,7 @@ export class OpalSwitch extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.input.checked = value === undefined ? !this.input.checked : value);
+		return (this.inputs.checked = value === undefined ? !this.inputs.checked : value);
 	}
 
 	focus(): OpalSwitch {
@@ -148,12 +148,12 @@ export class OpalSwitch extends Component {
 	}
 
 	enable(): OpalSwitch {
-		this.input.disabled = false;
+		this.inputs.disabled = false;
 		return this;
 	}
 
 	disable(): OpalSwitch {
-		this.input.disabled = true;
+		this.inputs.disabled = true;
 		return this;
 	}
 }

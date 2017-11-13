@@ -8,7 +8,7 @@ import template from './template.nelm';
 @Component.Config<OpalTextInput>({
 	elementIs: 'opal-text-input',
 
-	input: {
+	inputs: {
 		inputType: 'text',
 		size: 'm',
 		multiline: false,
@@ -45,7 +45,7 @@ export class OpalTextInput extends Component {
 	_textFieldValueCell: Cell<string>;
 	@computed
 	get _textFieldValue(): string {
-		return this.input.value;
+		return this.inputs.value;
 	}
 	set _textFieldValue(value: string) {
 		this._textFieldValueCell.set(value);
@@ -62,29 +62,29 @@ export class OpalTextInput extends Component {
 
 	@computed
 	get isControlIconShown(): boolean {
-		return !this.isBtnClearShown && !this.input.loading;
+		return !this.isBtnClearShown && !this.inputs.loading;
 	}
 
 	@computed
 	get isBtnClearShown(): boolean {
-		return !!this._textFieldValue && !this.input.loading;
+		return !!this._textFieldValue && !this.inputs.loading;
 	}
 
 	_initialHeight: number;
 
 	ready() {
-		let input = this.input;
+		let inputs = this.inputs;
 		let textField = (this.textField = this.$<HTMLInputElement>('text-field')!);
 
 		if (this._textFieldValue) {
 			textField.value = this._textFieldValue;
-		} else if (input.storeKey) {
-			this._textFieldValue = textField.value = localStorage.getItem(input.storeKey) || '';
+		} else if (inputs.storeKey) {
+			this._textFieldValue = textField.value = localStorage.getItem(inputs.storeKey) || '';
 		}
 
 		this._prevValue = this.value;
 
-		if (input.multiline && input.autoHeight) {
+		if (inputs.multiline && inputs.autoHeight) {
 			let offsetHeight = textField.offsetHeight;
 
 			if (offsetHeight) {
@@ -93,7 +93,7 @@ export class OpalTextInput extends Component {
 				this._fixHeight();
 			} else {
 				this._initialHeight =
-					parseInt(getComputedStyle(textField).lineHeight!, 10) * this.input.rows +
+					parseInt(getComputedStyle(textField).lineHeight!, 10) * inputs.rows +
 					parseInt(getComputedStyle(textField).borderTop!, 10) +
 					parseInt(getComputedStyle(textField).borderBottom!, 10) +
 					parseInt(getComputedStyle(textField).paddingTop!, 10) +
@@ -103,7 +103,7 @@ export class OpalTextInput extends Component {
 			}
 		}
 
-		if (input.focused) {
+		if (inputs.focused) {
 			this.focus();
 		}
 	}
@@ -142,14 +142,14 @@ export class OpalTextInput extends Component {
 	_onTextFieldFocus(evt: Event) {
 		nextTick(() => {
 			if (document.activeElement == this.textField) {
-				this.input.focused = true;
+				this.inputs.focused = true;
 				this.emit('focus');
 			}
 		});
 	}
 
 	_onTextFieldBlur() {
-		this.input.focused = false;
+		this.inputs.focused = false;
 		this.emit('blur');
 	}
 
@@ -171,7 +171,7 @@ export class OpalTextInput extends Component {
 
 		this._prevValue = this.value;
 
-		let storeKey = this.input.storeKey;
+		let storeKey = this.inputs.storeKey;
 
 		if (storeKey) {
 			localStorage.setItem(storeKey, this.textField.value);
@@ -186,7 +186,7 @@ export class OpalTextInput extends Component {
 	}
 
 	_onTextFieldKeyDown(evt: Event) {
-		if (this.input.multiline && this.input.autoHeight) {
+		if (this.inputs.multiline && this.inputs.autoHeight) {
 			setTimeout(() => {
 				this._fixHeight();
 			}, 1);
@@ -214,7 +214,7 @@ export class OpalTextInput extends Component {
 	}
 
 	_onTextFieldKeyUp(evt: Event) {
-		if (this.input.multiline && this.input.autoHeight) {
+		if (this.inputs.multiline && this.inputs.autoHeight) {
 			this._fixHeight();
 		}
 
@@ -255,12 +255,12 @@ export class OpalTextInput extends Component {
 	}
 
 	enable(): OpalTextInput {
-		this.input.disabled = false;
+		this.inputs.disabled = false;
 		return this;
 	}
 
 	disable(): OpalTextInput {
-		this.input.disabled = true;
+		this.inputs.disabled = true;
 		return this;
 	}
 }

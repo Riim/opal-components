@@ -1,15 +1,15 @@
 @section/inner {
 
-@if-then (if=input.range) {
+@if-then (if=inputs.range) {
 	div/first-input-wrapper3 {
 		div/first-input-wrapper2 (style=width: {_firstInputWidth}%) {
 			div/first-input-wrapper {
 				input/first-input (
 					type=range,
-					min={input.min},
-					max={input.max},
-					step={input.step},
-					value={input.range.0}
+					min={inputs.min},
+					max={inputs.max},
+					step={inputs.step},
+					value={inputs.range.0}
 				)
 			}
 		}
@@ -18,21 +18,21 @@
 	div/second-input-wrapper {
 		input/second-input (
 			type=range,
-			min={input.min},
-			max={input.max},
-			step={input.step},
-			value={input.range.1}
+			min={inputs.min},
+			max={inputs.max},
+			step={inputs.step},
+			value={inputs.range.1}
 		)
 	}
 }
 
-@if-else (if=input.range) {
+@if-else (if=inputs.range) {
 	input/input (
 		type=range,
-		min={input.min},
-		max={input.max},
-		step={input.step},
-		value={input.value}
+		min={inputs.min},
+		max={inputs.max},
+		step={inputs.step},
+		value={inputs.value}
 	)
 }
 

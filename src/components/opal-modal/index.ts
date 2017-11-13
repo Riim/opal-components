@@ -30,7 +30,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 @Component.Config<OpalModal>({
 	elementIs: 'opal-modal',
 
-	input: {
+	inputs: {
 		opened: false
 	},
 
@@ -49,7 +49,7 @@ export class OpalModal extends Component {
 	@observable isContentRendered = false;
 
 	ready() {
-		if (this.input.opened) {
+		if (this.inputs.opened) {
 			this._open();
 		}
 	}
@@ -96,22 +96,22 @@ export class OpalModal extends Component {
 	}
 
 	open(): boolean {
-		if (this.input.opened) {
+		if (this.inputs.opened) {
 			return false;
 		}
 
-		this.input.opened = true;
+		this.inputs.opened = true;
 		Cell.forceRelease();
 
 		return true;
 	}
 
 	close(): boolean {
-		if (!this.input.opened) {
+		if (!this.inputs.opened) {
 			return false;
 		}
 
-		this.input.opened = false;
+		this.inputs.opened = false;
 		Cell.forceRelease();
 
 		return true;

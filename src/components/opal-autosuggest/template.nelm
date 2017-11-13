@@ -2,7 +2,7 @@
 
 rt-slot (for=text-input) {
 	opal-text-input/text-input (
-		value='{input.value |key(_dataListItemTextFieldName) }',
+		value='{inputs.value |key(_dataListItemTextFieldName) }',
 		placeholder={constructor.i18n.textInputPlaceholder},
 		clearable
 	) {

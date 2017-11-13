@@ -7,7 +7,7 @@ import template from './template.nelm';
 @Component.Config({
 	elementIs: 'opal-tab-panel',
 
-	input: {
+	inputs: {
 		shown: false
 	},
 

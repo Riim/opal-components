@@ -8,7 +8,7 @@ import template from './template.nelm';
 @Component.Config<OpalSelectOption>({
 	elementIs: 'opal-select-option',
 
-	input: {
+	inputs: {
 		value: String,
 		text: { type: String, required: true },
 		subtext: String,
@@ -23,7 +23,7 @@ import template from './template.nelm';
 export class OpalSelectOption extends Component {
 	@computed
 	get _tabIndex(): number {
-		return this.input.disabled ? -1 : this.input.tabIndex;
+		return this.inputs.disabled ? -1 : this.inputs.tabIndex;
 	}
 
 	elementAttached() {
@@ -47,19 +47,19 @@ export class OpalSelectOption extends Component {
 	_onControlFocus(evt: Event) {
 		nextTick(() => {
 			if (document.activeElement == evt.target) {
-				this.input.focused = true;
+				this.inputs.focused = true;
 			}
 		});
 	}
 
 	_onControlBlur() {
-		this.input.focused = false;
+		this.inputs.focused = false;
 	}
 
 	_onControlClick(evt: Event) {
 		evt.preventDefault();
 
-		if (!this.input.disabled) {
+		if (!this.inputs.disabled) {
 			this.click();
 		}
 	}
@@ -71,37 +71,37 @@ export class OpalSelectOption extends Component {
 	}
 
 	get value(): string {
-		let input = this.input;
-		return input.value === null ? input.text : input.value;
+		let inputs = this.inputs;
+		return inputs.value === null ? inputs.text : inputs.value;
 	}
 	set value(value: string) {
-		this.input.value = value;
+		this.inputs.value = value;
 	}
 
 	get text(): string {
-		return this.input.text.trim() || ' ';
+		return this.inputs.text.trim() || ' ';
 	}
 	set text(text: string) {
-		this.input.text = text;
+		this.inputs.text = text;
 	}
 
 	get selected(): boolean {
-		return this.input.selected;
+		return this.inputs.selected;
 	}
 	set selected(selected: boolean) {
-		this.input.selected = selected;
+		this.inputs.selected = selected;
 	}
 
 	get disabled(): boolean {
-		return this.input.disabled;
+		return this.inputs.disabled;
 	}
 	set disabled(disabled: boolean) {
-		this.input.disabled = disabled;
+		this.inputs.disabled = disabled;
 	}
 
 	select(): boolean {
-		if (!this.input.selected) {
-			this.input.selected = true;
+		if (!this.inputs.selected) {
+			this.inputs.selected = true;
 			return true;
 		}
 
@@ -109,8 +109,8 @@ export class OpalSelectOption extends Component {
 	}
 
 	deselect(): boolean {
-		if (this.input.selected) {
-			this.input.selected = false;
+		if (this.inputs.selected) {
+			this.inputs.selected = false;
 			return true;
 		}
 
@@ -118,7 +118,7 @@ export class OpalSelectOption extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.input.selected = value === undefined ? !this.input.selected : value);
+		return (this.inputs.selected = value === undefined ? !this.inputs.selected : value);
 	}
 
 	focus(): OpalSelectOption {
@@ -132,12 +132,12 @@ export class OpalSelectOption extends Component {
 	}
 
 	enable(): OpalSelectOption {
-		this.input.disabled = false;
+		this.inputs.disabled = false;
 		return this;
 	}
 
 	disable(): OpalSelectOption {
-		this.input.disabled = true;
+		this.inputs.disabled = true;
 		return this;
 	}
 }

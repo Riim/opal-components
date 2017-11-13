@@ -42,7 +42,7 @@ function toComparable(str: string | null): string | null {
 @Component.Config({
 	elementIs: 'opal-tree-list',
 
-	input: {
+	inputs: {
 		dataTreeList: { type: Object },
 		dataTreeListKeypath: { type: String, readonly: true },
 		dataTreeListItemSchema: {
@@ -67,7 +67,7 @@ export class OpalTreeList extends Component {
 
 	@computed
 	get filteredDataTreeList(): TDataTreeList {
-		let query = toComparable(this.input.query);
+		let query = toComparable(this.inputs.query);
 
 		if (!query) {
 			return this.dataTreeList;
@@ -124,25 +124,25 @@ export class OpalTreeList extends Component {
 	_viewModelItemTextFieldName: string;
 
 	initialize() {
-		let input = this.input;
+		let inputs = this.inputs;
 
-		if (input.dataTreeListKeypath) {
+		if (inputs.dataTreeListKeypath) {
 			define(
 				this,
 				'dataTreeList',
-				new Cell(Function(`return this.${input.dataTreeListKeypath};`), {
+				new Cell(Function(`return this.${inputs.dataTreeListKeypath};`), {
 					context: this.ownerComponent || window
 				})
 			);
 		} else {
-			if (!input.$specified.has('dataTreeList')) {
+			if (!inputs.$specified.has('dataTreeList')) {
 				throw new TypeError('Input property "dataTreeList" is required');
 			}
 
-			define(this, 'dataTreeList', () => input.dataTreeList);
+			define(this, 'dataTreeList', () => inputs.dataTreeList);
 		}
 
-		let dataTreeListItemSchema = input.dataTreeListItemSchema;
+		let dataTreeListItemSchema = inputs.dataTreeListItemSchema;
 		let defaultDataTreeListItemSchema = (this.constructor as typeof OpalTreeList)
 			.defaultDataTreeListItemSchema;
 
@@ -151,9 +151,9 @@ export class OpalTreeList extends Component {
 		this._dataTreeListItemTextFieldName =
 			dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
 
-		this.viewModel = input.viewModel || new ObservableList();
+		this.viewModel = inputs.viewModel || new ObservableList();
 
-		let vmItemSchema = input.viewModelItemSchema;
+		let vmItemSchema = inputs.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalTreeList)
 			.defaultViewModelItemSchema;
 
@@ -177,7 +177,7 @@ export class OpalTreeList extends Component {
 			let item: IDataTreeListItem = closestComponent(
 				component.parentComponent!,
 				OpalTreeListItem
-			)!.input.$context.$item;
+			)!.inputs.$context.$item;
 
 			if (component.selected) {
 				for (

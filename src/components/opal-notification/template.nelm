@@ -4,7 +4,7 @@ div/bar {
 	rt-slot/icon-slot (for=icon)
 	rt-slot/content-slot
 
-	button/btn-hide (hide={input.buttonHide |not }) {
+	button/btn-hide (hide={inputs.buttonHide |not }) {
 		svg/btn-hide-icon (viewBox=0 0 32 32) {
 			use (xlink:href=#opal-components__icon-close)
 		}

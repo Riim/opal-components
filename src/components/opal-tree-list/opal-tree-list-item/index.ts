@@ -10,7 +10,7 @@ import template from './template.nelm';
 @Component.Config<OpalTreeListItem>({
 	elementIs: 'opal-tree-list-item',
 
-	input: {
+	inputs: {
 		dataTreeList: { type: Object, required: true },
 		filteredDataTreeList: { type: Object, required: true },
 		dataTreeListItemValueFieldName: { type: String, required: true, readonly: true },
@@ -28,7 +28,7 @@ import template from './template.nelm';
 	events: {
 		'btn-toggle-children': {
 			change(evt: IEvent<OpalButton>) {
-				this.input.opened = evt.target.checked;
+				this.inputs.opened = evt.target.checked;
 			}
 		}
 	}
@@ -36,7 +36,7 @@ import template from './template.nelm';
 export class OpalTreeListItem extends Component {
 	@computed
 	get dataTreeList(): TDataTreeList {
-		return this.input.dataTreeList;
+		return this.inputs.dataTreeList;
 	}
 
 	dataTreeListItem: IDataTreeListItem;
@@ -45,21 +45,23 @@ export class OpalTreeListItem extends Component {
 
 	@computed
 	get viewModel(): TViewModel {
-		return this.input.viewModel;
+		return this.inputs.viewModel;
 	}
 
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 
 	initialize() {
-		let input = this.input;
+		let inputs = this.inputs;
 
-		this.dataTreeListItem = (input.filteredDataTreeList as TDataTreeList).get(input.indexpath)!;
-		this._dataTreeListItemValueFieldName = input.dataTreeListItemValueFieldName;
-		this._dataTreeListItemTextFieldName = input.dataTreeListItemTextFieldName;
+		this.dataTreeListItem = (inputs.filteredDataTreeList as TDataTreeList).get(
+			inputs.indexpath
+		)!;
+		this._dataTreeListItemValueFieldName = inputs.dataTreeListItemValueFieldName;
+		this._dataTreeListItemTextFieldName = inputs.dataTreeListItemTextFieldName;
 
-		this._viewModelItemValueFieldName = input.viewModelItemValueFieldName;
-		this._viewModelItemTextFieldName = input.viewModelItemTextFieldName;
+		this._viewModelItemValueFieldName = inputs.viewModelItemValueFieldName;
+		this._viewModelItemTextFieldName = inputs.viewModelItemTextFieldName;
 	}
 }
 

@@ -1,18 +1,18 @@
 opal-tree-select/select (
-	view-type={input.viewType},
+	view-type={inputs.viewType},
 	data-tree-list-keypath={_dataListKeypathParam},
-	data-tree-list-item-schema={input.dataListItemSchema |json },
-	value={input.value},
+	data-tree-list-item-schema={inputs.dataListItemSchema |json },
+	value={inputs.value},
 	view-model={viewModel},
-	view-model-item-schema={input.viewModelItemSchema |json },
-	add-new-item={input.addNewItem},
-	focused={input.focused}
+	view-model-item-schema={inputs.viewModelItemSchema |json },
+	add-new-item={inputs.addNewItem},
+	focused={inputs.focused}
 ) {
 	opal-sign-button/button (
 		class=opal-select__button,
 		sign=plus,
 		checkable,
-		tab-index={input.tabIndex},
-		disabled={input.disabled}
+		tab-index={inputs.tabIndex},
+		disabled={inputs.disabled}
 	)
 }

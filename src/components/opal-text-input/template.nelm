@@ -1,27 +1,27 @@
 @section/inner {
 
-@if-then (if=input.multiline) {
+@if-then (if=inputs.multiline) {
 	textarea/, text-field (
-		rows={input.rows},
-		name={input.inputName},
-		placeholder={input.placeholder},
-		tabindex={input.tabIndex},
-		disabled={input.disabled}
+		rows={inputs.rows},
+		name={inputs.inputName},
+		placeholder={inputs.placeholder},
+		tabindex={inputs.tabIndex},
+		disabled={inputs.disabled}
 	)
 }
-@if-else (if=input.multiline) {
+@if-else (if=inputs.multiline) {
 	input/, text-field (
-		type={input.inputType},
-		name={input.inputName},
-		placeholder={input.placeholder},
-		tabindex={input.tabIndex},
-		disabled={input.disabled}
+		type={inputs.inputType},
+		name={inputs.inputName},
+		placeholder={inputs.placeholder},
+		tabindex={inputs.tabIndex},
+		disabled={inputs.disabled}
 	)
 }
 
 rt-slot/control-icon-slot (for=control-icon, shown={isControlIconShown})
 
-@if-then (if=input.clearable) {
+@if-then (if=inputs.clearable) {
 	button/btn-clear (shown={isBtnClearShown}) {
 		svg/btn-clear-icon (viewBox=0 0 32 32) {
 			use (xlink:href=#opal-components__icon-close)
@@ -29,7 +29,7 @@ rt-slot/control-icon-slot (for=control-icon, shown={isControlIconShown})
 	}
 }
 
-@if-then (if=input.loading) {
+@if-then (if=inputs.loading) {
 	opal-loader/loader (size=s, shown)
 }
 

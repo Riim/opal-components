@@ -4,7 +4,7 @@ import './index.css';
 @Component.Config({
 	elementIs: 'opal-loader',
 
-	input: {
+	inputs: {
 		size: 'm',
 		shown: false
 	}
