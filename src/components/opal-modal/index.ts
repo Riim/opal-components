@@ -30,7 +30,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 @Component.Config<OpalModal>({
 	elementIs: 'opal-modal',
 
-	inputs: {
+	params: {
 		opened: false
 	},
 
@@ -49,13 +49,13 @@ export class OpalModal extends Component {
 	@observable isContentRendered = false;
 
 	ready() {
-		if (this.inputs.opened) {
+		if (this.params.opened) {
 			this._open();
 		}
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'input-opened-change', this._onInputOpenedChange);
+		this.listenTo(this, 'param-opened-change', this._onParamOpenedChange);
 		this.listenTo(this.element, 'click', this._onElementClick);
 	}
 
@@ -63,7 +63,7 @@ export class OpalModal extends Component {
 		this.close();
 	}
 
-	_onInputOpenedChange(evt: IEvent) {
+	_onParamOpenedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._open();
 		} else {
@@ -96,22 +96,22 @@ export class OpalModal extends Component {
 	}
 
 	open(): boolean {
-		if (this.inputs.opened) {
+		if (this.params.opened) {
 			return false;
 		}
 
-		this.inputs.opened = true;
+		this.params.opened = true;
 		Cell.forceRelease();
 
 		return true;
 	}
 
 	close(): boolean {
-		if (!this.inputs.opened) {
+		if (!this.params.opened) {
 			return false;
 		}
 
-		this.inputs.opened = false;
+		this.params.opened = false;
 		Cell.forceRelease();
 
 		return true;

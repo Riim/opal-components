@@ -34,7 +34,7 @@ export declare class OpalLoadedList extends Component {
     readonly isNothingFoundShown: boolean;
     initialize(): void;
     elementAttached(): void;
-    _onInputQueryChange(): void;
+    _onParamQueryChange(): void;
     _onElementScroll(): void;
     checkLoading(): void;
     _load(): void;

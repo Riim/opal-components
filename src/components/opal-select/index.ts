@@ -46,7 +46,7 @@ let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled
 @Component.Config<OpalSelect>({
 	elementIs: 'opal-select',
 
-	inputs: {
+	params: {
 		viewType: String,
 		size: 'm',
 		multiple: { default: false, readonly: true },
@@ -125,10 +125,10 @@ export class OpalSelect extends Component {
 			.join(', ');
 
 		if (!text) {
-			return this.inputs.placeholder;
+			return this.params.placeholder;
 		}
 
-		if (text.length > this.inputs.maxTextLength) {
+		if (text.length > this.params.maxTextLength) {
 			text = getText.nt('Выбран{n:|о|о} {n}', this.viewModel.length);
 		}
 
@@ -152,33 +152,33 @@ export class OpalSelect extends Component {
 
 	_onсeFocusedAfterLoading: boolean = false;
 
-	_isInputDataListSpecified: boolean;
+	_isParamDataListSpecified: boolean;
 
 	_documentFocusListening: IDisposableListening;
 	_documentKeyDownListening: IDisposableListening | null | undefined;
 
 	initialize() {
-		let inputs = this.inputs;
+		let params = this.params;
 
-		if (inputs.dataListKeypath) {
+		if (params.dataListKeypath) {
 			define(
 				this,
 				'dataList',
-				new Cell(Function(`return this.${inputs.dataListKeypath};`), {
+				new Cell(Function(`return this.${params.dataListKeypath};`), {
 					context: this.ownerComponent || window
 				})
 			);
 
-			this._isInputDataListSpecified = true;
-		} else if (inputs.$specified.has('dataList')) {
-			define(this, 'dataList', () => inputs.dataList);
-			this._isInputDataListSpecified = true;
+			this._isParamDataListSpecified = true;
+		} else if (params.$specified.has('dataList')) {
+			define(this, 'dataList', () => params.dataList);
+			this._isParamDataListSpecified = true;
 		} else {
 			this.dataList = null;
-			this._isInputDataListSpecified = false;
+			this._isParamDataListSpecified = false;
 		}
 
-		let dataListItemSchema = inputs.dataListItemSchema;
+		let dataListItemSchema = params.dataListItemSchema;
 		let defaultDataListItemSchema = (this.constructor as typeof OpalSelect)
 			.defaultDataListItemSchema;
 
@@ -188,9 +188,9 @@ export class OpalSelect extends Component {
 		this._dataListItemDisabledFieldName =
 			dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 
-		this.viewModel = inputs.viewModel || new ObservableList();
+		this.viewModel = params.viewModel || new ObservableList();
 
-		let vmItemSchema = inputs.viewModelItemSchema;
+		let vmItemSchema = params.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalSelect)
 			.defaultViewModelItemSchema;
 
@@ -199,7 +199,7 @@ export class OpalSelect extends Component {
 		this._viewModelItemDisabledFieldName =
 			vmItemSchema.disabled || defaultVMItemSchema.disabled;
 
-		this._addNewItem = inputs.addNewItem;
+		this._addNewItem = params.addNewItem;
 	}
 
 	ready() {
@@ -207,7 +207,7 @@ export class OpalSelect extends Component {
 			'opal-select-option'
 		) as NodeListOf<IComponentElement>;
 
-		if (this.inputs.viewModel && !this.inputs.value) {
+		if (this.params.viewModel && !this.params.value) {
 			this._needOptionsUpdating = true;
 		} else {
 			this._notUpdateOptions = true;
@@ -218,19 +218,19 @@ export class OpalSelect extends Component {
 	}
 
 	_initViewModel() {
-		let value = this.inputs.value;
+		let value = this.params.value;
 		let selectedOptions: Array<OpalSelectOption> | undefined;
 
 		if (value) {
 			if (!Array.isArray(value)) {
-				throw new TypeError('Input property "value" must be an array');
+				throw new TypeError('Parameter "value" must be an array');
 			}
 
 			this._notUpdateOptions = true;
 			this.viewModel.clear();
 
 			if (value.length) {
-				if (this.inputs.multiple) {
+				if (this.params.multiple) {
 					selectedOptions = this.options.filter(
 						option => value.indexOf(option.value) != -1
 					);
@@ -244,7 +244,7 @@ export class OpalSelect extends Component {
 					}
 				}
 			}
-		} else if (this.inputs.multiple) {
+		} else if (this.params.multiple) {
 			selectedOptions = this.options.filter(option => option.selected);
 		} else {
 			let selectedOption = this.options.find(option => option.selected);
@@ -272,7 +272,7 @@ export class OpalSelect extends Component {
 	}
 
 	elementAttached() {
-		if (this.inputs.focused) {
+		if (this.params.focused) {
 			this._documentKeyDownListening = this.listenTo(
 				document,
 				'keydown',
@@ -282,9 +282,9 @@ export class OpalSelect extends Component {
 		}
 
 		this.listenTo(this, {
-			'input-value-change': this._onInputValueChange,
-			'input-view-model-change': this._onInputViewModelChange,
-			'input-focused-change': this._onInputFocusedChange
+			'param-value-change': this._onParamValueChange,
+			'param-view-model-change': this._onParamViewModelChange,
+			'param-focused-change': this._onParamFocusedChange
 		});
 
 		this.listenTo(this.viewModel, 'change', this._onViewModelChange);
@@ -296,7 +296,7 @@ export class OpalSelect extends Component {
 		});
 
 		this.listenTo('menu', {
-			'input-opened-change': this._onMenuInputOpenedChange,
+			'param-opened-change': this._onMenuParamOpenedChange,
 			'<opal-select-option>select': this._onMenuSelectOptionSelect,
 			'<opal-select-option>deselect': this._onMenuSelectOptionDeselect,
 			'<opal-text-input>confirm': this._onMenuTextInputConfirm,
@@ -304,17 +304,17 @@ export class OpalSelect extends Component {
 		});
 	}
 
-	_onInputValueChange(evt: IEvent) {
+	_onParamValueChange(evt: IEvent) {
 		let vm = this.viewModel;
 		let value: Array<string> | null = evt.data.value;
 
 		if (value) {
 			if (!Array.isArray(value)) {
-				throw new TypeError('Input property "value" must be an array');
+				throw new TypeError('Parameter "value" must be an array');
 			}
 
 			if (value.length) {
-				let multiple = this.inputs.multiple;
+				let multiple = this.params.multiple;
 
 				if (
 					multiple ||
@@ -382,13 +382,13 @@ export class OpalSelect extends Component {
 		}
 	}
 
-	_onInputViewModelChange(evt: IEvent) {
+	_onParamViewModelChange(evt: IEvent) {
 		if (evt.data.value != this.viewModel) {
-			throw new TypeError('Input property "viewModel" is readonly');
+			throw new TypeError('Parameter "viewModel" is readonly');
 		}
 	}
 
-	_onInputFocusedChange(evt: IEvent) {
+	_onParamFocusedChange(evt: IEvent) {
 		if (evt.data.value) {
 			if (!this._documentKeyDownListening) {
 				this._documentKeyDownListening = this.listenTo(
@@ -420,11 +420,11 @@ export class OpalSelect extends Component {
 	}
 
 	_onButtonFocus() {
-		this.inputs.focused = true;
+		this.params.focused = true;
 	}
 
 	_onButtonBlur() {
-		this.inputs.focused = false;
+		this.params.focused = false;
 	}
 
 	_onButtonClick(evt: IEvent<OpalButton>) {
@@ -435,7 +435,7 @@ export class OpalSelect extends Component {
 		}
 	}
 
-	_onMenuInputOpenedChange(evt: IEvent): false {
+	_onMenuParamOpenedChange(evt: IEvent): false {
 		if (!evt.data.value) {
 			this.close();
 		}
@@ -450,7 +450,7 @@ export class OpalSelect extends Component {
 			[this._viewModelItemTextFieldName]: evt.target.text
 		};
 
-		if (this.inputs.multiple) {
+		if (this.params.multiple) {
 			this._notUpdateOptions = true;
 			vm.add(vmItem);
 			this._notUpdateOptions = false;
@@ -474,7 +474,7 @@ export class OpalSelect extends Component {
 	}
 
 	_onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>): false {
-		if (this.inputs.multiple) {
+		if (this.params.multiple) {
 			let value = evt.target.value;
 			this._notUpdateOptions = true;
 			this.viewModel.removeAt(this.viewModel.findIndex(item => item.value == value));
@@ -499,19 +499,19 @@ export class OpalSelect extends Component {
 		}
 
 		if (!this._addNewItem) {
-			throw new TypeError('Input property "addNewItem" is required');
+			throw new TypeError('Parameter "addNewItem" is required');
 		}
 
 		let text = textInput.value!;
 
 		textInput.clear();
-		textInput.inputs.loading = true;
-		textInput.inputs.disabled = true;
+		textInput.params.loading = true;
+		textInput.params.disabled = true;
 
 		this._addNewItem(text).then(
 			(newItem: { [name: string]: string }) => {
-				textInput.inputs.loading = false;
-				textInput.inputs.disabled = false;
+				textInput.params.loading = false;
+				textInput.params.disabled = false;
 
 				let value = newItem[this._viewModelItemValueFieldName];
 				let text = newItem[this._viewModelItemTextFieldName];
@@ -526,7 +526,7 @@ export class OpalSelect extends Component {
 				let loadedList = this.$<OpalLoadedList>('loaded-list');
 
 				if (loadedList) {
-					loadedList.inputs.query = '';
+					loadedList.params.query = '';
 				}
 
 				let vm = this.viewModel;
@@ -535,7 +535,7 @@ export class OpalSelect extends Component {
 					[this._viewModelItemTextFieldName]: text
 				};
 
-				if (this.inputs.multiple) {
+				if (this.params.multiple) {
 					vm.add(vmItem);
 					this.emit('input');
 				} else {
@@ -553,8 +553,8 @@ export class OpalSelect extends Component {
 				}
 			},
 			() => {
-				textInput.inputs.loading = false;
-				textInput.inputs.disabled = false;
+				textInput.params.loading = false;
+				textInput.params.disabled = false;
 			}
 		);
 
@@ -643,7 +643,7 @@ export class OpalSelect extends Component {
 
 		this._documentFocusListening.stop();
 
-		if (!this.inputs.focused) {
+		if (!this.params.focused) {
 			this._documentKeyDownListening!.stop();
 			this._documentKeyDownListening = null;
 		}
@@ -651,7 +651,7 @@ export class OpalSelect extends Component {
 		this.$<OpalButton>('button')!.uncheck();
 		this.$<OpalDropdown>('menu')!.close();
 
-		if (this.inputs.multiple) {
+		if (this.params.multiple) {
 			if (
 				!isEqualArray(
 					this.viewModel.map((item): string => item[this._viewModelItemValueFieldName]),
@@ -686,7 +686,7 @@ export class OpalSelect extends Component {
 		switch (evt.which) {
 			case 32 /* Space */: {
 				if (this._opened) {
-					if (this.inputs.focused) {
+					if (this.params.focused) {
 						evt.preventDefault();
 						this.close();
 					}
@@ -709,11 +709,11 @@ export class OpalSelect extends Component {
 						let options = this.options;
 
 						for (let i = 1, l = options.length; i < l; i++) {
-							if (options[i].inputs.focused) {
+							if (options[i].params.focused) {
 								do {
 									let option = options[--i];
 
-									if (!option.inputs.disabled && option.element.offsetWidth) {
+									if (!option.params.disabled && option.element.offsetWidth) {
 										document.body.classList.remove('_no-focus-highlight');
 										option.focus();
 										break;
@@ -742,11 +742,11 @@ export class OpalSelect extends Component {
 						let options = this.options;
 
 						for (let i = 0, l = options.length - 1; i < l; i++) {
-							if (options[i].inputs.focused) {
+							if (options[i].params.focused) {
 								do {
 									let option = options[++i];
 
-									if (!option.inputs.disabled && option.element.offsetWidth) {
+									if (!option.params.disabled && option.element.offsetWidth) {
 										document.body.classList.remove('_no-focus-highlight');
 										option.focus();
 										break;
@@ -797,7 +797,7 @@ export class OpalSelect extends Component {
 		for (let i = 0, l = options.length; i < l; i++) {
 			let option = options[i];
 
-			if (!option.inputs.disabled) {
+			if (!option.params.disabled) {
 				if (option.selected) {
 					optionForFocus = option;
 					break;

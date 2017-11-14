@@ -8,7 +8,7 @@ import template from './template.nelm';
 @OpalSelect.Config({
 	elementIs: 'opal-tree-select',
 
-	inputs: {
+	params: {
 		multiple: true,
 		dataTreeList: { type: Object },
 		dataTreeListKeypath: { type: String, readonly: true },
@@ -43,22 +43,22 @@ export class OpalTreeSelect extends OpalSelect {
 	initialize() {
 		super.initialize();
 
-		let inputs = this.inputs;
+		let params = this.params;
 
-		if (inputs.dataTreeListKeypath) {
+		if (params.dataTreeListKeypath) {
 			define(
 				this,
 				'dataTreeList',
-				new Cell(Function(`return this.${inputs.dataTreeListKeypath};`), {
+				new Cell(Function(`return this.${params.dataTreeListKeypath};`), {
 					context: this.ownerComponent || window
 				})
 			);
 		} else {
-			if (!inputs.$specified.has('dataTreeList')) {
-				throw new TypeError('Input property "dataTreeList" is required');
+			if (!params.$specified.has('dataTreeList')) {
+				throw new TypeError('Parameter "dataTreeList" is required');
 			}
 
-			define(this, 'dataTreeList', () => inputs.dataTreeList);
+			define(this, 'dataTreeList', () => params.dataTreeList);
 		}
 	}
 

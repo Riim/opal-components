@@ -2,11 +2,11 @@
 
 button/control (tabindex={_tabIndex}) {
 	rt-slot/content-slot {
-		'{inputs.text}'
+		'{params.text}'
 
-		@if-then (if=inputs.subtext) {
+		@if-then (if=params.subtext) {
 			sub {
-				'{inputs.subtext}'
+				'{params.subtext}'
 			}
 		}
 	}

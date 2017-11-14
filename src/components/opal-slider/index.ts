@@ -6,7 +6,7 @@ import template from './template.nelm';
 @Component.Config<OpalSlider>({
 	elementIs: 'opal-slider',
 
-	inputs: {
+	params: {
 		min: 0,
 		max: 100,
 		step: 1,
@@ -22,8 +22,8 @@ export class OpalSlider extends Component {
 
 	@computed
 	get _firstInputWidth(): number {
-		let min = this.inputs.min;
-		let all = this.inputs.max - min;
+		let min = this.params.min;
+		let all = this.params.max - min;
 
 		return (
 			Math.round(
@@ -35,7 +35,7 @@ export class OpalSlider extends Component {
 	}
 
 	initialize() {
-		let range = this.inputs.range;
+		let range = this.params.range;
 
 		if (range) {
 			this._firstInputValue = range[0];
@@ -44,7 +44,7 @@ export class OpalSlider extends Component {
 	}
 
 	elementAttached() {
-		if (this.inputs.range) {
+		if (this.params.range) {
 			this.listenTo('first-input', 'input', this._onFirstInputInput);
 			this.listenTo('second-input', 'input', this._onSecondInputInput);
 		}
@@ -69,12 +69,12 @@ export class OpalSlider extends Component {
 	}
 
 	get value(): number | Array<number> {
-		return this.inputs.range
+		return this.params.range
 			? [this._firstInputValue, this._secondInputValue]
 			: +this.$<HTMLInputElement>('input')!.value;
 	}
 	set value(value: number | Array<number>) {
-		if (this.inputs.range) {
+		if (this.params.range) {
 			this.$<HTMLInputElement>(
 				'first-input'
 			)!.value = this._firstInputValue = (value as any)[0];

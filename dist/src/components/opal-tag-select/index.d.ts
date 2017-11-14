@@ -28,7 +28,7 @@ export declare class OpalTagSelect extends Component {
     _dataListKeypathParam: string | null;
     initialize(): void;
     elementAttached(): void;
-    _onInputViewModelChange(evt: IEvent): void;
+    _onParamViewModelChange(evt: IEvent): void;
     _onControlClick(evt: Event): void;
     _onSelectInput(): false;
     _onSelectChange(): false;

@@ -7,7 +7,7 @@ import './index.css';
 @Component.Config<OpalButton>({
 	elementIs: 'opal-button',
 
-	inputs: {
+	params: {
 		viewType: 'default',
 		size: 'm',
 		checkable: false,
@@ -21,13 +21,13 @@ import './index.css';
 export class OpalButton extends Component {
 	@computed
 	get _tabIndex(): number {
-		return this.inputs.disabled ? -1 : this.inputs.tabIndex;
+		return this.params.disabled ? -1 : this.params.tabIndex;
 	}
 
 	_documentKeyDownListening: IDisposableListening | undefined;
 
 	ready() {
-		if (this.inputs.focused) {
+		if (this.params.focused) {
 			this.element.tabIndex = this._tabIndex;
 			this.focus();
 		}
@@ -35,7 +35,7 @@ export class OpalButton extends Component {
 
 	elementAttached() {
 		this.listenTo(this, {
-			'input-focused-change': this._onInputFocusedChange,
+			'param-focused-change': this._onParamFocusedChange,
 			'change:_tabIndex': this._onTabIndexChange
 		});
 
@@ -48,7 +48,7 @@ export class OpalButton extends Component {
 		this.element.tabIndex = this._tabIndex;
 	}
 
-	_onInputFocusedChange(evt: IEvent) {
+	_onParamFocusedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this.focus();
 		} else {
@@ -74,7 +74,7 @@ export class OpalButton extends Component {
 				);
 			}
 
-			this.inputs.focused = true;
+			this.params.focused = true;
 			this.emit('focus');
 		});
 	}
@@ -84,12 +84,12 @@ export class OpalButton extends Component {
 			this._documentKeyDownListening.stop();
 		}
 
-		this.inputs.focused = false;
+		this.params.focused = false;
 		this.emit('blur');
 	}
 
 	_onElementClick() {
-		if (!this.inputs.disabled) {
+		if (!this.params.disabled) {
 			this.click();
 		}
 	}
@@ -98,14 +98,14 @@ export class OpalButton extends Component {
 		if (evt.which == 13 /* Enter */) {
 			evt.preventDefault();
 
-			if (!this.inputs.disabled) {
+			if (!this.params.disabled) {
 				this.click();
 			}
 		}
 	}
 
 	click(): OpalButton {
-		if (this.inputs.checkable) {
+		if (this.params.checkable) {
 			this.emit(this.toggle() ? 'check' : 'uncheck');
 			this.emit('change');
 		}
@@ -116,10 +116,10 @@ export class OpalButton extends Component {
 	}
 
 	get checked(): boolean {
-		return this.inputs.checked;
+		return this.params.checked;
 	}
 	set checked(checked: boolean) {
-		this.inputs.checked = checked;
+		this.params.checked = checked;
 	}
 
 	get selected(): boolean {
@@ -130,8 +130,8 @@ export class OpalButton extends Component {
 	}
 
 	check(): boolean {
-		if (!this.inputs.checked) {
-			this.inputs.checked = true;
+		if (!this.params.checked) {
+			this.params.checked = true;
 			return true;
 		}
 
@@ -139,8 +139,8 @@ export class OpalButton extends Component {
 	}
 
 	uncheck(): boolean {
-		if (this.inputs.checked) {
-			this.inputs.checked = false;
+		if (this.params.checked) {
+			this.params.checked = false;
 			return true;
 		}
 
@@ -148,7 +148,7 @@ export class OpalButton extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.inputs.checked = value === undefined ? !this.inputs.checked : value);
+		return (this.params.checked = value === undefined ? !this.params.checked : value);
 	}
 
 	focus(): OpalButton {
@@ -162,12 +162,12 @@ export class OpalButton extends Component {
 	}
 
 	enable(): OpalButton {
-		this.inputs.disabled = false;
+		this.params.disabled = false;
 		return this;
 	}
 
 	disable(): OpalButton {
-		this.inputs.disabled = true;
+		this.params.disabled = true;
 		return this;
 	}
 }

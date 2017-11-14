@@ -31,7 +31,7 @@ function getTodayDate() {
 @Component.Config<OpalCalendar>({
 	elementIs: 'opal-calendar',
 
-	inputs: {
+	params: {
 		fromDate: String,
 		toDate: String,
 		value: String,
@@ -128,26 +128,26 @@ export class OpalCalendar extends Component {
 
 	@computed
 	get fromDate(): Date {
-		let fromDate: string | null = this.inputs.fromDate;
+		let fromDate: string | null = this.params.fromDate;
 
 		if (fromDate) {
 			return fromDate == 'today' ? getTodayDate() : parseDate(fromDate);
 		}
 
-		let toDate: string | null = this.inputs.toDate;
+		let toDate: string | null = this.params.toDate;
 		let date = toDate && toDate != 'today' ? parseDate(toDate) : new Date();
 		return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
 	}
 
 	@computed
 	get toDate(): Date {
-		let toDate: string | undefined = this.inputs.toDate;
+		let toDate: string | undefined = this.params.toDate;
 
 		if (toDate) {
 			return toDate == 'today' ? getTodayDate() : parseDate(toDate);
 		}
 
-		let fromDate: string | undefined = this.inputs.fromDate;
+		let fromDate: string | undefined = this.params.fromDate;
 		let date = fromDate && fromDate != 'today' ? parseDate(fromDate) : new Date();
 		return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
 	}
@@ -176,7 +176,7 @@ export class OpalCalendar extends Component {
 	stringValueCell: Cell<string | null>;
 	@computed
 	get stringValue(): string | null {
-		return this.inputs.value;
+		return this.params.value;
 	}
 	set stringValue(value: string | null) {
 		this.stringValueCell.set(value);
@@ -203,7 +203,7 @@ export class OpalCalendar extends Component {
 
 	@computed
 	days: TDays = function(this: OpalCalendar, _: any, next: TDays | undefined): TDays {
-		let dateDelimiter = this.inputs.dateDelimiter;
+		let dateDelimiter = this.params.dateDelimiter;
 
 		let fromDate = this.fromDate;
 		let toDate = this.toDate;

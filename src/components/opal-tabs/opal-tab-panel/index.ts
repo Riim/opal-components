@@ -7,7 +7,7 @@ import template from './template.nelm';
 @Component.Config({
 	elementIs: 'opal-tab-panel',
 
-	inputs: {
+	params: {
 		shown: false
 	},
 
@@ -17,10 +17,10 @@ export class OpalTabPanel extends Component {
 	@observable isContentRendered = false;
 
 	initialize() {
-		this.listenTo(this, 'input-shown-change', this._onInputShownChange);
+		this.listenTo(this, 'param-shown-change', this._onParamShownChange);
 	}
 
-	_onInputShownChange(evt: IEvent) {
+	_onParamShownChange(evt: IEvent) {
 		if (evt.data.value) {
 			this.isContentRendered = true;
 		}

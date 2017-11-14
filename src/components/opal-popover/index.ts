@@ -7,7 +7,7 @@ import template from './template.nelm';
 @Component.Config({
 	elementIs: 'opal-popover',
 
-	inputs: {
+	params: {
 		position: 'right',
 		autoDirection: true,
 		autoClosing: false,
@@ -24,16 +24,16 @@ export class OpalPopover extends Component {
 	_documentClickListening: IDisposableListening | null | undefined;
 
 	ready() {
-		if (this.inputs.opened) {
+		if (this.params.opened) {
 			this._open();
 		}
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'input-opened-change', this._onInputOpenedChange);
+		this.listenTo(this, 'param-opened-change', this._onParamOpenedChange);
 	}
 
-	_onInputOpenedChange(evt: IEvent) {
+	_onParamOpenedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._open();
 		} else {
@@ -47,22 +47,22 @@ export class OpalPopover extends Component {
 	}
 
 	open(): boolean {
-		if (this.inputs.opened) {
+		if (this.params.opened) {
 			return false;
 		}
 
-		this.inputs.opened = true;
+		this.params.opened = true;
 		Cell.forceRelease();
 
 		return true;
 	}
 
 	close(): boolean {
-		if (!this.inputs.opened) {
+		if (!this.params.opened) {
 			return false;
 		}
 
-		this.inputs.opened = false;
+		this.params.opened = false;
 		Cell.forceRelease();
 
 		return true;
@@ -88,11 +88,11 @@ export class OpalPopover extends Component {
 	_open$() {
 		let el = this.element;
 
-		if (this.inputs.autoDirection) {
+		if (this.params.autoDirection) {
 			let docEl = document.documentElement;
 			let containerClientRect = el.offsetParent.getBoundingClientRect();
 			let elClientRect = el.getBoundingClientRect();
-			let position = (this._positionOnOpen = this.inputs.position).split('-');
+			let position = (this._positionOnOpen = this.params.position).split('-');
 
 			switch (position[0]) {
 				case 'left': {
@@ -102,7 +102,7 @@ export class OpalPopover extends Component {
 							containerClientRect.left <
 								docEl.clientWidth - containerClientRect.right)
 					) {
-						this.inputs.position =
+						this.params.position =
 							'right' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
@@ -115,7 +115,7 @@ export class OpalPopover extends Component {
 							containerClientRect.top <
 								docEl.clientHeight - containerClientRect.bottom)
 					) {
-						this.inputs.position =
+						this.params.position =
 							'bottom' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
@@ -128,7 +128,7 @@ export class OpalPopover extends Component {
 						containerClientRect.left + document.body.scrollLeft >=
 							elClientRect.right - containerClientRect.right
 					) {
-						this.inputs.position =
+						this.params.position =
 							'left' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
@@ -141,7 +141,7 @@ export class OpalPopover extends Component {
 						containerClientRect.top + document.body.scrollTop >=
 							elClientRect.bottom - containerClientRect.bottom
 					) {
-						this.inputs.position =
+						this.params.position =
 							'top' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
@@ -150,7 +150,7 @@ export class OpalPopover extends Component {
 			}
 		}
 
-		let position = this.inputs.position.split('-');
+		let position = this.params.position.split('-');
 		let arrowStyle = this.$<HTMLElement>('arrow')!.style;
 
 		arrowStyle.top = arrowStyle.right = arrowStyle.bottom = arrowStyle.left = '';
@@ -164,9 +164,9 @@ export class OpalPopover extends Component {
 				'px';
 		}
 
-		if (this.inputs.autoClosing) {
+		if (this.params.autoClosing) {
 			setTimeout(() => {
-				if (this.inputs.opened) {
+				if (this.params.opened) {
 					this._documentClickListening = this.listenTo(
 						document,
 						'click',
@@ -178,8 +178,8 @@ export class OpalPopover extends Component {
 	}
 
 	_close() {
-		if (this.inputs.autoDirection) {
-			this.inputs.position = this._positionOnOpen;
+		if (this.params.autoDirection) {
+			this.params.position = this._positionOnOpen;
 		}
 
 		if (this._documentClickListening) {

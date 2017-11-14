@@ -12,8 +12,8 @@ export declare class OpalTextInput extends Component {
     _initialHeight: number;
     ready(): void;
     elementAttached(): void;
-    _onInputValueChange(evt: IEvent): void;
-    _onInputFocusedChange(evt: IEvent): void;
+    _onParamValueChange(evt: IEvent): void;
+    _onParamFocusedChange(evt: IEvent): void;
     _onTextFieldFocus(evt: Event): void;
     _onTextFieldBlur(): void;
     _onTextFieldInput(evt: Event): void;

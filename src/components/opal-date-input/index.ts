@@ -17,7 +17,7 @@ function pad(num: number): string {
 @Component.Config<OpalDateInput>({
 	elementIs: 'opal-date-input',
 
-	inputs: {
+	params: {
 		fromDate: String,
 		toDate: String,
 		value: String,
@@ -81,8 +81,8 @@ export class OpalDateInput extends Component {
 		);
 		this.listenTo(
 			'calendar-menu',
-			'input-opened-change',
-			this._onCalendarMenuInputOpenedChange
+			'param-opened-change',
+			this._onCalendarMenuParamOpenedChange
 		);
 	}
 
@@ -96,7 +96,7 @@ export class OpalDateInput extends Component {
 		this.$<OpalDropdown>('calendar-menu')!.open();
 	}
 
-	_onCalendarMenuInputOpenedChange(evt: IEvent) {
+	_onCalendarMenuParamOpenedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._documentFocusListening = this.listenTo(
 				document,

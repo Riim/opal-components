@@ -4,6 +4,6 @@ import './index.css';
 export declare class OpalTabPanel extends Component {
     isContentRendered: boolean;
     initialize(): void;
-    _onInputShownChange(evt: IEvent): void;
+    _onParamShownChange(evt: IEvent): void;
     renderContent(): void;
 }

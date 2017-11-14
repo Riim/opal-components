@@ -6,7 +6,7 @@ export declare class OpalModal extends Component {
     ready(): void;
     elementAttached(): void;
     elementDetached(): void;
-    _onInputOpenedChange(evt: IEvent): void;
+    _onParamOpenedChange(evt: IEvent): void;
     _onElementClick(evt: Event): void;
     renderContent(): void;
     open(): boolean;

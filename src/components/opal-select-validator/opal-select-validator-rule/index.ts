@@ -3,7 +3,7 @@ import { OpalInputValidatorRule } from '../../opal-input-validator';
 @OpalInputValidatorRule.Config({
 	elementIs: 'opal-select-validator-rule',
 
-	inputs: {
+	params: {
 		minCount: { type: Number, readonly: true }
 	}
 })

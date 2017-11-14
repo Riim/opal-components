@@ -23,7 +23,7 @@ let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: '
 @Component.Config<OpalTagSelect>({
 	elementIs: 'opal-tag-select',
 
-	inputs: {
+	params: {
 		viewType: String,
 		dataList: { type: Object },
 		dataListKeypath: { type: String, readonly: true },
@@ -80,23 +80,23 @@ export class OpalTagSelect extends Component {
 
 	@computed
 	get isPlaceholderShown(): boolean {
-		return !!this.inputs.placeholder && !this.viewModel.length;
+		return !!this.params.placeholder && !this.viewModel.length;
 	}
 
 	_dataListKeypathParam: string | null;
 
 	initialize() {
-		let inputs = this.inputs;
+		let params = this.params;
 
-		if (inputs.dataListKeypath || inputs.$specified.has('dataList')) {
+		if (params.dataListKeypath || params.$specified.has('dataList')) {
 			define(
 				this,
 				'dataList',
-				inputs.dataListKeypath
-					? new Cell(Function(`return this.${inputs.dataListKeypath};`), {
+				params.dataListKeypath
+					? new Cell(Function(`return this.${params.dataListKeypath};`), {
 							context: this.ownerComponent || window
 						})
-					: () => inputs.dataList
+					: () => params.dataList
 			);
 
 			this.dataProvider = null;
@@ -104,11 +104,11 @@ export class OpalTagSelect extends Component {
 			this._dataListKeypathParam = 'dataList';
 		} else {
 			this.dataList = null;
-			this.dataProvider = inputs.dataProvider;
+			this.dataProvider = params.dataProvider;
 			this._dataListKeypathParam = null;
 		}
 
-		let dataListItemSchema = inputs.dataListItemSchema;
+		let dataListItemSchema = params.dataListItemSchema;
 
 		this._dataListItemValueFieldName =
 			dataListItemSchema.value || defaultDataListItemSchema.value;
@@ -116,9 +116,9 @@ export class OpalTagSelect extends Component {
 		this._dataListItemDisabledFieldName =
 			dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 
-		this.viewModel = inputs.viewModel || new ObservableList();
+		this.viewModel = params.viewModel || new ObservableList();
 
-		let vmItemSchema = inputs.viewModelItemSchema;
+		let vmItemSchema = params.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalSelect)
 			.defaultViewModelItemSchema;
 
@@ -129,7 +129,7 @@ export class OpalTagSelect extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'input-view-model-change', this._onInputViewModelChange);
+		this.listenTo(this, 'param-view-model-change', this._onParamViewModelChange);
 
 		this.listenTo('control', 'click', this._onControlClick);
 
@@ -141,9 +141,9 @@ export class OpalTagSelect extends Component {
 		});
 	}
 
-	_onInputViewModelChange(evt: IEvent) {
+	_onParamViewModelChange(evt: IEvent) {
 		if (evt.data.value != this.viewModel) {
-			throw new TypeError('Input property "viewModel" is readonly');
+			throw new TypeError('Parameter "viewModel" is readonly');
 		}
 	}
 
@@ -190,6 +190,6 @@ export class OpalTagSelect extends Component {
 	// helpers
 
 	_isItemDisabled(item: IDataListItem) {
-		return this.inputs.disabled || item[this._viewModelItemDisabledFieldName];
+		return this.params.disabled || item[this._viewModelItemDisabledFieldName];
 	}
 }

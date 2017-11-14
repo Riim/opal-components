@@ -6,7 +6,7 @@ export declare class OpalButton extends Component {
     _documentKeyDownListening: IDisposableListening | undefined;
     ready(): void;
     elementAttached(): void;
-    _onInputFocusedChange(evt: IEvent): void;
+    _onParamFocusedChange(evt: IEvent): void;
     _onTabIndexChange(): void;
     _onElementFocus(evt: Event): void;
     _onElementBlur(): void;

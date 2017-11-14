@@ -28,12 +28,12 @@ export class OpalTextInputValidator extends OpalInputValidator {
 
 	_checkValue(rule: OpalInputValidatorRule): boolean {
 		let value = this.textInput.value;
-		let ruleInputs = rule.inputs;
+		let ruleParams = rule.params;
 
 		return !(value
-			? (ruleInputs.minLength && value.length < ruleInputs.minLength) ||
-				(ruleInputs.regex && !ruleInputs.regex.test(value)) ||
-				(ruleInputs.test && !ruleInputs.test.call(this.ownerComponent, value))
-			: ruleInputs.required);
+			? (ruleParams.minLength && value.length < ruleParams.minLength) ||
+				(ruleParams.regex && !ruleParams.regex.test(value)) ||
+				(ruleParams.test && !ruleParams.test.call(this.ownerComponent, value))
+			: ruleParams.required);
 	}
 }

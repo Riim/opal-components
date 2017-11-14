@@ -10,7 +10,7 @@ import template from './template.nelm';
 @Component.Config<OpalTreeListItem>({
 	elementIs: 'opal-tree-list-item',
 
-	inputs: {
+	params: {
 		dataTreeList: { type: Object, required: true },
 		filteredDataTreeList: { type: Object, required: true },
 		dataTreeListItemValueFieldName: { type: String, required: true, readonly: true },
@@ -28,7 +28,7 @@ import template from './template.nelm';
 	events: {
 		'btn-toggle-children': {
 			change(evt: IEvent<OpalButton>) {
-				this.inputs.opened = evt.target.checked;
+				this.params.opened = evt.target.checked;
 			}
 		}
 	}
@@ -36,7 +36,7 @@ import template from './template.nelm';
 export class OpalTreeListItem extends Component {
 	@computed
 	get dataTreeList(): TDataTreeList {
-		return this.inputs.dataTreeList;
+		return this.params.dataTreeList;
 	}
 
 	dataTreeListItem: IDataTreeListItem;
@@ -45,23 +45,23 @@ export class OpalTreeListItem extends Component {
 
 	@computed
 	get viewModel(): TViewModel {
-		return this.inputs.viewModel;
+		return this.params.viewModel;
 	}
 
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 
 	initialize() {
-		let inputs = this.inputs;
+		let params = this.params;
 
-		this.dataTreeListItem = (inputs.filteredDataTreeList as TDataTreeList).get(
-			inputs.indexpath
+		this.dataTreeListItem = (params.filteredDataTreeList as TDataTreeList).get(
+			params.indexpath
 		)!;
-		this._dataTreeListItemValueFieldName = inputs.dataTreeListItemValueFieldName;
-		this._dataTreeListItemTextFieldName = inputs.dataTreeListItemTextFieldName;
+		this._dataTreeListItemValueFieldName = params.dataTreeListItemValueFieldName;
+		this._dataTreeListItemTextFieldName = params.dataTreeListItemTextFieldName;
 
-		this._viewModelItemValueFieldName = inputs.viewModelItemValueFieldName;
-		this._viewModelItemTextFieldName = inputs.viewModelItemTextFieldName;
+		this._viewModelItemValueFieldName = params.viewModelItemValueFieldName;
+		this._viewModelItemTextFieldName = params.viewModelItemTextFieldName;
 	}
 }
 

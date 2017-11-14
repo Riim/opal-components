@@ -24,7 +24,7 @@ function initContainer(notification: OpalNotification): HTMLElement {
 @Component.Config({
 	elementIs: 'opal-notification',
 
-	inputs: {
+	params: {
 		viewType: 'default',
 		iconSize: 'm',
 		buttonHide: true,
@@ -46,20 +46,20 @@ export class OpalNotification extends Component {
 
 		let bar = (this.bar = this.$<HTMLElement>('bar', this)!);
 		this.element.removeChild(bar);
-		bar.setAttribute('view-type', this.inputs.viewType);
-		bar.setAttribute('icon-size', this.inputs.iconSize);
-		bar.setAttribute('button-hide', this.inputs.buttonHide);
+		bar.setAttribute('view-type', this.params.viewType);
+		bar.setAttribute('icon-size', this.params.iconSize);
+		bar.setAttribute('button-hide', this.params.buttonHide);
 		if (this.$('icon')) {
 			bar.setAttribute('has-icon', '');
 		}
 
-		if (this.inputs.shown) {
+		if (this.params.shown) {
 			this._show();
 		}
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'input-shown-change', this._onInputShownChange);
+		this.listenTo(this, 'param-shown-change', this._onParamShownChange);
 		this.listenTo('btn-hide', 'click', this._onBtnHideClick);
 	}
 
@@ -67,7 +67,7 @@ export class OpalNotification extends Component {
 		this.hide();
 	}
 
-	_onInputShownChange(evt: IEvent) {
+	_onParamShownChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._show();
 		} else {
@@ -82,22 +82,22 @@ export class OpalNotification extends Component {
 	}
 
 	show(): boolean {
-		if (this.inputs.shown) {
+		if (this.params.shown) {
 			return false;
 		}
 
-		this.inputs.shown = true;
+		this.params.shown = true;
 		Cell.forceRelease();
 
 		return true;
 	}
 
 	hide(): boolean {
-		if (!this.inputs.shown) {
+		if (!this.params.shown) {
 			return false;
 		}
 
-		this.inputs.shown = false;
+		this.params.shown = false;
 		Cell.forceRelease();
 
 		return true;
@@ -125,10 +125,10 @@ export class OpalNotification extends Component {
 		setTimeout(() => {
 			this.bar.setAttribute('shown', '');
 
-			if (this.inputs.timeout) {
+			if (this.params.timeout) {
 				setTimeout(() => {
 					this.hide();
-				}, this.inputs.timeout);
+				}, this.params.timeout);
 			}
 		}, 100);
 	}

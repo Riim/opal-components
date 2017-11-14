@@ -17,11 +17,11 @@ export class OpalSelectValidator extends OpalInputValidator {
 
 	_checkValue(rule: OpalInputValidatorRule): boolean {
 		let vm = this.select.viewModel;
-		let ruleInputs = rule.inputs;
+		let ruleParams = rule.params;
 
 		return !(vm.length
-			? (ruleInputs.minCount && vm.length < ruleInputs.minCount) ||
-				(ruleInputs.test && !ruleInputs.test.call(this.ownerComponent, vm))
-			: ruleInputs.required);
+			? (ruleParams.minCount && vm.length < ruleParams.minCount) ||
+				(ruleParams.test && !ruleParams.test.call(this.ownerComponent, vm))
+			: ruleParams.required);
 	}
 }

@@ -6,7 +6,7 @@ export declare class OpalSignButton extends Component {
     _documentKeyDownListening: IDisposableListening;
     elementAttached(): void;
     ready(): void;
-    _onInputFocusedChange(evt: IEvent): void;
+    _onParamFocusedChange(evt: IEvent): void;
     _onControlFocus(evt: Event): void;
     _onControlBlur(): void;
     _onControlClick(evt: Event): void;

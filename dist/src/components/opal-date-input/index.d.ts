@@ -12,7 +12,7 @@ export declare class OpalDateInput extends Component {
     elementAttached(): void;
     _onTextInputChange(evt: IEvent<OpalTextInput>): void;
     _onTextInputElementClick(): void;
-    _onCalendarMenuInputOpenedChange(evt: IEvent): void;
+    _onCalendarMenuParamOpenedChange(evt: IEvent): void;
     _onDocumentFocus(evt: Event): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _onDocumentClick(evt: Event): void;

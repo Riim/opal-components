@@ -36,13 +36,13 @@ export declare class OpalAutosuggest extends Component {
     initialize(): void;
     elementAttached(): void;
     ready(): void;
-    _onInputValueChange(evt: IEvent): void;
+    _onParamValueChange(evt: IEvent): void;
     _onTextInputFocus(): void;
     _onTextInputBlur(): void;
     _onTextInputInput(evt: IEvent<OpalTextInput>): void;
     _onTextInputChange(evt: IEvent<OpalTextInput>): void;
     _onTextFieldClick(): void;
-    _onMenuInputOpenedChange(evt: IEvent): void;
+    _onMenuParamOpenedChange(evt: IEvent): void;
     _onMenuElementMouseOver(evt: Event): void;
     _onDataListChange(): void;
     _onIsLoaderShownChange(evt: IEvent): void;

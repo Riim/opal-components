@@ -4,7 +4,7 @@ import './index.css';
 export declare class OpalSelectOption extends Component {
     readonly _tabIndex: number;
     elementAttached(): void;
-    _onInputFocusedChange(evt: IEvent): void;
+    _onParamFocusedChange(evt: IEvent): void;
     _onControlFocus(evt: Event): void;
     _onControlBlur(): void;
     _onControlClick(evt: Event): void;

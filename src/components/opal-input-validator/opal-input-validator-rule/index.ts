@@ -6,7 +6,7 @@ import template from './template.nelm';
 @Component.Config({
 	elementIs: 'opal-input-validator-rule',
 
-	inputs: {
+	params: {
 		required: { default: false, readonly: true },
 		test: { type: Object, readonly: true },
 		popoverPosition: 'right'

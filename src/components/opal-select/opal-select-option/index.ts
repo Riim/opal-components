@@ -8,7 +8,7 @@ import template from './template.nelm';
 @Component.Config<OpalSelectOption>({
 	elementIs: 'opal-select-option',
 
-	inputs: {
+	params: {
 		value: String,
 		text: { type: String, required: true },
 		subtext: String,
@@ -23,11 +23,11 @@ import template from './template.nelm';
 export class OpalSelectOption extends Component {
 	@computed
 	get _tabIndex(): number {
-		return this.inputs.disabled ? -1 : this.inputs.tabIndex;
+		return this.params.disabled ? -1 : this.params.tabIndex;
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'input-focused-change', this._onInputFocusedChange);
+		this.listenTo(this, 'param-focused-change', this._onParamFocusedChange);
 
 		this.listenTo('control', {
 			focus: this._onControlFocus,
@@ -36,7 +36,7 @@ export class OpalSelectOption extends Component {
 		});
 	}
 
-	_onInputFocusedChange(evt: IEvent) {
+	_onParamFocusedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this.focus();
 		} else {
@@ -47,19 +47,19 @@ export class OpalSelectOption extends Component {
 	_onControlFocus(evt: Event) {
 		nextTick(() => {
 			if (document.activeElement == evt.target) {
-				this.inputs.focused = true;
+				this.params.focused = true;
 			}
 		});
 	}
 
 	_onControlBlur() {
-		this.inputs.focused = false;
+		this.params.focused = false;
 	}
 
 	_onControlClick(evt: Event) {
 		evt.preventDefault();
 
-		if (!this.inputs.disabled) {
+		if (!this.params.disabled) {
 			this.click();
 		}
 	}
@@ -71,37 +71,37 @@ export class OpalSelectOption extends Component {
 	}
 
 	get value(): string {
-		let inputs = this.inputs;
-		return inputs.value === null ? inputs.text : inputs.value;
+		let params = this.params;
+		return params.value === null ? params.text : params.value;
 	}
 	set value(value: string) {
-		this.inputs.value = value;
+		this.params.value = value;
 	}
 
 	get text(): string {
-		return this.inputs.text.trim() || ' ';
+		return this.params.text.trim() || ' ';
 	}
 	set text(text: string) {
-		this.inputs.text = text;
+		this.params.text = text;
 	}
 
 	get selected(): boolean {
-		return this.inputs.selected;
+		return this.params.selected;
 	}
 	set selected(selected: boolean) {
-		this.inputs.selected = selected;
+		this.params.selected = selected;
 	}
 
 	get disabled(): boolean {
-		return this.inputs.disabled;
+		return this.params.disabled;
 	}
 	set disabled(disabled: boolean) {
-		this.inputs.disabled = disabled;
+		this.params.disabled = disabled;
 	}
 
 	select(): boolean {
-		if (!this.inputs.selected) {
-			this.inputs.selected = true;
+		if (!this.params.selected) {
+			this.params.selected = true;
 			return true;
 		}
 
@@ -109,8 +109,8 @@ export class OpalSelectOption extends Component {
 	}
 
 	deselect(): boolean {
-		if (this.inputs.selected) {
-			this.inputs.selected = false;
+		if (this.params.selected) {
+			this.params.selected = false;
 			return true;
 		}
 
@@ -118,7 +118,7 @@ export class OpalSelectOption extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.inputs.selected = value === undefined ? !this.inputs.selected : value);
+		return (this.params.selected = value === undefined ? !this.params.selected : value);
 	}
 
 	focus(): OpalSelectOption {
@@ -132,12 +132,12 @@ export class OpalSelectOption extends Component {
 	}
 
 	enable(): OpalSelectOption {
-		this.inputs.disabled = false;
+		this.params.disabled = false;
 		return this;
 	}
 
 	disable(): OpalSelectOption {
-		this.inputs.disabled = true;
+		this.params.disabled = true;
 		return this;
 	}
 }

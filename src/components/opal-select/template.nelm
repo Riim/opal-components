@@ -2,16 +2,16 @@
 
 rt-slot (for=button) {
 	opal-button/button (
-		view-type={inputs.viewType},
-		size={inputs.size},
+		view-type={params.viewType},
+		size={params.size},
 		checkable,
-		tab-index={inputs.tabIndex},
-		disabled={inputs.disabled}
+		tab-index={params.tabIndex},
+		disabled={params.disabled}
 	) {
-		@if-then (if=inputs.text) {
-			'{inputs.text}'
+		@if-then (if=params.text) {
+			'{params.text}'
 		}
-		@if-else (if=inputs.text) {
+		@if-else (if=params.text) {
 			'{_buttonText}'
 		}
 
@@ -25,7 +25,7 @@ rt-slot (for=menu-slot) {
 	rt-slot/menu-slot (for=menu) {
 		opal-dropdown/menu (auto-closing) {
 			rt-slot (for=menu-content) {
-				@if-then (if=_isInputDataListSpecified) {
+				@if-then (if=_isParamDataListSpecified) {
 					div/, menu-content {
 						@if-then (if=dataList) {
 							@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {
@@ -43,7 +43,7 @@ rt-slot (for=menu-slot) {
 						}
 					}
 				}
-				@if-else (if=_isInputDataListSpecified) {
+				@if-else (if=_isParamDataListSpecified) {
 					div/, menu-content {
 						rt-slot/options (for-tag=opal-select-option)
 						rt-slot/new-item-input-slot (for=new-item-input)

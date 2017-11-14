@@ -4,7 +4,7 @@ import './index.css';
 @Component.Config({
 	elementIs: 'opal-input-mask-definition',
 
-	inputs: {
+	params: {
 		maskChar: { type: String, required: true, readonly: true },
 		regex: { type: eval, required: true, readonly: true }
 	}

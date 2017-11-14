@@ -6,8 +6,8 @@ export declare class OpalRadioButton extends Component {
     _documentKeyDownListening: IDisposableListening;
     ready(): void;
     elementAttached(): void;
-    _onInputCheckedChange(evt: IEvent): void;
-    _onInputFocusedChange(evt: IEvent): void;
+    _onParamCheckedChange(evt: IEvent): void;
+    _onParamFocusedChange(evt: IEvent): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _onInputChange(evt: Event): void;
     _onControlFocus(evt: Event): void;

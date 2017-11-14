@@ -6,9 +6,9 @@ export declare class OpalCheckbox extends Component {
     _documentKeyDownListening: IDisposableListening;
     elementAttached(): void;
     ready(): void;
-    _onInputCheckedChange(evt: IEvent): void;
-    _onInputIndeterminateChange(evt: IEvent): void;
-    _onInputFocusedChange(evt: IEvent): void;
+    _onParamCheckedChange(evt: IEvent): void;
+    _onParamIndeterminateChange(evt: IEvent): void;
+    _onParamFocusedChange(evt: IEvent): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _onInputChange(evt: Event): void;
     _onControlFocus(evt: Event): void;

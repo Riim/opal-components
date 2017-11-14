@@ -16,7 +16,7 @@ import template from './template.nelm';
 		nothingSelected: getText.t('Ничего не выбрано')
 	},
 
-	inputs: {
+	params: {
 		multiple: true,
 		dataProvider: { type: Object, readonly: true }
 	},
@@ -26,11 +26,11 @@ import template from './template.nelm';
 	events: {
 		'query-input': {
 			input(evt: IEvent<OpalTextInput>) {
-				this.$<OpalLoadedList>('loaded-list')!.inputs.query = evt.target.value;
+				this.$<OpalLoadedList>('loaded-list')!.params.query = evt.target.value;
 			},
 
 			clear() {
-				this.$<OpalLoadedList>('loaded-list')!.inputs.query = '';
+				this.$<OpalLoadedList>('loaded-list')!.params.query = '';
 			}
 		},
 
@@ -66,13 +66,13 @@ export class OpalMultiselect extends OpalSelect {
 	initialize() {
 		super.initialize();
 
-		let inputs = this.inputs;
+		let params = this.params;
 
-		if (!inputs.$specified.has('dataProvider')) {
-			throw new TypeError('Input property "dataProvider" is required');
+		if (!params.$specified.has('dataProvider')) {
+			throw new TypeError('Parameter "dataProvider" is required');
 		}
 
-		let dataProvider = inputs.dataProvider;
+		let dataProvider = params.dataProvider;
 
 		if (!dataProvider) {
 			throw new TypeError('"dataProvider" is not defined');

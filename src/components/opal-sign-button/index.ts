@@ -8,7 +8,7 @@ import template from './template.nelm';
 @Component.Config<OpalSignButton>({
 	elementIs: 'opal-sign-button',
 
-	inputs: {
+	params: {
 		sign: { type: String, required: true },
 		checkable: false,
 		checked: false,
@@ -22,13 +22,13 @@ import template from './template.nelm';
 export class OpalSignButton extends Component {
 	@computed
 	get _tabIndex(): number {
-		return this.inputs.disabled ? -1 : this.inputs.tabIndex;
+		return this.params.disabled ? -1 : this.params.tabIndex;
 	}
 
 	_documentKeyDownListening: IDisposableListening;
 
 	elementAttached() {
-		this.listenTo(this, 'input-focused-change', this._onInputFocusedChange);
+		this.listenTo(this, 'param-focused-change', this._onParamFocusedChange);
 
 		this.listenTo('control', {
 			focus: this._onControlFocus,
@@ -38,12 +38,12 @@ export class OpalSignButton extends Component {
 	}
 
 	ready() {
-		if (this.inputs.focused) {
+		if (this.params.focused) {
 			this.focus();
 		}
 	}
 
-	_onInputFocusedChange(evt: IEvent) {
+	_onParamFocusedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this.focus();
 		} else {
@@ -54,27 +54,27 @@ export class OpalSignButton extends Component {
 	_onControlFocus(evt: Event) {
 		nextTick(() => {
 			if (document.activeElement == evt.target) {
-				this.inputs.focused = true;
+				this.params.focused = true;
 				this.emit('focus');
 			}
 		});
 	}
 
 	_onControlBlur() {
-		this.inputs.focused = false;
+		this.params.focused = false;
 		this.emit('blur');
 	}
 
 	_onControlClick(evt: Event) {
 		evt.preventDefault();
 
-		if (!this.inputs.disabled) {
+		if (!this.params.disabled) {
 			this.click();
 		}
 	}
 
 	click(): OpalSignButton {
-		if (this.inputs.checkable) {
+		if (this.params.checkable) {
 			this.emit(this.toggle() ? 'check' : 'uncheck');
 		}
 
@@ -84,10 +84,10 @@ export class OpalSignButton extends Component {
 	}
 
 	get checked(): boolean {
-		return this.inputs.checked;
+		return this.params.checked;
 	}
 	set checked(checked: boolean) {
-		this.inputs.checked = checked;
+		this.params.checked = checked;
 	}
 
 	get selected(): boolean {
@@ -98,8 +98,8 @@ export class OpalSignButton extends Component {
 	}
 
 	check(): boolean {
-		if (!this.inputs.checked) {
-			this.inputs.checked = true;
+		if (!this.params.checked) {
+			this.params.checked = true;
 			return true;
 		}
 
@@ -107,8 +107,8 @@ export class OpalSignButton extends Component {
 	}
 
 	uncheck(): boolean {
-		if (this.inputs.checked) {
-			this.inputs.checked = false;
+		if (this.params.checked) {
+			this.params.checked = false;
 			return true;
 		}
 
@@ -116,7 +116,7 @@ export class OpalSignButton extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.inputs.checked = value === undefined ? !this.inputs.checked : value);
+		return (this.params.checked = value === undefined ? !this.params.checked : value);
 	}
 
 	focus(): OpalSignButton {
@@ -130,12 +130,12 @@ export class OpalSignButton extends Component {
 	}
 
 	enable(): OpalSignButton {
-		this.inputs.disabled = false;
+		this.params.disabled = false;
 		return this;
 	}
 
 	disable(): OpalSignButton {
-		this.inputs.disabled = true;
+		this.params.disabled = true;
 		return this;
 	}
 }

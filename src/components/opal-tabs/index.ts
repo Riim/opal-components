@@ -52,7 +52,7 @@ export class OpalTabs extends Component {
 			selectedTab.select();
 		}
 
-		tabPanels[selectedTabIndex!].$component.inputs.shown = true;
+		tabPanels[selectedTabIndex!].$component.params.shown = true;
 	}
 
 	elementAttached() {
@@ -73,11 +73,11 @@ export class OpalTabs extends Component {
 		if (selectedTab) {
 			this.tabPanels[
 				indexOf.call(this.tabs, selectedTab.element)
-			].$component.inputs.shown = false;
+			].$component.params.shown = false;
 			selectedTab.deselect();
 		}
 
-		this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.inputs.shown = true;
+		this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.params.shown = true;
 		this._selectedTab = tab;
 	}
 

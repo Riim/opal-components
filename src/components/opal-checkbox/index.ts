@@ -8,7 +8,7 @@ import template from './template.nelm';
 @Component.Config<OpalCheckbox>({
 	elementIs: 'opal-checkbox',
 
-	inputs: {
+	params: {
 		checked: false,
 		indeterminate: false,
 		tabIndex: 0,
@@ -21,16 +21,16 @@ import template from './template.nelm';
 export class OpalCheckbox extends Component {
 	@computed
 	get _tabIndex(): number {
-		return this.inputs.disabled ? -1 : this.inputs.tabIndex;
+		return this.params.disabled ? -1 : this.params.tabIndex;
 	}
 
 	_documentKeyDownListening: IDisposableListening;
 
 	elementAttached() {
 		this.listenTo(this, {
-			'input-checked-change': this._onInputCheckedChange,
-			'input-indeterminate-change': this._onInputIndeterminateChange,
-			'input-focused-change': this._onInputFocusedChange
+			'param-checked-change': this._onParamCheckedChange,
+			'param-indeterminate-change': this._onParamIndeterminateChange,
+			'param-focused-change': this._onParamFocusedChange
 		});
 
 		this.listenTo('input', 'change', this._onInputChange);
@@ -42,33 +42,33 @@ export class OpalCheckbox extends Component {
 	}
 
 	ready() {
-		let inputs = this.inputs;
+		let params = this.params;
 
-		if (inputs.checked) {
-			inputs.indeterminate = false;
+		if (params.checked) {
+			params.indeterminate = false;
 			this.$<HTMLInputElement>('input')!.checked = true;
 		}
 
-		if (inputs.focused) {
+		if (params.focused) {
 			this.focus();
 		}
 	}
 
-	_onInputCheckedChange(evt: IEvent) {
+	_onParamCheckedChange(evt: IEvent) {
 		if (evt.data.value) {
-			this.inputs.indeterminate = false;
+			this.params.indeterminate = false;
 		}
 
 		this.$<HTMLInputElement>('input')!.checked = evt.data.value;
 	}
 
-	_onInputIndeterminateChange(evt: IEvent) {
+	_onParamIndeterminateChange(evt: IEvent) {
 		if (evt.data.value) {
-			this.inputs.checked = false;
+			this.params.checked = false;
 		}
 	}
 
-	_onInputFocusedChange(evt: IEvent) {
+	_onParamFocusedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._documentKeyDownListening = this.listenTo(
 				document,
@@ -86,10 +86,10 @@ export class OpalCheckbox extends Component {
 		if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
 			evt.preventDefault();
 
-			let inputs = this.inputs;
+			let params = this.params;
 
-			if (!inputs.disabled) {
-				this.emit((inputs.checked = !inputs.checked) ? 'check' : 'uncheck');
+			if (!params.disabled) {
+				this.emit((params.checked = !params.checked) ? 'check' : 'uncheck');
 				this.emit('change');
 			}
 		}
@@ -97,7 +97,7 @@ export class OpalCheckbox extends Component {
 
 	_onInputChange(evt: Event) {
 		this.emit(
-			(this.inputs.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck'
+			(this.params.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck'
 		);
 		this.emit('change');
 	}
@@ -105,22 +105,22 @@ export class OpalCheckbox extends Component {
 	_onControlFocus(evt: Event) {
 		nextTick(() => {
 			if (document.activeElement == evt.target) {
-				this.inputs.focused = true;
+				this.params.focused = true;
 				this.emit('focus');
 			}
 		});
 	}
 
 	_onControlBlur() {
-		this.inputs.focused = false;
+		this.params.focused = false;
 		this.emit('blur');
 	}
 
 	get checked(): boolean {
-		return this.inputs.checked;
+		return this.params.checked;
 	}
 	set checked(checked: boolean) {
-		this.inputs.checked = checked;
+		this.params.checked = checked;
 	}
 
 	get selected(): boolean {
@@ -131,8 +131,8 @@ export class OpalCheckbox extends Component {
 	}
 
 	check(): boolean {
-		if (!this.inputs.checked) {
-			this.inputs.checked = true;
+		if (!this.params.checked) {
+			this.params.checked = true;
 			return true;
 		}
 
@@ -140,8 +140,8 @@ export class OpalCheckbox extends Component {
 	}
 
 	uncheck(): boolean {
-		if (this.inputs.checked) {
-			this.inputs.checked = false;
+		if (this.params.checked) {
+			this.params.checked = false;
 			return true;
 		}
 
@@ -149,7 +149,7 @@ export class OpalCheckbox extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.inputs.checked = value === undefined ? !this.inputs.checked : value);
+		return (this.params.checked = value === undefined ? !this.params.checked : value);
 	}
 
 	focus(): OpalCheckbox {
@@ -163,12 +163,12 @@ export class OpalCheckbox extends Component {
 	}
 
 	enable(): OpalCheckbox {
-		this.inputs.disabled = false;
+		this.params.disabled = false;
 		return this;
 	}
 
 	disable(): OpalCheckbox {
-		this.inputs.disabled = true;
+		this.params.disabled = true;
 		return this;
 	}
 }

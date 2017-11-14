@@ -31,7 +31,7 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disab
 @Component.Config<OpalAutosuggest>({
 	elementIs: 'opal-autosuggest',
 
-	inputs: {
+	params: {
 		dataProvider: { type: Object, readonly: true },
 		dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
 		value: eval,
@@ -95,9 +95,9 @@ export class OpalAutosuggest extends Component {
 	_documentListening: IDisposableListening;
 
 	initialize() {
-		let inputs = this.inputs;
+		let params = this.params;
 
-		let dataListItemSchema = inputs.dataListItemSchema;
+		let dataListItemSchema = params.dataListItemSchema;
 		let defaultDataListItemSchema = (this.constructor as typeof OpalAutosuggest)
 			.defaultDataListItemSchema;
 
@@ -105,11 +105,11 @@ export class OpalAutosuggest extends Component {
 			dataListItemSchema.value || defaultDataListItemSchema.value;
 		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
 
-		if (!inputs.$specified.has('dataProvider')) {
-			throw new TypeError('Input property "dataProvider" is required');
+		if (!params.$specified.has('dataProvider')) {
+			throw new TypeError('Parameter "dataProvider" is required');
 		}
 
-		let dataProvider = inputs.dataProvider;
+		let dataProvider = params.dataProvider;
 
 		if (!dataProvider) {
 			throw new TypeError('"dataProvider" is not defined');
@@ -117,11 +117,11 @@ export class OpalAutosuggest extends Component {
 
 		this.dataProvider = dataProvider;
 
-		this.value = inputs.value;
+		this.value = params.value;
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'input-value-change', this._onInputValueChange);
+		this.listenTo(this, 'param-value-change', this._onParamValueChange);
 		this.listenTo('text-input', {
 			focus: this._onTextInputFocus,
 			blur: this._onTextInputBlur,
@@ -133,7 +133,7 @@ export class OpalAutosuggest extends Component {
 			'click',
 			this._onTextFieldClick
 		);
-		this.listenTo('menu', 'input-opened-change', this._onMenuInputOpenedChange);
+		this.listenTo('menu', 'param-opened-change', this._onMenuParamOpenedChange);
 		this.listenTo(
 			this.$<Component>('menu')!.element,
 			'mouseover',
@@ -151,7 +151,7 @@ export class OpalAutosuggest extends Component {
 		}
 	}
 
-	_onInputValueChange(evt: IEvent) {
+	_onParamValueChange(evt: IEvent) {
 		let item = evt.data.value as IDataListItem;
 
 		this._clearDataList();
@@ -173,7 +173,7 @@ export class OpalAutosuggest extends Component {
 		// 1. выбираем что-то;
 		// 2. изменяем запрос так чтобы ничего не нашлось;
 		// 3. убираем фокус.
-		if (!this.$<Component>('menu')!.inputs.opened) {
+		if (!this.$<Component>('menu')!.params.opened) {
 			this._selectItem();
 		}
 	}
@@ -183,7 +183,7 @@ export class OpalAutosuggest extends Component {
 
 		this._clearDataList();
 
-		if ((evt.target.value || '').length >= this.inputs.minQueryLength) {
+		if ((evt.target.value || '').length >= this.params.minQueryLength) {
 			this._isLoadingPlanned = true;
 
 			this._loadingTimeout = this.setTimeout(() => {
@@ -208,7 +208,7 @@ export class OpalAutosuggest extends Component {
 		this.openMenu();
 	}
 
-	_onMenuInputOpenedChange(evt: IEvent) {
+	_onMenuParamOpenedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._documentFocusListening = this.listenTo(
 				document,
@@ -256,7 +256,7 @@ export class OpalAutosuggest extends Component {
 	}
 
 	_onIsLoaderShownChange(evt: IEvent) {
-		this.$<Component>('text-input')!.inputs.loading = evt.data.value;
+		this.$<Component>('text-input')!.params.loading = evt.data.value;
 	}
 
 	_onDocumentFocus(evt: Event) {
@@ -337,7 +337,7 @@ export class OpalAutosuggest extends Component {
 		let args = [this.$<OpalTextInput>('text-input')!.value];
 
 		if (this.dataProvider.getItems.length >= 2) {
-			args.unshift(this.inputs.count);
+			args.unshift(this.params.count);
 		}
 
 		this.dataProvider.getItems
@@ -358,7 +358,7 @@ export class OpalAutosuggest extends Component {
 
 			this._focusedListItem = focusedListItem;
 			focusedListItem.setAttribute('focused', '');
-		} else if (this.inputs.openMenuOnNothingFound) {
+		} else if (this.params.openMenuOnNothingFound) {
 			this.openMenu(true);
 		}
 	}
