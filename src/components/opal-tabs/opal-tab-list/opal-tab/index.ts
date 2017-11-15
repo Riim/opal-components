@@ -9,6 +9,7 @@ import template from './template.nelm';
 	elementIs: 'opal-tab',
 
 	params: {
+		label: String,
 		selected: false,
 		tabIndex: 0,
 		focused: false,

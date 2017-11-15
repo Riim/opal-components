@@ -10,6 +10,7 @@ export { OpalTabPanel } from './opal-tab-panel';
 
 let indexOf = Array.prototype.indexOf;
 let forEach = Array.prototype.forEach;
+let find = Array.prototype.find;
 
 @Component.Config({
 	elementIs: 'opal-tabs',
@@ -67,7 +68,32 @@ export class OpalTabs extends Component {
 	}
 
 	_onTabListSelect(evt: IEvent<OpalTab>) {
-		let tab = evt.target;
+		this._selectTab(evt.target);
+	}
+
+	_onTabListDeselect(evt: IEvent<OpalTab>) {
+		evt.target.select();
+	}
+
+	goToTab(label: string): boolean {
+		if (this._selectedTab && this._selectedTab!.params.label === label) {
+			return true;
+		}
+
+		let tab = find.call(
+			this.tabs,
+			(tab: IComponentElement) => tab.$component.params.label == label
+		);
+
+		if (!tab) {
+			this._selectTab(tab);
+			return true;
+		}
+
+		return false;
+	}
+
+	_selectTab(tab: OpalTab) {
 		let selectedTab = this._selectedTab;
 
 		if (selectedTab) {
@@ -79,9 +105,5 @@ export class OpalTabs extends Component {
 
 		this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.params.shown = true;
 		this._selectedTab = tab;
-	}
-
-	_onTabListDeselect(evt: IEvent<OpalTab>) {
-		evt.target.select();
 	}
 }

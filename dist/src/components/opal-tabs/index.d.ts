@@ -13,4 +13,6 @@ export declare class OpalTabs extends Component {
     elementAttached(): void;
     _onTabListSelect(evt: IEvent<OpalTab>): void;
     _onTabListDeselect(evt: IEvent<OpalTab>): void;
+    goToTab(label: string): boolean;
+    _selectTab(tab: OpalTab): void;
 }

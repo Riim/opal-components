@@ -4128,6 +4128,7 @@ var opal_tab_panel_1 = __webpack_require__(68);
 exports.OpalTabPanel = opal_tab_panel_1.OpalTabPanel;
 var indexOf = Array.prototype.indexOf;
 var forEach = Array.prototype.forEach;
+var find = Array.prototype.find;
 var OpalTabs = /** @class */ (function (_super) {
     __extends(OpalTabs, _super);
     function OpalTabs() {
@@ -4168,7 +4169,23 @@ var OpalTabs = /** @class */ (function (_super) {
         });
     };
     OpalTabs.prototype._onTabListSelect = function (evt) {
-        var tab = evt.target;
+        this._selectTab(evt.target);
+    };
+    OpalTabs.prototype._onTabListDeselect = function (evt) {
+        evt.target.select();
+    };
+    OpalTabs.prototype.goToTab = function (label) {
+        if (this._selectedTab && this._selectedTab.params.label === label) {
+            return true;
+        }
+        var tab = find.call(this.tabs, function (tab) { return tab.$component.params.label == label; });
+        if (!tab) {
+            this._selectTab(tab);
+            return true;
+        }
+        return false;
+    };
+    OpalTabs.prototype._selectTab = function (tab) {
         var selectedTab = this._selectedTab;
         if (selectedTab) {
             this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$component.params.shown = false;
@@ -4176,9 +4193,6 @@ var OpalTabs = /** @class */ (function (_super) {
         }
         this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.params.shown = true;
         this._selectedTab = tab;
-    };
-    OpalTabs.prototype._onTabListDeselect = function (evt) {
-        evt.target.select();
     };
     OpalTabs = __decorate([
         rionite_1.Component.Config({
@@ -4357,6 +4371,7 @@ var OpalTab = /** @class */ (function (_super) {
         rionite_1.Component.Config({
             elementIs: 'opal-tab',
             params: {
+                label: String,
                 selected: false,
                 tabIndex: 0,
                 focused: false,
