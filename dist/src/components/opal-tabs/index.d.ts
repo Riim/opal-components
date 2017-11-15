@@ -2,12 +2,13 @@ import { IEvent } from 'cellx';
 import { Component, IComponentElement } from 'rionite';
 import './index.css';
 import { OpalTab } from './opal-tab-list';
+import { OpalTabPanel } from './opal-tab-panel';
 export { OpalTab };
 export { OpalTabList } from './opal-tab-list';
-export { OpalTabPanel } from './opal-tab-panel';
+export { OpalTabPanel };
 export declare class OpalTabs extends Component {
-    tabs: NodeListOf<IComponentElement>;
-    tabPanels: NodeListOf<IComponentElement>;
+    tabs: NodeListOf<IComponentElement<OpalTab>>;
+    tabPanels: NodeListOf<IComponentElement<OpalTabPanel>>;
     _selectedTab: OpalTab | null;
     ready(): void;
     elementAttached(): void;

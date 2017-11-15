@@ -4121,11 +4121,11 @@ var rionite_1 = __webpack_require__(0);
 __webpack_require__(61);
 var opal_tab_list_1 = __webpack_require__(9);
 exports.OpalTab = opal_tab_list_1.OpalTab;
-var template_nelm_1 = __webpack_require__(67);
+var opal_tab_panel_1 = __webpack_require__(67);
+exports.OpalTabPanel = opal_tab_panel_1.OpalTabPanel;
+var template_nelm_1 = __webpack_require__(70);
 var opal_tab_list_2 = __webpack_require__(9);
 exports.OpalTabList = opal_tab_list_2.OpalTabList;
-var opal_tab_panel_1 = __webpack_require__(68);
-exports.OpalTabPanel = opal_tab_panel_1.OpalTabPanel;
 var indexOf = Array.prototype.indexOf;
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
@@ -4179,8 +4179,8 @@ var OpalTabs = /** @class */ (function (_super) {
             return true;
         }
         var tab = find.call(this.tabs, function (tab) { return tab.$component.params.label == label; });
-        if (!tab) {
-            this._selectTab(tab);
+        if (tab) {
+            this._selectTab(tab.$component);
             return true;
         }
         return false;
@@ -4420,14 +4420,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 67 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot/tab-list-slot (for-tag=opal-tab-list) {\nopal-tab-list/tab-list {\nrt-slot/tabs, tabs (for-tag=opal-tab)\n}\n}\nrt-slot/tab-panels, tab-panels (for-tag=opal-tab-panel)\n}");
-
-/***/ }),
-/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4452,8 +4444,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(69);
-var template_nelm_1 = __webpack_require__(70);
+__webpack_require__(68);
+var template_nelm_1 = __webpack_require__(69);
 var OpalTabPanel = /** @class */ (function (_super) {
     __extends(OpalTabPanel, _super);
     function OpalTabPanel() {
@@ -4491,7 +4483,7 @@ exports.OpalTabPanel = OpalTabPanel;
 
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -4508,12 +4500,20 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 70 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=isContentRendered) {\nrt-slot/content-slot\n}\n}");
+
+/***/ }),
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot/tab-list-slot (for-tag=opal-tab-list) {\nopal-tab-list/tab-list {\nrt-slot/tabs, tabs (for-tag=opal-tab)\n}\n}\nrt-slot/tab-panels, tab-panels (for-tag=opal-tab-panel)\n}");
 
 /***/ }),
 /* 71 */

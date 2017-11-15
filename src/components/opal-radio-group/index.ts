@@ -28,9 +28,9 @@ export class OpalRadioGroup extends Component {
 	_onCheck(evt: IEvent) {
 		let checkedButton = evt.target;
 
-		forEach.call(this.buttonElements, (btnEl: IComponentElement) => {
+		forEach.call(this.buttonElements, (btnEl: IComponentElement<OpalRadioButton>) => {
 			if (btnEl.$component != checkedButton) {
-				(btnEl.$component as OpalRadioButton).uncheck();
+				btnEl.$component.uncheck();
 			}
 		});
 	}

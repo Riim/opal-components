@@ -12,7 +12,7 @@ let find = Array.prototype.find;
 	template
 })
 export class OpalSwitchMenu extends Component {
-	buttonElements: NodeListOf<HTMLElement>;
+	buttonElements: NodeListOf<IComponentElement<OpalButton>>;
 
 	_checkedButton: OpalButton | null;
 
@@ -24,7 +24,7 @@ export class OpalSwitchMenu extends Component {
 		return (this._checkedButton =
 			find.call(
 				this.buttonElements,
-				(btnEl: IComponentElement) => (btnEl.$component as OpalButton).checked
+				(btnEl: IComponentElement<OpalButton>) => btnEl.$component.checked
 			) || null);
 	}
 	set checkedButton(checkedButton: OpalButton | null) {
@@ -32,8 +32,8 @@ export class OpalSwitchMenu extends Component {
 			return;
 		}
 
-		forEach.call(this.buttonElements, (btnEl: IComponentElement) => {
-			let btn = btnEl.$component as OpalButton;
+		forEach.call(this.buttonElements, (btnEl: IComponentElement<OpalButton>) => {
+			let btn = btnEl.$component;
 
 			if (btn === checkedButton) {
 				btn.check();
@@ -49,7 +49,7 @@ export class OpalSwitchMenu extends Component {
 
 	ready() {
 		this.buttonElements = this.element.getElementsByClassName('opal-button') as NodeListOf<
-			HTMLElement
+			IComponentElement<OpalButton>
 		>;
 	}
 
@@ -63,9 +63,9 @@ export class OpalSwitchMenu extends Component {
 	_onButtonCheck(evt: IEvent<OpalButton>) {
 		let checkedButton = evt.target;
 
-		forEach.call(this.buttonElements, (btnEl: IComponentElement) => {
+		forEach.call(this.buttonElements, (btnEl: IComponentElement<OpalButton>) => {
 			if (btnEl.$component != checkedButton) {
-				(btnEl.$component as OpalButton).uncheck();
+				btnEl.$component.uncheck();
 			}
 		});
 

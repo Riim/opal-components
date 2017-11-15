@@ -152,7 +152,7 @@ export class OpalAutosuggest extends Component {
 	}
 
 	_onParamValueChange(evt: IEvent) {
-		let item = evt.data.value as IDataListItem;
+		let item: IDataListItem = evt.data.value;
 
 		this._clearDataList();
 

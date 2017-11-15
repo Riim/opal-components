@@ -148,7 +148,7 @@ export class OpalRouter extends Component {
 				continue;
 			}
 
-			let state: IComponentState = route.properties.reduce(
+			let state = route.properties.reduce(
 				(state, prop, index) => {
 					if (prop.optional) {
 						state[prop.name] = !!match![index + 1];

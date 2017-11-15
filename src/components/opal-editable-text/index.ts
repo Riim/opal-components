@@ -40,7 +40,7 @@ export class OpalEditableText extends Component {
 		}
 
 		this._textNode = firstChild as Text;
-		this._value = this._fixedValue = (contentSlotEl.textContent as string).trim() || null;
+		this._value = this._fixedValue = contentSlotEl.textContent!.trim() || null;
 	}
 
 	elementAttached() {
@@ -82,7 +82,7 @@ export class OpalEditableText extends Component {
 
 		if (contentSlotEl.innerHTML != text) {
 			while (contentSlotEl.lastChild) {
-				contentSlotEl.removeChild(contentSlotEl.lastChild as Node);
+				contentSlotEl.removeChild(contentSlotEl.lastChild);
 			}
 
 			let textNode = this._textNode;
@@ -119,7 +119,7 @@ export class OpalEditableText extends Component {
 		if (selectAll) {
 			rng.selectNode(textNode);
 		} else {
-			rng.setStart(textNode, (textNode.nodeValue as string).length);
+			rng.setStart(textNode, textNode.nodeValue!.length);
 		}
 
 		sel.removeAllRanges();

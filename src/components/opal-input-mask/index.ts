@@ -22,12 +22,12 @@ let ie11 = !(window as any).ActiveXObject && 'ActiveXObject' in window;
 })
 export class OpalInputMask extends Component {
 	static defaultDefinitions: { [chr: string]: RegExp } = {
-		__proto__: null,
+		__proto__: null as any,
 
 		9: /\d/,
 		z: /[a-zA-Z]/,
 		'*': /[0-9a-zA-Z]/
-	} as any;
+	};
 
 	_definitions: { [chr: string]: RegExp };
 

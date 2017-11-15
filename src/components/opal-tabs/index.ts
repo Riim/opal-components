@@ -2,11 +2,12 @@ import { IEvent } from 'cellx';
 import { Component, IComponentElement } from 'rionite';
 import './index.css';
 import { OpalTab } from './opal-tab-list';
+import { OpalTabPanel } from './opal-tab-panel';
 import template from './template.nelm';
 
 export { OpalTab };
 export { OpalTabList } from './opal-tab-list';
-export { OpalTabPanel } from './opal-tab-panel';
+export { OpalTabPanel };
 
 let indexOf = Array.prototype.indexOf;
 let forEach = Array.prototype.forEach;
@@ -17,18 +18,18 @@ let find = Array.prototype.find;
 	template
 })
 export class OpalTabs extends Component {
-	tabs: NodeListOf<IComponentElement>;
-	tabPanels: NodeListOf<IComponentElement>;
+	tabs: NodeListOf<IComponentElement<OpalTab>>;
+	tabPanels: NodeListOf<IComponentElement<OpalTabPanel>>;
 
 	_selectedTab: OpalTab | null = null;
 
 	ready() {
 		let tabs = (this.tabs = this.element.getElementsByClassName('opal-tab') as NodeListOf<
-			IComponentElement
+			IComponentElement<OpalTab>
 		>);
 		let tabPanels = (this.tabPanels = this.element.getElementsByClassName(
 			'opal-tab-panel'
-		) as NodeListOf<IComponentElement>);
+		) as NodeListOf<IComponentElement<OpalTabPanel>>);
 
 		let selectedTab: OpalTab | undefined;
 		let selectedTabIndex: number | undefined;
@@ -80,13 +81,13 @@ export class OpalTabs extends Component {
 			return true;
 		}
 
-		let tab = find.call(
+		let tab: IComponentElement<OpalTab> = find.call(
 			this.tabs,
 			(tab: IComponentElement) => tab.$component.params.label == label
 		);
 
-		if (!tab) {
-			this._selectTab(tab);
+		if (tab) {
+			this._selectTab(tab.$component);
 			return true;
 		}
 

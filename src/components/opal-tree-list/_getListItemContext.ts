@@ -54,7 +54,7 @@ export default function _getListItemContext(
 ): { [name: string]: any } {
 	let $item = content.params.$context.$item;
 
-	return define(mixin(Object.create(context), content.params.$context, ['$component']) as any, {
+	return define(mixin(Object.create(context), content.params.$context, ['$component']), {
 		$selected: new Cell(
 			function(this: OpalTreeList) {
 				this.dataTreeList;

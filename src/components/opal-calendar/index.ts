@@ -388,7 +388,7 @@ export class OpalCalendar extends Component {
 		dayEl.setAttribute('selected', '');
 
 		this._currentlyDateSelection = true;
-		this.stringValue = dayEl.dataset.date as string;
+		this.stringValue = dayEl.dataset.date!;
 
 		this.emit('change');
 	}
