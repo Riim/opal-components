@@ -105,6 +105,8 @@ export class OpalTabs extends Component {
 		}
 
 		this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.params.shown = true;
+		tab.select();
+
 		this._selectedTab = tab;
 	}
 }

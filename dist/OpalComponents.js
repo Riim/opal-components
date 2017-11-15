@@ -4192,6 +4192,7 @@ var OpalTabs = /** @class */ (function (_super) {
             selectedTab.deselect();
         }
         this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.params.shown = true;
+        tab.select();
         this._selectedTab = tab;
     };
     OpalTabs = __decorate([
