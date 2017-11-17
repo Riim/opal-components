@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.30.5",
+  "version": "0.30.6",
   "description": "",
   "main": "dist/OpalComponents.js",
   "typings": "dist/src/index.d.ts",
@@ -34,7 +34,7 @@
     "postcss-csso": "^3.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-nested": "^2.1.2",
-    "pump": "^1.0.2",
+    "pump": "^1.0.3",
     "raw-loader": "^1.0.0-beta.0",
     "require-dir": "^0.3.2",
     "run-sequence": "^2.2.0",
@@ -50,17 +50,17 @@
     "@riim/debounce-throttle": "^1.0.0",
     "@riim/escape-html": "^1.1.1",
     "@riim/gettext": "^1.1.1",
-    "@riim/hyphenize": "^1.0.0",
+    "@riim/hyphenize": "^1.0.1",
     "@riim/map-set-polyfill": "^1.0.1",
     "@riim/mixin": "^1.0.0",
     "@riim/next-tick": "^1.0.1",
     "@riim/next-uid": "^1.0.0",
     "@riim/object-assign-polyfill": "^1.0.0",
     "bytesize-icons": "^1.2.0",
-    "cellx": "^1.7.72",
+    "cellx": "^1.7.75",
     "cellx-decorators": "^1.4.7",
     "created-browser-history": "^0.1.2",
     "date-exists": "^1.0.1",
-    "rionite": "^0.30.5"
+    "rionite": "^0.30.6"
   }
 }

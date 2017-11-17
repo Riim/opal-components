@@ -4,6 +4,7 @@ import { dateExists } from 'date-exists';
 import { Component, IDisposableListening } from 'rionite';
 import { isFocusable } from '../../utils/isFocusable';
 import { OpalCalendar } from '../opal-calendar';
+import { parseDate } from '../opal-calendar/parseDate';
 import { OpalDropdown } from '../opal-dropdown';
 import { OpalTextInput } from '../opal-text-input';
 import { OpalTextInputValidator } from '../opal-text-input-validator';
@@ -142,7 +143,14 @@ export class OpalDateInput extends Component {
 	}
 
 	get value(): Date | null {
-		return this.$<OpalCalendar>('calendar')!.value;
+		let calendar = this.$<OpalCalendar>('calendar');
+
+		if (calendar) {
+			return calendar.value;
+		}
+
+		let value = this.params.value;
+		return value ? parseDate(value) : null;
 	}
 
 	getISOValue(h?: number, m?: number, s?: number, ms?: number): string | null {
