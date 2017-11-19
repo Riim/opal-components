@@ -62,8 +62,8 @@ export class OpalTabs extends Component {
 			(this.element.getElementsByClassName('opal-tab-list')[0] as IComponentElement)
 				.$component,
 			{
-				'<opal-tab>select': this._onTabListSelect,
-				'<opal-tab>deselect': this._onTabListDeselect
+				'<OpalTab>select': this._onTabListSelect,
+				'<OpalTab>deselect': this._onTabListDeselect
 			}
 		);
 	}

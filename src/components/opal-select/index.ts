@@ -297,9 +297,9 @@ export class OpalSelect extends Component {
 
 		this.listenTo('menu', {
 			'param-opened-change': this._onMenuParamOpenedChange,
-			'<opal-select-option>select': this._onMenuSelectOptionSelect,
-			'<opal-select-option>deselect': this._onMenuSelectOptionDeselect,
-			'<opal-text-input>confirm': this._onMenuTextInputConfirm,
+			'<OpalSelectOption>select': this._onMenuSelectOptionSelect,
+			'<OpalSelectOption>deselect': this._onMenuSelectOptionDeselect,
+			'<OpalTextInput>confirm': this._onMenuTextInputConfirm,
 			'<*>change': this._onMenuChange
 		});
 	}

@@ -43,8 +43,8 @@ export class OpalMultirow extends Component {
 
 	elementAttached() {
 		this.listenTo(this, {
-			'<opal-multirow-row>remove-row-click': this._onRemoveRowClick,
-			'<opal-multirow-row>add-row-click': this._onAddRowClick
+			'<OpalMultirowRow>remove-row-click': this._onRemoveRowClick,
+			'<OpalMultirowRow>add-row-click': this._onAddRowClick
 		});
 	}
 

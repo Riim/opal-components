@@ -436,9 +436,9 @@ var OpalSelect = /** @class */ (function (_super) {
         });
         this.listenTo('menu', {
             'param-opened-change': this._onMenuParamOpenedChange,
-            '<opal-select-option>select': this._onMenuSelectOptionSelect,
-            '<opal-select-option>deselect': this._onMenuSelectOptionDeselect,
-            '<opal-text-input>confirm': this._onMenuTextInputConfirm,
+            '<OpalSelectOption>select': this._onMenuSelectOptionSelect,
+            '<OpalSelectOption>deselect': this._onMenuSelectOptionDeselect,
+            '<OpalTextInput>confirm': this._onMenuTextInputConfirm,
             '<*>change': this._onMenuChange
         });
     };
@@ -3428,8 +3428,8 @@ var OpalRadioGroup = /** @class */ (function (_super) {
     };
     OpalRadioGroup.prototype.elementAttached = function () {
         this.listenTo(this, {
-            '<opal-radio-button>check': this._onCheck,
-            '<opal-radio-button>uncheck': this._onUncheck
+            '<OpalRadioButton>check': this._onCheck,
+            '<OpalRadioButton>uncheck': this._onUncheck
         });
     };
     OpalRadioGroup.prototype._onCheck = function (evt) {
@@ -4048,8 +4048,8 @@ var OpalSwitchMenu = /** @class */ (function (_super) {
     };
     OpalSwitchMenu.prototype.elementAttached = function () {
         this.listenTo(this, {
-            '<opal-button>check': this._onButtonCheck,
-            '<opal-button>uncheck': this._onButtonUncheck
+            '<OpalButton>check': this._onButtonCheck,
+            '<OpalButton>uncheck': this._onButtonUncheck
         });
     };
     OpalSwitchMenu.prototype._onButtonCheck = function (evt) {
@@ -4178,8 +4178,8 @@ var OpalTabs = /** @class */ (function (_super) {
     OpalTabs.prototype.elementAttached = function () {
         this.listenTo(this.element.getElementsByClassName('opal-tab-list')[0]
             .$component, {
-            '<opal-tab>select': this._onTabListSelect,
-            '<opal-tab>deselect': this._onTabListDeselect
+            '<OpalTab>select': this._onTabListSelect,
+            '<OpalTab>deselect': this._onTabListDeselect
         });
     };
     OpalTabs.prototype._onTabListSelect = function (evt) {
@@ -7836,8 +7836,8 @@ var OpalMultirow = /** @class */ (function (_super) {
     };
     OpalMultirow.prototype.elementAttached = function () {
         this.listenTo(this, {
-            '<opal-multirow-row>remove-row-click': this._onRemoveRowClick,
-            '<opal-multirow-row>add-row-click': this._onAddRowClick
+            '<OpalMultirowRow>remove-row-click': this._onRemoveRowClick,
+            '<OpalMultirowRow>add-row-click': this._onAddRowClick
         });
     };
     OpalMultirow.prototype._onRemoveRowClick = function (evt) {

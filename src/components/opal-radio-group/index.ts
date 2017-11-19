@@ -20,8 +20,8 @@ export class OpalRadioGroup extends Component {
 
 	elementAttached() {
 		this.listenTo(this, {
-			'<opal-radio-button>check': this._onCheck,
-			'<opal-radio-button>uncheck': this._onUncheck
+			'<OpalRadioButton>check': this._onCheck,
+			'<OpalRadioButton>uncheck': this._onUncheck
 		});
 	}
 

@@ -55,8 +55,8 @@ export class OpalSwitchMenu extends Component {
 
 	elementAttached() {
 		this.listenTo(this, {
-			'<opal-button>check': this._onButtonCheck,
-			'<opal-button>uncheck': this._onButtonUncheck
+			'<OpalButton>check': this._onButtonCheck,
+			'<OpalButton>uncheck': this._onButtonUncheck
 		});
 	}
 
