@@ -7,7 +7,7 @@ import template from './template.nelm';
 let openedDropdowns: Array<OpalDropdown> = [];
 
 @Component.Config({
-	elementIs: 'opal-dropdown',
+	elementIs: 'OpalDropdown',
 
 	params: {
 		autoHeight: true,

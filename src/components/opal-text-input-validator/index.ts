@@ -5,7 +5,7 @@ import './index.css';
 export { OpalTextInputValidatorRule } from './opal-text-input-validator-rule';
 
 @OpalInputValidator.Config<OpalTextInputValidator>({
-	elementIs: 'opal-text-input-validator'
+	elementIs: 'OpalTextInputValidator'
 })
 export class OpalTextInputValidator extends OpalInputValidator {
 	textInput: OpalTextInput;

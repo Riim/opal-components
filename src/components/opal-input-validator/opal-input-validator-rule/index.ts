@@ -4,7 +4,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component.Config({
-	elementIs: 'opal-input-validator-rule',
+	elementIs: 'OpalInputValidatorRule',
 
 	params: {
 		required: { default: false, readonly: true },

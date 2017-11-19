@@ -28,7 +28,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 }
 
 @Component.Config<OpalModal>({
-	elementIs: 'opal-modal',
+	elementIs: 'OpalModal',
 
 	params: {
 		opened: false

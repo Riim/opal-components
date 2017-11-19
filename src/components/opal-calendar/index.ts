@@ -29,7 +29,7 @@ function getTodayDate() {
 }
 
 @Component.Config<OpalCalendar>({
-	elementIs: 'opal-calendar',
+	elementIs: 'OpalCalendar',
 
 	params: {
 		fromDate: String,

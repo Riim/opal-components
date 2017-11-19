@@ -9,7 +9,7 @@ import './index.css';
 import template from './template.nelm';
 
 @OpalSelect.Config<OpalMultiselect>({
-	elementIs: 'opal-multiselect',
+	elementIs: 'OpalMultiselect',
 
 	i18n: {
 		queryInputPlaceholder: getText.t('Поиск'),

@@ -8,7 +8,7 @@ let forEach = Array.prototype.forEach;
 let find = Array.prototype.find;
 
 @Component.Config<OpalSwitchMenu>({
-	elementIs: 'opal-switch-menu',
+	elementIs: 'OpalSwitchMenu',
 	template
 })
 export class OpalSwitchMenu extends Component {

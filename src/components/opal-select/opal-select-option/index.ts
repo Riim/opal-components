@@ -6,7 +6,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component.Config<OpalSelectOption>({
-	elementIs: 'opal-select-option',
+	elementIs: 'OpalSelectOption',
 
 	params: {
 		value: String,

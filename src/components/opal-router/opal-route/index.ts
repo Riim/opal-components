@@ -1,7 +1,7 @@
 import { Component } from 'rionite';
 
 @Component.Config({
-	elementIs: 'opal-route',
+	elementIs: 'OpalRoute',
 
 	params: {
 		path: { type: String, required: true, readonly: true },

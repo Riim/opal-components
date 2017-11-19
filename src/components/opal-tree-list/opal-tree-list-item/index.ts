@@ -8,7 +8,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component.Config<OpalTreeListItem>({
-	elementIs: 'opal-tree-list-item',
+	elementIs: 'OpalTreeListItem',
 
 	params: {
 		dataTreeList: { type: Object, required: true },

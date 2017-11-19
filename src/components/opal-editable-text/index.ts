@@ -3,7 +3,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component.Config<OpalEditableText>({
-	elementIs: 'opal-editable-text',
+	elementIs: 'OpalEditableText',
 
 	template,
 

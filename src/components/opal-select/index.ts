@@ -44,7 +44,7 @@ let defaultDataListItemSchema = Object.freeze({
 let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled: 'disabled' });
 
 @Component.Config<OpalSelect>({
-	elementIs: 'opal-select',
+	elementIs: 'OpalSelect',
 
 	params: {
 		viewType: String,

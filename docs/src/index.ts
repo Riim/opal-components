@@ -11,7 +11,7 @@ formatters.log = (msg: any): any => {
 };
 
 @Component.Config({
-	elementIs: 'opal-components-docs',
+	elementIs: 'OpalComponentsDocs',
 	template
 })
 export class OpalComponentsDocs extends Component {

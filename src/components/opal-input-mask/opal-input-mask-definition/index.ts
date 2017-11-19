@@ -2,7 +2,7 @@ import { Component } from 'rionite';
 import './index.css';
 
 @Component.Config({
-	elementIs: 'opal-input-mask-definition',
+	elementIs: 'OpalInputMaskDefinition',
 
 	params: {
 		maskChar: { type: String, required: true, readonly: true },

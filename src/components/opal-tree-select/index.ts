@@ -6,7 +6,7 @@ import './index.css';
 import template from './template.nelm';
 
 @OpalSelect.Config({
-	elementIs: 'opal-tree-select',
+	elementIs: 'OpalTreeSelect',
 
 	params: {
 		multiple: true,

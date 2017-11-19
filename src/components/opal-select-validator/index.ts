@@ -5,7 +5,7 @@ import './index.css';
 export { OpalSelectValidatorRule } from './opal-select-validator-rule';
 
 @OpalInputValidator.Config<OpalSelectValidator>({
-	elementIs: 'opal-select-validator'
+	elementIs: 'OpalSelectValidator'
 })
 export class OpalSelectValidator extends OpalInputValidator {
 	select: OpalSelect;

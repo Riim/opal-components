@@ -4,7 +4,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component.Config<OpalSlider>({
-	elementIs: 'opal-slider',
+	elementIs: 'OpalSlider',
 
 	params: {
 		min: 0,

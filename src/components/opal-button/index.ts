@@ -5,7 +5,7 @@ import { Component, IDisposableListening } from 'rionite';
 import './index.css';
 
 @Component.Config<OpalButton>({
-	elementIs: 'opal-button',
+	elementIs: 'OpalButton',
 
 	params: {
 		viewType: 'default',

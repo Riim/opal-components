@@ -12,7 +12,7 @@ let iPhone = /iphone/i.test(navigator.userAgent);
 let ie11 = !(window as any).ActiveXObject && 'ActiveXObject' in window;
 
 @Component.Config({
-	elementIs: 'opal-input-mask',
+	elementIs: 'OpalInputMask',
 
 	params: {
 		mask: { type: String, required: true }

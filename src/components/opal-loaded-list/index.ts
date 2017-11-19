@@ -26,7 +26,7 @@ export interface IDataProvider {
 let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 
 @Component.Config<OpalLoadedList>({
-	elementIs: 'opal-loaded-list',
+	elementIs: 'OpalLoadedList',
 
 	params: {
 		dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },

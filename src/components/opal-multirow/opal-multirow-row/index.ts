@@ -3,7 +3,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component.Config({
-	elementIs: 'opal-multirow-row',
+	elementIs: 'OpalMultirowRow',
 
 	template,
 

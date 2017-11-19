@@ -14,7 +14,7 @@ let forEach = Array.prototype.forEach;
 let find = Array.prototype.find;
 
 @Component.Config({
-	elementIs: 'opal-tabs',
+	elementIs: 'OpalTabs',
 	template
 })
 export class OpalTabs extends Component {

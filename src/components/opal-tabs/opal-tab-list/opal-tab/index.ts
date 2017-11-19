@@ -6,7 +6,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component.Config<OpalTab>({
-	elementIs: 'opal-tab',
+	elementIs: 'OpalTab',
 
 	params: {
 		label: String,

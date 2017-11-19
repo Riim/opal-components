@@ -42,7 +42,7 @@ function valueToAttributeValue(value: boolean | string): string {
 }
 
 @Component.Config<OpalRouter>({
-	elementIs: 'opal-router',
+	elementIs: 'OpalRouter',
 
 	params: {
 		scrollTopOnChange: true,

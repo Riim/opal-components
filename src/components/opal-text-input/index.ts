@@ -6,7 +6,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component.Config<OpalTextInput>({
-	elementIs: 'opal-text-input',
+	elementIs: 'OpalTextInput',
 
 	params: {
 		inputType: 'text',

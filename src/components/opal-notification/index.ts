@@ -22,7 +22,7 @@ function initContainer(notification: OpalNotification): HTMLElement {
 }
 
 @Component.Config({
-	elementIs: 'opal-notification',
+	elementIs: 'OpalNotification',
 
 	params: {
 		viewType: 'default',

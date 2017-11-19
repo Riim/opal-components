@@ -29,7 +29,7 @@ function toComparable(str: string): string {
 let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 
 @Component.Config<OpalAutosuggest>({
-	elementIs: 'opal-autosuggest',
+	elementIs: 'OpalAutosuggest',
 
 	params: {
 		dataProvider: { type: Object, readonly: true },

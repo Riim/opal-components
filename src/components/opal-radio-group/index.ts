@@ -7,7 +7,7 @@ export { OpalRadioButton };
 let forEach = Array.prototype.forEach;
 
 @Component.Config<OpalRadioGroup>({
-	elementIs: 'opal-radio-group'
+	elementIs: 'OpalRadioGroup'
 })
 export class OpalRadioGroup extends Component {
 	buttonElements: NodeListOf<IComponentElement>;

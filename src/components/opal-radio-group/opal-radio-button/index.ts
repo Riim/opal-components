@@ -6,7 +6,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component.Config<OpalRadioButton>({
-	elementIs: 'opal-radio-button',
+	elementIs: 'OpalRadioButton',
 
 	params: {
 		checked: false,

@@ -8,7 +8,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component.Config({
-	elementIs: 'opal-filtered-list',
+	elementIs: 'OpalFilteredList',
 
 	i18n: {
 		queryInputPlaceholder: getText.t('Поиск')

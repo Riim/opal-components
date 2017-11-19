@@ -2,7 +2,7 @@ import { Component } from 'rionite';
 import './index.css';
 
 @Component.Config({
-	elementIs: 'opal-loader',
+	elementIs: 'OpalLoader',
 
 	params: {
 		size: 'm',

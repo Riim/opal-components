@@ -6,7 +6,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component.Config<OpalCheckbox>({
-	elementIs: 'opal-checkbox',
+	elementIs: 'OpalCheckbox',
 
 	params: {
 		checked: false,

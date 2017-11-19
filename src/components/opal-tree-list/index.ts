@@ -40,7 +40,7 @@ function toComparable(str: string | null): string | null {
 }
 
 @Component.Config({
-	elementIs: 'opal-tree-list',
+	elementIs: 'OpalTreeList',
 
 	params: {
 		dataTreeList: { type: Object },

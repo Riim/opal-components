@@ -2,7 +2,7 @@ import { OpalTagSelect } from '../opal-tag-select';
 import template from './template.nelm';
 
 @OpalTagSelect.Config({
-	elementIs: 'opal-tree-tag-select',
+	elementIs: 'OpalTreeTagSelect',
 	template
 })
 export class OpalTreeTagSelect extends OpalTagSelect {

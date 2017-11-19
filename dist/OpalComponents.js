@@ -232,7 +232,7 @@ var OpalInputValidator = /** @class */ (function (_super) {
     ], OpalInputValidator.prototype, "valid", null);
     OpalInputValidator = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-input-validator',
+            elementIs: 'OpalInputValidator',
             template: template_nelm_1.default
         })
     ], OpalInputValidator);
@@ -880,7 +880,7 @@ var OpalSelect = /** @class */ (function (_super) {
     ], OpalSelect.prototype, "options", null);
     OpalSelect = OpalSelect_1 = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-select',
+            elementIs: 'OpalSelect',
             params: {
                 viewType: String,
                 size: 'm',
@@ -1100,7 +1100,7 @@ var OpalTabList = /** @class */ (function (_super) {
     }
     OpalTabList = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-tab-list',
+            elementIs: 'OpalTabList',
             template: template_nelm_1.default
         })
     ], OpalTabList);
@@ -1324,7 +1324,7 @@ var OpalTreeList = /** @class */ (function (_super) {
     ], OpalTreeList.prototype, "viewModel", void 0);
     OpalTreeList = OpalTreeList_1 = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-tree-list',
+            elementIs: 'OpalTreeList',
             params: {
                 dataTreeList: { type: Object },
                 dataTreeListKeypath: { type: String, readonly: true },
@@ -1468,7 +1468,7 @@ var OpalTreeListItem = /** @class */ (function (_super) {
     ], OpalTreeListItem.prototype, "viewModel", null);
     OpalTreeListItem = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-tree-list-item',
+            elementIs: 'OpalTreeListItem',
             params: {
                 dataTreeList: { type: Object, required: true },
                 filteredDataTreeList: { type: Object, required: true },
@@ -1643,7 +1643,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
     ], OpalTagSelect.prototype, "isPlaceholderShown", null);
     OpalTagSelect = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-tag-select',
+            elementIs: 'OpalTagSelect',
             params: {
                 viewType: String,
                 dataList: { type: Object },
@@ -2017,7 +2017,7 @@ var OpalButton = /** @class */ (function (_super) {
     ], OpalButton.prototype, "_tabIndex", null);
     OpalButton = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-button',
+            elementIs: 'OpalButton',
             params: {
                 viewType: 'default',
                 size: 'm',
@@ -2197,7 +2197,7 @@ var OpalSignButton = /** @class */ (function (_super) {
     ], OpalSignButton.prototype, "_tabIndex", null);
     OpalSignButton = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-sign-button',
+            elementIs: 'OpalSignButton',
             params: {
                 sign: { type: String, required: true },
                 checkable: false,
@@ -2478,7 +2478,7 @@ var OpalTextInput = /** @class */ (function (_super) {
     ], OpalTextInput.prototype, "isBtnClearShown", null);
     OpalTextInput = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-text-input',
+            elementIs: 'OpalTextInput',
             params: {
                 inputType: 'text',
                 size: 'm',
@@ -2655,7 +2655,7 @@ var OpalEditableText = /** @class */ (function (_super) {
     };
     OpalEditableText = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-editable-text',
+            elementIs: 'OpalEditableText',
             template: template_nelm_1.default,
             domEvents: {
                 'icon-edit': {
@@ -3033,7 +3033,7 @@ var OpalInputMask = /** @class */ (function (_super) {
     ], OpalInputMask.prototype, "_firstTestIndex", null);
     OpalInputMask = OpalInputMask_1 = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-input-mask',
+            elementIs: 'OpalInputMask',
             params: {
                 mask: { type: String, required: true }
             },
@@ -3086,7 +3086,7 @@ var OpalInputMaskDefinition = /** @class */ (function (_super) {
     }
     OpalInputMaskDefinition = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-input-mask-definition',
+            elementIs: 'OpalInputMaskDefinition',
             params: {
                 maskChar: { type: String, required: true, readonly: true },
                 regex: { type: eval, required: true, readonly: true }
@@ -3148,7 +3148,7 @@ var OpalGroup = /** @class */ (function (_super) {
     }
     OpalGroup = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-group',
+            elementIs: 'OpalGroup',
             template: template_nelm_1.default
         })
     ], OpalGroup);
@@ -3350,7 +3350,7 @@ var OpalCheckbox = /** @class */ (function (_super) {
     ], OpalCheckbox.prototype, "_tabIndex", null);
     OpalCheckbox = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-checkbox',
+            elementIs: 'OpalCheckbox',
             params: {
                 checked: false,
                 indeterminate: false,
@@ -3445,7 +3445,7 @@ var OpalRadioGroup = /** @class */ (function (_super) {
     };
     OpalRadioGroup = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-radio-group'
+            elementIs: 'OpalRadioGroup'
         })
     ], OpalRadioGroup);
     return OpalRadioGroup;
@@ -3610,7 +3610,7 @@ var OpalRadioButton = /** @class */ (function (_super) {
     ], OpalRadioButton.prototype, "_tabIndex", null);
     OpalRadioButton = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-radio-button',
+            elementIs: 'OpalRadioButton',
             params: {
                 checked: false,
                 tabIndex: 0,
@@ -3803,7 +3803,7 @@ var OpalSwitch = /** @class */ (function (_super) {
     ], OpalSwitch.prototype, "_tabIndex", null);
     OpalSwitch = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-switch',
+            elementIs: 'OpalSwitch',
             params: {
                 checked: false,
                 tabIndex: 0,
@@ -3942,7 +3942,7 @@ var OpalSlider = /** @class */ (function (_super) {
     ], OpalSlider.prototype, "_firstInputWidth", null);
     OpalSlider = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-slider',
+            elementIs: 'OpalSlider',
             params: {
                 min: 0,
                 max: 100,
@@ -4074,7 +4074,7 @@ var OpalSwitchMenu = /** @class */ (function (_super) {
     };
     OpalSwitchMenu = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-switch-menu',
+            elementIs: 'OpalSwitchMenu',
             template: template_nelm_1.default
         })
     ], OpalSwitchMenu);
@@ -4211,7 +4211,7 @@ var OpalTabs = /** @class */ (function (_super) {
     };
     OpalTabs = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-tabs',
+            elementIs: 'OpalTabs',
             template: template_nelm_1.default
         })
     ], OpalTabs);
@@ -4384,7 +4384,7 @@ var OpalTab = /** @class */ (function (_super) {
     ], OpalTab.prototype, "_tabIndex", null);
     OpalTab = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-tab',
+            elementIs: 'OpalTab',
             params: {
                 label: String,
                 selected: false,
@@ -4485,7 +4485,7 @@ var OpalTabPanel = /** @class */ (function (_super) {
     ], OpalTabPanel.prototype, "isContentRendered", void 0);
     OpalTabPanel = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-tab-panel',
+            elementIs: 'OpalTabPanel',
             params: {
                 shown: false
             },
@@ -4699,7 +4699,7 @@ var OpalDropdown = /** @class */ (function (_super) {
     ], OpalDropdown.prototype, "isContentRendered", void 0);
     OpalDropdown = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-dropdown',
+            elementIs: 'OpalDropdown',
             params: {
                 autoHeight: true,
                 autoClosing: false,
@@ -4922,7 +4922,7 @@ var OpalPopover = /** @class */ (function (_super) {
     ], OpalPopover.prototype, "isContentRendered", void 0);
     OpalPopover = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-popover',
+            elementIs: 'OpalPopover',
             params: {
                 position: 'right',
                 autoDirection: true,
@@ -5125,7 +5125,7 @@ var OpalModal = /** @class */ (function (_super) {
     ], OpalModal.prototype, "isContentRendered", void 0);
     OpalModal = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-modal',
+            elementIs: 'OpalModal',
             params: {
                 opened: false
             },
@@ -5309,7 +5309,7 @@ var OpalNotification = /** @class */ (function (_super) {
     };
     OpalNotification = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-notification',
+            elementIs: 'OpalNotification',
             params: {
                 viewType: 'default',
                 iconSize: 'm',
@@ -5412,7 +5412,7 @@ var OpalInputValidatorRule = /** @class */ (function (_super) {
     };
     OpalInputValidatorRule = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-input-validator-rule',
+            elementIs: 'OpalInputValidatorRule',
             params: {
                 required: { default: false, readonly: true },
                 test: { type: Object, readonly: true },
@@ -5515,7 +5515,7 @@ var OpalTextInputValidator = /** @class */ (function (_super) {
     };
     OpalTextInputValidator = __decorate([
         opal_input_validator_1.OpalInputValidator.Config({
-            elementIs: 'opal-text-input-validator'
+            elementIs: 'OpalTextInputValidator'
         })
     ], OpalTextInputValidator);
     return OpalTextInputValidator;
@@ -5571,7 +5571,7 @@ var OpalTextInputValidatorRule = /** @class */ (function (_super) {
     }
     OpalTextInputValidatorRule = __decorate([
         opal_input_validator_1.OpalInputValidatorRule.Config({
-            elementIs: 'opal-text-input-validator-rule',
+            elementIs: 'OpalTextInputValidatorRule',
             params: {
                 minLength: { type: Number, readonly: true },
                 regex: { type: eval, readonly: true }
@@ -5885,7 +5885,7 @@ var OpalCalendar = /** @class */ (function (_super) {
     ], OpalCalendar.prototype, "days", void 0);
     OpalCalendar = OpalCalendar_1 = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-calendar',
+            elementIs: 'OpalCalendar',
             params: {
                 fromDate: String,
                 toDate: String,
@@ -6173,7 +6173,7 @@ var OpalSelectOption = /** @class */ (function (_super) {
     ], OpalSelectOption.prototype, "_tabIndex", null);
     OpalSelectOption = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-select-option',
+            elementIs: 'OpalSelectOption',
             params: {
                 value: String,
                 text: { type: String, required: true },
@@ -6413,7 +6413,7 @@ var OpalDateInput = /** @class */ (function (_super) {
     };
     OpalDateInput = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-date-input',
+            elementIs: 'OpalDateInput',
             params: {
                 fromDate: String,
                 toDate: String,
@@ -6510,7 +6510,7 @@ var OpalLoader = /** @class */ (function (_super) {
     }
     OpalLoader = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-loader',
+            elementIs: 'OpalLoader',
             params: {
                 size: 'm',
                 shown: false
@@ -6740,7 +6740,7 @@ var OpalLoadedList = /** @class */ (function (_super) {
     ], OpalLoadedList.prototype, "isNothingFoundShown", null);
     OpalLoadedList = OpalLoadedList_1 = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-loaded-list',
+            elementIs: 'OpalLoadedList',
             params: {
                 dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
                 dataProvider: { type: Object, readonly: true },
@@ -6842,7 +6842,7 @@ var OpalFilteredList = /** @class */ (function (_super) {
     };
     OpalFilteredList = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-filtered-list',
+            elementIs: 'OpalFilteredList',
             i18n: {
                 queryInputPlaceholder: gettext_1.getText.t('Поиск')
             },
@@ -7007,7 +7007,7 @@ var OpalMultiselect = /** @class */ (function (_super) {
     ], OpalMultiselect.prototype, "isNothingSelectedShown", null);
     OpalMultiselect = __decorate([
         opal_select_1.OpalSelect.Config({
-            elementIs: 'opal-multiselect',
+            elementIs: 'OpalMultiselect',
             i18n: {
                 queryInputPlaceholder: gettext_1.getText.t('Поиск'),
                 nothingSelected: gettext_1.getText.t('Ничего не выбрано')
@@ -7159,7 +7159,7 @@ var OpalTreeSelect = /** @class */ (function (_super) {
     OpalTreeSelect.prototype._updateOptions = function () { };
     OpalTreeSelect = __decorate([
         opal_select_1.OpalSelect.Config({
-            elementIs: 'opal-tree-select',
+            elementIs: 'OpalTreeSelect',
             params: {
                 multiple: true,
                 dataTreeList: { type: Object },
@@ -7255,7 +7255,7 @@ var OpalTreeTagSelect = /** @class */ (function (_super) {
     };
     OpalTreeTagSelect = __decorate([
         opal_tag_select_1.OpalTagSelect.Config({
-            elementIs: 'opal-tree-tag-select',
+            elementIs: 'OpalTreeTagSelect',
             template: template_nelm_1.default
         })
     ], OpalTreeTagSelect);
@@ -7318,7 +7318,7 @@ var OpalSelectValidator = /** @class */ (function (_super) {
     };
     OpalSelectValidator = __decorate([
         opal_input_validator_1.OpalInputValidator.Config({
-            elementIs: 'opal-select-validator'
+            elementIs: 'OpalSelectValidator'
         })
     ], OpalSelectValidator);
     return OpalSelectValidator;
@@ -7374,7 +7374,7 @@ var OpalSelectValidatorRule = /** @class */ (function (_super) {
     }
     OpalSelectValidatorRule = __decorate([
         opal_input_validator_1.OpalInputValidatorRule.Config({
-            elementIs: 'opal-select-validator-rule',
+            elementIs: 'OpalSelectValidatorRule',
             params: {
                 minCount: { type: Number, readonly: true }
             }
@@ -7716,7 +7716,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     ], OpalAutosuggest.prototype, "isLoaderShown", null);
     OpalAutosuggest = OpalAutosuggest_1 = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-autosuggest',
+            elementIs: 'OpalAutosuggest',
             params: {
                 dataProvider: { type: Object, readonly: true },
                 dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
@@ -7874,7 +7874,7 @@ var OpalMultirow = /** @class */ (function (_super) {
     ], OpalMultirow.prototype, "_notSingleRow", null);
     OpalMultirow = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-multirow',
+            elementIs: 'OpalMultirow',
             template: template_nelm_1.default
         })
     ], OpalMultirow);
@@ -7939,7 +7939,7 @@ var OpalMultirowRow = /** @class */ (function (_super) {
     }
     OpalMultirowRow = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-multirow-row',
+            elementIs: 'OpalMultirowRow',
             template: template_nelm_1.default,
             events: {
                 'btn-remove-row': {
@@ -8234,7 +8234,7 @@ var OpalRouter = /** @class */ (function (_super) {
     };
     OpalRouter = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-router',
+            elementIs: 'OpalRouter',
             params: {
                 scrollTopOnChange: true,
                 scrollTopOnChangeComponent: true
@@ -8326,7 +8326,7 @@ var OpalRoute = /** @class */ (function (_super) {
     }
     OpalRoute = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'opal-route',
+            elementIs: 'OpalRoute',
             params: {
                 path: { type: String, required: true, readonly: true },
                 component: { type: String, required: true, readonly: true }

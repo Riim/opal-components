@@ -6,7 +6,7 @@ import template from './template.nelm';
 export { OpalTab };
 
 @Component.Config({
-	elementIs: 'opal-tab-list',
+	elementIs: 'OpalTabList',
 	template
 })
 export class OpalTabList extends Component {}
