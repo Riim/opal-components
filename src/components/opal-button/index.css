@@ -73,7 +73,7 @@
 				transparent 75%, transparent 100%
 			);
 			background-size: 30px 30px;
-			animation: opal-button-loading-animation 3s linear infinite;
+			animation: OpalButton__loading-animation 3s linear infinite;
 		}
 
 		@mod disabled {
