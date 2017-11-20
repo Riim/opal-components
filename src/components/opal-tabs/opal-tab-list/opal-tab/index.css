@@ -1,4 +1,4 @@
-@component opal-tab {
+@component OpalTab {
 	display: inline-block;
 
 	@el control {

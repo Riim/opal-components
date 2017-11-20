@@ -1,4 +1,4 @@
-@component opal-tab-panel {
+@component OpalTabPanel {
 	position: relative;
 	display: none;
 	padding: 30px;

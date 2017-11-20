@@ -168,7 +168,7 @@ export class OpalTreeList extends Component {
 	_onChange(evt: IEvent<OpalCheckbox>) {
 		let component = evt.target;
 
-		if (component.element.classList.contains('opal-tree-list__selection-control')) {
+		if (component.element.classList.contains('OpalTreeList__selection-control')) {
 			let dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName;
 			let dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
 			let vm = this.viewModel;

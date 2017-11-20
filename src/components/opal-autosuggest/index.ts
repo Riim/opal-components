@@ -233,7 +233,7 @@ export class OpalAutosuggest extends Component {
 
 		for (
 			;
-			!el.classList.contains('opal-autosuggest__list-item');
+			!el.classList.contains('OpalAutosuggest__list-item');
 			el = el.parentNode as HTMLElement
 		) {
 			if (el == menu) {

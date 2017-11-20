@@ -1,4 +1,4 @@
-@component opal-tree-list-item {
+@component OpalTreeListItem {
 	display: block;
 
 	@el head {
@@ -63,7 +63,7 @@
 	}
 
 	@mod opened {
-		& > .opal-tree-list-item__children {
+		& > .OpalTreeListItem__children {
 			display: block;
 		}
 	}
@@ -76,7 +76,7 @@
 	}
 
 	@mod has-children {
-		& > .opal-tree-list-item__head .opal-tree-list-item__btn-toggle-children {
+		& > .OpalTreeListItem__head .OpalTreeListItem__btn-toggle-children {
 			visibility: visible;
 		}
 	}

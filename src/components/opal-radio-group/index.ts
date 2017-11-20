@@ -13,9 +13,9 @@ export class OpalRadioGroup extends Component {
 	buttonElements: NodeListOf<IComponentElement>;
 
 	ready() {
-		this.buttonElements = this.element.getElementsByClassName(
-			'opal-radio-button'
-		) as NodeListOf<IComponentElement>;
+		this.buttonElements = this.element.getElementsByClassName('OpalRadioButton') as NodeListOf<
+			IComponentElement
+		>;
 	}
 
 	elementAttached() {

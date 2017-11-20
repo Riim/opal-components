@@ -345,7 +345,7 @@ export class OpalCalendar extends Component {
 	}
 
 	_onDaysFocus(evt: Event) {
-		if ((evt.target as HTMLElement).classList.contains('opal-calendar__day')) {
+		if ((evt.target as HTMLElement).classList.contains('OpalCalendar__day')) {
 			nextTick(() => {
 				if (document.activeElement == evt.target && !this._documentKeyDownListening) {
 					this._documentKeyDownListening = this.listenTo(
@@ -360,7 +360,7 @@ export class OpalCalendar extends Component {
 
 	_onDaysBlur() {
 		setTimeout(() => {
-			if (!document.activeElement.classList.contains('opal-calendar__day')) {
+			if (!document.activeElement.classList.contains('OpalCalendar__day')) {
 				this._documentKeyDownListening!.stop();
 				this._documentKeyDownListening = null;
 			}

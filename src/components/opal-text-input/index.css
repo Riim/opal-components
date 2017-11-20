@@ -1,4 +1,4 @@
-@component opal-text-input {
+@component OpalTextInput {
 	position: relative;
 	display: inline-block;
 	width: 400px;
@@ -165,19 +165,19 @@
 
 	/* Combinations */
 
-	.opal-group .opal-group__content-slot > &:not(:first-child),
-	.opal-group .opal-group__content-slot > *:not(:first-child) & {
+	.OpalGroup .OpalGroup__content-slot > &:not(:first-child),
+	.OpalGroup .OpalGroup__content-slot > *:not(:first-child) & {
 		margin-right: -1px;
 	}
 
-	.opal-group__content-slot &:not(:first-child) .opal-text-input__text-field,
-	.opal-group__content-slot *:not(:first-child) & .opal-text-input__text-field {
+	.OpalGroup__content-slot &:not(:first-child) .OpalTextInput__text-field,
+	.OpalGroup__content-slot *:not(:first-child) & .OpalTextInput__text-field {
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
 	}
 
-	.opal-group__content-slot &:not(:last-child) .opal-text-input__text-field,
-	.opal-group__content-slot *:not(:last-child) & .opal-text-input__text-field {
+	.OpalGroup__content-slot &:not(:last-child) .OpalTextInput__text-field,
+	.OpalGroup__content-slot *:not(:last-child) & .OpalTextInput__text-field {
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
 	}

@@ -1,4 +1,4 @@
-@component opal-multiselect : opal-select {
+@component OpalMultiselect : OpalSelect {
 	@el menu {
 		padding: 0;
 		width: 600px;

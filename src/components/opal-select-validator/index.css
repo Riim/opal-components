@@ -1,4 +1,4 @@
-@component opal-select-validator : opal-input-validator {
+@component OpalSelectValidator : OpalInputValidator {
 	@el select {
 		display: block;
 	}

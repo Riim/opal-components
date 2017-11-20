@@ -64,52 +64,55 @@ export class OpalRouter extends Component {
 	ready() {
 		let routes = this._routes;
 
-		forEach.call(this.element.querySelectorAll('opal-route'), (routeEl: IComponentElement) => {
-			let path: string = routeEl.$component.params.path;
-			let rePath: Array<string> | string = [];
-			let props: Array<IRouteProperty> = [];
+		forEach.call(
+			this.element.getElementsByTagName('opal-route'),
+			(routeEl: IComponentElement) => {
+				let path: string = routeEl.$component.params.path;
+				let rePath: Array<string> | string = [];
+				let props: Array<IRouteProperty> = [];
 
-			(function processPath(path) {
-				for (let node of path) {
-					switch (node.type) {
-						case PathNodeType.SIMPLE: {
-							rePath.push(escapeRegExp(node.value).replace('\\*', '.*?'));
-							break;
-						}
-						case PathNodeType.OPTIONAL: {
-							if (node.name) {
-								rePath.push('(');
-								props.push({ name: node.name, optional: true });
-							} else {
-								rePath.push('(?:');
+				(function processPath(path) {
+					for (let node of path) {
+						switch (node.type) {
+							case PathNodeType.SIMPLE: {
+								rePath.push(escapeRegExp(node.value).replace('\\*', '.*?'));
+								break;
 							}
+							case PathNodeType.OPTIONAL: {
+								if (node.name) {
+									rePath.push('(');
+									props.push({ name: node.name, optional: true });
+								} else {
+									rePath.push('(?:');
+								}
 
-							processPath(node.childNodes);
+								processPath(node.childNodes);
 
-							rePath.push(')?');
+								rePath.push(')?');
 
-							break;
-						}
-						case PathNodeType.INSERT: {
-							rePath.push('([^\\/]+)');
-							props.push({ name: node.name, optional: false });
-							break;
+								break;
+							}
+							case PathNodeType.INSERT: {
+								rePath.push('([^\\/]+)');
+								props.push({ name: node.name, optional: false });
+								break;
+							}
 						}
 					}
-				}
-			})(parsePath(path));
+				})(parsePath(path));
 
-			rePath = rePath.join('');
+				rePath = rePath.join('');
 
-			routes.push({
-				path,
-				rePath: RegExp(
-					`^${rePath}${rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?'}$`
-				),
-				properties: props,
-				componentName: routeEl.$component.params.component
-			});
-		});
+				routes.push({
+					path,
+					rePath: RegExp(
+						`^${rePath}${rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?'}$`
+					),
+					properties: props,
+					componentName: routeEl.$component.params.component
+				});
+			}
+		);
 	}
 
 	elementAttached() {

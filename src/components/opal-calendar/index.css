@@ -1,4 +1,4 @@
-@component opal-calendar {
+@component OpalCalendar {
 	display: block;
 	width: 300px;
 	border: 1px solid hsl(0,0%,86%);

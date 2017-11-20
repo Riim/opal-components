@@ -1,4 +1,4 @@
-@component opal-popover {
+@component OpalPopover {
 	position: absolute;
 	z-index: 600;
 	display: none;
@@ -232,11 +232,11 @@
 
 	@mod opened {
 		display: block;
-		animation: opal-popover-fade-in-animation .1s linear;
+		animation: OpalPopover__fade-in-animation .1s linear;
 	}
 }
 
-@keyframes opal-popover-fade-in-animation {
+@keyframes OpalPopover__fade-in-animation {
 	0% {
 		opacity: 0;
 	}

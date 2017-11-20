@@ -1,4 +1,4 @@
-@component opal-multirow-row {
+@component OpalMultirowRow {
 	display: block;
 	white-space: nowrap;
 
@@ -28,21 +28,21 @@
 	@el btn-add-row {
 	}
 
-	.opal-multirow__preset-rows-slot[not-have-new-rows] &:last-child .opal-multirow-row__content-slot,
-	.opal-multirow__new-rows rt-slot:last-child & .opal-multirow-row__content-slot {
+	.OpalMultirow__preset-rows-slot[not-have-new-rows] &:last-child .OpalMultirowRow__content-slot,
+	.OpalMultirow__new-rows rt-slot:last-child & .OpalMultirowRow__content-slot {
 		margin-bottom: 0;
 	}
 
-	.opal-multirow__preset-rows-slot[not-single-row] & .opal-multirow-row__btn-remove-row,
-	.opal-multirow__new-rows[not-single-row] & .opal-multirow-row__btn-remove-row,
-	.opal-multirow__preset-rows-slot[not-have-new-rows] &:last-child .opal-multirow-row__btn-add-row,
-	.opal-multirow__new-rows rt-slot:last-child & .opal-multirow-row__btn-add-row {
+	.OpalMultirow__preset-rows-slot[not-single-row] & .OpalMultirowRow__btn-remove-row,
+	.OpalMultirow__new-rows[not-single-row] & .OpalMultirowRow__btn-remove-row,
+	.OpalMultirow__preset-rows-slot[not-have-new-rows] &:last-child .OpalMultirowRow__btn-add-row,
+	.OpalMultirow__new-rows rt-slot:last-child & .OpalMultirowRow__btn-add-row {
 		display: inline-block;
 	}
 
 	/* Combinations */
 
-	& .opal-popover {
+	& .OpalPopover {
 		white-space: normal;
 	}
 }

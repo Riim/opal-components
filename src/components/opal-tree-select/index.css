@@ -1,5 +1,5 @@
-@component opal-tree-select : opal-select {
-	.opal-modal__window {
+@component OpalTreeSelect : OpalSelect {
+	.OpalModal__window {
 		box-sizing: border-box;
 		width: 80%;
 	}

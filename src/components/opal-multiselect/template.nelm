@@ -1,11 +1,11 @@
 /menu (auto-height=no, auto-closing) {
 	div/menu-header {
 		opal-text-input/query-input (
-			class=opal-select__focus,
+			class=OpalSelect__focus,
 			clearable,
 			placeholder={constructor.i18n.queryInputPlaceholder}
 		) {
-			svg/query-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {
+			svg/query-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {
 				use (xlink:href=#opal-components__icon-search)
 			}
 		}

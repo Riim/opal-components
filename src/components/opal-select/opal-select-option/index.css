@@ -1,4 +1,4 @@
-@component opal-select-option {
+@component OpalSelectOption {
 	display: block;
 
 	@el control {

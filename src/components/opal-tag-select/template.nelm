@@ -30,22 +30,22 @@ span/control {
 		focused={params.focused}
 	) {
 		opal-sign-button/button (
-			class=opal-select__button,
+			class=OpalSelect__button,
 			sign=plus,
 			checkable,
 			tab-index={params.tabIndex},
 			disabled={params.disabled}
 		)
 
-		rt-slot (class=opal-select__menu-slot, for=opal-select__menu) {
+		rt-slot (class=OpalSelect__menu-slot, for=OpalSelect__menu) {
 			opal-popover/menu (
-				class=opal-select__menu,
+				class=OpalSelect__menu,
 				position={params.popoverPosition},
 				auto-closing
 			) {
-				rt-content (select='.opal-select__menu-content') {
+				rt-content (select='.OpalSelect__menu-content') {
 					@if-then (if=_dataListKeypathParam) {
-						div (class=opal-select__menu-content) {
+						div (class=OpalSelect__menu-content) {
 							@if-then (if=dataList) {
 								@repeat (for=item of dataList) {
 									opal-select-option/data-list-select-option, select-option (
@@ -55,7 +55,7 @@ span/control {
 									)
 								}
 
-								rt-slot (class=opal-select__new-item-input-slot, for=new-item-input)
+								rt-slot (class=OpalSelect__new-item-input-slot, for=new-item-input)
 							}
 							@if-else (if=dataList) {
 								opal-loader/menu-loader (shown)
@@ -64,15 +64,15 @@ span/control {
 					}
 					@if-else (if=_dataListKeypathParam) {
 						opal-filtered-list/menu-filtered-list (
-							class=opal-select__menu-content opal-select__filtered-list
+							class=OpalSelect__menu-content OpalSelect__filtered-list
 						) {
 							rt-slot (
-								class=opal-filtered-list__query-input-slot,
-								for=opal-filtered-list__query-input
+								class=OpalFilteredList__query-input-slot,
+								for=OpalFilteredList__query-input
 							)
 
 							opal-loaded-list/menu-loaded-list (
-								class=opal-select__loaded-list opal-filtered-list__list,
+								class=OpalSelect__loaded-list OpalFilteredList__list,
 								data-provider={dataProvider}
 							) {
 								opal-select-option/loaded-list-select-option, select-option (

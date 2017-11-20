@@ -1,4 +1,4 @@
-@component opal-select {
+@component OpalSelect {
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
@@ -50,29 +50,29 @@
 
 	/* Combinations */
 
-	& .opal-popover {
+	& .OpalPopover {
 		padding: 6px 0;
 		min-width: 140px;
 	}
 
-	& .opal-popover .opal-popover__content {
+	& .OpalPopover .OpalPopover__content {
 		overflow: auto;
 		max-height: 380px;
 	}
 
-	& .opal-filtered-list .opal-filtered-list__query-input {
+	& .OpalFilteredList .OpalFilteredList__query-input {
 		margin: 4px 10px 6px;
 	}
 
-	& .opal-modal__content > .opal-filtered-list .opal-filtered-list__query-input {
+	& .OpalModal__content > .OpalFilteredList .OpalFilteredList__query-input {
 		margin: 0 0 10px;
 	}
 
-	& .opal-loaded-list {
+	& .OpalLoadedList {
 		height: 304px; /* 38 * 8 */
 	}
 
-	& .opal-loader[align-center] {
+	& .OpalLoader[align-center] {
 		border-top-width: 100px;
 		border-bottom-width: 100px;
 	}

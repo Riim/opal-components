@@ -8,14 +8,14 @@ header/header {
 	}
 
 	opal-select/month-select (size=s, value=['{shownMonth}']) {
-		@repeat (class=opal-select__menu-content, for=month of constructor.i18n.months) {
+		@repeat (class=OpalSelect__menu-content, for=month of constructor.i18n.months) {
 			opal-select-option (value={$index}, text={month})
 		}
 	}
 	' '
 
 	opal-select/year-select (size=s, value=['{shownYear}']) {
-		@repeat (class=opal-select__menu-content, for=year of years) {
+		@repeat (class=OpalSelect__menu-content, for=year of years) {
 			opal-select-option (value={year}, text={year})
 		}
 	}

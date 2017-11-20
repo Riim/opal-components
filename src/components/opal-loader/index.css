@@ -1,4 +1,4 @@
-@component opal-loader {
+@component OpalLoader {
 	position: relative;
 	display: none;
 	margin: auto;
@@ -22,7 +22,7 @@
 		border-top-color: transparent;
 		border-radius: 50%;
 		content: '';
-		animation: opal-loader-animation 1.2s infinite linear;
+		animation: OpalLoader__animation 1.2s infinite linear;
 	}
 
 	&::after {
@@ -52,7 +52,7 @@
 	}
 }
 
-@keyframes opal-loader-animation {
+@keyframes OpalLoader__animation {
 	0% {
 		transform: rotate(0);
 	}

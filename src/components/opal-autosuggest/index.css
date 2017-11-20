@@ -1,4 +1,4 @@
-@component opal-autosuggest {
+@component OpalAutosuggest {
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
@@ -57,7 +57,7 @@
 
 	/* Combinations */
 
-	.opal-text-input-validator & {
+	.OpalTextInputValidator & {
 		display: block;
 	}
 }

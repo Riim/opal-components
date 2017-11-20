@@ -24,11 +24,11 @@ export class OpalTabs extends Component {
 	_selectedTab: OpalTab | null = null;
 
 	ready() {
-		let tabs = (this.tabs = this.element.getElementsByClassName('opal-tab') as NodeListOf<
+		let tabs = (this.tabs = this.element.getElementsByClassName('OpalTab') as NodeListOf<
 			IComponentElement<OpalTab>
 		>);
 		let tabPanels = (this.tabPanels = this.element.getElementsByClassName(
-			'opal-tab-panel'
+			'OpalTabPanel'
 		) as NodeListOf<IComponentElement<OpalTabPanel>>);
 
 		let selectedTab: OpalTab | undefined;
@@ -59,8 +59,7 @@ export class OpalTabs extends Component {
 
 	elementAttached() {
 		this.listenTo(
-			(this.element.getElementsByClassName('opal-tab-list')[0] as IComponentElement)
-				.$component,
+			(this.element.getElementsByClassName('OpalTabList')[0] as IComponentElement).$component,
 			{
 				'<OpalTab>select': this._onTabListSelect,
 				'<OpalTab>deselect': this._onTabListDeselect

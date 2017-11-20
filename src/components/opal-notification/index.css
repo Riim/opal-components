@@ -1,11 +1,11 @@
-.opal-notification__container {
+.OpalNotification__container {
 	position: fixed;
 	top: 10px;
 	right: 20px;
 	z-index: 300;
 	width: 400px;
 }
-	.opal-notification__container .opal-notification__bar {
+	.OpalNotification__container .OpalNotification__bar {
 		position: relative;
 		right: -200px;
 		box-sizing: border-box;
@@ -20,36 +20,36 @@
 		transition: right .2s linear, opacity .2s linear;
 	}
 
-	.opal-notification__container .opal-notification__bar[view-type=primary] {
+	.OpalNotification__container .OpalNotification__bar[view-type=primary] {
 		background: hsl(208,94%,54%);
 	}
 
-	.opal-notification__container .opal-notification__bar[view-type=success] {
+	.OpalNotification__container .OpalNotification__bar[view-type=success] {
 		background: hsl(148,76%,40%);
 	}
 
-	.opal-notification__container .opal-notification__bar[view-type=danger] {
+	.OpalNotification__container .OpalNotification__bar[view-type=danger] {
 		background: hsl(348,92%,58%);
 	}
 
-	.opal-notification__container .opal-notification__bar[has-icon] {
+	.OpalNotification__container .OpalNotification__bar[has-icon] {
 		padding-left: 48px;
 	}
 
-	.opal-notification__container .opal-notification__bar[shown] {
+	.OpalNotification__container .OpalNotification__bar[shown] {
 		right: 0;
 		opacity: 1;
 	}
-		.opal-notification__container .opal-notification__icon-slot {
+		.OpalNotification__container .OpalNotification__icon-slot {
 		}
-			.opal-notification__container .opal-notification__icon {
+			.OpalNotification__container .OpalNotification__icon {
 				position: absolute;
 				top: 0;
 				bottom: 0;
 				left: 16px;
 				margin: auto;
 			}
-			.opal-notification__container svg.opal-notification__icon {
+			.OpalNotification__container svg.OpalNotification__icon {
 				display: block;
 				width: 18px;
 				height: 18px;
@@ -60,7 +60,7 @@
 				fill: none;
 			}
 
-		.opal-notification__container .opal-notification__btn-hide {
+		.OpalNotification__container .OpalNotification__btn-hide {
 			position: absolute;
 			top: 0;
 			right: 10px;
@@ -96,7 +96,7 @@
 				display: none;
 			}
 		}
-			.opal-notification__container .opal-notification__btn-hide-icon {
+			.OpalNotification__container .OpalNotification__btn-hide-icon {
 				position: absolute;
 				top: 0;
 				right: 0;
@@ -113,5 +113,5 @@
 				fill: none;
 			}
 
-@component opal-notification {
+@component OpalNotification {
 }

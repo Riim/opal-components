@@ -48,7 +48,7 @@ export class OpalSwitchMenu extends Component {
 	}
 
 	ready() {
-		this.buttonElements = this.element.getElementsByClassName('opal-button') as NodeListOf<
+		this.buttonElements = this.element.getElementsByClassName('OpalButton') as NodeListOf<
 			IComponentElement<OpalButton>
 		>;
 	}

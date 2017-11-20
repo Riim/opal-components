@@ -130,9 +130,7 @@ export class OpalTagSelect extends Component {
 
 	elementAttached() {
 		this.listenTo(this, 'param-view-model-change', this._onParamViewModelChange);
-
 		this.listenTo('control', 'click', this._onControlClick);
-
 		this.listenTo('select', {
 			input: this._onSelectInput,
 			change: this._onSelectChange,

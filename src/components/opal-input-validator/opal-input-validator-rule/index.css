@@ -1,4 +1,4 @@
-@component opal-input-validator-rule {
+@component OpalInputValidatorRule {
 	display: block;
 
 	@el popover {

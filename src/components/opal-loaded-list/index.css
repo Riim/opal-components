@@ -1,4 +1,4 @@
-@component opal-loaded-list {
+@component OpalLoadedList {
 	position: relative;
 	display: block;
 	overflow-x: hidden;

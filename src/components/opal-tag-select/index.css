@@ -1,4 +1,4 @@
-@component opal-tag-select {
+@component OpalTagSelect {
 	display: inline-block;
 
 	@el tags {

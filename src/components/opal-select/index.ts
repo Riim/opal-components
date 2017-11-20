@@ -203,9 +203,9 @@ export class OpalSelect extends Component {
 	}
 
 	ready() {
-		this.optionElements = this.element.getElementsByClassName(
-			'opal-select-option'
-		) as NodeListOf<IComponentElement>;
+		this.optionElements = this.element.getElementsByClassName('OpalSelectOption') as NodeListOf<
+			IComponentElement
+		>;
 
 		if (this.params.viewModel && !this.params.value) {
 			this._needOptionsUpdating = true;

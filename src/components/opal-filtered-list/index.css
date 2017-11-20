@@ -1,4 +1,4 @@
-@component opal-filtered-list {
+@component OpalFilteredList {
 	display: block;
 
 	@el query-input-slot {

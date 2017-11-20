@@ -24,7 +24,7 @@ export class OpalInputValidator extends Component {
 
 	ready() {
 		this.rules = Array.prototype.map.call(
-			this.element.getElementsByClassName('opal-input-validator-rule'),
+			this.element.getElementsByClassName('OpalInputValidatorRule'),
 			(ruleEl: IComponentElement) => ruleEl.$component
 		);
 	}

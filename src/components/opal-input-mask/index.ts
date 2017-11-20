@@ -71,7 +71,7 @@ export class OpalInputMask extends Component {
 		let definitions = this._definitions;
 
 		forEach.call(
-			this.element.querySelectorAll('opal-input-mask-definition'),
+			this.element.getElementsByTagName('opal-input-mask-definition'),
 			(inputMaskDefinition: IComponentElement) => {
 				let params = inputMaskDefinition.$component.params;
 				definitions[params.maskChar] = params.regex;

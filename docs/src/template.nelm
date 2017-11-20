@@ -69,18 +69,18 @@ p {
 h1 { 'opal-input-mask' }
 p {
 	opal-input-mask (mask=99/99/9999) {
-		opal-text-input (class=opal-input-mask__text-input, placeholder=dd/mm/yyyy)
+		opal-text-input (class=OpalInputMask__text-input, placeholder=dd/mm/yyyy)
 	}
 }
 p {
 	opal-input-mask (mask='+7 (999) 999-9999? доб. 9999') {
-		opal-text-input (class=opal-input-mask__text-input, placeholder=Телефон)
+		opal-text-input (class=OpalInputMask__text-input, placeholder=Телефон)
 	}
 }
 p {
 	opal-input-mask (mask=#ffffff) {
 		opal-input-mask-definition (mask-char=f, regex=/[0-9a-f]/i)
-		opal-text-input (class=opal-input-mask__text-input, placeholder=Цвет)
+		opal-text-input (class=OpalInputMask__text-input, placeholder=Цвет)
 	}
 }
 
@@ -229,14 +229,14 @@ p {
 	}
 
 	opal-notification (id=notification4, view-type=success) {
-		svg (class=opal-notification__icon, viewBox=0 0 32 32) {
+		svg (class=OpalNotification__icon, viewBox=0 0 32 32) {
 			use (xlink:href=#opal-components__icon-calendar)
 		}
 		'success'
 	}
 
 	opal-notification (id=notification5, view-type=success) {
-		svg (class=opal-notification__icon, viewBox=0 0 32 32) {
+		svg (class=OpalNotification__icon, viewBox=0 0 32 32) {
 			use (xlink:href=#opal-components__icon-calendar)
 		}
 		'success '
@@ -297,7 +297,7 @@ p {
 h1 { 'opal-filtered-list' }
 p {
 	opal-filtered-list {
-		opal-loaded-list (class=opal-filtered-list__list, data-provider={dataProvider1}) {
+		opal-loaded-list (class=OpalFilteredList__list, data-provider={dataProvider1}) {
 			'{$item.name}'
 		}
 	}
@@ -306,9 +306,9 @@ p {
 h1 { 'opal-tree-list' }
 p {
 	opal-filtered-list {
-		opal-tree-list (class=opal-filtered-list__list, data-tree-list={dataTreeList1}) {
+		opal-tree-list (class=OpalFilteredList__list, data-tree-list={dataTreeList1}) {
 			opal-checkbox (
-				class=opal-tree-list__selection-control,
+				class=OpalTreeList__selection-control,
 				checked={$selected},
 				indeterminate={$indeterminate}
 			) {
@@ -347,20 +347,20 @@ p {
 		add-new-item={addNewItem1},
 		placeholder=Select
 	) {
-		opal-text-input (class=opal-select__new-item-input)
+		opal-text-input (class=OpalSelect__new-item-input)
 	}
 }
 p {
 	opal-group {
 		opal-select (placeholder=Select) {
-			opal-popover (class=opal-select__menu, position=bottom, auto-closing) {
+			opal-popover (class=OpalSelect__menu, position=bottom, auto-closing) {
 				opal-select-option (text=Option 1, subtext=Subtext 1)
 				opal-select-option (text=Option 2, subtext=Subtext 2)
 				opal-select-option (text=Option 3, subtext=Subtext 3)
 			}
 		}
 		opal-select (view-type=primary, placeholder=Select) {
-			opal-popover (class=opal-select__menu, auto-closing) {
+			opal-popover (class=OpalSelect__menu, auto-closing) {
 				opal-select-option (text=Option 1)
 				opal-select-option (text=Option 2)
 				opal-select-option (text=Option 3)
@@ -372,10 +372,10 @@ p {
 h1 { 'opal-select + opal-loaded-list' }
 p {
 	opal-select {
-		opal-dropdown (class=opal-select__menu, auto-height=no, auto-closing) {
-			opal-filtered-list (class=opal-select__filtered-list) {
+		opal-dropdown (class=OpalSelect__menu, auto-height=no, auto-closing) {
+			opal-filtered-list (class=OpalSelect__filtered-list) {
 				opal-loaded-list (
-					class=opal-select__loaded-list opal-filtered-list__list,
+					class=OpalSelect__loaded-list OpalFilteredList__list,
 					data-provider={dataProvider1}
 				) {
 					opal-select-option (text={$item.name})
@@ -386,8 +386,8 @@ p {
 	' '
 
 	opal-select {
-		opal-popover (class=opal-select__menu, position=bottom, auto-closing) {
-			opal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {
+		opal-popover (class=OpalSelect__menu, position=bottom, auto-closing) {
+			opal-loaded-list (class=OpalSelect__loaded-list, data-provider={dataProvider1}) {
 				opal-select-option (text={$item.name})
 			}
 		}
@@ -399,8 +399,8 @@ p {
 		view-model={viewModel1},
 		view-model-item-schema='{ value: "id", text: "name" }'
 	) {
-		opal-popover (class=opal-select__menu, position=bottom, auto-closing) {
-			opal-loaded-list (class=opal-select__loaded-list, data-provider={dataProvider1}) {
+		opal-popover (class=OpalSelect__menu, position=bottom, auto-closing) {
+			opal-loaded-list (class=OpalSelect__loaded-list, data-provider={dataProvider1}) {
 				opal-select-option (text={$item.name})
 			}
 		}
@@ -408,10 +408,10 @@ p {
 	' '
 
 	opal-select {
-		opal-popover (class=opal-select__menu, position=bottom, auto-closing) {
-			opal-filtered-list (class=opal-select__filtered-list) {
+		opal-popover (class=OpalSelect__menu, position=bottom, auto-closing) {
+			opal-filtered-list (class=OpalSelect__filtered-list) {
 				opal-loaded-list (
-					class=opal-select__loaded-list opal-filtered-list__list,
+					class=OpalSelect__loaded-list OpalFilteredList__list,
 					data-provider={dataProvider1}
 				) {
 					opal-select-option (text={$item.name})
@@ -422,10 +422,10 @@ p {
 	' '
 
 	opal-select (multiple) {
-		opal-popover (class=opal-select__menu, position=bottom, auto-closing) {
-			opal-filtered-list (class=opal-select__filtered-list) {
+		opal-popover (class=OpalSelect__menu, position=bottom, auto-closing) {
+			opal-filtered-list (class=OpalSelect__filtered-list) {
 				opal-loaded-list (
-					class=opal-select__loaded-list opal-filtered-list__list,
+					class=OpalSelect__loaded-list OpalFilteredList__list,
 					data-provider={dataProvider1}
 				) {
 					opal-select-option (text={$item.name})
@@ -463,7 +463,7 @@ p {
 		add-new-item={addNewItem1},
 		view-model={viewModel1}
 	) {
-		opal-text-input (class=opal-select__new-item-input opal-filtered-list__query-input)
+		opal-text-input (class=OpalSelect__new-item-input OpalFilteredList__query-input)
 	}
 }
 
@@ -475,10 +475,10 @@ p {
 h1 { 'opal-multirow' }
 p {
 	opal-multirow {
-		opal-multirow-row (class=opal-multirow__preset-row) {
+		opal-multirow-row (class=OpalMultirow__preset-row) {
 			opal-text-input (value=Value, placeholder=Placeholder)
 		}
-		opal-multirow-row (class=opal-multirow__preset-row) {
+		opal-multirow-row (class=OpalMultirow__preset-row) {
 			opal-text-input (value=Value, placeholder=Placeholder, valid=no)
 		}
 

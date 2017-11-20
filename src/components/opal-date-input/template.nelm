@@ -3,12 +3,12 @@
 opal-text-input-validator/text-input-validator {
 	opal-input-mask/input-mask (mask={params.mask}) {
 		opal-text-input/text-input (
-			class=opal-input-validator__text-input opal-input-mask__text-input,
+			class=OpalInputValidator__text-input OpalInputMask__text-input,
 			value={params.value},
 			placeholder={params.placeholder},
 			clearable
 		) {
-			svg/text-input-control-icon (class=opal-text-input__control-icon, viewBox=0 0 32 32) {
+			svg/text-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {
 				use (xlink:href=#opal-components__icon-calendar)
 			}
 		}
