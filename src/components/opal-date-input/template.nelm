@@ -9,7 +9,7 @@ opal-text-input-validator/text-input-validator {
 			clearable
 		) {
 			svg/text-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {
-				use (xlink:href=#opal-components__icon-calendar)
+				use (xlink:href=#OpalComponents__icon-calendar)
 			}
 		}
 	}

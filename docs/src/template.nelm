@@ -230,14 +230,14 @@ p {
 
 	opal-notification (id=notification4, view-type=success) {
 		svg (class=OpalNotification__icon, viewBox=0 0 32 32) {
-			use (xlink:href=#opal-components__icon-calendar)
+			use (xlink:href=#OpalComponents__icon-calendar)
 		}
 		'success'
 	}
 
 	opal-notification (id=notification5, view-type=success) {
 		svg (class=OpalNotification__icon, viewBox=0 0 32 32) {
-			use (xlink:href=#opal-components__icon-calendar)
+			use (xlink:href=#OpalComponents__icon-calendar)
 		}
 		'success '
 		'success '

@@ -1796,43 +1796,43 @@ exports.Utils = utils_1.default;
 /* 19 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-calendar\"><path d=\"M2 6v24h28V6zm0 9h28M7 3v6m6-6v6m6-6v6m6-6v6\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-calendar\"><path d=\"M2 6v24h28V6zm0 9h28M7 3v6m6-6v6m6-6v6m6-6v6\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-checkmark\"><path d=\"M2 20l10 8L30 4\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-checkmark\"><path d=\"M2 20l10 8L30 4\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-chevron-bottom\"><path d=\"M30 12L16 24 2 12\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-chevron-bottom\"><path d=\"M30 12L16 24 2 12\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-chevron-left\"><path d=\"M20 30L8 16 20 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-chevron-left\"><path d=\"M20 30L8 16 20 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 23 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-close\"><path d=\"M2 30L30 2m0 28L2 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-close\"><path d=\"M2 30L30 2m0 28L2 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-compose\"><path d=\"M27 15v15H2V5h15m13 1l-4-4L9 19l-2 6 6-2zm-8 0l4 4zM9 19l4 4z\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-compose\"><path d=\"M27 15v15H2V5h15m13 1l-4-4L9 19l-2 6 6-2zm-8 0l4 4zM9 19l4 4z\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 25 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"opal-components__icon-search\"><circle cx=\"14\" cy=\"14\" r=\"12\" xmlns=\"http://www.w3.org/2000/svg\"/><path d=\"M23 23l7 7\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-search\"><circle cx=\"14\" cy=\"14\" r=\"12\" xmlns=\"http://www.w3.org/2000/svg\"/><path d=\"M23 23l7 7\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 26 */
@@ -2536,7 +2536,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=params.multiline) {\ntextarea/, text-field (\nrows={params.rows},\nname={params.inputName},\nplaceholder={params.placeholder},\ntabindex={params.tabIndex},\ndisabled={params.disabled}\n)\n}\n@if-else (if=params.multiline) {\ninput/, text-field (\ntype={params.inputType},\nname={params.inputName},\nplaceholder={params.placeholder},\ntabindex={params.tabIndex},\ndisabled={params.disabled}\n)\n}\nrt-slot/control-icon-slot (for=control-icon, shown={isControlIconShown})\n@if-then (if=params.clearable) {\nbutton/btn-clear (shown={isBtnClearShown}) {\nsvg/btn-clear-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-close)\n}\n}\n}\n@if-then (if=params.loading) {\nopal-loader/loader (size=s, shown)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=params.multiline) {\ntextarea/, text-field (\nrows={params.rows},\nname={params.inputName},\nplaceholder={params.placeholder},\ntabindex={params.tabIndex},\ndisabled={params.disabled}\n)\n}\n@if-else (if=params.multiline) {\ninput/, text-field (\ntype={params.inputType},\nname={params.inputName},\nplaceholder={params.placeholder},\ntabindex={params.tabIndex},\ndisabled={params.disabled}\n)\n}\nrt-slot/control-icon-slot (for=control-icon, shown={isControlIconShown})\n@if-then (if=params.clearable) {\nbutton/btn-clear (shown={isBtnClearShown}) {\nsvg/btn-clear-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-close)\n}\n}\n}\n@if-then (if=params.loading) {\nopal-loader/loader (size=s, shown)\n}\n}");
 
 /***/ }),
 /* 35 */
@@ -2694,7 +2694,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/content-wrapper {\nrt-slot/content-slot (contenteditable, spellcheck=false)\nsvg/icon-edit (viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-compose)\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/content-wrapper {\nrt-slot/content-slot (contenteditable, spellcheck=false)\nsvg/icon-edit (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-compose)\n}\n}\n}");
 
 /***/ }),
 /* 38 */
@@ -5353,7 +5353,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/bar {\nrt-slot/icon-slot (for=icon)\nrt-slot/content-slot\nbutton/btn-hide (hide={params.buttonHide |not }) {\nsvg/btn-hide-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-close)\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/bar {\nrt-slot/icon-slot (for=icon)\nrt-slot/content-slot\nbutton/btn-hide (hide={params.buttonHide |not }) {\nsvg/btn-hide-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-close)\n}\n}\n}\n}");
 
 /***/ }),
 /* 85 */
@@ -6010,7 +6010,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-chevron-left)\n}\n}\nopal-select/month-select (size=s, value=['{shownMonth}']) {\n@repeat (class=OpalSelect__menu-content, for=month of constructor.i18n.months) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/year-select (size=s, value=['{shownYear}']) {\n@repeat (class=OpalSelect__menu-content, for=year of years) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={isBtnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-chevron-left)\n}\n}\n}\ndiv/body {\ndiv/week-days {\ndiv/week-days-row {\n@repeat (for=weekDay of weekDaysShort) {\nspan/week-day {\n'{weekDay}'\n}\n}\n}\n}\ndiv/days {\n@repeat (for=weekDays of days) {\ndiv/days-row {\n@repeat (for=day of weekDays) {\nspan/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date}\n) {\n'{day.value}'\n}\n}\n}\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-chevron-left)\n}\n}\nopal-select/month-select (size=s, value=['{shownMonth}']) {\n@repeat (class=OpalSelect__menu-content, for=month of constructor.i18n.months) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/year-select (size=s, value=['{shownYear}']) {\n@repeat (class=OpalSelect__menu-content, for=year of years) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={isBtnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-chevron-left)\n}\n}\n}\ndiv/body {\ndiv/week-days {\ndiv/week-days-row {\n@repeat (for=weekDay of weekDaysShort) {\nspan/week-day {\n'{weekDay}'\n}\n}\n}\n}\ndiv/days {\n@repeat (for=weekDays of days) {\ndiv/days-row {\n@repeat (for=day of weekDays) {\nspan/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date}\n) {\n'{day.value}'\n}\n}\n}\n}\n}\n}\n}");
 
 /***/ }),
 /* 97 */
@@ -6221,7 +6221,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-text-input-validator/text-input-validator {\nopal-input-mask/input-mask (mask={params.mask}) {\nopal-text-input/text-input (\nclass=OpalInputValidator__text-input OpalInputMask__text-input,\nvalue={params.value},\nplaceholder={params.placeholder},\nclearable\n) {\nsvg/text-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-calendar)\n}\n}\n}\n@if-then (if=params.required) {\nopal-text-input-validator-rule/text-input-validator-rule-required (\nrequired,\npopover-position={params.popoverPosition}\n) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-text-input-validator-rule/text-input-validator-rule-date-exists (\ntest={dateExists},\npopover-position={params.popoverPosition}\n) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-text-input-validator-rule/text-input-validator-rule-date-in-range (\ntest={isDateInRange},\npopover-position={params.popoverPosition}\n) {\n'{constructor.i18n.invalidDateRange}'\n}\n}\nopal-dropdown/calendar-menu (auto-height=no) {\nopal-calendar/calendar (\nfrom-date={params.fromDate},\nto-date={params.toDate},\nvalue={params.value},\ndate-delimiter=.\n)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-text-input-validator/text-input-validator {\nopal-input-mask/input-mask (mask={params.mask}) {\nopal-text-input/text-input (\nclass=OpalInputValidator__text-input OpalInputMask__text-input,\nvalue={params.value},\nplaceholder={params.placeholder},\nclearable\n) {\nsvg/text-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-calendar)\n}\n}\n}\n@if-then (if=params.required) {\nopal-text-input-validator-rule/text-input-validator-rule-required (\nrequired,\npopover-position={params.popoverPosition}\n) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-text-input-validator-rule/text-input-validator-rule-date-exists (\ntest={dateExists},\npopover-position={params.popoverPosition}\n) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-text-input-validator-rule/text-input-validator-rule-date-in-range (\ntest={isDateInRange},\npopover-position={params.popoverPosition}\n) {\n'{constructor.i18n.invalidDateRange}'\n}\n}\nopal-dropdown/calendar-menu (auto-height=no) {\nopal-calendar/calendar (\nfrom-date={params.fromDate},\nto-date={params.toDate},\nvalue={params.value},\ndate-delimiter=.\n)\n}\n}");
 
 /***/ }),
 /* 101 */
@@ -6628,7 +6628,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot (for=query-input-slot) {\nrt-slot/query-input-slot (for=query-input) {\nopal-text-input/query-input (\nplaceholder={constructor.i18n.queryInputPlaceholder},\nclearable\n) {\nsvg/query-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\n}\nrt-slot/list-slot (for=list)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot (for=query-input-slot) {\nrt-slot/query-input-slot (for=query-input) {\nopal-text-input/query-input (\nplaceholder={constructor.i18n.queryInputPlaceholder},\nclearable\n) {\nsvg/query-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-search)\n}\n}\n}\n}\nrt-slot/list-slot (for=list)\n}");
 
 /***/ }),
 /* 110 */
@@ -6685,7 +6685,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={params.opened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-chevron-bottom)\n}\n}\nspan/content-slot-wrapper {\nrt-slot/content-slot (clone-content)\n}\n}\n@if-then (if=dataTreeListItem.children.length) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item/item (\ndata-tree-list={params.dataTreeList},\nfiltered-data-tree-list={params.filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{params.indexpath},{$index}]',\nquery={params.query},\nopened={params.query},\nnesting-level={params.indexpath.length},\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext})\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={params.opened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-chevron-bottom)\n}\n}\nspan/content-slot-wrapper {\nrt-slot/content-slot (clone-content)\n}\n}\n@if-then (if=dataTreeListItem.children.length) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item/item (\ndata-tree-list={params.dataTreeList},\nfiltered-data-tree-list={params.filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{params.indexpath},{$index}]',\nquery={params.query},\nopened={params.query},\nnesting-level={params.indexpath.length},\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext})\n}\n}\n}\n}");
 
 /***/ }),
 /* 114 */
@@ -6932,7 +6932,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-slot/content-slot {\n'{params.text}'\n@if-then (if=params.subtext) {\nsub {\n'{params.subtext}'\n}\n}\n}\nsvg/icon-check (viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-checkmark)\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-slot/content-slot {\n'{params.text}'\n@if-then (if=params.subtext) {\nsub {\n'{params.subtext}'\n}\n}\n}\nsvg/icon-check (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-checkmark)\n}\n}\n}");
 
 /***/ }),
 /* 120 */
@@ -6940,7 +6940,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot (for=button) {\nopal-button/button (\nview-type={params.viewType},\nsize={params.size},\ncheckable,\ntab-index={params.tabIndex},\ndisabled={params.disabled}\n) {\n@if-then (if=params.text) {\n'{params.text}'\n}\n@if-else (if=params.text) {\n'{_buttonText}'\n}\nsvg/button-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-chevron-bottom)\n}\n}\n}\nrt-slot (for=menu-slot) {\nrt-slot/menu-slot (for=menu) {\nopal-dropdown/menu (auto-closing) {\nrt-slot (for=menu-content) {\n@if-then (if=_isParamDataListSpecified) {\ndiv/, menu-content {\n@if-then (if=dataList) {\n@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-slot/new-item-input-slot // ...\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isParamDataListSpecified) {\ndiv/, menu-content {\nrt-slot/options (for-tag=opal-select-option)\nrt-slot/new-item-input-slot (for=new-item-input)\n}\n}\n}\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot (for=button) {\nopal-button/button (\nview-type={params.viewType},\nsize={params.size},\ncheckable,\ntab-index={params.tabIndex},\ndisabled={params.disabled}\n) {\n@if-then (if=params.text) {\n'{params.text}'\n}\n@if-else (if=params.text) {\n'{_buttonText}'\n}\nsvg/button-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-chevron-bottom)\n}\n}\n}\nrt-slot (for=menu-slot) {\nrt-slot/menu-slot (for=menu) {\nopal-dropdown/menu (auto-closing) {\nrt-slot (for=menu-content) {\n@if-then (if=_isParamDataListSpecified) {\ndiv/, menu-content {\n@if-then (if=dataList) {\n@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-slot/new-item-input-slot // ...\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isParamDataListSpecified) {\ndiv/, menu-content {\nrt-slot/options (for-tag=opal-select-option)\nrt-slot/new-item-input-slot (for=new-item-input)\n}\n}\n}\n}\n}\n}\n}");
 
 /***/ }),
 /* 121 */
@@ -7064,7 +7064,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=OpalSelect__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n) {\nsvg/query-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\nbutton/btn-deselect-item (\ntabindex=-1,\ndata-item-value='{item |key(_viewModelItemValueFieldName) }'\n) {\nsvg/btn-deselect-item-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-close)\n}\n}\n}\n}\ndiv/nothing-selected (shown={isNothingSelectedShown}) {\nspan/nothing-selected-message {\n'{constructor.i18n.nothingSelected}'\n}\n}\n}\ndiv/menu-list {\nopal-loaded-list/loaded-list (\ndata-provider={dataProvider},\ndata-list-item-value-name={_dataListItemValueFieldName}\n) {\nopal-select-option/option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\ndiv/menu-footer {\nopal-button/btn-close {\n'Закрыть'\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=OpalSelect__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n) {\nsvg/query-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-search)\n}\n}\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\nbutton/btn-deselect-item (\ntabindex=-1,\ndata-item-value='{item |key(_viewModelItemValueFieldName) }'\n) {\nsvg/btn-deselect-item-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-close)\n}\n}\n}\n}\ndiv/nothing-selected (shown={isNothingSelectedShown}) {\nspan/nothing-selected-message {\n'{constructor.i18n.nothingSelected}'\n}\n}\n}\ndiv/menu-list {\nopal-loaded-list/loaded-list (\ndata-provider={dataProvider},\ndata-list-item-value-name={_dataListItemValueFieldName}\n) {\nopal-select-option/option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\ndiv/menu-footer {\nopal-button/btn-close {\n'Закрыть'\n}\n}\n}");
 
 /***/ }),
 /* 124 */
@@ -7769,7 +7769,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot (for=text-input) {\nopal-text-input/text-input (\nvalue='{params.value |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nsvg/text-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#opal-components__icon-search)\n}\n}\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nspan/nothing-found-message (shown={dataList.length |not }) {\n'{constructor.i18n.nothingFound}'\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot (for=text-input) {\nopal-text-input/text-input (\nvalue='{params.value |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nsvg/text-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-search)\n}\n}\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nspan/nothing-found-message (shown={dataList.length |not }) {\n'{constructor.i18n.nothingFound}'\n}\n}\n}");
 
 /***/ }),
 /* 137 */

@@ -7,7 +7,7 @@ rt-slot (for=text-input) {
 		clearable
 	) {
 		svg/text-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {
-			use (xlink:href=#opal-components__icon-search)
+			use (xlink:href=#OpalComponents__icon-search)
 		}
 	}
 }

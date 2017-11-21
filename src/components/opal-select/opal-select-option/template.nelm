@@ -12,7 +12,7 @@ button/control (tabindex={_tabIndex}) {
 	}
 
 	svg/icon-check (viewBox=0 0 32 32) {
-		use (xlink:href=#opal-components__icon-checkmark)
+		use (xlink:href=#OpalComponents__icon-checkmark)
 	}
 }
 

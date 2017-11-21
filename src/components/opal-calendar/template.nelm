@@ -3,7 +3,7 @@
 header/header {
 	button/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {
 		svg/btn-prev-month-icon (viewBox=0 0 32 32) {
-			use (xlink:href=#opal-components__icon-chevron-left)
+			use (xlink:href=#OpalComponents__icon-chevron-left)
 		}
 	}
 
@@ -22,7 +22,7 @@ header/header {
 
 	button/btn-next-month (disabled={isBtnNextMonthDisabled}) {
 		svg/btn-next-month-icon (viewBox=0 0 32 32) {
-			use (xlink:href=#opal-components__icon-chevron-left)
+			use (xlink:href=#OpalComponents__icon-chevron-left)
 		}
 	}
 }

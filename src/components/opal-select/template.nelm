@@ -16,7 +16,7 @@ rt-slot (for=button) {
 		}
 
 		svg/button-icon (viewBox=0 0 32 32) {
-			use (xlink:href=#opal-components__icon-chevron-bottom)
+			use (xlink:href=#OpalComponents__icon-chevron-bottom)
 		}
 	}
 }

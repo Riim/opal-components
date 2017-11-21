@@ -24,7 +24,7 @@ rt-slot/control-icon-slot (for=control-icon, shown={isControlIconShown})
 @if-then (if=params.clearable) {
 	button/btn-clear (shown={isBtnClearShown}) {
 		svg/btn-clear-icon (viewBox=0 0 32 32) {
-			use (xlink:href=#opal-components__icon-close)
+			use (xlink:href=#OpalComponents__icon-close)
 		}
 	}
 }

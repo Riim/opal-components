@@ -6,7 +6,7 @@ div/bar {
 
 	button/btn-hide (hide={params.buttonHide |not }) {
 		svg/btn-hide-icon (viewBox=0 0 32 32) {
-			use (xlink:href=#opal-components__icon-close)
+			use (xlink:href=#OpalComponents__icon-close)
 		}
 	}
 }

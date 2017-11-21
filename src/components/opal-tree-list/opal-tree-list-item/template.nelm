@@ -1,7 +1,7 @@
 div/head {
 	opal-button/btn-toggle-children (view-type=clean, checkable, checked={params.opened}) {
 		svg/btn-toggle-children-icon (viewBox=0 0 32 32) {
-			use (xlink:href=#opal-components__icon-chevron-bottom)
+			use (xlink:href=#OpalComponents__icon-chevron-bottom)
 		}
 	}
 
