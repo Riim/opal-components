@@ -5,7 +5,7 @@ import {
 	ObservableList
 	} from 'cellx';
 import { computed, observable } from 'cellx-decorators';
-import { Component } from 'rionite';
+import { Component, Param } from 'rionite';
 import { fixParent, ObservableTreeList } from '../../ObservableTreeList';
 import { closestComponent } from '../../utils';
 import { OpalCheckbox } from '../opal-checkbox';
@@ -23,7 +23,15 @@ export interface IDataTreeListItem {
 	children: Array<IDataTreeListItem>;
 }
 
+export interface IFilteredDataTreeListItem {
+	[name: string]: any;
+	parent?: IDataTreeListItem | null;
+	children: Array<IDataTreeListItem>;
+	$original: IDataTreeListItem;
+}
+
 export type TDataTreeList = ObservableTreeList<IDataTreeListItem>;
+export type TFilteredDataTreeList = ObservableTreeList<IFilteredDataTreeListItem>;
 export type TViewModel = ObservableList<{ [name: string]: any }>;
 
 let defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
@@ -41,25 +49,30 @@ function toComparable(str: string | null): string | null {
 
 @Component.Config({
 	elementIs: 'OpalTreeList',
-
-	params: {
-		dataTreeList: { type: Object },
-		dataTreeListKeypath: { type: String, readonly: true },
-		dataTreeListItemSchema: {
-			type: eval,
-			default: defaultDataTreeListItemSchema,
-			readonly: true
-		},
-		viewModel: { type: Object },
-		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
-		query: String
-	},
-
 	template
 })
 export class OpalTreeList extends Component {
 	static defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
+
+	@Param() paramDataTreeList: TDataTreeList;
+
+	@Param({ readonly: true })
+	paramDataTreeListKeypath: string;
+
+	@Param({
+		type: eval,
+		default: defaultDataTreeListItemSchema,
+		readonly: true
+	})
+	paramDataTreeListItemSchema: { value?: string; text?: string };
+
+	@Param() paramViewModel: TViewModel;
+
+	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
+	paramViewModelItemSchema: { value?: string; text?: string };
+
+	@Param() paramQuery: string;
 
 	dataTreeList: TDataTreeList;
 	_dataTreeListItemValueFieldName: string;
@@ -67,7 +80,7 @@ export class OpalTreeList extends Component {
 
 	@computed
 	get filteredDataTreeList(): TDataTreeList {
-		let query = toComparable(this.params.query);
+		let query = toComparable(this.paramQuery);
 
 		if (!query) {
 			return this.dataTreeList;
@@ -124,25 +137,23 @@ export class OpalTreeList extends Component {
 	_viewModelItemTextFieldName: string;
 
 	initialize() {
-		let params = this.params;
-
-		if (params.dataTreeListKeypath) {
+		if (this.paramDataTreeListKeypath) {
 			define(
 				this,
 				'dataTreeList',
-				new Cell(Function(`return this.${params.dataTreeListKeypath};`), {
+				new Cell(Function(`return this.${this.paramDataTreeListKeypath};`), {
 					context: this.ownerComponent || window
 				})
 			);
 		} else {
-			if (!params.$specified.has('dataTreeList')) {
+			if (!this.$specifiedParams.has('dataTreeList')) {
 				throw new TypeError('Parameter "dataTreeList" is required');
 			}
 
-			define(this, 'dataTreeList', () => params.dataTreeList);
+			define(this, 'dataTreeList', () => this.paramDataTreeList);
 		}
 
-		let dataTreeListItemSchema = params.dataTreeListItemSchema;
+		let dataTreeListItemSchema = this.paramDataTreeListItemSchema;
 		let defaultDataTreeListItemSchema = (this.constructor as typeof OpalTreeList)
 			.defaultDataTreeListItemSchema;
 
@@ -151,9 +162,9 @@ export class OpalTreeList extends Component {
 		this._dataTreeListItemTextFieldName =
 			dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
 
-		this.viewModel = params.viewModel || new ObservableList();
+		this.viewModel = this.paramViewModel || new ObservableList();
 
-		let vmItemSchema = params.viewModelItemSchema;
+		let vmItemSchema = this.paramViewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalTreeList)
 			.defaultViewModelItemSchema;
 
@@ -177,7 +188,7 @@ export class OpalTreeList extends Component {
 			let item: IDataTreeListItem = closestComponent(
 				component.parentComponent!,
 				OpalTreeListItem
-			)!.params.$context.$item;
+			)!.$context.$item;
 
 			if (component.selected) {
 				for (

@@ -1,22 +1,26 @@
 import { Cell, IEvent } from 'cellx';
 import { observable } from 'cellx-decorators';
-import { Component, IDisposableListening } from 'rionite';
+import { Component, IDisposableListening, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
 @Component.Config({
 	elementIs: 'OpalPopover',
-
-	params: {
-		position: 'right',
-		autoDirection: true,
-		autoClosing: false,
-		opened: false
-	},
-
 	template
 })
 export class OpalPopover extends Component {
+	@Param({ default: 'right' })
+	paramPosition: string;
+
+	@Param({ default: true })
+	paramAutoDirection: boolean;
+
+	@Param({ default: false })
+	paramAutoClosing: boolean;
+
+	@Param({ default: false })
+	paramOpened: boolean;
+
 	@observable isContentRendered = false;
 
 	_positionOnOpen: string;
@@ -24,13 +28,13 @@ export class OpalPopover extends Component {
 	_documentClickListening: IDisposableListening | null | undefined;
 
 	ready() {
-		if (this.params.opened) {
+		if (this.paramOpened) {
 			this._open();
 		}
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'param-opened-change', this._onParamOpenedChange);
+		this.listenTo(this, 'change:paramOpened', this._onParamOpenedChange);
 	}
 
 	_onParamOpenedChange(evt: IEvent) {
@@ -47,22 +51,22 @@ export class OpalPopover extends Component {
 	}
 
 	open(): boolean {
-		if (this.params.opened) {
+		if (this.paramOpened) {
 			return false;
 		}
 
-		this.params.opened = true;
+		this.paramOpened = true;
 		Cell.forceRelease();
 
 		return true;
 	}
 
 	close(): boolean {
-		if (!this.params.opened) {
+		if (!this.paramOpened) {
 			return false;
 		}
 
-		this.params.opened = false;
+		this.paramOpened = false;
 		Cell.forceRelease();
 
 		return true;
@@ -88,11 +92,11 @@ export class OpalPopover extends Component {
 	_open$() {
 		let el = this.element;
 
-		if (this.params.autoDirection) {
+		if (this.paramAutoDirection) {
 			let docEl = document.documentElement;
 			let containerClientRect = el.offsetParent.getBoundingClientRect();
 			let elClientRect = el.getBoundingClientRect();
-			let position = (this._positionOnOpen = this.params.position).split('-');
+			let position = (this._positionOnOpen = this.paramPosition).split('-');
 
 			switch (position[0]) {
 				case 'left': {
@@ -102,7 +106,7 @@ export class OpalPopover extends Component {
 							containerClientRect.left <
 								docEl.clientWidth - containerClientRect.right)
 					) {
-						this.params.position =
+						this.paramPosition =
 							'right' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
@@ -115,7 +119,7 @@ export class OpalPopover extends Component {
 							containerClientRect.top <
 								docEl.clientHeight - containerClientRect.bottom)
 					) {
-						this.params.position =
+						this.paramPosition =
 							'bottom' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
@@ -128,7 +132,7 @@ export class OpalPopover extends Component {
 						containerClientRect.left + document.body.scrollLeft >=
 							elClientRect.right - containerClientRect.right
 					) {
-						this.params.position =
+						this.paramPosition =
 							'left' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
@@ -141,7 +145,7 @@ export class OpalPopover extends Component {
 						containerClientRect.top + document.body.scrollTop >=
 							elClientRect.bottom - containerClientRect.bottom
 					) {
-						this.params.position =
+						this.paramPosition =
 							'top' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
@@ -150,13 +154,13 @@ export class OpalPopover extends Component {
 			}
 		}
 
-		let position = this.params.position.split('-');
+		let position = this.paramPosition.split('-');
 		let arrowStyle = this.$<HTMLElement>('arrow')!.style;
 
 		arrowStyle.top = arrowStyle.right = arrowStyle.bottom = arrowStyle.left = '';
 
 		if (position.length == 2) {
-			arrowStyle[position[1]] =
+			(arrowStyle as any)[position[1]] =
 				el.offsetParent[
 					position[1] == 'left' || position[1] == 'right' ? 'clientWidth' : 'clientHeight'
 				] /
@@ -164,9 +168,9 @@ export class OpalPopover extends Component {
 				'px';
 		}
 
-		if (this.params.autoClosing) {
+		if (this.paramAutoClosing) {
 			setTimeout(() => {
-				if (this.params.opened) {
+				if (this.paramOpened) {
 					this._documentClickListening = this.listenTo(
 						document,
 						'click',
@@ -178,8 +182,8 @@ export class OpalPopover extends Component {
 	}
 
 	_close() {
-		if (this.params.autoDirection) {
-			this.params.position = this._positionOnOpen;
+		if (this.paramAutoDirection) {
+			this.paramPosition = this._positionOnOpen;
 		}
 
 		if (this._documentClickListening) {

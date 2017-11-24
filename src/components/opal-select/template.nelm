@@ -2,16 +2,16 @@
 
 rt-slot (for=button) {
 	opal-button/button (
-		view-type={params.viewType},
-		size={params.size},
+		view-type={paramViewType},
+		size={paramSize},
 		checkable,
-		tab-index={params.tabIndex},
-		disabled={params.disabled}
+		tab-index={paramTabIndex},
+		disabled={paramDisabled}
 	) {
-		@if-then (if=params.text) {
-			'{params.text}'
+		@if-then (if=paramText) {
+			'{paramText}'
 		}
-		@if-else (if=params.text) {
+		@if-else (if=paramText) {
 			'{_buttonText}'
 		}
 

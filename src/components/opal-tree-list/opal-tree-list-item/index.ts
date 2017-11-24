@@ -1,67 +1,83 @@
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { Component } from 'rionite';
+import { Component, Param } from 'rionite';
 import _getListItemContext from '../_getListItemContext';
 import { OpalButton } from '../../opal-button';
-import { IDataTreeListItem, TDataTreeList, TViewModel } from '../index';
+import {
+	IFilteredDataTreeListItem,
+	TDataTreeList,
+	TFilteredDataTreeList,
+	TViewModel
+	} from '../index';
 import './index.css';
 import template from './template.nelm';
 
 @Component.Config<OpalTreeListItem>({
 	elementIs: 'OpalTreeListItem',
-
-	params: {
-		dataTreeList: { type: Object, required: true },
-		filteredDataTreeList: { type: Object, required: true },
-		dataTreeListItemValueFieldName: { type: String, required: true, readonly: true },
-		dataTreeListItemTextFieldName: { type: String, required: true, readonly: true },
-		viewModel: { type: Object, required: true },
-		viewModelItemValueFieldName: { type: String, required: true, readonly: true },
-		viewModelItemTextFieldName: { type: String, required: true, readonly: true },
-		indexpath: { type: eval, required: true, readonly: true },
-		query: String,
-		opened: false
-	},
-
 	template,
 
 	events: {
 		'btn-toggle-children': {
 			change(evt: IEvent<OpalButton>) {
-				this.params.opened = evt.target.checked;
+				this.paramOpened = evt.target.checked;
 			}
 		}
 	}
 })
 export class OpalTreeListItem extends Component {
+	@Param({ required: true })
+	paramDataTreeList: TDataTreeList;
+
+	@Param({ required: true })
+	paramFilteredDataTreeList: TFilteredDataTreeList;
+
+	@Param({ required: true, readonly: true })
+	paramDataTreeListItemValueFieldName: string;
+
+	@Param({ required: true, readonly: true })
+	paramDataTreeListItemTextFieldName: string;
+
+	@Param({ required: true })
+	paramViewModel: TViewModel;
+
+	@Param({ required: true, readonly: true })
+	paramViewModelItemValueFieldName: string;
+
+	@Param({ required: true, readonly: true })
+	paramViewModelItemTextFieldName: string;
+
+	@Param({ type: eval, required: true, readonly: true })
+	paramIndexpath: Array<number>;
+
+	@Param() paramQuery: string;
+
+	@Param({ default: false })
+	paramOpened: boolean;
+
 	@computed
 	get dataTreeList(): TDataTreeList {
-		return this.params.dataTreeList;
+		return this.paramDataTreeList;
 	}
 
-	dataTreeListItem: IDataTreeListItem;
+	dataTreeListItem: IFilteredDataTreeListItem;
 	_dataTreeListItemValueFieldName: string;
 	_dataTreeListItemTextFieldName: string;
 
 	@computed
 	get viewModel(): TViewModel {
-		return this.params.viewModel;
+		return this.paramViewModel;
 	}
 
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 
 	initialize() {
-		let params = this.params;
+		this.dataTreeListItem = this.paramFilteredDataTreeList.get(this.paramIndexpath)!;
+		this._dataTreeListItemValueFieldName = this.paramDataTreeListItemValueFieldName;
+		this._dataTreeListItemTextFieldName = this.paramDataTreeListItemTextFieldName;
 
-		this.dataTreeListItem = (params.filteredDataTreeList as TDataTreeList).get(
-			params.indexpath
-		)!;
-		this._dataTreeListItemValueFieldName = params.dataTreeListItemValueFieldName;
-		this._dataTreeListItemTextFieldName = params.dataTreeListItemTextFieldName;
-
-		this._viewModelItemValueFieldName = params.viewModelItemValueFieldName;
-		this._viewModelItemTextFieldName = params.viewModelItemTextFieldName;
+		this._viewModelItemValueFieldName = this.paramViewModelItemValueFieldName;
+		this._viewModelItemTextFieldName = this.paramViewModelItemTextFieldName;
 	}
 }
 

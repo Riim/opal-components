@@ -10,8 +10,8 @@
 				view-model-item-value-field-name={_viewModelItemValueFieldName},
 				view-model-item-text-field-name={_viewModelItemTextFieldName},
 				indexpath=[{$index}],
-				query={params.query},
-				opened={params.query},
+				query={paramQuery},
+				opened={paramQuery |not |not },
 				nesting-level=0,
 				has-children='{$item.children.length |gt(0) }'
 			) {

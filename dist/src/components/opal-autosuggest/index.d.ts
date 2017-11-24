@@ -14,10 +14,18 @@ export interface IDataProvider {
     }>;
 }
 export declare class OpalAutosuggest extends Component {
+    paramDataListItemSchema: {
+        value?: string;
+        text?: string;
+    };
+    paramDataProvider: IDataProvider;
+    paramValue: IDataListItem;
+    paramMinQueryLength: number;
+    paramCount: number;
+    paramOpenMenuOnNothingFound: boolean;
     static defaultDataListItemSchema: Readonly<{
         value: string;
         text: string;
-        disabled: string;
     }>;
     dataList: ObservableList<IDataListItem>;
     _dataListItemValueFieldName: string;
@@ -37,6 +45,8 @@ export declare class OpalAutosuggest extends Component {
     elementAttached(): void;
     ready(): void;
     _onParamValueChange(evt: IEvent): void;
+    _onIsLoaderShownChange(evt: IEvent): void;
+    _onDataListChange(): void;
     _onTextInputFocus(): void;
     _onTextInputBlur(): void;
     _onTextInputInput(evt: IEvent<OpalTextInput>): void;
@@ -44,8 +54,6 @@ export declare class OpalAutosuggest extends Component {
     _onTextFieldClick(): void;
     _onMenuParamOpenedChange(evt: IEvent): void;
     _onMenuElementMouseOver(evt: Event): void;
-    _onDataListChange(): void;
-    _onIsLoaderShownChange(evt: IEvent): void;
     _onDocumentFocus(evt: Event): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _onDocumentClick(evt: Event): void;

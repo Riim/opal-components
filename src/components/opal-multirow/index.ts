@@ -8,7 +8,7 @@ import template from './template.nelm';
 
 export { OpalMultirowRow };
 
-@Component.Config<OpalMultirow>({
+@Component.Config({
 	elementIs: 'OpalMultirow',
 	template
 })

@@ -2,6 +2,10 @@ import { IEvent } from 'cellx';
 import { Component, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalSwitch extends Component {
+    paramChecked: boolean;
+    paramTabIndex: number;
+    paramFocused: boolean;
+    paramDisabled: boolean;
     _tabIndex(): number;
     _documentKeyDownListening: IDisposableListening;
     ready(): void;

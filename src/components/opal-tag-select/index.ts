@@ -1,12 +1,7 @@
 import { getText } from '@riim/gettext';
-import {
-	Cell,
-	define,
-	IEvent,
-	ObservableList
-	} from 'cellx';
+import { Cell, define, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
-import { Component } from 'rionite';
+import { Component, Param } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
 import {
 	IDataListItem,
@@ -22,25 +17,6 @@ let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: '
 
 @Component.Config<OpalTagSelect>({
 	elementIs: 'OpalTagSelect',
-
-	params: {
-		viewType: String,
-		dataList: { type: Object },
-		dataListKeypath: { type: String, readonly: true },
-		dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
-		// необязательный, так как может указываться на передаваемом opal-loaded-list
-		dataProvider: { type: Object, readonly: true },
-		value: eval,
-		viewModel: { type: Object },
-		viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
-		addNewItem: { type: Object, readonly: true },
-		placeholder: getText.t('Не выбрано'),
-		popoverPosition: 'bottom',
-		tabIndex: 0,
-		focused: false,
-		disabled: false
-	},
-
 	template,
 
 	domEvents: {
@@ -61,6 +37,47 @@ export class OpalTagSelect extends Component {
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
+	@Param() paramViewType: string;
+
+	@Param() paramDataList: TDataList;
+
+	@Param({ readonly: true })
+	paramDataListKeypath: string;
+
+	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
+	paramDataListItemSchema: { value?: string; text?: string; disabled?: string };
+
+	// необязательный, так как может указываться на передаваемом opal-loaded-list
+	@Param({ readonly: true })
+	paramDataProvider: IDataProvider;
+
+	@Param({ type: eval })
+	paramValue: Array<string>;
+
+	@Param({ readonly: true })
+	paramViewModel: TViewModel;
+
+	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
+	paramViewModelItemSchema: { value?: string; text?: string; disabled?: string };
+
+	@Param({ readonly: true })
+	paramAddNewItem: (text: string) => Promise<{ [name: string]: string }>;
+
+	@Param({ default: getText.t('Не выбрано') })
+	paramPlaceholder: string;
+
+	@Param({ default: 'bottom' })
+	paramPopoverPosition: string;
+
+	@Param({ default: 0 })
+	paramTabIndex: number;
+
+	@Param({ default: false })
+	paramFocused: boolean;
+
+	@Param({ default: false })
+	paramDisabled: boolean;
+
 	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;
@@ -80,23 +97,23 @@ export class OpalTagSelect extends Component {
 
 	@computed
 	get isPlaceholderShown(): boolean {
-		return !!this.params.placeholder && !this.viewModel.length;
+		return !!this.paramPlaceholder && !this.viewModel.length;
 	}
 
 	_dataListKeypathParam: string | null;
 
 	initialize() {
-		let params = this.params;
+		let dataListKeypath = this.paramDataListKeypath;
 
-		if (params.dataListKeypath || params.$specified.has('dataList')) {
+		if (dataListKeypath || this.$specifiedParams.has('dataList')) {
 			define(
 				this,
 				'dataList',
-				params.dataListKeypath
-					? new Cell(Function(`return this.${params.dataListKeypath};`), {
+				dataListKeypath
+					? new Cell(Function(`return this.${dataListKeypath};`), {
 							context: this.ownerComponent || window
 						})
-					: () => params.dataList
+					: () => this.paramDataList
 			);
 
 			this.dataProvider = null;
@@ -104,11 +121,11 @@ export class OpalTagSelect extends Component {
 			this._dataListKeypathParam = 'dataList';
 		} else {
 			this.dataList = null;
-			this.dataProvider = params.dataProvider;
+			this.dataProvider = this.paramDataProvider;
 			this._dataListKeypathParam = null;
 		}
 
-		let dataListItemSchema = params.dataListItemSchema;
+		let dataListItemSchema = this.paramDataListItemSchema;
 
 		this._dataListItemValueFieldName =
 			dataListItemSchema.value || defaultDataListItemSchema.value;
@@ -116,9 +133,9 @@ export class OpalTagSelect extends Component {
 		this._dataListItemDisabledFieldName =
 			dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 
-		this.viewModel = params.viewModel || new ObservableList();
+		this.viewModel = this.paramViewModel || new ObservableList();
 
-		let vmItemSchema = params.viewModelItemSchema;
+		let vmItemSchema = this.paramViewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalSelect)
 			.defaultViewModelItemSchema;
 
@@ -129,7 +146,6 @@ export class OpalTagSelect extends Component {
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'param-view-model-change', this._onParamViewModelChange);
 		this.listenTo('control', 'click', this._onControlClick);
 		this.listenTo('select', {
 			input: this._onSelectInput,
@@ -137,12 +153,6 @@ export class OpalTagSelect extends Component {
 			select: this._onSelectSelect,
 			deselect: this._onSelectDeselect
 		});
-	}
-
-	_onParamViewModelChange(evt: IEvent) {
-		if (evt.data.value != this.viewModel) {
-			throw new TypeError('Parameter "viewModel" is readonly');
-		}
 	}
 
 	_onControlClick(evt: Event) {
@@ -188,6 +198,6 @@ export class OpalTagSelect extends Component {
 	// helpers
 
 	_isItemDisabled(item: IDataListItem) {
-		return this.params.disabled || item[this._viewModelItemDisabledFieldName];
+		return this.paramDisabled || item[this._viewModelItemDisabledFieldName];
 	}
 }

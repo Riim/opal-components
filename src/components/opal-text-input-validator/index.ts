@@ -1,8 +1,9 @@
-import { OpalInputValidator, OpalInputValidatorRule } from '../opal-input-validator';
+import { OpalInputValidator } from '../opal-input-validator';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
+import { OpalTextInputValidatorRule } from './opal-text-input-validator-rule';
 
-export { OpalTextInputValidatorRule } from './opal-text-input-validator-rule';
+export { OpalTextInputValidatorRule };
 
 @OpalInputValidator.Config<OpalTextInputValidator>({
 	elementIs: 'OpalTextInputValidator'
@@ -26,14 +27,13 @@ export class OpalTextInputValidator extends OpalInputValidator {
 		}
 	}
 
-	_checkValue(rule: OpalInputValidatorRule): boolean {
+	_checkValue(rule: OpalTextInputValidatorRule): boolean {
 		let value = this.textInput.value;
-		let ruleParams = rule.params;
 
 		return !(value
-			? (ruleParams.minLength && value.length < ruleParams.minLength) ||
-				(ruleParams.regex && !ruleParams.regex.test(value)) ||
-				(ruleParams.test && !ruleParams.test.call(this.ownerComponent, value))
-			: ruleParams.required);
+			? (rule.paramMinLength && value.length < rule.paramMinLength) ||
+				(rule.paramRegex && !rule.paramRegex.test(value)) ||
+				(rule.paramTest && !rule.paramTest.call(this.ownerComponent, value))
+			: rule.paramRequired);
 	}
 }

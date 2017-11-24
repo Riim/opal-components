@@ -1,40 +1,44 @@
 import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { Component, IDisposableListening } from 'rionite';
+import { Component, IDisposableListening, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
-@Component.Config<OpalCheckbox>({
+@Component.Config({
 	elementIs: 'OpalCheckbox',
-
-	params: {
-		checked: false,
-		indeterminate: false,
-		tabIndex: 0,
-		focused: false,
-		disabled: false
-	},
-
 	template
 })
 export class OpalCheckbox extends Component {
+	@Param({ default: false })
+	paramChecked: boolean;
+
+	@Param({ default: false })
+	paramIndeterminate: boolean;
+
+	@Param({ default: 0 })
+	paramTabIndex: number;
+
+	@Param({ default: false })
+	paramFocused: boolean;
+
+	@Param({ default: false })
+	paramDisabled: boolean;
+
 	@computed
 	get _tabIndex(): number {
-		return this.params.disabled ? -1 : this.params.tabIndex;
+		return this.paramDisabled ? -1 : this.paramTabIndex;
 	}
 
 	_documentKeyDownListening: IDisposableListening;
 
 	elementAttached() {
 		this.listenTo(this, {
-			'param-checked-change': this._onParamCheckedChange,
-			'param-indeterminate-change': this._onParamIndeterminateChange,
-			'param-focused-change': this._onParamFocusedChange
+			'change:paramChecked': this._onParamCheckedChange,
+			'change:paramIndeterminate': this._onParamIndeterminateChange,
+			'change:paramFocused': this._onParamFocusedChange
 		});
-
 		this.listenTo('input', 'change', this._onInputChange);
-
 		this.listenTo('control', {
 			focus: this._onControlFocus,
 			blur: this._onControlBlur
@@ -42,21 +46,19 @@ export class OpalCheckbox extends Component {
 	}
 
 	ready() {
-		let params = this.params;
-
-		if (params.checked) {
-			params.indeterminate = false;
+		if (this.paramChecked) {
+			this.paramIndeterminate = false;
 			this.$<HTMLInputElement>('input')!.checked = true;
 		}
 
-		if (params.focused) {
+		if (this.paramFocused) {
 			this.focus();
 		}
 	}
 
 	_onParamCheckedChange(evt: IEvent) {
 		if (evt.data.value) {
-			this.params.indeterminate = false;
+			this.paramIndeterminate = false;
 		}
 
 		this.$<HTMLInputElement>('input')!.checked = evt.data.value;
@@ -64,7 +66,7 @@ export class OpalCheckbox extends Component {
 
 	_onParamIndeterminateChange(evt: IEvent) {
 		if (evt.data.value) {
-			this.params.checked = false;
+			this.paramChecked = false;
 		}
 	}
 
@@ -86,10 +88,8 @@ export class OpalCheckbox extends Component {
 		if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
 			evt.preventDefault();
 
-			let params = this.params;
-
-			if (!params.disabled) {
-				this.emit((params.checked = !params.checked) ? 'check' : 'uncheck');
+			if (!this.paramDisabled) {
+				this.emit((this.paramChecked = !this.paramChecked) ? 'check' : 'uncheck');
 				this.emit('change');
 			}
 		}
@@ -97,7 +97,7 @@ export class OpalCheckbox extends Component {
 
 	_onInputChange(evt: Event) {
 		this.emit(
-			(this.params.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck'
+			(this.paramChecked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck'
 		);
 		this.emit('change');
 	}
@@ -105,22 +105,22 @@ export class OpalCheckbox extends Component {
 	_onControlFocus(evt: Event) {
 		nextTick(() => {
 			if (document.activeElement == evt.target) {
-				this.params.focused = true;
+				this.paramFocused = true;
 				this.emit('focus');
 			}
 		});
 	}
 
 	_onControlBlur() {
-		this.params.focused = false;
+		this.paramFocused = false;
 		this.emit('blur');
 	}
 
 	get checked(): boolean {
-		return this.params.checked;
+		return this.paramChecked;
 	}
 	set checked(checked: boolean) {
-		this.params.checked = checked;
+		this.paramChecked = checked;
 	}
 
 	get selected(): boolean {
@@ -131,8 +131,8 @@ export class OpalCheckbox extends Component {
 	}
 
 	check(): boolean {
-		if (!this.params.checked) {
-			this.params.checked = true;
+		if (!this.paramChecked) {
+			this.paramChecked = true;
 			return true;
 		}
 
@@ -140,8 +140,8 @@ export class OpalCheckbox extends Component {
 	}
 
 	uncheck(): boolean {
-		if (this.params.checked) {
-			this.params.checked = false;
+		if (this.paramChecked) {
+			this.paramChecked = false;
 			return true;
 		}
 
@@ -149,7 +149,7 @@ export class OpalCheckbox extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.params.checked = value === undefined ? !this.params.checked : value);
+		return (this.paramChecked = value === undefined ? !this.paramChecked : value);
 	}
 
 	focus(): OpalCheckbox {
@@ -163,12 +163,12 @@ export class OpalCheckbox extends Component {
 	}
 
 	enable(): OpalCheckbox {
-		this.params.disabled = false;
+		this.paramDisabled = false;
 		return this;
 	}
 
 	disable(): OpalCheckbox {
-		this.params.disabled = true;
+		this.paramDisabled = true;
 		return this;
 	}
 }

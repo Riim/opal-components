@@ -2,6 +2,13 @@ import { IEvent } from 'cellx';
 import { Component } from 'rionite';
 import './index.css';
 export declare class OpalSelectOption extends Component {
+    paramValue: string;
+    paramText: string;
+    paramSubtext: string;
+    paramSelected: boolean;
+    paramTabIndex: number;
+    paramFocused: boolean;
+    paramDisabled: boolean;
     readonly _tabIndex: number;
     elementAttached(): void;
     _onParamFocusedChange(evt: IEvent): void;

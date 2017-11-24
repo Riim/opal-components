@@ -1,7 +1,7 @@
 import { escapeHTML } from '@riim/escape-html';
 import { hyphenize } from '@riim/hyphenize';
 import { history, Location } from 'created-browser-history';
-import { Component, IComponentElement } from 'rionite';
+import { Component, IComponentElement, Param } from 'rionite';
 import { escapeRegExp } from './escapeRegExp';
 import './index.css';
 import { OpalRoute } from './opal-route';
@@ -41,15 +41,16 @@ function valueToAttributeValue(value: boolean | string): string {
 	return `${value === false ? 'no' : value === true ? 'yes' : escapeHTML(value)}`;
 }
 
-@Component.Config<OpalRouter>({
-	elementIs: 'OpalRouter',
-
-	params: {
-		scrollTopOnChange: true,
-		scrollTopOnChangeComponent: true
-	}
+@Component.Config({
+	elementIs: 'OpalRouter'
 })
 export class OpalRouter extends Component {
+	@Param({ default: true })
+	paramScrollTopOnChange: boolean;
+
+	@Param({ default: true })
+	paramScrollTopOnChangeComponent: boolean;
+
 	_routes: Array<IRoute>;
 	_route: IRoute | null = null;
 	_state: IComponentState | null = null;
@@ -66,8 +67,8 @@ export class OpalRouter extends Component {
 
 		forEach.call(
 			this.element.getElementsByTagName('opal-route'),
-			(routeEl: IComponentElement) => {
-				let path: string = routeEl.$component.params.path;
+			(routeEl: IComponentElement<OpalRoute>) => {
+				let path = routeEl.$component.paramPath;
 				let rePath: Array<string> | string = [];
 				let props: Array<IRouteProperty> = [];
 
@@ -109,7 +110,7 @@ export class OpalRouter extends Component {
 						`^${rePath}${rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?'}$`
 					),
 					properties: props,
-					componentName: routeEl.$component.params.component
+					componentName: routeEl.$component.paramComponent
 				});
 			}
 		);
@@ -222,7 +223,7 @@ export class OpalRouter extends Component {
 
 					this._applyState();
 
-					if (this.params.scrollTopOnChange) {
+					if (this.paramScrollTopOnChange) {
 						document.body.scrollTop = 0;
 					}
 
@@ -246,7 +247,7 @@ export class OpalRouter extends Component {
 			componentEl.$component.ownerComponent = this;
 			this.element.appendChild(componentEl);
 
-			if (this.params.scrollTopOnChange || this.params.scrollTopOnChangeComponent) {
+			if (this.paramScrollTopOnChange || this.paramScrollTopOnChangeComponent) {
 				document.body.scrollTop = 0;
 			}
 
@@ -293,7 +294,7 @@ export class OpalRouter extends Component {
 			componentEl.$component.ownerComponent = this;
 			this.element.appendChild(componentEl);
 
-			if (this.params.scrollTopOnChange || this.params.scrollTopOnChangeComponent) {
+			if (this.paramScrollTopOnChange || this.paramScrollTopOnChangeComponent) {
 				document.body.scrollTop = 0;
 			}
 		}

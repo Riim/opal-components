@@ -7,7 +7,7 @@ import template from './template.nelm';
 let forEach = Array.prototype.forEach;
 let find = Array.prototype.find;
 
-@Component.Config<OpalSwitchMenu>({
+@Component.Config({
 	elementIs: 'OpalSwitchMenu',
 	template
 })

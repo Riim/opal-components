@@ -4,7 +4,6 @@ import template from './template.nelm';
 
 @Component.Config<OpalEditableText>({
 	elementIs: 'OpalEditableText',
-
 	template,
 
 	domEvents: {
@@ -45,7 +44,6 @@ export class OpalEditableText extends Component {
 
 	elementAttached() {
 		this.listenTo(this.element, 'click', this._onElementClick);
-
 		this.listenTo(this.$<Component>('content-slot')!.element, {
 			focus: this._onContentSlotElementFocus,
 			blur: this._onContentSlotElementBlur,

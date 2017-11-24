@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("cellx-decorators"), require("cellx"), require("@riim/next-tick"), require("@riim/gettext"), require("@riim/mixin"), require("@riim/map-set-polyfill"), require("date-exists"), require("@riim/debounce-throttle"), require("@riim/next-uid"), require("@riim/escape-html"), require("@riim/hyphenize"), require("created-browser-history"));
+		module.exports = factory(require("rionite"), require("cellx-decorators"), require("cellx"), require("@riim/next-tick"), require("@riim/gettext"), require("@riim/mixin"), require("reflect-metadata"), require("@riim/object-assign-polyfill"), require("@riim/map-set-polyfill"), require("date-exists"), require("@riim/debounce-throttle"), require("@riim/next-uid"), require("@riim/escape-html"), require("@riim/hyphenize"), require("created-browser-history"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "cellx-decorators", "cellx", "@riim/next-tick", "@riim/gettext", "@riim/mixin", "@riim/map-set-polyfill", "date-exists", "@riim/debounce-throttle", "@riim/next-uid", "@riim/escape-html", "@riim/hyphenize", "created-browser-history"], factory);
+		define(["rionite", "cellx-decorators", "cellx", "@riim/next-tick", "@riim/gettext", "@riim/mixin", "reflect-metadata", "@riim/object-assign-polyfill", "@riim/map-set-polyfill", "date-exists", "@riim/debounce-throttle", "@riim/next-uid", "@riim/escape-html", "@riim/hyphenize", "created-browser-history"], factory);
 	else if(typeof exports === 'object')
-		exports["OpalComponents"] = factory(require("rionite"), require("cellx-decorators"), require("cellx"), require("@riim/next-tick"), require("@riim/gettext"), require("@riim/mixin"), require("@riim/map-set-polyfill"), require("date-exists"), require("@riim/debounce-throttle"), require("@riim/next-uid"), require("@riim/escape-html"), require("@riim/hyphenize"), require("created-browser-history"));
+		exports["OpalComponents"] = factory(require("rionite"), require("cellx-decorators"), require("cellx"), require("@riim/next-tick"), require("@riim/gettext"), require("@riim/mixin"), require("reflect-metadata"), require("@riim/object-assign-polyfill"), require("@riim/map-set-polyfill"), require("date-exists"), require("@riim/debounce-throttle"), require("@riim/next-uid"), require("@riim/escape-html"), require("@riim/hyphenize"), require("created-browser-history"));
 	else
-		root["OpalComponents"] = factory(root["rionite"], root["cellx-decorators"], root["cellx"], root["@riim/next-tick"], root["@riim/gettext"], root["@riim/mixin"], root["@riim/map-set-polyfill"], root["date-exists"], root["@riim/debounce-throttle"], root["@riim/next-uid"], root["@riim/escape-html"], root["@riim/hyphenize"], root["created-browser-history"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_82__, __WEBPACK_EXTERNAL_MODULE_98__, __WEBPACK_EXTERNAL_MODULE_107__, __WEBPACK_EXTERNAL_MODULE_138__, __WEBPACK_EXTERNAL_MODULE_145__, __WEBPACK_EXTERNAL_MODULE_146__, __WEBPACK_EXTERNAL_MODULE_147__) {
+		root["OpalComponents"] = factory(root["rionite"], root["cellx-decorators"], root["cellx"], root["@riim/next-tick"], root["@riim/gettext"], root["@riim/mixin"], root["reflect-metadata"], root["@riim/object-assign-polyfill"], root["@riim/map-set-polyfill"], root["date-exists"], root["@riim/debounce-throttle"], root["@riim/next-uid"], root["@riim/escape-html"], root["@riim/hyphenize"], root["created-browser-history"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_19__, __WEBPACK_EXTERNAL_MODULE_27__, __WEBPACK_EXTERNAL_MODULE_83__, __WEBPACK_EXTERNAL_MODULE_99__, __WEBPACK_EXTERNAL_MODULE_108__, __WEBPACK_EXTERNAL_MODULE_139__, __WEBPACK_EXTERNAL_MODULE_146__, __WEBPACK_EXTERNAL_MODULE_147__, __WEBPACK_EXTERNAL_MODULE_148__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -158,13 +158,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(85);
-var opal_input_validator_rule_1 = __webpack_require__(86);
+__webpack_require__(86);
+var opal_input_validator_rule_1 = __webpack_require__(87);
 exports.OpalInputValidatorRule = opal_input_validator_rule_1.OpalInputValidatorRule;
-var template_nelm_1 = __webpack_require__(89);
+var template_nelm_1 = __webpack_require__(90);
 var OpalInputValidator = /** @class */ (function (_super) {
     __extends(OpalInputValidator, _super);
     function OpalInputValidator() {
@@ -225,10 +228,13 @@ var OpalInputValidator = /** @class */ (function (_super) {
         return this;
     };
     __decorate([
-        cellx_decorators_1.observable
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalInputValidator.prototype, "failedRule", void 0);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
     ], OpalInputValidator.prototype, "valid", null);
     OpalInputValidator = __decorate([
         rionite_1.Component.Config({
@@ -263,6 +269,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(4);
 var next_tick_1 = __webpack_require__(3);
@@ -270,11 +279,11 @@ var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 var isFocusable_1 = __webpack_require__(5);
-__webpack_require__(115);
-var isEqualArray_1 = __webpack_require__(116);
-var opal_select_option_1 = __webpack_require__(117);
+__webpack_require__(116);
+var isEqualArray_1 = __webpack_require__(117);
+var opal_select_option_1 = __webpack_require__(118);
 exports.OpalSelectOption = opal_select_option_1.OpalSelectOption;
-var template_nelm_1 = __webpack_require__(120);
+var template_nelm_1 = __webpack_require__(121);
 var map = Array.prototype.map;
 var defaultDataListItemSchema = Object.freeze({
     value: 'value',
@@ -308,9 +317,9 @@ var OpalSelect = /** @class */ (function (_super) {
                 .map(function (item) { return item[_this._viewModelItemTextFieldName]; })
                 .join(', ');
             if (!text) {
-                return this.params.placeholder;
+                return this.paramPlaceholder;
             }
-            if (text.length > this.params.maxTextLength) {
+            if (text.length > this.paramMaxTextLength) {
                 text = gettext_1.getText.nt('Выбран{n:|о|о} {n}', this.viewModel.length);
             }
             return text;
@@ -326,22 +335,22 @@ var OpalSelect = /** @class */ (function (_super) {
         configurable: true
     });
     OpalSelect.prototype.initialize = function () {
-        var params = this.params;
-        if (params.dataListKeypath) {
-            cellx_1.define(this, 'dataList', new cellx_1.Cell(Function("return this." + params.dataListKeypath + ";"), {
+        var _this = this;
+        if (this.paramDataListKeypath) {
+            cellx_1.define(this, 'dataList', new cellx_1.Cell(Function("return this." + this.paramDataListKeypath + ";"), {
                 context: this.ownerComponent || window
             }));
             this._isParamDataListSpecified = true;
         }
-        else if (params.$specified.has('dataList')) {
-            cellx_1.define(this, 'dataList', function () { return params.dataList; });
+        else if (this.$specifiedParams.has('dataList')) {
+            cellx_1.define(this, 'dataList', function () { return _this.paramDataList; });
             this._isParamDataListSpecified = true;
         }
         else {
             this.dataList = null;
             this._isParamDataListSpecified = false;
         }
-        var dataListItemSchema = params.dataListItemSchema;
+        var dataListItemSchema = this.paramDataListItemSchema;
         var defaultDataListItemSchema = this.constructor
             .defaultDataListItemSchema;
         this._dataListItemValueFieldName =
@@ -349,19 +358,19 @@ var OpalSelect = /** @class */ (function (_super) {
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
         this._dataListItemDisabledFieldName =
             dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
-        this.viewModel = params.viewModel || new cellx_1.ObservableList();
-        var vmItemSchema = params.viewModelItemSchema;
+        this.viewModel = this.paramViewModel || new cellx_1.ObservableList();
+        var vmItemSchema = this.paramViewModelItemSchema;
         var defaultVMItemSchema = this.constructor
             .defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
         this._viewModelItemDisabledFieldName =
             vmItemSchema.disabled || defaultVMItemSchema.disabled;
-        this._addNewItem = params.addNewItem;
+        this._addNewItem = this.paramAddNewItem;
     };
     OpalSelect.prototype.ready = function () {
         this.optionElements = this.element.getElementsByClassName('OpalSelectOption');
-        if (this.params.viewModel && !this.params.value) {
+        if (this.paramViewModel && !this.paramValue) {
             this._needOptionsUpdating = true;
         }
         else {
@@ -373,7 +382,7 @@ var OpalSelect = /** @class */ (function (_super) {
     };
     OpalSelect.prototype._initViewModel = function () {
         var _this = this;
-        var value = this.params.value;
+        var value = this.paramValue;
         var selectedOptions;
         if (value) {
             if (!Array.isArray(value)) {
@@ -382,7 +391,7 @@ var OpalSelect = /** @class */ (function (_super) {
             this._notUpdateOptions = true;
             this.viewModel.clear();
             if (value.length) {
-                if (this.params.multiple) {
+                if (this.paramMultiple) {
                     selectedOptions = this.options.filter(function (option) { return value.indexOf(option.value) != -1; });
                 }
                 else {
@@ -394,7 +403,7 @@ var OpalSelect = /** @class */ (function (_super) {
                 }
             }
         }
-        else if (this.params.multiple) {
+        else if (this.paramMultiple) {
             selectedOptions = this.options.filter(function (option) { return option.selected; });
         }
         else {
@@ -419,14 +428,13 @@ var OpalSelect = /** @class */ (function (_super) {
         }
     };
     OpalSelect.prototype.elementAttached = function () {
-        if (this.params.focused) {
+        if (this.paramFocused) {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             this.focus();
         }
         this.listenTo(this, {
-            'param-value-change': this._onParamValueChange,
-            'param-view-model-change': this._onParamViewModelChange,
-            'param-focused-change': this._onParamFocusedChange
+            'change:paramValue': this._onParamValueChange,
+            'change:paramFocused': this._onParamFocusedChange
         });
         this.listenTo(this.viewModel, 'change', this._onViewModelChange);
         this.listenTo('button', {
@@ -435,7 +443,7 @@ var OpalSelect = /** @class */ (function (_super) {
             click: this._onButtonClick
         });
         this.listenTo('menu', {
-            'param-opened-change': this._onMenuParamOpenedChange,
+            'change:paramOpened': this._onMenuParamOpenedChange,
             '<OpalSelectOption>select': this._onMenuSelectOptionSelect,
             '<OpalSelectOption>deselect': this._onMenuSelectOptionDeselect,
             '<OpalTextInput>confirm': this._onMenuTextInputConfirm,
@@ -450,7 +458,7 @@ var OpalSelect = /** @class */ (function (_super) {
                 throw new TypeError('Parameter "value" must be an array');
             }
             if (value.length) {
-                var multiple = this.params.multiple;
+                var multiple = this.paramMultiple;
                 if (multiple ||
                     !vm.length ||
                     value[0] != vm.get(0)[this._viewModelItemValueFieldName]) {
@@ -509,11 +517,6 @@ var OpalSelect = /** @class */ (function (_super) {
             }
         }
     };
-    OpalSelect.prototype._onParamViewModelChange = function (evt) {
-        if (evt.data.value != this.viewModel) {
-            throw new TypeError('Parameter "viewModel" is readonly');
-        }
-    };
     OpalSelect.prototype._onParamFocusedChange = function (evt) {
         if (evt.data.value) {
             if (!this._documentKeyDownListening) {
@@ -537,10 +540,10 @@ var OpalSelect = /** @class */ (function (_super) {
         }
     };
     OpalSelect.prototype._onButtonFocus = function () {
-        this.params.focused = true;
+        this.paramFocused = true;
     };
     OpalSelect.prototype._onButtonBlur = function () {
-        this.params.focused = false;
+        this.paramFocused = false;
     };
     OpalSelect.prototype._onButtonClick = function (evt) {
         if (evt.target.checked) {
@@ -562,7 +565,7 @@ var OpalSelect = /** @class */ (function (_super) {
             _a[this._viewModelItemValueFieldName] = evt.target.value,
             _a[this._viewModelItemTextFieldName] = evt.target.text,
             _a);
-        if (this.params.multiple) {
+        if (this.paramMultiple) {
             this._notUpdateOptions = true;
             vm.add(vmItem);
             this._notUpdateOptions = false;
@@ -584,7 +587,7 @@ var OpalSelect = /** @class */ (function (_super) {
         var _a;
     };
     OpalSelect.prototype._onMenuSelectOptionDeselect = function (evt) {
-        if (this.params.multiple) {
+        if (this.paramMultiple) {
             var value_1 = evt.target.value;
             this._notUpdateOptions = true;
             this.viewModel.removeAt(this.viewModel.findIndex(function (item) { return item.value == value_1; }));
@@ -609,11 +612,11 @@ var OpalSelect = /** @class */ (function (_super) {
         }
         var text = textInput.value;
         textInput.clear();
-        textInput.params.loading = true;
-        textInput.params.disabled = true;
+        textInput.paramLoading = true;
+        textInput.paramDisabled = true;
         this._addNewItem(text).then(function (newItem) {
-            textInput.params.loading = false;
-            textInput.params.disabled = false;
+            textInput.paramLoading = false;
+            textInput.paramDisabled = false;
             var value = newItem[_this._viewModelItemValueFieldName];
             var text = newItem[_this._viewModelItemTextFieldName];
             if (_this.dataList) {
@@ -624,14 +627,14 @@ var OpalSelect = /** @class */ (function (_super) {
             }
             var loadedList = _this.$('loaded-list');
             if (loadedList) {
-                loadedList.params.query = '';
+                loadedList.paramQuery = '';
             }
             var vm = _this.viewModel;
             var vmItem = (_b = {},
                 _b[_this._viewModelItemValueFieldName] = value,
                 _b[_this._viewModelItemTextFieldName] = text,
                 _b);
-            if (_this.params.multiple) {
+            if (_this.paramMultiple) {
                 vm.add(vmItem);
                 _this.emit('input');
             }
@@ -649,8 +652,8 @@ var OpalSelect = /** @class */ (function (_super) {
             }
             var _a, _b;
         }, function () {
-            textInput.params.loading = false;
-            textInput.params.disabled = false;
+            textInput.paramLoading = false;
+            textInput.paramDisabled = false;
         });
         return false;
     };
@@ -709,13 +712,13 @@ var OpalSelect = /** @class */ (function (_super) {
         }
         this._opened = false;
         this._documentFocusListening.stop();
-        if (!this.params.focused) {
+        if (!this.paramFocused) {
             this._documentKeyDownListening.stop();
             this._documentKeyDownListening = null;
         }
         this.$('button').uncheck();
         this.$('menu').close();
-        if (this.params.multiple) {
+        if (this.paramMultiple) {
             if (!isEqualArray_1.isEqualArray(this.viewModel.map(function (item) { return item[_this._viewModelItemValueFieldName]; }), this._valueOnOpen)) {
                 this.emit('change');
             }
@@ -740,7 +743,7 @@ var OpalSelect = /** @class */ (function (_super) {
         switch (evt.which) {
             case 32 /* Space */: {
                 if (this._opened) {
-                    if (this.params.focused) {
+                    if (this.paramFocused) {
                         evt.preventDefault();
                         this.close();
                     }
@@ -762,10 +765,10 @@ var OpalSelect = /** @class */ (function (_super) {
                     else {
                         var options = this.options;
                         for (var i = 1, l = options.length; i < l; i++) {
-                            if (options[i].params.focused) {
+                            if (options[i].paramFocused) {
                                 do {
                                     var option = options[--i];
-                                    if (!option.params.disabled && option.element.offsetWidth) {
+                                    if (!option.paramDisabled && option.element.offsetWidth) {
                                         document.body.classList.remove('_no-focus-highlight');
                                         option.focus();
                                         break;
@@ -792,10 +795,10 @@ var OpalSelect = /** @class */ (function (_super) {
                     else {
                         var options = this.options;
                         for (var i = 0, l = options.length - 1; i < l; i++) {
-                            if (options[i].params.focused) {
+                            if (options[i].paramFocused) {
                                 do {
                                     var option = options[++i];
-                                    if (!option.params.disabled && option.element.offsetWidth) {
+                                    if (!option.paramDisabled && option.element.offsetWidth) {
                                         document.body.classList.remove('_no-focus-highlight');
                                         option.focus();
                                         break;
@@ -840,7 +843,7 @@ var OpalSelect = /** @class */ (function (_super) {
         var optionForFocus;
         for (var i = 0, l = options.length; i < l; i++) {
             var option = options[i];
-            if (!option.params.disabled) {
+            if (!option.paramDisabled) {
                 if (option.selected) {
                     optionForFocus = option;
                     break;
@@ -867,38 +870,91 @@ var OpalSelect = /** @class */ (function (_super) {
     OpalSelect.defaultDataListItemSchema = defaultDataListItemSchema;
     OpalSelect.defaultViewModelItemSchema = defaultVMItemSchema;
     __decorate([
-        cellx_decorators_1.observable
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalSelect.prototype, "paramViewType", void 0);
+    __decorate([
+        rionite_1.Param({ default: 'm' }),
+        __metadata("design:type", String)
+    ], OpalSelect.prototype, "paramSize", void 0);
+    __decorate([
+        rionite_1.Param({ default: false, readonly: true }),
+        __metadata("design:type", Boolean)
+    ], OpalSelect.prototype, "paramMultiple", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", Object)
+    ], OpalSelect.prototype, "paramDataList", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", String)
+    ], OpalSelect.prototype, "paramDataListKeypath", void 0);
+    __decorate([
+        rionite_1.Param({ type: eval, default: defaultDataListItemSchema, readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalSelect.prototype, "paramDataListItemSchema", void 0);
+    __decorate([
+        rionite_1.Param({ type: eval }),
+        __metadata("design:type", Array)
+    ], OpalSelect.prototype, "paramValue", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalSelect.prototype, "paramViewModel", void 0);
+    __decorate([
+        rionite_1.Param({ type: eval, default: defaultVMItemSchema, readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalSelect.prototype, "paramViewModelItemSchema", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Function)
+    ], OpalSelect.prototype, "paramAddNewItem", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalSelect.prototype, "paramText", void 0);
+    __decorate([
+        rionite_1.Param({ default: 20 }),
+        __metadata("design:type", Number)
+    ], OpalSelect.prototype, "paramMaxTextLength", void 0);
+    __decorate([
+        rionite_1.Param({ default: gettext_1.getText.t('Не выбрано') }),
+        __metadata("design:type", String)
+    ], OpalSelect.prototype, "paramPlaceholder", void 0);
+    __decorate([
+        rionite_1.Param({ default: 0 }),
+        __metadata("design:type", Number)
+    ], OpalSelect.prototype, "paramTabIndex", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalSelect.prototype, "paramFocused", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalSelect.prototype, "paramDisabled", void 0);
+    __decorate([
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalSelect.prototype, "viewModel", void 0);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Array),
+        __metadata("design:paramtypes", [])
     ], OpalSelect.prototype, "value", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", String),
+        __metadata("design:paramtypes", [])
     ], OpalSelect.prototype, "_buttonText", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Array),
+        __metadata("design:paramtypes", [])
     ], OpalSelect.prototype, "options", null);
     OpalSelect = OpalSelect_1 = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalSelect',
-            params: {
-                viewType: String,
-                size: 'm',
-                multiple: { default: false, readonly: true },
-                dataList: { type: Object },
-                dataListKeypath: { type: String, readonly: true },
-                dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
-                value: eval,
-                viewModel: { type: Object },
-                viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
-                addNewItem: { type: Object, readonly: true },
-                text: String,
-                maxTextLength: 20,
-                placeholder: gettext_1.getText.t('Не выбрано'),
-                tabIndex: 0,
-                focused: false,
-                disabled: false
-            },
             template: template_nelm_1.default,
             events: {
                 'menu-slot': {
@@ -948,7 +1004,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var object_assign_polyfill_1 = __webpack_require__(26);
+var object_assign_polyfill_1 = __webpack_require__(27);
 var cellx_1 = __webpack_require__(2);
 var INDEXPATH_EMPTY_ERROR_MESSAGE = 'Indexpath cannot be empty';
 function fixParent(items, parent) {
@@ -1089,10 +1145,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(63);
-var opal_tab_1 = __webpack_require__(64);
+__webpack_require__(64);
+var opal_tab_1 = __webpack_require__(65);
 exports.OpalTab = opal_tab_1.OpalTab;
-var template_nelm_1 = __webpack_require__(67);
+var template_nelm_1 = __webpack_require__(68);
 var OpalTabList = /** @class */ (function (_super) {
     __extends(OpalTabList, _super);
     function OpalTabList() {
@@ -1151,6 +1207,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
@@ -1158,11 +1217,11 @@ var rionite_1 = __webpack_require__(0);
 var ObservableTreeList_1 = __webpack_require__(8);
 var utils_1 = __webpack_require__(13);
 var _getListItemContext_1 = __webpack_require__(14);
-__webpack_require__(111);
+__webpack_require__(112);
 var opal_tree_list_item_1 = __webpack_require__(15);
 exports.OpalTreeListItem = opal_tree_list_item_1.OpalTreeListItem;
 __webpack_require__(15);
-var template_nelm_1 = __webpack_require__(114);
+var template_nelm_1 = __webpack_require__(115);
 var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
 function toComparable(str) {
@@ -1180,7 +1239,7 @@ var OpalTreeList = /** @class */ (function (_super) {
     OpalTreeList_1 = OpalTreeList;
     Object.defineProperty(OpalTreeList.prototype, "filteredDataTreeList", {
         get: function () {
-            var query = toComparable(this.params.query);
+            var query = toComparable(this.paramQuery);
             if (!query) {
                 return this.dataTreeList;
             }
@@ -1217,27 +1276,27 @@ var OpalTreeList = /** @class */ (function (_super) {
         configurable: true
     });
     OpalTreeList.prototype.initialize = function () {
-        var params = this.params;
-        if (params.dataTreeListKeypath) {
-            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function("return this." + params.dataTreeListKeypath + ";"), {
+        var _this = this;
+        if (this.paramDataTreeListKeypath) {
+            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function("return this." + this.paramDataTreeListKeypath + ";"), {
                 context: this.ownerComponent || window
             }));
         }
         else {
-            if (!params.$specified.has('dataTreeList')) {
+            if (!this.$specifiedParams.has('dataTreeList')) {
                 throw new TypeError('Parameter "dataTreeList" is required');
             }
-            cellx_1.define(this, 'dataTreeList', function () { return params.dataTreeList; });
+            cellx_1.define(this, 'dataTreeList', function () { return _this.paramDataTreeList; });
         }
-        var dataTreeListItemSchema = params.dataTreeListItemSchema;
+        var dataTreeListItemSchema = this.paramDataTreeListItemSchema;
         var defaultDataTreeListItemSchema = this.constructor
             .defaultDataTreeListItemSchema;
         this._dataTreeListItemValueFieldName =
             dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;
         this._dataTreeListItemTextFieldName =
             dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
-        this.viewModel = params.viewModel || new cellx_1.ObservableList();
-        var vmItemSchema = params.viewModelItemSchema;
+        this.viewModel = this.paramViewModel || new cellx_1.ObservableList();
+        var vmItemSchema = this.paramViewModelItemSchema;
         var defaultVMItemSchema = this.constructor
             .defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
@@ -1254,7 +1313,7 @@ var OpalTreeList = /** @class */ (function (_super) {
             var vm_1 = this.viewModel;
             var viewModelItemValueFieldName_1 = this._viewModelItemValueFieldName;
             var viewModelItemTextFieldName_1 = this._viewModelItemTextFieldName;
-            var item_1 = utils_1.closestComponent(component.parentComponent, opal_tree_list_item_1.OpalTreeListItem).params.$context.$item;
+            var item_1 = utils_1.closestComponent(component.parentComponent, opal_tree_list_item_1.OpalTreeListItem).$context.$item;
             if (component.selected) {
                 for (var parent_1; (parent_1 = item_1.parent) &&
                     parent_1.children.every(function (child) {
@@ -1317,26 +1376,45 @@ var OpalTreeList = /** @class */ (function (_super) {
     OpalTreeList.defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
     OpalTreeList.defaultViewModelItemSchema = defaultVMItemSchema;
     __decorate([
-        cellx_decorators_1.computed
+        rionite_1.Param(),
+        __metadata("design:type", Object)
+    ], OpalTreeList.prototype, "paramDataTreeList", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", String)
+    ], OpalTreeList.prototype, "paramDataTreeListKeypath", void 0);
+    __decorate([
+        rionite_1.Param({
+            type: eval,
+            default: defaultDataTreeListItemSchema,
+            readonly: true
+        }),
+        __metadata("design:type", Object)
+    ], OpalTreeList.prototype, "paramDataTreeListItemSchema", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", Object)
+    ], OpalTreeList.prototype, "paramViewModel", void 0);
+    __decorate([
+        rionite_1.Param({ type: eval, default: defaultVMItemSchema, readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalTreeList.prototype, "paramViewModelItemSchema", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalTreeList.prototype, "paramQuery", void 0);
+    __decorate([
+        cellx_decorators_1.computed,
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
     ], OpalTreeList.prototype, "filteredDataTreeList", null);
     __decorate([
-        cellx_decorators_1.observable
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalTreeList.prototype, "viewModel", void 0);
     OpalTreeList = OpalTreeList_1 = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalTreeList',
-            params: {
-                dataTreeList: { type: Object },
-                dataTreeListKeypath: { type: String, readonly: true },
-                dataTreeListItemSchema: {
-                    type: eval,
-                    default: defaultDataTreeListItemSchema,
-                    readonly: true
-                },
-                viewModel: { type: Object },
-                viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
-                query: String
-            },
             template: template_nelm_1.default
         })
     ], OpalTreeList);
@@ -1354,7 +1432,7 @@ OpalTreeList.prototype._getListItemContext = _getListItemContext_1.default;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var closestComponent_1 = __webpack_require__(110);
+var closestComponent_1 = __webpack_require__(111);
 exports.closestComponent = closestComponent_1.default;
 var isFocusable_1 = __webpack_require__(5);
 exports.isFocusable = isFocusable_1.default;
@@ -1390,8 +1468,8 @@ function isIndeterminateItem(item, vm, dataTreeListItemValueFieldName, viewModel
         }));
 }
 function _getListItemContext(context, content) {
-    var $item = content.params.$context.$item;
-    return cellx_1.define(mixin_1.mixin(Object.create(context), content.params.$context, ['$component']), {
+    var $item = content.$context.$item;
+    return cellx_1.define(mixin_1.mixin(Object.create(context), content.$context, ['$component']), {
         $selected: new cellx_1.Cell(function () {
             this.dataTreeList;
             return isSelectedItem($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
@@ -1427,12 +1505,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 var _getListItemContext_1 = __webpack_require__(14);
-__webpack_require__(112);
-var template_nelm_1 = __webpack_require__(113);
+__webpack_require__(113);
+var template_nelm_1 = __webpack_require__(114);
 var OpalTreeListItem = /** @class */ (function (_super) {
     __extends(OpalTreeListItem, _super);
     function OpalTreeListItem() {
@@ -1440,52 +1521,83 @@ var OpalTreeListItem = /** @class */ (function (_super) {
     }
     Object.defineProperty(OpalTreeListItem.prototype, "dataTreeList", {
         get: function () {
-            return this.params.dataTreeList;
+            return this.paramDataTreeList;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(OpalTreeListItem.prototype, "viewModel", {
         get: function () {
-            return this.params.viewModel;
+            return this.paramViewModel;
         },
         enumerable: true,
         configurable: true
     });
     OpalTreeListItem.prototype.initialize = function () {
-        var params = this.params;
-        this.dataTreeListItem = params.filteredDataTreeList.get(params.indexpath);
-        this._dataTreeListItemValueFieldName = params.dataTreeListItemValueFieldName;
-        this._dataTreeListItemTextFieldName = params.dataTreeListItemTextFieldName;
-        this._viewModelItemValueFieldName = params.viewModelItemValueFieldName;
-        this._viewModelItemTextFieldName = params.viewModelItemTextFieldName;
+        this.dataTreeListItem = this.paramFilteredDataTreeList.get(this.paramIndexpath);
+        this._dataTreeListItemValueFieldName = this.paramDataTreeListItemValueFieldName;
+        this._dataTreeListItemTextFieldName = this.paramDataTreeListItemTextFieldName;
+        this._viewModelItemValueFieldName = this.paramViewModelItemValueFieldName;
+        this._viewModelItemTextFieldName = this.paramViewModelItemTextFieldName;
     };
     __decorate([
-        cellx_decorators_1.computed
+        rionite_1.Param({ required: true }),
+        __metadata("design:type", Object)
+    ], OpalTreeListItem.prototype, "paramDataTreeList", void 0);
+    __decorate([
+        rionite_1.Param({ required: true }),
+        __metadata("design:type", Object)
+    ], OpalTreeListItem.prototype, "paramFilteredDataTreeList", void 0);
+    __decorate([
+        rionite_1.Param({ required: true, readonly: true }),
+        __metadata("design:type", String)
+    ], OpalTreeListItem.prototype, "paramDataTreeListItemValueFieldName", void 0);
+    __decorate([
+        rionite_1.Param({ required: true, readonly: true }),
+        __metadata("design:type", String)
+    ], OpalTreeListItem.prototype, "paramDataTreeListItemTextFieldName", void 0);
+    __decorate([
+        rionite_1.Param({ required: true }),
+        __metadata("design:type", Object)
+    ], OpalTreeListItem.prototype, "paramViewModel", void 0);
+    __decorate([
+        rionite_1.Param({ required: true, readonly: true }),
+        __metadata("design:type", String)
+    ], OpalTreeListItem.prototype, "paramViewModelItemValueFieldName", void 0);
+    __decorate([
+        rionite_1.Param({ required: true, readonly: true }),
+        __metadata("design:type", String)
+    ], OpalTreeListItem.prototype, "paramViewModelItemTextFieldName", void 0);
+    __decorate([
+        rionite_1.Param({ type: eval, required: true, readonly: true }),
+        __metadata("design:type", Array)
+    ], OpalTreeListItem.prototype, "paramIndexpath", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalTreeListItem.prototype, "paramQuery", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalTreeListItem.prototype, "paramOpened", void 0);
+    __decorate([
+        cellx_decorators_1.computed,
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
     ], OpalTreeListItem.prototype, "dataTreeList", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
     ], OpalTreeListItem.prototype, "viewModel", null);
     OpalTreeListItem = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalTreeListItem',
-            params: {
-                dataTreeList: { type: Object, required: true },
-                filteredDataTreeList: { type: Object, required: true },
-                dataTreeListItemValueFieldName: { type: String, required: true, readonly: true },
-                dataTreeListItemTextFieldName: { type: String, required: true, readonly: true },
-                viewModel: { type: Object, required: true },
-                viewModelItemValueFieldName: { type: String, required: true, readonly: true },
-                viewModelItemTextFieldName: { type: String, required: true, readonly: true },
-                indexpath: { type: eval, required: true, readonly: true },
-                query: String,
-                opened: false
-            },
             template: template_nelm_1.default,
             events: {
                 'btn-toggle-children': {
                     change: function (evt) {
-                        this.params.opened = evt.target.checked;
+                        this.paramOpened = evt.target.checked;
                     }
                 }
             }
@@ -1519,13 +1631,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(4);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(124);
-var template_nelm_1 = __webpack_require__(125);
+__webpack_require__(125);
+var template_nelm_1 = __webpack_require__(126);
 var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 var OpalTagSelect = /** @class */ (function (_super) {
@@ -1543,35 +1658,36 @@ var OpalTagSelect = /** @class */ (function (_super) {
     });
     Object.defineProperty(OpalTagSelect.prototype, "isPlaceholderShown", {
         get: function () {
-            return !!this.params.placeholder && !this.viewModel.length;
+            return !!this.paramPlaceholder && !this.viewModel.length;
         },
         enumerable: true,
         configurable: true
     });
     OpalTagSelect.prototype.initialize = function () {
-        var params = this.params;
-        if (params.dataListKeypath || params.$specified.has('dataList')) {
-            cellx_1.define(this, 'dataList', params.dataListKeypath
-                ? new cellx_1.Cell(Function("return this." + params.dataListKeypath + ";"), {
+        var _this = this;
+        var dataListKeypath = this.paramDataListKeypath;
+        if (dataListKeypath || this.$specifiedParams.has('dataList')) {
+            cellx_1.define(this, 'dataList', dataListKeypath
+                ? new cellx_1.Cell(Function("return this." + dataListKeypath + ";"), {
                     context: this.ownerComponent || window
                 })
-                : function () { return params.dataList; });
+                : function () { return _this.paramDataList; });
             this.dataProvider = null;
             this._dataListKeypathParam = 'dataList';
         }
         else {
             this.dataList = null;
-            this.dataProvider = params.dataProvider;
+            this.dataProvider = this.paramDataProvider;
             this._dataListKeypathParam = null;
         }
-        var dataListItemSchema = params.dataListItemSchema;
+        var dataListItemSchema = this.paramDataListItemSchema;
         this._dataListItemValueFieldName =
             dataListItemSchema.value || defaultDataListItemSchema.value;
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
         this._dataListItemDisabledFieldName =
             dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
-        this.viewModel = params.viewModel || new cellx_1.ObservableList();
-        var vmItemSchema = params.viewModelItemSchema;
+        this.viewModel = this.paramViewModel || new cellx_1.ObservableList();
+        var vmItemSchema = this.paramViewModelItemSchema;
         var defaultVMItemSchema = this.constructor
             .defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
@@ -1580,7 +1696,6 @@ var OpalTagSelect = /** @class */ (function (_super) {
             vmItemSchema.disabled || defaultVMItemSchema.disabled;
     };
     OpalTagSelect.prototype.elementAttached = function () {
-        this.listenTo(this, 'param-view-model-change', this._onParamViewModelChange);
         this.listenTo('control', 'click', this._onControlClick);
         this.listenTo('select', {
             input: this._onSelectInput,
@@ -1588,11 +1703,6 @@ var OpalTagSelect = /** @class */ (function (_super) {
             select: this._onSelectSelect,
             deselect: this._onSelectDeselect
         });
-    };
-    OpalTagSelect.prototype._onParamViewModelChange = function (evt) {
-        if (evt.data.value != this.viewModel) {
-            throw new TypeError('Parameter "viewModel" is readonly');
-        }
     };
     OpalTagSelect.prototype._onControlClick = function (evt) {
         var select = this.$('select');
@@ -1628,39 +1738,83 @@ var OpalTagSelect = /** @class */ (function (_super) {
     };
     // helpers
     OpalTagSelect.prototype._isItemDisabled = function (item) {
-        return this.params.disabled || item[this._viewModelItemDisabledFieldName];
+        return this.paramDisabled || item[this._viewModelItemDisabledFieldName];
     };
     OpalTagSelect.defaultDataListItemSchema = defaultDataListItemSchema;
     OpalTagSelect.defaultViewModelItemSchema = defaultVMItemSchema;
     __decorate([
-        cellx_decorators_1.observable
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalTagSelect.prototype, "paramViewType", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", Object)
+    ], OpalTagSelect.prototype, "paramDataList", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", String)
+    ], OpalTagSelect.prototype, "paramDataListKeypath", void 0);
+    __decorate([
+        rionite_1.Param({ type: eval, default: defaultDataListItemSchema, readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalTagSelect.prototype, "paramDataListItemSchema", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalTagSelect.prototype, "paramDataProvider", void 0);
+    __decorate([
+        rionite_1.Param({ type: eval }),
+        __metadata("design:type", Array)
+    ], OpalTagSelect.prototype, "paramValue", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalTagSelect.prototype, "paramViewModel", void 0);
+    __decorate([
+        rionite_1.Param({ type: eval, default: defaultVMItemSchema, readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalTagSelect.prototype, "paramViewModelItemSchema", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Function)
+    ], OpalTagSelect.prototype, "paramAddNewItem", void 0);
+    __decorate([
+        rionite_1.Param({ default: gettext_1.getText.t('Не выбрано') }),
+        __metadata("design:type", String)
+    ], OpalTagSelect.prototype, "paramPlaceholder", void 0);
+    __decorate([
+        rionite_1.Param({ default: 'bottom' }),
+        __metadata("design:type", String)
+    ], OpalTagSelect.prototype, "paramPopoverPosition", void 0);
+    __decorate([
+        rionite_1.Param({ default: 0 }),
+        __metadata("design:type", Number)
+    ], OpalTagSelect.prototype, "paramTabIndex", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalTagSelect.prototype, "paramFocused", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalTagSelect.prototype, "paramDisabled", void 0);
+    __decorate([
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalTagSelect.prototype, "viewModel", void 0);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Array),
+        __metadata("design:paramtypes", [])
     ], OpalTagSelect.prototype, "value", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
     ], OpalTagSelect.prototype, "isPlaceholderShown", null);
     OpalTagSelect = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalTagSelect',
-            params: {
-                viewType: String,
-                dataList: { type: Object },
-                dataListKeypath: { type: String, readonly: true },
-                dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
-                // необязательный, так как может указываться на передаваемом opal-loaded-list
-                dataProvider: { type: Object, readonly: true },
-                value: eval,
-                viewModel: { type: Object },
-                viewModelItemSchema: { type: eval, default: defaultVMItemSchema, readonly: true },
-                addNewItem: { type: Object, readonly: true },
-                placeholder: gettext_1.getText.t('Не выбрано'),
-                popoverPosition: 'bottom',
-                tabIndex: 0,
-                focused: false,
-                disabled: false
-            },
             template: template_nelm_1.default,
             domEvents: {
                 'btn-remove-tag': {
@@ -1708,60 +1862,61 @@ __webpack_require__(22);
 __webpack_require__(23);
 __webpack_require__(24);
 __webpack_require__(25);
+__webpack_require__(26);
 var ObservableTreeList_1 = __webpack_require__(8);
 exports.ObservableTreeList = ObservableTreeList_1.ObservableTreeList;
-var opal_button_1 = __webpack_require__(27);
+var opal_button_1 = __webpack_require__(28);
 exports.OpalButton = opal_button_1.OpalButton;
-var opal_sign_button_1 = __webpack_require__(29);
+var opal_sign_button_1 = __webpack_require__(30);
 exports.OpalSignButton = opal_sign_button_1.OpalSignButton;
-var opal_text_input_1 = __webpack_require__(32);
+var opal_text_input_1 = __webpack_require__(33);
 exports.OpalTextInput = opal_text_input_1.OpalTextInput;
-var opal_editable_text_1 = __webpack_require__(35);
+var opal_editable_text_1 = __webpack_require__(36);
 exports.OpalEditableText = opal_editable_text_1.OpalEditableText;
-var opal_input_mask_1 = __webpack_require__(38);
+var opal_input_mask_1 = __webpack_require__(39);
 exports.OpalInputMaskDefinition = opal_input_mask_1.OpalInputMaskDefinition;
 exports.OpalInputMask = opal_input_mask_1.OpalInputMask;
-var opal_group_1 = __webpack_require__(42);
+var opal_group_1 = __webpack_require__(43);
 exports.OpalGroup = opal_group_1.OpalGroup;
-var opal_checkbox_1 = __webpack_require__(45);
+var opal_checkbox_1 = __webpack_require__(46);
 exports.OpalCheckbox = opal_checkbox_1.OpalCheckbox;
-var opal_radio_group_1 = __webpack_require__(48);
+var opal_radio_group_1 = __webpack_require__(49);
 exports.OpalRadioButton = opal_radio_group_1.OpalRadioButton;
 exports.OpalRadioGroup = opal_radio_group_1.OpalRadioGroup;
-var opal_switch_1 = __webpack_require__(52);
+var opal_switch_1 = __webpack_require__(53);
 exports.OpalSwitch = opal_switch_1.OpalSwitch;
-var opal_slider_1 = __webpack_require__(55);
+var opal_slider_1 = __webpack_require__(56);
 exports.OpalSlider = opal_slider_1.OpalSlider;
-var opal_switch_menu_1 = __webpack_require__(58);
+var opal_switch_menu_1 = __webpack_require__(59);
 exports.OpalSwitchMenu = opal_switch_menu_1.OpalSwitchMenu;
-var opal_tabs_1 = __webpack_require__(61);
+var opal_tabs_1 = __webpack_require__(62);
 exports.OpalTab = opal_tabs_1.OpalTab;
 exports.OpalTabList = opal_tabs_1.OpalTabList;
 exports.OpalTabPanel = opal_tabs_1.OpalTabPanel;
 exports.OpalTabs = opal_tabs_1.OpalTabs;
-var opal_dropdown_1 = __webpack_require__(72);
+var opal_dropdown_1 = __webpack_require__(73);
 exports.OpalDropdown = opal_dropdown_1.OpalDropdown;
-var opal_popover_1 = __webpack_require__(75);
+var opal_popover_1 = __webpack_require__(76);
 exports.OpalPopover = opal_popover_1.OpalPopover;
-var opal_modal_1 = __webpack_require__(78);
+var opal_modal_1 = __webpack_require__(79);
 exports.OpalModal = opal_modal_1.OpalModal;
-var opal_notification_1 = __webpack_require__(81);
+var opal_notification_1 = __webpack_require__(82);
 exports.OpalNotification = opal_notification_1.OpalNotification;
 var opal_input_validator_1 = __webpack_require__(6);
 exports.OpalInputValidatorRule = opal_input_validator_1.OpalInputValidatorRule;
 exports.OpalInputValidator = opal_input_validator_1.OpalInputValidator;
-var opal_text_input_validator_1 = __webpack_require__(90);
+var opal_text_input_validator_1 = __webpack_require__(91);
 exports.OpalTextInputValidatorRule = opal_text_input_validator_1.OpalTextInputValidatorRule;
 exports.OpalTextInputValidator = opal_text_input_validator_1.OpalTextInputValidator;
-var opal_calendar_1 = __webpack_require__(93);
+var opal_calendar_1 = __webpack_require__(94);
 exports.OpalCalendar = opal_calendar_1.OpalCalendar;
-var opal_date_input_1 = __webpack_require__(97);
+var opal_date_input_1 = __webpack_require__(98);
 exports.OpalDateInput = opal_date_input_1.OpalDateInput;
-var opal_loader_1 = __webpack_require__(101);
+var opal_loader_1 = __webpack_require__(102);
 exports.OpalLoader = opal_loader_1.OpalLoader;
-var opal_loaded_list_1 = __webpack_require__(103);
+var opal_loaded_list_1 = __webpack_require__(104);
 exports.OpalLoadedList = opal_loaded_list_1.OpalLoadedList;
-var opal_filtered_list_1 = __webpack_require__(106);
+var opal_filtered_list_1 = __webpack_require__(107);
 exports.OpalFilteredList = opal_filtered_list_1.OpalFilteredList;
 var opal_tree_list_1 = __webpack_require__(12);
 exports.OpalTreeListItem = opal_tree_list_1.OpalTreeListItem;
@@ -1769,23 +1924,23 @@ exports.OpalTreeList = opal_tree_list_1.OpalTreeList;
 var opal_select_1 = __webpack_require__(7);
 exports.OpalSelectOption = opal_select_1.OpalSelectOption;
 exports.OpalSelect = opal_select_1.OpalSelect;
-var opal_multiselect_1 = __webpack_require__(121);
+var opal_multiselect_1 = __webpack_require__(122);
 exports.OpalMultiselect = opal_multiselect_1.OpalMultiselect;
 var opal_tag_select_1 = __webpack_require__(16);
 exports.OpalTagSelect = opal_tag_select_1.OpalTagSelect;
-var opal_tree_select_1 = __webpack_require__(126);
+var opal_tree_select_1 = __webpack_require__(127);
 exports.OpalTreeSelect = opal_tree_select_1.OpalTreeSelect;
-var opal_tree_tag_select_1 = __webpack_require__(129);
+var opal_tree_tag_select_1 = __webpack_require__(130);
 exports.OpalTreeTagSelect = opal_tree_tag_select_1.OpalTreeTagSelect;
-var opal_select_validator_1 = __webpack_require__(131);
+var opal_select_validator_1 = __webpack_require__(132);
 exports.OpalSelectValidatorRule = opal_select_validator_1.OpalSelectValidatorRule;
 exports.OpalSelectValidator = opal_select_validator_1.OpalSelectValidator;
-var opal_autosuggest_1 = __webpack_require__(134);
+var opal_autosuggest_1 = __webpack_require__(135);
 exports.OpalAutosuggest = opal_autosuggest_1.OpalAutosuggest;
-var opal_multirow_1 = __webpack_require__(137);
+var opal_multirow_1 = __webpack_require__(138);
 exports.OpalMultirowRow = opal_multirow_1.OpalMultirowRow;
 exports.OpalMultirow = opal_multirow_1.OpalMultirow;
-var opal_router_1 = __webpack_require__(144);
+var opal_router_1 = __webpack_require__(145);
 exports.OpalRoute = opal_router_1.OpalRoute;
 exports.OpalRouter = opal_router_1.OpalRouter;
 var utils_1 = __webpack_require__(13);
@@ -1796,62 +1951,58 @@ exports.Utils = utils_1.default;
 /* 19 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-calendar\"><path d=\"M2 6v24h28V6zm0 9h28M7 3v6m6-6v6m6-6v6m6-6v6\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+module.exports = __WEBPACK_EXTERNAL_MODULE_19__;
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-checkmark\"><path d=\"M2 20l10 8L30 4\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-calendar\"><path d=\"M2 6v24h28V6zm0 9h28M7 3v6m6-6v6m6-6v6m6-6v6\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-chevron-bottom\"><path d=\"M30 12L16 24 2 12\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-checkmark\"><path d=\"M2 20l10 8L30 4\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-chevron-left\"><path d=\"M20 30L8 16 20 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-chevron-bottom\"><path d=\"M30 12L16 24 2 12\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 23 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-close\"><path d=\"M2 30L30 2m0 28L2 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-chevron-left\"><path d=\"M20 30L8 16 20 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-compose\"><path d=\"M27 15v15H2V5h15m13 1l-4-4L9 19l-2 6 6-2zm-8 0l4 4zM9 19l4 4z\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-close\"><path d=\"M2 30L30 2m0 28L2 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 25 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-search\"><circle cx=\"14\" cy=\"14\" r=\"12\" xmlns=\"http://www.w3.org/2000/svg\"/><path d=\"M23 23l7 7\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-compose\"><path d=\"M27 15v15H2V5h15m13 1l-4-4L9 19l-2 6 6-2zm-8 0l4 4zM9 19l4 4z\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 26 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var assign = Object.assign || (function (target, source) {
-    for (var name_1 in source) {
-        target[name_1] = source[name_1];
-    }
-    return target;
-});
-exports.assign = assign;
-
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalComponents__icon-search\"><circle cx=\"14\" cy=\"14\" r=\"12\" xmlns=\"http://www.w3.org/2000/svg\"/><path d=\"M23 23l7 7\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 27 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_27__;
+
+/***/ }),
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1872,11 +2023,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(28);
+__webpack_require__(29);
 var OpalButton = /** @class */ (function (_super) {
     __extends(OpalButton, _super);
     function OpalButton() {
@@ -1884,20 +2038,20 @@ var OpalButton = /** @class */ (function (_super) {
     }
     Object.defineProperty(OpalButton.prototype, "_tabIndex", {
         get: function () {
-            return this.params.disabled ? -1 : this.params.tabIndex;
+            return this.paramDisabled ? -1 : this.paramTabIndex;
         },
         enumerable: true,
         configurable: true
     });
     OpalButton.prototype.ready = function () {
-        if (this.params.focused) {
+        if (this.paramFocused) {
             this.element.tabIndex = this._tabIndex;
             this.focus();
         }
     };
     OpalButton.prototype.elementAttached = function () {
         this.listenTo(this, {
-            'param-focused-change': this._onParamFocusedChange,
+            'change:paramFocused': this._onParamFocusedChange,
             'change:_tabIndex': this._onTabIndexChange
         });
         this.listenTo(this.element, {
@@ -1927,7 +2081,7 @@ var OpalButton = /** @class */ (function (_super) {
             if (_this.element.tagName.indexOf('-', 1) != -1) {
                 _this._documentKeyDownListening = _this.listenTo(document, 'keydown', _this._onDocumentKeyDown);
             }
-            _this.params.focused = true;
+            _this.paramFocused = true;
             _this.emit('focus');
         });
     };
@@ -1935,24 +2089,24 @@ var OpalButton = /** @class */ (function (_super) {
         if (this._documentKeyDownListening) {
             this._documentKeyDownListening.stop();
         }
-        this.params.focused = false;
+        this.paramFocused = false;
         this.emit('blur');
     };
     OpalButton.prototype._onElementClick = function () {
-        if (!this.params.disabled) {
+        if (!this.paramDisabled) {
             this.click();
         }
     };
     OpalButton.prototype._onDocumentKeyDown = function (evt) {
         if (evt.which == 13 /* Enter */) {
             evt.preventDefault();
-            if (!this.params.disabled) {
+            if (!this.paramDisabled) {
                 this.click();
             }
         }
     };
     OpalButton.prototype.click = function () {
-        if (this.params.checkable) {
+        if (this.paramCheckable) {
             this.emit(this.toggle() ? 'check' : 'uncheck');
             this.emit('change');
         }
@@ -1961,10 +2115,10 @@ var OpalButton = /** @class */ (function (_super) {
     };
     Object.defineProperty(OpalButton.prototype, "checked", {
         get: function () {
-            return this.params.checked;
+            return this.paramChecked;
         },
         set: function (checked) {
-            this.params.checked = checked;
+            this.paramChecked = checked;
         },
         enumerable: true,
         configurable: true
@@ -1980,21 +2134,21 @@ var OpalButton = /** @class */ (function (_super) {
         configurable: true
     });
     OpalButton.prototype.check = function () {
-        if (!this.params.checked) {
-            this.params.checked = true;
+        if (!this.paramChecked) {
+            this.paramChecked = true;
             return true;
         }
         return false;
     };
     OpalButton.prototype.uncheck = function () {
-        if (this.params.checked) {
-            this.params.checked = false;
+        if (this.paramChecked) {
+            this.paramChecked = false;
             return true;
         }
         return false;
     };
     OpalButton.prototype.toggle = function (value) {
-        return (this.params.checked = value === undefined ? !this.params.checked : value);
+        return (this.paramChecked = value === undefined ? !this.paramChecked : value);
     };
     OpalButton.prototype.focus = function () {
         this.element.focus();
@@ -2005,29 +2159,53 @@ var OpalButton = /** @class */ (function (_super) {
         return this;
     };
     OpalButton.prototype.enable = function () {
-        this.params.disabled = false;
+        this.paramDisabled = false;
         return this;
     };
     OpalButton.prototype.disable = function () {
-        this.params.disabled = true;
+        this.paramDisabled = true;
         return this;
     };
     __decorate([
-        cellx_decorators_1.computed
+        rionite_1.Param({ default: 'default' }),
+        __metadata("design:type", String)
+    ], OpalButton.prototype, "paramViewType", void 0);
+    __decorate([
+        rionite_1.Param({ default: 'm' }),
+        __metadata("design:type", String)
+    ], OpalButton.prototype, "paramSize", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalButton.prototype, "paramCheckable", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalButton.prototype, "paramChecked", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalButton.prototype, "paramLoading", void 0);
+    __decorate([
+        rionite_1.Param({ default: 0 }),
+        __metadata("design:type", Number)
+    ], OpalButton.prototype, "paramTabIndex", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalButton.prototype, "paramFocused", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalButton.prototype, "paramDisabled", void 0);
+    __decorate([
+        cellx_decorators_1.computed,
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [])
     ], OpalButton.prototype, "_tabIndex", null);
     OpalButton = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'OpalButton',
-            params: {
-                viewType: 'default',
-                size: 'm',
-                checkable: false,
-                checked: false,
-                loading: false,
-                tabIndex: 0,
-                focused: false,
-                disabled: false
-            }
+            elementIs: 'OpalButton'
         })
     ], OpalButton);
     return OpalButton;
@@ -2036,7 +2214,7 @@ exports.OpalButton = OpalButton;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -2053,7 +2231,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2074,12 +2252,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(30);
-var template_nelm_1 = __webpack_require__(31);
+__webpack_require__(31);
+var template_nelm_1 = __webpack_require__(32);
 var OpalSignButton = /** @class */ (function (_super) {
     __extends(OpalSignButton, _super);
     function OpalSignButton() {
@@ -2087,13 +2268,13 @@ var OpalSignButton = /** @class */ (function (_super) {
     }
     Object.defineProperty(OpalSignButton.prototype, "_tabIndex", {
         get: function () {
-            return this.params.disabled ? -1 : this.params.tabIndex;
+            return this.paramDisabled ? -1 : this.paramTabIndex;
         },
         enumerable: true,
         configurable: true
     });
     OpalSignButton.prototype.elementAttached = function () {
-        this.listenTo(this, 'param-focused-change', this._onParamFocusedChange);
+        this.listenTo(this, 'change:paramFocused', this._onParamFocusedChange);
         this.listenTo('control', {
             focus: this._onControlFocus,
             blur: this._onControlBlur,
@@ -2101,7 +2282,7 @@ var OpalSignButton = /** @class */ (function (_super) {
         });
     };
     OpalSignButton.prototype.ready = function () {
-        if (this.params.focused) {
+        if (this.paramFocused) {
             this.focus();
         }
     };
@@ -2117,23 +2298,23 @@ var OpalSignButton = /** @class */ (function (_super) {
         var _this = this;
         next_tick_1.nextTick(function () {
             if (document.activeElement == evt.target) {
-                _this.params.focused = true;
+                _this.paramFocused = true;
                 _this.emit('focus');
             }
         });
     };
     OpalSignButton.prototype._onControlBlur = function () {
-        this.params.focused = false;
+        this.paramFocused = false;
         this.emit('blur');
     };
     OpalSignButton.prototype._onControlClick = function (evt) {
         evt.preventDefault();
-        if (!this.params.disabled) {
+        if (!this.paramDisabled) {
             this.click();
         }
     };
     OpalSignButton.prototype.click = function () {
-        if (this.params.checkable) {
+        if (this.paramCheckable) {
             this.emit(this.toggle() ? 'check' : 'uncheck');
         }
         this.emit('click');
@@ -2141,10 +2322,10 @@ var OpalSignButton = /** @class */ (function (_super) {
     };
     Object.defineProperty(OpalSignButton.prototype, "checked", {
         get: function () {
-            return this.params.checked;
+            return this.paramChecked;
         },
         set: function (checked) {
-            this.params.checked = checked;
+            this.paramChecked = checked;
         },
         enumerable: true,
         configurable: true
@@ -2160,21 +2341,21 @@ var OpalSignButton = /** @class */ (function (_super) {
         configurable: true
     });
     OpalSignButton.prototype.check = function () {
-        if (!this.params.checked) {
-            this.params.checked = true;
+        if (!this.paramChecked) {
+            this.paramChecked = true;
             return true;
         }
         return false;
     };
     OpalSignButton.prototype.uncheck = function () {
-        if (this.params.checked) {
-            this.params.checked = false;
+        if (this.paramChecked) {
+            this.paramChecked = false;
             return true;
         }
         return false;
     };
     OpalSignButton.prototype.toggle = function (value) {
-        return (this.params.checked = value === undefined ? !this.params.checked : value);
+        return (this.paramChecked = value === undefined ? !this.paramChecked : value);
     };
     OpalSignButton.prototype.focus = function () {
         this.$('control').focus();
@@ -2185,27 +2366,45 @@ var OpalSignButton = /** @class */ (function (_super) {
         return this;
     };
     OpalSignButton.prototype.enable = function () {
-        this.params.disabled = false;
+        this.paramDisabled = false;
         return this;
     };
     OpalSignButton.prototype.disable = function () {
-        this.params.disabled = true;
+        this.paramDisabled = true;
         return this;
     };
     __decorate([
-        cellx_decorators_1.computed
+        rionite_1.Param({ required: true }),
+        __metadata("design:type", String)
+    ], OpalSignButton.prototype, "paramSign", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalSignButton.prototype, "paramCheckable", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalSignButton.prototype, "paramChecked", void 0);
+    __decorate([
+        rionite_1.Param({ default: 0 }),
+        __metadata("design:type", Number)
+    ], OpalSignButton.prototype, "paramTabIndex", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalSignButton.prototype, "paramFocused", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalSignButton.prototype, "paramDisabled", void 0);
+    __decorate([
+        cellx_decorators_1.computed,
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [])
     ], OpalSignButton.prototype, "_tabIndex", null);
     OpalSignButton = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalSignButton',
-            params: {
-                sign: { type: String, required: true },
-                checkable: false,
-                checked: false,
-                tabIndex: 0,
-                focused: false,
-                disabled: false
-            },
             template: template_nelm_1.default
         })
     ], OpalSignButton);
@@ -2215,7 +2414,7 @@ exports.OpalSignButton = OpalSignButton;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -2232,7 +2431,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2240,7 +2439,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nrt-slot/content-slot\n}\n}");
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2261,12 +2460,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(33);
-var template_nelm_1 = __webpack_require__(34);
+__webpack_require__(34);
+var template_nelm_1 = __webpack_require__(35);
 var OpalTextInput = /** @class */ (function (_super) {
     __extends(OpalTextInput, _super);
     function OpalTextInput() {
@@ -2274,7 +2476,7 @@ var OpalTextInput = /** @class */ (function (_super) {
     }
     Object.defineProperty(OpalTextInput.prototype, "_textFieldValue", {
         get: function () {
-            return this.params.value;
+            return this.paramValue;
         },
         set: function (value) {
             this._textFieldValueCell.set(value);
@@ -2294,29 +2496,28 @@ var OpalTextInput = /** @class */ (function (_super) {
     });
     Object.defineProperty(OpalTextInput.prototype, "isControlIconShown", {
         get: function () {
-            return !this.isBtnClearShown && !this.params.loading;
+            return !this.isBtnClearShown && !this.paramLoading;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(OpalTextInput.prototype, "isBtnClearShown", {
         get: function () {
-            return !!this._textFieldValue && !this.params.loading;
+            return !!this._textFieldValue && !this.paramLoading;
         },
         enumerable: true,
         configurable: true
     });
     OpalTextInput.prototype.ready = function () {
-        var params = this.params;
         var textField = (this.textField = this.$('text-field'));
         if (this._textFieldValue) {
             textField.value = this._textFieldValue;
         }
-        else if (params.storeKey) {
-            this._textFieldValue = textField.value = localStorage.getItem(params.storeKey) || '';
+        else if (this.paramStoreKey) {
+            this._textFieldValue = textField.value = localStorage.getItem(this.paramStoreKey) || '';
         }
         this._prevValue = this.value;
-        if (params.multiline && params.autoHeight) {
+        if (this.paramMultiline && this.paramAutoHeight) {
             var offsetHeight = textField.offsetHeight;
             if (offsetHeight) {
                 this._initialHeight =
@@ -2325,7 +2526,7 @@ var OpalTextInput = /** @class */ (function (_super) {
             }
             else {
                 this._initialHeight =
-                    parseInt(getComputedStyle(textField).lineHeight, 10) * params.rows +
+                    parseInt(getComputedStyle(textField).lineHeight, 10) * this.paramRows +
                         parseInt(getComputedStyle(textField).borderTop, 10) +
                         parseInt(getComputedStyle(textField).borderBottom, 10) +
                         parseInt(getComputedStyle(textField).paddingTop, 10) +
@@ -2333,14 +2534,14 @@ var OpalTextInput = /** @class */ (function (_super) {
                 textField.style.height = this._initialHeight + 'px';
             }
         }
-        if (params.focused) {
+        if (this.paramFocused) {
             this.focus();
         }
     };
     OpalTextInput.prototype.elementAttached = function () {
         this.listenTo(this, {
-            'param-value-change': this._onParamValueChange,
-            'param-focused-change': this._onParamFocusedChange
+            'change:paramValue': this._onParamValueChange,
+            'change:paramFocused': this._onParamFocusedChange
         });
         this.listenTo(this.textField, {
             focus: this._onTextFieldFocus,
@@ -2369,13 +2570,13 @@ var OpalTextInput = /** @class */ (function (_super) {
         var _this = this;
         next_tick_1.nextTick(function () {
             if (document.activeElement == _this.textField) {
-                _this.params.focused = true;
+                _this.paramFocused = true;
                 _this.emit('focus');
             }
         });
     };
     OpalTextInput.prototype._onTextFieldBlur = function () {
-        this.params.focused = false;
+        this.paramFocused = false;
         this.emit('blur');
     };
     OpalTextInput.prototype._onTextFieldInput = function (evt) {
@@ -2389,9 +2590,8 @@ var OpalTextInput = /** @class */ (function (_super) {
             return;
         }
         this._prevValue = this.value;
-        var storeKey = this.params.storeKey;
-        if (storeKey) {
-            localStorage.setItem(storeKey, this.textField.value);
+        if (this.paramStoreKey) {
+            localStorage.setItem(this.paramStoreKey, this.textField.value);
         }
         this.emit({
             type: 'change',
@@ -2402,7 +2602,7 @@ var OpalTextInput = /** @class */ (function (_super) {
     };
     OpalTextInput.prototype._onTextFieldKeyDown = function (evt) {
         var _this = this;
-        if (this.params.multiline && this.params.autoHeight) {
+        if (this.paramMultiline && this.paramAutoHeight) {
             setTimeout(function () {
                 _this._fixHeight();
             }, 1);
@@ -2426,7 +2626,7 @@ var OpalTextInput = /** @class */ (function (_super) {
         });
     };
     OpalTextInput.prototype._onTextFieldKeyUp = function (evt) {
-        if (this.params.multiline && this.params.autoHeight) {
+        if (this.paramMultiline && this.paramAutoHeight) {
             this._fixHeight();
         }
         this.emit({
@@ -2460,41 +2660,87 @@ var OpalTextInput = /** @class */ (function (_super) {
         return this;
     };
     OpalTextInput.prototype.enable = function () {
-        this.params.disabled = false;
+        this.paramDisabled = false;
         return this;
     };
     OpalTextInput.prototype.disable = function () {
-        this.params.disabled = true;
+        this.paramDisabled = true;
         return this;
     };
     __decorate([
-        cellx_decorators_1.computed
+        rionite_1.Param({ default: 'text' }),
+        __metadata("design:type", String)
+    ], OpalTextInput.prototype, "paramInputType", void 0);
+    __decorate([
+        rionite_1.Param({ default: 'm' }),
+        __metadata("design:type", String)
+    ], OpalTextInput.prototype, "paramSize", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalTextInput.prototype, "paramMultiline", void 0);
+    __decorate([
+        rionite_1.Param({ default: 5 }),
+        __metadata("design:type", Number)
+    ], OpalTextInput.prototype, "paramRows", void 0);
+    __decorate([
+        rionite_1.Param({ default: true }),
+        __metadata("design:type", Boolean)
+    ], OpalTextInput.prototype, "paramAutoHeight", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalTextInput.prototype, "paramInputName", void 0);
+    __decorate([
+        rionite_1.Param({ default: '' }),
+        __metadata("design:type", String)
+    ], OpalTextInput.prototype, "paramValue", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalTextInput.prototype, "paramStoreKey", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalTextInput.prototype, "paramPlaceholder", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalTextInput.prototype, "paramClearable", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalTextInput.prototype, "paramLoading", void 0);
+    __decorate([
+        rionite_1.Param({ default: 0 }),
+        __metadata("design:type", Number)
+    ], OpalTextInput.prototype, "paramTabIndex", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalTextInput.prototype, "paramFocused", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalTextInput.prototype, "paramDisabled", void 0);
+    __decorate([
+        cellx_decorators_1.computed,
+        __metadata("design:type", String),
+        __metadata("design:paramtypes", [String])
     ], OpalTextInput.prototype, "_textFieldValue", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
     ], OpalTextInput.prototype, "isControlIconShown", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
     ], OpalTextInput.prototype, "isBtnClearShown", null);
     OpalTextInput = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalTextInput',
-            params: {
-                inputType: 'text',
-                size: 'm',
-                multiline: false,
-                rows: 5,
-                autoHeight: true,
-                inputName: String,
-                value: '',
-                storeKey: String,
-                placeholder: String,
-                clearable: false,
-                loading: false,
-                tabIndex: 0,
-                focused: false,
-                disabled: false
-            },
             template: template_nelm_1.default,
             domEvents: {
                 'btn-clear': {
@@ -2514,7 +2760,7 @@ exports.OpalTextInput = OpalTextInput;
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -2531,15 +2777,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=params.multiline) {\ntextarea/, text-field (\nrows={params.rows},\nname={params.inputName},\nplaceholder={params.placeholder},\ntabindex={params.tabIndex},\ndisabled={params.disabled}\n)\n}\n@if-else (if=params.multiline) {\ninput/, text-field (\ntype={params.inputType},\nname={params.inputName},\nplaceholder={params.placeholder},\ntabindex={params.tabIndex},\ndisabled={params.disabled}\n)\n}\nrt-slot/control-icon-slot (for=control-icon, shown={isControlIconShown})\n@if-then (if=params.clearable) {\nbutton/btn-clear (shown={isBtnClearShown}) {\nsvg/btn-clear-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-close)\n}\n}\n}\n@if-then (if=params.loading) {\nopal-loader/loader (size=s, shown)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=paramMultiline) {\ntextarea/, text-field (\nrows={paramRows},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabindex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@if-else (if=paramMultiline) {\ninput/, text-field (\ntype={paramInputType},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabindex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\nrt-slot/control-icon-slot (for=control-icon, shown={isControlIconShown})\n@if-then (if=paramClearable) {\nbutton/btn-clear (shown={isBtnClearShown}) {\nsvg/btn-clear-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-close)\n}\n}\n}\n@if-then (if=paramLoading) {\nopal-loader/loader (size=s, shown)\n}\n}");
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2562,8 +2808,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(36);
-var template_nelm_1 = __webpack_require__(37);
+__webpack_require__(37);
+var template_nelm_1 = __webpack_require__(38);
 var OpalEditableText = /** @class */ (function (_super) {
     __extends(OpalEditableText, _super);
     function OpalEditableText() {
@@ -2672,7 +2918,7 @@ exports.OpalEditableText = OpalEditableText;
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -2689,7 +2935,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2697,7 +2943,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/content-wrapper {\nrt-slot/content-slot (contenteditable, spellcheck=false)\nsvg/icon-edit (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-compose)\n}\n}\n}");
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2718,12 +2964,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template_nelm_1 = __webpack_require__(39);
-var opal_input_mask_definition_1 = __webpack_require__(40);
+var template_nelm_1 = __webpack_require__(40);
+var opal_input_mask_definition_1 = __webpack_require__(41);
 exports.OpalInputMaskDefinition = opal_input_mask_definition_1.OpalInputMaskDefinition;
 var forEach = Array.prototype.forEach;
 var iPhone = /iphone/i.test(navigator.userAgent);
@@ -2736,16 +2985,15 @@ var OpalInputMask = /** @class */ (function (_super) {
     OpalInputMask_1 = OpalInputMask;
     Object.defineProperty(OpalInputMask.prototype, "_mask", {
         get: function () {
-            return this.params.mask.split('').filter(function (chr) { return chr != '?'; });
+            return this.paramMask.split('').filter(function (chr) { return chr != '?'; });
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(OpalInputMask.prototype, "_partialIndex", {
         get: function () {
-            var mask = this.params.mask;
-            var index = mask.indexOf('?');
-            return index == -1 ? mask.length : index;
+            var index = this.paramMask.indexOf('?');
+            return index == -1 ? this.paramMask.length : index;
         },
         enumerable: true,
         configurable: true
@@ -2772,8 +3020,7 @@ var OpalInputMask = /** @class */ (function (_super) {
         this.textField = this.$('text-input').textField;
         var definitions = this._definitions;
         forEach.call(this.element.getElementsByTagName('opal-input-mask-definition'), function (inputMaskDefinition) {
-            var params = inputMaskDefinition.$component.params;
-            definitions[params.maskChar] = params.regex;
+            definitions[inputMaskDefinition.$component.paramMaskChar] = inputMaskDefinition.$component.paramRegex;
         });
         this._initBuffer();
     };
@@ -3020,23 +3267,32 @@ var OpalInputMask = /** @class */ (function (_super) {
         '*': /[0-9a-zA-Z]/
     };
     __decorate([
-        cellx_decorators_1.computed
+        rionite_1.Param({ required: true }),
+        __metadata("design:type", String)
+    ], OpalInputMask.prototype, "paramMask", void 0);
+    __decorate([
+        cellx_decorators_1.computed,
+        __metadata("design:type", Array),
+        __metadata("design:paramtypes", [])
     ], OpalInputMask.prototype, "_mask", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [])
     ], OpalInputMask.prototype, "_partialIndex", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Array),
+        __metadata("design:paramtypes", [])
     ], OpalInputMask.prototype, "_tests", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [])
     ], OpalInputMask.prototype, "_firstTestIndex", null);
     OpalInputMask = OpalInputMask_1 = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalInputMask',
-            params: {
-                mask: { type: String, required: true }
-            },
             template: template_nelm_1.default
         })
     ], OpalInputMask);
@@ -3047,7 +3303,7 @@ exports.OpalInputMask = OpalInputMask;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3055,7 +3311,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot/content-slot\n}");
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3076,21 +3332,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(41);
+__webpack_require__(42);
 var OpalInputMaskDefinition = /** @class */ (function (_super) {
     __extends(OpalInputMaskDefinition, _super);
     function OpalInputMaskDefinition() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    __decorate([
+        rionite_1.Param({ required: true, readonly: true }),
+        __metadata("design:type", String)
+    ], OpalInputMaskDefinition.prototype, "paramMaskChar", void 0);
+    __decorate([
+        rionite_1.Param({ type: eval, required: true, readonly: true }),
+        __metadata("design:type", RegExp)
+    ], OpalInputMaskDefinition.prototype, "paramRegex", void 0);
     OpalInputMaskDefinition = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'OpalInputMaskDefinition',
-            params: {
-                maskChar: { type: String, required: true, readonly: true },
-                regex: { type: eval, required: true, readonly: true }
-            }
+            elementIs: 'OpalInputMaskDefinition'
         })
     ], OpalInputMaskDefinition);
     return OpalInputMaskDefinition;
@@ -3099,7 +3362,7 @@ exports.OpalInputMaskDefinition = OpalInputMaskDefinition;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3116,7 +3379,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3139,8 +3402,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(43);
-var template_nelm_1 = __webpack_require__(44);
+__webpack_require__(44);
+var template_nelm_1 = __webpack_require__(45);
 var OpalGroup = /** @class */ (function (_super) {
     __extends(OpalGroup, _super);
     function OpalGroup() {
@@ -3158,7 +3421,7 @@ exports.OpalGroup = OpalGroup;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3175,7 +3438,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3183,7 +3446,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot/content-slot\n}");
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3204,12 +3467,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(46);
-var template_nelm_1 = __webpack_require__(47);
+__webpack_require__(47);
+var template_nelm_1 = __webpack_require__(48);
 var OpalCheckbox = /** @class */ (function (_super) {
     __extends(OpalCheckbox, _super);
     function OpalCheckbox() {
@@ -3217,16 +3483,16 @@ var OpalCheckbox = /** @class */ (function (_super) {
     }
     Object.defineProperty(OpalCheckbox.prototype, "_tabIndex", {
         get: function () {
-            return this.params.disabled ? -1 : this.params.tabIndex;
+            return this.paramDisabled ? -1 : this.paramTabIndex;
         },
         enumerable: true,
         configurable: true
     });
     OpalCheckbox.prototype.elementAttached = function () {
         this.listenTo(this, {
-            'param-checked-change': this._onParamCheckedChange,
-            'param-indeterminate-change': this._onParamIndeterminateChange,
-            'param-focused-change': this._onParamFocusedChange
+            'change:paramChecked': this._onParamCheckedChange,
+            'change:paramIndeterminate': this._onParamIndeterminateChange,
+            'change:paramFocused': this._onParamFocusedChange
         });
         this.listenTo('input', 'change', this._onInputChange);
         this.listenTo('control', {
@@ -3235,24 +3501,23 @@ var OpalCheckbox = /** @class */ (function (_super) {
         });
     };
     OpalCheckbox.prototype.ready = function () {
-        var params = this.params;
-        if (params.checked) {
-            params.indeterminate = false;
+        if (this.paramChecked) {
+            this.paramIndeterminate = false;
             this.$('input').checked = true;
         }
-        if (params.focused) {
+        if (this.paramFocused) {
             this.focus();
         }
     };
     OpalCheckbox.prototype._onParamCheckedChange = function (evt) {
         if (evt.data.value) {
-            this.params.indeterminate = false;
+            this.paramIndeterminate = false;
         }
         this.$('input').checked = evt.data.value;
     };
     OpalCheckbox.prototype._onParamIndeterminateChange = function (evt) {
         if (evt.data.value) {
-            this.params.checked = false;
+            this.paramChecked = false;
         }
     };
     OpalCheckbox.prototype._onParamFocusedChange = function (evt) {
@@ -3268,36 +3533,35 @@ var OpalCheckbox = /** @class */ (function (_super) {
     OpalCheckbox.prototype._onDocumentKeyDown = function (evt) {
         if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
             evt.preventDefault();
-            var params = this.params;
-            if (!params.disabled) {
-                this.emit((params.checked = !params.checked) ? 'check' : 'uncheck');
+            if (!this.paramDisabled) {
+                this.emit((this.paramChecked = !this.paramChecked) ? 'check' : 'uncheck');
                 this.emit('change');
             }
         }
     };
     OpalCheckbox.prototype._onInputChange = function (evt) {
-        this.emit((this.params.checked = evt.target.checked) ? 'check' : 'uncheck');
+        this.emit((this.paramChecked = evt.target.checked) ? 'check' : 'uncheck');
         this.emit('change');
     };
     OpalCheckbox.prototype._onControlFocus = function (evt) {
         var _this = this;
         next_tick_1.nextTick(function () {
             if (document.activeElement == evt.target) {
-                _this.params.focused = true;
+                _this.paramFocused = true;
                 _this.emit('focus');
             }
         });
     };
     OpalCheckbox.prototype._onControlBlur = function () {
-        this.params.focused = false;
+        this.paramFocused = false;
         this.emit('blur');
     };
     Object.defineProperty(OpalCheckbox.prototype, "checked", {
         get: function () {
-            return this.params.checked;
+            return this.paramChecked;
         },
         set: function (checked) {
-            this.params.checked = checked;
+            this.paramChecked = checked;
         },
         enumerable: true,
         configurable: true
@@ -3313,21 +3577,21 @@ var OpalCheckbox = /** @class */ (function (_super) {
         configurable: true
     });
     OpalCheckbox.prototype.check = function () {
-        if (!this.params.checked) {
-            this.params.checked = true;
+        if (!this.paramChecked) {
+            this.paramChecked = true;
             return true;
         }
         return false;
     };
     OpalCheckbox.prototype.uncheck = function () {
-        if (this.params.checked) {
-            this.params.checked = false;
+        if (this.paramChecked) {
+            this.paramChecked = false;
             return true;
         }
         return false;
     };
     OpalCheckbox.prototype.toggle = function (value) {
-        return (this.params.checked = value === undefined ? !this.params.checked : value);
+        return (this.paramChecked = value === undefined ? !this.paramChecked : value);
     };
     OpalCheckbox.prototype.focus = function () {
         this.$('control').focus();
@@ -3338,26 +3602,41 @@ var OpalCheckbox = /** @class */ (function (_super) {
         return this;
     };
     OpalCheckbox.prototype.enable = function () {
-        this.params.disabled = false;
+        this.paramDisabled = false;
         return this;
     };
     OpalCheckbox.prototype.disable = function () {
-        this.params.disabled = true;
+        this.paramDisabled = true;
         return this;
     };
     __decorate([
-        cellx_decorators_1.computed
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalCheckbox.prototype, "paramChecked", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalCheckbox.prototype, "paramIndeterminate", void 0);
+    __decorate([
+        rionite_1.Param({ default: 0 }),
+        __metadata("design:type", Number)
+    ], OpalCheckbox.prototype, "paramTabIndex", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalCheckbox.prototype, "paramFocused", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalCheckbox.prototype, "paramDisabled", void 0);
+    __decorate([
+        cellx_decorators_1.computed,
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [])
     ], OpalCheckbox.prototype, "_tabIndex", null);
     OpalCheckbox = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalCheckbox',
-            params: {
-                checked: false,
-                indeterminate: false,
-                tabIndex: 0,
-                focused: false,
-                disabled: false
-            },
             template: template_nelm_1.default
         })
     ], OpalCheckbox);
@@ -3367,7 +3646,7 @@ exports.OpalCheckbox = OpalCheckbox;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3384,7 +3663,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3392,7 +3671,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-slot/content-slot\n}\n}");
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3415,7 +3694,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var opal_radio_button_1 = __webpack_require__(49);
+var opal_radio_button_1 = __webpack_require__(50);
 exports.OpalRadioButton = opal_radio_button_1.OpalRadioButton;
 var forEach = Array.prototype.forEach;
 var OpalRadioGroup = /** @class */ (function (_super) {
@@ -3454,7 +3733,7 @@ exports.OpalRadioGroup = OpalRadioGroup;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3475,12 +3754,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(50);
-var template_nelm_1 = __webpack_require__(51);
+__webpack_require__(51);
+var template_nelm_1 = __webpack_require__(52);
 var OpalRadioButton = /** @class */ (function (_super) {
     __extends(OpalRadioButton, _super);
     function OpalRadioButton() {
@@ -3488,23 +3770,23 @@ var OpalRadioButton = /** @class */ (function (_super) {
     }
     Object.defineProperty(OpalRadioButton.prototype, "_tabIndex", {
         get: function () {
-            return this.params.disabled ? -1 : this.params.tabIndex;
+            return this.paramDisabled ? -1 : this.paramTabIndex;
         },
         enumerable: true,
         configurable: true
     });
     OpalRadioButton.prototype.ready = function () {
-        if (this.params.checked) {
+        if (this.paramChecked) {
             this.$('input').checked = true;
         }
-        if (this.params.focused) {
+        if (this.paramFocused) {
             this.focus();
         }
     };
     OpalRadioButton.prototype.elementAttached = function () {
         this.listenTo(this, {
-            'param-checked-change': this._onParamCheckedChange,
-            'param-focused-change': this._onParamFocusedChange
+            'change:paramChecked': this._onParamCheckedChange,
+            'change:paramFocused': this._onParamFocusedChange
         });
         this.listenTo('input', 'change', this._onInputChange);
         this.listenTo('control', {
@@ -3528,36 +3810,35 @@ var OpalRadioButton = /** @class */ (function (_super) {
     OpalRadioButton.prototype._onDocumentKeyDown = function (evt) {
         if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
             evt.preventDefault();
-            var params = this.params;
-            if (!params.disabled) {
-                this.emit((params.checked = !params.checked) ? 'check' : 'uncheck');
+            if (!this.paramDisabled) {
+                this.emit((this.paramChecked = !this.paramChecked) ? 'check' : 'uncheck');
                 this.emit('change');
             }
         }
     };
     OpalRadioButton.prototype._onInputChange = function (evt) {
-        this.emit((this.params.checked = evt.target.checked) ? 'check' : 'uncheck');
+        this.emit((this.paramChecked = evt.target.checked) ? 'check' : 'uncheck');
         this.emit('change');
     };
     OpalRadioButton.prototype._onControlFocus = function (evt) {
         var _this = this;
         next_tick_1.nextTick(function () {
             if (document.activeElement == evt.target) {
-                _this.params.focused = true;
+                _this.paramFocused = true;
                 _this.emit('focus');
             }
         });
     };
     OpalRadioButton.prototype._onControlBlur = function () {
-        this.params.focused = false;
+        this.paramFocused = false;
         this.emit('blur');
     };
     Object.defineProperty(OpalRadioButton.prototype, "checked", {
         get: function () {
-            return this.params.checked;
+            return this.paramChecked;
         },
         set: function (checked) {
-            this.params.checked = checked;
+            this.paramChecked = checked;
         },
         enumerable: true,
         configurable: true
@@ -3573,21 +3854,21 @@ var OpalRadioButton = /** @class */ (function (_super) {
         configurable: true
     });
     OpalRadioButton.prototype.check = function () {
-        if (!this.params.checked) {
-            this.params.checked = true;
+        if (!this.paramChecked) {
+            this.paramChecked = true;
             return true;
         }
         return false;
     };
     OpalRadioButton.prototype.uncheck = function () {
-        if (this.params.checked) {
-            this.params.checked = false;
+        if (this.paramChecked) {
+            this.paramChecked = false;
             return true;
         }
         return false;
     };
     OpalRadioButton.prototype.toggle = function (value) {
-        return (this.params.checked = value === undefined ? !this.params.checked : value);
+        return (this.paramChecked = value === undefined ? !this.paramChecked : value);
     };
     OpalRadioButton.prototype.focus = function () {
         this.$('control').focus();
@@ -3598,25 +3879,37 @@ var OpalRadioButton = /** @class */ (function (_super) {
         return this;
     };
     OpalRadioButton.prototype.enable = function () {
-        this.params.disabled = false;
+        this.paramDisabled = false;
         return this;
     };
     OpalRadioButton.prototype.disable = function () {
-        this.params.disabled = true;
+        this.paramDisabled = true;
         return this;
     };
     __decorate([
-        cellx_decorators_1.computed
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalRadioButton.prototype, "paramChecked", void 0);
+    __decorate([
+        rionite_1.Param({ default: 0 }),
+        __metadata("design:type", Number)
+    ], OpalRadioButton.prototype, "paramTabIndex", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalRadioButton.prototype, "paramFocused", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalRadioButton.prototype, "paramDisabled", void 0);
+    __decorate([
+        cellx_decorators_1.computed,
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [])
     ], OpalRadioButton.prototype, "_tabIndex", null);
     OpalRadioButton = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalRadioButton',
-            params: {
-                checked: false,
-                tabIndex: 0,
-                focused: false,
-                disabled: false
-            },
             template: template_nelm_1.default
         })
     ], OpalRadioButton);
@@ -3626,7 +3919,7 @@ exports.OpalRadioButton = OpalRadioButton;
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3643,7 +3936,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3651,7 +3944,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\nrt-slot/content-slot\n}\n}");
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3672,32 +3965,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(53);
-var template_nelm_1 = __webpack_require__(54);
+__webpack_require__(54);
+var template_nelm_1 = __webpack_require__(55);
 var OpalSwitch = /** @class */ (function (_super) {
     __extends(OpalSwitch, _super);
     function OpalSwitch() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     OpalSwitch.prototype._tabIndex = function () {
-        return this.params.disabled ? -1 : this.params.tabIndex;
+        return this.paramDisabled ? -1 : this.paramTabIndex;
     };
     OpalSwitch.prototype.ready = function () {
-        if (this.params.checked) {
+        if (this.paramChecked) {
             this.$('input').checked = true;
         }
-        if (this.params.focused) {
+        if (this.paramFocused) {
             this.focus();
         }
     };
     OpalSwitch.prototype.elementAttached = function () {
         this.listenTo(this, {
-            'param-checked-change': this._onParamCheckedChange,
-            'param-focused-change': this._onParamFocusedChange
+            'change:paramChecked': this._onParamCheckedChange,
+            'change:paramFocused': this._onParamFocusedChange
         });
         this.listenTo('input', 'change', this._onInputChange);
         this.listenTo('control', {
@@ -3721,36 +4017,35 @@ var OpalSwitch = /** @class */ (function (_super) {
     OpalSwitch.prototype._onDocumentKeyDown = function (evt) {
         if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
             evt.preventDefault();
-            var params = this.params;
-            if (!params.disabled) {
-                this.emit((params.checked = !params.checked) ? 'check' : 'uncheck');
+            if (!this.paramDisabled) {
+                this.emit((this.paramChecked = !this.paramChecked) ? 'check' : 'uncheck');
                 this.emit('change');
             }
         }
     };
     OpalSwitch.prototype._onInputChange = function (evt) {
-        this.emit((this.params.checked = evt.target.checked) ? 'check' : 'uncheck');
+        this.emit((this.paramChecked = evt.target.checked) ? 'check' : 'uncheck');
         this.emit('change');
     };
     OpalSwitch.prototype._onControlFocus = function (evt) {
         var _this = this;
         next_tick_1.nextTick(function () {
             if (document.activeElement == evt.target) {
-                _this.params.focused = true;
+                _this.paramFocused = true;
                 _this.emit('focus');
             }
         });
     };
     OpalSwitch.prototype._onControlBlur = function () {
-        this.params.focused = false;
+        this.paramFocused = false;
         this.emit('blur');
     };
     Object.defineProperty(OpalSwitch.prototype, "checked", {
         get: function () {
-            return this.params.checked;
+            return this.paramChecked;
         },
         set: function (checked) {
-            this.params.checked = checked;
+            this.paramChecked = checked;
         },
         enumerable: true,
         configurable: true
@@ -3766,21 +4061,21 @@ var OpalSwitch = /** @class */ (function (_super) {
         configurable: true
     });
     OpalSwitch.prototype.check = function () {
-        if (!this.params.checked) {
-            this.params.checked = true;
+        if (!this.paramChecked) {
+            this.paramChecked = true;
             return true;
         }
         return false;
     };
     OpalSwitch.prototype.uncheck = function () {
-        if (this.params.checked) {
-            this.params.checked = false;
+        if (this.paramChecked) {
+            this.paramChecked = false;
             return true;
         }
         return false;
     };
     OpalSwitch.prototype.toggle = function (value) {
-        return (this.params.checked = value === undefined ? !this.params.checked : value);
+        return (this.paramChecked = value === undefined ? !this.paramChecked : value);
     };
     OpalSwitch.prototype.focus = function () {
         this.$('control').focus();
@@ -3791,25 +4086,38 @@ var OpalSwitch = /** @class */ (function (_super) {
         return this;
     };
     OpalSwitch.prototype.enable = function () {
-        this.params.disabled = false;
+        this.paramDisabled = false;
         return this;
     };
     OpalSwitch.prototype.disable = function () {
-        this.params.disabled = true;
+        this.paramDisabled = true;
         return this;
     };
     __decorate([
-        cellx_decorators_1.computed
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalSwitch.prototype, "paramChecked", void 0);
+    __decorate([
+        rionite_1.Param({ default: 0 }),
+        __metadata("design:type", Number)
+    ], OpalSwitch.prototype, "paramTabIndex", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalSwitch.prototype, "paramFocused", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalSwitch.prototype, "paramDisabled", void 0);
+    __decorate([
+        cellx_decorators_1.computed,
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", Number)
     ], OpalSwitch.prototype, "_tabIndex", null);
     OpalSwitch = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalSwitch',
-            params: {
-                checked: false,
-                tabIndex: 0,
-                focused: false,
-                disabled: false
-            },
             template: template_nelm_1.default
         })
     ], OpalSwitch);
@@ -3819,7 +4127,7 @@ exports.OpalSwitch = OpalSwitch;
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3836,7 +4144,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3844,7 +4152,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) {\nspan/thumb\n}\n' '\nrt-slot/content-slot\n}\n}");
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3865,11 +4173,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(56);
-var template_nelm_1 = __webpack_require__(57);
+__webpack_require__(57);
+var template_nelm_1 = __webpack_require__(58);
 var OpalSlider = /** @class */ (function (_super) {
     __extends(OpalSlider, _super);
     function OpalSlider() {
@@ -3877,8 +4188,8 @@ var OpalSlider = /** @class */ (function (_super) {
     }
     Object.defineProperty(OpalSlider.prototype, "_firstInputWidth", {
         get: function () {
-            var min = this.params.min;
-            var all = this.params.max - min;
+            var min = this.paramMin;
+            var all = this.paramMax - min;
             return (Math.round(((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) /
                 2 *
                 1e5) / 1e3);
@@ -3887,14 +4198,14 @@ var OpalSlider = /** @class */ (function (_super) {
         configurable: true
     });
     OpalSlider.prototype.initialize = function () {
-        var range = this.params.range;
+        var range = this.paramRange;
         if (range) {
             this._firstInputValue = range[0];
             this._secondInputValue = range[1];
         }
     };
     OpalSlider.prototype.elementAttached = function () {
-        if (this.params.range) {
+        if (this.paramRange) {
             this.listenTo('first-input', 'input', this._onFirstInputInput);
             this.listenTo('second-input', 'input', this._onSecondInputInput);
         }
@@ -3915,12 +4226,12 @@ var OpalSlider = /** @class */ (function (_super) {
     };
     Object.defineProperty(OpalSlider.prototype, "value", {
         get: function () {
-            return this.params.range
+            return this.paramRange
                 ? [this._firstInputValue, this._secondInputValue]
                 : +this.$('input').value;
         },
         set: function (value) {
-            if (this.params.range) {
+            if (this.paramRange) {
                 this.$('first-input').value = this._firstInputValue = value[0];
                 this.$('second-input').value = this._secondInputValue = value[1];
             }
@@ -3932,24 +4243,41 @@ var OpalSlider = /** @class */ (function (_super) {
         configurable: true
     });
     __decorate([
-        cellx_decorators_1.observable
+        rionite_1.Param({ default: 0 }),
+        __metadata("design:type", Number)
+    ], OpalSlider.prototype, "paramMin", void 0);
+    __decorate([
+        rionite_1.Param({ default: 100 }),
+        __metadata("design:type", Number)
+    ], OpalSlider.prototype, "paramMax", void 0);
+    __decorate([
+        rionite_1.Param({ default: 1 }),
+        __metadata("design:type", Number)
+    ], OpalSlider.prototype, "paramStep", void 0);
+    __decorate([
+        rionite_1.Param({ default: 0 }),
+        __metadata("design:type", Number)
+    ], OpalSlider.prototype, "paramValue", void 0);
+    __decorate([
+        rionite_1.Param({ type: eval }),
+        __metadata("design:type", Array)
+    ], OpalSlider.prototype, "paramRange", void 0);
+    __decorate([
+        cellx_decorators_1.observable,
+        __metadata("design:type", Number)
     ], OpalSlider.prototype, "_firstInputValue", void 0);
     __decorate([
-        cellx_decorators_1.observable
+        cellx_decorators_1.observable,
+        __metadata("design:type", Number)
     ], OpalSlider.prototype, "_secondInputValue", void 0);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [])
     ], OpalSlider.prototype, "_firstInputWidth", null);
     OpalSlider = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalSlider',
-            params: {
-                min: 0,
-                max: 100,
-                step: 1,
-                value: 0,
-                range: eval
-            },
             template: template_nelm_1.default
         })
     ], OpalSlider);
@@ -3959,7 +4287,7 @@ exports.OpalSlider = OpalSlider;
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3976,15 +4304,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=params.range) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={params.min},\nmax={params.max},\nstep={params.step},\nvalue={params.range.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (\ntype=range,\nmin={params.min},\nmax={params.max},\nstep={params.step},\nvalue={params.range.1}\n)\n}\n}\n@if-else (if=params.range) {\ninput/input (\ntype=range,\nmin={params.min},\nmax={params.max},\nstep={params.step},\nvalue={params.value}\n)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=paramRange) {\ndiv/first-input-wrapper3 {\ndiv/first-input-wrapper2 (style=width: {_firstInputWidth}%) {\ndiv/first-input-wrapper {\ninput/first-input (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramRange.0}\n)\n}\n}\n}\ndiv/second-input-wrapper {\ninput/second-input (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramRange.1}\n)\n}\n}\n@if-else (if=paramRange) {\ninput/input (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramValue}\n)\n}\n}");
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4007,8 +4335,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(59);
-var template_nelm_1 = __webpack_require__(60);
+__webpack_require__(60);
+var template_nelm_1 = __webpack_require__(61);
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
 var OpalSwitchMenu = /** @class */ (function (_super) {
@@ -4084,7 +4412,7 @@ exports.OpalSwitchMenu = OpalSwitchMenu;
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -4101,7 +4429,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4109,7 +4437,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot/content-slot\n}");
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4132,12 +4460,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(62);
+__webpack_require__(63);
 var opal_tab_list_1 = __webpack_require__(9);
 exports.OpalTab = opal_tab_list_1.OpalTab;
-var opal_tab_panel_1 = __webpack_require__(68);
+var opal_tab_panel_1 = __webpack_require__(69);
 exports.OpalTabPanel = opal_tab_panel_1.OpalTabPanel;
-var template_nelm_1 = __webpack_require__(71);
+var template_nelm_1 = __webpack_require__(72);
 var opal_tab_list_2 = __webpack_require__(9);
 exports.OpalTabList = opal_tab_list_2.OpalTabList;
 var indexOf = Array.prototype.indexOf;
@@ -4173,7 +4501,7 @@ var OpalTabs = /** @class */ (function (_super) {
             selectedTabIndex = 0;
             selectedTab.select();
         }
-        tabPanels[selectedTabIndex].$component.params.shown = true;
+        tabPanels[selectedTabIndex].$component.paramShown = true;
     };
     OpalTabs.prototype.elementAttached = function () {
         this.listenTo(this.element.getElementsByClassName('OpalTabList')[0].$component, {
@@ -4188,10 +4516,10 @@ var OpalTabs = /** @class */ (function (_super) {
         evt.target.select();
     };
     OpalTabs.prototype.goToTab = function (label) {
-        if (this._selectedTab && this._selectedTab.params.label === label) {
+        if (this._selectedTab && this._selectedTab.paramLabel === label) {
             return true;
         }
-        var tab = find.call(this.tabs, function (tab) { return tab.$component.params.label == label; });
+        var tab = find.call(this.tabs, function (tab) { return tab.$component.paramLabel == label; });
         if (tab) {
             this._selectTab(tab.$component);
             return true;
@@ -4201,10 +4529,10 @@ var OpalTabs = /** @class */ (function (_super) {
     OpalTabs.prototype._selectTab = function (tab) {
         var selectedTab = this._selectedTab;
         if (selectedTab) {
-            this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$component.params.shown = false;
+            this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$component.paramShown = false;
             selectedTab.deselect();
         }
-        this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.params.shown = true;
+        this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.paramShown = true;
         tab.select();
         this._selectedTab = tab;
     };
@@ -4220,7 +4548,7 @@ exports.OpalTabs = OpalTabs;
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -4237,7 +4565,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -4254,7 +4582,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4275,12 +4603,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(65);
-var template_nelm_1 = __webpack_require__(66);
+__webpack_require__(66);
+var template_nelm_1 = __webpack_require__(67);
 var OpalTab = /** @class */ (function (_super) {
     __extends(OpalTab, _super);
     function OpalTab() {
@@ -4288,13 +4619,13 @@ var OpalTab = /** @class */ (function (_super) {
     }
     Object.defineProperty(OpalTab.prototype, "_tabIndex", {
         get: function () {
-            return this.params.disabled ? -1 : this.params.tabIndex;
+            return this.paramDisabled ? -1 : this.paramTabIndex;
         },
         enumerable: true,
         configurable: true
     });
     OpalTab.prototype.elementAttached = function () {
-        this.listenTo(this, 'param-focused-change', this._onParamFocusedChange);
+        this.listenTo(this, 'change:paramFocused', this._onParamFocusedChange);
         this.listenTo('control', {
             focus: this._onControlFocus,
             blur: this._onControlBlur,
@@ -4302,7 +4633,7 @@ var OpalTab = /** @class */ (function (_super) {
         });
     };
     OpalTab.prototype.ready = function () {
-        if (this.params.focused) {
+        if (this.paramFocused) {
             this.focus();
         }
     };
@@ -4318,16 +4649,16 @@ var OpalTab = /** @class */ (function (_super) {
         var _this = this;
         next_tick_1.nextTick(function () {
             if (document.activeElement == evt.target) {
-                _this.params.focused = true;
+                _this.paramFocused = true;
             }
         });
     };
     OpalTab.prototype._onControlBlur = function () {
-        this.params.focused = false;
+        this.paramFocused = false;
     };
     OpalTab.prototype._onControlClick = function (evt) {
         evt.preventDefault();
-        if (!this.params.disabled) {
+        if (!this.paramDisabled) {
             this.click();
         }
     };
@@ -4337,30 +4668,30 @@ var OpalTab = /** @class */ (function (_super) {
     };
     Object.defineProperty(OpalTab.prototype, "selected", {
         get: function () {
-            return this.params.selected;
+            return this.paramSelected;
         },
         set: function (selected) {
-            this.params.selected = selected;
+            this.paramSelected = selected;
         },
         enumerable: true,
         configurable: true
     });
     OpalTab.prototype.select = function () {
-        if (!this.params.selected) {
-            this.params.selected = true;
+        if (!this.paramSelected) {
+            this.paramSelected = true;
             return true;
         }
         return false;
     };
     OpalTab.prototype.deselect = function () {
-        if (this.params.selected) {
-            this.params.selected = false;
+        if (this.paramSelected) {
+            this.paramSelected = false;
             return true;
         }
         return false;
     };
     OpalTab.prototype.toggle = function (value) {
-        return (this.params.selected = value === undefined ? !this.params.selected : value);
+        return (this.paramSelected = value === undefined ? !this.paramSelected : value);
     };
     OpalTab.prototype.focus = function () {
         this.$('control').focus();
@@ -4371,26 +4702,41 @@ var OpalTab = /** @class */ (function (_super) {
         return this;
     };
     OpalTab.prototype.enable = function () {
-        this.params.disabled = false;
+        this.paramDisabled = false;
         return this;
     };
     OpalTab.prototype.disable = function () {
-        this.params.disabled = true;
+        this.paramDisabled = true;
         return this;
     };
     __decorate([
-        cellx_decorators_1.computed
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalTab.prototype, "paramLabel", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalTab.prototype, "paramSelected", void 0);
+    __decorate([
+        rionite_1.Param({ default: 0 }),
+        __metadata("design:type", Number)
+    ], OpalTab.prototype, "paramTabIndex", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalTab.prototype, "paramFocused", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalTab.prototype, "paramDisabled", void 0);
+    __decorate([
+        cellx_decorators_1.computed,
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [])
     ], OpalTab.prototype, "_tabIndex", null);
     OpalTab = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalTab',
-            params: {
-                label: String,
-                selected: false,
-                tabIndex: 0,
-                focused: false,
-                disabled: false
-            },
             template: template_nelm_1.default
         })
     ], OpalTab);
@@ -4400,7 +4746,7 @@ exports.OpalTab = OpalTab;
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -4417,7 +4763,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4425,7 +4771,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-slot/content-slot\n}\n}");
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4433,7 +4779,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot/content-slot\n}");
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4454,12 +4800,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(69);
-var template_nelm_1 = __webpack_require__(70);
+__webpack_require__(70);
+var template_nelm_1 = __webpack_require__(71);
 var OpalTabPanel = /** @class */ (function (_super) {
     __extends(OpalTabPanel, _super);
     function OpalTabPanel() {
@@ -4468,7 +4817,7 @@ var OpalTabPanel = /** @class */ (function (_super) {
         return _this;
     }
     OpalTabPanel.prototype.initialize = function () {
-        this.listenTo(this, 'param-shown-change', this._onParamShownChange);
+        this.listenTo(this, 'change:paramShown', this._onParamShownChange);
     };
     OpalTabPanel.prototype._onParamShownChange = function (evt) {
         if (evt.data.value) {
@@ -4480,14 +4829,16 @@ var OpalTabPanel = /** @class */ (function (_super) {
         cellx_1.Cell.forceRelease();
     };
     __decorate([
-        cellx_decorators_1.observable
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalTabPanel.prototype, "paramShown", void 0);
+    __decorate([
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalTabPanel.prototype, "isContentRendered", void 0);
     OpalTabPanel = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalTabPanel',
-            params: {
-                shown: false
-            },
             template: template_nelm_1.default
         })
     ], OpalTabPanel);
@@ -4497,7 +4848,7 @@ exports.OpalTabPanel = OpalTabPanel;
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -4514,7 +4865,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4522,7 +4873,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=isContentRendered) {\nrt-slot/content-slot\n}\n}");
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4530,7 +4881,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot/tab-list-slot (for-tag=opal-tab-list) {\nopal-tab-list/tab-list {\nrt-slot/tabs, tabs (for-tag=opal-tab)\n}\n}\nrt-slot/tab-panels, tab-panels (for-tag=opal-tab-panel)\n}");
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4551,12 +4902,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(73);
-var template_nelm_1 = __webpack_require__(74);
+__webpack_require__(74);
+var template_nelm_1 = __webpack_require__(75);
 var openedDropdowns = [];
 var OpalDropdown = /** @class */ (function (_super) {
     __extends(OpalDropdown, _super);
@@ -4566,12 +4920,12 @@ var OpalDropdown = /** @class */ (function (_super) {
         return _this;
     }
     OpalDropdown.prototype.ready = function () {
-        if (this.params.opened) {
+        if (this.paramOpened) {
             this._open();
         }
     };
     OpalDropdown.prototype.elementAttached = function () {
-        this.listenTo(this, 'param-opened-change', this._onParamOpenedChange);
+        this.listenTo(this, 'change:paramOpened', this._onParamOpenedChange);
     };
     OpalDropdown.prototype._onParamOpenedChange = function (evt) {
         if (evt.data.value) {
@@ -4586,18 +4940,18 @@ var OpalDropdown = /** @class */ (function (_super) {
         cellx_1.Cell.forceRelease();
     };
     OpalDropdown.prototype.open = function () {
-        if (this.params.opened) {
+        if (this.paramOpened) {
             return false;
         }
-        this.params.opened = true;
+        this.paramOpened = true;
         cellx_1.Cell.forceRelease();
         return true;
     };
     OpalDropdown.prototype.close = function () {
-        if (!this.params.opened) {
+        if (!this.paramOpened) {
             return false;
         }
-        this.params.opened = false;
+        this.paramOpened = false;
         cellx_1.Cell.forceRelease();
         return true;
     };
@@ -4646,7 +5000,7 @@ var OpalDropdown = /** @class */ (function (_super) {
         if (excess > 0) {
             var diff = containerClientRect.top -
                 (document.documentElement.clientHeight - containerClientRect.bottom);
-            if (this.params.autoHeight) {
+            if (this.paramAutoHeight) {
                 if (diff > 0) {
                     elStyle.top = 'auto';
                     elStyle.bottom = '100%';
@@ -4664,9 +5018,9 @@ var OpalDropdown = /** @class */ (function (_super) {
                 elStyle.bottom = '100%';
             }
         }
-        if (this.params.autoClosing) {
+        if (this.paramAutoClosing) {
             setTimeout(function () {
-                if (_this.params.opened) {
+                if (_this.paramOpened) {
                     _this._documentClickListening = _this.listenTo(document, 'click', _this._onDocumentClick);
                 }
             }, 1);
@@ -4694,16 +5048,24 @@ var OpalDropdown = /** @class */ (function (_super) {
         }
     };
     __decorate([
-        cellx_decorators_1.observable
+        rionite_1.Param({ default: true }),
+        __metadata("design:type", Boolean)
+    ], OpalDropdown.prototype, "paramAutoHeight", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalDropdown.prototype, "paramAutoClosing", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalDropdown.prototype, "paramOpened", void 0);
+    __decorate([
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalDropdown.prototype, "isContentRendered", void 0);
     OpalDropdown = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalDropdown',
-            params: {
-                autoHeight: true,
-                autoClosing: false,
-                opened: false
-            },
             template: template_nelm_1.default
         })
     ], OpalDropdown);
@@ -4713,7 +5075,7 @@ exports.OpalDropdown = OpalDropdown;
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -4730,7 +5092,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4738,7 +5100,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@if-then (if=isContentRendered) {\nrt-slot/content-slot\n}\n}");
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4759,12 +5121,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(76);
-var template_nelm_1 = __webpack_require__(77);
+__webpack_require__(77);
+var template_nelm_1 = __webpack_require__(78);
 var OpalPopover = /** @class */ (function (_super) {
     __extends(OpalPopover, _super);
     function OpalPopover() {
@@ -4773,12 +5138,12 @@ var OpalPopover = /** @class */ (function (_super) {
         return _this;
     }
     OpalPopover.prototype.ready = function () {
-        if (this.params.opened) {
+        if (this.paramOpened) {
             this._open();
         }
     };
     OpalPopover.prototype.elementAttached = function () {
-        this.listenTo(this, 'param-opened-change', this._onParamOpenedChange);
+        this.listenTo(this, 'change:paramOpened', this._onParamOpenedChange);
     };
     OpalPopover.prototype._onParamOpenedChange = function (evt) {
         if (evt.data.value) {
@@ -4793,18 +5158,18 @@ var OpalPopover = /** @class */ (function (_super) {
         cellx_1.Cell.forceRelease();
     };
     OpalPopover.prototype.open = function () {
-        if (this.params.opened) {
+        if (this.paramOpened) {
             return false;
         }
-        this.params.opened = true;
+        this.paramOpened = true;
         cellx_1.Cell.forceRelease();
         return true;
     };
     OpalPopover.prototype.close = function () {
-        if (!this.params.opened) {
+        if (!this.paramOpened) {
             return false;
         }
-        this.params.opened = false;
+        this.paramOpened = false;
         cellx_1.Cell.forceRelease();
         return true;
     };
@@ -4827,18 +5192,18 @@ var OpalPopover = /** @class */ (function (_super) {
     OpalPopover.prototype._open$ = function () {
         var _this = this;
         var el = this.element;
-        if (this.params.autoDirection) {
+        if (this.paramAutoDirection) {
             var docEl = document.documentElement;
             var containerClientRect = el.offsetParent.getBoundingClientRect();
             var elClientRect = el.getBoundingClientRect();
-            var position_1 = (this._positionOnOpen = this.params.position).split('-');
+            var position_1 = (this._positionOnOpen = this.paramPosition).split('-');
             switch (position_1[0]) {
                 case 'left': {
                     if (elClientRect.left + document.body.scrollLeft < 0 ||
                         (elClientRect.left < 0 &&
                             containerClientRect.left <
                                 docEl.clientWidth - containerClientRect.right)) {
-                        this.params.position =
+                        this.paramPosition =
                             'right' + (position_1.length == 2 ? '-' + position_1[1] : '');
                     }
                     break;
@@ -4848,7 +5213,7 @@ var OpalPopover = /** @class */ (function (_super) {
                         (elClientRect.top < 0 &&
                             containerClientRect.top <
                                 docEl.clientHeight - containerClientRect.bottom)) {
-                        this.params.position =
+                        this.paramPosition =
                             'bottom' + (position_1.length == 2 ? '-' + position_1[1] : '');
                     }
                     break;
@@ -4858,7 +5223,7 @@ var OpalPopover = /** @class */ (function (_super) {
                         containerClientRect.left > docEl.clientWidth - containerClientRect.right &&
                         containerClientRect.left + document.body.scrollLeft >=
                             elClientRect.right - containerClientRect.right) {
-                        this.params.position =
+                        this.paramPosition =
                             'left' + (position_1.length == 2 ? '-' + position_1[1] : '');
                     }
                     break;
@@ -4868,14 +5233,14 @@ var OpalPopover = /** @class */ (function (_super) {
                         containerClientRect.top > docEl.clientHeight - containerClientRect.bottom &&
                         containerClientRect.top + document.body.scrollTop >=
                             elClientRect.bottom - containerClientRect.bottom) {
-                        this.params.position =
+                        this.paramPosition =
                             'top' + (position_1.length == 2 ? '-' + position_1[1] : '');
                     }
                     break;
                 }
             }
         }
-        var position = this.params.position.split('-');
+        var position = this.paramPosition.split('-');
         var arrowStyle = this.$('arrow').style;
         arrowStyle.top = arrowStyle.right = arrowStyle.bottom = arrowStyle.left = '';
         if (position.length == 2) {
@@ -4884,17 +5249,17 @@ var OpalPopover = /** @class */ (function (_super) {
                     2 +
                     'px';
         }
-        if (this.params.autoClosing) {
+        if (this.paramAutoClosing) {
             setTimeout(function () {
-                if (_this.params.opened) {
+                if (_this.paramOpened) {
                     _this._documentClickListening = _this.listenTo(document, 'click', _this._onDocumentClick);
                 }
             }, 1);
         }
     };
     OpalPopover.prototype._close = function () {
-        if (this.params.autoDirection) {
-            this.params.position = this._positionOnOpen;
+        if (this.paramAutoDirection) {
+            this.paramPosition = this._positionOnOpen;
         }
         if (this._documentClickListening) {
             this._documentClickListening.stop();
@@ -4917,17 +5282,28 @@ var OpalPopover = /** @class */ (function (_super) {
         }
     };
     __decorate([
-        cellx_decorators_1.observable
+        rionite_1.Param({ default: 'right' }),
+        __metadata("design:type", String)
+    ], OpalPopover.prototype, "paramPosition", void 0);
+    __decorate([
+        rionite_1.Param({ default: true }),
+        __metadata("design:type", Boolean)
+    ], OpalPopover.prototype, "paramAutoDirection", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalPopover.prototype, "paramAutoClosing", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalPopover.prototype, "paramOpened", void 0);
+    __decorate([
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalPopover.prototype, "isContentRendered", void 0);
     OpalPopover = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalPopover',
-            params: {
-                position: 'right',
-                autoDirection: true,
-                autoClosing: false,
-                opened: false
-            },
             template: template_nelm_1.default
         })
     ], OpalPopover);
@@ -4937,7 +5313,7 @@ exports.OpalPopover = OpalPopover;
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -4954,7 +5330,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4962,7 +5338,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/arrow\n@if-then (if=isContentRendered) {\nrt-slot/content-slot\n}\n}");
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4983,13 +5359,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 var isFocusable_1 = __webpack_require__(5);
-__webpack_require__(79);
-var template_nelm_1 = __webpack_require__(80);
+__webpack_require__(80);
+var template_nelm_1 = __webpack_require__(81);
 var openedModals = [];
 var documentFocusListening;
 var documentKeyUpListening;
@@ -5015,12 +5394,12 @@ var OpalModal = /** @class */ (function (_super) {
         return _this;
     }
     OpalModal.prototype.ready = function () {
-        if (this.params.opened) {
+        if (this.paramOpened) {
             this._open();
         }
     };
     OpalModal.prototype.elementAttached = function () {
-        this.listenTo(this, 'param-opened-change', this._onParamOpenedChange);
+        this.listenTo(this, 'change:paramOpened', this._onParamOpenedChange);
         this.listenTo(this.element, 'click', this._onElementClick);
     };
     OpalModal.prototype.elementDetached = function () {
@@ -5054,18 +5433,18 @@ var OpalModal = /** @class */ (function (_super) {
         cellx_1.Cell.forceRelease();
     };
     OpalModal.prototype.open = function () {
-        if (this.params.opened) {
+        if (this.paramOpened) {
             return false;
         }
-        this.params.opened = true;
+        this.paramOpened = true;
         cellx_1.Cell.forceRelease();
         return true;
     };
     OpalModal.prototype.close = function () {
-        if (!this.params.opened) {
+        if (!this.paramOpened) {
             return false;
         }
-        this.params.opened = false;
+        this.paramOpened = false;
         cellx_1.Cell.forceRelease();
         return true;
     };
@@ -5120,14 +5499,16 @@ var OpalModal = /** @class */ (function (_super) {
         return this;
     };
     __decorate([
-        cellx_decorators_1.observable
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalModal.prototype, "paramOpened", void 0);
+    __decorate([
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalModal.prototype, "isContentRendered", void 0);
     OpalModal = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalModal',
-            params: {
-                opened: false
-            },
             template: template_nelm_1.default,
             domEvents: {
                 'btn-close': {
@@ -5145,7 +5526,7 @@ exports.OpalModal = OpalModal;
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -5162,7 +5543,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5170,7 +5551,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/window {\ndiv/btn-close-wrapper {\nbutton/btn-close\n}\n@if-then (if=isContentRendered) {\nrt-slot/content-slot\n}\n}\n}");
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5191,12 +5572,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var map_set_polyfill_1 = __webpack_require__(82);
+var map_set_polyfill_1 = __webpack_require__(83);
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(83);
-var template_nelm_1 = __webpack_require__(84);
+__webpack_require__(84);
+var template_nelm_1 = __webpack_require__(85);
 var container;
 var shownNotifications = new map_set_polyfill_1.Set();
 function initContainer(notification) {
@@ -5222,18 +5606,15 @@ var OpalNotification = /** @class */ (function (_super) {
         initContainer(this);
         var bar = (this.bar = this.$('bar', this));
         this.element.removeChild(bar);
-        bar.setAttribute('view-type', this.params.viewType);
-        bar.setAttribute('icon-size', this.params.iconSize);
-        bar.setAttribute('button-hide', this.params.buttonHide);
         if (this.$('icon')) {
             bar.setAttribute('has-icon', '');
         }
-        if (this.params.shown) {
+        if (this.paramShown) {
             this._show();
         }
     };
     OpalNotification.prototype.elementAttached = function () {
-        this.listenTo(this, 'param-shown-change', this._onParamShownChange);
+        this.listenTo(this, 'change:paramShown', this._onParamShownChange);
         this.listenTo('btn-hide', 'click', this._onBtnHideClick);
     };
     OpalNotification.prototype.elementDetached = function () {
@@ -5253,18 +5634,18 @@ var OpalNotification = /** @class */ (function (_super) {
         this.emit('close');
     };
     OpalNotification.prototype.show = function () {
-        if (this.params.shown) {
+        if (this.paramShown) {
             return false;
         }
-        this.params.shown = true;
+        this.paramShown = true;
         cellx_1.Cell.forceRelease();
         return true;
     };
     OpalNotification.prototype.hide = function () {
-        if (!this.params.shown) {
+        if (!this.paramShown) {
             return false;
         }
-        this.params.shown = false;
+        this.paramShown = false;
         cellx_1.Cell.forceRelease();
         return true;
     };
@@ -5286,10 +5667,10 @@ var OpalNotification = /** @class */ (function (_super) {
         container.appendChild(this.bar);
         setTimeout(function () {
             _this.bar.setAttribute('shown', '');
-            if (_this.params.timeout) {
+            if (_this.paramTimeout) {
                 setTimeout(function () {
                     _this.hide();
-                }, _this.params.timeout);
+                }, _this.paramTimeout);
             }
         }, 100);
     };
@@ -5306,16 +5687,29 @@ var OpalNotification = /** @class */ (function (_super) {
         }
         return this;
     };
+    __decorate([
+        rionite_1.Param({ default: 'default' }),
+        __metadata("design:type", String)
+    ], OpalNotification.prototype, "paramViewType", void 0);
+    __decorate([
+        rionite_1.Param({ default: 'm' }),
+        __metadata("design:type", String)
+    ], OpalNotification.prototype, "paramIconSize", void 0);
+    __decorate([
+        rionite_1.Param({ default: true }),
+        __metadata("design:type", Boolean)
+    ], OpalNotification.prototype, "paramButtonHide", void 0);
+    __decorate([
+        rionite_1.Param({ default: 0 }),
+        __metadata("design:type", Number)
+    ], OpalNotification.prototype, "paramTimeout", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalNotification.prototype, "paramShown", void 0);
     OpalNotification = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalNotification',
-            params: {
-                viewType: 'default',
-                iconSize: 'm',
-                buttonHide: true,
-                timeout: 0,
-                shown: false
-            },
             template: template_nelm_1.default
         })
     ], OpalNotification);
@@ -5325,13 +5719,13 @@ exports.OpalNotification = OpalNotification;
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_82__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_83__;
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -5348,15 +5742,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/bar {\nrt-slot/icon-slot (for=icon)\nrt-slot/content-slot\nbutton/btn-hide (hide={params.buttonHide |not }) {\nsvg/btn-hide-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-close)\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/bar (view-type={paramViewType}, icon-size={paramIconSize}, button-hide={paramButtonHide}) {\nrt-slot/icon-slot (for=icon)\nrt-slot/content-slot\nbutton/btn-hide (hide={paramButtonHide |not }) {\nsvg/btn-hide-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-close)\n}\n}\n}\n}");
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -5373,7 +5767,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5394,10 +5788,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(87);
-var template_nelm_1 = __webpack_require__(88);
+__webpack_require__(88);
+var template_nelm_1 = __webpack_require__(89);
 var OpalInputValidatorRule = /** @class */ (function (_super) {
     __extends(OpalInputValidatorRule, _super);
     function OpalInputValidatorRule() {
@@ -5409,14 +5806,21 @@ var OpalInputValidatorRule = /** @class */ (function (_super) {
     OpalInputValidatorRule.prototype.hideMessage = function () {
         this.$('popover').close();
     };
+    __decorate([
+        rionite_1.Param({ default: false, readonly: true }),
+        __metadata("design:type", Boolean)
+    ], OpalInputValidatorRule.prototype, "paramRequired", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Function)
+    ], OpalInputValidatorRule.prototype, "paramTest", void 0);
+    __decorate([
+        rionite_1.Param({ default: 'right' }),
+        __metadata("design:type", String)
+    ], OpalInputValidatorRule.prototype, "paramPopoverPosition", void 0);
     OpalInputValidatorRule = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalInputValidatorRule',
-            params: {
-                required: { default: false, readonly: true },
-                test: { type: Object, readonly: true },
-                popoverPosition: 'right'
-            },
             template: template_nelm_1.default
         })
     ], OpalInputValidatorRule);
@@ -5426,7 +5830,7 @@ exports.OpalInputValidatorRule = OpalInputValidatorRule;
 
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -5443,15 +5847,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-popover/popover (position={params.popoverPosition}) {\nrt-slot/content-slot\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-popover/popover (position={paramPopoverPosition}) {\nrt-slot/content-slot\n}\n}");
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5459,7 +5863,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot/content-slot\n}");
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5482,8 +5886,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var opal_input_validator_1 = __webpack_require__(6);
-__webpack_require__(91);
-var opal_text_input_validator_rule_1 = __webpack_require__(92);
+__webpack_require__(92);
+var opal_text_input_validator_rule_1 = __webpack_require__(93);
 exports.OpalTextInputValidatorRule = opal_text_input_validator_rule_1.OpalTextInputValidatorRule;
 var OpalTextInputValidator = /** @class */ (function (_super) {
     __extends(OpalTextInputValidator, _super);
@@ -5505,12 +5909,11 @@ var OpalTextInputValidator = /** @class */ (function (_super) {
     };
     OpalTextInputValidator.prototype._checkValue = function (rule) {
         var value = this.textInput.value;
-        var ruleParams = rule.params;
         return !(value
-            ? (ruleParams.minLength && value.length < ruleParams.minLength) ||
-                (ruleParams.regex && !ruleParams.regex.test(value)) ||
-                (ruleParams.test && !ruleParams.test.call(this.ownerComponent, value))
-            : ruleParams.required);
+            ? (rule.paramMinLength && value.length < rule.paramMinLength) ||
+                (rule.paramRegex && !rule.paramRegex.test(value)) ||
+                (rule.paramTest && !rule.paramTest.call(this.ownerComponent, value))
+            : rule.paramRequired);
     };
     OpalTextInputValidator = __decorate([
         opal_input_validator_1.OpalInputValidator.Config({
@@ -5523,7 +5926,7 @@ exports.OpalTextInputValidator = OpalTextInputValidator;
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -5537,49 +5940,6 @@ module.exports = (function(d) {
         }
         return null;
     })(document);
-
-
-/***/ }),
-/* 92 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var opal_input_validator_1 = __webpack_require__(6);
-var OpalTextInputValidatorRule = /** @class */ (function (_super) {
-    __extends(OpalTextInputValidatorRule, _super);
-    function OpalTextInputValidatorRule() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    OpalTextInputValidatorRule = __decorate([
-        opal_input_validator_1.OpalInputValidatorRule.Config({
-            elementIs: 'OpalTextInputValidatorRule',
-            params: {
-                minLength: { type: Number, readonly: true },
-                regex: { type: eval, readonly: true }
-            }
-        })
-    ], OpalTextInputValidatorRule);
-    return OpalTextInputValidatorRule;
-}(opal_input_validator_1.OpalInputValidatorRule));
-exports.OpalTextInputValidatorRule = OpalTextInputValidatorRule;
 
 
 /***/ }),
@@ -5604,14 +5964,68 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var rionite_1 = __webpack_require__(0);
+var opal_input_validator_1 = __webpack_require__(6);
+var OpalTextInputValidatorRule = /** @class */ (function (_super) {
+    __extends(OpalTextInputValidatorRule, _super);
+    function OpalTextInputValidatorRule() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Number)
+    ], OpalTextInputValidatorRule.prototype, "paramMinLength", void 0);
+    __decorate([
+        rionite_1.Param({ type: eval, readonly: true }),
+        __metadata("design:type", RegExp)
+    ], OpalTextInputValidatorRule.prototype, "paramRegex", void 0);
+    OpalTextInputValidatorRule = __decorate([
+        opal_input_validator_1.OpalInputValidatorRule.Config({
+            elementIs: 'OpalTextInputValidatorRule'
+        })
+    ], OpalTextInputValidatorRule);
+    return OpalTextInputValidatorRule;
+}(opal_input_validator_1.OpalInputValidatorRule));
+exports.OpalTextInputValidatorRule = OpalTextInputValidatorRule;
+
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var formatDate_1 = __webpack_require__(94);
-__webpack_require__(95);
+var formatDate_1 = __webpack_require__(95);
+__webpack_require__(96);
 var parseDate_1 = __webpack_require__(10);
-var template_nelm_1 = __webpack_require__(96);
+var template_nelm_1 = __webpack_require__(97);
 function getTodayDate() {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -5621,7 +6035,7 @@ var OpalCalendar = /** @class */ (function (_super) {
     function OpalCalendar() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.days = function (_, next) {
-            var dateDelimiter = this.params.dateDelimiter;
+            var dateDelimiter = this.paramDateDelimiter;
             var fromDate = this.fromDate;
             var toDate = this.toDate;
             var value = this.value;
@@ -5692,11 +6106,11 @@ var OpalCalendar = /** @class */ (function (_super) {
     OpalCalendar_1 = OpalCalendar;
     Object.defineProperty(OpalCalendar.prototype, "fromDate", {
         get: function () {
-            var fromDate = this.params.fromDate;
+            var fromDate = this.paramFromDate;
             if (fromDate) {
                 return fromDate == 'today' ? getTodayDate() : parseDate_1.parseDate(fromDate);
             }
-            var toDate = this.params.toDate;
+            var toDate = this.paramToDate;
             var date = toDate && toDate != 'today' ? parseDate_1.parseDate(toDate) : new Date();
             return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
         },
@@ -5705,11 +6119,11 @@ var OpalCalendar = /** @class */ (function (_super) {
     });
     Object.defineProperty(OpalCalendar.prototype, "toDate", {
         get: function () {
-            var toDate = this.params.toDate;
+            var toDate = this.paramToDate;
             if (toDate) {
                 return toDate == 'today' ? getTodayDate() : parseDate_1.parseDate(toDate);
             }
-            var fromDate = this.params.fromDate;
+            var fromDate = this.paramFromDate;
             var date = fromDate && fromDate != 'today' ? parseDate_1.parseDate(fromDate) : new Date();
             return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
         },
@@ -5743,7 +6157,7 @@ var OpalCalendar = /** @class */ (function (_super) {
     });
     Object.defineProperty(OpalCalendar.prototype, "stringValue", {
         get: function () {
-            return this.params.value;
+            return this.paramValue;
         },
         set: function (value) {
             this.stringValueCell.set(value);
@@ -5846,50 +6260,81 @@ var OpalCalendar = /** @class */ (function (_super) {
         this.emit('change');
     };
     __decorate([
-        cellx_decorators_1.computed
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalCalendar.prototype, "paramFromDate", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalCalendar.prototype, "paramToDate", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalCalendar.prototype, "paramValue", void 0);
+    __decorate([
+        rionite_1.Param({ default: '/' }),
+        __metadata("design:type", String)
+    ], OpalCalendar.prototype, "paramDateDelimiter", void 0);
+    __decorate([
+        cellx_decorators_1.computed,
+        __metadata("design:type", Date),
+        __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "fromDate", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Date),
+        __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "toDate", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "fromYear", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "toYear", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Array),
+        __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "years", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
     ], OpalCalendar.prototype, "stringValue", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "value", null);
     __decorate([
-        cellx_decorators_1.observable
+        cellx_decorators_1.observable,
+        __metadata("design:type", Number)
     ], OpalCalendar.prototype, "shownYear", void 0);
     __decorate([
-        cellx_decorators_1.observable
+        cellx_decorators_1.observable,
+        __metadata("design:type", Number)
     ], OpalCalendar.prototype, "shownMonth", void 0);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "isBtnPrevMonthDisabled", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "isBtnNextMonthDisabled", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Array)
     ], OpalCalendar.prototype, "days", void 0);
     OpalCalendar = OpalCalendar_1 = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalCalendar',
-            params: {
-                fromDate: String,
-                toDate: String,
-                value: String,
-                dateDelimiter: { default: '/', readonly: true }
-            },
             i18n: {
                 previousMonth: 'Предыдущий месяц',
                 nextMonth: 'Следующий месяц',
@@ -5970,7 +6415,7 @@ exports.OpalCalendar = OpalCalendar;
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5988,7 +6433,7 @@ exports.formatDate = formatDate;
 
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -6005,7 +6450,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6013,7 +6458,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nheader/header {\nbutton/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {\nsvg/btn-prev-month-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-chevron-left)\n}\n}\nopal-select/month-select (size=s, value=['{shownMonth}']) {\n@repeat (class=OpalSelect__menu-content, for=month of constructor.i18n.months) {\nopal-select-option (value={$index}, text={month})\n}\n}\n' '\nopal-select/year-select (size=s, value=['{shownYear}']) {\n@repeat (class=OpalSelect__menu-content, for=year of years) {\nopal-select-option (value={year}, text={year})\n}\n}\nbutton/btn-next-month (disabled={isBtnNextMonthDisabled}) {\nsvg/btn-next-month-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-chevron-left)\n}\n}\n}\ndiv/body {\ndiv/week-days {\ndiv/week-days-row {\n@repeat (for=weekDay of weekDaysShort) {\nspan/week-day {\n'{weekDay}'\n}\n}\n}\n}\ndiv/days {\n@repeat (for=weekDays of days) {\ndiv/days-row {\n@repeat (for=day of weekDays) {\nspan/day (\nweek-day={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnot-in-current-month={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabindex={day.tabIndex},\ndata-date={day.date}\n) {\n'{day.value}'\n}\n}\n}\n}\n}\n}\n}");
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6034,14 +6479,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(4);
-var date_exists_1 = __webpack_require__(98);
+var date_exists_1 = __webpack_require__(99);
 var rionite_1 = __webpack_require__(0);
 var isFocusable_1 = __webpack_require__(5);
 var parseDate_1 = __webpack_require__(10);
-__webpack_require__(99);
-var template_nelm_1 = __webpack_require__(100);
+__webpack_require__(100);
+var template_nelm_1 = __webpack_require__(101);
 function pad(num) {
     return (num < 10 ? '0' : '') + num;
 }
@@ -6067,7 +6515,7 @@ var OpalDateInput = /** @class */ (function (_super) {
     OpalDateInput.prototype.elementAttached = function () {
         this.listenTo('text-input', 'change', this._onTextInputChange);
         this.listenTo(this.$('text-input').element, 'click', this._onTextInputElementClick);
-        this.listenTo('calendar-menu', 'param-opened-change', this._onCalendarMenuParamOpenedChange);
+        this.listenTo('calendar-menu', 'change:paramOpened', this._onCalendarMenuParamOpenedChange);
     };
     OpalDateInput.prototype._onTextInputChange = function (evt) {
         if (this.$('text-input-validator').valid) {
@@ -6114,8 +6562,7 @@ var OpalDateInput = /** @class */ (function (_super) {
             if (calendar) {
                 return calendar.value;
             }
-            var value = this.params.value;
-            return value ? parseDate_1.parseDate(value) : null;
+            return this.paramValue ? parseDate_1.parseDate(this.paramValue) : null;
         },
         enumerable: true,
         configurable: true
@@ -6156,18 +6603,37 @@ var OpalDateInput = /** @class */ (function (_super) {
     OpalDateInput.prototype.validate = function () {
         return this.$('text-input-validator').validate();
     };
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalDateInput.prototype, "paramFromDate", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalDateInput.prototype, "paramToDate", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalDateInput.prototype, "paramValue", void 0);
+    __decorate([
+        rionite_1.Param({ default: 'dd.mm.yyyy' }),
+        __metadata("design:type", String)
+    ], OpalDateInput.prototype, "paramPlaceholder", void 0);
+    __decorate([
+        rionite_1.Param({ default: '99.99.9999' }),
+        __metadata("design:type", String)
+    ], OpalDateInput.prototype, "paramMask", void 0);
+    __decorate([
+        rionite_1.Param({ default: false, readonly: true }),
+        __metadata("design:type", Boolean)
+    ], OpalDateInput.prototype, "paramRequired", void 0);
+    __decorate([
+        rionite_1.Param({ default: 'right' }),
+        __metadata("design:type", String)
+    ], OpalDateInput.prototype, "paramPopoverPosition", void 0);
     OpalDateInput = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalDateInput',
-            params: {
-                fromDate: String,
-                toDate: String,
-                value: String,
-                placeholder: 'dd.mm.yyyy',
-                mask: '99.99.9999',
-                required: { default: false, readonly: true },
-                popoverPosition: 'right'
-            },
             i18n: {
                 isRequiredField: gettext_1.getText.t('Поле обязательно для заполнения'),
                 nonExistentDate: gettext_1.getText.t('Несуществующая дата'),
@@ -6193,13 +6659,13 @@ exports.OpalDateInput = OpalDateInput;
 
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_98__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_99__;
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -6216,15 +6682,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-text-input-validator/text-input-validator {\nopal-input-mask/input-mask (mask={params.mask}) {\nopal-text-input/text-input (\nclass=OpalInputValidator__text-input OpalInputMask__text-input,\nvalue={params.value},\nplaceholder={params.placeholder},\nclearable\n) {\nsvg/text-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-calendar)\n}\n}\n}\n@if-then (if=params.required) {\nopal-text-input-validator-rule/text-input-validator-rule-required (\nrequired,\npopover-position={params.popoverPosition}\n) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-text-input-validator-rule/text-input-validator-rule-date-exists (\ntest={dateExists},\npopover-position={params.popoverPosition}\n) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-text-input-validator-rule/text-input-validator-rule-date-in-range (\ntest={isDateInRange},\npopover-position={params.popoverPosition}\n) {\n'{constructor.i18n.invalidDateRange}'\n}\n}\nopal-dropdown/calendar-menu (auto-height=no) {\nopal-calendar/calendar (\nfrom-date={params.fromDate},\nto-date={params.toDate},\nvalue={params.value},\ndate-delimiter=.\n)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nopal-text-input-validator/text-input-validator {\nopal-input-mask/input-mask (mask={paramMask}) {\nopal-text-input/text-input (\nclass=OpalInputValidator__text-input OpalInputMask__text-input,\nvalue={paramValue},\nplaceholder={paramPlaceholder},\nclearable\n) {\nsvg/text-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-calendar)\n}\n}\n}\n@if-then (if=paramRequired) {\nopal-text-input-validator-rule/text-input-validator-rule-required (\nrequired,\npopover-position={paramPopoverPosition}\n) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nopal-text-input-validator-rule/text-input-validator-rule-date-exists (\ntest={dateExists},\npopover-position={paramPopoverPosition}\n) {\n'{constructor.i18n.nonExistentDate}'\n}\nopal-text-input-validator-rule/text-input-validator-rule-date-in-range (\ntest={isDateInRange},\npopover-position={paramPopoverPosition}\n) {\n'{constructor.i18n.invalidDateRange}'\n}\n}\nopal-dropdown/calendar-menu (auto-height=no) {\nopal-calendar/calendar (\nfrom-date={paramFromDate},\nto-date={paramToDate},\nvalue={paramValue},\ndate-delimiter=.\n)\n}\n}");
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6245,21 +6711,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(102);
+__webpack_require__(103);
 var OpalLoader = /** @class */ (function (_super) {
     __extends(OpalLoader, _super);
     function OpalLoader() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    __decorate([
+        rionite_1.Param({ default: 'm' }),
+        __metadata("design:type", String)
+    ], OpalLoader.prototype, "paramSize", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalLoader.prototype, "paramShown", void 0);
     OpalLoader = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'OpalLoader',
-            params: {
-                size: 'm',
-                shown: false
-            }
+            elementIs: 'OpalLoader'
         })
     ], OpalLoader);
     return OpalLoader;
@@ -6268,7 +6741,7 @@ exports.OpalLoader = OpalLoader;
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -6285,7 +6758,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6306,6 +6779,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(4);
 var mixin_1 = __webpack_require__(11);
@@ -6313,8 +6789,8 @@ var next_tick_1 = __webpack_require__(3);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(104);
-var template_nelm_1 = __webpack_require__(105);
+__webpack_require__(105);
+var template_nelm_1 = __webpack_require__(106);
 var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var OpalLoadedList = /** @class */ (function (_super) {
     __extends(OpalLoadedList, _super);
@@ -6351,23 +6827,21 @@ var OpalLoadedList = /** @class */ (function (_super) {
         configurable: true
     });
     OpalLoadedList.prototype.initialize = function () {
-        var params = this.params;
         this._dataListItemTextFieldName =
-            params.dataListItemSchema.text ||
+            this.paramDataListItemSchema.text ||
                 this.constructor.defaultDataListItemSchema.text;
-        if (!params.$specified.has('dataProvider')) {
+        if (!this.$specifiedParams.has('dataProvider')) {
             throw new TypeError('Parameter "dataProvider" is required');
         }
-        var dataProvider = params.dataProvider;
-        if (!dataProvider) {
+        this.dataProvider = this.paramDataProvider;
+        if (!this.dataProvider) {
             throw new TypeError('"dataProvider" is not defined');
         }
-        this.dataProvider = dataProvider;
     };
     OpalLoadedList.prototype.elementAttached = function () {
-        this.listenTo(this, 'param-query-change', this._onParamQueryChange);
+        this.listenTo(this, 'change:paramQuery', this._onParamQueryChange);
         this.listenTo(this.element, 'scroll', this._onElementScroll);
-        if (this.params.preloading) {
+        if (this.paramPreloading) {
             this._load();
         }
         else {
@@ -6413,7 +6887,7 @@ var OpalLoadedList = /** @class */ (function (_super) {
         }, 150);
     };
     OpalLoadedList.prototype.checkLoading = function () {
-        if (this.params.query === this._lastRequestedQuery &&
+        if (this.paramQuery === this._lastRequestedQuery &&
             (this.loading || (this.total !== undefined && this.dataList.length == this.total))) {
             return;
         }
@@ -6427,13 +6901,12 @@ var OpalLoadedList = /** @class */ (function (_super) {
         if (this.loading) {
             this._requestCallback.cancel();
         }
-        var params = this.params;
         var infinite = this.dataProvider.getItems.length >= 2;
-        var query = (this._lastRequestedQuery = params.query);
+        var query = (this._lastRequestedQuery = this.paramQuery);
         var args = [query];
         if (infinite) {
-            args.unshift(params.count, this.dataList.length
-                ? this.dataList.get(-1)[params.dataListItemSchema.value ||
+            args.unshift(this.paramCount, this.dataList.length
+                ? this.dataList.get(-1)[this.paramDataListItemSchema.value ||
                     this.constructor.defaultDataListItemSchema
                         .value]
                 : null);
@@ -6458,41 +6931,64 @@ var OpalLoadedList = /** @class */ (function (_super) {
             });
         })));
     };
-    OpalLoadedList.prototype._getListItemContext = function (context, content) {
-        return mixin_1.mixin(Object.create(context), content.params.$context, ['$component']);
+    OpalLoadedList.prototype._getListItemContext = function (context, slot) {
+        return mixin_1.mixin(Object.create(context), slot.$context, ['$component']);
     };
     OpalLoadedList.defaultDataListItemSchema = defaultDataListItemSchema;
     __decorate([
-        cellx_decorators_1.observable
+        rionite_1.Param({ type: eval, default: defaultDataListItemSchema, readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalLoadedList.prototype, "paramDataListItemSchema", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalLoadedList.prototype, "paramDataProvider", void 0);
+    __decorate([
+        rionite_1.Param({ default: 100 }),
+        __metadata("design:type", Number)
+    ], OpalLoadedList.prototype, "paramCount", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalLoadedList.prototype, "paramQuery", void 0);
+    __decorate([
+        rionite_1.Param({ default: false, readonly: true }),
+        __metadata("design:type", Boolean)
+    ], OpalLoadedList.prototype, "paramPreloading", void 0);
+    __decorate([
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalLoadedList.prototype, "dataList", void 0);
     __decorate([
-        cellx_decorators_1.observable
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalLoadedList.prototype, "total", void 0);
     __decorate([
-        cellx_decorators_1.observable
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalLoadedList.prototype, "_isLoadingCheckPlanned", void 0);
     __decorate([
-        cellx_decorators_1.observable
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalLoadedList.prototype, "loading", void 0);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
     ], OpalLoadedList.prototype, "empty", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
     ], OpalLoadedList.prototype, "isLoaderShown", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
     ], OpalLoadedList.prototype, "isNothingFoundShown", null);
     OpalLoadedList = OpalLoadedList_1 = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalLoadedList',
-            params: {
-                dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
-                dataProvider: { type: Object, readonly: true },
-                count: 100,
-                query: String,
-                preloading: { default: false, readonly: true }
-            },
             i18n: {
                 nothingFound: gettext_1.getText.t('Ничего не найдено')
             },
@@ -6506,7 +7002,7 @@ exports.OpalLoadedList = OpalLoadedList;
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -6523,7 +7019,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6531,7 +7027,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/list {\n@repeat (for=$item of dataList) {\nrt-slot/list-items (clone-content, get-context={_getListItemContext}) {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nopal-loader/loader (shown={isLoaderShown}, align-center={empty})\n@if-then (if=isNothingFoundShown) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}");
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6553,11 +7049,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var debounce_throttle_1 = __webpack_require__(107);
+var debounce_throttle_1 = __webpack_require__(108);
 var gettext_1 = __webpack_require__(4);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(108);
-var template_nelm_1 = __webpack_require__(109);
+__webpack_require__(109);
+var template_nelm_1 = __webpack_require__(110);
 var OpalFilteredList = /** @class */ (function (_super) {
     __extends(OpalFilteredList, _super);
     function OpalFilteredList() {
@@ -6577,7 +7073,7 @@ var OpalFilteredList = /** @class */ (function (_super) {
         this._setListQuery(evt.target.value);
     };
     OpalFilteredList.prototype._setListQuery = function (query) {
-        this.$('list').params.query = query;
+        this.$('list').paramQuery = query;
     };
     OpalFilteredList.prototype.focus = function () {
         var queryInput = this.$('query-input');
@@ -6600,13 +7096,13 @@ exports.OpalFilteredList = OpalFilteredList;
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_107__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_108__;
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -6623,7 +7119,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6631,7 +7127,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot (for=query-input-slot) {\nrt-slot/query-input-slot (for=query-input) {\nopal-text-input/query-input (\nplaceholder={constructor.i18n.queryInputPlaceholder},\nclearable\n) {\nsvg/query-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-search)\n}\n}\n}\n}\nrt-slot/list-slot (for=list)\n}");
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6646,7 +7142,7 @@ exports.default = closestComponent;
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -6663,7 +7159,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -6680,23 +7176,23 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 113 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={params.opened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-chevron-bottom)\n}\n}\nspan/content-slot-wrapper {\nrt-slot/content-slot (clone-content)\n}\n}\n@if-then (if=dataTreeListItem.children.length) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item/item (\ndata-tree-list={params.dataTreeList},\nfiltered-data-tree-list={params.filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{params.indexpath},{$index}]',\nquery={params.query},\nopened={params.query},\nnesting-level={params.indexpath.length},\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext})\n}\n}\n}\n}");
-
-/***/ }),
 /* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@if-then (if=dataTreeList) {\n@if-then (if=filteredDataTreeList.length) {\n@repeat (for=$item of filteredDataTreeList) {\nopal-tree-list-item/item (\ndata-tree-list={dataTreeList},\nfiltered-data-tree-list={filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={params.query},\nopened={params.query},\nnesting-level=0,\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=filteredDataTreeList.length) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'Ничего не найдено'\n}\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("div/head {\nopal-button/btn-toggle-children (view-type=clean, checkable, checked={paramOpened}) {\nsvg/btn-toggle-children-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-chevron-bottom)\n}\n}\nspan/content-slot-wrapper {\nrt-slot/content-slot (clone-content)\n}\n}\n@if-then (if=dataTreeListItem.children.length) {\ndiv/children {\n@repeat (for=$item of dataTreeListItem.children) {\nopal-tree-list-item/item (\ndata-tree-list={paramDataTreeList},\nfiltered-data-tree-list={paramFilteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath='[{paramIndexpath},{$index}]',\nquery={paramQuery},\nopened={paramQuery |not |not },\nnesting-level={paramIndexpath.length},\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext})\n}\n}\n}\n}");
 
 /***/ }),
 /* 115 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@if-then (if=dataTreeList) {\n@if-then (if=filteredDataTreeList.length) {\n@repeat (for=$item of filteredDataTreeList) {\nopal-tree-list-item/item (\ndata-tree-list={dataTreeList},\nfiltered-data-tree-list={filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={paramQuery},\nopened={paramQuery |not |not },\nnesting-level=0,\nhas-children='{$item.children.length |gt(0) }'\n) {\nrt-slot (clone-content, get-context={_getListItemContext}) {\nopal-checkbox/selection-control (\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@if-else (if=filteredDataTreeList.length) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'Ничего не найдено'\n}\n}\n}\n}\n@if-else (if=dataTreeList) {\nopal-loader/loader (shown)\n}");
+
+/***/ }),
+/* 116 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -6713,7 +7209,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6735,7 +7231,7 @@ exports.isEqualArray = isEqualArray;
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6756,12 +7252,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(118);
-var template_nelm_1 = __webpack_require__(119);
+__webpack_require__(119);
+var template_nelm_1 = __webpack_require__(120);
 var OpalSelectOption = /** @class */ (function (_super) {
     __extends(OpalSelectOption, _super);
     function OpalSelectOption() {
@@ -6769,13 +7268,13 @@ var OpalSelectOption = /** @class */ (function (_super) {
     }
     Object.defineProperty(OpalSelectOption.prototype, "_tabIndex", {
         get: function () {
-            return this.params.disabled ? -1 : this.params.tabIndex;
+            return this.paramDisabled ? -1 : this.paramTabIndex;
         },
         enumerable: true,
         configurable: true
     });
     OpalSelectOption.prototype.elementAttached = function () {
-        this.listenTo(this, 'param-focused-change', this._onParamFocusedChange);
+        this.listenTo(this, 'change:paramFocused', this._onParamFocusedChange);
         this.listenTo('control', {
             focus: this._onControlFocus,
             blur: this._onControlBlur,
@@ -6794,16 +7293,16 @@ var OpalSelectOption = /** @class */ (function (_super) {
         var _this = this;
         next_tick_1.nextTick(function () {
             if (document.activeElement == evt.target) {
-                _this.params.focused = true;
+                _this.paramFocused = true;
             }
         });
     };
     OpalSelectOption.prototype._onControlBlur = function () {
-        this.params.focused = false;
+        this.paramFocused = false;
     };
     OpalSelectOption.prototype._onControlClick = function (evt) {
         evt.preventDefault();
-        if (!this.params.disabled) {
+        if (!this.paramDisabled) {
             this.click();
         }
     };
@@ -6814,61 +7313,60 @@ var OpalSelectOption = /** @class */ (function (_super) {
     };
     Object.defineProperty(OpalSelectOption.prototype, "value", {
         get: function () {
-            var params = this.params;
-            return params.value === null ? params.text : params.value;
+            return this.paramValue === null ? this.paramText : this.paramValue;
         },
         set: function (value) {
-            this.params.value = value;
+            this.paramValue = value;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(OpalSelectOption.prototype, "text", {
         get: function () {
-            return this.params.text.trim() || ' ';
+            return this.paramText.trim() || ' ';
         },
         set: function (text) {
-            this.params.text = text;
+            this.paramText = text;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(OpalSelectOption.prototype, "selected", {
         get: function () {
-            return this.params.selected;
+            return this.paramSelected;
         },
         set: function (selected) {
-            this.params.selected = selected;
+            this.paramSelected = selected;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(OpalSelectOption.prototype, "disabled", {
         get: function () {
-            return this.params.disabled;
+            return this.paramDisabled;
         },
         set: function (disabled) {
-            this.params.disabled = disabled;
+            this.paramDisabled = disabled;
         },
         enumerable: true,
         configurable: true
     });
     OpalSelectOption.prototype.select = function () {
-        if (!this.params.selected) {
-            this.params.selected = true;
+        if (!this.paramSelected) {
+            this.paramSelected = true;
             return true;
         }
         return false;
     };
     OpalSelectOption.prototype.deselect = function () {
-        if (this.params.selected) {
-            this.params.selected = false;
+        if (this.paramSelected) {
+            this.paramSelected = false;
             return true;
         }
         return false;
     };
     OpalSelectOption.prototype.toggle = function (value) {
-        return (this.params.selected = value === undefined ? !this.params.selected : value);
+        return (this.paramSelected = value === undefined ? !this.paramSelected : value);
     };
     OpalSelectOption.prototype.focus = function () {
         this.$('control').focus();
@@ -6879,28 +7377,49 @@ var OpalSelectOption = /** @class */ (function (_super) {
         return this;
     };
     OpalSelectOption.prototype.enable = function () {
-        this.params.disabled = false;
+        this.paramDisabled = false;
         return this;
     };
     OpalSelectOption.prototype.disable = function () {
-        this.params.disabled = true;
+        this.paramDisabled = true;
         return this;
     };
     __decorate([
-        cellx_decorators_1.computed
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalSelectOption.prototype, "paramValue", void 0);
+    __decorate([
+        rionite_1.Param({ required: true }),
+        __metadata("design:type", String)
+    ], OpalSelectOption.prototype, "paramText", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalSelectOption.prototype, "paramSubtext", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalSelectOption.prototype, "paramSelected", void 0);
+    __decorate([
+        rionite_1.Param({ default: 0 }),
+        __metadata("design:type", Number)
+    ], OpalSelectOption.prototype, "paramTabIndex", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalSelectOption.prototype, "paramFocused", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalSelectOption.prototype, "paramDisabled", void 0);
+    __decorate([
+        cellx_decorators_1.computed,
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [])
     ], OpalSelectOption.prototype, "_tabIndex", null);
     OpalSelectOption = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalSelectOption',
-            params: {
-                value: String,
-                text: { type: String, required: true },
-                subtext: String,
-                selected: false,
-                tabIndex: 0,
-                focused: false,
-                disabled: false
-            },
             template: template_nelm_1.default
         })
     ], OpalSelectOption);
@@ -6910,7 +7429,7 @@ exports.OpalSelectOption = OpalSelectOption;
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -6927,23 +7446,23 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 119 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-slot/content-slot {\n'{params.text}'\n@if-then (if=params.subtext) {\nsub {\n'{params.subtext}'\n}\n}\n}\nsvg/icon-check (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-checkmark)\n}\n}\n}");
-
-/***/ }),
 /* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot (for=button) {\nopal-button/button (\nview-type={params.viewType},\nsize={params.size},\ncheckable,\ntab-index={params.tabIndex},\ndisabled={params.disabled}\n) {\n@if-then (if=params.text) {\n'{params.text}'\n}\n@if-else (if=params.text) {\n'{_buttonText}'\n}\nsvg/button-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-chevron-bottom)\n}\n}\n}\nrt-slot (for=menu-slot) {\nrt-slot/menu-slot (for=menu) {\nopal-dropdown/menu (auto-closing) {\nrt-slot (for=menu-content) {\n@if-then (if=_isParamDataListSpecified) {\ndiv/, menu-content {\n@if-then (if=dataList) {\n@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-slot/new-item-input-slot // ...\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isParamDataListSpecified) {\ndiv/, menu-content {\nrt-slot/options (for-tag=opal-select-option)\nrt-slot/new-item-input-slot (for=new-item-input)\n}\n}\n}\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nrt-slot/content-slot {\n'{paramText}'\n@if-then (if=paramSubtext) {\nsub {\n'{paramSubtext}'\n}\n}\n}\nsvg/icon-check (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-checkmark)\n}\n}\n}");
 
 /***/ }),
 /* 121 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot (for=button) {\nopal-button/button (\nview-type={paramViewType},\nsize={paramSize},\ncheckable,\ntab-index={paramTabIndex},\ndisabled={paramDisabled}\n) {\n@if-then (if=paramText) {\n'{paramText}'\n}\n@if-else (if=paramText) {\n'{_buttonText}'\n}\nsvg/button-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-chevron-bottom)\n}\n}\n}\nrt-slot (for=menu-slot) {\nrt-slot/menu-slot (for=menu) {\nopal-dropdown/menu (auto-closing) {\nrt-slot (for=menu-content) {\n@if-then (if=_isParamDataListSpecified) {\ndiv/, menu-content {\n@if-then (if=dataList) {\n@repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {\nopal-select-option/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-slot/new-item-input-slot // ...\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_isParamDataListSpecified) {\ndiv/, menu-content {\nrt-slot/options (for-tag=opal-select-option)\nrt-slot/new-item-input-slot (for=new-item-input)\n}\n}\n}\n}\n}\n}\n}");
+
+/***/ }),
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6964,12 +7483,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(1);
+var rionite_1 = __webpack_require__(0);
 var opal_select_1 = __webpack_require__(7);
-__webpack_require__(122);
-var template_nelm_1 = __webpack_require__(123);
+__webpack_require__(123);
+var template_nelm_1 = __webpack_require__(124);
 var OpalMultiselect = /** @class */ (function (_super) {
     __extends(OpalMultiselect, _super);
     function OpalMultiselect() {
@@ -6984,18 +7507,26 @@ var OpalMultiselect = /** @class */ (function (_super) {
     });
     OpalMultiselect.prototype.initialize = function () {
         _super.prototype.initialize.call(this);
-        var params = this.params;
-        if (!params.$specified.has('dataProvider')) {
+        if (!this.$specifiedParams.has('dataProvider')) {
             throw new TypeError('Parameter "dataProvider" is required');
         }
-        var dataProvider = params.dataProvider;
-        if (!dataProvider) {
+        this.dataProvider = this.paramDataProvider;
+        if (!this.dataProvider) {
             throw new TypeError('"dataProvider" is not defined');
         }
-        this.dataProvider = dataProvider;
     };
     __decorate([
-        cellx_decorators_1.computed
+        rionite_1.Param({ default: true }),
+        __metadata("design:type", Boolean)
+    ], OpalMultiselect.prototype, "paramMultiple", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalMultiselect.prototype, "paramDataProvider", void 0);
+    __decorate([
+        cellx_decorators_1.computed,
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
     ], OpalMultiselect.prototype, "isNothingSelectedShown", null);
     OpalMultiselect = __decorate([
         opal_select_1.OpalSelect.Config({
@@ -7004,18 +7535,14 @@ var OpalMultiselect = /** @class */ (function (_super) {
                 queryInputPlaceholder: gettext_1.getText.t('Поиск'),
                 nothingSelected: gettext_1.getText.t('Ничего не выбрано')
             },
-            params: {
-                multiple: true,
-                dataProvider: { type: Object, readonly: true }
-            },
             template: opal_select_1.OpalSelect.template.extend(template_nelm_1.default),
             events: {
                 'query-input': {
                     input: function (evt) {
-                        this.$('loaded-list').params.query = evt.target.value;
+                        this.$('loaded-list').paramQuery = evt.target.value;
                     },
                     clear: function () {
-                        this.$('loaded-list').params.query = '';
+                        this.$('loaded-list').paramQuery = '';
                     }
                 },
                 'btn-close': {
@@ -7042,7 +7569,7 @@ exports.OpalMultiselect = OpalMultiselect;
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -7059,7 +7586,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7067,7 +7594,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("/menu (auto-height=no, auto-closing) {\ndiv/menu-header {\nopal-text-input/query-input (\nclass=OpalSelect__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n) {\nsvg/query-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-search)\n}\n}\n}\ndiv/menu-selected {\n@repeat (for=item of viewModel) {\ndiv/selected-item {\n'{item |key(_viewModelItemTextFieldName) }'\nbutton/btn-deselect-item (\ntabindex=-1,\ndata-item-value='{item |key(_viewModelItemValueFieldName) }'\n) {\nsvg/btn-deselect-item-icon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-close)\n}\n}\n}\n}\ndiv/nothing-selected (shown={isNothingSelectedShown}) {\nspan/nothing-selected-message {\n'{constructor.i18n.nothingSelected}'\n}\n}\n}\ndiv/menu-list {\nopal-loaded-list/loaded-list (\ndata-provider={dataProvider},\ndata-list-item-value-name={_dataListItemValueFieldName}\n) {\nopal-select-option/option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\ndiv/menu-footer {\nopal-button/btn-close {\n'Закрыть'\n}\n}\n}");
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -7084,15 +7611,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |_isItemDisabled }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder {\n'{params.placeholder} '\n}\n}\nopal-select/select (\nmultiple,\ndata-list-keypath={_dataListKeypathParam},\ndata-list-item-schema={params.dataListItemSchema |json },\nvalue={params.value},\nview-model={viewModel},\nview-model-item-schema={params.viewModelItemSchema |json },\nadd-new-item={params.addNewItem},\nfocused={params.focused}\n) {\nopal-sign-button/button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntab-index={params.tabIndex},\ndisabled={params.disabled}\n)\nrt-slot (class=OpalSelect__menu-slot, for=OpalSelect__menu) {\nopal-popover/menu (\nclass=OpalSelect__menu,\nposition={params.popoverPosition},\nauto-closing\n) {\nrt-content (select='.OpalSelect__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=OpalSelect__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/data-list-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-slot (class=OpalSelect__new-item-input-slot, for=new-item-input)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (\nclass=OpalSelect__menu-content OpalSelect__filtered-list\n) {\nrt-slot (\nclass=OpalFilteredList__query-input-slot,\nfor=OpalFilteredList__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=OpalSelect__loaded-list OpalFilteredList__list,\ndata-provider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/tags {\n@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |_isItemDisabled }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@if-then (if=isPlaceholderShown) {\nspan/placeholder {\n'{paramPlaceholder} '\n}\n}\nopal-select/select (\nmultiple,\ndata-list-keypath={_dataListKeypathParam},\ndata-list-item-schema={paramDataListItemSchema |json },\nvalue={paramValue},\nview-model={viewModel},\nview-model-item-schema={paramViewModelItemSchema |json },\nadd-new-item={paramAddNewItem},\nfocused={paramFocused}\n) {\nopal-sign-button/button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntab-index={paramTabIndex},\ndisabled={paramDisabled}\n)\nrt-slot (class=OpalSelect__menu-slot, for=OpalSelect__menu) {\nopal-popover/menu (\nclass=OpalSelect__menu,\nposition={paramPopoverPosition},\nauto-closing\n) {\nrt-content (select='.OpalSelect__menu-content') {\n@if-then (if=_dataListKeypathParam) {\ndiv (class=OpalSelect__menu-content) {\n@if-then (if=dataList) {\n@repeat (for=item of dataList) {\nopal-select-option/data-list-select-option, select-option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nrt-slot (class=OpalSelect__new-item-input-slot, for=new-item-input)\n}\n@if-else (if=dataList) {\nopal-loader/menu-loader (shown)\n}\n}\n}\n@if-else (if=_dataListKeypathParam) {\nopal-filtered-list/menu-filtered-list (\nclass=OpalSelect__menu-content OpalSelect__filtered-list\n) {\nrt-slot (\nclass=OpalFilteredList__query-input-slot,\nfor=OpalFilteredList__query-input\n)\nopal-loaded-list/menu-loaded-list (\nclass=OpalSelect__loaded-list OpalFilteredList__list,\ndata-provider={dataProvider}\n) {\nopal-select-option/loaded-list-select-option, select-option (\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}\n}");
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7113,30 +7640,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
+var rionite_1 = __webpack_require__(0);
 var opal_select_1 = __webpack_require__(7);
 var opal_tree_list_1 = __webpack_require__(12);
-__webpack_require__(127);
-var template_nelm_1 = __webpack_require__(128);
+__webpack_require__(128);
+var template_nelm_1 = __webpack_require__(129);
 var OpalTreeSelect = /** @class */ (function (_super) {
     __extends(OpalTreeSelect, _super);
     function OpalTreeSelect() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     OpalTreeSelect.prototype.initialize = function () {
+        var _this = this;
         _super.prototype.initialize.call(this);
-        var params = this.params;
-        if (params.dataTreeListKeypath) {
-            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function("return this." + params.dataTreeListKeypath + ";"), {
+        if (this.paramDataTreeListKeypath) {
+            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function("return this." + this.paramDataTreeListKeypath + ";"), {
                 context: this.ownerComponent || window
             }));
         }
         else {
-            if (!params.$specified.has('dataTreeList')) {
+            if (!this.$specifiedParams.has('dataTreeList')) {
                 throw new TypeError('Parameter "dataTreeList" is required');
             }
-            cellx_1.define(this, 'dataTreeList', function () { return params.dataTreeList; });
+            cellx_1.define(this, 'dataTreeList', function () { return _this.paramDataTreeList; });
         }
     };
     OpalTreeSelect.prototype._onMenuSelectOptionSelect = function () {
@@ -7149,26 +7680,45 @@ var OpalTreeSelect = /** @class */ (function (_super) {
         return false;
     };
     OpalTreeSelect.prototype._updateOptions = function () { };
+    __decorate([
+        rionite_1.Param({ default: true }),
+        __metadata("design:type", Boolean)
+    ], OpalTreeSelect.prototype, "paramMultiple", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", Object)
+    ], OpalTreeSelect.prototype, "paramDataTreeList", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", String)
+    ], OpalTreeSelect.prototype, "paramDataTreeListKeypath", void 0);
+    __decorate([
+        rionite_1.Param({
+            type: eval,
+            default: opal_tree_list_1.OpalTreeList.defaultDataTreeListItemSchema,
+            readonly: true
+        }),
+        __metadata("design:type", Object)
+    ], OpalTreeSelect.prototype, "paramDataTreeListItemSchema", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", Object)
+    ], OpalTreeSelect.prototype, "paramViewModel", void 0);
+    __decorate([
+        rionite_1.Param({
+            type: eval,
+            default: opal_tree_list_1.OpalTreeList.defaultViewModelItemSchema,
+            readonly: true
+        }),
+        __metadata("design:type", Object)
+    ], OpalTreeSelect.prototype, "paramViewModelItemSchema", void 0);
+    __decorate([
+        rionite_1.Param(),
+        __metadata("design:type", String)
+    ], OpalTreeSelect.prototype, "paramQuery", void 0);
     OpalTreeSelect = __decorate([
         opal_select_1.OpalSelect.Config({
             elementIs: 'OpalTreeSelect',
-            params: {
-                multiple: true,
-                dataTreeList: { type: Object },
-                dataTreeListKeypath: { type: String, readonly: true },
-                dataTreeListItemSchema: {
-                    type: eval,
-                    default: opal_tree_list_1.OpalTreeList.defaultDataTreeListItemSchema,
-                    readonly: true
-                },
-                viewModel: { type: Object },
-                viewModelItemSchema: {
-                    type: eval,
-                    default: opal_tree_list_1.OpalTreeList.defaultViewModelItemSchema,
-                    readonly: true
-                },
-                query: String
-            },
             template: template_nelm_1.default,
             events: {
                 'btn-close': {
@@ -7185,7 +7735,7 @@ exports.OpalTreeSelect = OpalTreeSelect;
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -7202,15 +7752,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("opal-modal/menu {\nopal-filtered-list/filtered-list {\nopal-tree-list/tree-list (\nclass=OpalFilteredList__list,\ndata-tree-list={dataTreeList},\ndata-tree-list-item-schema={params.dataTreeListItemSchema},\nview-model={viewModel},\nview-model-item-schema={params.viewModelItemSchema},\nquery={params.query}\n) {\nopal-select-option/option (\nclass=OpalTreeList__selection-control,\ntext={$item.name},\nselected={$selected}\n)\n}\n}\ndiv/footer {\nopal-button/btn-close {\n'Готово'\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("opal-modal/menu {\nopal-filtered-list/filtered-list {\nopal-tree-list/tree-list (\nclass=OpalFilteredList__list,\ndata-tree-list={dataTreeList},\ndata-tree-list-item-schema={paramDataTreeListItemSchema},\nview-model={viewModel},\nview-model-item-schema={paramViewModelItemSchema},\nquery={paramQuery}\n) {\nopal-select-option/option (\nclass=OpalTreeList__selection-control,\ntext={$item.name},\nselected={$selected}\n)\n}\n}\ndiv/footer {\nopal-button/btn-close {\n'Готово'\n}\n}\n}");
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7233,7 +7783,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var opal_tag_select_1 = __webpack_require__(16);
-var template_nelm_1 = __webpack_require__(130);
+var template_nelm_1 = __webpack_require__(131);
 var OpalTreeTagSelect = /** @class */ (function (_super) {
     __extends(OpalTreeTagSelect, _super);
     function OpalTreeTagSelect() {
@@ -7257,15 +7807,15 @@ exports.OpalTreeTagSelect = OpalTreeTagSelect;
 
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("opal-tree-select/select (\nview-type={params.viewType},\ndata-tree-list-keypath={_dataListKeypathParam},\ndata-tree-list-item-schema={params.dataListItemSchema |json },\nvalue={params.value},\nview-model={viewModel},\nview-model-item-schema={params.viewModelItemSchema |json },\nadd-new-item={params.addNewItem},\nfocused={params.focused}\n) {\nopal-sign-button/button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntab-index={params.tabIndex},\ndisabled={params.disabled}\n)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("opal-tree-select/select (\nview-type={paramViewType},\ndata-tree-list-keypath={_dataListKeypathParam},\ndata-tree-list-item-schema={paramDataListItemSchema |json },\nvalue={paramValue},\nview-model={viewModel},\nview-model-item-schema={paramViewModelItemSchema |json },\nadd-new-item={paramAddNewItem},\nfocused={paramFocused}\n) {\nopal-sign-button/button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntab-index={paramTabIndex},\ndisabled={paramDisabled}\n)\n}");
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7288,8 +7838,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var opal_input_validator_1 = __webpack_require__(6);
-__webpack_require__(132);
-var opal_select_validator_rule_1 = __webpack_require__(133);
+__webpack_require__(133);
+var opal_select_validator_rule_1 = __webpack_require__(134);
 exports.OpalSelectValidatorRule = opal_select_validator_rule_1.OpalSelectValidatorRule;
 var OpalSelectValidator = /** @class */ (function (_super) {
     __extends(OpalSelectValidator, _super);
@@ -7302,11 +7852,10 @@ var OpalSelectValidator = /** @class */ (function (_super) {
     };
     OpalSelectValidator.prototype._checkValue = function (rule) {
         var vm = this.select.viewModel;
-        var ruleParams = rule.params;
         return !(vm.length
-            ? (ruleParams.minCount && vm.length < ruleParams.minCount) ||
-                (ruleParams.test && !ruleParams.test.call(this.ownerComponent, vm))
-            : ruleParams.required);
+            ? (rule.paramMinCount && vm.length < rule.paramMinCount) ||
+                (rule.paramTest && !rule.paramTest.call(this.ownerComponent, vm))
+            : rule.paramRequired);
     };
     OpalSelectValidator = __decorate([
         opal_input_validator_1.OpalInputValidator.Config({
@@ -7319,7 +7868,7 @@ exports.OpalSelectValidator = OpalSelectValidator;
 
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -7333,48 +7882,6 @@ module.exports = (function(d) {
         }
         return null;
     })(document);
-
-
-/***/ }),
-/* 133 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var opal_input_validator_1 = __webpack_require__(6);
-var OpalSelectValidatorRule = /** @class */ (function (_super) {
-    __extends(OpalSelectValidatorRule, _super);
-    function OpalSelectValidatorRule() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    OpalSelectValidatorRule = __decorate([
-        opal_input_validator_1.OpalInputValidatorRule.Config({
-            elementIs: 'OpalSelectValidatorRule',
-            params: {
-                minCount: { type: Number, readonly: true }
-            }
-        })
-    ], OpalSelectValidatorRule);
-    return OpalSelectValidatorRule;
-}(opal_input_validator_1.OpalInputValidatorRule));
-exports.OpalSelectValidatorRule = OpalSelectValidatorRule;
 
 
 /***/ }),
@@ -7399,18 +7906,68 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var rionite_1 = __webpack_require__(0);
+var opal_input_validator_1 = __webpack_require__(6);
+var OpalSelectValidatorRule = /** @class */ (function (_super) {
+    __extends(OpalSelectValidatorRule, _super);
+    function OpalSelectValidatorRule() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Number)
+    ], OpalSelectValidatorRule.prototype, "paramMinCount", void 0);
+    OpalSelectValidatorRule = __decorate([
+        opal_input_validator_1.OpalInputValidatorRule.Config({
+            elementIs: 'OpalSelectValidatorRule'
+        })
+    ], OpalSelectValidatorRule);
+    return OpalSelectValidatorRule;
+}(opal_input_validator_1.OpalInputValidatorRule));
+exports.OpalSelectValidatorRule = OpalSelectValidatorRule;
+
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(4);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 var isFocusable_1 = __webpack_require__(5);
-__webpack_require__(135);
-var template_nelm_1 = __webpack_require__(136);
+__webpack_require__(136);
+var template_nelm_1 = __webpack_require__(137);
 function toComparable(str) {
     return str.replace(/\s+/g, ' ').toLowerCase();
 }
-var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
+var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var OpalAutosuggest = /** @class */ (function (_super) {
     __extends(OpalAutosuggest, _super);
     function OpalAutosuggest() {
@@ -7430,25 +7987,27 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         configurable: true
     });
     OpalAutosuggest.prototype.initialize = function () {
-        var params = this.params;
-        var dataListItemSchema = params.dataListItemSchema;
+        var dataListItemSchema = this.paramDataListItemSchema;
         var defaultDataListItemSchema = this.constructor
             .defaultDataListItemSchema;
         this._dataListItemValueFieldName =
             dataListItemSchema.value || defaultDataListItemSchema.value;
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
-        if (!params.$specified.has('dataProvider')) {
+        if (!this.$specifiedParams.has('dataProvider')) {
             throw new TypeError('Parameter "dataProvider" is required');
         }
-        var dataProvider = params.dataProvider;
-        if (!dataProvider) {
+        this.dataProvider = this.paramDataProvider;
+        if (!this.dataProvider) {
             throw new TypeError('"dataProvider" is not defined');
         }
-        this.dataProvider = dataProvider;
-        this.value = params.value;
+        this.value = this.paramValue;
     };
     OpalAutosuggest.prototype.elementAttached = function () {
-        this.listenTo(this, 'param-value-change', this._onParamValueChange);
+        this.listenTo(this, {
+            'change:paramValue': this._onParamValueChange,
+            'change:isLoaderShown': this._onIsLoaderShownChange
+        });
+        this.listenTo(this.dataList, 'change', this._onDataListChange);
         this.listenTo('text-input', {
             focus: this._onTextInputFocus,
             blur: this._onTextInputBlur,
@@ -7456,10 +8015,8 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             change: this._onTextInputChange
         });
         this.listenTo(this.$('text-input').textField, 'click', this._onTextFieldClick);
-        this.listenTo('menu', 'param-opened-change', this._onMenuParamOpenedChange);
+        this.listenTo('menu', 'change:paramOpened', this._onMenuParamOpenedChange);
         this.listenTo(this.$('menu').element, 'mouseover', this._onMenuElementMouseOver);
-        this.listenTo(this.dataList, 'change', this._onDataListChange);
-        this.listenTo(this, 'change:isLoaderShown', this._onIsLoaderShownChange);
     };
     OpalAutosuggest.prototype.ready = function () {
         if (this.value) {
@@ -7474,6 +8031,12 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             ? item[this._dataListItemTextFieldName]
             : '';
     };
+    OpalAutosuggest.prototype._onIsLoaderShownChange = function (evt) {
+        this.$('text-input').paramLoading = evt.data.value;
+    };
+    OpalAutosuggest.prototype._onDataListChange = function () {
+        this.openMenu();
+    };
     OpalAutosuggest.prototype._onTextInputFocus = function () {
         this.openMenu();
     };
@@ -7483,7 +8046,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         // 1. выбираем что-то;
         // 2. изменяем запрос так чтобы ничего не нашлось;
         // 3. убираем фокус.
-        if (!this.$('menu').params.opened) {
+        if (!this.$('menu').paramOpened) {
             this._selectItem();
         }
     };
@@ -7491,7 +8054,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         var _this = this;
         this._isNotInputConfirmed = true;
         this._clearDataList();
-        if ((evt.target.value || '').length >= this.params.minQueryLength) {
+        if ((evt.target.value || '').length >= this.paramMinQueryLength) {
             this._isLoadingPlanned = true;
             this._loadingTimeout = this.setTimeout(function () {
                 _this._isLoadingPlanned = false;
@@ -7538,12 +8101,6 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             focusedListItem.removeAttribute('focused');
             el.setAttribute('focused', '');
         }
-    };
-    OpalAutosuggest.prototype._onDataListChange = function () {
-        this.openMenu();
-    };
-    OpalAutosuggest.prototype._onIsLoaderShownChange = function (evt) {
-        this.$('text-input').params.loading = evt.data.value;
     };
     OpalAutosuggest.prototype._onDocumentFocus = function (evt) {
         if (!isFocusable_1.isFocusable(evt.target)) {
@@ -7606,7 +8163,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         this.loading = true;
         var args = [this.$('text-input').value];
         if (this.dataProvider.getItems.length >= 2) {
-            args.unshift(this.params.count);
+            args.unshift(this.paramCount);
         }
         this.dataProvider.getItems
             .apply(this.dataProvider, args)
@@ -7622,7 +8179,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             this._focusedListItem = focusedListItem;
             focusedListItem.setAttribute('focused', '');
         }
-        else if (this.params.openMenuOnNothingFound) {
+        else if (this.paramOpenMenuOnNothingFound) {
             this.openMenu(true);
         }
     };
@@ -7692,31 +8249,53 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     };
     OpalAutosuggest.defaultDataListItemSchema = defaultDataListItemSchema;
     __decorate([
-        cellx_decorators_1.observable
+        rionite_1.Param({ type: eval, default: defaultDataListItemSchema, readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalAutosuggest.prototype, "paramDataListItemSchema", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalAutosuggest.prototype, "paramDataProvider", void 0);
+    __decorate([
+        rionite_1.Param({ type: eval }),
+        __metadata("design:type", Object)
+    ], OpalAutosuggest.prototype, "paramValue", void 0);
+    __decorate([
+        rionite_1.Param({ default: 3 }),
+        __metadata("design:type", Number)
+    ], OpalAutosuggest.prototype, "paramMinQueryLength", void 0);
+    __decorate([
+        rionite_1.Param({ default: 5 }),
+        __metadata("design:type", Number)
+    ], OpalAutosuggest.prototype, "paramCount", void 0);
+    __decorate([
+        rionite_1.Param({ default: false }),
+        __metadata("design:type", Boolean)
+    ], OpalAutosuggest.prototype, "paramOpenMenuOnNothingFound", void 0);
+    __decorate([
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalAutosuggest.prototype, "dataList", void 0);
     __decorate([
-        cellx_decorators_1.observable
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalAutosuggest.prototype, "value", void 0);
     __decorate([
-        cellx_decorators_1.observable
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalAutosuggest.prototype, "_isLoadingPlanned", void 0);
     __decorate([
-        cellx_decorators_1.observable
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalAutosuggest.prototype, "loading", void 0);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
     ], OpalAutosuggest.prototype, "isLoaderShown", null);
     OpalAutosuggest = OpalAutosuggest_1 = __decorate([
         rionite_1.Component.Config({
             elementIs: 'OpalAutosuggest',
-            params: {
-                dataProvider: { type: Object, readonly: true },
-                dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
-                value: eval,
-                minQueryLength: 3,
-                count: 5,
-                openMenuOnNothingFound: false
-            },
             i18n: {
                 textInputPlaceholder: gettext_1.getText.t('Начните вводить для поиска'),
                 nothingFound: gettext_1.getText.t('Ничего не найдено')
@@ -7747,7 +8326,7 @@ exports.OpalAutosuggest = OpalAutosuggest;
 
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -7764,15 +8343,15 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot (for=text-input) {\nopal-text-input/text-input (\nvalue='{params.value |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nsvg/text-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-search)\n}\n}\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nspan/nothing-found-message (shown={dataList.length |not }) {\n'{constructor.i18n.nothingFound}'\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot (for=text-input) {\nopal-text-input/text-input (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nsvg/text-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {\nuse (xlink:href=#OpalComponents__icon-search)\n}\n}\n}\nopal-dropdown/menu {\ndiv/list {\n@repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nspan/nothing-found-message (shown={dataList.length |not }) {\n'{constructor.i18n.nothingFound}'\n}\n}\n}");
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7793,15 +8372,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_uid_1 = __webpack_require__(138);
+var next_uid_1 = __webpack_require__(139);
 var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(139);
-var opal_multirow_row_1 = __webpack_require__(140);
+__webpack_require__(140);
+var opal_multirow_row_1 = __webpack_require__(141);
 exports.OpalMultirowRow = opal_multirow_row_1.OpalMultirowRow;
-var template_nelm_1 = __webpack_require__(143);
+var template_nelm_1 = __webpack_require__(144);
 var OpalMultirow = /** @class */ (function (_super) {
     __extends(OpalMultirow, _super);
     function OpalMultirow() {
@@ -7853,16 +8435,24 @@ var OpalMultirow = /** @class */ (function (_super) {
         this.emit('change');
     };
     __decorate([
-        cellx_decorators_1.observable
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalMultirow.prototype, "_presetRowCount", void 0);
     __decorate([
-        cellx_decorators_1.observable
+        cellx_decorators_1.observable,
+        __metadata("design:type", Object)
     ], OpalMultirow.prototype, "_newRows", void 0);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", Boolean)
     ], OpalMultirow.prototype, "_notHaveNewRows", null);
     __decorate([
-        cellx_decorators_1.computed
+        cellx_decorators_1.computed,
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", Boolean)
     ], OpalMultirow.prototype, "_notSingleRow", null);
     OpalMultirow = __decorate([
         rionite_1.Component.Config({
@@ -7876,13 +8466,13 @@ exports.OpalMultirow = OpalMultirow;
 
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_138__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_139__;
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -7899,7 +8489,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7922,8 +8512,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(141);
-var template_nelm_1 = __webpack_require__(142);
+__webpack_require__(142);
+var template_nelm_1 = __webpack_require__(143);
 var OpalMultirowRow = /** @class */ (function (_super) {
     __extends(OpalMultirowRow, _super);
     function OpalMultirowRow() {
@@ -7953,7 +8543,7 @@ exports.OpalMultirowRow = OpalMultirowRow;
 
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -7970,7 +8560,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7978,7 +8568,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot/content-slot\n' '\nopal-sign-button/btn-remove-row (sign=minus)\n' '\nopal-sign-button/btn-add-row (sign=plus)\n}");
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7986,7 +8576,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nrt-slot/preset-rows-slot (\nfor=preset-rows,\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n) {\nrt-slot/preset-rows (for=preset-row)\n}\ndiv/new-rows (not-single-row={_notSingleRow}) {\n@repeat (for=row of _newRows, track-by=key) {\nrt-slot/new-row-slot (clone-content, data-key={row.key})\n}\n}\n}");
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8007,16 +8597,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var escape_html_1 = __webpack_require__(145);
-var hyphenize_1 = __webpack_require__(146);
-var created_browser_history_1 = __webpack_require__(147);
+var escape_html_1 = __webpack_require__(146);
+var hyphenize_1 = __webpack_require__(147);
+var created_browser_history_1 = __webpack_require__(148);
 var rionite_1 = __webpack_require__(0);
-var escapeRegExp_1 = __webpack_require__(148);
-__webpack_require__(149);
-var opal_route_1 = __webpack_require__(150);
+var escapeRegExp_1 = __webpack_require__(149);
+__webpack_require__(150);
+var opal_route_1 = __webpack_require__(151);
 exports.OpalRoute = opal_route_1.OpalRoute;
-var parsePath_1 = __webpack_require__(151);
+var parsePath_1 = __webpack_require__(152);
 var PathNodeType_1 = __webpack_require__(17);
 var forEach = Array.prototype.forEach;
 function isReadonlyProperty(propConfig) {
@@ -8043,7 +8636,7 @@ var OpalRouter = /** @class */ (function (_super) {
     OpalRouter.prototype.ready = function () {
         var routes = this._routes;
         forEach.call(this.element.getElementsByTagName('opal-route'), function (routeEl) {
-            var path = routeEl.$component.params.path;
+            var path = routeEl.$component.paramPath;
             var rePath = [];
             var props = [];
             (function processPath(path) {
@@ -8079,7 +8672,7 @@ var OpalRouter = /** @class */ (function (_super) {
                 path: path,
                 rePath: RegExp("^" + rePath + (rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?') + "$"),
                 properties: props,
-                componentName: routeEl.$component.params.component
+                componentName: routeEl.$component.paramComponent
             });
         });
     };
@@ -8162,7 +8755,7 @@ var OpalRouter = /** @class */ (function (_super) {
                     }
                     this_1._state = state;
                     this_1._applyState();
-                    if (this_1.params.scrollTopOnChange) {
+                    if (this_1.paramScrollTopOnChange) {
                         document.body.scrollTop = 0;
                     }
                     this_1.emit('change');
@@ -8178,7 +8771,7 @@ var OpalRouter = /** @class */ (function (_super) {
             this_1._applyState();
             componentEl.$component.ownerComponent = this_1;
             this_1.element.appendChild(componentEl);
-            if (this_1.params.scrollTopOnChange || this_1.params.scrollTopOnChangeComponent) {
+            if (this_1.paramScrollTopOnChange || this_1.paramScrollTopOnChangeComponent) {
                 document.body.scrollTop = 0;
             }
             this_1.emit('change');
@@ -8219,30 +8812,28 @@ var OpalRouter = /** @class */ (function (_super) {
             this._applyState();
             componentEl.$component.ownerComponent = this;
             this.element.appendChild(componentEl);
-            if (this.params.scrollTopOnChange || this.params.scrollTopOnChangeComponent) {
+            if (this.paramScrollTopOnChange || this.paramScrollTopOnChangeComponent) {
                 document.body.scrollTop = 0;
             }
         }
     };
+    __decorate([
+        rionite_1.Param({ default: true }),
+        __metadata("design:type", Boolean)
+    ], OpalRouter.prototype, "paramScrollTopOnChange", void 0);
+    __decorate([
+        rionite_1.Param({ default: true }),
+        __metadata("design:type", Boolean)
+    ], OpalRouter.prototype, "paramScrollTopOnChangeComponent", void 0);
     OpalRouter = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'OpalRouter',
-            params: {
-                scrollTopOnChange: true,
-                scrollTopOnChangeComponent: true
-            }
+            elementIs: 'OpalRouter'
         })
     ], OpalRouter);
     return OpalRouter;
 }(rionite_1.Component));
 exports.OpalRouter = OpalRouter;
 
-
-/***/ }),
-/* 145 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_145__;
 
 /***/ }),
 /* 146 */
@@ -8258,6 +8849,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_147__;
 
 /***/ }),
 /* 148 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_148__;
+
+/***/ }),
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8271,7 +8868,7 @@ exports.escapeRegExp = escapeRegExp;
 
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -8288,7 +8885,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 150 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8309,6 +8906,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
 var OpalRoute = /** @class */ (function (_super) {
@@ -8316,13 +8916,17 @@ var OpalRoute = /** @class */ (function (_super) {
     function OpalRoute() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    __decorate([
+        rionite_1.Param({ required: true, readonly: true }),
+        __metadata("design:type", String)
+    ], OpalRoute.prototype, "paramPath", void 0);
+    __decorate([
+        rionite_1.Param({ required: true, readonly: true }),
+        __metadata("design:type", String)
+    ], OpalRoute.prototype, "paramComponent", void 0);
     OpalRoute = __decorate([
         rionite_1.Component.Config({
-            elementIs: 'OpalRoute',
-            params: {
-                path: { type: String, required: true, readonly: true },
-                component: { type: String, required: true, readonly: true }
-            }
+            elementIs: 'OpalRoute'
         })
     ], OpalRoute);
     return OpalRoute;
@@ -8331,7 +8935,7 @@ exports.OpalRoute = OpalRoute;
 
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

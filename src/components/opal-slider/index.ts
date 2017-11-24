@@ -1,29 +1,35 @@
 import { computed, observable } from 'cellx-decorators';
-import { Component } from 'rionite';
+import { Component, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
-@Component.Config<OpalSlider>({
+@Component.Config({
 	elementIs: 'OpalSlider',
-
-	params: {
-		min: 0,
-		max: 100,
-		step: 1,
-		value: 0,
-		range: eval
-	},
-
 	template
 })
 export class OpalSlider extends Component {
+	@Param({ default: 0 })
+	paramMin: number;
+
+	@Param({ default: 100 })
+	paramMax: number;
+
+	@Param({ default: 1 })
+	paramStep: number;
+
+	@Param({ default: 0 })
+	paramValue: number;
+
+	@Param({ type: eval })
+	paramRange: [number, number];
+
 	@observable _firstInputValue: number;
 	@observable _secondInputValue: number;
 
 	@computed
 	get _firstInputWidth(): number {
-		let min = this.params.min;
-		let all = this.params.max - min;
+		let min = this.paramMin;
+		let all = this.paramMax - min;
 
 		return (
 			Math.round(
@@ -35,7 +41,7 @@ export class OpalSlider extends Component {
 	}
 
 	initialize() {
-		let range = this.params.range;
+		let range = this.paramRange;
 
 		if (range) {
 			this._firstInputValue = range[0];
@@ -44,7 +50,7 @@ export class OpalSlider extends Component {
 	}
 
 	elementAttached() {
-		if (this.params.range) {
+		if (this.paramRange) {
 			this.listenTo('first-input', 'input', this._onFirstInputInput);
 			this.listenTo('second-input', 'input', this._onSecondInputInput);
 		}
@@ -69,12 +75,12 @@ export class OpalSlider extends Component {
 	}
 
 	get value(): number | Array<number> {
-		return this.params.range
+		return this.paramRange
 			? [this._firstInputValue, this._secondInputValue]
 			: +this.$<HTMLInputElement>('input')!.value;
 	}
 	set value(value: number | Array<number>) {
-		if (this.params.range) {
+		if (this.paramRange) {
 			this.$<HTMLInputElement>(
 				'first-input'
 			)!.value = this._firstInputValue = (value as any)[0];

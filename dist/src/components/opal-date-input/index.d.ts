@@ -4,6 +4,13 @@ import { Component, IDisposableListening } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
 export declare class OpalDateInput extends Component {
+    paramFromDate: string;
+    paramToDate: string;
+    paramValue: string;
+    paramPlaceholder: string;
+    paramMask: string;
+    paramRequired: boolean;
+    paramPopoverPosition: string;
     dateExists: typeof dateExists;
     isDateInRange(date: string): boolean;
     _documentFocusListening: IDisposableListening;

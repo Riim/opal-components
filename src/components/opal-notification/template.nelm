@@ -1,10 +1,10 @@
 @section/inner {
 
-div/bar {
+div/bar (view-type={paramViewType}, icon-size={paramIconSize}, button-hide={paramButtonHide}) {
 	rt-slot/icon-slot (for=icon)
 	rt-slot/content-slot
 
-	button/btn-hide (hide={params.buttonHide |not }) {
+	button/btn-hide (hide={paramButtonHide |not }) {
 		svg/btn-hide-icon (viewBox=0 0 32 32) {
 			use (xlink:href=#OpalComponents__icon-close)
 		}

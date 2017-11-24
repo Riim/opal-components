@@ -6,7 +6,7 @@ import template from './template.nelm';
 
 export { OpalInputValidatorRule };
 
-@Component.Config<OpalInputValidator>({
+@Component.Config({
 	elementIs: 'OpalInputValidator',
 	template
 })

@@ -1,7 +1,7 @@
 import { getText } from '@riim/gettext';
 import { IEvent } from 'cellx';
 import { dateExists } from 'date-exists';
-import { Component, IDisposableListening } from 'rionite';
+import { Component, IDisposableListening, Param } from 'rionite';
 import { isFocusable } from '../../utils/isFocusable';
 import { OpalCalendar } from '../opal-calendar';
 import { parseDate } from '../opal-calendar/parseDate';
@@ -15,19 +15,8 @@ function pad(num: number): string {
 	return (num < 10 ? '0' : '') + num;
 }
 
-@Component.Config<OpalDateInput>({
+@Component.Config({
 	elementIs: 'OpalDateInput',
-
-	params: {
-		fromDate: String,
-		toDate: String,
-		value: String,
-		placeholder: 'dd.mm.yyyy',
-		mask: '99.99.9999',
-		required: { default: false, readonly: true },
-		popoverPosition: 'right'
-	},
-
 	i18n: {
 		isRequiredField: getText.t('Поле обязательно для заполнения'),
 		nonExistentDate: getText.t('Несуществующая дата'),
@@ -52,6 +41,24 @@ function pad(num: number): string {
 	}
 })
 export class OpalDateInput extends Component {
+	@Param() paramFromDate: string;
+
+	@Param() paramToDate: string;
+
+	@Param() paramValue: string;
+
+	@Param({ default: 'dd.mm.yyyy' })
+	paramPlaceholder: string;
+
+	@Param({ default: '99.99.9999' })
+	paramMask: string;
+
+	@Param({ default: false, readonly: true })
+	paramRequired: boolean;
+
+	@Param({ default: 'right' })
+	paramPopoverPosition: string;
+
 	dateExists = dateExists;
 
 	isDateInRange(date: string): boolean {
@@ -80,11 +87,7 @@ export class OpalDateInput extends Component {
 			'click',
 			this._onTextInputElementClick
 		);
-		this.listenTo(
-			'calendar-menu',
-			'param-opened-change',
-			this._onCalendarMenuParamOpenedChange
-		);
+		this.listenTo('calendar-menu', 'change:paramOpened', this._onCalendarMenuParamOpenedChange);
 	}
 
 	_onTextInputChange(evt: IEvent<OpalTextInput>) {
@@ -149,8 +152,7 @@ export class OpalDateInput extends Component {
 			return calendar.value;
 		}
 
-		let value = this.params.value;
-		return value ? parseDate(value) : null;
+		return this.paramValue ? parseDate(this.paramValue) : null;
 	}
 
 	getISOValue(h?: number, m?: number, s?: number, ms?: number): string | null {

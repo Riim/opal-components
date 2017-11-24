@@ -1,4 +1,3 @@
-import { IEvent } from 'cellx';
 import { Component } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
 import { IDataListItem, TDataList, TViewModel } from '../opal-select';
@@ -14,6 +13,30 @@ export declare class OpalTagSelect extends Component {
         text: string;
         disabled: string;
     }>;
+    paramViewType: string;
+    paramDataList: TDataList;
+    paramDataListKeypath: string;
+    paramDataListItemSchema: {
+        value?: string;
+        text?: string;
+        disabled?: string;
+    };
+    paramDataProvider: IDataProvider;
+    paramValue: Array<string>;
+    paramViewModel: TViewModel;
+    paramViewModelItemSchema: {
+        value?: string;
+        text?: string;
+        disabled?: string;
+    };
+    paramAddNewItem: (text: string) => Promise<{
+        [name: string]: string;
+    }>;
+    paramPlaceholder: string;
+    paramPopoverPosition: string;
+    paramTabIndex: number;
+    paramFocused: boolean;
+    paramDisabled: boolean;
     dataList: TDataList | null;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
@@ -28,7 +51,6 @@ export declare class OpalTagSelect extends Component {
     _dataListKeypathParam: string | null;
     initialize(): void;
     elementAttached(): void;
-    _onParamViewModelChange(evt: IEvent): void;
     _onControlClick(evt: Event): void;
     _onSelectInput(): false;
     _onSelectChange(): false;

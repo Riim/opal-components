@@ -1,214 +1,214 @@
-h1 { 'opal-button' }
+h1 { 'OpalButton' }
 p {
-	opal-button { 'Button' } ' '
-	opal-button (view-type=primary) { 'Button' } ' '
-	opal-button (view-type=danger) { 'Button' } ' '
+	OpalButton { 'Button' } ' '
+	OpalButton (view-type=primary) { 'Button' } ' '
+	OpalButton (view-type=danger) { 'Button' } ' '
 }
 p {
-	opal-button (disabled) { 'Button' } ' '
-	opal-button (view-type=primary, disabled) { 'Button' } ' '
-	opal-button (view-type=danger, disabled) { 'Button' } ' '
+	OpalButton (disabled) { 'Button' } ' '
+	OpalButton (view-type=primary, disabled) { 'Button' } ' '
+	OpalButton (view-type=danger, disabled) { 'Button' } ' '
 }
 p {
-	opal-button (size=s) { 'Button' } ' '
-	opal-button (view-type=primary, size=s) { 'Button' } ' '
-	opal-button (view-type=danger, size=s) { 'Button' } ' '
+	OpalButton (size=s) { 'Button' } ' '
+	OpalButton (view-type=primary, size=s) { 'Button' } ' '
+	OpalButton (view-type=danger, size=s) { 'Button' } ' '
 }
 p {
-	opal-button (loading) { 'Button' } ' '
-	opal-button (view-type=primary, loading) { 'Button' } ' '
-	opal-button (view-type=danger, loading) { 'Button' } ' '
+	OpalButton (loading) { 'Button' } ' '
+	OpalButton (view-type=primary, loading) { 'Button' } ' '
+	OpalButton (view-type=danger, loading) { 'Button' } ' '
 }
 p {
-	opal-button (loading, disabled) { 'Button' } ' '
-	opal-button (view-type=primary, loading, disabled) { 'Button' } ' '
-	opal-button (view-type=danger, loading, disabled) { 'Button' } ' '
-}
-
-h1 { 'opal-sign-button' }
-p {
-	opal-sign-button (sign=plus) { 'Button' }
-}
-p {
-	opal-sign-button (sign=minus) { 'Button' }
+	OpalButton (loading, disabled) { 'Button' } ' '
+	OpalButton (view-type=primary, loading, disabled) { 'Button' } ' '
+	OpalButton (view-type=danger, loading, disabled) { 'Button' } ' '
 }
 
-h1 { 'opal-text-input' }
+h1 { 'OpalSignButton' }
 p {
-	opal-text-input (value=Value, placeholder=Placeholder)
+	OpalSignButton (sign=plus) { 'Button' }
 }
 p {
-	opal-text-input (value=Value, placeholder=Placeholder, valid)
-}
-p {
-	opal-text-input (value=Value, placeholder=Placeholder, valid=no)
-}
-p {
-	opal-text-input (value=Value, disabled)
-}
-p {
-	opal-text-input (placeholder=Placeholder, disabled)
-}
-p {
-	opal-text-input (value=Value, placeholder=Placeholder, clearable)
-}
-p {
-	opal-text-input (value=Value, placeholder=Placeholder, loading)
-}
-p {
-	opal-text-input (multiline, placeholder=Placeholder)
+	OpalSignButton (sign=minus) { 'Button' }
 }
 
-h1 { 'opal-editable-text' }
+h1 { 'OpalTextInput' }
 p {
-	opal-editable-text {
+	OpalTextInput (value=Value, placeholder=Placeholder)
+}
+p {
+	OpalTextInput (value=Value, placeholder=Placeholder, valid)
+}
+p {
+	OpalTextInput (value=Value, placeholder=Placeholder, valid=no)
+}
+p {
+	OpalTextInput (value=Value, disabled)
+}
+p {
+	OpalTextInput (placeholder=Placeholder, disabled)
+}
+p {
+	OpalTextInput (value=Value, placeholder=Placeholder, clearable)
+}
+p {
+	OpalTextInput (value=Value, placeholder=Placeholder, loading)
+}
+p {
+	OpalTextInput (multiline, placeholder=Placeholder)
+}
+
+h1 { 'OpalEditableText' }
+p {
+	OpalEditableText {
 		'Editable text'
 	}
 }
 
-h1 { 'opal-input-mask' }
+h1 { 'OpalInputMask' }
 p {
-	opal-input-mask (mask=99/99/9999) {
-		opal-text-input (class=OpalInputMask__text-input, placeholder=dd/mm/yyyy)
+	OpalInputMask (mask=99/99/9999) {
+		OpalTextInput (class=OpalInputMask__text-input, placeholder=dd/mm/yyyy)
 	}
 }
 p {
-	opal-input-mask (mask='+7 (999) 999-9999? доб. 9999') {
-		opal-text-input (class=OpalInputMask__text-input, placeholder=Телефон)
+	OpalInputMask (mask='+7 (999) 999-9999? доб. 9999') {
+		OpalTextInput (class=OpalInputMask__text-input, placeholder=Телефон)
 	}
 }
 p {
-	opal-input-mask (mask=#ffffff) {
-		opal-input-mask-definition (mask-char=f, regex=/[0-9a-f]/i)
-		opal-text-input (class=OpalInputMask__text-input, placeholder=Цвет)
-	}
-}
-
-h1 { 'opal-group' }
-p {
-	opal-group {
-		opal-button { 'Button' }
-		opal-button (view-type=primary) { 'Button' }
-		opal-button (view-type=danger) { 'Button' }
-	}
-}
-p {
-	opal-group {
-		opal-button { 'Button' }
-		opal-text-input (value=Value, placeholder=Placeholder)
-		opal-button (view-type=primary) { 'Button' }
+	OpalInputMask (mask=#ffffff) {
+		OpalInputMaskDefinition (mask-char=f, regex=/[0-9a-f]/i)
+		OpalTextInput (class=OpalInputMask__text-input, placeholder=Цвет)
 	}
 }
 
-h1 { 'opal-checkbox' }
+h1 { 'OpalGroup' }
 p {
-	opal-checkbox { 'Label' } ' '
-	opal-checkbox (checked) { 'Label' } ' '
-	opal-checkbox (indeterminate) { 'Label' }
+	OpalGroup {
+		OpalButton { 'Button' }
+		OpalButton (view-type=primary) { 'Button' }
+		OpalButton (view-type=danger) { 'Button' }
+	}
+}
+p {
+	OpalGroup {
+		OpalButton { 'Button' }
+		OpalTextInput (value=Value, placeholder=Placeholder)
+		OpalButton (view-type=primary) { 'Button' }
+	}
+}
+
+h1 { 'OpalCheckbox' }
+p {
+	OpalCheckbox { 'Label' } ' '
+	OpalCheckbox (checked) { 'Label' } ' '
+	OpalCheckbox (indeterminate) { 'Label' }
 	br br
-	opal-checkbox (disabled) { 'Label' } ' '
-	opal-checkbox (checked, disabled) { 'Label' } ' '
-	opal-checkbox (indeterminate, disabled) { 'Label' }
+	OpalCheckbox (disabled) { 'Label' } ' '
+	OpalCheckbox (checked, disabled) { 'Label' } ' '
+	OpalCheckbox (indeterminate, disabled) { 'Label' }
 }
 
-h1 { 'opal-radio-group' }
+h1 { 'OpalRadioGroup' }
 p {
-	opal-radio-group {
-		opal-radio-button { 'Label' } ' '
-		opal-radio-button (checked) { 'Label' }
+	OpalRadioGroup {
+		OpalRadioButton { 'Label' } ' '
+		OpalRadioButton (checked) { 'Label' }
 		br br
-		opal-radio-button (disabled) { 'Label' } ' '
-		opal-radio-button (checked, disabled) { 'Label' }
+		OpalRadioButton (disabled) { 'Label' } ' '
+		OpalRadioButton (checked, disabled) { 'Label' }
 	}
 }
 
-h1 { 'opal-switch' }
+h1 { 'OpalSwitch' }
 p {
-	opal-switch { 'Label' } ' '
-	opal-switch (checked) { 'Label' }
+	OpalSwitch { 'Label' } ' '
+	OpalSwitch (checked) { 'Label' }
 	br br
-	opal-switch (disabled) { 'Label' } ' '
-	opal-switch (checked, disabled) { 'Label' }
+	OpalSwitch (disabled) { 'Label' } ' '
+	OpalSwitch (checked, disabled) { 'Label' }
 }
 
-h1 { 'opal-slider' }
+h1 { 'OpalSlider' }
 p {
-	opal-slider br
-	opal-slider (min=-100, max=100, step=20, value=40) br
-	opal-slider (range='[20, 80]')
+	OpalSlider br
+	OpalSlider (min=-100, max=100, step=20, value=40) br
+	OpalSlider (range='[20, 80]')
 }
 
-h1 { 'opal-switch-menu' }
+h1 { 'OpalSwitchMenu' }
 p {
-	opal-switch-menu {
-		opal-button (checkable, checked) { 'Option 1' }
-		opal-button (checkable) { 'Option 2' }
-		opal-button (checkable) { 'Option 3' }
+	OpalSwitchMenu {
+		OpalButton (checkable, checked) { 'Option 1' }
+		OpalButton (checkable) { 'Option 2' }
+		OpalButton (checkable) { 'Option 3' }
 	}
 }
 
-h1 { 'opal-tabs' }
+h1 { 'OpalTabs' }
 p {
-	opal-tabs {
-		opal-tab (selected) { 'Foo' }
-		opal-tab { 'Bar' }
-		opal-tab { 'Baz' }
-		opal-tab-panel { 'Hello Foo' }
-		opal-tab-panel { 'Hello Bar' }
-		opal-tab-panel { 'Hello Baz' }
+	OpalTabs {
+		OpalTab (selected) { 'Foo' }
+		OpalTab { 'Bar' }
+		OpalTab { 'Baz' }
+		OpalTabPanel { 'Hello Foo' }
+		OpalTabPanel { 'Hello Bar' }
+		OpalTabPanel { 'Hello Baz' }
 	}
 }
 
-h1 { 'opal-popover' }
+h1 { 'OpalPopover' }
 p {
 	div (
 		style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;
 	) {
-		opal-popover (position=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (position=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (position=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
 	}
 	div (
 		style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;
 	) {
-		opal-popover (position=top-left, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (position=right-top, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (position=bottom-right, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (position=left-bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=top-left, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=right-top, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=bottom-right, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=left-bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
 	}
 	div (
 		style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;
 	) {
-		opal-popover (position=top-right, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (position=right-bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (position=bottom-left, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		opal-popover (position=left-top, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=top-right, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=right-bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=bottom-left, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=left-top, auto-direction=no, opened) { 'Popover' br 'Popover' }
 	}
 }
 
-h1 { 'opal-modal' }
+h1 { 'OpalModal' }
 p {
-	opal-modal (id=modal1) {
+	OpalModal (id=modal1) {
 		'Modal'
 	}
 
-	opal-button (onclick='document.getElementById("modal1").$component.open();') {
+	OpalButton (onclick='document.getElementById("modal1").$component.open();') {
 		'Open'
 	}
 }
 
-h1 { 'opal-notification' }
+h1 { 'OpalNotification' }
 p {
-	opal-notification (id=notification1) {
+	OpalNotification (id=notification1) {
 		'default'
 	}
 
-	opal-notification (id=notification2, view-type=primary, button-hide=no, timeout=5000) {
+	OpalNotification (id=notification2, view-type=primary, button-hide=no, timeout=5000) {
 		'primary'
 	}
 
-	opal-notification (id=notification3, view-type=primary, button-hide=no, timeout=10000) {
+	OpalNotification (id=notification3, view-type=primary, button-hide=no, timeout=10000) {
 		'primary '
 		'primary '
 		'primary '
@@ -228,14 +228,14 @@ p {
 		'primary '
 	}
 
-	opal-notification (id=notification4, view-type=success) {
+	OpalNotification (id=notification4, view-type=success) {
 		svg (class=OpalNotification__icon, viewBox=0 0 32 32) {
 			use (xlink:href=#OpalComponents__icon-calendar)
 		}
 		'success'
 	}
 
-	opal-notification (id=notification5, view-type=success) {
+	OpalNotification (id=notification5, view-type=success) {
 		svg (class=OpalNotification__icon, viewBox=0 0 32 32) {
 			use (xlink:href=#OpalComponents__icon-calendar)
 		}
@@ -258,56 +258,56 @@ p {
 		'success '
 	}
 
-	opal-notification (id=notification6, view-type=danger) {
+	OpalNotification (id=notification6, view-type=danger) {
 		'danger'
 	}
 
-	opal-button (onclick='document.getElementById("notification1").$component.show();') { 'Show 1' }
+	OpalButton (onclick='document.getElementById("notification1").$component.show();') { 'Show 1' }
 	' '
-	opal-button (onclick='document.getElementById("notification2").$component.show();') { 'Show 2' }
+	OpalButton (onclick='document.getElementById("notification2").$component.show();') { 'Show 2' }
 	' '
-	opal-button (onclick='document.getElementById("notification3").$component.show();') { 'Show 3' }
+	OpalButton (onclick='document.getElementById("notification3").$component.show();') { 'Show 3' }
 	' '
-	opal-button (onclick='document.getElementById("notification4").$component.show();') { 'Show 4' }
+	OpalButton (onclick='document.getElementById("notification4").$component.show();') { 'Show 4' }
 	' '
-	opal-button (onclick='document.getElementById("notification5").$component.show();') { 'Show 5' }
+	OpalButton (onclick='document.getElementById("notification5").$component.show();') { 'Show 5' }
 	' '
-	opal-button (onclick='document.getElementById("notification6").$component.show();') { 'Show 6' }
+	OpalButton (onclick='document.getElementById("notification6").$component.show();') { 'Show 6' }
 }
 
-h1 { 'opal-calendar' }
+h1 { 'OpalCalendar' }
 p {
-	opal-calendar (from-date=today)
+	OpalCalendar (from-date=today)
 }
 
-h1 { 'opal-date-input' }
+h1 { 'OpalDateInput' }
 p {
-	opal-date-input
+	OpalDateInput
 }
 p {
-	opal-date-input (mask=99.99.9999, placeholder=dd.mm.yyyy, required)
-}
-
-h1 { 'opal-loader' }
-p {
-	opal-loader (shown)
-	opal-loader (size=s, shown)
+	OpalDateInput (mask=99/99/9999, placeholder=dd/mm/yyyy, required)
 }
 
-h1 { 'opal-filtered-list' }
+h1 { 'OpalLoader' }
 p {
-	opal-filtered-list {
-		opal-loaded-list (class=OpalFilteredList__list, data-provider={dataProvider1}) {
+	OpalLoader (shown)
+	OpalLoader (size=s, shown)
+}
+
+h1 { 'OpalFilteredList' }
+p {
+	OpalFilteredList {
+		OpalLoadedList (class=OpalFilteredList__list, data-provider={dataProvider1}) {
 			'{$item.name}'
 		}
 	}
 }
 
-h1 { 'opal-tree-list' }
+h1 { 'OpalTreeList' }
 p {
-	opal-filtered-list {
-		opal-tree-list (class=OpalFilteredList__list, data-tree-list={dataTreeList1}) {
-			opal-checkbox (
+	OpalFilteredList {
+		OpalTreeList (class=OpalFilteredList__list, data-tree-list={dataTreeList1}) {
+			OpalCheckbox (
 				class=OpalTreeList__selection-control,
 				checked={$selected},
 				indeterminate={$indeterminate}
@@ -318,28 +318,28 @@ p {
 	}
 }
 
-h1 { 'opal-select' }
+h1 { 'OpalSelect' }
 p {
-	opal-select (placeholder=Select) {
-		opal-select-option (text=Option 1)
-		opal-select-option (text=Option 2)
-		opal-select-option (text=Option 3)
-		opal-select-option (text='Option 4 (disabled)', disabled)
-		opal-select-option (text=Option 5)
-		opal-select-option (text='Option 6 (disabled)', disabled)
+	OpalSelect (placeholder=Select) {
+		OpalSelectOption (text=Option 1)
+		OpalSelectOption (text=Option 2)
+		OpalSelectOption (text=Option 3)
+		OpalSelectOption (text='Option 4 (disabled)', disabled)
+		OpalSelectOption (text=Option 5)
+		OpalSelectOption (text='Option 6 (disabled)', disabled)
 	}
 }
 p {
-	opal-select (multiple, placeholder=Select) {
-		opal-select-option (text=Option 1, selected)
-		opal-select-option (text=Option 2, selected)
-		opal-select-option (text=Option 3)
-		opal-select-option (text=Option 4)
-		opal-select-option (text=Option 5)
+	OpalSelect (multiple, placeholder=Select) {
+		OpalSelectOption (text=Option 1, selected)
+		OpalSelectOption (text=Option 2, selected)
+		OpalSelectOption (text=Option 3)
+		OpalSelectOption (text=Option 4)
+		OpalSelectOption (text=Option 5)
 	}
 }
 p {
-	opal-select (
+	OpalSelect (
 		multiple,
 		data-list={dataList1},
 		data-list-item-schema='{ value: "id", text: "name" }',
@@ -347,143 +347,143 @@ p {
 		add-new-item={addNewItem1},
 		placeholder=Select
 	) {
-		opal-text-input (class=OpalSelect__new-item-input)
+		OpalTextInput (class=OpalSelect__new-item-input)
 	}
 }
 p {
-	opal-group {
-		opal-select (placeholder=Select) {
-			opal-popover (class=OpalSelect__menu, position=bottom, auto-closing) {
-				opal-select-option (text=Option 1, subtext=Subtext 1)
-				opal-select-option (text=Option 2, subtext=Subtext 2)
-				opal-select-option (text=Option 3, subtext=Subtext 3)
+	OpalGroup {
+		OpalSelect (placeholder=Select) {
+			OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
+				OpalSelectOption (text=Option 1, subtext=Subtext 1)
+				OpalSelectOption (text=Option 2, subtext=Subtext 2)
+				OpalSelectOption (text=Option 3, subtext=Subtext 3)
 			}
 		}
-		opal-select (view-type=primary, placeholder=Select) {
-			opal-popover (class=OpalSelect__menu, auto-closing) {
-				opal-select-option (text=Option 1)
-				opal-select-option (text=Option 2)
-				opal-select-option (text=Option 3)
+		OpalSelect (view-type=primary, placeholder=Select) {
+			OpalPopover (class=OpalSelect__menu, auto-closing) {
+				OpalSelectOption (text=Option 1)
+				OpalSelectOption (text=Option 2)
+				OpalSelectOption (text=Option 3)
 			}
 		}
 	}
 }
 
-h1 { 'opal-select + opal-loaded-list' }
+h1 { 'OpalSelect + OpalLoadedList' }
 p {
-	opal-select {
-		opal-dropdown (class=OpalSelect__menu, auto-height=no, auto-closing) {
-			opal-filtered-list (class=OpalSelect__filtered-list) {
-				opal-loaded-list (
+	OpalSelect {
+		OpalDropdown (class=OpalSelect__menu, auto-height=no, auto-closing) {
+			OpalFilteredList (class=OpalSelect__filtered-list) {
+				OpalLoadedList (
 					class=OpalSelect__loaded-list OpalFilteredList__list,
 					data-provider={dataProvider1}
 				) {
-					opal-select-option (text={$item.name})
+					OpalSelectOption (text={$item.name})
 				}
 			}
 		}
 	}
 	' '
 
-	opal-select {
-		opal-popover (class=OpalSelect__menu, position=bottom, auto-closing) {
-			opal-loaded-list (class=OpalSelect__loaded-list, data-provider={dataProvider1}) {
-				opal-select-option (text={$item.name})
+	OpalSelect {
+		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
+			OpalLoadedList (class=OpalSelect__loaded-list, data-provider={dataProvider1}) {
+				OpalSelectOption (text={$item.name})
 			}
 		}
 	}
 	' '
 
-	opal-select (
+	OpalSelect (
 		multiple,
 		view-model={viewModel1},
 		view-model-item-schema='{ value: "id", text: "name" }'
 	) {
-		opal-popover (class=OpalSelect__menu, position=bottom, auto-closing) {
-			opal-loaded-list (class=OpalSelect__loaded-list, data-provider={dataProvider1}) {
-				opal-select-option (text={$item.name})
+		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
+			OpalLoadedList (class=OpalSelect__loaded-list, data-provider={dataProvider1}) {
+				OpalSelectOption (text={$item.name})
 			}
 		}
 	}
 	' '
 
-	opal-select {
-		opal-popover (class=OpalSelect__menu, position=bottom, auto-closing) {
-			opal-filtered-list (class=OpalSelect__filtered-list) {
-				opal-loaded-list (
+	OpalSelect {
+		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
+			OpalFilteredList (class=OpalSelect__filtered-list) {
+				OpalLoadedList (
 					class=OpalSelect__loaded-list OpalFilteredList__list,
 					data-provider={dataProvider1}
 				) {
-					opal-select-option (text={$item.name})
+					OpalSelectOption (text={$item.name})
 				}
 			}
 		}
 	}
 	' '
 
-	opal-select (multiple) {
-		opal-popover (class=OpalSelect__menu, position=bottom, auto-closing) {
-			opal-filtered-list (class=OpalSelect__filtered-list) {
-				opal-loaded-list (
+	OpalSelect (multiple) {
+		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
+			OpalFilteredList (class=OpalSelect__filtered-list) {
+				OpalLoadedList (
 					class=OpalSelect__loaded-list OpalFilteredList__list,
 					data-provider={dataProvider1}
 				) {
-					opal-select-option (text={$item.name})
+					OpalSelectOption (text={$item.name})
 				}
 			}
 		}
 	}
 }
 
-h1 { 'opal-multiselect' }
+h1 { 'OpalMultiselect' }
 p {
-	opal-multiselect (
+	OpalMultiselect (
 		data-provider={dataProvider1},
 		data-list-item-schema='{ value: "id", text: "name" }'
 	)
 }
 
-h1 { 'opal-tree-select' }
+h1 { 'OpalTreeSelect' }
 p {
-	opal-tree-select (data-tree-list={dataTreeList1})
+	OpalTreeSelect (data-tree-list={dataTreeList1})
 }
 
-h1 { 'opal-autosuggest' }
+h1 { 'OpalAutosuggest' }
 p {
-	opal-autosuggest (data-provider={dataProvider2}, open-menu-on-nothing-found)
+	OpalAutosuggest (data-provider={dataProvider2}, open-menu-on-nothing-found)
 }
 
-h1 { 'opal-tag-select' }
+h1 { 'OpalTagSelect' }
 p {
-	opal-tag-select (data-provider={dataProvider1}, placeholder='') br
-	opal-tag-select (view-type=primary, data-provider={dataProvider1}) br
-	opal-tag-select (
+	OpalTagSelect (data-provider={dataProvider1}, placeholder='') br
+	OpalTagSelect (view-type=primary, data-provider={dataProvider1}) br
+	OpalTagSelect (
 		view-type=danger,
 		data-provider={dataProvider1},
 		add-new-item={addNewItem1},
 		view-model={viewModel1}
 	) {
-		opal-text-input (class=OpalSelect__new-item-input OpalFilteredList__query-input)
+		OpalTextInput (class=OpalSelect__new-item-input OpalFilteredList__query-input)
 	}
 }
 
-h1 { 'opal-tree-tag-select' }
+h1 { 'OpalTreeTagSelect' }
 p {
-	opal-tree-tag-select (data-list={dataTreeList1})
+	OpalTreeTagSelect (data-list={dataTreeList1})
 }
 
-h1 { 'opal-multirow' }
+h1 { 'OpalMultirow' }
 p {
-	opal-multirow {
-		opal-multirow-row (class=OpalMultirow__preset-row) {
-			opal-text-input (value=Value, placeholder=Placeholder)
+	OpalMultirow {
+		OpalMultirowRow (class=OpalMultirow__preset-row) {
+			OpalTextInput (value=Value, placeholder=Placeholder)
 		}
-		opal-multirow-row (class=OpalMultirow__preset-row) {
-			opal-text-input (value=Value, placeholder=Placeholder, valid=no)
+		OpalMultirowRow (class=OpalMultirow__preset-row) {
+			OpalTextInput (value=Value, placeholder=Placeholder, valid=no)
 		}
 
-		opal-multirow-row {
-			opal-text-input (value=Value, placeholder=Placeholder, valid)
+		OpalMultirowRow {
+			OpalTextInput (value=Value, placeholder=Placeholder, valid)
 		}
 	}
 }

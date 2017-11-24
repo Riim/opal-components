@@ -1,7 +1,13 @@
 import { mixin } from '@riim/mixin';
 import { Cell, define } from 'cellx';
-import { Component } from 'rionite';
-import { IDataTreeListItem, OpalTreeList, TViewModel } from './index';
+import { RtContent } from 'rionite';
+import {
+	IDataTreeListItem,
+	IFilteredDataTreeListItem,
+	OpalTreeList,
+	TViewModel
+	} from './index';
+import { OpalTreeListItem } from './opal-tree-list-item/index';
 
 function isSelectedItem(
 	item: IDataTreeListItem,
@@ -49,12 +55,13 @@ function isIndeterminateItem(
 }
 
 export default function _getListItemContext(
+	this: OpalTreeList | OpalTreeListItem,
 	context: { [name: string]: any },
-	content: Component
+	content: RtContent
 ): { [name: string]: any } {
-	let $item = content.params.$context.$item;
+	let $item: IFilteredDataTreeListItem = content.$context.$item;
 
-	return define(mixin(Object.create(context), content.params.$context, ['$component']), {
+	return define(mixin(Object.create(context), content.$context, ['$component']), {
 		$selected: new Cell(
 			function(this: OpalTreeList) {
 				this.dataTreeList;
@@ -70,7 +77,7 @@ export default function _getListItemContext(
 		),
 
 		$indeterminate: new Cell(
-			function(this: OpalTreeList) {
+			function(this: OpalTreeList | OpalTreeListItem) {
 				this.dataTreeList;
 
 				return isIndeterminateItem(

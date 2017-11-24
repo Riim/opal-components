@@ -1,35 +1,42 @@
 import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { Component, IDisposableListening } from 'rionite';
+import { Component, IDisposableListening, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
-@Component.Config<OpalSignButton>({
+@Component.Config({
 	elementIs: 'OpalSignButton',
-
-	params: {
-		sign: { type: String, required: true },
-		checkable: false,
-		checked: false,
-		tabIndex: 0,
-		focused: false,
-		disabled: false
-	},
-
 	template
 })
 export class OpalSignButton extends Component {
+	@Param({ required: true })
+	paramSign: string;
+
+	@Param({ default: false })
+	paramCheckable: boolean;
+
+	@Param({ default: false })
+	paramChecked: boolean;
+
+	@Param({ default: 0 })
+	paramTabIndex: number;
+
+	@Param({ default: false })
+	paramFocused: boolean;
+
+	@Param({ default: false })
+	paramDisabled: boolean;
+
 	@computed
 	get _tabIndex(): number {
-		return this.params.disabled ? -1 : this.params.tabIndex;
+		return this.paramDisabled ? -1 : this.paramTabIndex;
 	}
 
 	_documentKeyDownListening: IDisposableListening;
 
 	elementAttached() {
-		this.listenTo(this, 'param-focused-change', this._onParamFocusedChange);
-
+		this.listenTo(this, 'change:paramFocused', this._onParamFocusedChange);
 		this.listenTo('control', {
 			focus: this._onControlFocus,
 			blur: this._onControlBlur,
@@ -38,7 +45,7 @@ export class OpalSignButton extends Component {
 	}
 
 	ready() {
-		if (this.params.focused) {
+		if (this.paramFocused) {
 			this.focus();
 		}
 	}
@@ -54,27 +61,27 @@ export class OpalSignButton extends Component {
 	_onControlFocus(evt: Event) {
 		nextTick(() => {
 			if (document.activeElement == evt.target) {
-				this.params.focused = true;
+				this.paramFocused = true;
 				this.emit('focus');
 			}
 		});
 	}
 
 	_onControlBlur() {
-		this.params.focused = false;
+		this.paramFocused = false;
 		this.emit('blur');
 	}
 
 	_onControlClick(evt: Event) {
 		evt.preventDefault();
 
-		if (!this.params.disabled) {
+		if (!this.paramDisabled) {
 			this.click();
 		}
 	}
 
 	click(): OpalSignButton {
-		if (this.params.checkable) {
+		if (this.paramCheckable) {
 			this.emit(this.toggle() ? 'check' : 'uncheck');
 		}
 
@@ -84,10 +91,10 @@ export class OpalSignButton extends Component {
 	}
 
 	get checked(): boolean {
-		return this.params.checked;
+		return this.paramChecked;
 	}
 	set checked(checked: boolean) {
-		this.params.checked = checked;
+		this.paramChecked = checked;
 	}
 
 	get selected(): boolean {
@@ -98,8 +105,8 @@ export class OpalSignButton extends Component {
 	}
 
 	check(): boolean {
-		if (!this.params.checked) {
-			this.params.checked = true;
+		if (!this.paramChecked) {
+			this.paramChecked = true;
 			return true;
 		}
 
@@ -107,8 +114,8 @@ export class OpalSignButton extends Component {
 	}
 
 	uncheck(): boolean {
-		if (this.params.checked) {
-			this.params.checked = false;
+		if (this.paramChecked) {
+			this.paramChecked = false;
 			return true;
 		}
 
@@ -116,7 +123,7 @@ export class OpalSignButton extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.params.checked = value === undefined ? !this.params.checked : value);
+		return (this.paramChecked = value === undefined ? !this.paramChecked : value);
 	}
 
 	focus(): OpalSignButton {
@@ -130,12 +137,12 @@ export class OpalSignButton extends Component {
 	}
 
 	enable(): OpalSignButton {
-		this.params.disabled = false;
+		this.paramDisabled = false;
 		return this;
 	}
 
 	disable(): OpalSignButton {
-		this.params.disabled = true;
+		this.paramDisabled = true;
 		return this;
 	}
 }

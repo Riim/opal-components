@@ -54,7 +54,7 @@ export class OpalTabs extends Component {
 			selectedTab.select();
 		}
 
-		tabPanels[selectedTabIndex!].$component.params.shown = true;
+		tabPanels[selectedTabIndex!].$component.paramShown = true;
 	}
 
 	elementAttached() {
@@ -76,13 +76,13 @@ export class OpalTabs extends Component {
 	}
 
 	goToTab(label: string): boolean {
-		if (this._selectedTab && this._selectedTab!.params.label === label) {
+		if (this._selectedTab && this._selectedTab!.paramLabel === label) {
 			return true;
 		}
 
 		let tab: IComponentElement<OpalTab> = find.call(
 			this.tabs,
-			(tab: IComponentElement) => tab.$component.params.label == label
+			(tab: IComponentElement<OpalTab>) => tab.$component.paramLabel == label
 		);
 
 		if (tab) {
@@ -99,11 +99,11 @@ export class OpalTabs extends Component {
 		if (selectedTab) {
 			this.tabPanels[
 				indexOf.call(this.tabs, selectedTab.element)
-			].$component.params.shown = false;
+			].$component.paramShown = false;
 			selectedTab.deselect();
 		}
 
-		this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.params.shown = true;
+		this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.paramShown = true;
 		tab.select();
 
 		this._selectedTab = tab;

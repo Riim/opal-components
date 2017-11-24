@@ -17,6 +17,8 @@ export interface IComponentState {
     [name: string]: boolean | string;
 }
 export declare class OpalRouter extends Component {
+    paramScrollTopOnChange: boolean;
+    paramScrollTopOnChangeComponent: boolean;
     _routes: Array<IRoute>;
     _route: IRoute | null;
     _state: IComponentState | null;

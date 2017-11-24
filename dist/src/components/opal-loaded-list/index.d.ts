@@ -1,5 +1,6 @@
 import { ObservableList } from 'cellx';
 import { Component, IDisposableCallback, IDisposableTimeout } from 'rionite';
+import { RtSlot } from 'rionite/dist/components/rt-slot';
 import './index.css';
 export interface IDataListItem {
     [name: string]: any;
@@ -18,6 +19,14 @@ export declare class OpalLoadedList extends Component {
         value: string;
         text: string;
     }>;
+    paramDataListItemSchema: {
+        value?: string;
+        text?: string;
+    };
+    paramDataProvider: IDataProvider;
+    paramCount: number;
+    paramQuery: string;
+    paramPreloading: boolean;
     dataList: ObservableList<IDataListItem>;
     _dataListItemTextFieldName: string;
     total: number | undefined;
@@ -40,7 +49,7 @@ export declare class OpalLoadedList extends Component {
     _load(): void;
     _getListItemContext(context: {
         [name: string]: any;
-    }, content: Component): {
+    }, slot: RtSlot): {
         [name: string]: any;
     };
 }

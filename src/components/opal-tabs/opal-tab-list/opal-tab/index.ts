@@ -1,32 +1,36 @@
 import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { Component } from 'rionite';
+import { Component, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
-@Component.Config<OpalTab>({
+@Component.Config({
 	elementIs: 'OpalTab',
-
-	params: {
-		label: String,
-		selected: false,
-		tabIndex: 0,
-		focused: false,
-		disabled: false
-	},
-
 	template
 })
 export class OpalTab extends Component {
+	@Param() paramLabel: string;
+
+	@Param({ default: false })
+	paramSelected: boolean;
+
+	@Param({ default: 0 })
+	paramTabIndex: number;
+
+	@Param({ default: false })
+	paramFocused: boolean;
+
+	@Param({ default: false })
+	paramDisabled: boolean;
+
 	@computed
 	get _tabIndex(): number {
-		return this.params.disabled ? -1 : this.params.tabIndex;
+		return this.paramDisabled ? -1 : this.paramTabIndex;
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'param-focused-change', this._onParamFocusedChange);
-
+		this.listenTo(this, 'change:paramFocused', this._onParamFocusedChange);
 		this.listenTo('control', {
 			focus: this._onControlFocus,
 			blur: this._onControlBlur,
@@ -35,7 +39,7 @@ export class OpalTab extends Component {
 	}
 
 	ready() {
-		if (this.params.focused) {
+		if (this.paramFocused) {
 			this.focus();
 		}
 	}
@@ -51,38 +55,38 @@ export class OpalTab extends Component {
 	_onControlFocus(evt: Event) {
 		nextTick(() => {
 			if (document.activeElement == evt.target) {
-				this.params.focused = true;
+				this.paramFocused = true;
 			}
 		});
 	}
 
 	_onControlBlur() {
-		this.params.focused = false;
+		this.paramFocused = false;
 	}
 
 	_onControlClick(evt: Event) {
 		evt.preventDefault();
 
-		if (!this.params.disabled) {
+		if (!this.paramDisabled) {
 			this.click();
 		}
 	}
 
-	click(): OpalTab {
+	click(): this {
 		this.emit(this.toggle() ? 'select' : 'deselect');
 		return this;
 	}
 
 	get selected(): boolean {
-		return this.params.selected;
+		return this.paramSelected;
 	}
 	set selected(selected: boolean) {
-		this.params.selected = selected;
+		this.paramSelected = selected;
 	}
 
 	select(): boolean {
-		if (!this.params.selected) {
-			this.params.selected = true;
+		if (!this.paramSelected) {
+			this.paramSelected = true;
 			return true;
 		}
 
@@ -90,8 +94,8 @@ export class OpalTab extends Component {
 	}
 
 	deselect(): boolean {
-		if (this.params.selected) {
-			this.params.selected = false;
+		if (this.paramSelected) {
+			this.paramSelected = false;
 			return true;
 		}
 
@@ -99,26 +103,26 @@ export class OpalTab extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.params.selected = value === undefined ? !this.params.selected : value);
+		return (this.paramSelected = value === undefined ? !this.paramSelected : value);
 	}
 
-	focus(): OpalTab {
+	focus(): this {
 		this.$<HTMLElement>('control')!.focus();
 		return this;
 	}
 
-	blur(): OpalTab {
+	blur(): this {
 		this.$<HTMLElement>('control')!.blur();
 		return this;
 	}
 
-	enable(): OpalTab {
-		this.params.disabled = false;
+	enable(): this {
+		this.paramDisabled = false;
 		return this;
 	}
 
-	disable(): OpalTab {
-		this.params.disabled = true;
+	disable(): this {
+		this.paramDisabled = true;
 		return this;
 	}
 }

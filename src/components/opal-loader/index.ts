@@ -1,12 +1,13 @@
-import { Component } from 'rionite';
+import { Component, Param } from 'rionite';
 import './index.css';
 
 @Component.Config({
-	elementIs: 'OpalLoader',
-
-	params: {
-		size: 'm',
-		shown: false
-	}
+	elementIs: 'OpalLoader'
 })
-export class OpalLoader extends Component {}
+export class OpalLoader extends Component {
+	@Param({ default: 'm' })
+	paramSize: string;
+
+	@Param({ default: false })
+	paramShown: boolean;
+}

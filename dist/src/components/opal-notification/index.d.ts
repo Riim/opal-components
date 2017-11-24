@@ -2,6 +2,11 @@ import { IEvent } from 'cellx';
 import { Component } from 'rionite';
 import './index.css';
 export declare class OpalNotification extends Component {
+    paramViewType: string;
+    paramIconSize: string;
+    paramButtonHide: boolean;
+    paramTimeout: number;
+    paramShown: boolean;
     bar: HTMLElement;
     $<R>(name: string, container?: Component | Element): R | null;
     ready(): void;

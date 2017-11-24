@@ -3,7 +3,13 @@ import { mixin } from '@riim/mixin';
 import { nextTick } from '@riim/next-tick';
 import { Cell, ObservableList } from 'cellx';
 import { computed, observable } from 'cellx-decorators';
-import { Component, IDisposableCallback, IDisposableTimeout } from 'rionite';
+import {
+	Component,
+	IDisposableCallback,
+	IDisposableTimeout,
+	Param
+	} from 'rionite';
+import { RtSlot } from 'rionite/dist/components/rt-slot';
 import './index.css';
 import template from './template.nelm';
 
@@ -25,16 +31,8 @@ export interface IDataProvider {
 
 let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 
-@Component.Config<OpalLoadedList>({
+@Component.Config({
 	elementIs: 'OpalLoadedList',
-
-	params: {
-		dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
-		dataProvider: { type: Object, readonly: true },
-		count: 100,
-		query: String,
-		preloading: { default: false, readonly: true }
-	},
 
 	i18n: {
 		nothingFound: getText.t('Ничего не найдено')
@@ -44,6 +42,20 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 })
 export class OpalLoadedList extends Component {
 	static defaultDataListItemSchema = defaultDataListItemSchema;
+
+	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
+	paramDataListItemSchema: { value?: string; text?: string };
+
+	@Param({ readonly: true })
+	paramDataProvider: IDataProvider;
+
+	@Param({ default: 100 })
+	paramCount: number;
+
+	@Param() paramQuery: string;
+
+	@Param({ default: false, readonly: true })
+	paramPreloading: boolean;
 
 	@observable dataList = new ObservableList<IDataListItem>();
 	_dataListItemTextFieldName: string;
@@ -77,30 +89,26 @@ export class OpalLoadedList extends Component {
 	}
 
 	initialize() {
-		let params = this.params;
-
 		this._dataListItemTextFieldName =
-			params.dataListItemSchema.text ||
+			this.paramDataListItemSchema.text ||
 			(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema.text;
 
-		if (!params.$specified.has('dataProvider')) {
+		if (!this.$specifiedParams.has('dataProvider')) {
 			throw new TypeError('Parameter "dataProvider" is required');
 		}
 
-		let dataProvider = params.dataProvider;
+		this.dataProvider = this.paramDataProvider;
 
-		if (!dataProvider) {
+		if (!this.dataProvider) {
 			throw new TypeError('"dataProvider" is not defined');
 		}
-
-		this.dataProvider = dataProvider;
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'param-query-change', this._onParamQueryChange);
+		this.listenTo(this, 'change:paramQuery', this._onParamQueryChange);
 		this.listenTo(this.element, 'scroll', this._onElementScroll);
 
-		if (this.params.preloading) {
+		if (this.paramPreloading) {
 			this._load();
 		} else {
 			this.checkLoading();
@@ -150,7 +158,7 @@ export class OpalLoadedList extends Component {
 
 	checkLoading() {
 		if (
-			this.params.query === this._lastRequestedQuery &&
+			this.paramQuery === this._lastRequestedQuery &&
 			(this.loading || (this.total !== undefined && this.dataList.length == this.total))
 		) {
 			return;
@@ -171,17 +179,16 @@ export class OpalLoadedList extends Component {
 			this._requestCallback.cancel();
 		}
 
-		let params = this.params;
 		let infinite = this.dataProvider.getItems.length >= 2;
-		let query: string | null = (this._lastRequestedQuery = params.query);
-		let args = [query];
+		let query: string | null = (this._lastRequestedQuery = this.paramQuery);
+		let args: Array<any> = [query];
 
 		if (infinite) {
 			args.unshift(
-				params.count,
+				this.paramCount,
 				this.dataList.length
 					? this.dataList.get(-1)![
-							params.dataListItemSchema.value ||
+							this.paramDataListItemSchema.value ||
 								(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema
 									.value
 						]
@@ -220,10 +227,7 @@ export class OpalLoadedList extends Component {
 		);
 	}
 
-	_getListItemContext(
-		context: { [name: string]: any },
-		content: Component
-	): { [name: string]: any } {
-		return mixin(Object.create(context), content.params.$context, ['$component']);
+	_getListItemContext(context: { [name: string]: any }, slot: RtSlot): { [name: string]: any } {
+		return mixin(Object.create(context), slot.$context, ['$component']);
 	}
 }

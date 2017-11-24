@@ -1,7 +1,8 @@
 import { nextTick } from '@riim/next-tick';
 import { computed } from 'cellx-decorators';
-import { Component, IComponentElement } from 'rionite';
+import { Component, IComponentElement, Param } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
+import { OpalInputMaskDefinition } from './opal-input-mask-definition/index';
 import template from './template.nelm';
 
 export { OpalInputMaskDefinition } from './opal-input-mask-definition';
@@ -13,11 +14,6 @@ let ie11 = !(window as any).ActiveXObject && 'ActiveXObject' in window;
 
 @Component.Config({
 	elementIs: 'OpalInputMask',
-
-	params: {
-		mask: { type: String, required: true }
-	},
-
 	template
 })
 export class OpalInputMask extends Component {
@@ -29,18 +25,20 @@ export class OpalInputMask extends Component {
 		'*': /[0-9a-zA-Z]/
 	};
 
+	@Param({ required: true })
+	paramMask: string;
+
 	_definitions: { [chr: string]: RegExp };
 
 	@computed
 	get _mask(): Array<string> {
-		return (this.params.mask as string).split('').filter((chr: string) => chr != '?');
+		return this.paramMask.split('').filter((chr: string) => chr != '?');
 	}
 
 	@computed
 	get _partialIndex(): number {
-		let mask = this.params.mask as string;
-		let index = mask.indexOf('?');
-		return index == -1 ? mask.length : index;
+		let index = this.paramMask.indexOf('?');
+		return index == -1 ? this.paramMask.length : index;
 	}
 
 	@computed
@@ -73,8 +71,9 @@ export class OpalInputMask extends Component {
 		forEach.call(
 			this.element.getElementsByTagName('opal-input-mask-definition'),
 			(inputMaskDefinition: IComponentElement) => {
-				let params = inputMaskDefinition.$component.params;
-				definitions[params.maskChar] = params.regex;
+				definitions[
+					(inputMaskDefinition.$component as OpalInputMaskDefinition).paramMaskChar
+				] = (inputMaskDefinition.$component as OpalInputMaskDefinition).paramRegex;
 			}
 		);
 
@@ -83,7 +82,6 @@ export class OpalInputMask extends Component {
 
 	elementAttached() {
 		this.listenTo(this, 'change:_mask', this._onMaskChange);
-
 		this.listenTo(this.textField, {
 			focus: this._onTextFieldFocus,
 			blur: this._onTextFieldBlur,

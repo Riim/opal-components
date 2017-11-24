@@ -1,33 +1,46 @@
 import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { Component, IDisposableListening } from 'rionite';
+import { Component, IDisposableListening, Param } from 'rionite';
 import './index.css';
 
-@Component.Config<OpalButton>({
-	elementIs: 'OpalButton',
-
-	params: {
-		viewType: 'default',
-		size: 'm',
-		checkable: false,
-		checked: false,
-		loading: false,
-		tabIndex: 0,
-		focused: false,
-		disabled: false
-	}
+@Component.Config({
+	elementIs: 'OpalButton'
 })
 export class OpalButton extends Component {
+	@Param({ default: 'default' })
+	paramViewType: string;
+
+	@Param({ default: 'm' })
+	paramSize: string;
+
+	@Param({ default: false })
+	paramCheckable: boolean;
+
+	@Param({ default: false })
+	paramChecked: boolean;
+
+	@Param({ default: false })
+	paramLoading: boolean;
+
+	@Param({ default: 0 })
+	paramTabIndex: number;
+
+	@Param({ default: false })
+	paramFocused: boolean;
+
+	@Param({ default: false })
+	paramDisabled: boolean;
+
 	@computed
 	get _tabIndex(): number {
-		return this.params.disabled ? -1 : this.params.tabIndex;
+		return this.paramDisabled ? -1 : this.paramTabIndex;
 	}
 
 	_documentKeyDownListening: IDisposableListening | undefined;
 
 	ready() {
-		if (this.params.focused) {
+		if (this.paramFocused) {
 			this.element.tabIndex = this._tabIndex;
 			this.focus();
 		}
@@ -35,10 +48,9 @@ export class OpalButton extends Component {
 
 	elementAttached() {
 		this.listenTo(this, {
-			'param-focused-change': this._onParamFocusedChange,
+			'change:paramFocused': this._onParamFocusedChange,
 			'change:_tabIndex': this._onTabIndexChange
 		});
-
 		this.listenTo(this.element, {
 			focus: this._onElementFocus,
 			blur: this._onElementBlur,
@@ -74,7 +86,7 @@ export class OpalButton extends Component {
 				);
 			}
 
-			this.params.focused = true;
+			this.paramFocused = true;
 			this.emit('focus');
 		});
 	}
@@ -84,12 +96,12 @@ export class OpalButton extends Component {
 			this._documentKeyDownListening.stop();
 		}
 
-		this.params.focused = false;
+		this.paramFocused = false;
 		this.emit('blur');
 	}
 
 	_onElementClick() {
-		if (!this.params.disabled) {
+		if (!this.paramDisabled) {
 			this.click();
 		}
 	}
@@ -98,14 +110,14 @@ export class OpalButton extends Component {
 		if (evt.which == 13 /* Enter */) {
 			evt.preventDefault();
 
-			if (!this.params.disabled) {
+			if (!this.paramDisabled) {
 				this.click();
 			}
 		}
 	}
 
 	click(): OpalButton {
-		if (this.params.checkable) {
+		if (this.paramCheckable) {
 			this.emit(this.toggle() ? 'check' : 'uncheck');
 			this.emit('change');
 		}
@@ -116,10 +128,10 @@ export class OpalButton extends Component {
 	}
 
 	get checked(): boolean {
-		return this.params.checked;
+		return this.paramChecked;
 	}
 	set checked(checked: boolean) {
-		this.params.checked = checked;
+		this.paramChecked = checked;
 	}
 
 	get selected(): boolean {
@@ -130,8 +142,8 @@ export class OpalButton extends Component {
 	}
 
 	check(): boolean {
-		if (!this.params.checked) {
-			this.params.checked = true;
+		if (!this.paramChecked) {
+			this.paramChecked = true;
 			return true;
 		}
 
@@ -139,8 +151,8 @@ export class OpalButton extends Component {
 	}
 
 	uncheck(): boolean {
-		if (this.params.checked) {
-			this.params.checked = false;
+		if (this.paramChecked) {
+			this.paramChecked = false;
 			return true;
 		}
 
@@ -148,7 +160,7 @@ export class OpalButton extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.params.checked = value === undefined ? !this.params.checked : value);
+		return (this.paramChecked = value === undefined ? !this.paramChecked : value);
 	}
 
 	focus(): OpalButton {
@@ -162,12 +174,12 @@ export class OpalButton extends Component {
 	}
 
 	enable(): OpalButton {
-		this.params.disabled = false;
+		this.paramDisabled = false;
 		return this;
 	}
 
 	disable(): OpalButton {
-		this.params.disabled = true;
+		this.paramDisabled = true;
 		return this;
 	}
 }

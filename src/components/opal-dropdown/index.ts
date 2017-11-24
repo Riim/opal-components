@@ -1,6 +1,6 @@
 import { Cell, IEvent } from 'cellx';
 import { observable } from 'cellx-decorators';
-import { Component, IDisposableListening } from 'rionite';
+import { Component, IDisposableListening, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
@@ -8,28 +8,30 @@ let openedDropdowns: Array<OpalDropdown> = [];
 
 @Component.Config({
 	elementIs: 'OpalDropdown',
-
-	params: {
-		autoHeight: true,
-		autoClosing: false,
-		opened: false
-	},
-
 	template
 })
 export class OpalDropdown extends Component {
+	@Param({ default: true })
+	paramAutoHeight: boolean;
+
+	@Param({ default: false })
+	paramAutoClosing: boolean;
+
+	@Param({ default: false })
+	paramOpened: boolean;
+
 	@observable isContentRendered = false;
 
 	_documentClickListening: IDisposableListening | undefined;
 
 	ready() {
-		if (this.params.opened) {
+		if (this.paramOpened) {
 			this._open();
 		}
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'param-opened-change', this._onParamOpenedChange);
+		this.listenTo(this, 'change:paramOpened', this._onParamOpenedChange);
 	}
 
 	_onParamOpenedChange(evt: IEvent) {
@@ -46,22 +48,22 @@ export class OpalDropdown extends Component {
 	}
 
 	open(): boolean {
-		if (this.params.opened) {
+		if (this.paramOpened) {
 			return false;
 		}
 
-		this.params.opened = true;
+		this.paramOpened = true;
 		Cell.forceRelease();
 
 		return true;
 	}
 
 	close(): boolean {
-		if (!this.params.opened) {
+		if (!this.paramOpened) {
 			return false;
 		}
 
-		this.params.opened = false;
+		this.paramOpened = false;
 		Cell.forceRelease();
 
 		return true;
@@ -119,7 +121,7 @@ export class OpalDropdown extends Component {
 				containerClientRect.top -
 				(document.documentElement.clientHeight - containerClientRect.bottom);
 
-			if (this.params.autoHeight) {
+			if (this.paramAutoHeight) {
 				if (diff > 0) {
 					elStyle.top = 'auto';
 					elStyle.bottom = '100%';
@@ -138,9 +140,9 @@ export class OpalDropdown extends Component {
 			}
 		}
 
-		if (this.params.autoClosing) {
+		if (this.paramAutoClosing) {
 			setTimeout(() => {
-				if (this.params.opened) {
+				if (this.paramOpened) {
 					this._documentClickListening = this.listenTo(
 						document,
 						'click',

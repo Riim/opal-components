@@ -14,6 +14,10 @@ export interface IDay {
 export declare type TWeekDays = Array<IDay>;
 export declare type TDays = Array<TWeekDays>;
 export declare class OpalCalendar extends Component {
+    paramFromDate: string;
+    paramToDate: string;
+    paramValue: string;
+    paramDateDelimiter: string;
     weekDays: Array<string>;
     weekDaysShort: Array<string>;
     readonly fromDate: Date;

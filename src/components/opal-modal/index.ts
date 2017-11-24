@@ -1,6 +1,6 @@
 import { Cell, IEvent } from 'cellx';
 import { observable } from 'cellx-decorators';
-import { Component, IDisposableListening } from 'rionite';
+import { Component, IDisposableListening, Param } from 'rionite';
 import { isFocusable } from '../../utils/isFocusable';
 import './index.css';
 import template from './template.nelm';
@@ -29,11 +29,6 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 
 @Component.Config<OpalModal>({
 	elementIs: 'OpalModal',
-
-	params: {
-		opened: false
-	},
-
 	template,
 
 	domEvents: {
@@ -46,16 +41,19 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 	}
 })
 export class OpalModal extends Component {
+	@Param({ default: false })
+	paramOpened: boolean;
+
 	@observable isContentRendered = false;
 
 	ready() {
-		if (this.params.opened) {
+		if (this.paramOpened) {
 			this._open();
 		}
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'param-opened-change', this._onParamOpenedChange);
+		this.listenTo(this, 'change:paramOpened', this._onParamOpenedChange);
 		this.listenTo(this.element, 'click', this._onElementClick);
 	}
 
@@ -96,22 +94,22 @@ export class OpalModal extends Component {
 	}
 
 	open(): boolean {
-		if (this.params.opened) {
+		if (this.paramOpened) {
 			return false;
 		}
 
-		this.params.opened = true;
+		this.paramOpened = true;
 		Cell.forceRelease();
 
 		return true;
 	}
 
 	close(): boolean {
-		if (!this.params.opened) {
+		if (!this.paramOpened) {
 			return false;
 		}
 
-		this.params.opened = false;
+		this.paramOpened = false;
 		Cell.forceRelease();
 
 		return true;

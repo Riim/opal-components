@@ -1,34 +1,41 @@
 import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { Component } from 'rionite';
+import { Component, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
-@Component.Config<OpalSelectOption>({
+@Component.Config({
 	elementIs: 'OpalSelectOption',
-
-	params: {
-		value: String,
-		text: { type: String, required: true },
-		subtext: String,
-		selected: false,
-		tabIndex: 0,
-		focused: false,
-		disabled: false
-	},
-
 	template
 })
 export class OpalSelectOption extends Component {
+	@Param() paramValue: string;
+
+	@Param({ required: true })
+	paramText: string;
+
+	@Param() paramSubtext: string;
+
+	@Param({ default: false })
+	paramSelected: boolean;
+
+	@Param({ default: 0 })
+	paramTabIndex: number;
+
+	@Param({ default: false })
+	paramFocused: boolean;
+
+	@Param({ default: false })
+	paramDisabled: boolean;
+
 	@computed
 	get _tabIndex(): number {
-		return this.params.disabled ? -1 : this.params.tabIndex;
+		return this.paramDisabled ? -1 : this.paramTabIndex;
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'param-focused-change', this._onParamFocusedChange);
-
+		this.listenTo(this, 'change:paramFocused', this._onParamFocusedChange);
 		this.listenTo('control', {
 			focus: this._onControlFocus,
 			blur: this._onControlBlur,
@@ -47,19 +54,19 @@ export class OpalSelectOption extends Component {
 	_onControlFocus(evt: Event) {
 		nextTick(() => {
 			if (document.activeElement == evt.target) {
-				this.params.focused = true;
+				this.paramFocused = true;
 			}
 		});
 	}
 
 	_onControlBlur() {
-		this.params.focused = false;
+		this.paramFocused = false;
 	}
 
 	_onControlClick(evt: Event) {
 		evt.preventDefault();
 
-		if (!this.params.disabled) {
+		if (!this.paramDisabled) {
 			this.click();
 		}
 	}
@@ -71,37 +78,36 @@ export class OpalSelectOption extends Component {
 	}
 
 	get value(): string {
-		let params = this.params;
-		return params.value === null ? params.text : params.value;
+		return this.paramValue === null ? this.paramText : this.paramValue;
 	}
 	set value(value: string) {
-		this.params.value = value;
+		this.paramValue = value;
 	}
 
 	get text(): string {
-		return this.params.text.trim() || ' ';
+		return this.paramText.trim() || ' ';
 	}
 	set text(text: string) {
-		this.params.text = text;
+		this.paramText = text;
 	}
 
 	get selected(): boolean {
-		return this.params.selected;
+		return this.paramSelected;
 	}
 	set selected(selected: boolean) {
-		this.params.selected = selected;
+		this.paramSelected = selected;
 	}
 
 	get disabled(): boolean {
-		return this.params.disabled;
+		return this.paramDisabled;
 	}
 	set disabled(disabled: boolean) {
-		this.params.disabled = disabled;
+		this.paramDisabled = disabled;
 	}
 
 	select(): boolean {
-		if (!this.params.selected) {
-			this.params.selected = true;
+		if (!this.paramSelected) {
+			this.paramSelected = true;
 			return true;
 		}
 
@@ -109,8 +115,8 @@ export class OpalSelectOption extends Component {
 	}
 
 	deselect(): boolean {
-		if (this.params.selected) {
-			this.params.selected = false;
+		if (this.paramSelected) {
+			this.paramSelected = false;
 			return true;
 		}
 
@@ -118,7 +124,7 @@ export class OpalSelectOption extends Component {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.params.selected = value === undefined ? !this.params.selected : value);
+		return (this.paramSelected = value === undefined ? !this.paramSelected : value);
 	}
 
 	focus(): OpalSelectOption {
@@ -132,12 +138,12 @@ export class OpalSelectOption extends Component {
 	}
 
 	enable(): OpalSelectOption {
-		this.params.disabled = false;
+		this.paramDisabled = false;
 		return this;
 	}
 
 	disable(): OpalSelectOption {
-		this.params.disabled = true;
+		this.paramDisabled = true;
 		return this;
 	}
 }

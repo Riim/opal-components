@@ -15,32 +15,32 @@ span/tags {
 span/control {
 	@if-then (if=isPlaceholderShown) {
 		span/placeholder {
-			'{params.placeholder} '
+			'{paramPlaceholder} '
 		}
 	}
 
 	opal-select/select (
 		multiple,
 		data-list-keypath={_dataListKeypathParam},
-		data-list-item-schema={params.dataListItemSchema |json },
-		value={params.value},
+		data-list-item-schema={paramDataListItemSchema |json },
+		value={paramValue},
 		view-model={viewModel},
-		view-model-item-schema={params.viewModelItemSchema |json },
-		add-new-item={params.addNewItem},
-		focused={params.focused}
+		view-model-item-schema={paramViewModelItemSchema |json },
+		add-new-item={paramAddNewItem},
+		focused={paramFocused}
 	) {
 		opal-sign-button/button (
 			class=OpalSelect__button,
 			sign=plus,
 			checkable,
-			tab-index={params.tabIndex},
-			disabled={params.disabled}
+			tab-index={paramTabIndex},
+			disabled={paramDisabled}
 		)
 
 		rt-slot (class=OpalSelect__menu-slot, for=OpalSelect__menu) {
 			opal-popover/menu (
 				class=OpalSelect__menu,
-				position={params.popoverPosition},
+				position={paramPopoverPosition},
 				auto-closing
 			) {
 				rt-content (select='.OpalSelect__menu-content') {

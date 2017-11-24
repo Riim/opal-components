@@ -1,4 +1,5 @@
 import { Cell, define } from 'cellx';
+import { Param } from 'rionite';
 import { OpalModal } from '../opal-modal';
 import { OpalSelect } from '../opal-select';
 import { OpalTreeList, TDataTreeList, TViewModel } from '../opal-tree-list';
@@ -7,25 +8,6 @@ import template from './template.nelm';
 
 @OpalSelect.Config({
 	elementIs: 'OpalTreeSelect',
-
-	params: {
-		multiple: true,
-		dataTreeList: { type: Object },
-		dataTreeListKeypath: { type: String, readonly: true },
-		dataTreeListItemSchema: {
-			type: eval,
-			default: OpalTreeList.defaultDataTreeListItemSchema,
-			readonly: true
-		},
-		viewModel: { type: Object },
-		viewModelItemSchema: {
-			type: eval,
-			default: OpalTreeList.defaultViewModelItemSchema,
-			readonly: true
-		},
-		query: String
-	},
-
 	template,
 
 	events: {
@@ -37,28 +19,52 @@ import template from './template.nelm';
 	}
 })
 export class OpalTreeSelect extends OpalSelect {
+	@Param({ default: true })
+	paramMultiple: boolean;
+
+	@Param() paramDataTreeList: TDataTreeList;
+
+	@Param({ readonly: true })
+	paramDataTreeListKeypath: string;
+
+	@Param({
+		type: eval,
+		default: OpalTreeList.defaultDataTreeListItemSchema,
+		readonly: true
+	})
+	paramDataTreeListItemSchema: { value?: string; text?: string };
+
+	@Param() paramViewModel: TViewModel;
+
+	@Param({
+		type: eval,
+		default: OpalTreeList.defaultViewModelItemSchema,
+		readonly: true
+	})
+	paramViewModelItemSchema: { value?: string; text?: string };
+
+	@Param() paramQuery: string;
+
 	dataTreeList: TDataTreeList;
 	viewModel: TViewModel;
 
 	initialize() {
 		super.initialize();
 
-		let params = this.params;
-
-		if (params.dataTreeListKeypath) {
+		if (this.paramDataTreeListKeypath) {
 			define(
 				this,
 				'dataTreeList',
-				new Cell(Function(`return this.${params.dataTreeListKeypath};`), {
+				new Cell(Function(`return this.${this.paramDataTreeListKeypath};`), {
 					context: this.ownerComponent || window
 				})
 			);
 		} else {
-			if (!params.$specified.has('dataTreeList')) {
+			if (!this.$specifiedParams.has('dataTreeList')) {
 				throw new TypeError('Parameter "dataTreeList" is required');
 			}
 
-			define(this, 'dataTreeList', () => params.dataTreeList);
+			define(this, 'dataTreeList', () => this.paramDataTreeList);
 		}
 	}
 

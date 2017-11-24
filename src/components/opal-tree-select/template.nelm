@@ -3,10 +3,10 @@ opal-modal/menu {
 		opal-tree-list/tree-list (
 			class=OpalFilteredList__list,
 			data-tree-list={dataTreeList},
-			data-tree-list-item-schema={params.dataTreeListItemSchema},
+			data-tree-list-item-schema={paramDataTreeListItemSchema},
 			view-model={viewModel},
-			view-model-item-schema={params.viewModelItemSchema},
-			query={params.query}
+			view-model-item-schema={paramViewModelItemSchema},
+			query={paramQuery}
 		) {
 			opal-select-option/option (
 				class=OpalTreeList__selection-control,

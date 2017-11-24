@@ -21,6 +21,32 @@ export declare class OpalSelect extends Component {
         text: string;
         disabled: string;
     }>;
+    paramViewType: string;
+    paramSize: string;
+    paramMultiple: boolean;
+    paramDataList: TDataList;
+    paramDataListKeypath: string;
+    paramDataListItemSchema: {
+        value?: string;
+        text?: string;
+        disabled?: string;
+    };
+    paramValue: Array<string>;
+    paramViewModel: TViewModel;
+    paramViewModelItemSchema: {
+        value?: string;
+        text?: string;
+        disabled?: string;
+    };
+    paramAddNewItem: (text: string) => Promise<{
+        [name: string]: string;
+    }>;
+    paramText: string;
+    paramMaxTextLength: number;
+    paramPlaceholder: string;
+    paramTabIndex: number;
+    paramFocused: boolean;
+    paramDisabled: boolean;
     dataList: TDataList | null;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
@@ -51,7 +77,6 @@ export declare class OpalSelect extends Component {
     elementAttached(): void;
     _onParamValueChange(evt: IEvent): void;
     _updateViewModel(value: any, multiple: boolean): void;
-    _onParamViewModelChange(evt: IEvent): void;
     _onParamFocusedChange(evt: IEvent): void;
     _onViewModelChange(): void;
     _onButtonFocus(): void;

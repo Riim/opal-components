@@ -1,5 +1,5 @@
 div/head {
-	opal-button/btn-toggle-children (view-type=clean, checkable, checked={params.opened}) {
+	opal-button/btn-toggle-children (view-type=clean, checkable, checked={paramOpened}) {
 		svg/btn-toggle-children-icon (viewBox=0 0 32 32) {
 			use (xlink:href=#OpalComponents__icon-chevron-bottom)
 		}
@@ -14,17 +14,17 @@ div/head {
 	div/children {
 		@repeat (for=$item of dataTreeListItem.children) {
 			opal-tree-list-item/item (
-				data-tree-list={params.dataTreeList},
-				filtered-data-tree-list={params.filteredDataTreeList},
+				data-tree-list={paramDataTreeList},
+				filtered-data-tree-list={paramFilteredDataTreeList},
 				data-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},
 				data-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},
 				view-model={viewModel},
 				view-model-item-value-field-name={_viewModelItemValueFieldName},
 				view-model-item-text-field-name={_viewModelItemTextFieldName},
-				indexpath='[{params.indexpath},{$index}]',
-				query={params.query},
-				opened={params.query},
-				nesting-level={params.indexpath.length},
+				indexpath='[{paramIndexpath},{$index}]',
+				query={paramQuery},
+				opened={paramQuery |not |not },
+				nesting-level={paramIndexpath.length},
 				has-children='{$item.children.length |gt(0) }'
 			) {
 				rt-slot (clone-content, get-context={_getListItemContext})

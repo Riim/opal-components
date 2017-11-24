@@ -2,6 +2,9 @@ import { IEvent } from 'cellx';
 import { Component, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalDropdown extends Component {
+    paramAutoHeight: boolean;
+    paramAutoClosing: boolean;
+    paramOpened: boolean;
     isContentRendered: boolean;
     _documentClickListening: IDisposableListening | undefined;
     ready(): void;

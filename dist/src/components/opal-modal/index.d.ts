@@ -2,6 +2,7 @@ import { IEvent } from 'cellx';
 import { Component } from 'rionite';
 import './index.css';
 export declare class OpalModal extends Component {
+    paramOpened: boolean;
     isContentRendered: boolean;
     ready(): void;
     elementAttached(): void;

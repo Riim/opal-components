@@ -1,11 +1,12 @@
-import { OpalInputValidator, OpalInputValidatorRule } from '../opal-input-validator';
+import { OpalInputValidator } from '../opal-input-validator';
 import { OpalTextInput } from '../opal-text-input';
 import './index.css';
-export { OpalTextInputValidatorRule } from './opal-text-input-validator-rule';
+import { OpalTextInputValidatorRule } from './opal-text-input-validator-rule';
+export { OpalTextInputValidatorRule };
 export declare class OpalTextInputValidator extends OpalInputValidator {
     textInput: OpalTextInput;
     ready(): void;
     elementAttached(): void;
     _onTextInputInput(): void;
-    _checkValue(rule: OpalInputValidatorRule): boolean;
+    _checkValue(rule: OpalTextInputValidatorRule): boolean;
 }

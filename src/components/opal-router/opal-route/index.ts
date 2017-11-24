@@ -1,11 +1,12 @@
-import { Component } from 'rionite';
+import { Component, Param } from 'rionite';
 
 @Component.Config({
-	elementIs: 'OpalRoute',
-
-	params: {
-		path: { type: String, required: true, readonly: true },
-		component: { type: String, required: true, readonly: true }
-	}
+	elementIs: 'OpalRoute'
 })
-export class OpalRoute extends Component {}
+export class OpalRoute extends Component {
+	@Param({ required: true, readonly: true })
+	paramPath: string;
+
+	@Param({ required: true, readonly: true })
+	paramComponent: string;
+}

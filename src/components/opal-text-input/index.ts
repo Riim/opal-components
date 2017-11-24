@@ -1,30 +1,12 @@
 import { nextTick } from '@riim/next-tick';
 import { Cell, IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { Component } from 'rionite';
+import { Component, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
 @Component.Config<OpalTextInput>({
 	elementIs: 'OpalTextInput',
-
-	params: {
-		inputType: 'text',
-		size: 'm',
-		multiline: false,
-		rows: 5,
-		autoHeight: true,
-		inputName: String,
-		value: '',
-		storeKey: String,
-		placeholder: String,
-		clearable: false,
-		loading: false,
-		tabIndex: 0,
-		focused: false,
-		disabled: false
-	},
-
 	template,
 
 	domEvents: {
@@ -40,12 +22,51 @@ import template from './template.nelm';
 	}
 })
 export class OpalTextInput extends Component {
+	@Param({ default: 'text' })
+	paramInputType: string;
+
+	@Param({ default: 'm' })
+	paramSize: string;
+
+	@Param({ default: false })
+	paramMultiline: boolean;
+
+	@Param({ default: 5 })
+	paramRows: number;
+
+	@Param({ default: true })
+	paramAutoHeight: boolean;
+
+	@Param() paramInputName: string;
+
+	@Param({ default: '' })
+	paramValue: string;
+
+	@Param() paramStoreKey: string;
+
+	@Param() paramPlaceholder: string;
+
+	@Param({ default: false })
+	paramClearable: boolean;
+
+	@Param({ default: false })
+	paramLoading: boolean;
+
+	@Param({ default: 0 })
+	paramTabIndex: number;
+
+	@Param({ default: false })
+	paramFocused: boolean;
+
+	@Param({ default: false })
+	paramDisabled: boolean;
+
 	textField: HTMLInputElement;
 
 	_textFieldValueCell: Cell<string>;
 	@computed
 	get _textFieldValue(): string {
-		return this.params.value;
+		return this.paramValue;
 	}
 	set _textFieldValue(value: string) {
 		this._textFieldValueCell.set(value);
@@ -62,29 +83,28 @@ export class OpalTextInput extends Component {
 
 	@computed
 	get isControlIconShown(): boolean {
-		return !this.isBtnClearShown && !this.params.loading;
+		return !this.isBtnClearShown && !this.paramLoading;
 	}
 
 	@computed
 	get isBtnClearShown(): boolean {
-		return !!this._textFieldValue && !this.params.loading;
+		return !!this._textFieldValue && !this.paramLoading;
 	}
 
 	_initialHeight: number;
 
 	ready() {
-		let params = this.params;
 		let textField = (this.textField = this.$<HTMLInputElement>('text-field')!);
 
 		if (this._textFieldValue) {
 			textField.value = this._textFieldValue;
-		} else if (params.storeKey) {
-			this._textFieldValue = textField.value = localStorage.getItem(params.storeKey) || '';
+		} else if (this.paramStoreKey) {
+			this._textFieldValue = textField.value = localStorage.getItem(this.paramStoreKey) || '';
 		}
 
 		this._prevValue = this.value;
 
-		if (params.multiline && params.autoHeight) {
+		if (this.paramMultiline && this.paramAutoHeight) {
 			let offsetHeight = textField.offsetHeight;
 
 			if (offsetHeight) {
@@ -93,7 +113,7 @@ export class OpalTextInput extends Component {
 				this._fixHeight();
 			} else {
 				this._initialHeight =
-					parseInt(getComputedStyle(textField).lineHeight!, 10) * params.rows +
+					parseInt(getComputedStyle(textField).lineHeight!, 10) * this.paramRows +
 					parseInt(getComputedStyle(textField).borderTop!, 10) +
 					parseInt(getComputedStyle(textField).borderBottom!, 10) +
 					parseInt(getComputedStyle(textField).paddingTop!, 10) +
@@ -103,17 +123,16 @@ export class OpalTextInput extends Component {
 			}
 		}
 
-		if (params.focused) {
+		if (this.paramFocused) {
 			this.focus();
 		}
 	}
 
 	elementAttached() {
 		this.listenTo(this, {
-			'param-value-change': this._onParamValueChange,
-			'param-focused-change': this._onParamFocusedChange
+			'change:paramValue': this._onParamValueChange,
+			'change:paramFocused': this._onParamFocusedChange
 		});
-
 		this.listenTo(this.textField, {
 			focus: this._onTextFieldFocus,
 			blur: this._onTextFieldBlur,
@@ -142,14 +161,14 @@ export class OpalTextInput extends Component {
 	_onTextFieldFocus(evt: Event) {
 		nextTick(() => {
 			if (document.activeElement == this.textField) {
-				this.params.focused = true;
+				this.paramFocused = true;
 				this.emit('focus');
 			}
 		});
 	}
 
 	_onTextFieldBlur() {
-		this.params.focused = false;
+		this.paramFocused = false;
 		this.emit('blur');
 	}
 
@@ -168,10 +187,8 @@ export class OpalTextInput extends Component {
 
 		this._prevValue = this.value;
 
-		let storeKey = this.params.storeKey;
-
-		if (storeKey) {
-			localStorage.setItem(storeKey, this.textField.value);
+		if (this.paramStoreKey) {
+			localStorage.setItem(this.paramStoreKey, this.textField.value);
 		}
 
 		this.emit({
@@ -183,7 +200,7 @@ export class OpalTextInput extends Component {
 	}
 
 	_onTextFieldKeyDown(evt: Event) {
-		if (this.params.multiline && this.params.autoHeight) {
+		if (this.paramMultiline && this.paramAutoHeight) {
 			setTimeout(() => {
 				this._fixHeight();
 			}, 1);
@@ -211,7 +228,7 @@ export class OpalTextInput extends Component {
 	}
 
 	_onTextFieldKeyUp(evt: Event) {
-		if (this.params.multiline && this.params.autoHeight) {
+		if (this.paramMultiline && this.paramAutoHeight) {
 			this._fixHeight();
 		}
 
@@ -252,12 +269,12 @@ export class OpalTextInput extends Component {
 	}
 
 	enable(): OpalTextInput {
-		this.params.disabled = false;
+		this.paramDisabled = false;
 		return this;
 	}
 
 	disable(): OpalTextInput {
-		this.params.disabled = true;
+		this.paramDisabled = true;
 		return this;
 	}
 }

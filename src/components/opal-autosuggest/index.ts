@@ -5,7 +5,8 @@ import {
 	Component,
 	IDisposableCallback,
 	IDisposableListening,
-	IDisposableTimeout
+	IDisposableTimeout,
+	Param
 	} from 'rionite';
 import { isFocusable } from '../../utils/isFocusable';
 import { OpalDropdown } from '../opal-dropdown';
@@ -26,19 +27,10 @@ function toComparable(str: string): string {
 	return str.replace(/\s+/g, ' ').toLowerCase();
 }
 
-let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
+let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 
 @Component.Config<OpalAutosuggest>({
 	elementIs: 'OpalAutosuggest',
-
-	params: {
-		dataProvider: { type: Object, readonly: true },
-		dataListItemSchema: { type: eval, default: defaultDataListItemSchema, readonly: true },
-		value: eval,
-		minQueryLength: 3,
-		count: 5,
-		openMenuOnNothingFound: false
-	},
 
 	i18n: {
 		textInputPlaceholder: getText.t('Начните вводить для поиска'),
@@ -67,6 +59,24 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disab
 	}
 })
 export class OpalAutosuggest extends Component {
+	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
+	paramDataListItemSchema: { value?: string; text?: string };
+
+	@Param({ readonly: true })
+	paramDataProvider: IDataProvider;
+
+	@Param({ type: eval })
+	paramValue: IDataListItem;
+
+	@Param({ default: 3 })
+	paramMinQueryLength: number;
+
+	@Param({ default: 5 })
+	paramCount: number;
+
+	@Param({ default: false })
+	paramOpenMenuOnNothingFound: boolean;
+
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 
 	@observable dataList = new ObservableList<IDataListItem>();
@@ -95,9 +105,7 @@ export class OpalAutosuggest extends Component {
 	_documentListening: IDisposableListening;
 
 	initialize() {
-		let params = this.params;
-
-		let dataListItemSchema = params.dataListItemSchema;
+		let dataListItemSchema = this.paramDataListItemSchema;
 		let defaultDataListItemSchema = (this.constructor as typeof OpalAutosuggest)
 			.defaultDataListItemSchema;
 
@@ -105,23 +113,25 @@ export class OpalAutosuggest extends Component {
 			dataListItemSchema.value || defaultDataListItemSchema.value;
 		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
 
-		if (!params.$specified.has('dataProvider')) {
+		if (!this.$specifiedParams.has('dataProvider')) {
 			throw new TypeError('Parameter "dataProvider" is required');
 		}
 
-		let dataProvider = params.dataProvider;
+		this.dataProvider = this.paramDataProvider;
 
-		if (!dataProvider) {
+		if (!this.dataProvider) {
 			throw new TypeError('"dataProvider" is not defined');
 		}
 
-		this.dataProvider = dataProvider;
-
-		this.value = params.value;
+		this.value = this.paramValue;
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'param-value-change', this._onParamValueChange);
+		this.listenTo(this, {
+			'change:paramValue': this._onParamValueChange,
+			'change:isLoaderShown': this._onIsLoaderShownChange
+		});
+		this.listenTo(this.dataList, 'change', this._onDataListChange);
 		this.listenTo('text-input', {
 			focus: this._onTextInputFocus,
 			blur: this._onTextInputBlur,
@@ -133,14 +143,12 @@ export class OpalAutosuggest extends Component {
 			'click',
 			this._onTextFieldClick
 		);
-		this.listenTo('menu', 'param-opened-change', this._onMenuParamOpenedChange);
+		this.listenTo('menu', 'change:paramOpened', this._onMenuParamOpenedChange);
 		this.listenTo(
 			this.$<Component>('menu')!.element,
 			'mouseover',
 			this._onMenuElementMouseOver
 		);
-		this.listenTo(this.dataList, 'change', this._onDataListChange);
-		this.listenTo(this, 'change:isLoaderShown', this._onIsLoaderShownChange);
 	}
 
 	ready() {
@@ -162,6 +170,14 @@ export class OpalAutosuggest extends Component {
 			: '';
 	}
 
+	_onIsLoaderShownChange(evt: IEvent) {
+		this.$<OpalTextInput>('text-input')!.paramLoading = evt.data.value;
+	}
+
+	_onDataListChange() {
+		this.openMenu();
+	}
+
 	_onTextInputFocus() {
 		this.openMenu();
 	}
@@ -173,7 +189,7 @@ export class OpalAutosuggest extends Component {
 		// 1. выбираем что-то;
 		// 2. изменяем запрос так чтобы ничего не нашлось;
 		// 3. убираем фокус.
-		if (!this.$<Component>('menu')!.params.opened) {
+		if (!this.$<OpalDropdown>('menu')!.paramOpened) {
 			this._selectItem();
 		}
 	}
@@ -183,7 +199,7 @@ export class OpalAutosuggest extends Component {
 
 		this._clearDataList();
 
-		if ((evt.target.value || '').length >= this.params.minQueryLength) {
+		if ((evt.target.value || '').length >= this.paramMinQueryLength) {
 			this._isLoadingPlanned = true;
 
 			this._loadingTimeout = this.setTimeout(() => {
@@ -249,14 +265,6 @@ export class OpalAutosuggest extends Component {
 			focusedListItem.removeAttribute('focused');
 			el.setAttribute('focused', '');
 		}
-	}
-
-	_onDataListChange() {
-		this.openMenu();
-	}
-
-	_onIsLoaderShownChange(evt: IEvent) {
-		this.$<Component>('text-input')!.params.loading = evt.data.value;
 	}
 
 	_onDocumentFocus(evt: Event) {
@@ -334,10 +342,10 @@ export class OpalAutosuggest extends Component {
 	_load() {
 		this.loading = true;
 
-		let args = [this.$<OpalTextInput>('text-input')!.value];
+		let args: Array<any> = [this.$<OpalTextInput>('text-input')!.value];
 
 		if (this.dataProvider.getItems.length >= 2) {
-			args.unshift(this.params.count);
+			args.unshift(this.paramCount);
 		}
 
 		this.dataProvider.getItems
@@ -358,7 +366,7 @@ export class OpalAutosuggest extends Component {
 
 			this._focusedListItem = focusedListItem;
 			focusedListItem.setAttribute('focused', '');
-		} else if (this.params.openMenuOnNothingFound) {
+		} else if (this.paramOpenMenuOnNothingFound) {
 			this.openMenu(true);
 		}
 	}

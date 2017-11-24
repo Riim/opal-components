@@ -1,20 +1,22 @@
-import { Component } from 'rionite';
+import { Component, Param } from 'rionite';
 import { OpalPopover } from '../../opal-popover';
 import './index.css';
 import template from './template.nelm';
 
 @Component.Config({
 	elementIs: 'OpalInputValidatorRule',
-
-	params: {
-		required: { default: false, readonly: true },
-		test: { type: Object, readonly: true },
-		popoverPosition: 'right'
-	},
-
 	template
 })
 export class OpalInputValidatorRule extends Component {
+	@Param({ default: false, readonly: true })
+	paramRequired: boolean;
+
+	@Param({ readonly: true })
+	paramTest: (this: Component, value: any) => boolean;
+
+	@Param({ default: 'right' })
+	paramPopoverPosition: string;
+
 	showMessage() {
 		this.$<OpalPopover>('popover')!.open();
 	}

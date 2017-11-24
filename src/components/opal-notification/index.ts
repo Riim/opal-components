@@ -1,6 +1,6 @@
 import { Set } from '@riim/map-set-polyfill';
 import { Cell, IEvent } from 'cellx';
-import { Component } from 'rionite';
+import { Component, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
@@ -23,18 +23,24 @@ function initContainer(notification: OpalNotification): HTMLElement {
 
 @Component.Config({
 	elementIs: 'OpalNotification',
-
-	params: {
-		viewType: 'default',
-		iconSize: 'm',
-		buttonHide: true,
-		timeout: 0,
-		shown: false
-	},
-
 	template
 })
 export class OpalNotification extends Component {
+	@Param({ default: 'default' })
+	paramViewType: string;
+
+	@Param({ default: 'm' })
+	paramIconSize: string;
+
+	@Param({ default: true })
+	paramButtonHide: boolean;
+
+	@Param({ default: 0 })
+	paramTimeout: number;
+
+	@Param({ default: false })
+	paramShown: boolean;
+
 	bar: HTMLElement;
 
 	$<R>(name: string, container: Component | Element = this.bar): R | null {
@@ -46,20 +52,17 @@ export class OpalNotification extends Component {
 
 		let bar = (this.bar = this.$<HTMLElement>('bar', this)!);
 		this.element.removeChild(bar);
-		bar.setAttribute('view-type', this.params.viewType);
-		bar.setAttribute('icon-size', this.params.iconSize);
-		bar.setAttribute('button-hide', this.params.buttonHide);
 		if (this.$('icon')) {
 			bar.setAttribute('has-icon', '');
 		}
 
-		if (this.params.shown) {
+		if (this.paramShown) {
 			this._show();
 		}
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'param-shown-change', this._onParamShownChange);
+		this.listenTo(this, 'change:paramShown', this._onParamShownChange);
 		this.listenTo('btn-hide', 'click', this._onBtnHideClick);
 	}
 
@@ -82,22 +85,22 @@ export class OpalNotification extends Component {
 	}
 
 	show(): boolean {
-		if (this.params.shown) {
+		if (this.paramShown) {
 			return false;
 		}
 
-		this.params.shown = true;
+		this.paramShown = true;
 		Cell.forceRelease();
 
 		return true;
 	}
 
 	hide(): boolean {
-		if (!this.params.shown) {
+		if (!this.paramShown) {
 			return false;
 		}
 
-		this.params.shown = false;
+		this.paramShown = false;
 		Cell.forceRelease();
 
 		return true;
@@ -125,10 +128,10 @@ export class OpalNotification extends Component {
 		setTimeout(() => {
 			this.bar.setAttribute('shown', '');
 
-			if (this.params.timeout) {
+			if (this.paramTimeout) {
 				setTimeout(() => {
 					this.hide();
-				}, this.params.timeout);
+				}, this.paramTimeout);
 			}
 		}, 100);
 	}

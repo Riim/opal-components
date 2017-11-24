@@ -1,7 +1,7 @@
 import { getText } from '@riim/gettext';
 import { IEvent } from 'cellx';
 import { computed } from 'cellx-decorators';
-import { Template } from 'rionite';
+import { Param, Template } from 'rionite';
 import { IDataProvider, OpalLoadedList } from '../opal-loaded-list';
 import { OpalSelect } from '../opal-select';
 import { OpalTextInput } from '../opal-text-input';
@@ -16,21 +16,16 @@ import template from './template.nelm';
 		nothingSelected: getText.t('Ничего не выбрано')
 	},
 
-	params: {
-		multiple: true,
-		dataProvider: { type: Object, readonly: true }
-	},
-
 	template: (OpalSelect.template as Template).extend(template),
 
 	events: {
 		'query-input': {
 			input(evt: IEvent<OpalTextInput>) {
-				this.$<OpalLoadedList>('loaded-list')!.params.query = evt.target.value;
+				this.$<OpalLoadedList>('loaded-list')!.paramQuery = evt.target.value as any;
 			},
 
 			clear() {
-				this.$<OpalLoadedList>('loaded-list')!.params.query = '';
+				this.$<OpalLoadedList>('loaded-list')!.paramQuery = '';
 			}
 		},
 
@@ -56,6 +51,12 @@ import template from './template.nelm';
 	}
 })
 export class OpalMultiselect extends OpalSelect {
+	@Param({ default: true })
+	paramMultiple: boolean;
+
+	@Param({ readonly: true })
+	paramDataProvider: IDataProvider;
+
 	dataProvider: IDataProvider | null;
 
 	@computed
@@ -66,18 +67,14 @@ export class OpalMultiselect extends OpalSelect {
 	initialize() {
 		super.initialize();
 
-		let params = this.params;
-
-		if (!params.$specified.has('dataProvider')) {
+		if (!this.$specifiedParams.has('dataProvider')) {
 			throw new TypeError('Parameter "dataProvider" is required');
 		}
 
-		let dataProvider = params.dataProvider;
+		this.dataProvider = this.paramDataProvider;
 
-		if (!dataProvider) {
+		if (!this.dataProvider) {
 			throw new TypeError('"dataProvider" is not defined');
 		}
-
-		this.dataProvider = dataProvider;
 	}
 }

@@ -87,11 +87,12 @@ module.exports = env => {
 			'@riim/mixin',
 			'@riim/next-tick',
 			'@riim/next-uid',
+			'@riim/object-assign-polyfill',
 			'cellx',
 			'cellx-decorators',
 			'created-browser-history',
 			'date-exists',
-			'prismjs',
+			'reflect-metadata',
 			'rionite'
 		],
 

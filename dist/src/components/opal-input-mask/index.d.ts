@@ -4,6 +4,7 @@ export declare class OpalInputMask extends Component {
     static defaultDefinitions: {
         [chr: string]: RegExp;
     };
+    paramMask: string;
     _definitions: {
         [chr: string]: RegExp;
     };

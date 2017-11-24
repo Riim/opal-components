@@ -2,6 +2,11 @@ import { IEvent } from 'cellx';
 import { Component, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalCheckbox extends Component {
+    paramChecked: boolean;
+    paramIndeterminate: boolean;
+    paramTabIndex: number;
+    paramFocused: boolean;
+    paramDisabled: boolean;
     readonly _tabIndex: number;
     _documentKeyDownListening: IDisposableListening;
     elementAttached(): void;

@@ -1,18 +1,18 @@
 opal-tree-select/select (
-	view-type={params.viewType},
+	view-type={paramViewType},
 	data-tree-list-keypath={_dataListKeypathParam},
-	data-tree-list-item-schema={params.dataListItemSchema |json },
-	value={params.value},
+	data-tree-list-item-schema={paramDataListItemSchema |json },
+	value={paramValue},
 	view-model={viewModel},
-	view-model-item-schema={params.viewModelItemSchema |json },
-	add-new-item={params.addNewItem},
-	focused={params.focused}
+	view-model-item-schema={paramViewModelItemSchema |json },
+	add-new-item={paramAddNewItem},
+	focused={paramFocused}
 ) {
 	opal-sign-button/button (
 		class=OpalSelect__button,
 		sign=plus,
 		checkable,
-		tab-index={params.tabIndex},
-		disabled={params.disabled}
+		tab-index={paramTabIndex},
+		disabled={paramDisabled}
 	)
 }

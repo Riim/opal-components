@@ -1,12 +1,13 @@
-import { Component } from 'rionite';
+import { Component, Param } from 'rionite';
 import './index.css';
 
 @Component.Config({
-	elementIs: 'OpalInputMaskDefinition',
-
-	params: {
-		maskChar: { type: String, required: true, readonly: true },
-		regex: { type: eval, required: true, readonly: true }
-	}
+	elementIs: 'OpalInputMaskDefinition'
 })
-export class OpalInputMaskDefinition extends Component {}
+export class OpalInputMaskDefinition extends Component {
+	@Param({ required: true, readonly: true })
+	paramMaskChar: string;
+
+	@Param({ type: eval, required: true, readonly: true })
+	paramRegex: RegExp;
+}
