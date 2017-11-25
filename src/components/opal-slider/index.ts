@@ -1,4 +1,4 @@
-import { computed, observable } from 'cellx-decorators';
+import { Computed, Observable } from 'cellx-decorators';
 import { Component, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
@@ -8,25 +8,17 @@ import template from './template.nelm';
 	template
 })
 export class OpalSlider extends Component {
-	@Param({ default: 0 })
-	paramMin: number;
-
-	@Param({ default: 100 })
-	paramMax: number;
-
-	@Param({ default: 1 })
-	paramStep: number;
-
-	@Param({ default: 0 })
-	paramValue: number;
-
+	@Param paramMin = 0;
+	@Param paramMax = 100;
+	@Param paramStep = 1;
+	@Param paramValue = 0;
 	@Param({ type: eval })
 	paramRange: [number, number];
 
-	@observable _firstInputValue: number;
-	@observable _secondInputValue: number;
+	@Observable _firstInputValue: number;
+	@Observable _secondInputValue: number;
 
-	@computed
+	@Computed
 	get _firstInputWidth(): number {
 		let min = this.paramMin;
 		let all = this.paramMax - min;

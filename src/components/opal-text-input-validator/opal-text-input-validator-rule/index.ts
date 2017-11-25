@@ -7,7 +7,6 @@ import { OpalInputValidatorRule } from '../../opal-input-validator';
 export class OpalTextInputValidatorRule extends OpalInputValidatorRule {
 	@Param({ readonly: true })
 	paramMinLength: number;
-
 	@Param({ type: eval, readonly: true })
 	paramRegex: RegExp;
 }

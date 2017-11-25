@@ -45,11 +45,8 @@ function valueToAttributeValue(value: boolean | string): string {
 	elementIs: 'OpalRouter'
 })
 export class OpalRouter extends Component {
-	@Param({ default: true })
-	paramScrollTopOnChange: boolean;
-
-	@Param({ default: true })
-	paramScrollTopOnChangeComponent: boolean;
+	@Param paramScrollTopOnChange = true;
+	@Param paramScrollTopOnChangeComponent = true;
 
 	_routes: Array<IRoute>;
 	_route: IRoute | null = null;

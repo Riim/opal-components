@@ -1,5 +1,5 @@
 import { Cell, IEvent } from 'cellx';
-import { observable } from 'cellx-decorators';
+import { Observable } from 'cellx-decorators';
 import { Component, IDisposableListening, Param } from 'rionite';
 import { isFocusable } from '../../utils/isFocusable';
 import './index.css';
@@ -41,10 +41,9 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 	}
 })
 export class OpalModal extends Component {
-	@Param({ default: false })
-	paramOpened: boolean;
+	@Param paramOpened = false;
 
-	@observable isContentRendered = false;
+	@Observable isContentRendered = false;
 
 	ready() {
 		if (this.paramOpened) {

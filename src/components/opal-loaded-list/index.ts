@@ -2,7 +2,7 @@ import { getText } from '@riim/gettext';
 import { mixin } from '@riim/mixin';
 import { nextTick } from '@riim/next-tick';
 import { Cell, ObservableList } from 'cellx';
-import { computed, observable } from 'cellx-decorators';
+import { Computed, Observable } from 'cellx-decorators';
 import {
 	Component,
 	IDisposableCallback,
@@ -45,45 +45,40 @@ export class OpalLoadedList extends Component {
 
 	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
 	paramDataListItemSchema: { value?: string; text?: string };
-
 	@Param({ readonly: true })
 	paramDataProvider: IDataProvider;
+	@Param paramCount = 100;
+	@Param paramQuery: string;
+	@Param({ readonly: true })
+	paramPreloading = false;
 
-	@Param({ default: 100 })
-	paramCount: number;
-
-	@Param() paramQuery: string;
-
-	@Param({ default: false, readonly: true })
-	paramPreloading: boolean;
-
-	@observable dataList = new ObservableList<IDataListItem>();
+	@Observable dataList = new ObservableList<IDataListItem>();
 	_dataListItemTextFieldName: string;
 
-	@observable total: number | undefined;
+	@Observable total: number | undefined;
 
 	dataProvider: IDataProvider;
 
 	_isScrollingInProcessing: boolean = false;
-	@observable _isLoadingCheckPlanned = false;
+	@Observable _isLoadingCheckPlanned = false;
 	_loadingCheckTimeout: IDisposableTimeout;
-	@observable loading = false;
+	@Observable loading = false;
 	_requestCallback: IDisposableCallback;
 
 	_lastRequestedQuery: string | null = null;
 	_lastLoadedQuery: string | null = null;
 
-	@computed
+	@Computed
 	get empty(): boolean {
 		return !this.dataList.length;
 	}
 
-	@computed
+	@Computed
 	get isLoaderShown(): boolean {
 		return this.total === undefined || this.dataList.length < this.total || this.loading;
 	}
 
-	@computed
+	@Computed
 	get isNothingFoundShown(): boolean {
 		return this.total === 0 && !this._isLoadingCheckPlanned && !this.loading;
 	}

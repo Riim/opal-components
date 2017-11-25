@@ -1,5 +1,5 @@
 import { Cell, IEvent } from 'cellx';
-import { observable } from 'cellx-decorators';
+import { Observable } from 'cellx-decorators';
 import { Component, IDisposableListening, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
@@ -11,16 +11,11 @@ let openedDropdowns: Array<OpalDropdown> = [];
 	template
 })
 export class OpalDropdown extends Component {
-	@Param({ default: true })
-	paramAutoHeight: boolean;
+	@Param paramAutoHeight = true;
+	@Param paramAutoClosing = false;
+	@Param paramOpened = false;
 
-	@Param({ default: false })
-	paramAutoClosing: boolean;
-
-	@Param({ default: false })
-	paramOpened: boolean;
-
-	@observable isContentRendered = false;
+	@Observable isContentRendered = false;
 
 	_documentClickListening: IDisposableListening | undefined;
 

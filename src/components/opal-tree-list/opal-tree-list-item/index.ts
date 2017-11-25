@@ -1,5 +1,5 @@
 import { IEvent } from 'cellx';
-import { computed } from 'cellx-decorators';
+import { Computed } from 'cellx-decorators';
 import { Component, Param } from 'rionite';
 import _getListItemContext from '../_getListItemContext';
 import { OpalButton } from '../../opal-button';
@@ -27,34 +27,24 @@ import template from './template.nelm';
 export class OpalTreeListItem extends Component {
 	@Param({ required: true })
 	paramDataTreeList: TDataTreeList;
-
 	@Param({ required: true })
 	paramFilteredDataTreeList: TFilteredDataTreeList;
-
 	@Param({ required: true, readonly: true })
 	paramDataTreeListItemValueFieldName: string;
-
 	@Param({ required: true, readonly: true })
 	paramDataTreeListItemTextFieldName: string;
-
 	@Param({ required: true })
 	paramViewModel: TViewModel;
-
 	@Param({ required: true, readonly: true })
 	paramViewModelItemValueFieldName: string;
-
 	@Param({ required: true, readonly: true })
 	paramViewModelItemTextFieldName: string;
-
 	@Param({ type: eval, required: true, readonly: true })
 	paramIndexpath: Array<number>;
+	@Param paramQuery: string;
+	@Param paramOpened = false;
 
-	@Param() paramQuery: string;
-
-	@Param({ default: false })
-	paramOpened: boolean;
-
-	@computed
+	@Computed
 	get dataTreeList(): TDataTreeList {
 		return this.paramDataTreeList;
 	}
@@ -63,7 +53,7 @@ export class OpalTreeListItem extends Component {
 	_dataTreeListItemValueFieldName: string;
 	_dataTreeListItemTextFieldName: string;
 
-	@computed
+	@Computed
 	get viewModel(): TViewModel {
 		return this.paramViewModel;
 	}

@@ -1,5 +1,5 @@
 import { Cell, IEvent } from 'cellx';
-import { observable } from 'cellx-decorators';
+import { Observable } from 'cellx-decorators';
 import { Component, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
@@ -9,10 +9,9 @@ import template from './template.nelm';
 	template
 })
 export class OpalTabPanel extends Component {
-	@Param({ default: false })
-	paramShown: boolean;
+	@Param paramShown = false;
 
-	@observable isContentRendered = false;
+	@Observable isContentRendered = false;
 
 	initialize() {
 		this.listenTo(this, 'change:paramShown', this._onParamShownChange);

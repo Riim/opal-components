@@ -228,11 +228,11 @@ var OpalInputValidator = /** @class */ (function (_super) {
         return this;
     };
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalInputValidator.prototype, "failedRule", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
     ], OpalInputValidator.prototype, "valid", null);
@@ -295,6 +295,13 @@ var OpalSelect = /** @class */ (function (_super) {
     __extends(OpalSelect, _super);
     function OpalSelect() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramSize = 'm';
+        _this.paramMultiple = false;
+        _this.paramMaxTextLength = 20;
+        _this.paramPlaceholder = gettext_1.getText.t('Не выбрано');
+        _this.paramTabIndex = 0;
+        _this.paramFocused = false;
+        _this.paramDisabled = false;
         _this._needOptionsUpdating = false;
         _this._notUpdateOptions = false;
         _this._opened = false;
@@ -870,19 +877,19 @@ var OpalSelect = /** @class */ (function (_super) {
     OpalSelect.defaultDataListItemSchema = defaultDataListItemSchema;
     OpalSelect.defaultViewModelItemSchema = defaultVMItemSchema;
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalSelect.prototype, "paramViewType", void 0);
     __decorate([
-        rionite_1.Param({ default: 'm' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSelect.prototype, "paramSize", void 0);
     __decorate([
-        rionite_1.Param({ default: false, readonly: true }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Object)
     ], OpalSelect.prototype, "paramMultiple", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", Object)
     ], OpalSelect.prototype, "paramDataList", void 0);
     __decorate([
@@ -910,45 +917,45 @@ var OpalSelect = /** @class */ (function (_super) {
         __metadata("design:type", Function)
     ], OpalSelect.prototype, "paramAddNewItem", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalSelect.prototype, "paramText", void 0);
     __decorate([
-        rionite_1.Param({ default: 20 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSelect.prototype, "paramMaxTextLength", void 0);
     __decorate([
-        rionite_1.Param({ default: gettext_1.getText.t('Не выбрано') }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSelect.prototype, "paramPlaceholder", void 0);
     __decorate([
-        rionite_1.Param({ default: 0 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSelect.prototype, "paramTabIndex", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSelect.prototype, "paramFocused", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSelect.prototype, "paramDisabled", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalSelect.prototype, "viewModel", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Array),
         __metadata("design:paramtypes", [])
     ], OpalSelect.prototype, "value", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", String),
         __metadata("design:paramtypes", [])
     ], OpalSelect.prototype, "_buttonText", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Array),
         __metadata("design:paramtypes", [])
     ], OpalSelect.prototype, "options", null);
@@ -1376,7 +1383,7 @@ var OpalTreeList = /** @class */ (function (_super) {
     OpalTreeList.defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
     OpalTreeList.defaultViewModelItemSchema = defaultVMItemSchema;
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", Object)
     ], OpalTreeList.prototype, "paramDataTreeList", void 0);
     __decorate([
@@ -1392,7 +1399,7 @@ var OpalTreeList = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalTreeList.prototype, "paramDataTreeListItemSchema", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", Object)
     ], OpalTreeList.prototype, "paramViewModel", void 0);
     __decorate([
@@ -1400,16 +1407,16 @@ var OpalTreeList = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalTreeList.prototype, "paramViewModelItemSchema", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalTreeList.prototype, "paramQuery", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [])
     ], OpalTreeList.prototype, "filteredDataTreeList", null);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalTreeList.prototype, "viewModel", void 0);
     OpalTreeList = OpalTreeList_1 = __decorate([
@@ -1517,7 +1524,9 @@ var template_nelm_1 = __webpack_require__(114);
 var OpalTreeListItem = /** @class */ (function (_super) {
     __extends(OpalTreeListItem, _super);
     function OpalTreeListItem() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramOpened = false;
+        return _this;
     }
     Object.defineProperty(OpalTreeListItem.prototype, "dataTreeList", {
         get: function () {
@@ -1573,20 +1582,20 @@ var OpalTreeListItem = /** @class */ (function (_super) {
         __metadata("design:type", Array)
     ], OpalTreeListItem.prototype, "paramIndexpath", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalTreeListItem.prototype, "paramQuery", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTreeListItem.prototype, "paramOpened", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [])
     ], OpalTreeListItem.prototype, "dataTreeList", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [])
     ], OpalTreeListItem.prototype, "viewModel", null);
@@ -1646,7 +1655,13 @@ var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: '
 var OpalTagSelect = /** @class */ (function (_super) {
     __extends(OpalTagSelect, _super);
     function OpalTagSelect() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramPlaceholder = gettext_1.getText.t('Не выбрано');
+        _this.paramPopoverPosition = 'bottom';
+        _this.paramTabIndex = 0;
+        _this.paramFocused = false;
+        _this.paramDisabled = false;
+        return _this;
     }
     Object.defineProperty(OpalTagSelect.prototype, "value", {
         get: function () {
@@ -1743,11 +1758,11 @@ var OpalTagSelect = /** @class */ (function (_super) {
     OpalTagSelect.defaultDataListItemSchema = defaultDataListItemSchema;
     OpalTagSelect.defaultViewModelItemSchema = defaultVMItemSchema;
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalTagSelect.prototype, "paramViewType", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", Object)
     ], OpalTagSelect.prototype, "paramDataList", void 0);
     __decorate([
@@ -1779,36 +1794,36 @@ var OpalTagSelect = /** @class */ (function (_super) {
         __metadata("design:type", Function)
     ], OpalTagSelect.prototype, "paramAddNewItem", void 0);
     __decorate([
-        rionite_1.Param({ default: gettext_1.getText.t('Не выбрано') }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTagSelect.prototype, "paramPlaceholder", void 0);
     __decorate([
-        rionite_1.Param({ default: 'bottom' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTagSelect.prototype, "paramPopoverPosition", void 0);
     __decorate([
-        rionite_1.Param({ default: 0 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTagSelect.prototype, "paramTabIndex", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTagSelect.prototype, "paramFocused", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTagSelect.prototype, "paramDisabled", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalTagSelect.prototype, "viewModel", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Array),
         __metadata("design:paramtypes", [])
     ], OpalTagSelect.prototype, "value", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
     ], OpalTagSelect.prototype, "isPlaceholderShown", null);
@@ -2034,7 +2049,16 @@ __webpack_require__(29);
 var OpalButton = /** @class */ (function (_super) {
     __extends(OpalButton, _super);
     function OpalButton() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramViewType = 'default';
+        _this.paramSize = 'm';
+        _this.paramCheckable = false;
+        _this.paramChecked = false;
+        _this.paramLoading = false;
+        _this.paramTabIndex = 0;
+        _this.paramFocused = false;
+        _this.paramDisabled = false;
+        return _this;
     }
     Object.defineProperty(OpalButton.prototype, "_tabIndex", {
         get: function () {
@@ -2167,39 +2191,39 @@ var OpalButton = /** @class */ (function (_super) {
         return this;
     };
     __decorate([
-        rionite_1.Param({ default: 'default' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalButton.prototype, "paramViewType", void 0);
     __decorate([
-        rionite_1.Param({ default: 'm' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalButton.prototype, "paramSize", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalButton.prototype, "paramCheckable", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalButton.prototype, "paramChecked", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalButton.prototype, "paramLoading", void 0);
     __decorate([
-        rionite_1.Param({ default: 0 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalButton.prototype, "paramTabIndex", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalButton.prototype, "paramFocused", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalButton.prototype, "paramDisabled", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [])
     ], OpalButton.prototype, "_tabIndex", null);
@@ -2264,7 +2288,13 @@ var template_nelm_1 = __webpack_require__(32);
 var OpalSignButton = /** @class */ (function (_super) {
     __extends(OpalSignButton, _super);
     function OpalSignButton() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramCheckable = false;
+        _this.paramChecked = false;
+        _this.paramTabIndex = 0;
+        _this.paramFocused = false;
+        _this.paramDisabled = false;
+        return _this;
     }
     Object.defineProperty(OpalSignButton.prototype, "_tabIndex", {
         get: function () {
@@ -2378,27 +2408,27 @@ var OpalSignButton = /** @class */ (function (_super) {
         __metadata("design:type", String)
     ], OpalSignButton.prototype, "paramSign", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSignButton.prototype, "paramCheckable", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSignButton.prototype, "paramChecked", void 0);
     __decorate([
-        rionite_1.Param({ default: 0 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSignButton.prototype, "paramTabIndex", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSignButton.prototype, "paramFocused", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSignButton.prototype, "paramDisabled", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [])
     ], OpalSignButton.prototype, "_tabIndex", null);
@@ -2472,7 +2502,19 @@ var template_nelm_1 = __webpack_require__(35);
 var OpalTextInput = /** @class */ (function (_super) {
     __extends(OpalTextInput, _super);
     function OpalTextInput() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramInputType = 'text';
+        _this.paramSize = 'm';
+        _this.paramMultiline = false;
+        _this.paramRows = 5;
+        _this.paramAutoHeight = true;
+        _this.paramValue = '';
+        _this.paramClearable = false;
+        _this.paramLoading = false;
+        _this.paramTabIndex = 0;
+        _this.paramFocused = false;
+        _this.paramDisabled = false;
+        return _this;
     }
     Object.defineProperty(OpalTextInput.prototype, "_textFieldValue", {
         get: function () {
@@ -2668,73 +2710,73 @@ var OpalTextInput = /** @class */ (function (_super) {
         return this;
     };
     __decorate([
-        rionite_1.Param({ default: 'text' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTextInput.prototype, "paramInputType", void 0);
     __decorate([
-        rionite_1.Param({ default: 'm' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTextInput.prototype, "paramSize", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTextInput.prototype, "paramMultiline", void 0);
     __decorate([
-        rionite_1.Param({ default: 5 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTextInput.prototype, "paramRows", void 0);
     __decorate([
-        rionite_1.Param({ default: true }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTextInput.prototype, "paramAutoHeight", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalTextInput.prototype, "paramInputName", void 0);
     __decorate([
-        rionite_1.Param({ default: '' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTextInput.prototype, "paramValue", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalTextInput.prototype, "paramStoreKey", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalTextInput.prototype, "paramPlaceholder", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTextInput.prototype, "paramClearable", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTextInput.prototype, "paramLoading", void 0);
     __decorate([
-        rionite_1.Param({ default: 0 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTextInput.prototype, "paramTabIndex", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTextInput.prototype, "paramFocused", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTextInput.prototype, "paramDisabled", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", String),
         __metadata("design:paramtypes", [String])
     ], OpalTextInput.prototype, "_textFieldValue", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
     ], OpalTextInput.prototype, "isControlIconShown", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
     ], OpalTextInput.prototype, "isBtnClearShown", null);
@@ -3271,22 +3313,22 @@ var OpalInputMask = /** @class */ (function (_super) {
         __metadata("design:type", String)
     ], OpalInputMask.prototype, "paramMask", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Array),
         __metadata("design:paramtypes", [])
     ], OpalInputMask.prototype, "_mask", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [])
     ], OpalInputMask.prototype, "_partialIndex", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Array),
         __metadata("design:paramtypes", [])
     ], OpalInputMask.prototype, "_tests", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [])
     ], OpalInputMask.prototype, "_firstTestIndex", null);
@@ -3479,7 +3521,13 @@ var template_nelm_1 = __webpack_require__(48);
 var OpalCheckbox = /** @class */ (function (_super) {
     __extends(OpalCheckbox, _super);
     function OpalCheckbox() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramChecked = false;
+        _this.paramIndeterminate = false;
+        _this.paramTabIndex = 0;
+        _this.paramFocused = false;
+        _this.paramDisabled = false;
+        return _this;
     }
     Object.defineProperty(OpalCheckbox.prototype, "_tabIndex", {
         get: function () {
@@ -3610,27 +3658,27 @@ var OpalCheckbox = /** @class */ (function (_super) {
         return this;
     };
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalCheckbox.prototype, "paramChecked", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalCheckbox.prototype, "paramIndeterminate", void 0);
     __decorate([
-        rionite_1.Param({ default: 0 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalCheckbox.prototype, "paramTabIndex", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalCheckbox.prototype, "paramFocused", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalCheckbox.prototype, "paramDisabled", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [])
     ], OpalCheckbox.prototype, "_tabIndex", null);
@@ -3766,7 +3814,12 @@ var template_nelm_1 = __webpack_require__(52);
 var OpalRadioButton = /** @class */ (function (_super) {
     __extends(OpalRadioButton, _super);
     function OpalRadioButton() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramChecked = false;
+        _this.paramTabIndex = 0;
+        _this.paramFocused = false;
+        _this.paramDisabled = false;
+        return _this;
     }
     Object.defineProperty(OpalRadioButton.prototype, "_tabIndex", {
         get: function () {
@@ -3887,23 +3940,23 @@ var OpalRadioButton = /** @class */ (function (_super) {
         return this;
     };
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalRadioButton.prototype, "paramChecked", void 0);
     __decorate([
-        rionite_1.Param({ default: 0 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalRadioButton.prototype, "paramTabIndex", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalRadioButton.prototype, "paramFocused", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalRadioButton.prototype, "paramDisabled", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [])
     ], OpalRadioButton.prototype, "_tabIndex", null);
@@ -3977,7 +4030,12 @@ var template_nelm_1 = __webpack_require__(55);
 var OpalSwitch = /** @class */ (function (_super) {
     __extends(OpalSwitch, _super);
     function OpalSwitch() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramChecked = false;
+        _this.paramTabIndex = 0;
+        _this.paramFocused = false;
+        _this.paramDisabled = false;
+        return _this;
     }
     OpalSwitch.prototype._tabIndex = function () {
         return this.paramDisabled ? -1 : this.paramTabIndex;
@@ -4094,23 +4152,23 @@ var OpalSwitch = /** @class */ (function (_super) {
         return this;
     };
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSwitch.prototype, "paramChecked", void 0);
     __decorate([
-        rionite_1.Param({ default: 0 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSwitch.prototype, "paramTabIndex", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSwitch.prototype, "paramFocused", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSwitch.prototype, "paramDisabled", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Number)
@@ -4184,7 +4242,12 @@ var template_nelm_1 = __webpack_require__(58);
 var OpalSlider = /** @class */ (function (_super) {
     __extends(OpalSlider, _super);
     function OpalSlider() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramMin = 0;
+        _this.paramMax = 100;
+        _this.paramStep = 1;
+        _this.paramValue = 0;
+        return _this;
     }
     Object.defineProperty(OpalSlider.prototype, "_firstInputWidth", {
         get: function () {
@@ -4243,35 +4306,35 @@ var OpalSlider = /** @class */ (function (_super) {
         configurable: true
     });
     __decorate([
-        rionite_1.Param({ default: 0 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSlider.prototype, "paramMin", void 0);
     __decorate([
-        rionite_1.Param({ default: 100 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSlider.prototype, "paramMax", void 0);
     __decorate([
-        rionite_1.Param({ default: 1 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSlider.prototype, "paramStep", void 0);
     __decorate([
-        rionite_1.Param({ default: 0 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSlider.prototype, "paramValue", void 0);
     __decorate([
         rionite_1.Param({ type: eval }),
         __metadata("design:type", Array)
     ], OpalSlider.prototype, "paramRange", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Number)
     ], OpalSlider.prototype, "_firstInputValue", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Number)
     ], OpalSlider.prototype, "_secondInputValue", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [])
     ], OpalSlider.prototype, "_firstInputWidth", null);
@@ -4615,7 +4678,12 @@ var template_nelm_1 = __webpack_require__(67);
 var OpalTab = /** @class */ (function (_super) {
     __extends(OpalTab, _super);
     function OpalTab() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramSelected = false;
+        _this.paramTabIndex = 0;
+        _this.paramFocused = false;
+        _this.paramDisabled = false;
+        return _this;
     }
     Object.defineProperty(OpalTab.prototype, "_tabIndex", {
         get: function () {
@@ -4710,27 +4778,27 @@ var OpalTab = /** @class */ (function (_super) {
         return this;
     };
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalTab.prototype, "paramLabel", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTab.prototype, "paramSelected", void 0);
     __decorate([
-        rionite_1.Param({ default: 0 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTab.prototype, "paramTabIndex", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTab.prototype, "paramFocused", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTab.prototype, "paramDisabled", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [])
     ], OpalTab.prototype, "_tabIndex", null);
@@ -4813,6 +4881,7 @@ var OpalTabPanel = /** @class */ (function (_super) {
     __extends(OpalTabPanel, _super);
     function OpalTabPanel() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramShown = false;
         _this.isContentRendered = false;
         return _this;
     }
@@ -4829,11 +4898,11 @@ var OpalTabPanel = /** @class */ (function (_super) {
         cellx_1.Cell.forceRelease();
     };
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTabPanel.prototype, "paramShown", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalTabPanel.prototype, "isContentRendered", void 0);
     OpalTabPanel = __decorate([
@@ -4916,6 +4985,9 @@ var OpalDropdown = /** @class */ (function (_super) {
     __extends(OpalDropdown, _super);
     function OpalDropdown() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramAutoHeight = true;
+        _this.paramAutoClosing = false;
+        _this.paramOpened = false;
         _this.isContentRendered = false;
         return _this;
     }
@@ -5048,19 +5120,19 @@ var OpalDropdown = /** @class */ (function (_super) {
         }
     };
     __decorate([
-        rionite_1.Param({ default: true }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalDropdown.prototype, "paramAutoHeight", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalDropdown.prototype, "paramAutoClosing", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalDropdown.prototype, "paramOpened", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalDropdown.prototype, "isContentRendered", void 0);
     OpalDropdown = __decorate([
@@ -5134,6 +5206,10 @@ var OpalPopover = /** @class */ (function (_super) {
     __extends(OpalPopover, _super);
     function OpalPopover() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramPosition = 'right';
+        _this.paramAutoDirection = true;
+        _this.paramAutoClosing = false;
+        _this.paramOpened = false;
         _this.isContentRendered = false;
         return _this;
     }
@@ -5282,23 +5358,23 @@ var OpalPopover = /** @class */ (function (_super) {
         }
     };
     __decorate([
-        rionite_1.Param({ default: 'right' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalPopover.prototype, "paramPosition", void 0);
     __decorate([
-        rionite_1.Param({ default: true }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalPopover.prototype, "paramAutoDirection", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalPopover.prototype, "paramAutoClosing", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalPopover.prototype, "paramOpened", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalPopover.prototype, "isContentRendered", void 0);
     OpalPopover = __decorate([
@@ -5390,6 +5466,7 @@ var OpalModal = /** @class */ (function (_super) {
     __extends(OpalModal, _super);
     function OpalModal() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramOpened = false;
         _this.isContentRendered = false;
         return _this;
     }
@@ -5499,11 +5576,11 @@ var OpalModal = /** @class */ (function (_super) {
         return this;
     };
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalModal.prototype, "paramOpened", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalModal.prototype, "isContentRendered", void 0);
     OpalModal = __decorate([
@@ -5596,7 +5673,13 @@ function initContainer(notification) {
 var OpalNotification = /** @class */ (function (_super) {
     __extends(OpalNotification, _super);
     function OpalNotification() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramViewType = 'default';
+        _this.paramIconSize = 'm';
+        _this.paramButtonHide = true;
+        _this.paramTimeout = 0;
+        _this.paramShown = false;
+        return _this;
     }
     OpalNotification.prototype.$ = function (name, container) {
         if (container === void 0) { container = this.bar; }
@@ -5688,24 +5771,24 @@ var OpalNotification = /** @class */ (function (_super) {
         return this;
     };
     __decorate([
-        rionite_1.Param({ default: 'default' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalNotification.prototype, "paramViewType", void 0);
     __decorate([
-        rionite_1.Param({ default: 'm' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalNotification.prototype, "paramIconSize", void 0);
     __decorate([
-        rionite_1.Param({ default: true }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalNotification.prototype, "paramButtonHide", void 0);
     __decorate([
-        rionite_1.Param({ default: 0 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalNotification.prototype, "paramTimeout", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalNotification.prototype, "paramShown", void 0);
     OpalNotification = __decorate([
         rionite_1.Component.Config({
@@ -5798,7 +5881,10 @@ var template_nelm_1 = __webpack_require__(89);
 var OpalInputValidatorRule = /** @class */ (function (_super) {
     __extends(OpalInputValidatorRule, _super);
     function OpalInputValidatorRule() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramRequired = false;
+        _this.paramPopoverPosition = 'right';
+        return _this;
     }
     OpalInputValidatorRule.prototype.showMessage = function () {
         this.$('popover').open();
@@ -5807,16 +5893,16 @@ var OpalInputValidatorRule = /** @class */ (function (_super) {
         this.$('popover').close();
     };
     __decorate([
-        rionite_1.Param({ default: false, readonly: true }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Object)
     ], OpalInputValidatorRule.prototype, "paramRequired", void 0);
     __decorate([
         rionite_1.Param({ readonly: true }),
         __metadata("design:type", Function)
     ], OpalInputValidatorRule.prototype, "paramTest", void 0);
     __decorate([
-        rionite_1.Param({ default: 'right' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalInputValidatorRule.prototype, "paramPopoverPosition", void 0);
     OpalInputValidatorRule = __decorate([
         rionite_1.Component.Config({
@@ -6034,6 +6120,7 @@ var OpalCalendar = /** @class */ (function (_super) {
     __extends(OpalCalendar, _super);
     function OpalCalendar() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramDateDelimiter = '/';
         _this.days = function (_, next) {
             var dateDelimiter = this.paramDateDelimiter;
             var fromDate = this.fromDate;
@@ -6260,76 +6347,76 @@ var OpalCalendar = /** @class */ (function (_super) {
         this.emit('change');
     };
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalCalendar.prototype, "paramFromDate", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalCalendar.prototype, "paramToDate", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalCalendar.prototype, "paramValue", void 0);
     __decorate([
-        rionite_1.Param({ default: '/' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalCalendar.prototype, "paramDateDelimiter", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Date),
         __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "fromDate", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Date),
         __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "toDate", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "fromYear", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "toYear", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Array),
         __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "years", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
     ], OpalCalendar.prototype, "stringValue", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "value", null);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Number)
     ], OpalCalendar.prototype, "shownYear", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Number)
     ], OpalCalendar.prototype, "shownMonth", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "isBtnPrevMonthDisabled", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
     ], OpalCalendar.prototype, "isBtnNextMonthDisabled", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Array)
     ], OpalCalendar.prototype, "days", void 0);
     OpalCalendar = OpalCalendar_1 = __decorate([
@@ -6497,6 +6584,10 @@ var OpalDateInput = /** @class */ (function (_super) {
     __extends(OpalDateInput, _super);
     function OpalDateInput() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramPlaceholder = 'dd.mm.yyyy';
+        _this.paramMask = '99.99.9999';
+        _this.paramRequired = false;
+        _this.paramPopoverPosition = 'right';
         _this.dateExists = date_exists_1.dateExists;
         return _this;
     }
@@ -6604,32 +6695,32 @@ var OpalDateInput = /** @class */ (function (_super) {
         return this.$('text-input-validator').validate();
     };
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalDateInput.prototype, "paramFromDate", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalDateInput.prototype, "paramToDate", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalDateInput.prototype, "paramValue", void 0);
     __decorate([
-        rionite_1.Param({ default: 'dd.mm.yyyy' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalDateInput.prototype, "paramPlaceholder", void 0);
     __decorate([
-        rionite_1.Param({ default: '99.99.9999' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalDateInput.prototype, "paramMask", void 0);
     __decorate([
-        rionite_1.Param({ default: false, readonly: true }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Object)
     ], OpalDateInput.prototype, "paramRequired", void 0);
     __decorate([
-        rionite_1.Param({ default: 'right' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalDateInput.prototype, "paramPopoverPosition", void 0);
     OpalDateInput = __decorate([
         rionite_1.Component.Config({
@@ -6720,15 +6811,18 @@ __webpack_require__(103);
 var OpalLoader = /** @class */ (function (_super) {
     __extends(OpalLoader, _super);
     function OpalLoader() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramSize = 'm';
+        _this.paramShown = false;
+        return _this;
     }
     __decorate([
-        rionite_1.Param({ default: 'm' }),
-        __metadata("design:type", String)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalLoader.prototype, "paramSize", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalLoader.prototype, "paramShown", void 0);
     OpalLoader = __decorate([
         rionite_1.Component.Config({
@@ -6796,6 +6890,8 @@ var OpalLoadedList = /** @class */ (function (_super) {
     __extends(OpalLoadedList, _super);
     function OpalLoadedList() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramCount = 100;
+        _this.paramPreloading = false;
         _this.dataList = new cellx_1.ObservableList();
         _this._isScrollingInProcessing = false;
         _this._isLoadingCheckPlanned = false;
@@ -6944,45 +7040,45 @@ var OpalLoadedList = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalLoadedList.prototype, "paramDataProvider", void 0);
     __decorate([
-        rionite_1.Param({ default: 100 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalLoadedList.prototype, "paramCount", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalLoadedList.prototype, "paramQuery", void 0);
     __decorate([
-        rionite_1.Param({ default: false, readonly: true }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Object)
     ], OpalLoadedList.prototype, "paramPreloading", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalLoadedList.prototype, "dataList", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalLoadedList.prototype, "total", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalLoadedList.prototype, "_isLoadingCheckPlanned", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalLoadedList.prototype, "loading", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
     ], OpalLoadedList.prototype, "empty", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
     ], OpalLoadedList.prototype, "isLoaderShown", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
     ], OpalLoadedList.prototype, "isNothingFoundShown", null);
@@ -7264,7 +7360,12 @@ var template_nelm_1 = __webpack_require__(120);
 var OpalSelectOption = /** @class */ (function (_super) {
     __extends(OpalSelectOption, _super);
     function OpalSelectOption() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramSelected = false;
+        _this.paramTabIndex = 0;
+        _this.paramFocused = false;
+        _this.paramDisabled = false;
+        return _this;
     }
     Object.defineProperty(OpalSelectOption.prototype, "_tabIndex", {
         get: function () {
@@ -7385,7 +7486,7 @@ var OpalSelectOption = /** @class */ (function (_super) {
         return this;
     };
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalSelectOption.prototype, "paramValue", void 0);
     __decorate([
@@ -7393,27 +7494,27 @@ var OpalSelectOption = /** @class */ (function (_super) {
         __metadata("design:type", String)
     ], OpalSelectOption.prototype, "paramText", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalSelectOption.prototype, "paramSubtext", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSelectOption.prototype, "paramSelected", void 0);
     __decorate([
-        rionite_1.Param({ default: 0 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSelectOption.prototype, "paramTabIndex", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSelectOption.prototype, "paramFocused", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSelectOption.prototype, "paramDisabled", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [])
     ], OpalSelectOption.prototype, "_tabIndex", null);
@@ -7496,7 +7597,9 @@ var template_nelm_1 = __webpack_require__(124);
 var OpalMultiselect = /** @class */ (function (_super) {
     __extends(OpalMultiselect, _super);
     function OpalMultiselect() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramMultiple = true;
+        return _this;
     }
     Object.defineProperty(OpalMultiselect.prototype, "isNothingSelectedShown", {
         get: function () {
@@ -7516,15 +7619,15 @@ var OpalMultiselect = /** @class */ (function (_super) {
         }
     };
     __decorate([
-        rionite_1.Param({ default: true }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalMultiselect.prototype, "paramMultiple", void 0);
     __decorate([
         rionite_1.Param({ readonly: true }),
         __metadata("design:type", Object)
     ], OpalMultiselect.prototype, "paramDataProvider", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
     ], OpalMultiselect.prototype, "isNothingSelectedShown", null);
@@ -7653,7 +7756,9 @@ var template_nelm_1 = __webpack_require__(129);
 var OpalTreeSelect = /** @class */ (function (_super) {
     __extends(OpalTreeSelect, _super);
     function OpalTreeSelect() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramMultiple = true;
+        return _this;
     }
     OpalTreeSelect.prototype.initialize = function () {
         var _this = this;
@@ -7681,11 +7786,11 @@ var OpalTreeSelect = /** @class */ (function (_super) {
     };
     OpalTreeSelect.prototype._updateOptions = function () { };
     __decorate([
-        rionite_1.Param({ default: true }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalTreeSelect.prototype, "paramMultiple", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", Object)
     ], OpalTreeSelect.prototype, "paramDataTreeList", void 0);
     __decorate([
@@ -7701,7 +7806,7 @@ var OpalTreeSelect = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalTreeSelect.prototype, "paramDataTreeListItemSchema", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", Object)
     ], OpalTreeSelect.prototype, "paramViewModel", void 0);
     __decorate([
@@ -7713,7 +7818,7 @@ var OpalTreeSelect = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalTreeSelect.prototype, "paramViewModelItemSchema", void 0);
     __decorate([
-        rionite_1.Param(),
+        rionite_1.Param,
         __metadata("design:type", String)
     ], OpalTreeSelect.prototype, "paramQuery", void 0);
     OpalTreeSelect = __decorate([
@@ -7972,6 +8077,9 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     __extends(OpalAutosuggest, _super);
     function OpalAutosuggest() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramMinQueryLength = 3;
+        _this.paramCount = 5;
+        _this.paramOpenMenuOnNothingFound = false;
         _this.dataList = new cellx_1.ObservableList();
         _this._isNotInputConfirmed = false;
         _this._isLoadingPlanned = false;
@@ -8261,35 +8369,35 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalAutosuggest.prototype, "paramValue", void 0);
     __decorate([
-        rionite_1.Param({ default: 3 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalAutosuggest.prototype, "paramMinQueryLength", void 0);
     __decorate([
-        rionite_1.Param({ default: 5 }),
-        __metadata("design:type", Number)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalAutosuggest.prototype, "paramCount", void 0);
     __decorate([
-        rionite_1.Param({ default: false }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalAutosuggest.prototype, "paramOpenMenuOnNothingFound", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalAutosuggest.prototype, "dataList", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalAutosuggest.prototype, "value", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalAutosuggest.prototype, "_isLoadingPlanned", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalAutosuggest.prototype, "loading", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
     ], OpalAutosuggest.prototype, "isLoaderShown", null);
@@ -8435,21 +8543,21 @@ var OpalMultirow = /** @class */ (function (_super) {
         this.emit('change');
     };
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalMultirow.prototype, "_presetRowCount", void 0);
     __decorate([
-        cellx_decorators_1.observable,
+        cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalMultirow.prototype, "_newRows", void 0);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Boolean)
     ], OpalMultirow.prototype, "_notHaveNewRows", null);
     __decorate([
-        cellx_decorators_1.computed,
+        cellx_decorators_1.Computed,
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Boolean)
@@ -8625,6 +8733,8 @@ var OpalRouter = /** @class */ (function (_super) {
     __extends(OpalRouter, _super);
     function OpalRouter() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramScrollTopOnChange = true;
+        _this.paramScrollTopOnChangeComponent = true;
         _this._route = null;
         _this._state = null;
         _this._componentElement = null;
@@ -8818,12 +8928,12 @@ var OpalRouter = /** @class */ (function (_super) {
         }
     };
     __decorate([
-        rionite_1.Param({ default: true }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalRouter.prototype, "paramScrollTopOnChange", void 0);
     __decorate([
-        rionite_1.Param({ default: true }),
-        __metadata("design:type", Boolean)
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalRouter.prototype, "paramScrollTopOnChangeComponent", void 0);
     OpalRouter = __decorate([
         rionite_1.Component.Config({

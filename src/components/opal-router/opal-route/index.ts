@@ -6,7 +6,6 @@ import { Component, Param } from 'rionite';
 export class OpalRoute extends Component {
 	@Param({ required: true, readonly: true })
 	paramPath: string;
-
 	@Param({ required: true, readonly: true })
 	paramComponent: string;
 }

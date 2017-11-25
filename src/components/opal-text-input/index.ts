@@ -1,6 +1,6 @@
 import { nextTick } from '@riim/next-tick';
 import { Cell, IEvent } from 'cellx';
-import { computed } from 'cellx-decorators';
+import { Computed } from 'cellx-decorators';
 import { Component, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
@@ -22,49 +22,25 @@ import template from './template.nelm';
 	}
 })
 export class OpalTextInput extends Component {
-	@Param({ default: 'text' })
-	paramInputType: string;
-
-	@Param({ default: 'm' })
-	paramSize: string;
-
-	@Param({ default: false })
-	paramMultiline: boolean;
-
-	@Param({ default: 5 })
-	paramRows: number;
-
-	@Param({ default: true })
-	paramAutoHeight: boolean;
-
-	@Param() paramInputName: string;
-
-	@Param({ default: '' })
-	paramValue: string;
-
-	@Param() paramStoreKey: string;
-
-	@Param() paramPlaceholder: string;
-
-	@Param({ default: false })
-	paramClearable: boolean;
-
-	@Param({ default: false })
-	paramLoading: boolean;
-
-	@Param({ default: 0 })
-	paramTabIndex: number;
-
-	@Param({ default: false })
-	paramFocused: boolean;
-
-	@Param({ default: false })
-	paramDisabled: boolean;
+	@Param paramInputType = 'text';
+	@Param paramSize = 'm';
+	@Param paramMultiline = false;
+	@Param paramRows = 5;
+	@Param paramAutoHeight = true;
+	@Param paramInputName: string;
+	@Param paramValue = '';
+	@Param paramStoreKey: string;
+	@Param paramPlaceholder: string;
+	@Param paramClearable = false;
+	@Param paramLoading = false;
+	@Param paramTabIndex = 0;
+	@Param paramFocused = false;
+	@Param paramDisabled = false;
 
 	textField: HTMLInputElement;
 
 	_textFieldValueCell: Cell<string>;
-	@computed
+	@Computed
 	get _textFieldValue(): string {
 		return this.paramValue;
 	}
@@ -81,12 +57,12 @@ export class OpalTextInput extends Component {
 
 	_prevValue: string | null;
 
-	@computed
+	@Computed
 	get isControlIconShown(): boolean {
 		return !this.isBtnClearShown && !this.paramLoading;
 	}
 
-	@computed
+	@Computed
 	get isBtnClearShown(): boolean {
 		return !!this._textFieldValue && !this.paramLoading;
 	}

@@ -1,6 +1,6 @@
 import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
-import { computed } from 'cellx-decorators';
+import { Computed } from 'cellx-decorators';
 import { Component, IDisposableListening, Param } from 'rionite';
 import './index.css';
 
@@ -8,31 +8,16 @@ import './index.css';
 	elementIs: 'OpalButton'
 })
 export class OpalButton extends Component {
-	@Param({ default: 'default' })
-	paramViewType: string;
+	@Param paramViewType = 'default';
+	@Param paramSize = 'm';
+	@Param paramCheckable = false;
+	@Param paramChecked = false;
+	@Param paramLoading = false;
+	@Param paramTabIndex = 0;
+	@Param paramFocused = false;
+	@Param paramDisabled = false;
 
-	@Param({ default: 'm' })
-	paramSize: string;
-
-	@Param({ default: false })
-	paramCheckable: boolean;
-
-	@Param({ default: false })
-	paramChecked: boolean;
-
-	@Param({ default: false })
-	paramLoading: boolean;
-
-	@Param({ default: 0 })
-	paramTabIndex: number;
-
-	@Param({ default: false })
-	paramFocused: boolean;
-
-	@Param({ default: false })
-	paramDisabled: boolean;
-
-	@computed
+	@Computed
 	get _tabIndex(): number {
 		return this.paramDisabled ? -1 : this.paramTabIndex;
 	}

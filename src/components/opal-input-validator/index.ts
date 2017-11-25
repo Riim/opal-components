@@ -1,4 +1,4 @@
-import { computed, observable } from 'cellx-decorators';
+import { Computed, Observable } from 'cellx-decorators';
 import { Component, IComponentElement } from 'rionite';
 import './index.css';
 import { OpalInputValidatorRule } from './opal-input-validator-rule';
@@ -15,9 +15,9 @@ export class OpalInputValidator extends Component {
 
 	rules: Array<OpalInputValidatorRule>;
 
-	@observable failedRule: OpalInputValidatorRule | null = null;
+	@Observable failedRule: OpalInputValidatorRule | null = null;
 
-	@computed
+	@Computed
 	get valid(): boolean {
 		return !this.failedRule;
 	}

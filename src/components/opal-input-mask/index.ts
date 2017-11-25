@@ -1,5 +1,5 @@
 import { nextTick } from '@riim/next-tick';
-import { computed } from 'cellx-decorators';
+import { Computed } from 'cellx-decorators';
 import { Component, IComponentElement, Param } from 'rionite';
 import { OpalTextInput } from '../opal-text-input';
 import { OpalInputMaskDefinition } from './opal-input-mask-definition/index';
@@ -30,23 +30,23 @@ export class OpalInputMask extends Component {
 
 	_definitions: { [chr: string]: RegExp };
 
-	@computed
+	@Computed
 	get _mask(): Array<string> {
 		return this.paramMask.split('').filter((chr: string) => chr != '?');
 	}
 
-	@computed
+	@Computed
 	get _partialIndex(): number {
 		let index = this.paramMask.indexOf('?');
 		return index == -1 ? this.paramMask.length : index;
 	}
 
-	@computed
+	@Computed
 	get _tests(): Array<RegExp | null> {
 		return this._mask.map((chr: string) => this._definitions[chr] || null);
 	}
 
-	@computed
+	@Computed
 	get _firstTestIndex(): number {
 		return this._tests.findIndex(test => !!test);
 	}

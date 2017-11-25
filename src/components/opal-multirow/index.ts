@@ -1,6 +1,6 @@
 import { nextUID } from '@riim/next-uid';
 import { Cell, IEvent, ObservableList } from 'cellx';
-import { computed, observable } from 'cellx-decorators';
+import { Computed, Observable } from 'cellx-decorators';
 import { Component } from 'rionite';
 import './index.css';
 import { OpalMultirowRow } from './opal-multirow-row';
@@ -15,15 +15,15 @@ export { OpalMultirowRow };
 export class OpalMultirow extends Component {
 	_presetRowClassName: string;
 
-	@observable _presetRowCount = 0;
-	@observable _newRows = new ObservableList<{ key: string }>();
+	@Observable _presetRowCount = 0;
+	@Observable _newRows = new ObservableList<{ key: string }>();
 
-	@computed
+	@Computed
 	_notHaveNewRows(): boolean {
 		return !this._newRows.length;
 	}
 
-	@computed
+	@Computed
 	_notSingleRow(): boolean {
 		return this._presetRowCount + this._newRows.length != 1;
 	}

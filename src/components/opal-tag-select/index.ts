@@ -1,6 +1,6 @@
 import { getText } from '@riim/gettext';
 import { Cell, define, ObservableList } from 'cellx';
-import { computed, observable } from 'cellx-decorators';
+import { Computed, Observable } from 'cellx-decorators';
 import { Component, Param } from 'rionite';
 import { IDataProvider } from '../opal-loaded-list';
 import {
@@ -37,46 +37,28 @@ export class OpalTagSelect extends Component {
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
-	@Param() paramViewType: string;
-
-	@Param() paramDataList: TDataList;
-
+	@Param paramViewType: string;
+	@Param paramDataList: TDataList;
 	@Param({ readonly: true })
 	paramDataListKeypath: string;
-
 	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
 	paramDataListItemSchema: { value?: string; text?: string; disabled?: string };
-
 	// необязательный, так как может указываться на передаваемом opal-loaded-list
 	@Param({ readonly: true })
 	paramDataProvider: IDataProvider;
-
 	@Param({ type: eval })
 	paramValue: Array<string>;
-
 	@Param({ readonly: true })
 	paramViewModel: TViewModel;
-
 	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
 	paramViewModelItemSchema: { value?: string; text?: string; disabled?: string };
-
 	@Param({ readonly: true })
 	paramAddNewItem: (text: string) => Promise<{ [name: string]: string }>;
-
-	@Param({ default: getText.t('Не выбрано') })
-	paramPlaceholder: string;
-
-	@Param({ default: 'bottom' })
-	paramPopoverPosition: string;
-
-	@Param({ default: 0 })
-	paramTabIndex: number;
-
-	@Param({ default: false })
-	paramFocused: boolean;
-
-	@Param({ default: false })
-	paramDisabled: boolean;
+	@Param paramPlaceholder = getText.t('Не выбрано');
+	@Param paramPopoverPosition = 'bottom';
+	@Param paramTabIndex = 0;
+	@Param paramFocused = false;
+	@Param paramDisabled = false;
 
 	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
@@ -85,17 +67,17 @@ export class OpalTagSelect extends Component {
 
 	dataProvider: IDataProvider | null;
 
-	@observable viewModel: TViewModel;
+	@Observable viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 	_viewModelItemDisabledFieldName: string;
 
-	@computed
+	@Computed
 	get value(): Array<string> {
 		return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
 	}
 
-	@computed
+	@Computed
 	get isPlaceholderShown(): boolean {
 		return !!this.paramPlaceholder && !this.viewModel.length;
 	}

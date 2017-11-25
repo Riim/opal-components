@@ -6,7 +6,7 @@ import {
 	IEvent,
 	ObservableList
 	} from 'cellx';
-import { computed, observable } from 'cellx-decorators';
+import { Computed, Observable } from 'cellx-decorators';
 import {
 	Component,
 	IComponentElement,
@@ -82,69 +82,48 @@ export class OpalSelect extends Component {
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
-	@Param() paramViewType: string;
-
-	@Param({ default: 'm' })
-	paramSize: string;
-
-	@Param({ default: false, readonly: true })
-	paramMultiple: boolean;
-
-	@Param() paramDataList: TDataList;
-
+	@Param paramViewType: string;
+	@Param paramSize = 'm';
+	@Param({ readonly: true })
+	paramMultiple = false;
+	@Param paramDataList: TDataList;
 	@Param({ readonly: true })
 	paramDataListKeypath: string;
-
 	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
 	paramDataListItemSchema: { value?: string; text?: string; disabled?: string };
-
 	@Param({ type: eval })
 	paramValue: Array<string>;
-
 	@Param({ readonly: true })
 	paramViewModel: TViewModel;
-
 	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
 	paramViewModelItemSchema: { value?: string; text?: string; disabled?: string };
-
 	@Param({ readonly: true })
 	paramAddNewItem: (text: string) => Promise<{ [name: string]: string }>;
-
-	@Param() paramText: string;
-
-	@Param({ default: 20 })
-	paramMaxTextLength: number;
-
-	@Param({ default: getText.t('Не выбрано') })
-	paramPlaceholder: string;
-
-	@Param({ default: 0 })
-	paramTabIndex: number;
-
-	@Param({ default: false })
-	paramFocused: boolean;
-
-	@Param({ default: false })
-	paramDisabled: boolean;
+	@Param paramText: string;
+	@Param paramMaxTextLength = 20;
+	@Param paramPlaceholder = getText.t('Не выбрано');
+	@Param paramTabIndex = 0;
+	@Param paramFocused = false;
+	@Param paramDisabled = false;
 
 	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;
 	_dataListItemDisabledFieldName: string;
 
-	@observable viewModel: TViewModel;
+	@Observable viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 	_viewModelItemDisabledFieldName: string;
 
-	@computed
+	@Computed
 	get value(): Array<string> {
 		return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
 	}
 
 	_addNewItem: ((text: string) => Promise<{ [name: string]: string }>) | null;
 
-	@computed
+	@Computed
 	get _buttonText(): string {
 		let text = this.viewModel
 			.map((item): string => item[this._viewModelItemTextFieldName])
@@ -164,7 +143,7 @@ export class OpalSelect extends Component {
 	optionElements: NodeListOf<IComponentElement>;
 
 	optionsCell: Cell<Array<OpalSelectOption>>;
-	@computed
+	@Computed
 	get options(): Array<OpalSelectOption> {
 		return map.call(this.optionElements, (option: IComponentElement) => option.$component);
 	}

@@ -1,6 +1,6 @@
 import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
-import { computed } from 'cellx-decorators';
+import { Computed } from 'cellx-decorators';
 import { Component, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
@@ -10,26 +10,16 @@ import template from './template.nelm';
 	template
 })
 export class OpalSelectOption extends Component {
-	@Param() paramValue: string;
-
+	@Param paramValue: string;
 	@Param({ required: true })
 	paramText: string;
+	@Param paramSubtext: string;
+	@Param paramSelected = false;
+	@Param paramTabIndex = 0;
+	@Param paramFocused = false;
+	@Param paramDisabled = false;
 
-	@Param() paramSubtext: string;
-
-	@Param({ default: false })
-	paramSelected: boolean;
-
-	@Param({ default: 0 })
-	paramTabIndex: number;
-
-	@Param({ default: false })
-	paramFocused: boolean;
-
-	@Param({ default: false })
-	paramDisabled: boolean;
-
-	@computed
+	@Computed
 	get _tabIndex(): number {
 		return this.paramDisabled ? -1 : this.paramTabIndex;
 	}

@@ -1,6 +1,6 @@
 import { getText } from '@riim/gettext';
 import { IEvent } from 'cellx';
-import { computed } from 'cellx-decorators';
+import { Computed } from 'cellx-decorators';
 import { Param, Template } from 'rionite';
 import { IDataProvider, OpalLoadedList } from '../opal-loaded-list';
 import { OpalSelect } from '../opal-select';
@@ -51,15 +51,13 @@ import template from './template.nelm';
 	}
 })
 export class OpalMultiselect extends OpalSelect {
-	@Param({ default: true })
-	paramMultiple: boolean;
-
+	@Param paramMultiple = true;
 	@Param({ readonly: true })
 	paramDataProvider: IDataProvider;
 
 	dataProvider: IDataProvider | null;
 
-	@computed
+	@Computed
 	get isNothingSelectedShown(): boolean {
 		return !this.viewModel.length;
 	}

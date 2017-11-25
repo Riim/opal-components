@@ -5,9 +5,6 @@ import './index.css';
 	elementIs: 'OpalLoader'
 })
 export class OpalLoader extends Component {
-	@Param({ default: 'm' })
-	paramSize: string;
-
-	@Param({ default: false })
-	paramShown: boolean;
+	@Param paramSize = 'm';
+	@Param paramShown = false;
 }

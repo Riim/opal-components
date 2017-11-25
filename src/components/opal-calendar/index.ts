@@ -1,6 +1,6 @@
 import { nextTick } from '@riim/next-tick';
 import { Cell, IEvent } from 'cellx';
-import { computed, observable } from 'cellx-decorators';
+import { Computed, Observable } from 'cellx-decorators';
 import { Component, IDisposableListening, Param } from 'rionite';
 import { OpalSelect } from '../opal-select';
 import { formatDate } from './formatDate';
@@ -108,19 +108,15 @@ function getTodayDate() {
 	}
 })
 export class OpalCalendar extends Component {
-	@Param() paramFromDate: string;
-
-	@Param() paramToDate: string;
-
-	@Param() paramValue: string;
-
-	@Param({ default: '/' })
-	paramDateDelimiter: string;
+	@Param paramFromDate: string;
+	@Param paramToDate: string;
+	@Param paramValue: string;
+	@Param paramDateDelimiter = '/';
 
 	weekDays: Array<string>;
 	weekDaysShort: Array<string>;
 
-	@computed
+	@Computed
 	get fromDate(): Date {
 		let fromDate = this.paramFromDate;
 
@@ -134,7 +130,7 @@ export class OpalCalendar extends Component {
 		return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
 	}
 
-	@computed
+	@Computed
 	get toDate(): Date {
 		let toDate = this.paramToDate;
 
@@ -148,17 +144,17 @@ export class OpalCalendar extends Component {
 		return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
 	}
 
-	@computed
+	@Computed
 	get fromYear(): number {
 		return this.fromDate.getFullYear();
 	}
 
-	@computed
+	@Computed
 	get toYear(): number {
 		return this.toDate.getFullYear();
 	}
 
-	@computed
+	@Computed
 	get years(): Array<number> {
 		let years: Array<number> = [];
 
@@ -170,7 +166,7 @@ export class OpalCalendar extends Component {
 	}
 
 	stringValueCell: Cell<string | null>;
-	@computed
+	@Computed
 	get stringValue(): string | null {
 		return this.paramValue;
 	}
@@ -178,26 +174,26 @@ export class OpalCalendar extends Component {
 		this.stringValueCell.set(value);
 	}
 
-	@computed
+	@Computed
 	get value(): Date | null {
 		let value = this.stringValue;
 		return value ? parseDate(value) : null;
 	}
 
-	@observable shownYear: number;
-	@observable shownMonth: number;
+	@Observable shownYear: number;
+	@Observable shownMonth: number;
 
-	@computed
+	@Computed
 	get isBtnPrevMonthDisabled(): boolean {
 		return this.shownYear == this.fromYear && !this.shownMonth;
 	}
 
-	@computed
+	@Computed
 	get isBtnNextMonthDisabled(): boolean {
 		return this.shownYear == this.toYear && this.shownMonth == 11;
 	}
 
-	@computed
+	@Computed
 	days: TDays = function(this: OpalCalendar, _: any, next: TDays | undefined): TDays {
 		let dateDelimiter = this.paramDateDelimiter;
 

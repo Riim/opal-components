@@ -1,5 +1,5 @@
 import { Cell, IEvent } from 'cellx';
-import { observable } from 'cellx-decorators';
+import { Observable } from 'cellx-decorators';
 import { Component, IDisposableListening, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
@@ -9,19 +9,12 @@ import template from './template.nelm';
 	template
 })
 export class OpalPopover extends Component {
-	@Param({ default: 'right' })
-	paramPosition: string;
+	@Param paramPosition = 'right';
+	@Param paramAutoDirection = true;
+	@Param paramAutoClosing = false;
+	@Param paramOpened = false;
 
-	@Param({ default: true })
-	paramAutoDirection: boolean;
-
-	@Param({ default: false })
-	paramAutoClosing: boolean;
-
-	@Param({ default: false })
-	paramOpened: boolean;
-
-	@observable isContentRendered = false;
+	@Observable isContentRendered = false;
 
 	_positionOnOpen: string;
 

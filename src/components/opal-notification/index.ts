@@ -26,20 +26,11 @@ function initContainer(notification: OpalNotification): HTMLElement {
 	template
 })
 export class OpalNotification extends Component {
-	@Param({ default: 'default' })
-	paramViewType: string;
-
-	@Param({ default: 'm' })
-	paramIconSize: string;
-
-	@Param({ default: true })
-	paramButtonHide: boolean;
-
-	@Param({ default: 0 })
-	paramTimeout: number;
-
-	@Param({ default: false })
-	paramShown: boolean;
+	@Param paramViewType = 'default';
+	@Param paramIconSize = 'm';
+	@Param paramButtonHide = true;
+	@Param paramTimeout = 0;
+	@Param paramShown = false;
 
 	bar: HTMLElement;
 

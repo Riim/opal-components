@@ -1,6 +1,6 @@
 import { getText } from '@riim/gettext';
 import { Cell, IEvent, ObservableList } from 'cellx';
-import { computed, observable } from 'cellx-decorators';
+import { Computed, Observable } from 'cellx-decorators';
 import {
 	Component,
 	IDisposableCallback,
@@ -61,40 +61,32 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 export class OpalAutosuggest extends Component {
 	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
 	paramDataListItemSchema: { value?: string; text?: string };
-
 	@Param({ readonly: true })
 	paramDataProvider: IDataProvider;
-
 	@Param({ type: eval })
 	paramValue: IDataListItem;
-
-	@Param({ default: 3 })
-	paramMinQueryLength: number;
-
-	@Param({ default: 5 })
-	paramCount: number;
-
-	@Param({ default: false })
-	paramOpenMenuOnNothingFound: boolean;
+	@Param paramMinQueryLength = 3;
+	@Param paramCount = 5;
+	@Param paramOpenMenuOnNothingFound = false;
 
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 
-	@observable dataList = new ObservableList<IDataListItem>();
+	@Observable dataList = new ObservableList<IDataListItem>();
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;
 
 	dataProvider: IDataProvider;
 
-	@observable value: IDataListItem | null;
+	@Observable value: IDataListItem | null;
 
 	_isNotInputConfirmed = false;
 
-	@observable _isLoadingPlanned = false;
+	@Observable _isLoadingPlanned = false;
 	_loadingTimeout: IDisposableTimeout;
 	_requestCallback: IDisposableCallback;
-	@observable loading = false;
+	@Observable loading = false;
 
-	@computed
+	@Computed
 	get isLoaderShown(): boolean {
 		return this._isLoadingPlanned || this.loading;
 	}

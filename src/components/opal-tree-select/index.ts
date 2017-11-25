@@ -19,31 +19,24 @@ import template from './template.nelm';
 	}
 })
 export class OpalTreeSelect extends OpalSelect {
-	@Param({ default: true })
-	paramMultiple: boolean;
-
-	@Param() paramDataTreeList: TDataTreeList;
-
+	@Param paramMultiple = true;
+	@Param paramDataTreeList: TDataTreeList;
 	@Param({ readonly: true })
 	paramDataTreeListKeypath: string;
-
 	@Param({
 		type: eval,
 		default: OpalTreeList.defaultDataTreeListItemSchema,
 		readonly: true
 	})
 	paramDataTreeListItemSchema: { value?: string; text?: string };
-
-	@Param() paramViewModel: TViewModel;
-
+	@Param paramViewModel: TViewModel;
 	@Param({
 		type: eval,
 		default: OpalTreeList.defaultViewModelItemSchema,
 		readonly: true
 	})
 	paramViewModelItemSchema: { value?: string; text?: string };
-
-	@Param() paramQuery: string;
+	@Param paramQuery: string;
 
 	dataTreeList: TDataTreeList;
 	viewModel: TViewModel;

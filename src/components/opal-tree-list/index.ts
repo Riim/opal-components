@@ -4,7 +4,7 @@ import {
 	IEvent,
 	ObservableList
 	} from 'cellx';
-import { computed, observable } from 'cellx-decorators';
+import { Computed, Observable } from 'cellx-decorators';
 import { Component, Param } from 'rionite';
 import { fixParent, ObservableTreeList } from '../../ObservableTreeList';
 import { closestComponent } from '../../utils';
@@ -55,30 +55,25 @@ export class OpalTreeList extends Component {
 	static defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
-	@Param() paramDataTreeList: TDataTreeList;
-
+	@Param paramDataTreeList: TDataTreeList;
 	@Param({ readonly: true })
 	paramDataTreeListKeypath: string;
-
 	@Param({
 		type: eval,
 		default: defaultDataTreeListItemSchema,
 		readonly: true
 	})
 	paramDataTreeListItemSchema: { value?: string; text?: string };
-
-	@Param() paramViewModel: TViewModel;
-
+	@Param paramViewModel: TViewModel;
 	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
 	paramViewModelItemSchema: { value?: string; text?: string };
-
-	@Param() paramQuery: string;
+	@Param paramQuery: string;
 
 	dataTreeList: TDataTreeList;
 	_dataTreeListItemValueFieldName: string;
 	_dataTreeListItemTextFieldName: string;
 
-	@computed
+	@Computed
 	get filteredDataTreeList(): TDataTreeList {
 		let query = toComparable(this.paramQuery);
 
@@ -132,7 +127,7 @@ export class OpalTreeList extends Component {
 		);
 	}
 
-	@observable viewModel: TViewModel;
+	@Observable viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 

@@ -1,6 +1,6 @@
 import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
-import { computed } from 'cellx-decorators';
+import { Computed } from 'cellx-decorators';
 import { Component, IDisposableListening, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
@@ -10,22 +10,13 @@ import template from './template.nelm';
 	template
 })
 export class OpalCheckbox extends Component {
-	@Param({ default: false })
-	paramChecked: boolean;
+	@Param paramChecked = false;
+	@Param paramIndeterminate = false;
+	@Param paramTabIndex = 0;
+	@Param paramFocused = false;
+	@Param paramDisabled = false;
 
-	@Param({ default: false })
-	paramIndeterminate: boolean;
-
-	@Param({ default: 0 })
-	paramTabIndex: number;
-
-	@Param({ default: false })
-	paramFocused: boolean;
-
-	@Param({ default: false })
-	paramDisabled: boolean;
-
-	@computed
+	@Computed
 	get _tabIndex(): number {
 		return this.paramDisabled ? -1 : this.paramTabIndex;
 	}
