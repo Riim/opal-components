@@ -1,10 +1,10 @@
 @section/inner {
 
 button/control (tabindex={_tabIndex}) {
-	rt-slot/content-slot {
+	RtSlot/content-slot {
 		'{paramText}'
 
-		@if-then (if=paramSubtext) {
+		@IfThen (if=paramSubtext) {
 			sub {
 				'{paramSubtext}'
 			}

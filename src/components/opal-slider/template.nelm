@@ -1,6 +1,6 @@
 @section/inner {
 
-@if-then (if=paramRange) {
+@IfThen (if=paramRange) {
 	div/first-input-wrapper3 {
 		div/first-input-wrapper2 (style=width: {_firstInputWidth}%) {
 			div/first-input-wrapper {
@@ -26,7 +26,7 @@
 	}
 }
 
-@if-else (if=paramRange) {
+@IfElse (if=paramRange) {
 	input/input (
 		type=range,
 		min={paramMin},

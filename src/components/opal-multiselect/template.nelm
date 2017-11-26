@@ -1,6 +1,6 @@
 /menu (auto-height=no, auto-closing) {
 	div/menu-header {
-		opal-text-input/query-input (
+		OpalTextInput/query-input (
 			class=OpalSelect__focus,
 			clearable,
 			placeholder={constructor.i18n.queryInputPlaceholder}
@@ -10,7 +10,7 @@
 	}
 
 	div/menu-selected {
-		@repeat (for=item of viewModel) {
+		@Repeat (for=item of viewModel) {
 			div/selected-item {
 				'{item |key(_viewModelItemTextFieldName) }'
 
@@ -31,11 +31,11 @@
 	}
 
 	div/menu-list {
-		opal-loaded-list/loaded-list (
+		OpalLoadedList/loaded-list (
 			data-provider={dataProvider},
 			data-list-item-value-name={_dataListItemValueFieldName}
 		) {
-			opal-select-option/option (
+			OpalSelectOption/option (
 				value='{$item |key(_dataListItemValueFieldName) }',
 				text='{$item |key(_dataListItemTextFieldName) }'
 			)
@@ -43,7 +43,7 @@
 	}
 
 	div/menu-footer {
-		opal-button/btn-close {
+		OpalButton/btn-close {
 			'Закрыть'
 		}
 	}

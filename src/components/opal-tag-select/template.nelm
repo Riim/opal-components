@@ -1,7 +1,7 @@
 @section/inner {
 
 span/tags {
-	@repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {
+	@Repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {
 		span/tag (
 			data-value='{tag |key(_viewModelItemValueFieldName) }',
 			disabled='{tag |_isItemDisabled }'
@@ -13,13 +13,13 @@ span/tags {
 }
 
 span/control {
-	@if-then (if=isPlaceholderShown) {
+	@IfThen (if=isPlaceholderShown) {
 		span/placeholder {
 			'{paramPlaceholder} '
 		}
 	}
 
-	opal-select/select (
+	OpalSelect/select (
 		multiple,
 		data-list-keypath={_dataListKeypathParam},
 		data-list-item-schema={paramDataListItemSchema |json },
@@ -29,7 +29,7 @@ span/control {
 		add-new-item={paramAddNewItem},
 		focused={paramFocused}
 	) {
-		opal-sign-button/button (
+		OpalSignButton/button (
 			class=OpalSelect__button,
 			sign=plus,
 			checkable,
@@ -37,45 +37,45 @@ span/control {
 			disabled={paramDisabled}
 		)
 
-		rt-slot (class=OpalSelect__menu-slot, for=OpalSelect__menu) {
-			opal-popover/menu (
+		RtSlot (class=OpalSelect__menu-slot, for=OpalSelect__menu) {
+			OpalPopover/menu (
 				class=OpalSelect__menu,
 				position={paramPopoverPosition},
 				auto-closing
 			) {
-				rt-content (select='.OpalSelect__menu-content') {
-					@if-then (if=_dataListKeypathParam) {
+				RtContent (select='.OpalSelect__menu-content') {
+					@IfThen (if=_dataListKeypathParam) {
 						div (class=OpalSelect__menu-content) {
-							@if-then (if=dataList) {
-								@repeat (for=item of dataList) {
-									opal-select-option/data-list-select-option, select-option (
+							@IfThen (if=dataList) {
+								@Repeat (for=item of dataList) {
+									OpalSelectOption/data-list-select-option, select-option (
 										value='{item |key(_dataListItemValueFieldName) }',
 										text='{item |key(_dataListItemTextFieldName) }',
 										disabled='{item |key(_dataListItemDisabledFieldName) }'
 									)
 								}
 
-								rt-slot (class=OpalSelect__new-item-input-slot, for=new-item-input)
+								RtSlot (class=OpalSelect__new-item-input-slot, for=new-item-input)
 							}
-							@if-else (if=dataList) {
-								opal-loader/menu-loader (shown)
+							@IfElse (if=dataList) {
+								OpalLoader/menu-loader (shown)
 							}
 						}
 					}
-					@if-else (if=_dataListKeypathParam) {
-						opal-filtered-list/menu-filtered-list (
+					@IfElse (if=_dataListKeypathParam) {
+						OpalFilteredList/menu-filtered-list (
 							class=OpalSelect__menu-content OpalSelect__filtered-list
 						) {
-							rt-slot (
+							RtSlot (
 								class=OpalFilteredList__query-input-slot,
 								for=OpalFilteredList__query-input
 							)
 
-							opal-loaded-list/menu-loaded-list (
+							OpalLoadedList/menu-loaded-list (
 								class=OpalSelect__loaded-list OpalFilteredList__list,
 								data-provider={dataProvider}
 							) {
-								opal-select-option/loaded-list-select-option, select-option (
+								OpalSelectOption/loaded-list-select-option, select-option (
 									value='{$item |key(_dataListItemValueFieldName) }',
 									text='{$item |key(_dataListItemTextFieldName) }'
 								)

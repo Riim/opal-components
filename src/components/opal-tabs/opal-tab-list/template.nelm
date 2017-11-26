@@ -1,5 +1,5 @@
 @section/inner {
 
-rt-slot/content-slot
+RtSlot/content-slot
 
 }

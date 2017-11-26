@@ -1,16 +1,16 @@
 @section/inner {
 
-rt-slot/preset-rows-slot (
+RtSlot/preset-rows-slot (
 	for=preset-rows,
 	not-have-new-rows={_notHaveNewRows},
 	not-single-row={_notSingleRow}
 ) {
-	rt-slot/preset-rows (for=preset-row)
+	RtSlot/preset-rows (for=preset-row)
 }
 
 div/new-rows (not-single-row={_notSingleRow}) {
-	@repeat (for=row of _newRows, track-by=key) {
-		rt-slot/new-row-slot (clone-content, data-key={row.key})
+	@Repeat (for=row of _newRows, track-by=key) {
+		RtSlot/new-row-slot (clone-content, data-key={row.key})
 	}
 }
 

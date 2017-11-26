@@ -1,11 +1,11 @@
 @section/inner {
 
-rt-slot/tab-list-slot (for-tag=opal-tab-list) {
-	opal-tab-list/tab-list {
-		rt-slot/tabs, tabs (for-tag=opal-tab)
+RtSlot/tab-list-slot (for-tag=opal-tab-list) {
+	OpalTabList/tab-list {
+		RtSlot/tabs, tabs (for-tag=opal-tab)
 	}
 }
 
-rt-slot/tab-panels, tab-panels (for-tag=opal-tab-panel)
+RtSlot/tab-panels, tab-panels (for-tag=opal-tab-panel)
 
 }

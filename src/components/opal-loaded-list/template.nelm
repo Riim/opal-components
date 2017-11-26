@@ -1,16 +1,16 @@
 @section/inner {
 
 div/list {
-	@repeat (for=$item of dataList) {
-		rt-slot/list-items (clone-content, get-context={_getListItemContext}) {
+	@Repeat (for=$item of dataList) {
+		RtSlot/list-items (clone-content, get-context={_getListItemContext}) {
 			'{$item |key(_dataListItemTextFieldName) }'
 		}
 	}
 }
 
-opal-loader/loader (shown={isLoaderShown}, align-center={empty})
+OpalLoader/loader (shown={isLoaderShown}, align-center={empty})
 
-@if-then (if=isNothingFoundShown) {
+@IfThen (if=isNothingFoundShown) {
 	div/nothing-found {
 		span/nothing-found-message {
 			'{constructor.i18n.nothingFound}'

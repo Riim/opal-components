@@ -1,9 +1,9 @@
 @section/inner {
 
-rt-slot/content-slot
+RtSlot/content-slot
 ' '
-opal-sign-button/btn-remove-row (sign=minus)
+OpalSignButton/btn-remove-row (sign=minus)
 ' '
-opal-sign-button/btn-add-row (sign=plus)
+OpalSignButton/btn-add-row (sign=plus)
 
 }

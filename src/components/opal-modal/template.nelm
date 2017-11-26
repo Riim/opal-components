@@ -5,8 +5,8 @@ div/window {
 		button/btn-close
 	}
 
-	@if-then (if=isContentRendered) {
-		rt-slot/content-slot
+	@IfThen (if=isContentRendered) {
+		RtSlot/content-slot
 	}
 }
 

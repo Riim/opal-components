@@ -3,7 +3,7 @@
 button/control (tabindex={_tabIndex}) {
 	span/sign
 	' '
-	rt-slot/content-slot
+	RtSlot/content-slot
 }
 
 }
