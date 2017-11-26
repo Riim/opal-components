@@ -31,7 +31,7 @@
 
 			@mod checked {
 				@el btn-toggle-children-icon {
-					transform: rotate(0);
+					transform: rotate(90deg);
 				}
 			}
 		}
@@ -40,12 +40,7 @@
 				width: 14px;
 				height: 14px;
 				transition: transform .1s linear;
-				transform: rotate(-90deg);
-				stroke-width: 3px;
-				stroke: currentColor;
-				stroke-linecap: round;
-				stroke-linejoin: round;
-				fill: none;
+				transform: rotate(0);
 			}
 
 		@el content-slot-wrapper {

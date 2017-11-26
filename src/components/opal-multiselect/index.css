@@ -24,12 +24,12 @@
 		}
 			@el selected-item {
 				position: relative;
-    			overflow: hidden;
+				overflow: hidden;
 				padding: 7px 38px 7px 22px;
 				background: #fff;
 				color: #000;
 				text-align: left;
-    			text-overflow: ellipsis;
+				text-overflow: ellipsis;
 				text-shadow: none;
 				white-space: nowrap;
 				font: 16px/24px Verdana, Geneva, sans-serif;
@@ -85,11 +85,6 @@
 						margin: auto;
 						width: 16px;
 						height: 16px;
-						stroke-width: 3px;
-						stroke: currentColor;
-						stroke-linecap: round;
-						stroke-linejoin: round;
-						fill: none;
 					}
 
 			@el nothing-selected {

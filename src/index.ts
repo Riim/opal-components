@@ -1,13 +1,7 @@
 import 'reflect-metadata';
-import '../node_modules/bytesize-icons/dist/icons/calendar.svg?id=OpalComponents__icon-calendar';
-import '../node_modules/bytesize-icons/dist/icons/checkmark.svg?id=OpalComponents__icon-checkmark';
-import '../node_modules/bytesize-icons/dist/icons/chevron-bottom.svg?id=OpalComponents__icon-chevron-bottom';
-import '../node_modules/bytesize-icons/dist/icons/chevron-left.svg?id=OpalComponents__icon-chevron-left';
-import '../node_modules/bytesize-icons/dist/icons/close.svg?id=OpalComponents__icon-close';
-import '../node_modules/bytesize-icons/dist/icons/compose.svg?id=OpalComponents__icon-compose';
-import '../node_modules/bytesize-icons/dist/icons/search.svg?id=OpalComponents__icon-search';
 
 export { IItem as IObservableTreeListItem, ObservableTreeList } from './ObservableTreeList';
+export { OpalIcon } from './components/opal-icon';
 export { OpalButton } from './components/opal-button';
 export { OpalSignButton } from './components/opal-sign-button';
 export { OpalTextInput } from './components/opal-text-input';

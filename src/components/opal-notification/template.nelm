@@ -5,9 +5,7 @@ div/bar (view-type={paramViewType}, icon-size={paramIconSize}, button-hide={para
 	rt-slot/content-slot
 
 	button/btn-hide (hide={paramButtonHide |not }) {
-		svg/btn-hide-icon (viewBox=0 0 32 32) {
-			use (xlink:href=#OpalComponents__icon-close)
-		}
+		OpalIcon/btn-hide-icon (name=cross)
 	}
 }
 

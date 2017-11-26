@@ -1,4 +1,4 @@
-opal-tree-select/select (
+OpalTreeSelect/select (
 	view-type={paramViewType},
 	data-tree-list-keypath={_dataListKeypathParam},
 	data-tree-list-item-schema={paramDataListItemSchema |json },
@@ -8,7 +8,7 @@ opal-tree-select/select (
 	add-new-item={paramAddNewItem},
 	focused={paramFocused}
 ) {
-	opal-sign-button/button (
+	OpalSignButton/button (
 		class=OpalSelect__button,
 		sign=plus,
 		checkable,

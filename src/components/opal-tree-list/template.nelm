@@ -1,7 +1,7 @@
-@if-then (if=dataTreeList) {
-	@if-then (if=filteredDataTreeList.length) {
-		@repeat (for=$item of filteredDataTreeList) {
-			opal-tree-list-item/item (
+@IfThen (if=dataTreeList) {
+	@IfThen (if=filteredDataTreeList.length) {
+		@Repeat (for=$item of filteredDataTreeList) {
+			OpalTreeListItem/item (
 				data-tree-list={dataTreeList},
 				filtered-data-tree-list={filteredDataTreeList},
 				data-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},
@@ -15,8 +15,8 @@
 				nesting-level=0,
 				has-children='{$item.children.length |gt(0) }'
 			) {
-				rt-slot (clone-content, get-context={_getListItemContext}) {
-					opal-checkbox/selection-control (
+				RtSlot (clone-content, get-context={_getListItemContext}) {
+					OpalCheckbox/selection-control (
 						checked={$selected},
 						indeterminate={$indeterminate}
 					) {
@@ -26,7 +26,7 @@
 			}
 		}
 	}
-	@if-else (if=filteredDataTreeList.length) {
+	@IfElse (if=filteredDataTreeList.length) {
 		div/nothing-found {
 			span/nothing-found-message {
 				'Ничего не найдено'
@@ -34,6 +34,6 @@
 		}
 	}
 }
-@if-else (if=dataTreeList) {
-	opal-loader/loader (shown)
+@IfElse (if=dataTreeList) {
+	OpalLoader/loader (shown)
 }

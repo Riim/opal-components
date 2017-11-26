@@ -1,11 +1,8 @@
 @section/inner {
 
 span/content-wrapper {
-	rt-slot/content-slot (contenteditable, spellcheck=false)
-
-	svg/icon-edit (viewBox=0 0 32 32) {
-		use (xlink:href=#OpalComponents__icon-compose)
-	}
+	RtSlot/content-slot (contenteditable, spellcheck=false)
+	OpalIcon/icon-edit (name=compose, stroke-width=3)
 }
 
 }

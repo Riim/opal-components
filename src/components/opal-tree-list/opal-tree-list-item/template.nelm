@@ -1,19 +1,17 @@
 div/head {
-	opal-button/btn-toggle-children (view-type=clean, checkable, checked={paramOpened}) {
-		svg/btn-toggle-children-icon (viewBox=0 0 32 32) {
-			use (xlink:href=#OpalComponents__icon-chevron-bottom)
-		}
+	OpalButton/btn-toggle-children (view-type=clean, checkable, checked={paramOpened}) {
+		OpalIcon/btn-toggle-children-icon (name=chevronRight)
 	}
 
 	span/content-slot-wrapper {
-		rt-slot/content-slot (clone-content)
+		RtSlot/content-slot (clone-content)
 	}
 }
 
-@if-then (if=dataTreeListItem.children.length) {
+@IfThen (if=dataTreeListItem.children.length) {
 	div/children {
-		@repeat (for=$item of dataTreeListItem.children) {
-			opal-tree-list-item/item (
+		@Repeat (for=$item of dataTreeListItem.children) {
+			OpalTreeListItem/item (
 				data-tree-list={paramDataTreeList},
 				filtered-data-tree-list={paramFilteredDataTreeList},
 				data-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},
@@ -27,7 +25,7 @@ div/head {
 				nesting-level={paramIndexpath.length},
 				has-children='{$item.children.length |gt(0) }'
 			) {
-				rt-slot (clone-content, get-context={_getListItemContext})
+				RtSlot (clone-content, get-context={_getListItemContext})
 			}
 		}
 	}

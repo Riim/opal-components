@@ -5,9 +5,7 @@
 			clearable,
 			placeholder={constructor.i18n.queryInputPlaceholder}
 		) {
-			svg/query-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {
-				use (xlink:href=#OpalComponents__icon-search)
-			}
+			OpalIcon/query-input-control-icon (class=OpalTextInput__control-icon, name=search)
 		}
 	}
 
@@ -20,9 +18,7 @@
 					tabindex=-1,
 					data-item-value='{item |key(_viewModelItemValueFieldName) }'
 				) {
-					svg/btn-deselect-item-icon (viewBox=0 0 32 32) {
-						use (xlink:href=#OpalComponents__icon-close)
-					}
+					OpalIcon/btn-deselect-item-icon (name=cross)
 				}
 			}
 		}

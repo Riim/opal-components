@@ -1,21 +1,19 @@
 @section/inner {
 
-opal-text-input-validator/text-input-validator {
-	opal-input-mask/input-mask (mask={paramMask}) {
-		opal-text-input/text-input (
+OpalTextInputValidator/text-input-validator {
+	OpalInputMask/input-mask (mask={paramMask}) {
+		OpalTextInput/text-input (
 			class=OpalInputValidator__text-input OpalInputMask__text-input,
 			value={paramValue},
 			placeholder={paramPlaceholder},
 			clearable
 		) {
-			svg/text-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {
-				use (xlink:href=#OpalComponents__icon-calendar)
-			}
+			OpalIcon/text-input-control-icon (class=OpalTextInput__control-icon, name=calendar)
 		}
 	}
 
-	@if-then (if=paramRequired) {
-		opal-text-input-validator-rule/text-input-validator-rule-required (
+	@IfThen (if=paramRequired) {
+		OpalTextInputValidatorRule/text-input-validator-rule-required (
 			required,
 			popover-position={paramPopoverPosition}
 		) {
@@ -23,14 +21,14 @@ opal-text-input-validator/text-input-validator {
 		}
 	}
 
-	opal-text-input-validator-rule/text-input-validator-rule-date-exists (
+	OpalTextInputValidatorRule/text-input-validator-rule-date-exists (
 		test={dateExists},
 		popover-position={paramPopoverPosition}
 	) {
 		'{constructor.i18n.nonExistentDate}'
 	}
 
-	opal-text-input-validator-rule/text-input-validator-rule-date-in-range (
+	OpalTextInputValidatorRule/text-input-validator-rule-date-in-range (
 		test={isDateInRange},
 		popover-position={paramPopoverPosition}
 	) {
@@ -38,8 +36,8 @@ opal-text-input-validator/text-input-validator {
 	}
 }
 
-opal-dropdown/calendar-menu (auto-height=no) {
-	opal-calendar/calendar (
+OpalDropdown/calendar-menu (auto-height=no) {
+	OpalCalendar/calendar (
 		from-date={paramFromDate},
 		to-date={paramToDate},
 		value={paramValue},

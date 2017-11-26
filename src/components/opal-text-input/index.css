@@ -43,11 +43,7 @@
 			margin: auto;
 			width: 18px;
 			height: 18px;
-			stroke-width: 3px;
-			stroke: hsl(0,0%,50%);
-			stroke-linecap: round;
-			stroke-linejoin: round;
-			fill: none;
+			color: hsl(0,0%,50%);
 		}
 
 	@el btn-clear {
@@ -96,11 +92,6 @@
 			margin: auto;
 			width: 16px;
 			height: 16px;
-			stroke-width: 3px;
-			stroke: currentColor;
-			stroke-linecap: round;
-			stroke-linejoin: round;
-			fill: none;
 		}
 
 	@el loader {

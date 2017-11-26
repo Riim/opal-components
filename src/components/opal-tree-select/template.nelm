@@ -1,6 +1,6 @@
-opal-modal/menu {
-	opal-filtered-list/filtered-list {
-		opal-tree-list/tree-list (
+OpalModal/menu {
+	OpalFilteredList/filtered-list {
+		OpalTreeList/tree-list (
 			class=OpalFilteredList__list,
 			data-tree-list={dataTreeList},
 			data-tree-list-item-schema={paramDataTreeListItemSchema},
@@ -8,7 +8,7 @@ opal-modal/menu {
 			view-model-item-schema={paramViewModelItemSchema},
 			query={paramQuery}
 		) {
-			opal-select-option/option (
+			OpalSelectOption/option (
 				class=OpalTreeList__selection-control,
 				text={$item.name},
 				selected={$selected}
@@ -17,7 +17,7 @@ opal-modal/menu {
 	}
 
 	div/footer {
-		opal-button/btn-close {
+		OpalButton/btn-close {
 			'Готово'
 		}
 	}

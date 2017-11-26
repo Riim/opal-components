@@ -1,3 +1,88 @@
+h1 { 'OpalIcon' }
+p {
+	OpalIcon (name=alert)
+	OpalIcon (name=archive)
+	OpalIcon (name=arrowBottom)
+	OpalIcon (name=arrowLeft)
+	OpalIcon (name=arrowRight)
+	OpalIcon (name=arrowTop)
+	OpalIcon (name=backwards)
+	OpalIcon (name=bag)
+	OpalIcon (name=ban)
+	OpalIcon (name=bell)
+	OpalIcon (name=book)
+	OpalIcon (name=bookmark)
+	OpalIcon (name=calendar)
+	OpalIcon (name=camera)
+	OpalIcon (name=cart)
+	OpalIcon (name=checkmark)
+	OpalIcon (name=chevronBottom)
+	OpalIcon (name=chevronLeft)
+	OpalIcon (name=chevronRight)
+	OpalIcon (name=chevronTop)
+	OpalIcon (name=clipboard)
+	OpalIcon (name=clock)
+	OpalIcon (name=code)
+	OpalIcon (name=compose)
+	OpalIcon (name=creditcard)
+	OpalIcon (name=cross)
+	OpalIcon (name=desktop)
+	OpalIcon (name=download)
+	OpalIcon (name=edit)
+	OpalIcon (name=ellipsisHorizontal)
+	OpalIcon (name=ellipsisVertical)
+	OpalIcon (name=export)
+	OpalIcon (name=external)
+	OpalIcon (name=eye)
+	OpalIcon (name=fileCross)
+	OpalIcon (name=fileMinus)
+	OpalIcon (name=filePlus)
+	OpalIcon (name=file)
+	OpalIcon (name=flag)
+	OpalIcon (name=folder)
+	OpalIcon (name=forwards)
+	OpalIcon (name=gift)
+	OpalIcon (name=heart)
+	OpalIcon (name=home)
+	OpalIcon (name=import)
+	OpalIcon (name=info)
+	OpalIcon (name=lightning)
+	OpalIcon (name=link)
+	OpalIcon (name=location)
+	OpalIcon (name=lock)
+	OpalIcon (name=mail)
+	OpalIcon (name=menu)
+	OpalIcon (name=message)
+	OpalIcon (name=microphone)
+	OpalIcon (name=minus)
+	OpalIcon (name=mobile)
+	OpalIcon (name=move)
+	OpalIcon (name=music)
+	OpalIcon (name=mute)
+	OpalIcon (name=options)
+	OpalIcon (name=paperclip)
+	OpalIcon (name=pause)
+	OpalIcon (name=photo)
+	OpalIcon (name=play)
+	OpalIcon (name=plus)
+	OpalIcon (name=portfolio)
+	OpalIcon (name=print)
+	OpalIcon (name=reload)
+	OpalIcon (name=reply)
+	OpalIcon (name=search)
+	OpalIcon (name=send)
+	OpalIcon (name=settings)
+	OpalIcon (name=star)
+	OpalIcon (name=tag)
+	OpalIcon (name=telephone)
+	OpalIcon (name=trash)
+	OpalIcon (name=unlock)
+	OpalIcon (name=upload)
+	OpalIcon (name=user)
+	OpalIcon (name=video)
+	OpalIcon (name=volume)
+}
+
 h1 { 'OpalButton' }
 p {
 	OpalButton { 'Button' } ' '
@@ -229,16 +314,12 @@ p {
 	}
 
 	OpalNotification (id=notification4, view-type=success) {
-		svg (class=OpalNotification__icon, viewBox=0 0 32 32) {
-			use (xlink:href=#OpalComponents__icon-calendar)
-		}
+		OpalIcon (class=OpalNotification__icon, name=calendar, size=xs)
 		'success'
 	}
 
 	OpalNotification (id=notification5, view-type=success) {
-		svg (class=OpalNotification__icon, viewBox=0 0 32 32) {
-			use (xlink:href=#OpalComponents__icon-calendar)
-		}
+		OpalIcon (class=OpalNotification__icon, name=calendar, size=xs)
 		'success '
 		'success '
 		'success '

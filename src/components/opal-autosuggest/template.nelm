@@ -1,20 +1,18 @@
 @section/inner {
 
-rt-slot (for=text-input) {
-	opal-text-input/text-input (
+RtSlot (for=text-input) {
+	OpalTextInput/text-input (
 		value='{paramValue |key(_dataListItemTextFieldName) }',
 		placeholder={constructor.i18n.textInputPlaceholder},
 		clearable
 	) {
-		svg/text-input-control-icon (class=OpalTextInput__control-icon, viewBox=0 0 32 32) {
-			use (xlink:href=#OpalComponents__icon-search)
-		}
+		OpalIcon (class=OpalTextInput__control-icon, name=search)
 	}
 }
 
-opal-dropdown/menu {
+OpalDropdown/menu {
 	div/list {
-		@repeat (for=item of dataList) {
+		@Repeat (for=item of dataList) {
 			div/list-item (
 				data-value='{item |key(_dataListItemValueFieldName) }',
 				data-text='{item |key(_dataListItemTextFieldName) }'
