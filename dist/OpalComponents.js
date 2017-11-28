@@ -7108,7 +7108,10 @@ var OpalDateInput = /** @class */ (function (_super) {
             year += year < 50 ? 2000 : 1900;
         }
         var d = new Date(year, month, day);
-        return d >= calendar.fromDate && d <= calendar.toDate;
+        if (calendar) {
+            return d >= calendar.fromDate && d <= calendar.toDate;
+        }
+        return d >= parseDate_1.parseDate(this.paramFromDate) && d <= parseDate_1.parseDate(this.paramToDate);
     };
     OpalDateInput.prototype.elementAttached = function () {
         this.listenTo('text-input', 'change', this._onTextInputChange);

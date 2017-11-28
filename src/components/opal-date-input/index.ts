@@ -64,7 +64,12 @@ export class OpalDateInput extends Component {
 		}
 
 		let d = new Date(year, month, day);
-		return d >= calendar.fromDate && d <= calendar.toDate;
+
+		if (calendar) {
+			return d >= calendar.fromDate && d <= calendar.toDate;
+		}
+
+		return d >= parseDate(this.paramFromDate) && d <= parseDate(this.paramToDate);
 	}
 
 	_documentFocusListening: IDisposableListening;
