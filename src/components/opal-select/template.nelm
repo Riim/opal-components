@@ -44,7 +44,10 @@ RtSlot (for=menu-slot) {
 				@IfElse (if=_isParamDataListSpecified) {
 					div/, menu-content {
 						RtSlot/options (for-tag=opal-select-option)
-						RtSlot/new-item-input-slot (for=new-item-input)
+
+						RtSlot (for=new-item-input-slot) {
+							RtSlot/new-item-input-slot (for=new-item-input)
+						}
 					}
 				}
 			}
