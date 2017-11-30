@@ -7,7 +7,6 @@ import './icons/arrow-bottom.svg?id=OpalIcon__iconArrowBottom';
 import './icons/arrow-left.svg?id=OpalIcon__iconArrowLeft';
 import './icons/arrow-right.svg?id=OpalIcon__iconArrowRight';
 import './icons/arrow-top.svg?id=OpalIcon__iconArrowTop';
-import './icons/backwards.svg?id=OpalIcon__iconBackwards';
 import './icons/ban.svg?id=OpalIcon__iconBan';
 import './icons/bell.svg?id=OpalIcon__iconBell';
 import './icons/bookmark.svg?id=OpalIcon__iconBookmark';

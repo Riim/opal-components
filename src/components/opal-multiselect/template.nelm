@@ -36,6 +36,7 @@
 			data-list-item-value-name={_dataListItemValueFieldName}
 		) {
 			OpalSelectOption/option (
+				class=OpalLoadedList__list-item,
 				value='{$item |key(_dataListItemValueFieldName) }',
 				text='{$item |key(_dataListItemTextFieldName) }'
 			)

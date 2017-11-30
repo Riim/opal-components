@@ -7,7 +7,7 @@
 
 	@el list {
 	}
-		@el list-items {
+		@el list-item {
 			display: block;
 		}
 
@@ -21,7 +21,8 @@
 		}
 	}
 
-	@el nothing-found {
+	@el nothing-found-slot {
+		display: block;
 		box-sizing: border-box;
 		padding: 12px;
 		height: 100%;
@@ -36,9 +37,21 @@
 			vertical-align: middle;
 		}
 	}
-		@el nothing-found-message {
+		@el nothing-found {
 			display: inline-block;
 			vertical-align: middle;
-			opacity: .6;
 		}
+			@el nothing-found-message {
+				opacity: .6;
+
+				& + .OpalSelect__btn-add-new-item {
+					margin-top: 18px;
+				}
+			}
+
+	/* Combinations */
+
+	.OpalSelect & .OpalSelect__btn-add-new-item {
+		display: block;
+	}
 }

@@ -298,6 +298,7 @@ export class OpalSelect extends Component {
 			'change:paramOpened': this._onMenuParamOpenedChange,
 			'<OpalSelectOption>select': this._onMenuSelectOptionSelect,
 			'<OpalSelectOption>deselect': this._onMenuSelectOptionDeselect,
+			'<OpalButton>click': this._onMenuButtonClick,
 			'<OpalTextInput>confirm': this._onMenuTextInputConfirm,
 			'<*>change': this._onMenuChange
 		});
@@ -484,6 +485,38 @@ export class OpalSelect extends Component {
 		return false;
 	}
 
+	_onMenuButtonClick(evt: IEvent<OpalTextInput>): false | void {
+		let button = evt.target;
+
+		if (button !== this.$('btn-add-new-item')) {
+			return;
+		}
+
+		if (!this._addNewItem) {
+			throw new TypeError('Parameter "addNewItem" is required');
+		}
+
+		let text = button.element.dataset.newItemText!;
+
+		button.paramLoading = true;
+		button.disable();
+
+		this._addNewItem(text).then(
+			(newItem: { [name: string]: string }) => {
+				button.paramLoading = false;
+				button.enable();
+
+				this._embedNewItem(newItem);
+			},
+			() => {
+				button.paramLoading = false;
+				button.enable();
+			}
+		);
+
+		return false;
+	}
+
 	_onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void {
 		let textInput = evt.target;
 
@@ -499,59 +532,63 @@ export class OpalSelect extends Component {
 
 		textInput.clear();
 		textInput.paramLoading = true;
-		textInput.paramDisabled = true;
+		textInput.disable();
 
 		this._addNewItem(text).then(
 			(newItem: { [name: string]: string }) => {
 				textInput.paramLoading = false;
-				textInput.paramDisabled = false;
+				textInput.enable();
 
-				let value = newItem[this._viewModelItemValueFieldName];
-				let text = newItem[this._viewModelItemTextFieldName];
-
-				if (this.dataList) {
-					this.dataList.add({
-						[this._dataListItemValueFieldName]: value,
-						[this._dataListItemTextFieldName]: text
-					});
-				}
-
-				let loadedList = this.$<OpalLoadedList>('loaded-list');
-
-				if (loadedList) {
-					loadedList.paramQuery = '';
-				}
-
-				let vm = this.viewModel;
-				let vmItem = {
-					[this._viewModelItemValueFieldName]: value,
-					[this._viewModelItemTextFieldName]: text
-				};
-
-				if (this.paramMultiple) {
-					vm.add(vmItem);
-					this.emit('input');
-				} else {
-					if (vm.length) {
-						vm.set(0, vmItem);
-					} else {
-						vm.add(vmItem);
-					}
-
-					this.close();
-					this.focus();
-
-					this.emit('input');
-					this.emit('change');
-				}
+				this._embedNewItem(newItem);
 			},
 			() => {
 				textInput.paramLoading = false;
-				textInput.paramDisabled = false;
+				textInput.enable();
 			}
 		);
 
 		return false;
+	}
+
+	_embedNewItem(newItem: { [name: string]: string }) {
+		let value = newItem[this._viewModelItemValueFieldName];
+		let text = newItem[this._viewModelItemTextFieldName];
+
+		if (this.dataList) {
+			this.dataList.add({
+				[this._dataListItemValueFieldName]: value,
+				[this._dataListItemTextFieldName]: text
+			});
+		}
+
+		let loadedList = this.$<OpalLoadedList>('loaded-list');
+
+		if (loadedList) {
+			loadedList.paramQuery = '';
+		}
+
+		let vm = this.viewModel;
+		let vmItem = {
+			[this._viewModelItemValueFieldName]: value,
+			[this._viewModelItemTextFieldName]: text
+		};
+
+		if (this.paramMultiple) {
+			vm.add(vmItem);
+			this.emit('input');
+		} else {
+			if (vm.length) {
+				vm.set(0, vmItem);
+			} else {
+				vm.add(vmItem);
+			}
+
+			this.close();
+			this.focus();
+
+			this.emit('input');
+			this.emit('change');
+		}
 	}
 
 	_onMenuChange(evt: IEvent) {

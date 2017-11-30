@@ -6,14 +6,10 @@ p {
 	OpalIcon (name=arrowLeft)
 	OpalIcon (name=arrowRight)
 	OpalIcon (name=arrowTop)
-	OpalIcon (name=backwards)
-	OpalIcon (name=bag)
 	OpalIcon (name=ban)
 	OpalIcon (name=bell)
-	OpalIcon (name=book)
 	OpalIcon (name=bookmark)
 	OpalIcon (name=calendar)
-	OpalIcon (name=camera)
 	OpalIcon (name=cart)
 	OpalIcon (name=checkmark)
 	OpalIcon (name=chevronBottom)
@@ -40,32 +36,23 @@ p {
 	OpalIcon (name=file)
 	OpalIcon (name=flag)
 	OpalIcon (name=folder)
-	OpalIcon (name=forwards)
-	OpalIcon (name=gift)
 	OpalIcon (name=heart)
 	OpalIcon (name=home)
 	OpalIcon (name=import)
 	OpalIcon (name=info)
-	OpalIcon (name=lightning)
 	OpalIcon (name=link)
 	OpalIcon (name=location)
 	OpalIcon (name=lock)
 	OpalIcon (name=mail)
 	OpalIcon (name=menu)
 	OpalIcon (name=message)
-	OpalIcon (name=microphone)
 	OpalIcon (name=minus)
 	OpalIcon (name=mobile)
 	OpalIcon (name=move)
-	OpalIcon (name=music)
-	OpalIcon (name=mute)
 	OpalIcon (name=options)
 	OpalIcon (name=paperclip)
-	OpalIcon (name=pause)
 	OpalIcon (name=photo)
-	OpalIcon (name=play)
 	OpalIcon (name=plus)
-	OpalIcon (name=portfolio)
 	OpalIcon (name=print)
 	OpalIcon (name=reload)
 	OpalIcon (name=reply)
@@ -79,8 +66,6 @@ p {
 	OpalIcon (name=unlock)
 	OpalIcon (name=upload)
 	OpalIcon (name=user)
-	OpalIcon (name=video)
-	OpalIcon (name=volume)
 }
 
 h1 { 'OpalButton' }
@@ -379,7 +364,9 @@ h1 { 'OpalFilteredList' }
 p {
 	OpalFilteredList {
 		OpalLoadedList (class=OpalFilteredList__list, data-provider={dataProvider1}) {
-			'{$item.name}'
+			span (class=OpalLoadedList__list-item) {
+				'{$item.name}'
+			}
 		}
 	}
 }
@@ -428,7 +415,7 @@ p {
 		add-new-item={addNewItem1},
 		placeholder=Select
 	) {
-		OpalTextInput (class=OpalSelect__new-item-input)
+		OpalTextInput (class=OpalSelect__new-item-input, placeholder=Добавить)
 	}
 }
 p {
@@ -459,7 +446,7 @@ p {
 					class=OpalSelect__loaded-list OpalFilteredList__list,
 					data-provider={dataProvider1}
 				) {
-					OpalSelectOption (text={$item.name})
+					OpalSelectOption (class=OpalLoadedList__list-item, text={$item.name})
 				}
 			}
 		}
@@ -469,7 +456,7 @@ p {
 	OpalSelect {
 		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
 			OpalLoadedList (class=OpalSelect__loaded-list, data-provider={dataProvider1}) {
-				OpalSelectOption (text={$item.name})
+				OpalSelectOption (class=OpalLoadedList__list-item, text={$item.name})
 			}
 		}
 	}
@@ -482,7 +469,7 @@ p {
 	) {
 		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
 			OpalLoadedList (class=OpalSelect__loaded-list, data-provider={dataProvider1}) {
-				OpalSelectOption (text={$item.name})
+				OpalSelectOption (class=OpalLoadedList__list-item, text={$item.name})
 			}
 		}
 	}
@@ -495,21 +482,34 @@ p {
 					class=OpalSelect__loaded-list OpalFilteredList__list,
 					data-provider={dataProvider1}
 				) {
-					OpalSelectOption (text={$item.name})
+					OpalSelectOption (class=OpalLoadedList__list-item, text={$item.name})
 				}
 			}
 		}
 	}
 	' '
 
-	OpalSelect (multiple) {
+	OpalSelect (multiple, add-new-item={addNewItem1}) {
 		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
 			OpalFilteredList (class=OpalSelect__filtered-list) {
 				OpalLoadedList (
 					class=OpalSelect__loaded-list OpalFilteredList__list,
 					data-provider={dataProvider1}
 				) {
-					OpalSelectOption (text={$item.name})
+					OpalSelectOption (class=OpalLoadedList__list-item, text={$item.name})
+
+					span (class=OpalLoadedList__nothing-found) {
+						span (class=OpalLoadedList__nothing-found-message) {
+							'Ничего не найдено'
+						}
+
+						OpalButton (
+							class=OpalSelect__btn-add-new-item,
+							data-item-text={paramQuery}
+						) {
+							'Добавить "{paramQuery}"'
+						}
+					}
 				}
 			}
 		}

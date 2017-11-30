@@ -2,8 +2,10 @@
 
 div/list {
 	@Repeat (for=$item of dataList) {
-		RtSlot/list-items (clone-content, get-context={_getListItemContext}) {
-			'{$item |key(_dataListItemTextFieldName) }'
+		RtSlot/list-item-slot (for=list-item, clone-content, get-context={_getListItemContext}) {
+			span/list-item {
+				'{$item |key(_dataListItemTextFieldName) }'
+			}
 		}
 	}
 }
@@ -11,9 +13,11 @@ div/list {
 OpalLoader/loader (shown={isLoaderShown}, align-center={empty})
 
 @IfThen (if=isNothingFoundShown) {
-	div/nothing-found {
-		span/nothing-found-message {
-			'{constructor.i18n.nothingFound}'
+	RtSlot/nothing-found-slot (for=nothing-found, get-context={_getListItemContext}) {
+		span/nothing-found {
+			span/nothing-found-message {
+				'{constructor.i18n.nothingFound}'
+			}
 		}
 	}
 }

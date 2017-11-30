@@ -7,7 +7,7 @@
 		exports["focusHighlightController"] = factory();
 	else
 		root["focusHighlightController"] = factory();
-})(this, function() {
+})(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,12 +70,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 215);
+/******/ 	return __webpack_require__(__webpack_require__.s = 214);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 215:
+/***/ 214:
 /***/ (function(module, exports) {
 
 document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {

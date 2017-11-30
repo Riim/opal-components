@@ -76,6 +76,7 @@ span/control {
 								data-provider={dataProvider}
 							) {
 								OpalSelectOption/loaded-list-select-option, select-option (
+									class=OpalLoadedList__list-item,
 									value='{$item |key(_dataListItemValueFieldName) }',
 									text='{$item |key(_dataListItemTextFieldName) }'
 								)
