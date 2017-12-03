@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import * as Utils from './utils';
 export { IItem as IObservableTreeListItem, ObservableTreeList } from './ObservableTreeList';
 export { OpalIcon } from './components/opal-icon';
 export { OpalButton } from './components/opal-button';
@@ -34,4 +35,4 @@ export { OpalSelectValidatorRule, OpalSelectValidator } from './components/opal-
 export { IDataListItem as IOpalAutosuggestDataListItem, IDataProvider as IOpalAutosuggestDataProvider, OpalAutosuggest } from './components/opal-autosuggest';
 export { OpalMultirowRow, OpalMultirow } from './components/opal-multirow';
 export { OpalRoute, IRouteProperty as IOpalRouterRouteProperty, IRoute as IOpalRouterRoute, IComponentState as IOpalRouterComponentState, OpalRouter } from './components/opal-router';
-export { default as Utils } from './utils';
+export { Utils };

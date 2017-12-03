@@ -1,6 +1,6 @@
 import { Component } from 'rionite';
 
-export default function closestComponent(
+export function closestComponent(
 	component: Component,
 	componentClass: Function
 ): Component | null {

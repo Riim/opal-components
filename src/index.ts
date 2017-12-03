@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import * as Utils from './utils';
 
 export { IItem as IObservableTreeListItem, ObservableTreeList } from './ObservableTreeList';
 export { OpalIcon } from './components/opal-icon';
@@ -63,4 +64,4 @@ export {
 	IComponentState as IOpalRouterComponentState,
 	OpalRouter
 } from './components/opal-router';
-export { default as Utils } from './utils';
+export { Utils };
