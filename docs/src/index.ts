@@ -55,10 +55,10 @@ export class OpalComponentsDocs extends BaseComponent {
 	]);
 
 	dataProvider1 = (() => {
-		let items: Array<{ id: string; name: string }> = [];
+		let items: Array<{ id: string; name: string; parent: string }> = [];
 
 		for (let i = 0, l = 1000; i < l; i++) {
-			items[i] = { id: i.toString(), name: i.toString() };
+			items[i] = { id: i.toString(), name: 'item_' + i, parent: 'parent_' + i };
 		}
 
 		return {
@@ -79,7 +79,7 @@ export class OpalComponentsDocs extends BaseComponent {
 					: 0;
 
 				return new Promise<{
-					items: Array<{ id: string; name: string }>;
+					items: Array<{ id: string; name: string; parent: string }>;
 					total: number;
 				}>(resolve => {
 					setTimeout(() => {
@@ -137,9 +137,9 @@ export class OpalComponentsDocs extends BaseComponent {
 	})();
 
 	viewModel1 = new ObservableList([
-		{ id: '1', name: '1', disabled: true },
-		{ id: '2', name: '2', disabled: true },
-		{ id: '5', name: '5' }
+		{ id: '1', name: 'item_1', disabled: true },
+		{ id: '2', name: 'item_2', disabled: true },
+		{ id: '5', name: 'item_5' }
 	]);
 
 	addNewItem1(name: string): Promise<{ id: string; name: string }> {

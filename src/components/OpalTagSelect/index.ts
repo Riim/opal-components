@@ -12,7 +12,12 @@ import {
 import './index.css';
 import template from './template.nelm';
 
-let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
+let defaultDataListItemSchema = Object.freeze({
+	value: 'id',
+	text: 'name',
+	subtext: 'parent',
+	disabled: 'disabled'
+});
 let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 
 @Component<OpalTagSelect>({
@@ -41,7 +46,7 @@ export class OpalTagSelect extends BaseComponent {
 	@Param({ readonly: true })
 	paramDataListKeypath: string;
 	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
-	paramDataListItemSchema: { value?: string; text?: string; disabled?: string };
+	paramDataListItemSchema: { value?: string; text?: string; subtext?: string; disabled?: string };
 	// необязательный, так как может указываться на передаваемом OpalLoadedList
 	@Param({ readonly: true })
 	paramDataProvider: IDataProvider;
@@ -62,6 +67,7 @@ export class OpalTagSelect extends BaseComponent {
 	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;
+	_dataListItemSubtextFieldName: string;
 	_dataListItemDisabledFieldName: string;
 
 	dataProvider: IDataProvider | null;
@@ -111,6 +117,8 @@ export class OpalTagSelect extends BaseComponent {
 		this._dataListItemValueFieldName =
 			dataListItemSchema.value || defaultDataListItemSchema.value;
 		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+		this._dataListItemSubtextFieldName =
+			dataListItemSchema.subtext || defaultDataListItemSchema.subtext;
 		this._dataListItemDisabledFieldName =
 			dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 

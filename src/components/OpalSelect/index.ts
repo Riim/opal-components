@@ -41,9 +41,15 @@ export type TViewModel = ObservableList<IDataListItem>;
 let defaultDataListItemSchema = Object.freeze({
 	value: 'value',
 	text: 'text',
+	subtext: 'subtext',
 	disabled: 'disabled'
 });
-let defaultVMItemSchema = Object.freeze({ value: 'value', text: 'text', disabled: 'disabled' });
+let defaultVMItemSchema = Object.freeze({
+	value: 'value',
+	text: 'text',
+	subtext: 'subtext',
+	disabled: 'disabled'
+});
 
 @Component<OpalSelect>({
 	template,
@@ -90,13 +96,18 @@ export class OpalSelect extends BaseComponent {
 	@Param({ readonly: true })
 	paramDataListKeypath: string;
 	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
-	paramDataListItemSchema: { value?: string; text?: string; disabled?: string };
+	paramDataListItemSchema: { value?: string; text?: string; subtext?: string; disabled?: string };
 	@Param({ type: eval })
 	paramValue: Array<string>;
 	@Param({ readonly: true })
 	paramViewModel: TViewModel;
 	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
-	paramViewModelItemSchema: { value?: string; text?: string; disabled?: string };
+	paramViewModelItemSchema: {
+		value?: string;
+		text?: string;
+		subtext?: string;
+		disabled?: string;
+	};
 	@Param({ readonly: true })
 	paramAddNewItem: (text: string) => Promise<{ [name: string]: string }>;
 	@Param paramText: string;
@@ -109,11 +120,13 @@ export class OpalSelect extends BaseComponent {
 	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;
+	_dataListItemSubtextFieldName: string;
 	_dataListItemDisabledFieldName: string;
 
 	@Observable viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
+	_viewModelItemSubtextFieldName: string;
 	_viewModelItemDisabledFieldName: string;
 
 	@Computed
@@ -188,6 +201,8 @@ export class OpalSelect extends BaseComponent {
 		this._dataListItemValueFieldName =
 			dataListItemSchema.value || defaultDataListItemSchema.value;
 		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+		this._dataListItemSubtextFieldName =
+			dataListItemSchema.subtext || defaultDataListItemSchema.subtext;
 		this._dataListItemDisabledFieldName =
 			dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
 
@@ -199,6 +214,7 @@ export class OpalSelect extends BaseComponent {
 
 		this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
+		this._viewModelItemSubtextFieldName = vmItemSchema.subtext || defaultVMItemSchema.subtext;
 		this._viewModelItemDisabledFieldName =
 			vmItemSchema.disabled || defaultVMItemSchema.disabled;
 
@@ -262,7 +278,8 @@ export class OpalSelect extends BaseComponent {
 			this.viewModel.addRange(
 				selectedOptions.map(option => ({
 					[this._viewModelItemValueFieldName]: option.value,
-					[this._viewModelItemTextFieldName]: option.text
+					[this._viewModelItemTextFieldName]: option.text,
+					[this._viewModelItemSubtextFieldName]: option.subtext
 				}))
 			);
 		}
@@ -343,6 +360,7 @@ export class OpalSelect extends BaseComponent {
 		let vm = this.viewModel;
 		let vmItemValueFieldName = this._viewModelItemValueFieldName;
 		let vmItemTextFieldName = this._viewModelItemTextFieldName;
+		let vmItemSubtextFieldName = this._viewModelItemSubtextFieldName;
 
 		if (multiple) {
 			this.options.forEach(option => {
@@ -356,7 +374,8 @@ export class OpalSelect extends BaseComponent {
 				} else if (itemIndex == -1) {
 					vm.add({
 						[vmItemValueFieldName]: optionValue,
-						[vmItemTextFieldName]: option.text
+						[vmItemTextFieldName]: option.text,
+						[vmItemSubtextFieldName]: option.subtext
 					});
 				}
 			});
@@ -371,7 +390,8 @@ export class OpalSelect extends BaseComponent {
 
 					vm.set(0, {
 						[vmItemValueFieldName]: value,
-						[vmItemTextFieldName]: option.text
+						[vmItemTextFieldName]: option.text,
+						[vmItemSubtextFieldName]: option.subtext
 					});
 
 					return true;
@@ -441,6 +461,7 @@ export class OpalSelect extends BaseComponent {
 		let vm = this.viewModel;
 		let vmItem = {
 			[this._viewModelItemValueFieldName]: evt.target.value,
+			[this._viewModelItemTextFieldName]: evt.target.text,
 			[this._viewModelItemTextFieldName]: evt.target.text
 		};
 
@@ -553,11 +574,13 @@ export class OpalSelect extends BaseComponent {
 	_embedNewItem(newItem: { [name: string]: string }) {
 		let value = newItem[this._viewModelItemValueFieldName];
 		let text = newItem[this._viewModelItemTextFieldName];
+		let subtext = newItem[this._viewModelItemDisabledFieldName];
 
 		if (this.dataList) {
 			this.dataList.add({
 				[this._dataListItemValueFieldName]: value,
-				[this._dataListItemTextFieldName]: text
+				[this._dataListItemTextFieldName]: text,
+				[this._dataListItemSubtextFieldName]: subtext
 			});
 		}
 
@@ -570,7 +593,8 @@ export class OpalSelect extends BaseComponent {
 		let vm = this.viewModel;
 		let vmItem = {
 			[this._viewModelItemValueFieldName]: value,
-			[this._viewModelItemTextFieldName]: text
+			[this._viewModelItemTextFieldName]: text,
+			[this._dataListItemSubtextFieldName]: subtext
 		};
 
 		if (this.paramMultiple) {

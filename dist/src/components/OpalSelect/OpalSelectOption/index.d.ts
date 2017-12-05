@@ -18,6 +18,7 @@ export declare class OpalSelectOption extends BaseComponent {
     click(): OpalSelectOption;
     value: string;
     text: string;
+    subtext: string | null;
     selected: boolean;
     disabled: boolean;
     select(): boolean;

@@ -74,10 +74,17 @@ export class OpalSelectOption extends BaseComponent {
 	}
 
 	get text(): string {
-		return this.paramText.trim() || ' ';
+		return this.paramText.trim() || '—';
 	}
 	set text(text: string) {
 		this.paramText = text;
+	}
+
+	get subtext(): string | null {
+		return this.paramSubtext && this.paramSubtext.trim();
+	}
+	set subtext(subtext: string | null) {
+		this.paramSubtext = subtext as any;
 	}
 
 	get selected(): boolean {

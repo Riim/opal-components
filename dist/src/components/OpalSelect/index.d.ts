@@ -14,11 +14,13 @@ export declare class OpalSelect extends BaseComponent {
     static defaultDataListItemSchema: Readonly<{
         value: string;
         text: string;
+        subtext: string;
         disabled: string;
     }>;
     static defaultViewModelItemSchema: Readonly<{
         value: string;
         text: string;
+        subtext: string;
         disabled: string;
     }>;
     paramViewType: string;
@@ -29,6 +31,7 @@ export declare class OpalSelect extends BaseComponent {
     paramDataListItemSchema: {
         value?: string;
         text?: string;
+        subtext?: string;
         disabled?: string;
     };
     paramValue: Array<string>;
@@ -36,6 +39,7 @@ export declare class OpalSelect extends BaseComponent {
     paramViewModelItemSchema: {
         value?: string;
         text?: string;
+        subtext?: string;
         disabled?: string;
     };
     paramAddNewItem: (text: string) => Promise<{
@@ -50,10 +54,12 @@ export declare class OpalSelect extends BaseComponent {
     dataList: TDataList | null;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
+    _dataListItemSubtextFieldName: string;
     _dataListItemDisabledFieldName: string;
     viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
+    _viewModelItemSubtextFieldName: string;
     _viewModelItemDisabledFieldName: string;
     readonly value: Array<string>;
     _addNewItem: ((text: string) => Promise<{

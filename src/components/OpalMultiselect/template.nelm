@@ -38,7 +38,8 @@
 			OpalSelectOption/option (
 				class=OpalLoadedList__list-item,
 				value='{$item |key(_dataListItemValueFieldName) }',
-				text='{$item |key(_dataListItemTextFieldName) }'
+				text='{$item |key(_dataListItemTextFieldName) }',
+				subtext='{$item |key(_dataListItemSubtextFieldName) }'
 			)
 		}
 	}

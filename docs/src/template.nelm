@@ -520,7 +520,7 @@ h1 { 'OpalMultiselect' }
 p {
 	OpalMultiselect (
 		data-provider={dataProvider1},
-		data-list-item-schema='{ value: "id", text: "name" }'
+		data-list-item-schema='{ value: "id", text: "name", subtext: "parent" }'
 	)
 }
 

@@ -6,6 +6,7 @@ export declare class OpalTagSelect extends BaseComponent {
     static defaultDataListItemSchema: Readonly<{
         value: string;
         text: string;
+        subtext: string;
         disabled: string;
     }>;
     static defaultViewModelItemSchema: Readonly<{
@@ -19,6 +20,7 @@ export declare class OpalTagSelect extends BaseComponent {
     paramDataListItemSchema: {
         value?: string;
         text?: string;
+        subtext?: string;
         disabled?: string;
     };
     paramDataProvider: IDataProvider;
@@ -40,6 +42,7 @@ export declare class OpalTagSelect extends BaseComponent {
     dataList: TDataList | null;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
+    _dataListItemSubtextFieldName: string;
     _dataListItemDisabledFieldName: string;
     dataProvider: IDataProvider | null;
     viewModel: TViewModel;
