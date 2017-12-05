@@ -1,5 +1,5 @@
 OpalTreeSelect/select (
-	view-type={paramViewType},
+	view-type=clean,
 	data-tree-list-keypath={_dataListKeypathParam},
 	data-tree-list-item-schema={paramDataListItemSchema |json },
 	value={paramValue},

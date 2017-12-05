@@ -1,4 +1,4 @@
-import { escapeHTML } from '@riim/escape-html';
+import { camelize } from '@riim/camelize';
 import { hyphenize } from '@riim/hyphenize';
 import { history, Location } from 'created-browser-history';
 import {
@@ -34,7 +34,7 @@ export interface IComponentState {
 }
 
 function isReadonlyProperty(propConfig: any): boolean {
-	return (
+	return !!(
 		propConfig &&
 		typeof propConfig == 'object' &&
 		(propConfig.type !== undefined || propConfig.default !== undefined) &&
@@ -43,7 +43,7 @@ function isReadonlyProperty(propConfig: any): boolean {
 }
 
 function valueToAttributeValue(value: boolean | string): string {
-	return `${value === false ? 'no' : value === true ? 'yes' : escapeHTML(value)}`;
+	return value === false ? 'no' : value === true ? 'yes' : value;
 }
 
 @Component()
@@ -185,7 +185,7 @@ export class OpalRouter extends BaseComponent {
 
 				if (paramsConfig) {
 					for (let i = attrs.length; i; ) {
-						let name = attrs.item(--i).name;
+						let name = camelize(attrs.item(--i).name, true);
 
 						if (
 							name != 'class' &&

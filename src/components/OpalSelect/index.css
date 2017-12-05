@@ -6,9 +6,11 @@
 	@el button {
 		display: block;
 		min-width: 100%;
+		text-align: left;
 
 		@mod size=s {
 			@el button-icon {
+				margin-left: 8px;
 				width: 12px;
 				height: 12px;
 			}
@@ -23,11 +25,33 @@
 		@el button-icon {
 			position: relative;
 			top: -1px;
-			margin-left: .6em;
+			margin-left: 10px;
 			width: 14px;
 			height: 14px;
 			transition: transform .1s linear;
 		}
+
+	&:not([view-type=clean]) {
+		@el button {
+			padding-right: 47px; /* 23 + 14 + 10 */
+
+			@mod size=s {
+				padding-right: 34px; /* 14 + 12 + 8 */
+
+				@el button-icon {
+					right: 14px;
+					margin-left: 0;
+				}
+			}
+		}
+			@el button-icon {
+				position: absolute;
+				top: 0;
+				right: 23px;
+				bottom: 0;
+				margin: auto;
+			}
+	}
 
 	@el menu {
 	}

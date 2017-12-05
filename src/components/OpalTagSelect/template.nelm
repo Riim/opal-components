@@ -20,6 +20,7 @@ span/control {
 	}
 
 	OpalSelect/select (
+		view-type=clean,
 		multiple,
 		data-list-keypath={_dataListKeypathParam},
 		data-list-item-schema={paramDataListItemSchema |json },
