@@ -1,0 +1,30 @@
+import { IEvent } from 'cellx';
+import { BaseComponent } from 'rionite';
+import './index.css';
+export declare class OpalSelectOption extends BaseComponent {
+    paramValue: string;
+    paramText: string;
+    paramSubtext: string;
+    paramSelected: boolean;
+    paramTabIndex: number;
+    paramFocused: boolean;
+    paramDisabled: boolean;
+    readonly _tabIndex: number;
+    elementAttached(): void;
+    _onParamFocusedChange(evt: IEvent): void;
+    _onControlFocus(evt: Event): void;
+    _onControlBlur(): void;
+    _onControlClick(evt: Event): void;
+    click(): OpalSelectOption;
+    value: string;
+    text: string;
+    selected: boolean;
+    disabled: boolean;
+    select(): boolean;
+    deselect(): boolean;
+    toggle(value?: boolean): boolean;
+    focus(): OpalSelectOption;
+    blur(): OpalSelectOption;
+    enable(): OpalSelectOption;
+    disable(): OpalSelectOption;
+}

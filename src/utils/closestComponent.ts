@@ -1,10 +1,10 @@
-import { Component } from 'rionite';
+import { BaseComponent } from 'rionite';
 
 export function closestComponent(
-	component: Component,
+	component: BaseComponent,
 	componentClass: Function
-): Component | null {
-	let c: Component | null = component;
+): BaseComponent | null {
+	let c: BaseComponent | null = component;
 	while (!(c instanceof componentClass) && (c = c.parentComponent)) {}
 	return c;
 }

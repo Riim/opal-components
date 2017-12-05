@@ -165,8 +165,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(148);
-var opal_input_validator_rule_1 = __webpack_require__(149);
-exports.OpalInputValidatorRule = opal_input_validator_rule_1.OpalInputValidatorRule;
+var OpalInputValidatorRule_1 = __webpack_require__(149);
+exports.OpalInputValidatorRule = OpalInputValidatorRule_1.OpalInputValidatorRule;
 var template_nelm_1 = __webpack_require__(152);
 var OpalInputValidator = /** @class */ (function (_super) {
     __extends(OpalInputValidator, _super);
@@ -237,13 +237,12 @@ var OpalInputValidator = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalInputValidator.prototype, "valid", null);
     OpalInputValidator = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalInputValidator',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalInputValidator);
     return OpalInputValidator;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalInputValidator = OpalInputValidator;
 
 
@@ -281,8 +280,8 @@ var rionite_1 = __webpack_require__(0);
 var isFocusable_1 = __webpack_require__(5);
 __webpack_require__(177);
 var isEqualArray_1 = __webpack_require__(178);
-var opal_select_option_1 = __webpack_require__(179);
-exports.OpalSelectOption = opal_select_option_1.OpalSelectOption;
+var OpalSelectOption_1 = __webpack_require__(179);
+exports.OpalSelectOption = OpalSelectOption_1.OpalSelectOption;
 var template_nelm_1 = __webpack_require__(182);
 var map = Array.prototype.map;
 var defaultDataListItemSchema = Object.freeze({
@@ -986,8 +985,7 @@ var OpalSelect = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalSelect.prototype, "options", null);
     OpalSelect = OpalSelect_1 = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalSelect',
+        rionite_1.Component({
             template: template_nelm_1.default,
             events: {
                 'menu-slot': {
@@ -1016,7 +1014,7 @@ var OpalSelect = /** @class */ (function (_super) {
     ], OpalSelect);
     return OpalSelect;
     var OpalSelect_1;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalSelect = OpalSelect;
 
 
@@ -1192,8 +1190,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(126);
-var opal_tab_1 = __webpack_require__(127);
-exports.OpalTab = opal_tab_1.OpalTab;
+var OpalTab_1 = __webpack_require__(127);
+exports.OpalTab = OpalTab_1.OpalTab;
 var template_nelm_1 = __webpack_require__(130);
 var OpalTabList = /** @class */ (function (_super) {
     __extends(OpalTabList, _super);
@@ -1201,13 +1199,12 @@ var OpalTabList = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     OpalTabList = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalTabList',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalTabList);
     return OpalTabList;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalTabList = OpalTabList;
 
 
@@ -1264,8 +1261,8 @@ var ObservableTreeList_1 = __webpack_require__(9);
 var utils_1 = __webpack_require__(8);
 var _getListItemContext_1 = __webpack_require__(14);
 __webpack_require__(173);
-var opal_tree_list_item_1 = __webpack_require__(15);
-exports.OpalTreeListItem = opal_tree_list_item_1.OpalTreeListItem;
+var OpalTreeListItem_1 = __webpack_require__(15);
+exports.OpalTreeListItem = OpalTreeListItem_1.OpalTreeListItem;
 __webpack_require__(15);
 var template_nelm_1 = __webpack_require__(176);
 var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
@@ -1359,7 +1356,7 @@ var OpalTreeList = /** @class */ (function (_super) {
             var vm_1 = this.viewModel;
             var viewModelItemValueFieldName_1 = this._viewModelItemValueFieldName;
             var viewModelItemTextFieldName_1 = this._viewModelItemTextFieldName;
-            var item_1 = utils_1.closestComponent(component.parentComponent, opal_tree_list_item_1.OpalTreeListItem).$context.$item;
+            var item_1 = utils_1.closestComponent(component.parentComponent, OpalTreeListItem_1.OpalTreeListItem).$context.$item;
             if (component.selected) {
                 for (var parent_1; (parent_1 = item_1.parent) &&
                     parent_1.children.every(function (child) {
@@ -1459,14 +1456,13 @@ var OpalTreeList = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalTreeList.prototype, "viewModel", void 0);
     OpalTreeList = OpalTreeList_1 = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalTreeList',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalTreeList);
     return OpalTreeList;
     var OpalTreeList_1;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalTreeList = OpalTreeList;
 OpalTreeList.prototype._getListItemContext = _getListItemContext_1.default;
 
@@ -1626,8 +1622,7 @@ var OpalTreeListItem = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalTreeListItem.prototype, "viewModel", null);
     OpalTreeListItem = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalTreeListItem',
+        rionite_1.Component({
             template: template_nelm_1.default,
             events: {
                 'btn-toggle-children': {
@@ -1639,7 +1634,7 @@ var OpalTreeListItem = /** @class */ (function (_super) {
         })
     ], OpalTreeListItem);
     return OpalTreeListItem;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalTreeListItem = OpalTreeListItem;
 OpalTreeListItem.prototype._getListItemContext = _getListItemContext_1.default;
 
@@ -1854,8 +1849,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalTagSelect.prototype, "isPlaceholderShown", null);
     OpalTagSelect = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalTagSelect',
+        rionite_1.Component({
             template: template_nelm_1.default,
             domEvents: {
                 'btn-remove-tag': {
@@ -1870,7 +1864,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
         })
     ], OpalTagSelect);
     return OpalTagSelect;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalTagSelect = OpalTagSelect;
 
 
@@ -1901,86 +1895,86 @@ var Utils = __webpack_require__(8);
 exports.Utils = Utils;
 var ObservableTreeList_1 = __webpack_require__(9);
 exports.ObservableTreeList = ObservableTreeList_1.ObservableTreeList;
-var opal_icon_1 = __webpack_require__(22);
-exports.OpalIcon = opal_icon_1.OpalIcon;
-var opal_button_1 = __webpack_require__(90);
-exports.OpalButton = opal_button_1.OpalButton;
-var opal_sign_button_1 = __webpack_require__(92);
-exports.OpalSignButton = opal_sign_button_1.OpalSignButton;
-var opal_text_input_1 = __webpack_require__(95);
-exports.OpalTextInput = opal_text_input_1.OpalTextInput;
-var opal_editable_text_1 = __webpack_require__(98);
-exports.OpalEditableText = opal_editable_text_1.OpalEditableText;
-var opal_input_mask_1 = __webpack_require__(101);
-exports.OpalInputMaskDefinition = opal_input_mask_1.OpalInputMaskDefinition;
-exports.OpalInputMask = opal_input_mask_1.OpalInputMask;
-var opal_group_1 = __webpack_require__(105);
-exports.OpalGroup = opal_group_1.OpalGroup;
-var opal_checkbox_1 = __webpack_require__(108);
-exports.OpalCheckbox = opal_checkbox_1.OpalCheckbox;
-var opal_radio_group_1 = __webpack_require__(111);
-exports.OpalRadioButton = opal_radio_group_1.OpalRadioButton;
-exports.OpalRadioGroup = opal_radio_group_1.OpalRadioGroup;
-var opal_switch_1 = __webpack_require__(115);
-exports.OpalSwitch = opal_switch_1.OpalSwitch;
-var opal_slider_1 = __webpack_require__(118);
-exports.OpalSlider = opal_slider_1.OpalSlider;
-var opal_switch_menu_1 = __webpack_require__(121);
-exports.OpalSwitchMenu = opal_switch_menu_1.OpalSwitchMenu;
-var opal_tabs_1 = __webpack_require__(124);
-exports.OpalTab = opal_tabs_1.OpalTab;
-exports.OpalTabList = opal_tabs_1.OpalTabList;
-exports.OpalTabPanel = opal_tabs_1.OpalTabPanel;
-exports.OpalTabs = opal_tabs_1.OpalTabs;
-var opal_dropdown_1 = __webpack_require__(135);
-exports.OpalDropdown = opal_dropdown_1.OpalDropdown;
-var opal_popover_1 = __webpack_require__(138);
-exports.OpalPopover = opal_popover_1.OpalPopover;
-var opal_modal_1 = __webpack_require__(141);
-exports.OpalModal = opal_modal_1.OpalModal;
-var opal_notification_1 = __webpack_require__(144);
-exports.OpalNotification = opal_notification_1.OpalNotification;
-var opal_input_validator_1 = __webpack_require__(6);
-exports.OpalInputValidatorRule = opal_input_validator_1.OpalInputValidatorRule;
-exports.OpalInputValidator = opal_input_validator_1.OpalInputValidator;
-var opal_text_input_validator_1 = __webpack_require__(153);
-exports.OpalTextInputValidatorRule = opal_text_input_validator_1.OpalTextInputValidatorRule;
-exports.OpalTextInputValidator = opal_text_input_validator_1.OpalTextInputValidator;
-var opal_calendar_1 = __webpack_require__(156);
-exports.OpalCalendar = opal_calendar_1.OpalCalendar;
-var opal_date_input_1 = __webpack_require__(160);
-exports.OpalDateInput = opal_date_input_1.OpalDateInput;
-var opal_loader_1 = __webpack_require__(164);
-exports.OpalLoader = opal_loader_1.OpalLoader;
-var opal_loaded_list_1 = __webpack_require__(166);
-exports.OpalLoadedList = opal_loaded_list_1.OpalLoadedList;
-var opal_filtered_list_1 = __webpack_require__(169);
-exports.OpalFilteredList = opal_filtered_list_1.OpalFilteredList;
-var opal_tree_list_1 = __webpack_require__(13);
-exports.OpalTreeListItem = opal_tree_list_1.OpalTreeListItem;
-exports.OpalTreeList = opal_tree_list_1.OpalTreeList;
-var opal_select_1 = __webpack_require__(7);
-exports.OpalSelectOption = opal_select_1.OpalSelectOption;
-exports.OpalSelect = opal_select_1.OpalSelect;
-var opal_multiselect_1 = __webpack_require__(183);
-exports.OpalMultiselect = opal_multiselect_1.OpalMultiselect;
-var opal_tag_select_1 = __webpack_require__(16);
-exports.OpalTagSelect = opal_tag_select_1.OpalTagSelect;
-var opal_tree_select_1 = __webpack_require__(188);
-exports.OpalTreeSelect = opal_tree_select_1.OpalTreeSelect;
-var opal_tree_tag_select_1 = __webpack_require__(191);
-exports.OpalTreeTagSelect = opal_tree_tag_select_1.OpalTreeTagSelect;
-var opal_select_validator_1 = __webpack_require__(193);
-exports.OpalSelectValidatorRule = opal_select_validator_1.OpalSelectValidatorRule;
-exports.OpalSelectValidator = opal_select_validator_1.OpalSelectValidator;
-var opal_autosuggest_1 = __webpack_require__(196);
-exports.OpalAutosuggest = opal_autosuggest_1.OpalAutosuggest;
-var opal_multirow_1 = __webpack_require__(199);
-exports.OpalMultirowRow = opal_multirow_1.OpalMultirowRow;
-exports.OpalMultirow = opal_multirow_1.OpalMultirow;
-var opal_router_1 = __webpack_require__(206);
-exports.OpalRoute = opal_router_1.OpalRoute;
-exports.OpalRouter = opal_router_1.OpalRouter;
+var OpalIcon_1 = __webpack_require__(22);
+exports.OpalIcon = OpalIcon_1.OpalIcon;
+var OpalButton_1 = __webpack_require__(90);
+exports.OpalButton = OpalButton_1.OpalButton;
+var OpalSignButton_1 = __webpack_require__(92);
+exports.OpalSignButton = OpalSignButton_1.OpalSignButton;
+var OpalTextInput_1 = __webpack_require__(95);
+exports.OpalTextInput = OpalTextInput_1.OpalTextInput;
+var OpalEditableText_1 = __webpack_require__(98);
+exports.OpalEditableText = OpalEditableText_1.OpalEditableText;
+var OpalInputMask_1 = __webpack_require__(101);
+exports.OpalInputMaskDefinition = OpalInputMask_1.OpalInputMaskDefinition;
+exports.OpalInputMask = OpalInputMask_1.OpalInputMask;
+var OpalGroup_1 = __webpack_require__(105);
+exports.OpalGroup = OpalGroup_1.OpalGroup;
+var OpalCheckbox_1 = __webpack_require__(108);
+exports.OpalCheckbox = OpalCheckbox_1.OpalCheckbox;
+var OpalRadioGroup_1 = __webpack_require__(111);
+exports.OpalRadioButton = OpalRadioGroup_1.OpalRadioButton;
+exports.OpalRadioGroup = OpalRadioGroup_1.OpalRadioGroup;
+var OpalSwitch_1 = __webpack_require__(115);
+exports.OpalSwitch = OpalSwitch_1.OpalSwitch;
+var OpalSlider_1 = __webpack_require__(118);
+exports.OpalSlider = OpalSlider_1.OpalSlider;
+var OpalSwitchMenu_1 = __webpack_require__(121);
+exports.OpalSwitchMenu = OpalSwitchMenu_1.OpalSwitchMenu;
+var OpalTabs_1 = __webpack_require__(124);
+exports.OpalTab = OpalTabs_1.OpalTab;
+exports.OpalTabList = OpalTabs_1.OpalTabList;
+exports.OpalTabPanel = OpalTabs_1.OpalTabPanel;
+exports.OpalTabs = OpalTabs_1.OpalTabs;
+var OpalDropdown_1 = __webpack_require__(135);
+exports.OpalDropdown = OpalDropdown_1.OpalDropdown;
+var OpalPopover_1 = __webpack_require__(138);
+exports.OpalPopover = OpalPopover_1.OpalPopover;
+var OpalModal_1 = __webpack_require__(141);
+exports.OpalModal = OpalModal_1.OpalModal;
+var OpalNotification_1 = __webpack_require__(144);
+exports.OpalNotification = OpalNotification_1.OpalNotification;
+var OpalInputValidator_1 = __webpack_require__(6);
+exports.OpalInputValidatorRule = OpalInputValidator_1.OpalInputValidatorRule;
+exports.OpalInputValidator = OpalInputValidator_1.OpalInputValidator;
+var OpalTextInputValidator_1 = __webpack_require__(153);
+exports.OpalTextInputValidatorRule = OpalTextInputValidator_1.OpalTextInputValidatorRule;
+exports.OpalTextInputValidator = OpalTextInputValidator_1.OpalTextInputValidator;
+var OpalCalendar_1 = __webpack_require__(156);
+exports.OpalCalendar = OpalCalendar_1.OpalCalendar;
+var OpalDateInput_1 = __webpack_require__(160);
+exports.OpalDateInput = OpalDateInput_1.OpalDateInput;
+var OpalLoader_1 = __webpack_require__(164);
+exports.OpalLoader = OpalLoader_1.OpalLoader;
+var OpalLoadedList_1 = __webpack_require__(166);
+exports.OpalLoadedList = OpalLoadedList_1.OpalLoadedList;
+var OpalFilteredList_1 = __webpack_require__(169);
+exports.OpalFilteredList = OpalFilteredList_1.OpalFilteredList;
+var OpalTreeList_1 = __webpack_require__(13);
+exports.OpalTreeListItem = OpalTreeList_1.OpalTreeListItem;
+exports.OpalTreeList = OpalTreeList_1.OpalTreeList;
+var OpalSelect_1 = __webpack_require__(7);
+exports.OpalSelectOption = OpalSelect_1.OpalSelectOption;
+exports.OpalSelect = OpalSelect_1.OpalSelect;
+var OpalMultiselect_1 = __webpack_require__(183);
+exports.OpalMultiselect = OpalMultiselect_1.OpalMultiselect;
+var OpalTagSelect_1 = __webpack_require__(16);
+exports.OpalTagSelect = OpalTagSelect_1.OpalTagSelect;
+var OpalTreeSelect_1 = __webpack_require__(188);
+exports.OpalTreeSelect = OpalTreeSelect_1.OpalTreeSelect;
+var OpalTreeTagSelect_1 = __webpack_require__(191);
+exports.OpalTreeTagSelect = OpalTreeTagSelect_1.OpalTreeTagSelect;
+var OpalSelectValidator_1 = __webpack_require__(193);
+exports.OpalSelectValidatorRule = OpalSelectValidator_1.OpalSelectValidatorRule;
+exports.OpalSelectValidator = OpalSelectValidator_1.OpalSelectValidator;
+var OpalAutosuggest_1 = __webpack_require__(196);
+exports.OpalAutosuggest = OpalAutosuggest_1.OpalAutosuggest;
+var OpalMultirow_1 = __webpack_require__(199);
+exports.OpalMultirowRow = OpalMultirow_1.OpalMultirowRow;
+exports.OpalMultirow = OpalMultirow_1.OpalMultirow;
+var OpalRouter_1 = __webpack_require__(206);
+exports.OpalRoute = OpalRouter_1.OpalRoute;
+exports.OpalRouter = OpalRouter_1.OpalRouter;
 
 
 /***/ }),
@@ -2135,12 +2129,10 @@ var OpalIcon = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalIcon.prototype, "paramFilled", void 0);
     OpalIcon = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalIcon'
-        })
+        rionite_1.Component()
     ], OpalIcon);
     return OpalIcon;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalIcon = OpalIcon;
 
 
@@ -2769,12 +2761,10 @@ var OpalButton = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalButton.prototype, "_tabIndex", null);
     OpalButton = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalButton'
-        })
+        rionite_1.Component()
     ], OpalButton);
     return OpalButton;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalButton = OpalButton;
 
 
@@ -2974,13 +2964,12 @@ var OpalSignButton = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalSignButton.prototype, "_tabIndex", null);
     OpalSignButton = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalSignButton',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalSignButton);
     return OpalSignButton;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalSignButton = OpalSignButton;
 
 
@@ -3322,8 +3311,7 @@ var OpalTextInput = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalTextInput.prototype, "isBtnClearShown", null);
     OpalTextInput = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalTextInput',
+        rionite_1.Component({
             template: template_nelm_1.default,
             domEvents: {
                 'btn-clear': {
@@ -3338,7 +3326,7 @@ var OpalTextInput = /** @class */ (function (_super) {
         })
     ], OpalTextInput);
     return OpalTextInput;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalTextInput = OpalTextInput;
 
 
@@ -3483,8 +3471,7 @@ var OpalEditableText = /** @class */ (function (_super) {
         sel.addRange(rng);
     };
     OpalEditableText = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalEditableText',
+        rionite_1.Component({
             template: template_nelm_1.default,
             domEvents: {
                 'icon-edit': {
@@ -3496,7 +3483,7 @@ var OpalEditableText = /** @class */ (function (_super) {
         })
     ], OpalEditableText);
     return OpalEditableText;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalEditableText = OpalEditableText;
 
 
@@ -3554,9 +3541,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var template_nelm_1 = __webpack_require__(102);
-var opal_input_mask_definition_1 = __webpack_require__(103);
-exports.OpalInputMaskDefinition = opal_input_mask_definition_1.OpalInputMaskDefinition;
+var OpalInputMaskDefinition_1 = __webpack_require__(102);
+exports.OpalInputMaskDefinition = OpalInputMaskDefinition_1.OpalInputMaskDefinition;
+var template_nelm_1 = __webpack_require__(104);
 var forEach = Array.prototype.forEach;
 var iPhone = /iphone/i.test(navigator.userAgent);
 var ie11 = !window.ActiveXObject && 'ActiveXObject' in window;
@@ -3874,27 +3861,18 @@ var OpalInputMask = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalInputMask.prototype, "_firstTestIndex", null);
     OpalInputMask = OpalInputMask_1 = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalInputMask',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalInputMask);
     return OpalInputMask;
     var OpalInputMask_1;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalInputMask = OpalInputMask;
 
 
 /***/ }),
 /* 102 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/content-slot\n}");
-
-/***/ }),
-/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3920,7 +3898,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(104);
+__webpack_require__(103);
 var OpalInputMaskDefinition = /** @class */ (function (_super) {
     __extends(OpalInputMaskDefinition, _super);
     function OpalInputMaskDefinition() {
@@ -3935,17 +3913,15 @@ var OpalInputMaskDefinition = /** @class */ (function (_super) {
         __metadata("design:type", RegExp)
     ], OpalInputMaskDefinition.prototype, "paramRegex", void 0);
     OpalInputMaskDefinition = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalInputMaskDefinition'
-        })
+        rionite_1.Component()
     ], OpalInputMaskDefinition);
     return OpalInputMaskDefinition;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalInputMaskDefinition = OpalInputMaskDefinition;
 
 
 /***/ }),
-/* 104 */
+/* 103 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -3960,6 +3936,14 @@ module.exports = (function(d) {
         return null;
     })(document);
 
+
+/***/ }),
+/* 104 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/content-slot\n}");
 
 /***/ }),
 /* 105 */
@@ -3993,13 +3977,12 @@ var OpalGroup = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     OpalGroup = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalGroup',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalGroup);
     return OpalGroup;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalGroup = OpalGroup;
 
 
@@ -4224,13 +4207,12 @@ var OpalCheckbox = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalCheckbox.prototype, "_tabIndex", null);
     OpalCheckbox = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalCheckbox',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalCheckbox);
     return OpalCheckbox;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalCheckbox = OpalCheckbox;
 
 
@@ -4283,8 +4265,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var opal_radio_button_1 = __webpack_require__(112);
-exports.OpalRadioButton = opal_radio_button_1.OpalRadioButton;
+var OpalRadioButton_1 = __webpack_require__(112);
+exports.OpalRadioButton = OpalRadioButton_1.OpalRadioButton;
 var forEach = Array.prototype.forEach;
 var OpalRadioGroup = /** @class */ (function (_super) {
     __extends(OpalRadioGroup, _super);
@@ -4312,12 +4294,10 @@ var OpalRadioGroup = /** @class */ (function (_super) {
         evt.target.check();
     };
     OpalRadioGroup = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalRadioGroup'
-        })
+        rionite_1.Component()
     ], OpalRadioGroup);
     return OpalRadioGroup;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalRadioGroup = OpalRadioGroup;
 
 
@@ -4502,13 +4482,12 @@ var OpalRadioButton = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalRadioButton.prototype, "_tabIndex", null);
     OpalRadioButton = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalRadioButton',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalRadioButton);
     return OpalRadioButton;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalRadioButton = OpalRadioButton;
 
 
@@ -4715,13 +4694,12 @@ var OpalSwitch = /** @class */ (function (_super) {
         __metadata("design:returntype", Number)
     ], OpalSwitch.prototype, "_tabIndex", null);
     OpalSwitch = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalSwitch',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalSwitch);
     return OpalSwitch;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalSwitch = OpalSwitch;
 
 
@@ -4880,13 +4858,12 @@ var OpalSlider = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalSlider.prototype, "_firstInputWidth", null);
     OpalSlider = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalSlider',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalSlider);
     return OpalSlider;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalSlider = OpalSlider;
 
 
@@ -5005,13 +4982,12 @@ var OpalSwitchMenu = /** @class */ (function (_super) {
         }
     };
     OpalSwitchMenu = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalSwitchMenu',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalSwitchMenu);
     return OpalSwitchMenu;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalSwitchMenu = OpalSwitchMenu;
 
 
@@ -5065,13 +5041,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(125);
-var opal_tab_list_1 = __webpack_require__(10);
-exports.OpalTab = opal_tab_list_1.OpalTab;
-var opal_tab_panel_1 = __webpack_require__(131);
-exports.OpalTabPanel = opal_tab_panel_1.OpalTabPanel;
+var OpalTabList_1 = __webpack_require__(10);
+exports.OpalTab = OpalTabList_1.OpalTab;
+var OpalTabPanel_1 = __webpack_require__(131);
+exports.OpalTabPanel = OpalTabPanel_1.OpalTabPanel;
 var template_nelm_1 = __webpack_require__(134);
-var opal_tab_list_2 = __webpack_require__(10);
-exports.OpalTabList = opal_tab_list_2.OpalTabList;
+var OpalTabList_2 = __webpack_require__(10);
+exports.OpalTabList = OpalTabList_2.OpalTabList;
 var indexOf = Array.prototype.indexOf;
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
@@ -5141,13 +5117,12 @@ var OpalTabs = /** @class */ (function (_super) {
         this._selectedTab = tab;
     };
     OpalTabs = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalTabs',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalTabs);
     return OpalTabs;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalTabs = OpalTabs;
 
 
@@ -5344,13 +5319,12 @@ var OpalTab = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalTab.prototype, "_tabIndex", null);
     OpalTab = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalTab',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalTab);
     return OpalTab;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalTab = OpalTab;
 
 
@@ -5447,13 +5421,12 @@ var OpalTabPanel = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalTabPanel.prototype, "isContentRendered", void 0);
     OpalTabPanel = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalTabPanel',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalTabPanel);
     return OpalTabPanel;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalTabPanel = OpalTabPanel;
 
 
@@ -5677,13 +5650,12 @@ var OpalDropdown = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalDropdown.prototype, "isContentRendered", void 0);
     OpalDropdown = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalDropdown',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalDropdown);
     return OpalDropdown;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalDropdown = OpalDropdown;
 
 
@@ -5919,13 +5891,12 @@ var OpalPopover = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalPopover.prototype, "isContentRendered", void 0);
     OpalPopover = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalPopover',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalPopover);
     return OpalPopover;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalPopover = OpalPopover;
 
 
@@ -6125,8 +6096,7 @@ var OpalModal = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalModal.prototype, "isContentRendered", void 0);
     OpalModal = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalModal',
+        rionite_1.Component({
             template: template_nelm_1.default,
             domEvents: {
                 'btn-close': {
@@ -6139,7 +6109,7 @@ var OpalModal = /** @class */ (function (_super) {
         })
     ], OpalModal);
     return OpalModal;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalModal = OpalModal;
 
 
@@ -6205,8 +6175,7 @@ function initContainer(notification) {
     if (!container) {
         container = document.createElement('div');
         container.className =
-            notification.constructor._elementBlockNames.join('__container ') +
-                '__container';
+            notification.constructor._elementBlockNames.join('__container ') + '__container';
         document.body.appendChild(container);
     }
     return container;
@@ -6332,13 +6301,12 @@ var OpalNotification = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalNotification.prototype, "paramShown", void 0);
     OpalNotification = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalNotification',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalNotification);
     return OpalNotification;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalNotification = OpalNotification;
 
 
@@ -6446,13 +6414,12 @@ var OpalInputValidatorRule = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalInputValidatorRule.prototype, "paramPopoverPosition", void 0);
     OpalInputValidatorRule = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalInputValidatorRule',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalInputValidatorRule);
     return OpalInputValidatorRule;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalInputValidatorRule = OpalInputValidatorRule;
 
 
@@ -6512,10 +6479,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_input_validator_1 = __webpack_require__(6);
+var rionite_1 = __webpack_require__(0);
+var OpalInputValidator_1 = __webpack_require__(6);
 __webpack_require__(154);
-var opal_text_input_validator_rule_1 = __webpack_require__(155);
-exports.OpalTextInputValidatorRule = opal_text_input_validator_rule_1.OpalTextInputValidatorRule;
+var OpalTextInputValidatorRule_1 = __webpack_require__(155);
+exports.OpalTextInputValidatorRule = OpalTextInputValidatorRule_1.OpalTextInputValidatorRule;
 var OpalTextInputValidator = /** @class */ (function (_super) {
     __extends(OpalTextInputValidator, _super);
     function OpalTextInputValidator() {
@@ -6543,12 +6511,10 @@ var OpalTextInputValidator = /** @class */ (function (_super) {
             : rule.paramRequired);
     };
     OpalTextInputValidator = __decorate([
-        opal_input_validator_1.OpalInputValidator.Config({
-            elementIs: 'OpalTextInputValidator'
-        })
+        rionite_1.Component()
     ], OpalTextInputValidator);
     return OpalTextInputValidator;
-}(opal_input_validator_1.OpalInputValidator));
+}(OpalInputValidator_1.OpalInputValidator));
 exports.OpalTextInputValidator = OpalTextInputValidator;
 
 
@@ -6596,7 +6562,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var opal_input_validator_1 = __webpack_require__(6);
+var OpalInputValidator_1 = __webpack_require__(6);
 var OpalTextInputValidatorRule = /** @class */ (function (_super) {
     __extends(OpalTextInputValidatorRule, _super);
     function OpalTextInputValidatorRule() {
@@ -6611,12 +6577,10 @@ var OpalTextInputValidatorRule = /** @class */ (function (_super) {
         __metadata("design:type", RegExp)
     ], OpalTextInputValidatorRule.prototype, "paramRegex", void 0);
     OpalTextInputValidatorRule = __decorate([
-        opal_input_validator_1.OpalInputValidatorRule.Config({
-            elementIs: 'OpalTextInputValidatorRule'
-        })
+        rionite_1.Component()
     ], OpalTextInputValidatorRule);
     return OpalTextInputValidatorRule;
-}(opal_input_validator_1.OpalInputValidatorRule));
+}(OpalInputValidator_1.OpalInputValidatorRule));
 exports.OpalTextInputValidatorRule = OpalTextInputValidatorRule;
 
 
@@ -6961,8 +6925,7 @@ var OpalCalendar = /** @class */ (function (_super) {
         __metadata("design:type", Array)
     ], OpalCalendar.prototype, "days", void 0);
     OpalCalendar = OpalCalendar_1 = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalCalendar',
+        rionite_1.Component({
             i18n: {
                 previousMonth: 'Предыдущий месяц',
                 nextMonth: 'Следующий месяц',
@@ -7038,7 +7001,7 @@ var OpalCalendar = /** @class */ (function (_super) {
     ], OpalCalendar);
     return OpalCalendar;
     var OpalCalendar_1;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalCalendar = OpalCalendar;
 
 
@@ -7267,8 +7230,7 @@ var OpalDateInput = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalDateInput.prototype, "paramPopoverPosition", void 0);
     OpalDateInput = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalDateInput',
+        rionite_1.Component({
             i18n: {
                 isRequiredField: gettext_1.getText.t('Поле обязательно для заполнения'),
                 nonExistentDate: gettext_1.getText.t('Несуществующая дата'),
@@ -7289,7 +7251,7 @@ var OpalDateInput = /** @class */ (function (_super) {
         })
     ], OpalDateInput);
     return OpalDateInput;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalDateInput = OpalDateInput;
 
 
@@ -7369,12 +7331,10 @@ var OpalLoader = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalLoader.prototype, "paramShown", void 0);
     OpalLoader = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalLoader'
-        })
+        rionite_1.Component()
     ], OpalLoader);
     return OpalLoader;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalLoader = OpalLoader;
 
 
@@ -7387,7 +7347,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalLoader{position:relative;display:none;margin:auto;width:38px;height:38px;border:15px solid transparent;background:rgba(255,255,255,.5)}.OpalLoader::before,.OpalLoader::after{position:absolute;top:0;right:0;bottom:0;left:0;-webkit-box-sizing:border-box;box-sizing:border-box;margin:auto;width:100%;height:100%;border:3px solid #1b91f8;border-top-color:transparent;border-radius:50%;content:'';-webkit-animation:OpalLoader__animation 1.2s infinite linear;animation:OpalLoader__animation 1.2s infinite linear}.OpalLoader::after{width:26px;height:26px;border-color:#f63159;border-bottom-color:transparent;-webkit-animation-direction:reverse;animation-direction:reverse}.OpalLoader[size=s]{width:18px;height:18px;border-width:6px}.OpalLoader[size=s]::before{border-width:2px}.OpalLoader[size=s]::after{content:none}.OpalLoader[shown]{display:block}@-webkit-keyframes OpalLoader__animation{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes OpalLoader__animation{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}";
+            style.textContent = ".OpalLoader{position:relative;display:none;margin:auto;width:38px;height:38px;border:15px solid transparent;background:rgba(255,255,255,.5)}.OpalLoader::before,.OpalLoader::after{position:absolute;top:0;right:0;bottom:0;left:0;-webkit-box-sizing:border-box;box-sizing:border-box;margin:auto;width:100%;height:100%;border:3px solid #1b91f8;border-top-color:transparent;border-radius:50%;content:'';-webkit-animation:OpalLoader__animation 1.2s infinite linear;animation:OpalLoader__animation 1.2s infinite linear}.OpalLoader::after{width:26px;height:26px;border-color:#f63159;border-bottom-color:transparent;animation-direction:reverse}.OpalLoader[size=s]{width:18px;height:18px;border-width:6px}.OpalLoader[size=s]::before{border-width:2px}.OpalLoader[size=s]::after{content:none}.OpalLoader[shown]{display:block}@-webkit-keyframes OpalLoader__animation{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes OpalLoader__animation{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}";
             head.appendChild(style);
             return style;
         }
@@ -7627,8 +7587,7 @@ var OpalLoadedList = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalLoadedList.prototype, "isNothingFoundShown", null);
     OpalLoadedList = OpalLoadedList_1 = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalLoadedList',
+        rionite_1.Component({
             i18n: {
                 nothingFound: gettext_1.getText.t('Ничего не найдено')
             },
@@ -7637,7 +7596,7 @@ var OpalLoadedList = /** @class */ (function (_super) {
     ], OpalLoadedList);
     return OpalLoadedList;
     var OpalLoadedList_1;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalLoadedList = OpalLoadedList;
 
 
@@ -7722,8 +7681,7 @@ var OpalFilteredList = /** @class */ (function (_super) {
         }
     };
     OpalFilteredList = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalFilteredList',
+        rionite_1.Component({
             i18n: {
                 queryInputPlaceholder: gettext_1.getText.t('Поиск')
             },
@@ -7731,7 +7689,7 @@ var OpalFilteredList = /** @class */ (function (_super) {
         })
     ], OpalFilteredList);
     return OpalFilteredList;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalFilteredList = OpalFilteredList;
 
 
@@ -8048,13 +8006,12 @@ var OpalSelectOption = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalSelectOption.prototype, "_tabIndex", null);
     OpalSelectOption = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalSelectOption',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalSelectOption);
     return OpalSelectOption;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalSelectOption = OpalSelectOption;
 
 
@@ -8120,7 +8077,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
-var opal_select_1 = __webpack_require__(7);
+var OpalSelect_1 = __webpack_require__(7);
 __webpack_require__(184);
 var template_nelm_1 = __webpack_require__(185);
 var OpalMultiselect = /** @class */ (function (_super) {
@@ -8161,13 +8118,12 @@ var OpalMultiselect = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalMultiselect.prototype, "isNothingSelectedShown", null);
     OpalMultiselect = __decorate([
-        opal_select_1.OpalSelect.Config({
-            elementIs: 'OpalMultiselect',
+        rionite_1.Component({
             i18n: {
                 queryInputPlaceholder: gettext_1.getText.t('Поиск'),
                 nothingSelected: gettext_1.getText.t('Ничего не выбрано')
             },
-            template: opal_select_1.OpalSelect.template.extend(template_nelm_1.default),
+            template: OpalSelect_1.OpalSelect.template.extend(template_nelm_1.default),
             events: {
                 'query-input': {
                     input: function (evt) {
@@ -8196,7 +8152,7 @@ var OpalMultiselect = /** @class */ (function (_super) {
         })
     ], OpalMultiselect);
     return OpalMultiselect;
-}(opal_select_1.OpalSelect));
+}(OpalSelect_1.OpalSelect));
 exports.OpalMultiselect = OpalMultiselect;
 
 
@@ -8278,8 +8234,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-var opal_select_1 = __webpack_require__(7);
-var opal_tree_list_1 = __webpack_require__(13);
+var OpalSelect_1 = __webpack_require__(7);
+var OpalTreeList_1 = __webpack_require__(13);
 __webpack_require__(189);
 var template_nelm_1 = __webpack_require__(190);
 var OpalTreeSelect = /** @class */ (function (_super) {
@@ -8329,7 +8285,7 @@ var OpalTreeSelect = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param({
             type: eval,
-            default: opal_tree_list_1.OpalTreeList.defaultDataTreeListItemSchema,
+            default: OpalTreeList_1.OpalTreeList.defaultDataTreeListItemSchema,
             readonly: true
         }),
         __metadata("design:type", Object)
@@ -8341,7 +8297,7 @@ var OpalTreeSelect = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param({
             type: eval,
-            default: opal_tree_list_1.OpalTreeList.defaultViewModelItemSchema,
+            default: OpalTreeList_1.OpalTreeList.defaultViewModelItemSchema,
             readonly: true
         }),
         __metadata("design:type", Object)
@@ -8351,8 +8307,7 @@ var OpalTreeSelect = /** @class */ (function (_super) {
         __metadata("design:type", String)
     ], OpalTreeSelect.prototype, "paramQuery", void 0);
     OpalTreeSelect = __decorate([
-        opal_select_1.OpalSelect.Config({
-            elementIs: 'OpalTreeSelect',
+        rionite_1.Component({
             template: template_nelm_1.default,
             events: {
                 'btn-close': {
@@ -8364,7 +8319,7 @@ var OpalTreeSelect = /** @class */ (function (_super) {
         })
     ], OpalTreeSelect);
     return OpalTreeSelect;
-}(opal_select_1.OpalSelect));
+}(OpalSelect_1.OpalSelect));
 exports.OpalTreeSelect = OpalTreeSelect;
 
 
@@ -8416,7 +8371,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_tag_select_1 = __webpack_require__(16);
+var rionite_1 = __webpack_require__(0);
+var OpalTagSelect_1 = __webpack_require__(16);
 var template_nelm_1 = __webpack_require__(192);
 var OpalTreeTagSelect = /** @class */ (function (_super) {
     __extends(OpalTreeTagSelect, _super);
@@ -8430,13 +8386,12 @@ var OpalTreeTagSelect = /** @class */ (function (_super) {
         return false;
     };
     OpalTreeTagSelect = __decorate([
-        opal_tag_select_1.OpalTagSelect.Config({
-            elementIs: 'OpalTreeTagSelect',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalTreeTagSelect);
     return OpalTreeTagSelect;
-}(opal_tag_select_1.OpalTagSelect));
+}(OpalTagSelect_1.OpalTagSelect));
 exports.OpalTreeTagSelect = OpalTreeTagSelect;
 
 
@@ -8471,10 +8426,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_input_validator_1 = __webpack_require__(6);
+var rionite_1 = __webpack_require__(0);
+var OpalInputValidator_1 = __webpack_require__(6);
 __webpack_require__(194);
-var opal_select_validator_rule_1 = __webpack_require__(195);
-exports.OpalSelectValidatorRule = opal_select_validator_rule_1.OpalSelectValidatorRule;
+var OpalSelectValidatorRule_1 = __webpack_require__(195);
+exports.OpalSelectValidatorRule = OpalSelectValidatorRule_1.OpalSelectValidatorRule;
 var OpalSelectValidator = /** @class */ (function (_super) {
     __extends(OpalSelectValidator, _super);
     function OpalSelectValidator() {
@@ -8492,12 +8448,10 @@ var OpalSelectValidator = /** @class */ (function (_super) {
             : rule.paramRequired);
     };
     OpalSelectValidator = __decorate([
-        opal_input_validator_1.OpalInputValidator.Config({
-            elementIs: 'OpalSelectValidator'
-        })
+        rionite_1.Component()
     ], OpalSelectValidator);
     return OpalSelectValidator;
-}(opal_input_validator_1.OpalInputValidator));
+}(OpalInputValidator_1.OpalInputValidator));
 exports.OpalSelectValidator = OpalSelectValidator;
 
 
@@ -8545,7 +8499,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var opal_input_validator_1 = __webpack_require__(6);
+var OpalInputValidator_1 = __webpack_require__(6);
 var OpalSelectValidatorRule = /** @class */ (function (_super) {
     __extends(OpalSelectValidatorRule, _super);
     function OpalSelectValidatorRule() {
@@ -8556,12 +8510,10 @@ var OpalSelectValidatorRule = /** @class */ (function (_super) {
         __metadata("design:type", Number)
     ], OpalSelectValidatorRule.prototype, "paramMinCount", void 0);
     OpalSelectValidatorRule = __decorate([
-        opal_input_validator_1.OpalInputValidatorRule.Config({
-            elementIs: 'OpalSelectValidatorRule'
-        })
+        rionite_1.Component()
     ], OpalSelectValidatorRule);
     return OpalSelectValidatorRule;
-}(opal_input_validator_1.OpalInputValidatorRule));
+}(OpalInputValidator_1.OpalInputValidatorRule));
 exports.OpalSelectValidatorRule = OpalSelectValidatorRule;
 
 
@@ -8931,8 +8883,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [])
     ], OpalAutosuggest.prototype, "isLoaderShown", null);
     OpalAutosuggest = OpalAutosuggest_1 = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalAutosuggest',
+        rionite_1.Component({
             i18n: {
                 textInputPlaceholder: gettext_1.getText.t('Начните вводить для поиска'),
                 nothingFound: gettext_1.getText.t('Ничего не найдено')
@@ -8958,7 +8909,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     ], OpalAutosuggest);
     return OpalAutosuggest;
     var OpalAutosuggest_1;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalAutosuggest = OpalAutosuggest;
 
 
@@ -9018,8 +8969,8 @@ var cellx_1 = __webpack_require__(2);
 var cellx_decorators_1 = __webpack_require__(1);
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(201);
-var opal_multirow_row_1 = __webpack_require__(202);
-exports.OpalMultirowRow = opal_multirow_row_1.OpalMultirowRow;
+var OpalMultirowRow_1 = __webpack_require__(202);
+exports.OpalMultirowRow = OpalMultirowRow_1.OpalMultirowRow;
 var template_nelm_1 = __webpack_require__(205);
 var OpalMultirow = /** @class */ (function (_super) {
     __extends(OpalMultirow, _super);
@@ -9092,13 +9043,12 @@ var OpalMultirow = /** @class */ (function (_super) {
         __metadata("design:returntype", Boolean)
     ], OpalMultirow.prototype, "_notSingleRow", null);
     OpalMultirow = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalMultirow',
+        rionite_1.Component({
             template: template_nelm_1.default
         })
     ], OpalMultirow);
     return OpalMultirow;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalMultirow = OpalMultirow;
 
 
@@ -9157,8 +9107,7 @@ var OpalMultirowRow = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     OpalMultirowRow = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalMultirowRow',
+        rionite_1.Component({
             template: template_nelm_1.default,
             events: {
                 'btn-remove-row': {
@@ -9175,7 +9124,7 @@ var OpalMultirowRow = /** @class */ (function (_super) {
         })
     ], OpalMultirowRow);
     return OpalMultirowRow;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalMultirowRow = OpalMultirowRow;
 
 
@@ -9244,8 +9193,8 @@ var created_browser_history_1 = __webpack_require__(209);
 var rionite_1 = __webpack_require__(0);
 var escapeRegExp_1 = __webpack_require__(210);
 __webpack_require__(211);
-var opal_route_1 = __webpack_require__(212);
-exports.OpalRoute = opal_route_1.OpalRoute;
+var OpalRoute_1 = __webpack_require__(212);
+exports.OpalRoute = OpalRoute_1.OpalRoute;
 var parsePath_1 = __webpack_require__(213);
 var PathNodeType_1 = __webpack_require__(17);
 var forEach = Array.prototype.forEach;
@@ -9361,7 +9310,8 @@ var OpalRouter = /** @class */ (function (_super) {
                     return { value: void 0 };
                 }
                 var componentEl_1 = this_1._componentElement;
-                var paramsConfig = componentEl_1.$component.constructor.params;
+                var paramsConfig = componentEl_1.$component.constructor
+                    .params;
                 var attrs = componentEl_1.attributes;
                 var writable = true;
                 if (paramsConfig) {
@@ -9465,12 +9415,10 @@ var OpalRouter = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalRouter.prototype, "paramScrollTopOnChangeComponent", void 0);
     OpalRouter = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalRouter'
-        })
+        rionite_1.Component()
     ], OpalRouter);
     return OpalRouter;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalRouter = OpalRouter;
 
 
@@ -9564,12 +9512,10 @@ var OpalRoute = /** @class */ (function (_super) {
         __metadata("design:type", String)
     ], OpalRoute.prototype, "paramComponent", void 0);
     OpalRoute = __decorate([
-        rionite_1.Component.Config({
-            elementIs: 'OpalRoute'
-        })
+        rionite_1.Component()
     ], OpalRoute);
     return OpalRoute;
-}(rionite_1.Component));
+}(rionite_1.BaseComponent));
 exports.OpalRoute = OpalRoute;
 
 

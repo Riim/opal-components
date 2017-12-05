@@ -1,7 +1,7 @@
 import { ObservableList } from 'cellx';
-import { Component, formatters } from 'rionite';
+import { BaseComponent, Component, formatters } from 'rionite';
+import '../../src/';
 import '../../src/focusHighlightController';
-import '../../src/index';
 import { ObservableTreeList } from '../../src/ObservableTreeList';
 import template from './template.nelm';
 
@@ -10,11 +10,10 @@ formatters.log = (msg: any): any => {
 	return msg;
 };
 
-@Component.Config({
-	elementIs: 'OpalComponentsDocs',
+@Component({
 	template
 })
-export class OpalComponentsDocs extends Component {
+export class OpalComponentsDocs extends BaseComponent {
 	dataList1 = new ObservableList([
 		{ id: '1', name: '1' },
 		{ id: '2', name: '2' },
