@@ -1,3 +1,18 @@
+style {
+	`
+	.OpalIcon {
+		margin: 10px;
+		width: 32px;
+		height: 32px;
+
+	}
+
+	.OpalIcon svg {
+		stroke-width: 2px;
+	}
+	`
+}
+
 h1 { 'OpalIcon' }
 p {
 	OpalIcon (name=alert)
@@ -30,10 +45,10 @@ p {
 	OpalIcon (name=export)
 	OpalIcon (name=external)
 	OpalIcon (name=eye)
+	OpalIcon (name=file)
 	OpalIcon (name=fileCross)
 	OpalIcon (name=fileMinus)
 	OpalIcon (name=filePlus)
-	OpalIcon (name=file)
 	OpalIcon (name=flag)
 	OpalIcon (name=folder)
 	OpalIcon (name=heart)
@@ -43,6 +58,8 @@ p {
 	OpalIcon (name=link)
 	OpalIcon (name=location)
 	OpalIcon (name=lock)
+	OpalIcon (name=logIn)
+	OpalIcon (name=logOut)
 	OpalIcon (name=mail)
 	OpalIcon (name=menu)
 	OpalIcon (name=message)
@@ -61,7 +78,6 @@ p {
 	OpalIcon (name=settings)
 	OpalIcon (name=star)
 	OpalIcon (name=tag)
-	OpalIcon (name=telephone)
 	OpalIcon (name=trash)
 	OpalIcon (name=unlock)
 	OpalIcon (name=upload)
