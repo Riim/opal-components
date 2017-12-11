@@ -2188,31 +2188,31 @@ module.exports = (function(d) {
 /* 25 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconArchive\"><path d=\"M4 10v18h24V10M2 4v6h28V4zm10 11h8\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconArchive\"><path d=\"M2 4h28v6H2zm2 6v18h24V10m-16 5h8\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconArrowBottom\"><path d=\"M6 20l10 10 10-10M16 30V2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconArrowBottom\"><path d=\"M16 2v28M6 20l10 10 10-10\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconArrowLeft\"><path d=\"M12 6L2 16l10 10M2 16h28\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconArrowLeft\"><path d=\"M2 16h28M12 6L2 16l10 10\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 28 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconArrowRight\"><path d=\"M20 6l10 10-10 10m10-10H2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconArrowRight\"><path d=\"M2 16h28M20 6l10 10-10 10\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 29 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconArrowTop\"><path d=\"M6 12L16 2l10 10M16 2v28\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconArrowTop\"><path d=\"M16 2v28M6 12L16 2l10 10\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 30 */
@@ -2242,7 +2242,7 @@ module.exports = (function(d) {
 /* 34 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconCart\"><path d=\"M6 6h24l-3 13H9M2 2h3l5 21h17\" xmlns=\"http://www.w3.org/2000/svg\"/><circle cx=\"25\" cy=\"28\" r=\"2\"/><circle cx=\"12\" cy=\"28\" r=\"2\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconCart\"><path d=\"M2 2h3l5 21h17M6 6h24l-3 13H9\" xmlns=\"http://www.w3.org/2000/svg\"/><circle cx=\"25\" cy=\"28\" r=\"2\"/><circle cx=\"12\" cy=\"28\" r=\"2\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 35 */
@@ -2278,7 +2278,7 @@ module.exports = (function(d) {
 /* 40 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconClipboard\"><path d=\"M12 2v4h8V2h-8zm-1 2H6v26h20V4h-5\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconClipboard\"><path d=\"M12 2h8v4h-8zm0 2H6v26h20V4h-6\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 41 */
@@ -2290,7 +2290,7 @@ module.exports = (function(d) {
 /* 42 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconCode\"><path d=\"M10 9l-7 8 7 8M22 9l7 8-7 8M18 7l-4 20\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconCode\"><path d=\"M10 9l-7 8 7 8m8-18l-4 20m8-18l7 8-7 8\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 43 */
@@ -2308,25 +2308,25 @@ module.exports = (function(d) {
 /* 45 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconCross\"><path d=\"M2 30L30 2m0 28L2 2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconCross\"><path d=\"M2 2l28 28m0-28L2 30\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 46 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconDesktop\"><path d=\"M10 29s0-5 6-5 6 5 6 5H10zM2 6v17h28V6H2z\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconDesktop\"><path d=\"M2 6h28v17H2zm8 23s0-5 6-5 6 5 6 5z\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 47 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconDownload\"><path d=\"M9 22c-9 1-8-10 0-9C6 2 23 2 22 10c10-3 10 13 1 12m-12 4l5 4 5-4m-5-10v14\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconDownload\"><path d=\"M9 22c-9 1-9-10 0-9C6 2 23 2 22 10c10-2 10 13 1 12m-7-8v16m-5-5l5 5 5-5\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 48 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconEdit\"><path d=\"M25 2l5 5-20 20-7 2 2-7zm-4 4l5 5zM5 22l5 5z\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconEdit\"><path d=\"M25 2l5 5-20 20-7 2 2-7zm-4 4l5 5M5 22l5 5\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 49 */
@@ -2344,19 +2344,19 @@ module.exports = (function(d) {
 /* 51 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconExport\"><path d=\"M28 22v8H4v-8M16 4v20M8 12l8-8 8 8\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconExport\"><path d=\"M4 22v8h24v-8M16 4v20M8 12l8-8 8 8\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 52 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconExternal\"><path d=\"M14 9H3v20h20V18M18 4h10v10m0-10L14 18\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconExternal\"><path d=\"M14 9H3v20h20V18m5-14L14 18m4-14h10v10\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 53 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconEye\"><circle cx=\"17\" cy=\"15\" r=\"1\" xmlns=\"http://www.w3.org/2000/svg\"/><circle cx=\"16\" cy=\"16\" r=\"6\"/><path d=\"M2 16S7 6 16 6s14 10 14 10-5 10-14 10S2 16 2 16z\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconEye\"><circle cx=\"17\" cy=\"15\" r=\"1\" xmlns=\"http://www.w3.org/2000/svg\"/><circle cx=\"16\" cy=\"16\" r=\"6\"/><path d=\"M2 16S7 6 16 6s14 10 14 10-5 10-14 10S2 16 2 16\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 54 */
@@ -2374,7 +2374,7 @@ module.exports = (function(d) {
 /* 56 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconFilePlus\"><path d=\"M18 2H6v28h20V10l-8-8v8h8M12 20h8m-4-4v8\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconFilePlus\"><path d=\"M18 2H6v28h20V10l-8-8v8h8m-10 6v8m-4-4h8\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 57 */
@@ -2392,7 +2392,7 @@ module.exports = (function(d) {
 /* 59 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconFolder\"><path d=\"M2 26h28V7H14l-4-3H2zm28-14H2\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconFolder\"><path d=\"M2 4h8l4 3h16v19H2zm0 8h28\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 60 */
@@ -2404,7 +2404,7 @@ module.exports = (function(d) {
 /* 61 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconHome\"><path d=\"M12 20v10H4V12L16 2l12 10v18h-8V20z\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconHome\"><path d=\"M16 2l12 10v18h-8V20h-8v10H4V12z\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 62 */
@@ -2422,19 +2422,19 @@ module.exports = (function(d) {
 /* 64 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconLink\"><path d=\"M18 8s6-6 9-3 2 7-3 11-8 5-10 1m0 7s-6 6-9 3-2-7 3-11 8-5 10-1\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconLink\"><path d=\"M18 8s6-6 9-3 2 7-3 11-8 5-10 1m4-2c-2-4-5-3-10 1s-6 8-3 11 9-3 9-3\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 65 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconLocation\"><circle cx=\"16\" cy=\"11\" r=\"4\" xmlns=\"http://www.w3.org/2000/svg\"/><path d=\"M24 15c-3 7-8 15-8 15s-5-8-8-15 2-13 8-13 11 6 8 13z\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconLocation\"><path d=\"M8 15C5 8 10 2 16 2s11 6 8 13-8 15-8 15-5-8-8-15z\" xmlns=\"http://www.w3.org/2000/svg\"/><circle cx=\"16\" cy=\"11\" r=\"4\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 66 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconLock\"><path d=\"M5 15v15h22V15zm4 0C9 9 9 5 16 5s7 4 7 10m-7 5v3\" xmlns=\"http://www.w3.org/2000/svg\"/><circle cx=\"16\" cy=\"24\" r=\"1\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconLock\"><path d=\"M9 15C9 9 9 5 16 5s7 4 7 10M5 15h22v15H5zm11 5v3\" xmlns=\"http://www.w3.org/2000/svg\"/><circle cx=\"16\" cy=\"24\" r=\"1\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 67 */
@@ -2446,7 +2446,7 @@ module.exports = (function(d) {
 /* 68 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconLogOut\"><path d=\"M12 4H2v24h10m0-12h16m-10-6l-6 6 6 6\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconLogOut\"><path d=\"M12 4H2v24h10m0-12h16m-6-6l6 6-6 6\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 69 */
@@ -2476,19 +2476,19 @@ module.exports = (function(d) {
 /* 73 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconMobile\"><path d=\"M21 2H11c-1 0-2 1-2 2v24c0 1 1 2 2 2h10c1 0 2-1 2-2V4c0-1-1-2-2-2zM9 5h14M9 27h14\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconMobile\"><path d=\"M9 4c0-1 1-2 2-2h10c1 0 2 1 2 2v24c0 1-1 2-2 2H11c-1 0-2-1-2-2zm0 1h14M9 27h14\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 74 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconMove\"><path d=\"M3 16h26M16 3v26M12 7l4-4 4 4m-8 18l4 4 4-4m5-13l4 4-4 4M7 12l-4 4 4 4\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconMove\"><path d=\"M3 16h26M16 3v26M12 7l4-4 4 4m5 5l4 4-4 4m-13 5l4 4 4-4M7 12l-4 4 4 4\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 75 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconOptions\"><path d=\"M28 6H4m24 10H4m24 10H4M24 3v6M8 13v6m12 4v6\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconOptions\"><path d=\"M4 6h24M4 16h24M4 26h24M24 3v6M8 13v6m12 4v6\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 76 */
@@ -2500,7 +2500,7 @@ module.exports = (function(d) {
 /* 77 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconPhoto\"><path d=\"M20 24l-8-8L2 26V2h28v22m-14-4l6-6 8 8v8H2v-6\" xmlns=\"http://www.w3.org/2000/svg\"/><circle cx=\"10\" cy=\"9\" r=\"3\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconPhoto\"><path d=\"M2 2h28v28H2zm0 24l10-10 8 8m-4-4l6-6 8 8\" xmlns=\"http://www.w3.org/2000/svg\"/><circle cx=\"10\" cy=\"9\" r=\"3\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 78 */
@@ -2512,19 +2512,19 @@ module.exports = (function(d) {
 /* 79 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconPrint\"><path d=\"M7 25H2V9h28v16h-5M7 19v11h18V19zM25 9V2H7v7m15 5h3\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconPrint\"><path d=\"M7 9V2h18v7M7 25H2V9h28v16h-5M7 19h18v11H7zm15-5h3\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 80 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconReload\"><path d=\"M29 16c0 6-5 13-13 13S3 22 3 16 8 3 16 3c5 0 9 3 11 6m-7 1l7-1 1-7\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconReload\"><path d=\"M29 16c0 6-5 13-13 13S3 22 3 16 8 3 16 3c5 0 9 3 11 6m1-7l-1 7-7 1\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 81 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconReply\"><path d=\"M10 6l-7 8 7 8m-7-8h15c8 0 12 4 12 12\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconReply\"><path d=\"M11 6l-8 8 8 8m-8-8h15c8 0 12 4 12 12\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 82 */
@@ -2542,7 +2542,7 @@ module.exports = (function(d) {
 /* 84 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconSettings\"><path d=\"M13 2v4l-2 1-3-3-4 4 3 3-1 2H2v6h4l1 2-3 3 4 4 3-3 2 1v4h6v-4l2-1 3 3 4-4-3-3 1-2h4v-6h-4l-1-2 3-3-4-4-3 3-2-1V2z\" xmlns=\"http://www.w3.org/2000/svg\"/><circle cx=\"16\" cy=\"16\" r=\"4\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconSettings\"><path d=\"M13 2h6v4l2 1 3-3 4 4-3 3 1 2h4v6h-4l-1 2 3 3-4 4-3-3-2 1v4h-6v-4l-2-1-3 3-4-4 3-3-1-2H2v-6h4l1-2-3-3 4-4 3 3 2-1z\" xmlns=\"http://www.w3.org/2000/svg\"/><circle cx=\"16\" cy=\"16\" r=\"4\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 85 */
@@ -2554,25 +2554,25 @@ module.exports = (function(d) {
 /* 86 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconTag\"><circle cx=\"24\" cy=\"8\" r=\"2\" xmlns=\"http://www.w3.org/2000/svg\"/><path d=\"M2 18L18 2h12v12L14 30z\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconTag\"><path d=\"M18 2h12v12L14 30 2 18z\" xmlns=\"http://www.w3.org/2000/svg\"/><circle cx=\"24\" cy=\"8\" r=\"2\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 87 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconTrash\"><path d=\"M28 6H6l2 24h16l2-24H4m12 6v12m5-12l-1 12m-9-12l1 12m0-18l1-4h6l1 4\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconTrash\"><path d=\"M4 6h2l2 24h16l2-24h2M6 6h20M12 6l1-4h6l1 4m-9 6l1 12m4-12v12m5-12l-1 12\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 88 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconUnlock\"><path d=\"M5 15v15h22V15zm4 0C9 7 9 3 16 3s7 5 7 6m-7 11v3\" xmlns=\"http://www.w3.org/2000/svg\"/><circle cx=\"16\" cy=\"24\" r=\"1\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconUnlock\"><path d=\"M9 15C9 7 9 3 16 3s7 5 7 6M5 15h22v15H5zm11 5v3\" xmlns=\"http://www.w3.org/2000/svg\"/><circle cx=\"16\" cy=\"24\" r=\"1\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 89 */
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconUpload\"><path d=\"M9 22c-9 1-8-10 0-9C6 2 23 2 22 10c10-3 10 13 1 12m-12-4l5-4 5 4m-5-4v15\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol viewBox=\"0 0 32 32\" id=\"OpalIcon__iconUpload\"><path d=\"M9 22c-9 1-9-10 0-9C6 2 23 2 22 10c10-2 10 13 1 12m-7-8v16m-5-11l5-5 5 5\" xmlns=\"http://www.w3.org/2000/svg\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 /* 90 */
