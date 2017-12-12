@@ -1,8 +1,9 @@
 {
   "name": "@riim/opal-tag-select",
-  "version": "0.32.15",
+  "version": "0.32.16",
   "description": "",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,8 +14,8 @@
   },
   "dependencies": {
     "@riim/gettext": "^1.1.1",
-    "@riim/opal-loaded-list": "^0.32.15",
-    "@riim/opal-select": "^0.32.15",
+    "@riim/opal-loaded-list": "^0.32.16",
+    "@riim/opal-select": "^0.32.16",
     "cellx": "^1.7.78",
     "cellx-decorators": "^1.4.9",
     "reflect-metadata": "^0.1.10",

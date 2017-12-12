@@ -1,8 +1,9 @@
 {
   "name": "@riim/opal-text-input-validator",
-  "version": "0.32.15",
+  "version": "0.32.16",
   "description": "",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,8 +13,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-input-validator": "^0.32.15",
-    "@riim/opal-text-input": "^0.32.15",
+    "@riim/opal-input-validator": "^0.32.16",
+    "@riim/opal-text-input": "^0.32.16",
     "reflect-metadata": "^0.1.10",
     "rionite": "^0.32.5"
   }

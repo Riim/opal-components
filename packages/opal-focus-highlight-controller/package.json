@@ -1,8 +1,9 @@
 {
   "name": "@riim/opal-focus-highlight-controller",
-  "version": "0.32.15",
+  "version": "0.32.16",
   "description": "",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

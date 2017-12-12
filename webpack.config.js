@@ -97,7 +97,6 @@ module.exports = env => {
 
 		externals: [
 			'@riim/debounce-throttle',
-			'@riim/escape-html',
 			'@riim/gettext',
 			'@riim/hyphenize',
 			'@riim/map-set-polyfill',
