@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-editable-text",
-  "version": "0.32.17",
+  "version": "0.32.18",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
