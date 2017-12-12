@@ -1,2 +1,2 @@
 import 'reflect-metadata';
-export { OpalSwitch } from './components/OpalSwitch';
+export * from './components/OpalSwitch';

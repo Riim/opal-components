@@ -1,3 +1,3 @@
 import 'reflect-metadata';
 
-export { OpalTagSelect } from './components/OpalTagSelect';
+export * from './components/OpalTagSelect';

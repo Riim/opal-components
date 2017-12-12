@@ -1,3 +1,3 @@
 import 'reflect-metadata';
 
-export { OpalSlider } from './components/OpalSlider';
+export * from './components/OpalSlider';

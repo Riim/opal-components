@@ -7,7 +7,7 @@
 		exports["@riim/opal-select-validator"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/opal-input-validator"));
 	else
 		root["@riim/opal-select-validator"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/opal-input-validator"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_8__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_7__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 186);
+/******/ 	return __webpack_require__(__webpack_require__.s = 185);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,21 +89,22 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
-/***/ 186:
+/***/ 185:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-var OpalSelectValidator_1 = __webpack_require__(187);
-exports.OpalSelectValidatorRule = OpalSelectValidator_1.OpalSelectValidatorRule;
-exports.OpalSelectValidator = OpalSelectValidator_1.OpalSelectValidator;
+__export(__webpack_require__(186));
 
 
 /***/ }),
 
-/***/ 187:
+/***/ 186:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -125,11 +126,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_input_validator_1 = __webpack_require__(8);
+var opal_input_validator_1 = __webpack_require__(7);
 var rionite_1 = __webpack_require__(0);
-var OpalSelectValidatorRule_1 = __webpack_require__(188);
+var OpalSelectValidatorRule_1 = __webpack_require__(187);
 exports.OpalSelectValidatorRule = OpalSelectValidatorRule_1.OpalSelectValidatorRule;
-__webpack_require__(189);
+__webpack_require__(188);
 var OpalSelectValidator = /** @class */ (function (_super) {
     __extends(OpalSelectValidator, _super);
     function OpalSelectValidator() {
@@ -156,7 +157,7 @@ exports.OpalSelectValidator = OpalSelectValidator;
 
 /***/ }),
 
-/***/ 188:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -181,7 +182,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_input_validator_1 = __webpack_require__(8);
+var opal_input_validator_1 = __webpack_require__(7);
 var rionite_1 = __webpack_require__(0);
 var OpalSelectValidatorRule = /** @class */ (function (_super) {
     __extends(OpalSelectValidatorRule, _super);
@@ -202,7 +203,7 @@ exports.OpalSelectValidatorRule = OpalSelectValidatorRule;
 
 /***/ }),
 
-/***/ 189:
+/***/ 188:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -220,10 +221,10 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 8:
+/***/ 7:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
 
 /***/ })
 

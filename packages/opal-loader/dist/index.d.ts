@@ -1,2 +1,2 @@
 import 'reflect-metadata';
-export { OpalLoader } from './components/OpalLoader';
+export * from './components/OpalLoader';

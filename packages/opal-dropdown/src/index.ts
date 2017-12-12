@@ -1,3 +1,3 @@
 import 'reflect-metadata';
 
-export { OpalDropdown } from './components/OpalDropdown';
+export * from './components/OpalDropdown';

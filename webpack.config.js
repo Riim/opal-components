@@ -1,5 +1,4 @@
 let path = require('path');
-let glob = require('glob');
 let webpack = require('webpack');
 let postcssCSSVariables = require('postcss-css-variables');
 let postcssRioniteComponent = require('@riim/postcss-rionite-component');
@@ -20,31 +19,14 @@ module.exports = env => {
 	];
 
 	return {
-		// entry: {
-		// 	OpalComponents: './src/index.ts',
-		// 	focusHighlightController: './src/focusHighlightController.ts'
-		// },
-
-		// entry: glob.sync('src/components/*/index.ts').reduce(
-		// 	(entries, p) => {
-		// 		// entries[p.split(path.sep).slice(-2)[0]] = path.join(__dirname, p);
-		// 		return entries;
-		// 	},
-		// 	{
-		// 		OpalComponents: './src/index.ts',
-		// 		focusHighlightController: './src/focusHighlightController.ts'
-		// 	}
-		// ),
-
-		entry: glob.sync('packages/*/src/index.ts').reduce((entries, p) => {
-			entries[p.split(path.sep).slice(-3)[0]] = path.join(__dirname, p);
-			return entries;
-		}, {}),
+		entry: {
+			OpalComponents: './src/index.ts'
+		},
 
 		output: {
-			filename: '[name]/dist/index.js',
-			path: path.join(__dirname, 'packages'),
-			library: '@riim/[name]',
+			filename: '[name].js',
+			path: path.join(__dirname, 'dist'),
+			library: '[name]',
 			libraryTarget: 'umd'
 		},
 

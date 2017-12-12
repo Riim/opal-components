@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-radio-group",
-  "version": "0.32.18",
+  "version": "0.32.19",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -1,2 +1,2 @@
 import 'reflect-metadata';
-export { OpalEditableText } from './components/OpalEditableText';
+export * from './components/OpalEditableText';

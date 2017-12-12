@@ -1,3 +1,3 @@
 import 'reflect-metadata';
 
-export { OpalSignButton } from './components/OpalSignButton';
+export * from './components/OpalSignButton';

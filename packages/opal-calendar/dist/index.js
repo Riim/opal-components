@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -116,22 +116,21 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
 /* 19 */,
 /* 20 */,
 /* 21 */,
-/* 22 */,
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-var OpalCalendar_1 = __webpack_require__(24);
-exports.formatDate = OpalCalendar_1.formatDate;
-exports.parseDate = OpalCalendar_1.parseDate;
-exports.OpalCalendar = OpalCalendar_1.OpalCalendar;
+__export(__webpack_require__(23));
 
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -159,12 +158,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-var formatDate_1 = __webpack_require__(25);
+var formatDate_1 = __webpack_require__(24);
 exports.formatDate = formatDate_1.formatDate;
-__webpack_require__(26);
-var parseDate_1 = __webpack_require__(27);
+__webpack_require__(25);
+var parseDate_1 = __webpack_require__(26);
 exports.parseDate = parseDate_1.parseDate;
-var template_nelm_1 = __webpack_require__(28);
+var template_nelm_1 = __webpack_require__(27);
 function getTodayDate() {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -554,7 +553,7 @@ exports.OpalCalendar = OpalCalendar;
 
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -572,7 +571,7 @@ exports.formatDate = formatDate;
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -589,7 +588,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -603,7 +602,7 @@ exports.parseDate = parseDate;
 
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

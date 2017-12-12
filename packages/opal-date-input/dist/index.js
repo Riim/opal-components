@@ -7,7 +7,7 @@
 		exports["@riim/opal-date-input"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/opal-utils"), require("@riim/opal-calendar"), require("date-exists"));
 	else
 		root["@riim/opal-date-input"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/gettext"], root["@riim/opal-utils"], root["@riim/opal-calendar"], root["date-exists"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_35__, __WEBPACK_EXTERNAL_MODULE_36__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_34__, __WEBPACK_EXTERNAL_MODULE_35__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 33);
+/******/ 	return __webpack_require__(__webpack_require__.s = 32);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,20 +89,22 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
-/***/ 33:
+/***/ 32:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-var OpalDateInput_1 = __webpack_require__(34);
-exports.OpalDateInput = OpalDateInput_1.OpalDateInput;
+__export(__webpack_require__(33));
 
 
 /***/ }),
 
-/***/ 34:
+/***/ 33:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -128,12 +130,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(5);
-var opal_calendar_1 = __webpack_require__(35);
+var opal_calendar_1 = __webpack_require__(34);
 var opal_utils_1 = __webpack_require__(6);
-var date_exists_1 = __webpack_require__(36);
+var date_exists_1 = __webpack_require__(35);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(37);
-var template_nelm_1 = __webpack_require__(38);
+__webpack_require__(36);
+var template_nelm_1 = __webpack_require__(37);
 function pad(num) {
     return (num < 10 ? '0' : '') + num;
 }
@@ -310,6 +312,13 @@ exports.OpalDateInput = OpalDateInput;
 
 /***/ }),
 
+/***/ 34:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_34__;
+
+/***/ }),
+
 /***/ 35:
 /***/ (function(module, exports) {
 
@@ -318,13 +327,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_35__;
 /***/ }),
 
 /***/ 36:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_36__;
-
-/***/ }),
-
-/***/ 37:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -342,7 +344,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 38:
+/***/ 37:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

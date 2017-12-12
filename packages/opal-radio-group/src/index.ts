@@ -1,3 +1,3 @@
 import 'reflect-metadata';
 
-export { OpalRadioButton, OpalRadioGroup } from './components/OpalRadioGroup';
+export * from './components/OpalRadioGroup';

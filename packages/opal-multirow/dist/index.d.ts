@@ -1,2 +1,2 @@
 import 'reflect-metadata';
-export { OpalMultirowRow, OpalMultirow } from './components/OpalMultirow';
+export * from './components/OpalMultirow';

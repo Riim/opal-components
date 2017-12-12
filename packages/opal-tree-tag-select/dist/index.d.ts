@@ -1,2 +1,2 @@
 import 'reflect-metadata';
-export { OpalTreeTagSelect } from './components/OpalTreeTagSelect';
+export * from './components/OpalTreeTagSelect';

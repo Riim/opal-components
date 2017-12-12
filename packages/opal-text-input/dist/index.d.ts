@@ -1,2 +1,2 @@
 import 'reflect-metadata';
-export { OpalTextInput } from './components/OpalTextInput';
+export * from './components/OpalTextInput';
