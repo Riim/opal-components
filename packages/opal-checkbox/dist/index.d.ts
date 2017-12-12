@@ -1,2 +1,2 @@
 import 'reflect-metadata';
-export { OpalCheckbox } from './components/OpalCheckbox';
+export * from './components/OpalCheckbox';

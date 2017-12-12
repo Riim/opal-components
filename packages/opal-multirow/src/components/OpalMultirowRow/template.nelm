@@ -1,8 +1,10 @@
 @section/inner {
 
 RtSlot/content-slot
+
 ' '
 OpalSignButton/btn-remove-row (sign=minus)
+
 ' '
 OpalSignButton/btn-add-row (sign=plus)
 

@@ -1,4 +1,5 @@
 let path = require('path');
+let glob = require('glob');
 let webpack = require('webpack');
 let postcssCSSVariables = require('postcss-css-variables');
 let postcssRioniteComponent = require('@riim/postcss-rionite-component');
@@ -19,14 +20,15 @@ module.exports = env => {
 	];
 
 	return {
-		entry: {
-			OpalComponents: './src/index.ts'
-		},
+		entry: glob.sync('packages/*/src/index.ts').reduce((entries, p) => {
+			entries[p.split(path.sep).slice(-3)[0]] = path.join(__dirname, p);
+			return entries;
+		}, {}),
 
 		output: {
-			filename: '[name].js',
-			path: path.join(__dirname, 'dist'),
-			library: '[name]',
+			filename: 'packages/[name]/dist/index.js',
+			path: __dirname,
+			library: '@riim/[name]',
 			libraryTarget: 'umd'
 		},
 
@@ -132,8 +134,6 @@ module.exports = env => {
 		],
 
 		plugins,
-
-		watch: env.dev,
 
 		node: {
 			console: false,

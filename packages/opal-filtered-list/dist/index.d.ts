@@ -1,2 +1,2 @@
 import 'reflect-metadata';
-export { OpalFilteredList } from './components/OpalFilteredList';
+export * from './components/OpalFilteredList';

@@ -1,3 +1,3 @@
 import 'reflect-metadata';
 
-export { OpalSwitchMenu } from './components/OpalSwitchMenu';
+export * from './components/OpalSwitchMenu';

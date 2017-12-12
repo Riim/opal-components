@@ -1,2 +1,2 @@
 import 'reflect-metadata';
-export { OpalGroup } from './components/OpalGroup';
+export * from './components/OpalGroup';

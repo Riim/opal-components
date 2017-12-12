@@ -1,2 +1,2 @@
-export { closestComponent } from './utils/closestComponent';
-export { isFocusable } from './utils/isFocusable';
+export * from './utils/closestComponent';
+export * from './utils/isFocusable';

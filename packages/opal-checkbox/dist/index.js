@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 29);
+/******/ 	return __webpack_require__(__webpack_require__.s = 28);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -96,20 +96,22 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ }),
 
-/***/ 29:
+/***/ 28:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-var OpalCheckbox_1 = __webpack_require__(30);
-exports.OpalCheckbox = OpalCheckbox_1.OpalCheckbox;
+__export(__webpack_require__(29));
 
 
 /***/ }),
 
-/***/ 30:
+/***/ 29:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -137,8 +139,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(31);
-var template_nelm_1 = __webpack_require__(32);
+__webpack_require__(30);
+var template_nelm_1 = __webpack_require__(31);
 var OpalCheckbox = /** @class */ (function (_super) {
     __extends(OpalCheckbox, _super);
     function OpalCheckbox() {
@@ -315,7 +317,7 @@ exports.OpalCheckbox = OpalCheckbox;
 
 /***/ }),
 
-/***/ 31:
+/***/ 30:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -333,7 +335,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 32:
+/***/ 31:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

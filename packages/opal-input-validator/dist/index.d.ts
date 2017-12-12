@@ -1,2 +1,2 @@
 import 'reflect-metadata';
-export { OpalInputValidatorRule, OpalInputValidator } from './components/OpalInputValidator';
+export * from './components/OpalInputValidator';

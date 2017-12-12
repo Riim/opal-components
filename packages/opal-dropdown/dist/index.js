@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 39);
+/******/ 	return __webpack_require__(__webpack_require__.s = 38);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -103,20 +103,22 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ }),
 
-/***/ 39:
+/***/ 38:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-var OpalDropdown_1 = __webpack_require__(40);
-exports.OpalDropdown = OpalDropdown_1.OpalDropdown;
+__export(__webpack_require__(39));
 
 
 /***/ }),
 
-/***/ 40:
+/***/ 39:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -144,8 +146,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(41);
-var template_nelm_1 = __webpack_require__(42);
+__webpack_require__(40);
+var template_nelm_1 = __webpack_require__(41);
 var openedDropdowns = [];
 var OpalDropdown = /** @class */ (function (_super) {
     __extends(OpalDropdown, _super);
@@ -313,7 +315,7 @@ exports.OpalDropdown = OpalDropdown;
 
 /***/ }),
 
-/***/ 41:
+/***/ 40:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -331,7 +333,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 42:
+/***/ 41:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 54);
+/******/ 	return __webpack_require__(__webpack_require__.s = 53);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,20 +89,22 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
-/***/ 54:
+/***/ 53:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-var OpalGroup_1 = __webpack_require__(55);
-exports.OpalGroup = OpalGroup_1.OpalGroup;
+__export(__webpack_require__(54));
 
 
 /***/ }),
 
-/***/ 55:
+/***/ 54:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -125,8 +127,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(56);
-var template_nelm_1 = __webpack_require__(57);
+__webpack_require__(55);
+var template_nelm_1 = __webpack_require__(56);
 var OpalGroup = /** @class */ (function (_super) {
     __extends(OpalGroup, _super);
     function OpalGroup() {
@@ -144,7 +146,7 @@ exports.OpalGroup = OpalGroup;
 
 /***/ }),
 
-/***/ 56:
+/***/ 55:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -162,7 +164,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 57:
+/***/ 56:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

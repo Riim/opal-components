@@ -66,4 +66,4 @@ import './icons/trash.svg?id=OpalIcon__iconTrash';
 import './icons/unlock.svg?id=OpalIcon__iconUnlock';
 import './icons/upload.svg?id=OpalIcon__iconUpload';
 import './icons/user.svg?id=OpalIcon__iconUser';
-export { OpalIcon } from './components/OpalIcon';
+export * from './components/OpalIcon';

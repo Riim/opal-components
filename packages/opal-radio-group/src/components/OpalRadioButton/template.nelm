@@ -2,8 +2,10 @@
 
 label/label {
 	input/input (type=checkbox)
+
 	span/control (tabindex={_tabIndex})
 	' '
+
 	RtSlot/content-slot
 }
 

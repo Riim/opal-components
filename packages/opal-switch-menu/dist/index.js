@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 206);
+/******/ 	return __webpack_require__(__webpack_require__.s = 205);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,20 +89,22 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
-/***/ 206:
+/***/ 205:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-var OpalSwitchMenu_1 = __webpack_require__(207);
-exports.OpalSwitchMenu = OpalSwitchMenu_1.OpalSwitchMenu;
+__export(__webpack_require__(206));
 
 
 /***/ }),
 
-/***/ 207:
+/***/ 206:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -125,8 +127,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(208);
-var template_nelm_1 = __webpack_require__(209);
+__webpack_require__(207);
+var template_nelm_1 = __webpack_require__(208);
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
 var OpalSwitchMenu = /** @class */ (function (_super) {
@@ -202,7 +204,7 @@ exports.OpalSwitchMenu = OpalSwitchMenu;
 
 /***/ }),
 
-/***/ 208:
+/***/ 207:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -220,7 +222,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 209:
+/***/ 208:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

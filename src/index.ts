@@ -1,7 +1,6 @@
 import '@riim/opal-focus-highlight-controller';
 import * as Utils from '@riim/opal-utils';
 
-export { IItem as IObservableTreeListItem, ObservableTreeList } from './ObservableTreeList';
 export { OpalIcon } from '@riim/opal-icon';
 export { OpalButton } from '@riim/opal-button';
 export { OpalSignButton } from '@riim/opal-sign-button';

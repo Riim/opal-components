@@ -1,3 +1,3 @@
 import 'reflect-metadata';
 
-export { OpalPopover } from './components/OpalPopover';
+export * from './components/OpalPopover';

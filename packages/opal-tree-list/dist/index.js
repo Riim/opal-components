@@ -7,7 +7,7 @@
 		exports["@riim/opal-tree-list"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("cellx"), require("@riim/opal-utils"), require("@riim/mixin"), require("@riim/object-assign-polyfill"));
 	else
 		root["@riim/opal-tree-list"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["cellx"], root["@riim/opal-utils"], root["@riim/mixin"], root["@riim/object-assign-polyfill"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_239__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_238__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 238);
+/******/ 	return __webpack_require__(__webpack_require__.s = 237);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,7 +89,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
-/***/ 13:
+/***/ 12:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,7 +105,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var object_assign_polyfill_1 = __webpack_require__(239);
+var object_assign_polyfill_1 = __webpack_require__(238);
 var cellx_1 = __webpack_require__(3);
 var INDEXPATH_EMPTY_ERROR_MESSAGE = 'Indexpath cannot be empty';
 function fixParent(items, parent) {
@@ -224,7 +224,7 @@ exports.ObservableTreeList = ObservableTreeList;
 
 /***/ }),
 
-/***/ 14:
+/***/ 13:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -251,9 +251,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-var _getListItemContext_1 = __webpack_require__(15);
-__webpack_require__(241);
-var template_nelm_1 = __webpack_require__(242);
+var _getListItemContext_1 = __webpack_require__(14);
+__webpack_require__(240);
+var template_nelm_1 = __webpack_require__(241);
 var OpalTreeListItem = /** @class */ (function (_super) {
     __extends(OpalTreeListItem, _super);
     function OpalTreeListItem() {
@@ -352,13 +352,13 @@ OpalTreeListItem.prototype._getListItemContext = _getListItemContext_1.default;
 
 /***/ }),
 
-/***/ 15:
+/***/ 14:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var mixin_1 = __webpack_require__(9);
+var mixin_1 = __webpack_require__(8);
 var cellx_1 = __webpack_require__(3);
 function isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
     do {
@@ -405,30 +405,30 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ }),
 
-/***/ 238:
+/***/ 237:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-var ObservableTreeList_1 = __webpack_require__(13);
-exports.ObservableTreeList = ObservableTreeList_1.ObservableTreeList;
-var OpalTreeList_1 = __webpack_require__(240);
-exports.OpalTreeListItem = OpalTreeList_1.OpalTreeListItem;
-exports.OpalTreeList = OpalTreeList_1.OpalTreeList;
+__export(__webpack_require__(12));
+__export(__webpack_require__(239));
 
+
+/***/ }),
+
+/***/ 238:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_238__;
 
 /***/ }),
 
 /***/ 239:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_239__;
-
-/***/ }),
-
-/***/ 240:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -457,13 +457,13 @@ var opal_utils_1 = __webpack_require__(6);
 var cellx_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-var ObservableTreeList_1 = __webpack_require__(13);
-var OpalTreeListItem_1 = __webpack_require__(14);
+var ObservableTreeList_1 = __webpack_require__(12);
+var OpalTreeListItem_1 = __webpack_require__(13);
 exports.OpalTreeListItem = OpalTreeListItem_1.OpalTreeListItem;
-__webpack_require__(14);
-var _getListItemContext_1 = __webpack_require__(15);
-__webpack_require__(243);
-var template_nelm_1 = __webpack_require__(244);
+__webpack_require__(13);
+var _getListItemContext_1 = __webpack_require__(14);
+__webpack_require__(242);
+var template_nelm_1 = __webpack_require__(243);
 var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
 function toComparable(str) {
@@ -668,7 +668,7 @@ OpalTreeList.prototype._getListItemContext = _getListItemContext_1.default;
 
 /***/ }),
 
-/***/ 241:
+/***/ 240:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -686,7 +686,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 242:
+/***/ 241:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -695,7 +695,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 243:
+/***/ 242:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -713,7 +713,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 244:
+/***/ 243:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -736,10 +736,10 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
 
 /***/ }),
 
-/***/ 9:
+/***/ 8:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
 
 /***/ })
 

@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 172);
+/******/ 	return __webpack_require__(__webpack_require__.s = 171);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,21 +89,22 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
-/***/ 172:
+/***/ 171:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-var OpalRadioGroup_1 = __webpack_require__(173);
-exports.OpalRadioButton = OpalRadioGroup_1.OpalRadioButton;
-exports.OpalRadioGroup = OpalRadioGroup_1.OpalRadioGroup;
+__export(__webpack_require__(172));
 
 
 /***/ }),
 
-/***/ 173:
+/***/ 172:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -126,7 +127,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var OpalRadioButton_1 = __webpack_require__(174);
+var OpalRadioButton_1 = __webpack_require__(173);
 exports.OpalRadioButton = OpalRadioButton_1.OpalRadioButton;
 var forEach = Array.prototype.forEach;
 var OpalRadioGroup = /** @class */ (function (_super) {
@@ -164,7 +165,7 @@ exports.OpalRadioGroup = OpalRadioGroup;
 
 /***/ }),
 
-/***/ 174:
+/***/ 173:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -192,8 +193,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(175);
-var template_nelm_1 = __webpack_require__(176);
+__webpack_require__(174);
+var template_nelm_1 = __webpack_require__(175);
 var OpalRadioButton = /** @class */ (function (_super) {
     __extends(OpalRadioButton, _super);
     function OpalRadioButton() {
@@ -355,7 +356,7 @@ exports.OpalRadioButton = OpalRadioButton;
 
 /***/ }),
 
-/***/ 175:
+/***/ 174:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -373,7 +374,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 176:
+/***/ 175:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

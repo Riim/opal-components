@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 147);
+/******/ 	return __webpack_require__(__webpack_require__.s = 146);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,20 +89,22 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
-/***/ 147:
+/***/ 146:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-var OpalModal_1 = __webpack_require__(148);
-exports.OpalModal = OpalModal_1.OpalModal;
+__export(__webpack_require__(147));
 
 
 /***/ }),
 
-/***/ 148:
+/***/ 147:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -131,8 +133,8 @@ var opal_utils_1 = __webpack_require__(6);
 var cellx_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(149);
-var template_nelm_1 = __webpack_require__(150);
+__webpack_require__(148);
+var template_nelm_1 = __webpack_require__(149);
 var openedModals = [];
 var documentFocusListening;
 var documentKeyUpListening;
@@ -291,7 +293,7 @@ exports.OpalModal = OpalModal;
 
 /***/ }),
 
-/***/ 149:
+/***/ 148:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -309,7 +311,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 150:
+/***/ 149:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
