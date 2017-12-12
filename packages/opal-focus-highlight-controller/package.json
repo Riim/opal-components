@@ -1,0 +1,14 @@
+{
+  "name": "@riim/opal-focus-highlight-controller",
+  "version": "0.32.15",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dmitry Vibe",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

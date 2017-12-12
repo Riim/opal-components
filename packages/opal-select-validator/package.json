@@ -1,0 +1,20 @@
+{
+  "name": "@riim/opal-select-validator",
+  "version": "0.32.15",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dmitry Vibe",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@riim/opal-input-validator": "^0.32.15",
+    "@riim/opal-select": "^0.32.15",
+    "reflect-metadata": "^0.1.10",
+    "rionite": "^0.32.5"
+  }
+}

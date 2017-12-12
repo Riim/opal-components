@@ -1,0 +1,36 @@
+0 silly input [ 'cellx',
+0 silly input   'cellx-decorators',
+0 silly input   '@riim/next-tick',
+0 silly input   '@riim/opal-utils',
+0 silly input   '@riim/opal-button',
+0 silly input   '@riim/opal-dropdown',
+0 silly input   '@riim/opal-filtered-list',
+0 silly input   '@riim/opal-loaded-list',
+0 silly input   '@riim/opal-select-option',
+0 silly input   '@riim/opal-text-input' ]
+1 silly flags { _: [ 'add' ],
+1 silly flags   'reject-cycles': false,
+1 silly flags   rejectCycles: false,
+1 silly flags   scope: '@riim/opal-select',
+1 silly flags   args:
+1 silly flags    [ 'cellx',
+1 silly flags      'cellx-decorators',
+1 silly flags      '@riim/next-tick',
+1 silly flags      '@riim/opal-utils',
+1 silly flags      '@riim/opal-button',
+1 silly flags      '@riim/opal-dropdown',
+1 silly flags      '@riim/opal-filtered-list',
+1 silly flags      '@riim/opal-loaded-list',
+1 silly flags      '@riim/opal-select-option',
+1 silly flags      '@riim/opal-text-input' ] }
+2 verbose rootPath /Users/Riim/dev/opal-components
+3 info version 2.5.1
+4 silly isInitialized
+5 silly isInitialized true
+6 silly existsSync /Users/Riim/dev/opal-components/VERSION
+7 info scope @riim/opal-select
+8 silly initialize attempt
+9 error initialize callback with error
+10 error Error: Package `@riim/opal-select-option` doesn't exist
+10 error     at got.then.catch.err (/usr/local/lib/node_modules/lerna/node_modules/package-json/index.js:62:11)
+10 error     at <anonymous>

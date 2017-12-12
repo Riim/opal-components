@@ -1,8 +1,6 @@
 import { ObservableList } from 'cellx';
 import { BaseComponent, Component, formatters } from 'rionite';
-import '../../src/';
-import '../../src/focusHighlightController';
-import { ObservableTreeList } from '../../src/ObservableTreeList';
+import { ObservableTreeList } from '../../src/';
 import template from './template.nelm';
 
 formatters.log = (msg: any): any => {

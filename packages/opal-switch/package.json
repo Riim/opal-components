@@ -1,0 +1,21 @@
+{
+  "name": "@riim/opal-switch",
+  "version": "0.32.15",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dmitry Vibe",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@riim/next-tick": "^1.0.1",
+    "cellx": "^1.7.78",
+    "cellx-decorators": "^1.4.9",
+    "reflect-metadata": "^0.1.10",
+    "rionite": "^0.32.5"
+  }
+}

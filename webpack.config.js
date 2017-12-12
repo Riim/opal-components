@@ -1,4 +1,5 @@
 let path = require('path');
+let glob = require('glob');
 let webpack = require('webpack');
 let postcssCSSVariables = require('postcss-css-variables');
 let postcssRioniteComponent = require('@riim/postcss-rionite-component');
@@ -19,15 +20,31 @@ module.exports = env => {
 	];
 
 	return {
-		entry: {
-			OpalComponents: './src/index.ts',
-			focusHighlightController: './src/focusHighlightController.ts'
-		},
+		// entry: {
+		// 	OpalComponents: './src/index.ts',
+		// 	focusHighlightController: './src/focusHighlightController.ts'
+		// },
+
+		// entry: glob.sync('src/components/*/index.ts').reduce(
+		// 	(entries, p) => {
+		// 		// entries[p.split(path.sep).slice(-2)[0]] = path.join(__dirname, p);
+		// 		return entries;
+		// 	},
+		// 	{
+		// 		OpalComponents: './src/index.ts',
+		// 		focusHighlightController: './src/focusHighlightController.ts'
+		// 	}
+		// ),
+
+		entry: glob.sync('packages/*/src/index.ts').reduce((entries, p) => {
+			entries[p.split(path.sep).slice(-3)[0]] = path.join(__dirname, p);
+			return entries;
+		}, {}),
 
 		output: {
-			filename: '[name].js',
-			path: path.join(__dirname, 'dist'),
-			library: '[name]',
+			filename: '[name]/dist/index.js',
+			path: path.join(__dirname, 'packages'),
+			library: '@riim/[name]',
 			libraryTarget: 'umd'
 		},
 
@@ -93,7 +110,44 @@ module.exports = env => {
 			'created-browser-history',
 			'date-exists',
 			'reflect-metadata',
-			'rionite'
+			'rionite',
+
+			'@riim/opal-autosuggest',
+			'@riim/opal-button',
+			'@riim/opal-calendar',
+			'@riim/opal-checkbox',
+			'@riim/opal-date-input',
+			'@riim/opal-dropdown',
+			'@riim/opal-editable-text',
+			'@riim/opal-filtered-list',
+			'@riim/opal-focus-highlight-controller',
+			'@riim/opal-group',
+			'@riim/opal-icon',
+			'@riim/opal-input-mask',
+			'@riim/opal-input-validator',
+			'@riim/opal-loaded-list',
+			'@riim/opal-loader',
+			'@riim/opal-modal',
+			'@riim/opal-multirow',
+			'@riim/opal-multiselect',
+			'@riim/opal-notification',
+			'@riim/opal-popover',
+			'@riim/opal-radio-group',
+			'@riim/opal-router',
+			'@riim/opal-select',
+			'@riim/opal-select-validator',
+			'@riim/opal-sign-button',
+			'@riim/opal-slider',
+			'@riim/opal-switch',
+			'@riim/opal-switch-menu',
+			'@riim/opal-tabs',
+			'@riim/opal-tag-select',
+			'@riim/opal-text-input',
+			'@riim/opal-text-input-validator',
+			'@riim/opal-tree-list',
+			'@riim/opal-tree-select',
+			'@riim/opal-tree-tag-select',
+			'@riim/opal-utils'
 		],
 
 		plugins,
