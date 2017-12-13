@@ -380,9 +380,9 @@ function isIndeterminateItem(item, vm, dataTreeListItemValueFieldName, viewModel
                 isIndeterminateItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName);
         }));
 }
-function _getListItemContext(context, content) {
-    var $item = content.$context.$item;
-    return cellx_1.define(mixin_1.mixin(Object.create(context), content.$context, ['$component']), {
+function _getListItemContext(context, slot) {
+    var $item = slot.$context.$item;
+    return cellx_1.define(mixin_1.mixin(Object.create(context), slot.$context, ['$component']), {
         $selected: new cellx_1.Cell(function () {
             this.dataTreeList;
             return isSelectedItem($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
@@ -525,7 +525,7 @@ var OpalTreeList = /** @class */ (function (_super) {
             }));
         }
         else {
-            if (!this.$specifiedParams.has('dataTreeList')) {
+            if (!this.$specifiedParams || !this.$specifiedParams.has('dataTreeList')) {
                 throw new TypeError('Parameter "dataTreeList" is required');
             }
             cellx_1.define(this, 'dataTreeList', function () { return _this.paramDataTreeList; });

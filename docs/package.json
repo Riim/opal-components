@@ -1,0 +1,16 @@
+{
+  "name": "@riim/opal-components-docs",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dmitry Vibe",
+  "license": "MIT",
+  "dependencies": {
+    "cellx": "^1.7.78",
+    "opal-components": "^0.32.21",
+    "rionite": "^0.32.5"
+  }
+}

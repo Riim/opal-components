@@ -151,7 +151,7 @@ var OpalTreeSelect = /** @class */ (function (_super) {
             }));
         }
         else {
-            if (!this.$specifiedParams.has('dataTreeList')) {
+            if (!this.$specifiedParams || !this.$specifiedParams.has('dataTreeList')) {
                 throw new TypeError('Parameter "dataTreeList" is required');
             }
             cellx_1.define(this, 'dataTreeList', function () { return _this.paramDataTreeList; });

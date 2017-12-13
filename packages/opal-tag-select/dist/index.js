@@ -178,7 +178,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
     OpalTagSelect.prototype.initialize = function () {
         var _this = this;
         var dataListKeypath = this.paramDataListKeypath;
-        if (dataListKeypath || this.$specifiedParams.has('dataList')) {
+        if (dataListKeypath || this.$specifiedParams && this.$specifiedParams.has('dataList')) {
             cellx_1.define(this, 'dataList', dataListKeypath
                 ? new cellx_1.Cell(Function("return this." + dataListKeypath + ";"), {
                     context: this.ownerComponent || window

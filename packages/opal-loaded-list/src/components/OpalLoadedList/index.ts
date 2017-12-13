@@ -87,7 +87,7 @@ export class OpalLoadedList extends BaseComponent {
 			this.paramDataListItemSchema.text ||
 			(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema.text;
 
-		if (!this.$specifiedParams.has('dataProvider')) {
+		if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
 			throw new TypeError('Parameter "dataProvider" is required');
 		}
 
@@ -222,6 +222,6 @@ export class OpalLoadedList extends BaseComponent {
 	}
 
 	_getListItemContext(context: { [name: string]: any }, slot: RtSlot): { [name: string]: any } {
-		return mixin(Object.create(context), slot.$context, ['$component']);
+		return mixin(Object.create(context), slot.$context!, ['$component']);
 	}
 }

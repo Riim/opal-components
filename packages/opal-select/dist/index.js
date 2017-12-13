@@ -211,7 +211,7 @@ var OpalSelect = /** @class */ (function (_super) {
             }));
             this._isParamDataListSpecified = true;
         }
-        else if (this.$specifiedParams.has('dataList')) {
+        else if (this.$specifiedParams && this.$specifiedParams.has('dataList')) {
             cellx_1.define(this, 'dataList', function () { return _this.paramDataList; });
             this._isParamDataListSpecified = true;
         }

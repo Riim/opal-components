@@ -151,7 +151,7 @@ var OpalMultiselect = /** @class */ (function (_super) {
     });
     OpalMultiselect.prototype.initialize = function () {
         _super.prototype.initialize.call(this);
-        if (!this.$specifiedParams.has('dataProvider')) {
+        if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
             throw new TypeError('Parameter "dataProvider" is required');
         }
         this.dataProvider = this.paramDataProvider;

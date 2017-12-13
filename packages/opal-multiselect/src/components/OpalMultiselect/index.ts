@@ -63,7 +63,7 @@ export class OpalMultiselect extends OpalSelect {
 	initialize() {
 		super.initialize();
 
-		if (!this.$specifiedParams.has('dataProvider')) {
+		if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
 			throw new TypeError('Parameter "dataProvider" is required');
 		}
 

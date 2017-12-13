@@ -186,7 +186,7 @@ export class OpalSelect extends BaseComponent {
 			);
 
 			this._isParamDataListSpecified = true;
-		} else if (this.$specifiedParams.has('dataList')) {
+		} else if (this.$specifiedParams && this.$specifiedParams.has('dataList')) {
 			define(this, 'dataList', () => this.paramDataList);
 			this._isParamDataListSpecified = true;
 		} else {

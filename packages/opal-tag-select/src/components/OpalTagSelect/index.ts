@@ -92,7 +92,7 @@ export class OpalTagSelect extends BaseComponent {
 	initialize() {
 		let dataListKeypath = this.paramDataListKeypath;
 
-		if (dataListKeypath || this.$specifiedParams.has('dataList')) {
+		if (dataListKeypath || this.$specifiedParams && this.$specifiedParams.has('dataList')) {
 			define(
 				this,
 				'dataList',

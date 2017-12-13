@@ -178,7 +178,7 @@ var OpalLoadedList = /** @class */ (function (_super) {
         this._dataListItemTextFieldName =
             this.paramDataListItemSchema.text ||
                 this.constructor.defaultDataListItemSchema.text;
-        if (!this.$specifiedParams.has('dataProvider')) {
+        if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
             throw new TypeError('Parameter "dataProvider" is required');
         }
         this.dataProvider = this.paramDataProvider;

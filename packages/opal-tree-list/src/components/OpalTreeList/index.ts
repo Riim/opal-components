@@ -140,7 +140,7 @@ export class OpalTreeList extends BaseComponent {
 				})
 			);
 		} else {
-			if (!this.$specifiedParams.has('dataTreeList')) {
+			if (!this.$specifiedParams || !this.$specifiedParams.has('dataTreeList')) {
 				throw new TypeError('Parameter "dataTreeList" is required');
 			}
 
@@ -182,7 +182,7 @@ export class OpalTreeList extends BaseComponent {
 			let item: IDataTreeListItem = closestComponent(
 				component.parentComponent!,
 				OpalTreeListItem
-			)!.$context.$item;
+			)!.$context!.$item;
 
 			if (component.selected) {
 				for (

@@ -197,7 +197,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         this._dataListItemValueFieldName =
             dataListItemSchema.value || defaultDataListItemSchema.value;
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
-        if (!this.$specifiedParams.has('dataProvider')) {
+        if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
             throw new TypeError('Parameter "dataProvider" is required');
         }
         this.dataProvider = this.paramDataProvider;

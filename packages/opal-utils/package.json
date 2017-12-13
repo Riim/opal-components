@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-utils",
-  "version": "0.32.19",
+  "version": "0.32.22",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,6 +13,6 @@
     "access": "public"
   },
   "dependencies": {
-    "rionite": "^0.32.5"
+    "rionite": "^0.32.7"
   }
 }

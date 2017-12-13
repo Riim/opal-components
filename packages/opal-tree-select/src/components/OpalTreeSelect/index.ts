@@ -52,7 +52,7 @@ export class OpalTreeSelect extends OpalSelect {
 				})
 			);
 		} else {
-			if (!this.$specifiedParams.has('dataTreeList')) {
+			if (!this.$specifiedParams || !this.$specifiedParams.has('dataTreeList')) {
 				throw new TypeError('Parameter "dataTreeList" is required');
 			}
 
