@@ -6,6 +6,7 @@ export declare class OpalTab extends BaseComponent {
     paramSelected: boolean;
     paramTabIndex: number;
     paramFocused: boolean;
+    paramHidden: boolean;
     paramDisabled: boolean;
     readonly _tabIndex: number;
     elementAttached(): void;

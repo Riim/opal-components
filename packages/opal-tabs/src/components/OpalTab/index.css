@@ -59,6 +59,10 @@
 		}
 	}
 
+	@mod hidden {
+		display: none;
+	}
+
 	@mod disabled {
 		opacity: .5;
 		pointer-events: none;

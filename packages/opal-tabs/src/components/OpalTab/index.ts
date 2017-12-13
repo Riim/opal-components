@@ -13,6 +13,7 @@ export class OpalTab extends BaseComponent {
 	@Param paramSelected = false;
 	@Param paramTabIndex = 0;
 	@Param paramFocused = false;
+	@Param paramHidden = false;
 	@Param paramDisabled = false;
 
 	@Computed
