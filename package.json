@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.32.24",
+  "version": "0.32.25",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -71,7 +71,7 @@
     "@riim/opal-popover": "0.32.22",
     "@riim/opal-radio-group": "0.32.22",
     "@riim/opal-router": "0.32.22",
-    "@riim/opal-select": "0.32.22",
+    "@riim/opal-select": "0.32.23",
     "@riim/opal-select-validator": "0.32.22",
     "@riim/opal-sign-button": "0.32.22",
     "@riim/opal-slider": "0.32.22",

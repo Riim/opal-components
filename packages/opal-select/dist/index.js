@@ -494,7 +494,9 @@ var OpalSelect = /** @class */ (function (_super) {
         this._addNewItem(text).then(function (newItem) {
             button.paramLoading = false;
             button.enable();
-            _this._embedNewItem(newItem);
+            if (newItem) {
+                _this._embedNewItem(newItem);
+            }
         }, function () {
             button.paramLoading = false;
             button.enable();

@@ -523,11 +523,13 @@ export class OpalSelect extends BaseComponent {
 		button.disable();
 
 		this._addNewItem(text).then(
-			(newItem: { [name: string]: string }) => {
+			(newItem: { [name: string]: string } | false | null | undefined) => {
 				button.paramLoading = false;
 				button.enable();
 
-				this._embedNewItem(newItem);
+				if (newItem) {
+					this._embedNewItem(newItem);
+				}
 			},
 			() => {
 				button.paramLoading = false;
