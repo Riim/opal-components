@@ -572,7 +572,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalTabPanel{position:relative;display:none;padding:30px}.OpalTabPanel[shown]{display:block}";
+            style.textContent = "opal-tab-panel{display:none}.OpalTabPanel{position:relative;display:none;padding:30px}.OpalTabPanel[shown]{display:block}";
             head.appendChild(style);
             return style;
         }

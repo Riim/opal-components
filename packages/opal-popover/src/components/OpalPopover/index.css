@@ -1,3 +1,7 @@
+opal-popover {
+	display: none;
+}
+
 @component OpalPopover {
 	position: absolute;
 	z-index: 600;

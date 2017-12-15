@@ -1,3 +1,7 @@
+opal-tab-panel {
+	display: none;
+}
+
 @component OpalTabPanel {
 	position: relative;
 	display: none;
