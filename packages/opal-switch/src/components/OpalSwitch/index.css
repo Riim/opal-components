@@ -29,7 +29,7 @@
 			&:focus {
 				outline: none;
 
-				body:not(._no-focus-highlight) & {
+				body:not(._noFocusHighlight) & {
 					@el thumb {
 						&::after {
 							position: absolute;

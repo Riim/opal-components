@@ -759,7 +759,7 @@ export class OpalSelect extends BaseComponent {
 				if (this._opened) {
 					if (document.activeElement == document.body) {
 						if (this._focusOptions()) {
-							document.body.classList.remove('_no-focus-highlight');
+							document.body.classList.remove('_noFocusHighlight');
 						}
 					} else {
 						let options = this.options;
@@ -770,7 +770,7 @@ export class OpalSelect extends BaseComponent {
 									let option = options[--i];
 
 									if (!option.paramDisabled && option.element.offsetWidth) {
-										document.body.classList.remove('_no-focus-highlight');
+										document.body.classList.remove('_noFocusHighlight');
 										option.focus();
 										break;
 									}
@@ -792,7 +792,7 @@ export class OpalSelect extends BaseComponent {
 				if (this._opened) {
 					if (document.activeElement == document.body) {
 						if (this._focusOptions()) {
-							document.body.classList.remove('_no-focus-highlight');
+							document.body.classList.remove('_noFocusHighlight');
 						}
 					} else {
 						let options = this.options;
@@ -803,7 +803,7 @@ export class OpalSelect extends BaseComponent {
 									let option = options[++i];
 
 									if (!option.paramDisabled && option.element.offsetWidth) {
-										document.body.classList.remove('_no-focus-highlight');
+										document.body.classList.remove('_noFocusHighlight');
 										option.focus();
 										break;
 									}

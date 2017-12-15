@@ -3,6 +3,7 @@ import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalPopover extends BaseComponent {
     paramPosition: string;
+    paramPositionOffset: number;
     paramAutoDirection: boolean;
     paramAutoClosing: boolean;
     paramOpened: boolean;

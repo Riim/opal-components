@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-select",
-  "version": "0.32.23",
+  "version": "0.32.27",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,17 +14,17 @@
   },
   "dependencies": {
     "@riim/next-tick": "^1.0.1",
-    "@riim/opal-button": "^0.32.22",
-    "@riim/opal-dropdown": "^0.32.22",
-    "@riim/opal-filtered-list": "^0.32.22",
-    "@riim/opal-icon": "^0.32.22",
-    "@riim/opal-loaded-list": "^0.32.22",
-    "@riim/opal-loader": "^0.32.22",
-    "@riim/opal-text-input": "^0.32.22",
-    "@riim/opal-utils": "^0.32.22",
+    "@riim/opal-button": "^0.32.27",
+    "@riim/opal-dropdown": "^0.32.27",
+    "@riim/opal-filtered-list": "^0.32.27",
+    "@riim/opal-icon": "^0.32.27",
+    "@riim/opal-loaded-list": "^0.32.27",
+    "@riim/opal-loader": "^0.32.27",
+    "@riim/opal-text-input": "^0.32.27",
+    "@riim/opal-utils": "^0.32.27",
     "cellx": "^1.7.78",
     "cellx-decorators": "^1.4.9",
     "reflect-metadata": "^0.1.10",
-    "rionite": "^0.32.7"
+    "rionite": "^0.32.9"
   }
 }

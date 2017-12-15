@@ -667,7 +667,7 @@ var OpalSelect = /** @class */ (function (_super) {
                 if (this._opened) {
                     if (document.activeElement == document.body) {
                         if (this._focusOptions()) {
-                            document.body.classList.remove('_no-focus-highlight');
+                            document.body.classList.remove('_noFocusHighlight');
                         }
                     }
                     else {
@@ -677,7 +677,7 @@ var OpalSelect = /** @class */ (function (_super) {
                                 do {
                                     var option = options[--i];
                                     if (!option.paramDisabled && option.element.offsetWidth) {
-                                        document.body.classList.remove('_no-focus-highlight');
+                                        document.body.classList.remove('_noFocusHighlight');
                                         option.focus();
                                         break;
                                     }
@@ -697,7 +697,7 @@ var OpalSelect = /** @class */ (function (_super) {
                 if (this._opened) {
                     if (document.activeElement == document.body) {
                         if (this._focusOptions()) {
-                            document.body.classList.remove('_no-focus-highlight');
+                            document.body.classList.remove('_noFocusHighlight');
                         }
                     }
                     else {
@@ -707,7 +707,7 @@ var OpalSelect = /** @class */ (function (_super) {
                                 do {
                                     var option = options[++i];
                                     if (!option.paramDisabled && option.element.offsetWidth) {
-                                        document.body.classList.remove('_no-focus-highlight');
+                                        document.body.classList.remove('_noFocusHighlight');
                                         option.focus();
                                         break;
                                     }

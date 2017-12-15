@@ -14,6 +14,7 @@ import template from './template.nelm';
 })
 export class OpalPopover extends BaseComponent {
 	@Param paramPosition = 'right';
+	@Param paramPositionOffset = 0;
 	@Param paramAutoDirection = true;
 	@Param paramAutoClosing = false;
 	@Param paramOpened = false;
@@ -157,11 +158,14 @@ export class OpalPopover extends BaseComponent {
 		arrowStyle.top = arrowStyle.right = arrowStyle.bottom = arrowStyle.left = '';
 
 		if (position.length == 2) {
+			(el.style as any)[position[1]] = this.paramPositionOffset + 'px';
+
 			(arrowStyle as any)[position[1]] =
 				el.offsetParent[
 					position[1] == 'left' || position[1] == 'right' ? 'clientWidth' : 'clientHeight'
 				] /
-					2 +
+					2 -
+				this.paramPositionOffset +
 				'px';
 		}
 

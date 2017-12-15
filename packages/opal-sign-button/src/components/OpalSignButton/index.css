@@ -16,7 +16,7 @@
 		&:focus {
 			outline: none;
 
-			body:not(._no-focus-highlight) &::after {
+			body:not(._noFocusHighlight) &::after {
 				position: absolute;
 				top: -1px;
 				right: 0;

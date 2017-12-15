@@ -38,7 +38,7 @@
 			&:focus {
 				outline: none;
 
-				body:not(._no-focus-highlight) &::after {
+				body:not(._noFocusHighlight) &::after {
 					position: absolute;
 					top: 2px;
 					right: 2px;
@@ -140,7 +140,7 @@
 					&:focus {
 						outline: none;
 
-						body:not(._no-focus-highlight) &::after {
+						body:not(._noFocusHighlight) &::after {
 							position: absolute;
 							top: 2px;
 							right: 2px;

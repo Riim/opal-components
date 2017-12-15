@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-loader",
-  "version": "0.32.22",
+  "version": "0.32.27",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,6 +14,6 @@
   },
   "dependencies": {
     "reflect-metadata": "^0.1.10",
-    "rionite": "^0.32.7"
+    "rionite": "^0.32.9"
   }
 }
