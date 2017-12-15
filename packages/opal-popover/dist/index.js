@@ -139,6 +139,7 @@ var OpalPopover = /** @class */ (function (_super) {
     function OpalPopover() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramPosition = 'right';
+        _this.paramPositionOffset = 0;
         _this.paramAutoDirection = true;
         _this.paramAutoClosing = false;
         _this.paramOpened = false;
@@ -252,9 +253,11 @@ var OpalPopover = /** @class */ (function (_super) {
         var arrowStyle = this.$('arrow').style;
         arrowStyle.top = arrowStyle.right = arrowStyle.bottom = arrowStyle.left = '';
         if (position.length == 2) {
+            el.style[position[1]] = this.paramPositionOffset + 'px';
             arrowStyle[position[1]] =
                 el.offsetParent[position[1] == 'left' || position[1] == 'right' ? 'clientWidth' : 'clientHeight'] /
-                    2 +
+                    2 -
+                    this.paramPositionOffset +
                     'px';
         }
         if (this.paramAutoClosing) {
@@ -293,6 +296,10 @@ var OpalPopover = /** @class */ (function (_super) {
         rionite_1.Param,
         __metadata("design:type", Object)
     ], OpalPopover.prototype, "paramPosition", void 0);
+    __decorate([
+        rionite_1.Param,
+        __metadata("design:type", Object)
+    ], OpalPopover.prototype, "paramPositionOffset", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)

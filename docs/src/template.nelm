@@ -1,20 +1,19 @@
 style {
 	`
-	.OpalIcon {
+	._opalIcons > .OpalIcon {
 		margin: 10px;
 		width: 32px;
 		height: 32px;
-
 	}
 
-	.OpalIcon svg {
+	._opalIcons > .OpalIcon svg {
 		stroke-width: 2px;
 	}
 	`
 }
 
 h1 { 'OpalIcon' }
-p {
+p (class=_opalIcons) {
 	OpalIcon (name=alert)
 	OpalIcon (name=archive)
 	OpalIcon (name=arrowBottom)
@@ -266,10 +265,10 @@ p {
 	div (
 		style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;
 	) {
-		OpalPopover (position=top-right, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		OpalPopover (position=right-bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		OpalPopover (position=bottom-left, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		OpalPopover (position=left-top, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=top-right, position-offset=-10, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=right-bottom, position-offset=-10, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=bottom-left, position-offset=-10, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=left-top, position-offset=-10, auto-direction=no, opened) { 'Popover' br 'Popover' }
 	}
 }
 

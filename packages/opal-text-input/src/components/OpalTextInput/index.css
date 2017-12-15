@@ -73,7 +73,7 @@
 		&:focus {
 			outline: none;
 
-			body:not(._no-focus-highlight) & {
+			body:not(._noFocusHighlight) & {
 				outline: 1px solid hsl(208,94%,54%);
 			}
 		}
