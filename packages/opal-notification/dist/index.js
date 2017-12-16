@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx"), require("@riim/map-set-polyfill"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx"), require("@riim/opal-icon"), require("@riim/map-set-polyfill"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx", "@riim/map-set-polyfill"], factory);
+		define(["rionite", "reflect-metadata", "cellx", "@riim/opal-icon", "@riim/map-set-polyfill"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-notification"] = factory(require("rionite"), require("reflect-metadata"), require("cellx"), require("@riim/map-set-polyfill"));
+		exports["@riim/opal-notification"] = factory(require("rionite"), require("reflect-metadata"), require("cellx"), require("@riim/opal-icon"), require("@riim/map-set-polyfill"));
 	else
-		root["@riim/opal-notification"] = factory(root["rionite"], root["reflect-metadata"], root["cellx"], root["@riim/map-set-polyfill"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_164__) {
+		root["@riim/opal-notification"] = factory(root["rionite"], root["reflect-metadata"], root["cellx"], root["@riim/opal-icon"], root["@riim/map-set-polyfill"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_177__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 162);
+/******/ 	return __webpack_require__(__webpack_require__.s = 175);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,7 +89,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
-/***/ 162:
+/***/ 175:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98,13 +98,14 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(5);
 __webpack_require__(1);
-__export(__webpack_require__(163));
+__export(__webpack_require__(176));
 
 
 /***/ }),
 
-/***/ 163:
+/***/ 176:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -129,11 +130,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var map_set_polyfill_1 = __webpack_require__(164);
+var map_set_polyfill_1 = __webpack_require__(177);
 var cellx_1 = __webpack_require__(3);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(165);
-var template_nelm_1 = __webpack_require__(166);
+__webpack_require__(178);
+var template_nelm_1 = __webpack_require__(179);
 var container;
 var shownNotifications = new map_set_polyfill_1.Set();
 function initContainer(notification) {
@@ -277,14 +278,14 @@ exports.OpalNotification = OpalNotification;
 
 /***/ }),
 
-/***/ 164:
+/***/ 177:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_164__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_177__;
 
 /***/ }),
 
-/***/ 165:
+/***/ 178:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -302,7 +303,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 166:
+/***/ 179:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -315,6 +316,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+
+/***/ }),
+
+/***/ 5:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
 
 /***/ })
 

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/opal-utils"), require("@riim/opal-calendar"), require("date-exists"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("@riim/gettext"), require("@riim/opal-utils"), require("@riim/opal-dropdown"), require("@riim/opal-calendar"), require("@riim/opal-input-mask"), require("@riim/opal-text-input-validator"), require("date-exists"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "@riim/gettext", "@riim/opal-utils", "@riim/opal-calendar", "date-exists"], factory);
+		define(["rionite", "reflect-metadata", "@riim/opal-icon", "@riim/opal-text-input", "@riim/gettext", "@riim/opal-utils", "@riim/opal-dropdown", "@riim/opal-calendar", "@riim/opal-input-mask", "@riim/opal-text-input-validator", "date-exists"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-date-input"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/opal-utils"), require("@riim/opal-calendar"), require("date-exists"));
+		exports["@riim/opal-date-input"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("@riim/gettext"), require("@riim/opal-utils"), require("@riim/opal-dropdown"), require("@riim/opal-calendar"), require("@riim/opal-input-mask"), require("@riim/opal-text-input-validator"), require("date-exists"));
 	else
-		root["@riim/opal-date-input"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/gettext"], root["@riim/opal-utils"], root["@riim/opal-calendar"], root["date-exists"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_34__, __WEBPACK_EXTERNAL_MODULE_35__) {
+		root["@riim/opal-date-input"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["@riim/gettext"], root["@riim/opal-utils"], root["@riim/opal-dropdown"], root["@riim/opal-calendar"], root["@riim/opal-input-mask"], root["@riim/opal-text-input-validator"], root["date-exists"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_19__, __WEBPACK_EXTERNAL_MODULE_45__, __WEBPACK_EXTERNAL_MODULE_46__, __WEBPACK_EXTERNAL_MODULE_48__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,26 +70,95 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 32);
+/******/ 	return __webpack_require__(__webpack_require__.s = 44);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
-
-/***/ 1:
+/* 1 */
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */
+/***/ (function(module, exports) {
 
-/***/ 32:
+module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
+
+/***/ }),
+/* 8 */,
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
+
+/***/ }),
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
+
+/***/ }),
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_19__;
+
+/***/ }),
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98,13 +167,30 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(19);
+__webpack_require__(14);
+__webpack_require__(5);
+__webpack_require__(45);
+__webpack_require__(6);
+__webpack_require__(46);
 __webpack_require__(1);
-__export(__webpack_require__(33));
+__export(__webpack_require__(47));
 
 
 /***/ }),
+/* 45 */
+/***/ (function(module, exports) {
 
-/***/ 33:
+module.exports = __WEBPACK_EXTERNAL_MODULE_45__;
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_46__;
+
+/***/ }),
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -129,13 +215,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var gettext_1 = __webpack_require__(5);
-var opal_calendar_1 = __webpack_require__(34);
-var opal_utils_1 = __webpack_require__(6);
-var date_exists_1 = __webpack_require__(35);
+var gettext_1 = __webpack_require__(7);
+var opal_calendar_1 = __webpack_require__(19);
+var opal_utils_1 = __webpack_require__(9);
+var date_exists_1 = __webpack_require__(48);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(36);
-var template_nelm_1 = __webpack_require__(37);
+__webpack_require__(49);
+var template_nelm_1 = __webpack_require__(50);
 function pad(num) {
     return (num < 10 ? '0' : '') + num;
 }
@@ -311,22 +397,13 @@ exports.OpalDateInput = OpalDateInput;
 
 
 /***/ }),
-
-/***/ 34:
+/* 48 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_34__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_48__;
 
 /***/ }),
-
-/***/ 35:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_35__;
-
-/***/ }),
-
-/***/ 36:
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -343,29 +420,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-
-/***/ 37:
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nOpalTextInputValidator/text-input-validator {\nOpalInputMask/input-mask (mask={paramMask}) {\nOpalTextInput/text-input (\nclass=OpalInputValidator__text-input OpalInputMask__text-input,\nvalue={paramValue},\nplaceholder={paramPlaceholder},\nclearable\n) {\nOpalIcon/text-input-control-icon (class=OpalTextInput__control-icon, name=calendar)\n}\n}\n@IfThen (if=paramRequired) {\nOpalTextInputValidatorRule/text-input-validator-rule-required (\nrequired,\npopover-position={paramPopoverPosition}\n) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nOpalTextInputValidatorRule/text-input-validator-rule-date-exists (\ntest={dateExists},\npopover-position={paramPopoverPosition}\n) {\n'{constructor.i18n.nonExistentDate}'\n}\nOpalTextInputValidatorRule/text-input-validator-rule-date-in-range (\ntest={isDateInRange},\npopover-position={paramPopoverPosition}\n) {\n'{constructor.i18n.invalidDateRange}'\n}\n}\nOpalDropdown/calendar-menu (auto-height=no) {\nOpalCalendar/calendar (\nfrom-date={paramFromDate},\nto-date={paramToDate},\nvalue={paramValue},\ndate-delimiter=.\n)\n}\n}");
 
-/***/ }),
-
-/***/ 5:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
-
-/***/ }),
-
-/***/ 6:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
-
 /***/ })
-
-/******/ });
+/******/ ]);
 });

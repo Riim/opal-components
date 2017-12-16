@@ -7,7 +7,7 @@
 		exports["@riim/opal-router"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/hyphenize"), require("created-browser-history"));
 	else
 		root["@riim/opal-router"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/hyphenize"], root["created-browser-history"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_179__, __WEBPACK_EXTERNAL_MODULE_180__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_192__, __WEBPACK_EXTERNAL_MODULE_193__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 176);
+/******/ 	return __webpack_require__(__webpack_require__.s = 189);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,23 +89,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
-/***/ 10:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType;
-(function (PathNodeType) {
-    PathNodeType[PathNodeType["SIMPLE"] = 0] = "SIMPLE";
-    PathNodeType[PathNodeType["OPTIONAL"] = 1] = "OPTIONAL";
-    PathNodeType[PathNodeType["INSERT"] = 2] = "INSERT";
-})(PathNodeType = exports.PathNodeType || (exports.PathNodeType = {}));
-
-
-/***/ }),
-
-/***/ 176:
+/***/ 189:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -115,12 +99,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-__export(__webpack_require__(177));
+__export(__webpack_require__(190));
 
 
 /***/ }),
 
-/***/ 177:
+/***/ 190:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145,16 +129,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var camelize_1 = __webpack_require__(178);
-var hyphenize_1 = __webpack_require__(179);
-var created_browser_history_1 = __webpack_require__(180);
+var camelize_1 = __webpack_require__(191);
+var hyphenize_1 = __webpack_require__(192);
+var created_browser_history_1 = __webpack_require__(193);
 var rionite_1 = __webpack_require__(0);
-var OpalRoute_1 = __webpack_require__(181);
+var OpalRoute_1 = __webpack_require__(194);
 exports.OpalRoute = OpalRoute_1.OpalRoute;
-var escapeRegExp_1 = __webpack_require__(182);
-__webpack_require__(183);
-var parsePath_1 = __webpack_require__(184);
-var PathNodeType_1 = __webpack_require__(10);
+var escapeRegExp_1 = __webpack_require__(195);
+__webpack_require__(196);
+var parsePath_1 = __webpack_require__(197);
+var PathNodeType_1 = __webpack_require__(20);
 var forEach = Array.prototype.forEach;
 function isReadonlyProperty(propConfig) {
     return !!(propConfig &&
@@ -382,7 +366,7 @@ exports.OpalRouter = OpalRouter;
 
 /***/ }),
 
-/***/ 178:
+/***/ 191:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -402,21 +386,21 @@ exports.camelize = camelize;
 
 /***/ }),
 
-/***/ 179:
+/***/ 192:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_179__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_192__;
 
 /***/ }),
 
-/***/ 180:
+/***/ 193:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_180__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_193__;
 
 /***/ }),
 
-/***/ 181:
+/***/ 194:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -465,7 +449,7 @@ exports.OpalRoute = OpalRoute;
 
 /***/ }),
 
-/***/ 182:
+/***/ 195:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -480,7 +464,7 @@ exports.escapeRegExp = escapeRegExp;
 
 /***/ }),
 
-/***/ 183:
+/***/ 196:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -498,13 +482,13 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 184:
+/***/ 197:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType_1 = __webpack_require__(10);
+var PathNodeType_1 = __webpack_require__(20);
 var reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
     var ctx = PathNodeType_1.PathNodeType.SIMPLE;
@@ -654,6 +638,22 @@ function parsePath(path) {
     }
 }
 exports.parsePath = parsePath;
+
+
+/***/ }),
+
+/***/ 20:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var PathNodeType;
+(function (PathNodeType) {
+    PathNodeType[PathNodeType["SIMPLE"] = 0] = "SIMPLE";
+    PathNodeType[PathNodeType["OPTIONAL"] = 1] = "OPTIONAL";
+    PathNodeType[PathNodeType["INSERT"] = 2] = "INSERT";
+})(PathNodeType = exports.PathNodeType || (exports.PathNodeType = {}));
 
 
 /***/ })

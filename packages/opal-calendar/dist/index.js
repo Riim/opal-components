@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-select"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx-decorators", "@riim/next-tick"], factory);
+		define(["rionite", "reflect-metadata", "cellx-decorators", "@riim/next-tick", "@riim/opal-icon", "@riim/opal-select"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-calendar"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"));
+		exports["@riim/opal-calendar"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-select"));
 	else
-		root["@riim/opal-calendar"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["@riim/next-tick"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_4__) {
+		root["@riim/opal-calendar"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["@riim/next-tick"], root["@riim/opal-icon"], root["@riim/opal-select"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_8__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 22);
+/******/ 	return __webpack_require__(__webpack_require__.s = 34);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -99,10 +99,20 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
 
 /***/ }),
-/* 5 */,
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
+
+/***/ }),
 /* 6 */,
 /* 7 */,
-/* 8 */,
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+
+/***/ }),
 /* 9 */,
 /* 10 */,
 /* 11 */,
@@ -116,7 +126,19 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
 /* 19 */,
 /* 20 */,
 /* 21 */,
-/* 22 */
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -125,12 +147,14 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(5);
+__webpack_require__(8);
 __webpack_require__(1);
-__export(__webpack_require__(23));
+__export(__webpack_require__(35));
 
 
 /***/ }),
-/* 23 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -158,12 +182,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-var formatDate_1 = __webpack_require__(24);
+var formatDate_1 = __webpack_require__(36);
 exports.formatDate = formatDate_1.formatDate;
-__webpack_require__(25);
-var parseDate_1 = __webpack_require__(26);
+__webpack_require__(37);
+var parseDate_1 = __webpack_require__(38);
 exports.parseDate = parseDate_1.parseDate;
-var template_nelm_1 = __webpack_require__(27);
+var template_nelm_1 = __webpack_require__(39);
 function getTodayDate() {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -553,7 +577,7 @@ exports.OpalCalendar = OpalCalendar;
 
 
 /***/ }),
-/* 24 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -571,7 +595,7 @@ exports.formatDate = formatDate;
 
 
 /***/ }),
-/* 25 */
+/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -588,7 +612,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 26 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -602,7 +626,7 @@ exports.parseDate = parseDate;
 
 
 /***/ }),
-/* 27 */
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"), require("@riim/opal-text-input"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx-decorators", "@riim/next-tick"], factory);
+		define(["rionite", "reflect-metadata", "cellx-decorators", "@riim/next-tick", "@riim/opal-text-input"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-input-mask"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"));
+		exports["@riim/opal-input-mask"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"), require("@riim/opal-text-input"));
 	else
-		root["@riim/opal-input-mask"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["@riim/next-tick"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_4__) {
+		root["@riim/opal-input-mask"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["@riim/next-tick"], root["@riim/opal-text-input"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_6__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 127);
+/******/ 	return __webpack_require__(__webpack_require__.s = 140);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,7 +89,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
-/***/ 127:
+/***/ 140:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98,13 +98,14 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(6);
 __webpack_require__(1);
-__export(__webpack_require__(128));
+__export(__webpack_require__(141));
 
 
 /***/ }),
 
-/***/ 128:
+/***/ 141:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -132,9 +133,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-var OpalInputMaskDefinition_1 = __webpack_require__(129);
+var OpalInputMaskDefinition_1 = __webpack_require__(142);
 exports.OpalInputMaskDefinition = OpalInputMaskDefinition_1.OpalInputMaskDefinition;
-var template_nelm_1 = __webpack_require__(131);
+var template_nelm_1 = __webpack_require__(144);
 var forEach = Array.prototype.forEach;
 var iPhone = /iphone/i.test(navigator.userAgent);
 var ie11 = !window.ActiveXObject && 'ActiveXObject' in window;
@@ -464,7 +465,7 @@ exports.OpalInputMask = OpalInputMask;
 
 /***/ }),
 
-/***/ 129:
+/***/ 142:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -490,7 +491,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(130);
+__webpack_require__(143);
 var OpalInputMaskDefinition = /** @class */ (function (_super) {
     __extends(OpalInputMaskDefinition, _super);
     function OpalInputMaskDefinition() {
@@ -514,7 +515,7 @@ exports.OpalInputMaskDefinition = OpalInputMaskDefinition;
 
 /***/ }),
 
-/***/ 130:
+/***/ 143:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -532,7 +533,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 131:
+/***/ 144:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -552,6 +553,13 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ }),
+
+/***/ 6:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
 
 /***/ })
 

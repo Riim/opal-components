@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-select-validator",
-  "version": "0.32.27",
+  "version": "0.32.29",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,8 +13,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-input-validator": "^0.32.27",
-    "@riim/opal-select": "^0.32.27",
+    "@riim/opal-input-validator": "^0.32.29",
+    "@riim/opal-select": "^0.32.29",
     "reflect-metadata": "^0.1.10",
     "rionite": "^0.32.9"
   }

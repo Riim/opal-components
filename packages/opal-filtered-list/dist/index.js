@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/debounce-throttle"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("@riim/gettext"), require("@riim/opal-loaded-list"), require("@riim/debounce-throttle"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "@riim/gettext", "@riim/debounce-throttle"], factory);
+		define(["rionite", "reflect-metadata", "@riim/opal-icon", "@riim/opal-text-input", "@riim/gettext", "@riim/opal-loaded-list", "@riim/debounce-throttle"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-filtered-list"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/debounce-throttle"));
+		exports["@riim/opal-filtered-list"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("@riim/gettext"), require("@riim/opal-loaded-list"), require("@riim/debounce-throttle"));
 	else
-		root["@riim/opal-filtered-list"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/gettext"], root["@riim/debounce-throttle"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_48__) {
+		root["@riim/opal-filtered-list"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["@riim/gettext"], root["@riim/opal-loaded-list"], root["@riim/debounce-throttle"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_61__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 46);
+/******/ 	return __webpack_require__(__webpack_require__.s = 59);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,7 +89,21 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
-/***/ 46:
+/***/ 12:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_12__;
+
+/***/ }),
+
+/***/ 5:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
+
+/***/ }),
+
+/***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98,13 +112,23 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(5);
+__webpack_require__(12);
+__webpack_require__(6);
 __webpack_require__(1);
-__export(__webpack_require__(47));
+__export(__webpack_require__(60));
 
 
 /***/ }),
 
-/***/ 47:
+/***/ 6:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
+
+/***/ }),
+
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -126,11 +150,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var debounce_throttle_1 = __webpack_require__(48);
-var gettext_1 = __webpack_require__(5);
+var debounce_throttle_1 = __webpack_require__(61);
+var gettext_1 = __webpack_require__(7);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(49);
-var template_nelm_1 = __webpack_require__(50);
+__webpack_require__(62);
+var template_nelm_1 = __webpack_require__(63);
 var OpalFilteredList = /** @class */ (function (_super) {
     __extends(OpalFilteredList, _super);
     function OpalFilteredList() {
@@ -173,14 +197,14 @@ exports.OpalFilteredList = OpalFilteredList;
 
 /***/ }),
 
-/***/ 48:
+/***/ 61:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_48__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_61__;
 
 /***/ }),
 
-/***/ 49:
+/***/ 62:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -198,19 +222,19 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 5:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
-
-/***/ }),
-
-/***/ 50:
+/***/ 63:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=query-input-slot) {\nRtSlot/query-input-slot (for=query-input) {\nOpalTextInput/query-input (\nplaceholder={constructor.i18n.queryInputPlaceholder},\nclearable\n) {\nOpalIcon/query-input-control-icon (class=OpalTextInput__control-icon, name=search)\n}\n}\n}\nRtSlot/list-slot (for=list)\n}");
+
+/***/ }),
+
+/***/ 7:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
 
 /***/ })
 

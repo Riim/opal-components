@@ -7,7 +7,7 @@
 		exports["@riim/opal-modal"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("cellx"), require("@riim/opal-utils"));
 	else
 		root["@riim/opal-modal"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["cellx"], root["@riim/opal-utils"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_6__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_9__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 146);
+/******/ 	return __webpack_require__(__webpack_require__.s = 159);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,7 +89,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
-/***/ 146:
+/***/ 159:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -99,12 +99,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-__export(__webpack_require__(147));
+__export(__webpack_require__(160));
 
 
 /***/ }),
 
-/***/ 147:
+/***/ 160:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -129,12 +129,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_utils_1 = __webpack_require__(6);
+var opal_utils_1 = __webpack_require__(9);
 var cellx_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(148);
-var template_nelm_1 = __webpack_require__(149);
+__webpack_require__(161);
+var template_nelm_1 = __webpack_require__(162);
 var openedModals = [];
 var documentFocusListening;
 var documentKeyUpListening;
@@ -293,7 +293,7 @@ exports.OpalModal = OpalModal;
 
 /***/ }),
 
-/***/ 148:
+/***/ 161:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -311,7 +311,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 149:
+/***/ 162:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -334,10 +334,10 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ }),
 
-/***/ 6:
+/***/ 9:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
 
 /***/ })
 

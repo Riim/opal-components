@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-loader"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx-decorators", "@riim/next-tick"], factory);
+		define(["rionite", "reflect-metadata", "cellx-decorators", "@riim/next-tick", "@riim/opal-icon", "@riim/opal-loader"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-text-input"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"));
+		exports["@riim/opal-text-input"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-loader"));
 	else
-		root["@riim/opal-text-input"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["@riim/next-tick"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_4__) {
+		root["@riim/opal-text-input"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["@riim/next-tick"], root["@riim/opal-icon"], root["@riim/opal-loader"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 233);
+/******/ 	return __webpack_require__(__webpack_require__.s = 246);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,6 +89,13 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
+/***/ 10:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
+
+/***/ }),
+
 /***/ 2:
 /***/ (function(module, exports) {
 
@@ -96,7 +103,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ }),
 
-/***/ 233:
+/***/ 246:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,13 +112,15 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(5);
+__webpack_require__(10);
 __webpack_require__(1);
-__export(__webpack_require__(234));
+__export(__webpack_require__(247));
 
 
 /***/ }),
 
-/***/ 234:
+/***/ 247:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -139,8 +148,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(235);
-var template_nelm_1 = __webpack_require__(236);
+__webpack_require__(248);
+var template_nelm_1 = __webpack_require__(249);
 var OpalTextInput = /** @class */ (function (_super) {
     __extends(OpalTextInput, _super);
     function OpalTextInput() {
@@ -444,7 +453,7 @@ exports.OpalTextInput = OpalTextInput;
 
 /***/ }),
 
-/***/ 235:
+/***/ 248:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -462,7 +471,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 236:
+/***/ 249:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -475,6 +484,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ }),
+
+/***/ 5:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
 
 /***/ })
 
