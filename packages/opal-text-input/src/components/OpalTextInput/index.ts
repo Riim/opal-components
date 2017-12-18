@@ -87,12 +87,14 @@ export class OpalTextInput extends BaseComponent {
 					offsetHeight + textField.scrollHeight - textField.clientHeight;
 				this._fixHeight();
 			} else {
+				let style = getComputedStyle(textField);
+
 				this._initialHeight =
-					parseInt(getComputedStyle(textField).lineHeight!, 10) * this.paramRows +
-					parseInt(getComputedStyle(textField).borderTop!, 10) +
-					parseInt(getComputedStyle(textField).borderBottom!, 10) +
-					parseInt(getComputedStyle(textField).paddingTop!, 10) +
-					parseInt(getComputedStyle(textField).paddingBottom!, 10);
+					parseInt(style.paddingTop!, 10) +
+					parseInt(style.paddingBottom!, 10) +
+					parseInt(style.borderTop!, 10) +
+					parseInt(style.borderBottom!, 10) +
+					parseInt(style.lineHeight!, 10) * this.paramRows;
 
 				textField.style.height = this._initialHeight + 'px';
 			}
@@ -122,6 +124,7 @@ export class OpalTextInput extends BaseComponent {
 	_onParamValueChange(evt: IEvent) {
 		if (this.textField.value != evt.data.value) {
 			this.textField.value = evt.data.value;
+			this._fixHeight();
 		}
 	}
 
@@ -217,15 +220,18 @@ export class OpalTextInput extends BaseComponent {
 
 	_fixHeight() {
 		let textField = this.textField;
-		let lineHeight = parseInt(getComputedStyle(textField).lineHeight!, 10);
 
-		textField.style.height = this._initialHeight - lineHeight + 'px';
-		textField.style.height =
-			textField.offsetHeight +
-			textField.scrollHeight -
-			textField.clientHeight +
-			lineHeight +
-			'px';
+		if (textField.offsetHeight) {
+			let lineHeight = parseInt(getComputedStyle(textField).lineHeight!, 10);
+
+			textField.style.height = this._initialHeight - lineHeight + 'px';
+			textField.style.height =
+				textField.offsetHeight +
+				textField.scrollHeight -
+				textField.clientHeight +
+				lineHeight +
+				'px';
+		}
 	}
 
 	clear(): OpalTextInput {

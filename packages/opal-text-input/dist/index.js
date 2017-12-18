@@ -218,12 +218,13 @@ var OpalTextInput = /** @class */ (function (_super) {
                 this._fixHeight();
             }
             else {
+                var style = getComputedStyle(textField);
                 this._initialHeight =
-                    parseInt(getComputedStyle(textField).lineHeight, 10) * this.paramRows +
-                        parseInt(getComputedStyle(textField).borderTop, 10) +
-                        parseInt(getComputedStyle(textField).borderBottom, 10) +
-                        parseInt(getComputedStyle(textField).paddingTop, 10) +
-                        parseInt(getComputedStyle(textField).paddingBottom, 10);
+                    parseInt(style.paddingTop, 10) +
+                        parseInt(style.paddingBottom, 10) +
+                        parseInt(style.borderTop, 10) +
+                        parseInt(style.borderBottom, 10) +
+                        parseInt(style.lineHeight, 10) * this.paramRows;
                 textField.style.height = this._initialHeight + 'px';
             }
         }
@@ -249,6 +250,7 @@ var OpalTextInput = /** @class */ (function (_super) {
     OpalTextInput.prototype._onParamValueChange = function (evt) {
         if (this.textField.value != evt.data.value) {
             this.textField.value = evt.data.value;
+            this._fixHeight();
         }
     };
     OpalTextInput.prototype._onParamFocusedChange = function (evt) {
@@ -331,14 +333,16 @@ var OpalTextInput = /** @class */ (function (_super) {
     };
     OpalTextInput.prototype._fixHeight = function () {
         var textField = this.textField;
-        var lineHeight = parseInt(getComputedStyle(textField).lineHeight, 10);
-        textField.style.height = this._initialHeight - lineHeight + 'px';
-        textField.style.height =
-            textField.offsetHeight +
-                textField.scrollHeight -
-                textField.clientHeight +
-                lineHeight +
-                'px';
+        if (textField.offsetHeight) {
+            var lineHeight = parseInt(getComputedStyle(textField).lineHeight, 10);
+            textField.style.height = this._initialHeight - lineHeight + 'px';
+            textField.style.height =
+                textField.offsetHeight +
+                    textField.scrollHeight -
+                    textField.clientHeight +
+                    lineHeight +
+                    'px';
+        }
     };
     OpalTextInput.prototype.clear = function () {
         this.value = null;
