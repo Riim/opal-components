@@ -669,7 +669,7 @@ var OpalIcon = /** @class */ (function (_super) {
     function OpalIcon() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramSize = 'm';
-        _this.paramStrokeWidth = 2;
+        _this.paramStrokeWidth = 3;
         _this.paramFilled = false;
         return _this;
     }
