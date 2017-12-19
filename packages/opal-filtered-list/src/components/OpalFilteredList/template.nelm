@@ -6,7 +6,7 @@ RtSlot (for=query-input-slot) {
 			placeholder={constructor.i18n.queryInputPlaceholder},
 			clearable
 		) {
-			OpalIcon/query-input-control-icon (class=OpalTextInput__control-icon, name=search)
+			OpalIcon/query-input-final-icon (class=OpalTextInput__final-icon, name=search)
 		}
 	}
 }

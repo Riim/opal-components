@@ -6,6 +6,8 @@
 	@el text-input {
 		display: block;
 	}
+		@el text-input-final-icon {
+		}
 
 	@el calendar-menu {
 		overflow: visible;

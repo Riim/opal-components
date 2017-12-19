@@ -9,6 +9,8 @@
 			margin-bottom: 15px;
 			width: auto;
 		}
+			@el query-input-final-icon {
+			}
 
 	@el list-slot {
 	}

@@ -13,6 +13,8 @@
 			@el query-input {
 				width: 279px;
 			}
+				@el query-input-final-icon {
+				}
 
 		@el menu-selected {
 			float: right;
