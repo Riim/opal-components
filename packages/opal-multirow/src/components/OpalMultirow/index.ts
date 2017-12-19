@@ -69,6 +69,14 @@ export class OpalMultirow extends BaseComponent {
 
 		Cell.forceRelease();
 
+		let focusable = this.$('focus', this.$$<BaseComponent>('new-row-slot').slice(-1)[0]) as {
+			focus: () => {};
+		};
+
+		if (focusable) {
+			focusable.focus();
+		}
+
 		this.emit('add-row');
 		this.emit('change');
 	}

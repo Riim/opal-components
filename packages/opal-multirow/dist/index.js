@@ -192,6 +192,10 @@ var OpalMultirow = /** @class */ (function (_super) {
     OpalMultirow.prototype._onAddRowClick = function () {
         this._newRows.add({ key: next_uid_1.nextUID() });
         cellx_1.Cell.forceRelease();
+        var focusable = this.$('focus', this.$$('new-row-slot').slice(-1)[0]);
+        if (focusable) {
+            focusable.focus();
+        }
         this.emit('add-row');
         this.emit('change');
     };
