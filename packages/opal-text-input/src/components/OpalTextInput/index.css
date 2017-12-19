@@ -27,14 +27,14 @@
 		-webkit-tap-highlight-color: transparent;
 	}
 
-	@el control-icon-slot {
+	@el final-icon-slot {
 		display: none;
 
 		@mod shown {
 			display: block;
 		}
 	}
-		@el control-icon {
+		@el final-icon {
 			position: absolute;
 			top: 0;
 			right: 12px;

@@ -19,7 +19,7 @@
 	)
 }
 
-RtSlot/control-icon-slot (for=control-icon, shown={isControlIconShown})
+RtSlot/final-icon-slot (for=final-icon, shown={isFinalIconShown})
 
 @IfThen (if=paramClearable) {
 	button/btn-clear (shown={isBtnClearShown}) {

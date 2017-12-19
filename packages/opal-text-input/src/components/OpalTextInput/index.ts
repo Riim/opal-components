@@ -57,7 +57,7 @@ export class OpalTextInput extends BaseComponent {
 	_prevValue: string | null;
 
 	@Computed
-	get isControlIconShown(): boolean {
+	get isFinalIconShown(): boolean {
 		return !this.isBtnClearShown && !this.paramLoading;
 	}
 
