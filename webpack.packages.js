@@ -70,7 +70,10 @@ module.exports = env => {
 				},
 				{
 					test: /\.svg$/,
-					loader: 'simple-svg-loader'
+					loader: 'simple-svg-loader',
+					options: {
+						removeAttributes: ['stroke-width', 'stroke', 'fill']
+					}
 				}
 			]
 		},

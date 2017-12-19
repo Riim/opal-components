@@ -7,7 +7,7 @@ export class OpalIcon extends BaseComponent {
 	paramName: string;
 	@Param paramSize = 'm';
 	@Param({ readonly: true })
-	paramStrokeWidth = 3;
+	paramStrokeWidth = 2;
 	@Param paramFilled = false;
 
 	ready() {
