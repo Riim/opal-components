@@ -2,8 +2,8 @@ import { OpalCheckbox } from '@riim/opal-checkbox';
 import { IEvent, ObservableList } from 'cellx';
 import { BaseComponent } from 'rionite';
 import { ObservableTreeList } from '../../ObservableTreeList';
-import { OpalTreeListItem } from '../OpalTreeListItem';
 import '../OpalTreeListItem';
+import { OpalTreeListItem } from '../OpalTreeListItem';
 import './index.css';
 export { OpalTreeListItem };
 export interface IDataTreeListItem {

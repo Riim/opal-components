@@ -41,19 +41,17 @@
 				}
 			}
 
-		@el nothing-found-message {
-			display: none;
-			padding: 10px;
+		@el nothing-found-slot {
+			display: block;
+			padding: 12px;
 			text-align: center;
-			white-space: nowrap;
-			opacity: .6;
 		}
-
-		@el nothing-found-message {
-			@mod shown {
-				display: block;
+			@el nothing-found {
 			}
-		}
+				@el nothing-found-message {
+					white-space: nowrap;
+					opacity: .6;
+				}
 
 	/* Combinations */
 

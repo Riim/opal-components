@@ -7,7 +7,7 @@
 		exports["@riim/opal-text-input-validator"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/opal-text-input"), require("@riim/opal-input-validator"));
 	else
 		root["@riim/opal-text-input-validator"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/opal-text-input"], root["@riim/opal-input-validator"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_13__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_13__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -106,7 +106,7 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(13);
-__webpack_require__(6);
+__webpack_require__(7);
 __webpack_require__(1);
 __export(__webpack_require__(243));
 
@@ -244,10 +244,10 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 6:
+/***/ 7:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
 
 /***/ })
 

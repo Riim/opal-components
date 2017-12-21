@@ -40,8 +40,10 @@
 		@el nothing-found {
 			display: inline-block;
 			vertical-align: middle;
+			white-space: normal;
 		}
 			@el nothing-found-message {
+				white-space: nowrap;
 				opacity: .6;
 
 				& + .OpalSelect__btn-add-new-item {

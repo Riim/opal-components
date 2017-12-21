@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tree-list",
-  "version": "0.32.29",
+  "version": "0.32.38",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,12 +17,12 @@
     "@riim/object-assign-polyfill": "^1.0.0",
     "@riim/opal-button": "^0.32.29",
     "@riim/opal-checkbox": "^0.32.29",
-    "@riim/opal-icon": "^0.32.29",
+    "@riim/opal-icon": "^0.32.35",
     "@riim/opal-loader": "^0.32.29",
     "@riim/opal-utils": "^0.32.29",
     "cellx": "^1.7.78",
     "cellx-decorators": "^1.4.9",
     "reflect-metadata": "^0.1.10",
-    "rionite": "^0.32.9"
+    "rionite": "^0.32.10"
   }
 }

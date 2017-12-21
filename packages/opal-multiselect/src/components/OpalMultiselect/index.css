@@ -89,29 +89,29 @@
 						height: 16px;
 					}
 
-			@el nothing-selected {
-				display: none;
-				box-sizing: border-box;
-				padding: 10px;
+		@el nothing-selected-slot {
+			display: block;
+			box-sizing: border-box;
+			padding: 12px;
+			height: 100%;
+			text-align: center;
+			white-space: nowrap;
+
+			&::before {
+				display: inline-block;
+				width: 0;
 				height: 100%;
-				text-align: center;
-				white-space: nowrap;
-
-				&::before {
-					display: inline-block;
-					width: 0;
-					height: 100%;
-					content: '';
-					vertical-align: middle;
-				}
-
-				@mod shown {
-					display: block;
-				}
+				content: '';
+				vertical-align: middle;
+			}
+		}
+			@el nothing-selected {
+				display: inline-block;
+				vertical-align: middle;
+				white-space: normal;
 			}
 				@el nothing-selected-message {
-					display: inline-block;
-					vertical-align: middle;
+					white-space: nowrap;
 					opacity: .6;
 				}
 

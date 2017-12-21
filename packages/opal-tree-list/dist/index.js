@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("cellx"), require("@riim/opal-icon"), require("@riim/opal-utils"), require("@riim/opal-loader"), require("@riim/opal-button"), require("@riim/mixin"), require("@riim/opal-checkbox"), require("@riim/object-assign-polyfill"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("cellx"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-utils"), require("@riim/opal-loader"), require("@riim/opal-button"), require("@riim/mixin"), require("@riim/opal-checkbox"), require("@riim/object-assign-polyfill"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx-decorators", "cellx", "@riim/opal-icon", "@riim/opal-utils", "@riim/opal-loader", "@riim/opal-button", "@riim/mixin", "@riim/opal-checkbox", "@riim/object-assign-polyfill"], factory);
+		define(["rionite", "reflect-metadata", "cellx-decorators", "cellx", "@riim/opal-icon", "@riim/gettext", "@riim/opal-utils", "@riim/opal-loader", "@riim/opal-button", "@riim/mixin", "@riim/opal-checkbox", "@riim/object-assign-polyfill"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tree-list"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("cellx"), require("@riim/opal-icon"), require("@riim/opal-utils"), require("@riim/opal-loader"), require("@riim/opal-button"), require("@riim/mixin"), require("@riim/opal-checkbox"), require("@riim/object-assign-polyfill"));
+		exports["@riim/opal-tree-list"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("cellx"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-utils"), require("@riim/opal-loader"), require("@riim/opal-button"), require("@riim/mixin"), require("@riim/opal-checkbox"), require("@riim/object-assign-polyfill"));
 	else
-		root["@riim/opal-tree-list"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["cellx"], root["@riim/opal-icon"], root["@riim/opal-utils"], root["@riim/opal-loader"], root["@riim/opal-button"], root["@riim/mixin"], root["@riim/opal-checkbox"], root["@riim/object-assign-polyfill"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_18__, __WEBPACK_EXTERNAL_MODULE_251__, __WEBPACK_EXTERNAL_MODULE_252__) {
+		root["@riim/opal-tree-list"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["cellx"], root["@riim/opal-icon"], root["@riim/gettext"], root["@riim/opal-utils"], root["@riim/opal-loader"], root["@riim/opal-button"], root["@riim/mixin"], root["@riim/opal-checkbox"], root["@riim/object-assign-polyfill"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_18__, __WEBPACK_EXTERNAL_MODULE_251__, __WEBPACK_EXTERNAL_MODULE_252__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -485,14 +485,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var gettext_1 = __webpack_require__(6);
 var opal_utils_1 = __webpack_require__(9);
 var cellx_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
 var ObservableTreeList_1 = __webpack_require__(22);
+__webpack_require__(23);
 var OpalTreeListItem_1 = __webpack_require__(23);
 exports.OpalTreeListItem = OpalTreeListItem_1.OpalTreeListItem;
-__webpack_require__(23);
 var _getListItemContext_1 = __webpack_require__(24);
 __webpack_require__(256);
 var template_nelm_1 = __webpack_require__(257);
@@ -688,6 +689,9 @@ var OpalTreeList = /** @class */ (function (_super) {
     ], OpalTreeList.prototype, "viewModel", void 0);
     OpalTreeList = OpalTreeList_1 = __decorate([
         rionite_1.Component({
+            i18n: {
+                nothingFound: gettext_1.getText.t('Ничего не найдено')
+            },
             template: template_nelm_1.default
         })
     ], OpalTreeList);
@@ -735,7 +739,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalTreeList{position:relative;display:block}.OpalTreeList .OpalTreeList__nothing-found{-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;height:100%;text-align:center;white-space:nowrap}.OpalTreeList .OpalTreeList__nothing-found::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.OpalTreeList .OpalTreeList__nothing-found-message{display:inline-block;vertical-align:middle;opacity:.6}.OpalTreeList .OpalTreeList__loader{position:absolute;top:0;right:0;bottom:0;left:0}";
+            style.textContent = ".OpalTreeList{position:relative;display:block}.OpalTreeList .OpalTreeList__nothing-found-slot{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;height:100%;text-align:center;white-space:nowrap}.OpalTreeList .OpalTreeList__nothing-found-slot::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.OpalTreeList .OpalTreeList__nothing-found{display:inline-block;vertical-align:middle;white-space:normal}.OpalTreeList .OpalTreeList__nothing-found-message{white-space:nowrap;opacity:.6}.OpalTreeList .OpalTreeList__loader{position:absolute;top:0;right:0;bottom:0;left:0}";
             head.appendChild(style);
             return style;
         }
@@ -750,7 +754,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (if=dataTreeList) {\n@IfThen (if=filteredDataTreeList.length) {\n@Repeat (for=$item of filteredDataTreeList) {\nOpalTreeListItem/item (\ndata-tree-list={dataTreeList},\nfiltered-data-tree-list={filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={paramQuery},\nopened={paramQuery |not |not },\nnesting-level=0,\nhas-children='{$item.children.length |gt(0) }'\n) {\nRtSlot (clone-content, get-context={_getListItemContext}) {\nOpalCheckbox/selection-control (\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@IfElse (if=filteredDataTreeList.length) {\ndiv/nothing-found {\nspan/nothing-found-message {\n'Ничего не найдено'\n}\n}\n}\n}\n@IfElse (if=dataTreeList) {\nOpalLoader/loader (shown)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (if=dataTreeList) {\n@IfThen (if=filteredDataTreeList.length) {\n@Repeat (for=$item of filteredDataTreeList) {\nOpalTreeListItem/item (\ndata-tree-list={dataTreeList},\nfiltered-data-tree-list={filteredDataTreeList},\ndata-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},\ndata-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},\nview-model={viewModel},\nview-model-item-value-field-name={_viewModelItemValueFieldName},\nview-model-item-text-field-name={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={paramQuery},\nopened={paramQuery |not |not },\nnesting-level=0,\nhas-children='{$item.children.length |gt(0) }'\n) {\nRtSlot (clone-content, get-context={_getListItemContext}) {\nOpalCheckbox/selection-control (\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@IfElse (if=filteredDataTreeList.length) {\nRtSlot/nothing-found-slot (for=nothing-found) {\nspan/nothing-found {\nspan/nothing-found-message {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\n}\n@IfElse (if=dataTreeList) {\nOpalLoader/loader (shown)\n}");
 
 /***/ }),
 
@@ -765,6 +769,13 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
+
+/***/ }),
+
+/***/ 6:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
 
 /***/ }),
 

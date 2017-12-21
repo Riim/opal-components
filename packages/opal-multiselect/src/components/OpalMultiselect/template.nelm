@@ -23,9 +23,13 @@
 			}
 		}
 
-		div/nothing-selected (shown={isNothingSelectedShown}) {
-			span/nothing-selected-message {
-				'{constructor.i18n.nothingSelected}'
+		@IfThen (if=isNothingSelectedShown) {
+			RtSlot/nothing-selected-slot (for=nothing-selected) {
+				span/nothing-selected {
+					span/nothing-selected-message {
+						'{constructor.i18n.nothingSelected}'
+					}
+				}
 			}
 		}
 	}

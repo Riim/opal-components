@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("@riim/gettext"), require("@riim/opal-loaded-list"), require("@riim/debounce-throttle"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("@riim/debounce-throttle"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "@riim/opal-icon", "@riim/opal-text-input", "@riim/gettext", "@riim/opal-loaded-list", "@riim/debounce-throttle"], factory);
+		define(["rionite", "reflect-metadata", "@riim/opal-icon", "@riim/gettext", "@riim/opal-text-input", "@riim/opal-loaded-list", "@riim/debounce-throttle"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-filtered-list"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("@riim/gettext"), require("@riim/opal-loaded-list"), require("@riim/debounce-throttle"));
+		exports["@riim/opal-filtered-list"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("@riim/debounce-throttle"));
 	else
-		root["@riim/opal-filtered-list"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["@riim/gettext"], root["@riim/opal-loaded-list"], root["@riim/debounce-throttle"]);
+		root["@riim/opal-filtered-list"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/opal-icon"], root["@riim/gettext"], root["@riim/opal-text-input"], root["@riim/opal-loaded-list"], root["@riim/debounce-throttle"]);
 })(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_61__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -114,7 +114,7 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(5);
 __webpack_require__(12);
-__webpack_require__(6);
+__webpack_require__(7);
 __webpack_require__(1);
 __export(__webpack_require__(60));
 
@@ -151,7 +151,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var debounce_throttle_1 = __webpack_require__(61);
-var gettext_1 = __webpack_require__(7);
+var gettext_1 = __webpack_require__(6);
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(62);
 var template_nelm_1 = __webpack_require__(63);

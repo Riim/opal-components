@@ -27,9 +27,11 @@
 		}
 	}
 	@IfElse (if=filteredDataTreeList.length) {
-		div/nothing-found {
-			span/nothing-found-message {
-				'Ничего не найдено'
+		RtSlot/nothing-found-slot (for=nothing-found) {
+			span/nothing-found {
+				span/nothing-found-message {
+					'{constructor.i18n.nothingFound}'
+				}
 			}
 		}
 	}

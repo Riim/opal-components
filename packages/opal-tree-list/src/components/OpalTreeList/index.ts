@@ -1,3 +1,4 @@
+import { getText } from '@riim/gettext';
 import { OpalCheckbox } from '@riim/opal-checkbox';
 import { closestComponent } from '@riim/opal-utils';
 import {
@@ -9,8 +10,8 @@ import {
 import { Computed, Observable } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
 import { fixParent, ObservableTreeList } from '../../ObservableTreeList';
-import { OpalTreeListItem } from '../OpalTreeListItem';
 import '../OpalTreeListItem';
+import { OpalTreeListItem } from '../OpalTreeListItem';
 import _getListItemContext from './_getListItemContext';
 import './index.css';
 import template from './template.nelm';
@@ -48,6 +49,10 @@ function toComparable(str: string | null): string | null {
 }
 
 @Component({
+	i18n: {
+		nothingFound: getText.t('Ничего не найдено')
+	},
+
 	template
 })
 export class OpalTreeList extends BaseComponent {

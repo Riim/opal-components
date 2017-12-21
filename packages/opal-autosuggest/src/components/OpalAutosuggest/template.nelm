@@ -22,8 +22,14 @@ OpalDropdown/menu {
 		}
 	}
 
-	span/nothing-found-message (shown={dataList.length |not }) {
-		'{constructor.i18n.nothingFound}'
+	@IfElse (if=dataList.length) {
+		RtSlot/nothing-found-slot (for=nothing-found) {
+			span/nothing-found {
+				span/nothing-found-message {
+					'{constructor.i18n.nothingFound}'
+				}
+			}
+		}
 	}
 }
 
