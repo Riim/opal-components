@@ -184,10 +184,14 @@ export class OpalTreeList extends BaseComponent {
 			let vm = this.viewModel;
 			let viewModelItemValueFieldName = this._viewModelItemValueFieldName;
 			let viewModelItemTextFieldName = this._viewModelItemTextFieldName;
-			let item: IDataTreeListItem = closestComponent(
+			let item: IDataTreeListItem | IFilteredDataTreeListItem = closestComponent(
 				component.parentComponent!,
 				OpalTreeListItem
 			)!.$context!.$item;
+
+			if (item.$original) {
+				item = item.$original;
+			}
 
 			if (component.selected) {
 				for (
@@ -234,7 +238,7 @@ export class OpalTreeList extends BaseComponent {
 				if (itemIndex != -1) {
 					vm.removeAt(itemIndex);
 				} else {
-					let parent = item.parent!;
+					let parent: IDataTreeListItem | IFilteredDataTreeListItem = item.parent!;
 
 					for (;;) {
 						let parentIndex = vm.findIndex(
@@ -244,11 +248,14 @@ export class OpalTreeList extends BaseComponent {
 						);
 
 						vm.addRange(
-							parent.children.filter(child => child != item).map(child => ({
-								[viewModelItemValueFieldName]:
-									child[dataTreeListItemValueFieldName],
-								[viewModelItemTextFieldName]: child[dataTreeListItemTextFieldName]
-							}))
+							((parent as IFilteredDataTreeListItem).$original || parent).children
+								.filter(child => child != item)
+								.map(child => ({
+									[viewModelItemValueFieldName]:
+										child[dataTreeListItemValueFieldName],
+									[viewModelItemTextFieldName]:
+										child[dataTreeListItemTextFieldName]
+								}))
 						);
 
 						if (parentIndex != -1) {

@@ -589,6 +589,9 @@ var OpalTreeList = /** @class */ (function (_super) {
             var viewModelItemValueFieldName_1 = this._viewModelItemValueFieldName;
             var viewModelItemTextFieldName_1 = this._viewModelItemTextFieldName;
             var item_1 = opal_utils_1.closestComponent(component.parentComponent, OpalTreeListItem_1.OpalTreeListItem).$context.$item;
+            if (item_1.$original) {
+                item_1 = item_1.$original;
+            }
             if (component.selected) {
                 for (var parent_1; (parent_1 = item_1.parent) &&
                     parent_1.children.every(function (child) {
@@ -629,7 +632,9 @@ var OpalTreeList = /** @class */ (function (_super) {
                             return vmItem[viewModelItemValueFieldName_1] ==
                                 parent_2[dataTreeListItemValueFieldName_1];
                         });
-                        vm_1.addRange(parent_2.children.filter(function (child) { return child != item_1; }).map(function (child) {
+                        vm_1.addRange((parent_2.$original || parent_2).children
+                            .filter(function (child) { return child != item_1; })
+                            .map(function (child) {
                             return (_a = {},
                                 _a[viewModelItemValueFieldName_1] = child[dataTreeListItemValueFieldName_1],
                                 _a[viewModelItemTextFieldName_1] = child[dataTreeListItemTextFieldName_1],
