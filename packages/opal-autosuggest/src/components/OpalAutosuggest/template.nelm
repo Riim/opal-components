@@ -18,6 +18,10 @@ OpalDropdown/menu {
 				data-text='{item |key(_dataListItemTextFieldName) }'
 			) {
 				'{item |key(_dataListItemTextFieldName) }'
+
+				sub {
+					'{item |key(_dataListItemSubtextFieldName) }'
+				}
 			}
 		}
 	}

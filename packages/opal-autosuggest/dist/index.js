@@ -198,7 +198,7 @@ var template_nelm_1 = __webpack_require__(30);
 function toComparable(str) {
     return str.replace(/\s+/g, ' ').toLowerCase();
 }
-var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
+var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', subtext: 'parent' });
 var OpalAutosuggest = /** @class */ (function (_super) {
     __extends(OpalAutosuggest, _super);
     function OpalAutosuggest() {
@@ -227,6 +227,8 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         this._dataListItemValueFieldName =
             dataListItemSchema.value || defaultDataListItemSchema.value;
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+        this._dataListItemSubtextFieldName =
+            dataListItemSchema.subtext || defaultDataListItemSchema.subtext;
         if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
             throw new TypeError('Parameter "dataProvider" is required');
         }
@@ -374,6 +376,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
                     this._selectItem((_a = {},
                         _a[this._dataListItemValueFieldName] = focusedListItemDataSet.value,
                         _a[this._dataListItemTextFieldName] = focusedListItemDataSet.text,
+                        _a[this._dataListItemSubtextFieldName] = focusedListItemDataSet.subtext,
                         _a));
                 }
                 break;
@@ -545,6 +548,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
                         this._selectItem((_a = {},
                             _a[this._dataListItemValueFieldName] = listItemDataSet.value,
                             _a[this._dataListItemTextFieldName] = listItemDataSet.text,
+                            _a[this._dataListItemSubtextFieldName] = listItemDataSet.subtext,
                             _a));
                         var _a;
                     }
@@ -567,7 +571,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalAutosuggest{position:relative;display:inline-block;vertical-align:middle}.OpalAutosuggest .OpalAutosuggest__text-input{display:block}.OpalAutosuggest .OpalAutosuggest__list-item{position:relative;padding:7px 22px;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalAutosuggest .OpalAutosuggest__list-item:hover,.OpalAutosuggest .OpalAutosuggest__list-item[focused]{background:#e6e6e6}.OpalAutosuggest .OpalAutosuggest__list-item:active{background:#ccc}.OpalAutosuggest .OpalAutosuggest__nothing-found-slot{display:block;padding:12px;text-align:center}.OpalAutosuggest .OpalAutosuggest__nothing-found-message{white-space:nowrap;opacity:.6}.OpalTextInputValidator .OpalAutosuggest{display:block}";
+            style.textContent = ".OpalAutosuggest{position:relative;display:inline-block;vertical-align:middle}.OpalAutosuggest .OpalAutosuggest__text-input{display:block}.OpalAutosuggest .OpalAutosuggest__list-item{position:relative;overflow:hidden;padding:7px 22px;background:#fff;color:#000;text-align:left;-o-text-overflow:ellipsis;text-overflow:ellipsis;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalAutosuggest .OpalAutosuggest__list-item:hover,.OpalAutosuggest .OpalAutosuggest__list-item[focused]{background:#e6e6e6}.OpalAutosuggest .OpalAutosuggest__list-item:active{background:#ccc}.OpalAutosuggest .OpalAutosuggest__list-item sub{bottom:0;display:block;font-size:.9em;line-height:1.5;opacity:.5}.OpalAutosuggest .OpalAutosuggest__nothing-found-slot{display:block;padding:12px;text-align:center}.OpalAutosuggest .OpalAutosuggest__nothing-found-message{white-space:nowrap;opacity:.6}.OpalTextInputValidator .OpalAutosuggest{display:block}";
             head.appendChild(style);
             return style;
         }
@@ -581,7 +585,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=text-input) {\nOpalTextInput/text-input (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nOpalIcon/text-input-final-icon (class=OpalTextInput__final-icon, name=search)\n}\n}\nOpalDropdown/menu {\ndiv/list {\n@Repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\n}\n}\n}\n@IfElse (if=dataList.length) {\nRtSlot/nothing-found-slot (for=nothing-found) {\nspan/nothing-found {\nspan/nothing-found-message {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=text-input) {\nOpalTextInput/text-input (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nOpalIcon/text-input-final-icon (class=OpalTextInput__final-icon, name=search)\n}\n}\nOpalDropdown/menu {\ndiv/list {\n@Repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (if=dataList.length) {\nRtSlot/nothing-found-slot (for=nothing-found) {\nspan/nothing-found {\nspan/nothing-found-message {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\n}\n}");
 
 /***/ })
 /******/ ]);

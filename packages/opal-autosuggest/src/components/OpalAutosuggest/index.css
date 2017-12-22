@@ -15,10 +15,12 @@
 		}
 			@el list-item {
 				position: relative;
+				overflow: hidden;
 				padding: 7px 22px;
 				background: #fff;
 				color: #000;
 				text-align: left;
+				text-overflow: ellipsis;
 				text-shadow: none;
 				white-space: nowrap;
 				font: 16px/24px Verdana, Geneva, sans-serif;
@@ -38,6 +40,14 @@
 
 				&:active {
 					background: hsl(0,0%,80%);
+				}
+
+				sub {
+					bottom: 0;
+					display: block;
+					font-size: .9em;
+					line-height: 1.5;
+					opacity: .5;
 				}
 			}
 

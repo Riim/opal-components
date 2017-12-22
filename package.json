@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.32.38",
+  "version": "0.32.39",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -49,7 +49,7 @@
     "webpack": "^3.10.0"
   },
   "dependencies": {
-    "@riim/opal-autosuggest": "^0.32.38",
+    "@riim/opal-autosuggest": "^0.32.39",
     "@riim/opal-button": "^0.32.29",
     "@riim/opal-calendar": "^0.32.29",
     "@riim/opal-checkbox": "^0.32.29",

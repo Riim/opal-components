@@ -28,7 +28,7 @@ function toComparable(str: string): string {
 	return str.replace(/\s+/g, ' ').toLowerCase();
 }
 
-let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
+let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', subtext: 'parent' });
 
 @Component<OpalAutosuggest>({
 	i18n: {
@@ -50,8 +50,9 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 				this._clearDataList();
 
 				this._selectItem({
-					[this._dataListItemValueFieldName]: listItemDataSet.value!,
-					[this._dataListItemTextFieldName]: listItemDataSet.text!
+					[this._dataListItemValueFieldName]: listItemDataSet.value,
+					[this._dataListItemTextFieldName]: listItemDataSet.text,
+					[this._dataListItemSubtextFieldName]: listItemDataSet.subtext
 				});
 			}
 		}
@@ -59,7 +60,7 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 })
 export class OpalAutosuggest extends BaseComponent {
 	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
-	paramDataListItemSchema: { value?: string; text?: string };
+	paramDataListItemSchema: { value?: string; text?: string; subtext?: string };
 	@Param({ readonly: true })
 	paramDataProvider: IDataProvider;
 	@Param({ type: eval })
@@ -73,6 +74,7 @@ export class OpalAutosuggest extends BaseComponent {
 	@Observable dataList = new ObservableList<IDataListItem>();
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;
+	_dataListItemSubtextFieldName: string;
 
 	dataProvider: IDataProvider;
 
@@ -103,6 +105,8 @@ export class OpalAutosuggest extends BaseComponent {
 		this._dataListItemValueFieldName =
 			dataListItemSchema.value || defaultDataListItemSchema.value;
 		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
+		this._dataListItemSubtextFieldName =
+			dataListItemSchema.subtext || defaultDataListItemSchema.subtext;
 
 		if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
 			throw new TypeError('Parameter "dataProvider" is required');
@@ -307,8 +311,9 @@ export class OpalAutosuggest extends BaseComponent {
 					this._clearDataList();
 
 					this._selectItem({
-						[this._dataListItemValueFieldName]: focusedListItemDataSet.value!,
-						[this._dataListItemTextFieldName]: focusedListItemDataSet.text!
+						[this._dataListItemValueFieldName]: focusedListItemDataSet.value,
+						[this._dataListItemTextFieldName]: focusedListItemDataSet.text,
+						[this._dataListItemSubtextFieldName]: focusedListItemDataSet.subtext
 					});
 				}
 

@@ -17,6 +17,7 @@ export declare class OpalAutosuggest extends BaseComponent {
     paramDataListItemSchema: {
         value?: string;
         text?: string;
+        subtext?: string;
     };
     paramDataProvider: IDataProvider;
     paramValue: IDataListItem;
@@ -26,10 +27,12 @@ export declare class OpalAutosuggest extends BaseComponent {
     static defaultDataListItemSchema: Readonly<{
         value: string;
         text: string;
+        subtext: string;
     }>;
     dataList: ObservableList<IDataListItem>;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
+    _dataListItemSubtextFieldName: string;
     dataProvider: IDataProvider;
     value: IDataListItem | null;
     _isNotInputConfirmed: boolean;
