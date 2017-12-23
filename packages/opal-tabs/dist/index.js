@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 226);
+/******/ 	return __webpack_require__(__webpack_require__.s = 225);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -119,10 +119,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var OpalTab_1 = __webpack_require__(228);
+var OpalTab_1 = __webpack_require__(227);
 exports.OpalTab = OpalTab_1.OpalTab;
-__webpack_require__(231);
-var template_nelm_1 = __webpack_require__(232);
+__webpack_require__(230);
+var template_nelm_1 = __webpack_require__(231);
 var OpalTabList = /** @class */ (function (_super) {
     __extends(OpalTabList, _super);
     function OpalTabList() {
@@ -140,7 +140,7 @@ exports.OpalTabList = OpalTabList;
 
 /***/ }),
 
-/***/ 226:
+/***/ 225:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -150,12 +150,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-__export(__webpack_require__(227));
+__export(__webpack_require__(226));
 
 
 /***/ }),
 
-/***/ 227:
+/***/ 226:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -180,10 +180,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
 var OpalTabList_1 = __webpack_require__(21);
 exports.OpalTab = OpalTabList_1.OpalTab;
-var OpalTabPanel_1 = __webpack_require__(233);
+var OpalTabPanel_1 = __webpack_require__(232);
 exports.OpalTabPanel = OpalTabPanel_1.OpalTabPanel;
-__webpack_require__(236);
-var template_nelm_1 = __webpack_require__(237);
+__webpack_require__(235);
+var template_nelm_1 = __webpack_require__(236);
 var OpalTabList_2 = __webpack_require__(21);
 exports.OpalTabList = OpalTabList_2.OpalTabList;
 var indexOf = Array.prototype.indexOf;
@@ -266,7 +266,7 @@ exports.OpalTabs = OpalTabs;
 
 /***/ }),
 
-/***/ 228:
+/***/ 227:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -294,8 +294,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(229);
-var template_nelm_1 = __webpack_require__(230);
+__webpack_require__(228);
+var template_nelm_1 = __webpack_require__(229);
 var OpalTab = /** @class */ (function (_super) {
     __extends(OpalTab, _super);
     function OpalTab() {
@@ -440,7 +440,7 @@ exports.OpalTab = OpalTab;
 
 /***/ }),
 
-/***/ 229:
+/***/ 228:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -458,7 +458,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 230:
+/***/ 229:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -467,7 +467,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 231:
+/***/ 230:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -485,7 +485,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 232:
+/***/ 231:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -494,7 +494,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 233:
+/***/ 232:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -522,8 +522,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(234);
-var template_nelm_1 = __webpack_require__(235);
+__webpack_require__(233);
+var template_nelm_1 = __webpack_require__(234);
 var OpalTabPanel = /** @class */ (function (_super) {
     __extends(OpalTabPanel, _super);
     function OpalTabPanel() {
@@ -564,7 +564,7 @@ exports.OpalTabPanel = OpalTabPanel;
 
 /***/ }),
 
-/***/ 234:
+/***/ 233:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -582,7 +582,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 235:
+/***/ 234:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -591,7 +591,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 236:
+/***/ 235:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -609,7 +609,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 237:
+/***/ 236:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

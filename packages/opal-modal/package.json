@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-modal",
-  "version": "0.32.29",
+  "version": "0.32.42",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,10 +13,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-utils": "^0.32.29",
+    "@riim/opal-utils": "^0.32.42",
     "cellx": "^1.7.78",
     "cellx-decorators": "^1.4.9",
     "reflect-metadata": "^0.1.10",
-    "rionite": "^0.32.9"
+    "rionite": "^0.32.10"
   }
 }

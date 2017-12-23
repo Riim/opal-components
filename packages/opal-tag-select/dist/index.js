@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 238);
+/******/ 	return __webpack_require__(__webpack_require__.s = 237);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -131,7 +131,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ }),
 
-/***/ 238:
+/***/ 237:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -147,12 +147,12 @@ __webpack_require__(17);
 __webpack_require__(8);
 __webpack_require__(15);
 __webpack_require__(1);
-__export(__webpack_require__(239));
+__export(__webpack_require__(238));
 
 
 /***/ }),
 
-/***/ 239:
+/***/ 238:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -181,8 +181,8 @@ var gettext_1 = __webpack_require__(6);
 var cellx_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(240);
-var template_nelm_1 = __webpack_require__(241);
+__webpack_require__(239);
+var template_nelm_1 = __webpack_require__(240);
 var defaultDataListItemSchema = Object.freeze({
     value: 'id',
     text: 'name',
@@ -389,7 +389,7 @@ exports.OpalTagSelect = OpalTagSelect;
 
 /***/ }),
 
-/***/ 240:
+/***/ 239:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -407,7 +407,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 241:
+/***/ 240:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

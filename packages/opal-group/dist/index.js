@@ -128,16 +128,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(68);
-var template_nelm_1 = __webpack_require__(69);
 var OpalGroup = /** @class */ (function (_super) {
     __extends(OpalGroup, _super);
     function OpalGroup() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     OpalGroup = __decorate([
-        rionite_1.Component({
-            template: template_nelm_1.default
-        })
+        rionite_1.Component()
     ], OpalGroup);
     return OpalGroup;
 }(rionite_1.BaseComponent));
@@ -161,15 +158,6 @@ module.exports = (function(d) {
         return null;
     })(document);
 
-
-/***/ }),
-
-/***/ 69:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/content-slot\n}");
 
 /***/ })
 

@@ -143,6 +143,8 @@ module.exports = env => {
 			__filename: false,
 			__dirname: false,
 			setImmediate: false
-		}
+		},
+
+		recordsPath: 'build/paths.json'
 	};
 };

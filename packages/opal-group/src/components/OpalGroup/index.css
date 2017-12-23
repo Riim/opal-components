@@ -4,7 +4,4 @@
 	vertical-align: middle;
 	white-space: nowrap;
 	font-size: 0;
-
-	@el content-slot {
-	}
 }
