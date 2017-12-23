@@ -146,6 +146,8 @@ module.exports = env => {
 			__filename: false,
 			__dirname: false,
 			setImmediate: false
-		}
+		},
+
+		recordsPath: path.join(__dirname, 'build/paths.json')
 	};
 };
