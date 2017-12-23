@@ -156,20 +156,21 @@
 
 	/* Combinations */
 
-	.OpalGroup .OpalGroup__content-slot > &:not(:first-child),
-	.OpalGroup .OpalGroup__content-slot > *:not(:first-child) & {
+	.OpalGroup > &:not(:first-child),
+	.OpalGroup > *:not(:first-child) & {
 		margin-right: -1px;
+
+		.OpalTextInput__text-field {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
 	}
 
-	.OpalGroup__content-slot &:not(:first-child) .OpalTextInput__text-field,
-	.OpalGroup__content-slot *:not(:first-child) & .OpalTextInput__text-field {
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
-	}
-
-	.OpalGroup__content-slot &:not(:last-child) .OpalTextInput__text-field,
-	.OpalGroup__content-slot *:not(:last-child) & .OpalTextInput__text-field {
-		border-top-right-radius: 0;
-		border-bottom-right-radius: 0;
+	.OpalGroup > &:not(:last-child),
+	.OpalGroup > *:not(:last-child) & {
+		.OpalTextInput__text-field {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
 	}
 }

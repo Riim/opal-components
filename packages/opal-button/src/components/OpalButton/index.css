@@ -83,15 +83,15 @@
 
 		/* Combinations */
 
-		.OpalGroup .OpalGroup__content-slot > &:not(:first-child),
-		.OpalGroup .OpalGroup__content-slot > *:not(:first-child) & {
+		.OpalGroup > &:not(:first-child),
+		.OpalGroup > *:not(:first-child) & {
 			border-top-left-radius: 0;
 			border-bottom-left-radius: 0;
 			box-shadow: inset 1px 0 rgba(0,0,0,.4);
 		}
 
-		.OpalGroup .OpalGroup__content-slot > &:not(:last-child),
-		.OpalGroup .OpalGroup__content-slot > *:not(:last-child) & {
+		.OpalGroup > &:not(:last-child),
+		.OpalGroup > *:not(:last-child) & {
 			border-top-right-radius: 0;
 			border-bottom-right-radius: 0;
 		}
