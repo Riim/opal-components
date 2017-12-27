@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.32.45",
+  "version": "0.32.46",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -59,7 +59,7 @@
     "@riim/opal-filtered-list": "^0.32.42",
     "@riim/opal-focus-highlight-controller": "^0.32.42",
     "@riim/opal-group": "^0.32.42",
-    "@riim/opal-icon": "^0.32.42",
+    "@riim/opal-icon": "^0.32.46",
     "@riim/opal-input-mask": "^0.32.42",
     "@riim/opal-input-validator": "^0.32.42",
     "@riim/opal-loaded-list": "^0.32.42",
@@ -85,6 +85,6 @@
     "@riim/opal-tree-select": "^0.32.42",
     "@riim/opal-tree-tag-select": "^0.32.42",
     "@riim/opal-utils": "^0.32.42",
-    "rionite": "^0.32.10"
+    "rionite": "^0.32.11"
   }
 }

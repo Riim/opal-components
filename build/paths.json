@@ -269,7 +269,22 @@
       "node_modules/raw-loader/index.js!node_modules/trim-lines-loader/index.js!node_modules/collapse-line-breaks-loader/index.js!packages/opal-tree-tag-select/src/components/OpalTreeTagSelect/template.nelm": 265,
       "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/index.ts": 266,
       "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/utils/closestComponent.ts": 267,
-      "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/utils/isFocusable.ts": 268
+      "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/utils/isFocusable.ts": 268,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/arrowBottom.svg?id=OpalIcon__iconArrowBottom": 269,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/arrowLeft.svg?id=OpalIcon__iconArrowLeft": 270,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/arrowRight.svg?id=OpalIcon__iconArrowRight": 271,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/arrowTop.svg?id=OpalIcon__iconArrowTop": 272,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/chevronBottom.svg?id=OpalIcon__iconChevronBottom": 273,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/chevronLeft.svg?id=OpalIcon__iconChevronLeft": 274,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/chevronRight.svg?id=OpalIcon__iconChevronRight": 275,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/chevronTop.svg?id=OpalIcon__iconChevronTop": 276,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/ellipsisHorizontal.svg?id=OpalIcon__iconEllipsisHorizontal": 277,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/ellipsisVertical.svg?id=OpalIcon__iconEllipsisVertical": 278,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/fileCross.svg?id=OpalIcon__iconFileCross": 279,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/fileMinus.svg?id=OpalIcon__iconFileMinus": 280,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/filePlus.svg?id=OpalIcon__iconFilePlus": 281,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/logIn.svg?id=OpalIcon__iconLogIn": 282,
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/logOut.svg?id=OpalIcon__iconLogOut": 283
     },
     "usedIds": {
       "0": 0,
@@ -540,7 +555,22 @@
       "265": 265,
       "266": 266,
       "267": 267,
-      "268": 268
+      "268": 268,
+      "269": 269,
+      "270": 270,
+      "271": 271,
+      "272": 272,
+      "273": 273,
+      "274": 274,
+      "275": 275,
+      "276": 276,
+      "277": 277,
+      "278": 278,
+      "279": 279,
+      "280": 280,
+      "281": 281,
+      "282": 282,
+      "283": 283
     }
   },
   "chunks": {
