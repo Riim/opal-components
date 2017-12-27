@@ -1,32 +1,32 @@
 /menu (auto-height=no, auto-closing) {
-	div/menu-header {
-		OpalTextInput/query-input (
+	div/menuHeader {
+		OpalTextInput/queryInput (
 			class=OpalSelect__focus,
 			clearable,
 			placeholder={constructor.i18n.queryInputPlaceholder}
 		) {
-			OpalIcon/query-input-final-icon (class=OpalTextInput__final-icon, name=search)
+			OpalIcon/queryInputFinalIcon (class=OpalTextInput__finalIcon, name=search)
 		}
 	}
 
-	div/menu-selected {
+	div/menuSelected {
 		@Repeat (for=item of viewModel) {
-			div/selected-item {
+			div/selectedItem {
 				'{item |key(_viewModelItemTextFieldName) }'
 
-				button/btn-deselect-item (
+				button/btnDeselectItem (
 					tabindex=-1,
 					data-item-value='{item |key(_viewModelItemValueFieldName) }'
 				) {
-					OpalIcon/btn-deselect-item-icon (name=cross)
+					OpalIcon/btnDeselectItemIcon (name=cross)
 				}
 			}
 		}
 
 		@IfThen (if=isNothingSelectedShown) {
-			RtSlot/nothing-selected-slot (for=nothing-selected) {
-				span/nothing-selected {
-					span/nothing-selected-message {
+			RtSlot/nothingSelectedSlot (for=nothingSelected) {
+				span/nothingSelected {
+					span/nothingSelectedMessage {
 						'{constructor.i18n.nothingSelected}'
 					}
 				}
@@ -34,13 +34,13 @@
 		}
 	}
 
-	div/menu-list {
-		OpalLoadedList/loaded-list (
+	div/menuList {
+		OpalLoadedList/loadedList (
 			data-provider={dataProvider},
 			data-list-item-value-name={_dataListItemValueFieldName}
 		) {
 			OpalSelectOption/option (
-				class=OpalLoadedList__list-item,
+				class=OpalLoadedList__listItem,
 				value='{$item |key(_dataListItemValueFieldName) }',
 				text='{$item |key(_dataListItemTextFieldName) }',
 				subtext='{$item |key(_dataListItemSubtextFieldName) }'
@@ -48,8 +48,8 @@
 		}
 	}
 
-	div/menu-footer {
-		OpalButton/btn-close {
+	div/menuFooter {
+		OpalButton/btnClose {
 			'Закрыть'
 		}
 	}

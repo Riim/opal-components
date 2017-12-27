@@ -4,7 +4,7 @@
 	@el head {
 		display: table;
 	}
-		@el btn-toggle-children {
+		@el btnToggleChildren {
 			position: relative;
 			display: table-cell;
 			visibility: hidden;
@@ -30,12 +30,12 @@
 			}
 
 			@mod checked {
-				@el btn-toggle-children-icon {
+				@el btnToggleChildrenIcon {
 					transform: rotate(90deg);
 				}
 			}
 		}
-			@el btn-toggle-children-icon {
+			@el btnToggleChildrenIcon {
 				display: block;
 				width: 14px;
 				height: 14px;
@@ -43,13 +43,13 @@
 				transform: rotate(0);
 			}
 
-		@el content-slot-wrapper {
+		@el contentSlotWrapper {
 			display: table-cell;
 			width: 100%;
 		}
-			@el content-slot {
+			@el contentSlot {
 			}
-				@el selection-control {
+				@el selectionControl {
 				}
 
 	@el children {
@@ -71,7 +71,7 @@
 	}
 
 	@mod has-children {
-		& > .OpalTreeListItem__head .OpalTreeListItem__btn-toggle-children {
+		& > .OpalTreeListItem__head .OpalTreeListItem__btnToggleChildren {
 			visibility: visible;
 		}
 	}

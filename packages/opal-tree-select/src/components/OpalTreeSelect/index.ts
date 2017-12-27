@@ -10,7 +10,7 @@ import template from './template.nelm';
 	template,
 
 	events: {
-		'btn-close': {
+		btnClose: {
 			click() {
 				this.$<OpalModal>('menu')!.close();
 			}

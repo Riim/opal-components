@@ -1,10 +1,10 @@
 @section/inner {
 
 @IfThen (if=paramRange) {
-	div/first-input-wrapper3 {
-		div/first-input-wrapper2 (style=width: {_firstInputWidth}%) {
-			div/first-input-wrapper {
-				input/first-input (
+	div/firstInputWrapper3 {
+		div/firstInputWrapper2 (style=width: {_firstInputWidth}%) {
+			div/firstInputWrapper {
+				input/firstInput (
 					type=range,
 					min={paramMin},
 					max={paramMax},
@@ -15,8 +15,8 @@
 		}
 	}
 
-	div/second-input-wrapper {
-		input/second-input (
+	div/secondInputWrapper {
+		input/secondInput (
 			type=range,
 			min={paramMin},
 			max={paramMax},

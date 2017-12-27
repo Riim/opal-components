@@ -3,17 +3,17 @@
 	display: inline-block;
 	vertical-align: middle;
 
-	@el text-input {
+	@el textInput {
 		display: block;
 	}
-		@el text-input-final-icon {
+		@el textInputFinalIcon {
 		}
 
 	@el menu {
 	}
 		@el list {
 		}
-			@el list-item {
+			@el listItem {
 				position: relative;
 				overflow: hidden;
 				padding: 7px 22px;
@@ -51,14 +51,14 @@
 				}
 			}
 
-		@el nothing-found-slot {
+		@el nothingFoundSlot {
 			display: block;
 			padding: 12px;
 			text-align: center;
 		}
-			@el nothing-found {
+			@el nothingFound {
 			}
-				@el nothing-found-message {
+				@el nothingFoundMessage {
 					white-space: nowrap;
 					opacity: .6;
 				}

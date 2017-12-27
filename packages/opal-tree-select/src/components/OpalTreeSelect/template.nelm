@@ -1,6 +1,6 @@
 OpalModal/menu {
-	OpalFilteredList/filtered-list {
-		OpalTreeList/tree-list (
+	OpalFilteredList/filteredList {
+		OpalTreeList/treeList (
 			class=OpalFilteredList__list,
 			data-tree-list={dataTreeList},
 			data-tree-list-item-schema={paramDataTreeListItemSchema},
@@ -9,7 +9,7 @@ OpalModal/menu {
 			query={paramQuery}
 		) {
 			OpalSelectOption/option (
-				class=OpalTreeList__selection-control,
+				class=OpalTreeList__selectionControl,
 				text={$item.name},
 				selected={$selected}
 			)
@@ -17,7 +17,7 @@ OpalModal/menu {
 	}
 
 	div/footer {
-		OpalButton/btn-close {
+		OpalButton/btnClose {
 			'Готово'
 		}
 	}

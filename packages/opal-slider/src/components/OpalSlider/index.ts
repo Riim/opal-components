@@ -42,13 +42,13 @@ export class OpalSlider extends BaseComponent {
 
 	elementAttached() {
 		if (this.paramRange) {
-			this.listenTo('first-input', 'input', this._onFirstInputInput);
-			this.listenTo('second-input', 'input', this._onSecondInputInput);
+			this.listenTo('firstInput', 'input', this._onFirstInputInput);
+			this.listenTo('secondInput', 'input', this._onSecondInputInput);
 		}
 	}
 
 	_onFirstInputInput(evt: Event) {
-		let secondInput = this.$<HTMLInputElement>('second-input')!;
+		let secondInput = this.$<HTMLInputElement>('secondInput')!;
 		let value = (this._firstInputValue = +(evt.target as HTMLInputElement).value);
 
 		if (+secondInput.value < value) {
@@ -57,7 +57,7 @@ export class OpalSlider extends BaseComponent {
 	}
 
 	_onSecondInputInput(evt: Event) {
-		let firstInput = this.$<HTMLInputElement>('first-input')!;
+		let firstInput = this.$<HTMLInputElement>('firstInput')!;
 		let value = (this._secondInputValue = +(evt.target as HTMLInputElement).value);
 
 		if (+firstInput.value > value) {
@@ -73,10 +73,10 @@ export class OpalSlider extends BaseComponent {
 	set value(value: number | Array<number>) {
 		if (this.paramRange) {
 			this.$<HTMLInputElement>(
-				'first-input'
+				'firstInput'
 			)!.value = this._firstInputValue = (value as any)[0];
 			this.$<HTMLInputElement>(
-				'second-input'
+				'secondInput'
 			)!.value = this._secondInputValue = (value as any)[1];
 		} else {
 			this.$<HTMLInputElement>('input')!.value = value as any;

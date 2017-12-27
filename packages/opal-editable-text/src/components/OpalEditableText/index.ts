@@ -6,7 +6,7 @@ import template from './template.nelm';
 	template,
 
 	domEvents: {
-		'icon-edit': {
+		iconEdit: {
 			click() {
 				this.focus(true);
 			}
@@ -30,7 +30,7 @@ export class OpalEditableText extends BaseComponent {
 	_documentKeyDownListening: IDisposableListening;
 
 	ready() {
-		let contentSlotEl = this.$<BaseComponent>('content-slot')!.element;
+		let contentSlotEl = this.$<BaseComponent>('contentSlot')!.element;
 		let firstChild = contentSlotEl.firstChild;
 
 		if (!firstChild || firstChild.nodeType != Node.TEXT_NODE) {
@@ -43,7 +43,7 @@ export class OpalEditableText extends BaseComponent {
 
 	elementAttached() {
 		this.listenTo(this.element, 'click', this._onElementClick);
-		this.listenTo(this.$<BaseComponent>('content-slot')!.element, {
+		this.listenTo(this.$<BaseComponent>('contentSlot')!.element, {
 			focus: this._onContentSlotElementFocus,
 			blur: this._onContentSlotElementBlur,
 			input: this._onContentSlotElementInput
@@ -74,7 +74,7 @@ export class OpalEditableText extends BaseComponent {
 	}
 
 	_onContentSlotElementInput() {
-		let contentSlotEl = this.$<BaseComponent>('content-slot')!.element;
+		let contentSlotEl = this.$<BaseComponent>('contentSlot')!.element;
 		let text = contentSlotEl.textContent!;
 
 		if (contentSlotEl.innerHTML != text) {

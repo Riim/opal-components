@@ -70,13 +70,13 @@ function getTodayDate() {
 	template,
 
 	events: {
-		'month-select': {
+		monthSelect: {
 			select(evt: IEvent<OpalSelect>) {
 				this.shownMonth = +evt.target.viewModel.get(0)!.value;
 			}
 		},
 
-		'year-select': {
+		yearSelect: {
 			select(evt: IEvent<OpalSelect>) {
 				this.shownYear = +evt.target.viewModel.get(0)!.value;
 			}
@@ -84,7 +84,7 @@ function getTodayDate() {
 	},
 
 	domEvents: {
-		'btn-prev-month': {
+		btnPrevMonth: {
 			click() {
 				if (this.shownMonth) {
 					this.shownMonth--;
@@ -95,7 +95,7 @@ function getTodayDate() {
 			}
 		},
 
-		'btn-next-month': {
+		btnNextMonth: {
 			click() {
 				if (this.shownMonth == 11) {
 					this.shownYear++;

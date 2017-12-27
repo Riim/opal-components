@@ -16,7 +16,7 @@ import template from './template.nelm';
 })
 export class OpalFilteredList extends BaseComponent {
 	elementAttached() {
-		let queryInput = this.$('query-input');
+		let queryInput = this.$('queryInput');
 
 		if (queryInput) {
 			this.listenTo(queryInput, 'input', debounce(150, this._onQueryInputInput));
@@ -37,7 +37,7 @@ export class OpalFilteredList extends BaseComponent {
 	}
 
 	focus() {
-		let queryInput = this.$<OpalTextInput>('query-input');
+		let queryInput = this.$<OpalTextInput>('queryInput');
 
 		if (queryInput) {
 			queryInput.focus();

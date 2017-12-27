@@ -2,7 +2,7 @@
 	position: relative;
 	display: block;
 
-	@el nothing-found-slot {
+	@el nothingFoundSlot {
 		display: block;
 		box-sizing: border-box;
 		padding: 12px;
@@ -18,12 +18,12 @@
 			vertical-align: middle;
 		}
 	}
-		@el nothing-found {
+		@el nothingFound {
 			display: inline-block;
 			vertical-align: middle;
 			white-space: normal;
 		}
-			@el nothing-found-message {
+			@el nothingFoundMessage {
 				white-space: nowrap;
 				opacity: .6;
 			}

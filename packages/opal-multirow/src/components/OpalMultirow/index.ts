@@ -29,11 +29,11 @@ export class OpalMultirow extends BaseComponent {
 
 	initialize() {
 		let elementBlockNames = (this.constructor as typeof BaseComponent)._elementBlockNames;
-		this._presetRowClassName = elementBlockNames[elementBlockNames.length - 1] + '__preset-row';
+		this._presetRowClassName = elementBlockNames[elementBlockNames.length - 1] + '__presetRow';
 	}
 
 	ready() {
-		let presetRowCount = (this._presetRowCount = this.$$('preset-row').length);
+		let presetRowCount = (this._presetRowCount = this.$$('presetRow').length);
 
 		if (!presetRowCount) {
 			this._newRows.add({ key: nextUID() });
@@ -69,7 +69,7 @@ export class OpalMultirow extends BaseComponent {
 
 		Cell.forceRelease();
 
-		let focusable = this.$('focus', this.$$<BaseComponent>('new-row-slot').slice(-1)[0]) as {
+		let focusable = this.$('focus', this.$$<BaseComponent>('newRowSlot').slice(-1)[0]) as {
 			focus: () => {};
 		};
 

@@ -46,7 +46,7 @@
 			background: hsl(0,0%,80%);
 		}
 	}
-		@el content-slot {
+		@el contentSlot {
 			position: relative;
 			display: block;
 			overflow: hidden;
@@ -61,7 +61,7 @@
 			}
 		}
 
-		@el icon-check {
+		@el iconCheck {
 			position: absolute;
 			top: 0;
 			right: 14px;
@@ -76,7 +76,7 @@
 		@el control {
 			color: hsl(208,90%,50%);
 		}
-			@el icon-check {
+			@el iconCheck {
 				display: block;
 			}
 	}

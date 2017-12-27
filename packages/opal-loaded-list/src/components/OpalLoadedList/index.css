@@ -7,7 +7,7 @@
 
 	@el list {
 	}
-		@el list-item {
+		@el listItem {
 			display: block;
 		}
 
@@ -21,7 +21,7 @@
 		}
 	}
 
-	@el nothing-found-slot {
+	@el nothingFoundSlot {
 		display: block;
 		box-sizing: border-box;
 		padding: 12px;
@@ -37,23 +37,23 @@
 			vertical-align: middle;
 		}
 	}
-		@el nothing-found {
+		@el nothingFound {
 			display: inline-block;
 			vertical-align: middle;
 			white-space: normal;
 		}
-			@el nothing-found-message {
+			@el nothingFoundMessage {
 				white-space: nowrap;
 				opacity: .6;
 
-				& + .OpalSelect__btn-add-new-item {
+				& + .OpalSelect__btnAddNewItem {
 					margin-top: 18px;
 				}
 			}
 
 	/* Combinations */
 
-	.OpalSelect & .OpalSelect__btn-add-new-item {
+	.OpalSelect & .OpalSelect__btnAddNewItem {
 		display: block;
 	}
 }

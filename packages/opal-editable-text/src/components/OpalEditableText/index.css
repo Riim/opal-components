@@ -2,12 +2,12 @@
 	display: block;
 	cursor: text;
 
-	@el content-wrapper {
+	@el contentWrapper {
 		position: relative;
 		display: inline-block;
 		padding-right: 24px;
 	}
-		@el content-slot {
+		@el contentSlot {
 			display: inline-block;
 			padding-right: 2px;
 
@@ -16,7 +16,7 @@
 			}
 		}
 
-		@el icon-edit {
+		@el iconEdit {
 			position: absolute;
 			top: 0;
 			right: 0;

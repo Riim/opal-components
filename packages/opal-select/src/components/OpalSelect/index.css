@@ -9,7 +9,7 @@
 		text-align: left;
 
 		@mod size=s {
-			@el button-icon {
+			@el buttonIcon {
 				margin-left: 8px;
 				width: 12px;
 				height: 12px;
@@ -17,12 +17,12 @@
 		}
 
 		@mod checked {
-			@el button-icon {
+			@el buttonIcon {
 				transform: scaleY(-1);
 			}
 		}
 	}
-		@el button-icon {
+		@el buttonIcon {
 			position: relative;
 			top: -1px;
 			margin-left: 10px;
@@ -38,13 +38,13 @@
 			@mod size=s {
 				padding-right: 34px; /* 14 + 12 + 8 */
 
-				@el button-icon {
+				@el buttonIcon {
 					right: 14px;
 					margin-left: 0;
 				}
 			}
 		}
-			@el button-icon {
+			@el buttonIcon {
 				position: absolute;
 				top: 0;
 				right: 23px;
@@ -55,11 +55,11 @@
 
 	@el menu {
 	}
-		@el menu-content {
+		@el menuContent {
 		}
-			@el new-item-input-slot {
+			@el newItemInputSlot {
 			}
-				@el new-item-input {
+				@el newItemInput {
 					display: block;
 					margin: 6px 10px 4px;
 					width: auto;
@@ -77,11 +77,11 @@
 		max-height: 380px;
 	}
 
-	& .OpalFilteredList .OpalFilteredList__query-input {
+	& .OpalFilteredList .OpalFilteredList__queryInput {
 		margin: 4px 10px 6px;
 	}
 
-	& .OpalModal__content > .OpalFilteredList .OpalFilteredList__query-input {
+	& .OpalModal__content > .OpalFilteredList .OpalFilteredList__queryInput {
 		margin: 0 0 10px;
 	}
 

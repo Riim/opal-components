@@ -16,7 +16,7 @@
 				has-children='{$item.children.length |gt(0) }'
 			) {
 				RtSlot (clone-content, get-context={_getListItemContext}) {
-					OpalCheckbox/selection-control (
+					OpalCheckbox/selectionControl (
 						checked={$selected},
 						indeterminate={$indeterminate}
 					) {
@@ -27,9 +27,9 @@
 		}
 	}
 	@IfElse (if=filteredDataTreeList.length) {
-		RtSlot/nothing-found-slot (for=nothing-found) {
-			span/nothing-found {
-				span/nothing-found-message {
+		RtSlot/nothingFoundSlot (for=nothingFound) {
+			span/nothingFound {
+				span/nothingFoundMessage {
 					'{constructor.i18n.nothingFound}'
 				}
 			}

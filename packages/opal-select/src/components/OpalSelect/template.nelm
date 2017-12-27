@@ -15,16 +15,16 @@ RtSlot (for=button) {
 			'{_buttonText}'
 		}
 
-		OpalIcon/button-icon (name=chevronBottom)
+		OpalIcon/buttonIcon (name=chevronBottom)
 	}
 }
 
-RtSlot (for=menu-slot) {
-	RtSlot/menu-slot (for=menu) {
+RtSlot (for=menuSlot) {
+	RtSlot/menuSlot (for=menu) {
 		OpalDropdown/menu (auto-closing) {
-			RtSlot (for=menu-content) {
+			RtSlot (for=menuContent) {
 				@IfThen (if=_isParamDataListSpecified) {
-					div/, menu-content {
+					div/, menuContent {
 						@IfThen (if=dataList) {
 							@Repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {
 								OpalSelectOption/option (
@@ -35,19 +35,19 @@ RtSlot (for=menu-slot) {
 								)
 							}
 
-							RtSlot/new-item-input-slot // ...
+							RtSlot/newItemInputSlot // ...
 						}
 						@IfElse (if=dataList) {
-							OpalLoader/menu-loader (shown)
+							OpalLoader/menuLoader (shown)
 						}
 					}
 				}
 				@IfElse (if=_isParamDataListSpecified) {
-					div/, menu-content {
+					div/, menuContent {
 						RtSlot/options (for-tag=opal-select-option)
 
-						RtSlot (for=new-item-input-slot) {
-							RtSlot/new-item-input-slot (for=new-item-input)
+						RtSlot (for=newItemInputSlot) {
+							RtSlot/newItemInputSlot (for=newItemInput)
 						}
 					}
 				}

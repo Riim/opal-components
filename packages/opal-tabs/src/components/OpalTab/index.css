@@ -48,7 +48,7 @@
 			background: hsl(0,0%,80%);
 		}
 	}
-		@el content-slot {
+		@el contentSlot {
 			position: relative;
 			display: block;
 		}

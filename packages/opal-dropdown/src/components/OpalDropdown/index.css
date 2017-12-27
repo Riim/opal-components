@@ -21,7 +21,7 @@ opal-dropdown {
 	line-height: 1.5;
 	cursor: default;
 
-	@el content-slot {
+	@el contentSlot {
 		position: relative;
 		display: block;
 	}

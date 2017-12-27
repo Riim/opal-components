@@ -1,16 +1,13 @@
 @section/inner {
 
-RtSlot (for=query-input-slot) {
-	RtSlot/query-input-slot (for=query-input) {
-		OpalTextInput/query-input (
-			placeholder={constructor.i18n.queryInputPlaceholder},
-			clearable
-		) {
-			OpalIcon/query-input-final-icon (class=OpalTextInput__final-icon, name=search)
+RtSlot (for=queryInputSlot) {
+	RtSlot/queryInputSlot (for=queryInput) {
+		OpalTextInput/queryInput (placeholder={constructor.i18n.queryInputPlaceholder}, clearable) {
+			OpalIcon/queryInputFinalIcon (class=OpalTextInput__finalIcon, name=search)
 		}
 	}
 }
 
-RtSlot/list-slot (for=list)
+RtSlot/listSlot (for=list)
 
 }

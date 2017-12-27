@@ -39,7 +39,7 @@ opal-modal {
 		cursor: default;
 
 		&:hover {
-			@el btn-close {
+			@el btnClose {
 				&::before,
 				&::after {
 					background: hsl(0,0%,80%);
@@ -57,14 +57,14 @@ opal-modal {
 			}
 		}
 	}
-		@el btn-close-wrapper {
+		@el btnCloseWrapper {
 			position: absolute;
 			top: -10px;
 			left: 100%;
 			padding: 0 10px;
 			pointer-events: none;
 		}
-			@el btn-close {
+			@el btnClose {
 				position: relative;
 				box-sizing: content-box;
 				padding: 10px;
@@ -107,7 +107,7 @@ opal-modal {
 				}
 			}
 
-		@el content-slot {
+		@el contentSlot {
 			position: relative;
 			display: block;
 		}

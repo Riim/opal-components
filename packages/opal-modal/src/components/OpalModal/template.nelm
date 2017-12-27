@@ -1,12 +1,12 @@
 @section/inner {
 
 div/window {
-	div/btn-close-wrapper {
-		button/btn-close
+	div/btnCloseWrapper {
+		button/btnClose
 	}
 
 	@IfThen (if=isContentRendered) {
-		RtSlot/content-slot
+		RtSlot/contentSlot
 	}
 }
 

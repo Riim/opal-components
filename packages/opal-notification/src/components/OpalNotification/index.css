@@ -40,7 +40,7 @@
 		right: 0;
 		opacity: 1;
 	}
-		.OpalNotification__container .OpalNotification__icon-slot {
+		.OpalNotification__container .OpalNotification__iconSlot {
 		}
 			.OpalNotification__container .OpalNotification__icon {
 				position: absolute;
@@ -60,7 +60,7 @@
 				fill: none;
 			}
 
-		.OpalNotification__container .OpalNotification__btn-hide {
+		.OpalNotification__container .OpalNotification__btnHide {
 			position: absolute;
 			top: 0;
 			right: 10px;
@@ -96,7 +96,7 @@
 				display: none;
 			}
 		}
-			.OpalNotification__container .OpalNotification__btn-hide-icon {
+			.OpalNotification__container .OpalNotification__btnHideIcon {
 				position: absolute;
 				top: 0;
 				right: 0;

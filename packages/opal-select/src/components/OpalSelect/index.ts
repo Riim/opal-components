@@ -55,9 +55,9 @@ let defaultVMItemSchema = Object.freeze({
 	template,
 
 	events: {
-		'menu-slot': {
+		menuSlot: {
 			'<*>loaded'(evt) {
-				if (this._onсeFocusedAfterLoading || evt.target !== this.$('loaded-list')) {
+				if (this._onсeFocusedAfterLoading || evt.target !== this.$('loadedList')) {
 					return;
 				}
 
@@ -68,10 +68,10 @@ let defaultVMItemSchema = Object.freeze({
 				let focusTarget = this.$<HTMLElement | OpalTextInput>('focus');
 
 				if (!focusTarget) {
-					let filteredList = this.$<OpalFilteredList>('filtered-list');
+					let filteredList = this.$<OpalFilteredList>('filteredList');
 
 					if (filteredList) {
-						focusTarget = filteredList.$<OpalTextInput>('query-input');
+						focusTarget = filteredList.$<OpalTextInput>('queryInput');
 					}
 				}
 
@@ -509,7 +509,7 @@ export class OpalSelect extends BaseComponent {
 	_onMenuButtonClick(evt: IEvent<OpalTextInput>): false | void {
 		let button = evt.target;
 
-		if (button !== this.$('btn-add-new-item')) {
+		if (button !== this.$('btnAddNewItem')) {
 			return;
 		}
 
@@ -543,7 +543,7 @@ export class OpalSelect extends BaseComponent {
 	_onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void {
 		let textInput = evt.target;
 
-		if (textInput !== this.$('new-item-input')) {
+		if (textInput !== this.$('newItemInput')) {
 			return;
 		}
 
@@ -586,7 +586,7 @@ export class OpalSelect extends BaseComponent {
 			});
 		}
 
-		let loadedList = this.$<OpalLoadedList>('loaded-list');
+		let loadedList = this.$<OpalLoadedList>('loadedList');
 
 		if (loadedList) {
 			loadedList.paramQuery = '';
@@ -663,7 +663,7 @@ export class OpalSelect extends BaseComponent {
 			this._updateOptions();
 		}
 
-		let loadedList = this.$<OpalLoadedList>('loaded-list');
+		let loadedList = this.$<OpalLoadedList>('loadedList');
 
 		if (loadedList) {
 			loadedList!.checkLoading();
@@ -674,10 +674,10 @@ export class OpalSelect extends BaseComponent {
 		if (focusTarget) {
 			focusTarget.focus();
 		} else {
-			let filteredList = this.$<OpalFilteredList>('filtered-list');
+			let filteredList = this.$<OpalFilteredList>('filteredList');
 
 			if (filteredList) {
-				focusTarget = filteredList.$<OpalTextInput>('query-input');
+				focusTarget = filteredList.$<OpalTextInput>('queryInput');
 			}
 
 			if (focusTarget) {

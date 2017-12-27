@@ -1,10 +1,10 @@
 div/head {
-	OpalButton/btn-toggle-children (view-type=clean, checkable, checked={paramOpened}) {
-		OpalIcon/btn-toggle-children-icon (name=chevronRight)
+	OpalButton/btnToggleChildren (view-type=clean, checkable, checked={paramOpened}) {
+		OpalIcon/btnToggleChildrenIcon (name=chevronRight)
 	}
 
-	span/content-slot-wrapper {
-		RtSlot/content-slot (clone-content)
+	span/contentSlotWrapper {
+		RtSlot/contentSlot (clone-content)
 	}
 }
 

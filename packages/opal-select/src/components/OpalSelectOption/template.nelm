@@ -1,7 +1,7 @@
 @section/inner {
 
 button/control (tabindex={_tabIndex}) {
-	RtSlot/content-slot {
+	RtSlot/contentSlot {
 		'{paramText}'
 
 		@IfThen (if=paramSubtext) {
@@ -11,7 +11,7 @@ button/control (tabindex={_tabIndex}) {
 		}
 	}
 
-	OpalIcon/icon-check (name=checkmark)
+	OpalIcon/iconCheck (name=checkmark)
 }
 
 }

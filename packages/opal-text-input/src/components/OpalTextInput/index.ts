@@ -9,7 +9,7 @@ import template from './template.nelm';
 	template,
 
 	domEvents: {
-		'btn-clear': {
+		btnClear: {
 			click() {
 				this.value = null;
 				this.textField.focus();
@@ -69,7 +69,7 @@ export class OpalTextInput extends BaseComponent {
 	_initialHeight: number;
 
 	ready() {
-		let textField = (this.textField = this.$<HTMLInputElement>('text-field')!);
+		let textField = (this.textField = this.$<HTMLInputElement>('textField')!);
 
 		if (this._textFieldValue) {
 			textField.value = this._textFieldValue;

@@ -4,7 +4,7 @@
 	width: 400px;
 	vertical-align: middle;
 
-	@el text-field {
+	@el textField {
 		display: block;
 		box-sizing: border-box;
 		padding: 6px 34px 6px 11px;
@@ -27,14 +27,14 @@
 		-webkit-tap-highlight-color: transparent;
 	}
 
-	@el final-icon-slot {
+	@el finalIconSlot {
 		display: none;
 
 		@mod shown {
 			display: block;
 		}
 	}
-		@el final-icon {
+		@el finalIcon {
 			position: absolute;
 			top: 0;
 			right: 12px;
@@ -46,7 +46,7 @@
 			color: hsl(0,0%,50%);
 		}
 
-	@el btn-clear {
+	@el btnClear {
 		position: absolute;
 		top: 0;
 		right: 9px;
@@ -82,7 +82,7 @@
 			transform: translateY(1px);
 		}
 	}
-		@el btn-clear-icon {
+		@el btnClearIcon {
 			position: absolute;
 			top: 0;
 			right: 0;
@@ -105,14 +105,14 @@
 	}
 
 	&:hover {
-		@el text-field {
+		@el textField {
 			border-color: hsl(0,0%,58%);
 			border-top-color: hsl(0,0%,56%);
 			border-bottom-color: hsl(0,0%,68%);
 		}
 	}
 
-	@el text-field {
+	@el textField {
 		&:focus {
 			outline: none;
 			border-color: hsl(208,94%,54%);
@@ -121,14 +121,14 @@
 
 	@mod multiline {
 		&:not([auto-height=no]) {
-			@el text-field {
+			@el textField {
 				overflow-y: hidden;
 			}
 		}
 	}
 
 	@mod valid {
-		@el text-field {
+		@el textField {
 			&,
 			&:focus {
 				border-color: hsl(148,76%,40%);
@@ -137,7 +137,7 @@
 	}
 
 	@mod valid=no {
-		@el text-field {
+		@el textField {
 			&,
 			&:focus {
 				border-color: hsl(348,92%,58%);
@@ -149,7 +149,7 @@
 		opacity: .5;
 		pointer-events: none;
 
-		@el text-field {
+		@el textField {
 			background: hsl(0,0%,90%);
 		}
 	}
@@ -160,7 +160,7 @@
 	.OpalGroup > *:not(:first-child) & {
 		margin-right: -1px;
 
-		.OpalTextInput__text-field {
+		.OpalTextInput__textField {
 			border-top-left-radius: 0;
 			border-bottom-left-radius: 0;
 		}
@@ -168,7 +168,7 @@
 
 	.OpalGroup > &:not(:last-child),
 	.OpalGroup > *:not(:last-child) & {
-		.OpalTextInput__text-field {
+		.OpalTextInput__textField {
 			border-top-right-radius: 0;
 			border-bottom-right-radius: 0;
 		}

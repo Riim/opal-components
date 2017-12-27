@@ -17,25 +17,25 @@
 		content: '';
 	}
 
-	@el first-input-wrapper3 {
+	@el firstInputWrapper3 {
 		position: absolute;
 		top: 0;
 		right: 10px;
 		left: 10px;
 		z-index: 2;
 	}
-		@el first-input-wrapper2 {
+		@el firstInputWrapper2 {
 			position: relative;
 		}
-			@el first-input-wrapper {
+			@el firstInputWrapper {
 				position: absolute;
 				top: 0;
 				right: 0;
 				left: -10px;
 				overflow: hidden;
 			}
-				@el first-input,
-					second-input
+				@el firstInput,
+					secondInput
 				{
 					display: block;
 					margin: 0;
@@ -46,7 +46,7 @@
 					-webkit-appearance: none;
 				}
 
-				@el first-input {
+				@el firstInput {
 					&::-moz-focus-outer {
 						border: none;
 					}
@@ -100,7 +100,7 @@
 					}
 				}
 
-				@el second-input {
+				@el secondInput {
 					position: relative;
 					z-index: 1;
 
@@ -225,23 +225,23 @@
 
 	/* States */
 
-	& .OpalSlider__first-input:hover::-webkit-slider-thumb {
+	& .OpalSlider__firstInput:hover::-webkit-slider-thumb {
 		background: hsl(208,24%,46%);
 	}
-	& .OpalSlider__first-input:hover::-moz-range-thumb {
+	& .OpalSlider__firstInput:hover::-moz-range-thumb {
 		background: hsl(208,24%,46%);
 	}
-	& .OpalSlider__first-input:hover::-ms-thumb {
+	& .OpalSlider__firstInput:hover::-ms-thumb {
 		background: hsl(208,24%,46%);
 	}
 
-	& .OpalSlider__second-input:hover::-webkit-slider-thumb {
+	& .OpalSlider__secondInput:hover::-webkit-slider-thumb {
 		background: hsl(208,100%,60%);
 	}
-	& .OpalSlider__second-input:hover::-moz-range-thumb {
+	& .OpalSlider__secondInput:hover::-moz-range-thumb {
 		background: hsl(208,100%,60%);
 	}
-	& .OpalSlider__second-input:hover::-ms-thumb {
+	& .OpalSlider__secondInput:hover::-ms-thumb {
 		background: hsl(208,100%,60%);
 	}
 
@@ -255,65 +255,65 @@
 		background: hsl(208,24%,46%);
 	}
 
-	& .OpalSlider__first-input:focus,
-	& .OpalSlider__second-input:focus,
+	& .OpalSlider__firstInput:focus,
+	& .OpalSlider__secondInput:focus,
 	& .OpalSlider__input:focus {
 		outline: none;
 	}
-		body:not(._noFocusHighlight) & .OpalSlider__first-input:focus::-webkit-slider-thumb {
+		body:not(._noFocusHighlight) & .OpalSlider__firstInput:focus::-webkit-slider-thumb {
 			box-shadow: inset 0 0 0 2px hsl(208,18%,40%), inset 0 0 0 3px rgba(255,255,255,.8);
 		}
-		body:not(._noFocusHighlight) & .OpalSlider__second-input:focus::-webkit-slider-thumb {
+		body:not(._noFocusHighlight) & .OpalSlider__secondInput:focus::-webkit-slider-thumb {
 			box-shadow: inset 0 0 0 2px hsl(208,94%,54%), inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 		body:not(._noFocusHighlight) & .OpalSlider__input:focus::-webkit-slider-thumb {
 			box-shadow: inset 0 0 0 2px hsl(208,18%,40%), inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 
-		body:not(._noFocusHighlight) & .OpalSlider__first-input:focus::-moz-range-thumb {
+		body:not(._noFocusHighlight) & .OpalSlider__firstInput:focus::-moz-range-thumb {
 			box-shadow: inset 0 0 0 2px hsl(208,18%,40%), inset 0 0 0 3px rgba(255,255,255,.8);
 		}
-		body:not(._noFocusHighlight) & .OpalSlider__second-input:focus::-moz-range-thumb {
+		body:not(._noFocusHighlight) & .OpalSlider__secondInput:focus::-moz-range-thumb {
 			box-shadow: inset 0 0 0 2px hsl(208,94%,54%), inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 		body:not(._noFocusHighlight) & .OpalSlider__input:focus::-moz-range-thumb {
 			box-shadow: inset 0 0 0 2px hsl(208,18%,40%), inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 
-		body:not(._noFocusHighlight) & .OpalSlider__first-input:focus::-ms-thumb {
+		body:not(._noFocusHighlight) & .OpalSlider__firstInput:focus::-ms-thumb {
 			box-shadow: inset 0 0 0 2px hsl(208,18%,40%), inset 0 0 0 3px rgba(255,255,255,.8);
 		}
-		body:not(._noFocusHighlight) & .OpalSlider__second-input:focus::-ms-thumb {
+		body:not(._noFocusHighlight) & .OpalSlider__secondInput:focus::-ms-thumb {
 			box-shadow: inset 0 0 0 2px hsl(208,94%,54%), inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 		body:not(._noFocusHighlight) & .OpalSlider__input:focus::-ms-thumb {
 			box-shadow: inset 0 0 0 2px hsl(208,18%,40%), inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 
-	body:not(._noFocusHighlight) & .OpalSlider__first-input:hover:focus::-webkit-slider-thumb {
+	body:not(._noFocusHighlight) & .OpalSlider__firstInput:hover:focus::-webkit-slider-thumb {
 		box-shadow: inset 0 0 0 2px hsl(208,24%,46%), inset 0 0 0 3px rgba(255,255,255,.8);
 	}
-	body:not(._noFocusHighlight) & .OpalSlider__second-input:hover:focus::-webkit-slider-thumb {
+	body:not(._noFocusHighlight) & .OpalSlider__secondInput:hover:focus::-webkit-slider-thumb {
 		box-shadow: inset 0 0 0 2px hsl(208,100%,60%), inset 0 0 0 3px rgba(255,255,255,.8);
 	}
 	body:not(._noFocusHighlight) & .OpalSlider__input:hover:focus::-webkit-slider-thumb {
 		box-shadow: inset 0 0 0 2px hsl(208,24%,46%), inset 0 0 0 3px rgba(255,255,255,.8);
 	}
 
-	body:not(._noFocusHighlight) & .OpalSlider__first-input:hover:focus::-moz-range-thumb {
+	body:not(._noFocusHighlight) & .OpalSlider__firstInput:hover:focus::-moz-range-thumb {
 		box-shadow: inset 0 0 0 2px hsl(208,24%,46%), inset 0 0 0 3px rgba(255,255,255,.8);
 	}
-	body:not(._noFocusHighlight) & .OpalSlider__second-input:hover:focus::-moz-range-thumb {
+	body:not(._noFocusHighlight) & .OpalSlider__secondInput:hover:focus::-moz-range-thumb {
 		box-shadow: inset 0 0 0 2px hsl(208,100%,60%), inset 0 0 0 3px rgba(255,255,255,.8);
 	}
 	body:not(._noFocusHighlight) & .OpalSlider__input:hover:focus::-moz-range-thumb {
 		box-shadow: inset 0 0 0 2px hsl(208,24%,46%), inset 0 0 0 3px rgba(255,255,255,.8);
 	}
 
-	body:not(._noFocusHighlight) & .OpalSlider__first-input:hover:focus::-ms-thumb {
+	body:not(._noFocusHighlight) & .OpalSlider__firstInput:hover:focus::-ms-thumb {
 		box-shadow: inset 0 0 0 2px hsl(208,24%,46%), inset 0 0 0 3px rgba(255,255,255,.8);
 	}
-	body:not(._noFocusHighlight) & .OpalSlider__second-input:hover:focus::-ms-thumb {
+	body:not(._noFocusHighlight) & .OpalSlider__secondInput:hover:focus::-ms-thumb {
 		box-shadow: inset 0 0 0 2px hsl(208,100%,60%), inset 0 0 0 3px rgba(255,255,255,.8);
 	}
 	body:not(._noFocusHighlight) & .OpalSlider__input:hover:focus::-ms-thumb {

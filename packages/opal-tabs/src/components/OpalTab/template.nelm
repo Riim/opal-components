@@ -1,7 +1,7 @@
 @section/inner {
 
 button/control (tabindex={_tabIndex}) {
-	RtSlot/content-slot
+	RtSlot/contentSlot
 }
 
 }

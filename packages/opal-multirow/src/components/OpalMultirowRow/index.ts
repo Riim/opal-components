@@ -6,13 +6,13 @@ import template from './template.nelm';
 	template,
 
 	events: {
-		'btn-remove-row': {
+		btnRemoveRow: {
 			click() {
 				this.emit('remove-row-click');
 			}
 		},
 
-		'btn-add-row': {
+		btnAddRow: {
 			click() {
 				this.emit('add-row-click');
 			}

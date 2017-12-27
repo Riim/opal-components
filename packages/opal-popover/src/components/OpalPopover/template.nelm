@@ -3,7 +3,7 @@
 span/arrow
 
 @IfThen (if=isContentRendered) {
-	RtSlot/content-slot
+	RtSlot/contentSlot
 }
 
 }

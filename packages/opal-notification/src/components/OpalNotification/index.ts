@@ -54,7 +54,7 @@ export class OpalNotification extends BaseComponent {
 
 	elementAttached() {
 		this.listenTo(this, 'change:paramShown', this._onParamShownChange);
-		this.listenTo('btn-hide', 'click', this._onBtnHideClick);
+		this.listenTo('btnHide', 'click', this._onBtnHideClick);
 	}
 
 	elementDetached() {

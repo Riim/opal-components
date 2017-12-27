@@ -12,7 +12,7 @@ export class OpalTextInputValidator extends OpalInputValidator {
 
 	ready() {
 		super.ready();
-		this.target = this.textInput = this.$<OpalTextInput>('text-input')!;
+		this.target = this.textInput = this.$<OpalTextInput>('textInput')!;
 	}
 
 	elementAttached() {

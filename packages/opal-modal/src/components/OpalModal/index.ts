@@ -21,7 +21,7 @@ function onDocumentFocus(evt: Event) {
 	}
 
 	if (!openedModals[0].element.contains((evt.target as Node).parentNode!)) {
-		openedModals[0].$<HTMLElement>('btn-close')!.focus();
+		openedModals[0].$<HTMLElement>('btnClose')!.focus();
 	}
 }
 
@@ -36,7 +36,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 	template,
 
 	domEvents: {
-		'btn-close': {
+		btnClose: {
 			click() {
 				this.close();
 				this.emit('close');
@@ -182,7 +182,7 @@ export class OpalModal extends BaseComponent {
 	focus(): this {
 		if (this == openedModals[0]) {
 			document.body.classList.remove('_noFocusHighlight');
-			(this.$<HTMLElement>('focus') || this.$<HTMLElement>('btn-close')!).focus();
+			(this.$<HTMLElement>('focus') || this.$<HTMLElement>('btnClose')!).focus();
 		}
 
 		return this;

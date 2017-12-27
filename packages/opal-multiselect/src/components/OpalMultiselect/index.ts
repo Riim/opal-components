@@ -17,17 +17,17 @@ import template from './template.nelm';
 	template: (OpalSelect.template as Template).extend(template),
 
 	events: {
-		'query-input': {
+		queryInput: {
 			input(evt: IEvent<OpalTextInput>) {
-				this.$<OpalLoadedList>('loaded-list')!.paramQuery = evt.target.value as any;
+				this.$<OpalLoadedList>('loadedList')!.paramQuery = evt.target.value as any;
 			},
 
 			clear() {
-				this.$<OpalLoadedList>('loaded-list')!.paramQuery = '';
+				this.$<OpalLoadedList>('loadedList')!.paramQuery = '';
 			}
 		},
 
-		'btn-close': {
+		btnClose: {
 			click() {
 				this.close();
 				this.focus();
@@ -36,7 +36,7 @@ import template from './template.nelm';
 	},
 
 	domEvents: {
-		'btn-deselect-item': {
+		btnDeselectItem: {
 			click(evt, btn: HTMLElement) {
 				let vmItemValueFieldName = this._viewModelItemValueFieldName;
 				let itemValue = btn.dataset.itemValue;

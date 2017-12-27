@@ -64,7 +64,7 @@
 			}
 		}
 
-		@el content-slot {
+		@el contentSlot {
 		}
 
 	@mod sign=plus {

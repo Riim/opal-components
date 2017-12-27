@@ -24,7 +24,7 @@ let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: '
 	template,
 
 	domEvents: {
-		'btn-remove-tag': {
+		btnRemoveTag: {
 			click(evt, btn: HTMLElement) {
 				let vmItemValueFieldName = this._viewModelItemValueFieldName;
 				let tagValue = btn.dataset.tagValue;

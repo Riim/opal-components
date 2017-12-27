@@ -1,11 +1,11 @@
 @section/inner {
 
-RtSlot/content-slot
+RtSlot/contentSlot
 
 ' '
-OpalSignButton/btn-remove-row (sign=minus)
+OpalSignButton/btnRemoveRow (sign=minus)
 
 ' '
-OpalSignButton/btn-add-row (sign=plus)
+OpalSignButton/btnAddRow (sign=plus)
 
 }

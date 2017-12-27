@@ -8,35 +8,35 @@
 		content: '';
 	}
 
-	@el content-slot {
+	@el contentSlot {
 		display: inline-block;
 		margin-bottom: 20px;
 		padding-right: 6px;
 	}
 
-	@el btn-remove-row,
-		btn-add-row
+	@el btnRemoveRow,
+		btnAddRow
 	{
 		position: relative;
 		top: 1px;
 		display: none;
 	}
 
-	@el btn-remove-row {
+	@el btnRemoveRow {
 	}
 
-	@el btn-add-row {
+	@el btnAddRow {
 	}
 
-	.OpalMultirow__preset-rows-slot[not-have-new-rows] &:last-child .OpalMultirowRow__content-slot,
-	.OpalMultirow__new-rows rt-slot:last-child & .OpalMultirowRow__content-slot {
+	.OpalMultirow__presetRowsSlot[not-have-new-rows] &:last-child .OpalMultirowRow__contentSlot,
+	.OpalMultirow__newRows rt-slot:last-child & .OpalMultirowRow__contentSlot {
 		margin-bottom: 0;
 	}
 
-	.OpalMultirow__preset-rows-slot[not-single-row] & .OpalMultirowRow__btn-remove-row,
-	.OpalMultirow__new-rows[not-single-row] & .OpalMultirowRow__btn-remove-row,
-	.OpalMultirow__preset-rows-slot[not-have-new-rows] &:last-child .OpalMultirowRow__btn-add-row,
-	.OpalMultirow__new-rows rt-slot:last-child & .OpalMultirowRow__btn-add-row {
+	.OpalMultirow__presetRowsSlot[not-single-row] & .OpalMultirowRow__btnRemoveRow,
+	.OpalMultirow__newRows[not-single-row] & .OpalMultirowRow__btnRemoveRow,
+	.OpalMultirow__presetRowsSlot[not-have-newRows] &:last-child .OpalMultirowRow__btnAddRow,
+	.OpalMultirow__newRows rt-slot:last-child & .OpalMultirowRow__btnAddRow {
 		display: inline-block;
 	}
 

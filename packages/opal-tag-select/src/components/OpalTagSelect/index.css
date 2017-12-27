@@ -30,7 +30,7 @@
 				}
 			}
 		}
-			@el btn-remove-tag {
+			@el btnRemoveTag {
 				position: absolute;
 				top: 0;
 				bottom: 0;
@@ -104,7 +104,7 @@
 		@el tag {
 			background: hsl(208,100%,48%);
 		}
-			@el btn-remove-tag {
+			@el btnRemoveTag {
 				background: hsl(208,90%,38%);
 
 				&:hover {
@@ -121,7 +121,7 @@
 		@el tag {
 			background: hsl(348,96%,52%);
 		}
-			@el btn-remove-tag {
+			@el btnRemoveTag {
 				background: hsl(348,86%,42%);
 
 				&:hover {

@@ -1,7 +1,7 @@
 @section/inner {
 
 @IfThen (if=paramMultiline) {
-	textarea/, text-field (
+	textarea/, textField (
 		rows={paramRows},
 		name={paramInputName},
 		placeholder={paramPlaceholder},
@@ -10,7 +10,7 @@
 	)
 }
 @IfElse (if=paramMultiline) {
-	input/, text-field (
+	input/, textField (
 		type={paramInputType},
 		name={paramInputName},
 		placeholder={paramPlaceholder},
@@ -19,11 +19,11 @@
 	)
 }
 
-RtSlot/final-icon-slot (for=final-icon, shown={isFinalIconShown})
+RtSlot/finalIconSlot (for=finalIcon, shown={isFinalIconShown})
 
 @IfThen (if=paramClearable) {
-	button/btn-clear (shown={isBtnClearShown}) {
-		OpalIcon/btn-clear-icon (name=cross)
+	button/btnClear (shown={isBtnClearShown}) {
+		OpalIcon/btnClearIcon (name=cross)
 	}
 }
 

@@ -3,7 +3,7 @@
 
 	@el popover {
 	}
-		@el content-slot {
+		@el contentSlot {
 			display: block;
 			width: 240px;
 			text-align: center;

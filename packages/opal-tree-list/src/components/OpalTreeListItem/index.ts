@@ -16,7 +16,7 @@ import template from './template.nelm';
 	template,
 
 	events: {
-		'btn-toggle-children': {
+		btnToggleChildren: {
 			change(evt: IEvent<OpalButton>) {
 				this.paramOpened = evt.target.checked;
 			}

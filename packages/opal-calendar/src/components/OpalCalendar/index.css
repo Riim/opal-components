@@ -14,8 +14,8 @@
 		padding: 8px 44px;
 		text-align: center;
 	}
-		@el btn-prev-month,
-			btn-next-month
+		@el btnPrevMonth,
+			btnNextMonth
 		{
 			position: absolute;
 			top: 0;
@@ -63,15 +63,15 @@
 			}
 		}
 
-		@el btn-prev-month {
+		@el btnPrevMonth {
 			left: 8px;
 		}
 
-		@el btn-next-month {
+		@el btnNextMonth {
 			right: 8px;
 		}
-			@el btn-prev-month-icon,
-				btn-next-month-icon
+			@el btnPrevMonthIcon,
+				btnNextMonthIcon
 			{
 				position: absolute;
 				top: 0;
@@ -84,10 +84,10 @@
 				height: 18px;
 			}
 
-		@el month-select {
+		@el monthSelect {
 		}
 
-		@el year-select {
+		@el yearSelect {
 		}
 
 	@el body {
@@ -96,18 +96,18 @@
 		cursor: default;
 		user-select: none;
 	}
-		@el week-days,
+		@el weekDays,
 			days
 		{
 			width: 100%;
 			border-spacing: 0;
 			border-collapse: separate;
 		}
-			@el week-days-row,
-				days-row
+			@el weekDaysRow,
+				daysRow
 			{
 			}
-				@el week-day,
+				@el weekDay,
 					day
 				{
 					display: inline-block;
@@ -117,16 +117,16 @@
 					border: 1px solid transparent;
 				}
 
-		@el week-days {
+		@el weekDays {
 		}
-			@el week-days-row {
+			@el weekDaysRow {
 			}
-				@el week-day {
+				@el weekDay {
 				}
 
 		@el days {
 		}
-			@el days-row {
+			@el daysRow {
 			}
 				@el day {
 					position: relative;

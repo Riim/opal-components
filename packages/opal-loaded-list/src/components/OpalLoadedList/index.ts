@@ -183,8 +183,8 @@ export class OpalLoadedList extends BaseComponent {
 				this.dataList.length
 					? this.dataList.get(-1)![
 							this.paramDataListItemSchema.value ||
-								(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema
-									.value
+								(this.constructor as typeof OpalLoadedList)
+									.defaultDataListItemSchema.value
 						]
 					: null
 			);

@@ -34,7 +34,7 @@ opal-popover {
 		}
 	}
 
-	@el content-slot {
+	@el contentSlot {
 		position: relative;
 		display: block;
 	}
@@ -236,11 +236,11 @@ opal-popover {
 
 	@mod opened {
 		display: block;
-		animation: OpalPopover__fade-in-animation .1s linear;
+		animation: OpalPopover__fadeInAnimation .1s linear;
 	}
 }
 
-@keyframes OpalPopover__fade-in-animation {
+@keyframes OpalPopover__fadeInAnimation {
 	0% {
 		opacity: 0;
 	}

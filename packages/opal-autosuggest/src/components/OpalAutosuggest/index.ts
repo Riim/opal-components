@@ -39,9 +39,9 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', subte
 	template,
 
 	domEvents: {
-		'list-item': {
+		listItem: {
 			click(evt, listItem: HTMLElement) {
-				let textInput = this.$<OpalTextInput>('text-input')!;
+				let textInput = this.$<OpalTextInput>('textInput')!;
 				let listItemDataSet = listItem.dataset;
 
 				textInput.value = listItemDataSet.text!;
@@ -127,14 +127,14 @@ export class OpalAutosuggest extends BaseComponent {
 			'change:isLoaderShown': this._onIsLoaderShownChange
 		});
 		this.listenTo(this.dataList, 'change', this._onDataListChange);
-		this.listenTo('text-input', {
+		this.listenTo('textInput', {
 			focus: this._onTextInputFocus,
 			blur: this._onTextInputBlur,
 			input: this._onTextInputInput,
 			change: this._onTextInputChange
 		});
 		this.listenTo(
-			this.$<OpalTextInput>('text-input')!.textField,
+			this.$<OpalTextInput>('textInput')!.textField,
 			'click',
 			this._onTextFieldClick
 		);
@@ -148,7 +148,7 @@ export class OpalAutosuggest extends BaseComponent {
 
 	ready() {
 		if (this.value) {
-			this.$<OpalTextInput>('text-input')!.value = this.value[
+			this.$<OpalTextInput>('textInput')!.value = this.value[
 				this._dataListItemTextFieldName
 			];
 		}
@@ -160,13 +160,13 @@ export class OpalAutosuggest extends BaseComponent {
 		this._clearDataList();
 
 		this.value = item;
-		this.$<OpalTextInput>('text-input')!.value = item
+		this.$<OpalTextInput>('textInput')!.value = item
 			? item[this._dataListItemTextFieldName]
 			: '';
 	}
 
 	_onIsLoaderShownChange(evt: IEvent) {
-		this.$<OpalTextInput>('text-input')!.paramLoading = evt.data.value;
+		this.$<OpalTextInput>('textInput')!.paramLoading = evt.data.value;
 	}
 
 	_onDataListChange() {
@@ -244,7 +244,7 @@ export class OpalAutosuggest extends BaseComponent {
 
 		for (
 			;
-			!el.classList.contains('OpalAutosuggest__list-item');
+			!el.classList.contains('OpalAutosuggest__listLtem');
 			el = el.parentNode as HTMLElement
 		) {
 			if (el == menu) {
@@ -282,7 +282,7 @@ export class OpalAutosuggest extends BaseComponent {
 				let focusedListItem = this._focusedListItem;
 
 				if (focusedListItem) {
-					let listItems = this.$$<HTMLElement>('list-item');
+					let listItems = this.$$<HTMLElement>('listItem');
 					let index = listItems.indexOf(focusedListItem);
 
 					if (evt.which == 38 ? index > 0 : index < listItems.length - 1) {
@@ -306,7 +306,7 @@ export class OpalAutosuggest extends BaseComponent {
 				if (focusedListItem) {
 					let focusedListItemDataSet = focusedListItem.dataset;
 
-					this.$<OpalTextInput>('text-input')!.value = focusedListItemDataSet.text!;
+					this.$<OpalTextInput>('textInput')!.value = focusedListItemDataSet.text!;
 
 					this._clearDataList();
 
@@ -338,7 +338,7 @@ export class OpalAutosuggest extends BaseComponent {
 	_load() {
 		this.loading = true;
 
-		let args: Array<any> = [this.$<OpalTextInput>('text-input')!.value];
+		let args: Array<any> = [this.$<OpalTextInput>('textInput')!.value];
 
 		if (this.dataProvider.getItems.length >= 2) {
 			args.unshift(this.paramCount);
@@ -358,7 +358,7 @@ export class OpalAutosuggest extends BaseComponent {
 			this.dataList.addRange(items);
 			Cell.forceRelease();
 
-			let focusedListItem = this.$<HTMLElement>('list-item')!;
+			let focusedListItem = this.$<HTMLElement>('listItem')!;
 
 			this._focusedListItem = focusedListItem;
 			focusedListItem.setAttribute('focused', '');
@@ -393,7 +393,7 @@ export class OpalAutosuggest extends BaseComponent {
 	_selectItem(item?: IDataListItem | null) {
 		if (item === undefined) {
 			if (this._isNotInputConfirmed) {
-				let query = this.$<OpalTextInput>('text-input')!.value;
+				let query = this.$<OpalTextInput>('textInput')!.value;
 
 				if (query) {
 					query = toComparable(query);
@@ -435,7 +435,7 @@ export class OpalAutosuggest extends BaseComponent {
 			this.value = null;
 		}
 
-		this.$<OpalTextInput>('text-input')!.clear();
+		this.$<OpalTextInput>('textInput')!.clear();
 	}
 
 	_clearDataList() {

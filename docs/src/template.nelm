@@ -154,18 +154,18 @@ p {
 h1 { 'OpalInputMask' }
 p {
 	OpalInputMask (mask=99/99/9999) {
-		OpalTextInput (class=OpalInputMask__text-input, placeholder=dd/mm/yyyy)
+		OpalTextInput (class=OpalInputMask__textInput, placeholder=dd/mm/yyyy)
 	}
 }
 p {
 	OpalInputMask (mask='+7 (999) 999-9999? доб. 9999') {
-		OpalTextInput (class=OpalInputMask__text-input, placeholder=Телефон)
+		OpalTextInput (class=OpalInputMask__textInput, placeholder=Телефон)
 	}
 }
 p {
 	OpalInputMask (mask=#ffffff) {
 		OpalInputMaskDefinition (mask-char=f, regex=/[0-9a-f]/i)
-		OpalTextInput (class=OpalInputMask__text-input, placeholder=Цвет)
+		OpalTextInput (class=OpalInputMask__textInput, placeholder=Цвет)
 	}
 }
 
@@ -379,7 +379,7 @@ h1 { 'OpalFilteredList' }
 p {
 	OpalFilteredList {
 		OpalLoadedList (class=OpalFilteredList__list, data-provider={dataProvider1}) {
-			span (class=OpalLoadedList__list-item) {
+			span (class=OpalLoadedList__listItem) {
 				'{$item.name}'
 			}
 		}
@@ -391,7 +391,7 @@ p {
 	OpalFilteredList {
 		OpalTreeList (class=OpalFilteredList__list, data-tree-list={dataTreeList1}) {
 			OpalCheckbox (
-				class=OpalTreeList__selection-control,
+				class=OpalTreeList__selectionControl,
 				checked={$selected},
 				indeterminate={$indeterminate}
 			) {
@@ -430,7 +430,7 @@ p {
 		add-new-item={addNewItem1},
 		placeholder=Select
 	) {
-		OpalTextInput (class=OpalSelect__new-item-input, placeholder=Добавить)
+		OpalTextInput (class=OpalSelect__newItemInput, placeholder=Добавить)
 	}
 }
 p {
@@ -456,12 +456,12 @@ h1 { 'OpalSelect + OpalLoadedList' }
 p {
 	OpalSelect {
 		OpalDropdown (class=OpalSelect__menu, auto-height=no, auto-closing) {
-			OpalFilteredList (class=OpalSelect__filtered-list) {
+			OpalFilteredList (class=OpalSelect__filteredList) {
 				OpalLoadedList (
-					class=OpalSelect__loaded-list OpalFilteredList__list,
+					class=OpalSelect__loadedList OpalFilteredList__list,
 					data-provider={dataProvider1}
 				) {
-					OpalSelectOption (class=OpalLoadedList__list-item, text={$item.name})
+					OpalSelectOption (class=OpalLoadedList__listItem, text={$item.name})
 				}
 			}
 		}
@@ -470,8 +470,8 @@ p {
 
 	OpalSelect {
 		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
-			OpalLoadedList (class=OpalSelect__loaded-list, data-provider={dataProvider1}) {
-				OpalSelectOption (class=OpalLoadedList__list-item, text={$item.name})
+			OpalLoadedList (class=OpalSelect__loadedList, data-provider={dataProvider1}) {
+				OpalSelectOption (class=OpalLoadedList__listItem, text={$item.name})
 			}
 		}
 	}
@@ -483,8 +483,8 @@ p {
 		view-model-item-schema='{ value: "id", text: "name" }'
 	) {
 		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
-			OpalLoadedList (class=OpalSelect__loaded-list, data-provider={dataProvider1}) {
-				OpalSelectOption (class=OpalLoadedList__list-item, text={$item.name})
+			OpalLoadedList (class=OpalSelect__loadedList, data-provider={dataProvider1}) {
+				OpalSelectOption (class=OpalLoadedList__listItem, text={$item.name})
 			}
 		}
 	}
@@ -492,12 +492,12 @@ p {
 
 	OpalSelect {
 		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
-			OpalFilteredList (class=OpalSelect__filtered-list) {
+			OpalFilteredList (class=OpalSelect__filteredList) {
 				OpalLoadedList (
-					class=OpalSelect__loaded-list OpalFilteredList__list,
+					class=OpalSelect__loadedList OpalFilteredList__list,
 					data-provider={dataProvider1}
 				) {
-					OpalSelectOption (class=OpalLoadedList__list-item, text={$item.name})
+					OpalSelectOption (class=OpalLoadedList__listItem, text={$item.name})
 				}
 			}
 		}
@@ -506,22 +506,19 @@ p {
 
 	OpalSelect (multiple, add-new-item={addNewItem1}) {
 		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
-			OpalFilteredList (class=OpalSelect__filtered-list) {
+			OpalFilteredList (class=OpalSelect__filteredList) {
 				OpalLoadedList (
-					class=OpalSelect__loaded-list OpalFilteredList__list,
+					class=OpalSelect__loadedList OpalFilteredList__list,
 					data-provider={dataProvider1}
 				) {
-					OpalSelectOption (class=OpalLoadedList__list-item, text={$item.name})
+					OpalSelectOption (class=OpalLoadedList__listItem, text={$item.name})
 
-					span (class=OpalLoadedList__nothing-found) {
-						span (class=OpalLoadedList__nothing-found-message) {
+					span (class=OpalLoadedList__nothingFound) {
+						span (class=OpalLoadedList__nothingFoundMessage) {
 							'Ничего не найдено'
 						}
 
-						OpalButton (
-							class=OpalSelect__btn-add-new-item,
-							data-item-text={paramQuery}
-						) {
+						OpalButton (class=OpalSelect__btnAddNewItem, data-item-text={paramQuery}) {
 							'Добавить "{paramQuery}"'
 						}
 					}
@@ -559,7 +556,7 @@ p {
 		add-new-item={addNewItem1},
 		view-model={viewModel1}
 	) {
-		OpalTextInput (class=OpalSelect__new-item-input OpalFilteredList__query-input)
+		OpalTextInput (class=OpalSelect__newItemInput OpalFilteredList__queryInput)
 	}
 }
 
@@ -571,10 +568,10 @@ p {
 h1 { 'OpalMultirow' }
 p {
 	OpalMultirow {
-		OpalMultirowRow (class=OpalMultirow__preset-row) {
+		OpalMultirowRow (class=OpalMultirow__presetRow) {
 			OpalTextInput (value=Value, placeholder=Placeholder)
 		}
-		OpalMultirowRow (class=OpalMultirow__preset-row) {
+		OpalMultirowRow (class=OpalMultirow__presetRow) {
 			OpalTextInput (value=Value, placeholder=Placeholder, valid=no)
 		}
 

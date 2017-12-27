@@ -1,33 +1,33 @@
 @section/inner {
 
 header/header {
-	button/btn-prev-month (disabled={isBtnPrevMonthDisabled}) {
-		OpalIcon/btn-prev-month-icon (name=chevronLeft)
+	button/btnPrevMonth (disabled={isBtnPrevMonthDisabled}) {
+		OpalIcon/btnPrevMonthIcon (name=chevronLeft)
 	}
 
-	OpalSelect/month-select (size=s, value=['{shownMonth}']) {
-		@Repeat (class=OpalSelect__menu-content, for=month of constructor.i18n.months) {
+	OpalSelect/monthSelect (size=s, value=['{shownMonth}']) {
+		@Repeat (class=OpalSelect__menuContent, for=month of constructor.i18n.months) {
 			OpalSelectOption (value={$index}, text={month})
 		}
 	}
 	' '
 
-	OpalSelect/year-select (size=s, value=['{shownYear}']) {
-		@Repeat (class=OpalSelect__menu-content, for=year of years) {
+	OpalSelect/yearSelect (size=s, value=['{shownYear}']) {
+		@Repeat (class=OpalSelect__menuContent, for=year of years) {
 			OpalSelectOption (value={year}, text={year})
 		}
 	}
 
-	button/btn-next-month (disabled={isBtnNextMonthDisabled}) {
-		OpalIcon/btn-next-month-icon (name=chevronRight)
+	button/btnNextMonth (disabled={isBtnNextMonthDisabled}) {
+		OpalIcon/btnNextMonthIcon (name=chevronRight)
 	}
 }
 
 div/body {
-	div/week-days {
-		div/week-days-row {
+	div/weekDays {
+		div/weekDaysRow {
 			@Repeat (for=weekDay of weekDaysShort) {
-				span/week-day {
+				span/weekDay {
 					'{weekDay}'
 				}
 			}
@@ -36,7 +36,7 @@ div/body {
 
 	div/days {
 		@Repeat (for=weekDays of days) {
-			div/days-row {
+			div/daysRow {
 				@Repeat (for=day of weekDays) {
 					span/day (
 						week-day={day.weekDay},

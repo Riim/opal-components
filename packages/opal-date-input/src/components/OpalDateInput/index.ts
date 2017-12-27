@@ -31,14 +31,14 @@ function pad(num: number): string {
 	events: {
 		calendar: {
 			change(evt: IEvent<OpalCalendar>) {
-				this.$<OpalDropdown>('calendar-menu')!.close();
+				this.$<OpalDropdown>('calendarMenu')!.close();
 
-				let textInput = this.$<OpalTextInput>('text-input')!;
+				let textInput = this.$<OpalTextInput>('textInput')!;
 
 				textInput.value = evt.target.stringValue;
 				textInput.focus();
 
-				this.$<OpalTextInputValidator>('text-input-validator')!.validate();
+				this.$<OpalTextInputValidator>('textInputValidator')!.validate();
 			}
 		}
 	}
@@ -80,23 +80,23 @@ export class OpalDateInput extends BaseComponent {
 	_documentClickListening: IDisposableListening;
 
 	elementAttached() {
-		this.listenTo('text-input', 'change', this._onTextInputChange);
+		this.listenTo('textInput', 'change', this._onTextInputChange);
 		this.listenTo(
-			this.$<BaseComponent>('text-input')!.element,
+			this.$<BaseComponent>('textInput')!.element,
 			'click',
 			this._onTextInputElementClick
 		);
-		this.listenTo('calendar-menu', 'change:paramOpened', this._onCalendarMenuParamOpenedChange);
+		this.listenTo('calendarMenu', 'change:paramOpened', this._onCalendarMenuParamOpenedChange);
 	}
 
 	_onTextInputChange(evt: IEvent<OpalTextInput>) {
-		if (this.$<OpalTextInputValidator>('text-input-validator')!.valid) {
+		if (this.$<OpalTextInputValidator>('textInputValidator')!.valid) {
 			this.$<OpalCalendar>('calendar')!.stringValue = evt.target.value;
 		}
 	}
 
 	_onTextInputElementClick() {
-		this.$<OpalDropdown>('calendar-menu')!.open();
+		this.$<OpalDropdown>('calendarMenu')!.open();
 	}
 
 	_onCalendarMenuParamOpenedChange(evt: IEvent) {
@@ -127,20 +127,20 @@ export class OpalDateInput extends BaseComponent {
 		}
 
 		if (!this.element.contains((evt.target as Node).parentNode!)) {
-			this.$<OpalDropdown>('calendar-menu')!.close();
+			this.$<OpalDropdown>('calendarMenu')!.close();
 		}
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {
 		if (evt.which == 27 /* Esc */) {
 			evt.preventDefault();
-			this.$<OpalDropdown>('calendar-menu')!.close();
+			this.$<OpalDropdown>('calendarMenu')!.close();
 		}
 	}
 
 	_onDocumentClick(evt: Event) {
 		if (!this.element.contains(evt.target as HTMLElement)) {
-			this.$<OpalDropdown>('calendar-menu')!.close();
+			this.$<OpalDropdown>('calendarMenu')!.close();
 		}
 	}
 
@@ -195,6 +195,6 @@ export class OpalDateInput extends BaseComponent {
 	}
 
 	validate(): boolean {
-		return this.$<OpalTextInputValidator>('text-input-validator')!.validate();
+		return this.$<OpalTextInputValidator>('textInputValidator')!.validate();
 	}
 }

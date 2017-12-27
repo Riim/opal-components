@@ -6,7 +6,7 @@ label/label {
 	span/control (tabindex={_tabIndex})
 	' '
 
-	RtSlot/content-slot
+	RtSlot/contentSlot
 }
 
 }

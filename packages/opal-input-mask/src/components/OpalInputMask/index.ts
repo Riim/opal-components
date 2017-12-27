@@ -68,12 +68,12 @@ export class OpalInputMask extends BaseComponent {
 	}
 
 	ready() {
-		this.textField = this.$<OpalTextInput>('text-input')!.textField;
+		this.textField = this.$<OpalTextInput>('textInput')!.textField;
 
 		let definitions = this._definitions;
 
 		forEach.call(
-			this.element.getElementsByTagName('opal-input-mask-definition'),
+			this.element.getElementsByTagName('opalInputMaskDefinition'),
 			(inputMaskDefinition: IComponentElement) => {
 				definitions[
 					(inputMaskDefinition.$component as OpalInputMaskDefinition).paramMaskChar
@@ -118,7 +118,7 @@ export class OpalInputMask extends BaseComponent {
 		this._checkValue(false);
 
 		if (this.textField.value != this._textOnFocus) {
-			this.$<OpalTextInput>('text-input')!.emit('change');
+			this.$<OpalTextInput>('textInput')!.emit('change');
 		}
 	}
 
@@ -148,7 +148,7 @@ export class OpalInputMask extends BaseComponent {
 			this._shiftLeft(start, end - 1);
 
 			if (value != textField.value) {
-				this.$<OpalTextInput>('text-input')!._onTextFieldInput(evt);
+				this.$<OpalTextInput>('textInput')!._onTextFieldInput(evt);
 			}
 		} else if (key == 27 /* Escape */) {
 			evt.preventDefault();
@@ -156,7 +156,7 @@ export class OpalInputMask extends BaseComponent {
 			if (textField.value != this._textOnFocus) {
 				textField.value = this._textOnFocus;
 				this._setTextFieldSelection(0, this._checkValue(false));
-				this.$<OpalTextInput>('text-input')!._onTextFieldInput(evt);
+				this.$<OpalTextInput>('textInput')!._onTextFieldInput(evt);
 			}
 		}
 	}
@@ -195,13 +195,13 @@ export class OpalInputMask extends BaseComponent {
 
 					this._setTextFieldSelection(index, index);
 
-					this.$<OpalTextInput>('text-input')!._onTextFieldInput(evt);
+					this.$<OpalTextInput>('textInput')!._onTextFieldInput(evt);
 
 					if (index >= bufferLen) {
 						this.emit('complete');
 					}
 				} else if (start != end) {
-					this.$<OpalTextInput>('text-input')!._onTextFieldInput(evt);
+					this.$<OpalTextInput>('textInput')!._onTextFieldInput(evt);
 				}
 			}
 		}
@@ -264,9 +264,9 @@ export class OpalInputMask extends BaseComponent {
 		} else {
 			if (lastMatchIndex + 1 < partialIndex) {
 				this._clearBuffer(0, bufferLen);
-				this.$<OpalTextInput>('text-input')!.value = '';
+				this.$<OpalTextInput>('textInput')!.value = '';
 			} else {
-				this.$<OpalTextInput>('text-input')!.value = buffer
+				this.$<OpalTextInput>('textInput')!.value = buffer
 					.slice(0, lastMatchIndex + 1)
 					.join('');
 			}
@@ -340,7 +340,7 @@ export class OpalInputMask extends BaseComponent {
 		let buffer = this._buffer;
 		let toIndex = buffer.indexOf(null);
 
-		this.$<OpalTextInput>('text-input')!.value = (toIndex == -1
+		this.$<OpalTextInput>('textInput')!.value = (toIndex == -1
 			? buffer
 			: buffer.slice(0, toIndex)
 		).join('');

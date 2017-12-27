@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-button",
-  "version": "0.32.45",
+  "version": "0.33.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,6 +17,6 @@
     "cellx": "^1.7.78",
     "cellx-decorators": "^1.4.9",
     "reflect-metadata": "^0.1.10",
-    "rionite": "^0.32.10"
+    "rionite": "^0.32.11"
   }
 }

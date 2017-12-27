@@ -7,7 +7,7 @@ span/tags {
 			disabled='{tag |_isItemDisabled }'
 		) {
 			'{tag |key(_viewModelItemTextFieldName) }'
-			button/btn-remove-tag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')
+			button/btnRemoveTag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')
 		}
 	}
 }
@@ -38,18 +38,18 @@ span/control {
 			disabled={paramDisabled}
 		)
 
-		RtSlot (class=OpalSelect__menu-slot, for=OpalSelect__menu) {
+		RtSlot (class=OpalSelect__menuSlot, for=OpalSelect__menu) {
 			OpalPopover/menu (
 				class=OpalSelect__menu,
 				position={paramPopoverPosition},
 				auto-closing
 			) {
-				RtContent (select='.OpalSelect__menu-content') {
+				RtContent (select=.OpalSelect__menuContent) {
 					@IfThen (if=_dataListKeypathParam) {
-						div (class=OpalSelect__menu-content) {
+						div (class=OpalSelect__menuContent) {
 							@IfThen (if=dataList) {
 								@Repeat (for=item of dataList) {
-									OpalSelectOption/data-list-select-option, select-option (
+									OpalSelectOption/dataListSelectOption, selectOption (
 										value='{item |key(_dataListItemValueFieldName) }',
 										text='{item |key(_dataListItemTextFieldName) }',
 										subtext='{item |key(_dataListItemSubtextFieldName) }',
@@ -58,30 +58,30 @@ span/control {
 								}
 
 								RtSlot (
-									class=OpalSelect__new-item-input-slot,
-									for=OpalSelect__new-item-input
+									class=OpalSelect__newItemInputSlot,
+									for=OpalSelect__newItemInput
 								)
 							}
 							@IfElse (if=dataList) {
-								OpalLoader/menu-loader (shown)
+								OpalLoader/menuLoader (shown)
 							}
 						}
 					}
 					@IfElse (if=_dataListKeypathParam) {
-						OpalFilteredList/menu-filtered-list (
-							class=OpalSelect__menu-content OpalSelect__filtered-list
+						OpalFilteredList/menuFilteredList (
+							class=OpalSelect__menuContent OpalSelect__filteredList
 						) {
 							RtSlot (
-								class=OpalFilteredList__query-input-slot,
-								for=OpalFilteredList__query-input
+								class=OpalFilteredList__queryInputSlot,
+								for=OpalFilteredList__queryInput
 							)
 
-							OpalLoadedList/menu-loaded-list (
-								class=OpalSelect__loaded-list OpalFilteredList__list,
+							OpalLoadedList/menuLoadedList (
+								class=OpalSelect__loadedList OpalFilteredList__list,
 								data-provider={dataProvider}
 							) {
-								OpalSelectOption/loaded-list-select-option, select-option (
-									class=OpalLoadedList__list-item,
+								OpalSelectOption/loadedListSelectOption, selectOption (
+									class=OpalLoadedList__listItem,
 									value='{$item |key(_dataListItemValueFieldName) }',
 									text='{$item |key(_dataListItemTextFieldName) }',
 									subtext='{$item |key(_dataListItemSubtextFieldName) }'

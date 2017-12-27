@@ -4,9 +4,9 @@
 		width: 80%;
 	}
 
-	@el filtered-list {
+	@el filteredList {
 	}
-		@el tree-list {
+		@el treeList {
 			overflow: auto;
 			height: 410px;
 		}
@@ -14,7 +14,7 @@
 	@el footer {
 		padding-top: 10px;
 	}
-		@el btn-close {
+		@el btnClose {
 			float: right;
 		}
 }

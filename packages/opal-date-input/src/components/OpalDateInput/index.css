@@ -3,13 +3,13 @@
 	display: inline-block;
 	vertical-align: middle;
 
-	@el text-input {
+	@el textInput {
 		display: block;
 	}
-		@el text-input-final-icon {
+		@el textInputFinalIcon {
 		}
 
-	@el calendar-menu {
+	@el calendarMenu {
 		overflow: visible;
 		padding: 0;
 		min-width: auto;

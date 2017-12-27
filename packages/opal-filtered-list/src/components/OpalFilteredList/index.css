@@ -1,18 +1,18 @@
 @component OpalFilteredList {
 	display: block;
 
-	@el query-input-slot {
+	@el queryInputSlot {
 		display: block;
 	}
-		@el query-input {
+		@el queryInput {
 			display: block;
 			margin-bottom: 15px;
 			width: auto;
 		}
-			@el query-input-final-icon {
+			@el queryInputFinalIcon {
 			}
 
-	@el list-slot {
+	@el listSlot {
 	}
 		@el list {
 		}
