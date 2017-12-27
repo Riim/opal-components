@@ -252,17 +252,17 @@ var OpalDateInput = /** @class */ (function (_super) {
         return d >= opal_calendar_1.parseDate(this.paramFromDate) && d <= opal_calendar_1.parseDate(this.paramToDate);
     };
     OpalDateInput.prototype.elementAttached = function () {
-        this.listenTo('text-input', 'change', this._onTextInputChange);
-        this.listenTo(this.$('text-input').element, 'click', this._onTextInputElementClick);
-        this.listenTo('calendar-menu', 'change:paramOpened', this._onCalendarMenuParamOpenedChange);
+        this.listenTo('textInput', 'change', this._onTextInputChange);
+        this.listenTo(this.$('textInput').element, 'click', this._onTextInputElementClick);
+        this.listenTo('calendarMenu', 'change:paramOpened', this._onCalendarMenuParamOpenedChange);
     };
     OpalDateInput.prototype._onTextInputChange = function (evt) {
-        if (this.$('text-input-validator').valid) {
+        if (this.$('textInputValidator').valid) {
             this.$('calendar').stringValue = evt.target.value;
         }
     };
     OpalDateInput.prototype._onTextInputElementClick = function () {
-        this.$('calendar-menu').open();
+        this.$('calendarMenu').open();
     };
     OpalDateInput.prototype._onCalendarMenuParamOpenedChange = function (evt) {
         if (evt.data.value) {
@@ -281,18 +281,18 @@ var OpalDateInput = /** @class */ (function (_super) {
             return;
         }
         if (!this.element.contains(evt.target.parentNode)) {
-            this.$('calendar-menu').close();
+            this.$('calendarMenu').close();
         }
     };
     OpalDateInput.prototype._onDocumentKeyDown = function (evt) {
         if (evt.which == 27 /* Esc */) {
             evt.preventDefault();
-            this.$('calendar-menu').close();
+            this.$('calendarMenu').close();
         }
     };
     OpalDateInput.prototype._onDocumentClick = function (evt) {
         if (!this.element.contains(evt.target)) {
-            this.$('calendar-menu').close();
+            this.$('calendarMenu').close();
         }
     };
     Object.defineProperty(OpalDateInput.prototype, "value", {
@@ -340,7 +340,7 @@ var OpalDateInput = /** @class */ (function (_super) {
             'Z');
     };
     OpalDateInput.prototype.validate = function () {
-        return this.$('text-input-validator').validate();
+        return this.$('textInputValidator').validate();
     };
     __decorate([
         rionite_1.Param,
@@ -381,11 +381,11 @@ var OpalDateInput = /** @class */ (function (_super) {
             events: {
                 calendar: {
                     change: function (evt) {
-                        this.$('calendar-menu').close();
-                        var textInput = this.$('text-input');
+                        this.$('calendarMenu').close();
+                        var textInput = this.$('textInput');
                         textInput.value = evt.target.stringValue;
                         textInput.focus();
-                        this.$('text-input-validator').validate();
+                        this.$('textInputValidator').validate();
                     }
                 }
             }
@@ -411,7 +411,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalDateInput{position:relative;display:inline-block;vertical-align:middle}.OpalDateInput .OpalDateInput__text-input{display:block}.OpalDateInput .OpalDateInput__calendar-menu{overflow:visible;padding:0;min-width:auto}.OpalDateInput .OpalDateInput__calendar{border:0}";
+            style.textContent = ".OpalDateInput{position:relative;display:inline-block;vertical-align:middle}.OpalDateInput .OpalDateInput__textInput{display:block}.OpalDateInput .OpalDateInput__calendarMenu{overflow:visible;padding:0;min-width:auto}.OpalDateInput .OpalDateInput__calendar{border:0}";
             head.appendChild(style);
             return style;
         }
@@ -425,7 +425,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nOpalTextInputValidator/text-input-validator {\nOpalInputMask/input-mask (mask={paramMask}) {\nOpalTextInput/text-input (\nclass=OpalInputValidator__text-input OpalInputMask__text-input,\nvalue={paramValue},\nplaceholder={paramPlaceholder},\nclearable\n) {\nOpalIcon/text-input-final-icon (class=OpalTextInput__final-icon, name=calendar)\n}\n}\n@IfThen (if=paramRequired) {\nOpalTextInputValidatorRule/text-input-validator-rule-required (\nrequired,\npopover-position={paramPopoverPosition}\n) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nOpalTextInputValidatorRule/text-input-validator-rule-date-exists (\ntest={dateExists},\npopover-position={paramPopoverPosition}\n) {\n'{constructor.i18n.nonExistentDate}'\n}\nOpalTextInputValidatorRule/text-input-validator-rule-date-in-range (\ntest={isDateInRange},\npopover-position={paramPopoverPosition}\n) {\n'{constructor.i18n.invalidDateRange}'\n}\n}\nOpalDropdown/calendar-menu (auto-height=no) {\nOpalCalendar/calendar (\nfrom-date={paramFromDate},\nto-date={paramToDate},\nvalue={paramValue},\ndate-delimiter=.\n)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nOpalTextInputValidator/textInputValidator {\nOpalInputMask/inputMask (mask={paramMask}) {\nOpalTextInput/textInput (\nclass=OpalInputValidator__textInput OpalInputMask__textInput,\nvalue={paramValue},\nplaceholder={paramPlaceholder},\nclearable\n) {\nOpalIcon/textInputFinalIcon (class=OpalTextInput__finalIcon, name=calendar)\n}\n}\n@IfThen (if=paramRequired) {\nOpalTextInputValidatorRule/textInputValidatorRuleRequired (\nrequired,\npopover-position={paramPopoverPosition}\n) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nOpalTextInputValidatorRule/textInputValidatorRuleDateExists (\ntest={dateExists},\npopover-position={paramPopoverPosition}\n) {\n'{constructor.i18n.nonExistentDate}'\n}\nOpalTextInputValidatorRule/textInputValidatorRuleDateInRange (\ntest={isDateInRange},\npopover-position={paramPopoverPosition}\n) {\n'{constructor.i18n.invalidDateRange}'\n}\n}\nOpalDropdown/calendarMenu (auto-height=no) {\nOpalCalendar/calendar (\nfrom-date={paramFromDate},\nto-date={paramToDate},\nvalue={paramValue},\ndate-delimiter=.\n)\n}\n}");
 
 /***/ })
 /******/ ]);

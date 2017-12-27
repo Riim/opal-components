@@ -154,7 +154,7 @@ var OpalEditableText = /** @class */ (function (_super) {
         configurable: true
     });
     OpalEditableText.prototype.ready = function () {
-        var contentSlotEl = this.$('content-slot').element;
+        var contentSlotEl = this.$('contentSlot').element;
         var firstChild = contentSlotEl.firstChild;
         if (!firstChild || firstChild.nodeType != Node.TEXT_NODE) {
             throw new TypeError('Content must be text node');
@@ -164,7 +164,7 @@ var OpalEditableText = /** @class */ (function (_super) {
     };
     OpalEditableText.prototype.elementAttached = function () {
         this.listenTo(this.element, 'click', this._onElementClick);
-        this.listenTo(this.$('content-slot').element, {
+        this.listenTo(this.$('contentSlot').element, {
             focus: this._onContentSlotElementFocus,
             blur: this._onContentSlotElementBlur,
             input: this._onContentSlotElementInput
@@ -186,7 +186,7 @@ var OpalEditableText = /** @class */ (function (_super) {
         }
     };
     OpalEditableText.prototype._onContentSlotElementInput = function () {
-        var contentSlotEl = this.$('content-slot').element;
+        var contentSlotEl = this.$('contentSlot').element;
         var text = contentSlotEl.textContent;
         if (contentSlotEl.innerHTML != text) {
             while (contentSlotEl.lastChild) {
@@ -230,7 +230,7 @@ var OpalEditableText = /** @class */ (function (_super) {
         rionite_1.Component({
             template: template_nelm_1.default,
             domEvents: {
-                'icon-edit': {
+                iconEdit: {
                     click: function () {
                         this.focus(true);
                     }
@@ -253,7 +253,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalEditableText{display:block;cursor:text}.OpalEditableText .OpalEditableText__content-wrapper{position:relative;display:inline-block;padding-right:24px}.OpalEditableText .OpalEditableText__content-slot{display:inline-block;padding-right:2px}.OpalEditableText .OpalEditableText__content-slot:focus{outline:solid 1px #000}.OpalEditableText .OpalEditableText__icon-edit{position:absolute;top:0;right:0;display:block;width:16px;height:16px;border:solid 2px transparent;border-left-width:6px;color:#107cda;cursor:pointer}.OpalEditableText .OpalEditableText__icon-edit:hover,.OpalEditableText .OpalEditableText__icon-edit:active{stroke:#33a0ff}.OpalEditableText .OpalEditableText__icon-edit:active{top:1px}";
+            style.textContent = ".OpalEditableText{display:block;cursor:text}.OpalEditableText .OpalEditableText__contentWrapper{position:relative;display:inline-block;padding-right:24px}.OpalEditableText .OpalEditableText__contentSlot{display:inline-block;padding-right:2px}.OpalEditableText .OpalEditableText__contentSlot:focus{outline:solid 1px #000}.OpalEditableText .OpalEditableText__iconEdit{position:absolute;top:0;right:0;display:block;width:16px;height:16px;border:solid 2px transparent;border-left-width:6px;color:#107cda;cursor:pointer}.OpalEditableText .OpalEditableText__iconEdit:hover,.OpalEditableText .OpalEditableText__iconEdit:active{stroke:#33a0ff}.OpalEditableText .OpalEditableText__iconEdit:active{top:1px}";
             head.appendChild(style);
             return style;
         }
@@ -268,7 +268,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/content-wrapper {\nRtSlot/content-slot (contenteditable, spellcheck=false)\nOpalIcon/icon-edit (name=compose, stroke-width=3)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/contentWrapper {\nRtSlot/contentSlot (contenteditable, spellcheck=false)\nOpalIcon/iconEdit (name=compose, stroke-width=3)\n}\n}");
 
 /***/ })
 

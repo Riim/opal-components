@@ -161,10 +161,10 @@ var OpalMultirow = /** @class */ (function (_super) {
     };
     OpalMultirow.prototype.initialize = function () {
         var elementBlockNames = this.constructor._elementBlockNames;
-        this._presetRowClassName = elementBlockNames[elementBlockNames.length - 1] + '__preset-row';
+        this._presetRowClassName = elementBlockNames[elementBlockNames.length - 1] + '__presetRow';
     };
     OpalMultirow.prototype.ready = function () {
-        var presetRowCount = (this._presetRowCount = this.$$('preset-row').length);
+        var presetRowCount = (this._presetRowCount = this.$$('presetRow').length);
         if (!presetRowCount) {
             this._newRows.add({ key: next_uid_1.nextUID() });
         }
@@ -192,7 +192,7 @@ var OpalMultirow = /** @class */ (function (_super) {
     OpalMultirow.prototype._onAddRowClick = function () {
         this._newRows.add({ key: next_uid_1.nextUID() });
         cellx_1.Cell.forceRelease();
-        var focusable = this.$('focus', this.$$('new-row-slot').slice(-1)[0]);
+        var focusable = this.$('focus', this.$$('newRowSlot').slice(-1)[0]);
         if (focusable) {
             focusable.focus();
         }
@@ -272,12 +272,12 @@ var OpalMultirowRow = /** @class */ (function (_super) {
         rionite_1.Component({
             template: template_nelm_1.default,
             events: {
-                'btn-remove-row': {
+                btnRemoveRow: {
                     click: function () {
                         this.emit('remove-row-click');
                     }
                 },
-                'btn-add-row': {
+                btnAddRow: {
                     click: function () {
                         this.emit('add-row-click');
                     }
@@ -300,7 +300,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalMultirowRow{display:block;white-space:nowrap}.OpalMultirowRow::after{display:table;clear:both;content:''}.OpalMultirowRow .OpalMultirowRow__content-slot{display:inline-block;margin-bottom:20px;padding-right:6px}.OpalMultirowRow .OpalMultirowRow__btn-remove-row,.OpalMultirowRow .OpalMultirowRow__btn-add-row{position:relative;top:1px;display:none}.OpalMultirow__preset-rows-slot[not-have-new-rows] .OpalMultirowRow:last-child .OpalMultirowRow__content-slot,.OpalMultirow__new-rows rt-slot:last-child .OpalMultirowRow .OpalMultirowRow__content-slot{margin-bottom:0}.OpalMultirow__preset-rows-slot[not-single-row] .OpalMultirowRow .OpalMultirowRow__btn-remove-row,.OpalMultirow__new-rows[not-single-row] .OpalMultirowRow .OpalMultirowRow__btn-remove-row,.OpalMultirow__preset-rows-slot[not-have-new-rows] .OpalMultirowRow:last-child .OpalMultirowRow__btn-add-row,.OpalMultirow__new-rows rt-slot:last-child .OpalMultirowRow .OpalMultirowRow__btn-add-row{display:inline-block}.OpalMultirowRow .OpalPopover{white-space:normal}";
+            style.textContent = ".OpalMultirowRow{display:block;white-space:nowrap}.OpalMultirowRow::after{display:table;clear:both;content:''}.OpalMultirowRow .OpalMultirowRow__contentSlot{display:inline-block;margin-bottom:20px;padding-right:6px}.OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirowRow .OpalMultirowRow__btnAddRow{position:relative;top:1px;display:none}.OpalMultirow__presetRowsSlot[not-have-new-rows] .OpalMultirowRow:last-child .OpalMultirowRow__contentSlot,.OpalMultirow__newRows rt-slot:last-child .OpalMultirowRow .OpalMultirowRow__contentSlot{margin-bottom:0}.OpalMultirow__presetRowsSlot[not-single-row] .OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirow__newRows[not-single-row] .OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirow__presetRowsSlot[not-have-newRows] .OpalMultirowRow:last-child .OpalMultirowRow__btnAddRow,.OpalMultirow__newRows rt-slot:last-child .OpalMultirowRow .OpalMultirowRow__btnAddRow{display:inline-block}.OpalMultirowRow .OpalPopover{white-space:normal}";
             head.appendChild(style);
             return style;
         }
@@ -315,7 +315,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/content-slot\n' '\nOpalSignButton/btn-remove-row (sign=minus)\n' '\nOpalSignButton/btn-add-row (sign=plus)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/contentSlot\n' '\nOpalSignButton/btnRemoveRow (sign=minus)\n' '\nOpalSignButton/btnAddRow (sign=plus)\n}");
 
 /***/ }),
 
@@ -342,7 +342,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/preset-rows-slot (\nfor=preset-rows,\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n) {\nRtSlot/preset-rows (for=preset-row)\n}\ndiv/new-rows (not-single-row={_notSingleRow}) {\n@Repeat (for=row of _newRows, track-by=key) {\nRtSlot/new-row-slot (clone-content, data-key={row.key})\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/presetRowsSlot (\nfor=presetRows,\nnot-have-new-rows={_notHaveNewRows},\nnot-single-row={_notSingleRow}\n) {\nRtSlot/presetRows (for=presetRow)\n}\ndiv/newRows (not-single-row={_notSingleRow}) {\n@Repeat (for=row of _newRows, track-by=key) {\nRtSlot/newRowSlot (clone-content, data-key={row.key})\n}\n}\n}");
 
 /***/ }),
 

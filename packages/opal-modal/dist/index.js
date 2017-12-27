@@ -143,7 +143,7 @@ function onDocumentFocus(evt) {
         return;
     }
     if (!openedModals[0].element.contains(evt.target.parentNode)) {
-        openedModals[0].$('btn-close').focus();
+        openedModals[0].$('btnClose').focus();
     }
 }
 function onDocumentKeyUp(evt) {
@@ -261,7 +261,7 @@ var OpalModal = /** @class */ (function (_super) {
     OpalModal.prototype.focus = function () {
         if (this == openedModals[0]) {
             document.body.classList.remove('_noFocusHighlight');
-            (this.$('focus') || this.$('btn-close')).focus();
+            (this.$('focus') || this.$('btnClose')).focus();
         }
         return this;
     };
@@ -277,7 +277,7 @@ var OpalModal = /** @class */ (function (_super) {
         rionite_1.Component({
             template: template_nelm_1.default,
             domEvents: {
-                'btn-close': {
+                btnClose: {
                     click: function () {
                         this.close();
                         this.emit('close');
@@ -301,7 +301,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = "opal-modal{display:none}.OpalModal{position:fixed;top:0;left:0;z-index:1000;display:none;overflow:auto;-webkit-box-sizing:border-box;box-sizing:border-box;padding:20px;width:100%;height:100%;background:rgba(0,0,0,.6);text-align:center;white-space:nowrap;cursor:pointer}.OpalModal::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.OpalModal .OpalModal__window{position:relative;display:inline-block;padding:30px;border-radius:3px;background:#fff;-webkit-box-shadow:0 0 20px rgba(0,0,0,.3);box-shadow:0 0 20px rgba(0,0,0,.3);vertical-align:middle;text-align:left;white-space:normal;cursor:default}.OpalModal .OpalModal__window:hover .OpalModal__btn-close::before,.OpalModal .OpalModal__window:hover .OpalModal__btn-close::after{background:#ccc}.OpalModal .OpalModal__window:hover .OpalModal__btn-close:hover::before,.OpalModal .OpalModal__window:hover .OpalModal__btn-close:hover::after{background:#fff}.OpalModal .OpalModal__window:hover .OpalModal__btn-close:active::before,.OpalModal .OpalModal__window:hover .OpalModal__btn-close:active::after{background:#999}.OpalModal .OpalModal__btn-close-wrapper{position:absolute;top:-10px;left:100%;padding:0 10px;pointer-events:none}.OpalModal .OpalModal__btn-close{position:relative;-webkit-box-sizing:content-box;box-sizing:content-box;padding:10px;width:25px;height:25px;border:0;background:0 0;cursor:pointer;pointer-events:auto}.OpalModal .OpalModal__btn-close::before,.OpalModal .OpalModal__btn-close::after{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:25px;height:3px;border-radius:2px;background:#fff;content:'';-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.OpalModal .OpalModal__btn-close::after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.OpalModal .OpalModal__btn-close:hover::before,.OpalModal .OpalModal__btn-close:hover::after{background:#fff}.OpalModal .OpalModal__btn-close:active::before,.OpalModal .OpalModal__btn-close:active::after{background:#999}.OpalModal .OpalModal__content-slot{position:relative;display:block}.OpalModal[opened]{display:block}.OpalModal._overlapped{left:100%;overflow:visible}";
+            style.textContent = "opal-modal{display:none}.OpalModal{position:fixed;top:0;left:0;z-index:1000;display:none;overflow:auto;-webkit-box-sizing:border-box;box-sizing:border-box;padding:20px;width:100%;height:100%;background:rgba(0,0,0,.6);text-align:center;white-space:nowrap;cursor:pointer}.OpalModal::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.OpalModal .OpalModal__window{position:relative;display:inline-block;padding:30px;border-radius:3px;background:#fff;-webkit-box-shadow:0 0 20px rgba(0,0,0,.3);box-shadow:0 0 20px rgba(0,0,0,.3);vertical-align:middle;text-align:left;white-space:normal;cursor:default}.OpalModal .OpalModal__window:hover .OpalModal__btnClose::before,.OpalModal .OpalModal__window:hover .OpalModal__btnClose::after{background:#ccc}.OpalModal .OpalModal__window:hover .OpalModal__btnClose:hover::before,.OpalModal .OpalModal__window:hover .OpalModal__btnClose:hover::after{background:#fff}.OpalModal .OpalModal__window:hover .OpalModal__btnClose:active::before,.OpalModal .OpalModal__window:hover .OpalModal__btnClose:active::after{background:#999}.OpalModal .OpalModal__btnCloseWrapper{position:absolute;top:-10px;left:100%;padding:0 10px;pointer-events:none}.OpalModal .OpalModal__btnClose{position:relative;-webkit-box-sizing:content-box;box-sizing:content-box;padding:10px;width:25px;height:25px;border:0;background:0 0;cursor:pointer;pointer-events:auto}.OpalModal .OpalModal__btnClose::before,.OpalModal .OpalModal__btnClose::after{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:25px;height:3px;border-radius:2px;background:#fff;content:'';-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.OpalModal .OpalModal__btnClose::after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.OpalModal .OpalModal__btnClose:hover::before,.OpalModal .OpalModal__btnClose:hover::after{background:#fff}.OpalModal .OpalModal__btnClose:active::before,.OpalModal .OpalModal__btnClose:active::after{background:#999}.OpalModal .OpalModal__contentSlot{position:relative;display:block}.OpalModal[opened]{display:block}.OpalModal._overlapped{left:100%;overflow:visible}";
             head.appendChild(style);
             return style;
         }
@@ -316,7 +316,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/window {\ndiv/btn-close-wrapper {\nbutton/btn-close\n}\n@IfThen (if=isContentRendered) {\nRtSlot/content-slot\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/window {\ndiv/btnCloseWrapper {\nbutton/btnClose\n}\n@IfThen (if=isContentRendered) {\nRtSlot/contentSlot\n}\n}\n}");
 
 /***/ }),
 

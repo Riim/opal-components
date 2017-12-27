@@ -161,7 +161,7 @@ var OpalFilteredList = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     OpalFilteredList.prototype.elementAttached = function () {
-        var queryInput = this.$('query-input');
+        var queryInput = this.$('queryInput');
         if (queryInput) {
             this.listenTo(queryInput, 'input', debounce_throttle_1.debounce(150, this._onQueryInputInput));
             this.listenTo(queryInput, 'change', this._onQueryInputChange);
@@ -177,7 +177,7 @@ var OpalFilteredList = /** @class */ (function (_super) {
         this.$('list').paramQuery = query;
     };
     OpalFilteredList.prototype.focus = function () {
-        var queryInput = this.$('query-input');
+        var queryInput = this.$('queryInput');
         if (queryInput) {
             queryInput.focus();
         }
@@ -212,7 +212,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalFilteredList{display:block}.OpalFilteredList .OpalFilteredList__query-input-slot{display:block}.OpalFilteredList .OpalFilteredList__query-input{display:block;margin-bottom:15px;width:auto}";
+            style.textContent = ".OpalFilteredList{display:block}.OpalFilteredList .OpalFilteredList__queryInputSlot{display:block}.OpalFilteredList .OpalFilteredList__queryInput{display:block;margin-bottom:15px;width:auto}";
             head.appendChild(style);
             return style;
         }
@@ -227,7 +227,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=query-input-slot) {\nRtSlot/query-input-slot (for=query-input) {\nOpalTextInput/query-input (\nplaceholder={constructor.i18n.queryInputPlaceholder},\nclearable\n) {\nOpalIcon/query-input-final-icon (class=OpalTextInput__final-icon, name=search)\n}\n}\n}\nRtSlot/list-slot (for=list)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=queryInputSlot) {\nRtSlot/queryInputSlot (for=queryInput) {\nOpalTextInput/queryInput (placeholder={constructor.i18n.queryInputPlaceholder}, clearable) {\nOpalIcon/queryInputFinalIcon (class=OpalTextInput__finalIcon, name=search)\n}\n}\n}\nRtSlot/listSlot (for=list)\n}");
 
 /***/ }),
 

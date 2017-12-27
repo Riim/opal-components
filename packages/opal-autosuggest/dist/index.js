@@ -244,31 +244,31 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             'change:isLoaderShown': this._onIsLoaderShownChange
         });
         this.listenTo(this.dataList, 'change', this._onDataListChange);
-        this.listenTo('text-input', {
+        this.listenTo('textInput', {
             focus: this._onTextInputFocus,
             blur: this._onTextInputBlur,
             input: this._onTextInputInput,
             change: this._onTextInputChange
         });
-        this.listenTo(this.$('text-input').textField, 'click', this._onTextFieldClick);
+        this.listenTo(this.$('textInput').textField, 'click', this._onTextFieldClick);
         this.listenTo('menu', 'change:paramOpened', this._onMenuParamOpenedChange);
         this.listenTo(this.$('menu').element, 'mouseover', this._onMenuElementMouseOver);
     };
     OpalAutosuggest.prototype.ready = function () {
         if (this.value) {
-            this.$('text-input').value = this.value[this._dataListItemTextFieldName];
+            this.$('textInput').value = this.value[this._dataListItemTextFieldName];
         }
     };
     OpalAutosuggest.prototype._onParamValueChange = function (evt) {
         var item = evt.data.value;
         this._clearDataList();
         this.value = item;
-        this.$('text-input').value = item
+        this.$('textInput').value = item
             ? item[this._dataListItemTextFieldName]
             : '';
     };
     OpalAutosuggest.prototype._onIsLoaderShownChange = function (evt) {
-        this.$('text-input').paramLoading = evt.data.value;
+        this.$('textInput').paramLoading = evt.data.value;
     };
     OpalAutosuggest.prototype._onDataListChange = function () {
         this.openMenu();
@@ -326,7 +326,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     OpalAutosuggest.prototype._onMenuElementMouseOver = function (evt) {
         var menu = this.$('menu').element;
         var el = evt.target;
-        for (; !el.classList.contains('OpalAutosuggest__list-item'); el = el.parentNode) {
+        for (; !el.classList.contains('OpalAutosuggest__listLtem'); el = el.parentNode) {
             if (el == menu) {
                 return;
             }
@@ -354,7 +354,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
                 evt.preventDefault();
                 var focusedListItem = this._focusedListItem;
                 if (focusedListItem) {
-                    var listItems = this.$$('list-item');
+                    var listItems = this.$$('listItem');
                     var index = listItems.indexOf(focusedListItem);
                     if (evt.which == 38 ? index > 0 : index < listItems.length - 1) {
                         var newFocusedListItem = listItems[index + (evt.which == 38 ? -1 : 1)];
@@ -371,7 +371,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
                 var focusedListItem = this._focusedListItem;
                 if (focusedListItem) {
                     var focusedListItemDataSet = focusedListItem.dataset;
-                    this.$('text-input').value = focusedListItemDataSet.text;
+                    this.$('textInput').value = focusedListItemDataSet.text;
                     this._clearDataList();
                     this._selectItem((_a = {},
                         _a[this._dataListItemValueFieldName] = focusedListItemDataSet.value,
@@ -398,7 +398,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     };
     OpalAutosuggest.prototype._load = function () {
         this.loading = true;
-        var args = [this.$('text-input').value];
+        var args = [this.$('textInput').value];
         if (this.dataProvider.getItems.length >= 2) {
             args.unshift(this.paramCount);
         }
@@ -412,7 +412,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         if (items.length) {
             this.dataList.addRange(items);
             cellx_1.Cell.forceRelease();
-            var focusedListItem = this.$('list-item');
+            var focusedListItem = this.$('listItem');
             this._focusedListItem = focusedListItem;
             focusedListItem.setAttribute('focused', '');
         }
@@ -444,7 +444,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         var _this = this;
         if (item === undefined) {
             if (this._isNotInputConfirmed) {
-                var query_1 = this.$('text-input').value;
+                var query_1 = this.$('textInput').value;
                 if (query_1) {
                     query_1 = toComparable(query_1);
                     item = this.dataList.find(function (item) { return toComparable(item[_this._dataListItemTextFieldName]) == query_1; });
@@ -476,7 +476,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         if (this.value) {
             this.value = null;
         }
-        this.$('text-input').clear();
+        this.$('textInput').clear();
     };
     OpalAutosuggest.prototype._clearDataList = function () {
         this._cancelLoading();
@@ -538,9 +538,9 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             },
             template: template_nelm_1.default,
             domEvents: {
-                'list-item': {
+                listItem: {
                     click: function (evt, listItem) {
-                        var textInput = this.$('text-input');
+                        var textInput = this.$('textInput');
                         var listItemDataSet = listItem.dataset;
                         textInput.value = listItemDataSet.text;
                         textInput.focus();
@@ -571,7 +571,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalAutosuggest{position:relative;display:inline-block;vertical-align:middle}.OpalAutosuggest .OpalAutosuggest__text-input{display:block}.OpalAutosuggest .OpalAutosuggest__list-item{position:relative;overflow:hidden;padding:7px 22px;background:#fff;color:#000;text-align:left;-o-text-overflow:ellipsis;text-overflow:ellipsis;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalAutosuggest .OpalAutosuggest__list-item:hover,.OpalAutosuggest .OpalAutosuggest__list-item[focused]{background:#e6e6e6}.OpalAutosuggest .OpalAutosuggest__list-item:active{background:#ccc}.OpalAutosuggest .OpalAutosuggest__list-item sub{bottom:0;display:block;font-size:.9em;line-height:1.5;opacity:.5}.OpalAutosuggest .OpalAutosuggest__nothing-found-slot{display:block;padding:12px;text-align:center}.OpalAutosuggest .OpalAutosuggest__nothing-found-message{white-space:nowrap;opacity:.6}.OpalTextInputValidator .OpalAutosuggest{display:block}";
+            style.textContent = ".OpalAutosuggest{position:relative;display:inline-block;vertical-align:middle}.OpalAutosuggest .OpalAutosuggest__textInput{display:block}.OpalAutosuggest .OpalAutosuggest__listItem{position:relative;overflow:hidden;padding:7px 22px;background:#fff;color:#000;text-align:left;-o-text-overflow:ellipsis;text-overflow:ellipsis;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalAutosuggest .OpalAutosuggest__listItem:hover,.OpalAutosuggest .OpalAutosuggest__listItem[focused]{background:#e6e6e6}.OpalAutosuggest .OpalAutosuggest__listItem:active{background:#ccc}.OpalAutosuggest .OpalAutosuggest__listItem sub{bottom:0;display:block;font-size:.9em;line-height:1.5;opacity:.5}.OpalAutosuggest .OpalAutosuggest__nothingFoundSlot{display:block;padding:12px;text-align:center}.OpalAutosuggest .OpalAutosuggest__nothingFoundMessage{white-space:nowrap;opacity:.6}.OpalTextInputValidator .OpalAutosuggest{display:block}";
             head.appendChild(style);
             return style;
         }
@@ -585,7 +585,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=text-input) {\nOpalTextInput/text-input (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nOpalIcon/text-input-final-icon (class=OpalTextInput__final-icon, name=search)\n}\n}\nOpalDropdown/menu {\ndiv/list {\n@Repeat (for=item of dataList) {\ndiv/list-item (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (if=dataList.length) {\nRtSlot/nothing-found-slot (for=nothing-found) {\nspan/nothing-found {\nspan/nothing-found-message {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nOpalIcon/textInputFinalIcon (class=OpalTextInput__finalIcon, name=search)\n}\n}\nOpalDropdown/menu {\ndiv/list {\n@Repeat (for=item of dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (if=dataList.length) {\nRtSlot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\n}\n}");
 
 /***/ })
 /******/ ]);

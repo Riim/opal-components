@@ -147,7 +147,7 @@ var OpalTextInputValidator = /** @class */ (function (_super) {
     }
     OpalTextInputValidator.prototype.ready = function () {
         _super.prototype.ready.call(this);
-        this.target = this.textInput = this.$('text-input');
+        this.target = this.textInput = this.$('textInput');
     };
     OpalTextInputValidator.prototype.elementAttached = function () {
         _super.prototype.elementAttached.call(this);
@@ -234,7 +234,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalTextInputValidator.OpalInputValidator .OpalInputValidator__text-input{display:block}.OpalTextInputValidator.OpalInputValidator[valid=no] .OpalInputValidator__text-input .OpalTextInput__text-field{border-color:#f63159}";
+            style.textContent = ".OpalTextInputValidator.OpalInputValidator .OpalInputValidator__textInput{display:block}.OpalTextInputValidator.OpalInputValidator[valid=no] .OpalInputValidator__textInput .OpalTextInput__textField{border-color:#f63159}";
             head.appendChild(style);
             return style;
         }
