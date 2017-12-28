@@ -134,22 +134,22 @@ export class OpalSwitch extends BaseComponent {
 		return (this.paramChecked = value === undefined ? !this.paramChecked : value);
 	}
 
-	focus(): OpalSwitch {
+	focus(): this {
 		this.$<HTMLElement>('control')!.focus();
 		return this;
 	}
 
-	blur(): OpalSwitch {
+	blur(): this {
 		this.$<HTMLElement>('control')!.blur();
 		return this;
 	}
 
-	enable(): OpalSwitch {
+	enable(): this {
 		this.paramDisabled = false;
 		return this;
 	}
 
-	disable(): OpalSwitch {
+	disable(): this {
 		this.paramDisabled = true;
 		return this;
 	}

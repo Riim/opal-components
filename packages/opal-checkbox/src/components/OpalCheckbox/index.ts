@@ -147,22 +147,22 @@ export class OpalCheckbox extends BaseComponent {
 		return (this.paramChecked = value === undefined ? !this.paramChecked : value);
 	}
 
-	focus(): OpalCheckbox {
+	focus(): this {
 		this.$<HTMLElement>('control')!.focus();
 		return this;
 	}
 
-	blur(): OpalCheckbox {
+	blur(): this {
 		this.$<HTMLElement>('control')!.blur();
 		return this;
 	}
 
-	enable(): OpalCheckbox {
+	enable(): this {
 		this.paramDisabled = false;
 		return this;
 	}
 
-	disable(): OpalCheckbox {
+	disable(): this {
 		this.paramDisabled = true;
 		return this;
 	}

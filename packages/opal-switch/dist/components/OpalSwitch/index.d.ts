@@ -21,8 +21,8 @@ export declare class OpalSwitch extends BaseComponent {
     check(): boolean;
     uncheck(): boolean;
     toggle(value?: boolean): boolean;
-    focus(): OpalSwitch;
-    blur(): OpalSwitch;
-    enable(): OpalSwitch;
-    disable(): OpalSwitch;
+    focus(): this;
+    blur(): this;
+    enable(): this;
+    disable(): this;
 }

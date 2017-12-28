@@ -377,7 +377,7 @@ export class OpalAutosuggest extends BaseComponent {
 		}
 	}
 
-	openMenu(force?: boolean): OpalAutosuggest {
+	openMenu(force?: boolean): this {
 		if (force || this.dataList.length) {
 			this.$<OpalDropdown>('menu')!.open();
 		}
@@ -385,7 +385,7 @@ export class OpalAutosuggest extends BaseComponent {
 		return this;
 	}
 
-	closeMenu(): OpalAutosuggest {
+	closeMenu(): this {
 		this.$<OpalDropdown>('menu')!.close();
 		return this;
 	}

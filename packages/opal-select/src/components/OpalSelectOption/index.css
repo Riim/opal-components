@@ -61,7 +61,9 @@
 			}
 		}
 
-		@el iconCheck {
+		@el iconSelected,
+			iconIndeterminate
+		{
 			position: absolute;
 			top: 0;
 			right: 14px;
@@ -70,15 +72,27 @@
 			margin: auto;
 			width: 16px;
 			height: 16px;
+			color: #000;
 		}
 
-	@mod selected {
+	@mod selected,
+		indeterminate
+	{
 		@el control {
 			color: hsl(208,90%,50%);
 		}
-			@el iconCheck {
-				display: block;
-			}
+	}
+
+	@mod selected {
+		@el iconSelected {
+			display: block;
+		}
+	}
+
+	@mod indeterminate {
+		@el iconIndeterminate {
+			display: block;
+		}
 	}
 
 	@mod disabled {

@@ -6,16 +6,20 @@ export declare class OpalSelectOption extends BaseComponent {
     paramText: string;
     paramSubtext: string;
     paramSelected: boolean;
+    paramIndeterminate: boolean;
     paramTabIndex: number;
     paramFocused: boolean;
     paramDisabled: boolean;
     readonly _tabIndex: number;
     elementAttached(): void;
+    ready(): void;
+    _onParamSelectedChange(evt: IEvent): void;
+    _onParamIndeterminateChange(evt: IEvent): void;
     _onParamFocusedChange(evt: IEvent): void;
     _onControlFocus(evt: Event): void;
     _onControlBlur(): void;
     _onControlClick(evt: Event): void;
-    click(): OpalSelectOption;
+    click(): this;
     value: string;
     text: string;
     subtext: string | null;
@@ -24,8 +28,8 @@ export declare class OpalSelectOption extends BaseComponent {
     select(): boolean;
     deselect(): boolean;
     toggle(value?: boolean): boolean;
-    focus(): OpalSelectOption;
-    blur(): OpalSelectOption;
-    enable(): OpalSelectOption;
-    disable(): OpalSelectOption;
+    focus(): this;
+    blur(): this;
+    enable(): this;
+    disable(): this;
 }

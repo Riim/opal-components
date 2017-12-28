@@ -980,6 +980,7 @@ var OpalSelectOption = /** @class */ (function (_super) {
     function OpalSelectOption() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramSelected = false;
+        _this.paramIndeterminate = false;
         _this.paramTabIndex = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
@@ -993,12 +994,31 @@ var OpalSelectOption = /** @class */ (function (_super) {
         configurable: true
     });
     OpalSelectOption.prototype.elementAttached = function () {
-        this.listenTo(this, 'change:paramFocused', this._onParamFocusedChange);
+        this.listenTo(this, {
+            'change:paramSelected': this._onParamSelectedChange,
+            'change:paramIndeterminate': this._onParamIndeterminateChange,
+            'change:paramFocused': this._onParamFocusedChange
+        });
         this.listenTo('control', {
             focus: this._onControlFocus,
             blur: this._onControlBlur,
             click: this._onControlClick
         });
+    };
+    OpalSelectOption.prototype.ready = function () {
+        if (this.paramSelected) {
+            this.paramIndeterminate = false;
+        }
+    };
+    OpalSelectOption.prototype._onParamSelectedChange = function (evt) {
+        if (evt.data.value) {
+            this.paramIndeterminate = false;
+        }
+    };
+    OpalSelectOption.prototype._onParamIndeterminateChange = function (evt) {
+        if (evt.data.value) {
+            this.paramSelected = false;
+        }
     };
     OpalSelectOption.prototype._onParamFocusedChange = function (evt) {
         if (evt.data.value) {
@@ -1132,6 +1152,10 @@ var OpalSelectOption = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
+    ], OpalSelectOption.prototype, "paramIndeterminate", void 0);
+    __decorate([
+        rionite_1.Param,
+        __metadata("design:type", Object)
     ], OpalSelectOption.prototype, "paramTabIndex", void 0);
     __decorate([
         rionite_1.Param,
@@ -1166,7 +1190,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalSelectOption{display:block}.OpalSelectOption .OpalSelectOption__control{position:relative;display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:7px 38px 7px 22px;width:100%;border:0;border-radius:0;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalSelectOption .OpalSelectOption__control:hover{background:#e6e6e6}.OpalSelectOption .OpalSelectOption__control:focus{outline:0}.OpalSelectOption .OpalSelectOption__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;-webkit-box-shadow:inset 0 0 0 1px #33a0ff;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.OpalSelectOption .OpalSelectOption__control:active{background:#ccc}.OpalSelectOption .OpalSelectOption__contentSlot{position:relative;display:block;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.OpalSelectOption .OpalSelectOption__contentSlot sub{bottom:0;display:block;font-size:.9em;line-height:1.5;opacity:.5}.OpalSelectOption .OpalSelectOption__iconCheck{position:absolute;top:0;right:14px;bottom:0;display:none;margin:auto;width:16px;height:16px}.OpalSelectOption[selected] .OpalSelectOption__control{color:#0d87f2}.OpalSelectOption[selected] .OpalSelectOption__iconCheck{display:block}.OpalSelectOption[disabled]{opacity:.5;pointer-events:none}.OpalSelectOption[disabled] .OpalSelectOption__control{cursor:default}";
+            style.textContent = ".OpalSelectOption{display:block}.OpalSelectOption .OpalSelectOption__control{position:relative;display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:7px 38px 7px 22px;width:100%;border:0;border-radius:0;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalSelectOption .OpalSelectOption__control:hover{background:#e6e6e6}.OpalSelectOption .OpalSelectOption__control:focus{outline:0}.OpalSelectOption .OpalSelectOption__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;-webkit-box-shadow:inset 0 0 0 1px #33a0ff;box-shadow:inset 0 0 0 1px #33a0ff;content:'';pointer-events:none}.OpalSelectOption .OpalSelectOption__control:active{background:#ccc}.OpalSelectOption .OpalSelectOption__contentSlot{position:relative;display:block;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.OpalSelectOption .OpalSelectOption__contentSlot sub{bottom:0;display:block;font-size:.9em;line-height:1.5;opacity:.5}.OpalSelectOption .OpalSelectOption__iconSelected,.OpalSelectOption .OpalSelectOption__iconIndeterminate{position:absolute;top:0;right:14px;bottom:0;display:none;margin:auto;width:16px;height:16px;color:#000}.OpalSelectOption[selected] .OpalSelectOption__control,.OpalSelectOption[indeterminate] .OpalSelectOption__control{color:#0d87f2}.OpalSelectOption[selected] .OpalSelectOption__iconSelected{display:block}.OpalSelectOption[indeterminate] .OpalSelectOption__iconIndeterminate{display:block}.OpalSelectOption[disabled]{opacity:.5;pointer-events:none}.OpalSelectOption[disabled] .OpalSelectOption__control{cursor:default}";
             head.appendChild(style);
             return style;
         }
@@ -1181,7 +1205,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nRtSlot/contentSlot {\n'{paramText}'\n@IfThen (if=paramSubtext) {\nsub {\n'{paramSubtext}'\n}\n}\n}\nOpalIcon/iconCheck (name=checkmark)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nRtSlot/contentSlot {\n'{paramText}'\n@IfThen (if=paramSubtext) {\nsub {\n'{paramSubtext}'\n}\n}\n}\nOpalIcon/iconSelected (name=checkmark)\nOpalIcon/iconIndeterminate (name=minus)\n}\n}");
 
 /***/ }),
 

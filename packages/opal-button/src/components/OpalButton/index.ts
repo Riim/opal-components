@@ -104,7 +104,7 @@ export class OpalButton extends BaseComponent {
 		}
 	}
 
-	click(): OpalButton {
+	click(): this {
 		if (this.paramCheckable) {
 			this.emit(this.toggle() ? 'check' : 'uncheck');
 			this.emit('change');
@@ -151,22 +151,22 @@ export class OpalButton extends BaseComponent {
 		return (this.paramChecked = value === undefined ? !this.paramChecked : value);
 	}
 
-	focus(): OpalButton {
+	focus(): this {
 		this.element.focus();
 		return this;
 	}
 
-	blur(): OpalButton {
+	blur(): this {
 		this.element.blur();
 		return this;
 	}
 
-	enable(): OpalButton {
+	enable(): this {
 		this.paramDisabled = false;
 		return this;
 	}
 
-	disable(): OpalButton {
+	disable(): this {
 		this.paramDisabled = true;
 		return this;
 	}

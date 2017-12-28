@@ -234,27 +234,27 @@ export class OpalTextInput extends BaseComponent {
 		}
 	}
 
-	clear(): OpalTextInput {
+	clear(): this {
 		this.value = null;
 		return this;
 	}
 
-	focus(): OpalTextInput {
+	focus(): this {
 		this.textField.focus();
 		return this;
 	}
 
-	blur(): OpalTextInput {
+	blur(): this {
 		this.textField.blur();
 		return this;
 	}
 
-	enable(): OpalTextInput {
+	enable(): this {
 		this.paramDisabled = false;
 		return this;
 	}
 
-	disable(): OpalTextInput {
+	disable(): this {
 		this.paramDisabled = true;
 		return this;
 	}

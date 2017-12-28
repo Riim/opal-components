@@ -11,7 +11,8 @@ button/control (tabindex={_tabIndex}) {
 		}
 	}
 
-	OpalIcon/iconCheck (name=checkmark)
+	OpalIcon/iconSelected (name=checkmark)
+	OpalIcon/iconIndeterminate (name=minus)
 }
 
 }

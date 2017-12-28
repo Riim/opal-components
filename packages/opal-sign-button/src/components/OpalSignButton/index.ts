@@ -74,7 +74,7 @@ export class OpalSignButton extends BaseComponent {
 		}
 	}
 
-	click(): OpalSignButton {
+	click(): this {
 		if (this.paramCheckable) {
 			this.emit(this.toggle() ? 'check' : 'uncheck');
 		}
@@ -120,22 +120,22 @@ export class OpalSignButton extends BaseComponent {
 		return (this.paramChecked = value === undefined ? !this.paramChecked : value);
 	}
 
-	focus(): OpalSignButton {
+	focus(): this {
 		this.$<HTMLElement>('control')!.focus();
 		return this;
 	}
 
-	blur(): OpalSignButton {
+	blur(): this {
 		this.$<HTMLElement>('control')!.blur();
 		return this;
 	}
 
-	enable(): OpalSignButton {
+	enable(): this {
 		this.paramDisabled = false;
 		return this;
 	}
 
-	disable(): OpalSignButton {
+	disable(): this {
 		this.paramDisabled = true;
 		return this;
 	}

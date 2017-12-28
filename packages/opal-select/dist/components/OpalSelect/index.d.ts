@@ -104,6 +104,6 @@ export declare class OpalSelect extends BaseComponent {
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _updateOptions(): void;
     _focusOptions(): boolean;
-    focus(): OpalSelect;
-    blur(): OpalSelect;
+    focus(): this;
+    blur(): this;
 }

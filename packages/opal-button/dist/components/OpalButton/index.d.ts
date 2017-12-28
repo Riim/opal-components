@@ -20,14 +20,14 @@ export declare class OpalButton extends BaseComponent {
     _onElementBlur(): void;
     _onElementClick(): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
-    click(): OpalButton;
+    click(): this;
     checked: boolean;
     selected: boolean;
     check(): boolean;
     uncheck(): boolean;
     toggle(value?: boolean): boolean;
-    focus(): OpalButton;
-    blur(): OpalButton;
-    enable(): OpalButton;
-    disable(): OpalButton;
+    focus(): this;
+    blur(): this;
+    enable(): this;
+    disable(): this;
 }

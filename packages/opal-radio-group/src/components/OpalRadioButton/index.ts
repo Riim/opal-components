@@ -134,22 +134,22 @@ export class OpalRadioButton extends BaseComponent {
 		return (this.paramChecked = value === undefined ? !this.paramChecked : value);
 	}
 
-	focus(): OpalRadioButton {
+	focus(): this {
 		this.$<HTMLElement>('control')!.focus();
 		return this;
 	}
 
-	blur(): OpalRadioButton {
+	blur(): this {
 		this.$<HTMLElement>('control')!.blur();
 		return this;
 	}
 
-	enable(): OpalRadioButton {
+	enable(): this {
 		this.paramDisabled = false;
 		return this;
 	}
 
-	disable(): OpalRadioButton {
+	disable(): this {
 		this.paramDisabled = true;
 		return this;
 	}

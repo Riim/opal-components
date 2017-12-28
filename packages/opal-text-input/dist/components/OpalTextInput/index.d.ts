@@ -36,9 +36,9 @@ export declare class OpalTextInput extends BaseComponent {
     _onTextFieldKeyPress(evt: KeyboardEvent): void;
     _onTextFieldKeyUp(evt: Event): void;
     _fixHeight(): void;
-    clear(): OpalTextInput;
-    focus(): OpalTextInput;
-    blur(): OpalTextInput;
-    enable(): OpalTextInput;
-    disable(): OpalTextInput;
+    clear(): this;
+    focus(): this;
+    blur(): this;
+    enable(): this;
+    disable(): this;
 }

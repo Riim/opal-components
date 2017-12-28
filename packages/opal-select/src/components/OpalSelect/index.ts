@@ -873,12 +873,12 @@ export class OpalSelect extends BaseComponent {
 		return false;
 	}
 
-	focus(): OpalSelect {
+	focus(): this {
 		this.$<OpalSelect>('button')!.focus();
 		return this;
 	}
 
-	blur(): OpalSelect {
+	blur(): this {
 		this.$<OpalSelect>('button')!.blur();
 		return this;
 	}

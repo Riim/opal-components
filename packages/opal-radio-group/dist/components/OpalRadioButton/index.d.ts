@@ -21,8 +21,8 @@ export declare class OpalRadioButton extends BaseComponent {
     check(): boolean;
     uncheck(): boolean;
     toggle(value?: boolean): boolean;
-    focus(): OpalRadioButton;
-    blur(): OpalRadioButton;
-    enable(): OpalRadioButton;
-    disable(): OpalRadioButton;
+    focus(): this;
+    blur(): this;
+    enable(): this;
+    disable(): this;
 }

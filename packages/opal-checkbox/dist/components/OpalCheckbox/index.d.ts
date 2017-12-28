@@ -23,8 +23,8 @@ export declare class OpalCheckbox extends BaseComponent {
     check(): boolean;
     uncheck(): boolean;
     toggle(value?: boolean): boolean;
-    focus(): OpalCheckbox;
-    blur(): OpalCheckbox;
-    enable(): OpalCheckbox;
-    disable(): OpalCheckbox;
+    focus(): this;
+    blur(): this;
+    enable(): this;
+    disable(): this;
 }
