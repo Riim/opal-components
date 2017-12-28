@@ -11,7 +11,8 @@ OpalModal/menu {
 			OpalSelectOption/option (
 				class=OpalTreeList__selectionControl,
 				text={$item.name},
-				selected={$selected}
+				selected={$selected},
+				indeterminate={$indeterminate}
 			)
 		}
 	}
