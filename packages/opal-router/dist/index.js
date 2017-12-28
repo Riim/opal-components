@@ -202,7 +202,7 @@ var OpalRouter = /** @class */ (function (_super) {
                 path: path,
                 rePath: RegExp("^" + rePath + (rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?') + "$"),
                 properties: props,
-                componentName: routeEl.$component.paramComponent
+                componentName: hyphenize_1.hyphenize(routeEl.$component.paramComponent)
             });
         });
     };
@@ -258,10 +258,12 @@ var OpalRouter = /** @class */ (function (_super) {
                 var writable = true;
                 if (paramsConfig) {
                     for (var i = attrs.length; i;) {
-                        var name_1 = camelize_1.camelize(attrs.item(--i).name, true);
-                        if (name_1 != 'class' &&
-                            !(name_1 in state) &&
-                            isReadonlyProperty(paramsConfig[name_1])) {
+                        var name_1 = attrs.item(--i).name;
+                        if (name_1 == 'class') {
+                            continue;
+                        }
+                        name_1 = camelize_1.camelize(name_1, true);
+                        if (!(name_1 in state) && isReadonlyProperty(paramsConfig[name_1])) {
                             writable = false;
                             break;
                         }

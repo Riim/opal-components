@@ -110,7 +110,7 @@ export class OpalRouter extends BaseComponent {
 						`^${rePath}${rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?'}$`
 					),
 					properties: props,
-					componentName: routeEl.$component.paramComponent
+					componentName: hyphenize(routeEl.$component.paramComponent)
 				});
 			}
 		);
@@ -185,13 +185,15 @@ export class OpalRouter extends BaseComponent {
 
 				if (paramsConfig) {
 					for (let i = attrs.length; i; ) {
-						let name = camelize(attrs.item(--i).name, true);
+						let name = attrs.item(--i).name;
 
-						if (
-							name != 'class' &&
-							!(name in state) &&
-							isReadonlyProperty(paramsConfig[name])
-						) {
+						if (name == 'class') {
+							continue;
+						}
+
+						name = camelize(name, true);
+
+						if (!(name in state) && isReadonlyProperty(paramsConfig[name])) {
 							writable = false;
 							break;
 						}
