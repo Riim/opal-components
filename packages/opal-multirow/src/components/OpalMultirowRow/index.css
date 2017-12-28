@@ -35,7 +35,7 @@
 
 	.OpalMultirow__presetRowsSlot[not-single-row] & .OpalMultirowRow__btnRemoveRow,
 	.OpalMultirow__newRows[not-single-row] & .OpalMultirowRow__btnRemoveRow,
-	.OpalMultirow__presetRowsSlot[not-have-newRows] &:last-child .OpalMultirowRow__btnAddRow,
+	.OpalMultirow__presetRowsSlot[not-have-new-rows] &:last-child .OpalMultirowRow__btnAddRow,
 	.OpalMultirow__newRows rt-slot:last-child & .OpalMultirowRow__btnAddRow {
 		display: inline-block;
 	}

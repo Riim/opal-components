@@ -44,7 +44,7 @@
 				-webkit-tap-highlight-color: transparent;
 
 				&:hover {
-					@el btn-deselect-item {
+					@el btnDeselectItem {
 						display: block;
 					}
 				}
