@@ -1,11 +1,35 @@
 /menu (auto-height=no, auto-closing) {
 	div/menuHeader {
-		OpalTextInput/queryInput (
-			class=OpalSelect__focus,
-			clearable,
-			placeholder={constructor.i18n.queryInputPlaceholder}
+		div/menuHeaderLeftPart {
+			OpalTextInput/queryInput (
+				class=OpalSelect__focus,
+				clearable,
+				placeholder={constructor.i18n.queryInputPlaceholder}
+			) {
+				OpalIcon/queryInputFinalIcon (class=OpalTextInput__finalIcon, name=search)
+			}
+		}
+
+		div/menuHeaderRightPart {
+			@IfThen (if=viewModel.length) {
+				span/selectedCount {
+					'выбрано {viewModel.length}'
+				}
+			}
+		}
+	}
+
+	div/menuList {
+		OpalLoadedList/loadedList (
+			data-provider={dataProvider},
+			data-list-item-value-name={_dataListItemValueFieldName}
 		) {
-			OpalIcon/queryInputFinalIcon (class=OpalTextInput__finalIcon, name=search)
+			OpalSelectOption/option (
+				class=OpalLoadedList__listItem,
+				value='{$item |key(_dataListItemValueFieldName) }',
+				text='{$item |key(_dataListItemTextFieldName) }',
+				subtext='{$item |key(_dataListItemSubtextFieldName) }'
+			)
 		}
 	}
 
@@ -34,23 +58,15 @@
 		}
 	}
 
-	div/menuList {
-		OpalLoadedList/loadedList (
-			data-provider={dataProvider},
-			data-list-item-value-name={_dataListItemValueFieldName}
-		) {
-			OpalSelectOption/option (
-				class=OpalLoadedList__listItem,
-				value='{$item |key(_dataListItemValueFieldName) }',
-				text='{$item |key(_dataListItemTextFieldName) }',
-				subtext='{$item |key(_dataListItemSubtextFieldName) }'
-			)
-		}
-	}
-
 	div/menuFooter {
-		OpalButton/btnClose {
-			'Закрыть'
+		div/menuFooterLeftPart {
+			RtSlot/menuFooterContentSlot (for=menuFooterContent)
+		}
+
+		div/menuFooterRightPart {
+			OpalButton/btnClose {
+				'Закрыть'
+			}
 		}
 	}
 }

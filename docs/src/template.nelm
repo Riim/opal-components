@@ -534,6 +534,16 @@ p {
 		data-provider={dataProvider1},
 		data-list-item-schema='{ value: "id", text: "name", subtext: "parent" }'
 	)
+	' '
+
+	OpalMultiselect (
+		data-provider={dataProvider1},
+		data-list-item-schema='{ value: "id", text: "name", subtext: "parent" }'
+	) {
+		a (class=OpalSelect__menuFooterContent, href=#) {
+			'Link'
+		}
+	}
 }
 
 h1 { 'OpalTreeSelect' }

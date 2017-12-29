@@ -4,17 +4,39 @@
 		width: 600px;
 	}
 		@el menuHeader {
-			box-sizing: border-box;
-			padding: 0 10px;
+			display: flex;
+			width: 100%;
 			border-bottom: 1px solid hsl(0,0%,80%);
-			font-size: 0;
 			line-height: 60px;
 		}
-			@el queryInput {
-				width: 279px;
+			@el menuHeaderLeftPart,
+				menuHeaderRightPart
+			{
+				box-sizing: border-box;
+				padding: 0 10px;
+				width: 299px;
+				flex-grow: 1;
 			}
-				@el queryInputFinalIcon {
+
+			@el menuHeaderLeftPart {
+				font-size: 0;
+			}
+				@el queryInput {
+					width: 100%;
 				}
+
+			@el menuHeaderRightPart {
+				padding-right: 22px;
+				text-align: right;
+			}
+				@el selectedCount {
+				}
+
+		@el menuList {
+			float: left;
+			width: 299px;
+			height: 304px;
+		}
 
 		@el menuSelected {
 			float: right;
@@ -89,46 +111,54 @@
 						height: 16px;
 					}
 
-		@el nothingSelectedSlot {
-			display: block;
-			box-sizing: border-box;
-			padding: 12px;
-			height: 100%;
-			text-align: center;
-			white-space: nowrap;
-
-			&::before {
-				display: inline-block;
-				width: 0;
+			@el nothingSelectedSlot {
+				display: block;
+				box-sizing: border-box;
+				padding: 12px;
 				height: 100%;
-				content: '';
-				vertical-align: middle;
-			}
-		}
-			@el nothingSelected {
-				display: inline-block;
-				vertical-align: middle;
-				white-space: normal;
-			}
-				@el nothingSelectedMessage {
-					white-space: nowrap;
-					opacity: .6;
-				}
+				text-align: center;
+				white-space: nowrap;
 
-		@el menuList {
-			width: 299px;
-			height: 304px;
-		}
+				&::before {
+					display: inline-block;
+					width: 0;
+					height: 100%;
+					content: '';
+					vertical-align: middle;
+				}
+			}
+				@el nothingSelected {
+					display: inline-block;
+					vertical-align: middle;
+					white-space: normal;
+				}
+					@el nothingSelectedMessage {
+						white-space: nowrap;
+						opacity: .6;
+					}
 
 		@el menuFooter {
-			box-sizing: border-box;
-			padding: 0 10px;
+			display: flex;
 			width: 100%;
 			border-top: 1px solid hsl(0,0%,80%);
-			text-align: right;
-			font-size: 0;
 			line-height: 60px;
 		}
-			@el btnClose {
+			@el menuFooterLeftPart,
+				menuFooterRightPart
+			{
+				box-sizing: border-box;
+				padding: 0 10px;
+				flex-grow: 1;
 			}
+
+			@el menuFooterLeftPart {
+				padding-left: 22px;
+			}
+
+			@el menuFooterRightPart {
+				text-align: right;
+				font-size: 0;
+			}
+				@el btnClose {
+				}
 }
