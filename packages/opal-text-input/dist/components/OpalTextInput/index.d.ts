@@ -11,6 +11,8 @@ export declare class OpalTextInput extends BaseComponent {
     paramValue: string;
     paramStoreKey: string;
     paramPlaceholder: string;
+    paramStartIcon: string;
+    paramEndIcon: string;
     paramClearable: boolean;
     paramLoading: boolean;
     paramTabIndex: number;
@@ -21,8 +23,8 @@ export declare class OpalTextInput extends BaseComponent {
     _textFieldValue: string;
     value: string | null;
     _prevValue: string | null;
-    readonly isFinalIconShown: boolean;
     readonly isBtnClearShown: boolean;
+    readonly isEndIconShown: boolean;
     _initialHeight: number;
     ready(): void;
     elementAttached(): void;

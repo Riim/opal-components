@@ -3,7 +3,7 @@
 RtSlot (for=queryInputSlot) {
 	RtSlot/queryInputSlot (for=queryInput) {
 		OpalTextInput/queryInput (placeholder={constructor.i18n.queryInputPlaceholder}, clearable) {
-			OpalIcon/queryInputFinalIcon (class=OpalTextInput__finalIcon, name=search)
+			OpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)
 		}
 	}
 }

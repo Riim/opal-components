@@ -19,7 +19,15 @@
 	)
 }
 
-RtSlot/finalIconSlot (for=finalIcon, shown={isFinalIconShown})
+@IfThen (if=paramStartIcon) {
+	OpalIcon/startIcon (name={paramStartIcon})
+}
+
+RtSlot/endIconSlot (for=endIcon, shown={isEndIconShown}) {
+	@IfThen (if=paramEndIcon) {
+		OpalIcon/endIcon (name={paramEndIcon})
+	}
+}
 
 @IfThen (if=paramClearable) {
 	button/btnClear (shown={isBtnClearShown}) {

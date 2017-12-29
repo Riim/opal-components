@@ -30,6 +30,8 @@ export class OpalTextInput extends BaseComponent {
 	@Param paramValue = '';
 	@Param paramStoreKey: string;
 	@Param paramPlaceholder: string;
+	@Param paramStartIcon: string;
+	@Param paramEndIcon: string;
 	@Param paramClearable = false;
 	@Param paramLoading = false;
 	@Param paramTabIndex = 0;
@@ -57,13 +59,13 @@ export class OpalTextInput extends BaseComponent {
 	_prevValue: string | null;
 
 	@Computed
-	get isFinalIconShown(): boolean {
-		return !this.isBtnClearShown && !this.paramLoading;
+	get isBtnClearShown(): boolean {
+		return this.paramClearable && !this.paramLoading && !!this._textFieldValue;
 	}
 
 	@Computed
-	get isBtnClearShown(): boolean {
-		return !!this._textFieldValue && !this.paramLoading;
+	get isEndIconShown(): boolean {
+		return !this.paramLoading && !this.isBtnClearShown;
 	}
 
 	_initialHeight: number;

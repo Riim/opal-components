@@ -6,7 +6,7 @@ RtSlot (for=textInput) {
 		placeholder={constructor.i18n.textInputPlaceholder},
 		clearable
 	) {
-		OpalIcon/textInputFinalIcon (class=OpalTextInput__finalIcon, name=search)
+		OpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)
 	}
 }
 

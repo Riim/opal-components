@@ -6,7 +6,7 @@
 	@el textInput {
 		display: block;
 	}
-		@el textInputFinalIcon {
+		@el textInputEndIcon {
 		}
 
 	@el calendarMenu {

@@ -120,10 +120,10 @@ p {
 
 h1 { 'OpalTextInput' }
 p {
-	OpalTextInput (value=Value, placeholder=Placeholder)
+	OpalTextInput (value=Value, placeholder=Placeholder, end-icon=search)
 }
 p {
-	OpalTextInput (value=Value, placeholder=Placeholder, valid)
+	OpalTextInput (value=Value, placeholder=Placeholder, start-icon=search, valid)
 }
 p {
 	OpalTextInput (value=Value, placeholder=Placeholder, valid=no)

@@ -8,7 +8,7 @@ OpalTextInputValidator/textInputValidator {
 			placeholder={paramPlaceholder},
 			clearable
 		) {
-			OpalIcon/textInputFinalIcon (class=OpalTextInput__finalIcon, name=calendar)
+			OpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=calendar)
 		}
 	}
 

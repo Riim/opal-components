@@ -7,7 +7,7 @@
 	@el textField {
 		display: block;
 		box-sizing: border-box;
-		padding: 6px 34px 6px 11px;
+		padding: 6px 36px 6px 12px;
 		width: 100%;
 		border: 1px solid hsl(0,0%,68%);
 		border-top-color: hsl(0,0%,66%);
@@ -27,23 +27,32 @@
 		-webkit-tap-highlight-color: transparent;
 	}
 
-	@el finalIconSlot {
+	@el startIcon,
+		endIcon
+	{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		display: block;
+		margin: auto;
+		width: 18px;
+		height: 18px;
+		color: hsl(0,0%,50%);
+	}
+
+	@el startIcon {
+		left: 12px;
+	}
+
+	@el endIconSlot {
 		display: none;
 
 		@mod shown {
 			display: block;
 		}
 	}
-		@el finalIcon {
-			position: absolute;
-			top: 0;
+		@el endIcon {
 			right: 12px;
-			bottom: 0;
-			display: block;
-			margin: auto;
-			width: 18px;
-			height: 18px;
-			color: hsl(0,0%,50%);
 		}
 
 	@el btnClear {
@@ -124,6 +133,12 @@
 			@el textField {
 				overflow-y: hidden;
 			}
+		}
+	}
+
+	@mod start-icon {
+		@el textField {
+			padding-left: 36px;
 		}
 	}
 
