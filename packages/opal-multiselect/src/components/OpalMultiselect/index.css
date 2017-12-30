@@ -29,8 +29,10 @@
 				padding-right: 22px;
 				text-align: right;
 			}
-				@el selectedCount {
+				@el menuHeaderContentSlot {
 				}
+					@el selectedCount {
+					}
 
 		@el menuList {
 			float: left;
@@ -154,6 +156,8 @@
 			@el menuFooterLeftPart {
 				padding-left: 22px;
 			}
+				@el menuFooterContentSlot {
+				}
 
 			@el menuFooterRightPart {
 				text-align: right;

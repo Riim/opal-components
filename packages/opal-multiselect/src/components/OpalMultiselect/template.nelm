@@ -11,9 +11,11 @@
 		}
 
 		div/menuHeaderRightPart {
-			@IfThen (if=viewModel.length) {
-				span/selectedCount {
-					'выбрано {viewModel.length}'
+			RtSlot/menuHeaderContentSlot (for=menuHeaderContent) {
+				@IfThen (if=viewModel.length) {
+					span/selectedCount {
+						'выбрано {viewModel.length}'
+					}
 				}
 			}
 		}
