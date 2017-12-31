@@ -7,7 +7,7 @@ opal-popover {
 	z-index: 600;
 	display: none;
 	box-sizing: border-box;
-	padding: 15px;
+	padding: 20px;
 	border: 1px solid hsl(0,0%,80%);
 	border-radius: 6px;
 	background: #fff;

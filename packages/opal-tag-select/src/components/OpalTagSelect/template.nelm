@@ -23,10 +23,10 @@ span/control {
 		view-type=clean,
 		multiple,
 		data-list-keypath={_dataListKeypathParam},
-		data-list-item-schema={paramDataListItemSchema |json },
+		data-list-item-schema={paramDataListItemSchema |dump },
 		value={paramValue},
 		view-model={viewModel},
-		view-model-item-schema={paramViewModelItemSchema |json },
+		view-model-item-schema={paramViewModelItemSchema |dump },
 		add-new-item={paramAddNewItem},
 		focused={paramFocused}
 	) {

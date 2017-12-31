@@ -1,10 +1,10 @@
 OpalTreeSelect/select (
 	view-type=clean,
 	data-tree-list-keypath={_dataListKeypathParam},
-	data-tree-list-item-schema={paramDataListItemSchema |json },
+	data-tree-list-item-schema={paramDataListItemSchema |dump },
 	value={paramValue},
 	view-model={viewModel},
-	view-model-item-schema={paramViewModelItemSchema |json },
+	view-model-item-schema={paramViewModelItemSchema |dump },
 	add-new-item={paramAddNewItem},
 	focused={paramFocused}
 ) {
