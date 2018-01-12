@@ -1,4 +1,4 @@
-import { Cell, IEvent } from 'cellx';
+import { IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalTextInput extends BaseComponent {
@@ -19,7 +19,6 @@ export declare class OpalTextInput extends BaseComponent {
     paramFocused: boolean;
     paramDisabled: boolean;
     textField: HTMLInputElement;
-    _textFieldValueCell: Cell<string>;
     _textFieldValue: string;
     value: string | null;
     _prevValue: string | null;

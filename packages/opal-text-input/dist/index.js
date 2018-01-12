@@ -167,16 +167,6 @@ var OpalTextInput = /** @class */ (function (_super) {
         _this.paramDisabled = false;
         return _this;
     }
-    Object.defineProperty(OpalTextInput.prototype, "_textFieldValue", {
-        get: function () {
-            return this.paramValue;
-        },
-        set: function (value) {
-            this._textFieldValueCell.set(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(OpalTextInput.prototype, "value", {
         get: function () {
             return this._textFieldValue.trim() || null;
@@ -203,11 +193,14 @@ var OpalTextInput = /** @class */ (function (_super) {
     });
     OpalTextInput.prototype.ready = function () {
         var textField = (this.textField = this.$('textField'));
-        if (this._textFieldValue) {
-            textField.value = this._textFieldValue;
+        if (this.paramValue) {
+            this._textFieldValue = textField.value = this.paramValue;
         }
         else if (this.paramStoreKey) {
             this._textFieldValue = textField.value = localStorage.getItem(this.paramStoreKey) || '';
+        }
+        else {
+            this._textFieldValue = '';
         }
         this._prevValue = this.value;
         if (this.paramMultiline && this.paramAutoHeight) {
@@ -429,10 +422,9 @@ var OpalTextInput = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalTextInput.prototype, "paramDisabled", void 0);
     __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", String),
-        __metadata("design:paramtypes", [String])
-    ], OpalTextInput.prototype, "_textFieldValue", null);
+        cellx_decorators_1.Observable,
+        __metadata("design:type", String)
+    ], OpalTextInput.prototype, "_textFieldValue", void 0);
     __decorate([
         cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),

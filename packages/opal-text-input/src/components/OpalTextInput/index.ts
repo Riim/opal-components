@@ -1,6 +1,6 @@
 import { nextTick } from '@riim/next-tick';
-import { Cell, IEvent } from 'cellx';
-import { Computed } from 'cellx-decorators';
+import { IEvent } from 'cellx';
+import { Computed, Observable } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
@@ -40,14 +40,7 @@ export class OpalTextInput extends BaseComponent {
 
 	textField: HTMLInputElement;
 
-	_textFieldValueCell: Cell<string>;
-	@Computed
-	get _textFieldValue(): string {
-		return this.paramValue;
-	}
-	set _textFieldValue(value: string) {
-		this._textFieldValueCell.set(value);
-	}
+	@Observable _textFieldValue: string;
 
 	get value(): string | null {
 		return this._textFieldValue.trim() || null;
@@ -73,10 +66,12 @@ export class OpalTextInput extends BaseComponent {
 	ready() {
 		let textField = (this.textField = this.$<HTMLInputElement>('textField')!);
 
-		if (this._textFieldValue) {
-			textField.value = this._textFieldValue;
+		if (this.paramValue) {
+			this._textFieldValue = textField.value = this.paramValue;
 		} else if (this.paramStoreKey) {
 			this._textFieldValue = textField.value = localStorage.getItem(this.paramStoreKey) || '';
+		} else {
+			this._textFieldValue = '';
 		}
 
 		this._prevValue = this.value;
