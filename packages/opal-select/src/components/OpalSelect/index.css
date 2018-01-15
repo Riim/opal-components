@@ -72,7 +72,7 @@
 		min-width: 140px;
 	}
 
-	& .OpalPopover .OpalPopover__content {
+	& .OpalPopover .OpalPopover__contentSlot {
 		overflow: auto;
 		max-height: 380px;
 	}
@@ -81,7 +81,7 @@
 		margin: 4px 10px 6px;
 	}
 
-	& .OpalModal__content > .OpalFilteredList .OpalFilteredList__queryInput {
+	& .OpalModal__contentSlot > .OpalFilteredList .OpalFilteredList__queryInput {
 		margin: 0 0 10px;
 	}
 
