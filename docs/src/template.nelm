@@ -86,28 +86,28 @@ p (class=_opalIcons) {
 h1 { 'OpalButton' }
 p {
 	OpalButton { 'Button' } ' '
-	OpalButton (view-type=primary) { 'Button' } ' '
-	OpalButton (view-type=danger) { 'Button' } ' '
+	OpalButton (viewType=primary) { 'Button' } ' '
+	OpalButton (viewType=danger) { 'Button' } ' '
 }
 p {
 	OpalButton (disabled) { 'Button' } ' '
-	OpalButton (view-type=primary, disabled) { 'Button' } ' '
-	OpalButton (view-type=danger, disabled) { 'Button' } ' '
+	OpalButton (viewType=primary, disabled) { 'Button' } ' '
+	OpalButton (viewType=danger, disabled) { 'Button' } ' '
 }
 p {
 	OpalButton (size=s) { 'Button' } ' '
-	OpalButton (view-type=primary, size=s) { 'Button' } ' '
-	OpalButton (view-type=danger, size=s) { 'Button' } ' '
+	OpalButton (viewType=primary, size=s) { 'Button' } ' '
+	OpalButton (viewType=danger, size=s) { 'Button' } ' '
 }
 p {
 	OpalButton (loading) { 'Button' } ' '
-	OpalButton (view-type=primary, loading) { 'Button' } ' '
-	OpalButton (view-type=danger, loading) { 'Button' } ' '
+	OpalButton (viewType=primary, loading) { 'Button' } ' '
+	OpalButton (viewType=danger, loading) { 'Button' } ' '
 }
 p {
 	OpalButton (loading, disabled) { 'Button' } ' '
-	OpalButton (view-type=primary, loading, disabled) { 'Button' } ' '
-	OpalButton (view-type=danger, loading, disabled) { 'Button' } ' '
+	OpalButton (viewType=primary, loading, disabled) { 'Button' } ' '
+	OpalButton (viewType=danger, loading, disabled) { 'Button' } ' '
 }
 
 h1 { 'OpalSignButton' }
@@ -120,10 +120,10 @@ p {
 
 h1 { 'OpalTextInput' }
 p {
-	OpalTextInput (value=Value, placeholder=Placeholder, end-icon=search)
+	OpalTextInput (value=Value, placeholder=Placeholder, endIcon=search)
 }
 p {
-	OpalTextInput (value=Value, placeholder=Placeholder, start-icon=search, valid)
+	OpalTextInput (value=Value, placeholder=Placeholder, startIcon=search, valid)
 }
 p {
 	OpalTextInput (value=Value, placeholder=Placeholder, valid=no)
@@ -164,7 +164,7 @@ p {
 }
 p {
 	OpalInputMask (mask=#ffffff) {
-		OpalInputMaskDefinition (mask-char=f, regex=/[0-9a-f]/i)
+		OpalInputMaskDefinition (maskChar=f, regex=/[0-9a-f]/i)
 		OpalTextInput (class=OpalInputMask__textInput, placeholder=Цвет)
 	}
 }
@@ -173,15 +173,15 @@ h1 { 'OpalGroup' }
 p {
 	OpalGroup {
 		OpalButton { 'Button' }
-		OpalButton (view-type=primary) { 'Button' }
-		OpalButton (view-type=danger) { 'Button' }
+		OpalButton (viewType=primary) { 'Button' }
+		OpalButton (viewType=danger) { 'Button' }
 	}
 }
 p {
 	OpalGroup {
 		OpalButton { 'Button' }
 		OpalTextInput (value=Value, placeholder=Placeholder)
-		OpalButton (view-type=primary) { 'Button' }
+		OpalButton (viewType=primary) { 'Button' }
 	}
 }
 
@@ -249,26 +249,26 @@ p {
 	div (
 		style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;
 	) {
-		OpalPopover (position=top, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		OpalPopover (auto-direction=no, opened) { 'Popover' br 'Popover' }
-		OpalPopover (position=bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		OpalPopover (position=left, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=top, autoDirection=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (autoDirection=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=bottom, autoDirection=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=left, autoDirection=no, opened) { 'Popover' br 'Popover' }
 	}
 	div (
 		style=position: relative; margin: 80px 120px 160px; width: 40px; height: 40px; background: #000;
 	) {
-		OpalPopover (position=top-left, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		OpalPopover (position=right-top, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		OpalPopover (position=bottom-right, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		OpalPopover (position=left-bottom, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=top-left, autoDirection=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=right-top, autoDirection=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=bottom-right, autoDirection=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=left-bottom, autoDirection=no, opened) { 'Popover' br 'Popover' }
 	}
 	div (
 		style=position: relative; margin: 80px 120px; width: 40px; height: 40px; background: #000;
 	) {
-		OpalPopover (position=top-right, position-offset=-10, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		OpalPopover (position=right-bottom, position-offset=-10, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		OpalPopover (position=bottom-left, position-offset=-10, auto-direction=no, opened) { 'Popover' br 'Popover' }
-		OpalPopover (position=left-top, position-offset=-10, auto-direction=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=top-right, positionOffset=-10, autoDirection=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=right-bottom, positionOffset=-10, autoDirection=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=bottom-left, positionOffset=-10, autoDirection=no, opened) { 'Popover' br 'Popover' }
+		OpalPopover (position=left-top, positionOffset=-10, autoDirection=no, opened) { 'Popover' br 'Popover' }
 	}
 }
 
@@ -289,11 +289,11 @@ p {
 		'default'
 	}
 
-	OpalNotification (id=notification2, view-type=primary, button-hide=no, timeout=5000) {
+	OpalNotification (id=notification2, viewType=primary, buttonHide=no, timeout=5000) {
 		'primary'
 	}
 
-	OpalNotification (id=notification3, view-type=primary, button-hide=no, timeout=10000) {
+	OpalNotification (id=notification3, viewType=primary, buttonHide=no, timeout=10000) {
 		'primary '
 		'primary '
 		'primary '
@@ -313,12 +313,12 @@ p {
 		'primary '
 	}
 
-	OpalNotification (id=notification4, view-type=success) {
+	OpalNotification (id=notification4, viewType=success) {
 		OpalIcon (class=OpalNotification__icon, name=calendar, size=xs)
 		'success'
 	}
 
-	OpalNotification (id=notification5, view-type=success) {
+	OpalNotification (id=notification5, viewType=success) {
 		OpalIcon (class=OpalNotification__icon, name=calendar, size=xs)
 		'success '
 		'success '
@@ -339,7 +339,7 @@ p {
 		'success '
 	}
 
-	OpalNotification (id=notification6, view-type=danger) {
+	OpalNotification (id=notification6, viewType=danger) {
 		'danger'
 	}
 
@@ -358,7 +358,7 @@ p {
 
 h1 { 'OpalCalendar' }
 p {
-	OpalCalendar (from-date=today)
+	OpalCalendar (fromDate=today)
 }
 
 h1 { 'OpalDateInput' }
@@ -378,7 +378,7 @@ p {
 h1 { 'OpalFilteredList' }
 p {
 	OpalFilteredList {
-		OpalLoadedList (class=OpalFilteredList__list, data-provider={dataProvider1}) {
+		OpalLoadedList (class=OpalFilteredList__list, dataProvider={dataProvider1}) {
 			span (class=OpalLoadedList__listItem) {
 				'{$item.name}'
 			}
@@ -389,7 +389,7 @@ p {
 h1 { 'OpalTreeList' }
 p {
 	OpalFilteredList {
-		OpalTreeList (class=OpalFilteredList__list, data-tree-list={dataTreeList1}) {
+		OpalTreeList (class=OpalFilteredList__list, dataTreeList={dataTreeList1}) {
 			OpalCheckbox (
 				class=OpalTreeList__selectionControl,
 				checked={$selected},
@@ -424,10 +424,10 @@ p {
 p {
 	OpalSelect (
 		multiple,
-		data-list={dataList1},
-		data-list-item-schema='{ value: "id", text: "name" }',
-		view-model-item-schema='{ value: "id", text: "name" }',
-		add-new-item={addNewItem1},
+		dataList={dataList1},
+		dataListItemSchema='{ value: "id", text: "name" }',
+		viewModelItemSchema='{ value: "id", text: "name" }',
+		addNewItem={addNewItem1},
 		placeholder=Select
 	) {
 		OpalTextInput (class=OpalSelect__newItemInput, placeholder=Добавить)
@@ -436,14 +436,14 @@ p {
 p {
 	OpalGroup {
 		OpalSelect (placeholder=Select) {
-			OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
+			OpalPopover (class=OpalSelect__menu, position=bottom, autoClosing) {
 				OpalSelectOption (text=Option 1, subtext=Subtext 1)
 				OpalSelectOption (text=Option 2, subtext=Subtext 2)
 				OpalSelectOption (text=Option 3, subtext=Subtext 3)
 			}
 		}
-		OpalSelect (view-type=primary, placeholder=Select) {
-			OpalPopover (class=OpalSelect__menu, auto-closing) {
+		OpalSelect (viewType=primary, placeholder=Select) {
+			OpalPopover (class=OpalSelect__menu, autoClosing) {
 				OpalSelectOption (text=Option 1)
 				OpalSelectOption (text=Option 2)
 				OpalSelectOption (text=Option 3)
@@ -455,11 +455,11 @@ p {
 h1 { 'OpalSelect + OpalLoadedList' }
 p {
 	OpalSelect {
-		OpalDropdown (class=OpalSelect__menu, auto-height=no, auto-closing) {
+		OpalDropdown (class=OpalSelect__menu, autoHeight=no, autoClosing) {
 			OpalFilteredList (class=OpalSelect__filteredList) {
 				OpalLoadedList (
 					class=OpalSelect__loadedList OpalFilteredList__list,
-					data-provider={dataProvider1}
+					dataProvider={dataProvider1}
 				) {
 					OpalSelectOption (class=OpalLoadedList__listItem, text={$item.name})
 				}
@@ -469,8 +469,8 @@ p {
 	' '
 
 	OpalSelect {
-		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
-			OpalLoadedList (class=OpalSelect__loadedList, data-provider={dataProvider1}) {
+		OpalPopover (class=OpalSelect__menu, position=bottom, autoClosing) {
+			OpalLoadedList (class=OpalSelect__loadedList, dataProvider={dataProvider1}) {
 				OpalSelectOption (class=OpalLoadedList__listItem, text={$item.name})
 			}
 		}
@@ -479,11 +479,11 @@ p {
 
 	OpalSelect (
 		multiple,
-		view-model={viewModel1},
-		view-model-item-schema='{ value: "id", text: "name" }'
+		viewModel={viewModel1},
+		viewModelItemSchema='{ value: "id", text: "name" }'
 	) {
-		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
-			OpalLoadedList (class=OpalSelect__loadedList, data-provider={dataProvider1}) {
+		OpalPopover (class=OpalSelect__menu, position=bottom, autoClosing) {
+			OpalLoadedList (class=OpalSelect__loadedList, dataProvider={dataProvider1}) {
 				OpalSelectOption (class=OpalLoadedList__listItem, text={$item.name})
 			}
 		}
@@ -491,11 +491,11 @@ p {
 	' '
 
 	OpalSelect {
-		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
+		OpalPopover (class=OpalSelect__menu, position=bottom, autoClosing) {
 			OpalFilteredList (class=OpalSelect__filteredList) {
 				OpalLoadedList (
 					class=OpalSelect__loadedList OpalFilteredList__list,
-					data-provider={dataProvider1}
+					dataProvider={dataProvider1}
 				) {
 					OpalSelectOption (class=OpalLoadedList__listItem, text={$item.name})
 				}
@@ -504,12 +504,12 @@ p {
 	}
 	' '
 
-	OpalSelect (multiple, add-new-item={addNewItem1}) {
-		OpalPopover (class=OpalSelect__menu, position=bottom, auto-closing) {
+	OpalSelect (multiple, addNewItem={addNewItem1}) {
+		OpalPopover (class=OpalSelect__menu, position=bottom, autoClosing) {
 			OpalFilteredList (class=OpalSelect__filteredList) {
 				OpalLoadedList (
 					class=OpalSelect__loadedList OpalFilteredList__list,
-					data-provider={dataProvider1}
+					dataProvider={dataProvider1}
 				) {
 					OpalSelectOption (class=OpalLoadedList__listItem, text={$item.name})
 
@@ -518,7 +518,7 @@ p {
 							'Ничего не найдено'
 						}
 
-						OpalButton (class=OpalSelect__btnAddNewItem, data-item-text={paramQuery}) {
+						OpalButton (class=OpalSelect__btnAddNewItem, dataItemText={paramQuery}) {
 							'Добавить "{paramQuery}"'
 						}
 					}
@@ -531,14 +531,14 @@ p {
 h1 { 'OpalMultiselect' }
 p {
 	OpalMultiselect (
-		data-provider={dataProvider1},
-		data-list-item-schema='{ value: "id", text: "name", subtext: "parent" }'
+		dataProvider={dataProvider1},
+		dataListItemSchema='{ value: "id", text: "name", subtext: "parent" }'
 	)
 	' '
 
 	OpalMultiselect (
-		data-provider={dataProvider1},
-		data-list-item-schema='{ value: "id", text: "name", subtext: "parent" }'
+		dataProvider={dataProvider1},
+		dataListItemSchema='{ value: "id", text: "name", subtext: "parent" }'
 	) {
 		a (class=OpalSelect__menuFooterContent, href=#) {
 			'Link'
@@ -548,23 +548,23 @@ p {
 
 h1 { 'OpalTreeSelect' }
 p {
-	OpalTreeSelect (data-tree-list={dataTreeList1})
+	OpalTreeSelect (dataTreeList={dataTreeList1})
 }
 
 h1 { 'OpalAutosuggest' }
 p {
-	OpalAutosuggest (data-provider={dataProvider2}, open-menu-on-nothing-found)
+	OpalAutosuggest (dataProvider={dataProvider2}, openMenuOnNothingFound)
 }
 
 h1 { 'OpalTagSelect' }
 p {
-	OpalTagSelect (data-provider={dataProvider1}, placeholder='') br
-	OpalTagSelect (view-type=primary, data-provider={dataProvider1}) br
+	OpalTagSelect (dataProvider={dataProvider1}, placeholder='') br
+	OpalTagSelect (viewType=primary, dataProvider={dataProvider1}) br
 	OpalTagSelect (
-		view-type=danger,
-		data-provider={dataProvider1},
-		add-new-item={addNewItem1},
-		view-model={viewModel1}
+		viewType=danger,
+		dataProvider={dataProvider1},
+		addNewItem={addNewItem1},
+		viewModel={viewModel1}
 	) {
 		OpalTextInput (class=OpalSelect__newItemInput OpalFilteredList__queryInput)
 	}
@@ -572,7 +572,7 @@ p {
 
 h1 { 'OpalTreeTagSelect' }
 p {
-	OpalTreeTagSelect (data-list={dataTreeList1})
+	OpalTreeTagSelect (dataList={dataTreeList1})
 }
 
 h1 { 'OpalMultirow' }
