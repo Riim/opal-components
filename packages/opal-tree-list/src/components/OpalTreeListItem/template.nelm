@@ -1,10 +1,10 @@
 div/head {
-	OpalButton/btnToggleChildren (view-type=clean, checkable, checked={paramOpened}) {
+	OpalButton/btnToggleChildren (viewType=clean, checkable, checked={paramOpened}) {
 		OpalIcon/btnToggleChildrenIcon (name=chevronRight)
 	}
 
 	span/contentSlotWrapper {
-		RtSlot/contentSlot (clone-content)
+		RtSlot/contentSlot (cloneContent)
 	}
 }
 
@@ -12,20 +12,20 @@ div/head {
 	div/children {
 		@Repeat (for=$item of dataTreeListItem.children) {
 			OpalTreeListItem/item (
-				data-tree-list={paramDataTreeList},
-				filtered-data-tree-list={paramFilteredDataTreeList},
-				data-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},
-				data-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},
-				view-model={viewModel},
-				view-model-item-value-field-name={_viewModelItemValueFieldName},
-				view-model-item-text-field-name={_viewModelItemTextFieldName},
+				dataTreeList={paramDataTreeList},
+				filteredDataTreeList={paramFilteredDataTreeList},
+				dataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},
+				dataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},
+				viewModel={viewModel},
+				viewModelItemValueFieldName={_viewModelItemValueFieldName},
+				viewModelItemTextFieldName={_viewModelItemTextFieldName},
 				indexpath='[{paramIndexpath},{$index}]',
 				query={paramQuery},
 				opened={paramQuery |not |not },
-				nesting-level={paramIndexpath.length},
-				has-children='{$item.children.length |gt(0) }'
+				nestingLevel={paramIndexpath.length},
+				hasChildren='{$item.children.length |gt(0) }'
 			) {
-				RtSlot (clone-content, get-context={_getListItemContext})
+				RtSlot (cloneContent, getContext={_getListItemContext})
 			}
 		}
 	}

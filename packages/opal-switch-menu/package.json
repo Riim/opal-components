@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-switch-menu",
-  "version": "0.33.1",
+  "version": "0.33.19",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,9 +13,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-button": "^0.33.1",
-    "cellx": "^1.7.78",
-    "reflect-metadata": "^0.1.10",
-    "rionite": "^0.32.11"
+    "@riim/opal-button": "^0.33.19",
+    "cellx": "^1.7.79",
+    "reflect-metadata": "^0.1.12",
+    "rionite": "^0.32.15"
   }
 }

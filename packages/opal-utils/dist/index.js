@@ -113,7 +113,7 @@ exports.closestComponent = closestComponent;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 function isFocusable(el) {
-    if (el.hasAttribute('tabindex')) {
+    if (el.hasAttribute('tabIndex')) {
         return el.tabIndex >= 0;
     }
     switch (el.tagName) {
@@ -133,7 +133,7 @@ function isFocusable(el) {
             return el.tabIndex >= 0;
         }
     }
-    return el.hasAttribute('contenteditable') && el.tabIndex >= 0;
+    return el.hasAttribute('contentEditable') && el.tabIndex >= 0;
 }
 exports.isFocusable = isFocusable;
 

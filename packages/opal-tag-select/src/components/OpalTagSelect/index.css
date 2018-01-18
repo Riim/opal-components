@@ -100,7 +100,7 @@
 				margin: 1px 0;
 			}
 
-	@mod view-type=primary {
+	@mod viewType=primary {
 		@el tag {
 			background: hsl(208,100%,48%);
 		}
@@ -117,7 +117,7 @@
 			}
 	}
 
-	@mod view-type=danger {
+	@mod viewType=danger {
 		@el tag {
 			background: hsl(348,96%,52%);
 		}

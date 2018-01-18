@@ -129,14 +129,14 @@
 	}
 
 	@mod multiline {
-		&:not([auto-height=no]) {
+		&:not([autoHeight=no]) {
 			@el textField {
 				overflow-y: hidden;
 			}
 		}
 	}
 
-	@mod start-icon {
+	@mod startIcon {
 		@el textField {
 			padding-left: 36px;
 		}

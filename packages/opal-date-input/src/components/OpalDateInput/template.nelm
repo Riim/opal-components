@@ -15,7 +15,7 @@ OpalTextInputValidator/textInputValidator {
 	@IfThen (if=paramRequired) {
 		OpalTextInputValidatorRule/textInputValidatorRuleRequired (
 			required,
-			popover-position={paramPopoverPosition}
+			popoverPosition={paramPopoverPosition}
 		) {
 			'{constructor.i18n.isRequiredField}'
 		}
@@ -23,25 +23,25 @@ OpalTextInputValidator/textInputValidator {
 
 	OpalTextInputValidatorRule/textInputValidatorRuleDateExists (
 		test={dateExists},
-		popover-position={paramPopoverPosition}
+		popoverPosition={paramPopoverPosition}
 	) {
 		'{constructor.i18n.nonExistentDate}'
 	}
 
 	OpalTextInputValidatorRule/textInputValidatorRuleDateInRange (
 		test={isDateInRange},
-		popover-position={paramPopoverPosition}
+		popoverPosition={paramPopoverPosition}
 	) {
 		'{constructor.i18n.invalidDateRange}'
 	}
 }
 
-OpalDropdown/calendarMenu (auto-height=no) {
+OpalDropdown/calendarMenu (autoHeight=no) {
 	OpalCalendar/calendar (
-		from-date={paramFromDate},
-		to-date={paramToDate},
+		fromDate={paramFromDate},
+		toDate={paramToDate},
 		value={paramValue},
-		date-delimiter=.
+		dateDelimiter=.
 	)
 }
 

@@ -2,20 +2,20 @@
 	@IfThen (if=filteredDataTreeList.length) {
 		@Repeat (for=$item of filteredDataTreeList) {
 			OpalTreeListItem/item (
-				data-tree-list={dataTreeList},
-				filtered-data-tree-list={filteredDataTreeList},
-				data-tree-list-item-value-field-name={_dataTreeListItemValueFieldName},
-				data-tree-list-item-text-field-name={_dataTreeListItemTextFieldName},
-				view-model={viewModel},
-				view-model-item-value-field-name={_viewModelItemValueFieldName},
-				view-model-item-text-field-name={_viewModelItemTextFieldName},
+				dataTreeList={dataTreeList},
+				filteredDataTreeList={filteredDataTreeList},
+				dataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},
+				dataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},
+				viewModel={viewModel},
+				viewModelItemValueFieldName={_viewModelItemValueFieldName},
+				viewModelItemTextFieldName={_viewModelItemTextFieldName},
 				indexpath=[{$index}],
 				query={paramQuery},
 				opened={paramQuery |not |not },
-				nesting-level=0,
-				has-children='{$item.children.length |gt(0) }'
+				nestingLevel=0,
+				hasChildren='{$item.children.length |gt(0) }'
 			) {
-				RtSlot (clone-content, get-context={_getListItemContext}) {
+				RtSlot (cloneContent, getContext={_getListItemContext}) {
 					OpalCheckbox/selectionControl (
 						checked={$selected},
 						indeterminate={$indeterminate}

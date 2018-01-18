@@ -268,7 +268,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/contentWrapper {\nRtSlot/contentSlot (contenteditable, spellcheck=false)\nOpalIcon/iconEdit (name=compose, stroke-width=3)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/contentWrapper {\nRtSlot/contentSlot (contentEditable, spellCheck=false)\nOpalIcon/iconEdit (name=compose, strokeWidth=3)\n}\n}");
 
 /***/ })
 

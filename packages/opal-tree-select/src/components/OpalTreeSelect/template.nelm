@@ -2,10 +2,10 @@ OpalModal/menu {
 	OpalFilteredList/filteredList {
 		OpalTreeList/treeList (
 			class=OpalFilteredList__list,
-			data-tree-list={dataTreeList},
-			data-tree-list-item-schema={paramDataTreeListItemSchema},
-			view-model={viewModel},
-			view-model-item-schema={paramViewModelItemSchema},
+			dataTreeList={dataTreeList},
+			dataTreeListItemSchema={paramDataTreeListItemSchema},
+			viewModel={viewModel},
+			viewModelItemSchema={paramViewModelItemSchema},
 			query={paramQuery}
 		) {
 			OpalSelectOption/option (

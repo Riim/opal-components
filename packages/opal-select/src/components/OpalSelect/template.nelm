@@ -2,10 +2,10 @@
 
 RtSlot (for=button) {
 	OpalButton/button (
-		view-type={paramViewType},
+		viewType={paramViewType},
 		size={paramSize},
 		checkable,
-		tab-index={paramTabIndex},
+		tabIndex={paramTabIndex},
 		disabled={paramDisabled}
 	) {
 		@IfThen (if=paramText) {
@@ -21,12 +21,12 @@ RtSlot (for=button) {
 
 RtSlot (for=menuSlot) {
 	RtSlot/menuSlot (for=menu) {
-		OpalDropdown/menu (auto-closing) {
+		OpalDropdown/menu (autoClosing) {
 			RtSlot (for=menuContent) {
 				@IfThen (if=_isParamDataListSpecified) {
 					div/, menuContent {
 						@IfThen (if=dataList) {
-							@Repeat (for=item of dataList, track-by={_dataListItemValueFieldName}) {
+							@Repeat (for=item of dataList, trackBy={_dataListItemValueFieldName}) {
 								OpalSelectOption/option (
 									value='{item |key(_dataListItemValueFieldName) }',
 									text='{item |key(_dataListItemTextFieldName) }',
@@ -44,7 +44,7 @@ RtSlot (for=menuSlot) {
 				}
 				@IfElse (if=_isParamDataListSpecified) {
 					div/, menuContent {
-						RtSlot/options (for-tag=opal-select-option)
+						RtSlot/options (forTag=opal-select-option)
 
 						RtSlot (for=newItemInputSlot) {
 							RtSlot/newItemInputSlot (for=newItemInput)

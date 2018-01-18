@@ -1,4 +1,4 @@
-/menu (auto-height=no, auto-closing) {
+/menu (autoHeight=no, autoClosing) {
 	div/menuHeader {
 		div/menuHeaderLeftPart {
 			OpalTextInput/queryInput (
@@ -41,7 +41,7 @@
 				'{item |key(_viewModelItemTextFieldName) }'
 
 				button/btnDeselectItem (
-					tabindex=-1,
+					tabIndex=-1,
 					data-item-value='{item |key(_viewModelItemValueFieldName) }'
 				) {
 					OpalIcon/btnDeselectItemIcon (name=cross)

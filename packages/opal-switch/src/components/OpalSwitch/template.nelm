@@ -3,7 +3,7 @@
 label/label {
 	input/input (type=checkbox)
 
-	span/control (tabindex={_tabIndex}) {
+	span/control (tabIndex={_tabIndex}) {
 		span/thumb
 	}
 	' '

@@ -12,7 +12,7 @@
 		}
 
 	@el loader {
-		@mod align-center {
+		@mod alignCenter {
 			position: absolute;
 			top: 0;
 			right: 0;

@@ -63,14 +63,14 @@
 		}
 	}
 
-	@mod nesting-level=0 {
+	@mod nestingLevel=0 {
 		font-weight: bold;
 	}
-	@mod nesting-level=1 {
+	@mod nestingLevel=1 {
 		font-weight: normal;
 	}
 
-	@mod has-children {
+	@mod hasChildren {
 		& > .OpalTreeListItem__head .OpalTreeListItem__btnToggleChildren {
 			visibility: visible;
 		}

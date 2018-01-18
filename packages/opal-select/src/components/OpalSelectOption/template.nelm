@@ -1,6 +1,6 @@
 @section/inner {
 
-button/control (tabindex={_tabIndex}) {
+button/control (tabIndex={_tabIndex}) {
 	RtSlot/contentSlot {
 		'{paramText}'
 

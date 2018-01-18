@@ -463,7 +463,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nRtSlot/contentSlot\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabIndex={_tabIndex}) {\nRtSlot/contentSlot\n}\n}");
 
 /***/ }),
 
@@ -614,7 +614,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/tabListSlot (for-tag=opal-tab-list) {\nOpalTabList/tabList {\nRtSlot/tabs, tabs (for-tag=opal-tab)\n}\n}\nRtSlot/tabPanels, tabPanels (for-tag=opal-tab-panel)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/tabListSlot (forTag=opal-tab-list) {\nOpalTabList/tabList {\nRtSlot/tabs, tabs (forTag=opal-tab)\n}\n}\nRtSlot/tabPanels, tabPanels (forTag=opal-tab-panel)\n}");
 
 /***/ }),
 

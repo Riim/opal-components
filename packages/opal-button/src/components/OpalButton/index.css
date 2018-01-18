@@ -7,7 +7,7 @@
 	cursor: pointer;
 	user-select: none;
 
-	&:not([view-type=clean]) {
+	&:not([viewType=clean]) {
 		position: relative;
 		display: inline-block;
 		box-sizing: border-box;
@@ -108,7 +108,7 @@
 		}
 	}
 
-	@mod view-type=primary {
+	@mod viewType=primary {
 		background: hsl(208,94%,54%);
 
 		&:hover {
@@ -121,7 +121,7 @@
 		}
 	}
 
-	@mod view-type=danger {
+	@mod viewType=danger {
 		background: hsl(348,92%,58%);
 
 		&:hover {

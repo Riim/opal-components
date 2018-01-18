@@ -2,15 +2,15 @@
 
 RtSlot/presetRowsSlot (
 	for=presetRows,
-	not-have-new-rows={_notHaveNewRows},
-	not-single-row={_notSingleRow}
+	notHaveNewRows={_notHaveNewRows},
+	notSingleRow={_notSingleRow}
 ) {
 	RtSlot/presetRows (for=presetRow)
 }
 
-div/newRows (not-single-row={_notSingleRow}) {
-	@Repeat (for=row of _newRows, track-by=key) {
-		RtSlot/newRowSlot (clone-content, data-key={row.key})
+div/newRows (notSingleRow={_notSingleRow}) {
+	@Repeat (for=row of _newRows, trackBy=key) {
+		RtSlot/newRowSlot (cloneContent, data-key={row.key})
 	}
 }
 

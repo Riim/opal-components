@@ -1,6 +1,6 @@
 @section/inner {
 
-div/bar (view-type={paramViewType}, icon-size={paramIconSize}, button-hide={paramButtonHide}) {
+div/bar (viewType={paramViewType}, iconSize={paramIconSize}, buttonHide={paramButtonHide}) {
 	RtSlot/iconSlot (for=icon)
 	RtSlot/contentSlot
 

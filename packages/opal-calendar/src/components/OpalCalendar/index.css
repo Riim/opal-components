@@ -161,7 +161,7 @@
 						text-decoration: underline;
 					}
 
-					@mod not-in-current-month {
+					@mod notInCurrentMonth {
 						opacity: .45;
 					}
 

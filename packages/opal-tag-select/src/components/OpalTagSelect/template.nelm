@@ -1,7 +1,7 @@
 @section/inner {
 
 span/tags {
-	@Repeat (for=tag of viewModel, track-by={_viewModelItemValueFieldName}) {
+	@Repeat (for=tag of viewModel, trackBy={_viewModelItemValueFieldName}) {
 		span/tag (
 			data-value='{tag |key(_viewModelItemValueFieldName) }',
 			disabled='{tag |_isItemDisabled }'
@@ -20,21 +20,21 @@ span/control {
 	}
 
 	OpalSelect/select (
-		view-type=clean,
+		viewType=clean,
 		multiple,
-		data-list-keypath={_dataListKeypathParam},
-		data-list-item-schema={paramDataListItemSchema |dump },
+		dataListKeypath={_dataListKeypathParam},
+		dataListItemSchema={paramDataListItemSchema |dump },
 		value={paramValue},
-		view-model={viewModel},
-		view-model-item-schema={paramViewModelItemSchema |dump },
-		add-new-item={paramAddNewItem},
+		viewModel={viewModel},
+		viewModelItemSchema={paramViewModelItemSchema |dump },
+		addNewItem={paramAddNewItem},
 		focused={paramFocused}
 	) {
 		OpalSignButton/button (
 			class=OpalSelect__button,
 			sign=plus,
 			checkable,
-			tab-index={paramTabIndex},
+			tabIndex={paramTabIndex},
 			disabled={paramDisabled}
 		)
 
@@ -42,7 +42,7 @@ span/control {
 			OpalPopover/menu (
 				class=OpalSelect__menu,
 				position={paramPopoverPosition},
-				auto-closing
+				autoClosing
 			) {
 				RtContent (select=.OpalSelect__menuContent) {
 					@IfThen (if=_dataListKeypathParam) {
@@ -78,7 +78,7 @@ span/control {
 
 							OpalLoadedList/menuLoadedList (
 								class=OpalSelect__loadedList OpalFilteredList__list,
-								data-provider={dataProvider}
+								dataProvider={dataProvider}
 							) {
 								OpalSelectOption/loadedListSelectOption, selectOption (
 									class=OpalLoadedList__listItem,

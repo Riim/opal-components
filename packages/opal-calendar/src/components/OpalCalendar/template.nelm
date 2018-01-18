@@ -39,12 +39,12 @@ div/body {
 			div/daysRow {
 				@Repeat (for=day of weekDays) {
 					span/day (
-						week-day={day.weekDay},
+						weekDay={day.weekDay},
 						today={day.today},
 						selected={day.selected},
-						not-in-current-month={day.notInCurrentMonth},
+						notInCurrentMonth={day.notInCurrentMonth},
 						disabled={day.disabled},
-						tabindex={day.tabIndex},
+						tabIndex={day.tabIndex},
 						data-date={day.date}
 					) {
 						'{day.value}'

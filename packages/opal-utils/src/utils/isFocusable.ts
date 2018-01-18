@@ -1,5 +1,5 @@
 export function isFocusable(el: HTMLElement): boolean {
-	if (el.hasAttribute('tabindex')) {
+	if (el.hasAttribute('tabIndex')) {
 		return el.tabIndex >= 0;
 	}
 
@@ -21,5 +21,5 @@ export function isFocusable(el: HTMLElement): boolean {
 		}
 	}
 
-	return el.hasAttribute('contenteditable') && el.tabIndex >= 0;
+	return el.hasAttribute('contentEditable') && el.tabIndex >= 0;
 }
