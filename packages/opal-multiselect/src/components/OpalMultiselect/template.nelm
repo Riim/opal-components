@@ -23,8 +23,8 @@
 
 	div/menuList {
 		OpalLoadedList/loadedList (
-			data-provider={dataProvider},
-			data-list-item-value-name={_dataListItemValueFieldName}
+			dataProvider={dataProvider},
+			dataListItemValueName={_dataListItemValueFieldName}
 		) {
 			OpalSelectOption/option (
 				class=OpalLoadedList__listItem,
