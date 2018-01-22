@@ -146,13 +146,13 @@ var OpalSwitch = /** @class */ (function (_super) {
     function OpalSwitch() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramChecked = false;
-        _this.paramTabIndex = 0;
+        _this.paramTabIndex_ = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
         return _this;
     }
     OpalSwitch.prototype._tabIndex = function () {
-        return this.paramDisabled ? -1 : this.paramTabIndex;
+        return this.paramDisabled ? -1 : this.paramTabIndex_;
     };
     OpalSwitch.prototype.ready = function () {
         if (this.paramChecked) {
@@ -272,7 +272,7 @@ var OpalSwitch = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
-    ], OpalSwitch.prototype, "paramTabIndex", void 0);
+    ], OpalSwitch.prototype, "paramTabIndex_", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)

@@ -301,7 +301,7 @@ var OpalTab = /** @class */ (function (_super) {
     function OpalTab() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramSelected = false;
-        _this.paramTabIndex = 0;
+        _this.paramTabIndex_ = 0;
         _this.paramFocused = false;
         _this.paramHidden = false;
         _this.paramDisabled = false;
@@ -309,7 +309,7 @@ var OpalTab = /** @class */ (function (_super) {
     }
     Object.defineProperty(OpalTab.prototype, "_tabIndex", {
         get: function () {
-            return this.paramDisabled ? -1 : this.paramTabIndex;
+            return this.paramDisabled ? -1 : this.paramTabIndex_;
         },
         enumerable: true,
         configurable: true
@@ -410,7 +410,7 @@ var OpalTab = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
-    ], OpalTab.prototype, "paramTabIndex", void 0);
+    ], OpalTab.prototype, "paramTabIndex_", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)

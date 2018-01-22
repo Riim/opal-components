@@ -200,14 +200,14 @@ var OpalRadioButton = /** @class */ (function (_super) {
     function OpalRadioButton() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramChecked = false;
-        _this.paramTabIndex = 0;
+        _this.paramTabIndex_ = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
         return _this;
     }
     Object.defineProperty(OpalRadioButton.prototype, "_tabIndex", {
         get: function () {
-            return this.paramDisabled ? -1 : this.paramTabIndex;
+            return this.paramDisabled ? -1 : this.paramTabIndex_;
         },
         enumerable: true,
         configurable: true
@@ -330,7 +330,7 @@ var OpalRadioButton = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
-    ], OpalRadioButton.prototype, "paramTabIndex", void 0);
+    ], OpalRadioButton.prototype, "paramTabIndex_", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)

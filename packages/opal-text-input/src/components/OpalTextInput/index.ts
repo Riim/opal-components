@@ -34,7 +34,7 @@ export class OpalTextInput extends BaseComponent {
 	@Param paramEndIcon: string;
 	@Param paramClearable = false;
 	@Param paramLoading = false;
-	@Param paramTabIndex = 0;
+	@Param paramTabIndex_ = 0;
 	@Param paramFocused = false;
 	@Param paramDisabled = false;
 

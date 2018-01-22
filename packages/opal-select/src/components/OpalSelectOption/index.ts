@@ -15,13 +15,13 @@ export class OpalSelectOption extends BaseComponent {
 	@Param paramSubtext: string;
 	@Param paramSelected = false;
 	@Param paramIndeterminate = false;
-	@Param paramTabIndex = 0;
+	@Param paramTabIndex_ = 0;
 	@Param paramFocused = false;
 	@Param paramDisabled = false;
 
 	@Computed
 	get _tabIndex(): number {
-		return this.paramDisabled ? -1 : this.paramTabIndex;
+		return this.paramDisabled ? -1 : this.paramTabIndex_;
 	}
 
 	elementAttached() {

@@ -181,7 +181,7 @@ exports.OpalTreeTagSelect = OpalTreeTagSelect;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("OpalTreeSelect/select (\nviewType=clean,\ndataTreeListKeypath={_dataListKeypathParam},\ndataTreeListItemSchema={paramDataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\naddNewItem={paramAddNewItem},\nfocused={paramFocused}\n) {\nOpalSignButton/button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("OpalTreeSelect/select (\nviewType=clean,\ndataTreeListKeypath={_dataListKeypathParam},\ndataTreeListItemSchema={paramDataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\naddNewItem={paramAddNewItem},\nfocused={paramFocused}\n) {\nOpalSignButton/button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntabIndex_={paramTabIndex_},\ndisabled={paramDisabled}\n)\n}");
 
 /***/ })
 

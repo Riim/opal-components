@@ -147,14 +147,14 @@ var OpalSignButton = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramCheckable = false;
         _this.paramChecked = false;
-        _this.paramTabIndex = 0;
+        _this.paramTabIndex_ = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
         return _this;
     }
     Object.defineProperty(OpalSignButton.prototype, "_tabIndex", {
         get: function () {
-            return this.paramDisabled ? -1 : this.paramTabIndex;
+            return this.paramDisabled ? -1 : this.paramTabIndex_;
         },
         enumerable: true,
         configurable: true
@@ -274,7 +274,7 @@ var OpalSignButton = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
-    ], OpalSignButton.prototype, "paramTabIndex", void 0);
+    ], OpalSignButton.prototype, "paramTabIndex_", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)

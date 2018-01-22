@@ -149,14 +149,14 @@ var OpalButton = /** @class */ (function (_super) {
         _this.paramCheckable = false;
         _this.paramChecked = false;
         _this.paramLoading = false;
-        _this.paramTabIndex = 0;
+        _this.paramTabIndex_ = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
         return _this;
     }
     Object.defineProperty(OpalButton.prototype, "_tabIndex", {
         get: function () {
-            return this.paramDisabled ? -1 : this.paramTabIndex;
+            return this.paramDisabled ? -1 : this.paramTabIndex_;
         },
         enumerable: true,
         configurable: true
@@ -307,7 +307,7 @@ var OpalButton = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
-    ], OpalButton.prototype, "paramTabIndex", void 0);
+    ], OpalButton.prototype, "paramTabIndex_", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)

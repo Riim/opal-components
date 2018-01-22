@@ -4,7 +4,7 @@ import './index.css';
 export declare class OpalCheckbox extends BaseComponent {
     paramChecked: boolean;
     paramIndeterminate: boolean;
-    paramTabIndex: number;
+    paramTabIndex_: number;
     paramFocused: boolean;
     paramDisabled: boolean;
     readonly _tabIndex: number;

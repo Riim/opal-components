@@ -3,7 +3,7 @@ import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalRadioButton extends BaseComponent {
     paramChecked: boolean;
-    paramTabIndex: number;
+    paramTabIndex_: number;
     paramFocused: boolean;
     paramDisabled: boolean;
     readonly _tabIndex: number;

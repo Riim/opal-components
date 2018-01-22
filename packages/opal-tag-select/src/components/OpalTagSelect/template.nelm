@@ -34,7 +34,7 @@ span/control {
 			class=OpalSelect__button,
 			sign=plus,
 			checkable,
-			tabIndex={paramTabIndex},
+			tabIndex_={paramTabIndex_},
 			disabled={paramDisabled}
 		)
 
@@ -44,7 +44,7 @@ span/control {
 				position={paramPopoverPosition},
 				autoClosing
 			) {
-				RtContent (select=.OpalSelect__menuContent) {
+				RtSlot (for=OpalSelect__menuContent) {
 					@IfThen (if=_dataListKeypathParam) {
 						div (class=OpalSelect__menuContent) {
 							@IfThen (if=dataList) {

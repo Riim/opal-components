@@ -210,7 +210,7 @@ var OpalSelect = /** @class */ (function (_super) {
         _this.paramMultiple = false;
         _this.paramMaxTextLength = 20;
         _this.paramPlaceholder = gettext_1.getText.t('Не выбрано');
-        _this.paramTabIndex = 0;
+        _this.paramTabIndex_ = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
         _this._needOptionsUpdating = false;
@@ -881,7 +881,7 @@ var OpalSelect = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
-    ], OpalSelect.prototype, "paramTabIndex", void 0);
+    ], OpalSelect.prototype, "paramTabIndex_", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
@@ -981,14 +981,14 @@ var OpalSelectOption = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramSelected = false;
         _this.paramIndeterminate = false;
-        _this.paramTabIndex = 0;
+        _this.paramTabIndex_ = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
         return _this;
     }
     Object.defineProperty(OpalSelectOption.prototype, "_tabIndex", {
         get: function () {
-            return this.paramDisabled ? -1 : this.paramTabIndex;
+            return this.paramDisabled ? -1 : this.paramTabIndex_;
         },
         enumerable: true,
         configurable: true
@@ -1156,7 +1156,7 @@ var OpalSelectOption = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
-    ], OpalSelectOption.prototype, "paramTabIndex", void 0);
+    ], OpalSelectOption.prototype, "paramTabIndex_", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
@@ -1255,7 +1255,7 @@ exports.isEqualArray = isEqualArray;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=button) {\nOpalButton/button (\nviewType={paramViewType},\nsize={paramSize},\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n) {\n@IfThen (if=paramText) {\n'{paramText}'\n}\n@IfElse (if=paramText) {\n'{_buttonText}'\n}\nOpalIcon/buttonIcon (name=chevronBottom)\n}\n}\nRtSlot (for=menuSlot) {\nRtSlot/menuSlot (for=menu) {\nOpalDropdown/menu (autoClosing) {\nRtSlot (for=menuContent) {\n@IfThen (if=_isParamDataListSpecified) {\ndiv/, menuContent {\n@IfThen (if=dataList) {\n@Repeat (for=item of dataList, trackBy={_dataListItemValueFieldName}) {\nOpalSelectOption/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRtSlot/newItemInputSlot // ...\n}\n@IfElse (if=dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (if=_isParamDataListSpecified) {\ndiv/, menuContent {\nRtSlot/options (forTag=opal-select-option)\nRtSlot (for=newItemInputSlot) {\nRtSlot/newItemInputSlot (for=newItemInput)\n}\n}\n}\n}\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=button) {\nOpalButton/button (\nviewType={paramViewType},\nsize={paramSize},\ncheckable,\ntabIndex_={paramTabIndex_},\ndisabled={paramDisabled}\n) {\n@IfThen (if=paramText) {\n'{paramText}'\n}\n@IfElse (if=paramText) {\n'{_buttonText}'\n}\nOpalIcon/buttonIcon (name=chevronBottom)\n}\n}\nRtSlot (for=menuSlot) {\nRtSlot/menuSlot (for=menu) {\nOpalDropdown/menu (autoClosing) {\nRtSlot (for=menuContent) {\n@IfThen (if=_isParamDataListSpecified) {\ndiv/, menuContent {\n@IfThen (if=dataList) {\n@Repeat (for=item of dataList, trackBy={_dataListItemValueFieldName}) {\nOpalSelectOption/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRtSlot/newItemInputSlot // ...\n}\n@IfElse (if=dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (if=_isParamDataListSpecified) {\ndiv/, menuContent {\nRtSlot/options (forTag=opal-select-option)\nRtSlot (for=newItemInputSlot) {\nRtSlot/newItemInputSlot (for=newItemInput)\n}\n}\n}\n}\n}\n}\n}\n}");
 
 /***/ }),
 

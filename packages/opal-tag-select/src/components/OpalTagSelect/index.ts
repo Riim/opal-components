@@ -60,7 +60,7 @@ export class OpalTagSelect extends BaseComponent {
 	paramAddNewItem: (text: string) => Promise<{ [name: string]: string }>;
 	@Param paramPlaceholder = getText.t('Не выбрано');
 	@Param paramPopoverPosition = 'bottom';
-	@Param paramTabIndex = 0;
+	@Param paramTabIndex_ = 0;
 	@Param paramFocused = false;
 	@Param paramDisabled = false;
 

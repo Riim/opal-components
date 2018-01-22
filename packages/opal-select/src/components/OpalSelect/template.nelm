@@ -5,7 +5,7 @@ RtSlot (for=button) {
 		viewType={paramViewType},
 		size={paramSize},
 		checkable,
-		tabIndex={paramTabIndex},
+		tabIndex_={paramTabIndex_},
 		disabled={paramDisabled}
 	) {
 		@IfThen (if=paramText) {

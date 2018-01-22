@@ -162,7 +162,7 @@ var OpalTextInput = /** @class */ (function (_super) {
         _this.paramValue = '';
         _this.paramClearable = false;
         _this.paramLoading = false;
-        _this.paramTabIndex = 0;
+        _this.paramTabIndex_ = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
         return _this;
@@ -412,7 +412,7 @@ var OpalTextInput = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
-    ], OpalTextInput.prototype, "paramTabIndex", void 0);
+    ], OpalTextInput.prototype, "paramTabIndex_", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
@@ -480,7 +480,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@IfThen (if=paramMultiline) {\ntextarea/, textField (\nrows={paramRows},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfElse (if=paramMultiline) {\ninput/, textField (\ntype={paramInputType},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfThen (if=paramStartIcon) {\nOpalIcon/startIcon (name={paramStartIcon})\n}\nRtSlot/endIconSlot (for=endIcon, shown={isEndIconShown}) {\n@IfThen (if=paramEndIcon) {\nOpalIcon/endIcon (name={paramEndIcon})\n}\n}\n@IfThen (if=paramClearable) {\nbutton/btnClear (shown={isBtnClearShown}) {\nOpalIcon/btnClearIcon (name=cross)\n}\n}\n@IfThen (if=paramLoading) {\nOpalLoader/loader (size=s, shown)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@IfThen (if=paramMultiline) {\ntextarea/, textField (\nrows={paramRows},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabIndex={paramTabIndex_},\ndisabled={paramDisabled}\n)\n}\n@IfElse (if=paramMultiline) {\ninput/, textField (\ntype={paramInputType},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabIndex={paramTabIndex_},\ndisabled={paramDisabled}\n)\n}\n@IfThen (if=paramStartIcon) {\nOpalIcon/startIcon (name={paramStartIcon})\n}\nRtSlot/endIconSlot (for=endIcon, shown={isEndIconShown}) {\n@IfThen (if=paramEndIcon) {\nOpalIcon/endIcon (name={paramEndIcon})\n}\n}\n@IfThen (if=paramClearable) {\nbutton/btnClear (shown={isBtnClearShown}) {\nOpalIcon/btnClearIcon (name=cross)\n}\n}\n@IfThen (if=paramLoading) {\nOpalLoader/loader (size=s, shown)\n}\n}");
 
 /***/ }),
 

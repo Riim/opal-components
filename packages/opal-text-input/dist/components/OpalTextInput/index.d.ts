@@ -15,7 +15,7 @@ export declare class OpalTextInput extends BaseComponent {
     paramEndIcon: string;
     paramClearable: boolean;
     paramLoading: boolean;
-    paramTabIndex: number;
+    paramTabIndex_: number;
     paramFocused: boolean;
     paramDisabled: boolean;
     textField: HTMLInputElement;

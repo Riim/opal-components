@@ -12,7 +12,7 @@ OpalTreeSelect/select (
 		class=OpalSelect__button,
 		sign=plus,
 		checkable,
-		tabIndex={paramTabIndex},
+		tabIndex_={paramTabIndex_},
 		disabled={paramDisabled}
 	)
 }

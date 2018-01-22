@@ -16,13 +16,13 @@ export class OpalButton extends BaseComponent {
 	@Param paramCheckable = false;
 	@Param paramChecked = false;
 	@Param paramLoading = false;
-	@Param paramTabIndex = 0;
+	@Param paramTabIndex_ = 0;
 	@Param paramFocused = false;
 	@Param paramDisabled = false;
 
 	@Computed
 	get _tabIndex(): number {
-		return this.paramDisabled ? -1 : this.paramTabIndex;
+		return this.paramDisabled ? -1 : this.paramTabIndex_;
 	}
 
 	_documentKeyDownListening: IDisposableListening | undefined;
