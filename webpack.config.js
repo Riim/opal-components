@@ -80,7 +80,6 @@ module.exports = env => {
 		externals: [
 			'@riim/debounce-throttle',
 			'@riim/gettext',
-			'@riim/hyphenize',
 			'@riim/map-set-polyfill',
 			'@riim/mixin',
 			'@riim/next-tick',

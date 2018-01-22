@@ -129,7 +129,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var camelize_1 = __webpack_require__(190);
 var hyphenize_1 = __webpack_require__(191);
 var created_browser_history_1 = __webpack_require__(192);
 var rionite_1 = __webpack_require__(0);
@@ -236,11 +235,11 @@ var OpalRouter = /** @class */ (function (_super) {
             }
             var state = route.properties.reduce(function (state, prop, index) {
                 if (prop.optional) {
-                    state[prop.name] = !!match[index + 1];
+                    state[prop.name.toLowerCase()] = !!match[index + 1];
                 }
                 else {
                     var value = match[index + 1];
-                    state[prop.name] = value && decodeURIComponent(value);
+                    state[prop.name.toLowerCase()] = value && decodeURIComponent(value);
                 }
                 return state;
             }, Object.create(null));
@@ -258,19 +257,17 @@ var OpalRouter = /** @class */ (function (_super) {
                 var writable = true;
                 if (paramsConfig) {
                     for (var i = attrs.length; i;) {
-                        var name_1 = attrs.item(--i).name;
-                        if (name_1 == 'class') {
-                            continue;
-                        }
-                        name_1 = camelize_1.camelize(name_1, true);
-                        if (!(name_1 in state) && isReadonlyProperty(paramsConfig[name_1])) {
+                        var name_1 = attrs.item(--i).name.toLowerCase();
+                        if (name_1 != 'class' &&
+                            !(name_1 in state) &&
+                            isReadonlyProperty(paramsConfig[name_1])) {
                             writable = false;
                             break;
                         }
                     }
                     if (writable) {
                         for (var name_2 in state) {
-                            if (componentEl_1.getAttribute(hyphenize_1.hyphenize(name_2, true)) !==
+                            if (componentEl_1.getAttribute(name_2) !==
                                 valueToAttributeValue(state[name_2]) &&
                                 isReadonlyProperty(paramsConfig[name_2])) {
                                 writable = false;
@@ -281,7 +278,7 @@ var OpalRouter = /** @class */ (function (_super) {
                 }
                 if (writable) {
                     for (var i = attrs.length; i;) {
-                        var name_3 = attrs.item(--i).name;
+                        var name_3 = attrs.item(--i).name.toLowerCase();
                         if (name_3 != 'class' && !(name_3 in state)) {
                             componentEl_1.removeAttribute(name_3);
                         }
@@ -326,7 +323,7 @@ var OpalRouter = /** @class */ (function (_super) {
         var state = this._state;
         var componentEl = this._componentElement;
         for (var name_4 in state) {
-            componentEl.setAttribute(hyphenize_1.hyphenize(name_4, true), valueToAttributeValue(state[name_4]));
+            componentEl.setAttribute(name_4, valueToAttributeValue(state[name_4]));
         }
     };
     OpalRouter.prototype._clear = function () {
@@ -364,26 +361,6 @@ var OpalRouter = /** @class */ (function (_super) {
     return OpalRouter;
 }(rionite_1.BaseComponent));
 exports.OpalRouter = OpalRouter;
-
-
-/***/ }),
-
-/***/ 190:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var reHyphen = /[-_]+([a-z])/g;
-var cache = Object.create(null);
-function camelize(str, useCache) {
-    str = String(str);
-    var value;
-    return ((useCache && cache[str]) ||
-        ((value = str.replace(reHyphen, function (match, chr) { return chr.toUpperCase(); })),
-            useCache ? (cache[str] = value) : value));
-}
-exports.camelize = camelize;
 
 
 /***/ }),

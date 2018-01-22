@@ -1,4 +1,3 @@
-import { camelize } from '@riim/camelize';
 import { hyphenize } from '@riim/hyphenize';
 import { history, Location } from 'created-browser-history';
 import {
@@ -155,10 +154,10 @@ export class OpalRouter extends BaseComponent {
 			let state = route.properties.reduce(
 				(state, prop, index) => {
 					if (prop.optional) {
-						state[prop.name] = !!match![index + 1];
+						state[prop.name.toLowerCase()] = !!match![index + 1];
 					} else {
 						let value = match![index + 1];
-						state[prop.name] = value && decodeURIComponent(value);
+						state[prop.name.toLowerCase()] = value && decodeURIComponent(value);
 					}
 
 					return state;
@@ -185,15 +184,13 @@ export class OpalRouter extends BaseComponent {
 
 				if (paramsConfig) {
 					for (let i = attrs.length; i; ) {
-						let name = attrs.item(--i).name;
+						let name = attrs.item(--i).name.toLowerCase();
 
-						if (name == 'class') {
-							continue;
-						}
-
-						name = camelize(name, true);
-
-						if (!(name in state) && isReadonlyProperty(paramsConfig[name])) {
+						if (
+							name != 'class' &&
+							!(name in state) &&
+							isReadonlyProperty(paramsConfig[name])
+						) {
 							writable = false;
 							break;
 						}
@@ -202,7 +199,7 @@ export class OpalRouter extends BaseComponent {
 					if (writable) {
 						for (let name in state) {
 							if (
-								componentEl.getAttribute(hyphenize(name, true)) !==
+								componentEl.getAttribute(name) !==
 									valueToAttributeValue(state[name]) &&
 								isReadonlyProperty(paramsConfig[name])
 							) {
@@ -215,7 +212,7 @@ export class OpalRouter extends BaseComponent {
 
 				if (writable) {
 					for (let i = attrs.length; i; ) {
-						let name = attrs.item(--i).name;
+						let name = attrs.item(--i).name.toLowerCase();
 
 						if (name != 'class' && !(name in state)) {
 							componentEl.removeAttribute(name);
@@ -270,7 +267,7 @@ export class OpalRouter extends BaseComponent {
 		let componentEl = this._componentElement!;
 
 		for (let name in state) {
-			componentEl.setAttribute(hyphenize(name, true), valueToAttributeValue(state[name]));
+			componentEl.setAttribute(name, valueToAttributeValue(state[name]));
 		}
 	}
 
