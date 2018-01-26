@@ -150,7 +150,7 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 }
 
 ['forEach', 'map', 'filter', 'every', 'some'].forEach(name => {
-	(ObservableTreeList.prototype as any)[name] = function(callback: any, context: any) {
+	ObservableTreeList.prototype[name] = function(callback: any, context: any) {
 		return this._items[name](function(item: any, index: any) {
 			return callback.call(context, item, index, this);
 		}, this);
@@ -158,7 +158,7 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 });
 
 ['reduce', 'reduceRight'].forEach(name => {
-	(ObservableTreeList.prototype as any)[name] = function(callback: any, initialValue: any) {
+	ObservableTreeList.prototype[name] = function(callback: any, initialValue: any) {
 		let items = this._items;
 		let list = this;
 

@@ -139,11 +139,11 @@ __webpack_require__(195);
 var parsePath_1 = __webpack_require__(196);
 var PathNodeType_1 = __webpack_require__(20);
 var forEach = Array.prototype.forEach;
-function isReadonlyProperty(propConfig) {
-    return !!(propConfig &&
-        typeof propConfig == 'object' &&
-        (propConfig.type !== undefined || propConfig.default !== undefined) &&
-        propConfig.readonly);
+function isReadonlyParam(paramConfig) {
+    return !!(paramConfig &&
+        typeof paramConfig == 'object' &&
+        (paramConfig.type !== undefined || paramConfig.default !== undefined) &&
+        paramConfig.readonly);
 }
 function valueToAttributeValue(value) {
     return value === false ? 'no' : value === true ? 'yes' : value;
@@ -235,11 +235,11 @@ var OpalRouter = /** @class */ (function (_super) {
             }
             var state = route.properties.reduce(function (state, prop, index) {
                 if (prop.optional) {
-                    state[prop.name.toLowerCase()] = !!match[index + 1];
+                    state[prop.name] = !!match[index + 1];
                 }
                 else {
                     var value = match[index + 1];
-                    state[prop.name.toLowerCase()] = value && decodeURIComponent(value);
+                    state[prop.name] = value && decodeURIComponent(value);
                 }
                 return state;
             }, Object.create(null));
@@ -251,36 +251,51 @@ var OpalRouter = /** @class */ (function (_super) {
                     return { value: void 0 };
                 }
                 var componentEl_1 = this_1._componentElement;
-                var paramsConfig = componentEl_1.$component.constructor
-                    .params;
+                var params = componentEl_1.$component.constructor[rionite_1.KEY_PARAMS];
                 var attrs = componentEl_1.attributes;
-                var writable = true;
-                if (paramsConfig) {
+                var canWrite = true;
+                if (params) {
                     for (var i = attrs.length; i;) {
-                        var name_1 = attrs.item(--i).name.toLowerCase();
-                        if (name_1 != 'class' &&
-                            !(name_1 in state) &&
-                            isReadonlyProperty(paramsConfig[name_1])) {
-                            writable = false;
+                        var name_1 = attrs.item(--i).name;
+                        if (name_1 == 'class') {
+                            continue;
+                        }
+                        var param = params[name_1];
+                        if (!param) {
+                            continue;
+                        }
+                        var paramName = param.name;
+                        if (!(paramName in state) && isReadonlyParam(param.config)) {
+                            canWrite = false;
                             break;
                         }
                     }
-                    if (writable) {
+                    if (canWrite) {
                         for (var name_2 in state) {
                             if (componentEl_1.getAttribute(name_2) !==
                                 valueToAttributeValue(state[name_2]) &&
-                                isReadonlyProperty(paramsConfig[name_2])) {
-                                writable = false;
+                                isReadonlyParam(params[name_2].config)) {
+                                canWrite = false;
                                 break;
                             }
                         }
                     }
                 }
-                if (writable) {
-                    for (var i = attrs.length; i;) {
-                        var name_3 = attrs.item(--i).name.toLowerCase();
-                        if (name_3 != 'class' && !(name_3 in state)) {
-                            componentEl_1.removeAttribute(name_3);
+                if (canWrite) {
+                    if (params) {
+                        for (var i = attrs.length; i;) {
+                            var name_3 = attrs.item(--i).name;
+                            if (name_3 == 'class') {
+                                continue;
+                            }
+                            var param = params[name_3];
+                            if (!param) {
+                                continue;
+                            }
+                            var paramName = param.name;
+                            if (!(paramName in state)) {
+                                componentEl_1.removeAttribute(name_3);
+                            }
                         }
                     }
                     this_1._state = state;

@@ -4,6 +4,7 @@ import {
 	BaseComponent,
 	Component,
 	IComponentElement,
+	KEY_PARAMS,
 	Param
 	} from 'rionite';
 import { OpalRoute } from '../OpalRoute';
@@ -32,12 +33,12 @@ export interface IComponentState {
 	[name: string]: boolean | string;
 }
 
-function isReadonlyProperty(propConfig: any): boolean {
+function isReadonlyParam(paramConfig: any): boolean {
 	return !!(
-		propConfig &&
-		typeof propConfig == 'object' &&
-		(propConfig.type !== undefined || propConfig.default !== undefined) &&
-		propConfig.readonly
+		paramConfig &&
+		typeof paramConfig == 'object' &&
+		(paramConfig.type !== undefined || paramConfig.default !== undefined) &&
+		paramConfig.readonly
 	);
 }
 
@@ -154,10 +155,10 @@ export class OpalRouter extends BaseComponent {
 			let state = route.properties.reduce(
 				(state, prop, index) => {
 					if (prop.optional) {
-						state[prop.name.toLowerCase()] = !!match![index + 1];
+						state[prop.name] = !!match![index + 1];
 					} else {
 						let value = match![index + 1];
-						state[prop.name.toLowerCase()] = value && decodeURIComponent(value);
+						state[prop.name] = value && decodeURIComponent(value);
 					}
 
 					return state;
@@ -177,45 +178,67 @@ export class OpalRouter extends BaseComponent {
 				}
 
 				let componentEl = this._componentElement!;
-				let paramsConfig = (componentEl.$component.constructor as typeof BaseComponent)
-					.params;
+				let params: { [name: string]: { name: string; config: any } } | undefined =
+					componentEl.$component.constructor[KEY_PARAMS];
 				let attrs = componentEl.attributes;
-				let writable = true;
+				let canWrite = true;
 
-				if (paramsConfig) {
+				if (params) {
 					for (let i = attrs.length; i; ) {
-						let name = attrs.item(--i).name.toLowerCase();
+						let name = attrs.item(--i).name;
 
-						if (
-							name != 'class' &&
-							!(name in state) &&
-							isReadonlyProperty(paramsConfig[name])
-						) {
-							writable = false;
+						if (name == 'class') {
+							continue;
+						}
+
+						let param = params[name];
+
+						if (!param) {
+							continue;
+						}
+
+						let paramName = param.name;
+
+						if (!(paramName in state) && isReadonlyParam(param.config)) {
+							canWrite = false;
 							break;
 						}
 					}
 
-					if (writable) {
+					if (canWrite) {
 						for (let name in state) {
 							if (
 								componentEl.getAttribute(name) !==
 									valueToAttributeValue(state[name]) &&
-								isReadonlyProperty(paramsConfig[name])
+								isReadonlyParam(params[name].config)
 							) {
-								writable = false;
+								canWrite = false;
 								break;
 							}
 						}
 					}
 				}
 
-				if (writable) {
-					for (let i = attrs.length; i; ) {
-						let name = attrs.item(--i).name.toLowerCase();
+				if (canWrite) {
+					if (params) {
+						for (let i = attrs.length; i; ) {
+							let name = attrs.item(--i).name;
 
-						if (name != 'class' && !(name in state)) {
-							componentEl.removeAttribute(name);
+							if (name == 'class') {
+								continue;
+							}
+
+							let param = params[name];
+
+							if (!param) {
+								continue;
+							}
+
+							let paramName = param.name;
+
+							if (!(paramName in state)) {
+								componentEl.removeAttribute(name);
+							}
 						}
 					}
 

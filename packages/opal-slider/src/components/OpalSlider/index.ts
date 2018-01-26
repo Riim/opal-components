@@ -72,12 +72,8 @@ export class OpalSlider extends BaseComponent {
 	}
 	set value(value: number | Array<number>) {
 		if (this.paramRange) {
-			this.$<HTMLInputElement>(
-				'firstInput'
-			)!.value = this._firstInputValue = (value as any)[0];
-			this.$<HTMLInputElement>(
-				'secondInput'
-			)!.value = this._secondInputValue = (value as any)[1];
+			this.$<HTMLInputElement>('firstInput')!.value = this._firstInputValue = value[0];
+			this.$<HTMLInputElement>('secondInput')!.value = this._secondInputValue = value[1];
 		} else {
 			this.$<HTMLInputElement>('input')!.value = value as any;
 		}

@@ -158,9 +158,9 @@ export class OpalPopover extends BaseComponent {
 		arrowStyle.top = arrowStyle.right = arrowStyle.bottom = arrowStyle.left = '';
 
 		if (position.length == 2) {
-			(el.style as any)[position[1]] = this.paramPositionOffset + 'px';
+			el.style[position[1]] = this.paramPositionOffset + 'px';
 
-			(arrowStyle as any)[position[1]] =
+			arrowStyle[position[1]] =
 				el.offsetParent[
 					position[1] == 'left' || position[1] == 'right' ? 'clientWidth' : 'clientHeight'
 				] /
