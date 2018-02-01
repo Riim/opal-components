@@ -11,7 +11,7 @@
 				viewModelItemTextFieldName={_viewModelItemTextFieldName},
 				indexpath=[{$index}],
 				query={paramQuery},
-				opened={paramQuery |not |not },
+				opened={paramQuery |is },
 				nestingLevel=0,
 				hasChildren='{$item.children.length |gt(0) }'
 			) {

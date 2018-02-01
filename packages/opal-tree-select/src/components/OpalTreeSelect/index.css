@@ -4,6 +4,13 @@
 		width: 80%;
 	}
 
+	@el headerSlot {
+	}
+		@el header {
+			font-size: 1.5em;
+			margin-bottom: .8em;
+		}
+
 	@el filteredList {
 	}
 		@el treeList {

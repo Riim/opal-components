@@ -8,6 +8,8 @@ OpalTreeSelect/select (
 	addNewItem={paramAddNewItem},
 	focused={paramFocused}
 ) {
+	RtSlot (class=OpalSelect__headerSlot, for=OpalSelect__header)
+
 	OpalSignButton/button (
 		class=OpalSelect__button,
 		sign=plus,

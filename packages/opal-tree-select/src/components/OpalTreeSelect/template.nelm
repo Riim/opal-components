@@ -1,4 +1,8 @@
 OpalModal/menu {
+	RtSlot (for=headerSlot) {
+		RtSlot/headerSlot (for=header)
+	}
+
 	OpalFilteredList/filteredList {
 		OpalTreeList/treeList (
 			class=OpalFilteredList__list,

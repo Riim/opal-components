@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.25",
+  "version": "0.33.28",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -43,7 +43,7 @@
     "trim-lines-loader": "^0.2.1",
     "tslint": "^5.9.1",
     "tslint-loader": "^3.5.3",
-    "typescript": "^2.6.2",
+    "typescript": "^2.7.1",
     "webpack": "^3.10.0"
   },
   "dependencies": {
@@ -79,9 +79,9 @@
     "@riim/opal-tag-select": "^0.33.24",
     "@riim/opal-text-input": "^0.33.24",
     "@riim/opal-text-input-validator": "^0.33.24",
-    "@riim/opal-tree-list": "^0.33.25",
-    "@riim/opal-tree-select": "^0.33.24",
-    "@riim/opal-tree-tag-select": "^0.33.24",
+    "@riim/opal-tree-list": "^0.33.26",
+    "@riim/opal-tree-select": "^0.33.28",
+    "@riim/opal-tree-tag-select": "^0.33.28",
     "@riim/opal-utils": "^0.33.24",
     "cellx": "^1.7.80",
     "lerna": "^2.8.0",

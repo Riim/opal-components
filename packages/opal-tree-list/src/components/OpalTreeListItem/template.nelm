@@ -21,7 +21,7 @@ div/head {
 				viewModelItemTextFieldName={_viewModelItemTextFieldName},
 				indexpath='[{paramIndexpath},{$index}]',
 				query={paramQuery},
-				opened={paramQuery |not |not },
+				opened={paramQuery |is },
 				nestingLevel={paramIndexpath.length},
 				hasChildren='{$item.children.length |gt(0) }'
 			) {
