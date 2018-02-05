@@ -462,7 +462,7 @@ export class OpalSelect extends BaseComponent {
 		let vmItem = {
 			[this._viewModelItemValueFieldName]: evt.target.value,
 			[this._viewModelItemTextFieldName]: evt.target.text,
-			[this._viewModelItemTextFieldName]: evt.target.text
+			[this._viewModelItemSubtextFieldName]: evt.target.subtext
 		};
 
 		if (this.paramMultiple) {
@@ -490,9 +490,13 @@ export class OpalSelect extends BaseComponent {
 
 	_onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>): false {
 		if (this.paramMultiple) {
+			let vmItemValueFieldName = this._viewModelItemValueFieldName;
 			let value = evt.target.value;
+
 			this._notUpdateOptions = true;
-			this.viewModel.removeAt(this.viewModel.findIndex(item => item.value == value));
+			this.viewModel.removeAt(
+				this.viewModel.findIndex(item => item[vmItemValueFieldName] == value)
+			);
 			this._notUpdateOptions = false;
 		} else {
 			evt.target.select();

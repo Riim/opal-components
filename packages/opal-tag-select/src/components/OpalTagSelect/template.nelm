@@ -48,7 +48,10 @@ span/control {
 					@IfThen (if=_dataListKeypathParam) {
 						div (class=OpalSelect__menuContent) {
 							@IfThen (if=dataList) {
-								@Repeat (for=item of dataList) {
+								@Repeat (
+									for=item of dataList,
+									trackBy={_dataListItemValueFieldName}
+								) {
 									OpalSelectOption/dataListSelectOption, selectOption (
 										value='{item |key(_dataListItemValueFieldName) }',
 										text='{item |key(_dataListItemTextFieldName) }',

@@ -221,10 +221,6 @@ var OpalTreeSelect = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalTreeSelect.prototype, "paramDataTreeListItemSchema", void 0);
     __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTreeSelect.prototype, "paramViewModel", void 0);
-    __decorate([
         rionite_1.Param({
             type: eval,
             default: opal_tree_list_1.OpalTreeList.defaultViewModelItemSchema,

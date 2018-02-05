@@ -9,6 +9,7 @@ export declare class OpalComponentsDocs extends BaseComponent {
     dataTreeList1: ObservableTreeList<{
         id: string;
         name: string;
+        children?: undefined;
     } | {
         id: string;
         name: string;
@@ -18,6 +19,7 @@ export declare class OpalComponentsDocs extends BaseComponent {
             children: ({
                 id: string;
                 name: string;
+                children?: undefined;
             } | {
                 id: string;
                 name: string;
@@ -29,6 +31,7 @@ export declare class OpalComponentsDocs extends BaseComponent {
         } | {
             id: string;
             name: string;
+            children?: undefined;
         })[];
     }>;
     dataProvider1: {
@@ -56,6 +59,7 @@ export declare class OpalComponentsDocs extends BaseComponent {
     } | {
         id: string;
         name: string;
+        disabled?: undefined;
     }>;
     addNewItem1(name: string): Promise<{
         id: string;

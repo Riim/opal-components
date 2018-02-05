@@ -1,6 +1,6 @@
 import { OpalModal } from '@riim/opal-modal';
 import { OpalSelect } from '@riim/opal-select';
-import { OpalTreeList, TDataTreeList, TViewModel } from '@riim/opal-tree-list';
+import { OpalTreeList, TDataTreeList } from '@riim/opal-tree-list';
 import { Cell, define } from 'cellx';
 import { Component, Param } from 'rionite';
 import './index.css';
@@ -28,7 +28,6 @@ export class OpalTreeSelect extends OpalSelect {
 		readonly: true
 	})
 	paramDataTreeListItemSchema: { value?: string; text?: string };
-	@Param paramViewModel: TViewModel;
 	@Param({
 		type: eval,
 		default: OpalTreeList.defaultViewModelItemSchema,
@@ -38,7 +37,6 @@ export class OpalTreeSelect extends OpalSelect {
 	@Param paramQuery: string;
 
 	dataTreeList: TDataTreeList;
-	viewModel: TViewModel;
 
 	initialize() {
 		super.initialize();

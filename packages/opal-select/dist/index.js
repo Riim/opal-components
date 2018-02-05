@@ -490,7 +490,7 @@ var OpalSelect = /** @class */ (function (_super) {
         var vmItem = (_a = {},
             _a[this._viewModelItemValueFieldName] = evt.target.value,
             _a[this._viewModelItemTextFieldName] = evt.target.text,
-            _a[this._viewModelItemTextFieldName] = evt.target.text,
+            _a[this._viewModelItemSubtextFieldName] = evt.target.subtext,
             _a);
         if (this.paramMultiple) {
             this._notUpdateOptions = true;
@@ -515,9 +515,10 @@ var OpalSelect = /** @class */ (function (_super) {
     };
     OpalSelect.prototype._onMenuSelectOptionDeselect = function (evt) {
         if (this.paramMultiple) {
+            var vmItemValueFieldName_1 = this._viewModelItemValueFieldName;
             var value_1 = evt.target.value;
             this._notUpdateOptions = true;
-            this.viewModel.removeAt(this.viewModel.findIndex(function (item) { return item.value == value_1; }));
+            this.viewModel.removeAt(this.viewModel.findIndex(function (item) { return item[vmItemValueFieldName_1] == value_1; }));
             this._notUpdateOptions = false;
         }
         else {

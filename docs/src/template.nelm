@@ -479,12 +479,19 @@ p {
 
 	OpalSelect (
 		multiple,
+		dataListItemSchema='{ value: "id", text: "name", subtext: "parent" }',
 		viewModel={viewModel1},
-		viewModelItemSchema='{ value: "id", text: "name" }'
+		viewModelItemSchema='{ value: "id", text: "name", subtext: "parent" }'
 	) {
 		OpalPopover (class=OpalSelect__menu, position=bottom, autoClosing) {
 			OpalLoadedList (class=OpalSelect__loadedList, dataProvider={dataProvider1}) {
-				OpalSelectOption (class=OpalLoadedList__listItem, text={$item.name})
+				OpalSelectOption (
+					class=OpalLoadedList__listItem,
+					value={$item.id},
+					text={$item.name},
+					subtext={$item.parent},
+					disabled={$item.disabled}
+				)
 			}
 		}
 	}
