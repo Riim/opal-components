@@ -351,9 +351,9 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         switch (evt.which) {
             case 38 /* Up */:
             case 40 /* Bottom */: {
-                evt.preventDefault();
                 var focusedListItem = this._focusedListItem;
                 if (focusedListItem) {
+                    evt.preventDefault();
                     var listItems = this.$$('listItem');
                     var index = listItems.indexOf(focusedListItem);
                     if (evt.which == 38 ? index > 0 : index < listItems.length - 1) {
@@ -367,9 +367,9 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             }
             case 13 /* Enter */:
             case 39 /* Right */: {
-                evt.preventDefault();
                 var focusedListItem = this._focusedListItem;
                 if (focusedListItem) {
+                    evt.preventDefault();
                     var focusedListItemDataSet = focusedListItem.dataset;
                     this.$('textInput').value = focusedListItemDataSet.text;
                     this._clearDataList();

@@ -277,11 +277,11 @@ export class OpalAutosuggest extends BaseComponent {
 		switch (evt.which) {
 			case 38 /* Up */:
 			case 40 /* Bottom */: {
-				evt.preventDefault();
-
 				let focusedListItem = this._focusedListItem;
 
 				if (focusedListItem) {
+					evt.preventDefault();
+
 					let listItems = this.$$<HTMLElement>('listItem');
 					let index = listItems.indexOf(focusedListItem);
 
@@ -299,11 +299,11 @@ export class OpalAutosuggest extends BaseComponent {
 			}
 			case 13 /* Enter */:
 			case 39 /* Right */: {
-				evt.preventDefault();
-
 				let focusedListItem = this._focusedListItem;
 
 				if (focusedListItem) {
+					evt.preventDefault();
+
 					let focusedListItemDataSet = focusedListItem.dataset;
 
 					this.$<OpalTextInput>('textInput')!.value = focusedListItemDataSet.text!;
