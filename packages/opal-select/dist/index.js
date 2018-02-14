@@ -789,7 +789,9 @@ var OpalSelect = /** @class */ (function (_super) {
             var item = vm.find(function (item) { return item[vmItemValueFieldName] == value; });
             if (item) {
                 option.selected = true;
-                option.disabled = item[vmItemDisabledFieldName];
+                if (item[vmItemDisabledFieldName] !== undefined) {
+                    option.disabled = item[vmItemDisabledFieldName];
+                }
             }
             else {
                 option.selected = false;

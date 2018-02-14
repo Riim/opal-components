@@ -251,21 +251,21 @@ var OpalRouter = /** @class */ (function (_super) {
                     return { value: void 0 };
                 }
                 var componentEl_1 = this_1._componentElement;
-                var params = componentEl_1.$component.constructor[rionite_1.KEY_PARAMS];
+                var $paramsConfig = componentEl_1.$component.constructor[rionite_1.KEY_PARAMS];
                 var attrs = componentEl_1.attributes;
                 var canWrite = true;
-                if (params) {
+                if ($paramsConfig) {
                     for (var i = attrs.length; i;) {
                         var name_1 = attrs.item(--i).name;
                         if (name_1 == 'class') {
                             continue;
                         }
-                        var param = params[name_1];
-                        if (!param) {
+                        var $paramConfig = $paramsConfig[name_1];
+                        if (!$paramConfig) {
                             continue;
                         }
-                        var paramName = param.name;
-                        if (!(paramName in state) && isReadonlyParam(param.config)) {
+                        var paramName = $paramConfig.name;
+                        if (!(paramName in state) && isReadonlyParam($paramConfig.config)) {
                             canWrite = false;
                             break;
                         }
@@ -274,7 +274,7 @@ var OpalRouter = /** @class */ (function (_super) {
                         for (var name_2 in state) {
                             if (componentEl_1.getAttribute(name_2) !==
                                 valueToAttributeValue(state[name_2]) &&
-                                isReadonlyParam(params[name_2].config)) {
+                                isReadonlyParam($paramsConfig[name_2].config)) {
                                 canWrite = false;
                                 break;
                             }
@@ -282,17 +282,17 @@ var OpalRouter = /** @class */ (function (_super) {
                     }
                 }
                 if (canWrite) {
-                    if (params) {
+                    if ($paramsConfig) {
                         for (var i = attrs.length; i;) {
                             var name_3 = attrs.item(--i).name;
                             if (name_3 == 'class') {
                                 continue;
                             }
-                            var param = params[name_3];
-                            if (!param) {
+                            var $paramConfig = $paramsConfig[name_3];
+                            if (!$paramConfig) {
                                 continue;
                             }
-                            var paramName = param.name;
+                            var paramName = $paramConfig.name;
                             if (!(paramName in state)) {
                                 componentEl_1.removeAttribute(name_3);
                             }

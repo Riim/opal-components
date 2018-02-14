@@ -178,12 +178,12 @@ export class OpalRouter extends BaseComponent {
 				}
 
 				let componentEl = this._componentElement!;
-				let params: { [name: string]: { name: string; config: any } } | undefined =
+				let $paramsConfig: { [name: string]: { name: string; config: any } } | undefined =
 					componentEl.$component.constructor[KEY_PARAMS];
 				let attrs = componentEl.attributes;
 				let canWrite = true;
 
-				if (params) {
+				if ($paramsConfig) {
 					for (let i = attrs.length; i; ) {
 						let name = attrs.item(--i).name;
 
@@ -191,15 +191,15 @@ export class OpalRouter extends BaseComponent {
 							continue;
 						}
 
-						let param = params[name];
+						let $paramConfig = $paramsConfig[name];
 
-						if (!param) {
+						if (!$paramConfig) {
 							continue;
 						}
 
-						let paramName = param.name;
+						let paramName = $paramConfig.name;
 
-						if (!(paramName in state) && isReadonlyParam(param.config)) {
+						if (!(paramName in state) && isReadonlyParam($paramConfig.config)) {
 							canWrite = false;
 							break;
 						}
@@ -210,7 +210,7 @@ export class OpalRouter extends BaseComponent {
 							if (
 								componentEl.getAttribute(name) !==
 									valueToAttributeValue(state[name]) &&
-								isReadonlyParam(params[name].config)
+								isReadonlyParam($paramsConfig[name].config)
 							) {
 								canWrite = false;
 								break;
@@ -220,7 +220,7 @@ export class OpalRouter extends BaseComponent {
 				}
 
 				if (canWrite) {
-					if (params) {
+					if ($paramsConfig) {
 						for (let i = attrs.length; i; ) {
 							let name = attrs.item(--i).name;
 
@@ -228,13 +228,13 @@ export class OpalRouter extends BaseComponent {
 								continue;
 							}
 
-							let param = params[name];
+							let $paramConfig = $paramsConfig[name];
 
-							if (!param) {
+							if (!$paramConfig) {
 								continue;
 							}
 
-							let paramName = param.name;
+							let paramName = $paramConfig.name;
 
 							if (!(paramName in state)) {
 								componentEl.removeAttribute(name);
