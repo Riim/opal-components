@@ -1,5 +1,5 @@
 @component OpalTagSelect {
-	display: inline-block;
+	display: inline;
 
 	@el tags {
 	}

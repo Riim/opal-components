@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tag-select",
-  "version": "0.33.34",
+  "version": "0.33.37",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,12 +17,12 @@
     "@riim/opal-filtered-list": "^0.33.24",
     "@riim/opal-loaded-list": "^0.33.24",
     "@riim/opal-loader": "^0.33.24",
-    "@riim/opal-popover": "^0.33.24",
-    "@riim/opal-select": "^0.33.34",
+    "@riim/opal-popover": "^0.33.25",
+    "@riim/opal-select": "^0.33.36",
     "@riim/opal-sign-button": "^0.33.24",
     "cellx": "^1.7.80",
     "cellx-decorators": "^1.4.9",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.18"
+    "rionite": "^0.32.22"
   }
 }
