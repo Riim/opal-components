@@ -101,10 +101,12 @@ export class OpalTagSelect extends BaseComponent {
 
 	_dataListKeypathParam: string | null;
 
+	select: OpalSelect;
+
 	initialize() {
 		let dataListKeypath = this.paramDataListKeypath;
 
-		if (dataListKeypath || this.$specifiedParams && this.$specifiedParams.has('dataList')) {
+		if (dataListKeypath || (this.$specifiedParams && this.$specifiedParams.has('dataList'))) {
 			define(
 				this,
 				'dataList',
@@ -146,9 +148,13 @@ export class OpalTagSelect extends BaseComponent {
 			vmItemSchema.disabled || defaultVMItemSchema.disabled;
 	}
 
+	ready() {
+		this.select = this.$<OpalSelect>('select')!;
+	}
+
 	elementAttached() {
 		this.listenTo('control', 'click', this._onControlClick);
-		this.listenTo('select', {
+		this.listenTo(this.select, {
 			input: this._onSelectInput,
 			change: this._onSelectChange,
 			select: this._onSelectSelect,
@@ -157,8 +163,7 @@ export class OpalTagSelect extends BaseComponent {
 	}
 
 	_onControlClick(evt: Event) {
-		let select = this.$<OpalSelect>('select')!;
-		let selectEl = select.element;
+		let selectEl = this.select.element;
 		let node = evt.target as Node;
 
 		if (node != selectEl) {
@@ -166,7 +171,7 @@ export class OpalTagSelect extends BaseComponent {
 
 			do {
 				if (node == control) {
-					select.toggle();
+					this.select.toggle();
 					break;
 				}
 
@@ -176,7 +181,7 @@ export class OpalTagSelect extends BaseComponent {
 	}
 
 	_onSelectInput(): false {
-		this.$<OpalSelect>('select')!.close();
+		this.select.close();
 		this.emit('input');
 		return false;
 	}
@@ -187,13 +192,35 @@ export class OpalTagSelect extends BaseComponent {
 	}
 
 	_onSelectSelect(): false {
-		this.$<OpalSelect>('select')!.close();
+		this.select.close();
 		return false;
 	}
 
 	_onSelectDeselect(): false {
-		this.$<OpalSelect>('select')!.close();
+		this.select.close();
 		return false;
+	}
+
+	open(): boolean {
+		return this.select.open();
+	}
+
+	close(): boolean {
+		return this.select.close();
+	}
+
+	toggle(): boolean {
+		return this.select.toggle();
+	}
+
+	focus(): this {
+		this.select.focus();
+		return this;
+	}
+
+	blur(): this {
+		this.select.blur();
+		return this;
 	}
 
 	// helpers

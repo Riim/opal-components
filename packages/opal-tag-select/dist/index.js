@@ -219,7 +219,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
     OpalTagSelect.prototype.initialize = function () {
         var _this = this;
         var dataListKeypath = this.paramDataListKeypath;
-        if (dataListKeypath || this.$specifiedParams && this.$specifiedParams.has('dataList')) {
+        if (dataListKeypath || (this.$specifiedParams && this.$specifiedParams.has('dataList'))) {
             cellx_1.define(this, 'dataList', dataListKeypath
                 ? new cellx_1.Cell(Function("return this." + dataListKeypath + ";"), {
                     context: this.ownerComponent || window
@@ -250,9 +250,12 @@ var OpalTagSelect = /** @class */ (function (_super) {
         this._viewModelItemDisabledFieldName =
             vmItemSchema.disabled || defaultVMItemSchema.disabled;
     };
+    OpalTagSelect.prototype.ready = function () {
+        this.select = this.$('select');
+    };
     OpalTagSelect.prototype.elementAttached = function () {
         this.listenTo('control', 'click', this._onControlClick);
-        this.listenTo('select', {
+        this.listenTo(this.select, {
             input: this._onSelectInput,
             change: this._onSelectChange,
             select: this._onSelectSelect,
@@ -260,14 +263,13 @@ var OpalTagSelect = /** @class */ (function (_super) {
         });
     };
     OpalTagSelect.prototype._onControlClick = function (evt) {
-        var select = this.$('select');
-        var selectEl = select.element;
+        var selectEl = this.select.element;
         var node = evt.target;
         if (node != selectEl) {
             var control = this.$('control');
             do {
                 if (node == control) {
-                    select.toggle();
+                    this.select.toggle();
                     break;
                 }
                 node = node.parentNode;
@@ -275,7 +277,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
         }
     };
     OpalTagSelect.prototype._onSelectInput = function () {
-        this.$('select').close();
+        this.select.close();
         this.emit('input');
         return false;
     };
@@ -284,12 +286,29 @@ var OpalTagSelect = /** @class */ (function (_super) {
         return false;
     };
     OpalTagSelect.prototype._onSelectSelect = function () {
-        this.$('select').close();
+        this.select.close();
         return false;
     };
     OpalTagSelect.prototype._onSelectDeselect = function () {
-        this.$('select').close();
+        this.select.close();
         return false;
+    };
+    OpalTagSelect.prototype.open = function () {
+        return this.select.open();
+    };
+    OpalTagSelect.prototype.close = function () {
+        return this.select.close();
+    };
+    OpalTagSelect.prototype.toggle = function () {
+        return this.select.toggle();
+    };
+    OpalTagSelect.prototype.focus = function () {
+        this.select.focus();
+        return this;
+    };
+    OpalTagSelect.prototype.blur = function () {
+        this.select.blur();
+        return this;
     };
     // helpers
     OpalTagSelect.prototype._isItemDisabled = function (item) {
@@ -407,7 +426,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalTagSelect{display:inline}.OpalTagSelect .OpalTagSelect__tag{position:relative;top:-1px;display:inline-block;margin:2px 38px 2px 0;padding:0 10px 0 18px;border-top-left-radius:16px;border-bottom-left-radius:16px;background:#5b7d9a;color:#fff;vertical-align:middle;text-decoration:none;text-shadow:none;font:16px/32px Verdana,Geneva,sans-serif;font-weight:400}.OpalTagSelect .OpalTagSelect__tag[disabled]{margin-right:6px;padding-right:18px;border-top-right-radius:16px;border-bottom-right-radius:16px}.OpalTagSelect .OpalTagSelect__tag[disabled] .OpalTagSelect__btnRemoveTag{display:none}.OpalTagSelect .OpalTagSelect__btnRemoveTag{position:absolute;top:0;bottom:0;left:100%;display:block;padding:0;width:32px;border:0;border-radius:0;border-top-right-radius:16px;border-bottom-right-radius:16px;background:#516270;-webkit-box-shadow:inset 1px 0 rgba(0,0,0,.4);box-shadow:inset 1px 0 rgba(0,0,0,.4);cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.OpalTagSelect .OpalTagSelect__btnRemoveTag::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;background:#fff;content:''}.OpalTagSelect .OpalTagSelect__btnRemoveTag:hover{background:#5b7d9a}.OpalTagSelect .OpalTagSelect__btnRemoveTag:focus{outline:0}body:not(._noFocusHighlight) .OpalTagSelect .OpalTagSelect__btnRemoveTag:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:inherit;content:'';pointer-events:none}.OpalTagSelect .OpalTagSelect__btnRemoveTag:active{background:#43484c}.OpalTagSelect .OpalTagSelect__control{display:inline-block;white-space:nowrap;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.OpalTagSelect .OpalTagSelect__button{margin:1px 0}.OpalTagSelect[viewType=primary] .OpalTagSelect__tag{background:#0083f5}.OpalTagSelect[viewType=primary] .OpalTagSelect__btnRemoveTag{background:#0a67b8}.OpalTagSelect[viewType=primary] .OpalTagSelect__btnRemoveTag:hover{background:#0083f5}.OpalTagSelect[viewType=primary] .OpalTagSelect__btnRemoveTag:active{background:#0e4b81}.OpalTagSelect[viewType=danger] .OpalTagSelect__tag{background:#fa0f3e}.OpalTagSelect[viewType=danger] .OpalTagSelect__btnRemoveTag{background:#c70f34}.OpalTagSelect[viewType=danger] .OpalTagSelect__btnRemoveTag:hover{background:#fa0f3e}.OpalTagSelect[viewType=danger] .OpalTagSelect__btnRemoveTag:active{background:#90142c}";
+            style.textContent = ".OpalTagSelect{display:inline}.OpalTagSelect .OpalTagSelect__tag{position:relative;top:-1px;display:inline-block;margin:2px 38px 2px 0;padding:0 10px 0 18px;border-top-left-radius:16px;border-bottom-left-radius:16px;background:#5b7d9a;color:#fff;vertical-align:middle;text-decoration:none;text-shadow:none;font:16px/32px Verdana,Geneva,sans-serif;font-weight:400;cursor:default}.OpalTagSelect .OpalTagSelect__tag[disabled]{margin-right:6px;padding-right:18px;border-top-right-radius:16px;border-bottom-right-radius:16px}.OpalTagSelect .OpalTagSelect__tag[disabled] .OpalTagSelect__btnRemoveTag{display:none}.OpalTagSelect .OpalTagSelect__btnRemoveTag{position:absolute;top:0;bottom:0;left:100%;display:block;padding:0;width:32px;border:0;border-radius:0;border-top-right-radius:16px;border-bottom-right-radius:16px;background:#516270;-webkit-box-shadow:inset 1px 0 rgba(0,0,0,.4);box-shadow:inset 1px 0 rgba(0,0,0,.4);cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.OpalTagSelect .OpalTagSelect__btnRemoveTag::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;background:#fff;content:''}.OpalTagSelect .OpalTagSelect__btnRemoveTag:hover{background:#5b7d9a}.OpalTagSelect .OpalTagSelect__btnRemoveTag:focus{outline:0}body:not(._noFocusHighlight) .OpalTagSelect .OpalTagSelect__btnRemoveTag:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:inherit;content:'';pointer-events:none}.OpalTagSelect .OpalTagSelect__btnRemoveTag:active{background:#43484c}.OpalTagSelect .OpalTagSelect__control{display:inline-block;white-space:nowrap;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.OpalTagSelect .OpalTagSelect__button{margin:1px 0}.OpalTagSelect[viewType=primary] .OpalTagSelect__tag{background:#0083f5}.OpalTagSelect[viewType=primary] .OpalTagSelect__btnRemoveTag{background:#0a67b8}.OpalTagSelect[viewType=primary] .OpalTagSelect__btnRemoveTag:hover{background:#0083f5}.OpalTagSelect[viewType=primary] .OpalTagSelect__btnRemoveTag:active{background:#0e4b81}.OpalTagSelect[viewType=danger] .OpalTagSelect__tag{background:#fa0f3e}.OpalTagSelect[viewType=danger] .OpalTagSelect__btnRemoveTag{background:#c70f34}.OpalTagSelect[viewType=danger] .OpalTagSelect__btnRemoveTag:hover{background:#fa0f3e}.OpalTagSelect[viewType=danger] .OpalTagSelect__btnRemoveTag:active{background:#90142c}";
             head.appendChild(style);
             return style;
         }

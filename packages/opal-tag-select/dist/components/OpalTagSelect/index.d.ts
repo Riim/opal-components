@@ -1,5 +1,5 @@
 import { IDataProvider } from '@riim/opal-loaded-list';
-import { IDataListItem, TDataList, TViewModel } from '@riim/opal-select';
+import { IDataListItem, OpalSelect, TDataList, TViewModel } from '@riim/opal-select';
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalTagSelect extends BaseComponent {
@@ -52,12 +52,19 @@ export declare class OpalTagSelect extends BaseComponent {
     readonly value: Array<string>;
     readonly isPlaceholderShown: boolean;
     _dataListKeypathParam: string | null;
+    select: OpalSelect;
     initialize(): void;
+    ready(): void;
     elementAttached(): void;
     _onControlClick(evt: Event): void;
     _onSelectInput(): false;
     _onSelectChange(): false;
     _onSelectSelect(): false;
     _onSelectDeselect(): false;
+    open(): boolean;
+    close(): boolean;
+    toggle(): boolean;
+    focus(): this;
+    blur(): this;
     _isItemDisabled(item: IDataListItem): any;
 }
