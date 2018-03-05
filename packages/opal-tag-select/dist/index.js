@@ -371,6 +371,16 @@ var OpalTagSelect = /** @class */ (function (_super) {
         rionite_1.Component({
             template: template_nelm_1.default,
             domEvents: {
+                tag: {
+                    click: function (evt, tag) {
+                        if (tag != evt.target) {
+                            return;
+                        }
+                        this.emit('tag-click', {
+                            value: tag.dataset.value
+                        });
+                    }
+                },
                 btnRemoveTag: {
                     click: function (evt, btn) {
                         var vmItemValueFieldName = this._viewModelItemValueFieldName;
