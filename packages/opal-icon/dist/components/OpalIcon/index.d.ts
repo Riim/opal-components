@@ -5,5 +5,5 @@ export declare class OpalIcon extends BaseComponent {
     paramSize: string;
     paramStrokeWidth: number;
     paramFilled: boolean;
-    ready(): void;
+    readonly xlinkHref: string;
 }

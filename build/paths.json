@@ -284,7 +284,8 @@
       "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/fileMinus.svg?id=OpalIcon__iconFileMinus": 280,
       "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/filePlus.svg?id=OpalIcon__iconFilePlus": 281,
       "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/logIn.svg?id=OpalIcon__iconLogIn": 282,
-      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/logOut.svg?id=OpalIcon__iconLogOut": 283
+      "node_modules/simple-svg-loader/index.js??ref--4!packages/opal-icon/src/icons/logOut.svg?id=OpalIcon__iconLogOut": 283,
+      "node_modules/raw-loader/index.js!node_modules/trim-lines-loader/index.js!node_modules/collapse-line-breaks-loader/index.js!packages/opal-icon/src/components/OpalIcon/template.nelm": 284
     },
     "usedIds": {
       "0": 0,
@@ -570,7 +571,8 @@
       "280": 280,
       "281": 281,
       "282": 282,
-      "283": 283
+      "283": 283,
+      "284": 284
     }
   },
   "chunks": {

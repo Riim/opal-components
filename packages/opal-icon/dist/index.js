@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata"], factory);
+		define(["rionite", "reflect-metadata", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-icon"] = factory(require("rionite"), require("reflect-metadata"));
+		exports["@riim/opal-icon"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else
-		root["@riim/opal-icon"] = factory(root["rionite"], root["reflect-metadata"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__) {
+		root["@riim/opal-icon"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -86,7 +86,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
-/* 2 */,
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+
+/***/ }),
 /* 3 */,
 /* 4 */,
 /* 5 */,
@@ -586,8 +591,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(138);
+var template_nelm_1 = __webpack_require__(284);
 var OpalIcon = /** @class */ (function (_super) {
     __extends(OpalIcon, _super);
     function OpalIcon() {
@@ -597,11 +604,14 @@ var OpalIcon = /** @class */ (function (_super) {
         _this.paramFilled = false;
         return _this;
     }
-    OpalIcon.prototype.ready = function () {
-        var name = this.paramName;
-        this.element.innerHTML = "<svg class=\"OpalIcon__svg\" stroke-width=\"" + this.paramStrokeWidth + "px\"><use xlink:href=\"#OpalIcon__icon" + (name.charAt(0).toUpperCase() +
-            name.slice(1)) + "\"/></svg>";
-    };
+    Object.defineProperty(OpalIcon.prototype, "xlinkHref", {
+        get: function () {
+            var name = this.paramName;
+            return '#OpalIcon__icon' + name.charAt(0).toUpperCase() + name.slice(1);
+        },
+        enumerable: true,
+        configurable: true
+    });
     __decorate([
         rionite_1.Param({ required: true, readonly: true }),
         __metadata("design:type", String)
@@ -618,8 +628,15 @@ var OpalIcon = /** @class */ (function (_super) {
         rionite_1.Param,
         __metadata("design:type", Object)
     ], OpalIcon.prototype, "paramFilled", void 0);
+    __decorate([
+        cellx_decorators_1.Computed,
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
+    ], OpalIcon.prototype, "xlinkHref", null);
     OpalIcon = __decorate([
-        rionite_1.Component()
+        rionite_1.Component({
+            template: template_nelm_1.default
+        })
     ], OpalIcon);
     return OpalIcon;
 }(rionite_1.BaseComponent));
@@ -862,6 +879,14 @@ module.exports = (function(d) {
 /***/ (function(module, exports) {
 
 (function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" id=\"OpalIcon__iconLogOut\"><path d=\"M12 4H2v24h10m0-12h16m-6-6l6 6-6 6\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+
+/***/ }),
+/* 284 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ("svg/svg (stroke-width={paramStrokeWidth}) {\nuse (xlink:href={xlinkHref})\n}");
 
 /***/ })
 /******/ ]);

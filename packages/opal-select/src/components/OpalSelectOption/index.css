@@ -68,7 +68,6 @@
 			top: 0;
 			right: 14px;
 			bottom: 0;
-			display: none;
 			margin: auto;
 			width: 16px;
 			height: 16px;
@@ -80,18 +79,6 @@
 	{
 		@el control {
 			color: hsl(208,90%,50%);
-		}
-	}
-
-	@mod selected {
-		@el iconSelected {
-			display: block;
-		}
-	}
-
-	@mod indeterminate {
-		@el iconIndeterminate {
-			display: block;
 		}
 	}
 

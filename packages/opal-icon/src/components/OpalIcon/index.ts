@@ -1,7 +1,11 @@
+import { Computed } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
 import './index.css';
+import template from './template.nelm';
 
-@Component()
+@Component({
+	template
+})
 export class OpalIcon extends BaseComponent {
 	@Param({ required: true, readonly: true })
 	paramName: string;
@@ -10,12 +14,9 @@ export class OpalIcon extends BaseComponent {
 	paramStrokeWidth = 3;
 	@Param paramFilled = false;
 
-	ready() {
+	@Computed
+	get xlinkHref() {
 		let name = this.paramName;
-
-		this.element.innerHTML = `<svg class="OpalIcon__svg" stroke-width="${
-			this.paramStrokeWidth
-		}px"><use xlink:href="#OpalIcon__icon${name.charAt(0).toUpperCase() +
-			name.slice(1)}"/></svg>`;
+		return '#OpalIcon__icon' + name.charAt(0).toUpperCase() + name.slice(1);
 	}
 }
