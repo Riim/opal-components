@@ -3,8 +3,9 @@ import { history, Location } from 'created-browser-history';
 import {
 	BaseComponent,
 	Component,
+	I$ComponentParamConfig,
 	IComponentElement,
-	KEY_PARAMS,
+	KEY_PARAMS_CONFIG,
 	Param
 	} from 'rionite';
 import { OpalRoute } from '../OpalRoute';
@@ -31,15 +32,6 @@ export interface IRoute {
 
 export interface IComponentState {
 	[name: string]: boolean | string;
-}
-
-function isReadonlyParam(paramConfig: any): boolean {
-	return !!(
-		paramConfig &&
-		typeof paramConfig == 'object' &&
-		(paramConfig.type !== undefined || paramConfig.default !== undefined) &&
-		paramConfig.readonly
-	);
 }
 
 function valueToAttributeValue(value: boolean | string): string {
@@ -178,8 +170,8 @@ export class OpalRouter extends BaseComponent {
 				}
 
 				let componentEl = this._componentElement!;
-				let $paramsConfig: { [name: string]: { name: string; config: any } } | undefined =
-					componentEl.$component.constructor[KEY_PARAMS];
+				let $paramsConfig: { [name: string]: I$ComponentParamConfig } | undefined =
+					componentEl.$component.constructor[KEY_PARAMS_CONFIG];
 				let attrs = componentEl.attributes;
 				let canWrite = true;
 
@@ -193,13 +185,11 @@ export class OpalRouter extends BaseComponent {
 
 						let $paramConfig = $paramsConfig[name];
 
-						if (!$paramConfig) {
-							continue;
-						}
-
-						let paramName = $paramConfig.name;
-
-						if (!(paramName in state) && isReadonlyParam($paramConfig.config)) {
+						if (
+							$paramConfig &&
+							$paramConfig.readonly &&
+							!($paramConfig.name in state)
+						) {
 							canWrite = false;
 							break;
 						}
@@ -208,9 +198,9 @@ export class OpalRouter extends BaseComponent {
 					if (canWrite) {
 						for (let name in state) {
 							if (
+								$paramsConfig[name].readonly &&
 								componentEl.getAttribute(name) !==
-									valueToAttributeValue(state[name]) &&
-								isReadonlyParam($paramsConfig[name].config)
+									valueToAttributeValue(state[name])
 							) {
 								canWrite = false;
 								break;
@@ -230,13 +220,7 @@ export class OpalRouter extends BaseComponent {
 
 							let $paramConfig = $paramsConfig[name];
 
-							if (!$paramConfig) {
-								continue;
-							}
-
-							let paramName = $paramConfig.name;
-
-							if (!(paramName in state)) {
+							if ($paramConfig && !($paramConfig.name in state)) {
 								componentEl.removeAttribute(name);
 							}
 						}

@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tree-tag-select",
-  "version": "0.33.28",
+  "version": "0.33.41",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,10 +13,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-sign-button": "^0.33.24",
-    "@riim/opal-tag-select": "^0.33.24",
-    "@riim/opal-tree-select": "^0.33.28",
+    "@riim/opal-sign-button": "^0.33.41",
+    "@riim/opal-tag-select": "^0.33.41",
+    "@riim/opal-tree-select": "^0.33.41",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.22"
+    "rionite": "^0.32.23"
   }
 }

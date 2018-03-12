@@ -139,12 +139,6 @@ __webpack_require__(195);
 var parsePath_1 = __webpack_require__(196);
 var PathNodeType_1 = __webpack_require__(20);
 var forEach = Array.prototype.forEach;
-function isReadonlyParam(paramConfig) {
-    return !!(paramConfig &&
-        typeof paramConfig == 'object' &&
-        (paramConfig.type !== undefined || paramConfig.default !== undefined) &&
-        paramConfig.readonly);
-}
 function valueToAttributeValue(value) {
     return value === false ? 'no' : value === true ? 'yes' : value;
 }
@@ -251,7 +245,7 @@ var OpalRouter = /** @class */ (function (_super) {
                     return { value: void 0 };
                 }
                 var componentEl_1 = this_1._componentElement;
-                var $paramsConfig = componentEl_1.$component.constructor[rionite_1.KEY_PARAMS];
+                var $paramsConfig = componentEl_1.$component.constructor[rionite_1.KEY_PARAMS_CONFIG];
                 var attrs = componentEl_1.attributes;
                 var canWrite = true;
                 if ($paramsConfig) {
@@ -261,20 +255,18 @@ var OpalRouter = /** @class */ (function (_super) {
                             continue;
                         }
                         var $paramConfig = $paramsConfig[name_1];
-                        if (!$paramConfig) {
-                            continue;
-                        }
-                        var paramName = $paramConfig.name;
-                        if (!(paramName in state) && isReadonlyParam($paramConfig.config)) {
+                        if ($paramConfig &&
+                            $paramConfig.readonly &&
+                            !($paramConfig.name in state)) {
                             canWrite = false;
                             break;
                         }
                     }
                     if (canWrite) {
                         for (var name_2 in state) {
-                            if (componentEl_1.getAttribute(name_2) !==
-                                valueToAttributeValue(state[name_2]) &&
-                                isReadonlyParam($paramsConfig[name_2].config)) {
+                            if ($paramsConfig[name_2].readonly &&
+                                componentEl_1.getAttribute(name_2) !==
+                                    valueToAttributeValue(state[name_2])) {
                                 canWrite = false;
                                 break;
                             }
@@ -289,11 +281,7 @@ var OpalRouter = /** @class */ (function (_super) {
                                 continue;
                             }
                             var $paramConfig = $paramsConfig[name_3];
-                            if (!$paramConfig) {
-                                continue;
-                            }
-                            var paramName = $paramConfig.name;
-                            if (!(paramName in state)) {
+                            if ($paramConfig && !($paramConfig.name in state)) {
                                 componentEl_1.removeAttribute(name_3);
                             }
                         }
