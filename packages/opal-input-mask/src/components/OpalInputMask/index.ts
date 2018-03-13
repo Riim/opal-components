@@ -73,7 +73,7 @@ export class OpalInputMask extends BaseComponent {
 		let definitions = this._definitions;
 
 		forEach.call(
-			this.element.getElementsByTagName('opalInputMaskDefinition'),
+			this.element.getElementsByClassName('OpalInputMaskDefinition'),
 			(inputMaskDefinition: IComponentElement) => {
 				definitions[
 					(inputMaskDefinition.$component as OpalInputMaskDefinition).paramMaskChar

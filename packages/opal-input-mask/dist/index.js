@@ -181,7 +181,7 @@ var OpalInputMask = /** @class */ (function (_super) {
     OpalInputMask.prototype.ready = function () {
         this.textField = this.$('textInput').textField;
         var definitions = this._definitions;
-        forEach.call(this.element.getElementsByTagName('opalInputMaskDefinition'), function (inputMaskDefinition) {
+        forEach.call(this.element.getElementsByClassName('OpalInputMaskDefinition'), function (inputMaskDefinition) {
             definitions[inputMaskDefinition.$component.paramMaskChar] = inputMaskDefinition.$component.paramRegex;
         });
         this._initBuffer();
