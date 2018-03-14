@@ -17,6 +17,9 @@ export interface IDay {
 }
 export declare type TWeekDays = Array<IDay>;
 export declare type TDays = Array<TWeekDays>;
+export declare function getTodayDate(): Date;
+export declare function fromDate(this: OpalCalendar): Date;
+export declare function toDate(this: OpalCalendar): Date;
 export declare class OpalCalendar extends BaseComponent {
     paramFromDate: string;
     paramToDate: string;
@@ -24,8 +27,8 @@ export declare class OpalCalendar extends BaseComponent {
     paramDateDelimiter: string;
     weekDays: Array<string>;
     weekDaysShort: Array<string>;
-    readonly fromDate: Date;
-    readonly toDate: Date;
+    fromDate: Date;
+    toDate: Date;
     readonly fromYear: number;
     readonly toYear: number;
     readonly years: Array<number>;

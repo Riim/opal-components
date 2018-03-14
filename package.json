@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.44",
+  "version": "0.33.46",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -49,9 +49,9 @@
   "dependencies": {
     "@riim/opal-autosuggest": "^0.33.42",
     "@riim/opal-button": "^0.33.42",
-    "@riim/opal-calendar": "^0.33.42",
+    "@riim/opal-calendar": "^0.33.45",
     "@riim/opal-checkbox": "^0.33.42",
-    "@riim/opal-date-input": "^0.33.44",
+    "@riim/opal-date-input": "^0.33.46",
     "@riim/opal-dropdown": "^0.33.42",
     "@riim/opal-editable-text": "^0.33.42",
     "@riim/opal-filtered-list": "^0.33.42",

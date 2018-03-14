@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-calendar",
-  "version": "0.33.42",
+  "version": "0.33.45",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

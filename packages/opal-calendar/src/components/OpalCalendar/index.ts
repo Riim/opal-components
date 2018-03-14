@@ -31,9 +31,35 @@ export type TWeekDays = Array<IDay>;
 
 export type TDays = Array<TWeekDays>;
 
-function getTodayDate() {
+export function getTodayDate() {
 	let now = new Date();
 	return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+}
+
+export function fromDate(this: OpalCalendar) {
+	let fromDate = this.paramFromDate;
+
+	if (fromDate) {
+		return fromDate == 'today' ? getTodayDate() : parseDate(fromDate);
+	}
+
+	let toDate = this.paramToDate;
+	let date = toDate && toDate != 'today' ? parseDate(toDate) : new Date();
+
+	return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
+}
+
+export function toDate(this: OpalCalendar) {
+	let toDate = this.paramToDate;
+
+	if (toDate) {
+		return toDate == 'today' ? getTodayDate() : parseDate(toDate);
+	}
+
+	let fromDate = this.paramFromDate;
+	let date = fromDate && fromDate != 'today' ? parseDate(fromDate) : new Date();
+
+	return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
 }
 
 @Component<OpalCalendar>({
@@ -122,33 +148,8 @@ export class OpalCalendar extends BaseComponent {
 	weekDays: Array<string>;
 	weekDaysShort: Array<string>;
 
-	@Computed
-	get fromDate(): Date {
-		let fromDate = this.paramFromDate;
-
-		if (fromDate) {
-			return fromDate == 'today' ? getTodayDate() : parseDate(fromDate);
-		}
-
-		let toDate = this.paramToDate;
-		let date = toDate && toDate != 'today' ? parseDate(toDate) : new Date();
-
-		return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
-	}
-
-	@Computed
-	get toDate(): Date {
-		let toDate = this.paramToDate;
-
-		if (toDate) {
-			return toDate == 'today' ? getTodayDate() : parseDate(toDate);
-		}
-
-		let fromDate = this.paramFromDate;
-		let date = fromDate && fromDate != 'today' ? parseDate(fromDate) : new Date();
-
-		return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
-	}
+	@Computed fromDate: Date = fromDate as any;
+	@Computed toDate: Date = toDate as any;
 
 	@Computed
 	get fromYear(): number {

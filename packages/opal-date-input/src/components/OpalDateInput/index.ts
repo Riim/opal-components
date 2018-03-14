@@ -1,5 +1,10 @@
 import { getText } from '@riim/gettext';
-import { OpalCalendar, parseDate } from '@riim/opal-calendar';
+import {
+	fromDate,
+	OpalCalendar,
+	parseDate,
+	toDate
+	} from '@riim/opal-calendar';
 import { OpalDropdown } from '@riim/opal-dropdown';
 import { OpalTextInput } from '@riim/opal-text-input';
 import { OpalTextInputValidator } from '@riim/opal-text-input-validator';
@@ -56,7 +61,7 @@ export class OpalDateInput extends BaseComponent {
 	dateExists = dateExists;
 
 	isDateInRange(date: string): boolean {
-		let calendar = this.$<OpalCalendar>('calendar')!;
+		let calendar = this.$<OpalCalendar>('calendar');
 		let match = date.match(/\d+/g)!;
 		let day = +match[0];
 		let month = +match[1] - 1;
@@ -72,7 +77,7 @@ export class OpalDateInput extends BaseComponent {
 			return d >= calendar.fromDate && d <= calendar.toDate;
 		}
 
-		return d >= parseDate(this.paramFromDate) && d <= parseDate(this.paramToDate);
+		return d >= fromDate.call(this) && d <= toDate.call(this);
 	}
 
 	_documentFocusListening: IDisposableListening;

@@ -249,7 +249,7 @@ var OpalDateInput = /** @class */ (function (_super) {
         if (calendar) {
             return d >= calendar.fromDate && d <= calendar.toDate;
         }
-        return d >= opal_calendar_1.parseDate(this.paramFromDate) && d <= opal_calendar_1.parseDate(this.paramToDate);
+        return d >= opal_calendar_1.fromDate.call(this) && d <= opal_calendar_1.toDate.call(this);
     };
     OpalDateInput.prototype.elementAttached = function () {
         this.listenTo('textInput', 'change', this._onTextInputChange);

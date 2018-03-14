@@ -192,11 +192,34 @@ function getTodayDate() {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 }
+exports.getTodayDate = getTodayDate;
+function fromDate() {
+    var fromDate = this.paramFromDate;
+    if (fromDate) {
+        return fromDate == 'today' ? getTodayDate() : parseDate_1.parseDate(fromDate);
+    }
+    var toDate = this.paramToDate;
+    var date = toDate && toDate != 'today' ? parseDate_1.parseDate(toDate) : new Date();
+    return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
+}
+exports.fromDate = fromDate;
+function toDate() {
+    var toDate = this.paramToDate;
+    if (toDate) {
+        return toDate == 'today' ? getTodayDate() : parseDate_1.parseDate(toDate);
+    }
+    var fromDate = this.paramFromDate;
+    var date = fromDate && fromDate != 'today' ? parseDate_1.parseDate(fromDate) : new Date();
+    return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
+}
+exports.toDate = toDate;
 var OpalCalendar = /** @class */ (function (_super) {
     __extends(OpalCalendar, _super);
     function OpalCalendar() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramDateDelimiter = '/';
+        _this.fromDate = fromDate;
+        _this.toDate = toDate;
         _this.days = function (_, next) {
             var dateDelimiter = this.paramDateDelimiter;
             var fromDate = this.fromDate;
@@ -267,32 +290,6 @@ var OpalCalendar = /** @class */ (function (_super) {
         return _this;
     }
     OpalCalendar_1 = OpalCalendar;
-    Object.defineProperty(OpalCalendar.prototype, "fromDate", {
-        get: function () {
-            var fromDate = this.paramFromDate;
-            if (fromDate) {
-                return fromDate == 'today' ? getTodayDate() : parseDate_1.parseDate(fromDate);
-            }
-            var toDate = this.paramToDate;
-            var date = toDate && toDate != 'today' ? parseDate_1.parseDate(toDate) : new Date();
-            return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalCalendar.prototype, "toDate", {
-        get: function () {
-            var toDate = this.paramToDate;
-            if (toDate) {
-                return toDate == 'today' ? getTodayDate() : parseDate_1.parseDate(toDate);
-            }
-            var fromDate = this.paramFromDate;
-            var date = fromDate && fromDate != 'today' ? parseDate_1.parseDate(fromDate) : new Date();
-            return new Date(date.getFullYear() + 100, date.getMonth(), date.getDate());
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(OpalCalendar.prototype, "fromYear", {
         get: function () {
             return this.fromDate.getFullYear();
@@ -440,14 +437,12 @@ var OpalCalendar = /** @class */ (function (_super) {
     ], OpalCalendar.prototype, "paramDateDelimiter", void 0);
     __decorate([
         cellx_decorators_1.Computed,
-        __metadata("design:type", Date),
-        __metadata("design:paramtypes", [])
-    ], OpalCalendar.prototype, "fromDate", null);
+        __metadata("design:type", Date)
+    ], OpalCalendar.prototype, "fromDate", void 0);
     __decorate([
         cellx_decorators_1.Computed,
-        __metadata("design:type", Date),
-        __metadata("design:paramtypes", [])
-    ], OpalCalendar.prototype, "toDate", null);
+        __metadata("design:type", Date)
+    ], OpalCalendar.prototype, "toDate", void 0);
     __decorate([
         cellx_decorators_1.Computed,
         __metadata("design:type", Number),
