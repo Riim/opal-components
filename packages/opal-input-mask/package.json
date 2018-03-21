@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-input-mask",
-  "version": "0.33.44",
+  "version": "0.33.47",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

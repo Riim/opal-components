@@ -57,6 +57,7 @@ export class OpalInputMask extends BaseComponent {
 
 	_buffer: Array<string | null>;
 
+	textInput: OpalTextInput;
 	textField: HTMLInputElement;
 
 	_textOnFocus: string;
@@ -68,7 +69,8 @@ export class OpalInputMask extends BaseComponent {
 	}
 
 	ready() {
-		this.textField = this.$<OpalTextInput>('textInput')!.textField;
+		this.textInput = this.$<OpalTextInput>('textInput')!;
+		this.textField = this.textInput.textField;
 
 		let definitions = this._definitions;
 
@@ -118,7 +120,7 @@ export class OpalInputMask extends BaseComponent {
 		this._checkValue(false);
 
 		if (this.textField.value != this._textOnFocus) {
-			this.$<OpalTextInput>('textInput')!.emit('change');
+			this.textInput.emit('change');
 		}
 	}
 
@@ -148,7 +150,7 @@ export class OpalInputMask extends BaseComponent {
 			this._shiftLeft(start, end - 1);
 
 			if (value != textField.value) {
-				this.$<OpalTextInput>('textInput')!._onTextFieldInput(evt);
+				this.textInput._onTextFieldInput(evt);
 			}
 		} else if (key == 27 /* Escape */) {
 			evt.preventDefault();
@@ -156,7 +158,7 @@ export class OpalInputMask extends BaseComponent {
 			if (textField.value != this._textOnFocus) {
 				textField.value = this._textOnFocus;
 				this._setTextFieldSelection(0, this._checkValue(false));
-				this.$<OpalTextInput>('textInput')!._onTextFieldInput(evt);
+				this.textInput._onTextFieldInput(evt);
 			}
 		}
 	}
@@ -195,13 +197,17 @@ export class OpalInputMask extends BaseComponent {
 
 					this._setTextFieldSelection(index, index);
 
-					this.$<OpalTextInput>('textInput')!._onTextFieldInput(evt);
+					if (index == textField.value.length) {
+						textField.scrollLeft = textField.scrollWidth;
+					}
+
+					this.textInput._onTextFieldInput(evt);
 
 					if (index >= bufferLen) {
 						this.emit('complete');
 					}
 				} else if (start != end) {
-					this.$<OpalTextInput>('textInput')!._onTextFieldInput(evt);
+					this.textInput._onTextFieldInput(evt);
 				}
 			}
 		}
@@ -264,11 +270,9 @@ export class OpalInputMask extends BaseComponent {
 		} else {
 			if (lastMatchIndex + 1 < partialIndex) {
 				this._clearBuffer(0, bufferLen);
-				this.$<OpalTextInput>('textInput')!.value = '';
+				this.textInput.value = '';
 			} else {
-				this.$<OpalTextInput>('textInput')!.value = buffer
-					.slice(0, lastMatchIndex + 1)
-					.join('');
+				this.textInput.value = buffer.slice(0, lastMatchIndex + 1).join('');
 			}
 		}
 
@@ -339,11 +343,7 @@ export class OpalInputMask extends BaseComponent {
 	_writeBuffer() {
 		let buffer = this._buffer;
 		let toIndex = buffer.indexOf(null);
-
-		this.$<OpalTextInput>('textInput')!.value = (toIndex == -1
-			? buffer
-			: buffer.slice(0, toIndex)
-		).join('');
+		this.textInput.value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
 	}
 
 	_clearBuffer(start: number, end: number) {

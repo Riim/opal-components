@@ -1,3 +1,4 @@
+import { OpalTextInput } from '@riim/opal-text-input';
 import { BaseComponent } from 'rionite';
 import { OpalInputMaskDefinition } from '../OpalInputMaskDefinition';
 export { OpalInputMaskDefinition };
@@ -14,6 +15,7 @@ export declare class OpalInputMask extends BaseComponent {
     readonly _tests: Array<RegExp | null>;
     readonly _firstTestIndex: number;
     _buffer: Array<string | null>;
+    textInput: OpalTextInput;
     textField: HTMLInputElement;
     _textOnFocus: string;
     initialize(): void;
