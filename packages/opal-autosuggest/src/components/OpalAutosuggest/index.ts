@@ -1,8 +1,9 @@
 import { getText } from '@riim/gettext';
+import { nextTick } from '@riim/next-tick';
 import { OpalDropdown } from '@riim/opal-dropdown';
 import { OpalTextInput } from '@riim/opal-text-input';
 import { isFocusable } from '@riim/opal-utils';
-import { Cell, IEvent, ObservableList } from 'cellx';
+import { IEvent, ObservableList } from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
 import {
 	BaseComponent,
@@ -170,7 +171,10 @@ export class OpalAutosuggest extends BaseComponent {
 	}
 
 	_onDataListChange() {
-		this.openMenu();
+		// Смотри _itemsRequestCallback
+		nextTick(() => {
+			this.openMenu();
+		});
 	}
 
 	_onTextInputFocus() {
@@ -356,12 +360,24 @@ export class OpalAutosuggest extends BaseComponent {
 
 		if (items.length) {
 			this.dataList.addRange(items);
-			Cell.forceRelease();
 
-			let focusedListItem = this.$<HTMLElement>('listItem')!;
+			// Cell.forceRelease();
+			// Содержимое OpalDropdown рендерится лениво, из-за этого обработчик изменения dataList
+			// в RtRepeat оказывается после _onDataListChange (RtRepeat рендерится после
+			// elementAttached). При первом открытии меню всё хорошо, тк. появившийся RtRepeat
+			// показывает свои items в RtRepeat#elementConnected, но при втором открытии возможно
+			// следующее: срабатывает _onDataListChange в котором открывается меню,
+			// для меню считается выравнивание, но RtRepeat ещё не обновился тк. обработчик
+			// изменения dataList в нём идёт сразу за текущим.
+			// В результате выравнивание меню получается неправильным.
+			// По этой причине вместо Cell.forceRelease здесь nextTick и nextTick добавлен в
+			// _onDataListChange.
+			nextTick(() => {
+				let focusedListItem = this.$<HTMLElement>('listItem')!;
 
-			this._focusedListItem = focusedListItem;
-			focusedListItem.setAttribute('focused', '');
+				this._focusedListItem = focusedListItem;
+				focusedListItem.setAttribute('focused', '');
+			});
 		} else if (this.paramOpenMenuOnNothingFound) {
 			this.openMenu(true);
 		}

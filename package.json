@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.47",
+  "version": "0.33.48",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -22,7 +22,7 @@
   "homepage": "https://github.com/Riim/opal-components#readme",
   "devDependencies": {
     "@riim/postcss-rionite-component": "^0.4.0",
-    "autoprefixer": "^8.1.0",
+    "autoprefixer": "^8.2.0",
     "awesome-typescript-loader": "^4.0.1",
     "collapse-line-breaks-loader": "^0.2.1",
     "glob": "^7.1.2",
@@ -30,7 +30,7 @@
     "lerna": "^2.9.0",
     "mkdirp": "^0.5.1",
     "postcss-color-function": "^4.0.1",
-    "postcss-css-variables": "^0.8.0",
+    "postcss-css-variables": "^0.8.1",
     "postcss-csso": "^3.0.0",
     "postcss-loader": "^2.1.3",
     "postcss-nested": "^3.0.0",
@@ -47,7 +47,7 @@
     "webpack": "^3.11.0"
   },
   "dependencies": {
-    "@riim/opal-autosuggest": "^0.33.42",
+    "@riim/opal-autosuggest": "^0.33.48",
     "@riim/opal-button": "^0.33.42",
     "@riim/opal-calendar": "^0.33.45",
     "@riim/opal-checkbox": "^0.33.42",

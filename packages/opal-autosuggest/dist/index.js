@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("cellx"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-text-input"), require("@riim/opal-utils"), require("@riim/opal-dropdown"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-text-input"), require("@riim/opal-utils"), require("@riim/opal-dropdown"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx-decorators", "cellx", "@riim/opal-icon", "@riim/gettext", "@riim/opal-text-input", "@riim/opal-utils", "@riim/opal-dropdown"], factory);
+		define(["rionite", "reflect-metadata", "cellx-decorators", "cellx", "@riim/next-tick", "@riim/opal-icon", "@riim/gettext", "@riim/opal-text-input", "@riim/opal-utils", "@riim/opal-dropdown"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-autosuggest"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("cellx"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-text-input"), require("@riim/opal-utils"), require("@riim/opal-dropdown"));
+		exports["@riim/opal-autosuggest"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-text-input"), require("@riim/opal-utils"), require("@riim/opal-dropdown"));
 	else
-		root["@riim/opal-autosuggest"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["cellx"], root["@riim/opal-icon"], root["@riim/gettext"], root["@riim/opal-text-input"], root["@riim/opal-utils"], root["@riim/opal-dropdown"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_14__) {
+		root["@riim/opal-autosuggest"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-icon"], root["@riim/gettext"], root["@riim/opal-text-input"], root["@riim/opal-utils"], root["@riim/opal-dropdown"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_14__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -98,7 +98,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ }),
-/* 4 */,
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
@@ -189,6 +194,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(6);
+var next_tick_1 = __webpack_require__(4);
 var opal_utils_1 = __webpack_require__(9);
 var cellx_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(2);
@@ -271,7 +277,11 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         this.$('textInput').paramLoading = evt.data.value;
     };
     OpalAutosuggest.prototype._onDataListChange = function () {
-        this.openMenu();
+        var _this = this;
+        // Смотри _itemsRequestCallback
+        next_tick_1.nextTick(function () {
+            _this.openMenu();
+        });
     };
     OpalAutosuggest.prototype._onTextInputFocus = function () {
         this.openMenu();
@@ -407,14 +417,27 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             .then((this._requestCallback = this.registerCallback(this._itemsRequestCallback)));
     };
     OpalAutosuggest.prototype._itemsRequestCallback = function (data) {
+        var _this = this;
         this.loading = false;
         var items = data.items;
         if (items.length) {
             this.dataList.addRange(items);
-            cellx_1.Cell.forceRelease();
-            var focusedListItem = this.$('listItem');
-            this._focusedListItem = focusedListItem;
-            focusedListItem.setAttribute('focused', '');
+            // Cell.forceRelease();
+            // Содержимое OpalDropdown рендерится лениво, из-за этого обработчик изменения dataList
+            // в RtRepeat оказывается после _onDataListChange (RtRepeat рендерится после
+            // elementAttached). При первом открытии меню всё хорошо, тк. появившийся RtRepeat
+            // показывает свои items в RtRepeat#elementConnected, но при втором открытии возможно
+            // следующее: срабатывает _onDataListChange в котором открывается меню,
+            // для меню считается выравнивание, но RtRepeat ещё не обновился тк. обработчик
+            // изменения dataList в нём идёт сразу за текущим.
+            // В результате выравнивание меню получается неправильным.
+            // По этой причине вместо Cell.forceRelease здесь nextTick и nextTick добавлен в
+            // _onDataListChange.
+            next_tick_1.nextTick(function () {
+                var focusedListItem = _this.$('listItem');
+                _this._focusedListItem = focusedListItem;
+                focusedListItem.setAttribute('focused', '');
+            });
         }
         else if (this.paramOpenMenuOnNothingFound) {
             this.openMenu(true);
