@@ -253,6 +253,7 @@ var OpalTabs = /** @class */ (function (_super) {
         this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.paramShown = true;
         tab.select();
         this._selectedTab = tab;
+        this.emit('change');
     };
     OpalTabs = __decorate([
         rionite_1.Component({

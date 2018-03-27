@@ -106,5 +106,7 @@ export class OpalTabs extends BaseComponent {
 		tab.select();
 
 		this._selectedTab = tab;
+
+		this.emit('change');
 	}
 }
