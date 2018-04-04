@@ -9,7 +9,7 @@ import {
 import './index.css';
 import template from './template.nelm';
 
-let openedDropdowns: Array<OpalDropdown> = [];
+const openedDropdowns: Array<OpalDropdown> = [];
 
 @Component({
 	template

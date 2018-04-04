@@ -4,7 +4,7 @@ import { OpalRadioButton } from '../OpalRadioButton';
 
 export { OpalRadioButton };
 
-let forEach = Array.prototype.forEach;
+const forEach = Array.prototype.forEach;
 
 @Component()
 export class OpalRadioGroup extends BaseComponent {

@@ -12,10 +12,10 @@ import template from './template.nelm';
 
 export { OpalInputMaskDefinition };
 
-let forEach = Array.prototype.forEach;
+const forEach = Array.prototype.forEach;
 
-let iPhone = /iphone/i.test(navigator.userAgent);
-let ie11 = !(window as any).ActiveXObject && 'ActiveXObject' in window;
+const iPhone = /iphone/i.test(navigator.userAgent);
+const ie11 = !(window as any).ActiveXObject && 'ActiveXObject' in window;
 
 @Component({
 	template
@@ -132,8 +132,8 @@ export class OpalInputMask extends BaseComponent {
 		if (key == 8 || key == 46 || (iPhone && key == 127)) {
 			evt.preventDefault();
 
-			let start = textField.selectionStart;
-			let end = textField.selectionEnd;
+			let start = textField.selectionStart!;
+			let end = textField.selectionEnd!;
 
 			if (start == end) {
 				if (key == 46) {
@@ -167,8 +167,8 @@ export class OpalInputMask extends BaseComponent {
 		let tests = this._tests;
 		let bufferLen = this._buffer.length;
 		let textField = this.textField;
-		let start = textField.selectionStart;
-		let end = textField.selectionEnd;
+		let start = textField.selectionStart!;
+		let end = textField.selectionEnd!;
 		let key = evt.which;
 
 		if (evt.ctrlKey || evt.altKey || evt.metaKey || key < 32 /* Ignore */) {

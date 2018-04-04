@@ -12,7 +12,7 @@
 
 		div/menuHeaderRightPart {
 			RtSlot/menuHeaderContentSlot (for=menuHeaderContent) {
-				@IfThen (if=viewModel.length) {
+				@IfThen (viewModel.length) {
 					span/selectedCount {
 						'выбрано {viewModel.length}'
 					}
@@ -36,7 +36,7 @@
 	}
 
 	div/menuSelected {
-		@Repeat (for=item of viewModel) {
+		@Repeat (for=item in viewModel) {
 			div/selectedItem {
 				'{item |key(_viewModelItemTextFieldName) }'
 
@@ -49,7 +49,7 @@
 			}
 		}
 
-		@IfThen (if=isNothingSelectedShown) {
+		@IfThen (isNothingSelectedShown) {
 			RtSlot/nothingSelectedSlot (for=nothingSelected) {
 				span/nothingSelected {
 					span/nothingSelectedMessage {

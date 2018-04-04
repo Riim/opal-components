@@ -16,7 +16,7 @@ import { PathNodeType } from './PathNodeType';
 
 export { OpalRoute };
 
-let forEach = Array.prototype.forEach;
+const forEach = Array.prototype.forEach;
 
 export interface IRouteProperty {
 	name: string;
@@ -177,7 +177,7 @@ export class OpalRouter extends BaseComponent {
 
 				if ($paramsConfig) {
 					for (let i = attrs.length; i; ) {
-						let name = attrs.item(--i).name;
+						let name = attrs.item(--i)!.name;
 
 						if (name == 'class') {
 							continue;
@@ -212,7 +212,7 @@ export class OpalRouter extends BaseComponent {
 				if (canWrite) {
 					if ($paramsConfig) {
 						for (let i = attrs.length; i; ) {
-							let name = attrs.item(--i).name;
+							let name = attrs.item(--i)!.name;
 
 							if (name == 'class') {
 								continue;

@@ -8,9 +8,9 @@ div/head {
 	}
 }
 
-@IfThen (if=dataTreeListItem.children.length) {
+@IfThen (dataTreeListItem.children.length) {
 	div/children {
-		@Repeat (for=$item of dataTreeListItem.children) {
+		@Repeat (for=$item in dataTreeListItem.children) {
 			OpalTreeListItem/item (
 				dataTreeList={paramDataTreeList},
 				filteredDataTreeList={paramFilteredDataTreeList},

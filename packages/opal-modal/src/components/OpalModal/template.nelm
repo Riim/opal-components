@@ -5,7 +5,7 @@ div/window {
 		button/btnClose
 	}
 
-	@IfThen (if=isContentRendered) {
+	@IfThen (isContentRendered) {
 		RtSlot/contentSlot
 	}
 }

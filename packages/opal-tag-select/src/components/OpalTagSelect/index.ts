@@ -12,13 +12,13 @@ import { BaseComponent, Component, Param } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
-let defaultDataListItemSchema = Object.freeze({
+const defaultDataListItemSchema = Object.freeze({
 	value: 'id',
 	text: 'name',
 	subtext: 'parent',
 	disabled: 'disabled'
 });
-let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
+const defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 
 @Component<OpalTagSelect>({
 	template,
@@ -102,6 +102,10 @@ export class OpalTagSelect extends BaseComponent {
 	_dataListKeypathParam: string | null;
 
 	select: OpalSelect;
+
+	_isItemDisabled(item: IDataListItem) {
+		return this.paramDisabled || item[this._viewModelItemDisabledFieldName];
+	}
 
 	initialize() {
 		let dataListKeypath = this.paramDataListKeypath;
@@ -221,11 +225,5 @@ export class OpalTagSelect extends BaseComponent {
 	blur(): this {
 		this.select.blur();
 		return this;
-	}
-
-	// helpers
-
-	_isItemDisabled(item: IDataListItem) {
-		return this.paramDisabled || item[this._viewModelItemDisabledFieldName];
 	}
 }

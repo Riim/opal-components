@@ -1,6 +1,6 @@
 import { PathNodeType } from './PathNodeType';
 
-let reName = /[a-z][0-9a-z]*/i;
+const reName = /[a-z][0-9a-z]*/i;
 
 export interface IPathSimpleNode {
 	type: PathNodeType.SIMPLE;

@@ -4,8 +4,8 @@ import { BaseComponent, Component, IComponentElement } from 'rionite';
 import './index.css';
 import template from './template.nelm';
 
-let forEach = Array.prototype.forEach;
-let find = Array.prototype.find;
+const forEach = Array.prototype.forEach;
+const find = Array.prototype.find;
 
 @Component({
 	template

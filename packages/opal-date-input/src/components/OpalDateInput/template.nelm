@@ -12,7 +12,7 @@ OpalTextInputValidator/textInputValidator {
 		}
 	}
 
-	@IfThen (if=paramRequired) {
+	@IfThen (paramRequired) {
 		OpalTextInputValidatorRule/textInputValidatorRuleRequired (
 			required,
 			popoverPosition={paramPopoverPosition}

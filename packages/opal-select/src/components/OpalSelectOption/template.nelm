@@ -4,18 +4,18 @@ button/control (tabIndex={_tabIndex}) {
 	RtSlot/contentSlot {
 		'{paramText}'
 
-		@IfThen (if=paramSubtext) {
+		@IfThen (paramSubtext) {
 			sub {
 				'{paramSubtext}'
 			}
 		}
 	}
 
-	@IfThen (if=selected) {
+	@IfThen (selected) {
 		OpalIcon/iconSelected (name=checkmark)
 	}
 
-	@IfThen (if=indeterminate) {
+	@IfThen (indeterminate) {
 		OpalIcon/iconIndeterminate (name=minus)
 	}
 }

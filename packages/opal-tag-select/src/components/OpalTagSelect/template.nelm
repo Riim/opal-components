@@ -1,7 +1,7 @@
 @section/inner {
 
 span/tags {
-	@Repeat (for=tag of viewModel, trackBy={_viewModelItemValueFieldName}) {
+	@Repeat (for=tag in viewModel, trackBy={_viewModelItemValueFieldName}) {
 		span/tag (
 			data-value='{tag |key(_viewModelItemValueFieldName) }',
 			disabled='{tag |_isItemDisabled }'
@@ -13,7 +13,7 @@ span/tags {
 }
 
 span/control {
-	@IfThen (if=isPlaceholderShown) {
+	@IfThen (isPlaceholderShown) {
 		span/placeholder {
 			'{paramPlaceholder} '
 		}
@@ -45,11 +45,11 @@ span/control {
 				autoClosing
 			) {
 				RtSlot (for=OpalSelect__menuContent) {
-					@IfThen (if=_dataListKeypathParam) {
+					@IfThen (_dataListKeypathParam) {
 						div (class=OpalSelect__menuContent) {
-							@IfThen (if=dataList) {
+							@IfThen (dataList) {
 								@Repeat (
-									for=item of dataList,
+									for=item in dataList,
 									trackBy={_dataListItemValueFieldName}
 								) {
 									OpalSelectOption/dataListSelectOption, selectOption (
@@ -65,12 +65,12 @@ span/control {
 									for=OpalSelect__newItemInput
 								)
 							}
-							@IfElse (if=dataList) {
+							@IfElse (dataList) {
 								OpalLoader/menuLoader (shown)
 							}
 						}
 					}
-					@IfElse (if=_dataListKeypathParam) {
+					@IfElse (_dataListKeypathParam) {
 						OpalFilteredList/menuFilteredList (
 							class=OpalSelect__menuContent OpalSelect__filteredList
 						) {

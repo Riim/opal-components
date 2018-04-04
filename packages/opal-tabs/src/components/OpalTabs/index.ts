@@ -9,9 +9,9 @@ export { OpalTab };
 export { OpalTabList } from '../OpalTabList';
 export { OpalTabPanel };
 
-let indexOf = Array.prototype.indexOf;
-let forEach = Array.prototype.forEach;
-let find = Array.prototype.find;
+const indexOf = Array.prototype.indexOf;
+const forEach = Array.prototype.forEach;
+const find = Array.prototype.find;
 
 @Component({
 	template

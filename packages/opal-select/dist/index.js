@@ -1208,7 +1208,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabIndex={_tabIndex}) {\nRtSlot/contentSlot {\n'{paramText}'\n@IfThen (if=paramSubtext) {\nsub {\n'{paramSubtext}'\n}\n}\n}\n@IfThen (if=selected) {\nOpalIcon/iconSelected (name=checkmark)\n}\n@IfThen (if=indeterminate) {\nOpalIcon/iconIndeterminate (name=minus)\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabIndex={_tabIndex}) {\nRtSlot/contentSlot {\n'{paramText}'\n@IfThen (paramSubtext) {\nsub {\n'{paramSubtext}'\n}\n}\n}\n@IfThen (selected) {\nOpalIcon/iconSelected (name=checkmark)\n}\n@IfThen (indeterminate) {\nOpalIcon/iconIndeterminate (name=minus)\n}\n}\n}");
 
 /***/ }),
 
@@ -1258,7 +1258,7 @@ exports.isEqualArray = isEqualArray;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=button) {\nOpalButton/button (\nviewType={paramViewType},\nsize={paramSize},\ncheckable,\ntabIndex_={paramTabIndex_},\ndisabled={paramDisabled}\n) {\n@IfThen (if=paramText) {\n'{paramText}'\n}\n@IfElse (if=paramText) {\n'{_buttonText}'\n}\nOpalIcon/buttonIcon (name=chevronBottom)\n}\n}\nRtSlot (for=menuSlot) {\nRtSlot/menuSlot (for=menu) {\nOpalDropdown/menu (autoClosing) {\nRtSlot (for=menuContent) {\n@IfThen (if=_isParamDataListSpecified) {\ndiv/, menuContent {\n@IfThen (if=dataList) {\n@Repeat (for=item of dataList, trackBy={_dataListItemValueFieldName}) {\nOpalSelectOption/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRtSlot/newItemInputSlot // ...\n}\n@IfElse (if=dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (if=_isParamDataListSpecified) {\ndiv/, menuContent {\nRtSlot/options (forTag=opal-select-option)\nRtSlot (for=newItemInputSlot) {\nRtSlot/newItemInputSlot (for=newItemInput)\n}\n}\n}\n}\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=button) {\nOpalButton/button (\nviewType={paramViewType},\nsize={paramSize},\ncheckable,\ntabIndex_={paramTabIndex_},\ndisabled={paramDisabled}\n) {\n@IfThen (paramText) {\n'{paramText}'\n}\n@IfElse (paramText) {\n'{_buttonText}'\n}\nOpalIcon/buttonIcon (name=chevronBottom)\n}\n}\nRtSlot (for=menuSlot) {\nRtSlot/menuSlot (for=menu) {\nOpalDropdown/menu (autoClosing) {\nRtSlot (for=menuContent) {\n@IfThen (_isParamDataListSpecified) {\ndiv/, menuContent {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={_dataListItemValueFieldName}) {\nOpalSelectOption/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRtSlot/newItemInputSlot // ...\n}\n@IfElse (dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (_isParamDataListSpecified) {\ndiv/, menuContent {\nRtSlot/options (forTag=opal-select-option)\nRtSlot (for=newItemInputSlot) {\nRtSlot/newItemInputSlot (for=newItemInput)\n}\n}\n}\n}\n}\n}\n}\n}");
 
 /***/ }),
 

@@ -1,7 +1,7 @@
 import { assign } from '@riim/object-assign-polyfill';
 import { EventEmitter } from 'cellx';
 
-let INDEXPATH_EMPTY_ERROR_MESSAGE = 'Indexpath cannot be empty';
+const INDEXPATH_EMPTY_ERROR_MESSAGE = 'Indexpath cannot be empty';
 
 export interface IItem {
 	[name: string]: any;

@@ -6,14 +6,14 @@ header/header {
 	}
 
 	OpalSelect/monthSelect (size=s, value=['{shownMonth}']) {
-		@Repeat (class=OpalSelect__menuContent, for=month of constructor.i18n.months) {
+		@Repeat (class=OpalSelect__menuContent, for=month in constructor.i18n.months) {
 			OpalSelectOption (value={$index}, text={month})
 		}
 	}
 	' '
 
 	OpalSelect/yearSelect (size=s, value=['{shownYear}']) {
-		@Repeat (class=OpalSelect__menuContent, for=year of years) {
+		@Repeat (class=OpalSelect__menuContent, for=year in years) {
 			OpalSelectOption (value={year}, text={year})
 		}
 	}
@@ -26,7 +26,7 @@ header/header {
 div/body {
 	div/weekDays {
 		div/weekDaysRow {
-			@Repeat (for=weekDay of weekDaysShort) {
+			@Repeat (for=weekDay in weekDaysShort) {
 				span/weekDay {
 					'{weekDay}'
 				}
@@ -35,9 +35,9 @@ div/body {
 	}
 
 	div/days {
-		@Repeat (for=weekDays of days) {
+		@Repeat (for=weekDays in days) {
 			div/daysRow {
-				@Repeat (for=day of weekDays) {
+				@Repeat (for=day in weekDays) {
 					span/day (
 						weekDay={day.weekDay},
 						today={day.today},

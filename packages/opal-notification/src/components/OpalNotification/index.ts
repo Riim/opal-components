@@ -6,7 +6,7 @@ import template from './template.nelm';
 
 let container: HTMLElement | undefined;
 
-let shownNotifications = new Set<OpalNotification>();
+const shownNotifications = new Set<OpalNotification>();
 
 function initContainer(notification: OpalNotification): HTMLElement {
 	if (!container) {

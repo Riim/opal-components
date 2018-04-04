@@ -29,7 +29,7 @@ function toComparable(str: string): string {
 	return str.replace(/\s+/g, ' ').toLowerCase();
 }
 
-let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', subtext: 'parent' });
+const defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', subtext: 'parent' });
 
 @Component<OpalAutosuggest>({
 	i18n: {
@@ -149,9 +149,7 @@ export class OpalAutosuggest extends BaseComponent {
 
 	ready() {
 		if (this.value) {
-			this.$<OpalTextInput>('textInput')!.value = this.value[
-				this._dataListItemTextFieldName
-			];
+			this.$<OpalTextInput>('textInput')!.value = this.value[this._dataListItemTextFieldName];
 		}
 	}
 

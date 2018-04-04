@@ -53,6 +53,7 @@ export declare class OpalTagSelect extends BaseComponent {
     readonly isPlaceholderShown: boolean;
     _dataListKeypathParam: string | null;
     select: OpalSelect;
+    _isItemDisabled(item: IDataListItem): any;
     initialize(): void;
     ready(): void;
     elementAttached(): void;
@@ -66,5 +67,4 @@ export declare class OpalTagSelect extends BaseComponent {
     toggle(): boolean;
     focus(): this;
     blur(): this;
-    _isItemDisabled(item: IDataListItem): any;
 }

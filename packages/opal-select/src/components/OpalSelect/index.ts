@@ -29,7 +29,7 @@ import template from './template.nelm';
 
 export { OpalSelectOption };
 
-let map = Array.prototype.map;
+const map = Array.prototype.map;
 
 export interface IDataListItem {
 	[name: string]: any;
@@ -38,13 +38,13 @@ export interface IDataListItem {
 export type TDataList = ObservableList<IDataListItem>;
 export type TViewModel = ObservableList<IDataListItem>;
 
-let defaultDataListItemSchema = Object.freeze({
+const defaultDataListItemSchema = Object.freeze({
 	value: 'value',
 	text: 'text',
 	subtext: 'subtext',
 	disabled: 'disabled'
 });
-let defaultVMItemSchema = Object.freeze({
+const defaultVMItemSchema = Object.freeze({
 	value: 'value',
 	text: 'text',
 	subtext: 'subtext',

@@ -1,6 +1,6 @@
-@IfThen (if=dataTreeList) {
-	@IfThen (if=filteredDataTreeList.length) {
-		@Repeat (for=$item of filteredDataTreeList) {
+@IfThen (dataTreeList) {
+	@IfThen (filteredDataTreeList.length) {
+		@Repeat (for=$item in filteredDataTreeList) {
 			OpalTreeListItem/item (
 				dataTreeList={dataTreeList},
 				filteredDataTreeList={filteredDataTreeList},
@@ -26,7 +26,7 @@
 			}
 		}
 	}
-	@IfElse (if=filteredDataTreeList.length) {
+	@IfElse (filteredDataTreeList.length) {
 		RtSlot/nothingFoundSlot (for=nothingFound) {
 			span/nothingFound {
 				span/nothingFoundMessage {
@@ -36,6 +36,6 @@
 		}
 	}
 }
-@IfElse (if=dataTreeList) {
+@IfElse (dataTreeList) {
 	OpalLoader/loader (shown)
 }

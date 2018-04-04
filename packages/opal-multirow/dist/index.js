@@ -342,7 +342,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/presetRowsSlot (\nfor=presetRows,\nnotHaveNewRows={_notHaveNewRows},\nnotSingleRow={_notSingleRow}\n) {\nRtSlot/presetRows (for=presetRow)\n}\ndiv/newRows (notSingleRow={_notSingleRow}) {\n@Repeat (for=row of _newRows, trackBy=key) {\nRtSlot/newRowSlot (cloneContent, data-key={row.key})\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/presetRowsSlot (\nfor=presetRows,\nnotHaveNewRows={_notHaveNewRows},\nnotSingleRow={_notSingleRow}\n) {\nRtSlot/presetRows (for=presetRow)\n}\ndiv/newRows (notSingleRow={_notSingleRow}) {\n@Repeat (for=row in _newRows, trackBy=key) {\nRtSlot/newRowSlot (cloneContent, data-key={row.key})\n}\n}\n}");
 
 /***/ }),
 

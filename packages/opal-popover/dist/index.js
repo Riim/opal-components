@@ -351,7 +351,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/arrow\n@IfThen (if=isContentRendered) {\nRtSlot/contentSlot\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/arrow\n@IfThen (isContentRendered) {\nRtSlot/contentSlot\n}\n}");
 
 /***/ }),
 

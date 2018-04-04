@@ -216,6 +216,9 @@ var OpalTagSelect = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    OpalTagSelect.prototype._isItemDisabled = function (item) {
+        return this.paramDisabled || item[this._viewModelItemDisabledFieldName];
+    };
     OpalTagSelect.prototype.initialize = function () {
         var _this = this;
         var dataListKeypath = this.paramDataListKeypath;
@@ -309,10 +312,6 @@ var OpalTagSelect = /** @class */ (function (_super) {
     OpalTagSelect.prototype.blur = function () {
         this.select.blur();
         return this;
-    };
-    // helpers
-    OpalTagSelect.prototype._isItemDisabled = function (item) {
-        return this.paramDisabled || item[this._viewModelItemDisabledFieldName];
     };
     OpalTagSelect.defaultDataListItemSchema = defaultDataListItemSchema;
     OpalTagSelect.defaultViewModelItemSchema = defaultVMItemSchema;
@@ -441,7 +440,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/tags {\n@Repeat (for=tag of viewModel, trackBy={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |_isItemDisabled }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btnRemoveTag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@IfThen (if=isPlaceholderShown) {\nspan/placeholder {\n'{paramPlaceholder} '\n}\n}\nOpalSelect/select (\nviewType=clean,\nmultiple,\ndataListKeypath={_dataListKeypathParam},\ndataListItemSchema={paramDataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\naddNewItem={paramAddNewItem},\nfocused={paramFocused}\n) {\nOpalSignButton/button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntabIndex_={paramTabIndex_},\ndisabled={paramDisabled}\n)\nRtSlot (class=OpalSelect__menuSlot, for=OpalSelect__menu) {\nOpalPopover/menu (\nclass=OpalSelect__menu,\nposition={paramPopoverPosition},\nautoClosing\n) {\nRtSlot (for=OpalSelect__menuContent) {\n@IfThen (if=_dataListKeypathParam) {\ndiv (class=OpalSelect__menuContent) {\n@IfThen (if=dataList) {\n@Repeat (\nfor=item of dataList,\ntrackBy={_dataListItemValueFieldName}\n) {\nOpalSelectOption/dataListSelectOption, selectOption (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRtSlot (\nclass=OpalSelect__newItemInputSlot,\nfor=OpalSelect__newItemInput\n)\n}\n@IfElse (if=dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (if=_dataListKeypathParam) {\nOpalFilteredList/menuFilteredList (\nclass=OpalSelect__menuContent OpalSelect__filteredList\n) {\nRtSlot (\nclass=OpalFilteredList__queryInputSlot,\nfor=OpalFilteredList__queryInput\n)\nOpalLoadedList/menuLoadedList (\nclass=OpalSelect__loadedList OpalFilteredList__list,\ndataProvider={dataProvider}\n) {\nOpalSelectOption/loadedListSelectOption, selectOption (\nclass=OpalLoadedList__listItem,\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }',\nsubtext='{$item |key(_dataListItemSubtextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/tags {\n@Repeat (for=tag in viewModel, trackBy={_viewModelItemValueFieldName}) {\nspan/tag (\ndata-value='{tag |key(_viewModelItemValueFieldName) }',\ndisabled='{tag |_isItemDisabled }'\n) {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btnRemoveTag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')\n}\n}\n}\nspan/control {\n@IfThen (isPlaceholderShown) {\nspan/placeholder {\n'{paramPlaceholder} '\n}\n}\nOpalSelect/select (\nviewType=clean,\nmultiple,\ndataListKeypath={_dataListKeypathParam},\ndataListItemSchema={paramDataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\naddNewItem={paramAddNewItem},\nfocused={paramFocused}\n) {\nOpalSignButton/button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntabIndex_={paramTabIndex_},\ndisabled={paramDisabled}\n)\nRtSlot (class=OpalSelect__menuSlot, for=OpalSelect__menu) {\nOpalPopover/menu (\nclass=OpalSelect__menu,\nposition={paramPopoverPosition},\nautoClosing\n) {\nRtSlot (for=OpalSelect__menuContent) {\n@IfThen (_dataListKeypathParam) {\ndiv (class=OpalSelect__menuContent) {\n@IfThen (dataList) {\n@Repeat (\nfor=item in dataList,\ntrackBy={_dataListItemValueFieldName}\n) {\nOpalSelectOption/dataListSelectOption, selectOption (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRtSlot (\nclass=OpalSelect__newItemInputSlot,\nfor=OpalSelect__newItemInput\n)\n}\n@IfElse (dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (_dataListKeypathParam) {\nOpalFilteredList/menuFilteredList (\nclass=OpalSelect__menuContent OpalSelect__filteredList\n) {\nRtSlot (\nclass=OpalFilteredList__queryInputSlot,\nfor=OpalFilteredList__queryInput\n)\nOpalLoadedList/menuLoadedList (\nclass=OpalSelect__loadedList OpalFilteredList__list,\ndataProvider={dataProvider}\n) {\nOpalSelectOption/loadedListSelectOption, selectOption (\nclass=OpalLoadedList__listItem,\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }',\nsubtext='{$item |key(_dataListItemSubtextFieldName) }'\n)\n}\n}\n}\n}\n}\n}\n}\n}\n}");
 
 /***/ }),
 

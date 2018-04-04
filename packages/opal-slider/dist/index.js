@@ -274,7 +274,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@IfThen (if=paramRange) {\ndiv/firstInputWrapper3 {\ndiv/firstInputWrapper2 (style=width: {_firstInputWidth}%) {\ndiv/firstInputWrapper {\ninput/firstInput (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramRange.0}\n)\n}\n}\n}\ndiv/secondInputWrapper {\ninput/secondInput (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramRange.1}\n)\n}\n}\n@IfElse (if=paramRange) {\ninput/input (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramValue}\n)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@IfThen (paramRange) {\ndiv/firstInputWrapper3 {\ndiv/firstInputWrapper2 (style=width: {_firstInputWidth}%) {\ndiv/firstInputWrapper {\ninput/firstInput (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramRange.0}\n)\n}\n}\n}\ndiv/secondInputWrapper {\ninput/secondInput (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramRange.1}\n)\n}\n}\n@IfElse (paramRange) {\ninput/input (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramValue}\n)\n}\n}");
 
 /***/ })
 

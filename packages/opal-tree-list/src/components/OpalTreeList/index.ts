@@ -35,8 +35,8 @@ export type TDataTreeList = ObservableTreeList<IDataTreeListItem>;
 export type TFilteredDataTreeList = ObservableTreeList<IFilteredDataTreeListItem>;
 export type TViewModel = ObservableList<{ [name: string]: any }>;
 
-let defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
-let defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
+const defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
+const defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
 
 function toComparable(str: string | null): string | null {
 	return (

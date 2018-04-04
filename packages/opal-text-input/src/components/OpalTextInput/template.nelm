@@ -1,6 +1,6 @@
 @section/inner {
 
-@IfThen (if=paramMultiline) {
+@IfThen (paramMultiline) {
 	textarea/, textField (
 		rows={paramRows},
 		name={paramInputName},
@@ -9,7 +9,7 @@
 		disabled={paramDisabled}
 	)
 }
-@IfElse (if=paramMultiline) {
+@IfElse (paramMultiline) {
 	input/, textField (
 		type={paramInputType},
 		name={paramInputName},
@@ -19,23 +19,23 @@
 	)
 }
 
-@IfThen (if=paramStartIcon) {
+@IfThen (paramStartIcon) {
 	OpalIcon/startIcon (name={paramStartIcon})
 }
 
 RtSlot/endIconSlot (for=endIcon, shown={isEndIconShown}) {
-	@IfThen (if=paramEndIcon) {
+	@IfThen (paramEndIcon) {
 		OpalIcon/endIcon (name={paramEndIcon})
 	}
 }
 
-@IfThen (if=paramClearable) {
+@IfThen (paramClearable) {
 	button/btnClear (shown={isBtnClearShown}) {
 		OpalIcon/btnClearIcon (name=cross)
 	}
 }
 
-@IfThen (if=paramLoading) {
+@IfThen (paramLoading) {
 	OpalLoader/loader (size=s, shown)
 }
 

@@ -2,7 +2,7 @@
 
 span/arrow
 
-@IfThen (if=isContentRendered) {
+@IfThen (isContentRendered) {
 	RtSlot/contentSlot
 }
 

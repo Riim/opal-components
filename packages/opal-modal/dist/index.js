@@ -316,7 +316,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/window {\ndiv/btnCloseWrapper {\nbutton/btnClose\n}\n@IfThen (if=isContentRendered) {\nRtSlot/contentSlot\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/window {\ndiv/btnCloseWrapper {\nbutton/btnClose\n}\n@IfThen (isContentRendered) {\nRtSlot/contentSlot\n}\n}\n}");
 
 /***/ }),
 

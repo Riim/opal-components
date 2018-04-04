@@ -10,7 +10,7 @@ import {
 import './index.css';
 import template from './template.nelm';
 
-let openedModals: Array<OpalModal> = [];
+const openedModals: Array<OpalModal> = [];
 
 let documentFocusListening: IDisposableListening;
 let documentKeyUpListening: IDisposableListening;
