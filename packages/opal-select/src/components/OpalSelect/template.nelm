@@ -22,6 +22,7 @@ RtSlot (for=button) {
 RtSlot (for=menuSlot) {
 	RtSlot/menuSlot (for=menu) {
 		OpalDropdown/menu (autoClosing) {
+			RtSlot (for=menuHeader)
 			RtSlot (for=menuContent) {
 				@IfThen (_isParamDataListSpecified) {
 					div/, menuContent {
@@ -52,6 +53,7 @@ RtSlot (for=menuSlot) {
 					}
 				}
 			}
+			RtSlot (for=menuFooter)
 		}
 	}
 }
