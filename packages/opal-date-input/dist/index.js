@@ -324,6 +324,7 @@ var OpalDateInput = /** @class */ (function (_super) {
         if (ms) {
             date.setMilliseconds(ms);
         }
+        var tsOffset = new Date().getTimezoneOffset() / 60;
         return (('000' + date.getUTCFullYear()).slice(-4) +
             '-' +
             pad(date.getUTCMonth() + 1) +
@@ -337,7 +338,7 @@ var OpalDateInput = /** @class */ (function (_super) {
             pad(date.getUTCSeconds()) +
             '.' +
             ('00' + date.getUTCMilliseconds()).slice(-3) +
-            'Z');
+            (tsOffset < 0 ? '-' + pad(-tsOffset) : '+' + pad(tsOffset)));
     };
     OpalDateInput.prototype.validate = function () {
         return this.$('textInputValidator').validate();

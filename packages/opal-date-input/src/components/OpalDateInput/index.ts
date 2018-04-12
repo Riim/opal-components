@@ -181,6 +181,8 @@ export class OpalDateInput extends BaseComponent {
 			date.setMilliseconds(ms);
 		}
 
+		let tsOffset = new Date().getTimezoneOffset() / 60;
+
 		return (
 			('000' + date.getUTCFullYear()).slice(-4) +
 			'-' +
@@ -195,7 +197,7 @@ export class OpalDateInput extends BaseComponent {
 			pad(date.getUTCSeconds()) +
 			'.' +
 			('00' + date.getUTCMilliseconds()).slice(-3) +
-			'Z'
+			(tsOffset < 0 ? '-' + pad(-tsOffset) : '+' + pad(tsOffset))
 		);
 	}
 
