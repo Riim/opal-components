@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tree-select",
-  "version": "0.33.51",
+  "version": "0.33.55",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,6 +20,6 @@
     "@riim/opal-tree-list": "^0.33.51",
     "cellx": "^1.7.82",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.29"
+    "rionite": "^0.32.40"
   }
 }

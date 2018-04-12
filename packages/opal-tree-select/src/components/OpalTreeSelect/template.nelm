@@ -1,6 +1,6 @@
 OpalModal/menu {
-	RtSlot (for=headerSlot) {
-		RtSlot/headerSlot (for=header)
+	RtSlot (for=menuHeaderSlot) {
+		RtSlot/menuHeaderSlot (for=menuHeader)
 	}
 
 	OpalFilteredList/filteredList {

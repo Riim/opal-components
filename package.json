@@ -80,8 +80,8 @@
     "@riim/opal-text-input": "^0.33.51",
     "@riim/opal-text-input-validator": "^0.33.51",
     "@riim/opal-tree-list": "^0.33.51",
-    "@riim/opal-tree-select": "^0.33.51",
-    "@riim/opal-tree-tag-select": "^0.33.51",
+    "@riim/opal-tree-select": "^0.33.55",
+    "@riim/opal-tree-tag-select": "^0.33.55",
     "@riim/opal-utils": "^0.33.51",
     "cellx": "^1.7.82",
     "rionite": "^0.32.40"
