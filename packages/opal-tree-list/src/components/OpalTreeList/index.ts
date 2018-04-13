@@ -9,7 +9,7 @@ import {
 	} from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
-import { fixParent, ObservableTreeList } from '../../ObservableTreeList';
+import { ObservableTreeList, setParent } from '../../ObservableTreeList';
 import '../OpalTreeListItem';
 import { OpalTreeListItem } from '../OpalTreeListItem';
 import _getListItemContext from './_getListItemContext';
@@ -89,7 +89,7 @@ export class OpalTreeList extends BaseComponent {
 		let dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
 
 		return new ObservableTreeList(
-			fixParent(
+			setParent(
 				this.dataTreeList.reduce(
 					function _(filteredDataTreeList, item) {
 						if (item.children.length) {

@@ -1,7 +1,7 @@
 import { assign } from '@riim/object-assign-polyfill';
 import { EventEmitter } from 'cellx';
 
-const INDEXPATH_EMPTY_ERROR_MESSAGE = 'Indexpath cannot be empty';
+const ERROR_INDEXPATH_EMPTY = 'Indexpath cannot be empty';
 
 export interface IItem {
 	[name: string]: any;
@@ -9,10 +9,10 @@ export interface IItem {
 	children?: Array<IItem>;
 }
 
-export function fixParent<T extends IItem>(items: Array<T>, parent: T | null = null): Array<T> {
+export function setParent<T extends IItem>(items: Array<T>, parent: T | null = null): Array<T> {
 	for (let item of items) {
 		item.parent = parent;
-		fixParent(item.children!, item);
+		setParent(item.children!, item);
 	}
 
 	return items;
@@ -29,72 +29,81 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 		super();
 
 		this._items = items
-			? fixParent(
+			? setParent(
 					items.map(function _(item): T {
 						return assign(assign({}, item), {
 							children: item.children ? item.children.map(_) : []
 						});
 					})
-				)
+			  )
 			: [];
 	}
 
-	get(indexpath: Array<number>): T | undefined {
-		let indexpathLength = indexpath.length;
-
-		if (!indexpathLength) {
-			throw new TypeError(INDEXPATH_EMPTY_ERROR_MESSAGE);
+	get(indexpath: Array<number> | number): T | undefined {
+		if (typeof indexpath == 'number') {
+			return this._items[indexpath];
 		}
 
-		let items: Array<T> | undefined = this._items;
-		let item: T;
-
-		for (let i = 0, l = indexpathLength - 1; i < l; i++) {
-			item = items[indexpath[i]];
-
-			if (!item) {
-				return;
-			}
-
-			items = item.children as Array<T>;
-
-			if (!items) {
-				return;
-			}
+		if (!indexpath.length) {
+			throw new TypeError(ERROR_INDEXPATH_EMPTY);
 		}
 
-		return items[indexpath[indexpathLength - 1]];
+		let item: IItem | undefined = this._items[indexpath[0]];
+
+		for (let i = 1, l = indexpath.length; item && i < l; i++) {
+			item = item.children && item.children[indexpath[i]];
+		}
+
+		return item as T | undefined;
 	}
 
-	set(indexpath: Array<number>, item: T): this {
-		let indexpathLength = indexpath.length;
+	set(indexpath: Array<number> | number, item: T): this {
+		let items: Array<IItem> | undefined;
+		let parent: IItem | undefined;
+		let index: number;
 
-		if (!indexpathLength) {
-			throw new TypeError(INDEXPATH_EMPTY_ERROR_MESSAGE);
-		}
-
-		let items;
-
-		if (indexpathLength == 1) {
+		if (typeof indexpath == 'number') {
 			items = this._items;
+			index = indexpath;
 		} else {
-			let parent = this.get(indexpath.slice(0, -1));
+			let indexpathLength = indexpath.length;
 
-			if (!parent) {
-				throw new TypeError(
-					`Item by indexpath "[${indexpath.slice(0, -1).join(',')}]" is not exist`
-				);
+			if (!indexpathLength) {
+				throw new TypeError(ERROR_INDEXPATH_EMPTY);
 			}
 
-			items = parent.children!;
+			if (indexpathLength == 1) {
+				items = this._items;
+			} else {
+				let node: IItem | undefined = this._items[indexpath[0]];
 
-			item.parent = parent;
+				for (let i = 1, l = indexpathLength - 1; node && i < l; i++) {
+					node = node.children && node.children[indexpath[i]];
+				}
+
+				if (!node) {
+					throw new TypeError(
+						`Item by indexpath "[${indexpath.slice(0, -1).join(',')}]" is not exist`
+					);
+				}
+
+				items = node.children || (node.children = []);
+				parent = node;
+			}
+
+			index = indexpath[indexpathLength - 1];
 		}
 
-		let lastIndexValue = indexpath[indexpathLength - 1];
+		if (index > items.length) {
+			throw new RangeError('Index out of valid range');
+		}
 
-		if (item !== items[lastIndexValue]) {
-			items[lastIndexValue] = item;
+		if (item !== items[index]) {
+			if (parent) {
+				item.parent = parent;
+			}
+
+			items[index] = item;
 			this.emit('change');
 		}
 
@@ -110,42 +119,46 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 		callback: (item: T, index: number, list: ObservableTreeList<T>) => any,
 		context?: any
 	): Array<R> {
-		return [];
+		return 0 as any;
 	}
 
 	filter(
 		callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void,
 		context?: any
 	): Array<T> {
-		return [];
+		return 0 as any;
 	}
 
 	every(
 		callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void,
 		context?: any
 	): boolean {
-		return false;
+		return 0 as any;
 	}
 
 	some(
 		callback: (item: T, index: number, list: ObservableTreeList<T>) => boolean | void,
 		context?: any
 	): boolean {
-		return false;
+		return 0 as any;
 	}
 
 	reduce<R>(
 		callback: (accumulator: R, item: T, index: number, list: ObservableTreeList<T>) => R,
 		initialValue?: R
 	): R {
-		return undefined as any;
+		return 0 as any;
 	}
 
 	reduceRight<R>(
 		callback: (accumulator: R, item: T, index: number, list: ObservableTreeList<T>) => R,
 		initialValue?: R
 	): any {
-		return undefined as any;
+		return 0 as any;
+	}
+
+	toArray(): Array<T> {
+		return this._items.slice();
 	}
 }
 

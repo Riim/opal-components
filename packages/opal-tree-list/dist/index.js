@@ -135,23 +135,23 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var object_assign_polyfill_1 = __webpack_require__(251);
 var cellx_1 = __webpack_require__(3);
-var INDEXPATH_EMPTY_ERROR_MESSAGE = 'Indexpath cannot be empty';
-function fixParent(items, parent) {
+var ERROR_INDEXPATH_EMPTY = 'Indexpath cannot be empty';
+function setParent(items, parent) {
     if (parent === void 0) { parent = null; }
     for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
         var item = items_1[_i];
         item.parent = parent;
-        fixParent(item.children, item);
+        setParent(item.children, item);
     }
     return items;
 }
-exports.fixParent = fixParent;
+exports.setParent = setParent;
 var ObservableTreeList = /** @class */ (function (_super) {
     __extends(ObservableTreeList, _super);
     function ObservableTreeList(items) {
         var _this = _super.call(this) || this;
         _this._items = items
-            ? fixParent(items.map(function _(item) {
+            ? setParent(items.map(function _(item) {
                 return object_assign_polyfill_1.assign(object_assign_polyfill_1.assign({}, item), {
                     children: item.children ? item.children.map(_) : []
                 });
@@ -167,66 +167,80 @@ var ObservableTreeList = /** @class */ (function (_super) {
         configurable: true
     });
     ObservableTreeList.prototype.get = function (indexpath) {
-        var indexpathLength = indexpath.length;
-        if (!indexpathLength) {
-            throw new TypeError(INDEXPATH_EMPTY_ERROR_MESSAGE);
+        if (typeof indexpath == 'number') {
+            return this._items[indexpath];
         }
-        var items = this._items;
-        var item;
-        for (var i = 0, l = indexpathLength - 1; i < l; i++) {
-            item = items[indexpath[i]];
-            if (!item) {
-                return;
-            }
-            items = item.children;
-            if (!items) {
-                return;
-            }
+        if (!indexpath.length) {
+            throw new TypeError(ERROR_INDEXPATH_EMPTY);
         }
-        return items[indexpath[indexpathLength - 1]];
+        var item = this._items[indexpath[0]];
+        for (var i = 1, l = indexpath.length; item && i < l; i++) {
+            item = item.children && item.children[indexpath[i]];
+        }
+        return item;
     };
     ObservableTreeList.prototype.set = function (indexpath, item) {
-        var indexpathLength = indexpath.length;
-        if (!indexpathLength) {
-            throw new TypeError(INDEXPATH_EMPTY_ERROR_MESSAGE);
-        }
         var items;
-        if (indexpathLength == 1) {
+        var parent;
+        var index;
+        if (typeof indexpath == 'number') {
             items = this._items;
+            index = indexpath;
         }
         else {
-            var parent_1 = this.get(indexpath.slice(0, -1));
-            if (!parent_1) {
-                throw new TypeError("Item by indexpath \"[" + indexpath.slice(0, -1).join(',') + "]\" is not exist");
+            var indexpathLength = indexpath.length;
+            if (!indexpathLength) {
+                throw new TypeError(ERROR_INDEXPATH_EMPTY);
             }
-            items = parent_1.children;
-            item.parent = parent_1;
+            if (indexpathLength == 1) {
+                items = this._items;
+            }
+            else {
+                var node = this._items[indexpath[0]];
+                for (var i = 1, l = indexpathLength - 1; node && i < l; i++) {
+                    node = node.children && node.children[indexpath[i]];
+                }
+                if (!node) {
+                    throw new TypeError("Item by indexpath \"[" + indexpath.slice(0, -1).join(',') + "]\" is not exist");
+                }
+                items = node.children || (node.children = []);
+                parent = node;
+            }
+            index = indexpath[indexpathLength - 1];
         }
-        var lastIndexValue = indexpath[indexpathLength - 1];
-        if (item !== items[lastIndexValue]) {
-            items[lastIndexValue] = item;
+        if (index > items.length) {
+            throw new RangeError('Index out of valid range');
+        }
+        if (item !== items[index]) {
+            if (parent) {
+                item.parent = parent;
+            }
+            items[index] = item;
             this.emit('change');
         }
         return this;
     };
     ObservableTreeList.prototype.forEach = function (callback, context) { };
     ObservableTreeList.prototype.map = function (callback, context) {
-        return [];
+        return 0;
     };
     ObservableTreeList.prototype.filter = function (callback, context) {
-        return [];
+        return 0;
     };
     ObservableTreeList.prototype.every = function (callback, context) {
-        return false;
+        return 0;
     };
     ObservableTreeList.prototype.some = function (callback, context) {
-        return false;
+        return 0;
     };
     ObservableTreeList.prototype.reduce = function (callback, initialValue) {
-        return undefined;
+        return 0;
     };
     ObservableTreeList.prototype.reduceRight = function (callback, initialValue) {
-        return undefined;
+        return 0;
+    };
+    ObservableTreeList.prototype.toArray = function () {
+        return this._items.slice();
     };
     return ObservableTreeList;
 }(cellx_1.EventEmitter));
@@ -520,7 +534,7 @@ var OpalTreeList = /** @class */ (function (_super) {
             }
             var dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName;
             var dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
-            return new ObservableTreeList_1.ObservableTreeList(ObservableTreeList_1.fixParent(this.dataTreeList.reduce(function _(filteredDataTreeList, item) {
+            return new ObservableTreeList_1.ObservableTreeList(ObservableTreeList_1.setParent(this.dataTreeList.reduce(function _(filteredDataTreeList, item) {
                 if (item.children.length) {
                     var filteredChildren = item.children.reduce(_, []);
                     if (filteredChildren.length ||
