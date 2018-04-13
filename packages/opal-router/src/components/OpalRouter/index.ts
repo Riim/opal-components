@@ -231,7 +231,7 @@ export class OpalRouter extends BaseComponent {
 					this._applyState();
 
 					if (this.paramScrollTopOnChange) {
-						document.body.scrollTop = 0;
+						window.scrollTo(window.pageXOffset, 0);
 					}
 
 					this.emit('change');
@@ -255,7 +255,7 @@ export class OpalRouter extends BaseComponent {
 			this.element.appendChild(componentEl);
 
 			if (this.paramScrollTopOnChange || this.paramScrollTopOnChangeComponent) {
-				document.body.scrollTop = 0;
+				window.scrollTo(window.pageXOffset, 0);
 			}
 
 			this.emit('change');
@@ -302,7 +302,7 @@ export class OpalRouter extends BaseComponent {
 			this.element.appendChild(componentEl);
 
 			if (this.paramScrollTopOnChange || this.paramScrollTopOnChangeComponent) {
-				document.body.scrollTop = 0;
+				window.scrollTo(window.pageXOffset, 0);
 			}
 		}
 	}

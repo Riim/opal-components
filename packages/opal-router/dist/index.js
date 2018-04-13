@@ -289,7 +289,7 @@ var OpalRouter = /** @class */ (function (_super) {
                     this_1._state = state;
                     this_1._applyState();
                     if (this_1.paramScrollTopOnChange) {
-                        document.body.scrollTop = 0;
+                        window.scrollTo(window.pageXOffset, 0);
                     }
                     this_1.emit('change');
                     return { value: void 0 };
@@ -305,7 +305,7 @@ var OpalRouter = /** @class */ (function (_super) {
             componentEl.$component.ownerComponent = this_1;
             this_1.element.appendChild(componentEl);
             if (this_1.paramScrollTopOnChange || this_1.paramScrollTopOnChangeComponent) {
-                document.body.scrollTop = 0;
+                window.scrollTo(window.pageXOffset, 0);
             }
             this_1.emit('change');
             return { value: void 0 };
@@ -346,7 +346,7 @@ var OpalRouter = /** @class */ (function (_super) {
             componentEl.$component.ownerComponent = this;
             this.element.appendChild(componentEl);
             if (this.paramScrollTopOnChange || this.paramScrollTopOnChangeComponent) {
-                document.body.scrollTop = 0;
+                window.scrollTo(window.pageXOffset, 0);
             }
         }
     };

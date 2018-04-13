@@ -133,7 +133,7 @@ export class OpalDropdown extends BaseComponent {
 				} else {
 					elStyle.maxHeight = el.offsetHeight - excess + 'px';
 				}
-			} else if (diff > 0 && excess - diff <= document.body.scrollTop) {
+			} else if (diff > 0 && excess - diff <= window.pageYOffset) {
 				elStyle.top = 'auto';
 				elStyle.bottom = '100%';
 			}

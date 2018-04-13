@@ -208,7 +208,7 @@ var OpalPopover = /** @class */ (function (_super) {
             var position_1 = (this._positionOnOpen = this.paramPosition).split('-');
             switch (position_1[0]) {
                 case 'left': {
-                    if (elClientRect.left + document.body.scrollLeft < 0 ||
+                    if (elClientRect.left + window.pageXOffset < 0 ||
                         (elClientRect.left < 0 &&
                             containerClientRect.left <
                                 docEl.clientWidth - containerClientRect.right)) {
@@ -218,7 +218,7 @@ var OpalPopover = /** @class */ (function (_super) {
                     break;
                 }
                 case 'top': {
-                    if (elClientRect.top + document.body.scrollTop < 0 ||
+                    if (elClientRect.top + window.pageYOffset < 0 ||
                         (elClientRect.top < 0 &&
                             containerClientRect.top <
                                 docEl.clientHeight - containerClientRect.bottom)) {
@@ -230,7 +230,7 @@ var OpalPopover = /** @class */ (function (_super) {
                 case 'right': {
                     if (elClientRect.right > docEl.clientWidth &&
                         containerClientRect.left > docEl.clientWidth - containerClientRect.right &&
-                        containerClientRect.left + document.body.scrollLeft >=
+                        containerClientRect.left + window.pageXOffset >=
                             elClientRect.right - containerClientRect.right) {
                         this.paramPosition =
                             'left' + (position_1.length == 2 ? '-' + position_1[1] : '');
@@ -240,7 +240,7 @@ var OpalPopover = /** @class */ (function (_super) {
                 case 'bottom': {
                     if (elClientRect.bottom > docEl.clientHeight &&
                         containerClientRect.top > docEl.clientHeight - containerClientRect.bottom &&
-                        containerClientRect.top + document.body.scrollTop >=
+                        containerClientRect.top + window.pageYOffset >=
                             elClientRect.bottom - containerClientRect.bottom) {
                         this.paramPosition =
                             'top' + (position_1.length == 2 ? '-' + position_1[1] : '');
