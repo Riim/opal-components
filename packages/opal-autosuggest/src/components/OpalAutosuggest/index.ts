@@ -8,10 +8,13 @@ import { Computed, Observable } from 'cellx-decorators';
 import {
 	BaseComponent,
 	Component,
+	IComponentElement,
 	IDisposableCallback,
 	IDisposableListening,
 	IDisposableTimeout,
-	Param
+	IPossiblyComponentElement,
+	Param,
+	RtSlot
 	} from 'rionite';
 import './index.css';
 import template from './template.nelm';
@@ -294,6 +297,21 @@ export class OpalAutosuggest extends BaseComponent {
 
 						focusedListItem.removeAttribute('focused');
 						newFocusedListItem.setAttribute('focused', '');
+
+						this.$<OpalTextInput>('textInput')!.focus();
+					} else if (evt.which == 40) {
+						let tabbable = this.$<RtSlot>('menuFooterSlot')!.element.querySelector(
+							'[tabIndex_]'
+						);
+
+						if (tabbable && (tabbable as IPossiblyComponentElement).$component) {
+							((tabbable as IComponentElement).$component as any).focus();
+							document.body.classList.remove('_noFocusHighlight');
+						} else {
+							this.$<OpalTextInput>('textInput')!.focus();
+						}
+					} else {
+						this.$<OpalTextInput>('textInput')!.focus();
 					}
 				}
 
@@ -301,12 +319,14 @@ export class OpalAutosuggest extends BaseComponent {
 			}
 			case 13 /* Enter */:
 			case 39 /* Right */: {
-				let focusedListItem = this._focusedListItem;
-
-				if (focusedListItem) {
+				if (
+					this._focusedListItem &&
+					(document.activeElement == this.$('textInput') ||
+						document.activeElement == document.body)
+				) {
 					evt.preventDefault();
 
-					let focusedListItemDataSet = focusedListItem.dataset;
+					let focusedListItemDataSet = this._focusedListItem.dataset;
 
 					this.$<OpalTextInput>('textInput')!.value = focusedListItemDataSet.text!;
 

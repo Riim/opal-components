@@ -260,8 +260,11 @@ var OpalModal = /** @class */ (function (_super) {
     };
     OpalModal.prototype.focus = function () {
         if (this == openedModals[0]) {
-            document.body.classList.remove('_noFocusHighlight');
-            (this.$('focus') || this.$('btnClose')).focus();
+            var target = this.$('focus');
+            (target || this.$('btnClose')).focus();
+            if (target) {
+                document.body.classList.remove('_noFocusHighlight');
+            }
         }
         return this;
     };

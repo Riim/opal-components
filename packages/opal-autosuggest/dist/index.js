@@ -371,16 +371,31 @@ var OpalAutosuggest = /** @class */ (function (_super) {
                         this._focusedListItem = newFocusedListItem;
                         focusedListItem.removeAttribute('focused');
                         newFocusedListItem.setAttribute('focused', '');
+                        this.$('textInput').focus();
+                    }
+                    else if (evt.which == 40) {
+                        var tabbable = this.$('menuFooterSlot').element.querySelector('[tabIndex_]');
+                        if (tabbable && tabbable.$component) {
+                            tabbable.$component.focus();
+                            document.body.classList.remove('_noFocusHighlight');
+                        }
+                        else {
+                            this.$('textInput').focus();
+                        }
+                    }
+                    else {
+                        this.$('textInput').focus();
                     }
                 }
                 break;
             }
             case 13 /* Enter */:
             case 39 /* Right */: {
-                var focusedListItem = this._focusedListItem;
-                if (focusedListItem) {
+                if (this._focusedListItem &&
+                    (document.activeElement == this.$('textInput') ||
+                        document.activeElement == document.body)) {
                     evt.preventDefault();
-                    var focusedListItemDataSet = focusedListItem.dataset;
+                    var focusedListItemDataSet = this._focusedListItem.dataset;
                     this.$('textInput').value = focusedListItemDataSet.text;
                     this._clearDataList();
                     this._selectItem((_a = {},
@@ -608,7 +623,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown/menu {\nRtSlot (for=menuHeader)\ndiv/list {\nRtSlot (for=menuListHeader)\n@Repeat (for=item in dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\nRtSlot (for=menuListFooter)\n}\n@IfElse (dataList.length) {\nRtSlot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\nRtSlot (for=menuFooter)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown/menu {\nRtSlot (for=menuHeader)\ndiv/list {\n@Repeat (for=item in dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (dataList.length) {\nRtSlot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\nRtSlot/menuFooterSlot (for=menuFooter)\n}\n}");
 
 /***/ })
 /******/ ]);

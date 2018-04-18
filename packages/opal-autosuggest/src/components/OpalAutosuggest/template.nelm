@@ -14,7 +14,6 @@ OpalDropdown/menu {
 	RtSlot (for=menuHeader)
 
 	div/list {
-		RtSlot (for=menuListHeader)
 		@Repeat (for=item in dataList) {
 			div/listItem (
 				data-value='{item |key(_dataListItemValueFieldName) }',
@@ -27,7 +26,6 @@ OpalDropdown/menu {
 				}
 			}
 		}
-		RtSlot (for=menuListFooter)
 	}
 
 	@IfElse (dataList.length) {
@@ -40,7 +38,7 @@ OpalDropdown/menu {
 		}
 	}
 
-	RtSlot (for=menuFooter)
+	RtSlot/menuFooterSlot (for=menuFooter)
 }
 
 }

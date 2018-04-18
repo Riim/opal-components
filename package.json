@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.65",
+  "version": "0.33.73",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -43,11 +43,11 @@
     "trim-lines-loader": "^0.2.1",
     "tslint": "^5.9.1",
     "tslint-loader": "^3.6.0",
-    "typescript": "^2.8.1",
+    "typescript": "^2.8.3",
     "webpack": "^3.11.0"
   },
   "dependencies": {
-    "@riim/opal-autosuggest": "^0.33.55",
+    "@riim/opal-autosuggest": "^0.33.73",
     "@riim/opal-button": "^0.33.51",
     "@riim/opal-calendar": "^0.33.51",
     "@riim/opal-checkbox": "^0.33.51",
@@ -62,7 +62,7 @@
     "@riim/opal-input-validator": "^0.33.51",
     "@riim/opal-loaded-list": "^0.33.51",
     "@riim/opal-loader": "^0.33.51",
-    "@riim/opal-modal": "^0.33.51",
+    "@riim/opal-modal": "^0.33.71",
     "@riim/opal-multirow": "^0.33.65",
     "@riim/opal-multiselect": "^0.33.51",
     "@riim/opal-notification": "^0.33.51",
@@ -83,7 +83,7 @@
     "@riim/opal-tree-select": "^0.33.55",
     "@riim/opal-tree-tag-select": "^0.33.55",
     "@riim/opal-utils": "^0.33.51",
-    "cellx": "^1.7.83",
+    "cellx": "^1.7.86",
     "rionite": "^0.32.41"
   }
 }
