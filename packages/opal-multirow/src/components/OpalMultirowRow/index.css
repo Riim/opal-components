@@ -10,8 +10,7 @@
 
 	@el contentSlot {
 		display: inline-block;
-		margin-bottom: 20px;
-		padding-right: 6px;
+		margin: 0 12px 20px 0;
 	}
 
 	@el btnRemoveRow,
@@ -23,6 +22,7 @@
 	}
 
 	@el btnRemoveRow {
+		margin-right: 9px;
 	}
 
 	@el btnAddRow {

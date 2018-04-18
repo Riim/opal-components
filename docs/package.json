@@ -9,7 +9,7 @@
   "author": "Dmitry Vibe",
   "license": "MIT",
   "dependencies": {
-    "cellx": "^1.7.82",
+    "cellx": "^1.7.83",
     "opal-components": "^0.33.64",
     "rionite": "^0.32.41"
   }

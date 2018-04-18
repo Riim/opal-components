@@ -300,7 +300,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalMultirowRow{display:block;white-space:nowrap}.OpalMultirowRow::after{display:table;clear:both;content:''}.OpalMultirowRow .OpalMultirowRow__contentSlot{display:inline-block;margin-bottom:20px;padding-right:6px}.OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirowRow .OpalMultirowRow__btnAddRow{position:relative;top:1px;display:none}.OpalMultirow__presetRowsSlot[notHaveNewRows] .OpalMultirowRow:last-child .OpalMultirowRow__contentSlot,.OpalMultirow__newRows rt-slot:last-child .OpalMultirowRow .OpalMultirowRow__contentSlot{margin-bottom:0}.OpalMultirow__presetRowsSlot[notSingleRow] .OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirow__newRows[notSingleRow] .OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirow__presetRowsSlot[notHaveNewRows] .OpalMultirowRow:last-child .OpalMultirowRow__btnAddRow,.OpalMultirow__newRows rt-slot:last-child .OpalMultirowRow .OpalMultirowRow__btnAddRow{display:inline-block}.OpalMultirowRow .OpalPopover{white-space:normal}";
+            style.textContent = ".OpalMultirowRow{display:block;white-space:nowrap}.OpalMultirowRow::after{display:table;clear:both;content:''}.OpalMultirowRow .OpalMultirowRow__contentSlot{display:inline-block;margin:0 12px 20px 0}.OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirowRow .OpalMultirowRow__btnAddRow{position:relative;top:1px;display:none}.OpalMultirowRow .OpalMultirowRow__btnRemoveRow{margin-right:9px}.OpalMultirow__presetRowsSlot[notHaveNewRows] .OpalMultirowRow:last-child .OpalMultirowRow__contentSlot,.OpalMultirow__newRows rt-slot:last-child .OpalMultirowRow .OpalMultirowRow__contentSlot{margin-bottom:0}.OpalMultirow__presetRowsSlot[notSingleRow] .OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirow__newRows[notSingleRow] .OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirow__presetRowsSlot[notHaveNewRows] .OpalMultirowRow:last-child .OpalMultirowRow__btnAddRow,.OpalMultirow__newRows rt-slot:last-child .OpalMultirowRow .OpalMultirowRow__btnAddRow{display:inline-block}.OpalMultirowRow .OpalPopover{white-space:normal}";
             head.appendChild(style);
             return style;
         }
@@ -315,7 +315,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/contentSlot\n' '\nOpalSignButton/btnRemoveRow (sign=minus)\n' '\nOpalSignButton/btnAddRow (sign=plus)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/contentSlot\nOpalSignButton/btnRemoveRow (sign=minus)\nOpalSignButton/btnAddRow (sign=plus)\n}");
 
 /***/ }),
 

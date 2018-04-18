@@ -15,7 +15,7 @@ span/tags {
 span/control {
 	@IfThen (isPlaceholderShown) {
 		span/placeholder {
-			'{paramPlaceholder} '
+			'{paramPlaceholder}'
 		}
 	}
 

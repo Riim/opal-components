@@ -20,6 +20,10 @@
 			font-weight: normal;
 			cursor: default;
 
+			&::last-child {
+				margin-right: 41px;
+			}
+
 			@mod disabled {
 				margin-right: 6px;
 				padding-right: 18px;
@@ -93,6 +97,7 @@
 		user-select: none;
 	}
 		@el placeholder {
+			margin-right: 9px;
 		}
 
 		@el select {
