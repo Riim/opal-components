@@ -172,10 +172,12 @@ export class OpalModal extends BaseComponent {
 			documentFocusListening.stop();
 			documentKeyUpListening.stop();
 
-			let bodyStyle = document.body.style;
+			let body = document.body;
 
-			bodyStyle.overflow = '';
-			bodyStyle.marginRight = '';
+			body.style.overflow = '';
+			body.style.marginRight = '';
+
+			body.classList.add('_noFocusHighlight');
 		}
 	}
 

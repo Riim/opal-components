@@ -253,9 +253,10 @@ var OpalModal = /** @class */ (function (_super) {
         else {
             documentFocusListening.stop();
             documentKeyUpListening.stop();
-            var bodyStyle = document.body.style;
-            bodyStyle.overflow = '';
-            bodyStyle.marginRight = '';
+            var body = document.body;
+            body.style.overflow = '';
+            body.style.marginRight = '';
+            body.classList.add('_noFocusHighlight');
         }
     };
     OpalModal.prototype.focus = function () {

@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-sign-button",
-  "version": "0.33.65",
+  "version": "0.33.75",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@riim/next-tick": "^1.0.1",
-    "cellx": "^1.7.83",
+    "cellx": "^1.7.86",
     "cellx-decorators": "^1.4.9",
     "reflect-metadata": "^0.1.12",
     "rionite": "^0.32.41"
