@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.77",
+  "version": "0.33.78",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -27,7 +27,7 @@
     "collapse-line-breaks-loader": "^0.2.1",
     "glob": "^7.1.2",
     "gulp": "^3.9.1",
-    "lerna": "^2.10.2",
+    "lerna": "^2.11.0",
     "mkdirp": "^0.5.1",
     "postcss-color-function": "^4.0.1",
     "postcss-css-variables": "^0.8.1",
@@ -62,7 +62,7 @@
     "@riim/opal-input-validator": "^0.33.51",
     "@riim/opal-loaded-list": "^0.33.51",
     "@riim/opal-loader": "^0.33.51",
-    "@riim/opal-modal": "^0.33.74",
+    "@riim/opal-modal": "^0.33.78",
     "@riim/opal-multirow": "^0.33.65",
     "@riim/opal-multiselect": "^0.33.51",
     "@riim/opal-notification": "^0.33.51",
@@ -84,6 +84,6 @@
     "@riim/opal-tree-tag-select": "^0.33.55",
     "@riim/opal-utils": "^0.33.51",
     "cellx": "^1.7.86",
-    "rionite": "^0.32.41"
+    "rionite": "^0.32.42"
   }
 }
