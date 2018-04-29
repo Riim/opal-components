@@ -14,7 +14,7 @@ import {
 	IDisposableTimeout,
 	IPossiblyComponentElement,
 	Param,
-	RtSlot
+	RnSlot
 	} from 'rionite';
 import './index.css';
 import template from './template.nelm';
@@ -300,7 +300,7 @@ export class OpalAutosuggest extends BaseComponent {
 
 						this.$<OpalTextInput>('textInput')!.focus();
 					} else if (evt.which == 40) {
-						let tabbable = this.$<RtSlot>('menuFooterSlot')!.element.querySelector(
+						let tabbable = this.$<RnSlot>('menuFooterSlot')!.element.querySelector(
 							'[tabIndex_]'
 						);
 
@@ -381,11 +381,11 @@ export class OpalAutosuggest extends BaseComponent {
 
 			// Cell.forceRelease();
 			// Содержимое OpalDropdown рендерится лениво, из-за этого обработчик изменения dataList
-			// в RtRepeat оказывается после _onDataListChange (RtRepeat рендерится после
-			// elementAttached). При первом открытии меню всё хорошо, тк. появившийся RtRepeat
-			// показывает свои items в RtRepeat#elementConnected, но при втором открытии возможно
+			// в RnRepeat оказывается после _onDataListChange (RnRepeat рендерится после
+			// elementAttached). При первом открытии меню всё хорошо, тк. появившийся RnRepeat
+			// показывает свои items в RnRepeat#elementConnected, но при втором открытии возможно
 			// следующее: срабатывает _onDataListChange в котором открывается меню,
-			// для меню считается выравнивание, но RtRepeat ещё не обновился тк. обработчик
+			// для меню считается выравнивание, но RnRepeat ещё не обновился тк. обработчик
 			// изменения dataList в нём идёт сразу за текущим.
 			// В результате выравнивание меню получается неправильным.
 			// По этой причине вместо Cell.forceRelease здесь nextTick и nextTick добавлен в

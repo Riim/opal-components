@@ -19,8 +19,8 @@ import {
 	IComponentElement,
 	IDisposableListening,
 	Param,
-	RtIfThen,
-	RtRepeat
+	RnIfThen,
+	RnRepeat
 	} from 'rionite';
 import { OpalSelectOption } from '../OpalSelectOption';
 import './index.css';
@@ -177,13 +177,12 @@ export class OpalSelect extends BaseComponent {
 
 	initialize() {
 		if (this.paramDataListKeypath) {
-			define(
-				this,
-				'dataList',
-				new Cell(Function(`return this.${this.paramDataListKeypath};`), {
+			define(this, 'dataList', new Cell(
+				Function(`return this.${this.paramDataListKeypath};`),
+				{
 					context: this.ownerComponent || window
-				})
-			);
+				}
+			));
 
 			this._isParamDataListSpecified = true;
 		} else if (this.$specifiedParams && this.$specifiedParams.has('dataList')) {
@@ -624,7 +623,7 @@ export class OpalSelect extends BaseComponent {
 	_onMenuChange(evt: IEvent) {
 		if (
 			!this._notUpdateOptions &&
-			(evt.target instanceof RtIfThen || evt.target instanceof RtRepeat)
+			(evt.target instanceof RnIfThen || evt.target instanceof RnRepeat)
 		) {
 			this.optionsCell.pull();
 			this._updateOptions();

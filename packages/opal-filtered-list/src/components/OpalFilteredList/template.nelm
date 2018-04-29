@@ -1,13 +1,13 @@
 @section/inner {
 
-RtSlot (for=queryInputSlot) {
-	RtSlot/queryInputSlot (for=queryInput) {
+RnSlot (for=queryInputSlot) {
+	RnSlot/queryInputSlot (for=queryInput) {
 		OpalTextInput/queryInput (placeholder={constructor.i18n.queryInputPlaceholder}, clearable) {
 			OpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)
 		}
 	}
 }
 
-RtSlot/listSlot (for=list)
+RnSlot/listSlot (for=list)
 
 }

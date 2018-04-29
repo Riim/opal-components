@@ -1,6 +1,6 @@
 import { mixin } from '@riim/mixin';
 import { Cell, define } from 'cellx';
-import { RtSlot } from 'rionite';
+import { RnSlot } from 'rionite';
 import { OpalTreeListItem } from '../OpalTreeListItem';
 import {
 	IDataTreeListItem,
@@ -57,7 +57,7 @@ function isIndeterminateItem(
 export default function _getListItemContext(
 	this: OpalTreeList | OpalTreeListItem,
 	context: { [name: string]: any },
-	slot: RtSlot
+	slot: RnSlot
 ): { [name: string]: any } {
 	let $item: IFilteredDataTreeListItem = slot.$context.$item;
 

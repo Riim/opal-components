@@ -305,7 +305,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nOpalPopover/popover (position={paramPopoverPosition}) {\nRtSlot/contentSlot\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nOpalPopover/popover (position={paramPopoverPosition}) {\nRnSlot/contentSlot\n}\n}");
 
 /***/ }),
 
@@ -332,7 +332,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/contentSlot\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot/contentSlot\n}");
 
 /***/ }),
 

@@ -9,7 +9,7 @@ import {
 	IDisposableCallback,
 	IDisposableTimeout,
 	Param,
-	RtSlot
+	RnSlot
 	} from 'rionite';
 import './index.css';
 import template from './template.nelm';
@@ -221,7 +221,7 @@ export class OpalLoadedList extends BaseComponent {
 		);
 	}
 
-	_getListItemContext(context: { [name: string]: any }, slot: RtSlot): { [name: string]: any } {
+	_getListItemContext(context: { [name: string]: any }, slot: RnSlot): { [name: string]: any } {
 		return mixin(Object.create(context), slot.$context!, ['$component']);
 	}
 }

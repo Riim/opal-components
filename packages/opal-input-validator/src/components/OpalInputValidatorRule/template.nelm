@@ -1,7 +1,7 @@
 @section/inner {
 
 OpalPopover/popover (position={paramPopoverPosition}) {
-	RtSlot/contentSlot
+	RnSlot/contentSlot
 }
 
 }

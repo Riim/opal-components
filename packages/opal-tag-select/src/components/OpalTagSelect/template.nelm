@@ -38,14 +38,14 @@ span/control {
 			disabled={paramDisabled}
 		)
 
-		RtSlot (class=OpalSelect__menuSlot, for=OpalSelect__menu) {
+		RnSlot (class=OpalSelect__menuSlot, for=OpalSelect__menu) {
 			OpalPopover/menu (
 				class=OpalSelect__menu,
 				position={paramPopoverPosition},
 				autoClosing
 			) {
-				RtSlot (for=OpalSelect__menuHeader)
-				RtSlot (for=OpalSelect__menuContent) {
+				RnSlot (for=OpalSelect__menuHeader)
+				RnSlot (for=OpalSelect__menuContent) {
 					@IfThen (_dataListKeypathParam) {
 						div (class=OpalSelect__menuContent) {
 							@IfThen (dataList) {
@@ -61,7 +61,7 @@ span/control {
 									)
 								}
 
-								RtSlot (
+								RnSlot (
 									class=OpalSelect__newItemInputSlot,
 									for=OpalSelect__newItemInput
 								)
@@ -75,7 +75,7 @@ span/control {
 						OpalFilteredList/menuFilteredList (
 							class=OpalSelect__menuContent OpalSelect__filteredList
 						) {
-							RtSlot (
+							RnSlot (
 								class=OpalFilteredList__queryInputSlot,
 								for=OpalFilteredList__queryInput
 							)
@@ -94,7 +94,7 @@ span/control {
 						}
 					}
 				}
-				RtSlot (for=OpalSelect__menuFooter)
+				RnSlot (for=OpalSelect__menuFooter)
 			}
 		}
 	}

@@ -23,7 +23,7 @@
 	OpalIcon/startIcon (name={paramStartIcon})
 }
 
-RtSlot/endIconSlot (for=endIcon, shown={isEndIconShown}) {
+RnSlot/endIconSlot (for=endIcon, shown={isEndIconShown}) {
 	@IfThen (paramEndIcon) {
 		OpalIcon/endIcon (name={paramEndIcon})
 	}

@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tree-select",
-  "version": "0.33.55",
+  "version": "0.33.80",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,13 +13,13 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-button": "^0.33.51",
-    "@riim/opal-filtered-list": "^0.33.51",
-    "@riim/opal-modal": "^0.33.51",
-    "@riim/opal-select": "^0.33.51",
-    "@riim/opal-tree-list": "^0.33.51",
-    "cellx": "^1.7.82",
+    "@riim/opal-button": "^0.33.80",
+    "@riim/opal-filtered-list": "^0.33.80",
+    "@riim/opal-modal": "^0.33.80",
+    "@riim/opal-select": "^0.33.80",
+    "@riim/opal-tree-list": "^0.33.80",
+    "cellx": "^1.7.86",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.40"
+    "rionite": "^0.32.46"
   }
 }

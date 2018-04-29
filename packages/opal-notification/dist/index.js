@@ -308,7 +308,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/bar (viewType={paramViewType}, iconSize={paramIconSize}, buttonHide={paramButtonHide}) {\nRtSlot/iconSlot (for=icon)\nRtSlot/contentSlot\nbutton/btnHide (hide={paramButtonHide |not }) {\nOpalIcon/btnHideIcon (name=cross)\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/bar (viewType={paramViewType}, iconSize={paramIconSize}, buttonHide={paramButtonHide}) {\nRnSlot/iconSlot (for=icon)\nRnSlot/contentSlot\nbutton/btnHide (hide={paramButtonHide |not }) {\nOpalIcon/btnHideIcon (name=cross)\n}\n}\n}");
 
 /***/ }),
 

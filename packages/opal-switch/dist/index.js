@@ -322,7 +322,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabIndex={_tabIndex}) {\nspan/thumb\n}\n' '\nRtSlot/contentSlot\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nlabel/label {\ninput/input (type=checkbox)\nspan/control (tabIndex={_tabIndex}) {\nspan/thumb\n}\n' '\nRnSlot/contentSlot\n}\n}");
 
 /***/ }),
 

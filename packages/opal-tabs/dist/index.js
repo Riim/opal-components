@@ -464,7 +464,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabIndex={_tabIndex}) {\nRtSlot/contentSlot\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabIndex={_tabIndex}) {\nRnSlot/contentSlot\n}\n}");
 
 /***/ }),
 
@@ -491,7 +491,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/contentSlot\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot/contentSlot\n}");
 
 /***/ }),
 
@@ -588,7 +588,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@IfThen (isContentRendered) {\nRtSlot/contentSlot\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@IfThen (isContentRendered) {\nRnSlot/contentSlot\n}\n}");
 
 /***/ }),
 
@@ -615,7 +615,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot/tabListSlot (forTag=opal-tab-list) {\nOpalTabList/tabList {\nRtSlot/tabs, tabs (forTag=opal-tab)\n}\n}\nRtSlot/tabPanels, tabPanels (forTag=opal-tab-panel)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot/tabListSlot (forTag=opal-tab-list) {\nOpalTabList/tabList {\nRnSlot/tabs, tabs (forTag=opal-tab)\n}\n}\nRnSlot/tabPanels, tabPanels (forTag=opal-tab-panel)\n}");
 
 /***/ }),
 

@@ -11,7 +11,7 @@
 		}
 
 		div/menuHeaderRightPart {
-			RtSlot/menuHeaderContentSlot (for=menuHeaderContent) {
+			RnSlot/menuHeaderContentSlot (for=menuHeaderContent) {
 				@IfThen (viewModel.length) {
 					span/selectedCount {
 						'выбрано {viewModel.length}'
@@ -50,7 +50,7 @@
 		}
 
 		@IfThen (isNothingSelectedShown) {
-			RtSlot/nothingSelectedSlot (for=nothingSelected) {
+			RnSlot/nothingSelectedSlot (for=nothingSelected) {
 				span/nothingSelected {
 					span/nothingSelectedMessage {
 						'{constructor.i18n.nothingSelected}'
@@ -62,7 +62,7 @@
 
 	div/menuFooter {
 		div/menuFooterLeftPart {
-			RtSlot/menuFooterContentSlot (for=menuFooterContent)
+			RnSlot/menuFooterContentSlot (for=menuFooterContent)
 		}
 
 		div/menuFooterRightPart {

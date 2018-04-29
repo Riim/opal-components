@@ -439,11 +439,11 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             this.dataList.addRange(items);
             // Cell.forceRelease();
             // Содержимое OpalDropdown рендерится лениво, из-за этого обработчик изменения dataList
-            // в RtRepeat оказывается после _onDataListChange (RtRepeat рендерится после
-            // elementAttached). При первом открытии меню всё хорошо, тк. появившийся RtRepeat
-            // показывает свои items в RtRepeat#elementConnected, но при втором открытии возможно
+            // в RnRepeat оказывается после _onDataListChange (RnRepeat рендерится после
+            // elementAttached). При первом открытии меню всё хорошо, тк. появившийся RnRepeat
+            // показывает свои items в RnRepeat#elementConnected, но при втором открытии возможно
             // следующее: срабатывает _onDataListChange в котором открывается меню,
-            // для меню считается выравнивание, но RtRepeat ещё не обновился тк. обработчик
+            // для меню считается выравнивание, но RnRepeat ещё не обновился тк. обработчик
             // изменения dataList в нём идёт сразу за текущим.
             // В результате выравнивание меню получается неправильным.
             // По этой причине вместо Cell.forceRelease здесь nextTick и nextTick добавлен в
@@ -623,7 +623,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown/menu {\nRtSlot (for=menuHeader)\ndiv/list {\n@Repeat (for=item in dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (dataList.length) {\nRtSlot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\nRtSlot/menuFooterSlot (for=menuFooter)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown/menu {\nRnSlot (for=menuHeader)\ndiv/list {\n@Repeat (for=item in dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (dataList.length) {\nRnSlot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\nRnSlot/menuFooterSlot (for=menuFooter)\n}\n}");
 
 /***/ })
 /******/ ]);

@@ -6,7 +6,7 @@ div/window {
 	}
 
 	@IfThen (isContentRendered) {
-		RtSlot/contentSlot
+		RnSlot/contentSlot
 	}
 }
 

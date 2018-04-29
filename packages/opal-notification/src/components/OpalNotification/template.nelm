@@ -1,8 +1,8 @@
 @section/inner {
 
 div/bar (viewType={paramViewType}, iconSize={paramIconSize}, buttonHide={paramButtonHide}) {
-	RtSlot/iconSlot (for=icon)
-	RtSlot/contentSlot
+	RnSlot/iconSlot (for=icon)
+	RnSlot/contentSlot
 
 	button/btnHide (hide={paramButtonHide |not }) {
 		OpalIcon/btnHideIcon (name=cross)

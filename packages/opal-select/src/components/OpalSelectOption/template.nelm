@@ -1,7 +1,7 @@
 @section/inner {
 
 button/control (tabIndex={_tabIndex}) {
-	RtSlot/contentSlot {
+	RnSlot/contentSlot {
 		'{paramText}'
 
 		@IfThen (paramSubtext) {

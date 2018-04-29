@@ -227,7 +227,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRtSlot (for=queryInputSlot) {\nRtSlot/queryInputSlot (for=queryInput) {\nOpalTextInput/queryInput (placeholder={constructor.i18n.queryInputPlaceholder}, clearable) {\nOpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\n}\nRtSlot/listSlot (for=list)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot (for=queryInputSlot) {\nRnSlot/queryInputSlot (for=queryInput) {\nOpalTextInput/queryInput (placeholder={constructor.i18n.queryInputPlaceholder}, clearable) {\nOpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\n}\nRnSlot/listSlot (for=list)\n}");
 
 /***/ }),
 
