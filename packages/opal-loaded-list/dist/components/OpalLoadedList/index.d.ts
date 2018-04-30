@@ -1,5 +1,5 @@
 import { ObservableList } from 'cellx';
-import { BaseComponent, IDisposableCallback, IDisposableTimeout, RtSlot } from 'rionite';
+import { BaseComponent, IDisposableCallback, IDisposableTimeout, RnSlot } from 'rionite';
 import './index.css';
 export interface IDataListItem {
     [name: string]: any;
@@ -48,7 +48,7 @@ export declare class OpalLoadedList extends BaseComponent {
     _load(): void;
     _getListItemContext(context: {
         [name: string]: any;
-    }, slot: RtSlot): {
+    }, slot: RnSlot): {
         [name: string]: any;
     };
 }
