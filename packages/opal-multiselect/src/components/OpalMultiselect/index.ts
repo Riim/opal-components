@@ -37,13 +37,8 @@ import template from './template.nelm';
 
 	domEvents: {
 		btnDeselectItem: {
-			click(evt, btn: HTMLElement) {
-				let vmItemValueFieldName = this._viewModelItemValueFieldName;
-				let itemValue = btn.dataset.itemValue;
-
-				this.viewModel.removeAt(
-					this.viewModel.findIndex(item => item[vmItemValueFieldName] == itemValue)
-				);
+			click(evt, context) {
+				this.viewModel.remove(context.item);
 			}
 		}
 	}

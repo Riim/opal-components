@@ -509,10 +509,10 @@ export class OpalSelect extends BaseComponent {
 		return false;
 	}
 
-	_onMenuButtonClick(evt: IEvent<OpalTextInput>): false | void {
+	_onMenuButtonClick(evt: IEvent<OpalButton>): false | void {
 		let button = evt.target;
 
-		if (button !== this.$('btnAddNewItem')) {
+		if (button !== this.$<OpalButton>('btnAddNewItem')) {
 			return;
 		}
 
@@ -546,7 +546,7 @@ export class OpalSelect extends BaseComponent {
 	_onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void {
 		let textInput = evt.target;
 
-		if (textInput !== this.$('newItemInput')) {
+		if (textInput !== this.$<OpalTextInput>('newItemInput')) {
 			return;
 		}
 

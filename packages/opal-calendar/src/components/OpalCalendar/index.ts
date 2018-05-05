@@ -133,7 +133,7 @@ export function toDate(this: OpalCalendar) {
 		},
 
 		day: {
-			click(evt, dayEl: HTMLElement) {
+			click(evt, context, dayEl: HTMLElement) {
 				this._click(dayEl);
 			}
 		}

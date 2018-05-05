@@ -44,19 +44,19 @@ const defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', sub
 
 	domEvents: {
 		listItem: {
-			click(evt, listItem: HTMLElement) {
+			click(evt, context) {
 				let textInput = this.$<OpalTextInput>('textInput')!;
-				let listItemDataSet = listItem.dataset;
+				let item = context.item;
 
-				textInput.value = listItemDataSet.text!;
+				textInput.value = item[this._dataListItemTextFieldName];
 				textInput.focus();
 
 				this._clearDataList();
 
 				this._selectItem({
-					[this._dataListItemValueFieldName]: listItemDataSet.value,
-					[this._dataListItemTextFieldName]: listItemDataSet.text,
-					[this._dataListItemSubtextFieldName]: listItemDataSet.subtext
+					[this._dataListItemValueFieldName]: item[this._dataListItemValueFieldName],
+					[this._dataListItemTextFieldName]: item[this._dataListItemTextFieldName],
+					[this._dataListItemSubtextFieldName]: item[this._dataListItemSubtextFieldName]
 				});
 			}
 		}

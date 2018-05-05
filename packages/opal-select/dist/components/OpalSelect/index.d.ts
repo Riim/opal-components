@@ -91,7 +91,7 @@ export declare class OpalSelect extends BaseComponent {
     _onMenuParamOpenedChange(evt: IEvent): false;
     _onMenuSelectOptionSelect(evt: IEvent<OpalSelectOption>): false;
     _onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>): false;
-    _onMenuButtonClick(evt: IEvent<OpalTextInput>): false | void;
+    _onMenuButtonClick(evt: IEvent<OpalButton>): false | void;
     _onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void;
     _embedNewItem(newItem: {
         [name: string]: string;

@@ -2,12 +2,9 @@
 
 span/tags {
 	@Repeat (for=tag in viewModel, trackBy={_viewModelItemValueFieldName}) {
-		span/tag (
-			data-value='{tag |key(_viewModelItemValueFieldName) }',
-			disabled='{tag |_isItemDisabled }'
-		) {
+		span/tag (disabled='{tag |_isItemDisabled }') {
 			'{tag |key(_viewModelItemTextFieldName) }'
-			button/btnRemoveTag (data-tag-value='{tag |key(_viewModelItemValueFieldName) }')
+			button/btnRemoveTag
 		}
 	}
 }

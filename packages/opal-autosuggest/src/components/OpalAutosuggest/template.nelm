@@ -17,7 +17,8 @@ OpalDropdown/menu {
 		@Repeat (for=item in dataList) {
 			div/listItem (
 				data-value='{item |key(_dataListItemValueFieldName) }',
-				data-text='{item |key(_dataListItemTextFieldName) }'
+				data-text='{item |key(_dataListItemTextFieldName) }',
+				data-subtext='{item |key(_dataListItemSubtextFieldName) }'
 			) {
 				'{item |key(_dataListItemTextFieldName) }'
 

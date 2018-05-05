@@ -35,12 +35,12 @@ function pad(num: number): string {
 
 	events: {
 		calendar: {
-			change(evt: IEvent<OpalCalendar>) {
+			change(evt: IEvent) {
 				this.$<OpalDropdown>('calendarMenu')!.close();
 
 				let textInput = this.$<OpalTextInput>('textInput')!;
 
-				textInput.value = evt.target.stringValue;
+				textInput.value = (evt.target as OpalCalendar).stringValue;
 				textInput.focus();
 
 				this.$<OpalTextInputValidator>('textInputValidator')!.validate();

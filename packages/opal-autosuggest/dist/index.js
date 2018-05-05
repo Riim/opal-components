@@ -577,16 +577,16 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             template: template_nelm_1.default,
             domEvents: {
                 listItem: {
-                    click: function (evt, listItem) {
+                    click: function (evt, context) {
                         var textInput = this.$('textInput');
-                        var listItemDataSet = listItem.dataset;
-                        textInput.value = listItemDataSet.text;
+                        var item = context.item;
+                        textInput.value = item[this._dataListItemTextFieldName];
                         textInput.focus();
                         this._clearDataList();
                         this._selectItem((_a = {},
-                            _a[this._dataListItemValueFieldName] = listItemDataSet.value,
-                            _a[this._dataListItemTextFieldName] = listItemDataSet.text,
-                            _a[this._dataListItemSubtextFieldName] = listItemDataSet.subtext,
+                            _a[this._dataListItemValueFieldName] = item[this._dataListItemValueFieldName],
+                            _a[this._dataListItemTextFieldName] = item[this._dataListItemTextFieldName],
+                            _a[this._dataListItemSubtextFieldName] = item[this._dataListItemSubtextFieldName],
                             _a));
                         var _a;
                     }
@@ -623,7 +623,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown/menu {\nRnSlot (for=menuHeader)\ndiv/list {\n@Repeat (for=item in dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (dataList.length) {\nRnSlot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\nRnSlot/menuFooterSlot (for=menuFooter)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown/menu {\nRnSlot (for=menuHeader)\ndiv/list {\n@Repeat (for=item in dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (dataList.length) {\nRnSlot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\nRnSlot/menuFooterSlot (for=menuFooter)\n}\n}");
 
 /***/ })
 /******/ ]);

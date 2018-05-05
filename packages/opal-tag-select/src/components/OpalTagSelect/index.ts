@@ -25,25 +25,20 @@ const defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled:
 
 	domEvents: {
 		tag: {
-			click(evt, tag: HTMLElement) {
+			click(evt, context, tag) {
 				if (tag != evt.target) {
 					return;
 				}
 
 				this.emit('tag-click', {
-					value: tag.dataset.value
+					value: context.tag[this._viewModelItemValueFieldName]
 				});
 			}
 		},
 
 		btnRemoveTag: {
-			click(evt, btn: HTMLElement) {
-				let vmItemValueFieldName = this._viewModelItemValueFieldName;
-				let tagValue = btn.dataset.tagValue;
-
-				this.viewModel.removeAt(
-					this.viewModel.findIndex(tag => tag[vmItemValueFieldName] == tagValue)
-				);
+			click(evt, context) {
+				this.viewModel.remove(context.tag);
 				this.emit('change');
 			}
 		}
@@ -111,15 +106,11 @@ export class OpalTagSelect extends BaseComponent {
 		let dataListKeypath = this.paramDataListKeypath;
 
 		if (dataListKeypath || (this.$specifiedParams && this.$specifiedParams.has('dataList'))) {
-			define(
-				this,
-				'dataList',
-				dataListKeypath
-					? new Cell(Function(`return this.${dataListKeypath};`), {
-							context: this.ownerComponent || window
-						})
-					: () => this.paramDataList
-			);
+			define(this, 'dataList', dataListKeypath
+				? new Cell(Function(`return this.${dataListKeypath};`), {
+						context: this.ownerComponent || window
+				  })
+				: () => this.paramDataList);
 
 			this.dataProvider = null;
 

@@ -558,7 +558,7 @@ var OpalCalendar = /** @class */ (function (_super) {
                     }
                 },
                 day: {
-                    click: function (evt, dayEl) {
+                    click: function (evt, context, dayEl) {
                         this._click(dayEl);
                     }
                 }
