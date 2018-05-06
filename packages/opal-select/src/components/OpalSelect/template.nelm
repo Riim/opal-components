@@ -5,7 +5,7 @@ RnSlot (for=button) {
 		viewType={paramViewType},
 		size={paramSize},
 		checkable,
-		tabIndex_={paramTabIndex_},
+		tabIndex={paramTabIndex},
 		disabled={paramDisabled}
 	) {
 		@IfThen (paramText) {

@@ -15,13 +15,13 @@ import template from './template.nelm';
 })
 export class OpalRadioButton extends BaseComponent {
 	@Param paramChecked = false;
-	@Param paramTabIndex_ = 0;
+	@Param paramTabIndex = 0;
 	@Param paramFocused = false;
 	@Param paramDisabled = false;
 
 	@Computed
 	get _tabIndex(): number {
-		return this.paramDisabled ? -1 : this.paramTabIndex_;
+		return this.paramDisabled ? -1 : this.paramTabIndex;
 	}
 
 	_documentKeyDownListening: IDisposableListening;

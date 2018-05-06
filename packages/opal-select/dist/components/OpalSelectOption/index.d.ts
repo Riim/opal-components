@@ -7,7 +7,7 @@ export declare class OpalSelectOption extends BaseComponent {
     paramSubtext: string;
     paramSelected: boolean;
     paramIndeterminate: boolean;
-    paramTabIndex_: number;
+    paramTabIndex: number;
     paramFocused: boolean;
     paramDisabled: boolean;
     readonly _tabIndex: number;

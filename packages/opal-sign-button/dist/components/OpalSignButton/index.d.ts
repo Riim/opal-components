@@ -5,7 +5,7 @@ export declare class OpalSignButton extends BaseComponent {
     paramSign: string;
     paramCheckable: boolean;
     paramChecked: boolean;
-    paramTabIndex_: number;
+    paramTabIndex: number;
     paramFocused: boolean;
     paramDisabled: boolean;
     readonly _tabIndex: number;

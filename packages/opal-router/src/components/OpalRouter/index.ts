@@ -1,4 +1,5 @@
 import { hyphenize } from '@riim/hyphenize';
+import { snakeCaseAttributeName } from '@riim/rionite-snake-case-attribute-name';
 import { history, Location } from 'created-browser-history';
 import {
 	BaseComponent,
@@ -199,7 +200,7 @@ export class OpalRouter extends BaseComponent {
 						for (let name in state) {
 							if (
 								$paramsConfig[name].readonly &&
-								componentEl.getAttribute(name) !==
+								componentEl.getAttribute(snakeCaseAttributeName(name, true)) !==
 									valueToAttributeValue(state[name])
 							) {
 								canWrite = false;
@@ -221,7 +222,7 @@ export class OpalRouter extends BaseComponent {
 							let $paramConfig = $paramsConfig[name];
 
 							if ($paramConfig && !($paramConfig.name in state)) {
-								componentEl.removeAttribute(name);
+								componentEl.removeAttribute(snakeCaseAttributeName(name, true));
 							}
 						}
 					}
@@ -274,7 +275,10 @@ export class OpalRouter extends BaseComponent {
 		let componentEl = this._componentElement!;
 
 		for (let name in state) {
-			componentEl.setAttribute(name, valueToAttributeValue(state[name]));
+			componentEl.setAttribute(
+				snakeCaseAttributeName(name, true),
+				valueToAttributeValue(state[name])
+			);
 		}
 	}
 

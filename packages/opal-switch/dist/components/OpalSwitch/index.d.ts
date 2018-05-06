@@ -3,7 +3,7 @@ import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalSwitch extends BaseComponent {
     paramChecked: boolean;
-    paramTabIndex_: number;
+    paramTabIndex: number;
     paramFocused: boolean;
     paramDisabled: boolean;
     _tabIndex(): number;

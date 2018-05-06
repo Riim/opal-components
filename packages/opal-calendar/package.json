@@ -1,24 +1,10 @@
 {
-  "name": "@riim/opal-calendar",
-  "version": "0.33.84",
-  "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Dmitry Vibe",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@riim/next-tick": "^1.0.1",
-    "@riim/opal-icon": "^0.33.84",
-    "@riim/opal-select": "^0.33.84",
-    "cellx": "^1.7.86",
-    "cellx-decorators": "^1.4.9",
-    "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.65"
-  }
+	"dependencies": {
+		"@riim/next-tick": "^1.0.1",
+		"cellx": "^1.7.86",
+		"cellx-decorators": "^1.4.9",
+		"reflect-metadata": "^0.1.12",
+		"rionite": "^0.32.70"
+	},
+	"version": "0.33.86"
 }

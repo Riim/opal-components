@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 209);
+/******/ 	return __webpack_require__(__webpack_require__.s = 210);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -96,7 +96,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ }),
 
-/***/ 209:
+/***/ 210:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106,12 +106,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-__export(__webpack_require__(210));
+__export(__webpack_require__(211));
 
 
 /***/ }),
 
-/***/ 210:
+/***/ 211:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -139,22 +139,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(211);
-var template_nelm_1 = __webpack_require__(212);
+__webpack_require__(212);
+var template_nelm_1 = __webpack_require__(213);
 var OpalSignButton = /** @class */ (function (_super) {
     __extends(OpalSignButton, _super);
     function OpalSignButton() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramCheckable = false;
         _this.paramChecked = false;
-        _this.paramTabIndex_ = 0;
+        _this.paramTabIndex = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
         return _this;
     }
     Object.defineProperty(OpalSignButton.prototype, "_tabIndex", {
         get: function () {
-            return this.paramDisabled ? -1 : this.paramTabIndex_;
+            return this.paramDisabled ? -1 : this.paramTabIndex;
         },
         enumerable: true,
         configurable: true
@@ -274,7 +274,7 @@ var OpalSignButton = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
-    ], OpalSignButton.prototype, "paramTabIndex_", void 0);
+    ], OpalSignButton.prototype, "paramTabIndex", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
@@ -300,7 +300,7 @@ exports.OpalSignButton = OpalSignButton;
 
 /***/ }),
 
-/***/ 211:
+/***/ 212:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -318,7 +318,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 212:
+/***/ 213:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

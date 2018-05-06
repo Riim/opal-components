@@ -374,7 +374,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
                         this.$('textInput').focus();
                     }
                     else if (evt.which == 40) {
-                        var tabbable = this.$('menuFooterSlot').element.querySelector('[tabIndex_]');
+                        var tabbable = this.$('menuFooterSlot').element.querySelector('[tab_index]');
                         if (tabbable && tabbable.$component) {
                             tabbable.$component.focus();
                             document.body.classList.remove('_noFocusHighlight');

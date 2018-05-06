@@ -113,7 +113,7 @@ export class OpalSelect extends BaseComponent {
 	@Param paramText: string;
 	@Param paramMaxTextLength = 20;
 	@Param paramPlaceholder = getText.t('Не выбрано');
-	@Param paramTabIndex_ = 0;
+	@Param paramTabIndex = 0;
 	@Param paramFocused = false;
 	@Param paramDisabled = false;
 

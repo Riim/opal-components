@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 201);
+/******/ 	return __webpack_require__(__webpack_require__.s = 202);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -131,7 +131,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ }),
 
-/***/ 201:
+/***/ 202:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -148,12 +148,12 @@ __webpack_require__(12);
 __webpack_require__(10);
 __webpack_require__(7);
 __webpack_require__(1);
-__export(__webpack_require__(202));
+__export(__webpack_require__(203));
 
 
 /***/ }),
 
-/***/ 202:
+/***/ 203:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -184,11 +184,11 @@ var opal_utils_1 = __webpack_require__(9);
 var cellx_1 = __webpack_require__(3);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-var OpalSelectOption_1 = __webpack_require__(203);
+var OpalSelectOption_1 = __webpack_require__(204);
 exports.OpalSelectOption = OpalSelectOption_1.OpalSelectOption;
-__webpack_require__(206);
-var isEqualArray_1 = __webpack_require__(207);
-var template_nelm_1 = __webpack_require__(208);
+__webpack_require__(207);
+var isEqualArray_1 = __webpack_require__(208);
+var template_nelm_1 = __webpack_require__(209);
 var map = Array.prototype.map;
 var defaultDataListItemSchema = Object.freeze({
     value: 'value',
@@ -210,7 +210,7 @@ var OpalSelect = /** @class */ (function (_super) {
         _this.paramMultiple = false;
         _this.paramMaxTextLength = 20;
         _this.paramPlaceholder = gettext_1.getText.t('Не выбрано');
-        _this.paramTabIndex_ = 0;
+        _this.paramTabIndex = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
         _this._needOptionsUpdating = false;
@@ -884,7 +884,7 @@ var OpalSelect = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
-    ], OpalSelect.prototype, "paramTabIndex_", void 0);
+    ], OpalSelect.prototype, "paramTabIndex", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
@@ -948,7 +948,7 @@ exports.OpalSelect = OpalSelect;
 
 /***/ }),
 
-/***/ 203:
+/***/ 204:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -976,22 +976,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(204);
-var template_nelm_1 = __webpack_require__(205);
+__webpack_require__(205);
+var template_nelm_1 = __webpack_require__(206);
 var OpalSelectOption = /** @class */ (function (_super) {
     __extends(OpalSelectOption, _super);
     function OpalSelectOption() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramSelected = false;
         _this.paramIndeterminate = false;
-        _this.paramTabIndex_ = 0;
+        _this.paramTabIndex = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
         return _this;
     }
     Object.defineProperty(OpalSelectOption.prototype, "_tabIndex", {
         get: function () {
-            return this.paramDisabled ? -1 : this.paramTabIndex_;
+            return this.paramDisabled ? -1 : this.paramTabIndex;
         },
         enumerable: true,
         configurable: true
@@ -1159,7 +1159,7 @@ var OpalSelectOption = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
-    ], OpalSelectOption.prototype, "paramTabIndex_", void 0);
+    ], OpalSelectOption.prototype, "paramTabIndex", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
@@ -1185,7 +1185,7 @@ exports.OpalSelectOption = OpalSelectOption;
 
 /***/ }),
 
-/***/ 204:
+/***/ 205:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -1203,7 +1203,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 205:
+/***/ 206:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1212,7 +1212,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 206:
+/***/ 207:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -1230,7 +1230,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 207:
+/***/ 208:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1253,12 +1253,12 @@ exports.isEqualArray = isEqualArray;
 
 /***/ }),
 
-/***/ 208:
+/***/ 209:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot (for=button) {\nOpalButton/button (\nviewType={paramViewType},\nsize={paramSize},\ncheckable,\ntabIndex_={paramTabIndex_},\ndisabled={paramDisabled}\n) {\n@IfThen (paramText) {\n'{paramText}'\n}\n@IfElse (paramText) {\n'{_buttonText}'\n}\nOpalIcon/buttonIcon (name=chevronBottom)\n}\n}\nRnSlot (for=menuSlot) {\nRnSlot/menuSlot (for=menu) {\nOpalDropdown/menu (autoClosing) {\nRnSlot (for=menuHeader)\nRnSlot (for=menuContent) {\n@IfThen (_isParamDataListSpecified) {\ndiv/, menuContent {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={_dataListItemValueFieldName}) {\nOpalSelectOption/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRnSlot/newItemInputSlot // ...\n}\n@IfElse (dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (_isParamDataListSpecified) {\ndiv/, menuContent {\nRnSlot/options (forTag=opal-select-option)\nRnSlot (for=newItemInputSlot) {\nRnSlot/newItemInputSlot (for=newItemInput)\n}\n}\n}\n}\nRnSlot (for=menuFooter)\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot (for=button) {\nOpalButton/button (\nviewType={paramViewType},\nsize={paramSize},\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n) {\n@IfThen (paramText) {\n'{paramText}'\n}\n@IfElse (paramText) {\n'{_buttonText}'\n}\nOpalIcon/buttonIcon (name=chevronBottom)\n}\n}\nRnSlot (for=menuSlot) {\nRnSlot/menuSlot (for=menu) {\nOpalDropdown/menu (autoClosing) {\nRnSlot (for=menuHeader)\nRnSlot (for=menuContent) {\n@IfThen (_isParamDataListSpecified) {\ndiv/, menuContent {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={_dataListItemValueFieldName}) {\nOpalSelectOption/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRnSlot/newItemInputSlot // ...\n}\n@IfElse (dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (_isParamDataListSpecified) {\ndiv/, menuContent {\nRnSlot/options (forTag=opal-select-option)\nRnSlot (for=newItemInputSlot) {\nRnSlot/newItemInputSlot (for=newItemInput)\n}\n}\n}\n}\nRnSlot (for=menuFooter)\n}\n}\n}\n}");
 
 /***/ }),
 

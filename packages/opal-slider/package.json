@@ -1,20 +1,8 @@
 {
-  "name": "@riim/opal-slider",
-  "version": "0.33.84",
-  "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Dmitry Vibe",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "cellx-decorators": "^1.4.9",
-    "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.65"
-  }
+	"dependencies": {
+		"cellx-decorators": "^1.4.9",
+		"reflect-metadata": "^0.1.12",
+		"rionite": "^0.32.70"
+	},
+	"version": "0.33.86"
 }

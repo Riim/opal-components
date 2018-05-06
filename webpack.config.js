@@ -80,11 +80,13 @@ module.exports = env => {
 		externals: [
 			'@riim/debounce-throttle',
 			'@riim/gettext',
+			'@riim/hyphenize',
 			'@riim/map-set-polyfill',
 			'@riim/mixin',
 			'@riim/next-tick',
 			'@riim/next-uid',
 			'@riim/object-assign-polyfill',
+			'@riim/rionite-snake-case-attribute-name',
 			'cellx',
 			'cellx-decorators',
 			'created-browser-history',

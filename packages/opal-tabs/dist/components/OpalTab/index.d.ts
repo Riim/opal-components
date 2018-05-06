@@ -4,7 +4,7 @@ import './index.css';
 export declare class OpalTab extends BaseComponent {
     paramLabel: string;
     paramSelected: boolean;
-    paramTabIndex_: number;
+    paramTabIndex: number;
     paramFocused: boolean;
     paramHidden: boolean;
     paramDisabled: boolean;

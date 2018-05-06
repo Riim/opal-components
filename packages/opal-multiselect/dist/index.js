@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 170);
+/******/ 	return __webpack_require__(__webpack_require__.s = 171);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -103,7 +103,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_12__;
 
 /***/ }),
 
-/***/ 170:
+/***/ 171:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -118,12 +118,12 @@ __webpack_require__(12);
 __webpack_require__(8);
 __webpack_require__(7);
 __webpack_require__(1);
-__export(__webpack_require__(171));
+__export(__webpack_require__(172));
 
 
 /***/ }),
 
-/***/ 171:
+/***/ 172:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -152,8 +152,8 @@ var gettext_1 = __webpack_require__(6);
 var opal_select_1 = __webpack_require__(8);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(172);
-var template_nelm_1 = __webpack_require__(173);
+__webpack_require__(173);
+var template_nelm_1 = __webpack_require__(174);
 var OpalMultiselect = /** @class */ (function (_super) {
     __extends(OpalMultiselect, _super);
     function OpalMultiselect() {
@@ -230,7 +230,7 @@ exports.OpalMultiselect = OpalMultiselect;
 
 /***/ }),
 
-/***/ 172:
+/***/ 173:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -248,7 +248,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 173:
+/***/ 174:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

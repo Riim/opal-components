@@ -48,7 +48,7 @@ export declare class OpalSelect extends BaseComponent {
     paramText: string;
     paramMaxTextLength: number;
     paramPlaceholder: string;
-    paramTabIndex_: number;
+    paramTabIndex: number;
     paramFocused: boolean;
     paramDisabled: boolean;
     dataList: TDataList | null;

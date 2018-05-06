@@ -7,7 +7,7 @@ export declare class OpalButton extends BaseComponent {
     paramCheckable: boolean;
     paramChecked: boolean;
     paramLoading: boolean;
-    paramTabIndex_: number;
+    paramTabIndex: number;
     paramFocused: boolean;
     paramDisabled: boolean;
     readonly _tabIndex: number;

@@ -91,6 +91,7 @@ module.exports = env => {
 			'@riim/next-tick',
 			'@riim/next-uid',
 			'@riim/object-assign-polyfill',
+			'@riim/rionite-snake-case-attribute-name',
 			'cellx',
 			'cellx-decorators',
 			'created-browser-history',

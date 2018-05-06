@@ -1,25 +1,10 @@
 {
-  "name": "@riim/opal-filtered-list",
-  "version": "0.33.84",
-  "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Dmitry Vibe",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@riim/debounce-throttle": "^1.0.0",
-    "@riim/gettext": "^1.1.1",
-    "@riim/opal-icon": "^0.33.84",
-    "@riim/opal-loaded-list": "^0.33.84",
-    "@riim/opal-text-input": "^0.33.84",
-    "cellx": "^1.7.86",
-    "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.65"
-  }
+	"dependencies": {
+		"@riim/debounce-throttle": "^1.0.0",
+		"@riim/gettext": "^1.1.1",
+		"cellx": "^1.7.86",
+		"reflect-metadata": "^0.1.12",
+		"rionite": "^0.32.70"
+	},
+	"version": "0.33.86"
 }

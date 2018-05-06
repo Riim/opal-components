@@ -36,7 +36,7 @@ export declare class OpalTagSelect extends BaseComponent {
     }>;
     paramPlaceholder: string;
     paramPopoverPosition: string;
-    paramTabIndex_: number;
+    paramTabIndex: number;
     paramFocused: boolean;
     paramDisabled: boolean;
     dataList: TDataList | null;

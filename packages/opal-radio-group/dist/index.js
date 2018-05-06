@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 183);
+/******/ 	return __webpack_require__(__webpack_require__.s = 184);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,7 +89,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
-/***/ 183:
+/***/ 184:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -99,12 +99,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-__export(__webpack_require__(184));
+__export(__webpack_require__(185));
 
 
 /***/ }),
 
-/***/ 184:
+/***/ 185:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -127,7 +127,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(0);
-var OpalRadioButton_1 = __webpack_require__(185);
+var OpalRadioButton_1 = __webpack_require__(186);
 exports.OpalRadioButton = OpalRadioButton_1.OpalRadioButton;
 var forEach = Array.prototype.forEach;
 var OpalRadioGroup = /** @class */ (function (_super) {
@@ -165,7 +165,7 @@ exports.OpalRadioGroup = OpalRadioGroup;
 
 /***/ }),
 
-/***/ 185:
+/***/ 186:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -193,21 +193,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(186);
-var template_nelm_1 = __webpack_require__(187);
+__webpack_require__(187);
+var template_nelm_1 = __webpack_require__(188);
 var OpalRadioButton = /** @class */ (function (_super) {
     __extends(OpalRadioButton, _super);
     function OpalRadioButton() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramChecked = false;
-        _this.paramTabIndex_ = 0;
+        _this.paramTabIndex = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
         return _this;
     }
     Object.defineProperty(OpalRadioButton.prototype, "_tabIndex", {
         get: function () {
-            return this.paramDisabled ? -1 : this.paramTabIndex_;
+            return this.paramDisabled ? -1 : this.paramTabIndex;
         },
         enumerable: true,
         configurable: true
@@ -330,7 +330,7 @@ var OpalRadioButton = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
-    ], OpalRadioButton.prototype, "paramTabIndex_", void 0);
+    ], OpalRadioButton.prototype, "paramTabIndex", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
@@ -356,7 +356,7 @@ exports.OpalRadioButton = OpalRadioButton;
 
 /***/ }),
 
-/***/ 186:
+/***/ 187:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -374,7 +374,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 187:
+/***/ 188:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

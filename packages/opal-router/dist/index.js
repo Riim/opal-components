@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("@riim/hyphenize"), require("created-browser-history"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"), require("@riim/hyphenize"), require("@riim/rionite-snake-case-attribute-name"), require("created-browser-history"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "@riim/hyphenize", "created-browser-history"], factory);
+		define(["rionite", "reflect-metadata", "@riim/hyphenize", "@riim/rionite-snake-case-attribute-name", "created-browser-history"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-router"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/hyphenize"), require("created-browser-history"));
+		exports["@riim/opal-router"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/hyphenize"), require("@riim/rionite-snake-case-attribute-name"), require("created-browser-history"));
 	else
-		root["@riim/opal-router"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/hyphenize"], root["created-browser-history"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_191__, __WEBPACK_EXTERNAL_MODULE_192__) {
+		root["@riim/opal-router"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/hyphenize"], root["@riim/rionite-snake-case-attribute-name"], root["created-browser-history"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_191__, __WEBPACK_EXTERNAL_MODULE_192__, __WEBPACK_EXTERNAL_MODULE_193__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 188);
+/******/ 	return __webpack_require__(__webpack_require__.s = 189);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -89,7 +89,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 
-/***/ 188:
+/***/ 189:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -99,12 +99,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-__export(__webpack_require__(189));
+__export(__webpack_require__(190));
 
 
 /***/ }),
 
-/***/ 189:
+/***/ 190:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -130,13 +130,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var hyphenize_1 = __webpack_require__(191);
-var created_browser_history_1 = __webpack_require__(192);
+var rionite_snake_case_attribute_name_1 = __webpack_require__(192);
+var created_browser_history_1 = __webpack_require__(193);
 var rionite_1 = __webpack_require__(0);
-var OpalRoute_1 = __webpack_require__(193);
+var OpalRoute_1 = __webpack_require__(194);
 exports.OpalRoute = OpalRoute_1.OpalRoute;
-var escapeRegExp_1 = __webpack_require__(194);
-__webpack_require__(195);
-var parsePath_1 = __webpack_require__(196);
+var escapeRegExp_1 = __webpack_require__(195);
+__webpack_require__(196);
+var parsePath_1 = __webpack_require__(197);
 var PathNodeType_1 = __webpack_require__(20);
 var forEach = Array.prototype.forEach;
 function valueToAttributeValue(value) {
@@ -265,7 +266,7 @@ var OpalRouter = /** @class */ (function (_super) {
                     if (canWrite) {
                         for (var name_2 in state) {
                             if ($paramsConfig[name_2].readonly &&
-                                componentEl_1.getAttribute(name_2) !==
+                                componentEl_1.getAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name_2, true)) !==
                                     valueToAttributeValue(state[name_2])) {
                                 canWrite = false;
                                 break;
@@ -282,7 +283,7 @@ var OpalRouter = /** @class */ (function (_super) {
                             }
                             var $paramConfig = $paramsConfig[name_3];
                             if ($paramConfig && !($paramConfig.name in state)) {
-                                componentEl_1.removeAttribute(name_3);
+                                componentEl_1.removeAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name_3, true));
                             }
                         }
                     }
@@ -326,7 +327,7 @@ var OpalRouter = /** @class */ (function (_super) {
         var state = this._state;
         var componentEl = this._componentElement;
         for (var name_4 in state) {
-            componentEl.setAttribute(name_4, valueToAttributeValue(state[name_4]));
+            componentEl.setAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name_4, true), valueToAttributeValue(state[name_4]));
         }
     };
     OpalRouter.prototype._clear = function () {
@@ -383,6 +384,13 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_192__;
 /***/ }),
 
 /***/ 193:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_193__;
+
+/***/ }),
+
+/***/ 194:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -431,7 +439,7 @@ exports.OpalRoute = OpalRoute;
 
 /***/ }),
 
-/***/ 194:
+/***/ 195:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -446,7 +454,7 @@ exports.escapeRegExp = escapeRegExp;
 
 /***/ }),
 
-/***/ 195:
+/***/ 196:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -464,7 +472,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 196:
+/***/ 197:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

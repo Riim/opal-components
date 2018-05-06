@@ -301,7 +301,7 @@ export class OpalAutosuggest extends BaseComponent {
 						this.$<OpalTextInput>('textInput')!.focus();
 					} else if (evt.which == 40) {
 						let tabbable = this.$<RnSlot>('menuFooterSlot')!.element.querySelector(
-							'[tabIndex_]'
+							'[tab_index]'
 						);
 
 						if (tabbable && (tabbable as IPossiblyComponentElement).$component) {

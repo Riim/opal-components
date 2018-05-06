@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 221);
+/******/ 	return __webpack_require__(__webpack_require__.s = 222);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -96,7 +96,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ }),
 
-/***/ 221:
+/***/ 222:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106,12 +106,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-__export(__webpack_require__(222));
+__export(__webpack_require__(223));
 
 
 /***/ }),
 
-/***/ 222:
+/***/ 223:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -139,20 +139,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(4);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
-__webpack_require__(223);
-var template_nelm_1 = __webpack_require__(224);
+__webpack_require__(224);
+var template_nelm_1 = __webpack_require__(225);
 var OpalSwitch = /** @class */ (function (_super) {
     __extends(OpalSwitch, _super);
     function OpalSwitch() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramChecked = false;
-        _this.paramTabIndex_ = 0;
+        _this.paramTabIndex = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
         return _this;
     }
     OpalSwitch.prototype._tabIndex = function () {
-        return this.paramDisabled ? -1 : this.paramTabIndex_;
+        return this.paramDisabled ? -1 : this.paramTabIndex;
     };
     OpalSwitch.prototype.ready = function () {
         if (this.paramChecked) {
@@ -272,7 +272,7 @@ var OpalSwitch = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
-    ], OpalSwitch.prototype, "paramTabIndex_", void 0);
+    ], OpalSwitch.prototype, "paramTabIndex", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
@@ -299,7 +299,7 @@ exports.OpalSwitch = OpalSwitch;
 
 /***/ }),
 
-/***/ 223:
+/***/ 224:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -317,7 +317,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 224:
+/***/ 225:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

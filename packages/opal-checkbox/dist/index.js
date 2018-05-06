@@ -154,14 +154,14 @@ var OpalCheckbox = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramChecked = false;
         _this.paramIndeterminate = false;
-        _this.paramTabIndex_ = 0;
+        _this.paramTabIndex = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
         return _this;
     }
     Object.defineProperty(OpalCheckbox.prototype, "_tabIndex", {
         get: function () {
-            return this.paramDisabled ? -1 : this.paramTabIndex_;
+            return this.paramDisabled ? -1 : this.paramTabIndex;
         },
         enumerable: true,
         configurable: true
@@ -298,7 +298,7 @@ var OpalCheckbox = /** @class */ (function (_super) {
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
-    ], OpalCheckbox.prototype, "paramTabIndex_", void 0);
+    ], OpalCheckbox.prototype, "paramTabIndex", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
