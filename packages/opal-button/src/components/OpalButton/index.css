@@ -7,7 +7,7 @@
 	cursor: pointer;
 	user-select: none;
 
-	&:not([viewType=clean]) {
+	&:not([view_type=clean]) {
 		position: relative;
 		display: inline-block;
 		box-sizing: border-box;

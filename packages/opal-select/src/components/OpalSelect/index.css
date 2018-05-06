@@ -31,7 +31,7 @@
 			transition: transform .1s linear;
 		}
 
-	&:not([viewType=clean]) {
+	&:not([view_type=clean]) {
 		@el button {
 			padding-right: 47px; /* 23 + 14 + 10 */
 
@@ -89,7 +89,7 @@
 		height: 304px; /* 38 * 8 */
 	}
 
-	& .OpalLoader[alignCenter] {
+	& .OpalLoader[align_center] {
 		border-top-width: 100px;
 		border-bottom-width: 100px;
 	}

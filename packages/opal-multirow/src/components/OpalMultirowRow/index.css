@@ -28,14 +28,14 @@
 	@el btnAddRow {
 	}
 
-	.OpalMultirow__presetRowsSlot[notHaveNewRows] &:last-child .OpalMultirowRow__contentSlot,
+	.OpalMultirow__presetRowsSlot[not_have_new_rows] &:last-child .OpalMultirowRow__contentSlot,
 	.OpalMultirow__newRows rn-slot:last-child & .OpalMultirowRow__contentSlot {
 		margin-bottom: 0;
 	}
 
-	.OpalMultirow__presetRowsSlot[notSingleRow] & .OpalMultirowRow__btnRemoveRow,
-	.OpalMultirow__newRows[notSingleRow] & .OpalMultirowRow__btnRemoveRow,
-	.OpalMultirow__presetRowsSlot[notHaveNewRows] &:last-child .OpalMultirowRow__btnAddRow,
+	.OpalMultirow__presetRowsSlot[not_single_row] & .OpalMultirowRow__btnRemoveRow,
+	.OpalMultirow__newRows[not_single_row] & .OpalMultirowRow__btnRemoveRow,
+	.OpalMultirow__presetRowsSlot[not_have_new_rows] &:last-child .OpalMultirowRow__btnAddRow,
 	.OpalMultirow__newRows rn-slot:last-child & .OpalMultirowRow__btnAddRow {
 		display: inline-block;
 	}

@@ -20,19 +20,19 @@
 		transition: right .2s linear, opacity .2s linear;
 	}
 
-	.OpalNotification__container .OpalNotification__bar[viewType=primary] {
+	.OpalNotification__container .OpalNotification__bar[view_type=primary] {
 		background: hsl(208,94%,54%);
 	}
 
-	.OpalNotification__container .OpalNotification__bar[viewType=success] {
+	.OpalNotification__container .OpalNotification__bar[view_type=success] {
 		background: hsl(148,76%,40%);
 	}
 
-	.OpalNotification__container .OpalNotification__bar[viewType=danger] {
+	.OpalNotification__container .OpalNotification__bar[view_type=danger] {
 		background: hsl(348,92%,58%);
 	}
 
-	.OpalNotification__container .OpalNotification__bar[hasIcon] {
+	.OpalNotification__container .OpalNotification__bar[has_icon] {
 		padding-left: 48px;
 	}
 
