@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.87",
+  "version": "0.33.88",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -64,7 +64,7 @@
     "@riim/opal-loader": "^0.33.87",
     "@riim/opal-modal": "^0.33.87",
     "@riim/opal-multirow": "^0.33.87",
-    "@riim/opal-multiselect": "^0.33.87",
+    "@riim/opal-multiselect": "^0.33.88",
     "@riim/opal-notification": "^0.33.87",
     "@riim/opal-popover": "^0.33.87",
     "@riim/opal-radio-group": "^0.33.87",

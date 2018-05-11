@@ -270,7 +270,8 @@
       "node_modules/raw-loader/index.js!node_modules/trim-lines-loader/index.js!node_modules/collapse-line-breaks-loader/index.js!packages/opal-tree-tag-select/src/components/OpalTreeTagSelect/template.nelm": 266,
       "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/index.ts": 267,
       "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/utils/closestComponent.ts": 268,
-      "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/utils/isFocusable.ts": 269
+      "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/utils/isFocusable.ts": 269,
+      "external \"@riim/platform\"": 270
     },
     "usedIds": {
       "0": 0,
@@ -542,7 +543,8 @@
       "266": 266,
       "267": 267,
       "268": 268,
-      "269": 269
+      "269": 269,
+      "270": 270
     }
   },
   "chunks": {

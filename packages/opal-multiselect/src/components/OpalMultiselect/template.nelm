@@ -2,7 +2,7 @@
 	div/menuHeader {
 		div/menuHeaderLeftPart {
 			OpalTextInput/queryInput (
-				class=OpalSelect__focus,
+				class={_queryInputClass},
 				clearable,
 				placeholder={constructor.i18n.queryInputPlaceholder}
 			) {

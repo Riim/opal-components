@@ -24,8 +24,8 @@ module.exports = env => {
 		},
 
 		output: {
-			filename: '[name].js',
 			path: path.join(__dirname, 'dist'),
+			filename: '[name].js',
 			library: '[name]',
 			libraryTarget: 'umd'
 		},
@@ -86,6 +86,7 @@ module.exports = env => {
 			'@riim/next-tick',
 			'@riim/next-uid',
 			'@riim/object-assign-polyfill',
+			'@riim/platform',
 			'@riim/rionite-snake-case-attribute-name',
 			'cellx',
 			'cellx-decorators',
@@ -140,9 +141,9 @@ module.exports = env => {
 			console: false,
 			global: false,
 			process: false,
-			Buffer: false,
 			__filename: false,
 			__dirname: false,
+			Buffer: false,
 			setImmediate: false
 		}
 	};

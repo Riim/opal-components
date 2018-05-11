@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-text-input"), require("@riim/opal-select"), require("@riim/opal-button"), require("@riim/opal-loaded-list"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-text-input"), require("@riim/opal-select"), require("@riim/opal-button"), require("@riim/opal-loaded-list"), require("@riim/platform"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx-decorators", "@riim/opal-icon", "@riim/gettext", "@riim/opal-text-input", "@riim/opal-select", "@riim/opal-button", "@riim/opal-loaded-list"], factory);
+		define(["rionite", "reflect-metadata", "cellx-decorators", "@riim/opal-icon", "@riim/gettext", "@riim/opal-text-input", "@riim/opal-select", "@riim/opal-button", "@riim/opal-loaded-list", "@riim/platform"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-multiselect"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-text-input"), require("@riim/opal-select"), require("@riim/opal-button"), require("@riim/opal-loaded-list"));
+		exports["@riim/opal-multiselect"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-text-input"), require("@riim/opal-select"), require("@riim/opal-button"), require("@riim/opal-loaded-list"), require("@riim/platform"));
 	else
-		root["@riim/opal-multiselect"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["@riim/opal-icon"], root["@riim/gettext"], root["@riim/opal-text-input"], root["@riim/opal-select"], root["@riim/opal-button"], root["@riim/opal-loaded-list"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_12__) {
+		root["@riim/opal-multiselect"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["@riim/opal-icon"], root["@riim/gettext"], root["@riim/opal-text-input"], root["@riim/opal-select"], root["@riim/opal-button"], root["@riim/opal-loaded-list"], root["@riim/platform"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_270__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -150,6 +150,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(6);
 var opal_select_1 = __webpack_require__(8);
+var platform_1 = __webpack_require__(270);
 var cellx_decorators_1 = __webpack_require__(2);
 var rionite_1 = __webpack_require__(0);
 __webpack_require__(173);
@@ -176,6 +177,9 @@ var OpalMultiselect = /** @class */ (function (_super) {
         this.dataProvider = this.paramDataProvider;
         if (!this.dataProvider) {
             throw new TypeError('"dataProvider" is not defined');
+        }
+        if (!platform_1.isMobile) {
+            this._queryInputClass = 'OpalSelect__focus';
         }
     };
     __decorate([
@@ -253,7 +257,7 @@ module.exports = (function(d) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony default export */ __webpack_exports__["default"] = ("/menu (autoHeight=no, autoClosing) {\ndiv/menuHeader {\ndiv/menuHeaderLeftPart {\nOpalTextInput/queryInput (\nclass=OpalSelect__focus,\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n) {\nOpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\ndiv/menuHeaderRightPart {\nRnSlot/menuHeaderContentSlot (for=menuHeaderContent) {\n@IfThen (viewModel.length) {\nspan/selectedCount {\n'выбрано {viewModel.length}'\n}\n}\n}\n}\n}\ndiv/menuList {\nOpalLoadedList/loadedList (\ndataProvider={dataProvider},\ndataListItemValueName={_dataListItemValueFieldName}\n) {\nOpalSelectOption/option (\nclass=OpalLoadedList__listItem,\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }',\nsubtext='{$item |key(_dataListItemSubtextFieldName) }'\n)\n}\n}\ndiv/menuSelected {\n@Repeat (for=item in viewModel) {\ndiv/selectedItem {\n'{item |key(_viewModelItemTextFieldName) }'\nbutton/btnDeselectItem (tabIndex=-1) {\nOpalIcon/btnDeselectItemIcon (name=cross)\n}\n}\n}\n@IfThen (isNothingSelectedShown) {\nRnSlot/nothingSelectedSlot (for=nothingSelected) {\nspan/nothingSelected {\nspan/nothingSelectedMessage {\n'{constructor.i18n.nothingSelected}'\n}\n}\n}\n}\n}\ndiv/menuFooter {\ndiv/menuFooterLeftPart {\nRnSlot/menuFooterContentSlot (for=menuFooterContent)\n}\ndiv/menuFooterRightPart {\nOpalButton/btnClose {\n'Закрыть'\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("/menu (autoHeight=no, autoClosing) {\ndiv/menuHeader {\ndiv/menuHeaderLeftPart {\nOpalTextInput/queryInput (\nclass={_queryInputClass},\nclearable,\nplaceholder={constructor.i18n.queryInputPlaceholder}\n) {\nOpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\ndiv/menuHeaderRightPart {\nRnSlot/menuHeaderContentSlot (for=menuHeaderContent) {\n@IfThen (viewModel.length) {\nspan/selectedCount {\n'выбрано {viewModel.length}'\n}\n}\n}\n}\n}\ndiv/menuList {\nOpalLoadedList/loadedList (\ndataProvider={dataProvider},\ndataListItemValueName={_dataListItemValueFieldName}\n) {\nOpalSelectOption/option (\nclass=OpalLoadedList__listItem,\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }',\nsubtext='{$item |key(_dataListItemSubtextFieldName) }'\n)\n}\n}\ndiv/menuSelected {\n@Repeat (for=item in viewModel) {\ndiv/selectedItem {\n'{item |key(_viewModelItemTextFieldName) }'\nbutton/btnDeselectItem (tabIndex=-1) {\nOpalIcon/btnDeselectItemIcon (name=cross)\n}\n}\n}\n@IfThen (isNothingSelectedShown) {\nRnSlot/nothingSelectedSlot (for=nothingSelected) {\nspan/nothingSelected {\nspan/nothingSelectedMessage {\n'{constructor.i18n.nothingSelected}'\n}\n}\n}\n}\n}\ndiv/menuFooter {\ndiv/menuFooterLeftPart {\nRnSlot/menuFooterContentSlot (for=menuFooterContent)\n}\ndiv/menuFooterRightPart {\nOpalButton/btnClose {\n'Закрыть'\n}\n}\n}\n}");
 
 /***/ }),
 
@@ -261,6 +265,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+
+/***/ }),
+
+/***/ 270:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_270__;
 
 /***/ }),
 

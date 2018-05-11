@@ -2,6 +2,7 @@ import { getText } from '@riim/gettext';
 import { IDataProvider, OpalLoadedList } from '@riim/opal-loaded-list';
 import { OpalSelect } from '@riim/opal-select';
 import { OpalTextInput } from '@riim/opal-text-input';
+import { isMobile } from '@riim/platform';
 import { IEvent } from 'cellx';
 import { Computed } from 'cellx-decorators';
 import { Component, Param, Template } from 'rionite';
@@ -55,6 +56,8 @@ export class OpalMultiselect extends OpalSelect {
 		return !this.viewModel.length;
 	}
 
+	_queryInputClass: string | undefined;
+
 	initialize() {
 		super.initialize();
 
@@ -66,6 +69,10 @@ export class OpalMultiselect extends OpalSelect {
 
 		if (!this.dataProvider) {
 			throw new TypeError('"dataProvider" is not defined');
+		}
+
+		if (!isMobile) {
+			this._queryInputClass = 'OpalSelect__focus';
 		}
 	}
 }
