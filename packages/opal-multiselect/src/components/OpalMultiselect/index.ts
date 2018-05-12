@@ -10,6 +10,8 @@ import './index.css';
 import template from './template.nelm';
 
 @Component<OpalMultiselect>({
+	elementIs: 'OpalMultiselect',
+
 	i18n: {
 		queryInputPlaceholder: getText.t('Поиск'),
 		nothingSelected: getText.t('Ничего не выбрано')

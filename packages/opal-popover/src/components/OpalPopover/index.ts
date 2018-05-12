@@ -10,6 +10,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component({
+	elementIs: 'OpalPopover',
 	template
 })
 export class OpalPopover extends BaseComponent {

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("cellx"), require("@riim/opal-sign-button"), require("@riim/next-uid"));
+		module.exports = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-sign-button"), require("@riim/next-uid"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx-decorators", "cellx", "@riim/opal-sign-button", "@riim/next-uid"], factory);
+		define(["reflect-metadata", "cellx", "cellx-decorators", "rionite", "@riim/opal-sign-button", "@riim/next-uid"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-multirow"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("cellx"), require("@riim/opal-sign-button"), require("@riim/next-uid"));
+		exports["@riim/opal-multirow"] = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-sign-button"), require("@riim/next-uid"));
 	else
-		root["@riim/opal-multirow"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["cellx"], root["@riim/opal-sign-button"], root["@riim/next-uid"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_165__) {
+		root["@riim/opal-multirow"] = factory(root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/opal-sign-button"], root["@riim/next-uid"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__153__, __WEBPACK_EXTERNAL_MODULE__155__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -54,6 +54,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -69,34 +74,28 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 163);
+/******/ 	return __webpack_require__(__webpack_require__.s = 152);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
+/***/ 10:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 1:
+/***/ 11:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
 
 /***/ }),
 
-/***/ 15:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
-
-/***/ }),
-
-/***/ 163:
+/***/ 152:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,14 +104,21 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(15);
-__webpack_require__(1);
-__export(__webpack_require__(164));
+__webpack_require__(153);
+__webpack_require__(4);
+__export(__webpack_require__(154));
 
 
 /***/ }),
 
-/***/ 164:
+/***/ 153:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__153__;
+
+/***/ }),
+
+/***/ 154:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -137,14 +143,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_uid_1 = __webpack_require__(165);
-var cellx_1 = __webpack_require__(3);
-var cellx_decorators_1 = __webpack_require__(2);
-var rionite_1 = __webpack_require__(0);
-var OpalMultirowRow_1 = __webpack_require__(166);
+var next_uid_1 = __webpack_require__(155);
+var cellx_1 = __webpack_require__(9);
+var cellx_decorators_1 = __webpack_require__(10);
+var rionite_1 = __webpack_require__(11);
+var OpalMultirowRow_1 = __webpack_require__(156);
 exports.OpalMultirowRow = OpalMultirowRow_1.OpalMultirowRow;
-__webpack_require__(169);
-var template_nelm_1 = __webpack_require__(170);
+__webpack_require__(159);
+var template_nelm_1 = __webpack_require__(160);
 var OpalMultirow = /** @class */ (function (_super) {
     __extends(OpalMultirow, _super);
     function OpalMultirow() {
@@ -221,6 +227,7 @@ var OpalMultirow = /** @class */ (function (_super) {
     ], OpalMultirow.prototype, "_notSingleRow", null);
     OpalMultirow = __decorate([
         rionite_1.Component({
+            elementIs: 'OpalMultirow',
             template: template_nelm_1.default
         })
     ], OpalMultirow);
@@ -231,14 +238,14 @@ exports.OpalMultirow = OpalMultirow;
 
 /***/ }),
 
-/***/ 165:
+/***/ 155:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_165__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__155__;
 
 /***/ }),
 
-/***/ 166:
+/***/ 156:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -260,9 +267,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(0);
-__webpack_require__(167);
-var template_nelm_1 = __webpack_require__(168);
+var rionite_1 = __webpack_require__(11);
+__webpack_require__(157);
+var template_nelm_1 = __webpack_require__(158);
 var OpalMultirowRow = /** @class */ (function (_super) {
     __extends(OpalMultirowRow, _super);
     function OpalMultirowRow() {
@@ -270,6 +277,7 @@ var OpalMultirowRow = /** @class */ (function (_super) {
     }
     OpalMultirowRow = __decorate([
         rionite_1.Component({
+            elementIs: 'OpalMultirowRow',
             template: template_nelm_1.default,
             events: {
                 btnRemoveRow: {
@@ -292,7 +300,7 @@ exports.OpalMultirowRow = OpalMultirowRow;
 
 /***/ }),
 
-/***/ 167:
+/***/ 157:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -310,16 +318,16 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 168:
+/***/ 158:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+__webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot/contentSlot\nOpalSignButton/btnRemoveRow (sign=minus)\nOpalSignButton/btnAddRow (sign=plus)\n}");
 
 /***/ }),
 
-/***/ 169:
+/***/ 159:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -337,26 +345,26 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 170:
+/***/ 160:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+__webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot/presetRowsSlot (\nfor=presetRows,\nnotHaveNewRows={_notHaveNewRows},\nnotSingleRow={_notSingleRow}\n) {\nRnSlot/presetRows (for=presetRow)\n}\ndiv/newRows (notSingleRow={_notSingleRow}) {\n@Repeat (for=row in _newRows, trackBy=key) {\nRnSlot/newRowSlot (cloneContent, data-key={row.key})\n}\n}\n}");
 
 /***/ }),
 
-/***/ 2:
+/***/ 4:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 
-/***/ 3:
+/***/ 9:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
 
 /***/ })
 

@@ -11,6 +11,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component({
+	elementIs: 'OpalCheckbox',
 	template
 })
 export class OpalCheckbox extends BaseComponent {

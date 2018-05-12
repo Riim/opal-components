@@ -3,6 +3,8 @@ import './index.css';
 import template from './template.nelm';
 
 @Component({
+	elementIs: 'OpalMultirowRow',
+
 	template,
 
 	events: {

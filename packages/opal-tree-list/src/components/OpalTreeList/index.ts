@@ -49,6 +49,8 @@ function toComparable(str: string | null): string | null {
 }
 
 @Component({
+	elementIs: 'OpalTreeList',
+
 	i18n: {
 		nothingFound: getText.t('Ничего не найдено')
 	},

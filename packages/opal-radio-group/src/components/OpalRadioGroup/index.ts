@@ -6,7 +6,9 @@ export { OpalRadioButton };
 
 const forEach = Array.prototype.forEach;
 
-@Component()
+@Component({
+	elementIs: 'OpalRadioGroup'
+})
 export class OpalRadioGroup extends BaseComponent {
 	buttonElements: NodeListOf<IComponentElement>;
 

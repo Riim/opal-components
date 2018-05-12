@@ -19,6 +19,8 @@ module.exports = env => {
 	];
 
 	return {
+		mode: 'none',
+
 		entry: {
 			OpalComponents: './src/index.ts'
 		},

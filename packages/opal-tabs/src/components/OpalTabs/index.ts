@@ -14,6 +14,7 @@ const forEach = Array.prototype.forEach;
 const find = Array.prototype.find;
 
 @Component({
+	elementIs: 'OpalTabs',
 	template
 })
 export class OpalTabs extends BaseComponent {

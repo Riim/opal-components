@@ -21,6 +21,8 @@ const defaultDataListItemSchema = Object.freeze({
 const defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
 
 @Component<OpalTagSelect>({
+	elementIs: 'OpalTagSelect',
+
 	template,
 
 	domEvents: {

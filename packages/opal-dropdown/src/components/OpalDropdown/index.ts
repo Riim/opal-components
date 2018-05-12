@@ -12,6 +12,7 @@ import template from './template.nelm';
 const openedDropdowns: Array<OpalDropdown> = [];
 
 @Component({
+	elementIs: 'OpalDropdown',
 	template
 })
 export class OpalDropdown extends BaseComponent {

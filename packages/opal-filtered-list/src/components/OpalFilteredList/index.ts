@@ -8,6 +8,8 @@ import './index.css';
 import template from './template.nelm';
 
 @Component({
+	elementIs: 'OpalFilteredList',
+
 	i18n: {
 		queryInputPlaceholder: getText.t('Поиск')
 	},

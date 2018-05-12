@@ -8,6 +8,7 @@ const forEach = Array.prototype.forEach;
 const find = Array.prototype.find;
 
 @Component({
+	elementIs: 'OpalSwitchMenu',
 	template
 })
 export class OpalSwitchMenu extends BaseComponent {

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"));
+		module.exports = factory(require("reflect-metadata"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata"], factory);
+		define(["reflect-metadata", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-group"] = factory(require("rionite"), require("reflect-metadata"));
+		exports["@riim/opal-group"] = factory(require("reflect-metadata"), require("rionite"));
 	else
-		root["@riim/opal-group"] = factory(root["rionite"], root["reflect-metadata"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__) {
+		root["@riim/opal-group"] = factory(root["reflect-metadata"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__11__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -54,6 +54,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -69,27 +74,28 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 66);
+/******/ 	return __webpack_require__(__webpack_require__.s = 52);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
+/***/ 11:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
 
 /***/ }),
 
-/***/ 1:
+/***/ 4:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 
-/***/ 66:
+/***/ 52:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98,13 +104,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__export(__webpack_require__(67));
+__webpack_require__(4);
+__export(__webpack_require__(53));
 
 
 /***/ }),
 
-/***/ 67:
+/***/ 53:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -126,15 +132,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(0);
-__webpack_require__(68);
+var rionite_1 = __webpack_require__(11);
+__webpack_require__(54);
 var OpalGroup = /** @class */ (function (_super) {
     __extends(OpalGroup, _super);
     function OpalGroup() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     OpalGroup = __decorate([
-        rionite_1.Component()
+        rionite_1.Component({
+            elementIs: 'OpalGroup'
+        })
     ], OpalGroup);
     return OpalGroup;
 }(rionite_1.BaseComponent));
@@ -143,7 +151,7 @@ exports.OpalGroup = OpalGroup;
 
 /***/ }),
 
-/***/ 68:
+/***/ 54:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {

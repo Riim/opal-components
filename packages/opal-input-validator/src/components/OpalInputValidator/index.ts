@@ -7,6 +7,7 @@ import template from './template.nelm';
 export { OpalInputValidatorRule };
 
 @Component({
+	elementIs: 'OpalInputValidator',
 	template
 })
 export class OpalInputValidator extends BaseComponent {

@@ -25,6 +25,8 @@ function pad(num: number): string {
 }
 
 @Component({
+	elementIs: 'OpalDateInput',
+
 	i18n: {
 		isRequiredField: getText.t('Поле обязательно для заполнения'),
 		nonExistentDate: getText.t('Несуществующая дата'),

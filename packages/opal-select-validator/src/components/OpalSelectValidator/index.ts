@@ -6,7 +6,9 @@ import './index.css';
 
 export { OpalSelectValidatorRule };
 
-@Component()
+@Component({
+	elementIs: 'OpalSelectValidator'
+})
 export class OpalSelectValidator extends OpalInputValidator {
 	select: OpalSelect;
 

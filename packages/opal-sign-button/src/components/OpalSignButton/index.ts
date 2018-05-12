@@ -11,6 +11,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component({
+	elementIs: 'OpalSignButton',
 	template
 })
 export class OpalSignButton extends BaseComponent {

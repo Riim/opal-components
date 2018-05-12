@@ -23,6 +23,7 @@ function initContainer(notification: OpalNotification): HTMLElement {
 }
 
 @Component({
+	elementIs: 'OpalNotification',
 	template
 })
 export class OpalNotification extends BaseComponent {

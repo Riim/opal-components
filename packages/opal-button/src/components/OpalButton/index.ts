@@ -9,7 +9,9 @@ import {
 	} from 'rionite';
 import './index.css';
 
-@Component()
+@Component({
+	elementIs: 'OpalButton'
+})
 export class OpalButton extends BaseComponent {
 	@Param paramViewType = 'default';
 	@Param paramSize = 'm';

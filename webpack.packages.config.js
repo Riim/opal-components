@@ -20,6 +20,8 @@ module.exports = env => {
 	];
 
 	return {
+		mode: 'none',
+
 		entry: glob.sync('packages/*/src/index.ts').reduce((entries, p) => {
 			entries[p.split(path.sep).slice(-3)[0]] = path.join(__dirname, p);
 			return entries;

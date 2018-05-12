@@ -7,6 +7,8 @@ import './index.css';
 import template from './template.nelm';
 
 @Component({
+	elementIs: 'OpalTreeSelect',
+
 	template,
 
 	events: {

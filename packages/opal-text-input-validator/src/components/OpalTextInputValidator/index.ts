@@ -6,7 +6,9 @@ import './index.css';
 
 export { OpalTextInputValidatorRule };
 
-@Component<OpalTextInputValidator>()
+@Component({
+	elementIs: 'OpalTextInputValidator'
+})
 export class OpalTextInputValidator extends OpalInputValidator {
 	textInput: OpalTextInput;
 

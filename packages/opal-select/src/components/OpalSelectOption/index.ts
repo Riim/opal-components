@@ -6,6 +6,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component({
+	elementIs: 'OpalSelectOption',
 	template
 })
 export class OpalSelectOption extends BaseComponent {

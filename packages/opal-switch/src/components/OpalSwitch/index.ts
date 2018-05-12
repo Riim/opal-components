@@ -11,6 +11,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component({
+	elementIs: 'OpalSwitch',
 	template
 })
 export class OpalSwitch extends BaseComponent {

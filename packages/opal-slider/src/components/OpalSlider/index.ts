@@ -4,6 +4,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component({
+	elementIs: 'OpalSlider',
 	template
 })
 export class OpalSlider extends BaseComponent {

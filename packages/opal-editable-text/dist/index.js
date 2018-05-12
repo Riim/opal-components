@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("@riim/opal-icon"));
+		module.exports = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "@riim/opal-icon"], factory);
+		define(["@riim/opal-icon", "reflect-metadata", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-editable-text"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/opal-icon"));
+		exports["@riim/opal-editable-text"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("rionite"));
 	else
-		root["@riim/opal-editable-text"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/opal-icon"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_5__) {
+		root["@riim/opal-editable-text"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__11__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -54,6 +54,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -69,34 +74,35 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 55);
+/******/ 	return __webpack_require__(__webpack_require__.s = 40);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
+/***/ 11:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 
-/***/ 55:
+/***/ 40:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,14 +111,14 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(5);
-__webpack_require__(1);
-__export(__webpack_require__(56));
+__webpack_require__(2);
+__webpack_require__(4);
+__export(__webpack_require__(41));
 
 
 /***/ }),
 
-/***/ 56:
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -134,9 +140,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(0);
-__webpack_require__(57);
-var template_nelm_1 = __webpack_require__(58);
+var rionite_1 = __webpack_require__(11);
+__webpack_require__(42);
+var template_nelm_1 = __webpack_require__(43);
 var OpalEditableText = /** @class */ (function (_super) {
     __extends(OpalEditableText, _super);
     function OpalEditableText() {
@@ -228,6 +234,7 @@ var OpalEditableText = /** @class */ (function (_super) {
     };
     OpalEditableText = __decorate([
         rionite_1.Component({
+            elementIs: 'OpalEditableText',
             template: template_nelm_1.default,
             domEvents: {
                 iconEdit: {
@@ -245,7 +252,7 @@ exports.OpalEditableText = OpalEditableText;
 
 /***/ }),
 
-/***/ 57:
+/***/ 42:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -263,11 +270,11 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 58:
+/***/ 43:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+__webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/contentWrapper {\nRnSlot/contentSlot (contentEditable, spellCheck=false)\nOpalIcon/iconEdit (name=compose, strokeWidth=3)\n}\n}");
 
 /***/ })

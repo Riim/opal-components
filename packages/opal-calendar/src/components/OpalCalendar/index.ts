@@ -63,6 +63,8 @@ export function toDate(this: OpalCalendar) {
 }
 
 @Component<OpalCalendar>({
+	elementIs: 'OpalCalendar',
+
 	i18n: {
 		previousMonth: 'Предыдущий месяц',
 		nextMonth: 'Следующий месяц',

@@ -1,7 +1,9 @@
 import { BaseComponent, Component, Param } from 'rionite';
 import './index.css';
 
-@Component()
+@Component({
+	elementIs: 'OpalInputMaskDefinition'
+})
 export class OpalInputMaskDefinition extends BaseComponent {
 	@Param({ required: true, readonly: true })
 	paramMaskChar: string;

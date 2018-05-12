@@ -6,6 +6,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component({
+	elementIs: 'OpalTab',
 	template
 })
 export class OpalTab extends BaseComponent {

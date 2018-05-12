@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-select"));
+		module.exports = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"), require("@riim/opal-select"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx-decorators", "@riim/next-tick", "@riim/opal-icon", "@riim/opal-select"], factory);
+		define(["@riim/opal-icon", "reflect-metadata", "@riim/next-tick", "cellx-decorators", "rionite", "@riim/opal-select"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-calendar"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-select"));
+		exports["@riim/opal-calendar"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"), require("@riim/opal-select"));
 	else
-		root["@riim/opal-calendar"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["@riim/next-tick"], root["@riim/opal-icon"], root["@riim/opal-select"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_8__) {
+		root["@riim/opal-calendar"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["@riim/next-tick"], root["cellx-decorators"], root["rionite"], root["@riim/opal-select"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__18__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -54,6 +54,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -69,76 +74,55 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 34);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
-
-/***/ }),
+/* 0 */,
+/* 1 */,
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
 
 /***/ }),
 /* 3 */,
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
-
-/***/ }),
+/* 5 */,
 /* 6 */,
-/* 7 */,
-/* 8 */
+/* 7 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
 
 /***/ }),
+/* 8 */,
 /* 9 */,
-/* 10 */,
-/* 11 */,
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
+
+/***/ }),
 /* 12 */,
 /* 13 */,
 /* 14 */,
 /* 15 */,
 /* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -147,14 +131,20 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(5);
-__webpack_require__(8);
-__webpack_require__(1);
-__export(__webpack_require__(35));
+__webpack_require__(2);
+__webpack_require__(18);
+__webpack_require__(4);
+__export(__webpack_require__(19));
 
 
 /***/ }),
-/* 35 */
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__18__;
+
+/***/ }),
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -179,15 +169,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(4);
-var cellx_decorators_1 = __webpack_require__(2);
-var rionite_1 = __webpack_require__(0);
-var formatDate_1 = __webpack_require__(36);
+var next_tick_1 = __webpack_require__(7);
+var cellx_decorators_1 = __webpack_require__(10);
+var rionite_1 = __webpack_require__(11);
+var formatDate_1 = __webpack_require__(20);
 exports.formatDate = formatDate_1.formatDate;
-__webpack_require__(37);
-var parseDate_1 = __webpack_require__(38);
+__webpack_require__(21);
+var parseDate_1 = __webpack_require__(22);
 exports.parseDate = parseDate_1.parseDate;
-var template_nelm_1 = __webpack_require__(39);
+var template_nelm_1 = __webpack_require__(23);
 function getTodayDate() {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -492,6 +482,7 @@ var OpalCalendar = /** @class */ (function (_super) {
     ], OpalCalendar.prototype, "days", void 0);
     OpalCalendar = OpalCalendar_1 = __decorate([
         rionite_1.Component({
+            elementIs: 'OpalCalendar',
             i18n: {
                 previousMonth: 'Предыдущий месяц',
                 nextMonth: 'Следующий месяц',
@@ -572,7 +563,7 @@ exports.OpalCalendar = OpalCalendar;
 
 
 /***/ }),
-/* 36 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -590,7 +581,7 @@ exports.formatDate = formatDate;
 
 
 /***/ }),
-/* 37 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -607,7 +598,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 38 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -621,11 +612,11 @@ exports.parseDate = parseDate;
 
 
 /***/ }),
-/* 39 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+__webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nheader/header {\nbutton/btnPrevMonth (disabled={isBtnPrevMonthDisabled}) {\nOpalIcon/btnPrevMonthIcon (name=chevronLeft)\n}\nOpalSelect/monthSelect (size=s, value=['{shownMonth}']) {\n@Repeat (class=OpalSelect__menuContent, for=month in constructor.i18n.months) {\nOpalSelectOption (value={$index}, text={month})\n}\n}\n' '\nOpalSelect/yearSelect (size=s, value=['{shownYear}']) {\n@Repeat (class=OpalSelect__menuContent, for=year in years) {\nOpalSelectOption (value={year}, text={year})\n}\n}\nbutton/btnNextMonth (disabled={isBtnNextMonthDisabled}) {\nOpalIcon/btnNextMonthIcon (name=chevronRight)\n}\n}\ndiv/body {\ndiv/weekDays {\ndiv/weekDaysRow {\n@Repeat (for=weekDay in weekDaysShort) {\nspan/weekDay {\n'{weekDay}'\n}\n}\n}\n}\ndiv/days {\n@Repeat (for=weekDays in days) {\ndiv/daysRow {\n@Repeat (for=day in weekDays) {\nspan/day (\nweekDay={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnotInCurrentMonth={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabIndex={day.tabIndex},\ndata-date={day.date}\n) {\n'{day.value}'\n}\n}\n}\n}\n}\n}\n}");
 
 /***/ })

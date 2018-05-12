@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-loader"));
+		module.exports = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"), require("@riim/opal-loader"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx-decorators", "@riim/next-tick", "@riim/opal-icon", "@riim/opal-loader"], factory);
+		define(["@riim/opal-icon", "reflect-metadata", "@riim/next-tick", "cellx-decorators", "rionite", "@riim/opal-loader"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-text-input"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-loader"));
+		exports["@riim/opal-text-input"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"), require("@riim/opal-loader"));
 	else
-		root["@riim/opal-text-input"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["@riim/next-tick"], root["@riim/opal-icon"], root["@riim/opal-loader"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_10__) {
+		root["@riim/opal-text-input"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["@riim/next-tick"], root["cellx-decorators"], root["rionite"], root["@riim/opal-loader"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__140__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -54,6 +54,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -69,41 +74,42 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 246);
+/******/ 	return __webpack_require__(__webpack_require__.s = 242);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
-
-/***/ }),
-
-/***/ 1:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
-
-/***/ }),
-
 /***/ 10:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
+
+/***/ }),
+
+/***/ 11:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
+
+/***/ }),
+
+/***/ 140:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__140__;
 
 /***/ }),
 
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
 
 /***/ }),
 
-/***/ 246:
+/***/ 242:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112,15 +118,15 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(5);
-__webpack_require__(10);
-__webpack_require__(1);
-__export(__webpack_require__(247));
+__webpack_require__(2);
+__webpack_require__(140);
+__webpack_require__(4);
+__export(__webpack_require__(243));
 
 
 /***/ }),
 
-/***/ 247:
+/***/ 243:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145,11 +151,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(4);
-var cellx_decorators_1 = __webpack_require__(2);
-var rionite_1 = __webpack_require__(0);
-__webpack_require__(248);
-var template_nelm_1 = __webpack_require__(249);
+var next_tick_1 = __webpack_require__(7);
+var cellx_decorators_1 = __webpack_require__(10);
+var rionite_1 = __webpack_require__(11);
+__webpack_require__(244);
+var template_nelm_1 = __webpack_require__(245);
 var OpalTextInput = /** @class */ (function (_super) {
     __extends(OpalTextInput, _super);
     function OpalTextInput() {
@@ -437,6 +443,7 @@ var OpalTextInput = /** @class */ (function (_super) {
     ], OpalTextInput.prototype, "isEndIconShown", null);
     OpalTextInput = __decorate([
         rionite_1.Component({
+            elementIs: 'OpalTextInput',
             template: template_nelm_1.default,
             domEvents: {
                 btnClear: {
@@ -457,7 +464,7 @@ exports.OpalTextInput = OpalTextInput;
 
 /***/ }),
 
-/***/ 248:
+/***/ 244:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -475,11 +482,11 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 249:
+/***/ 245:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+__webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@IfThen (paramMultiline) {\ntextarea/, textField (\nrows={paramRows},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfElse (paramMultiline) {\ninput/, textField (\ntype={paramInputType},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfThen (paramStartIcon) {\nOpalIcon/startIcon (name={paramStartIcon})\n}\nRnSlot/endIconSlot (for=endIcon, shown={isEndIconShown}) {\n@IfThen (paramEndIcon) {\nOpalIcon/endIcon (name={paramEndIcon})\n}\n}\n@IfThen (paramClearable) {\nbutton/btnClear (shown={isBtnClearShown}) {\nOpalIcon/btnClearIcon (name=cross)\n}\n}\n@IfThen (paramLoading) {\nOpalLoader/loader (size=s, shown)\n}\n}");
 
 /***/ }),
@@ -487,14 +494,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ 4:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 
-/***/ 5:
+/***/ 7:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
 
 /***/ })
 

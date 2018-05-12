@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx"), require("@riim/opal-select"), require("@riim/opal-button"), require("@riim/opal-filtered-list"), require("@riim/opal-tree-list"), require("@riim/opal-modal"));
+		module.exports = factory(require("reflect-metadata"), require("cellx"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-button"), require("@riim/opal-filtered-list"), require("@riim/opal-modal"), require("@riim/opal-tree-list"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx", "@riim/opal-select", "@riim/opal-button", "@riim/opal-filtered-list", "@riim/opal-tree-list", "@riim/opal-modal"], factory);
+		define(["reflect-metadata", "cellx", "rionite", "@riim/opal-select", "@riim/opal-button", "@riim/opal-filtered-list", "@riim/opal-modal", "@riim/opal-tree-list"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tree-select"] = factory(require("rionite"), require("reflect-metadata"), require("cellx"), require("@riim/opal-select"), require("@riim/opal-button"), require("@riim/opal-filtered-list"), require("@riim/opal-tree-list"), require("@riim/opal-modal"));
+		exports["@riim/opal-tree-select"] = factory(require("reflect-metadata"), require("cellx"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-button"), require("@riim/opal-filtered-list"), require("@riim/opal-modal"), require("@riim/opal-tree-list"));
 	else
-		root["@riim/opal-tree-select"] = factory(root["rionite"], root["reflect-metadata"], root["cellx"], root["@riim/opal-select"], root["@riim/opal-button"], root["@riim/opal-filtered-list"], root["@riim/opal-tree-list"], root["@riim/opal-modal"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_25__, __WEBPACK_EXTERNAL_MODULE_259__) {
+		root["@riim/opal-tree-select"] = factory(root["reflect-metadata"], root["cellx"], root["rionite"], root["@riim/opal-select"], root["@riim/opal-button"], root["@riim/opal-filtered-list"], root["@riim/opal-modal"], root["@riim/opal-tree-list"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__18__, __WEBPACK_EXTERNAL_MODULE__162__, __WEBPACK_EXTERNAL_MODULE__197__, __WEBPACK_EXTERNAL_MODULE__258__, __WEBPACK_EXTERNAL_MODULE__259__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -54,6 +54,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -69,48 +74,42 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 258);
+/******/ 	return __webpack_require__(__webpack_require__.s = 257);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
-
-/***/ }),
-
-/***/ 1:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
-
-/***/ }),
-
 /***/ 11:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
 
 /***/ }),
 
-/***/ 16:
+/***/ 162:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_16__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__162__;
 
 /***/ }),
 
-/***/ 25:
+/***/ 18:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_25__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__18__;
 
 /***/ }),
 
-/***/ 258:
+/***/ 197:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__197__;
+
+/***/ }),
+
+/***/ 257:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -119,21 +118,28 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(11);
-__webpack_require__(16);
+__webpack_require__(162);
+__webpack_require__(197);
+__webpack_require__(258);
+__webpack_require__(18);
 __webpack_require__(259);
-__webpack_require__(8);
-__webpack_require__(25);
-__webpack_require__(1);
+__webpack_require__(4);
 __export(__webpack_require__(260));
 
+
+/***/ }),
+
+/***/ 258:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__258__;
 
 /***/ }),
 
 /***/ 259:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_259__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__259__;
 
 /***/ }),
 
@@ -162,10 +168,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_select_1 = __webpack_require__(8);
-var opal_tree_list_1 = __webpack_require__(25);
-var cellx_1 = __webpack_require__(3);
-var rionite_1 = __webpack_require__(0);
+var opal_select_1 = __webpack_require__(18);
+var opal_tree_list_1 = __webpack_require__(259);
+var cellx_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(11);
 __webpack_require__(261);
 var template_nelm_1 = __webpack_require__(262);
 var OpalTreeSelect = /** @class */ (function (_super) {
@@ -234,6 +240,7 @@ var OpalTreeSelect = /** @class */ (function (_super) {
     ], OpalTreeSelect.prototype, "paramQuery", void 0);
     OpalTreeSelect = __decorate([
         rionite_1.Component({
+            elementIs: 'OpalTreeSelect',
             template: template_nelm_1.default,
             events: {
                 btnClose: {
@@ -273,22 +280,22 @@ module.exports = (function(d) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+__webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("OpalModal/menu {\nRnSlot (for=menuHeaderSlot) {\nRnSlot/menuHeaderSlot (for=menuHeader)\n}\nOpalFilteredList/filteredList {\nOpalTreeList/treeList (\nclass=OpalFilteredList__list,\ndataTreeList={dataTreeList},\ndataTreeListItemSchema={paramDataTreeListItemSchema},\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema},\nquery={paramQuery}\n) {\nOpalSelectOption/option (\nclass=OpalTreeList__selectionControl,\ntext={$item.name},\nselected={$selected},\nindeterminate={$indeterminate}\n)\n}\n}\ndiv/footer {\nOpalButton/btnClose {\n'Готово'\n}\n}\n}");
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 
-/***/ 8:
+/***/ 9:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
 
 /***/ })
 

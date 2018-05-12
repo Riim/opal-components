@@ -11,6 +11,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component({
+	elementIs: 'OpalRadioButton',
 	template
 })
 export class OpalRadioButton extends BaseComponent {

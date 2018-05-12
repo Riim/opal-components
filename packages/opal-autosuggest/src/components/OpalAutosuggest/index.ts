@@ -35,6 +35,8 @@ function toComparable(str: string): string {
 const defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', subtext: 'parent' });
 
 @Component<OpalAutosuggest>({
+	elementIs: 'OpalAutosuggest',
+
 	i18n: {
 		textInputPlaceholder: getText.t('Начните вводить для поиска'),
 		nothingFound: getText.t('Ничего не найдено')

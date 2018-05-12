@@ -3,6 +3,7 @@ import { Component } from 'rionite';
 import template from './template.nelm';
 
 @Component({
+	elementIs: 'OpalTreeTagSelect',
 	template
 })
 export class OpalTreeTagSelect extends OpalTagSelect {

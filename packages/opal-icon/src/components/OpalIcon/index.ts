@@ -4,6 +4,7 @@ import './index.css';
 import template from './template.nelm';
 
 @Component({
+	elementIs: 'OpalIcon',
 	template
 })
 export class OpalIcon extends BaseComponent {

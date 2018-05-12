@@ -39,7 +39,9 @@ function valueToAttributeValue(value: boolean | string): string {
 	return value === false ? 'no' : value === true ? 'yes' : value;
 }
 
-@Component()
+@Component({
+	elementIs: 'OpalRouter'
+})
 export class OpalRouter extends BaseComponent {
 	@Param paramScrollTopOnChange = true;
 	@Param paramScrollTopOnChangeComponent = true;

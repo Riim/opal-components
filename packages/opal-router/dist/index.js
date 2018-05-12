@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("@riim/hyphenize"), require("@riim/rionite-snake-case-attribute-name"), require("created-browser-history"));
+		module.exports = factory(require("reflect-metadata"), require("rionite"), require("@riim/hyphenize"), require("@riim/rionite-snake-case-attribute-name"), require("created-browser-history"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "@riim/hyphenize", "@riim/rionite-snake-case-attribute-name", "created-browser-history"], factory);
+		define(["reflect-metadata", "rionite", "@riim/hyphenize", "@riim/rionite-snake-case-attribute-name", "created-browser-history"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-router"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/hyphenize"), require("@riim/rionite-snake-case-attribute-name"), require("created-browser-history"));
+		exports["@riim/opal-router"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/hyphenize"), require("@riim/rionite-snake-case-attribute-name"), require("created-browser-history"));
 	else
-		root["@riim/opal-router"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/hyphenize"], root["@riim/rionite-snake-case-attribute-name"], root["created-browser-history"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_191__, __WEBPACK_EXTERNAL_MODULE_192__, __WEBPACK_EXTERNAL_MODULE_193__) {
+		root["@riim/opal-router"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/hyphenize"], root["@riim/rionite-snake-case-attribute-name"], root["created-browser-history"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__183__, __WEBPACK_EXTERNAL_MODULE__184__, __WEBPACK_EXTERNAL_MODULE__185__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -54,6 +54,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -69,27 +74,21 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 189);
+/******/ 	return __webpack_require__(__webpack_require__.s = 181);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
+/***/ 11:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
 
 /***/ }),
 
-/***/ 1:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
-
-/***/ }),
-
-/***/ 189:
+/***/ 181:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98,13 +97,13 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__export(__webpack_require__(190));
+__webpack_require__(4);
+__export(__webpack_require__(182));
 
 
 /***/ }),
 
-/***/ 190:
+/***/ 182:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -129,16 +128,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var hyphenize_1 = __webpack_require__(191);
-var rionite_snake_case_attribute_name_1 = __webpack_require__(192);
-var created_browser_history_1 = __webpack_require__(193);
-var rionite_1 = __webpack_require__(0);
-var OpalRoute_1 = __webpack_require__(194);
+var hyphenize_1 = __webpack_require__(183);
+var rionite_snake_case_attribute_name_1 = __webpack_require__(184);
+var created_browser_history_1 = __webpack_require__(185);
+var rionite_1 = __webpack_require__(11);
+var OpalRoute_1 = __webpack_require__(186);
 exports.OpalRoute = OpalRoute_1.OpalRoute;
-var escapeRegExp_1 = __webpack_require__(195);
-__webpack_require__(196);
-var parsePath_1 = __webpack_require__(197);
-var PathNodeType_1 = __webpack_require__(20);
+var escapeRegExp_1 = __webpack_require__(187);
+__webpack_require__(188);
+var parsePath_1 = __webpack_require__(189);
+var PathNodeType_1 = __webpack_require__(190);
 var forEach = Array.prototype.forEach;
 function valueToAttributeValue(value) {
     return value === false ? 'no' : value === true ? 'yes' : value;
@@ -360,7 +359,9 @@ var OpalRouter = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalRouter.prototype, "paramScrollTopOnChangeComponent", void 0);
     OpalRouter = __decorate([
-        rionite_1.Component()
+        rionite_1.Component({
+            elementIs: 'OpalRouter'
+        })
     ], OpalRouter);
     return OpalRouter;
 }(rionite_1.BaseComponent));
@@ -369,28 +370,28 @@ exports.OpalRouter = OpalRouter;
 
 /***/ }),
 
-/***/ 191:
+/***/ 183:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_191__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__183__;
 
 /***/ }),
 
-/***/ 192:
+/***/ 184:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_192__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__184__;
 
 /***/ }),
 
-/***/ 193:
+/***/ 185:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_193__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__185__;
 
 /***/ }),
 
-/***/ 194:
+/***/ 186:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -415,7 +416,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(0);
+var rionite_1 = __webpack_require__(11);
 var OpalRoute = /** @class */ (function (_super) {
     __extends(OpalRoute, _super);
     function OpalRoute() {
@@ -430,7 +431,9 @@ var OpalRoute = /** @class */ (function (_super) {
         __metadata("design:type", String)
     ], OpalRoute.prototype, "paramComponent", void 0);
     OpalRoute = __decorate([
-        rionite_1.Component()
+        rionite_1.Component({
+            elementIs: 'OpalRoute'
+        })
     ], OpalRoute);
     return OpalRoute;
 }(rionite_1.BaseComponent));
@@ -439,7 +442,7 @@ exports.OpalRoute = OpalRoute;
 
 /***/ }),
 
-/***/ 195:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -454,7 +457,7 @@ exports.escapeRegExp = escapeRegExp;
 
 /***/ }),
 
-/***/ 196:
+/***/ 188:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -472,13 +475,13 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 197:
+/***/ 189:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType_1 = __webpack_require__(20);
+var PathNodeType_1 = __webpack_require__(190);
 var reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
     var ctx = PathNodeType_1.PathNodeType.SIMPLE;
@@ -632,7 +635,7 @@ exports.parsePath = parsePath;
 
 /***/ }),
 
-/***/ 20:
+/***/ 190:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -645,6 +648,13 @@ var PathNodeType;
     PathNodeType[PathNodeType["INSERT"] = 2] = "INSERT";
 })(PathNodeType = exports.PathNodeType || (exports.PathNodeType = {}));
 
+
+/***/ }),
+
+/***/ 4:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ })
 

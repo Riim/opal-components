@@ -33,6 +33,8 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 }
 
 @Component<OpalModal>({
+	elementIs: 'OpalModal',
+
 	template,
 
 	domEvents: {

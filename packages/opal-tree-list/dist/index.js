@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("cellx"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-utils"), require("@riim/opal-loader"), require("@riim/opal-button"), require("@riim/mixin"), require("@riim/opal-checkbox"), require("@riim/object-assign-polyfill"));
+		module.exports = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-loader"), require("@riim/mixin"), require("@riim/opal-button"), require("@riim/opal-checkbox"), require("@riim/object-assign-polyfill"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx-decorators", "cellx", "@riim/opal-icon", "@riim/gettext", "@riim/opal-utils", "@riim/opal-loader", "@riim/opal-button", "@riim/mixin", "@riim/opal-checkbox", "@riim/object-assign-polyfill"], factory);
+		define(["@riim/opal-icon", "reflect-metadata", "@riim/gettext", "@riim/opal-utils", "cellx", "cellx-decorators", "rionite", "@riim/opal-loader", "@riim/mixin", "@riim/opal-button", "@riim/opal-checkbox", "@riim/object-assign-polyfill"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tree-list"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"), require("cellx"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-utils"), require("@riim/opal-loader"), require("@riim/opal-button"), require("@riim/mixin"), require("@riim/opal-checkbox"), require("@riim/object-assign-polyfill"));
+		exports["@riim/opal-tree-list"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-loader"), require("@riim/mixin"), require("@riim/opal-button"), require("@riim/opal-checkbox"), require("@riim/object-assign-polyfill"));
 	else
-		root["@riim/opal-tree-list"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"], root["cellx"], root["@riim/opal-icon"], root["@riim/gettext"], root["@riim/opal-utils"], root["@riim/opal-loader"], root["@riim/opal-button"], root["@riim/mixin"], root["@riim/opal-checkbox"], root["@riim/object-assign-polyfill"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_18__, __WEBPACK_EXTERNAL_MODULE_251__, __WEBPACK_EXTERNAL_MODULE_252__) {
+		root["@riim/opal-tree-list"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["@riim/gettext"], root["@riim/opal-utils"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/opal-loader"], root["@riim/mixin"], root["@riim/opal-button"], root["@riim/opal-checkbox"], root["@riim/object-assign-polyfill"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__140__, __WEBPACK_EXTERNAL_MODULE__142__, __WEBPACK_EXTERNAL_MODULE__162__, __WEBPACK_EXTERNAL_MODULE__247__, __WEBPACK_EXTERNAL_MODULE__249__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -54,6 +54,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -69,55 +74,83 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 250);
+/******/ 	return __webpack_require__(__webpack_require__.s = 246);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
-
-/***/ }),
-
-/***/ 1:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
-
-/***/ }),
-
 /***/ 10:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
 /***/ 11:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
 
 /***/ }),
 
-/***/ 18:
+/***/ 140:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_18__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__140__;
+
+/***/ }),
+
+/***/ 142:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__142__;
+
+/***/ }),
+
+/***/ 162:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__162__;
 
 /***/ }),
 
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
 
 /***/ }),
 
-/***/ 22:
+/***/ 246:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(162);
+__webpack_require__(247);
+__webpack_require__(2);
+__webpack_require__(140);
+__webpack_require__(4);
+__export(__webpack_require__(248));
+__export(__webpack_require__(250));
+
+
+/***/ }),
+
+/***/ 247:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__247__;
+
+/***/ }),
+
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -133,8 +166,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var object_assign_polyfill_1 = __webpack_require__(252);
-var cellx_1 = __webpack_require__(3);
+var object_assign_polyfill_1 = __webpack_require__(249);
+var cellx_1 = __webpack_require__(9);
 var ERROR_INDEXPATH_EMPTY = 'Indexpath cannot be empty';
 function setParent(items, parent) {
     if (parent === void 0) { parent = null; }
@@ -266,215 +299,14 @@ exports.ObservableTreeList = ObservableTreeList;
 
 /***/ }),
 
-/***/ 23:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 249:
+/***/ (function(module, exports) {
 
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_decorators_1 = __webpack_require__(2);
-var rionite_1 = __webpack_require__(0);
-var _getListItemContext_1 = __webpack_require__(24);
-__webpack_require__(254);
-var template_nelm_1 = __webpack_require__(255);
-var OpalTreeListItem = /** @class */ (function (_super) {
-    __extends(OpalTreeListItem, _super);
-    function OpalTreeListItem() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramOpened = false;
-        return _this;
-    }
-    Object.defineProperty(OpalTreeListItem.prototype, "dataTreeList", {
-        get: function () {
-            return this.paramDataTreeList;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalTreeListItem.prototype, "viewModel", {
-        get: function () {
-            return this.paramViewModel;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalTreeListItem.prototype.initialize = function () {
-        this.dataTreeListItem = this.paramFilteredDataTreeList.get(this.paramIndexpath);
-        this._dataTreeListItemValueFieldName = this.paramDataTreeListItemValueFieldName;
-        this._dataTreeListItemTextFieldName = this.paramDataTreeListItemTextFieldName;
-        this._viewModelItemValueFieldName = this.paramViewModelItemValueFieldName;
-        this._viewModelItemTextFieldName = this.paramViewModelItemTextFieldName;
-    };
-    __decorate([
-        rionite_1.Param({ required: true }),
-        __metadata("design:type", Object)
-    ], OpalTreeListItem.prototype, "paramDataTreeList", void 0);
-    __decorate([
-        rionite_1.Param({ required: true }),
-        __metadata("design:type", Object)
-    ], OpalTreeListItem.prototype, "paramFilteredDataTreeList", void 0);
-    __decorate([
-        rionite_1.Param({ required: true, readonly: true }),
-        __metadata("design:type", String)
-    ], OpalTreeListItem.prototype, "paramDataTreeListItemValueFieldName", void 0);
-    __decorate([
-        rionite_1.Param({ required: true, readonly: true }),
-        __metadata("design:type", String)
-    ], OpalTreeListItem.prototype, "paramDataTreeListItemTextFieldName", void 0);
-    __decorate([
-        rionite_1.Param({ required: true }),
-        __metadata("design:type", Object)
-    ], OpalTreeListItem.prototype, "paramViewModel", void 0);
-    __decorate([
-        rionite_1.Param({ required: true, readonly: true }),
-        __metadata("design:type", String)
-    ], OpalTreeListItem.prototype, "paramViewModelItemValueFieldName", void 0);
-    __decorate([
-        rionite_1.Param({ required: true, readonly: true }),
-        __metadata("design:type", String)
-    ], OpalTreeListItem.prototype, "paramViewModelItemTextFieldName", void 0);
-    __decorate([
-        rionite_1.Param({ type: eval, required: true, readonly: true }),
-        __metadata("design:type", Array)
-    ], OpalTreeListItem.prototype, "paramIndexpath", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalTreeListItem.prototype, "paramQuery", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTreeListItem.prototype, "paramOpened", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Object),
-        __metadata("design:paramtypes", [])
-    ], OpalTreeListItem.prototype, "dataTreeList", null);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Object),
-        __metadata("design:paramtypes", [])
-    ], OpalTreeListItem.prototype, "viewModel", null);
-    OpalTreeListItem = __decorate([
-        rionite_1.Component({
-            template: template_nelm_1.default,
-            events: {
-                btnToggleChildren: {
-                    change: function (evt) {
-                        this.paramOpened = evt.target.checked;
-                    }
-                }
-            }
-        })
-    ], OpalTreeListItem);
-    return OpalTreeListItem;
-}(rionite_1.BaseComponent));
-exports.OpalTreeListItem = OpalTreeListItem;
-OpalTreeListItem.prototype._getListItemContext = _getListItemContext_1.default;
-
-
-/***/ }),
-
-/***/ 24:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var mixin_1 = __webpack_require__(18);
-var cellx_1 = __webpack_require__(3);
-function isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
-    do {
-        if (vm.find(function (vmItem) {
-            return vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName];
-        })) {
-            return true;
-        }
-    } while ((item = item.parent));
-    return false;
-}
-function isIndeterminateItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
-    return (!!item.children.length &&
-        !isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
-        item.children.some(function (child) {
-            return !!vm.find(function (vmItem) {
-                return vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName];
-            }) ||
-                isIndeterminateItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName);
-        }));
-}
-function _getListItemContext(context, slot) {
-    var $item = slot.$context.$item;
-    return cellx_1.define(mixin_1.mixin(Object.create(context), slot.$context, ['$component']), {
-        $selected: new cellx_1.Cell(function () {
-            this.dataTreeList;
-            return isSelectedItem($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
-        }, { context: this }),
-        $indeterminate: new cellx_1.Cell(function () {
-            this.dataTreeList;
-            return isIndeterminateItem($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
-        }, { context: this })
-    });
-}
-exports.default = _getListItemContext;
-
+module.exports = __WEBPACK_EXTERNAL_MODULE__249__;
 
 /***/ }),
 
 /***/ 250:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(11);
-__webpack_require__(251);
-__webpack_require__(5);
-__webpack_require__(10);
-__webpack_require__(1);
-__export(__webpack_require__(22));
-__export(__webpack_require__(253));
-
-
-/***/ }),
-
-/***/ 251:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_251__;
-
-/***/ }),
-
-/***/ 252:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_252__;
-
-/***/ }),
-
-/***/ 253:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -500,17 +332,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var gettext_1 = __webpack_require__(6);
-var opal_utils_1 = __webpack_require__(9);
-var cellx_1 = __webpack_require__(3);
-var cellx_decorators_1 = __webpack_require__(2);
-var rionite_1 = __webpack_require__(0);
-var ObservableTreeList_1 = __webpack_require__(22);
-__webpack_require__(23);
-var OpalTreeListItem_1 = __webpack_require__(23);
+var opal_utils_1 = __webpack_require__(8);
+var cellx_1 = __webpack_require__(9);
+var cellx_decorators_1 = __webpack_require__(10);
+var rionite_1 = __webpack_require__(11);
+var ObservableTreeList_1 = __webpack_require__(248);
+__webpack_require__(251);
+var OpalTreeListItem_1 = __webpack_require__(251);
 exports.OpalTreeListItem = OpalTreeListItem_1.OpalTreeListItem;
-var _getListItemContext_1 = __webpack_require__(24);
-__webpack_require__(256);
-var template_nelm_1 = __webpack_require__(257);
+var _getListItemContext_1 = __webpack_require__(252);
+__webpack_require__(255);
+var template_nelm_1 = __webpack_require__(256);
 var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
 function toComparable(str) {
@@ -708,6 +540,7 @@ var OpalTreeList = /** @class */ (function (_super) {
     ], OpalTreeList.prototype, "viewModel", void 0);
     OpalTreeList = OpalTreeList_1 = __decorate([
         rionite_1.Component({
+            elementIs: 'OpalTreeList',
             i18n: {
                 nothingFound: gettext_1.getText.t('Ничего не найдено')
             },
@@ -723,7 +556,182 @@ OpalTreeList.prototype._getListItemContext = _getListItemContext_1.default;
 
 /***/ }),
 
-/***/ 254:
+/***/ 251:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var cellx_decorators_1 = __webpack_require__(10);
+var rionite_1 = __webpack_require__(11);
+var _getListItemContext_1 = __webpack_require__(252);
+__webpack_require__(253);
+var template_nelm_1 = __webpack_require__(254);
+var OpalTreeListItem = /** @class */ (function (_super) {
+    __extends(OpalTreeListItem, _super);
+    function OpalTreeListItem() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramOpened = false;
+        return _this;
+    }
+    Object.defineProperty(OpalTreeListItem.prototype, "dataTreeList", {
+        get: function () {
+            return this.paramDataTreeList;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OpalTreeListItem.prototype, "viewModel", {
+        get: function () {
+            return this.paramViewModel;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    OpalTreeListItem.prototype.initialize = function () {
+        this.dataTreeListItem = this.paramFilteredDataTreeList.get(this.paramIndexpath);
+        this._dataTreeListItemValueFieldName = this.paramDataTreeListItemValueFieldName;
+        this._dataTreeListItemTextFieldName = this.paramDataTreeListItemTextFieldName;
+        this._viewModelItemValueFieldName = this.paramViewModelItemValueFieldName;
+        this._viewModelItemTextFieldName = this.paramViewModelItemTextFieldName;
+    };
+    __decorate([
+        rionite_1.Param({ required: true }),
+        __metadata("design:type", Object)
+    ], OpalTreeListItem.prototype, "paramDataTreeList", void 0);
+    __decorate([
+        rionite_1.Param({ required: true }),
+        __metadata("design:type", Object)
+    ], OpalTreeListItem.prototype, "paramFilteredDataTreeList", void 0);
+    __decorate([
+        rionite_1.Param({ required: true, readonly: true }),
+        __metadata("design:type", String)
+    ], OpalTreeListItem.prototype, "paramDataTreeListItemValueFieldName", void 0);
+    __decorate([
+        rionite_1.Param({ required: true, readonly: true }),
+        __metadata("design:type", String)
+    ], OpalTreeListItem.prototype, "paramDataTreeListItemTextFieldName", void 0);
+    __decorate([
+        rionite_1.Param({ required: true }),
+        __metadata("design:type", Object)
+    ], OpalTreeListItem.prototype, "paramViewModel", void 0);
+    __decorate([
+        rionite_1.Param({ required: true, readonly: true }),
+        __metadata("design:type", String)
+    ], OpalTreeListItem.prototype, "paramViewModelItemValueFieldName", void 0);
+    __decorate([
+        rionite_1.Param({ required: true, readonly: true }),
+        __metadata("design:type", String)
+    ], OpalTreeListItem.prototype, "paramViewModelItemTextFieldName", void 0);
+    __decorate([
+        rionite_1.Param({ type: eval, required: true, readonly: true }),
+        __metadata("design:type", Array)
+    ], OpalTreeListItem.prototype, "paramIndexpath", void 0);
+    __decorate([
+        rionite_1.Param,
+        __metadata("design:type", String)
+    ], OpalTreeListItem.prototype, "paramQuery", void 0);
+    __decorate([
+        rionite_1.Param,
+        __metadata("design:type", Object)
+    ], OpalTreeListItem.prototype, "paramOpened", void 0);
+    __decorate([
+        cellx_decorators_1.Computed,
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
+    ], OpalTreeListItem.prototype, "dataTreeList", null);
+    __decorate([
+        cellx_decorators_1.Computed,
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
+    ], OpalTreeListItem.prototype, "viewModel", null);
+    OpalTreeListItem = __decorate([
+        rionite_1.Component({
+            elementIs: 'OpalTreeListItem',
+            template: template_nelm_1.default,
+            events: {
+                btnToggleChildren: {
+                    change: function (evt) {
+                        this.paramOpened = evt.target.checked;
+                    }
+                }
+            }
+        })
+    ], OpalTreeListItem);
+    return OpalTreeListItem;
+}(rionite_1.BaseComponent));
+exports.OpalTreeListItem = OpalTreeListItem;
+OpalTreeListItem.prototype._getListItemContext = _getListItemContext_1.default;
+
+
+/***/ }),
+
+/***/ 252:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var mixin_1 = __webpack_require__(142);
+var cellx_1 = __webpack_require__(9);
+function isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
+    do {
+        if (vm.find(function (vmItem) {
+            return vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName];
+        })) {
+            return true;
+        }
+    } while ((item = item.parent));
+    return false;
+}
+function isIndeterminateItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
+    return (!!item.children.length &&
+        !isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
+        item.children.some(function (child) {
+            return !!vm.find(function (vmItem) {
+                return vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName];
+            }) ||
+                isIndeterminateItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName);
+        }));
+}
+function _getListItemContext(context, slot) {
+    var $item = slot.$context.$item;
+    return cellx_1.define(mixin_1.mixin(Object.create(context), slot.$context, ['$component']), {
+        $selected: new cellx_1.Cell(function () {
+            this.dataTreeList;
+            return isSelectedItem($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
+        }, { context: this }),
+        $indeterminate: new cellx_1.Cell(function () {
+            this.dataTreeList;
+            return isIndeterminateItem($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
+        }, { context: this })
+    });
+}
+exports.default = _getListItemContext;
+
+
+/***/ }),
+
+/***/ 253:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -741,16 +749,16 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 255:
+/***/ 254:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+__webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("div/head {\nOpalButton/btnToggleChildren (viewType=clean, checkable, checked={paramOpened}) {\nOpalIcon/btnToggleChildrenIcon (name=chevronRight)\n}\nspan/contentSlotWrapper {\nRnSlot/contentSlot (cloneContent)\n}\n}\n@IfThen (dataTreeListItem.children.length) {\ndiv/children {\n@Repeat (for=$item in dataTreeListItem.children) {\nOpalTreeListItem/item (\ndataTreeList={paramDataTreeList},\nfilteredDataTreeList={paramFilteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath='[{paramIndexpath},{$index}]',\nquery={paramQuery},\nopened={paramQuery |is },\nnestingLevel={paramIndexpath.length},\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext})\n}\n}\n}\n}");
 
 /***/ }),
 
-/***/ 256:
+/***/ 255:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -768,40 +776,40 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 257:
+/***/ 256:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+__webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("@IfThen (dataTreeList) {\n@IfThen (filteredDataTreeList.length) {\n@Repeat (for=$item in filteredDataTreeList) {\nOpalTreeListItem/item (\ndataTreeList={dataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={paramQuery},\nopened={paramQuery |is },\nnestingLevel=0,\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext}) {\nOpalCheckbox/selectionControl (\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@IfElse (filteredDataTreeList.length) {\nRnSlot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\n}\n@IfElse (dataTreeList) {\nOpalLoader/loader (shown)\n}");
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
-
-/***/ }),
-
-/***/ 5:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 
 /***/ 6:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+
+/***/ }),
+
+/***/ 8:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
 
 /***/ }),
 
 /***/ 9:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
 
 /***/ })
 

@@ -1,6 +1,8 @@
 import { BaseComponent, Component, Param } from 'rionite';
 
-@Component()
+@Component({
+	elementIs: 'OpalRoute'
+})
 export class OpalRoute extends BaseComponent {
 	@Param({ required: true, readonly: true })
 	paramPath: string;

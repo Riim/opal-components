@@ -9,6 +9,7 @@ import template from './template.nelm';
 export { OpalMultirowRow };
 
 @Component({
+	elementIs: 'OpalMultirow',
 	template
 })
 export class OpalMultirow extends BaseComponent {

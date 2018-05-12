@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("@riim/opal-button"));
+		module.exports = factory(require("reflect-metadata"), require("rionite"), require("@riim/opal-button"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "@riim/opal-button"], factory);
+		define(["reflect-metadata", "rionite", "@riim/opal-button"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-switch-menu"] = factory(require("rionite"), require("reflect-metadata"), require("@riim/opal-button"));
+		exports["@riim/opal-switch-menu"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/opal-button"));
 	else
-		root["@riim/opal-switch-menu"] = factory(root["rionite"], root["reflect-metadata"], root["@riim/opal-button"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_11__) {
+		root["@riim/opal-switch-menu"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/opal-button"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__162__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -54,6 +54,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -69,34 +74,28 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 218);
+/******/ 	return __webpack_require__(__webpack_require__.s = 213);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
-
-/***/ }),
-
-/***/ 1:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
-
-/***/ }),
-
 /***/ 11:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
 
 /***/ }),
 
-/***/ 218:
+/***/ 162:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__162__;
+
+/***/ }),
+
+/***/ 213:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,14 +104,14 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(11);
-__webpack_require__(1);
-__export(__webpack_require__(219));
+__webpack_require__(162);
+__webpack_require__(4);
+__export(__webpack_require__(214));
 
 
 /***/ }),
 
-/***/ 219:
+/***/ 214:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -134,9 +133,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(0);
-__webpack_require__(220);
-var template_nelm_1 = __webpack_require__(221);
+var rionite_1 = __webpack_require__(11);
+__webpack_require__(215);
+var template_nelm_1 = __webpack_require__(216);
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
 var OpalSwitchMenu = /** @class */ (function (_super) {
@@ -202,6 +201,7 @@ var OpalSwitchMenu = /** @class */ (function (_super) {
     };
     OpalSwitchMenu = __decorate([
         rionite_1.Component({
+            elementIs: 'OpalSwitchMenu',
             template: template_nelm_1.default
         })
     ], OpalSwitchMenu);
@@ -212,7 +212,7 @@ exports.OpalSwitchMenu = OpalSwitchMenu;
 
 /***/ }),
 
-/***/ 220:
+/***/ 215:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -230,12 +230,19 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 221:
+/***/ 216:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+__webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot/contentSlot\n}");
+
+/***/ }),
+
+/***/ 4:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ })
 

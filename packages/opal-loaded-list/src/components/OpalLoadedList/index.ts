@@ -33,6 +33,8 @@ export interface IDataProvider {
 let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 
 @Component({
+	elementIs: 'OpalLoadedList',
+
 	i18n: {
 		nothingFound: getText.t('Ничего не найдено')
 	},

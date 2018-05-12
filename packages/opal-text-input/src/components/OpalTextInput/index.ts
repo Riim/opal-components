@@ -6,6 +6,8 @@ import './index.css';
 import template from './template.nelm';
 
 @Component<OpalTextInput>({
+	elementIs: 'OpalTextInput',
+
 	template,
 
 	domEvents: {

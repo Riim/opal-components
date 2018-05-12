@@ -18,6 +18,7 @@ const iPhone = /iphone/i.test(navigator.userAgent);
 const ie11 = !(window as any).ActiveXObject && 'ActiveXObject' in window;
 
 @Component({
+	elementIs: 'OpalInputMask',
 	template
 })
 export class OpalInputMask extends BaseComponent {
