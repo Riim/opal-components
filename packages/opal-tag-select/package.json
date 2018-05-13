@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tag-select",
-  "version": "0.33.89",
+  "version": "0.33.90",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

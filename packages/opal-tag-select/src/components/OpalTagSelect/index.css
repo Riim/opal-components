@@ -20,12 +20,8 @@
 			font-weight: normal;
 			cursor: default;
 
-			&::last-child {
-				margin-right: 41px;
-			}
-
 			@mod disabled {
-				margin-right: 6px;
+				margin-right: 8px;
 				padding-right: 18px;
 				border-top-right-radius: 16px;
 				border-bottom-right-radius: 16px;
