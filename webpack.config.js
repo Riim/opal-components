@@ -82,7 +82,7 @@ module.exports = env => {
 		externals: [
 			'@riim/debounce-throttle',
 			'@riim/gettext',
-			'@riim/hyphenize',
+			'@riim/kebab-case',
 			'@riim/map-set-polyfill',
 			'@riim/mixin',
 			'@riim/next-tick',

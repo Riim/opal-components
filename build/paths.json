@@ -184,7 +184,7 @@
       "node_modules/raw-loader/index.js!node_modules/trim-lines-loader/index.js!node_modules/collapse-line-breaks-loader/index.js!packages/opal-radio-group/src/components/OpalRadioButton/template.nelm": 180,
       "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-router/src/index.ts": 181,
       "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-router/src/components/OpalRouter/index.ts": 182,
-      "external \"@riim/hyphenize\"": 183,
+      "external \"@riim/kebab-case\"": 183,
       "external \"@riim/rionite-snake-case-attribute-name\"": 184,
       "external \"created-browser-history\"": 185,
       "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-router/src/components/OpalRoute/index.ts": 186,

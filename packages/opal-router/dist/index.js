@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("rionite"), require("@riim/hyphenize"), require("@riim/rionite-snake-case-attribute-name"), require("created-browser-history"));
+		module.exports = factory(require("reflect-metadata"), require("rionite"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("created-browser-history"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "rionite", "@riim/hyphenize", "@riim/rionite-snake-case-attribute-name", "created-browser-history"], factory);
+		define(["reflect-metadata", "rionite", "@riim/kebab-case", "@riim/rionite-snake-case-attribute-name", "created-browser-history"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-router"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/hyphenize"), require("@riim/rionite-snake-case-attribute-name"), require("created-browser-history"));
+		exports["@riim/opal-router"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("created-browser-history"));
 	else
-		root["@riim/opal-router"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/hyphenize"], root["@riim/rionite-snake-case-attribute-name"], root["created-browser-history"]);
+		root["@riim/opal-router"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/kebab-case"], root["@riim/rionite-snake-case-attribute-name"], root["created-browser-history"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__183__, __WEBPACK_EXTERNAL_MODULE__184__, __WEBPACK_EXTERNAL_MODULE__185__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -128,7 +128,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var hyphenize_1 = __webpack_require__(183);
+var kebab_case_1 = __webpack_require__(183);
 var rionite_snake_case_attribute_name_1 = __webpack_require__(184);
 var created_browser_history_1 = __webpack_require__(185);
 var rionite_1 = __webpack_require__(11);
@@ -195,7 +195,7 @@ var OpalRouter = /** @class */ (function (_super) {
                 path: path,
                 rePath: RegExp("^" + rePath + (rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?') + "$"),
                 properties: props,
-                componentName: hyphenize_1.hyphenize(routeEl.$component.paramComponent)
+                componentName: kebab_case_1.kebabCase(routeEl.$component.paramComponent)
             });
         });
     };

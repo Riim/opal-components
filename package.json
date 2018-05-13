@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.90",
+  "version": "0.33.91",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -69,7 +69,7 @@
     "@riim/opal-notification": "^0.33.89",
     "@riim/opal-popover": "^0.33.89",
     "@riim/opal-radio-group": "^0.33.89",
-    "@riim/opal-router": "^0.33.89",
+    "@riim/opal-router": "^0.33.91",
     "@riim/opal-select": "^0.33.89",
     "@riim/opal-select-validator": "^0.33.89",
     "@riim/opal-sign-button": "^0.33.89",
@@ -85,6 +85,6 @@
     "@riim/opal-tree-tag-select": "^0.33.89",
     "@riim/opal-utils": "^0.33.89",
     "cellx": "^1.7.86",
-    "rionite": "^0.32.74"
+    "rionite": "^0.32.75"
   }
 }

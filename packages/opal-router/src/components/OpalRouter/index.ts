@@ -1,4 +1,4 @@
-import { hyphenize } from '@riim/hyphenize';
+import { kebabCase } from '@riim/kebab-case';
 import { snakeCaseAttributeName } from '@riim/rionite-snake-case-attribute-name';
 import { history, Location } from 'created-browser-history';
 import {
@@ -105,7 +105,7 @@ export class OpalRouter extends BaseComponent {
 						`^${rePath}${rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?'}$`
 					),
 					properties: props,
-					componentName: hyphenize(routeEl.$component.paramComponent)
+					componentName: kebabCase(routeEl.$component.paramComponent)
 				});
 			}
 		);
