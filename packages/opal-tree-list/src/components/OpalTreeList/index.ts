@@ -8,7 +8,12 @@ import {
 	ObservableList
 	} from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
-import { BaseComponent, Component, Param } from 'rionite';
+import {
+	BaseComponent,
+	Component,
+	IDisposableTimeout,
+	Param
+	} from 'rionite';
 import { ObservableTreeList, setParent } from '../../ObservableTreeList';
 import '../OpalTreeListItem';
 import { OpalTreeListItem } from '../OpalTreeListItem';
@@ -75,16 +80,24 @@ export class OpalTreeList extends BaseComponent {
 	paramViewModelItemSchema: { value?: string; text?: string };
 	@Param paramQuery: string;
 
-	dataTreeList: TDataTreeList;
+	dataTreeList: TDataTreeList | null;
 	_dataTreeListItemValueFieldName: string;
 	_dataTreeListItemTextFieldName: string;
 
+	@Observable query: string | null;
+
 	@Computed
-	get filteredDataTreeList(): TDataTreeList {
-		let query = toComparable(this.paramQuery);
+	get filteredDataTreeList(): TDataTreeList | null {
+		let dataTreeList = this.dataTreeList;
+
+		if (!dataTreeList) {
+			return null;
+		}
+
+		let query = this.query;
 
 		if (!query) {
-			return this.dataTreeList;
+			return dataTreeList;
 		}
 
 		let dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName;
@@ -92,7 +105,7 @@ export class OpalTreeList extends BaseComponent {
 
 		return new ObservableTreeList(
 			setParent(
-				this.dataTreeList.reduce(
+				dataTreeList.reduce(
 					function _(filteredDataTreeList, item) {
 						if (item.children.length) {
 							let filteredChildren = item.children.reduce(_, []);
@@ -137,15 +150,21 @@ export class OpalTreeList extends BaseComponent {
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 
+	@Observable _queryTimeout: IDisposableTimeout | null = null;
+
+	@Computed
+	get listShown(): boolean {
+		return !!this.dataTreeList && !this._queryTimeout;
+	}
+
 	initialize() {
 		if (this.paramDataTreeListKeypath) {
-			define(
-				this,
-				'dataTreeList',
-				new Cell(Function(`return this.${this.paramDataTreeListKeypath};`), {
+			define(this, 'dataTreeList', new Cell(
+				Function(`return this.${this.paramDataTreeListKeypath};`),
+				{
 					context: this.ownerComponent || window
-				})
-			);
+				}
+			));
 		} else {
 			if (!this.$specifiedParams || !this.$specifiedParams.has('dataTreeList')) {
 				throw new TypeError('Parameter "dataTreeList" is required');
@@ -174,7 +193,21 @@ export class OpalTreeList extends BaseComponent {
 	}
 
 	elementAttached() {
+		this.listenTo(this, 'change:paramQuery', this._onParamQueryChange);
 		this.listenTo(this, '<*>change', this._onChange);
+	}
+
+	_onParamQueryChange() {
+		if (this._queryTimeout) {
+			this._queryTimeout.clear();
+		}
+
+		this._queryTimeout = this.setTimeout(this._onQueryTimeout, 300);
+	}
+
+	_onQueryTimeout() {
+		this._queryTimeout = null;
+		this.query = toComparable(this.paramQuery);
 	}
 
 	_onChange(evt: IEvent<OpalCheckbox>) {

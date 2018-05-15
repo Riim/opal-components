@@ -1,4 +1,4 @@
-@IfThen (dataTreeList) {
+@IfThen (listShown) {
 	@IfThen (filteredDataTreeList.length) {
 		@Repeat (for=$item in filteredDataTreeList) {
 			OpalTreeListItem/item (
@@ -36,6 +36,6 @@
 		}
 	}
 }
-@IfElse (dataTreeList) {
+@IfElse (listShown) {
 	OpalLoader/loader (shown)
 }

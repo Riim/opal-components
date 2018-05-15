@@ -355,18 +355,24 @@ function toComparable(str) {
 var OpalTreeList = /** @class */ (function (_super) {
     __extends(OpalTreeList, _super);
     function OpalTreeList() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this._queryTimeout = null;
+        return _this;
     }
     OpalTreeList_1 = OpalTreeList;
     Object.defineProperty(OpalTreeList.prototype, "filteredDataTreeList", {
         get: function () {
-            var query = toComparable(this.paramQuery);
+            var dataTreeList = this.dataTreeList;
+            if (!dataTreeList) {
+                return null;
+            }
+            var query = this.query;
             if (!query) {
-                return this.dataTreeList;
+                return dataTreeList;
             }
             var dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName;
             var dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
-            return new ObservableTreeList_1.ObservableTreeList(ObservableTreeList_1.setParent(this.dataTreeList.reduce(function _(filteredDataTreeList, item) {
+            return new ObservableTreeList_1.ObservableTreeList(ObservableTreeList_1.setParent(dataTreeList.reduce(function _(filteredDataTreeList, item) {
                 if (item.children.length) {
                     var filteredChildren = item.children.reduce(_, []);
                     if (filteredChildren.length ||
@@ -392,6 +398,13 @@ var OpalTreeList = /** @class */ (function (_super) {
                 return filteredDataTreeList;
                 var _a, _b;
             }, [])));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OpalTreeList.prototype, "listShown", {
+        get: function () {
+            return !!this.dataTreeList && !this._queryTimeout;
         },
         enumerable: true,
         configurable: true
@@ -424,7 +437,18 @@ var OpalTreeList = /** @class */ (function (_super) {
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
     };
     OpalTreeList.prototype.elementAttached = function () {
+        this.listenTo(this, 'change:paramQuery', this._onParamQueryChange);
         this.listenTo(this, '<*>change', this._onChange);
+    };
+    OpalTreeList.prototype._onParamQueryChange = function () {
+        if (this._queryTimeout) {
+            this._queryTimeout.clear();
+        }
+        this._queryTimeout = this.setTimeout(this._onQueryTimeout, 300);
+    };
+    OpalTreeList.prototype._onQueryTimeout = function () {
+        this._queryTimeout = null;
+        this.query = toComparable(this.paramQuery);
     };
     OpalTreeList.prototype._onChange = function (evt) {
         var component = evt.target;
@@ -530,6 +554,10 @@ var OpalTreeList = /** @class */ (function (_super) {
         __metadata("design:type", String)
     ], OpalTreeList.prototype, "paramQuery", void 0);
     __decorate([
+        cellx_decorators_1.Observable,
+        __metadata("design:type", Object)
+    ], OpalTreeList.prototype, "query", void 0);
+    __decorate([
         cellx_decorators_1.Computed,
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [])
@@ -538,6 +566,15 @@ var OpalTreeList = /** @class */ (function (_super) {
         cellx_decorators_1.Observable,
         __metadata("design:type", Object)
     ], OpalTreeList.prototype, "viewModel", void 0);
+    __decorate([
+        cellx_decorators_1.Observable,
+        __metadata("design:type", Object)
+    ], OpalTreeList.prototype, "_queryTimeout", void 0);
+    __decorate([
+        cellx_decorators_1.Computed,
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
+    ], OpalTreeList.prototype, "listShown", null);
     OpalTreeList = OpalTreeList_1 = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTreeList',
@@ -781,7 +818,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (dataTreeList) {\n@IfThen (filteredDataTreeList.length) {\n@Repeat (for=$item in filteredDataTreeList) {\nOpalTreeListItem/item (\ndataTreeList={dataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={paramQuery},\nopened={paramQuery |is },\nnestingLevel=0,\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext}) {\nOpalCheckbox/selectionControl (\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@IfElse (filteredDataTreeList.length) {\nRnSlot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\n}\n@IfElse (dataTreeList) {\nOpalLoader/loader (shown)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (listShown) {\n@IfThen (filteredDataTreeList.length) {\n@Repeat (for=$item in filteredDataTreeList) {\nOpalTreeListItem/item (\ndataTreeList={dataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={paramQuery},\nopened={paramQuery |is },\nnestingLevel=0,\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext}) {\nOpalCheckbox/selectionControl (\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@IfElse (filteredDataTreeList.length) {\nRnSlot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\n}\n@IfElse (listShown) {\nOpalLoader/loader (shown)\n}");
 
 /***/ }),
 

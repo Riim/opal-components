@@ -1,6 +1,6 @@
 import { OpalCheckbox } from '@riim/opal-checkbox';
 import { IEvent, ObservableList } from 'cellx';
-import { BaseComponent } from 'rionite';
+import { BaseComponent, IDisposableTimeout } from 'rionite';
 import { ObservableTreeList } from '../../ObservableTreeList';
 import '../OpalTreeListItem';
 import { OpalTreeListItem } from '../OpalTreeListItem';
@@ -43,14 +43,19 @@ export declare class OpalTreeList extends BaseComponent {
         text?: string;
     };
     paramQuery: string;
-    dataTreeList: TDataTreeList;
+    dataTreeList: TDataTreeList | null;
     _dataTreeListItemValueFieldName: string;
     _dataTreeListItemTextFieldName: string;
-    readonly filteredDataTreeList: TDataTreeList;
+    query: string | null;
+    readonly filteredDataTreeList: TDataTreeList | null;
     viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
+    _queryTimeout: IDisposableTimeout | null;
+    readonly listShown: boolean;
     initialize(): void;
     elementAttached(): void;
+    _onParamQueryChange(): void;
+    _onQueryTimeout(): void;
     _onChange(evt: IEvent<OpalCheckbox>): void;
 }

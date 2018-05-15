@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/gettext"), require("rionite"), require("@riim/opal-loaded-list"), require("@riim/debounce-throttle"));
+		module.exports = factory(require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/gettext"), require("rionite"), require("@riim/opal-loaded-list"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-icon", "@riim/opal-text-input", "reflect-metadata", "@riim/gettext", "rionite", "@riim/opal-loaded-list", "@riim/debounce-throttle"], factory);
+		define(["@riim/opal-icon", "@riim/opal-text-input", "reflect-metadata", "@riim/gettext", "rionite", "@riim/opal-loaded-list"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-filtered-list"] = factory(require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/gettext"), require("rionite"), require("@riim/opal-loaded-list"), require("@riim/debounce-throttle"));
+		exports["@riim/opal-filtered-list"] = factory(require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/gettext"), require("rionite"), require("@riim/opal-loaded-list"));
 	else
-		root["@riim/opal-filtered-list"] = factory(root["@riim/opal-icon"], root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/gettext"], root["rionite"], root["@riim/opal-loaded-list"], root["@riim/debounce-throttle"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__45__, __WEBPACK_EXTERNAL_MODULE__47__) {
+		root["@riim/opal-filtered-list"] = factory(root["@riim/opal-icon"], root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/gettext"], root["rionite"], root["@riim/opal-loaded-list"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__45__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -156,7 +156,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var debounce_throttle_1 = __webpack_require__(47);
 var gettext_1 = __webpack_require__(6);
 var rionite_1 = __webpack_require__(11);
 __webpack_require__(48);
@@ -169,7 +168,7 @@ var OpalFilteredList = /** @class */ (function (_super) {
     OpalFilteredList.prototype.elementAttached = function () {
         var queryInput = this.$('queryInput');
         if (queryInput) {
-            this.listenTo(queryInput, 'input', debounce_throttle_1.debounce(150, this._onQueryInputInput));
+            this.listenTo(queryInput, 'input', this._onQueryInputInput);
             this.listenTo(queryInput, 'change', this._onQueryInputChange);
         }
     };
@@ -201,13 +200,6 @@ var OpalFilteredList = /** @class */ (function (_super) {
 }(rionite_1.BaseComponent));
 exports.OpalFilteredList = OpalFilteredList;
 
-
-/***/ }),
-
-/***/ 47:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__47__;
 
 /***/ }),
 

@@ -1,4 +1,3 @@
-import { debounce } from '@riim/debounce-throttle';
 import { getText } from '@riim/gettext';
 import { OpalLoadedList } from '@riim/opal-loaded-list';
 import { OpalTextInput } from '@riim/opal-text-input';
@@ -21,7 +20,7 @@ export class OpalFilteredList extends BaseComponent {
 		let queryInput = this.$('queryInput');
 
 		if (queryInput) {
-			this.listenTo(queryInput, 'input', debounce(150, this._onQueryInputInput));
+			this.listenTo(queryInput, 'input', this._onQueryInputInput);
 			this.listenTo(queryInput, 'change', this._onQueryInputChange);
 		}
 	}

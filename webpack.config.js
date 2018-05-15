@@ -79,6 +79,8 @@ module.exports = env => {
 			extensions: ['.ts', '.tsx', '.js', '.jsx']
 		},
 
+		context: __dirname,
+
 		externals: [
 			'@riim/debounce-throttle',
 			'@riim/gettext',
