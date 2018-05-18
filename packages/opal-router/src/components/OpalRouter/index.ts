@@ -1,4 +1,5 @@
 import { kebabCase } from '@riim/kebab-case';
+import { nextUID } from '@riim/next-uid';
 import { snakeCaseAttributeName } from '@riim/rionite-snake-case-attribute-name';
 import { history, Location } from 'created-browser-history';
 import {
@@ -43,6 +44,8 @@ function valueToAttributeValue(value: boolean | string): string {
 	elementIs: 'OpalRouter'
 })
 export class OpalRouter extends BaseComponent {
+	@Param({ readonly: true })
+	paramUseHash = false;
 	@Param paramScrollTopOnChange = true;
 	@Param paramScrollTopOnChangeComponent = true;
 
@@ -50,8 +53,6 @@ export class OpalRouter extends BaseComponent {
 	_route: IRoute | null = null;
 	_state: IComponentState | null = null;
 	_componentElement: IComponentElement | null = null;
-
-	_historyListening: { unlisten: () => void };
 
 	initialize() {
 		this._routes = [];
@@ -112,20 +113,54 @@ export class OpalRouter extends BaseComponent {
 	}
 
 	elementAttached() {
-		this.listenTo(this, '<*>refresh-router', this._onRefreshRouter);
-
-		this._update(location.hash);
-
-		this._historyListening = {
-			unlisten: history.listen(location => {
+		this._disposables[nextUID()] = {
+			dispose: history.listen(location => {
 				this._onWindowPopState(location);
 			})
 		};
+
+		if (!this.paramUseHash) {
+			this.listenTo(document.body, 'click', this._onBodyClick);
+		}
+
+		this.listenTo(this, '<*>refresh-router', this._onRefreshRouter);
+
+		this._update(this.paramUseHash ? location.hash.slice(1) : location.pathname);
 	}
 
 	elementDetached() {
-		this._historyListening.unlisten();
 		this._clear();
+	}
+
+	_onWindowPopState(location: Location) {
+		this._update(this.paramUseHash ? location.hash.slice(1) : location.pathname);
+	}
+
+	_onBodyClick(evt: Event) {
+		let el: HTMLElement = evt.target as HTMLElement;
+
+		while (el.tagName != 'A') {
+			el = el.parentElement!;
+
+			if (!el) {
+				return;
+			}
+		}
+
+		let href = el.getAttribute('href')!;
+
+		if (
+			!/^(?:\w+:)?\/\//.test(href) &&
+			href.indexOf('#') == -1 &&
+			el.getAttribute('target') != '_blank' &&
+			this._update(href)
+		) {
+			evt.preventDefault();
+
+			if (href != history.location.pathname) {
+				history.push(href);
+			}
+		}
 	}
 
 	_onRefreshRouter() {
@@ -133,12 +168,10 @@ export class OpalRouter extends BaseComponent {
 		return false;
 	}
 
-	_onWindowPopState(location: Location) {
-		this._update(location.hash);
-	}
-
-	_update(hash: string) {
-		let path = hash.slice(1) || '/';
+	_update(path: string): boolean {
+		if (!path) {
+			path = '/';
+		}
 
 		for (let route of this._routes) {
 			let match = path.match(route.rePath);
@@ -169,7 +202,7 @@ export class OpalRouter extends BaseComponent {
 					stateKeys.length == Object.keys(prevState).length &&
 					stateKeys.every(name => state[name] === prevState[name])
 				) {
-					return;
+					return true;
 				}
 
 				let componentEl = this._componentElement!;
@@ -239,7 +272,7 @@ export class OpalRouter extends BaseComponent {
 
 					this.emit('change');
 
-					return;
+					return true;
 				}
 			}
 
@@ -263,13 +296,15 @@ export class OpalRouter extends BaseComponent {
 
 			this.emit('change');
 
-			return;
+			return true;
 		}
 
 		if (this._route) {
 			this.emit('change');
 			this._clear();
 		}
+
+		return false;
 	}
 
 	_applyState() {

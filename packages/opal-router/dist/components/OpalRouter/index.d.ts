@@ -17,22 +17,21 @@ export interface IComponentState {
     [name: string]: boolean | string;
 }
 export declare class OpalRouter extends BaseComponent {
+    paramUseHash: boolean;
     paramScrollTopOnChange: boolean;
     paramScrollTopOnChangeComponent: boolean;
     _routes: Array<IRoute>;
     _route: IRoute | null;
     _state: IComponentState | null;
     _componentElement: IComponentElement | null;
-    _historyListening: {
-        unlisten: () => void;
-    };
     initialize(): void;
     ready(): void;
     elementAttached(): void;
     elementDetached(): void;
-    _onRefreshRouter(): boolean;
     _onWindowPopState(location: Location): void;
-    _update(hash: string): void;
+    _onBodyClick(evt: Event): void;
+    _onRefreshRouter(): boolean;
+    _update(path: string): boolean;
     _applyState(): void;
     _clear(): void;
     refresh(): void;

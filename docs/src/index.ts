@@ -68,12 +68,12 @@ export class OpalComponentsDocs extends BaseComponent {
 				let filteredItems = query
 					? items.filter(item => {
 							return item.name.indexOf(query) != -1;
-						})
+					  })
 					: items;
 				let from = after
 					? filteredItems.findIndex(item => {
 							return item.id == after;
-						}) + 1
+					  }) + 1
 					: 0;
 
 				return new Promise<{
@@ -123,9 +123,10 @@ export class OpalComponentsDocs extends BaseComponent {
 							items: query
 								? items.filter(item => {
 										return (
-											item.name.toLowerCase().indexOf(query.toLowerCase()) != -1
+											item.name.toLowerCase().indexOf(query.toLowerCase()) !=
+											-1
 										);
-									})
+								  })
 								: items
 						});
 					}, 500);
