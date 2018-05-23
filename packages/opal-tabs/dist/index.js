@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("reflect-metadata"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/next-uid"), require("@riim/opal-router"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "@riim/next-tick", "cellx", "cellx-decorators", "rionite"], factory);
+		define(["reflect-metadata", "@riim/next-tick", "cellx", "cellx-decorators", "rionite", "@riim/next-uid", "@riim/opal-router"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tabs"] = factory(require("reflect-metadata"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-tabs"] = factory(require("reflect-metadata"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/next-uid"), require("@riim/opal-router"));
 	else
-		root["@riim/opal-tabs"] = factory(root["reflect-metadata"], root["@riim/next-tick"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__) {
+		root["@riim/opal-tabs"] = factory(root["reflect-metadata"], root["@riim/next-tick"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/next-uid"], root["@riim/opal-router"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__155__, __WEBPACK_EXTERNAL_MODULE__278__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -95,6 +95,13 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
 
 /***/ }),
 
+/***/ 155:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__155__;
+
+/***/ }),
+
 /***/ 221:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -131,7 +138,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+var next_uid_1 = __webpack_require__(155);
+var opal_router_1 = __webpack_require__(278);
 var rionite_1 = __webpack_require__(11);
 var OpalTabList_1 = __webpack_require__(223);
 exports.OpalTab = OpalTabList_1.OpalTab;
@@ -144,10 +156,13 @@ exports.OpalTabList = OpalTabList_2.OpalTabList;
 var indexOf = Array.prototype.indexOf;
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
+var reTabLabel = /(?:#|&)tab=([^&]+)/;
 var OpalTabs = /** @class */ (function (_super) {
     __extends(OpalTabs, _super);
     function OpalTabs() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.paramUseLocationHash = false;
+        _this._startSelectedTab = null;
         _this._selectedTab = null;
         return _this;
     }
@@ -170,23 +185,48 @@ var OpalTabs = /** @class */ (function (_super) {
             }
         });
         if (!selectedTab) {
-            selectedTab = this._selectedTab = tabs[0].$component;
+            selectedTab = this._startSelectedTab = this._selectedTab = tabs[0]
+                .$component;
             selectedTabIndex = 0;
             selectedTab.select();
         }
         tabPanels[selectedTabIndex].$component.paramShown = true;
     };
     OpalTabs.prototype.elementAttached = function () {
+        var _this = this;
         this.listenTo(this.element.getElementsByClassName('OpalTabList')[0].$component, {
             '<OpalTab>select': this._onTabListSelect,
             '<OpalTab>deselect': this._onTabListDeselect
         });
+        if (this.paramUseLocationHash) {
+            var locationHash = opal_router_1.OpalRouter.history.location.hash;
+            reTabLabel.test(locationHash);
+            if (RegExp.$1) {
+                this.goToTab(RegExp.$1);
+            }
+            this._disposables[next_uid_1.nextUID()] = {
+                dispose: opal_router_1.OpalRouter.history.listen(function (location) {
+                    _this._onHistoryChange(location);
+                })
+            };
+        }
     };
     OpalTabs.prototype._onTabListSelect = function (evt) {
         this._selectTab(evt.target);
     };
     OpalTabs.prototype._onTabListDeselect = function (evt) {
         evt.target.select();
+    };
+    OpalTabs.prototype._onHistoryChange = function (location) {
+        reTabLabel.test(opal_router_1.OpalRouter.history.location.hash);
+        if (RegExp.$1) {
+            if (this._selectedTab && RegExp.$1 !== this._selectedTab.paramLabel) {
+                this.goToTab(RegExp.$1);
+            }
+        }
+        else if (this._startSelectedTab) {
+            this._selectTab(this._startSelectedTab, true);
+        }
     };
     OpalTabs.prototype.goToTab = function (label) {
         if (this._selectedTab && this._selectedTab.paramLabel === label) {
@@ -199,7 +239,10 @@ var OpalTabs = /** @class */ (function (_super) {
         }
         return false;
     };
-    OpalTabs.prototype._selectTab = function (tab) {
+    OpalTabs.prototype._selectTab = function (tab, notUseLocationHash) {
+        if (tab === this._selectedTab) {
+            return;
+        }
         var selectedTab = this._selectedTab;
         if (selectedTab) {
             this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$component.paramShown = false;
@@ -208,8 +251,26 @@ var OpalTabs = /** @class */ (function (_super) {
         this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.paramShown = true;
         tab.select();
         this._selectedTab = tab;
+        if (!notUseLocationHash && this.paramUseLocationHash) {
+            var label_1 = tab.paramLabel;
+            var locationHash = opal_router_1.OpalRouter.history.location.hash;
+            var isTabInLocationHashFound_1 = false;
+            var newLocationHash = locationHash.replace(/(#|&)tab=[^&]+/, function (match, sep) {
+                isTabInLocationHashFound_1 = true;
+                return (sep == '#' ? '#' : '') + (label_1 ? 'tab=' + label_1 : '');
+            });
+            if (!isTabInLocationHashFound_1 || newLocationHash != locationHash) {
+                location.hash = isTabInLocationHashFound_1
+                    ? newLocationHash
+                    : (locationHash ? locationHash + '&tab=' : '#tab=') + label_1;
+            }
+        }
         this.emit('change');
     };
+    __decorate([
+        rionite_1.Param,
+        __metadata("design:type", Object)
+    ], OpalTabs.prototype, "paramUseLocationHash", void 0);
     OpalTabs = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTabs',
@@ -619,6 +680,13 @@ module.exports = (function(d) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot/tabListSlot (forTag=opal-tab-list) {\nOpalTabList/tabList {\nRnSlot/tabs, tabs (forTag=opal-tab)\n}\n}\nRnSlot/tabPanels, tabPanels (forTag=opal-tab-panel)\n}");
+
+/***/ }),
+
+/***/ 278:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__278__;
 
 /***/ }),
 

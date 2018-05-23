@@ -94,8 +94,9 @@ module.exports = env => {
 			'@riim/rionite-snake-case-attribute-name',
 			'cellx',
 			'cellx-decorators',
-			'created-browser-history',
 			'date-exists',
+			'history',
+			'history/createBrowserHistory',
 			'reflect-metadata',
 			'rionite',
 

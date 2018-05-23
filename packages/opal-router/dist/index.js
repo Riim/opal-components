@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("rionite"), require("@riim/next-uid"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("created-browser-history"));
+		module.exports = factory(require("reflect-metadata"), require("rionite"), require("@riim/next-uid"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("history/createBrowserHistory"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "rionite", "@riim/next-uid", "@riim/kebab-case", "@riim/rionite-snake-case-attribute-name", "created-browser-history"], factory);
+		define(["reflect-metadata", "rionite", "@riim/next-uid", "@riim/kebab-case", "@riim/rionite-snake-case-attribute-name", "history/createBrowserHistory"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-router"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/next-uid"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("created-browser-history"));
+		exports["@riim/opal-router"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/next-uid"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("history/createBrowserHistory"));
 	else
-		root["@riim/opal-router"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/next-uid"], root["@riim/kebab-case"], root["@riim/rionite-snake-case-attribute-name"], root["created-browser-history"]);
+		root["@riim/opal-router"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/next-uid"], root["@riim/kebab-case"], root["@riim/rionite-snake-case-attribute-name"], root["history/createBrowserHistory"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__155__, __WEBPACK_EXTERNAL_MODULE__183__, __WEBPACK_EXTERNAL_MODULE__184__, __WEBPACK_EXTERNAL_MODULE__185__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -138,7 +138,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var kebab_case_1 = __webpack_require__(183);
 var next_uid_1 = __webpack_require__(155);
 var rionite_snake_case_attribute_name_1 = __webpack_require__(184);
-var created_browser_history_1 = __webpack_require__(185);
+var createBrowserHistory_1 = __webpack_require__(185);
 var rionite_1 = __webpack_require__(11);
 var OpalRoute_1 = __webpack_require__(186);
 exports.OpalRoute = OpalRoute_1.OpalRoute;
@@ -147,6 +147,7 @@ __webpack_require__(188);
 var parsePath_1 = __webpack_require__(189);
 var PathNodeType_1 = __webpack_require__(190);
 var forEach = Array.prototype.forEach;
+var history = createBrowserHistory_1.default();
 function valueToAttributeValue(value) {
     return value === false ? 'no' : value === true ? 'yes' : value;
 }
@@ -154,7 +155,7 @@ var OpalRouter = /** @class */ (function (_super) {
     __extends(OpalRouter, _super);
     function OpalRouter() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramUseHash = false;
+        _this.paramUseLocationHash = false;
         _this.paramScrollTopOnChange = true;
         _this.paramScrollTopOnChangeComponent = true;
         _this._route = null;
@@ -211,21 +212,21 @@ var OpalRouter = /** @class */ (function (_super) {
     OpalRouter.prototype.elementAttached = function () {
         var _this = this;
         this._disposables[next_uid_1.nextUID()] = {
-            dispose: created_browser_history_1.history.listen(function (location) {
-                _this._onWindowPopState(location);
+            dispose: history.listen(function (location) {
+                _this._onHistoryChange(location);
             })
         };
-        if (!this.paramUseHash) {
+        if (!this.paramUseLocationHash) {
             this.listenTo(document.body, 'click', this._onBodyClick);
         }
         this.listenTo(this, '<*>refresh-router', this._onRefreshRouter);
-        this._update(this.paramUseHash ? location.hash.slice(1) : location.pathname);
+        this._update(this.paramUseLocationHash ? history.location.hash.slice(1) : history.location.pathname);
     };
     OpalRouter.prototype.elementDetached = function () {
         this._clear();
     };
-    OpalRouter.prototype._onWindowPopState = function (location) {
-        this._update(this.paramUseHash ? location.hash.slice(1) : location.pathname);
+    OpalRouter.prototype._onHistoryChange = function (location) {
+        this._update(this.paramUseLocationHash ? history.location.hash.slice(1) : history.location.pathname);
     };
     OpalRouter.prototype._onBodyClick = function (evt) {
         var el = evt.target;
@@ -241,8 +242,8 @@ var OpalRouter = /** @class */ (function (_super) {
             el.getAttribute('target') != '_blank' &&
             this._update(href)) {
             evt.preventDefault();
-            if (href != created_browser_history_1.history.location.pathname) {
-                created_browser_history_1.history.push(href);
+            if (href != history.location.pathname) {
+                history.push(href);
             }
         }
     };
@@ -383,10 +384,11 @@ var OpalRouter = /** @class */ (function (_super) {
             }
         }
     };
+    OpalRouter.history = history;
     __decorate([
         rionite_1.Param({ readonly: true }),
         __metadata("design:type", Object)
-    ], OpalRouter.prototype, "paramUseHash", void 0);
+    ], OpalRouter.prototype, "paramUseLocationHash", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)

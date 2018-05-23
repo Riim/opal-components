@@ -1,5 +1,12 @@
+import { nextUID } from '@riim/next-uid';
+import { Location, OpalRouter } from '@riim/opal-router';
 import { IEvent } from 'cellx';
-import { BaseComponent, Component, IComponentElement } from 'rionite';
+import {
+	BaseComponent,
+	Component,
+	IComponentElement,
+	Param
+	} from 'rionite';
 import { OpalTab } from '../OpalTabList';
 import { OpalTabPanel } from '../OpalTabPanel';
 import './index.css';
@@ -13,14 +20,19 @@ const indexOf = Array.prototype.indexOf;
 const forEach = Array.prototype.forEach;
 const find = Array.prototype.find;
 
+const reTabLabel = /(?:#|&)tab=([^&]+)/;
+
 @Component({
 	elementIs: 'OpalTabs',
 	template
 })
 export class OpalTabs extends BaseComponent {
+	@Param paramUseLocationHash = false;
+
 	tabs: NodeListOf<IComponentElement<OpalTab>>;
 	tabPanels: NodeListOf<IComponentElement<OpalTabPanel>>;
 
+	_startSelectedTab: OpalTab | null = null;
 	_selectedTab: OpalTab | null = null;
 
 	ready() {
@@ -48,7 +60,8 @@ export class OpalTabs extends BaseComponent {
 		});
 
 		if (!selectedTab) {
-			selectedTab = this._selectedTab = tabs[0].$component as OpalTab;
+			selectedTab = this._startSelectedTab = this._selectedTab = tabs[0]
+				.$component as OpalTab;
 			selectedTabIndex = 0;
 
 			selectedTab.select();
@@ -65,6 +78,22 @@ export class OpalTabs extends BaseComponent {
 				'<OpalTab>deselect': this._onTabListDeselect
 			}
 		);
+
+		if (this.paramUseLocationHash) {
+			let locationHash = OpalRouter.history.location.hash;
+
+			reTabLabel.test(locationHash);
+
+			if (RegExp.$1) {
+				this.goToTab(RegExp.$1);
+			}
+
+			this._disposables[nextUID()] = {
+				dispose: OpalRouter.history.listen((location: any) => {
+					this._onHistoryChange(location);
+				})
+			};
+		}
 	}
 
 	_onTabListSelect(evt: IEvent<OpalTab>) {
@@ -73,6 +102,18 @@ export class OpalTabs extends BaseComponent {
 
 	_onTabListDeselect(evt: IEvent<OpalTab>) {
 		evt.target.select();
+	}
+
+	_onHistoryChange(location: Location) {
+		reTabLabel.test(OpalRouter.history.location.hash);
+
+		if (RegExp.$1) {
+			if (this._selectedTab && RegExp.$1 !== this._selectedTab.paramLabel) {
+				this.goToTab(RegExp.$1);
+			}
+		} else if (this._startSelectedTab) {
+			this._selectTab(this._startSelectedTab, true);
+		}
 	}
 
 	goToTab(label: string): boolean {
@@ -93,7 +134,11 @@ export class OpalTabs extends BaseComponent {
 		return false;
 	}
 
-	_selectTab(tab: OpalTab) {
+	_selectTab(tab: OpalTab, notUseLocationHash?: boolean) {
+		if (tab === this._selectedTab) {
+			return;
+		}
+
 		let selectedTab = this._selectedTab;
 
 		if (selectedTab) {
@@ -107,6 +152,22 @@ export class OpalTabs extends BaseComponent {
 		tab.select();
 
 		this._selectedTab = tab;
+
+		if (!notUseLocationHash && this.paramUseLocationHash) {
+			let label = tab.paramLabel;
+			let locationHash = OpalRouter.history.location.hash;
+			let isTabInLocationHashFound = false;
+			let newLocationHash = locationHash.replace(/(#|&)tab=[^&]+/, (match, sep) => {
+				isTabInLocationHashFound = true;
+				return (sep == '#' ? '#' : '') + (label ? 'tab=' + label : '');
+			});
+
+			if (!isTabInLocationHashFound || newLocationHash != locationHash) {
+				location.hash = isTabInLocationHashFound
+					? newLocationHash
+					: (locationHash ? locationHash + '&tab=' : '#tab=') + label;
+			}
+		}
 
 		this.emit('change');
 	}

@@ -271,7 +271,19 @@
       "node_modules/raw-loader/index.js!node_modules/trim-lines-loader/index.js!node_modules/collapse-line-breaks-loader/index.js!packages/opal-tree-tag-select/src/components/OpalTreeTagSelect/template.nelm": 267,
       "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/index.ts": 268,
       "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/utils/closestComponent.ts": 269,
-      "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/utils/isFocusable.ts": 270
+      "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/utils/isFocusable.ts": 270,
+      "packages/opal-router/node_modules/history/createBrowserHistory.js": 47,
+      "packages/opal-router/node_modules/warning/browser.js": 185,
+      "packages/opal-router/node_modules/invariant/browser.js": 271,
+      "packages/opal-router/node_modules/history/LocationUtils.js": 272,
+      "packages/opal-router/node_modules/resolve-pathname/index.js": 273,
+      "packages/opal-router/node_modules/value-equal/index.js": 274,
+      "packages/opal-router/node_modules/history/PathUtils.js": 275,
+      "packages/opal-router/node_modules/history/createTransitionManager.js": 276,
+      "packages/opal-router/node_modules/history/DOMUtils.js": 277,
+      "external \"@riim/opal-router\"": 278,
+      "external \"history\"": 47,
+      "external \"history/createBrowserHistory\"": 185
     },
     "usedIds": {
       "0": 0,
@@ -544,7 +556,15 @@
       "267": 267,
       "268": 268,
       "269": 269,
-      "270": 270
+      "270": 270,
+      "271": 271,
+      "272": 272,
+      "273": 273,
+      "274": 274,
+      "275": 275,
+      "276": 276,
+      "277": 277,
+      "278": 278
     }
   },
   "chunks": {

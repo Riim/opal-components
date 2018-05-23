@@ -1,7 +1,8 @@
 import { kebabCase } from '@riim/kebab-case';
 import { nextUID } from '@riim/next-uid';
 import { snakeCaseAttributeName } from '@riim/rionite-snake-case-attribute-name';
-import { history, Location } from 'created-browser-history';
+import { History, Location } from 'history';
+import createHistory from 'history/createBrowserHistory';
 import {
 	BaseComponent,
 	Component,
@@ -16,6 +17,7 @@ import './index.css';
 import { parsePath } from './parsePath';
 import { PathNodeType } from './PathNodeType';
 
+export { History, Location };
 export { OpalRoute };
 
 const forEach = Array.prototype.forEach;
@@ -36,6 +38,8 @@ export interface IComponentState {
 	[name: string]: boolean | string;
 }
 
+const history = createHistory();
+
 function valueToAttributeValue(value: boolean | string): string {
 	return value === false ? 'no' : value === true ? 'yes' : value;
 }
@@ -44,8 +48,10 @@ function valueToAttributeValue(value: boolean | string): string {
 	elementIs: 'OpalRouter'
 })
 export class OpalRouter extends BaseComponent {
+	static history = history;
+
 	@Param({ readonly: true })
-	paramUseHash = false;
+	paramUseLocationHash = false;
 	@Param paramScrollTopOnChange = true;
 	@Param paramScrollTopOnChangeComponent = true;
 
@@ -115,25 +121,29 @@ export class OpalRouter extends BaseComponent {
 	elementAttached() {
 		this._disposables[nextUID()] = {
 			dispose: history.listen(location => {
-				this._onWindowPopState(location);
+				this._onHistoryChange(location);
 			})
 		};
 
-		if (!this.paramUseHash) {
+		if (!this.paramUseLocationHash) {
 			this.listenTo(document.body, 'click', this._onBodyClick);
 		}
 
 		this.listenTo(this, '<*>refresh-router', this._onRefreshRouter);
 
-		this._update(this.paramUseHash ? location.hash.slice(1) : location.pathname);
+		this._update(
+			this.paramUseLocationHash ? history.location.hash.slice(1) : history.location.pathname
+		);
 	}
 
 	elementDetached() {
 		this._clear();
 	}
 
-	_onWindowPopState(location: Location) {
-		this._update(this.paramUseHash ? location.hash.slice(1) : location.pathname);
+	_onHistoryChange(location: Location) {
+		this._update(
+			this.paramUseLocationHash ? history.location.hash.slice(1) : history.location.pathname
+		);
 	}
 
 	_onBodyClick(evt: Event) {
