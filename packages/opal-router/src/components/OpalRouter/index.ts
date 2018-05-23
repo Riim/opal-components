@@ -160,8 +160,9 @@ export class OpalRouter extends BaseComponent {
 		let href = el.getAttribute('href')!;
 
 		if (
+			href &&
+			href.lastIndexOf('#', 0) &&
 			!/^(?:\w+:)?\/\//.test(href) &&
-			href.indexOf('#') == -1 &&
 			el.getAttribute('target') != '_blank' &&
 			this._update(href)
 		) {

@@ -237,8 +237,9 @@ var OpalRouter = /** @class */ (function (_super) {
             }
         }
         var href = el.getAttribute('href');
-        if (!/^(?:\w+:)?\/\//.test(href) &&
-            href.indexOf('#') == -1 &&
+        if (href &&
+            href.lastIndexOf('#', 0) &&
+            !/^(?:\w+:)?\/\//.test(href) &&
             el.getAttribute('target') != '_blank' &&
             this._update(href)) {
             evt.preventDefault();
