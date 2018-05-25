@@ -3,6 +3,7 @@ import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalSignButton extends BaseComponent {
     paramSign: string;
+    paramViewType: string;
     paramCheckable: boolean;
     paramChecked: boolean;
     paramTabIndex: number;

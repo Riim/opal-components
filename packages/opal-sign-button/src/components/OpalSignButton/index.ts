@@ -17,6 +17,7 @@ import template from './template.nelm';
 export class OpalSignButton extends BaseComponent {
 	@Param({ required: true })
 	paramSign: string;
+	@Param paramViewType: string;
 	@Param paramCheckable = false;
 	@Param paramChecked = false;
 	@Param paramTabIndex = 0;

@@ -30,6 +30,7 @@ span/control {
 		OpalSignButton/button (
 			class=OpalSelect__button,
 			sign=plus,
+			viewType={paramViewType},
 			checkable,
 			tabIndex={paramTabIndex},
 			disabled={paramDisabled}

@@ -99,8 +99,7 @@
 				@el sign {
 					border-color: hsl(348,98%,64%);
 
-					&::before,
-					&::after {
+					&::before {
 						background: hsl(348,98%,64%);
 					}
 				}
@@ -112,6 +111,52 @@
 				&::before {
 					background: hsl(348,84%,50%);
 					content: '';
+				}
+			}
+	}
+
+	@mod viewType=primary {
+		@el control {
+			&:hover,
+			&:active {
+				@el sign {
+					border-color: hsl(208,100%,60%);
+
+					&::before {
+						background: hsl(208,100%,60%);
+					}
+				}
+			}
+		}
+			@el sign {
+				border-color: hsl(208,86%,46%);
+
+				&::before {
+					background: hsl(208,86%,46%);
+				}
+			}
+	}
+
+	@mod viewType=danger {
+		@el control {
+			&:hover,
+			&:active {
+				@el sign {
+					border-color: hsl(348,98%,64%);
+
+					&::before,
+					&::after {
+						background: hsl(348,98%,64%);
+					}
+				}
+			}
+		}
+			@el sign {
+				border-color: hsl(348,84%,50%);
+
+				&::before,
+				&::after {
+					background: hsl(348,84%,50%);
 				}
 			}
 	}
