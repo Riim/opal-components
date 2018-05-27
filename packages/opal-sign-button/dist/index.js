@@ -192,7 +192,7 @@ var OpalSignButton = /** @class */ (function (_super) {
         }
     };
     OpalSignButton.prototype.click = function () {
-        if (this.emit('click').defaultPrevented !== false && this.paramCheckable) {
+        if (!this.emit('click').defaultPrevented && this.paramCheckable) {
             this.emit(this.toggle() ? 'check' : 'uncheck');
             this.emit('change');
         }
@@ -320,7 +320,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabIndex={_tabIndex}) {\nspan/sign\n' '\nRnSlot/contentSlot\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nspan/sign\n' '\nRnSlot/contentSlot\n}\n}");
 
 /***/ }),
 

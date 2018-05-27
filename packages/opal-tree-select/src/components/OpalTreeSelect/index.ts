@@ -37,6 +37,8 @@ export class OpalTreeSelect extends OpalSelect {
 	})
 	paramViewModelItemSchema: { value?: string; text?: string };
 	@Param paramQuery: string;
+	@Param({ readonly: true })
+	openOnClick = true;
 
 	dataTreeList: TDataTreeList;
 
@@ -44,13 +46,12 @@ export class OpalTreeSelect extends OpalSelect {
 		super.initialize();
 
 		if (this.paramDataTreeListKeypath) {
-			define(
-				this,
-				'dataTreeList',
-				new Cell(Function(`return this.${this.paramDataTreeListKeypath};`), {
+			define(this, 'dataTreeList', new Cell(
+				Function(`return this.${this.paramDataTreeListKeypath};`),
+				{
 					context: this.ownerComponent || window
-				})
-			);
+				}
+			));
 		} else {
 			if (!this.$specifiedParams || !this.$specifiedParams.has('dataTreeList')) {
 				throw new TypeError('Parameter "dataTreeList" is required');

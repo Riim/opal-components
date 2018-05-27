@@ -14,6 +14,7 @@ export declare class OpalTreeSelect extends OpalSelect {
         text?: string;
     };
     paramQuery: string;
+    openOnClick: boolean;
     dataTreeList: TDataTreeList;
     initialize(): void;
     _onMenuSelectOptionSelect(): false;

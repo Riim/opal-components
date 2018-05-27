@@ -76,7 +76,7 @@ module.exports = env => {
 		},
 
 		resolve: {
-			extensions: ['.ts', '.tsx', '.js', '.jsx']
+			extensions: ['.ts', '.js']
 		},
 
 		context: __dirname,

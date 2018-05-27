@@ -527,7 +527,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabIndex={_tabIndex}) {\nRnSlot/contentSlot\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nRnSlot/contentSlot\n}\n}");
 
 /***/ }),
 

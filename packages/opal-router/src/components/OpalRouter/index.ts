@@ -162,7 +162,7 @@ export class OpalRouter extends BaseComponent {
 		if (
 			href &&
 			href.lastIndexOf('#', 0) &&
-			!/^(?:\w+:)?\/\//.test(href) &&
+			!/^(?:\w+:|\/\/)/.test(href) &&
 			el.getAttribute('target') != '_blank' &&
 			this._update(href)
 		) {

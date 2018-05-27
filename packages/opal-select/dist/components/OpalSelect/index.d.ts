@@ -48,6 +48,7 @@ export declare class OpalSelect extends BaseComponent {
     paramText: string;
     paramMaxTextLength: number;
     paramPlaceholder: string;
+    openOnClick: boolean;
     paramTabIndex: number;
     paramFocused: boolean;
     paramDisabled: boolean;
@@ -75,6 +76,7 @@ export declare class OpalSelect extends BaseComponent {
     _valueOnOpen: Array<string>;
     _onсeFocusedAfterLoading: boolean;
     _paramDataListSpecified: boolean;
+    _documentClickListening: IDisposableListening | null | undefined;
     _documentFocusListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening | null | undefined;
     initialize(): void;
@@ -89,11 +91,12 @@ export declare class OpalSelect extends BaseComponent {
     _onButtonBlur(): void;
     _onButtonClick(evt: IEvent<OpalButton>): void;
     _onButtonElementMouseDown(): void;
+    _onDocumentClick(): void;
     _onMenuParamOpenedChange(evt: IEvent): false;
     _onMenuSelectOptionSelect(evt: IEvent<OpalSelectOption>): false;
     _onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>): false;
-    _onMenuButtonClick(evt: IEvent<OpalButton>): false | void;
     _onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void;
+    _onMenuButtonClick(evt: IEvent<OpalButton>): false | void;
     _addNewItem$(newItem: {
         [name: string]: string;
     }): void;
@@ -104,7 +107,7 @@ export declare class OpalSelect extends BaseComponent {
     _onDocumentFocus(evt: Event): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _updateOptions(): void;
-    _focusOptions(): boolean;
     focus(): this;
     blur(): this;
+    _focusOptions(): boolean;
 }

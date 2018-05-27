@@ -1,6 +1,6 @@
 @section/inner {
 
-button/control (tabIndex={_tabIndex}) {
+button/control (tabindex={_tabIndex}) {
 	span/sign
 	' '
 

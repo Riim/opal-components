@@ -107,7 +107,7 @@ export class OpalButton extends BaseComponent {
 	}
 
 	click(): this {
-		if (this.emit('click').defaultPrevented !== false && this.paramCheckable) {
+		if (!this.emit('click').defaultPrevented && this.paramCheckable) {
 			this.emit(this.toggle() ? 'check' : 'uncheck');
 			this.emit('change');
 		}

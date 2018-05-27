@@ -245,19 +245,19 @@ var OpalDropdown = /** @class */ (function (_super) {
         if (this.paramCloseOn) {
             setTimeout(function () {
                 if (_this.paramOpened) {
-                    _this._documentClosingEventListening = _this.listenTo(document, _this.paramCloseOn, _this._onDocumentClosingEvent);
+                    _this._closingEventListening = _this.listenTo(document, _this.paramCloseOn, _this._onClosingEvent);
                 }
             }, 1);
         }
     };
     OpalDropdown.prototype._close = function () {
         openedDropdowns.splice(openedDropdowns.indexOf(this), 1);
-        if (this._documentClosingEventListening) {
-            this._documentClosingEventListening.stop();
-            this._documentClosingEventListening = null;
+        if (this._closingEventListening) {
+            this._closingEventListening.stop();
+            this._closingEventListening = null;
         }
     };
-    OpalDropdown.prototype._onDocumentClosingEvent = function (evt) {
+    OpalDropdown.prototype._onClosingEvent = function (evt) {
         var docEl = document.documentElement;
         var componentEl = this.element;
         for (var el = evt.target; el != componentEl;) {

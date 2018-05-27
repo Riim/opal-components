@@ -275,7 +275,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/contentWrapper {\nRnSlot/contentSlot (contentEditable, spellCheck=false)\nOpalIcon/iconEdit (name=compose, strokeWidth=3)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/contentWrapper {\nRnSlot/contentSlot (contenteditable, spellcheck=false)\nOpalIcon/iconEdit (name=compose, strokeWidth=3)\n}\n}");
 
 /***/ })
 

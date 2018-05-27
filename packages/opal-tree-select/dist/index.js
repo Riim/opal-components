@@ -179,6 +179,7 @@ var OpalTreeSelect = /** @class */ (function (_super) {
     function OpalTreeSelect() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramMultiple = true;
+        _this.openOnClick = true;
         return _this;
     }
     OpalTreeSelect.prototype.initialize = function () {
@@ -238,6 +239,10 @@ var OpalTreeSelect = /** @class */ (function (_super) {
         rionite_1.Param,
         __metadata("design:type", String)
     ], OpalTreeSelect.prototype, "paramQuery", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalTreeSelect.prototype, "openOnClick", void 0);
     OpalTreeSelect = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTreeSelect',

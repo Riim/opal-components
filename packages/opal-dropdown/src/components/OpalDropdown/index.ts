@@ -22,7 +22,7 @@ export class OpalDropdown extends BaseComponent {
 
 	@Observable contentRendered = false;
 
-	_documentClosingEventListening: IDisposableListening | null | undefined;
+	_closingEventListening: IDisposableListening | null | undefined;
 
 	ready() {
 		if (this.paramOpened) {
@@ -143,10 +143,10 @@ export class OpalDropdown extends BaseComponent {
 		if (this.paramCloseOn) {
 			setTimeout(() => {
 				if (this.paramOpened) {
-					this._documentClosingEventListening = this.listenTo(
+					this._closingEventListening = this.listenTo(
 						document,
 						this.paramCloseOn,
-						this._onDocumentClosingEvent
+						this._onClosingEvent
 					);
 				}
 			}, 1);
@@ -156,13 +156,13 @@ export class OpalDropdown extends BaseComponent {
 	_close() {
 		openedDropdowns.splice(openedDropdowns.indexOf(this), 1);
 
-		if (this._documentClosingEventListening) {
-			this._documentClosingEventListening.stop();
-			this._documentClosingEventListening = null;
+		if (this._closingEventListening) {
+			this._closingEventListening.stop();
+			this._closingEventListening = null;
 		}
 	}
 
-	_onDocumentClosingEvent(evt: Event) {
+	_onClosingEvent(evt: Event) {
 		let docEl = document.documentElement;
 		let componentEl = this.element;
 

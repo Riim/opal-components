@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-popover",
-  "version": "0.33.107",
+  "version": "0.33.116",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

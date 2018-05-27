@@ -239,7 +239,7 @@ var OpalRouter = /** @class */ (function (_super) {
         var href = el.getAttribute('href');
         if (href &&
             href.lastIndexOf('#', 0) &&
-            !/^(?:\w+:)?\/\//.test(href) &&
+            !/^(?:\w+:|\/\/)/.test(href) &&
             el.getAttribute('target') != '_blank' &&
             this._update(href)) {
             evt.preventDefault();

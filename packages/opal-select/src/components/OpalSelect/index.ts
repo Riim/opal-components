@@ -109,6 +109,8 @@ export class OpalSelect extends BaseComponent {
 	@Param paramText: string;
 	@Param paramMaxTextLength = 20;
 	@Param paramPlaceholder = getText.t('Не выбрано');
+	@Param({ readonly: true })
+	openOnClick = false;
 	@Param paramTabIndex = 0;
 	@Param paramFocused = false;
 	@Param paramDisabled = false;
@@ -168,6 +170,7 @@ export class OpalSelect extends BaseComponent {
 
 	_paramDataListSpecified: boolean;
 
+	_documentClickListening: IDisposableListening | null | undefined;
 	_documentFocusListening: IDisposableListening;
 	_documentKeyDownListening: IDisposableListening | null | undefined;
 
@@ -293,6 +296,7 @@ export class OpalSelect extends BaseComponent {
 				'keydown',
 				this._onDocumentKeyDown
 			);
+
 			this.focus();
 		}
 
@@ -306,17 +310,21 @@ export class OpalSelect extends BaseComponent {
 			blur: this._onButtonBlur,
 			click: this._onButtonClick
 		});
-		this.listenTo(
-			this.$<BaseComponent>('button')!.element,
-			'mousedown',
-			this._onButtonElementMouseDown
-		);
+
+		if (!this.openOnClick) {
+			this.listenTo(
+				this.$<BaseComponent>('button')!.element,
+				'mousedown',
+				this._onButtonElementMouseDown
+			);
+		}
+
 		this.listenTo('menu', {
 			'change:paramOpened': this._onMenuParamOpenedChange,
 			'<OpalSelectOption>select': this._onMenuSelectOptionSelect,
 			'<OpalSelectOption>deselect': this._onMenuSelectOptionDeselect,
-			'<OpalButton>click': this._onMenuButtonClick,
 			'<OpalTextInput>confirm': this._onMenuTextInputConfirm,
+			'<OpalButton>click': this._onMenuButtonClick,
 			'<*>change': this._onMenuChange
 		});
 	}
@@ -442,16 +450,38 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	_onButtonClick(evt: IEvent<OpalButton>) {
-		if (!(+evt.target.checked ^ +this._opened)) {
-			evt.defaultPrevented = true;
+		evt.defaultPrevented = true;
+
+		if (this._documentClickListening) {
+			this._documentClickListening.stop();
+			this._documentClickListening = null;
+		} else if (evt.target.checked) {
+			this.close();
+		} else {
+			this.open();
 		}
 	}
 
 	_onButtonElementMouseDown() {
+		if (this.paramDisabled) {
+			return;
+		}
+
+		if (!this._documentClickListening) {
+			this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+		}
+
 		if (this._opened) {
 			this.close();
 		} else {
 			this.open();
+		}
+	}
+
+	_onDocumentClick() {
+		if (this._documentClickListening) {
+			this._documentClickListening.stop();
+			this._documentClickListening = null;
 		}
 	}
 
@@ -516,6 +546,41 @@ export class OpalSelect extends BaseComponent {
 		return false;
 	}
 
+	_onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void {
+		let textInput = evt.target;
+
+		if (textInput !== this.$<OpalTextInput>('newItemInput')) {
+			return;
+		}
+
+		if (!this._addNewItem) {
+			throw new TypeError('Parameter "addNewItem" is required');
+		}
+
+		let text = textInput.value!;
+
+		textInput.clear();
+		textInput.paramLoading = true;
+		textInput.disable();
+
+		this._addNewItem(text).then(
+			(newItem: { [name: string]: string } | false | null | undefined) => {
+				textInput.paramLoading = false;
+				textInput.enable();
+
+				if (newItem) {
+					this._addNewItem$(newItem);
+				}
+			},
+			() => {
+				textInput.paramLoading = false;
+				textInput.enable();
+			}
+		);
+
+		return false;
+	}
+
 	_onMenuButtonClick(evt: IEvent<OpalButton>): false | void {
 		let button = evt.target;
 
@@ -544,39 +609,6 @@ export class OpalSelect extends BaseComponent {
 			() => {
 				button.paramLoading = false;
 				button.enable();
-			}
-		);
-
-		return false;
-	}
-
-	_onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void {
-		let textInput = evt.target;
-
-		if (textInput !== this.$<OpalTextInput>('newItemInput')) {
-			return;
-		}
-
-		if (!this._addNewItem) {
-			throw new TypeError('Parameter "addNewItem" is required');
-		}
-
-		let text = textInput.value!;
-
-		textInput.clear();
-		textInput.paramLoading = true;
-		textInput.disable();
-
-		this._addNewItem(text).then(
-			(newItem: { [name: string]: string }) => {
-				textInput.paramLoading = false;
-				textInput.enable();
-
-				this._addNewItem$(newItem);
-			},
-			() => {
-				textInput.paramLoading = false;
-				textInput.enable();
 			}
 		);
 
@@ -679,13 +711,7 @@ export class OpalSelect extends BaseComponent {
 			loadedList!.checkLoading();
 		}
 
-		let focusTarget =
-			this.$<HTMLElement | OpalTextInput>('focus') ||
-			this.$<OpalFilteredList>('filteredList');
-
-		if (!focusTarget || focusTarget.focus() === false) {
-			this._focusOptions();
-		}
+		this.focus();
 
 		return true;
 	}
@@ -764,9 +790,25 @@ export class OpalSelect extends BaseComponent {
 					} else {
 						let options = this.options;
 
-						for (let i = 1, l = options.length; i < l; i++) {
+						for (let i = 0, l = options.length; i < l; i++) {
 							if (options[i].paramFocused) {
-								do {
+								for (;;) {
+									if (!i) {
+										for (let j = options.length; j; ) {
+											let option = options[--j];
+
+											if (
+												!option.paramDisabled &&
+												option.element.offsetWidth
+											) {
+												option.focus();
+												break;
+											}
+										}
+
+										break;
+									}
+
 									let option = options[--i];
 
 									if (!option.paramDisabled && option.element.offsetWidth) {
@@ -774,7 +816,7 @@ export class OpalSelect extends BaseComponent {
 										option.focus();
 										break;
 									}
-								} while (i);
+								}
 
 								break;
 							}
@@ -797,9 +839,23 @@ export class OpalSelect extends BaseComponent {
 					} else {
 						let options = this.options;
 
-						for (let i = 0, l = options.length - 1; i < l; i++) {
+						for (let i = 0, l = options.length; i < l; i++) {
 							if (options[i].paramFocused) {
-								do {
+								for (;;) {
+									if (i + 1 == l) {
+										for (let option of options) {
+											if (
+												!option.paramDisabled &&
+												option.element.offsetWidth
+											) {
+												option.focus();
+												break;
+											}
+										}
+
+										break;
+									}
+
 									let option = options[++i];
 
 									if (!option.paramDisabled && option.element.offsetWidth) {
@@ -807,7 +863,7 @@ export class OpalSelect extends BaseComponent {
 										option.focus();
 										break;
 									}
-								} while (i < l);
+								}
 
 								break;
 							}
@@ -849,40 +905,48 @@ export class OpalSelect extends BaseComponent {
 		});
 	}
 
-	_focusOptions(): boolean {
-		let options = this.options;
-		let optionForFocus;
+	focus(): this {
+		if (this._opened) {
+			let focusTarget =
+				this.$<HTMLElement | OpalTextInput>('focus') ||
+				this.$<OpalFilteredList>('filteredList');
 
-		for (let i = 0, l = options.length; i < l; i++) {
-			let option = options[i];
-
-			if (!option.paramDisabled) {
-				if (option.selected) {
-					optionForFocus = option;
-					break;
-				}
-
-				if (!optionForFocus) {
-					optionForFocus = option;
-				}
+			if ((focusTarget && focusTarget.focus() !== false) || this._focusOptions()) {
+				return this;
 			}
 		}
 
-		if (optionForFocus) {
-			optionForFocus.focus();
-			return true;
-		}
-
-		return false;
-	}
-
-	focus(): this {
 		this.$<OpalSelect>('button')!.focus();
+
 		return this;
 	}
 
 	blur(): this {
-		this.$<OpalSelect>('button')!.blur();
+		this.$<OpalButton>('button')!.blur();
 		return this;
+	}
+
+	_focusOptions(): boolean {
+		let focusTarget;
+
+		for (let option of this.options) {
+			if (!option.paramDisabled && option.element.offsetWidth) {
+				if (option.selected) {
+					focusTarget = option;
+					break;
+				}
+
+				if (!focusTarget) {
+					focusTarget = option;
+				}
+			}
+		}
+
+		if (focusTarget) {
+			focusTarget.focus();
+			return true;
+		}
+
+		return false;
 	}
 }

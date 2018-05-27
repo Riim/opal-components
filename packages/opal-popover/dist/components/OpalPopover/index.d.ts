@@ -9,7 +9,7 @@ export declare class OpalPopover extends BaseComponent {
     paramOpened: boolean;
     contentRendered: boolean;
     _positionOnOpen: string;
-    _documentClosingEventListening: IDisposableListening | null | undefined;
+    _closingEventListening: IDisposableListening | null | undefined;
     ready(): void;
     elementAttached(): void;
     _onParamOpenedChange(evt: IEvent): void;
@@ -20,5 +20,5 @@ export declare class OpalPopover extends BaseComponent {
     _open(): void;
     _open$(): void;
     _close(): void;
-    _onDocumentClosingEvent(evt: Event): void;
+    _onClosingEvent(evt: Event): void;
 }

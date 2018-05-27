@@ -195,6 +195,7 @@ var OpalSelect = /** @class */ (function (_super) {
         _this.paramMultiple = false;
         _this.paramMaxTextLength = 20;
         _this.paramPlaceholder = gettext_1.getText.t('Не выбрано');
+        _this.openOnClick = false;
         _this.paramTabIndex = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
@@ -349,13 +350,15 @@ var OpalSelect = /** @class */ (function (_super) {
             blur: this._onButtonBlur,
             click: this._onButtonClick
         });
-        this.listenTo(this.$('button').element, 'mousedown', this._onButtonElementMouseDown);
+        if (!this.openOnClick) {
+            this.listenTo(this.$('button').element, 'mousedown', this._onButtonElementMouseDown);
+        }
         this.listenTo('menu', {
             'change:paramOpened': this._onMenuParamOpenedChange,
             '<OpalSelectOption>select': this._onMenuSelectOptionSelect,
             '<OpalSelectOption>deselect': this._onMenuSelectOptionDeselect,
-            '<OpalButton>click': this._onMenuButtonClick,
             '<OpalTextInput>confirm': this._onMenuTextInputConfirm,
+            '<OpalButton>click': this._onMenuButtonClick,
             '<*>change': this._onMenuChange
         });
     };
@@ -458,16 +461,36 @@ var OpalSelect = /** @class */ (function (_super) {
         this.paramFocused = false;
     };
     OpalSelect.prototype._onButtonClick = function (evt) {
-        if (!(+evt.target.checked ^ +this._opened)) {
-            evt.defaultPrevented = true;
+        evt.defaultPrevented = true;
+        if (this._documentClickListening) {
+            this._documentClickListening.stop();
+            this._documentClickListening = null;
+        }
+        else if (evt.target.checked) {
+            this.close();
+        }
+        else {
+            this.open();
         }
     };
     OpalSelect.prototype._onButtonElementMouseDown = function () {
+        if (this.paramDisabled) {
+            return;
+        }
+        if (!this._documentClickListening) {
+            this._documentClickListening = this.listenTo(document, 'click', this._onDocumentClick);
+        }
         if (this._opened) {
             this.close();
         }
         else {
             this.open();
+        }
+    };
+    OpalSelect.prototype._onDocumentClick = function () {
+        if (this._documentClickListening) {
+            this._documentClickListening.stop();
+            this._documentClickListening = null;
         }
     };
     OpalSelect.prototype._onMenuParamOpenedChange = function (evt) {
@@ -520,6 +543,31 @@ var OpalSelect = /** @class */ (function (_super) {
         this.emit('deselect');
         return false;
     };
+    OpalSelect.prototype._onMenuTextInputConfirm = function (evt) {
+        var _this = this;
+        var textInput = evt.target;
+        if (textInput !== this.$('newItemInput')) {
+            return;
+        }
+        if (!this._addNewItem) {
+            throw new TypeError('Parameter "addNewItem" is required');
+        }
+        var text = textInput.value;
+        textInput.clear();
+        textInput.paramLoading = true;
+        textInput.disable();
+        this._addNewItem(text).then(function (newItem) {
+            textInput.paramLoading = false;
+            textInput.enable();
+            if (newItem) {
+                _this._addNewItem$(newItem);
+            }
+        }, function () {
+            textInput.paramLoading = false;
+            textInput.enable();
+        });
+        return false;
+    };
     OpalSelect.prototype._onMenuButtonClick = function (evt) {
         var _this = this;
         var button = evt.target;
@@ -541,29 +589,6 @@ var OpalSelect = /** @class */ (function (_super) {
         }, function () {
             button.paramLoading = false;
             button.enable();
-        });
-        return false;
-    };
-    OpalSelect.prototype._onMenuTextInputConfirm = function (evt) {
-        var _this = this;
-        var textInput = evt.target;
-        if (textInput !== this.$('newItemInput')) {
-            return;
-        }
-        if (!this._addNewItem) {
-            throw new TypeError('Parameter "addNewItem" is required');
-        }
-        var text = textInput.value;
-        textInput.clear();
-        textInput.paramLoading = true;
-        textInput.disable();
-        this._addNewItem(text).then(function (newItem) {
-            textInput.paramLoading = false;
-            textInput.enable();
-            _this._addNewItem$(newItem);
-        }, function () {
-            textInput.paramLoading = false;
-            textInput.enable();
         });
         return false;
     };
@@ -636,11 +661,7 @@ var OpalSelect = /** @class */ (function (_super) {
         if (loadedList) {
             loadedList.checkLoading();
         }
-        var focusTarget = this.$('focus') ||
-            this.$('filteredList');
-        if (!focusTarget || focusTarget.focus() === false) {
-            this._focusOptions();
-        }
+        this.focus();
         return true;
     };
     OpalSelect.prototype.close = function () {
@@ -702,16 +723,27 @@ var OpalSelect = /** @class */ (function (_super) {
                     }
                     else {
                         var options = this.options;
-                        for (var i = 1, l = options.length; i < l; i++) {
+                        for (var i = 0, l = options.length; i < l; i++) {
                             if (options[i].paramFocused) {
-                                do {
+                                for (;;) {
+                                    if (!i) {
+                                        for (var j = options.length; j;) {
+                                            var option_1 = options[--j];
+                                            if (!option_1.paramDisabled &&
+                                                option_1.element.offsetWidth) {
+                                                option_1.focus();
+                                                break;
+                                            }
+                                        }
+                                        break;
+                                    }
                                     var option = options[--i];
                                     if (!option.paramDisabled && option.element.offsetWidth) {
                                         document.body.classList.remove('_noFocusHighlight');
                                         option.focus();
                                         break;
                                     }
-                                } while (i);
+                                }
                                 break;
                             }
                         }
@@ -732,16 +764,27 @@ var OpalSelect = /** @class */ (function (_super) {
                     }
                     else {
                         var options = this.options;
-                        for (var i = 0, l = options.length - 1; i < l; i++) {
+                        for (var i = 0, l = options.length; i < l; i++) {
                             if (options[i].paramFocused) {
-                                do {
+                                for (;;) {
+                                    if (i + 1 == l) {
+                                        for (var _i = 0, options_1 = options; _i < options_1.length; _i++) {
+                                            var option_2 = options_1[_i];
+                                            if (!option_2.paramDisabled &&
+                                                option_2.element.offsetWidth) {
+                                                option_2.focus();
+                                                break;
+                                            }
+                                        }
+                                        break;
+                                    }
                                     var option = options[++i];
                                     if (!option.paramDisabled && option.element.offsetWidth) {
                                         document.body.classList.remove('_noFocusHighlight');
                                         option.focus();
                                         break;
                                     }
-                                } while (i < l);
+                                }
                                 break;
                             }
                         }
@@ -778,34 +821,40 @@ var OpalSelect = /** @class */ (function (_super) {
             }
         });
     };
-    OpalSelect.prototype._focusOptions = function () {
-        var options = this.options;
-        var optionForFocus;
-        for (var i = 0, l = options.length; i < l; i++) {
-            var option = options[i];
-            if (!option.paramDisabled) {
-                if (option.selected) {
-                    optionForFocus = option;
-                    break;
-                }
-                if (!optionForFocus) {
-                    optionForFocus = option;
-                }
+    OpalSelect.prototype.focus = function () {
+        if (this._opened) {
+            var focusTarget = this.$('focus') ||
+                this.$('filteredList');
+            if ((focusTarget && focusTarget.focus() !== false) || this._focusOptions()) {
+                return this;
             }
         }
-        if (optionForFocus) {
-            optionForFocus.focus();
-            return true;
-        }
-        return false;
-    };
-    OpalSelect.prototype.focus = function () {
         this.$('button').focus();
         return this;
     };
     OpalSelect.prototype.blur = function () {
         this.$('button').blur();
         return this;
+    };
+    OpalSelect.prototype._focusOptions = function () {
+        var focusTarget;
+        for (var _i = 0, _a = this.options; _i < _a.length; _i++) {
+            var option = _a[_i];
+            if (!option.paramDisabled && option.element.offsetWidth) {
+                if (option.selected) {
+                    focusTarget = option;
+                    break;
+                }
+                if (!focusTarget) {
+                    focusTarget = option;
+                }
+            }
+        }
+        if (focusTarget) {
+            focusTarget.focus();
+            return true;
+        }
+        return false;
     };
     OpalSelect.defaultDataListItemSchema = defaultDataListItemSchema;
     OpalSelect.defaultViewModelItemSchema = defaultVMItemSchema;
@@ -861,6 +910,10 @@ var OpalSelect = /** @class */ (function (_super) {
         rionite_1.Param,
         __metadata("design:type", Object)
     ], OpalSelect.prototype, "paramPlaceholder", void 0);
+    __decorate([
+        rionite_1.Param({ readonly: true }),
+        __metadata("design:type", Object)
+    ], OpalSelect.prototype, "openOnClick", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
@@ -970,7 +1023,7 @@ var OpalSelectOption = /** @class */ (function (_super) {
         _this.paramTabIndex = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
-        _this._wasMouseDown = false;
+        _this._mouseWasUp = false;
         return _this;
     }
     Object.defineProperty(OpalSelectOption.prototype, "_tabIndex", {
@@ -989,7 +1042,6 @@ var OpalSelectOption = /** @class */ (function (_super) {
         this.listenTo('control', {
             focus: this._onControlFocus,
             blur: this._onControlBlur,
-            mousedown: this._onControlMouseDown,
             mouseup: this._onControlMouseUp,
             click: this._onControlClick
         });
@@ -1028,20 +1080,18 @@ var OpalSelectOption = /** @class */ (function (_super) {
     OpalSelectOption.prototype._onControlBlur = function () {
         this.paramFocused = false;
     };
-    OpalSelectOption.prototype._onControlMouseDown = function () {
-        this._wasMouseDown = true;
-    };
     OpalSelectOption.prototype._onControlMouseUp = function () {
-        if (this._wasMouseDown) {
-            this._wasMouseDown = false;
-        }
-        else if (!this.paramDisabled) {
+        this._mouseWasUp = true;
+        if (!this.paramDisabled) {
             this.click();
         }
     };
     OpalSelectOption.prototype._onControlClick = function (evt) {
         evt.preventDefault();
-        if (!this.paramDisabled) {
+        if (this._mouseWasUp) {
+            this._mouseWasUp = true;
+        }
+        else if (!this.paramDisabled) {
             this.click();
         }
     };
@@ -1213,7 +1263,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabIndex={_tabIndex}) {\nRnSlot/contentSlot {\n'{paramText}'\n@IfThen (paramSubtext) {\nsub {\n'{paramSubtext}'\n}\n}\n}\n@IfThen (selected) {\nOpalIcon/iconSelected (name=checkmark)\n}\n@IfThen (indeterminate) {\nOpalIcon/iconIndeterminate (name=minus)\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nbutton/control (tabindex={_tabIndex}) {\nRnSlot/contentSlot {\n'{paramText}'\n@IfThen (paramSubtext) {\nsub {\n'{paramSubtext}'\n}\n}\n}\n@IfThen (selected) {\nOpalIcon/iconSelected (name=checkmark)\n}\n@IfThen (indeterminate) {\nOpalIcon/iconIndeterminate (name=minus)\n}\n}\n}");
 
 /***/ }),
 

@@ -24,7 +24,7 @@ export class OpalPopover extends BaseComponent {
 
 	_positionOnOpen: string;
 
-	_documentClosingEventListening: IDisposableListening | null | undefined;
+	_closingEventListening: IDisposableListening | null | undefined;
 
 	ready() {
 		if (this.paramOpened) {
@@ -173,10 +173,10 @@ export class OpalPopover extends BaseComponent {
 		if (this.paramCloseOn) {
 			setTimeout(() => {
 				if (this.paramOpened) {
-					this._documentClosingEventListening = this.listenTo(
+					this._closingEventListening = this.listenTo(
 						document,
 						this.paramCloseOn,
-						this._onDocumentClosingEvent
+						this._onClosingEvent
 					);
 				}
 			}, 1);
@@ -188,13 +188,13 @@ export class OpalPopover extends BaseComponent {
 			this.paramPosition = this._positionOnOpen;
 		}
 
-		if (this._documentClosingEventListening) {
-			this._documentClosingEventListening.stop();
-			this._documentClosingEventListening = null;
+		if (this._closingEventListening) {
+			this._closingEventListening.stop();
+			this._closingEventListening = null;
 		}
 	}
 
-	_onDocumentClosingEvent(evt: Event) {
+	_onClosingEvent(evt: Event) {
 		let docEl = document.documentElement;
 		let componentEl = this.element;
 
