@@ -7,7 +7,7 @@
 		exports["@riim/opal-input-mask"] = factory(require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"));
 	else
 		root["@riim/opal-input-mask"] = factory(root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/next-tick"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 126);
+/******/ 	return __webpack_require__(__webpack_require__.s = 124);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -88,14 +88,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 11:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
-
-/***/ }),
-
-/***/ 126:
+/***/ 124:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -106,12 +99,12 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(3);
 __webpack_require__(4);
-__export(__webpack_require__(127));
+__export(__webpack_require__(125));
 
 
 /***/ }),
 
-/***/ 127:
+/***/ 125:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -136,12 +129,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(7);
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(11);
-var OpalInputMaskDefinition_1 = __webpack_require__(128);
+var next_tick_1 = __webpack_require__(6);
+var cellx_decorators_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(10);
+var OpalInputMaskDefinition_1 = __webpack_require__(126);
 exports.OpalInputMaskDefinition = OpalInputMaskDefinition_1.OpalInputMaskDefinition;
-var template_nelm_1 = __webpack_require__(130);
+var template_nelm_1 = __webpack_require__(128);
 var forEach = Array.prototype.forEach;
 var iPhone = /iphone/i.test(navigator.userAgent);
 var ie11 = !window.ActiveXObject && 'ActiveXObject' in window;
@@ -472,7 +465,7 @@ exports.OpalInputMask = OpalInputMask;
 
 /***/ }),
 
-/***/ 128:
+/***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -497,8 +490,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(11);
-__webpack_require__(129);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(127);
 var OpalInputMaskDefinition = /** @class */ (function (_super) {
     __extends(OpalInputMaskDefinition, _super);
     function OpalInputMaskDefinition() {
@@ -524,7 +517,7 @@ exports.OpalInputMaskDefinition = OpalInputMaskDefinition;
 
 /***/ }),
 
-/***/ 129:
+/***/ 127:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -542,7 +535,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 130:
+/***/ 128:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -565,10 +558,17 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 
-/***/ 7:
+/***/ 6:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
 
 /***/ })
 

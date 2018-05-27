@@ -5,7 +5,7 @@ export declare class OpalMultiselect extends OpalSelect {
     paramMultiple: boolean;
     paramDataProvider: IDataProvider;
     dataProvider: IDataProvider | null;
-    readonly isNothingSelectedShown: boolean;
+    readonly nothingSelectedShown: boolean;
     _queryInputClass: string | undefined;
     initialize(): void;
 }

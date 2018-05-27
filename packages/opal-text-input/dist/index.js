@@ -7,7 +7,7 @@
 		exports["@riim/opal-text-input"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"), require("@riim/opal-loader"));
 	else
 		root["@riim/opal-text-input"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["@riim/next-tick"], root["cellx-decorators"], root["rionite"], root["@riim/opal-loader"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__140__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__138__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -88,17 +88,10 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 11:
+/***/ 138:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
-
-/***/ }),
-
-/***/ 140:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__140__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__138__;
 
 /***/ }),
 
@@ -119,7 +112,7 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(2);
-__webpack_require__(140);
+__webpack_require__(138);
 __webpack_require__(4);
 __export(__webpack_require__(243));
 
@@ -151,9 +144,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(7);
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(11);
+var next_tick_1 = __webpack_require__(6);
+var cellx_decorators_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(10);
 __webpack_require__(244);
 var template_nelm_1 = __webpack_require__(245);
 var OpalTextInput = /** @class */ (function (_super) {
@@ -183,16 +176,16 @@ var OpalTextInput = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(OpalTextInput.prototype, "isBtnClearShown", {
+    Object.defineProperty(OpalTextInput.prototype, "btnClearShown", {
         get: function () {
             return this.paramClearable && !this.paramLoading && !!this._textFieldValue;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(OpalTextInput.prototype, "isEndIconShown", {
+    Object.defineProperty(OpalTextInput.prototype, "endIconShown", {
         get: function () {
-            return !this.paramLoading && !this.isBtnClearShown;
+            return !this.paramLoading && !this.btnClearShown;
         },
         enumerable: true,
         configurable: true
@@ -435,12 +428,12 @@ var OpalTextInput = /** @class */ (function (_super) {
         cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
-    ], OpalTextInput.prototype, "isBtnClearShown", null);
+    ], OpalTextInput.prototype, "btnClearShown", null);
     __decorate([
         cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
-    ], OpalTextInput.prototype, "isEndIconShown", null);
+    ], OpalTextInput.prototype, "endIconShown", null);
     OpalTextInput = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTextInput',
@@ -487,7 +480,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@IfThen (paramMultiline) {\ntextarea/, textField (\nrows={paramRows},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfElse (paramMultiline) {\ninput/, textField (\ntype={paramInputType},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfThen (paramStartIcon) {\nOpalIcon/startIcon (name={paramStartIcon})\n}\nRnSlot/endIconSlot (for=endIcon, shown={isEndIconShown}) {\n@IfThen (paramEndIcon) {\nOpalIcon/endIcon (name={paramEndIcon})\n}\n}\n@IfThen (paramClearable) {\nbutton/btnClear (shown={isBtnClearShown}) {\nOpalIcon/btnClearIcon (name=cross)\n}\n}\n@IfThen (paramLoading) {\nOpalLoader/loader (size=s, shown)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@IfThen (paramMultiline) {\ntextarea/, textField (\nrows={paramRows},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfElse (paramMultiline) {\ninput/, textField (\ntype={paramInputType},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfThen (paramStartIcon) {\nOpalIcon/startIcon (name={paramStartIcon})\n}\nRnSlot/endIconSlot (for=endIcon, shown={endIconShown}) {\n@IfThen (paramEndIcon) {\nOpalIcon/endIcon (name={paramEndIcon})\n}\n}\n@IfThen (paramClearable) {\nbutton/btnClear (shown={btnClearShown}) {\nOpalIcon/btnClearIcon (name=cross)\n}\n}\n@IfThen (paramLoading) {\nOpalLoader/loader (size=s, shown)\n}\n}");
 
 /***/ }),
 
@@ -498,10 +491,17 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 
-/***/ 7:
+/***/ 6:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
 
 /***/ })
 

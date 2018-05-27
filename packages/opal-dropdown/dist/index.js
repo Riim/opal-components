@@ -7,7 +7,7 @@
 		exports["@riim/opal-dropdown"] = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else
 		root["@riim/opal-dropdown"] = factory(root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 36);
+/******/ 	return __webpack_require__(__webpack_require__.s = 35);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -88,14 +88,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 11:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
-
-/***/ }),
-
-/***/ 36:
+/***/ 35:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,12 +98,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(4);
-__export(__webpack_require__(37));
+__export(__webpack_require__(36));
 
 
 /***/ }),
 
-/***/ 37:
+/***/ 36:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -135,20 +128,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(9);
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(11);
-__webpack_require__(38);
-var template_nelm_1 = __webpack_require__(39);
+var cellx_1 = __webpack_require__(8);
+var cellx_decorators_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(37);
+var template_nelm_1 = __webpack_require__(38);
 var openedDropdowns = [];
 var OpalDropdown = /** @class */ (function (_super) {
     __extends(OpalDropdown, _super);
     function OpalDropdown() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramAutoHeight = true;
-        _this.paramAutoClosing = false;
         _this.paramOpened = false;
-        _this.isContentRendered = false;
+        _this.contentRendered = false;
         return _this;
     }
     OpalDropdown.prototype.ready = function () {
@@ -168,7 +160,7 @@ var OpalDropdown = /** @class */ (function (_super) {
         }
     };
     OpalDropdown.prototype.renderContent = function () {
-        this.isContentRendered = true;
+        this.contentRendered = true;
         cellx_1.Cell.forceRelease();
     };
     OpalDropdown.prototype.open = function () {
@@ -195,11 +187,11 @@ var OpalDropdown = /** @class */ (function (_super) {
     };
     OpalDropdown.prototype._open = function () {
         openedDropdowns.push(this);
-        if (this.isContentRendered) {
+        if (this.contentRendered) {
             this._open$();
         }
         else {
-            this.isContentRendered = true;
+            this.contentRendered = true;
             cellx_1.Cell.forceRelease();
             this._open$();
         }
@@ -250,21 +242,22 @@ var OpalDropdown = /** @class */ (function (_super) {
                 elStyle.bottom = '100%';
             }
         }
-        if (this.paramAutoClosing) {
+        if (this.paramCloseOn) {
             setTimeout(function () {
                 if (_this.paramOpened) {
-                    _this._documentClickListening = _this.listenTo(document, 'click', _this._onDocumentClick);
+                    _this._documentClosingEventListening = _this.listenTo(document, _this.paramCloseOn, _this._onDocumentClosingEvent);
                 }
             }, 1);
         }
     };
     OpalDropdown.prototype._close = function () {
         openedDropdowns.splice(openedDropdowns.indexOf(this), 1);
-        if (this._documentClickListening) {
-            this._documentClickListening.stop();
+        if (this._documentClosingEventListening) {
+            this._documentClosingEventListening.stop();
+            this._documentClosingEventListening = null;
         }
     };
-    OpalDropdown.prototype._onDocumentClick = function (evt) {
+    OpalDropdown.prototype._onDocumentClosingEvent = function (evt) {
         var docEl = document.documentElement;
         var componentEl = this.element;
         for (var el = evt.target; el != componentEl;) {
@@ -273,7 +266,7 @@ var OpalDropdown = /** @class */ (function (_super) {
                 this.emit('close');
                 break;
             }
-            el = el.parentNode;
+            el = el.parentElement;
             if (!el) {
                 break;
             }
@@ -285,8 +278,8 @@ var OpalDropdown = /** @class */ (function (_super) {
     ], OpalDropdown.prototype, "paramAutoHeight", void 0);
     __decorate([
         rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalDropdown.prototype, "paramAutoClosing", void 0);
+        __metadata("design:type", String)
+    ], OpalDropdown.prototype, "paramCloseOn", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
@@ -294,7 +287,7 @@ var OpalDropdown = /** @class */ (function (_super) {
     __decorate([
         cellx_decorators_1.Observable,
         __metadata("design:type", Object)
-    ], OpalDropdown.prototype, "isContentRendered", void 0);
+    ], OpalDropdown.prototype, "contentRendered", void 0);
     OpalDropdown = __decorate([
         rionite_1.Component({
             elementIs: 'OpalDropdown',
@@ -308,7 +301,7 @@ exports.OpalDropdown = OpalDropdown;
 
 /***/ }),
 
-/***/ 38:
+/***/ 37:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -326,12 +319,12 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 39:
+/***/ 38:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@IfThen (isContentRendered) {\nRnSlot/contentSlot\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\n@IfThen (contentRendered) {\nRnSlot/contentSlot\n}\n}");
 
 /***/ }),
 
@@ -339,6 +332,13 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+
+/***/ }),
+
+/***/ 8:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
 
 /***/ }),
 

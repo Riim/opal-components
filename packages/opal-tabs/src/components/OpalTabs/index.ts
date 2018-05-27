@@ -156,14 +156,14 @@ export class OpalTabs extends BaseComponent {
 		if (!notUseLocationHash && this.paramUseLocationHash) {
 			let label = tab.paramLabel;
 			let locationHash = OpalRouter.history.location.hash;
-			let isTabInLocationHashFound = false;
+			let tabInLocationHashFound = false;
 			let newLocationHash = locationHash.replace(/(#|&)tab=[^&]+/, (match, sep) => {
-				isTabInLocationHashFound = true;
+				tabInLocationHashFound = true;
 				return (sep == '#' ? '#' : '') + (label ? 'tab=' + label : '');
 			});
 
-			if (!isTabInLocationHashFound || newLocationHash != locationHash) {
-				location.hash = isTabInLocationHashFound
+			if (!tabInLocationHashFound || newLocationHash != locationHash) {
+				location.hash = tabInLocationHashFound
 					? newLocationHash
 					: (locationHash ? locationHash + '&tab=' : '#tab=') + label;
 			}

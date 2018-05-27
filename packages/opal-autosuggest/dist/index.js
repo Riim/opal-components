@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/next-tick"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-dropdown", "@riim/opal-icon", "@riim/opal-text-input", "reflect-metadata", "@riim/gettext", "@riim/next-tick", "@riim/opal-utils", "cellx", "cellx-decorators", "rionite"], factory);
+		define(["@riim/opal-dropdown", "@riim/opal-icon", "@riim/opal-text-input", "reflect-metadata", "@riim/next-tick", "@riim/opal-utils", "cellx", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-autosuggest"] = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/next-tick"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-autosuggest"] = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/opal-autosuggest"] = factory(root["@riim/opal-dropdown"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/gettext"], root["@riim/next-tick"], root["@riim/opal-utils"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__) {
+		root["@riim/opal-autosuggest"] = factory(root["@riim/opal-dropdown"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/next-tick"], root["@riim/opal-utils"], root["cellx"], root["cellx-decorators"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -146,14 +146,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var gettext_1 = __webpack_require__(6);
-var next_tick_1 = __webpack_require__(7);
-var opal_utils_1 = __webpack_require__(8);
-var cellx_1 = __webpack_require__(9);
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(11);
-__webpack_require__(12);
-var template_nelm_1 = __webpack_require__(13);
+var next_tick_1 = __webpack_require__(6);
+var opal_utils_1 = __webpack_require__(7);
+var cellx_1 = __webpack_require__(8);
+var cellx_decorators_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(11);
+var template_nelm_1 = __webpack_require__(12);
 function toComparable(str) {
     return str.replace(/\s+/g, ' ').toLowerCase();
 }
@@ -166,15 +165,15 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         _this.paramCount = 5;
         _this.paramOpenMenuOnNothingFound = false;
         _this.dataList = new cellx_1.ObservableList();
-        _this._isNotInputConfirmed = false;
-        _this._isLoadingPlanned = false;
+        _this._inputNotConfirmed = false;
+        _this._loadingPlanned = false;
         _this.loading = false;
         return _this;
     }
     OpalAutosuggest_1 = OpalAutosuggest;
-    Object.defineProperty(OpalAutosuggest.prototype, "isLoaderShown", {
+    Object.defineProperty(OpalAutosuggest.prototype, "loaderShown", {
         get: function () {
-            return this._isLoadingPlanned || this.loading;
+            return this._loadingPlanned || this.loading;
         },
         enumerable: true,
         configurable: true
@@ -200,7 +199,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     OpalAutosuggest.prototype.elementAttached = function () {
         this.listenTo(this, {
             'change:paramValue': this._onParamValueChange,
-            'change:isLoaderShown': this._onIsLoaderShownChange
+            'change:loaderShown': this._onLoaderShownChange
         });
         this.listenTo(this.dataList, 'change', this._onDataListChange);
         this.listenTo('textInput', {
@@ -226,7 +225,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             ? item[this._dataListItemTextFieldName]
             : '';
     };
-    OpalAutosuggest.prototype._onIsLoaderShownChange = function (evt) {
+    OpalAutosuggest.prototype._onLoaderShownChange = function (evt) {
         this.$('textInput').paramLoading = evt.data.value;
     };
     OpalAutosuggest.prototype._onDataListChange = function () {
@@ -251,12 +250,12 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     };
     OpalAutosuggest.prototype._onTextInputInput = function (evt) {
         var _this = this;
-        this._isNotInputConfirmed = true;
+        this._inputNotConfirmed = true;
         this._clearDataList();
         if ((evt.target.value || '').length >= this.paramMinQueryLength) {
-            this._isLoadingPlanned = true;
+            this._loadingPlanned = true;
             this._loadingTimeout = this.setTimeout(function () {
-                _this._isLoadingPlanned = false;
+                _this._loadingPlanned = false;
                 _this._load();
             }, 300);
         }
@@ -289,7 +288,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     OpalAutosuggest.prototype._onMenuElementMouseOver = function (evt) {
         var menu = this.$('menu').element;
         var el = evt.target;
-        for (; !el.classList.contains('OpalAutosuggest__listLtem'); el = el.parentNode) {
+        for (; !el.classList.contains('OpalAutosuggest__listLtem'); el = el.parentElement) {
             if (el == menu) {
                 return;
             }
@@ -412,8 +411,8 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         }
     };
     OpalAutosuggest.prototype._cancelLoading = function () {
-        if (this._isLoadingPlanned) {
-            this._isLoadingPlanned = false;
+        if (this._loadingPlanned) {
+            this._loadingPlanned = false;
             this._loadingTimeout.clear();
         }
         else if (this.loading) {
@@ -434,7 +433,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     OpalAutosuggest.prototype._selectItem = function (item) {
         var _this = this;
         if (item === undefined) {
-            if (this._isNotInputConfirmed) {
+            if (this._inputNotConfirmed) {
                 var query_1 = this.$('textInput').value;
                 if (query_1) {
                     query_1 = toComparable(query_1);
@@ -448,7 +447,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         }
         else {
             if (item) {
-                this._isNotInputConfirmed = false;
+                this._inputNotConfirmed = false;
                 if (this.value &&
                     this.value[this._dataListItemValueFieldName] ==
                         item[this._dataListItemValueFieldName]) {
@@ -511,7 +510,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     __decorate([
         cellx_decorators_1.Observable,
         __metadata("design:type", Object)
-    ], OpalAutosuggest.prototype, "_isLoadingPlanned", void 0);
+    ], OpalAutosuggest.prototype, "_loadingPlanned", void 0);
     __decorate([
         cellx_decorators_1.Observable,
         __metadata("design:type", Object)
@@ -520,14 +519,10 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
-    ], OpalAutosuggest.prototype, "isLoaderShown", null);
+    ], OpalAutosuggest.prototype, "loaderShown", null);
     OpalAutosuggest = OpalAutosuggest_1 = __decorate([
         rionite_1.Component({
             elementIs: 'OpalAutosuggest',
-            i18n: {
-                textInputPlaceholder: gettext_1.getText.t('Начните вводить для поиска'),
-                nothingFound: gettext_1.getText.t('Ничего не найдено')
-            },
             template: template_nelm_1.default,
             domEvents: {
                 listItem: {
@@ -588,12 +583,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 /* 11 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
 module.exports = (function(d) {
         var head = d.head || d.getElementsByTagName('head')[0];
         if (head) {
@@ -608,12 +597,12 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={constructor.i18n.textInputPlaceholder},\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown/menu {\nRnSlot (for=menuHeader)\ndiv/list {\n@Repeat (for=item in dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (dataList.length) {\nRnSlot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{constructor.i18n.nothingFound}'\n}\n}\n}\n}\nRnSlot/menuFooterSlot (for=menuFooter)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder=Начните вводить для поиска,\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown/menu {\nRnSlot (for=menuHeader)\ndiv/list {\n@Repeat (for=item in dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (dataList.length) {\nRnSlot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'Ничего не найдено'\n}\n}\n}\n}\nRnSlot/menuFooterSlot (for=menuFooter)\n}\n}");
 
 /***/ })
 /******/ ]);

@@ -11,6 +11,7 @@ export declare class OpalSelectOption extends BaseComponent {
     paramFocused: boolean;
     paramDisabled: boolean;
     readonly _tabIndex: number;
+    _wasMouseDown: boolean;
     elementAttached(): void;
     ready(): void;
     _onParamSelectedChange(evt: IEvent): void;
@@ -18,6 +19,8 @@ export declare class OpalSelectOption extends BaseComponent {
     _onParamFocusedChange(evt: IEvent): void;
     _onControlFocus(evt: Event): void;
     _onControlBlur(): void;
+    _onControlMouseDown(): void;
+    _onControlMouseUp(): void;
     _onControlClick(evt: Event): void;
     click(): this;
     value: string;

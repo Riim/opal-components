@@ -7,7 +7,7 @@
 		exports["@riim/opal-select-validator"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-input-validator"));
 	else
 		root["@riim/opal-select-validator"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/opal-select"], root["@riim/opal-input-validator"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__18__, __WEBPACK_EXTERNAL_MODULE__192__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__190__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,26 +76,26 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 191);
+/******/ 	return __webpack_require__(__webpack_require__.s = 189);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 11:
+/***/ 10:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 18:
+/***/ 17:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__18__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__17__;
 
 /***/ }),
 
-/***/ 191:
+/***/ 189:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -104,22 +104,22 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(192);
-__webpack_require__(18);
+__webpack_require__(190);
+__webpack_require__(17);
 __webpack_require__(4);
-__export(__webpack_require__(193));
+__export(__webpack_require__(191));
 
 
 /***/ }),
 
-/***/ 192:
+/***/ 190:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__192__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__190__;
 
 /***/ }),
 
-/***/ 193:
+/***/ 191:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -141,11 +141,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_input_validator_1 = __webpack_require__(192);
-var rionite_1 = __webpack_require__(11);
-var OpalSelectValidatorRule_1 = __webpack_require__(194);
+var opal_input_validator_1 = __webpack_require__(190);
+var rionite_1 = __webpack_require__(10);
+var OpalSelectValidatorRule_1 = __webpack_require__(192);
 exports.OpalSelectValidatorRule = OpalSelectValidatorRule_1.OpalSelectValidatorRule;
-__webpack_require__(195);
+__webpack_require__(193);
 var OpalSelectValidator = /** @class */ (function (_super) {
     __extends(OpalSelectValidator, _super);
     function OpalSelectValidator() {
@@ -174,7 +174,7 @@ exports.OpalSelectValidator = OpalSelectValidator;
 
 /***/ }),
 
-/***/ 194:
+/***/ 192:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -199,8 +199,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_input_validator_1 = __webpack_require__(192);
-var rionite_1 = __webpack_require__(11);
+var opal_input_validator_1 = __webpack_require__(190);
+var rionite_1 = __webpack_require__(10);
 var OpalSelectValidatorRule = /** @class */ (function (_super) {
     __extends(OpalSelectValidatorRule, _super);
     function OpalSelectValidatorRule() {
@@ -222,7 +222,7 @@ exports.OpalSelectValidatorRule = OpalSelectValidatorRule;
 
 /***/ }),
 
-/***/ 195:
+/***/ 193:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {

@@ -7,7 +7,7 @@
 		exports["@riim/opal-group"] = factory(require("reflect-metadata"), require("rionite"));
 	else
 		root["@riim/opal-group"] = factory(root["reflect-metadata"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__11__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,15 +76,15 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 52);
+/******/ 	return __webpack_require__(__webpack_require__.s = 50);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 11:
+/***/ 10:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
@@ -95,7 +95,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 
-/***/ 52:
+/***/ 50:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,12 +105,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(4);
-__export(__webpack_require__(53));
+__export(__webpack_require__(51));
 
 
 /***/ }),
 
-/***/ 53:
+/***/ 51:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -132,8 +132,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(11);
-__webpack_require__(54);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(52);
 var OpalGroup = /** @class */ (function (_super) {
     __extends(OpalGroup, _super);
     function OpalGroup() {
@@ -151,7 +151,7 @@ exports.OpalGroup = OpalGroup;
 
 /***/ }),
 
-/***/ 54:
+/***/ 52:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {

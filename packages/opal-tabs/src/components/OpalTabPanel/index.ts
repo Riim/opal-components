@@ -11,7 +11,7 @@ import template from './template.nelm';
 export class OpalTabPanel extends BaseComponent {
 	@Param paramShown = false;
 
-	@Observable isContentRendered = false;
+	@Observable contentRendered = false;
 
 	initialize() {
 		this.listenTo(this, 'change:paramShown', this._onParamShownChange);
@@ -19,12 +19,12 @@ export class OpalTabPanel extends BaseComponent {
 
 	_onParamShownChange(evt: IEvent) {
 		if (evt.data.value) {
-			this.isContentRendered = true;
+			this.contentRendered = true;
 		}
 	}
 
 	renderContent() {
-		this.isContentRendered = true;
+		this.contentRendered = true;
 		Cell.forceRelease();
 	}
 }

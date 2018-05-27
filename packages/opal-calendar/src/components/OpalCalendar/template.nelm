@@ -1,7 +1,7 @@
 @section/inner {
 
 header/header {
-	button/btnPrevMonth (disabled={isBtnPrevMonthDisabled}) {
+	button/btnPrevMonth (disabled={btnPrevMonthDisabled}) {
 		OpalIcon/btnPrevMonthIcon (name=chevronLeft)
 	}
 
@@ -18,7 +18,7 @@ header/header {
 		}
 	}
 
-	button/btnNextMonth (disabled={isBtnNextMonthDisabled}) {
+	button/btnNextMonth (disabled={btnNextMonthDisabled}) {
 		OpalIcon/btnNextMonthIcon (name=chevronRight)
 	}
 }

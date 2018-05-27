@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/opal-utils"), require("rionite"), require("@riim/opal-calendar"), require("@riim/opal-input-mask"), require("@riim/opal-text-input-validator"), require("date-exists"));
+		module.exports = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/opal-utils"), require("rionite"), require("@riim/opal-calendar"), require("@riim/opal-input-mask"), require("@riim/opal-text-input-validator"), require("date-exists"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-dropdown", "@riim/opal-icon", "@riim/opal-text-input", "reflect-metadata", "@riim/gettext", "@riim/opal-utils", "rionite", "@riim/opal-calendar", "@riim/opal-input-mask", "@riim/opal-text-input-validator", "date-exists"], factory);
+		define(["@riim/opal-dropdown", "@riim/opal-icon", "@riim/opal-text-input", "reflect-metadata", "@riim/opal-utils", "rionite", "@riim/opal-calendar", "@riim/opal-input-mask", "@riim/opal-text-input-validator", "date-exists"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-date-input"] = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/opal-utils"), require("rionite"), require("@riim/opal-calendar"), require("@riim/opal-input-mask"), require("@riim/opal-text-input-validator"), require("date-exists"));
+		exports["@riim/opal-date-input"] = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/opal-utils"), require("rionite"), require("@riim/opal-calendar"), require("@riim/opal-input-mask"), require("@riim/opal-text-input-validator"), require("date-exists"));
 	else
-		root["@riim/opal-date-input"] = factory(root["@riim/opal-dropdown"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/gettext"], root["@riim/opal-utils"], root["rionite"], root["@riim/opal-calendar"], root["@riim/opal-input-mask"], root["@riim/opal-text-input-validator"], root["date-exists"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__29__, __WEBPACK_EXTERNAL_MODULE__30__, __WEBPACK_EXTERNAL_MODULE__31__, __WEBPACK_EXTERNAL_MODULE__33__) {
+		root["@riim/opal-date-input"] = factory(root["@riim/opal-dropdown"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/opal-utils"], root["rionite"], root["@riim/opal-calendar"], root["@riim/opal-input-mask"], root["@riim/opal-text-input-validator"], root["date-exists"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__28__, __WEBPACK_EXTERNAL_MODULE__29__, __WEBPACK_EXTERNAL_MODULE__30__, __WEBPACK_EXTERNAL_MODULE__32__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 28);
+/******/ 	return __webpack_require__(__webpack_require__.s = 27);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -106,27 +106,22 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 /* 5 */,
-/* 6 */
+/* 6 */,
+/* 7 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
 
 /***/ }),
-/* 7 */,
-/* 8 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
-
-/***/ }),
+/* 8 */,
 /* 9 */,
-/* 10 */,
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
+/* 11 */,
 /* 12 */,
 /* 13 */,
 /* 14 */,
@@ -142,8 +137,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
 /* 24 */,
 /* 25 */,
 /* 26 */,
-/* 27 */,
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -152,15 +146,21 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(29);
+__webpack_require__(28);
 __webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(30);
+__webpack_require__(29);
 __webpack_require__(3);
-__webpack_require__(31);
+__webpack_require__(30);
 __webpack_require__(4);
-__export(__webpack_require__(32));
+__export(__webpack_require__(31));
 
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__28__;
 
 /***/ }),
 /* 29 */
@@ -176,12 +176,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__30__;
 
 /***/ }),
 /* 31 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__31__;
-
-/***/ }),
-/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -206,13 +200,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var gettext_1 = __webpack_require__(6);
-var opal_calendar_1 = __webpack_require__(29);
-var opal_utils_1 = __webpack_require__(8);
-var date_exists_1 = __webpack_require__(33);
-var rionite_1 = __webpack_require__(11);
-__webpack_require__(34);
-var template_nelm_1 = __webpack_require__(35);
+var opal_calendar_1 = __webpack_require__(28);
+var opal_utils_1 = __webpack_require__(7);
+var date_exists_1 = __webpack_require__(32);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(33);
+var template_nelm_1 = __webpack_require__(34);
 function pad(num) {
     return (num < 10 ? '0' : '') + num;
 }
@@ -227,7 +220,7 @@ var OpalDateInput = /** @class */ (function (_super) {
         _this.dateExists = date_exists_1.dateExists;
         return _this;
     }
-    OpalDateInput.prototype.isDateInRange = function (date) {
+    OpalDateInput.prototype._isDateInRange = function (date) {
         var calendar = this.$('calendar');
         var match = date.match(/\d+/g);
         var day = +match[0];
@@ -365,11 +358,6 @@ var OpalDateInput = /** @class */ (function (_super) {
     OpalDateInput = __decorate([
         rionite_1.Component({
             elementIs: 'OpalDateInput',
-            i18n: {
-                isRequiredField: gettext_1.getText.t('Поле обязательно для заполнения'),
-                nonExistentDate: gettext_1.getText.t('Несуществующая дата'),
-                invalidDateRange: gettext_1.getText.t('Дата вне допустимого диапазона')
-            },
             template: template_nelm_1.default,
             events: {
                 calendar: {
@@ -390,13 +378,13 @@ exports.OpalDateInput = OpalDateInput;
 
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__33__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__32__;
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -413,12 +401,12 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nOpalTextInputValidator/textInputValidator {\nOpalInputMask/inputMask (mask={paramMask}) {\nOpalTextInput/textInput (\nclass=OpalInputValidator__textInput OpalInputMask__textInput,\nvalue={paramValue},\nplaceholder={paramPlaceholder},\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=calendar)\n}\n}\n@IfThen (paramRequired) {\nOpalTextInputValidatorRule/textInputValidatorRuleRequired (\nrequired,\npopoverPosition={paramPopoverPosition}\n) {\n'{constructor.i18n.isRequiredField}'\n}\n}\nOpalTextInputValidatorRule/textInputValidatorRuleDateExists (\ntest={dateExists},\npopoverPosition={paramPopoverPosition}\n) {\n'{constructor.i18n.nonExistentDate}'\n}\nOpalTextInputValidatorRule/textInputValidatorRuleDateInRange (\ntest={isDateInRange},\npopoverPosition={paramPopoverPosition}\n) {\n'{constructor.i18n.invalidDateRange}'\n}\n}\nOpalDropdown/calendarMenu (autoHeight=no) {\nOpalCalendar/calendar (\nfromDate={paramFromDate},\ntoDate={paramToDate},\nvalue={paramValue},\ndateDelimiter=.\n)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nOpalTextInputValidator/textInputValidator {\nOpalInputMask/inputMask (mask={paramMask}) {\nOpalTextInput/textInput (\nclass=OpalInputValidator__textInput OpalInputMask__textInput,\nvalue={paramValue},\nplaceholder={paramPlaceholder},\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=calendar)\n}\n}\n@IfThen (paramRequired) {\nOpalTextInputValidatorRule/textInputValidatorRuleRequired (\nrequired,\npopoverPosition={paramPopoverPosition}\n) {\n'Поле обязательно для заполнения'\n}\n}\nOpalTextInputValidatorRule/textInputValidatorRuleDateExists (\ntest={dateExists},\npopoverPosition={paramPopoverPosition}\n) {\n'Несуществующая дата'\n}\nOpalTextInputValidatorRule/textInputValidatorRuleDateInRange (\ntest={_isDateInRange},\npopoverPosition={paramPopoverPosition}\n) {\n'Дата вне допустимого диапазона'\n}\n}\nOpalDropdown/calendarMenu (autoHeight=no) {\nOpalCalendar/calendar (\nfromDate={paramFromDate},\ntoDate={paramToDate},\nvalue={paramValue},\ndateDelimiter=.\n)\n}\n}");
 
 /***/ })
 /******/ ]);

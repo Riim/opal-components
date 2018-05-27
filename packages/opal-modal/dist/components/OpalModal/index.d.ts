@@ -3,7 +3,7 @@ import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalModal extends BaseComponent {
     paramOpened: boolean;
-    isContentRendered: boolean;
+    contentRendered: boolean;
     ready(): void;
     elementAttached(): void;
     elementDetached(): void;

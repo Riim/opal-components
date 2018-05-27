@@ -1,4 +1,3 @@
-import { getText } from '@riim/gettext';
 import { OpalLoadedList } from '@riim/opal-loaded-list';
 import { OpalTextInput } from '@riim/opal-text-input';
 import { IEvent } from 'cellx';
@@ -8,11 +7,6 @@ import template from './template.nelm';
 
 @Component({
 	elementIs: 'OpalFilteredList',
-
-	i18n: {
-		queryInputPlaceholder: getText.t('Поиск')
-	},
-
 	template
 })
 export class OpalFilteredList extends BaseComponent {
@@ -37,11 +31,14 @@ export class OpalFilteredList extends BaseComponent {
 		this.$<OpalLoadedList>('list')!.paramQuery = query as any;
 	}
 
-	focus() {
+	focus(): boolean {
 		let queryInput = this.$<OpalTextInput>('queryInput');
 
 		if (queryInput) {
 			queryInput.focus();
+			return true;
 		}
+
+		return false;
 	}
 }

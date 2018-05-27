@@ -22,8 +22,8 @@ export declare class OpalTextInput extends BaseComponent {
     _textFieldValue: string;
     value: string | null;
     _prevValue: string | null;
-    readonly isBtnClearShown: boolean;
-    readonly isEndIconShown: boolean;
+    readonly btnClearShown: boolean;
+    readonly endIconShown: boolean;
     _initialHeight: number;
     ready(): void;
     elementAttached(): void;

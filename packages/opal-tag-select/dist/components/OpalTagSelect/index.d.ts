@@ -50,7 +50,7 @@ export declare class OpalTagSelect extends BaseComponent {
     _viewModelItemTextFieldName: string;
     _viewModelItemDisabledFieldName: string;
     readonly value: Array<string>;
-    readonly isPlaceholderShown: boolean;
+    readonly placeholderShown: boolean;
     _dataListKeypathParam: string | null;
     select: OpalSelect;
     _isItemDisabled(item: IDataListItem): any;

@@ -7,7 +7,7 @@
 		exports["@riim/opal-sign-button"] = factory(require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"));
 	else
 		root["@riim/opal-sign-button"] = factory(root["reflect-metadata"], root["@riim/next-tick"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 205);
+/******/ 	return __webpack_require__(__webpack_require__.s = 204);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -88,14 +88,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 11:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
-
-/***/ }),
-
-/***/ 205:
+/***/ 204:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,12 +98,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(4);
-__export(__webpack_require__(206));
+__export(__webpack_require__(205));
 
 
 /***/ }),
 
-/***/ 206:
+/***/ 205:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -135,11 +128,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(7);
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(11);
-__webpack_require__(207);
-var template_nelm_1 = __webpack_require__(208);
+var next_tick_1 = __webpack_require__(6);
+var cellx_decorators_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(206);
+var template_nelm_1 = __webpack_require__(207);
 var OpalSignButton = /** @class */ (function (_super) {
     __extends(OpalSignButton, _super);
     function OpalSignButton() {
@@ -199,10 +192,10 @@ var OpalSignButton = /** @class */ (function (_super) {
         }
     };
     OpalSignButton.prototype.click = function () {
-        if (this.paramCheckable) {
+        if (this.emit('click').defaultPrevented !== false && this.paramCheckable) {
             this.emit(this.toggle() ? 'check' : 'uncheck');
+            this.emit('change');
         }
-        this.emit('click');
         return this;
     };
     Object.defineProperty(OpalSignButton.prototype, "checked", {
@@ -304,7 +297,7 @@ exports.OpalSignButton = OpalSignButton;
 
 /***/ }),
 
-/***/ 207:
+/***/ 206:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -322,7 +315,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 208:
+/***/ 207:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -338,10 +331,17 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 
-/***/ 7:
+/***/ 6:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
 
 /***/ })
 

@@ -3,7 +3,7 @@
 RnSlot (for=textInput) {
 	OpalTextInput/textInput (
 		value='{paramValue |key(_dataListItemTextFieldName) }',
-		placeholder={constructor.i18n.textInputPlaceholder},
+		placeholder=Начните вводить для поиска,
 		clearable
 	) {
 		OpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)
@@ -33,7 +33,7 @@ OpalDropdown/menu {
 		RnSlot/nothingFoundSlot (for=nothingFound) {
 			span/nothingFound {
 				span/nothingFoundMessage {
-					'{constructor.i18n.nothingFound}'
+					'Ничего не найдено'
 				}
 			}
 		}

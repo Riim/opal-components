@@ -193,12 +193,12 @@ export class OpalCalendar extends BaseComponent {
 	@Observable shownMonth: number;
 
 	@Computed
-	get isBtnPrevMonthDisabled(): boolean {
+	get btnPrevMonthDisabled(): boolean {
 		return this.shownYear == this.fromYear && !this.shownMonth;
 	}
 
 	@Computed
-	get isBtnNextMonthDisabled(): boolean {
+	get btnNextMonthDisabled(): boolean {
 		return this.shownYear == this.toYear && this.shownMonth == 11;
 	}
 

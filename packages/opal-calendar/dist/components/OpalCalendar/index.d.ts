@@ -37,8 +37,8 @@ export declare class OpalCalendar extends BaseComponent {
     readonly value: Date | null;
     shownYear: number;
     shownMonth: number;
-    readonly isBtnPrevMonthDisabled: boolean;
-    readonly isBtnNextMonthDisabled: boolean;
+    readonly btnPrevMonthDisabled: boolean;
+    readonly btnNextMonthDisabled: boolean;
     days: TDays;
     _currentlyDateSelection: boolean;
     _documentKeyDownListening: IDisposableListening | null | undefined;

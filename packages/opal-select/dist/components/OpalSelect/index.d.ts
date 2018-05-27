@@ -74,7 +74,7 @@ export declare class OpalSelect extends BaseComponent {
     _opened: boolean;
     _valueOnOpen: Array<string>;
     _onсeFocusedAfterLoading: boolean;
-    _isParamDataListSpecified: boolean;
+    _paramDataListSpecified: boolean;
     _documentFocusListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening | null | undefined;
     initialize(): void;
@@ -88,12 +88,13 @@ export declare class OpalSelect extends BaseComponent {
     _onButtonFocus(): void;
     _onButtonBlur(): void;
     _onButtonClick(evt: IEvent<OpalButton>): void;
+    _onButtonElementMouseDown(): void;
     _onMenuParamOpenedChange(evt: IEvent): false;
     _onMenuSelectOptionSelect(evt: IEvent<OpalSelectOption>): false;
     _onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>): false;
     _onMenuButtonClick(evt: IEvent<OpalButton>): false | void;
     _onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void;
-    _embedNewItem(newItem: {
+    _addNewItem$(newItem: {
         [name: string]: string;
     }): void;
     _onMenuChange(evt: IEvent): void;

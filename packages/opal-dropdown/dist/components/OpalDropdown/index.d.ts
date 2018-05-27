@@ -3,10 +3,10 @@ import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalDropdown extends BaseComponent {
     paramAutoHeight: boolean;
-    paramAutoClosing: boolean;
+    paramCloseOn: string;
     paramOpened: boolean;
-    isContentRendered: boolean;
-    _documentClickListening: IDisposableListening | undefined;
+    contentRendered: boolean;
+    _documentClosingEventListening: IDisposableListening | null | undefined;
     ready(): void;
     elementAttached(): void;
     _onParamOpenedChange(evt: IEvent): void;
@@ -17,5 +17,5 @@ export declare class OpalDropdown extends BaseComponent {
     _open(): void;
     _open$(): void;
     _close(): void;
-    _onDocumentClick(evt: Event): void;
+    _onDocumentClosingEvent(evt: Event): void;
 }

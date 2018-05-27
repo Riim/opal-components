@@ -54,13 +54,13 @@ export class OpalTextInput extends BaseComponent {
 	_prevValue: string | null;
 
 	@Computed
-	get isBtnClearShown(): boolean {
+	get btnClearShown(): boolean {
 		return this.paramClearable && !this.paramLoading && !!this._textFieldValue;
 	}
 
 	@Computed
-	get isEndIconShown(): boolean {
-		return !this.paramLoading && !this.isBtnClearShown;
+	get endIconShown(): boolean {
+		return !this.paramLoading && !this.btnClearShown;
 	}
 
 	_initialHeight: number;

@@ -7,7 +7,7 @@
 		exports["@riim/opal-text-input-validator"] = factory(require("@riim/opal-text-input"), require("reflect-metadata"), require("rionite"), require("@riim/opal-input-validator"));
 	else
 		root["@riim/opal-text-input-validator"] = factory(root["@riim/opal-text-input"], root["reflect-metadata"], root["rionite"], root["@riim/opal-input-validator"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__192__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__190__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -81,17 +81,17 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ({
 
-/***/ 11:
+/***/ 10:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 192:
+/***/ 190:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__192__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__190__;
 
 /***/ }),
 
@@ -104,7 +104,7 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(192);
+__webpack_require__(190);
 __webpack_require__(3);
 __webpack_require__(4);
 __export(__webpack_require__(239));
@@ -134,8 +134,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_input_validator_1 = __webpack_require__(192);
-var rionite_1 = __webpack_require__(11);
+var opal_input_validator_1 = __webpack_require__(190);
+var rionite_1 = __webpack_require__(10);
 var OpalTextInputValidatorRule_1 = __webpack_require__(240);
 exports.OpalTextInputValidatorRule = OpalTextInputValidatorRule_1.OpalTextInputValidatorRule;
 __webpack_require__(241);
@@ -202,8 +202,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_input_validator_1 = __webpack_require__(192);
-var rionite_1 = __webpack_require__(11);
+var opal_input_validator_1 = __webpack_require__(190);
+var rionite_1 = __webpack_require__(10);
 var OpalTextInputValidatorRule = /** @class */ (function (_super) {
     __extends(OpalTextInputValidatorRule, _super);
     function OpalTextInputValidatorRule() {

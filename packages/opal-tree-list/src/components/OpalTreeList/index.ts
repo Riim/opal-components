@@ -1,4 +1,3 @@
-import { getText } from '@riim/gettext';
 import { OpalCheckbox } from '@riim/opal-checkbox';
 import { closestComponent } from '@riim/opal-utils';
 import {
@@ -55,11 +54,6 @@ function toComparable(str: string | null): string | null {
 
 @Component({
 	elementIs: 'OpalTreeList',
-
-	i18n: {
-		nothingFound: getText.t('Ничего не найдено')
-	},
-
 	template
 })
 export class OpalTreeList extends BaseComponent {

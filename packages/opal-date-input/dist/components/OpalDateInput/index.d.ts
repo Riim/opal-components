@@ -12,7 +12,7 @@ export declare class OpalDateInput extends BaseComponent {
     paramRequired: boolean;
     paramPopoverPosition: string;
     dateExists: typeof dateExists;
-    isDateInRange(date: string): boolean;
+    _isDateInRange(date: string): boolean;
     _documentFocusListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening;
     _documentClickListening: IDisposableListening;

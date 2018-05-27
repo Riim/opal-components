@@ -77,11 +77,10 @@ export class OpalSignButton extends BaseComponent {
 	}
 
 	click(): this {
-		if (this.paramCheckable) {
+		if (this.emit('click').defaultPrevented !== false && this.paramCheckable) {
 			this.emit(this.toggle() ? 'check' : 'uncheck');
+			this.emit('change');
 		}
-
-		this.emit('click');
 
 		return this;
 	}

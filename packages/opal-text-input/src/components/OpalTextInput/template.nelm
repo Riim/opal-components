@@ -23,14 +23,14 @@
 	OpalIcon/startIcon (name={paramStartIcon})
 }
 
-RnSlot/endIconSlot (for=endIcon, shown={isEndIconShown}) {
+RnSlot/endIconSlot (for=endIcon, shown={endIconShown}) {
 	@IfThen (paramEndIcon) {
 		OpalIcon/endIcon (name={paramEndIcon})
 	}
 }
 
 @IfThen (paramClearable) {
-	button/btnClear (shown={isBtnClearShown}) {
+	button/btnClear (shown={btnClearShown}) {
 		OpalIcon/btnClearIcon (name=cross)
 	}
 }

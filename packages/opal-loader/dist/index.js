@@ -7,7 +7,7 @@
 		exports["@riim/opal-loader"] = factory(require("reflect-metadata"), require("rionite"));
 	else
 		root["@riim/opal-loader"] = factory(root["reflect-metadata"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__11__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,19 +76,19 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 145);
+/******/ 	return __webpack_require__(__webpack_require__.s = 143);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 11:
+/***/ 10:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 145:
+/***/ 143:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98,12 +98,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(4);
-__export(__webpack_require__(146));
+__export(__webpack_require__(144));
 
 
 /***/ }),
 
-/***/ 146:
+/***/ 144:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -128,8 +128,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(11);
-__webpack_require__(147);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(145);
 var OpalLoader = /** @class */ (function (_super) {
     __extends(OpalLoader, _super);
     function OpalLoader() {
@@ -158,7 +158,7 @@ exports.OpalLoader = OpalLoader;
 
 /***/ }),
 
-/***/ 147:
+/***/ 145:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {

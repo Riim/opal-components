@@ -7,7 +7,7 @@
 		exports["@riim/opal-calendar"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"), require("@riim/opal-select"));
 	else
 		root["@riim/opal-calendar"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["@riim/next-tick"], root["cellx-decorators"], root["rionite"], root["@riim/opal-select"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__18__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__17__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -96,33 +96,32 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 /* 5 */,
-/* 6 */,
-/* 7 */
+/* 6 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
 
 /***/ }),
+/* 7 */,
 /* 8 */,
-/* 9 */,
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
+
+/***/ }),
 /* 10 */
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
-
-/***/ }),
+/* 11 */,
 /* 12 */,
 /* 13 */,
 /* 14 */,
 /* 15 */,
-/* 16 */,
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -132,19 +131,19 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(2);
-__webpack_require__(18);
+__webpack_require__(17);
 __webpack_require__(4);
-__export(__webpack_require__(19));
+__export(__webpack_require__(18));
 
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__17__;
 
 /***/ }),
 /* 18 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__18__;
-
-/***/ }),
-/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -169,15 +168,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(7);
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(11);
-var formatDate_1 = __webpack_require__(20);
+var next_tick_1 = __webpack_require__(6);
+var cellx_decorators_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(10);
+var formatDate_1 = __webpack_require__(19);
 exports.formatDate = formatDate_1.formatDate;
-__webpack_require__(21);
-var parseDate_1 = __webpack_require__(22);
+__webpack_require__(20);
+var parseDate_1 = __webpack_require__(21);
 exports.parseDate = parseDate_1.parseDate;
-var template_nelm_1 = __webpack_require__(23);
+var template_nelm_1 = __webpack_require__(22);
 function getTodayDate() {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -323,14 +322,14 @@ var OpalCalendar = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(OpalCalendar.prototype, "isBtnPrevMonthDisabled", {
+    Object.defineProperty(OpalCalendar.prototype, "btnPrevMonthDisabled", {
         get: function () {
             return this.shownYear == this.fromYear && !this.shownMonth;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(OpalCalendar.prototype, "isBtnNextMonthDisabled", {
+    Object.defineProperty(OpalCalendar.prototype, "btnNextMonthDisabled", {
         get: function () {
             return this.shownYear == this.toYear && this.shownMonth == 11;
         },
@@ -470,12 +469,12 @@ var OpalCalendar = /** @class */ (function (_super) {
         cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
-    ], OpalCalendar.prototype, "isBtnPrevMonthDisabled", null);
+    ], OpalCalendar.prototype, "btnPrevMonthDisabled", null);
     __decorate([
         cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
-    ], OpalCalendar.prototype, "isBtnNextMonthDisabled", null);
+    ], OpalCalendar.prototype, "btnNextMonthDisabled", null);
     __decorate([
         cellx_decorators_1.Computed,
         __metadata("design:type", Array)
@@ -563,7 +562,7 @@ exports.OpalCalendar = OpalCalendar;
 
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -581,7 +580,7 @@ exports.formatDate = formatDate;
 
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -598,7 +597,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -612,12 +611,12 @@ exports.parseDate = parseDate;
 
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nheader/header {\nbutton/btnPrevMonth (disabled={isBtnPrevMonthDisabled}) {\nOpalIcon/btnPrevMonthIcon (name=chevronLeft)\n}\nOpalSelect/monthSelect (size=s, value=['{shownMonth}']) {\n@Repeat (class=OpalSelect__menuContent, for=month in constructor.i18n.months) {\nOpalSelectOption (value={$index}, text={month})\n}\n}\n' '\nOpalSelect/yearSelect (size=s, value=['{shownYear}']) {\n@Repeat (class=OpalSelect__menuContent, for=year in years) {\nOpalSelectOption (value={year}, text={year})\n}\n}\nbutton/btnNextMonth (disabled={isBtnNextMonthDisabled}) {\nOpalIcon/btnNextMonthIcon (name=chevronRight)\n}\n}\ndiv/body {\ndiv/weekDays {\ndiv/weekDaysRow {\n@Repeat (for=weekDay in weekDaysShort) {\nspan/weekDay {\n'{weekDay}'\n}\n}\n}\n}\ndiv/days {\n@Repeat (for=weekDays in days) {\ndiv/daysRow {\n@Repeat (for=day in weekDays) {\nspan/day (\nweekDay={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnotInCurrentMonth={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabIndex={day.tabIndex},\ndata-date={day.date}\n) {\n'{day.value}'\n}\n}\n}\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nheader/header {\nbutton/btnPrevMonth (disabled={btnPrevMonthDisabled}) {\nOpalIcon/btnPrevMonthIcon (name=chevronLeft)\n}\nOpalSelect/monthSelect (size=s, value=['{shownMonth}']) {\n@Repeat (class=OpalSelect__menuContent, for=month in constructor.i18n.months) {\nOpalSelectOption (value={$index}, text={month})\n}\n}\n' '\nOpalSelect/yearSelect (size=s, value=['{shownYear}']) {\n@Repeat (class=OpalSelect__menuContent, for=year in years) {\nOpalSelectOption (value={year}, text={year})\n}\n}\nbutton/btnNextMonth (disabled={btnNextMonthDisabled}) {\nOpalIcon/btnNextMonthIcon (name=chevronRight)\n}\n}\ndiv/body {\ndiv/weekDays {\ndiv/weekDaysRow {\n@Repeat (for=weekDay in weekDaysShort) {\nspan/weekDay {\n'{weekDay}'\n}\n}\n}\n}\ndiv/days {\n@Repeat (for=weekDays in days) {\ndiv/daysRow {\n@Repeat (for=day in weekDays) {\nspan/day (\nweekDay={day.weekDay},\ntoday={day.today},\nselected={day.selected},\nnotInCurrentMonth={day.notInCurrentMonth},\ndisabled={day.disabled},\ntabIndex={day.tabIndex},\ndata-date={day.date}\n) {\n'{day.value}'\n}\n}\n}\n}\n}\n}\n}");
 
 /***/ })
 /******/ ]);

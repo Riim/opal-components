@@ -25,6 +25,8 @@ export class OpalSelectOption extends BaseComponent {
 		return this.paramDisabled ? -1 : this.paramTabIndex;
 	}
 
+	_wasMouseDown = false;
+
 	elementAttached() {
 		this.listenTo(this, {
 			'change:paramSelected': this._onParamSelectedChange,
@@ -34,6 +36,8 @@ export class OpalSelectOption extends BaseComponent {
 		this.listenTo('control', {
 			focus: this._onControlFocus,
 			blur: this._onControlBlur,
+			mousedown: this._onControlMouseDown,
+			mouseup: this._onControlMouseUp,
 			click: this._onControlClick
 		});
 	}
@@ -74,6 +78,18 @@ export class OpalSelectOption extends BaseComponent {
 
 	_onControlBlur() {
 		this.paramFocused = false;
+	}
+
+	_onControlMouseDown() {
+		this._wasMouseDown = true;
+	}
+
+	_onControlMouseUp() {
+		if (this._wasMouseDown) {
+			this._wasMouseDown = false;
+		} else if (!this.paramDisabled) {
+			this.click();
+		}
 	}
 
 	_onControlClick(evt: Event) {

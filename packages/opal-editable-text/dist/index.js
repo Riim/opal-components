@@ -7,7 +7,7 @@
 		exports["@riim/opal-editable-text"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("rionite"));
 	else
 		root["@riim/opal-editable-text"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__11__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,15 +76,15 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 40);
+/******/ 	return __webpack_require__(__webpack_require__.s = 39);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 11:
+/***/ 10:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
@@ -92,6 +92,22 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
+
+/***/ }),
+
+/***/ 39:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(2);
+__webpack_require__(4);
+__export(__webpack_require__(40));
+
 
 /***/ }),
 
@@ -103,22 +119,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 /***/ }),
 
 /***/ 40:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(2);
-__webpack_require__(4);
-__export(__webpack_require__(41));
-
-
-/***/ }),
-
-/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -140,9 +140,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(11);
-__webpack_require__(42);
-var template_nelm_1 = __webpack_require__(43);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(41);
+var template_nelm_1 = __webpack_require__(42);
 var OpalEditableText = /** @class */ (function (_super) {
     __extends(OpalEditableText, _super);
     function OpalEditableText() {
@@ -252,7 +252,7 @@ exports.OpalEditableText = OpalEditableText;
 
 /***/ }),
 
-/***/ 42:
+/***/ 41:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -270,7 +270,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 43:
+/***/ 42:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

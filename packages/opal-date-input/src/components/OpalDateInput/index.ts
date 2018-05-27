@@ -1,4 +1,3 @@
-import { getText } from '@riim/gettext';
 import {
 	fromDate,
 	OpalCalendar,
@@ -26,12 +25,6 @@ function pad(num: number): string {
 
 @Component({
 	elementIs: 'OpalDateInput',
-
-	i18n: {
-		isRequiredField: getText.t('Поле обязательно для заполнения'),
-		nonExistentDate: getText.t('Несуществующая дата'),
-		invalidDateRange: getText.t('Дата вне допустимого диапазона')
-	},
 
 	template,
 
@@ -62,7 +55,7 @@ export class OpalDateInput extends BaseComponent {
 
 	dateExists = dateExists;
 
-	isDateInRange(date: string): boolean {
+	_isDateInRange(date: string): boolean {
 		let calendar = this.$<OpalCalendar>('calendar');
 		let match = date.match(/\d+/g)!;
 		let day = +match[0];

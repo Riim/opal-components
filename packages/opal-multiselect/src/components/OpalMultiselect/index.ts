@@ -1,4 +1,3 @@
-import { getText } from '@riim/gettext';
 import { IDataProvider, OpalLoadedList } from '@riim/opal-loaded-list';
 import { OpalSelect } from '@riim/opal-select';
 import { OpalTextInput } from '@riim/opal-text-input';
@@ -11,11 +10,6 @@ import template from './template.nelm';
 
 @Component<OpalMultiselect>({
 	elementIs: 'OpalMultiselect',
-
-	i18n: {
-		queryInputPlaceholder: getText.t('Поиск'),
-		nothingSelected: getText.t('Ничего не выбрано')
-	},
 
 	template: (OpalSelect.template as Template).extend(template),
 
@@ -54,7 +48,7 @@ export class OpalMultiselect extends OpalSelect {
 	dataProvider: IDataProvider | null;
 
 	@Computed
-	get isNothingSelectedShown(): boolean {
+	get nothingSelectedShown(): boolean {
 		return !this.viewModel.length;
 	}
 

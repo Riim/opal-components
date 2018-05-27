@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-dropdown",
-  "version": "0.33.89",
+  "version": "0.33.107",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,9 +13,9 @@
     "access": "public"
   },
   "dependencies": {
-    "cellx": "^1.7.86",
-    "cellx-decorators": "^1.4.9",
+    "cellx": "^1.7.88",
+    "cellx-decorators": "^1.4.10",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.65"
+    "rionite": "^0.32.83"
   }
 }

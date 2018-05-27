@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/next-tick"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-loaded-list"), require("@riim/opal-loader"), require("@riim/opal-button"), require("@riim/opal-filtered-list"));
+		module.exports = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-loaded-list"), require("@riim/opal-loader"), require("@riim/opal-button"), require("@riim/opal-filtered-list"), require("@riim/gettext"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-dropdown", "@riim/opal-icon", "@riim/opal-text-input", "reflect-metadata", "@riim/gettext", "@riim/next-tick", "@riim/opal-utils", "cellx", "cellx-decorators", "rionite", "@riim/opal-loaded-list", "@riim/opal-loader", "@riim/opal-button", "@riim/opal-filtered-list"], factory);
+		define(["@riim/opal-dropdown", "@riim/opal-icon", "@riim/opal-text-input", "reflect-metadata", "@riim/next-tick", "@riim/opal-utils", "cellx", "cellx-decorators", "rionite", "@riim/opal-loaded-list", "@riim/opal-loader", "@riim/opal-button", "@riim/opal-filtered-list", "@riim/gettext"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-select"] = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/next-tick"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-loaded-list"), require("@riim/opal-loader"), require("@riim/opal-button"), require("@riim/opal-filtered-list"));
+		exports["@riim/opal-select"] = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-loaded-list"), require("@riim/opal-loader"), require("@riim/opal-button"), require("@riim/opal-filtered-list"), require("@riim/gettext"));
 	else
-		root["@riim/opal-select"] = factory(root["@riim/opal-dropdown"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/gettext"], root["@riim/next-tick"], root["@riim/opal-utils"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/opal-loaded-list"], root["@riim/opal-loader"], root["@riim/opal-button"], root["@riim/opal-filtered-list"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__45__, __WEBPACK_EXTERNAL_MODULE__140__, __WEBPACK_EXTERNAL_MODULE__162__, __WEBPACK_EXTERNAL_MODULE__197__) {
+		root["@riim/opal-select"] = factory(root["@riim/opal-dropdown"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/next-tick"], root["@riim/opal-utils"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/opal-loaded-list"], root["@riim/opal-loader"], root["@riim/opal-button"], root["@riim/opal-filtered-list"], root["@riim/gettext"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__44__, __WEBPACK_EXTERNAL_MODULE__138__, __WEBPACK_EXTERNAL_MODULE__160__, __WEBPACK_EXTERNAL_MODULE__195__, __WEBPACK_EXTERNAL_MODULE__197__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 196);
+/******/ 	return __webpack_require__(__webpack_require__.s = 194);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -95,28 +95,21 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 11:
+/***/ 138:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__138__;
 
 /***/ }),
 
-/***/ 140:
+/***/ 160:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__140__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__160__;
 
 /***/ }),
 
-/***/ 162:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__162__;
-
-/***/ }),
-
-/***/ 196:
+/***/ 194:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -125,27 +118,27 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(162);
+__webpack_require__(160);
 __webpack_require__(1);
-__webpack_require__(197);
+__webpack_require__(195);
 __webpack_require__(2);
-__webpack_require__(45);
-__webpack_require__(140);
+__webpack_require__(44);
+__webpack_require__(138);
 __webpack_require__(3);
 __webpack_require__(4);
-__export(__webpack_require__(198));
+__export(__webpack_require__(196));
 
 
 /***/ }),
 
-/***/ 197:
+/***/ 195:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__197__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__195__;
 
 /***/ }),
 
-/***/ 198:
+/***/ 196:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -170,17 +163,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var gettext_1 = __webpack_require__(6);
-var next_tick_1 = __webpack_require__(7);
-var opal_utils_1 = __webpack_require__(8);
-var cellx_1 = __webpack_require__(9);
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(11);
-var OpalSelectOption_1 = __webpack_require__(199);
+var gettext_1 = __webpack_require__(197);
+var next_tick_1 = __webpack_require__(6);
+var opal_utils_1 = __webpack_require__(7);
+var cellx_1 = __webpack_require__(8);
+var cellx_decorators_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(10);
+var OpalSelectOption_1 = __webpack_require__(198);
 exports.OpalSelectOption = OpalSelectOption_1.OpalSelectOption;
-__webpack_require__(202);
-var isEqualArray_1 = __webpack_require__(203);
-var template_nelm_1 = __webpack_require__(204);
+__webpack_require__(201);
+var isEqualArray_1 = __webpack_require__(202);
+var template_nelm_1 = __webpack_require__(203);
 var map = Array.prototype.map;
 var defaultDataListItemSchema = Object.freeze({
     value: 'value',
@@ -250,15 +243,15 @@ var OpalSelect = /** @class */ (function (_super) {
             cellx_1.define(this, 'dataList', new cellx_1.Cell(Function("return this." + this.paramDataListKeypath + ";"), {
                 context: this.ownerComponent || window
             }));
-            this._isParamDataListSpecified = true;
+            this._paramDataListSpecified = true;
         }
         else if (this.$specifiedParams && this.$specifiedParams.has('dataList')) {
             cellx_1.define(this, 'dataList', function () { return _this.paramDataList; });
-            this._isParamDataListSpecified = true;
+            this._paramDataListSpecified = true;
         }
         else {
             this.dataList = null;
-            this._isParamDataListSpecified = false;
+            this._paramDataListSpecified = false;
         }
         var dataListItemSchema = this.paramDataListItemSchema;
         var defaultDataListItemSchema = this.constructor
@@ -356,6 +349,7 @@ var OpalSelect = /** @class */ (function (_super) {
             blur: this._onButtonBlur,
             click: this._onButtonClick
         });
+        this.listenTo(this.$('button').element, 'mousedown', this._onButtonElementMouseDown);
         this.listenTo('menu', {
             'change:paramOpened': this._onMenuParamOpenedChange,
             '<OpalSelectOption>select': this._onMenuSelectOptionSelect,
@@ -464,11 +458,16 @@ var OpalSelect = /** @class */ (function (_super) {
         this.paramFocused = false;
     };
     OpalSelect.prototype._onButtonClick = function (evt) {
-        if (evt.target.checked) {
-            this.open();
+        if (!(+evt.target.checked ^ +this._opened)) {
+            evt.defaultPrevented = true;
+        }
+    };
+    OpalSelect.prototype._onButtonElementMouseDown = function () {
+        if (this._opened) {
+            this.close();
         }
         else {
-            this.close();
+            this.open();
         }
     };
     OpalSelect.prototype._onMenuParamOpenedChange = function (evt) {
@@ -537,7 +536,7 @@ var OpalSelect = /** @class */ (function (_super) {
             button.paramLoading = false;
             button.enable();
             if (newItem) {
-                _this._embedNewItem(newItem);
+                _this._addNewItem$(newItem);
             }
         }, function () {
             button.paramLoading = false;
@@ -561,14 +560,14 @@ var OpalSelect = /** @class */ (function (_super) {
         this._addNewItem(text).then(function (newItem) {
             textInput.paramLoading = false;
             textInput.enable();
-            _this._embedNewItem(newItem);
+            _this._addNewItem$(newItem);
         }, function () {
             textInput.paramLoading = false;
             textInput.enable();
         });
         return false;
     };
-    OpalSelect.prototype._embedNewItem = function (newItem) {
+    OpalSelect.prototype._addNewItem$ = function (newItem) {
         var value = newItem[this._viewModelItemValueFieldName];
         var text = newItem[this._viewModelItemTextFieldName];
         var subtext = newItem[this._viewModelItemDisabledFieldName];
@@ -637,21 +636,10 @@ var OpalSelect = /** @class */ (function (_super) {
         if (loadedList) {
             loadedList.checkLoading();
         }
-        var focusTarget = this.$('focus');
-        if (focusTarget) {
-            focusTarget.focus();
-        }
-        else {
-            var filteredList = this.$('filteredList');
-            if (filteredList) {
-                focusTarget = filteredList.$('queryInput');
-            }
-            if (focusTarget) {
-                focusTarget.focus();
-            }
-            else {
-                this._focusOptions();
-            }
+        var focusTarget = this.$('focus') ||
+            this.$('filteredList');
+        if (!focusTarget || focusTarget.focus() === false) {
+            this._focusOptions();
         }
         return true;
     };
@@ -916,13 +904,8 @@ var OpalSelect = /** @class */ (function (_super) {
                         }
                         this._onсeFocusedAfterLoading = true;
                         this._focusOptions();
-                        var focusTarget = this.$('focus');
-                        if (!focusTarget) {
-                            var filteredList = this.$('filteredList');
-                            if (filteredList) {
-                                focusTarget = filteredList.$('queryInput');
-                            }
-                        }
+                        var focusTarget = this.$('focus') ||
+                            this.$('filteredList');
                         if (focusTarget) {
                             next_tick_1.nextTick(function () {
                                 focusTarget.focus();
@@ -941,7 +924,14 @@ exports.OpalSelect = OpalSelect;
 
 /***/ }),
 
-/***/ 199:
+/***/ 197:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__197__;
+
+/***/ }),
+
+/***/ 198:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -966,11 +956,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(7);
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(11);
-__webpack_require__(200);
-var template_nelm_1 = __webpack_require__(201);
+var next_tick_1 = __webpack_require__(6);
+var cellx_decorators_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(199);
+var template_nelm_1 = __webpack_require__(200);
 var OpalSelectOption = /** @class */ (function (_super) {
     __extends(OpalSelectOption, _super);
     function OpalSelectOption() {
@@ -980,6 +970,7 @@ var OpalSelectOption = /** @class */ (function (_super) {
         _this.paramTabIndex = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
+        _this._wasMouseDown = false;
         return _this;
     }
     Object.defineProperty(OpalSelectOption.prototype, "_tabIndex", {
@@ -998,6 +989,8 @@ var OpalSelectOption = /** @class */ (function (_super) {
         this.listenTo('control', {
             focus: this._onControlFocus,
             blur: this._onControlBlur,
+            mousedown: this._onControlMouseDown,
+            mouseup: this._onControlMouseUp,
             click: this._onControlClick
         });
     };
@@ -1034,6 +1027,17 @@ var OpalSelectOption = /** @class */ (function (_super) {
     };
     OpalSelectOption.prototype._onControlBlur = function () {
         this.paramFocused = false;
+    };
+    OpalSelectOption.prototype._onControlMouseDown = function () {
+        this._wasMouseDown = true;
+    };
+    OpalSelectOption.prototype._onControlMouseUp = function () {
+        if (this._wasMouseDown) {
+            this._wasMouseDown = false;
+        }
+        else if (!this.paramDisabled) {
+            this.click();
+        }
     };
     OpalSelectOption.prototype._onControlClick = function (evt) {
         evt.preventDefault();
@@ -1179,14 +1183,7 @@ exports.OpalSelectOption = OpalSelectOption;
 
 /***/ }),
 
-/***/ 2:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
-
-/***/ }),
-
-/***/ 200:
+/***/ 199:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -1204,7 +1201,14 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 201:
+/***/ 2:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
+
+/***/ }),
+
+/***/ 200:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1213,7 +1217,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 202:
+/***/ 201:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -1231,7 +1235,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 203:
+/***/ 202:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1254,12 +1258,12 @@ exports.isEqualArray = isEqualArray;
 
 /***/ }),
 
-/***/ 204:
+/***/ 203:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot (for=button) {\nOpalButton/button (\nviewType={paramViewType},\nsize={paramSize},\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n) {\n@IfThen (paramText) {\n'{paramText}'\n}\n@IfElse (paramText) {\n'{_buttonText}'\n}\nOpalIcon/buttonIcon (name=chevronBottom)\n}\n}\nRnSlot (for=menuSlot) {\nRnSlot/menuSlot (for=menu) {\nOpalDropdown/menu (autoClosing) {\nRnSlot (for=menuHeader)\nRnSlot (for=menuContent) {\n@IfThen (_isParamDataListSpecified) {\ndiv/, menuContent {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={_dataListItemValueFieldName}) {\nOpalSelectOption/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRnSlot/newItemInputSlot // ...\n}\n@IfElse (dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (_isParamDataListSpecified) {\ndiv/, menuContent {\nRnSlot/options (forTag=opal-select-option)\nRnSlot (for=newItemInputSlot) {\nRnSlot/newItemInputSlot (for=newItemInput)\n}\n}\n}\n}\nRnSlot (for=menuFooter)\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot (for=button) {\nOpalButton/button (\nviewType={paramViewType},\nsize={paramSize},\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n) {\n@IfThen (paramText) {\n'{paramText}'\n}\n@IfElse (paramText) {\n'{_buttonText}'\n}\nOpalIcon/buttonIcon (name=chevronBottom)\n}\n}\nRnSlot (for=menuSlot) {\nRnSlot/menuSlot (for=menu) {\nOpalDropdown/menu (closeOn=mousedown) {\nRnSlot (for=menuHeader)\nRnSlot (for=menuContent) {\n@IfThen (_paramDataListSpecified) {\ndiv/, menuContent {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={_dataListItemValueFieldName}) {\nOpalSelectOption/option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRnSlot/newItemInputSlot // ...\n}\n@IfElse (dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (_paramDataListSpecified) {\ndiv/, menuContent {\nRnSlot/options (forTag=opal-select-option)\nRnSlot (for=newItemInputSlot) {\nRnSlot/newItemInputSlot (for=newItemInput)\n}\n}\n}\n}\nRnSlot (for=menuFooter)\n}\n}\n}\n}");
 
 /***/ }),
 
@@ -1277,10 +1281,10 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 
-/***/ 45:
+/***/ 44:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__45__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__44__;
 
 /***/ }),
 

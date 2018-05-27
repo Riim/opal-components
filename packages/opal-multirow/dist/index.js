@@ -7,7 +7,7 @@
 		exports["@riim/opal-multirow"] = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-sign-button"), require("@riim/next-uid"));
 	else
 		root["@riim/opal-multirow"] = factory(root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/opal-sign-button"], root["@riim/next-uid"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__153__, __WEBPACK_EXTERNAL_MODULE__155__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__151__, __WEBPACK_EXTERNAL_MODULE__153__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 152);
+/******/ 	return __webpack_require__(__webpack_require__.s = 150);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -88,14 +88,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 11:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
-
-/***/ }),
-
-/***/ 152:
+/***/ 150:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -104,21 +97,21 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(153);
+__webpack_require__(151);
 __webpack_require__(4);
-__export(__webpack_require__(154));
+__export(__webpack_require__(152));
 
 
 /***/ }),
 
-/***/ 153:
+/***/ 151:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__153__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__151__;
 
 /***/ }),
 
-/***/ 154:
+/***/ 152:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -143,14 +136,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_uid_1 = __webpack_require__(155);
-var cellx_1 = __webpack_require__(9);
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(11);
-var OpalMultirowRow_1 = __webpack_require__(156);
+var next_uid_1 = __webpack_require__(153);
+var cellx_1 = __webpack_require__(8);
+var cellx_decorators_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(10);
+var OpalMultirowRow_1 = __webpack_require__(154);
 exports.OpalMultirowRow = OpalMultirowRow_1.OpalMultirowRow;
-__webpack_require__(159);
-var template_nelm_1 = __webpack_require__(160);
+__webpack_require__(157);
+var template_nelm_1 = __webpack_require__(158);
 var OpalMultirow = /** @class */ (function (_super) {
     __extends(OpalMultirow, _super);
     function OpalMultirow() {
@@ -238,14 +231,14 @@ exports.OpalMultirow = OpalMultirow;
 
 /***/ }),
 
-/***/ 155:
+/***/ 153:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__155__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__153__;
 
 /***/ }),
 
-/***/ 156:
+/***/ 154:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -267,9 +260,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(11);
-__webpack_require__(157);
-var template_nelm_1 = __webpack_require__(158);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(155);
+var template_nelm_1 = __webpack_require__(156);
 var OpalMultirowRow = /** @class */ (function (_super) {
     __extends(OpalMultirowRow, _super);
     function OpalMultirowRow() {
@@ -300,7 +293,7 @@ exports.OpalMultirowRow = OpalMultirowRow;
 
 /***/ }),
 
-/***/ 157:
+/***/ 155:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -318,7 +311,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 158:
+/***/ 156:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -327,7 +320,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 159:
+/***/ 157:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -345,7 +338,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 160:
+/***/ 158:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -358,6 +351,13 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+
+/***/ }),
+
+/***/ 8:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
 
 /***/ }),
 

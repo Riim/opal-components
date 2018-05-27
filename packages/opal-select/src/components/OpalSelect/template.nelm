@@ -21,10 +21,10 @@ RnSlot (for=button) {
 
 RnSlot (for=menuSlot) {
 	RnSlot/menuSlot (for=menu) {
-		OpalDropdown/menu (autoClosing) {
+		OpalDropdown/menu (closeOn=mousedown) {
 			RnSlot (for=menuHeader)
 			RnSlot (for=menuContent) {
-				@IfThen (_isParamDataListSpecified) {
+				@IfThen (_paramDataListSpecified) {
 					div/, menuContent {
 						@IfThen (dataList) {
 							@Repeat (for=item in dataList, trackBy={_dataListItemValueFieldName}) {
@@ -43,7 +43,7 @@ RnSlot (for=menuSlot) {
 						}
 					}
 				}
-				@IfElse (_isParamDataListSpecified) {
+				@IfElse (_paramDataListSpecified) {
 					div/, menuContent {
 						RnSlot/options (forTag=opal-select-option)
 

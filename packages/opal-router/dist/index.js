@@ -7,7 +7,7 @@
 		exports["@riim/opal-router"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/next-uid"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("history/createBrowserHistory"));
 	else
 		root["@riim/opal-router"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/next-uid"], root["@riim/kebab-case"], root["@riim/rionite-snake-case-attribute-name"], root["history/createBrowserHistory"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__155__, __WEBPACK_EXTERNAL_MODULE__183__, __WEBPACK_EXTERNAL_MODULE__184__, __WEBPACK_EXTERNAL_MODULE__185__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__153__, __WEBPACK_EXTERNAL_MODULE__181__, __WEBPACK_EXTERNAL_MODULE__182__, __WEBPACK_EXTERNAL_MODULE__183__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,26 +76,26 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 181);
+/******/ 	return __webpack_require__(__webpack_require__.s = 179);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 11:
+/***/ 10:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 155:
+/***/ 153:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__155__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__153__;
 
 /***/ }),
 
-/***/ 181:
+/***/ 179:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,12 +105,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(4);
-__export(__webpack_require__(182));
+__export(__webpack_require__(180));
 
 
 /***/ }),
 
-/***/ 182:
+/***/ 180:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -135,17 +135,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var kebab_case_1 = __webpack_require__(183);
-var next_uid_1 = __webpack_require__(155);
-var rionite_snake_case_attribute_name_1 = __webpack_require__(184);
-var createBrowserHistory_1 = __webpack_require__(185);
-var rionite_1 = __webpack_require__(11);
-var OpalRoute_1 = __webpack_require__(186);
+var kebab_case_1 = __webpack_require__(181);
+var next_uid_1 = __webpack_require__(153);
+var rionite_snake_case_attribute_name_1 = __webpack_require__(182);
+var createBrowserHistory_1 = __webpack_require__(183);
+var rionite_1 = __webpack_require__(10);
+var OpalRoute_1 = __webpack_require__(184);
 exports.OpalRoute = OpalRoute_1.OpalRoute;
-var escapeRegExp_1 = __webpack_require__(187);
-__webpack_require__(188);
-var parsePath_1 = __webpack_require__(189);
-var PathNodeType_1 = __webpack_require__(190);
+var escapeRegExp_1 = __webpack_require__(185);
+__webpack_require__(186);
+var parsePath_1 = __webpack_require__(187);
+var PathNodeType_1 = __webpack_require__(188);
 var forEach = Array.prototype.forEach;
 var history = createBrowserHistory_1.default();
 function valueToAttributeValue(value) {
@@ -410,6 +410,20 @@ exports.OpalRouter = OpalRouter;
 
 /***/ }),
 
+/***/ 181:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__181__;
+
+/***/ }),
+
+/***/ 182:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__182__;
+
+/***/ }),
+
 /***/ 183:
 /***/ (function(module, exports) {
 
@@ -418,20 +432,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__183__;
 /***/ }),
 
 /***/ 184:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__184__;
-
-/***/ }),
-
-/***/ 185:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__185__;
-
-/***/ }),
-
-/***/ 186:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -456,7 +456,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(11);
+var rionite_1 = __webpack_require__(10);
 var OpalRoute = /** @class */ (function (_super) {
     __extends(OpalRoute, _super);
     function OpalRoute() {
@@ -482,7 +482,7 @@ exports.OpalRoute = OpalRoute;
 
 /***/ }),
 
-/***/ 187:
+/***/ 185:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -497,7 +497,7 @@ exports.escapeRegExp = escapeRegExp;
 
 /***/ }),
 
-/***/ 188:
+/***/ 186:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -515,13 +515,13 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 189:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType_1 = __webpack_require__(190);
+var PathNodeType_1 = __webpack_require__(188);
 var reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
     var ctx = PathNodeType_1.PathNodeType.SIMPLE;
@@ -675,7 +675,7 @@ exports.parsePath = parsePath;
 
 /***/ }),
 
-/***/ 190:
+/***/ 188:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

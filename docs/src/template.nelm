@@ -436,14 +436,14 @@ p {
 p {
 	OpalGroup {
 		OpalSelect (placeholder=Select) {
-			OpalPopover (class=OpalSelect__menu, position=bottom, autoClosing) {
+			OpalPopover (class=OpalSelect__menu, position=bottom, closeOn=click) {
 				OpalSelectOption (text=Option 1, subtext=Subtext 1)
 				OpalSelectOption (text=Option 2, subtext=Subtext 2)
 				OpalSelectOption (text=Option 3, subtext=Subtext 3)
 			}
 		}
 		OpalSelect (viewType=primary, placeholder=Select) {
-			OpalPopover (class=OpalSelect__menu, autoClosing) {
+			OpalPopover (class=OpalSelect__menu, closeOn=click) {
 				OpalSelectOption (text=Option 1)
 				OpalSelectOption (text=Option 2)
 				OpalSelectOption (text=Option 3)
@@ -455,7 +455,7 @@ p {
 h1 { 'OpalSelect + OpalLoadedList' }
 p {
 	OpalSelect {
-		OpalDropdown (class=OpalSelect__menu, autoHeight=no, autoClosing) {
+		OpalDropdown (class=OpalSelect__menu, autoHeight=no, closeOn=click) {
 			OpalFilteredList (class=OpalSelect__filteredList) {
 				OpalLoadedList (
 					class=OpalSelect__loadedList OpalFilteredList__list,
@@ -469,7 +469,7 @@ p {
 	' '
 
 	OpalSelect {
-		OpalPopover (class=OpalSelect__menu, position=bottom, autoClosing) {
+		OpalPopover (class=OpalSelect__menu, position=bottom, closeOn=click) {
 			OpalLoadedList (class=OpalSelect__loadedList, dataProvider={dataProvider1}) {
 				OpalSelectOption (class=OpalLoadedList__listItem, text={$item.name})
 			}
@@ -483,7 +483,7 @@ p {
 		viewModel={viewModel1},
 		viewModelItemSchema='{ value: "id", text: "name", subtext: "parent" }'
 	) {
-		OpalPopover (class=OpalSelect__menu, position=bottom, autoClosing) {
+		OpalPopover (class=OpalSelect__menu, position=bottom, closeOn=click) {
 			OpalLoadedList (class=OpalSelect__loadedList, dataProvider={dataProvider1}) {
 				OpalSelectOption (
 					class=OpalLoadedList__listItem,
@@ -498,7 +498,7 @@ p {
 	' '
 
 	OpalSelect {
-		OpalPopover (class=OpalSelect__menu, position=bottom, autoClosing) {
+		OpalPopover (class=OpalSelect__menu, position=bottom, closeOn=click) {
 			OpalFilteredList (class=OpalSelect__filteredList) {
 				OpalLoadedList (
 					class=OpalSelect__loadedList OpalFilteredList__list,
@@ -512,7 +512,7 @@ p {
 	' '
 
 	OpalSelect (multiple, addNewItem={addNewItem1}) {
-		OpalPopover (class=OpalSelect__menu, position=bottom, autoClosing) {
+		OpalPopover (class=OpalSelect__menu, position=bottom, closeOn=click) {
 			OpalFilteredList (class=OpalSelect__filteredList) {
 				OpalLoadedList (
 					class=OpalSelect__loadedList OpalFilteredList__list,

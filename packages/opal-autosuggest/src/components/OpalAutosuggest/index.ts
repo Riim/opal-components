@@ -1,4 +1,3 @@
-import { getText } from '@riim/gettext';
 import { nextTick } from '@riim/next-tick';
 import { OpalDropdown } from '@riim/opal-dropdown';
 import { OpalTextInput } from '@riim/opal-text-input';
@@ -36,11 +35,6 @@ const defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', sub
 
 @Component<OpalAutosuggest>({
 	elementIs: 'OpalAutosuggest',
-
-	i18n: {
-		textInputPlaceholder: getText.t('Начните вводить для поиска'),
-		nothingFound: getText.t('Ничего не найдено')
-	},
 
 	template,
 
@@ -86,16 +80,16 @@ export class OpalAutosuggest extends BaseComponent {
 
 	@Observable value: IDataListItem | null;
 
-	_isNotInputConfirmed = false;
+	_inputNotConfirmed = false;
 
-	@Observable _isLoadingPlanned = false;
+	@Observable _loadingPlanned = false;
 	_loadingTimeout: IDisposableTimeout;
 	_requestCallback: IDisposableCallback;
 	@Observable loading = false;
 
 	@Computed
-	get isLoaderShown(): boolean {
-		return this._isLoadingPlanned || this.loading;
+	get loaderShown(): boolean {
+		return this._loadingPlanned || this.loading;
 	}
 
 	_focusedListItem: HTMLElement | null;
@@ -130,7 +124,7 @@ export class OpalAutosuggest extends BaseComponent {
 	elementAttached() {
 		this.listenTo(this, {
 			'change:paramValue': this._onParamValueChange,
-			'change:isLoaderShown': this._onIsLoaderShownChange
+			'change:loaderShown': this._onLoaderShownChange
 		});
 		this.listenTo(this.dataList, 'change', this._onDataListChange);
 		this.listenTo('textInput', {
@@ -169,7 +163,7 @@ export class OpalAutosuggest extends BaseComponent {
 			: '';
 	}
 
-	_onIsLoaderShownChange(evt: IEvent) {
+	_onLoaderShownChange(evt: IEvent) {
 		this.$<OpalTextInput>('textInput')!.paramLoading = evt.data.value;
 	}
 
@@ -197,15 +191,15 @@ export class OpalAutosuggest extends BaseComponent {
 	}
 
 	_onTextInputInput(evt: IEvent<OpalTextInput>) {
-		this._isNotInputConfirmed = true;
+		this._inputNotConfirmed = true;
 
 		this._clearDataList();
 
 		if ((evt.target.value || '').length >= this.paramMinQueryLength) {
-			this._isLoadingPlanned = true;
+			this._loadingPlanned = true;
 
 			this._loadingTimeout = this.setTimeout(() => {
-				this._isLoadingPlanned = false;
+				this._loadingPlanned = false;
 				this._load();
 			}, 300);
 		}
@@ -247,13 +241,9 @@ export class OpalAutosuggest extends BaseComponent {
 
 	_onMenuElementMouseOver(evt: Event) {
 		let menu = this.$<BaseComponent>('menu')!.element;
-		let el = evt.target as HTMLElement;
+		let el: HTMLElement | null = evt.target as HTMLElement;
 
-		for (
-			;
-			!el.classList.contains('OpalAutosuggest__listLtem');
-			el = el.parentNode as HTMLElement
-		) {
+		for (; !el!.classList.contains('OpalAutosuggest__listLtem'); el = el!.parentElement) {
 			if (el == menu) {
 				return;
 			}
@@ -265,7 +255,7 @@ export class OpalAutosuggest extends BaseComponent {
 			this._focusedListItem = el;
 
 			focusedListItem.removeAttribute('focused');
-			el.setAttribute('focused', '');
+			el!.setAttribute('focused', '');
 		}
 	}
 
@@ -404,8 +394,8 @@ export class OpalAutosuggest extends BaseComponent {
 	}
 
 	_cancelLoading() {
-		if (this._isLoadingPlanned) {
-			this._isLoadingPlanned = false;
+		if (this._loadingPlanned) {
+			this._loadingPlanned = false;
 			this._loadingTimeout.clear();
 		} else if (this.loading) {
 			this._requestCallback.cancel();
@@ -428,7 +418,7 @@ export class OpalAutosuggest extends BaseComponent {
 
 	_selectItem(item?: IDataListItem | null) {
 		if (item === undefined) {
-			if (this._isNotInputConfirmed) {
+			if (this._inputNotConfirmed) {
 				let query = this.$<OpalTextInput>('textInput')!.value;
 
 				if (query) {
@@ -446,7 +436,7 @@ export class OpalAutosuggest extends BaseComponent {
 			}
 		} else {
 			if (item) {
-				this._isNotInputConfirmed = false;
+				this._inputNotConfirmed = false;
 
 				if (
 					this.value &&

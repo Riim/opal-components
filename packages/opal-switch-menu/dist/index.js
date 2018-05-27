@@ -7,7 +7,7 @@
 		exports["@riim/opal-switch-menu"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/opal-button"));
 	else
 		root["@riim/opal-switch-menu"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/opal-button"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__162__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__160__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,26 +76,26 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 213);
+/******/ 	return __webpack_require__(__webpack_require__.s = 212);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 11:
+/***/ 10:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 162:
+/***/ 160:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__162__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__160__;
 
 /***/ }),
 
-/***/ 213:
+/***/ 212:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -104,14 +104,14 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(162);
+__webpack_require__(160);
 __webpack_require__(4);
-__export(__webpack_require__(214));
+__export(__webpack_require__(213));
 
 
 /***/ }),
 
-/***/ 214:
+/***/ 213:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -133,9 +133,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(11);
-__webpack_require__(215);
-var template_nelm_1 = __webpack_require__(216);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(214);
+var template_nelm_1 = __webpack_require__(215);
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
 var OpalSwitchMenu = /** @class */ (function (_super) {
@@ -212,7 +212,7 @@ exports.OpalSwitchMenu = OpalSwitchMenu;
 
 /***/ }),
 
-/***/ 215:
+/***/ 214:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -230,7 +230,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 216:
+/***/ 215:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

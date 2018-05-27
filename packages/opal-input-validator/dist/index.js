@@ -7,7 +7,7 @@
 		exports["@riim/opal-input-validator"] = factory(require("reflect-metadata"), require("cellx-decorators"), require("rionite"), require("@riim/opal-popover"));
 	else
 		root["@riim/opal-input-validator"] = factory(root["reflect-metadata"], root["cellx-decorators"], root["rionite"], root["@riim/opal-popover"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__132__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__130__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 131);
+/******/ 	return __webpack_require__(__webpack_require__.s = 129);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -88,14 +88,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 11:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
-
-/***/ }),
-
-/***/ 131:
+/***/ 129:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -104,21 +97,21 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(132);
+__webpack_require__(130);
 __webpack_require__(4);
-__export(__webpack_require__(133));
+__export(__webpack_require__(131));
 
 
 /***/ }),
 
-/***/ 132:
+/***/ 130:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__132__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__130__;
 
 /***/ }),
 
-/***/ 133:
+/***/ 131:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -143,12 +136,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(11);
-var OpalInputValidatorRule_1 = __webpack_require__(134);
+var cellx_decorators_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(10);
+var OpalInputValidatorRule_1 = __webpack_require__(132);
 exports.OpalInputValidatorRule = OpalInputValidatorRule_1.OpalInputValidatorRule;
-__webpack_require__(137);
-var template_nelm_1 = __webpack_require__(138);
+__webpack_require__(135);
+var template_nelm_1 = __webpack_require__(136);
 var OpalInputValidator = /** @class */ (function (_super) {
     __extends(OpalInputValidator, _super);
     function OpalInputValidator() {
@@ -230,7 +223,7 @@ exports.OpalInputValidator = OpalInputValidator;
 
 /***/ }),
 
-/***/ 134:
+/***/ 132:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -255,9 +248,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(11);
-__webpack_require__(135);
-var template_nelm_1 = __webpack_require__(136);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(133);
+var template_nelm_1 = __webpack_require__(134);
 var OpalInputValidatorRule = /** @class */ (function (_super) {
     __extends(OpalInputValidatorRule, _super);
     function OpalInputValidatorRule() {
@@ -297,7 +290,7 @@ exports.OpalInputValidatorRule = OpalInputValidatorRule;
 
 /***/ }),
 
-/***/ 135:
+/***/ 133:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -315,7 +308,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 136:
+/***/ 134:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -324,7 +317,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 137:
+/***/ 135:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -342,7 +335,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 138:
+/***/ 136:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -355,6 +348,13 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
 
 /***/ })
 

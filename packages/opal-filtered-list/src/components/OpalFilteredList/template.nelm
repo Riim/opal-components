@@ -2,7 +2,7 @@
 
 RnSlot (for=queryInputSlot) {
 	RnSlot/queryInputSlot (for=queryInput) {
-		OpalTextInput/queryInput (placeholder={constructor.i18n.queryInputPlaceholder}, clearable) {
+		OpalTextInput/queryInput (placeholder=Поиск, clearable) {
 			OpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)
 		}
 	}

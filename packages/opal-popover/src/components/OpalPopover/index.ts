@@ -17,14 +17,14 @@ export class OpalPopover extends BaseComponent {
 	@Param paramPosition = 'right';
 	@Param paramPositionOffset = 0;
 	@Param paramAutoDirection = true;
-	@Param paramAutoClosing = false;
+	@Param paramCloseOn: string; // click | mousedown
 	@Param paramOpened = false;
 
-	@Observable isContentRendered = false;
+	@Observable contentRendered = false;
 
 	_positionOnOpen: string;
 
-	_documentClickListening: IDisposableListening | null | undefined;
+	_documentClosingEventListening: IDisposableListening | null | undefined;
 
 	ready() {
 		if (this.paramOpened) {
@@ -45,7 +45,7 @@ export class OpalPopover extends BaseComponent {
 	}
 
 	renderContent() {
-		this.isContentRendered = true;
+		this.contentRendered = true;
 		Cell.forceRelease();
 	}
 
@@ -79,10 +79,10 @@ export class OpalPopover extends BaseComponent {
 	}
 
 	_open() {
-		if (this.isContentRendered) {
+		if (this.contentRendered) {
 			this._open$();
 		} else {
-			this.isContentRendered = true;
+			this.contentRendered = true;
 			Cell.forceRelease();
 			this._open$();
 		}
@@ -170,13 +170,13 @@ export class OpalPopover extends BaseComponent {
 				'px';
 		}
 
-		if (this.paramAutoClosing) {
+		if (this.paramCloseOn) {
 			setTimeout(() => {
 				if (this.paramOpened) {
-					this._documentClickListening = this.listenTo(
+					this._documentClosingEventListening = this.listenTo(
 						document,
-						'click',
-						this._onDocumentClick
+						this.paramCloseOn,
+						this._onDocumentClosingEvent
 					);
 				}
 			}, 1);
@@ -188,13 +188,13 @@ export class OpalPopover extends BaseComponent {
 			this.paramPosition = this._positionOnOpen;
 		}
 
-		if (this._documentClickListening) {
-			this._documentClickListening.stop();
-			this._documentClickListening = null;
+		if (this._documentClosingEventListening) {
+			this._documentClosingEventListening.stop();
+			this._documentClosingEventListening = null;
 		}
 	}
 
-	_onDocumentClick(evt: Event) {
+	_onDocumentClosingEvent(evt: Event) {
 		let docEl = document.documentElement;
 		let componentEl = this.element;
 
@@ -205,7 +205,7 @@ export class OpalPopover extends BaseComponent {
 				break;
 			}
 
-			el = el.parentNode as HTMLElement | null;
+			el = el.parentElement;
 
 			if (!el) {
 				break;

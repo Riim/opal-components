@@ -1,4 +1,3 @@
-import { getText } from '@riim/gettext';
 import { mixin } from '@riim/mixin';
 import { nextTick } from '@riim/next-tick';
 import { Cell, ObservableList } from 'cellx';
@@ -34,11 +33,6 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 
 @Component({
 	elementIs: 'OpalLoadedList',
-
-	i18n: {
-		nothingFound: getText.t('Ничего не найдено')
-	},
-
 	template
 })
 export class OpalLoadedList extends BaseComponent {
@@ -60,8 +54,8 @@ export class OpalLoadedList extends BaseComponent {
 
 	dataProvider: IDataProvider;
 
-	_isScrollingInProcessing: boolean = false;
-	@Observable _isLoadingCheckPlanned = false;
+	_scrollingInProcessing: boolean = false;
+	@Observable _loadingCheckPlanned = false;
 	_loadingCheckTimeout: IDisposableTimeout;
 	@Observable loading = false;
 	_requestCallback: IDisposableCallback;
@@ -75,13 +69,13 @@ export class OpalLoadedList extends BaseComponent {
 	}
 
 	@Computed
-	get isLoaderShown(): boolean {
+	get loaderShown(): boolean {
 		return this.total === undefined || this.dataList.length < this.total || this.loading;
 	}
 
 	@Computed
-	get isNothingFoundShown(): boolean {
-		return this.total === 0 && !this._isLoadingCheckPlanned && !this.loading;
+	get nothingFoundShown(): boolean {
+		return this.total === 0 && !this._loadingCheckPlanned && !this.loading;
 	}
 
 	initialize() {
@@ -120,34 +114,34 @@ export class OpalLoadedList extends BaseComponent {
 		this.dataList.clear();
 		this.total = undefined;
 
-		if (this._isLoadingCheckPlanned) {
+		if (this._loadingCheckPlanned) {
 			this._loadingCheckTimeout.clear();
 		} else {
-			this._isLoadingCheckPlanned = true;
+			this._loadingCheckPlanned = true;
 		}
 
 		this._loadingCheckTimeout = this.setTimeout(() => {
-			this._isScrollingInProcessing = false;
-			this._isLoadingCheckPlanned = false;
+			this._scrollingInProcessing = false;
+			this._loadingCheckPlanned = false;
 			this.checkLoading();
 		}, 300);
 	}
 
 	_onElementScroll() {
-		if (this._isScrollingInProcessing) {
+		if (this._scrollingInProcessing) {
 			return;
 		}
-		this._isScrollingInProcessing = true;
+		this._scrollingInProcessing = true;
 
-		if (this._isLoadingCheckPlanned) {
+		if (this._loadingCheckPlanned) {
 			this._loadingCheckTimeout.clear();
 		} else {
-			this._isLoadingCheckPlanned = true;
+			this._loadingCheckPlanned = true;
 		}
 
 		this._loadingCheckTimeout = this.setTimeout(() => {
-			this._isScrollingInProcessing = false;
-			this._isLoadingCheckPlanned = false;
+			this._scrollingInProcessing = false;
+			this._loadingCheckPlanned = false;
 			this.checkLoading();
 		}, 150);
 	}
@@ -187,7 +181,7 @@ export class OpalLoadedList extends BaseComponent {
 							this.paramDataListItemSchema.value ||
 								(this.constructor as typeof OpalLoadedList)
 									.defaultDataListItemSchema.value
-						]
+					  ]
 					: null
 			);
 		}

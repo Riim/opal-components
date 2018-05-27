@@ -17,12 +17,12 @@ const openedDropdowns: Array<OpalDropdown> = [];
 })
 export class OpalDropdown extends BaseComponent {
 	@Param paramAutoHeight = true;
-	@Param paramAutoClosing = false;
+	@Param paramCloseOn: string; // click | mousedown
 	@Param paramOpened = false;
 
-	@Observable isContentRendered = false;
+	@Observable contentRendered = false;
 
-	_documentClickListening: IDisposableListening | undefined;
+	_documentClosingEventListening: IDisposableListening | null | undefined;
 
 	ready() {
 		if (this.paramOpened) {
@@ -43,7 +43,7 @@ export class OpalDropdown extends BaseComponent {
 	}
 
 	renderContent() {
-		this.isContentRendered = true;
+		this.contentRendered = true;
 		Cell.forceRelease();
 	}
 
@@ -79,10 +79,10 @@ export class OpalDropdown extends BaseComponent {
 	_open() {
 		openedDropdowns.push(this);
 
-		if (this.isContentRendered) {
+		if (this.contentRendered) {
 			this._open$();
 		} else {
-			this.isContentRendered = true;
+			this.contentRendered = true;
 			Cell.forceRelease();
 			this._open$();
 		}
@@ -140,13 +140,13 @@ export class OpalDropdown extends BaseComponent {
 			}
 		}
 
-		if (this.paramAutoClosing) {
+		if (this.paramCloseOn) {
 			setTimeout(() => {
 				if (this.paramOpened) {
-					this._documentClickListening = this.listenTo(
+					this._documentClosingEventListening = this.listenTo(
 						document,
-						'click',
-						this._onDocumentClick
+						this.paramCloseOn,
+						this._onDocumentClosingEvent
 					);
 				}
 			}, 1);
@@ -156,12 +156,13 @@ export class OpalDropdown extends BaseComponent {
 	_close() {
 		openedDropdowns.splice(openedDropdowns.indexOf(this), 1);
 
-		if (this._documentClickListening) {
-			this._documentClickListening.stop();
+		if (this._documentClosingEventListening) {
+			this._documentClosingEventListening.stop();
+			this._documentClosingEventListening = null;
 		}
 	}
 
-	_onDocumentClick(evt: Event) {
+	_onDocumentClosingEvent(evt: Event) {
 		let docEl = document.documentElement;
 		let componentEl = this.element;
 
@@ -172,7 +173,7 @@ export class OpalDropdown extends BaseComponent {
 				break;
 			}
 
-			el = el.parentNode as HTMLElement;
+			el = el.parentElement;
 
 			if (!el) {
 				break;

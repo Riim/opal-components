@@ -35,12 +35,12 @@ export declare class OpalAutosuggest extends BaseComponent {
     _dataListItemSubtextFieldName: string;
     dataProvider: IDataProvider;
     value: IDataListItem | null;
-    _isNotInputConfirmed: boolean;
-    _isLoadingPlanned: boolean;
+    _inputNotConfirmed: boolean;
+    _loadingPlanned: boolean;
     _loadingTimeout: IDisposableTimeout;
     _requestCallback: IDisposableCallback;
     loading: boolean;
-    readonly isLoaderShown: boolean;
+    readonly loaderShown: boolean;
     _focusedListItem: HTMLElement | null;
     _documentFocusListening: IDisposableListening;
     _documentListening: IDisposableListening;
@@ -48,7 +48,7 @@ export declare class OpalAutosuggest extends BaseComponent {
     elementAttached(): void;
     ready(): void;
     _onParamValueChange(evt: IEvent): void;
-    _onIsLoaderShownChange(evt: IEvent): void;
+    _onLoaderShownChange(evt: IEvent): void;
     _onDataListChange(): void;
     _onTextInputFocus(): void;
     _onTextInputBlur(): void;

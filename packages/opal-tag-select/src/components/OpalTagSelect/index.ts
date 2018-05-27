@@ -92,7 +92,7 @@ export class OpalTagSelect extends BaseComponent {
 	}
 
 	@Computed
-	get isPlaceholderShown(): boolean {
+	get placeholderShown(): boolean {
 		return !!this.paramPlaceholder && !this.viewModel.length;
 	}
 

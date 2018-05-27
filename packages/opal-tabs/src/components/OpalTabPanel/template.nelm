@@ -1,6 +1,6 @@
 @section/inner {
 
-@IfThen (isContentRendered) {
+@IfThen (contentRendered) {
 	RnSlot/contentSlot
 }
 

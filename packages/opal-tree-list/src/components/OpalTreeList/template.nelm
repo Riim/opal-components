@@ -30,7 +30,7 @@
 		RnSlot/nothingFoundSlot (for=nothingFound) {
 			span/nothingFound {
 				span/nothingFoundMessage {
-					'{constructor.i18n.nothingFound}'
+					'Ничего не найдено'
 				}
 			}
 		}

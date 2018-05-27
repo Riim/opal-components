@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("@riim/gettext"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-loaded-list"), require("@riim/opal-popover"), require("@riim/opal-loader"), require("@riim/opal-sign-button"), require("@riim/opal-filtered-list"));
+		module.exports = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-loaded-list"), require("@riim/opal-popover"), require("@riim/opal-loader"), require("@riim/opal-sign-button"), require("@riim/opal-filtered-list"), require("@riim/gettext"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "@riim/gettext", "cellx", "cellx-decorators", "rionite", "@riim/opal-select", "@riim/opal-loaded-list", "@riim/opal-popover", "@riim/opal-loader", "@riim/opal-sign-button", "@riim/opal-filtered-list"], factory);
+		define(["reflect-metadata", "cellx", "cellx-decorators", "rionite", "@riim/opal-select", "@riim/opal-loaded-list", "@riim/opal-popover", "@riim/opal-loader", "@riim/opal-sign-button", "@riim/opal-filtered-list", "@riim/gettext"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tag-select"] = factory(require("reflect-metadata"), require("@riim/gettext"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-loaded-list"), require("@riim/opal-popover"), require("@riim/opal-loader"), require("@riim/opal-sign-button"), require("@riim/opal-filtered-list"));
+		exports["@riim/opal-tag-select"] = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-loaded-list"), require("@riim/opal-popover"), require("@riim/opal-loader"), require("@riim/opal-sign-button"), require("@riim/opal-filtered-list"), require("@riim/gettext"));
 	else
-		root["@riim/opal-tag-select"] = factory(root["reflect-metadata"], root["@riim/gettext"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/opal-select"], root["@riim/opal-loaded-list"], root["@riim/opal-popover"], root["@riim/opal-loader"], root["@riim/opal-sign-button"], root["@riim/opal-filtered-list"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__18__, __WEBPACK_EXTERNAL_MODULE__45__, __WEBPACK_EXTERNAL_MODULE__132__, __WEBPACK_EXTERNAL_MODULE__140__, __WEBPACK_EXTERNAL_MODULE__153__, __WEBPACK_EXTERNAL_MODULE__197__) {
+		root["@riim/opal-tag-select"] = factory(root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/opal-select"], root["@riim/opal-loaded-list"], root["@riim/opal-popover"], root["@riim/opal-loader"], root["@riim/opal-sign-button"], root["@riim/opal-filtered-list"], root["@riim/gettext"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__44__, __WEBPACK_EXTERNAL_MODULE__130__, __WEBPACK_EXTERNAL_MODULE__138__, __WEBPACK_EXTERNAL_MODULE__151__, __WEBPACK_EXTERNAL_MODULE__195__, __WEBPACK_EXTERNAL_MODULE__197__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -88,38 +88,38 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 11:
+/***/ 130:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__130__;
 
 /***/ }),
 
-/***/ 132:
+/***/ 138:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__132__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__138__;
 
 /***/ }),
 
-/***/ 140:
+/***/ 151:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__140__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__151__;
 
 /***/ }),
 
-/***/ 153:
+/***/ 17:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__153__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__17__;
 
 /***/ }),
 
-/***/ 18:
+/***/ 195:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__18__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__195__;
 
 /***/ }),
 
@@ -139,12 +139,12 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(197);
-__webpack_require__(45);
-__webpack_require__(140);
-__webpack_require__(132);
-__webpack_require__(18);
-__webpack_require__(153);
+__webpack_require__(195);
+__webpack_require__(44);
+__webpack_require__(138);
+__webpack_require__(130);
+__webpack_require__(17);
+__webpack_require__(151);
 __webpack_require__(4);
 __export(__webpack_require__(235));
 
@@ -176,10 +176,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var gettext_1 = __webpack_require__(6);
-var cellx_1 = __webpack_require__(9);
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(11);
+var gettext_1 = __webpack_require__(197);
+var cellx_1 = __webpack_require__(8);
+var cellx_decorators_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(10);
 __webpack_require__(236);
 var template_nelm_1 = __webpack_require__(237);
 var defaultDataListItemSchema = Object.freeze({
@@ -208,7 +208,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(OpalTagSelect.prototype, "isPlaceholderShown", {
+    Object.defineProperty(OpalTagSelect.prototype, "placeholderShown", {
         get: function () {
             return !!this.paramPlaceholder && !this.viewModel.length;
         },
@@ -383,7 +383,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
         cellx_decorators_1.Computed,
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
-    ], OpalTagSelect.prototype, "isPlaceholderShown", null);
+    ], OpalTagSelect.prototype, "placeholderShown", null);
     OpalTagSelect = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTagSelect',
@@ -438,7 +438,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/tags {\n@Repeat (for=tag in viewModel, trackBy={_viewModelItemValueFieldName}) {\nspan/tag (disabled='{tag |_isItemDisabled }') {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btnRemoveTag\n}\n}\n}\nspan/control {\n@IfThen (isPlaceholderShown) {\nspan/placeholder {\n'{paramPlaceholder}'\n}\n}\nOpalSelect/select (\nviewType=clean,\nmultiple,\ndataListKeypath={_dataListKeypathParam},\ndataListItemSchema={paramDataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\naddNewItem={paramAddNewItem},\nfocused={paramFocused}\n) {\nOpalSignButton/button (\nclass=OpalSelect__button,\nsign=plus,\nviewType={paramViewType},\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\nRnSlot (class=OpalSelect__menuSlot, for=OpalSelect__menu) {\nOpalPopover/menu (\nclass=OpalSelect__menu,\nposition={paramPopoverPosition},\nautoClosing\n) {\nRnSlot (for=OpalSelect__menuHeader)\nRnSlot (for=OpalSelect__menuContent) {\n@IfThen (_dataListKeypathParam) {\ndiv (class=OpalSelect__menuContent) {\n@IfThen (dataList) {\n@Repeat (\nfor=item in dataList,\ntrackBy={_dataListItemValueFieldName}\n) {\nOpalSelectOption/dataListSelectOption, selectOption (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRnSlot (\nclass=OpalSelect__newItemInputSlot,\nfor=OpalSelect__newItemInput\n)\n}\n@IfElse (dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (_dataListKeypathParam) {\nOpalFilteredList/menuFilteredList (\nclass=OpalSelect__menuContent OpalSelect__filteredList\n) {\nRnSlot (\nclass=OpalFilteredList__queryInputSlot,\nfor=OpalFilteredList__queryInput\n)\nOpalLoadedList/menuLoadedList (\nclass=OpalSelect__loadedList OpalFilteredList__list,\ndataProvider={dataProvider}\n) {\nOpalSelectOption/loadedListSelectOption, selectOption (\nclass=OpalLoadedList__listItem,\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }',\nsubtext='{$item |key(_dataListItemSubtextFieldName) }'\n)\n}\n}\n}\n}\nRnSlot (for=OpalSelect__menuFooter)\n}\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/tags {\n@Repeat (for=tag in viewModel, trackBy={_viewModelItemValueFieldName}) {\nspan/tag (disabled='{tag |_isItemDisabled }') {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btnRemoveTag\n}\n}\n}\nspan/control {\n@IfThen (placeholderShown) {\nspan/placeholder {\n'{paramPlaceholder}'\n}\n}\nOpalSelect/select (\nviewType=clean,\nmultiple,\ndataListKeypath={_dataListKeypathParam},\ndataListItemSchema={paramDataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\naddNewItem={paramAddNewItem},\nfocused={paramFocused}\n) {\nOpalSignButton/button (\nclass=OpalSelect__button,\nsign=plus,\nviewType={paramViewType},\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\nRnSlot (class=OpalSelect__menuSlot, for=OpalSelect__menu) {\nOpalPopover/menu (\nclass=OpalSelect__menu,\nposition={paramPopoverPosition},\ncloseOn=mousedown\n) {\nRnSlot (for=OpalSelect__menuHeader)\nRnSlot (for=OpalSelect__menuContent) {\n@IfThen (_dataListKeypathParam) {\ndiv (class=OpalSelect__menuContent) {\n@IfThen (dataList) {\n@Repeat (\nfor=item in dataList,\ntrackBy={_dataListItemValueFieldName}\n) {\nOpalSelectOption/dataListSelectOption, selectOption (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRnSlot (\nclass=OpalSelect__newItemInputSlot,\nfor=OpalSelect__newItemInput\n)\n}\n@IfElse (dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (_dataListKeypathParam) {\nOpalFilteredList/menuFilteredList (\nclass=OpalSelect__menuContent OpalSelect__filteredList\n) {\nRnSlot (\nclass=OpalFilteredList__queryInputSlot,\nfor=OpalFilteredList__queryInput\n)\nOpalLoadedList/menuLoadedList (\nclass=OpalSelect__loadedList OpalFilteredList__list,\ndataProvider={dataProvider}\n) {\nOpalSelectOption/loadedListSelectOption, selectOption (\nclass=OpalLoadedList__listItem,\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }',\nsubtext='{$item |key(_dataListItemSubtextFieldName) }'\n)\n}\n}\n}\n}\nRnSlot (for=OpalSelect__menuFooter)\n}\n}\n}\n}\n}");
 
 /***/ }),
 
@@ -449,17 +449,17 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 
-/***/ 45:
+/***/ 44:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__45__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__44__;
 
 /***/ }),
 
-/***/ 6:
+/***/ 8:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
 
 /***/ }),
 

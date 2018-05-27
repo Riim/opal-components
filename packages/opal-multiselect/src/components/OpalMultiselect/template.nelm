@@ -1,11 +1,7 @@
-/menu (autoHeight=no, autoClosing) {
+/menu (super!, autoHeight=no) {
 	div/menuHeader {
 		div/menuHeaderLeftPart {
-			OpalTextInput/queryInput (
-				class={_queryInputClass},
-				clearable,
-				placeholder={constructor.i18n.queryInputPlaceholder}
-			) {
+			OpalTextInput/queryInput (class={_queryInputClass}, clearable, placeholder=Поиск) {
 				OpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)
 			}
 		}
@@ -46,11 +42,11 @@
 			}
 		}
 
-		@IfThen (isNothingSelectedShown) {
+		@IfThen (nothingSelectedShown) {
 			RnSlot/nothingSelectedSlot (for=nothingSelected) {
 				span/nothingSelected {
 					span/nothingSelectedMessage {
-						'{constructor.i18n.nothingSelected}'
+						'Ничего не выбрано'
 					}
 				}
 			}

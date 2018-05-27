@@ -49,7 +49,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 export class OpalModal extends BaseComponent {
 	@Param paramOpened = false;
 
-	@Observable isContentRendered = false;
+	@Observable contentRendered = false;
 
 	ready() {
 		if (this.paramOpened) {
@@ -85,7 +85,7 @@ export class OpalModal extends BaseComponent {
 				break;
 			}
 
-			el = el.parentNode as HTMLElement | null;
+			el = el.parentElement;
 
 			if (!el) {
 				break;
@@ -94,7 +94,7 @@ export class OpalModal extends BaseComponent {
 	}
 
 	renderContent() {
-		this.isContentRendered = true;
+		this.contentRendered = true;
 		Cell.forceRelease();
 	}
 
@@ -152,7 +152,7 @@ export class OpalModal extends BaseComponent {
 
 		openedModals.unshift(this);
 
-		this.isContentRendered = true;
+		this.contentRendered = true;
 		Cell.forceRelease();
 
 		this.focus();

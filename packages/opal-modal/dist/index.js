@@ -7,7 +7,7 @@
 		exports["@riim/opal-modal"] = factory(require("reflect-metadata"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else
 		root["@riim/opal-modal"] = factory(root["reflect-metadata"], root["@riim/opal-utils"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 148);
+/******/ 	return __webpack_require__(__webpack_require__.s = 146);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -88,14 +88,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 11:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
-
-/***/ }),
-
-/***/ 148:
+/***/ 146:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,12 +98,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(4);
-__export(__webpack_require__(149));
+__export(__webpack_require__(147));
 
 
 /***/ }),
 
-/***/ 149:
+/***/ 147:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -135,12 +128,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_utils_1 = __webpack_require__(8);
-var cellx_1 = __webpack_require__(9);
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(11);
-__webpack_require__(150);
-var template_nelm_1 = __webpack_require__(151);
+var opal_utils_1 = __webpack_require__(7);
+var cellx_1 = __webpack_require__(8);
+var cellx_decorators_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(148);
+var template_nelm_1 = __webpack_require__(149);
 var openedModals = [];
 var documentFocusListening;
 var documentKeyUpListening;
@@ -163,7 +156,7 @@ var OpalModal = /** @class */ (function (_super) {
     function OpalModal() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.paramOpened = false;
-        _this.isContentRendered = false;
+        _this.contentRendered = false;
         return _this;
     }
     OpalModal.prototype.ready = function () {
@@ -195,14 +188,14 @@ var OpalModal = /** @class */ (function (_super) {
                 this.emit('close');
                 break;
             }
-            el = el.parentNode;
+            el = el.parentElement;
             if (!el) {
                 break;
             }
         }
     };
     OpalModal.prototype.renderContent = function () {
-        this.isContentRendered = true;
+        this.contentRendered = true;
         cellx_1.Cell.forceRelease();
     };
     OpalModal.prototype.open = function () {
@@ -242,7 +235,7 @@ var OpalModal = /** @class */ (function (_super) {
             }
         }
         openedModals.unshift(this);
-        this.isContentRendered = true;
+        this.contentRendered = true;
         cellx_1.Cell.forceRelease();
         this.focus();
     };
@@ -282,7 +275,7 @@ var OpalModal = /** @class */ (function (_super) {
     __decorate([
         cellx_decorators_1.Observable,
         __metadata("design:type", Object)
-    ], OpalModal.prototype, "isContentRendered", void 0);
+    ], OpalModal.prototype, "contentRendered", void 0);
     OpalModal = __decorate([
         rionite_1.Component({
             elementIs: 'OpalModal',
@@ -304,7 +297,7 @@ exports.OpalModal = OpalModal;
 
 /***/ }),
 
-/***/ 150:
+/***/ 148:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -322,12 +315,12 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 151:
+/***/ 149:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/window {\ndiv/btnCloseWrapper {\nbutton/btnClose\n}\n@IfThen (isContentRendered) {\nRnSlot/contentSlot\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\ndiv/window {\ndiv/btnCloseWrapper {\nbutton/btnClose\n}\n@IfThen (contentRendered) {\nRnSlot/contentSlot\n}\n}\n}");
 
 /***/ }),
 
@@ -335,6 +328,13 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+
+/***/ }),
+
+/***/ 7:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
 
 /***/ }),
 

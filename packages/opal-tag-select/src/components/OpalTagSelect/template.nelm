@@ -10,7 +10,7 @@ span/tags {
 }
 
 span/control {
-	@IfThen (isPlaceholderShown) {
+	@IfThen (placeholderShown) {
 		span/placeholder {
 			'{paramPlaceholder}'
 		}
@@ -40,7 +40,7 @@ span/control {
 			OpalPopover/menu (
 				class=OpalSelect__menu,
 				position={paramPopoverPosition},
-				autoClosing
+				closeOn=mousedown
 			) {
 				RnSlot (for=OpalSelect__menuHeader)
 				RnSlot (for=OpalSelect__menuContent) {

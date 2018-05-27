@@ -7,7 +7,7 @@
 		exports["@riim/opal-tree-tag-select"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/opal-sign-button"), require("@riim/opal-tag-select"), require("@riim/opal-tree-select"));
 	else
 		root["@riim/opal-tree-tag-select"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/opal-sign-button"], root["@riim/opal-tag-select"], root["@riim/opal-tree-select"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__153__, __WEBPACK_EXTERNAL_MODULE__264__, __WEBPACK_EXTERNAL_MODULE__265__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__151__, __WEBPACK_EXTERNAL_MODULE__264__, __WEBPACK_EXTERNAL_MODULE__265__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -81,17 +81,17 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ({
 
-/***/ 11:
+/***/ 10:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 153:
+/***/ 151:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__153__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__151__;
 
 /***/ }),
 
@@ -104,7 +104,7 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(153);
+__webpack_require__(151);
 __webpack_require__(264);
 __webpack_require__(265);
 __webpack_require__(4);
@@ -150,7 +150,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var opal_tag_select_1 = __webpack_require__(264);
-var rionite_1 = __webpack_require__(11);
+var rionite_1 = __webpack_require__(10);
 var template_nelm_1 = __webpack_require__(267);
 var OpalTreeTagSelect = /** @class */ (function (_super) {
     __extends(OpalTreeTagSelect, _super);

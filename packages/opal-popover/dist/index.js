@@ -7,7 +7,7 @@
 		exports["@riim/opal-popover"] = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else
 		root["@riim/opal-popover"] = factory(root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 172);
+/******/ 	return __webpack_require__(__webpack_require__.s = 170);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -88,14 +88,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 
-/***/ 11:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
-
-/***/ }),
-
-/***/ 172:
+/***/ 170:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,12 +98,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(4);
-__export(__webpack_require__(173));
+__export(__webpack_require__(171));
 
 
 /***/ }),
 
-/***/ 173:
+/***/ 171:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -135,11 +128,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(9);
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(11);
-__webpack_require__(174);
-var template_nelm_1 = __webpack_require__(175);
+var cellx_1 = __webpack_require__(8);
+var cellx_decorators_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(172);
+var template_nelm_1 = __webpack_require__(173);
 var OpalPopover = /** @class */ (function (_super) {
     __extends(OpalPopover, _super);
     function OpalPopover() {
@@ -147,9 +140,8 @@ var OpalPopover = /** @class */ (function (_super) {
         _this.paramPosition = 'right';
         _this.paramPositionOffset = 0;
         _this.paramAutoDirection = true;
-        _this.paramAutoClosing = false;
         _this.paramOpened = false;
-        _this.isContentRendered = false;
+        _this.contentRendered = false;
         return _this;
     }
     OpalPopover.prototype.ready = function () {
@@ -169,7 +161,7 @@ var OpalPopover = /** @class */ (function (_super) {
         }
     };
     OpalPopover.prototype.renderContent = function () {
-        this.isContentRendered = true;
+        this.contentRendered = true;
         cellx_1.Cell.forceRelease();
     };
     OpalPopover.prototype.open = function () {
@@ -195,11 +187,11 @@ var OpalPopover = /** @class */ (function (_super) {
         return this.open() || !this.close();
     };
     OpalPopover.prototype._open = function () {
-        if (this.isContentRendered) {
+        if (this.contentRendered) {
             this._open$();
         }
         else {
-            this.isContentRendered = true;
+            this.contentRendered = true;
             cellx_1.Cell.forceRelease();
             this._open$();
         }
@@ -266,10 +258,10 @@ var OpalPopover = /** @class */ (function (_super) {
                     this.paramPositionOffset +
                     'px';
         }
-        if (this.paramAutoClosing) {
+        if (this.paramCloseOn) {
             setTimeout(function () {
                 if (_this.paramOpened) {
-                    _this._documentClickListening = _this.listenTo(document, 'click', _this._onDocumentClick);
+                    _this._documentClosingEventListening = _this.listenTo(document, _this.paramCloseOn, _this._onDocumentClosingEvent);
                 }
             }, 1);
         }
@@ -278,12 +270,12 @@ var OpalPopover = /** @class */ (function (_super) {
         if (this.paramAutoDirection) {
             this.paramPosition = this._positionOnOpen;
         }
-        if (this._documentClickListening) {
-            this._documentClickListening.stop();
-            this._documentClickListening = null;
+        if (this._documentClosingEventListening) {
+            this._documentClosingEventListening.stop();
+            this._documentClosingEventListening = null;
         }
     };
-    OpalPopover.prototype._onDocumentClick = function (evt) {
+    OpalPopover.prototype._onDocumentClosingEvent = function (evt) {
         var docEl = document.documentElement;
         var componentEl = this.element;
         for (var el = evt.target; el != componentEl;) {
@@ -292,7 +284,7 @@ var OpalPopover = /** @class */ (function (_super) {
                 this.emit('close');
                 break;
             }
-            el = el.parentNode;
+            el = el.parentElement;
             if (!el) {
                 break;
             }
@@ -312,8 +304,8 @@ var OpalPopover = /** @class */ (function (_super) {
     ], OpalPopover.prototype, "paramAutoDirection", void 0);
     __decorate([
         rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalPopover.prototype, "paramAutoClosing", void 0);
+        __metadata("design:type", String)
+    ], OpalPopover.prototype, "paramCloseOn", void 0);
     __decorate([
         rionite_1.Param,
         __metadata("design:type", Object)
@@ -321,7 +313,7 @@ var OpalPopover = /** @class */ (function (_super) {
     __decorate([
         cellx_decorators_1.Observable,
         __metadata("design:type", Object)
-    ], OpalPopover.prototype, "isContentRendered", void 0);
+    ], OpalPopover.prototype, "contentRendered", void 0);
     OpalPopover = __decorate([
         rionite_1.Component({
             elementIs: 'OpalPopover',
@@ -335,7 +327,7 @@ exports.OpalPopover = OpalPopover;
 
 /***/ }),
 
-/***/ 174:
+/***/ 172:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -353,12 +345,12 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 175:
+/***/ 173:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/arrow\n@IfThen (isContentRendered) {\nRnSlot/contentSlot\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nspan/arrow\n@IfThen (contentRendered) {\nRnSlot/contentSlot\n}\n}");
 
 /***/ }),
 
@@ -366,6 +358,13 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+
+/***/ }),
+
+/***/ 8:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
 
 /***/ }),
 
