@@ -317,10 +317,10 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         switch (evt.which) {
             case 38 /* Up */:
             case 40 /* Bottom */: {
+                evt.preventDefault();
                 var focusedListItem = this._focusedListItem;
                 var listItems = this.$$('listItem');
                 if (focusedListItem) {
-                    evt.preventDefault();
                     var index = listItems.indexOf(focusedListItem);
                     if (evt.which == 38 ? index > 0 : index < listItems.length - 1) {
                         var newFocusedListItem = listItems[index + (evt.which == 38 ? -1 : 1)];
@@ -349,16 +349,24 @@ var OpalAutosuggest = /** @class */ (function (_super) {
                         var menuFooterSlot = this.$('menuFooterSlot');
                         if (menuFooterSlot) {
                             var tabbableComponentEl = menuFooterSlot.element.querySelector('[tab_index]');
-                            if (tabbableComponentEl &&
-                                tabbableComponentEl.$component &&
-                                tabbableComponentEl.$component.paramFocused) {
-                                break;
+                            if (tabbableComponentEl && tabbableComponentEl.$component) {
+                                if (!listItems.length) {
+                                    tabbableComponentEl.$component.focus();
+                                    document.body.classList.remove('_noFocusHighlight');
+                                    break;
+                                }
+                                else if (tabbableComponentEl.$component.paramFocused) {
+                                    document.body.classList.remove('_noFocusHighlight');
+                                    break;
+                                }
                             }
                         }
                     }
-                    var newFocusedListItem = listItems[evt.which == 38 ? listItems.length - 1 : 0];
-                    this._focusedListItem = newFocusedListItem;
-                    newFocusedListItem.setAttribute('focused', '');
+                    if (listItems.length) {
+                        var newFocusedListItem = listItems[evt.which == 38 ? listItems.length - 1 : 0];
+                        this._focusedListItem = newFocusedListItem;
+                        newFocusedListItem.setAttribute('focused', '');
+                    }
                 }
                 this.$('textInput').focus();
                 break;

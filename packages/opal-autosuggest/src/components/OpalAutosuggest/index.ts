@@ -279,12 +279,12 @@ export class OpalAutosuggest extends BaseComponent {
 		switch (evt.which) {
 			case 38 /* Up */:
 			case 40 /* Bottom */: {
+				evt.preventDefault();
+
 				let focusedListItem = this._focusedListItem;
 				let listItems = this.$$<HTMLElement>('listItem');
 
 				if (focusedListItem) {
-					evt.preventDefault();
-
 					let index = listItems.indexOf(focusedListItem);
 
 					if (evt.which == 38 ? index > 0 : index < listItems.length - 1) {
@@ -323,20 +323,25 @@ export class OpalAutosuggest extends BaseComponent {
 								'[tab_index]'
 							);
 
-							if (
-								tabbableComponentEl &&
-								tabbableComponentEl.$component &&
-								(tabbableComponentEl.$component as any).paramFocused
-							) {
-								break;
+							if (tabbableComponentEl && tabbableComponentEl.$component) {
+								if (!listItems.length) {
+									(tabbableComponentEl.$component as any).focus();
+									document.body.classList.remove('_noFocusHighlight');
+									break;
+								} else if ((tabbableComponentEl.$component as any).paramFocused) {
+									document.body.classList.remove('_noFocusHighlight');
+									break;
+								}
 							}
 						}
 					}
 
-					let newFocusedListItem = listItems[evt.which == 38 ? listItems.length - 1 : 0];
-
-					this._focusedListItem = newFocusedListItem;
-					newFocusedListItem.setAttribute('focused', '');
+					if (listItems.length) {
+						let newFocusedListItem =
+							listItems[evt.which == 38 ? listItems.length - 1 : 0];
+						this._focusedListItem = newFocusedListItem;
+						newFocusedListItem.setAttribute('focused', '');
+					}
 				}
 
 				this.$<OpalTextInput>('textInput')!.focus();

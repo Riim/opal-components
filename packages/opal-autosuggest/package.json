@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-autosuggest",
-  "version": "0.33.119",
+  "version": "0.33.122",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
