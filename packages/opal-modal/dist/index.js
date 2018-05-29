@@ -138,10 +138,8 @@ var openedModals = [];
 var documentFocusListening;
 var documentKeyUpListening;
 function onDocumentFocus(evt) {
-    if (!opal_utils_1.isFocusable(evt.target)) {
-        return;
-    }
-    if (!openedModals[0].element.contains(evt.target.parentNode)) {
+    if (opal_utils_1.isFocusable(evt.target) &&
+        !openedModals[0].element.contains(evt.target.parentNode)) {
         openedModals[0].$('btnClose').focus();
     }
 }

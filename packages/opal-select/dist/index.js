@@ -691,10 +691,8 @@ var OpalSelect = /** @class */ (function (_super) {
         return this.open() || !this.close();
     };
     OpalSelect.prototype._onDocumentFocus = function (evt) {
-        if (!opal_utils_1.isFocusable(evt.target)) {
-            return;
-        }
-        if (!this.element.contains(evt.target.parentNode)) {
+        if (opal_utils_1.isFocusable(evt.target) &&
+            !this.element.contains(evt.target.parentNode)) {
             this.close();
         }
     };

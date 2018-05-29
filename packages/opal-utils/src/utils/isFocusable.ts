@@ -1,5 +1,5 @@
 export function isFocusable(el: HTMLElement): boolean {
-	if (el.hasAttribute('tabIndex')) {
+	if (el.hasAttribute('tabindex')) {
 		return el.tabIndex >= 0;
 	}
 
@@ -10,16 +10,16 @@ export function isFocusable(el: HTMLElement): boolean {
 		}
 		case 'button':
 		case 'input':
-		case 'textarea':
-		case 'select': {
+		case 'select':
+		case 'textarea': {
 			return !el.hasAttribute('disabled') && el.tabIndex >= 0;
 		}
+		case 'embed':
 		case 'iframe':
-		case 'object':
-		case 'embed': {
+		case 'object': {
 			return el.tabIndex >= 0;
 		}
 	}
 
-	return el.hasAttribute('contentEditable') && el.tabIndex >= 0;
+	return el.hasAttribute('contenteditable') && el.tabIndex >= 0;
 }

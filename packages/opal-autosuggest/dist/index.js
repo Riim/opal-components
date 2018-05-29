@@ -288,23 +288,27 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     OpalAutosuggest.prototype._onMenuElementMouseOver = function (evt) {
         var menu = this.$('menu').element;
         var el = evt.target;
-        for (; !el.classList.contains('OpalAutosuggest__listLtem'); el = el.parentElement) {
+        for (;;) {
             if (el == menu) {
                 return;
             }
+            if (el.classList.contains('OpalAutosuggest__listLtem')) {
+                break;
+            }
+            el = el.parentElement;
         }
         var focusedListItem = this._focusedListItem;
-        if (el != focusedListItem) {
+        if (!focusedListItem || el != focusedListItem) {
             this._focusedListItem = el;
-            focusedListItem.removeAttribute('focused');
+            if (focusedListItem) {
+                focusedListItem.removeAttribute('focused');
+            }
             el.setAttribute('focused', '');
         }
     };
     OpalAutosuggest.prototype._onDocumentFocus = function (evt) {
-        if (!opal_utils_1.isFocusable(evt.target)) {
-            return;
-        }
-        if (!this.element.contains(evt.target.parentNode)) {
+        if (opal_utils_1.isFocusable(evt.target) &&
+            !this.element.contains(evt.target.parentNode)) {
             this.closeMenu();
             this._selectItem();
         }
@@ -314,37 +318,55 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             case 38 /* Up */:
             case 40 /* Bottom */: {
                 var focusedListItem = this._focusedListItem;
+                var listItems = this.$$('listItem');
                 if (focusedListItem) {
                     evt.preventDefault();
-                    var listItems = this.$$('listItem');
                     var index = listItems.indexOf(focusedListItem);
                     if (evt.which == 38 ? index > 0 : index < listItems.length - 1) {
                         var newFocusedListItem = listItems[index + (evt.which == 38 ? -1 : 1)];
                         this._focusedListItem = newFocusedListItem;
                         focusedListItem.removeAttribute('focused');
                         newFocusedListItem.setAttribute('focused', '');
-                        this.$('textInput').focus();
                     }
                     else if (evt.which == 40) {
-                        var tabbable = this.$('menuFooterSlot').element.querySelector('[tab_index]');
-                        if (tabbable && tabbable.$component) {
-                            tabbable.$component.focus();
-                            document.body.classList.remove('_noFocusHighlight');
+                        var menuFooterSlot = this.$('menuFooterSlot');
+                        if (menuFooterSlot) {
+                            var tabbableComponentEl = menuFooterSlot.element.querySelector('[tab_index]');
+                            if (tabbableComponentEl && tabbableComponentEl.$component) {
+                                if (focusedListItem) {
+                                    this._focusedListItem = null;
+                                    focusedListItem.removeAttribute('focused');
+                                }
+                                tabbableComponentEl.$component.focus();
+                                document.body.classList.remove('_noFocusHighlight');
+                                break;
+                            }
                         }
-                        else {
-                            this.$('textInput').focus();
-                        }
-                    }
-                    else {
-                        this.$('textInput').focus();
                     }
                 }
+                else {
+                    if (evt.which == 40) {
+                        var menuFooterSlot = this.$('menuFooterSlot');
+                        if (menuFooterSlot) {
+                            var tabbableComponentEl = menuFooterSlot.element.querySelector('[tab_index]');
+                            if (tabbableComponentEl &&
+                                tabbableComponentEl.$component &&
+                                tabbableComponentEl.$component.paramFocused) {
+                                break;
+                            }
+                        }
+                    }
+                    var newFocusedListItem = listItems[evt.which == 38 ? listItems.length - 1 : 0];
+                    this._focusedListItem = newFocusedListItem;
+                    newFocusedListItem.setAttribute('focused', '');
+                }
+                this.$('textInput').focus();
                 break;
             }
             case 13 /* Enter */:
             case 39 /* Right */: {
                 if (this._focusedListItem &&
-                    (document.activeElement == this.$('textInput') ||
+                    (document.activeElement == this.$('textInput').textField ||
                         document.activeElement == document.body)) {
                     evt.preventDefault();
                     var focusedListItemDataSet = this._focusedListItem.dataset;
@@ -588,7 +610,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalAutosuggest{position:relative;display:inline-block;vertical-align:middle}.OpalAutosuggest .OpalAutosuggest__textInput{display:block}.OpalAutosuggest .OpalAutosuggest__listItem{position:relative;overflow:hidden;padding:7px 22px;background:#fff;color:#000;text-align:left;-o-text-overflow:ellipsis;text-overflow:ellipsis;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalAutosuggest .OpalAutosuggest__listItem:hover,.OpalAutosuggest .OpalAutosuggest__listItem[focused]{background:#e6e6e6}.OpalAutosuggest .OpalAutosuggest__listItem:active{background:#ccc}.OpalAutosuggest .OpalAutosuggest__listItem sub{bottom:0;display:block;font-size:.9em;line-height:1.5;opacity:.5}.OpalAutosuggest .OpalAutosuggest__nothingFoundSlot{display:block;padding:12px;text-align:center}.OpalAutosuggest .OpalAutosuggest__nothingFoundMessage{white-space:nowrap;opacity:.6}.OpalTextInputValidator .OpalAutosuggest{display:block}";
+            style.textContent = ".OpalAutosuggest{position:relative;display:inline-block;vertical-align:middle}.OpalAutosuggest .OpalAutosuggest__textInput{display:block}.OpalAutosuggest .OpalAutosuggest__listItem{position:relative;overflow:hidden;padding:7px 22px;background:#fff;color:#000;text-align:left;-o-text-overflow:ellipsis;text-overflow:ellipsis;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalAutosuggest .OpalAutosuggest__listItem:hover,.OpalAutosuggest .OpalAutosuggest__listItem[focused]{background:#e6e6e6}.OpalAutosuggest .OpalAutosuggest__listItem:active{background:#ccc}.OpalAutosuggest .OpalAutosuggest__listItem sub{bottom:0;display:block;font-size:.9em;line-height:1.5;opacity:.5}.OpalAutosuggest .OpalAutosuggest__nothingFoundSlot{display:block;padding:12px;text-align:center}.OpalAutosuggest .OpalAutosuggest__nothingFoundMessage{white-space:nowrap;opacity:.6}.OpalAutosuggest .OpalAutosuggest__menuFooter{display:block;margin:12px 22px}.OpalTextInputValidator .OpalAutosuggest{display:block}";
             head.appendChild(style);
             return style;
         }

@@ -63,6 +63,11 @@
 					opacity: .6;
 				}
 
+		@el menuFooter {
+			display: block;
+			margin: 12px 22px;
+		}
+
 	/* Combinations */
 
 	.OpalTextInputValidator & {

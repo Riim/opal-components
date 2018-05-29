@@ -122,11 +122,10 @@ export class OpalDateInput extends BaseComponent {
 	}
 
 	_onDocumentFocus(evt: Event) {
-		if (!isFocusable(evt.target as HTMLElement)) {
-			return;
-		}
-
-		if (!this.element.contains((evt.target as Node).parentNode!)) {
+		if (
+			isFocusable(evt.target as HTMLElement) &&
+			!this.element.contains((evt.target as Node).parentNode!)
+		) {
 			this.$<OpalDropdown>('calendarMenu')!.close();
 		}
 	}

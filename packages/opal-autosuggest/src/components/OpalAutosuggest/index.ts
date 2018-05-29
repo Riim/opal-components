@@ -7,13 +7,11 @@ import { Computed, Observable } from 'cellx-decorators';
 import {
 	BaseComponent,
 	Component,
-	IComponentElement,
 	IDisposableCallback,
 	IDisposableListening,
 	IDisposableTimeout,
 	IPossiblyComponentElement,
-	Param,
-	RnSlot
+	Param
 	} from 'rionite';
 import './index.css';
 import template from './template.nelm';
@@ -243,28 +241,35 @@ export class OpalAutosuggest extends BaseComponent {
 		let menu = this.$<BaseComponent>('menu')!.element;
 		let el: HTMLElement | null = evt.target as HTMLElement;
 
-		for (; !el!.classList.contains('OpalAutosuggest__listLtem'); el = el!.parentElement) {
+		for (;;) {
 			if (el == menu) {
 				return;
 			}
+
+			if (el!.classList.contains('OpalAutosuggest__listLtem')) {
+				break;
+			}
+
+			el = el!.parentElement;
 		}
 
-		let focusedListItem = this._focusedListItem!;
+		let focusedListItem = this._focusedListItem;
 
-		if (el != focusedListItem) {
+		if (!focusedListItem || el != focusedListItem) {
 			this._focusedListItem = el;
 
-			focusedListItem.removeAttribute('focused');
+			if (focusedListItem) {
+				focusedListItem.removeAttribute('focused');
+			}
 			el!.setAttribute('focused', '');
 		}
 	}
 
 	_onDocumentFocus(evt: Event) {
-		if (!isFocusable(evt.target as HTMLElement)) {
-			return;
-		}
-
-		if (!this.element.contains((evt.target as HTMLElement).parentNode!)) {
+		if (
+			isFocusable(evt.target as HTMLElement) &&
+			!this.element.contains((evt.target as HTMLElement).parentNode!)
+		) {
 			this.closeMenu();
 			this._selectItem();
 		}
@@ -275,37 +280,66 @@ export class OpalAutosuggest extends BaseComponent {
 			case 38 /* Up */:
 			case 40 /* Bottom */: {
 				let focusedListItem = this._focusedListItem;
+				let listItems = this.$$<HTMLElement>('listItem');
 
 				if (focusedListItem) {
 					evt.preventDefault();
 
-					let listItems = this.$$<HTMLElement>('listItem');
 					let index = listItems.indexOf(focusedListItem);
 
 					if (evt.which == 38 ? index > 0 : index < listItems.length - 1) {
 						let newFocusedListItem = listItems[index + (evt.which == 38 ? -1 : 1)];
 
 						this._focusedListItem = newFocusedListItem;
-
 						focusedListItem.removeAttribute('focused');
 						newFocusedListItem.setAttribute('focused', '');
-
-						this.$<OpalTextInput>('textInput')!.focus();
 					} else if (evt.which == 40) {
-						let tabbable = this.$<RnSlot>('menuFooterSlot')!.element.querySelector(
-							'[tab_index]'
-						);
+						let menuFooterSlot = this.$<BaseComponent>('menuFooterSlot');
 
-						if (tabbable && (tabbable as IPossiblyComponentElement).$component) {
-							((tabbable as IComponentElement).$component as any).focus();
-							document.body.classList.remove('_noFocusHighlight');
-						} else {
-							this.$<OpalTextInput>('textInput')!.focus();
+						if (menuFooterSlot) {
+							let tabbableComponentEl: IPossiblyComponentElement | null = menuFooterSlot.element.querySelector(
+								'[tab_index]'
+							);
+
+							if (tabbableComponentEl && tabbableComponentEl.$component) {
+								if (focusedListItem) {
+									this._focusedListItem = null;
+									focusedListItem.removeAttribute('focused');
+								}
+
+								(tabbableComponentEl.$component as any).focus();
+								document.body.classList.remove('_noFocusHighlight');
+
+								break;
+							}
 						}
-					} else {
-						this.$<OpalTextInput>('textInput')!.focus();
 					}
+				} else {
+					if (evt.which == 40) {
+						let menuFooterSlot = this.$<BaseComponent>('menuFooterSlot');
+
+						if (menuFooterSlot) {
+							let tabbableComponentEl: IPossiblyComponentElement | null = menuFooterSlot.element.querySelector(
+								'[tab_index]'
+							);
+
+							if (
+								tabbableComponentEl &&
+								tabbableComponentEl.$component &&
+								(tabbableComponentEl.$component as any).paramFocused
+							) {
+								break;
+							}
+						}
+					}
+
+					let newFocusedListItem = listItems[evt.which == 38 ? listItems.length - 1 : 0];
+
+					this._focusedListItem = newFocusedListItem;
+					newFocusedListItem.setAttribute('focused', '');
 				}
+
+				this.$<OpalTextInput>('textInput')!.focus();
 
 				break;
 			}
@@ -313,7 +347,7 @@ export class OpalAutosuggest extends BaseComponent {
 			case 39 /* Right */: {
 				if (
 					this._focusedListItem &&
-					(document.activeElement == this.$('textInput') ||
+					(document.activeElement == this.$<OpalTextInput>('textInput')!.textField ||
 						document.activeElement == document.body)
 				) {
 					evt.preventDefault();

@@ -165,7 +165,7 @@ var OpalNotification = /** @class */ (function (_super) {
         var bar = (this.bar = this.$('bar', this));
         this.element.removeChild(bar);
         if (this.$('icon')) {
-            bar.setAttribute('hasIcon', '');
+            bar.setAttribute('has_icon', '');
         }
         if (this.paramShown) {
             this._show();

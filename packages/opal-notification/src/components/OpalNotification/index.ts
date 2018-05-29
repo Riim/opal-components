@@ -45,7 +45,7 @@ export class OpalNotification extends BaseComponent {
 		let bar = (this.bar = this.$<HTMLElement>('bar', this)!);
 		this.element.removeChild(bar);
 		if (this.$('icon')) {
-			bar.setAttribute('hasIcon', '');
+			bar.setAttribute('has_icon', '');
 		}
 
 		if (this.paramShown) {

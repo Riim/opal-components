@@ -1,5 +1,10 @@
 style {
 	`
+	body {
+		color: hsl(270,100%,25%);
+		font: 16px/24px Verdana, Geneva, sans-serif;
+	}
+
 	._opalIcons > .OpalIcon {
 		margin: 10px;
 		width: 32px;
@@ -560,7 +565,11 @@ p {
 
 h1 { 'OpalAutosuggest' }
 p {
-	OpalAutosuggest (dataProvider={dataProvider2}, openMenuOnNothingFound)
+	OpalAutosuggest (dataProvider={dataProvider2}, openMenuOnNothingFound) {
+		OpalSignButton (class=OpalAutosuggest__menuFooter, sign=plus) {
+			'Добавить sha'
+		}
+	}
 }
 
 h1 { 'OpalTagSelect' }
