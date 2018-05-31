@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-multiselect",
-  "version": "0.33.107",
+  "version": "0.33.123",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,15 +14,15 @@
   },
   "dependencies": {
     "@riim/gettext": "^1.1.1",
-    "@riim/opal-button": "^0.33.107",
-    "@riim/opal-icon": "^0.33.107",
-    "@riim/opal-loaded-list": "^0.33.107",
-    "@riim/opal-select": "^0.33.107",
-    "@riim/opal-text-input": "^0.33.107",
+    "@riim/opal-button": "^0.33.123",
+    "@riim/opal-icon": "^0.33.123",
+    "@riim/opal-loaded-list": "^0.33.123",
+    "@riim/opal-select": "^0.33.123",
+    "@riim/opal-text-input": "^0.33.123",
     "@riim/platform": "^1.0.0",
-    "cellx": "^1.7.88",
-    "cellx-decorators": "^1.4.10",
+    "cellx": "^1.7.89",
+    "cellx-decorators": "^1.4.11",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.83"
+    "rionite": "^0.32.84"
   }
 }
