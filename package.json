@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.124",
+  "version": "0.33.126",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -23,7 +23,7 @@
   "devDependencies": {
     "@riim/postcss-rionite-component": "^0.4.6",
     "@types/history": "^4.6.2",
-    "autoprefixer": "^8.5.2",
+    "autoprefixer": "^8.6.1",
     "awesome-typescript-loader": "^5.0.0",
     "collapse-line-breaks-loader": "^0.2.1",
     "glob": "^7.1.2",
@@ -44,9 +44,9 @@
     "trim-lines-loader": "^0.2.1",
     "tslint": "^5.10.0",
     "tslint-loader": "^3.6.0",
-    "typescript": "^2.8.4",
-    "webpack": "^4.9.2",
-    "webpack-cli": "^2.1.4"
+    "typescript": "2.8.4",
+    "webpack": "4.9.2",
+    "webpack-cli": "^3.0.3"
   },
   "dependencies": {
     "@riim/opal-autosuggest": "^0.33.123",
@@ -54,7 +54,7 @@
     "@riim/opal-calendar": "^0.33.123",
     "@riim/opal-checkbox": "^0.33.123",
     "@riim/opal-date-input": "^0.33.123",
-    "@riim/opal-dropdown": "^0.33.123",
+    "@riim/opal-dropdown": "^0.33.125",
     "@riim/opal-editable-text": "^0.33.123",
     "@riim/opal-filtered-list": "^0.33.123",
     "@riim/opal-focus-highlight-controller": "^0.33.123",

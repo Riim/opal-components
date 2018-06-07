@@ -205,18 +205,17 @@ var OpalDropdown = /** @class */ (function (_super) {
         elStyle.bottom = 'auto';
         elStyle.left = '0';
         elStyle.maxHeight = 'none';
-        var docElClientWidth = document.documentElement.clientWidth;
         var containerClientRect = el.offsetParent.getBoundingClientRect();
         var elClientRect = el.getBoundingClientRect();
-        if (elClientRect.right > docElClientWidth) {
+        if (elClientRect.right > containerClientRect.right &&
+            elClientRect.right > document.documentElement.clientWidth) {
             if (containerClientRect.right - el.offsetWidth >= 0) {
                 elStyle.right = '0';
                 elStyle.left = 'auto';
             }
             else {
                 elStyle.left =
-                    Math.max(-containerClientRect.left, docElClientWidth - elClientRect.right) +
-                        'px';
+                    Math.max(-containerClientRect.left, document.documentElement.clientWidth - elClientRect.right) + 'px';
             }
         }
         var margin = elClientRect.top - containerClientRect.bottom;

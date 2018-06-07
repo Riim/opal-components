@@ -98,18 +98,22 @@ export class OpalDropdown extends BaseComponent {
 		elStyle.left = '0';
 		elStyle.maxHeight = 'none';
 
-		let docElClientWidth = document.documentElement.clientWidth;
 		let containerClientRect = el.offsetParent.getBoundingClientRect();
 		let elClientRect = el.getBoundingClientRect();
 
-		if (elClientRect.right > docElClientWidth) {
+		if (
+			elClientRect.right > containerClientRect.right &&
+			elClientRect.right > document.documentElement.clientWidth
+		) {
 			if (containerClientRect.right - el.offsetWidth >= 0) {
 				elStyle.right = '0';
 				elStyle.left = 'auto';
 			} else {
 				elStyle.left =
-					Math.max(-containerClientRect.left, docElClientWidth - elClientRect.right) +
-					'px';
+					Math.max(
+						-containerClientRect.left,
+						document.documentElement.clientWidth - elClientRect.right
+					) + 'px';
 			}
 		}
 
