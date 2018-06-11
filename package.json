@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.126",
+  "version": "0.33.128",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -23,7 +23,7 @@
   "devDependencies": {
     "@riim/postcss-rionite-component": "^0.4.6",
     "@types/history": "^4.6.2",
-    "autoprefixer": "^8.6.1",
+    "autoprefixer": "^8.6.2",
     "awesome-typescript-loader": "^5.0.0",
     "collapse-line-breaks-loader": "^0.2.1",
     "glob": "^7.1.2",
@@ -51,7 +51,7 @@
   "dependencies": {
     "@riim/opal-autosuggest": "^0.33.123",
     "@riim/opal-button": "^0.33.123",
-    "@riim/opal-calendar": "^0.33.123",
+    "@riim/opal-calendar": "^0.33.127",
     "@riim/opal-checkbox": "^0.33.123",
     "@riim/opal-date-input": "^0.33.123",
     "@riim/opal-dropdown": "^0.33.125",
@@ -71,7 +71,7 @@
     "@riim/opal-popover": "^0.33.123",
     "@riim/opal-radio-group": "^0.33.123",
     "@riim/opal-router": "^0.33.123",
-    "@riim/opal-select": "^0.33.123",
+    "@riim/opal-select": "^0.33.127",
     "@riim/opal-select-validator": "^0.33.123",
     "@riim/opal-sign-button": "^0.33.123",
     "@riim/opal-slider": "^0.33.123",
@@ -86,6 +86,6 @@
     "@riim/opal-tree-tag-select": "^0.33.123",
     "@riim/opal-utils": "^0.33.123",
     "cellx": "^1.7.89",
-    "rionite": "^0.32.84"
+    "rionite": "^0.32.93"
   }
 }
