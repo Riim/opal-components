@@ -122,7 +122,7 @@ export class OpalTextInput extends BaseComponent {
 
 	_onParamValueChange(evt: IEvent) {
 		if (this.textField.value != evt.data.value) {
-			this.textField.value = evt.data.value;
+			this._textFieldValue = this.textField.value = evt.data.value;
 			this._fixHeight();
 		}
 	}

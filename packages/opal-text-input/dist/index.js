@@ -241,7 +241,7 @@ var OpalTextInput = /** @class */ (function (_super) {
     };
     OpalTextInput.prototype._onParamValueChange = function (evt) {
         if (this.textField.value != evt.data.value) {
-            this.textField.value = evt.data.value;
+            this._textFieldValue = this.textField.value = evt.data.value;
             this._fixHeight();
         }
     };
