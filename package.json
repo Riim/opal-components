@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.131",
+  "version": "0.33.132",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -84,7 +84,7 @@
     "@riim/opal-tree-list": "^0.33.131",
     "@riim/opal-tree-select": "^0.33.131",
     "@riim/opal-tree-tag-select": "^0.33.131",
-    "@riim/opal-utils": "^0.33.131",
+    "@riim/opal-utils": "^0.33.132",
     "cellx": "^1.7.92",
     "rionite": "^0.32.97"
   }

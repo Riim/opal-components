@@ -5,6 +5,12 @@ export function closestComponent(
 	componentClass: Function
 ): BaseComponent | null {
 	let c: BaseComponent | null = component;
-	while (!(c instanceof componentClass) && (c = c.parentComponent)) {}
+
+	for (;;) {
+		if (c instanceof componentClass || !(c = c.parentComponent)) {
+			break;
+		}
+	}
+
 	return c;
 }

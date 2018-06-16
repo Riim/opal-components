@@ -119,7 +119,11 @@ __export(__webpack_require__(269));
 Object.defineProperty(exports, "__esModule", { value: true });
 function closestComponent(component, componentClass) {
     var c = component;
-    while (!(c instanceof componentClass) && (c = c.parentComponent)) { }
+    for (;;) {
+        if (c instanceof componentClass || !(c = c.parentComponent)) {
+            break;
+        }
+    }
     return c;
 }
 exports.closestComponent = closestComponent;
@@ -138,19 +142,19 @@ function isFocusable(el) {
         return el.tabIndex >= 0;
     }
     switch (el.tagName) {
-        case 'a':
-        case 'area': {
+        case 'A':
+        case 'AREA': {
             return el.hasAttribute('href') && el.tabIndex >= 0;
         }
-        case 'button':
-        case 'input':
-        case 'select':
-        case 'textarea': {
+        case 'BUTTON':
+        case 'INPUT':
+        case 'SELECT':
+        case 'TEXTAREA': {
             return !el.hasAttribute('disabled') && el.tabIndex >= 0;
         }
-        case 'embed':
-        case 'iframe':
-        case 'object': {
+        case 'EMBED':
+        case 'IFRAME':
+        case 'OBJECT': {
             return el.tabIndex >= 0;
         }
     }
