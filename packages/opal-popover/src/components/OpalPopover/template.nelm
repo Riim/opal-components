@@ -1,9 +1,5 @@
-@section/inner {
-
 span/arrow
 
 @IfThen (contentRendered) {
-	RnSlot/contentSlot
-}
-
+	@Slot/contentSlot
 }

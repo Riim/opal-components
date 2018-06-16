@@ -1,5 +1,3 @@
-@section/inner {
-
 label/label {
 	input/input (type=checkbox)
 
@@ -8,7 +6,5 @@ label/label {
 	}
 	' '
 
-	RnSlot/contentSlot
-}
-
+	@Slot/contentSlot
 }

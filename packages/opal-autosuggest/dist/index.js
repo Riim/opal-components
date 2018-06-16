@@ -46,17 +46,32 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
 /******/ 	};
 /******/
 /******/ 	// define __esModule on exports
 /******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
 /******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -314,6 +329,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         }
     };
     OpalAutosuggest.prototype._onDocumentKeyDown = function (evt) {
+        var _a;
         switch (evt.which) {
             case 38 /* Up */:
             case 40 /* Bottom */: {
@@ -395,7 +411,6 @@ var OpalAutosuggest = /** @class */ (function (_super) {
                 break;
             }
         }
-        var _a;
     };
     OpalAutosuggest.prototype._onDocumentClick = function (evt) {
         if (!this.element.contains(evt.target)) {
@@ -504,6 +519,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         this.dataList.clear();
         this._focusedListItem = null;
     };
+    var OpalAutosuggest_1;
     OpalAutosuggest.defaultDataListItemSchema = defaultDataListItemSchema;
     __decorate([
         rionite_1.Param({ type: eval, default: defaultDataListItemSchema, readonly: true }),
@@ -557,6 +573,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             domEvents: {
                 listItem: {
                     click: function (evt, context) {
+                        var _a;
                         var textInput = this.$('textInput');
                         var item = context.item;
                         textInput.value = item[this._dataListItemTextFieldName];
@@ -567,14 +584,12 @@ var OpalAutosuggest = /** @class */ (function (_super) {
                             _a[this._dataListItemTextFieldName] = item[this._dataListItemTextFieldName],
                             _a[this._dataListItemSubtextFieldName] = item[this._dataListItemSubtextFieldName],
                             _a));
-                        var _a;
                     }
                 }
             }
         })
     ], OpalAutosuggest);
     return OpalAutosuggest;
-    var OpalAutosuggest_1;
 }(rionite_1.BaseComponent));
 exports.OpalAutosuggest = OpalAutosuggest;
 
@@ -632,7 +647,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nRnSlot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder=Начните вводить для поиска,\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown/menu {\nRnSlot (for=menuHeader)\ndiv/list {\n@Repeat (for=item in dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (dataList.length) {\nRnSlot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'Ничего не найдено'\n}\n}\n}\n}\nRnSlot/menuFooterSlot (for=menuFooter)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@Slot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder=Начните вводить для поиска,\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown/menu {\n@Slot (for=menuHeader)\ndiv/list {\n@Repeat (for=item in dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (dataList.length) {\n@Slot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'Ничего не найдено'\n}\n}\n}\n}\n@Slot/menuFooterSlot (for=menuFooter)\n}");
 
 /***/ })
 /******/ ]);

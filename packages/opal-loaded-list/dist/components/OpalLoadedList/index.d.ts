@@ -49,6 +49,9 @@ export declare class OpalLoadedList extends BaseComponent {
     _getListItemContext(context: {
         [name: string]: any;
     }, slot: RnSlot): {
-        [name: string]: any;
+        __proto__: {
+            [name: string]: any;
+        };
+        $item: any;
     };
 }

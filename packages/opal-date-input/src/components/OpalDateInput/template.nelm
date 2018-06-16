@@ -1,5 +1,3 @@
-@section/inner {
-
 OpalTextInputValidator/textInputValidator {
 	OpalInputMask/inputMask (mask={paramMask}) {
 		OpalTextInput/textInput (
@@ -43,6 +41,4 @@ OpalDropdown/calendarMenu (autoHeight=no) {
 		value={paramValue},
 		dateDelimiter=.
 	)
-}
-
 }

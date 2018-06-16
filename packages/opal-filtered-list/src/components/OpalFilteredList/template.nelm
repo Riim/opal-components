@@ -1,13 +1,9 @@
-@section/inner {
-
-RnSlot (for=queryInputSlot) {
-	RnSlot/queryInputSlot (for=queryInput) {
+@Slot (for=queryInputSlot) {
+	@Slot/queryInputSlot (for=queryInput) {
 		OpalTextInput/queryInput (placeholder=Поиск, clearable) {
 			OpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)
 		}
 	}
 }
 
-RnSlot/listSlot (for=list)
-
-}
+@Slot/listSlot (for=list)

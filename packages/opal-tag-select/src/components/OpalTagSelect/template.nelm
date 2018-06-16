@@ -1,5 +1,3 @@
-@section/inner {
-
 span/tags {
 	@Repeat (for=tag in viewModel, trackBy={_viewModelItemValueFieldName}) {
 		span/tag (disabled='{tag |_isItemDisabled }') {
@@ -36,14 +34,14 @@ span/control {
 			disabled={paramDisabled}
 		)
 
-		RnSlot (class=OpalSelect__menuSlot, for=OpalSelect__menu) {
+		@Slot (class=OpalSelect__menuSlot, for=OpalSelect__menu) {
 			OpalPopover/menu (
 				class=OpalSelect__menu,
 				position={paramPopoverPosition},
 				closeOn=mousedown
 			) {
-				RnSlot (for=OpalSelect__menuHeader)
-				RnSlot (for=OpalSelect__menuContent) {
+				@Slot (for=OpalSelect__menuHeader)
+				@Slot (for=OpalSelect__menuContent) {
 					@IfThen (_dataListKeypathParam) {
 						div (class=OpalSelect__menuContent) {
 							@IfThen (dataList) {
@@ -59,7 +57,7 @@ span/control {
 									)
 								}
 
-								RnSlot (
+								@Slot (
 									class=OpalSelect__newItemInputSlot,
 									for=OpalSelect__newItemInput
 								)
@@ -73,7 +71,7 @@ span/control {
 						OpalFilteredList/menuFilteredList (
 							class=OpalSelect__menuContent OpalSelect__filteredList
 						) {
-							RnSlot (
+							@Slot (
 								class=OpalFilteredList__queryInputSlot,
 								for=OpalFilteredList__queryInput
 							)
@@ -92,10 +90,8 @@ span/control {
 						}
 					}
 				}
-				RnSlot (for=OpalSelect__menuFooter)
+				@Slot (for=OpalSelect__menuFooter)
 			}
 		}
 	}
-}
-
 }

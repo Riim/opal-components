@@ -8,7 +8,7 @@ OpalTreeSelect/select (
 	addNewItem={paramAddNewItem},
 	focused={paramFocused}
 ) {
-	RnSlot (class=OpalSelect__menuHeaderSlot, for=OpalSelect__menuHeader)
+	@Slot (class=OpalSelect__menuHeaderSlot, for=OpalSelect__menuHeader)
 
 	OpalSignButton/button (
 		class=OpalSelect__button,

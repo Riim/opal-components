@@ -1,7 +1,5 @@
-@section/inner {
-
 button/control (tabindex={_tabIndex}) {
-	RnSlot/contentSlot {
+	@Slot/contentSlot {
 		'{paramText}'
 
 		@IfThen (paramSubtext) {
@@ -18,6 +16,4 @@ button/control (tabindex={_tabIndex}) {
 	@IfThen (indeterminate) {
 		OpalIcon/iconIndeterminate (name=minus)
 	}
-}
-
 }

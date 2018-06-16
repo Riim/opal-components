@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-slider",
-  "version": "0.33.123",
+  "version": "0.33.131",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,6 +15,6 @@
   "dependencies": {
     "cellx-decorators": "^1.4.11",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.84"
+    "rionite": "^0.32.97"
   }
 }

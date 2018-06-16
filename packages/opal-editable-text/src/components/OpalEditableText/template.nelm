@@ -1,8 +1,4 @@
-@section/inner {
-
 span/contentWrapper {
-	RnSlot/contentSlot (contenteditable, spellcheck=false)
+	@Slot/contentSlot (contenteditable, spellcheck=false)
 	OpalIcon/iconEdit (name=compose, strokeWidth=3)
-}
-
 }

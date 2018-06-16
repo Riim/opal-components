@@ -1,5 +1,3 @@
-@section/inner {
-
 @IfThen (paramRange) {
 	div/firstInputWrapper3 {
 		div/firstInputWrapper2 (style=width: {_firstInputWidth}%) {
@@ -34,6 +32,4 @@
 		step={paramStep},
 		value={paramValue}
 	)
-}
-
 }

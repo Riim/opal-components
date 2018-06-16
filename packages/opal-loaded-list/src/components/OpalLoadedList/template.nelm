@@ -1,8 +1,6 @@
-@section/inner {
-
 div/list {
 	@Repeat (for=$item in dataList) {
-		RnSlot/listItemSlot (for=listItem, cloneContent, getContext={_getListItemContext}) {
+		@Slot/listItemSlot (for=listItem, cloneContent, getContext={_getListItemContext}) {
 			span/listItem {
 				'{$item |key(_dataListItemTextFieldName) }'
 			}
@@ -13,13 +11,11 @@ div/list {
 OpalLoader/loader (shown={loaderShown}, alignCenter={empty})
 
 @IfThen (nothingFoundShown) {
-	RnSlot/nothingFoundSlot (for=nothingFound, getContext={_getListItemContext}) {
+	@Slot/nothingFoundSlot (for=nothingFound, getContext={_getListItemContext}) {
 		span/nothingFound {
 			span/nothingFoundMessage {
 				'Ничего не найдено'
 			}
 		}
 	}
-}
-
 }

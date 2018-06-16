@@ -4,7 +4,7 @@ div/head {
 	}
 
 	span/contentSlotWrapper {
-		RnSlot/contentSlot (cloneContent)
+		@Slot/contentSlot (cloneContent)
 	}
 }
 
@@ -25,7 +25,7 @@ div/head {
 				nestingLevel={paramIndexpath.length},
 				hasChildren='{$item.children.length |gt(0) }'
 			) {
-				RnSlot (cloneContent, getContext={_getListItemContext})
+				@Slot (cloneContent, getContext={_getListItemContext})
 			}
 		}
 	}

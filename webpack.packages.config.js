@@ -91,7 +91,6 @@ module.exports = env => {
 			'@riim/gettext',
 			'@riim/kebab-case',
 			'@riim/map-set-polyfill',
-			'@riim/mixin',
 			'@riim/next-tick',
 			'@riim/next-uid',
 			'@riim/object-assign-polyfill',

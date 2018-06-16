@@ -1,7 +1,3 @@
-@section/inner {
-
 @IfThen (contentRendered) {
-	RnSlot/contentSlot
-}
-
+	@Slot/contentSlot
 }

@@ -1,12 +1,8 @@
-@section/inner {
-
 label/label {
 	input/input (type=checkbox)
 
 	span/control (tabindex={_tabIndex})
 	' '
 
-	RnSlot/contentSlot
-}
-
+	@Slot/contentSlot
 }

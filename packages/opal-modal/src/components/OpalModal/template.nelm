@@ -1,13 +1,9 @@
-@section/inner {
-
 div/window {
 	div/btnCloseWrapper {
 		button/btnClose
 	}
 
 	@IfThen (contentRendered) {
-		RnSlot/contentSlot
+		@Slot/contentSlot
 	}
-}
-
 }

@@ -1,5 +1,3 @@
-@section/inner {
-
 @IfThen (paramMultiline) {
 	textarea/, textField (
 		rows={paramRows},
@@ -23,7 +21,7 @@
 	OpalIcon/startIcon (name={paramStartIcon})
 }
 
-RnSlot/endIconSlot (for=endIcon, shown={endIconShown}) {
+@Slot/endIconSlot (for=endIcon, shown={endIconShown}) {
 	@IfThen (paramEndIcon) {
 		OpalIcon/endIcon (name={paramEndIcon})
 	}
@@ -37,6 +35,4 @@ RnSlot/endIconSlot (for=endIcon, shown={endIconShown}) {
 
 @IfThen (paramLoading) {
 	OpalLoader/loader (size=s, shown)
-}
-
 }

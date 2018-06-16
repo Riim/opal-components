@@ -1,4 +1,3 @@
-import { mixin } from '@riim/mixin';
 import { nextTick } from '@riim/next-tick';
 import { Cell, ObservableList } from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
@@ -217,7 +216,10 @@ export class OpalLoadedList extends BaseComponent {
 		);
 	}
 
-	_getListItemContext(context: { [name: string]: any }, slot: RnSlot): { [name: string]: any } {
-		return mixin(Object.create(context), slot.$context!, ['$component']);
+	_getListItemContext(context: { [name: string]: any }, slot: RnSlot) {
+		return {
+			__proto__: context,
+			$item: slot.$context.$item
+		};
 	}
 }

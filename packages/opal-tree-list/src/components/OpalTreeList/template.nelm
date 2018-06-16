@@ -15,7 +15,7 @@
 				nestingLevel=0,
 				hasChildren='{$item.children.length |gt(0) }'
 			) {
-				RnSlot (cloneContent, getContext={_getListItemContext}) {
+				@Slot (cloneContent, getContext={_getListItemContext}) {
 					OpalCheckbox/selectionControl (
 						checked={$selected},
 						indeterminate={$indeterminate}
@@ -27,7 +27,7 @@
 		}
 	}
 	@IfElse (filteredDataTreeList.length) {
-		RnSlot/nothingFoundSlot (for=nothingFound) {
+		@Slot/nothingFoundSlot (for=nothingFound) {
 			span/nothingFound {
 				span/nothingFoundMessage {
 					'Ничего не найдено'

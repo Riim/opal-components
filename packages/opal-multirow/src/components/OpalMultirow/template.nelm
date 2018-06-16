@@ -1,17 +1,13 @@
-@section/inner {
-
-RnSlot/presetRowsSlot (
+@Slot/presetRowsSlot (
 	for=presetRows,
 	notHaveNewRows={_notHaveNewRows},
 	notSingleRow={_notSingleRow}
 ) {
-	RnSlot/presetRows (for=presetRow)
+	@Slot/presetRows (for=presetRow)
 }
 
 div/newRows (notSingleRow={_notSingleRow}) {
 	@Repeat (for=row in _newRows, trackBy=key) {
-		RnSlot/newRowSlot (cloneContent, data-key={row.key})
+		@Slot/newRowSlot (cloneContent, data-key={row.key})
 	}
-}
-
 }

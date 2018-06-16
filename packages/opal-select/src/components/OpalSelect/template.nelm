@@ -1,6 +1,4 @@
-@section/inner {
-
-RnSlot (for=button) {
+@Slot (for=button) {
 	OpalButton/button (
 		viewType={paramViewType},
 		size={paramSize},
@@ -19,11 +17,11 @@ RnSlot (for=button) {
 	}
 }
 
-RnSlot (for=menuSlot) {
-	RnSlot/menuSlot (for=menu) {
+@Slot (for=menuSlot) {
+	@Slot/menuSlot (for=menu) {
 		OpalDropdown/menu (closeOn=mousedown) {
-			RnSlot (for=menuHeader)
-			RnSlot (for=menuContent) {
+			@Slot (for=menuHeader)
+			@Slot (for=menuContent) {
 				@IfThen (_paramDataListSpecified) {
 					div/, menuContent {
 						@IfThen (dataList) {
@@ -36,7 +34,7 @@ RnSlot (for=menuSlot) {
 								)
 							}
 
-							RnSlot/newItemInputSlot // ...
+							@Slot/newItemInputSlot // ...
 						}
 						@IfElse (dataList) {
 							OpalLoader/menuLoader (shown)
@@ -45,17 +43,15 @@ RnSlot (for=menuSlot) {
 				}
 				@IfElse (_paramDataListSpecified) {
 					div/, menuContent {
-						RnSlot/options (forTag=opal-select-option)
+						@Slot/options (forTag=opal-select-option)
 
-						RnSlot (for=newItemInputSlot) {
-							RnSlot/newItemInputSlot (for=newItemInput)
+						@Slot (for=newItemInputSlot) {
+							@Slot/newItemInputSlot (for=newItemInput)
 						}
 					}
 				}
 			}
-			RnSlot (for=menuFooter)
+			@Slot (for=menuFooter)
 		}
 	}
-}
-
 }

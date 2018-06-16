@@ -1,8 +1,4 @@
-@section/inner {
-
-RnSlot/contentSlot
+@Slot/contentSlot
 
 OpalSignButton/btnRemoveRow (sign=minus)
 OpalSignButton/btnAddRow (sign=plus)
-
-}

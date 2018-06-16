@@ -1,6 +1,4 @@
-@section/inner {
-
-RnSlot (for=textInput) {
+@Slot (for=textInput) {
 	OpalTextInput/textInput (
 		value='{paramValue |key(_dataListItemTextFieldName) }',
 		placeholder=Начните вводить для поиска,
@@ -11,7 +9,7 @@ RnSlot (for=textInput) {
 }
 
 OpalDropdown/menu {
-	RnSlot (for=menuHeader)
+	@Slot (for=menuHeader)
 
 	div/list {
 		@Repeat (for=item in dataList) {
@@ -30,7 +28,7 @@ OpalDropdown/menu {
 	}
 
 	@IfElse (dataList.length) {
-		RnSlot/nothingFoundSlot (for=nothingFound) {
+		@Slot/nothingFoundSlot (for=nothingFound) {
 			span/nothingFound {
 				span/nothingFoundMessage {
 					'Ничего не найдено'
@@ -39,7 +37,5 @@ OpalDropdown/menu {
 		}
 	}
 
-	RnSlot/menuFooterSlot (for=menuFooter)
-}
-
+	@Slot/menuFooterSlot (for=menuFooter)
 }

@@ -1,5 +1,1 @@
-@section/inner {
-
-RnSlot/contentSlot
-
-}
+@Slot/contentSlot

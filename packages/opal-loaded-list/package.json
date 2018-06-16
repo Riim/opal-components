@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-loaded-list",
-  "version": "0.33.123",
+  "version": "0.33.131",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,12 +14,11 @@
   },
   "dependencies": {
     "@riim/gettext": "^1.1.1",
-    "@riim/mixin": "^1.0.0",
     "@riim/next-tick": "^1.0.1",
-    "@riim/opal-loader": "^0.33.123",
-    "cellx": "^1.7.89",
+    "@riim/opal-loader": "^0.33.131",
+    "cellx": "^1.7.92",
     "cellx-decorators": "^1.4.11",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.84"
+    "rionite": "^0.32.97"
   }
 }

@@ -46,17 +46,32 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
 /******/ 	};
 /******/
 /******/ 	// define __esModule on exports
 /******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
 /******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -408,6 +423,7 @@ var OpalCalendar = /** @class */ (function (_super) {
         this.stringValue = dayEl.dataset.date;
         this.emit('change');
     };
+    var OpalCalendar_1;
     __decorate([
         rionite_1.Param,
         __metadata("design:type", String)
@@ -556,7 +572,6 @@ var OpalCalendar = /** @class */ (function (_super) {
         })
     ], OpalCalendar);
     return OpalCalendar;
-    var OpalCalendar_1;
 }(rionite_1.BaseComponent));
 exports.OpalCalendar = OpalCalendar;
 
@@ -616,7 +631,7 @@ exports.parseDate = parseDate;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@section/inner {\nheader/header {\nbutton/btnPrevMonth (disabled={btnPrevMonthDisabled}) {\nOpalIcon/btnPrevMonthIcon (name=chevronLeft)\n}\nOpalSelect/monthSelect (size=s, value=['{shownMonth}']) {\n@Repeat (class=OpalSelect__menuContent, for=month in constructor.i18n.months) {\nOpalSelectOption (value={=$index}, text={=month})\n}\n}\n' '\nOpalSelect/yearSelect (size=s, value=['{shownYear}']) {\n@Repeat (class=OpalSelect__menuContent, for=year in years) {\nOpalSelectOption (text={=year})\n}\n}\nbutton/btnNextMonth (disabled={btnNextMonthDisabled}) {\nOpalIcon/btnNextMonthIcon (name=chevronRight)\n}\n}\ndiv/body {\ndiv/weekDays {\ndiv/weekDaysRow {\n@Repeat (for=weekDay in weekDaysShort) {\nspan/weekDay {\n'{=weekDay}'\n}\n}\n}\n}\ndiv/days {\n@Repeat (for=weekDays in days) {\ndiv/daysRow {\n@Repeat (for=day in weekDays) {\nspan/day (\nweekDay={=day.weekDay},\ntoday={=day.today},\nselected={=day.selected},\nnotInCurrentMonth={=day.notInCurrentMonth},\ndisabled={=day.disabled},\ntabIndex={=day.tabIndex},\ndata-date={=day.date}\n) {\n'{=day.value}'\n}\n}\n}\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("header/header {\nbutton/btnPrevMonth (disabled={btnPrevMonthDisabled}) {\nOpalIcon/btnPrevMonthIcon (name=chevronLeft)\n}\nOpalSelect/monthSelect (size=s, value=['{shownMonth}']) {\n@Repeat (class=OpalSelect__menuContent, for=month in constructor.i18n.months) {\nOpalSelectOption (value={=$index}, text={=month})\n}\n}\n' '\nOpalSelect/yearSelect (size=s, value=['{shownYear}']) {\n@Repeat (class=OpalSelect__menuContent, for=year in years) {\nOpalSelectOption (text={=year})\n}\n}\nbutton/btnNextMonth (disabled={btnNextMonthDisabled}) {\nOpalIcon/btnNextMonthIcon (name=chevronRight)\n}\n}\ndiv/body {\ndiv/weekDays {\ndiv/weekDaysRow {\n@Repeat (for=weekDay in weekDaysShort) {\nspan/weekDay {\n'{=weekDay}'\n}\n}\n}\n}\ndiv/days {\n@Repeat (for=weekDays in days) {\ndiv/daysRow {\n@Repeat (for=day in weekDays) {\nspan/day (\nweekDay={=day.weekDay},\ntoday={=day.today},\nselected={=day.selected},\nnotInCurrentMonth={=day.notInCurrentMonth},\ndisabled={=day.disabled},\ntabIndex={=day.tabIndex},\ndata-date={=day.date}\n) {\n'{=day.value}'\n}\n}\n}\n}\n}\n}");
 
 /***/ })
 /******/ ]);
