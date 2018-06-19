@@ -164,14 +164,14 @@ var OpalSwitchMenu = /** @class */ (function (_super) {
                 return this._checkedButton;
             }
             return (this._checkedButton =
-                find.call(this.buttonElements, function (btnEl) { return btnEl.$component.checked; }) || null);
+                find.call(this.buttonElements, function (btnEl) { return btnEl.rioniteComponent.checked; }) || null);
         },
         set: function (checkedButton) {
             if (checkedButton === this._checkedButton) {
                 return;
             }
             forEach.call(this.buttonElements, function (btnEl) {
-                var btn = btnEl.$component;
+                var btn = btnEl.rioniteComponent;
                 if (btn === checkedButton) {
                     btn.check();
                 }

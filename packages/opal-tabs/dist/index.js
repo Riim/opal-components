@@ -202,7 +202,8 @@ var OpalTabs = /** @class */ (function (_super) {
     };
     OpalTabs.prototype.elementAttached = function () {
         var _this = this;
-        this.listenTo(this.element.getElementsByClassName('OpalTabList')[0].$component, {
+        this.listenTo(this.element.getElementsByClassName('OpalTabList')[0]
+            .$component, {
             '<OpalTab>select': this._onTabListSelect,
             '<OpalTab>deselect': this._onTabListDeselect
         });

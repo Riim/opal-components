@@ -67,12 +67,13 @@ export class OpalTabs extends BaseComponent {
 			selectedTab.select();
 		}
 
-		tabPanels[selectedTabIndex!].$component.paramShown = true;
+		tabPanels[selectedTabIndex!].$component!.paramShown = true;
 	}
 
 	elementAttached() {
 		this.listenTo(
-			(this.element.getElementsByClassName('OpalTabList')[0] as IComponentElement).$component,
+			(this.element.getElementsByClassName('OpalTabList')[0] as IComponentElement)
+				.$component!,
 			{
 				'<OpalTab>select': this._onTabListSelect,
 				'<OpalTab>deselect': this._onTabListDeselect
@@ -123,11 +124,11 @@ export class OpalTabs extends BaseComponent {
 
 		let tab: IComponentElement<OpalTab> = find.call(
 			this.tabs,
-			(tab: IComponentElement<OpalTab>) => tab.$component.paramLabel == label
+			(tab: IComponentElement<OpalTab>) => tab.$component!.paramLabel == label
 		);
 
 		if (tab) {
-			this._selectTab(tab.$component);
+			this._selectTab(tab.$component!);
 			return true;
 		}
 
@@ -144,11 +145,11 @@ export class OpalTabs extends BaseComponent {
 		if (selectedTab) {
 			this.tabPanels[
 				indexOf.call(this.tabs, selectedTab.element)
-			].$component.paramShown = false;
+			].$component!.paramShown = false;
 			selectedTab.deselect();
 		}
 
-		this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.paramShown = true;
+		this.tabPanels[indexOf.call(this.tabs, tab.element)].$component!.paramShown = true;
 		tab.select();
 
 		this._selectedTab = tab;

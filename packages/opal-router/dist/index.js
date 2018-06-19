@@ -351,7 +351,7 @@ var OpalRouter = /** @class */ (function (_super) {
             this_1._state = state;
             var componentEl = (this_1._componentElement = document.createElement(route.componentName));
             this_1._applyState();
-            componentEl.$component.ownerComponent = this_1;
+            componentEl.rioniteComponent.ownerComponent = this_1;
             this_1.element.appendChild(componentEl);
             if (this_1.paramScrollTopOnChange || this_1.paramScrollTopOnChangeComponent) {
                 window.scrollTo(window.pageXOffset, 0);
@@ -393,7 +393,7 @@ var OpalRouter = /** @class */ (function (_super) {
             this.element.removeChild(this._componentElement);
             var componentEl = (this._componentElement = document.createElement(route.componentName));
             this._applyState();
-            componentEl.$component.ownerComponent = this;
+            componentEl.rioniteComponent.ownerComponent = this;
             this.element.appendChild(componentEl);
             if (this.paramScrollTopOnChange || this.paramScrollTopOnChangeComponent) {
                 window.scrollTo(window.pageXOffset, 0);

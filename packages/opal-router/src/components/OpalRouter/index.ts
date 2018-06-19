@@ -70,7 +70,7 @@ export class OpalRouter extends BaseComponent {
 		forEach.call(
 			this.element.getElementsByTagName('opal-route'),
 			(routeEl: IComponentElement<OpalRoute>) => {
-				let path = routeEl.$component.paramPath;
+				let path = routeEl.$component!.paramPath;
 				let rePath: Array<string> | string = [];
 				let props: Array<IRouteProperty> = [];
 
@@ -112,7 +112,7 @@ export class OpalRouter extends BaseComponent {
 						`^${rePath}${rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?'}$`
 					),
 					properties: props,
-					componentName: kebabCase(routeEl.$component.paramComponent)
+					componentName: kebabCase(routeEl.$component!.paramComponent)
 				});
 			}
 		);
@@ -217,8 +217,9 @@ export class OpalRouter extends BaseComponent {
 				}
 
 				let componentEl = this._componentElement!;
-				let $paramsConfig: { [name: string]: I$ComponentParamConfig } | undefined =
-					componentEl.$component.constructor[KEY_PARAMS_CONFIG];
+				let $paramsConfig:
+					| { [name: string]: I$ComponentParamConfig }
+					| undefined = componentEl.$component!.constructor[KEY_PARAMS_CONFIG];
 				let attrs = componentEl.attributes;
 				let canWrite = true;
 
@@ -298,7 +299,7 @@ export class OpalRouter extends BaseComponent {
 				route.componentName
 			) as IComponentElement);
 			this._applyState();
-			componentEl.$component.ownerComponent = this;
+			componentEl.rioniteComponent.ownerComponent = this;
 			this.element.appendChild(componentEl);
 
 			if (this.paramScrollTopOnChange || this.paramScrollTopOnChangeComponent) {
@@ -350,7 +351,7 @@ export class OpalRouter extends BaseComponent {
 				route.componentName
 			) as IComponentElement);
 			this._applyState();
-			componentEl.$component.ownerComponent = this;
+			componentEl.rioniteComponent.ownerComponent = this;
 			this.element.appendChild(componentEl);
 
 			if (this.paramScrollTopOnChange || this.paramScrollTopOnChangeComponent) {

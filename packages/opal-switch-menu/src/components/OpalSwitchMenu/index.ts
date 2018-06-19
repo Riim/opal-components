@@ -24,7 +24,7 @@ export class OpalSwitchMenu extends BaseComponent {
 		return (this._checkedButton =
 			find.call(
 				this.buttonElements,
-				(btnEl: IComponentElement<OpalButton>) => btnEl.$component.checked
+				(btnEl: IComponentElement<OpalButton>) => btnEl.rioniteComponent.checked
 			) || null);
 	}
 	set checkedButton(checkedButton: OpalButton | null) {
@@ -33,7 +33,7 @@ export class OpalSwitchMenu extends BaseComponent {
 		}
 
 		forEach.call(this.buttonElements, (btnEl: IComponentElement<OpalButton>) => {
-			let btn = btnEl.$component;
+			let btn = btnEl.rioniteComponent;
 
 			if (btn === checkedButton) {
 				btn.check();
@@ -65,7 +65,7 @@ export class OpalSwitchMenu extends BaseComponent {
 
 		forEach.call(this.buttonElements, (btnEl: IComponentElement<OpalButton>) => {
 			if (btnEl.$component != checkedButton) {
-				btnEl.$component.uncheck();
+				btnEl.$component!.uncheck();
 			}
 		});
 

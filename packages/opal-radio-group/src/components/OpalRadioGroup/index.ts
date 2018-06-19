@@ -28,7 +28,7 @@ export class OpalRadioGroup extends BaseComponent {
 
 		forEach.call(this.buttonElements, (btnEl: IComponentElement<OpalRadioButton>) => {
 			if (btnEl.$component != checkedButton) {
-				btnEl.$component.uncheck();
+				btnEl.$component!.uncheck();
 			}
 		});
 	}
