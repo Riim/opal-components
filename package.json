@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.133",
+  "version": "0.33.135",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -64,7 +64,7 @@
     "@riim/opal-input-validator": "^0.33.131",
     "@riim/opal-loaded-list": "^0.33.131",
     "@riim/opal-loader": "^0.33.131",
-    "@riim/opal-modal": "^0.33.131",
+    "@riim/opal-modal": "^0.33.135",
     "@riim/opal-multirow": "^0.33.131",
     "@riim/opal-multiselect": "^0.33.131",
     "@riim/opal-notification": "^0.33.131",
