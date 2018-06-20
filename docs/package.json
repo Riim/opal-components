@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "cellx": "^1.7.92",
-    "opal-components": "^0.33.132",
+    "opal-components": "^0.33.136",
     "rionite": "^0.32.98"
   }
 }

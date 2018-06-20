@@ -270,7 +270,11 @@
       "node_modules/raw-loader/index.js!node_modules/trim-lines-loader/index.js!node_modules/collapse-line-breaks-loader/index.js!packages/opal-tree-tag-select/src/components/OpalTreeTagSelect/template.nelm": 266,
       "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/index.ts": 267,
       "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/utils/closestComponent.ts": 268,
-      "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/utils/isFocusable.ts": 269
+      "node_modules/awesome-typescript-loader/dist/entry.js!node_modules/tslint-loader/index.js!packages/opal-utils/src/utils/isFocusable.ts": 269,
+      "node_modules/simple-svg-loader/index.js??ref--8!packages/opal-icon/src/icons/arrowDown.svg?id=OpalIcon__iconArrowDown": 56,
+      "node_modules/simple-svg-loader/index.js??ref--8!packages/opal-icon/src/icons/arrowUp.svg?id=OpalIcon__iconArrowUp": 59,
+      "node_modules/simple-svg-loader/index.js??ref--8!packages/opal-icon/src/icons/chevronDown.svg?id=OpalIcon__iconChevronDown": 66,
+      "node_modules/simple-svg-loader/index.js??ref--8!packages/opal-icon/src/icons/chevronUp.svg?id=OpalIcon__iconChevronUp": 69
     },
     "usedIds": {
       "0": 0,
