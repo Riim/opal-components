@@ -235,13 +235,23 @@ var OpalRouter = /** @class */ (function (_super) {
             this.listenTo(document.body, 'click', this._onBodyClick);
         }
         this.listenTo(this, '<*>refresh-router', this._onRefreshRouter);
-        this._update(this.paramUseLocationHash ? history.location.hash.slice(1) : history.location.pathname);
+        if (this.paramUseLocationHash) {
+            this._update(history.location.hash.slice(1), '');
+        }
+        else {
+            this._update(history.location.pathname, history.location.hash);
+        }
     };
     OpalRouter.prototype.elementDetached = function () {
         this._clear();
     };
     OpalRouter.prototype._onHistoryChange = function (location) {
-        this._update(this.paramUseLocationHash ? history.location.hash.slice(1) : history.location.pathname);
+        if (this.paramUseLocationHash) {
+            this._update(location.hash.slice(1), '');
+        }
+        else {
+            this._update(location.pathname, location.hash);
+        }
     };
     OpalRouter.prototype._onBodyClick = function (evt) {
         var el = evt.target;
@@ -252,13 +262,14 @@ var OpalRouter = /** @class */ (function (_super) {
             }
         }
         var href = el.getAttribute('href');
-        if (href &&
-            href.lastIndexOf('#', 0) &&
-            !/^(?:\w+:|\/\/)/.test(href) &&
+        var hashIndex = href.indexOf('#');
+        var path = hashIndex == -1 ? href : href.slice(0, hashIndex);
+        if (path &&
+            !/^(?:\w+:|\/\/)/.test(path) &&
             el.getAttribute('target') != '_blank' &&
-            this._update(href)) {
+            this._update(path, hashIndex == -1 ? '' : href.slice(hashIndex + 1))) {
             evt.preventDefault();
-            if (href != history.location.pathname) {
+            if (path != history.location.pathname) {
                 history.push(href);
             }
         }
@@ -267,7 +278,7 @@ var OpalRouter = /** @class */ (function (_super) {
         this.refresh();
         return false;
     };
-    OpalRouter.prototype._update = function (path) {
+    OpalRouter.prototype._update = function (path, hash) {
         if (!path) {
             path = '/';
         }

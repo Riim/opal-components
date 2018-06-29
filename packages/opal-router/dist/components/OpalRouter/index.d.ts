@@ -33,7 +33,7 @@ export declare class OpalRouter extends BaseComponent {
     _onHistoryChange(location: Location): void;
     _onBodyClick(evt: Event): void;
     _onRefreshRouter(): boolean;
-    _update(path: string): boolean;
+    _update(path: string, hash: string): boolean;
     _applyState(): void;
     _clear(): void;
     refresh(): void;

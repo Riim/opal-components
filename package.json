@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.137",
+  "version": "0.33.138",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -45,7 +45,7 @@
     "tslint": "^5.10.0",
     "tslint-loader": "^3.6.0",
     "typescript": "2.9.2",
-    "webpack": "^4.12.2",
+    "webpack": "^4.14.0",
     "webpack-cli": "^3.0.8"
   },
   "dependencies": {
@@ -70,7 +70,7 @@
     "@riim/opal-notification": "^0.33.131",
     "@riim/opal-popover": "^0.33.131",
     "@riim/opal-radio-group": "^0.33.133",
-    "@riim/opal-router": "^0.33.133",
+    "@riim/opal-router": "^0.33.138",
     "@riim/opal-select": "^0.33.136",
     "@riim/opal-select-validator": "^0.33.131",
     "@riim/opal-sign-button": "^0.33.131",

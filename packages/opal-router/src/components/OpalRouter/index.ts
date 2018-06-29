@@ -131,9 +131,11 @@ export class OpalRouter extends BaseComponent {
 
 		this.listenTo(this, '<*>refresh-router', this._onRefreshRouter);
 
-		this._update(
-			this.paramUseLocationHash ? history.location.hash.slice(1) : history.location.pathname
-		);
+		if (this.paramUseLocationHash) {
+			this._update(history.location.hash.slice(1), '');
+		} else {
+			this._update(history.location.pathname, history.location.hash);
+		}
 	}
 
 	elementDetached() {
@@ -141,9 +143,11 @@ export class OpalRouter extends BaseComponent {
 	}
 
 	_onHistoryChange(location: Location) {
-		this._update(
-			this.paramUseLocationHash ? history.location.hash.slice(1) : history.location.pathname
-		);
+		if (this.paramUseLocationHash) {
+			this._update(location.hash.slice(1), '');
+		} else {
+			this._update(location.pathname, location.hash);
+		}
 	}
 
 	_onBodyClick(evt: Event) {
@@ -158,17 +162,18 @@ export class OpalRouter extends BaseComponent {
 		}
 
 		let href = el.getAttribute('href')!;
+		let hashIndex = href.indexOf('#');
+		let path = hashIndex == -1 ? href : href.slice(0, hashIndex);
 
 		if (
-			href &&
-			href.lastIndexOf('#', 0) &&
-			!/^(?:\w+:|\/\/)/.test(href) &&
+			path &&
+			!/^(?:\w+:|\/\/)/.test(path) &&
 			el.getAttribute('target') != '_blank' &&
-			this._update(href)
+			this._update(path, hashIndex == -1 ? '' : href.slice(hashIndex + 1))
 		) {
 			evt.preventDefault();
 
-			if (href != history.location.pathname) {
+			if (path != history.location.pathname) {
 				history.push(href);
 			}
 		}
@@ -179,7 +184,7 @@ export class OpalRouter extends BaseComponent {
 		return false;
 	}
 
-	_update(path: string): boolean {
+	_update(path: string, hash: string): boolean {
 		if (!path) {
 			path = '/';
 		}
