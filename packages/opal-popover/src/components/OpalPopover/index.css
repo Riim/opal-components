@@ -39,6 +39,35 @@ opal-popover {
 		display: block;
 	}
 
+	@mod viewType=primary,
+		viewType=success,
+		viewType=danger
+	{
+		@el contentSlot {
+			margin: -16px;
+			padding: 15px;
+			border-radius: 4px;
+		}
+	}
+
+	@mod viewType=primary {
+		@el contentSlot {
+			border: 1px solid hsl(208,94%,54%);
+		}
+	}
+
+	@mod viewType=success {
+		@el contentSlot {
+			border: 1px solid hsl(148,76%,40%);
+		}
+	}
+
+	@mod viewType=danger {
+		@el contentSlot {
+			border: 1px solid hsl(348,92%,58%);
+		}
+	}
+
 	@mod position=top,
 		position=top-left,
 		position=top-right

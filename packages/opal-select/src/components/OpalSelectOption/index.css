@@ -55,9 +55,9 @@
 			sub {
 				bottom: 0;
 				display: block;
+				color: hsl(0,0%,50%);
 				font-size: .9em;
 				line-height: 1.5;
-				opacity: .5;
 			}
 		}
 
@@ -83,11 +83,13 @@
 	}
 
 	@mod disabled {
-		opacity: .5;
 		pointer-events: none;
 
 		@el control {
 			cursor: default;
 		}
+			@el contentSlot {
+				color: hsl(0,0%,50%);
+			}
 	}
 }
