@@ -203,7 +203,11 @@ var defaultDataListItemSchema = Object.freeze({
     subtext: 'parent',
     disabled: 'disabled'
 });
-var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
+var defaultVMItemSchema = Object.freeze({
+    value: 'id',
+    text: 'name',
+    disabled: 'disabled'
+});
 var OpalTagSelect = /** @class */ (function (_super) {
     __extends(OpalTagSelect, _super);
     function OpalTagSelect() {
@@ -271,6 +275,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
         this.select = this.$('select');
     };
     OpalTagSelect.prototype.elementAttached = function () {
+        this.listenTo(this, 'change:paramDisabled', this._onParamDisabledChange);
         this.listenTo('control', 'click', this._onControlClick);
         this.listenTo(this.select, {
             input: this._onSelectInput,
@@ -279,7 +284,15 @@ var OpalTagSelect = /** @class */ (function (_super) {
             deselect: this._onSelectDeselect
         });
     };
+    OpalTagSelect.prototype._onParamDisabledChange = function (evt) {
+        if (evt.data.value) {
+            this.close();
+        }
+    };
     OpalTagSelect.prototype._onControlClick = function (evt) {
+        if (this.paramDisabled) {
+            return;
+        }
         var selectEl = this.select.element;
         var node = evt.target;
         if (node != selectEl) {
@@ -415,7 +428,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
                     }
                 },
                 btnRemoveTag: {
-                    click: function (evt, context) {
+                    click: function (_evt, context) {
                         this.viewModel.remove(context.tag);
                         this.emit('change');
                     }
@@ -438,7 +451,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalTagSelect{display:inline}.OpalTagSelect .OpalTagSelect__tag{position:relative;top:-1px;display:inline-block;margin:2px 40px 2px 0;padding:0 10px 0 18px;border-top-left-radius:16px;border-bottom-left-radius:16px;background:#5b7d9a;color:#fff;vertical-align:middle;text-decoration:none;text-shadow:none;font:16px/32px Verdana,Geneva,sans-serif;font-weight:400;cursor:default}.OpalTagSelect .OpalTagSelect__tag[disabled]{margin-right:8px;padding-right:18px;border-top-right-radius:16px;border-bottom-right-radius:16px}.OpalTagSelect .OpalTagSelect__tag[disabled] .OpalTagSelect__btnRemoveTag{display:none}.OpalTagSelect .OpalTagSelect__btnRemoveTag{position:absolute;top:0;bottom:0;left:100%;display:block;padding:0;width:32px;border:0;border-radius:0;border-top-right-radius:16px;border-bottom-right-radius:16px;background:#516270;-webkit-box-shadow:inset 1px 0 rgba(0,0,0,.4);box-shadow:inset 1px 0 rgba(0,0,0,.4);cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.OpalTagSelect .OpalTagSelect__btnRemoveTag::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;background:#fff;content:''}.OpalTagSelect .OpalTagSelect__btnRemoveTag:hover{background:#5b7d9a}.OpalTagSelect .OpalTagSelect__btnRemoveTag:focus{outline:0}body:not(._noFocusHighlight) .OpalTagSelect .OpalTagSelect__btnRemoveTag:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:inherit;content:'';pointer-events:none}.OpalTagSelect .OpalTagSelect__btnRemoveTag:active{background:#43484c}.OpalTagSelect .OpalTagSelect__control{display:inline-block;white-space:nowrap;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.OpalTagSelect .OpalTagSelect__placeholder{margin-right:8px}.OpalTagSelect .OpalTagSelect__button{margin:1px 0}.OpalTagSelect[view_type=primary] .OpalTagSelect__tag{background:#0083f5}.OpalTagSelect[view_type=primary] .OpalTagSelect__btnRemoveTag{background:#0a67b8}.OpalTagSelect[view_type=primary] .OpalTagSelect__btnRemoveTag:hover{background:#0083f5}.OpalTagSelect[view_type=primary] .OpalTagSelect__btnRemoveTag:active{background:#0e4b81}.OpalTagSelect[view_type=danger] .OpalTagSelect__tag{background:#fa0f3e}.OpalTagSelect[view_type=danger] .OpalTagSelect__btnRemoveTag{background:#c70f34}.OpalTagSelect[view_type=danger] .OpalTagSelect__btnRemoveTag:hover{background:#fa0f3e}.OpalTagSelect[view_type=danger] .OpalTagSelect__btnRemoveTag:active{background:#90142c}";
+            style.textContent = ".OpalTagSelect{display:inline}.OpalTagSelect .OpalTagSelect__tag{position:relative;top:-1px;display:inline-block;margin:2px 40px 2px 0;padding:0 10px 0 18px;border-top-left-radius:16px;border-bottom-left-radius:16px;background:#5b7d9a;color:#fff;vertical-align:middle;text-decoration:none;text-shadow:none;font:16px/32px Verdana,Geneva,sans-serif;font-weight:400;cursor:default}.OpalTagSelect .OpalTagSelect__tag[disabled]{margin-right:8px;padding-right:18px;border-top-right-radius:16px;border-bottom-right-radius:16px}.OpalTagSelect .OpalTagSelect__tag[disabled] .OpalTagSelect__btnRemoveTag{display:none}.OpalTagSelect .OpalTagSelect__btnRemoveTag{position:absolute;top:0;bottom:0;left:100%;display:block;padding:0;width:32px;border:0;border-radius:0;border-top-right-radius:16px;border-bottom-right-radius:16px;background:#516270;-webkit-box-shadow:inset 1px 0 rgba(0,0,0,.4);box-shadow:inset 1px 0 rgba(0,0,0,.4);cursor:pointer;-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear}.OpalTagSelect .OpalTagSelect__btnRemoveTag::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:12px;height:2px;background:#fff;content:''}.OpalTagSelect .OpalTagSelect__btnRemoveTag:hover{background:#5b7d9a}.OpalTagSelect .OpalTagSelect__btnRemoveTag:focus{outline:0}body:not(._noFocusHighlight) .OpalTagSelect .OpalTagSelect__btnRemoveTag:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border:1px solid rgba(255,255,255,.8);border-radius:inherit;content:'';pointer-events:none}.OpalTagSelect .OpalTagSelect__btnRemoveTag:active{background:#43484c}.OpalTagSelect .OpalTagSelect__control{display:inline-block;white-space:nowrap;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.OpalTagSelect .OpalTagSelect__placeholder{margin-right:8px}.OpalTagSelect .OpalTagSelect__button{margin:1px 0}.OpalTagSelect[view_type=primary] .OpalTagSelect__tag{background:#0083f5}.OpalTagSelect[view_type=primary] .OpalTagSelect__btnRemoveTag{background:#0a67b8}.OpalTagSelect[view_type=primary] .OpalTagSelect__btnRemoveTag:hover{background:#0083f5}.OpalTagSelect[view_type=primary] .OpalTagSelect__btnRemoveTag:active{background:#0e4b81}.OpalTagSelect[view_type=danger] .OpalTagSelect__tag{background:#fa0f3e}.OpalTagSelect[view_type=danger] .OpalTagSelect__btnRemoveTag{background:#c70f34}.OpalTagSelect[view_type=danger] .OpalTagSelect__btnRemoveTag:hover{background:#fa0f3e}.OpalTagSelect[view_type=danger] .OpalTagSelect__btnRemoveTag:active{background:#90142c}.OpalTagSelect[disabled]{pointer-events:none}.OpalTagSelect[disabled] .OpalTagSelect__placeholder{opacity:.5}";
             head.appendChild(style);
             return style;
         }

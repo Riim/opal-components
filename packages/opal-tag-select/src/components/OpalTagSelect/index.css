@@ -135,4 +135,12 @@
 				}
 			}
 	}
+
+	@mod disabled {
+		pointer-events: none;
+
+		@el placeholder {
+			opacity: .5;
+		}
+	}
 }

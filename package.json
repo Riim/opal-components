@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.142",
+  "version": "0.33.143",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -45,7 +45,7 @@
     "tslint": "^5.10.0",
     "tslint-loader": "^3.6.0",
     "typescript": "2.9.2",
-    "webpack": "^4.14.0",
+    "webpack": "4.15.0",
     "webpack-cli": "^3.0.8"
   },
   "dependencies": {
@@ -78,7 +78,7 @@
     "@riim/opal-switch": "^0.33.131",
     "@riim/opal-switch-menu": "^0.33.133",
     "@riim/opal-tabs": "^0.33.133",
-    "@riim/opal-tag-select": "^0.33.131",
+    "@riim/opal-tag-select": "^0.33.143",
     "@riim/opal-text-input": "^0.33.137",
     "@riim/opal-text-input-validator": "^0.33.131",
     "@riim/opal-tree-list": "^0.33.131",

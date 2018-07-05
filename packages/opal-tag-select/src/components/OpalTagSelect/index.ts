@@ -6,7 +6,12 @@ import {
 	TDataList,
 	TViewModel
 	} from '@riim/opal-select';
-import { Cell, define, ObservableList } from 'cellx';
+import {
+	Cell,
+	define,
+	IEvent,
+	ObservableList
+	} from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
 import './index.css';
@@ -18,7 +23,11 @@ const defaultDataListItemSchema = Object.freeze({
 	subtext: 'parent',
 	disabled: 'disabled'
 });
-const defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled: 'disabled' });
+const defaultVMItemSchema = Object.freeze({
+	value: 'id',
+	text: 'name',
+	disabled: 'disabled'
+});
 
 @Component<OpalTagSelect>({
 	elementIs: 'OpalTagSelect',
@@ -39,7 +48,7 @@ const defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name', disabled:
 		},
 
 		btnRemoveTag: {
-			click(evt, context) {
+			click(_evt, context) {
 				this.viewModel.remove(context.tag);
 				this.emit('change');
 			}
@@ -150,6 +159,7 @@ export class OpalTagSelect extends BaseComponent {
 	}
 
 	elementAttached() {
+		this.listenTo(this, 'change:paramDisabled', this._onParamDisabledChange);
 		this.listenTo('control', 'click', this._onControlClick);
 		this.listenTo(this.select, {
 			input: this._onSelectInput,
@@ -159,7 +169,17 @@ export class OpalTagSelect extends BaseComponent {
 		});
 	}
 
+	_onParamDisabledChange(evt: IEvent) {
+		if (evt.data.value) {
+			this.close();
+		}
+	}
+
 	_onControlClick(evt: Event) {
+		if (this.paramDisabled) {
+			return;
+		}
+
 		let selectEl = this.select.element;
 		let node = evt.target as Node;
 

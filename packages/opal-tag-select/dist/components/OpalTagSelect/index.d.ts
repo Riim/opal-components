@@ -1,5 +1,6 @@
 import { IDataProvider } from '@riim/opal-loaded-list';
 import { IDataListItem, OpalSelect, TDataList, TViewModel } from '@riim/opal-select';
+import { IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalTagSelect extends BaseComponent {
@@ -57,6 +58,7 @@ export declare class OpalTagSelect extends BaseComponent {
     initialize(): void;
     ready(): void;
     elementAttached(): void;
+    _onParamDisabledChange(evt: IEvent): void;
     _onControlClick(evt: Event): void;
     _onSelectInput(): false;
     _onSelectChange(): false;
