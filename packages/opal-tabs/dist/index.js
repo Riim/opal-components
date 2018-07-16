@@ -152,6 +152,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var next_uid_1 = __webpack_require__(152);
 var opal_router_1 = __webpack_require__(221);
+var cellx_1 = __webpack_require__(8);
 var rionite_1 = __webpack_require__(10);
 var OpalTabList_1 = __webpack_require__(222);
 exports.OpalTab = OpalTabList_1.OpalTab;
@@ -227,7 +228,7 @@ var OpalTabs = /** @class */ (function (_super) {
         evt.target.select();
     };
     OpalTabs.prototype._onHistoryChange = function (location) {
-        reTabLabel.test(opal_router_1.OpalRouter.history.location.hash);
+        reTabLabel.test(location.hash);
         if (RegExp.$1) {
             if (this._selectedTab && RegExp.$1 !== this._selectedTab.paramLabel) {
                 this.goToTab(RegExp.$1);
@@ -264,7 +265,7 @@ var OpalTabs = /** @class */ (function (_super) {
             var label_1 = tab.paramLabel;
             var locationHash = opal_router_1.OpalRouter.history.location.hash;
             var tabInLocationHashFound_1 = false;
-            var newLocationHash = locationHash.replace(/(#|&)tab=[^&]+/, function (match, sep) {
+            var newLocationHash = locationHash.replace(/(#|&)tab=[^&]+/, function (_match, sep) {
                 tabInLocationHashFound_1 = true;
                 return (sep == '#' ? '#' : '') + (label_1 ? 'tab=' + label_1 : '');
             });
@@ -274,6 +275,7 @@ var OpalTabs = /** @class */ (function (_super) {
                     : (locationHash ? locationHash + '&tab=' : '#tab=') + label_1;
             }
         }
+        cellx_1.Cell.forceRelease();
         this.emit('change');
     };
     __decorate([

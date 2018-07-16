@@ -1,6 +1,6 @@
 import { nextUID } from '@riim/next-uid';
 import { Location, OpalRouter } from '@riim/opal-router';
-import { IEvent } from 'cellx';
+import { Cell, IEvent } from 'cellx';
 import {
 	BaseComponent,
 	Component,
@@ -90,7 +90,7 @@ export class OpalTabs extends BaseComponent {
 			}
 
 			this._disposables[nextUID()] = {
-				dispose: OpalRouter.history.listen((location: any) => {
+				dispose: OpalRouter.history.listen(location => {
 					this._onHistoryChange(location);
 				})
 			};
@@ -106,7 +106,7 @@ export class OpalTabs extends BaseComponent {
 	}
 
 	_onHistoryChange(location: Location) {
-		reTabLabel.test(OpalRouter.history.location.hash);
+		reTabLabel.test(location.hash);
 
 		if (RegExp.$1) {
 			if (this._selectedTab && RegExp.$1 !== this._selectedTab.paramLabel) {
@@ -158,7 +158,7 @@ export class OpalTabs extends BaseComponent {
 			let label = tab.paramLabel;
 			let locationHash = OpalRouter.history.location.hash;
 			let tabInLocationHashFound = false;
-			let newLocationHash = locationHash.replace(/(#|&)tab=[^&]+/, (match, sep) => {
+			let newLocationHash = locationHash.replace(/(#|&)tab=[^&]+/, (_match, sep) => {
 				tabInLocationHashFound = true;
 				return (sep == '#' ? '#' : '') + (label ? 'tab=' + label : '');
 			});
@@ -170,6 +170,7 @@ export class OpalTabs extends BaseComponent {
 			}
 		}
 
+		Cell.forceRelease();
 		this.emit('change');
 	}
 }

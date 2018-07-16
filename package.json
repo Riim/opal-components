@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.143",
+  "version": "0.33.145",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -23,7 +23,7 @@
   "devDependencies": {
     "@riim/postcss-rionite-component": "^0.4.6",
     "@types/history": "^4.6.2",
-    "autoprefixer": "^8.6.4",
+    "autoprefixer": "^8.6.5",
     "awesome-typescript-loader": "^5.2.0",
     "collapse-line-breaks-loader": "^0.2.1",
     "glob": "^7.1.2",
@@ -33,7 +33,7 @@
     "postcss-color-function": "^4.0.1",
     "postcss-css-variables": "^0.9.0",
     "postcss-csso": "^3.0.0",
-    "postcss-loader": "^2.1.5",
+    "postcss-loader": "^2.1.6",
     "postcss-nested": "^3.0.0",
     "raw-loader": "^1.0.0-beta.0",
     "require-dir": "^1.0.0",
@@ -45,7 +45,7 @@
     "tslint": "^5.10.0",
     "tslint-loader": "^3.6.0",
     "typescript": "2.9.2",
-    "webpack": "4.15.0",
+    "webpack": "^4.16.0",
     "webpack-cli": "^3.0.8"
   },
   "dependencies": {
@@ -77,7 +77,7 @@
     "@riim/opal-slider": "^0.33.131",
     "@riim/opal-switch": "^0.33.131",
     "@riim/opal-switch-menu": "^0.33.133",
-    "@riim/opal-tabs": "^0.33.133",
+    "@riim/opal-tabs": "^0.33.145",
     "@riim/opal-tag-select": "^0.33.143",
     "@riim/opal-text-input": "^0.33.137",
     "@riim/opal-text-input-validator": "^0.33.131",
@@ -86,6 +86,6 @@
     "@riim/opal-tree-tag-select": "^0.33.131",
     "@riim/opal-utils": "^0.33.132",
     "cellx": "^1.7.92",
-    "rionite": "^0.32.98"
+    "rionite": "^0.32.99"
   }
 }
