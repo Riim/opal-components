@@ -262,6 +262,9 @@ var OpalRouter = /** @class */ (function (_super) {
             }
         }
         var href = el.getAttribute('href');
+        if (!href) {
+            return;
+        }
         var hashIndex = href.indexOf('#');
         var path = hashIndex == -1 ? href : href.slice(0, hashIndex);
         if (path &&

@@ -161,7 +161,12 @@ export class OpalRouter extends BaseComponent {
 			}
 		}
 
-		let href = el.getAttribute('href')!;
+		let href = el.getAttribute('href');
+
+		if (!href) {
+			return;
+		}
+
 		let hashIndex = href.indexOf('#');
 		let path = hashIndex == -1 ? href : href.slice(0, hashIndex);
 
