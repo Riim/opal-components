@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.146",
+  "version": "0.33.147",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -23,7 +23,7 @@
   "devDependencies": {
     "@riim/postcss-rionite-component": "^0.4.6",
     "@types/history": "^4.6.2",
-    "autoprefixer": "^8.6.5",
+    "autoprefixer": "^9.0.0",
     "awesome-typescript-loader": "^5.2.0",
     "collapse-line-breaks-loader": "^0.2.1",
     "glob": "^7.1.2",
@@ -42,10 +42,10 @@
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.2.4",
     "trim-lines-loader": "^0.2.1",
-    "tslint": "^5.10.0",
+    "tslint": "^5.11.0",
     "tslint-loader": "^3.6.0",
     "typescript": "2.9.2",
-    "webpack": "^4.16.0",
+    "webpack": "^4.16.1",
     "webpack-cli": "^3.0.8"
   },
   "dependencies": {
@@ -65,7 +65,7 @@
     "@riim/opal-loaded-list": "^0.33.131",
     "@riim/opal-loader": "^0.33.131",
     "@riim/opal-modal": "^0.33.135",
-    "@riim/opal-multirow": "^0.33.131",
+    "@riim/opal-multirow": "^0.33.147",
     "@riim/opal-multiselect": "^0.33.131",
     "@riim/opal-notification": "^0.33.131",
     "@riim/opal-popover": "^0.33.142",

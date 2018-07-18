@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-multirow",
-  "version": "0.33.131",
+  "version": "0.33.147",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,6 +18,6 @@
     "cellx": "^1.7.92",
     "cellx-decorators": "^1.4.11",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.97"
+    "rionite": "^0.32.99"
   }
 }
