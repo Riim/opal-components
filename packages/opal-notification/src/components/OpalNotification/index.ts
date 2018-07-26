@@ -117,12 +117,14 @@ export class OpalNotification extends BaseComponent {
 		shownNotifications.add(this);
 		container!.appendChild(this.bar);
 
-		setTimeout(() => {
+		setTimeout(() => { // для анимации
 			this.bar.setAttribute('shown', '');
 
 			if (this.paramTimeout) {
 				setTimeout(() => {
 					this.hide();
+					this.emit('hide');
+					this.emit('close');
 				}, this.paramTimeout);
 			}
 		}, 100);

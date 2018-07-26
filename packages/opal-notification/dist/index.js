@@ -243,6 +243,8 @@ var OpalNotification = /** @class */ (function (_super) {
             if (_this.paramTimeout) {
                 setTimeout(function () {
                     _this.hide();
+                    _this.emit('hide');
+                    _this.emit('close');
                 }, _this.paramTimeout);
             }
         }, 100);
