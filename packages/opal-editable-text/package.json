@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-editable-text",
-  "version": "0.33.131",
+  "version": "0.33.151",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,8 +13,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-icon": "^0.33.131",
+    "@riim/opal-icon": "^0.33.151",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.97"
+    "rionite": "^0.32.99"
   }
 }
