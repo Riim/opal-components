@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tree-list",
-  "version": "0.33.131",
+  "version": "0.33.151",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,14 +14,14 @@
   },
   "dependencies": {
     "@riim/object-assign-polyfill": "^1.0.0",
-    "@riim/opal-button": "^0.33.131",
-    "@riim/opal-checkbox": "^0.33.131",
-    "@riim/opal-icon": "^0.33.131",
-    "@riim/opal-loader": "^0.33.131",
-    "@riim/opal-utils": "^0.33.131",
-    "cellx": "^1.7.92",
+    "@riim/opal-button": "^0.33.151",
+    "@riim/opal-checkbox": "^0.33.151",
+    "@riim/opal-icon": "^0.33.151",
+    "@riim/opal-loader": "^0.33.151",
+    "@riim/opal-utils": "^0.33.151",
+    "cellx": "^1.7.93",
     "cellx-decorators": "^1.4.11",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.97"
+    "rionite": "^0.32.99"
   }
 }

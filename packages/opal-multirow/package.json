@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-multirow",
-  "version": "0.33.147",
+  "version": "0.33.151",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@riim/next-uid": "^1.0.0",
-    "@riim/opal-sign-button": "^0.33.131",
-    "cellx": "^1.7.92",
+    "@riim/opal-sign-button": "^0.33.151",
+    "cellx": "^1.7.93",
     "cellx-decorators": "^1.4.11",
     "reflect-metadata": "^0.1.12",
     "rionite": "^0.32.99"
