@@ -28,7 +28,7 @@ export declare class OpalInputMask extends BaseComponent {
     _onTextFieldKeyPress(evt: KeyboardEvent): void;
     _onTextFieldInput(): void;
     _initBuffer(): void;
-    _checkValue(allowNotCompleted: boolean): number;
+    _checkValue(allowNotCompleted: boolean, maskChanged: boolean): number;
     _shiftLeft(start: number, end: number): void;
     _shiftRight(index: number): void;
     _nextTestIndex(index: number): number;

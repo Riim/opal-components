@@ -98,19 +98,19 @@ export class OpalInputMask extends BaseComponent {
 		});
 
 		if (!ie11) {
-			this._checkValue(false);
+			this._checkValue(false, false);
 		}
 	}
 
 	_onMaskChange() {
 		this._initBuffer();
-		this._checkValue(false);
+		this._checkValue(false, true);
 	}
 
 	_onTextFieldFocus() {
 		nextTick(() => {
 			if (document.activeElement == this.textField) {
-				this._setTextFieldSelection(0, this._checkValue(false));
+				this._setTextFieldSelection(0, this._checkValue(false, false));
 				this._textOnFocus = this.textField.value;
 				this._writeBuffer();
 			}
@@ -118,7 +118,7 @@ export class OpalInputMask extends BaseComponent {
 	}
 
 	_onTextFieldBlur() {
-		this._checkValue(false);
+		this._checkValue(false, false);
 
 		if (this.textField.value != this._textOnFocus) {
 			this.textInput.emit('change');
@@ -158,7 +158,7 @@ export class OpalInputMask extends BaseComponent {
 
 			if (textField.value != this._textOnFocus) {
 				textField.value = this._textOnFocus;
-				this._setTextFieldSelection(0, this._checkValue(false));
+				this._setTextFieldSelection(0, this._checkValue(false, false));
 				this.textInput._onTextFieldInput(evt);
 			}
 		}
@@ -219,7 +219,7 @@ export class OpalInputMask extends BaseComponent {
 			return;
 		}
 
-		this._setTextFieldSelection(this._checkValue(true));
+		this._setTextFieldSelection(this._checkValue(true, false));
 	}
 
 	_initBuffer() {
@@ -227,7 +227,7 @@ export class OpalInputMask extends BaseComponent {
 		this._buffer = this._mask.map((chr: string) => (definitions[chr] ? null : chr));
 	}
 
-	_checkValue(allowNotCompleted: boolean): number {
+	_checkValue(allowNotCompleted: boolean, maskChanged: boolean): number {
 		let partialIndex = this._partialIndex;
 		let tests = this._tests;
 		let buffer = this._buffer;
@@ -236,6 +236,7 @@ export class OpalInputMask extends BaseComponent {
 		let valueLen = value.length;
 		let index = 0;
 		let lastMatchIndex = -1;
+		let hasUserInput = false;
 
 		for (let j = 0; index < bufferLen; index++) {
 			if (tests[index]) {
@@ -247,6 +248,7 @@ export class OpalInputMask extends BaseComponent {
 					if (tests[index]!.test(chr)) {
 						buffer[index] = chr;
 						lastMatchIndex = index;
+						hasUserInput = true;
 						break;
 					}
 				}
@@ -268,13 +270,11 @@ export class OpalInputMask extends BaseComponent {
 
 		if (allowNotCompleted) {
 			this._writeBuffer();
+		} else if (lastMatchIndex + 1 < partialIndex && !(maskChanged && hasUserInput)) {
+			this._clearBuffer(0, bufferLen);
+			this.textInput.value = '';
 		} else {
-			if (lastMatchIndex + 1 < partialIndex) {
-				this._clearBuffer(0, bufferLen);
-				this.textInput.value = '';
-			} else {
-				this.textInput.value = buffer.slice(0, lastMatchIndex + 1).join('');
-			}
+			this.textInput.value = buffer.slice(0, lastMatchIndex + 1).join('');
 		}
 
 		return index;

@@ -125,9 +125,12 @@ __export(__webpack_require__(125));
 "use strict";
 
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -211,25 +214,25 @@ var OpalInputMask = /** @class */ (function (_super) {
             input: this._onTextFieldInput
         });
         if (!ie11) {
-            this._checkValue(false);
+            this._checkValue(false, false);
         }
     };
     OpalInputMask.prototype._onMaskChange = function () {
         this._initBuffer();
-        this._checkValue(false);
+        this._checkValue(false, true);
     };
     OpalInputMask.prototype._onTextFieldFocus = function () {
         var _this = this;
         next_tick_1.nextTick(function () {
             if (document.activeElement == _this.textField) {
-                _this._setTextFieldSelection(0, _this._checkValue(false));
+                _this._setTextFieldSelection(0, _this._checkValue(false, false));
                 _this._textOnFocus = _this.textField.value;
                 _this._writeBuffer();
             }
         });
     };
     OpalInputMask.prototype._onTextFieldBlur = function () {
-        this._checkValue(false);
+        this._checkValue(false, false);
         if (this.textField.value != this._textOnFocus) {
             this.textInput.emit('change');
         }
@@ -262,7 +265,7 @@ var OpalInputMask = /** @class */ (function (_super) {
             evt.preventDefault();
             if (textField.value != this._textOnFocus) {
                 textField.value = this._textOnFocus;
-                this._setTextFieldSelection(0, this._checkValue(false));
+                this._setTextFieldSelection(0, this._checkValue(false, false));
                 this.textInput._onTextFieldInput(evt);
             }
         }
@@ -310,13 +313,13 @@ var OpalInputMask = /** @class */ (function (_super) {
         if (ie11) {
             return;
         }
-        this._setTextFieldSelection(this._checkValue(true));
+        this._setTextFieldSelection(this._checkValue(true, false));
     };
     OpalInputMask.prototype._initBuffer = function () {
         var definitions = this._definitions;
         this._buffer = this._mask.map(function (chr) { return (definitions[chr] ? null : chr); });
     };
-    OpalInputMask.prototype._checkValue = function (allowNotCompleted) {
+    OpalInputMask.prototype._checkValue = function (allowNotCompleted, maskChanged) {
         var partialIndex = this._partialIndex;
         var tests = this._tests;
         var buffer = this._buffer;
@@ -325,6 +328,7 @@ var OpalInputMask = /** @class */ (function (_super) {
         var valueLen = value.length;
         var index = 0;
         var lastMatchIndex = -1;
+        var hasUserInput = false;
         for (var j = 0; index < bufferLen; index++) {
             if (tests[index]) {
                 buffer[index] = null;
@@ -333,6 +337,7 @@ var OpalInputMask = /** @class */ (function (_super) {
                     if (tests[index].test(chr)) {
                         buffer[index] = chr;
                         lastMatchIndex = index;
+                        hasUserInput = true;
                         break;
                     }
                 }
@@ -353,14 +358,12 @@ var OpalInputMask = /** @class */ (function (_super) {
         if (allowNotCompleted) {
             this._writeBuffer();
         }
+        else if (lastMatchIndex + 1 < partialIndex && !(maskChanged && hasUserInput)) {
+            this._clearBuffer(0, bufferLen);
+            this.textInput.value = '';
+        }
         else {
-            if (lastMatchIndex + 1 < partialIndex) {
-                this._clearBuffer(0, bufferLen);
-                this.textInput.value = '';
-            }
-            else {
-                this.textInput.value = buffer.slice(0, lastMatchIndex + 1).join('');
-            }
+            this.textInput.value = buffer.slice(0, lastMatchIndex + 1).join('');
         }
         return index;
     };
@@ -486,9 +489,12 @@ exports.OpalInputMask = OpalInputMask;
 "use strict";
 
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
