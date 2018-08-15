@@ -270,7 +270,10 @@ export class OpalInputMask extends BaseComponent {
 
 		if (allowNotCompleted) {
 			this._writeBuffer();
-		} else if (lastMatchIndex + 1 < partialIndex && !(maskChanged && hasUserInput)) {
+		} else if (
+			lastMatchIndex + 1 < partialIndex &&
+			(!maskChanged || (!hasUserInput && !this.textInput.paramFocused))
+		) {
 			this._clearBuffer(0, bufferLen);
 			this.textInput.value = '';
 		} else {
