@@ -59,8 +59,10 @@ export class OpalTagSelect extends BaseComponent {
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
-	@Param paramViewType: string;
-	@Param paramDataList: TDataList;
+	@Param
+	paramViewType: string;
+	@Param
+	paramDataList: TDataList;
 	@Param({ readonly: true })
 	paramDataListKeypath: string;
 	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
@@ -76,11 +78,16 @@ export class OpalTagSelect extends BaseComponent {
 	paramViewModelItemSchema: { value?: string; text?: string; disabled?: string };
 	@Param({ readonly: true })
 	paramAddNewItem: (text: string) => Promise<{ [name: string]: string }>;
-	@Param paramPlaceholder = getText.t('Не выбрано');
-	@Param paramPopoverPosition = 'bottom';
-	@Param paramTabIndex = 0;
-	@Param paramFocused = false;
-	@Param paramDisabled = false;
+	@Param
+	paramPlaceholder = getText.t('Не выбрано');
+	@Param
+	paramPopoverPosition = 'bottom';
+	@Param
+	paramTabIndex = 0;
+	@Param
+	paramFocused = false;
+	@Param
+	paramDisabled = false;
 
 	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
@@ -90,7 +97,8 @@ export class OpalTagSelect extends BaseComponent {
 
 	dataProvider: IDataProvider | null;
 
-	@Observable viewModel: TViewModel;
+	@Observable
+	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 	_viewModelItemDisabledFieldName: string;

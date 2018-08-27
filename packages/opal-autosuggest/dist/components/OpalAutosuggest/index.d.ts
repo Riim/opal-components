@@ -68,6 +68,6 @@ export declare class OpalAutosuggest extends BaseComponent {
     openMenu(force?: boolean): this;
     closeMenu(): this;
     _selectItem(item?: IDataListItem | null): void;
-    clear(): void;
+    clear(textInputValue?: string): this;
     _clearDataList(): void;
 }

@@ -509,12 +509,13 @@ var OpalAutosuggest = /** @class */ (function (_super) {
             this.emit('change');
         }
     };
-    OpalAutosuggest.prototype.clear = function () {
+    OpalAutosuggest.prototype.clear = function (textInputValue) {
         this._clearDataList();
         if (this.value) {
             this.value = null;
         }
-        this.$('textInput').clear();
+        this.$('textInput').value = textInputValue || null;
+        return this;
     };
     OpalAutosuggest.prototype._clearDataList = function () {
         this._cancelLoading();

@@ -17,12 +17,18 @@ import template from './template.nelm';
 export class OpalSignButton extends BaseComponent {
 	@Param({ required: true })
 	paramSign: string;
-	@Param paramViewType: string;
-	@Param paramCheckable = false;
-	@Param paramChecked = false;
-	@Param paramTabIndex = 0;
-	@Param paramFocused = false;
-	@Param paramDisabled = false;
+	@Param
+	paramViewType: string;
+	@Param
+	paramCheckable = false;
+	@Param
+	paramChecked = false;
+	@Param
+	paramTabIndex = 0;
+	@Param
+	paramFocused = false;
+	@Param
+	paramDisabled = false;
 
 	@Computed
 	get _tabIndex(): number {

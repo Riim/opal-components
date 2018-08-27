@@ -13,14 +13,22 @@ import './index.css';
 	elementIs: 'OpalButton'
 })
 export class OpalButton extends BaseComponent {
-	@Param paramViewType = 'default';
-	@Param paramSize = 'm';
-	@Param paramCheckable = false;
-	@Param paramChecked = false;
-	@Param paramLoading = false;
-	@Param paramTabIndex = 0;
-	@Param paramFocused = false;
-	@Param paramDisabled = false;
+	@Param
+	paramViewType = 'default';
+	@Param
+	paramSize = 'm';
+	@Param
+	paramCheckable = false;
+	@Param
+	paramChecked = false;
+	@Param
+	paramLoading = false;
+	@Param
+	paramTabIndex = 0;
+	@Param
+	paramFocused = false;
+	@Param
+	paramDisabled = false;
 
 	@Computed
 	get _tabIndex(): number {

@@ -142,16 +142,22 @@ export function toDate(this: OpalCalendar) {
 	}
 })
 export class OpalCalendar extends BaseComponent {
-	@Param paramFromDate: string;
-	@Param paramToDate: string;
-	@Param paramValue: string;
-	@Param paramDateDelimiter = '/';
+	@Param
+	paramFromDate: string;
+	@Param
+	paramToDate: string;
+	@Param
+	paramValue: string;
+	@Param
+	paramDateDelimiter = '/';
 
 	weekDays: Array<string>;
 	weekDaysShort: Array<string>;
 
-	@Computed fromDate: Date = fromDate as any;
-	@Computed toDate: Date = toDate as any;
+	@Computed
+	fromDate: Date = fromDate as any;
+	@Computed
+	toDate: Date = toDate as any;
 
 	@Computed
 	get fromYear(): number {
@@ -189,8 +195,10 @@ export class OpalCalendar extends BaseComponent {
 		return value ? parseDate(value) : null;
 	}
 
-	@Observable shownYear: number;
-	@Observable shownMonth: number;
+	@Observable
+	shownYear: number;
+	@Observable
+	shownMonth: number;
 
 	@Computed
 	get btnPrevMonthDisabled(): boolean {

@@ -52,8 +52,10 @@ export class OpalRouter extends BaseComponent {
 
 	@Param({ readonly: true })
 	paramUseLocationHash = false;
-	@Param paramScrollTopOnChange = true;
-	@Param paramScrollTopOnChangeComponent = true;
+	@Param
+	paramScrollTopOnChange = true;
+	@Param
+	paramScrollTopOnChangeComponent = true;
 
 	_routes: Array<IRoute>;
 	_route: IRoute | null = null;

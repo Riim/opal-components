@@ -41,7 +41,8 @@ import template from './template.nelm';
 	}
 })
 export class OpalMultiselect extends OpalSelect {
-	@Param paramMultiple = true;
+	@Param
+	paramMultiple = true;
 	@Param({ readonly: true })
 	paramDataProvider: IDataProvider;
 

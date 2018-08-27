@@ -9,9 +9,11 @@ import template from './template.nelm';
 	template
 })
 export class OpalTabPanel extends BaseComponent {
-	@Param paramShown = false;
+	@Param
+	paramShown = false;
 
-	@Observable contentRendered = false;
+	@Observable
+	contentRendered = false;
 
 	initialize() {
 		this.listenTo(this, 'change:paramShown', this._onParamShownChange);

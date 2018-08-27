@@ -41,22 +41,28 @@ export class OpalLoadedList extends BaseComponent {
 	paramDataListItemSchema: { value?: string; text?: string };
 	@Param({ readonly: true })
 	paramDataProvider: IDataProvider;
-	@Param paramCount = 100;
-	@Param paramQuery: string;
+	@Param
+	paramCount = 100;
+	@Param
+	paramQuery: string;
 	@Param({ readonly: true })
 	paramPreloading = false;
 
-	@Observable dataList = new ObservableList<IDataListItem>();
+	@Observable
+	dataList = new ObservableList<IDataListItem>();
 	_dataListItemTextFieldName: string;
 
-	@Observable total: number | undefined;
+	@Observable
+	total: number | undefined;
 
 	dataProvider: IDataProvider;
 
 	_scrollingInProcessing: boolean = false;
-	@Observable _loadingCheckPlanned = false;
+	@Observable
+	_loadingCheckPlanned = false;
 	_loadingCheckTimeout: IDisposableTimeout;
-	@Observable loading = false;
+	@Observable
+	loading = false;
 	_requestCallback: IDisposableCallback;
 
 	_lastRequestedQuery: string | null = null;

@@ -15,8 +15,10 @@ export { OpalMultirowRow };
 export class OpalMultirow extends BaseComponent {
 	_presetRowClassName: string;
 
-	@Observable _presetRowCount = 0;
-	@Observable _newRows = new ObservableList<{ key: string }>();
+	@Observable
+	_presetRowCount = 0;
+	@Observable
+	_newRows = new ObservableList<{ key: string }>();
 
 	@Computed
 	_notHaveNewRows(): boolean {

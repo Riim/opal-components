@@ -60,7 +60,8 @@ export class OpalTreeList extends BaseComponent {
 	static defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
-	@Param paramDataTreeList: TDataTreeList;
+	@Param
+	paramDataTreeList: TDataTreeList;
 	@Param({ readonly: true })
 	paramDataTreeListKeypath: string;
 	@Param({
@@ -69,16 +70,19 @@ export class OpalTreeList extends BaseComponent {
 		readonly: true
 	})
 	paramDataTreeListItemSchema: { value?: string; text?: string };
-	@Param paramViewModel: TViewModel;
+	@Param
+	paramViewModel: TViewModel;
 	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
 	paramViewModelItemSchema: { value?: string; text?: string };
-	@Param paramQuery: string;
+	@Param
+	paramQuery: string;
 
 	dataTreeList: TDataTreeList | null;
 	_dataTreeListItemValueFieldName: string;
 	_dataTreeListItemTextFieldName: string;
 
-	@Observable query: string | null;
+	@Observable
+	query: string | null;
 
 	@Computed
 	get filteredDataTreeList(): TDataTreeList | null {
@@ -140,11 +144,13 @@ export class OpalTreeList extends BaseComponent {
 		);
 	}
 
-	@Observable viewModel: TViewModel;
+	@Observable
+	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 
-	@Observable _queryTimeout: IDisposableTimeout | null = null;
+	@Observable
+	_queryTimeout: IDisposableTimeout | null = null;
 
 	@Computed
 	get listShown(): boolean {

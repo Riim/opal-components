@@ -15,7 +15,8 @@ export class OpalInputValidator extends BaseComponent {
 
 	rules: Array<OpalInputValidatorRule>;
 
-	@Observable failedRule: OpalInputValidatorRule | null = null;
+	@Observable
+	failedRule: OpalInputValidatorRule | null = null;
 
 	@Computed
 	get valid(): boolean {

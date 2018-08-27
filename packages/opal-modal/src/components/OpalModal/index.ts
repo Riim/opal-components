@@ -46,9 +46,11 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 	}
 })
 export class OpalModal extends BaseComponent {
-	@Param paramOpened = false;
+	@Param
+	paramOpened = false;
 
-	@Observable contentRendered = false;
+	@Observable
+	contentRendered = false;
 
 	ready() {
 		if (this.paramOpened) {

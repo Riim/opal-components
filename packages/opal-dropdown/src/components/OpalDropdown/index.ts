@@ -16,11 +16,15 @@ const openedDropdowns: Array<OpalDropdown> = [];
 	template
 })
 export class OpalDropdown extends BaseComponent {
-	@Param paramAutoHeight = true;
-	@Param paramCloseOn: string; // click | mousedown
-	@Param paramOpened = false;
+	@Param
+	paramAutoHeight = true;
+	@Param
+	paramCloseOn: string; // click | mousedown
+	@Param
+	paramOpened = false;
 
-	@Observable contentRendered = false;
+	@Observable
+	contentRendered = false;
 
 	_closingEventListening: IDisposableListening | null | undefined;
 

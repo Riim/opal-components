@@ -23,26 +23,43 @@ import template from './template.nelm';
 	}
 })
 export class OpalTextInput extends BaseComponent {
-	@Param paramInputType = 'text';
-	@Param paramSize = 'm';
-	@Param paramMultiline = false;
-	@Param paramRows = 5;
-	@Param paramAutoHeight = true;
-	@Param paramInputName: string;
-	@Param paramValue = '';
-	@Param paramStoreKey: string;
-	@Param paramPlaceholder: string;
-	@Param paramStartIcon: string;
-	@Param paramEndIcon: string;
-	@Param paramClearable = false;
-	@Param paramLoading = false;
-	@Param paramTabIndex = 0;
-	@Param paramFocused = false;
-	@Param paramDisabled = false;
+	@Param
+	paramInputType = 'text';
+	@Param
+	paramSize = 'm';
+	@Param
+	paramMultiline = false;
+	@Param
+	paramRows = 5;
+	@Param
+	paramAutoHeight = true;
+	@Param
+	paramInputName: string;
+	@Param
+	paramValue = '';
+	@Param
+	paramStoreKey: string;
+	@Param
+	paramPlaceholder: string;
+	@Param
+	paramStartIcon: string;
+	@Param
+	paramEndIcon: string;
+	@Param
+	paramClearable = false;
+	@Param
+	paramLoading = false;
+	@Param
+	paramTabIndex = 0;
+	@Param
+	paramFocused = false;
+	@Param
+	paramDisabled = false;
 
 	textField: HTMLInputElement;
 
-	@Observable _textFieldValue: string;
+	@Observable
+	_textFieldValue: string;
 
 	get value(): string | null {
 		return this._textFieldValue.trim() || null;

@@ -20,8 +20,10 @@ import template from './template.nelm';
 	}
 })
 export class OpalTreeSelect extends OpalSelect {
-	@Param paramMultiple = true;
-	@Param paramDataTreeList: TDataTreeList;
+	@Param
+	paramMultiple = true;
+	@Param
+	paramDataTreeList: TDataTreeList;
 	@Param({ readonly: true })
 	paramDataTreeListKeypath: string;
 	@Param({
@@ -36,7 +38,8 @@ export class OpalTreeSelect extends OpalSelect {
 		readonly: true
 	})
 	paramViewModelItemSchema: { value?: string; text?: string };
-	@Param paramQuery: string;
+	@Param
+	paramQuery: string;
 	@Param({ readonly: true })
 	openOnClick = true;
 

@@ -27,7 +27,8 @@ const reTabLabel = /(?:#|&)tab=([^&]+)/;
 	template
 })
 export class OpalTabs extends BaseComponent {
-	@Param paramUseLocationHash = false;
+	@Param
+	paramUseLocationHash = false;
 
 	tabs: NodeListOf<IComponentElement<OpalTab>>;
 	tabPanels: NodeListOf<IComponentElement<OpalTabPanel>>;

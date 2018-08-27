@@ -14,13 +14,19 @@ import template from './template.nelm';
 	template
 })
 export class OpalPopover extends BaseComponent {
-	@Param paramPosition = 'right';
-	@Param paramPositionOffset = 0;
-	@Param paramAutoDirection = true;
-	@Param paramCloseOn: string; // click | mousedown
-	@Param paramOpened = false;
+	@Param
+	paramPosition = 'right';
+	@Param
+	paramPositionOffset = 0;
+	@Param
+	paramAutoDirection = true;
+	@Param
+	paramCloseOn: string; // click | mousedown
+	@Param
+	paramOpened = false;
 
-	@Observable contentRendered = false;
+	@Observable
+	contentRendered = false;
 
 	_positionOnOpen: string;
 

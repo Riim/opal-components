@@ -164,8 +164,7 @@ var OpalSlider = /** @class */ (function (_super) {
         get: function () {
             var min = this.paramMin;
             var all = this.paramMax - min;
-            return (Math.round(((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) /
-                2 *
+            return (Math.round((((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) / 2) *
                 1e5) / 1e3);
         },
         enumerable: true,

@@ -63,27 +63,34 @@ export class OpalAutosuggest extends BaseComponent {
 	paramDataProvider: IDataProvider;
 	@Param({ type: eval })
 	paramValue: IDataListItem;
-	@Param paramMinQueryLength = 3;
-	@Param paramCount = 5;
-	@Param paramOpenMenuOnNothingFound = false;
+	@Param
+	paramMinQueryLength = 3;
+	@Param
+	paramCount = 5;
+	@Param
+	paramOpenMenuOnNothingFound = false;
 
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 
-	@Observable dataList = new ObservableList<IDataListItem>();
+	@Observable
+	dataList = new ObservableList<IDataListItem>();
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;
 	_dataListItemSubtextFieldName: string;
 
 	dataProvider: IDataProvider;
 
-	@Observable value: IDataListItem | null;
+	@Observable
+	value: IDataListItem | null;
 
 	_inputNotConfirmed = false;
 
-	@Observable _loadingPlanned = false;
+	@Observable
+	_loadingPlanned = false;
 	_loadingTimeout: IDisposableTimeout;
 	_requestCallback: IDisposableCallback;
-	@Observable loading = false;
+	@Observable
+	loading = false;
 
 	@Computed
 	get loaderShown(): boolean {
@@ -493,14 +500,16 @@ export class OpalAutosuggest extends BaseComponent {
 		}
 	}
 
-	clear() {
+	clear(textInputValue?: string): this {
 		this._clearDataList();
 
 		if (this.value) {
 			this.value = null;
 		}
 
-		this.$<OpalTextInput>('textInput')!.clear();
+		this.$<OpalTextInput>('textInput')!.value = textInputValue || null;
+
+		return this;
 	}
 
 	_clearDataList() {

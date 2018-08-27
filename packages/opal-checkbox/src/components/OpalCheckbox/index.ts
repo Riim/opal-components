@@ -15,11 +15,16 @@ import template from './template.nelm';
 	template
 })
 export class OpalCheckbox extends BaseComponent {
-	@Param paramChecked = false;
-	@Param paramIndeterminate = false;
-	@Param paramTabIndex = 0;
-	@Param paramFocused = false;
-	@Param paramDisabled = false;
+	@Param
+	paramChecked = false;
+	@Param
+	paramIndeterminate = false;
+	@Param
+	paramTabIndex = 0;
+	@Param
+	paramFocused = false;
+	@Param
+	paramDisabled = false;
 
 	@Computed
 	get _tabIndex(): number {

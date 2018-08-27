@@ -10,12 +10,18 @@ import template from './template.nelm';
 	template
 })
 export class OpalTab extends BaseComponent {
-	@Param paramLabel: string;
-	@Param paramSelected = false;
-	@Param paramTabIndex = 0;
-	@Param paramFocused = false;
-	@Param paramHidden = false;
-	@Param paramDisabled = false;
+	@Param
+	paramLabel: string;
+	@Param
+	paramSelected = false;
+	@Param
+	paramTabIndex = 0;
+	@Param
+	paramFocused = false;
+	@Param
+	paramHidden = false;
+	@Param
+	paramDisabled = false;
 
 	@Computed
 	get _tabIndex(): number {

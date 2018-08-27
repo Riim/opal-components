@@ -242,6 +242,7 @@ var OpalNotification = /** @class */ (function (_super) {
         shownNotifications.add(this);
         container.appendChild(this.bar);
         setTimeout(function () {
+            // для анимации
             _this.bar.setAttribute('shown', '');
             if (_this.paramTimeout) {
                 setTimeout(function () {

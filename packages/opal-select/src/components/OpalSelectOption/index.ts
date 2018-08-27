@@ -10,15 +10,22 @@ import template from './template.nelm';
 	template
 })
 export class OpalSelectOption extends BaseComponent {
-	@Param paramValue: string;
+	@Param
+	paramValue: string;
 	@Param({ required: true })
 	paramText: string;
-	@Param paramSubtext: string;
-	@Param paramSelected = false;
-	@Param paramIndeterminate = false;
-	@Param paramTabIndex = 0;
-	@Param paramFocused = false;
-	@Param paramDisabled = false;
+	@Param
+	paramSubtext: string;
+	@Param
+	paramSelected = false;
+	@Param
+	paramIndeterminate = false;
+	@Param
+	paramTabIndex = 0;
+	@Param
+	paramFocused = false;
+	@Param
+	paramDisabled = false;
 
 	@Computed
 	get _tabIndex(): number {

@@ -22,7 +22,7 @@ export class OpalSelectValidator extends OpalInputValidator {
 
 		return !(vm.length
 			? (rule.paramMinCount && vm.length < rule.paramMinCount) ||
-				(rule.paramTest && !rule.paramTest.call(this.ownerComponent, vm))
+			  (rule.paramTest && !rule.paramTest.call(this.ownerComponent, vm))
 			: rule.paramRequired);
 	}
 }

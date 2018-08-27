@@ -42,8 +42,10 @@ export class OpalTreeListItem extends BaseComponent {
 	paramViewModelItemTextFieldName: string;
 	@Param({ type: eval, required: true, readonly: true })
 	paramIndexpath: Array<number>;
-	@Param paramQuery: string;
-	@Param paramOpened = false;
+	@Param
+	paramQuery: string;
+	@Param
+	paramOpened = false;
 
 	@Computed
 	get dataTreeList(): TDataTreeList {

@@ -12,7 +12,8 @@ export class OpalInputValidatorRule extends BaseComponent {
 	paramRequired = false;
 	@Param({ readonly: true })
 	paramTest: (this: BaseComponent, value: any) => boolean;
-	@Param paramPopoverPosition = 'right';
+	@Param
+	paramPopoverPosition = 'right';
 
 	showMessage() {
 		this.$<OpalPopover>('popover')!.open();

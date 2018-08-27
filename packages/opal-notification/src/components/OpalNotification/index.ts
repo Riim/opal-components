@@ -27,11 +27,16 @@ function initContainer(notification: OpalNotification): HTMLElement {
 	template
 })
 export class OpalNotification extends BaseComponent {
-	@Param paramViewType = 'default';
-	@Param paramIconSize = 'm';
-	@Param paramButtonHide = true;
-	@Param paramTimeout = 0;
-	@Param paramShown = false;
+	@Param
+	paramViewType = 'default';
+	@Param
+	paramIconSize = 'm';
+	@Param
+	paramButtonHide = true;
+	@Param
+	paramTimeout = 0;
+	@Param
+	paramShown = false;
 
 	bar: HTMLElement;
 
@@ -117,7 +122,8 @@ export class OpalNotification extends BaseComponent {
 		shownNotifications.add(this);
 		container!.appendChild(this.bar);
 
-		setTimeout(() => { // для анимации
+		setTimeout(() => {
+			// для анимации
 			this.bar.setAttribute('shown', '');
 
 			if (this.paramTimeout) {

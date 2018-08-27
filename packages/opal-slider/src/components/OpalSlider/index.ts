@@ -8,15 +8,21 @@ import template from './template.nelm';
 	template
 })
 export class OpalSlider extends BaseComponent {
-	@Param paramMin = 0;
-	@Param paramMax = 100;
-	@Param paramStep = 1;
-	@Param paramValue = 0;
+	@Param
+	paramMin = 0;
+	@Param
+	paramMax = 100;
+	@Param
+	paramStep = 1;
+	@Param
+	paramValue = 0;
 	@Param({ type: eval })
 	paramRange: [number, number];
 
-	@Observable _firstInputValue: number;
-	@Observable _secondInputValue: number;
+	@Observable
+	_firstInputValue: number;
+	@Observable
+	_secondInputValue: number;
 
 	@Computed
 	get _firstInputWidth(): number {
@@ -25,8 +31,7 @@ export class OpalSlider extends BaseComponent {
 
 		return (
 			Math.round(
-				((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) /
-					2 *
+				(((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) / 2) *
 					1e5
 			) / 1e3
 		);
