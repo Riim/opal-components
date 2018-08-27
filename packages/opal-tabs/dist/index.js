@@ -212,8 +212,7 @@ var OpalTabs = /** @class */ (function (_super) {
             '<OpalTab>deselect': this._onTabListDeselect
         });
         if (this.paramUseLocationHash) {
-            var locationHash = opal_router_1.OpalRouter.history.location.hash;
-            reTabLabel.test(locationHash);
+            reTabLabel.test(opal_router_1.OpalRouter.history.location.hash);
             if (RegExp.$1) {
                 this.goToTab(RegExp.$1);
             }
@@ -246,7 +245,7 @@ var OpalTabs = /** @class */ (function (_super) {
             return true;
         }
         var tab = find.call(this.tabs, function (tab) { return tab.$component.paramLabel == label; });
-        if (tab) {
+        if (tab && !tab.$component.paramHidden) {
             this._selectTab(tab.$component);
             return true;
         }

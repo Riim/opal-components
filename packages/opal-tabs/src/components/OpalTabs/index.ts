@@ -82,9 +82,7 @@ export class OpalTabs extends BaseComponent {
 		);
 
 		if (this.paramUseLocationHash) {
-			let locationHash = OpalRouter.history.location.hash;
-
-			reTabLabel.test(locationHash);
+			reTabLabel.test(OpalRouter.history.location.hash);
 
 			if (RegExp.$1) {
 				this.goToTab(RegExp.$1);
@@ -128,7 +126,7 @@ export class OpalTabs extends BaseComponent {
 			(tab: IComponentElement<OpalTab>) => tab.$component!.paramLabel == label
 		);
 
-		if (tab) {
+		if (tab && !tab.$component!.paramHidden) {
 			this._selectTab(tab.$component!);
 			return true;
 		}
