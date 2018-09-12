@@ -1,5 +1,13 @@
-div/bar (viewType={paramViewType}, iconSize={paramIconSize}, buttonHide={paramButtonHide}) {
-	@Slot/iconSlot (for=icon)
+div/bar (
+	viewType={paramViewType},
+	hasIcon={paramIcon |notnot },
+	iconSize={paramIconSize},
+	buttonHide={paramButtonHide}
+) {
+	@IfThen (paramIcon) {
+		OpalIcon/icon (name={paramIcon}, size={paramIconSize})
+	}
+
 	@Slot/contentSlot
 
 	button/btnHide (hide={paramButtonHide |not }) {

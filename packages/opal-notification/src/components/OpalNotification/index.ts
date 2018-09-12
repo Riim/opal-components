@@ -30,7 +30,9 @@ export class OpalNotification extends BaseComponent {
 	@Param
 	paramViewType = 'default';
 	@Param
-	paramIconSize = 'm';
+	paramIcon: string;
+	@Param
+	paramIconSize = 'xs';
 	@Param
 	paramButtonHide = true;
 	@Param
@@ -49,9 +51,6 @@ export class OpalNotification extends BaseComponent {
 
 		let bar = (this.bar = this.$<HTMLElement>('bar', this)!);
 		this.element.removeChild(bar);
-		if (this.$('icon')) {
-			bar.setAttribute('has_icon', '');
-		}
 
 		if (this.paramShown) {
 			this._show();

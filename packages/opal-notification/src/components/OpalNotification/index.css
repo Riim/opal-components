@@ -23,42 +23,34 @@
 	.OpalNotification__container .OpalNotification__bar[view_type=primary] {
 		background: hsl(208,94%,54%);
 	}
-
 	.OpalNotification__container .OpalNotification__bar[view_type=success] {
 		background: hsl(148,76%,40%);
 	}
-
 	.OpalNotification__container .OpalNotification__bar[view_type=danger] {
 		background: hsl(348,92%,58%);
 	}
 
-	.OpalNotification__container .OpalNotification__bar[has_icon] {
+	.OpalNotification__container .OpalNotification__bar[has_icon][icon_size=xs] {
 		padding-left: 48px;
+	}
+	.OpalNotification__container .OpalNotification__bar[has_icon][icon_size=s] {
+		padding-left: 52px;
+	}
+	.OpalNotification__container .OpalNotification__bar[has_icon][icon_size=m] {
+		padding-left: 56px;
 	}
 
 	.OpalNotification__container .OpalNotification__bar[shown] {
 		right: 0;
 		opacity: 1;
 	}
-		.OpalNotification__container .OpalNotification__iconSlot {
+		.OpalNotification__container .OpalNotification__icon {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 16px;
+			margin: auto;
 		}
-			.OpalNotification__container .OpalNotification__icon {
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				left: 16px;
-				margin: auto;
-			}
-			.OpalNotification__container svg.OpalNotification__icon {
-				display: block;
-				width: 18px;
-				height: 18px;
-				stroke-width: 3px;
-				stroke: #fff;
-				stroke-linecap: round;
-				stroke-linejoin: round;
-				fill: none;
-			}
 
 		.OpalNotification__container .OpalNotification__btnHide {
 			position: absolute;

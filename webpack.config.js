@@ -1,11 +1,11 @@
-let path = require('path');
-let webpack = require('webpack');
-let postcssCSSVariables = require('postcss-css-variables');
-let postcssRioniteComponent = require('@riim/postcss-rionite-component');
-let postcssNested = require('postcss-nested');
-let postcssColorFunction = require('postcss-color-function');
-let autoprefixer = require('autoprefixer');
-let csso = require('postcss-csso');
+const path = require('path');
+const webpack = require('webpack');
+const postcssCSSVariables = require('postcss-css-variables');
+const postcssRioniteComponent = require('@riim/postcss-rionite-component');
+const postcssNested = require('postcss-nested');
+const postcssColorFunction = require('postcss-color-function');
+const autoprefixer = require('autoprefixer');
+const csso = require('postcss-csso');
 
 module.exports = env => {
 	if (!env) {
