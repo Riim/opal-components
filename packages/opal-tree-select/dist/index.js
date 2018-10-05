@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["reflect-metadata", "cellx", "rionite", "@riim/opal-select", "@riim/opal-button", "@riim/opal-filtered-list", "@riim/opal-modal", "@riim/opal-tree-list"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tree-select"] = factory(require("reflect-metadata"), require("cellx"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-button"), require("@riim/opal-filtered-list"), require("@riim/opal-modal"), require("@riim/opal-tree-list"));
+		exports["@riim/packages/opal-tree-select/src/index.ts"] = factory(require("reflect-metadata"), require("cellx"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-button"), require("@riim/opal-filtered-list"), require("@riim/opal-modal"), require("@riim/opal-tree-list"));
 	else
-		root["@riim/opal-tree-select"] = factory(root["reflect-metadata"], root["cellx"], root["rionite"], root["@riim/opal-select"], root["@riim/opal-button"], root["@riim/opal-filtered-list"], root["@riim/opal-modal"], root["@riim/opal-tree-list"]);
+		root["@riim/packages/opal-tree-select/src/index.ts"] = factory(root["reflect-metadata"], root["cellx"], root["rionite"], root["@riim/opal-select"], root["@riim/opal-button"], root["@riim/opal-filtered-list"], root["@riim/opal-modal"], root["@riim/opal-tree-list"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__159__, __WEBPACK_EXTERNAL_MODULE__194__, __WEBPACK_EXTERNAL_MODULE__257__, __WEBPACK_EXTERNAL_MODULE__258__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

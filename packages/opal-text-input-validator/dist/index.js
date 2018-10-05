@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["@riim/opal-text-input", "reflect-metadata", "rionite", "@riim/opal-input-validator"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-text-input-validator"] = factory(require("@riim/opal-text-input"), require("reflect-metadata"), require("rionite"), require("@riim/opal-input-validator"));
+		exports["@riim/packages/opal-text-input-validator/src/index.ts"] = factory(require("@riim/opal-text-input"), require("reflect-metadata"), require("rionite"), require("@riim/opal-input-validator"));
 	else
-		root["@riim/opal-text-input-validator"] = factory(root["@riim/opal-text-input"], root["reflect-metadata"], root["rionite"], root["@riim/opal-input-validator"]);
+		root["@riim/packages/opal-text-input-validator/src/index.ts"] = factory(root["@riim/opal-text-input"], root["reflect-metadata"], root["rionite"], root["@riim/opal-input-validator"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__189__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

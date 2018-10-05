@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["reflect-metadata", "cellx", "cellx-decorators", "rionite", "@riim/opal-sign-button", "@riim/next-uid"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-multirow"] = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-sign-button"), require("@riim/next-uid"));
+		exports["@riim/packages/opal-multirow/src/index.ts"] = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-sign-button"), require("@riim/next-uid"));
 	else
-		root["@riim/opal-multirow"] = factory(root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/opal-sign-button"], root["@riim/next-uid"]);
+		root["@riim/packages/opal-multirow/src/index.ts"] = factory(root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/opal-sign-button"], root["@riim/next-uid"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__150__, __WEBPACK_EXTERNAL_MODULE__152__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

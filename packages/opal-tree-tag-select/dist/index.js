@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["reflect-metadata", "rionite", "@riim/opal-sign-button", "@riim/opal-tag-select", "@riim/opal-tree-select"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tree-tag-select"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/opal-sign-button"), require("@riim/opal-tag-select"), require("@riim/opal-tree-select"));
+		exports["@riim/packages/opal-tree-tag-select/src/index.ts"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/opal-sign-button"), require("@riim/opal-tag-select"), require("@riim/opal-tree-select"));
 	else
-		root["@riim/opal-tree-tag-select"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/opal-sign-button"], root["@riim/opal-tag-select"], root["@riim/opal-tree-select"]);
+		root["@riim/packages/opal-tree-tag-select/src/index.ts"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/opal-sign-button"], root["@riim/opal-tag-select"], root["@riim/opal-tree-select"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__150__, __WEBPACK_EXTERNAL_MODULE__263__, __WEBPACK_EXTERNAL_MODULE__264__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

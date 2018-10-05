@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["reflect-metadata", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-slider"] = factory(require("reflect-metadata"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/packages/opal-slider/src/index.ts"] = factory(require("reflect-metadata"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/opal-slider"] = factory(root["reflect-metadata"], root["cellx-decorators"], root["rionite"]);
+		root["@riim/packages/opal-slider/src/index.ts"] = factory(root["reflect-metadata"], root["cellx-decorators"], root["rionite"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

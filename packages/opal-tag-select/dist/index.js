@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["reflect-metadata", "cellx", "cellx-decorators", "rionite", "@riim/opal-select", "@riim/opal-loaded-list", "@riim/opal-popover", "@riim/opal-loader", "@riim/opal-sign-button", "@riim/opal-filtered-list", "@riim/gettext"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tag-select"] = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-loaded-list"), require("@riim/opal-popover"), require("@riim/opal-loader"), require("@riim/opal-sign-button"), require("@riim/opal-filtered-list"), require("@riim/gettext"));
+		exports["@riim/packages/opal-tag-select/src/index.ts"] = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-loaded-list"), require("@riim/opal-popover"), require("@riim/opal-loader"), require("@riim/opal-sign-button"), require("@riim/opal-filtered-list"), require("@riim/gettext"));
 	else
-		root["@riim/opal-tag-select"] = factory(root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/opal-select"], root["@riim/opal-loaded-list"], root["@riim/opal-popover"], root["@riim/opal-loader"], root["@riim/opal-sign-button"], root["@riim/opal-filtered-list"], root["@riim/gettext"]);
+		root["@riim/packages/opal-tag-select/src/index.ts"] = factory(root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/opal-select"], root["@riim/opal-loaded-list"], root["@riim/opal-popover"], root["@riim/opal-loader"], root["@riim/opal-sign-button"], root["@riim/opal-filtered-list"], root["@riim/gettext"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__44__, __WEBPACK_EXTERNAL_MODULE__130__, __WEBPACK_EXTERNAL_MODULE__138__, __WEBPACK_EXTERNAL_MODULE__150__, __WEBPACK_EXTERNAL_MODULE__194__, __WEBPACK_EXTERNAL_MODULE__196__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

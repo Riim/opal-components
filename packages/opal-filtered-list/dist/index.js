@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["@riim/opal-icon", "@riim/opal-text-input", "reflect-metadata", "rionite", "@riim/opal-loaded-list"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-filtered-list"] = factory(require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("rionite"), require("@riim/opal-loaded-list"));
+		exports["@riim/packages/opal-filtered-list/src/index.ts"] = factory(require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("rionite"), require("@riim/opal-loaded-list"));
 	else
-		root["@riim/opal-filtered-list"] = factory(root["@riim/opal-icon"], root["@riim/opal-text-input"], root["reflect-metadata"], root["rionite"], root["@riim/opal-loaded-list"]);
+		root["@riim/packages/opal-filtered-list/src/index.ts"] = factory(root["@riim/opal-icon"], root["@riim/opal-text-input"], root["reflect-metadata"], root["rionite"], root["@riim/opal-loaded-list"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__44__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

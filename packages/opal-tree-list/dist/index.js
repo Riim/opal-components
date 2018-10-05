@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["@riim/opal-icon", "reflect-metadata", "@riim/opal-utils", "cellx", "cellx-decorators", "rionite", "@riim/opal-loader", "@riim/opal-button", "@riim/opal-checkbox", "@riim/object-assign-polyfill"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tree-list"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-loader"), require("@riim/opal-button"), require("@riim/opal-checkbox"), require("@riim/object-assign-polyfill"));
+		exports["@riim/packages/opal-tree-list/src/index.ts"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-loader"), require("@riim/opal-button"), require("@riim/opal-checkbox"), require("@riim/object-assign-polyfill"));
 	else
-		root["@riim/opal-tree-list"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["@riim/opal-utils"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/opal-loader"], root["@riim/opal-button"], root["@riim/opal-checkbox"], root["@riim/object-assign-polyfill"]);
+		root["@riim/packages/opal-tree-list/src/index.ts"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["@riim/opal-utils"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/opal-loader"], root["@riim/opal-button"], root["@riim/opal-checkbox"], root["@riim/object-assign-polyfill"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__138__, __WEBPACK_EXTERNAL_MODULE__159__, __WEBPACK_EXTERNAL_MODULE__246__, __WEBPACK_EXTERNAL_MODULE__248__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

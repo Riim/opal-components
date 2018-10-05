@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-focus-highlight-controller"] = factory();
+		exports["@riim/packages/opal-focus-highlight-controller/src/index.ts"] = factory();
 	else
-		root["@riim/opal-focus-highlight-controller"] = factory();
+		root["@riim/packages/opal-focus-highlight-controller/src/index.ts"] = factory();
 })(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["reflect-metadata", "rionite", "@riim/next-uid", "@riim/kebab-case", "@riim/rionite-snake-case-attribute-name", "history/createBrowserHistory"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-router"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/next-uid"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("history/createBrowserHistory"));
+		exports["@riim/packages/opal-router/src/index.ts"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/next-uid"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("history/createBrowserHistory"));
 	else
-		root["@riim/opal-router"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/next-uid"], root["@riim/kebab-case"], root["@riim/rionite-snake-case-attribute-name"], root["history/createBrowserHistory"]);
+		root["@riim/packages/opal-router/src/index.ts"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/next-uid"], root["@riim/kebab-case"], root["@riim/rionite-snake-case-attribute-name"], root["history/createBrowserHistory"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__152__, __WEBPACK_EXTERNAL_MODULE__180__, __WEBPACK_EXTERNAL_MODULE__181__, __WEBPACK_EXTERNAL_MODULE__182__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

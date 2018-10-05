@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["reflect-metadata", "rionite", "@riim/opal-select", "@riim/opal-input-validator"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-select-validator"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-input-validator"));
+		exports["@riim/packages/opal-select-validator/src/index.ts"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-input-validator"));
 	else
-		root["@riim/opal-select-validator"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/opal-select"], root["@riim/opal-input-validator"]);
+		root["@riim/packages/opal-select-validator/src/index.ts"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/opal-select"], root["@riim/opal-input-validator"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__189__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

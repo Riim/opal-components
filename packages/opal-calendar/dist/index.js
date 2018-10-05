@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["@riim/opal-icon", "reflect-metadata", "@riim/next-tick", "cellx-decorators", "rionite", "@riim/opal-select"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-calendar"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"), require("@riim/opal-select"));
+		exports["@riim/packages/opal-calendar/src/index.ts"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"), require("@riim/opal-select"));
 	else
-		root["@riim/opal-calendar"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["@riim/next-tick"], root["cellx-decorators"], root["rionite"], root["@riim/opal-select"]);
+		root["@riim/packages/opal-calendar/src/index.ts"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["@riim/next-tick"], root["cellx-decorators"], root["rionite"], root["@riim/opal-select"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__17__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

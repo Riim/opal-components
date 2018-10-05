@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["@riim/opal-icon", "reflect-metadata", "cellx", "rionite", "@riim/map-set-polyfill"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-notification"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("cellx"), require("rionite"), require("@riim/map-set-polyfill"));
+		exports["@riim/packages/opal-notification/src/index.ts"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("cellx"), require("rionite"), require("@riim/map-set-polyfill"));
 	else
-		root["@riim/opal-notification"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["cellx"], root["rionite"], root["@riim/map-set-polyfill"]);
+		root["@riim/packages/opal-notification/src/index.ts"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["cellx"], root["rionite"], root["@riim/map-set-polyfill"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__166__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -242,7 +242,7 @@ var OpalNotification = /** @class */ (function (_super) {
             // для анимации
             _this.bar.setAttribute('shown', '');
             if (_this.paramTimeout) {
-                setTimeout(function () {
+                _this._closingTimeoutId = setTimeout(function () {
                     _this.hide();
                     _this.emit('hide');
                     _this.emit('close');
@@ -251,6 +251,10 @@ var OpalNotification = /** @class */ (function (_super) {
         }, 100);
     };
     OpalNotification.prototype._hide = function () {
+        if (this._closingTimeoutId) {
+            clearTimeout(this._closingTimeoutId);
+            this._closingTimeoutId = null;
+        }
         shownNotifications.delete(this);
         container.removeChild(this.bar);
         this.bar.removeAttribute('shown');

@@ -1,8 +1,8 @@
-let path = require('path');
-let fs = require('fs');
-let glob = require('glob');
-let mkdirp = require('mkdirp');
-let gulp = require('gulp');
+const path = require('path');
+const fs = require('fs');
+const glob = require('glob');
+const mkdirp = require('mkdirp');
+const gulp = require('gulp');
 
 gulp.task('movePackagesDTS', () => {
 	glob.sync('packages/*/src/**/*.d.ts').forEach(dtsFilePath => {

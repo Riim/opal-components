@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["@riim/opal-text-input", "reflect-metadata", "@riim/next-tick", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-input-mask"] = factory(require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/packages/opal-input-mask/src/index.ts"] = factory(require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/opal-input-mask"] = factory(root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/next-tick"], root["cellx-decorators"], root["rionite"]);
+		root["@riim/packages/opal-input-mask/src/index.ts"] = factory(root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/next-tick"], root["cellx-decorators"], root["rionite"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-utils"] = factory();
+		exports["@riim/packages/opal-utils/src/index.ts"] = factory();
 	else
-		root["@riim/opal-utils"] = factory();
+		root["@riim/packages/opal-utils/src/index.ts"] = factory();
 })(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["reflect-metadata", "rionite", "@riim/opal-button"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-switch-menu"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/opal-button"));
+		exports["@riim/packages/opal-switch-menu/src/index.ts"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/opal-button"));
 	else
-		root["@riim/opal-switch-menu"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/opal-button"]);
+		root["@riim/packages/opal-switch-menu/src/index.ts"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/opal-button"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__159__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
