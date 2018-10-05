@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-focus-highlight-controller",
-  "version": "0.33.162",
+  "version": "0.33.164",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
