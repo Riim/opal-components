@@ -161,7 +161,7 @@ export class OpalSelect extends BaseComponent {
 		return text;
 	}
 
-	optionElements: NodeListOf<IComponentElement>;
+	optionElements: HTMLCollectionOf<IComponentElement>;
 
 	optionsCell: Cell<Array<OpalSelectOption>>;
 	@Computed
@@ -230,9 +230,7 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	ready() {
-		this.optionElements = this.element.getElementsByClassName('OpalSelectOption') as NodeListOf<
-			IComponentElement
-		>;
+		this.optionElements = this.element.getElementsByClassName('OpalSelectOption') as any;
 
 		if (this.paramViewModel && !this.paramValue) {
 			this._needOptionsUpdating = true;

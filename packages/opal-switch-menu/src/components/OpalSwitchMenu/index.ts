@@ -12,7 +12,7 @@ const find = Array.prototype.find;
 	template
 })
 export class OpalSwitchMenu extends BaseComponent {
-	buttonElements: NodeListOf<IComponentElement<OpalButton>>;
+	buttonElements: HTMLCollectionOf<IComponentElement>;
 
 	_checkedButton: OpalButton | null;
 
@@ -48,9 +48,7 @@ export class OpalSwitchMenu extends BaseComponent {
 	}
 
 	ready() {
-		this.buttonElements = this.element.getElementsByClassName('OpalButton') as NodeListOf<
-			IComponentElement<OpalButton>
-		>;
+		this.buttonElements = this.element.getElementsByClassName('OpalButton') as any;
 	}
 
 	elementAttached() {

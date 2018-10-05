@@ -42,6 +42,8 @@ export class OpalNotification extends BaseComponent {
 
 	bar: HTMLElement;
 
+	_closingTimeoutId?: number | null;
+
 	$<R>(name: string, container: BaseComponent | Element = this.bar): R | null {
 		return super.$(name, container);
 	}
@@ -126,7 +128,7 @@ export class OpalNotification extends BaseComponent {
 			this.bar.setAttribute('shown', '');
 
 			if (this.paramTimeout) {
-				setTimeout(() => {
+				this._closingTimeoutId = setTimeout(() => {
 					this.hide();
 					this.emit('hide');
 					this.emit('close');
@@ -136,6 +138,11 @@ export class OpalNotification extends BaseComponent {
 	}
 
 	_hide() {
+		if (this._closingTimeoutId) {
+			clearTimeout(this._closingTimeoutId);
+			this._closingTimeoutId = null;
+		}
+
 		shownNotifications.delete(this);
 		container!.removeChild(this.bar);
 		this.bar.removeAttribute('shown');

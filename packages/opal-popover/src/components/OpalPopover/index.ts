@@ -98,8 +98,8 @@ export class OpalPopover extends BaseComponent {
 		let el = this.element;
 
 		if (this.paramAutoDirection) {
-			let docEl = document.documentElement;
-			let containerClientRect = el.offsetParent.getBoundingClientRect();
+			let docEl = document.documentElement!;
+			let containerClientRect = el.offsetParent!.getBoundingClientRect();
 			let elClientRect = el.getBoundingClientRect();
 			let position = (this._positionOnOpen = this.paramPosition).split('-');
 
@@ -168,7 +168,7 @@ export class OpalPopover extends BaseComponent {
 			el.style[position[1]] = this.paramPositionOffset + 'px';
 
 			arrowStyle[position[1]] =
-				el.offsetParent[
+				el.offsetParent![
 					position[1] == 'left' || position[1] == 'right' ? 'clientWidth' : 'clientHeight'
 				] /
 					2 -

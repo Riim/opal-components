@@ -3,7 +3,7 @@ import { IEvent } from 'cellx';
 import { BaseComponent, IComponentElement } from 'rionite';
 import './index.css';
 export declare class OpalSwitchMenu extends BaseComponent {
-    buttonElements: NodeListOf<IComponentElement<OpalButton>>;
+    buttonElements: HTMLCollectionOf<IComponentElement>;
     _checkedButton: OpalButton | null;
     checkedButton: OpalButton | null;
     ready(): void;

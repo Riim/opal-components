@@ -30,19 +30,17 @@ export class OpalTabs extends BaseComponent {
 	@Param
 	paramUseLocationHash = false;
 
-	tabs: NodeListOf<IComponentElement<OpalTab>>;
-	tabPanels: NodeListOf<IComponentElement<OpalTabPanel>>;
+	tabs: HTMLCollectionOf<IComponentElement>;
+	tabPanels: HTMLCollectionOf<IComponentElement<OpalTabPanel>>;
 
 	_startSelectedTab: OpalTab | null = null;
 	_selectedTab: OpalTab | null = null;
 
 	ready() {
-		let tabs = (this.tabs = this.element.getElementsByClassName('OpalTab') as NodeListOf<
-			IComponentElement<OpalTab>
-		>);
+		let tabs = (this.tabs = this.element.getElementsByClassName('OpalTab') as any);
 		let tabPanels = (this.tabPanels = this.element.getElementsByClassName(
 			'OpalTabPanel'
-		) as NodeListOf<IComponentElement<OpalTabPanel>>);
+		) as any);
 
 		let selectedTab: OpalTab | undefined;
 		let selectedTabIndex: number | undefined;

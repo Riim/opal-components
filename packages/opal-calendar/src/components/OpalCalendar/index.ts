@@ -369,7 +369,7 @@ export class OpalCalendar extends BaseComponent {
 
 	_onDaysBlur() {
 		setTimeout(() => {
-			if (!document.activeElement.classList.contains('OpalCalendar__day')) {
+			if (!document.activeElement!.classList.contains('OpalCalendar__day')) {
 				this._documentKeyDownListening!.stop();
 				this._documentKeyDownListening = null;
 			}

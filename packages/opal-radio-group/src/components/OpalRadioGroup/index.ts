@@ -10,7 +10,7 @@ const forEach = Array.prototype.forEach;
 	elementIs: 'OpalRadioGroup'
 })
 export class OpalRadioGroup extends BaseComponent {
-	buttonElements: NodeListOf<IComponentElement>;
+	buttonElements: HTMLCollectionOf<IComponentElement>;
 
 	ready() {
 		this.buttonElements = this.element.getElementsByClassName('OpalRadioButton') as any;

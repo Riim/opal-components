@@ -67,7 +67,7 @@ export declare class OpalSelect extends BaseComponent {
         [name: string]: string;
     }>) | null;
     readonly _buttonText: string;
-    optionElements: NodeListOf<IComponentElement>;
+    optionElements: HTMLCollectionOf<IComponentElement>;
     optionsCell: Cell<Array<OpalSelectOption>>;
     readonly options: Array<OpalSelectOption>;
     _needOptionsUpdating: boolean;

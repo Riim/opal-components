@@ -9,6 +9,7 @@ export declare class OpalNotification extends BaseComponent {
     paramTimeout: number;
     paramShown: boolean;
     bar: HTMLElement;
+    _closingTimeoutId?: number | null;
     $<R>(name: string, container?: BaseComponent | Element): R | null;
     ready(): void;
     elementAttached(): void;
