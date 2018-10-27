@@ -37,7 +37,7 @@ export class OpalInputMask extends BaseComponent {
 
 	@Computed
 	get _mask(): Array<string> {
-		return this.paramMask.split('').filter((chr: string) => chr != '?');
+		return this.paramMask.split('').filter(chr => chr != '?');
 	}
 
 	@Computed
@@ -48,7 +48,7 @@ export class OpalInputMask extends BaseComponent {
 
 	@Computed
 	get _tests(): Array<RegExp | null> {
-		return this._mask.map((chr: string) => this._definitions[chr] || null);
+		return this._mask.map(chr => this._definitions[chr] || null);
 	}
 
 	@Computed
@@ -172,7 +172,7 @@ export class OpalInputMask extends BaseComponent {
 		let end = textField.selectionEnd!;
 		let key = evt.which;
 
-		if (evt.ctrlKey || evt.altKey || evt.metaKey || key < 32 /* Ignore */) {
+		if (evt.ctrlKey || evt.altKey || evt.metaKey || key < 32 /* Space */) {
 			return;
 		}
 
