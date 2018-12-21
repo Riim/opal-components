@@ -135,7 +135,7 @@ export function toDate(this: OpalCalendar) {
 		},
 
 		day: {
-			click(evt, context, dayEl: HTMLElement) {
+			click(_evt, _context, dayEl: HTMLElement) {
 				this._click(dayEl);
 			}
 		}
@@ -211,7 +211,7 @@ export class OpalCalendar extends BaseComponent {
 	}
 
 	@Computed
-	days: TDays = function(this: OpalCalendar, _: any, next: TDays | undefined): TDays {
+	days: TDays = function(this: OpalCalendar, _cell: any, next: TDays | undefined): TDays {
 		let dateDelimiter = this.paramDateDelimiter;
 
 		let fromDate = this.fromDate;

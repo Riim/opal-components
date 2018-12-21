@@ -71,7 +71,7 @@ export class OpalInputValidator extends BaseComponent {
 		return !failedRule;
 	}
 
-	_checkValue(rule: OpalInputValidatorRule): boolean {
+	_checkValue(_rule: OpalInputValidatorRule): boolean {
 		return false;
 	}
 

@@ -31,13 +31,19 @@ export class OpalTreeSelect extends OpalSelect {
 		default: OpalTreeList.defaultDataTreeListItemSchema,
 		readonly: true
 	})
-	paramDataTreeListItemSchema: { value?: string; text?: string };
+	paramDataTreeListItemSchema: {
+		value?: string;
+		text?: string;
+	};
 	@Param({
 		type: eval,
 		default: OpalTreeList.defaultViewModelItemSchema,
 		readonly: true
 	})
-	paramViewModelItemSchema: { value?: string; text?: string };
+	paramViewModelItemSchema: {
+		value?: string;
+		text?: string;
+	};
 	@Param
 	paramQuery: string;
 	@Param({ readonly: true })

@@ -245,11 +245,7 @@ export class OpalTextInput extends BaseComponent {
 
 			textField.style.height = this._initialHeight - lineHeight + 'px';
 			textField.style.height =
-				textField.offsetHeight +
-				textField.scrollHeight -
-				textField.clientHeight +
-				lineHeight +
-				'px';
+				textField.scrollHeight + textField.offsetHeight - textField.clientHeight + 'px';
 		}
 	}
 

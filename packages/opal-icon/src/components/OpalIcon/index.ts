@@ -8,7 +8,10 @@ import template from './template.nelm';
 	template
 })
 export class OpalIcon extends BaseComponent {
-	@Param({ required: true, readonly: true })
+	@Param({
+		required: true,
+		readonly: true
+	})
 	paramName: string;
 	@Param
 	paramSize = 'm';

@@ -29,16 +29,19 @@ function toComparable(str: string): string {
 	return str.replace(/\s+/g, ' ').toLowerCase();
 }
 
-const defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', subtext: 'parent' });
+const defaultDataListItemSchema = Object.freeze({
+	value: 'id',
+	text: 'name',
+	subtext: 'parent'
+});
 
 @Component<OpalAutosuggest>({
 	elementIs: 'OpalAutosuggest',
-
 	template,
 
 	domEvents: {
 		listItem: {
-			click(evt, context) {
+			click(_evt, context) {
 				let textInput = this.$<OpalTextInput>('textInput')!;
 				let item = context.item;
 
@@ -57,8 +60,16 @@ const defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', sub
 	}
 })
 export class OpalAutosuggest extends BaseComponent {
-	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
-	paramDataListItemSchema: { value?: string; text?: string; subtext?: string };
+	@Param({
+		type: eval,
+		default: defaultDataListItemSchema,
+		readonly: true
+	})
+	paramDataListItemSchema: {
+		value?: string;
+		text?: string;
+		subtext?: string;
+	};
 	@Param({ readonly: true })
 	paramDataProvider: IDataProvider;
 	@Param({ type: eval })

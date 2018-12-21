@@ -53,7 +53,7 @@ function isIndeterminateItem(
 	);
 }
 
-export default function _getListItemContext(context: { [name: string]: any }, slot: RnSlot) {
+export default function _getListItemContext(context: Object, slot: RnSlot) {
 	let $item: IFilteredDataTreeListItem = slot.$context.$item;
 
 	return define({

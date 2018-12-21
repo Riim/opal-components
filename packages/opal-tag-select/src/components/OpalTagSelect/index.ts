@@ -65,8 +65,17 @@ export class OpalTagSelect extends BaseComponent {
 	paramDataList: TDataList;
 	@Param({ readonly: true })
 	paramDataListKeypath: string;
-	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
-	paramDataListItemSchema: { value?: string; text?: string; subtext?: string; disabled?: string };
+	@Param({
+		type: eval,
+		default: defaultDataListItemSchema,
+		readonly: true
+	})
+	paramDataListItemSchema: {
+		value?: string;
+		text?: string;
+		subtext?: string;
+		disabled?: string;
+	};
 	// необязательный, так как может указываться на передаваемом OpalLoadedList
 	@Param({ readonly: true })
 	paramDataProvider: IDataProvider;
@@ -74,8 +83,16 @@ export class OpalTagSelect extends BaseComponent {
 	paramValue: Array<string>;
 	@Param({ readonly: true })
 	paramViewModel: TViewModel;
-	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
-	paramViewModelItemSchema: { value?: string; text?: string; disabled?: string };
+	@Param({
+		type: eval,
+		default: defaultVMItemSchema,
+		readonly: true
+	})
+	paramViewModelItemSchema: {
+		value?: string;
+		text?: string;
+		disabled?: string;
+	};
 	@Param({ readonly: true })
 	paramAddNewItem: (text: string) => Promise<{ [name: string]: string }>;
 	@Param

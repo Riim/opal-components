@@ -39,8 +39,14 @@ export type TDataTreeList = ObservableTreeList<IDataTreeListItem>;
 export type TFilteredDataTreeList = ObservableTreeList<IFilteredDataTreeListItem>;
 export type TViewModel = ObservableList<{ [name: string]: any }>;
 
-const defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
-const defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
+const defaultDataTreeListItemSchema = Object.freeze({
+	value: 'id',
+	text: 'name'
+});
+const defaultVMItemSchema = Object.freeze({
+	value: 'id',
+	text: 'name'
+});
 
 function toComparable(str: string | null): string | null {
 	return (
@@ -69,11 +75,21 @@ export class OpalTreeList extends BaseComponent {
 		default: defaultDataTreeListItemSchema,
 		readonly: true
 	})
-	paramDataTreeListItemSchema: { value?: string; text?: string };
+	paramDataTreeListItemSchema: {
+		value?: string;
+		text?: string;
+	};
 	@Param
 	paramViewModel: TViewModel;
-	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
-	paramViewModelItemSchema: { value?: string; text?: string };
+	@Param({
+		type: eval,
+		default: defaultVMItemSchema,
+		readonly: true
+	})
+	paramViewModelItemSchema: {
+		value?: string;
+		text?: string;
+	};
 	@Param
 	paramQuery: string;
 

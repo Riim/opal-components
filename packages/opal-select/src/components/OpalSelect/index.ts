@@ -53,7 +53,6 @@ const defaultVMItemSchema = Object.freeze({
 
 @Component<OpalSelect>({
 	elementIs: 'OpalSelect',
-
 	template,
 
 	events: {
@@ -94,13 +93,26 @@ export class OpalSelect extends BaseComponent {
 	paramDataList: TDataList;
 	@Param({ readonly: true })
 	paramDataListKeypath: string;
-	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
-	paramDataListItemSchema: { value?: string; text?: string; subtext?: string; disabled?: string };
+	@Param({
+		type: eval,
+		default: defaultDataListItemSchema,
+		readonly: true
+	})
+	paramDataListItemSchema: {
+		value?: string;
+		text?: string;
+		subtext?: string;
+		disabled?: string;
+	};
 	@Param({ type: eval })
 	paramValue: Array<string>;
 	@Param({ readonly: true })
 	paramViewModel: TViewModel;
-	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
+	@Param({
+		type: eval,
+		default: defaultVMItemSchema,
+		readonly: true
+	})
 	paramViewModelItemSchema: {
 		value?: string;
 		text?: string;

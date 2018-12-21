@@ -28,7 +28,10 @@ export interface IDataProvider {
 	}>;
 }
 
-let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
+let defaultDataListItemSchema = Object.freeze({
+	value: 'id',
+	text: 'name'
+});
 
 @Component({
 	elementIs: 'OpalLoadedList',
@@ -37,8 +40,15 @@ let defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
 export class OpalLoadedList extends BaseComponent {
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 
-	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
-	paramDataListItemSchema: { value?: string; text?: string };
+	@Param({
+		type: eval,
+		default: defaultDataListItemSchema,
+		readonly: true
+	})
+	paramDataListItemSchema: {
+		value?: string;
+		text?: string;
+	};
 	@Param({ readonly: true })
 	paramDataProvider: IDataProvider;
 	@Param
@@ -57,7 +67,7 @@ export class OpalLoadedList extends BaseComponent {
 
 	dataProvider: IDataProvider;
 
-	_scrollingInProcessing: boolean = false;
+	_scrollingInProcessing = false;
 	@Observable
 	_loadingCheckPlanned = false;
 	_loadingCheckTimeout: IDisposableTimeout;
@@ -196,7 +206,10 @@ export class OpalLoadedList extends BaseComponent {
 		this.dataProvider.getItems.apply(this.dataProvider, args).then(
 			(this._requestCallback = this.registerCallback(function(
 				this: OpalLoadedList,
-				data: { items: Array<IDataListItem>; total?: number }
+				data: {
+					items: Array<IDataListItem>;
+					total?: number;
+				}
 			) {
 				this.loading = false;
 
@@ -222,7 +235,7 @@ export class OpalLoadedList extends BaseComponent {
 		);
 	}
 
-	_getListItemContext(context: { [name: string]: any }, slot: RnSlot) {
+	_getListItemContext(context: Object, slot: RnSlot) {
 		return {
 			__proto__: context,
 			$item: slot.$context.$item

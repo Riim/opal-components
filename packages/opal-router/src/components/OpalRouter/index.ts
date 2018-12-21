@@ -86,7 +86,10 @@ export class OpalRouter extends BaseComponent {
 							case PathNodeType.OPTIONAL: {
 								if (node.name) {
 									rePath.push('(');
-									props.push({ name: node.name, optional: true });
+									props.push({
+										name: node.name,
+										optional: true
+									});
 								} else {
 									rePath.push('(?:');
 								}
@@ -99,7 +102,11 @@ export class OpalRouter extends BaseComponent {
 							}
 							case PathNodeType.INSERT: {
 								rePath.push('([^\\/]+)');
-								props.push({ name: node.name, optional: false });
+								props.push({
+									name: node.name,
+									optional: false
+								});
+
 								break;
 							}
 						}
@@ -191,7 +198,7 @@ export class OpalRouter extends BaseComponent {
 		return false;
 	}
 
-	_update(path: string, hash: string): boolean {
+	_update(path: string, _hash: string): boolean {
 		if (!path) {
 			path = '/';
 		}
