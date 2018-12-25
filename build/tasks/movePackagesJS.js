@@ -4,7 +4,7 @@ const glob = require('glob');
 const mkdirp = require('mkdirp');
 const gulp = require('gulp');
 
-gulp.task('movePackagesJS', () => {
+gulp.task('movePackagesJS', done => {
 	glob.sync('packages/packages/*/src/index.ts/dist/index.js').forEach(jsFilePath => {
 		let targetPath = jsFilePath.replace(
 			/^packages\/packages\/([^\/]+)\/src\/index\.ts\//,
@@ -14,4 +14,6 @@ gulp.task('movePackagesJS', () => {
 		mkdirp.sync(path.dirname(targetPath));
 		fs.renameSync(jsFilePath, targetPath);
 	});
+
+	done();
 });

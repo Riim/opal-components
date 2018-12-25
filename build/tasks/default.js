@@ -1,6 +1,5 @@
 const gulp = require('gulp');
-const runSequence = require('run-sequence');
 
-gulp.task('default', done => {
-	runSequence('moveDTS', done);
-});
+require('./moveDTS');
+
+gulp.task('default', gulp.parallel('moveDTS'));
