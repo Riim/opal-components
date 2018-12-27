@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-filtered-list",
-  "version": "0.33.164",
+  "version": "0.33.167",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@riim/gettext": "^1.1.1",
-    "@riim/opal-icon": "^0.33.164",
-    "@riim/opal-loaded-list": "^0.33.164",
-    "@riim/opal-text-input": "^0.33.164",
-    "cellx": "^1.7.93",
+    "@riim/opal-icon": "^0.33.167",
+    "@riim/opal-loaded-list": "^0.33.167",
+    "@riim/opal-text-input": "^0.33.167",
+    "cellx": "^1.7.95",
     "reflect-metadata": "^0.1.12",
     "rionite": "^0.32.99"
   }

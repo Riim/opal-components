@@ -1,7 +1,6 @@
 import { nextTick } from '@riim/next-tick';
 import { OpalDropdown } from '@riim/opal-dropdown';
 import { OpalTextInput } from '@riim/opal-text-input';
-import { isFocusable } from '@riim/opal-utils';
 import { IEvent, ObservableList } from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
 import {
@@ -14,7 +13,7 @@ import {
 	Param
 	} from 'rionite';
 import './index.css';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 export interface IDataListItem {
 	[name: string]: any;
@@ -257,7 +256,7 @@ export class OpalAutosuggest extends BaseComponent {
 
 	_onMenuElementMouseOver(evt: Event) {
 		let menu = this.$<BaseComponent>('menu')!.element;
-		let el: HTMLElement | null = evt.target as HTMLElement;
+		let el: Element | null = evt.target as Element;
 
 		for (;;) {
 			if (el == menu) {
@@ -268,26 +267,27 @@ export class OpalAutosuggest extends BaseComponent {
 				break;
 			}
 
-			el = el!.parentElement;
+			el = el.parentElement;
+
+			if (!el) {
+				return;
+			}
 		}
 
 		let focusedListItem = this._focusedListItem;
 
 		if (!focusedListItem || el != focusedListItem) {
-			this._focusedListItem = el;
+			this._focusedListItem = el as HTMLElement;
 
 			if (focusedListItem) {
 				focusedListItem.removeAttribute('focused');
 			}
-			el!.setAttribute('focused', '');
+			el.setAttribute('focused', '');
 		}
 	}
 
 	_onDocumentFocus(evt: Event) {
-		if (
-			isFocusable(evt.target as HTMLElement) &&
-			!this.element.contains((evt.target as HTMLElement).parentNode!)
-		) {
+		if (!this.element.contains((evt.target as HTMLElement).parentElement)) {
 			this.closeMenu();
 			this._selectItem();
 		}

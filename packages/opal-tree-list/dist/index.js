@@ -162,7 +162,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -321,7 +321,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -348,9 +348,15 @@ var OpalTreeListItem_1 = __webpack_require__(250);
 exports.OpalTreeListItem = OpalTreeListItem_1.OpalTreeListItem;
 var _getListItemContext_1 = __webpack_require__(251);
 __webpack_require__(254);
-var template_nelm_1 = __webpack_require__(255);
-var defaultDataTreeListItemSchema = Object.freeze({ value: 'id', text: 'name' });
-var defaultVMItemSchema = Object.freeze({ value: 'id', text: 'name' });
+var template = __webpack_require__(255);
+var defaultDataTreeListItemSchema = Object.freeze({
+    value: 'id',
+    text: 'name'
+});
+var defaultVMItemSchema = Object.freeze({
+    value: 'id',
+    text: 'name'
+});
 function toComparable(str) {
     return (str &&
         str
@@ -553,7 +559,11 @@ var OpalTreeList = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalTreeList.prototype, "paramViewModel", void 0);
     __decorate([
-        rionite_1.Param({ type: eval, default: defaultVMItemSchema, readonly: true }),
+        rionite_1.Param({
+            type: eval,
+            default: defaultVMItemSchema,
+            readonly: true
+        }),
         __metadata("design:type", Object)
     ], OpalTreeList.prototype, "paramViewModelItemSchema", void 0);
     __decorate([
@@ -585,7 +595,7 @@ var OpalTreeList = /** @class */ (function (_super) {
     OpalTreeList = OpalTreeList_1 = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTreeList',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalTreeList);
     return OpalTreeList;
@@ -607,7 +617,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -628,7 +638,7 @@ var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 var _getListItemContext_1 = __webpack_require__(251);
 __webpack_require__(252);
-var template_nelm_1 = __webpack_require__(253);
+var template = __webpack_require__(253);
 var OpalTreeListItem = /** @class */ (function (_super) {
     __extends(OpalTreeListItem, _super);
     function OpalTreeListItem() {
@@ -666,11 +676,17 @@ var OpalTreeListItem = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalTreeListItem.prototype, "paramFilteredDataTreeList", void 0);
     __decorate([
-        rionite_1.Param({ required: true, readonly: true }),
+        rionite_1.Param({
+            required: true,
+            readonly: true
+        }),
         __metadata("design:type", String)
     ], OpalTreeListItem.prototype, "paramDataTreeListItemValueFieldName", void 0);
     __decorate([
-        rionite_1.Param({ required: true, readonly: true }),
+        rionite_1.Param({
+            required: true,
+            readonly: true
+        }),
         __metadata("design:type", String)
     ], OpalTreeListItem.prototype, "paramDataTreeListItemTextFieldName", void 0);
     __decorate([
@@ -678,15 +694,25 @@ var OpalTreeListItem = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalTreeListItem.prototype, "paramViewModel", void 0);
     __decorate([
-        rionite_1.Param({ required: true, readonly: true }),
+        rionite_1.Param({
+            required: true,
+            readonly: true
+        }),
         __metadata("design:type", String)
     ], OpalTreeListItem.prototype, "paramViewModelItemValueFieldName", void 0);
     __decorate([
-        rionite_1.Param({ required: true, readonly: true }),
+        rionite_1.Param({
+            required: true,
+            readonly: true
+        }),
         __metadata("design:type", String)
     ], OpalTreeListItem.prototype, "paramViewModelItemTextFieldName", void 0);
     __decorate([
-        rionite_1.Param({ type: eval, required: true, readonly: true }),
+        rionite_1.Param({
+            type: eval,
+            required: true,
+            readonly: true
+        }),
         __metadata("design:type", Array)
     ], OpalTreeListItem.prototype, "paramIndexpath", void 0);
     __decorate([
@@ -710,7 +736,7 @@ var OpalTreeListItem = /** @class */ (function (_super) {
     OpalTreeListItem = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTreeListItem',
-            template: template_nelm_1.default,
+            template: template,
             events: {
                 btnToggleChildren: {
                     change: function (evt) {
@@ -795,11 +821,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 253:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div/head {\nOpalButton/btnToggleChildren (viewType=clean, checkable, checked={paramOpened}) {\nOpalIcon/btnToggleChildrenIcon (name=chevronRight)\n}\nspan/contentSlotWrapper {\n@Slot/contentSlot (cloneContent)\n}\n}\n@IfThen (dataTreeListItem.children.length) {\ndiv/children {\n@Repeat (for=$item in dataTreeListItem.children) {\nOpalTreeListItem/item (\ndataTreeList={paramDataTreeList},\nfilteredDataTreeList={paramFilteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath='[{paramIndexpath},{$index}]',\nquery={paramQuery},\nopened={paramQuery |notnot },\nnestingLevel={paramIndexpath.length},\nhasChildren='{$item.children.length |gt(0) }'\n) {\n@Slot (cloneContent, getContext={_getListItemContext})\n}\n}\n}\n}");
+module.exports = "div/head {\nOpalButton/btnToggleChildren (viewType=clean, checkable, checked={paramOpened}) {\nOpalIcon/btnToggleChildrenIcon (name=chevronRight)\n}\nspan/contentSlotWrapper {\n@Slot/contentSlot (cloneContent)\n}\n}\n@IfThen (dataTreeListItem.children.length) {\ndiv/children {\n@Repeat (for=$item in dataTreeListItem.children) {\nOpalTreeListItem/item (\ndataTreeList={paramDataTreeList},\nfilteredDataTreeList={paramFilteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath='[{paramIndexpath},{$index}]',\nquery={paramQuery},\nopened={paramQuery |notnot },\nnestingLevel={paramIndexpath.length},\nhasChildren='{$item.children.length |gt(0) }'\n) {\n@Slot (cloneContent, getContext={_getListItemContext})\n}\n}\n}\n}"
 
 /***/ }),
 
@@ -822,11 +846,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 255:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (listShown) {\n@IfThen (filteredDataTreeList.length) {\n@Repeat (for=$item in filteredDataTreeList) {\nOpalTreeListItem/item (\ndataTreeList={dataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={paramQuery},\nopened={paramQuery |notnot },\nnestingLevel=0,\nhasChildren='{$item.children.length |gt(0) }'\n) {\n@Slot (cloneContent, getContext={_getListItemContext}) {\nOpalCheckbox/selectionControl (\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@IfElse (filteredDataTreeList.length) {\n@Slot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'Ничего не найдено'\n}\n}\n}\n}\n}\n@IfElse (listShown) {\nOpalLoader/loader (shown)\n}");
+module.exports = "@IfThen (listShown) {\n@IfThen (filteredDataTreeList.length) {\n@Repeat (for=$item in filteredDataTreeList) {\nOpalTreeListItem/item (\ndataTreeList={dataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={paramQuery},\nopened={paramQuery |notnot },\nnestingLevel=0,\nhasChildren='{$item.children.length |gt(0) }'\n) {\n@Slot (cloneContent, getContext={_getListItemContext}) {\nOpalCheckbox/selectionControl (\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@IfElse (filteredDataTreeList.length) {\n@Slot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'Ничего не найдено'\n}\n}\n}\n}\n}\n@IfElse (listShown) {\nOpalLoader/loader (shown)\n}"
 
 /***/ }),
 

@@ -36,7 +36,7 @@
 			div/selectedItem {
 				'{item |key(_viewModelItemTextFieldName) }'
 
-				button/btnDeselectItem (tabIndex=-1) {
+				button/btnDeselectItem (tabindex=-1) {
 					OpalIcon/btnDeselectItemIcon (name=cross)
 				}
 			}

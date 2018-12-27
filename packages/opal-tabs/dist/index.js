@@ -136,7 +136,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -162,7 +162,7 @@ exports.OpalTab = OpalTabList_1.OpalTab;
 var OpalTabPanel_1 = __webpack_require__(228);
 exports.OpalTabPanel = OpalTabPanel_1.OpalTabPanel;
 __webpack_require__(231);
-var template_nelm_1 = __webpack_require__(232);
+var template = __webpack_require__(232);
 var OpalTabList_2 = __webpack_require__(222);
 exports.OpalTabList = OpalTabList_2.OpalTabList;
 var indexOf = Array.prototype.indexOf;
@@ -287,7 +287,7 @@ var OpalTabs = /** @class */ (function (_super) {
     OpalTabs = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTabs',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalTabs);
     return OpalTabs;
@@ -315,7 +315,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -333,7 +333,7 @@ var rionite_1 = __webpack_require__(10);
 var OpalTab_1 = __webpack_require__(223);
 exports.OpalTab = OpalTab_1.OpalTab;
 __webpack_require__(226);
-var template_nelm_1 = __webpack_require__(227);
+var template = __webpack_require__(227);
 var OpalTabList = /** @class */ (function (_super) {
     __extends(OpalTabList, _super);
     function OpalTabList() {
@@ -342,7 +342,7 @@ var OpalTabList = /** @class */ (function (_super) {
     OpalTabList = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTabList',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalTabList);
     return OpalTabList;
@@ -363,7 +363,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -384,7 +384,7 @@ var next_tick_1 = __webpack_require__(6);
 var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(224);
-var template_nelm_1 = __webpack_require__(225);
+var template = __webpack_require__(225);
 var OpalTab = /** @class */ (function (_super) {
     __extends(OpalTab, _super);
     function OpalTab() {
@@ -520,7 +520,7 @@ var OpalTab = /** @class */ (function (_super) {
     OpalTab = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTab',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalTab);
     return OpalTab;
@@ -549,11 +549,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 225:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("button/control (tabindex={_tabIndex}) {\n@Slot/contentSlot\n}");
+module.exports = "button/control (tabindex={_tabIndex}) {\n@Slot/contentSlot\n}"
 
 /***/ }),
 
@@ -576,11 +574,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 227:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot/contentSlot");
+module.exports = "@Slot/contentSlot"
 
 /***/ }),
 
@@ -595,7 +591,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -616,7 +612,7 @@ var cellx_1 = __webpack_require__(8);
 var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(229);
-var template_nelm_1 = __webpack_require__(230);
+var template = __webpack_require__(230);
 var OpalTabPanel = /** @class */ (function (_super) {
     __extends(OpalTabPanel, _super);
     function OpalTabPanel() {
@@ -648,7 +644,7 @@ var OpalTabPanel = /** @class */ (function (_super) {
     OpalTabPanel = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTabPanel',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalTabPanel);
     return OpalTabPanel;
@@ -677,11 +673,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 230:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (contentRendered) {\n@Slot/contentSlot\n}");
+module.exports = "@IfThen (contentRendered) {\n@Slot/contentSlot\n}"
 
 /***/ }),
 
@@ -704,11 +698,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 232:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot/tabListSlot (forTag=opal-tab-list) {\nOpalTabList/tabList {\n@Slot/tabs (forTag=opal-tab)\n}\n}\n@Slot/tabPanels (forTag=opal-tab-panel)");
+module.exports = "@Slot/tabListSlot (forTag=opal-tab-list) {\nOpalTabList/tabList {\n@Slot/tabs (forTag=opal-tab)\n}\n}\n@Slot/tabPanels (forTag=opal-tab-panel)"
 
 /***/ }),
 

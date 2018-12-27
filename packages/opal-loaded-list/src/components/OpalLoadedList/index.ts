@@ -10,7 +10,7 @@ import {
 	RnSlot
 	} from 'rionite';
 import './index.css';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 export interface IDataListItem {
 	[name: string]: any;

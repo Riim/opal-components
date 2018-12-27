@@ -46,12 +46,8 @@ export declare class OpalLoadedList extends BaseComponent {
     _onElementScroll(): void;
     checkLoading(): void;
     _load(): void;
-    _getListItemContext(context: {
-        [name: string]: any;
-    }, slot: RnSlot): {
-        __proto__: {
-            [name: string]: any;
-        };
+    _getListItemContext(context: Object, slot: RnSlot): {
+        __proto__: Object;
         $item: any;
     };
 }

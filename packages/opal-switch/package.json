@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-switch",
-  "version": "0.33.164",
+  "version": "0.33.167",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@riim/next-tick": "^1.0.2",
-    "cellx": "^1.7.93",
+    "cellx": "^1.7.95",
     "cellx-decorators": "^1.4.11",
     "reflect-metadata": "^0.1.12",
     "rionite": "^0.32.99"

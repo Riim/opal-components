@@ -177,7 +177,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -199,7 +199,7 @@ var cellx_1 = __webpack_require__(8);
 var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(235);
-var template_nelm_1 = __webpack_require__(236);
+var template = __webpack_require__(236);
 var defaultDataListItemSchema = Object.freeze({
     value: 'id',
     text: 'name',
@@ -297,16 +297,16 @@ var OpalTagSelect = /** @class */ (function (_super) {
             return;
         }
         var selectEl = this.select.element;
-        var node = evt.target;
-        if (node != selectEl) {
+        var el = evt.target;
+        if (el != selectEl) {
             var control = this.$('control');
             do {
-                if (node == control) {
+                if (el == control) {
                     this.select.toggle();
                     break;
                 }
-                node = node.parentNode;
-            } while (node != selectEl);
+                el = el.parentElement;
+            } while (el && el != selectEl);
         }
     };
     OpalTagSelect.prototype._onSelectInput = function () {
@@ -358,7 +358,11 @@ var OpalTagSelect = /** @class */ (function (_super) {
         __metadata("design:type", String)
     ], OpalTagSelect.prototype, "paramDataListKeypath", void 0);
     __decorate([
-        rionite_1.Param({ type: eval, default: defaultDataListItemSchema, readonly: true }),
+        rionite_1.Param({
+            type: eval,
+            default: defaultDataListItemSchema,
+            readonly: true
+        }),
         __metadata("design:type", Object)
     ], OpalTagSelect.prototype, "paramDataListItemSchema", void 0);
     __decorate([
@@ -374,7 +378,11 @@ var OpalTagSelect = /** @class */ (function (_super) {
         __metadata("design:type", Object)
     ], OpalTagSelect.prototype, "paramViewModel", void 0);
     __decorate([
-        rionite_1.Param({ type: eval, default: defaultVMItemSchema, readonly: true }),
+        rionite_1.Param({
+            type: eval,
+            default: defaultVMItemSchema,
+            readonly: true
+        }),
         __metadata("design:type", Object)
     ], OpalTagSelect.prototype, "paramViewModelItemSchema", void 0);
     __decorate([
@@ -418,7 +426,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
     OpalTagSelect = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTagSelect',
-            template: template_nelm_1.default,
+            template: template,
             domEvents: {
                 tag: {
                     click: function (evt, context, tag) {
@@ -465,11 +473,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 236:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("span/tags {\n@Repeat (for=tag in viewModel, trackBy={_viewModelItemValueFieldName}) {\nspan/tag (disabled='{tag |_isItemDisabled }') {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btnRemoveTag\n}\n}\n}\nspan/control {\n@IfThen (placeholderShown) {\nspan/placeholder {\n'{paramPlaceholder}'\n}\n}\nOpalSelect/select (\nviewType=clean,\nmultiple,\ndataListKeypath={_dataListKeypathParam},\ndataListItemSchema={paramDataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\naddNewItem={paramAddNewItem},\nfocused={paramFocused}\n) {\nOpalSignButton/button (\nclass=OpalSelect__button,\nsign=plus,\nviewType={paramViewType},\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n@Slot (class=OpalSelect__menuSlot, for=OpalSelect__menu) {\nOpalPopover/menu (\nclass=OpalSelect__menu,\nposition={paramPopoverPosition},\ncloseOn=mousedown\n) {\n@Slot (for=OpalSelect__menuHeader)\n@Slot (for=OpalSelect__menuContent) {\n@IfThen (_dataListKeypathParam) {\ndiv (class=OpalSelect__menuContent) {\n@IfThen (dataList) {\n@Repeat (\nfor=item in dataList,\ntrackBy={_dataListItemValueFieldName}\n) {\nOpalSelectOption/dataListSelectOption, selectOption (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\n@Slot (\nclass=OpalSelect__newItemInputSlot,\nfor=OpalSelect__newItemInput\n)\n}\n@IfElse (dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (_dataListKeypathParam) {\nOpalFilteredList/menuFilteredList (\nclass=OpalSelect__menuContent OpalSelect__filteredList\n) {\n@Slot (\nclass=OpalFilteredList__queryInputSlot,\nfor=OpalFilteredList__queryInput\n)\nOpalLoadedList/menuLoadedList (\nclass=OpalSelect__loadedList OpalFilteredList__list,\ndataProvider={dataProvider}\n) {\nOpalSelectOption/loadedListSelectOption, selectOption (\nclass=OpalLoadedList__listItem,\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }',\nsubtext='{$item |key(_dataListItemSubtextFieldName) }'\n)\n}\n}\n}\n}\n@Slot (for=OpalSelect__menuFooter)\n}\n}\n}\n}");
+module.exports = "span/tags {\n@Repeat (for=tag in viewModel, trackBy={_viewModelItemValueFieldName}) {\nspan/tag (disabled='{tag |_isItemDisabled }') {\n'{tag |key(_viewModelItemTextFieldName) }'\nbutton/btnRemoveTag\n}\n}\n}\nspan/control {\n@IfThen (placeholderShown) {\nspan/placeholder {\n'{paramPlaceholder}'\n}\n}\nOpalSelect/select (\nviewType=clean,\nmultiple,\ndataListKeypath={_dataListKeypathParam},\ndataListItemSchema={paramDataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\naddNewItem={paramAddNewItem},\nfocused={paramFocused}\n) {\nOpalSignButton/button (\nclass=OpalSelect__button,\nsign=plus,\nviewType={paramViewType},\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n@Slot (class=OpalSelect__menuSlot, for=OpalSelect__menu) {\nOpalPopover/menu (\nclass=OpalSelect__menu,\nposition={paramPopoverPosition},\ncloseOn=mousedown\n) {\n@Slot (for=OpalSelect__menuHeader)\n@Slot (for=OpalSelect__menuContent) {\n@IfThen (_dataListKeypathParam) {\ndiv (class=OpalSelect__menuContent) {\n@IfThen (dataList) {\n@Repeat (\nfor=item in dataList,\ntrackBy={_dataListItemValueFieldName}\n) {\nOpalSelectOption/dataListSelectOption, selectOption (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\n@Slot (\nclass=OpalSelect__newItemInputSlot,\nfor=OpalSelect__newItemInput\n)\n}\n@IfElse (dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (_dataListKeypathParam) {\nOpalFilteredList/menuFilteredList (\nclass=OpalSelect__menuContent OpalSelect__filteredList\n) {\n@Slot (\nclass=OpalFilteredList__queryInputSlot,\nfor=OpalFilteredList__queryInput\n)\nOpalLoadedList/menuLoadedList (\nclass=OpalSelect__loadedList OpalFilteredList__list,\ndataProvider={dataProvider}\n) {\nOpalSelectOption/loadedListSelectOption, selectOption (\nclass=OpalLoadedList__listItem,\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }',\nsubtext='{$item |key(_dataListItemSubtextFieldName) }'\n)\n}\n}\n}\n}\n@Slot (for=OpalSelect__menuFooter)\n}\n}\n}\n}"
 
 /***/ }),
 

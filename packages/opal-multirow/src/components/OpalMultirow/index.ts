@@ -4,7 +4,7 @@ import { Computed, Observable } from 'cellx-decorators';
 import { BaseComponent, Component } from 'rionite';
 import { OpalMultirowRow } from '../OpalMultirowRow';
 import './index.css';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 export { OpalMultirowRow };
 
@@ -21,12 +21,12 @@ export class OpalMultirow extends BaseComponent {
 	_newRows = new ObservableList<{ key: string }>();
 
 	@Computed
-	_notHaveNewRows(): boolean {
+	get _notHaveNewRows(): boolean {
 		return !this._newRows.length;
 	}
 
 	@Computed
-	_notSingleRow(): boolean {
+	get _notSingleRow(): boolean {
 		return this._presetRowCount + this._newRows.length != 1;
 	}
 
@@ -54,7 +54,7 @@ export class OpalMultirow extends BaseComponent {
 		let rowEl = evt.target.element;
 
 		if (rowEl.classList.contains(this._presetRowClassName)) {
-			rowEl.parentNode!.removeChild(rowEl);
+			rowEl.parentElement!.removeChild(rowEl);
 			this._presetRowCount--;
 		} else {
 			let key = evt.target.parentComponent!.element.dataset.key;

@@ -8,7 +8,7 @@ import {
 	Param
 	} from 'rionite';
 import { OpalInputMaskDefinition } from '../OpalInputMaskDefinition';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 export { OpalInputMaskDefinition };
 

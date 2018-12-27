@@ -160,10 +160,10 @@ export class OpalRouter extends BaseComponent {
 	}
 
 	_onBodyClick(evt: Event) {
-		let el: HTMLElement = evt.target as HTMLElement;
+		let el: Element | null = evt.target as Element;
 
 		while (el.tagName != 'A') {
-			el = el.parentElement!;
+			el = el.parentElement;
 
 			if (!el) {
 				return;

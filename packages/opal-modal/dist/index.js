@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "@riim/opal-utils", "cellx", "cellx-decorators", "rionite"], factory);
+		define(["reflect-metadata", "cellx", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/packages/opal-modal/src/index.ts"] = factory(require("reflect-metadata"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/packages/opal-modal/src/index.ts"] = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/packages/opal-modal/src/index.ts"] = factory(root["reflect-metadata"], root["@riim/opal-utils"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
+		root["@riim/packages/opal-modal/src/index.ts"] = factory(root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -129,7 +129,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -146,18 +146,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_utils_1 = __webpack_require__(7);
 var cellx_1 = __webpack_require__(8);
 var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(147);
-var template_nelm_1 = __webpack_require__(148);
+var template = __webpack_require__(148);
 var openedModals = [];
 var documentFocusListening;
 var documentKeyUpListening;
 function onDocumentFocus(evt) {
-    if (opal_utils_1.isFocusable(evt.target) &&
-        !openedModals[0].element.contains(evt.target.parentNode)) {
+    if (!openedModals[0].element.contains(evt.target.parentElement)) {
         openedModals[0].$('btnClose').focus();
     }
 }
@@ -295,7 +293,7 @@ var OpalModal = /** @class */ (function (_super) {
     OpalModal = __decorate([
         rionite_1.Component({
             elementIs: 'OpalModal',
-            template: template_nelm_1.default,
+            template: template,
             domEvents: {
                 btnClose: {
                     click: function () {
@@ -332,11 +330,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 148:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div/window {\ndiv/btnCloseWrapper {\nbutton/btnClose\n}\n@IfThen (contentRendered) {\n@Slot/contentSlot\n}\n}");
+module.exports = "div/window {\ndiv/btnCloseWrapper {\nbutton/btnClose\n}\n@IfThen (contentRendered) {\n@Slot/contentSlot\n}\n}"
 
 /***/ }),
 
@@ -344,13 +340,6 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
-
-/***/ }),
-
-/***/ 7:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
 
 /***/ }),
 

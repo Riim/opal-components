@@ -7,7 +7,7 @@ import {
 	Param
 	} from 'rionite';
 import './index.css';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 @Component({
 	elementIs: 'OpalPopover',
@@ -204,7 +204,7 @@ export class OpalPopover extends BaseComponent {
 		let docEl = document.documentElement;
 		let componentEl = this.element;
 
-		for (let el: HTMLElement | null = evt.target as HTMLElement; el != componentEl; ) {
+		for (let el: Element | null = evt.target as Element; el != componentEl; ) {
 			if (el == docEl || el.tagName == 'A') {
 				this.close();
 				this.emit('close');

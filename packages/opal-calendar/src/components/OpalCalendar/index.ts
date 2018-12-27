@@ -11,7 +11,7 @@ import {
 import { formatDate } from './formatDate';
 import './index.css';
 import { parseDate } from './parseDate';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 export { formatDate };
 export { parseDate };

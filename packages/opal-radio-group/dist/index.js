@@ -129,7 +129,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -195,7 +195,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -216,7 +216,7 @@ var next_tick_1 = __webpack_require__(6);
 var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(176);
-var template_nelm_1 = __webpack_require__(177);
+var template = __webpack_require__(177);
 var OpalRadioButton = /** @class */ (function (_super) {
     __extends(OpalRadioButton, _super);
     function OpalRadioButton() {
@@ -369,7 +369,7 @@ var OpalRadioButton = /** @class */ (function (_super) {
     OpalRadioButton = __decorate([
         rionite_1.Component({
             elementIs: 'OpalRadioButton',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalRadioButton);
     return OpalRadioButton;
@@ -398,11 +398,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 177:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\n@Slot/contentSlot\n}");
+module.exports = "label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\n@Slot/contentSlot\n}"
 
 /***/ }),
 

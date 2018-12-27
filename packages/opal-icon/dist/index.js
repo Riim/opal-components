@@ -657,7 +657,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -677,7 +677,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(122);
-var template_nelm_1 = __webpack_require__(123);
+var template = __webpack_require__(123);
 var OpalIcon = /** @class */ (function (_super) {
     __extends(OpalIcon, _super);
     function OpalIcon() {
@@ -696,7 +696,10 @@ var OpalIcon = /** @class */ (function (_super) {
         configurable: true
     });
     __decorate([
-        rionite_1.Param({ required: true, readonly: true }),
+        rionite_1.Param({
+            required: true,
+            readonly: true
+        }),
         __metadata("design:type", String)
     ], OpalIcon.prototype, "paramName", void 0);
     __decorate([
@@ -719,7 +722,7 @@ var OpalIcon = /** @class */ (function (_super) {
     OpalIcon = __decorate([
         rionite_1.Component({
             elementIs: 'OpalIcon',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalIcon);
     return OpalIcon;
@@ -746,11 +749,9 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 123 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("svg/svg (stroke-width={paramStrokeWidth}) {\nuse (xlink:href={xlinkHref})\n}");
+module.exports = "svg/svg (stroke-width={paramStrokeWidth}) {\nuse (xlink:href={xlinkHref})\n}"
 
 /***/ })
 /******/ ]);

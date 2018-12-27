@@ -130,7 +130,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -152,7 +152,7 @@ var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 var OpalInputMaskDefinition_1 = __webpack_require__(126);
 exports.OpalInputMaskDefinition = OpalInputMaskDefinition_1.OpalInputMaskDefinition;
-var template_nelm_1 = __webpack_require__(128);
+var template = __webpack_require__(128);
 var forEach = Array.prototype.forEach;
 var iPhone = /iphone/i.test(navigator.userAgent);
 var ie11 = !window.ActiveXObject && 'ActiveXObject' in window;
@@ -277,7 +277,7 @@ var OpalInputMask = /** @class */ (function (_super) {
         var start = textField.selectionStart;
         var end = textField.selectionEnd;
         var key = evt.which;
-        if (evt.ctrlKey || evt.altKey || evt.metaKey || key < 32 /* Ignore */) {
+        if (evt.ctrlKey || evt.altKey || evt.metaKey || key < 32 /* Space */) {
             return;
         }
         if (key) {
@@ -474,7 +474,7 @@ var OpalInputMask = /** @class */ (function (_super) {
     OpalInputMask = OpalInputMask_1 = __decorate([
         rionite_1.Component({
             elementIs: 'OpalInputMask',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalInputMask);
     return OpalInputMask;
@@ -495,7 +495,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -558,11 +558,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 128:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot/contentSlot");
+module.exports = "@Slot/contentSlot"
 
 /***/ }),
 

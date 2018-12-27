@@ -137,7 +137,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -161,7 +161,7 @@ var rionite_1 = __webpack_require__(10);
 var OpalMultirowRow_1 = __webpack_require__(153);
 exports.OpalMultirowRow = OpalMultirowRow_1.OpalMultirowRow;
 __webpack_require__(156);
-var template_nelm_1 = __webpack_require__(157);
+var template = __webpack_require__(157);
 var OpalMultirow = /** @class */ (function (_super) {
     __extends(OpalMultirow, _super);
     function OpalMultirow() {
@@ -170,12 +170,20 @@ var OpalMultirow = /** @class */ (function (_super) {
         _this._newRows = new cellx_1.ObservableList();
         return _this;
     }
-    OpalMultirow.prototype._notHaveNewRows = function () {
-        return !this._newRows.length;
-    };
-    OpalMultirow.prototype._notSingleRow = function () {
-        return this._presetRowCount + this._newRows.length != 1;
-    };
+    Object.defineProperty(OpalMultirow.prototype, "_notHaveNewRows", {
+        get: function () {
+            return !this._newRows.length;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OpalMultirow.prototype, "_notSingleRow", {
+        get: function () {
+            return this._presetRowCount + this._newRows.length != 1;
+        },
+        enumerable: true,
+        configurable: true
+    });
     OpalMultirow.prototype.initialize = function () {
         var elementBlockNames = this.constructor._elementBlockNames;
         this._presetRowClassName = elementBlockNames[elementBlockNames.length - 1] + '__presetRow';
@@ -195,7 +203,7 @@ var OpalMultirow = /** @class */ (function (_super) {
     OpalMultirow.prototype._onRemoveRowClick = function (evt) {
         var rowEl = evt.target.element;
         if (rowEl.classList.contains(this._presetRowClassName)) {
-            rowEl.parentNode.removeChild(rowEl);
+            rowEl.parentElement.removeChild(rowEl);
             this._presetRowCount--;
         }
         else {
@@ -226,20 +234,18 @@ var OpalMultirow = /** @class */ (function (_super) {
     ], OpalMultirow.prototype, "_newRows", void 0);
     __decorate([
         cellx_decorators_1.Computed,
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", Boolean)
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
     ], OpalMultirow.prototype, "_notHaveNewRows", null);
     __decorate([
         cellx_decorators_1.Computed,
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", Boolean)
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
     ], OpalMultirow.prototype, "_notSingleRow", null);
     OpalMultirow = __decorate([
         rionite_1.Component({
             elementIs: 'OpalMultirow',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalMultirow);
     return OpalMultirow;
@@ -267,7 +273,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -283,7 +289,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(154);
-var template_nelm_1 = __webpack_require__(155);
+var template = __webpack_require__(155);
 var OpalMultirowRow = /** @class */ (function (_super) {
     __extends(OpalMultirowRow, _super);
     function OpalMultirowRow() {
@@ -292,7 +298,7 @@ var OpalMultirowRow = /** @class */ (function (_super) {
     OpalMultirowRow = __decorate([
         rionite_1.Component({
             elementIs: 'OpalMultirowRow',
-            template: template_nelm_1.default,
+            template: template,
             events: {
                 btnRemoveRow: {
                     click: function () {
@@ -333,11 +339,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 155:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot/contentSlot\nOpalSignButton/btnRemoveRow (sign=minus)\nOpalSignButton/btnAddRow (sign=plus)");
+module.exports = "@Slot/contentSlot\nOpalSignButton/btnRemoveRow (sign=minus)\nOpalSignButton/btnAddRow (sign=plus)"
 
 /***/ }),
 
@@ -360,11 +364,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 157:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot/presetRowsSlot (\nfor=presetRows,\nnotHaveNewRows={_notHaveNewRows},\nnotSingleRow={_notSingleRow}\n) {\n@Slot/presetRows (for=presetRow)\n}\ndiv/newRows (notSingleRow={_notSingleRow}) {\n@Repeat (for=row in _newRows, trackBy=key) {\n@Slot/newRowSlot (cloneContent, data-key={row.key})\n}\n}");
+module.exports = "@Slot/presetRowsSlot (\nfor=presetRows,\nnotHaveNewRows={_notHaveNewRows},\nnotSingleRow={_notSingleRow}\n) {\n@Slot/presetRows (for=presetRow)\n}\ndiv/newRows (notSingleRow={_notSingleRow}) {\n@Repeat (for=row in _newRows, trackBy=key) {\n@Slot/newRowSlot (cloneContent, data-key={row.key})\n}\n}"
 
 /***/ }),
 

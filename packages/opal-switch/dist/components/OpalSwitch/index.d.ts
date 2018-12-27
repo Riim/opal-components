@@ -6,7 +6,7 @@ export declare class OpalSwitch extends BaseComponent {
     paramTabIndex: number;
     paramFocused: boolean;
     paramDisabled: boolean;
-    _tabIndex(): number;
+    readonly _tabIndex: number;
     _documentKeyDownListening: IDisposableListening;
     ready(): void;
     elementAttached(): void;

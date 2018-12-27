@@ -129,7 +129,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -150,7 +150,7 @@ var next_tick_1 = __webpack_require__(6);
 var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(205);
-var template_nelm_1 = __webpack_require__(206);
+var template = __webpack_require__(206);
 var OpalSignButton = /** @class */ (function (_super) {
     __extends(OpalSignButton, _super);
     function OpalSignButton() {
@@ -305,7 +305,7 @@ var OpalSignButton = /** @class */ (function (_super) {
     OpalSignButton = __decorate([
         rionite_1.Component({
             elementIs: 'OpalSignButton',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalSignButton);
     return OpalSignButton;
@@ -334,11 +334,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 206:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("button/control (tabindex={_tabIndex}) {\nspan/sign\n' '\n@Slot/contentSlot\n}");
+module.exports = "button/control (tabindex={_tabIndex}) {\nspan/sign\n' '\n@Slot/contentSlot\n}"
 
 /***/ }),
 

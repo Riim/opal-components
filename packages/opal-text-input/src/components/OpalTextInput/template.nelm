@@ -3,7 +3,7 @@
 		rows={paramRows},
 		name={paramInputName},
 		placeholder={paramPlaceholder},
-		tabIndex={paramTabIndex},
+		tabindex={paramTabIndex},
 		disabled={paramDisabled}
 	)
 }
@@ -12,7 +12,7 @@
 		type={paramInputType},
 		name={paramInputName},
 		placeholder={paramPlaceholder},
-		tabIndex={paramTabIndex},
+		tabindex={paramTabIndex},
 		disabled={paramDisabled}
 	)
 }

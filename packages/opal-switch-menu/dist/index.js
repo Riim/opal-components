@@ -137,7 +137,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -153,7 +153,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(213);
-var template_nelm_1 = __webpack_require__(214);
+var template = __webpack_require__(214);
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
 var OpalSwitchMenu = /** @class */ (function (_super) {
@@ -220,7 +220,7 @@ var OpalSwitchMenu = /** @class */ (function (_super) {
     OpalSwitchMenu = __decorate([
         rionite_1.Component({
             elementIs: 'OpalSwitchMenu',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalSwitchMenu);
     return OpalSwitchMenu;
@@ -249,11 +249,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 214:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot/contentSlot");
+module.exports = "@Slot/contentSlot"
 
 /***/ }),
 

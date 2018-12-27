@@ -1,4 +1,3 @@
-import { isFocusable } from '@riim/opal-utils';
 import { Cell, IEvent } from 'cellx';
 import { Observable } from 'cellx-decorators';
 import {
@@ -8,7 +7,7 @@ import {
 	Param
 	} from 'rionite';
 import './index.css';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 const openedModals: Array<OpalModal> = [];
 
@@ -16,10 +15,7 @@ let documentFocusListening: IDisposableListening;
 let documentKeyUpListening: IDisposableListening;
 
 function onDocumentFocus(evt: Event) {
-	if (
-		isFocusable(evt.target as HTMLElement) &&
-		!openedModals[0].element.contains((evt.target as Node).parentNode!)
-	) {
+	if (!openedModals[0].element.contains((evt.target as Node).parentElement)) {
 		openedModals[0].$<HTMLElement>('btnClose')!.focus();
 	}
 }
@@ -78,7 +74,7 @@ export class OpalModal extends BaseComponent {
 		let componentEl = this.element;
 		let windowEl = this.$('window');
 
-		for (let el: HTMLElement | null = evt.target as HTMLElement; el != windowEl; ) {
+		for (let el: Element | null = evt.target as Element; el != windowEl; ) {
 			if (el == componentEl) {
 				this.close();
 				this.emit('close');

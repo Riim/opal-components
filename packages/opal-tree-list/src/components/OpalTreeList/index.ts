@@ -18,7 +18,7 @@ import '../OpalTreeListItem';
 import { OpalTreeListItem } from '../OpalTreeListItem';
 import _getListItemContext from './_getListItemContext';
 import './index.css';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 export { OpalTreeListItem };
 

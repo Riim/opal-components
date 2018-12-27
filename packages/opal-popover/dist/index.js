@@ -129,7 +129,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -150,7 +150,7 @@ var cellx_1 = __webpack_require__(8);
 var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(171);
-var template_nelm_1 = __webpack_require__(172);
+var template = __webpack_require__(172);
 var OpalPopover = /** @class */ (function (_super) {
     __extends(OpalPopover, _super);
     function OpalPopover() {
@@ -335,7 +335,7 @@ var OpalPopover = /** @class */ (function (_super) {
     OpalPopover = __decorate([
         rionite_1.Component({
             elementIs: 'OpalPopover',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalPopover);
     return OpalPopover;
@@ -364,11 +364,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 172:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("span/arrow\n@IfThen (contentRendered) {\n@Slot/contentSlot\n}");
+module.exports = "span/arrow\n@IfThen (contentRendered) {\n@Slot/contentSlot\n}"
 
 /***/ }),
 

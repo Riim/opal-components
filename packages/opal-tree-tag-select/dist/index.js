@@ -153,7 +153,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -169,7 +169,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var opal_tag_select_1 = __webpack_require__(263);
 var rionite_1 = __webpack_require__(10);
-var template_nelm_1 = __webpack_require__(266);
+var template = __webpack_require__(266);
 var OpalTreeTagSelect = /** @class */ (function (_super) {
     __extends(OpalTreeTagSelect, _super);
     function OpalTreeTagSelect() {
@@ -184,7 +184,7 @@ var OpalTreeTagSelect = /** @class */ (function (_super) {
     OpalTreeTagSelect = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTreeTagSelect',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalTreeTagSelect);
     return OpalTreeTagSelect;
@@ -195,11 +195,9 @@ exports.OpalTreeTagSelect = OpalTreeTagSelect;
 /***/ }),
 
 /***/ 266:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("OpalTreeSelect/select (\nviewType=clean,\ndataTreeListKeypath={_dataListKeypathParam},\ndataTreeListItemSchema={paramDataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\naddNewItem={paramAddNewItem},\nfocused={paramFocused}\n) {\n@Slot (class=OpalSelect__menuHeaderSlot, for=OpalSelect__menuHeader)\nOpalSignButton/button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}");
+module.exports = "OpalTreeSelect/select (\nviewType=clean,\ndataTreeListKeypath={_dataListKeypathParam},\ndataTreeListItemSchema={paramDataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\naddNewItem={paramAddNewItem},\nfocused={paramFocused}\n) {\n@Slot (class=OpalSelect__menuHeaderSlot, for=OpalSelect__menuHeader)\nOpalSignButton/button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}"
 
 /***/ }),
 

@@ -9,8 +9,8 @@ export declare class OpalMultirow extends BaseComponent {
     _newRows: ObservableList<{
         key: string;
     }>;
-    _notHaveNewRows(): boolean;
-    _notSingleRow(): boolean;
+    readonly _notHaveNewRows: boolean;
+    readonly _notSingleRow: boolean;
     initialize(): void;
     ready(): void;
     elementAttached(): void;

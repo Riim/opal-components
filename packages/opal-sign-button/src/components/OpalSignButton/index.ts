@@ -8,7 +8,7 @@ import {
 	Param
 	} from 'rionite';
 import './index.css';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 @Component({
 	elementIs: 'OpalSignButton',

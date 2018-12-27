@@ -42,7 +42,7 @@ div/body {
 						selected={=day.selected},
 						notInCurrentMonth={=day.notInCurrentMonth},
 						disabled={=day.disabled},
-						tabIndex={=day.tabIndex},
+						tabindex={=day.tabIndex},
 						data-date={=day.date}
 					) {
 						'{=day.value}'

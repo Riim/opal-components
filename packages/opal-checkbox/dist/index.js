@@ -163,7 +163,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -184,7 +184,7 @@ var next_tick_1 = __webpack_require__(6);
 var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(25);
-var template_nelm_1 = __webpack_require__(26);
+var template = __webpack_require__(26);
 var OpalCheckbox = /** @class */ (function (_super) {
     __extends(OpalCheckbox, _super);
     function OpalCheckbox() {
@@ -352,7 +352,7 @@ var OpalCheckbox = /** @class */ (function (_super) {
     OpalCheckbox = __decorate([
         rionite_1.Component({
             elementIs: 'OpalCheckbox',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalCheckbox);
     return OpalCheckbox;
@@ -379,11 +379,9 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 26 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\n@Slot/contentSlot\n}");
+module.exports = "label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\n@Slot/contentSlot\n}"
 
 /***/ })
 /******/ ]);

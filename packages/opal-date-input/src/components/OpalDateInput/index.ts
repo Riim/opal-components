@@ -7,7 +7,6 @@ import {
 import { OpalDropdown } from '@riim/opal-dropdown';
 import { OpalTextInput } from '@riim/opal-text-input';
 import { OpalTextInputValidator } from '@riim/opal-text-input-validator';
-import { isFocusable } from '@riim/opal-utils';
 import { IEvent } from 'cellx';
 import { dateExists } from 'date-exists';
 import {
@@ -17,7 +16,7 @@ import {
 	Param
 	} from 'rionite';
 import './index.css';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 function pad(num: number): string {
 	return (num < 10 ? '0' : '') + num;
@@ -128,10 +127,7 @@ export class OpalDateInput extends BaseComponent {
 	}
 
 	_onDocumentFocus(evt: Event) {
-		if (
-			isFocusable(evt.target as HTMLElement) &&
-			!this.element.contains((evt.target as Node).parentNode!)
-		) {
+		if (!this.element.contains((evt.target as Node).parentElement)) {
 			this.$<OpalDropdown>('calendarMenu')!.close();
 		}
 	}

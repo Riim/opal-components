@@ -160,7 +160,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -176,7 +176,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(46);
-var template_nelm_1 = __webpack_require__(47);
+var template = __webpack_require__(47);
 var OpalFilteredList = /** @class */ (function (_super) {
     __extends(OpalFilteredList, _super);
     function OpalFilteredList() {
@@ -209,7 +209,7 @@ var OpalFilteredList = /** @class */ (function (_super) {
     OpalFilteredList = __decorate([
         rionite_1.Component({
             elementIs: 'OpalFilteredList',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalFilteredList);
     return OpalFilteredList;
@@ -238,11 +238,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 47:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot (for=queryInputSlot) {\n@Slot/queryInputSlot (for=queryInput) {\nOpalTextInput/queryInput (placeholder=Поиск, clearable) {\nOpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\n}\n@Slot/listSlot (for=list)");
+module.exports = "@Slot (for=queryInputSlot) {\n@Slot/queryInputSlot (for=queryInput) {\nOpalTextInput/queryInput (placeholder=Поиск, clearable) {\nOpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\n}\n@Slot/listSlot (for=list)"
 
 /***/ })
 

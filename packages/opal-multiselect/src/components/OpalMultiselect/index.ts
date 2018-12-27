@@ -6,7 +6,7 @@ import { IEvent } from 'cellx';
 import { Computed } from 'cellx-decorators';
 import { Component, Param, Template } from 'rionite';
 import './index.css';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 @Component<OpalMultiselect>({
 	elementIs: 'OpalMultiselect',

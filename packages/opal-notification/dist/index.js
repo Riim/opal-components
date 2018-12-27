@@ -130,7 +130,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -151,7 +151,7 @@ var map_set_polyfill_1 = __webpack_require__(166);
 var cellx_1 = __webpack_require__(8);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(167);
-var template_nelm_1 = __webpack_require__(168);
+var template = __webpack_require__(168);
 var container;
 var shownNotifications = new map_set_polyfill_1.Set();
 function initContainer(notification) {
@@ -294,7 +294,7 @@ var OpalNotification = /** @class */ (function (_super) {
     OpalNotification = __decorate([
         rionite_1.Component({
             elementIs: 'OpalNotification',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalNotification);
     return OpalNotification;
@@ -330,11 +330,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 168:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div/bar (\nviewType={paramViewType},\nhasIcon={paramIcon |notnot },\niconSize={paramIconSize},\nbuttonHide={paramButtonHide}\n) {\n@IfThen (paramIcon) {\nOpalIcon/icon (name={paramIcon}, size={paramIconSize})\n}\n@Slot/contentSlot\nbutton/btnHide (hide={paramButtonHide |not }) {\nOpalIcon/btnHideIcon (name=cross)\n}\n}");
+module.exports = "div/bar (\nviewType={paramViewType},\nhasIcon={paramIcon |notnot },\niconSize={paramIconSize},\nbuttonHide={paramButtonHide}\n) {\n@IfThen (paramIcon) {\nOpalIcon/icon (name={paramIcon}, size={paramIconSize})\n}\n@Slot/contentSlot\nbutton/btnHide (hide={paramButtonHide |not }) {\nOpalIcon/btnHideIcon (name=cross)\n}\n}"
 
 /***/ }),
 

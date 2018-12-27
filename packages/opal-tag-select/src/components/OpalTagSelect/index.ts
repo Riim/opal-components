@@ -15,7 +15,7 @@ import {
 import { Computed, Observable } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
 import './index.css';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 const defaultDataListItemSchema = Object.freeze({
 	value: 'id',
@@ -206,19 +206,19 @@ export class OpalTagSelect extends BaseComponent {
 		}
 
 		let selectEl = this.select.element;
-		let node = evt.target as Node;
+		let el: Element | null = evt.target as Element;
 
-		if (node != selectEl) {
+		if (el != selectEl) {
 			let control = this.$<HTMLElement>('control');
 
 			do {
-				if (node == control) {
+				if (el == control) {
 					this.select.toggle();
 					break;
 				}
 
-				node = node.parentNode!;
-			} while (node != selectEl);
+				el = el.parentElement;
+			} while (el && el != selectEl);
 		}
 	}
 

@@ -169,7 +169,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -194,7 +194,7 @@ exports.formatDate = formatDate_1.formatDate;
 __webpack_require__(20);
 var parseDate_1 = __webpack_require__(21);
 exports.parseDate = parseDate_1.parseDate;
-var template_nelm_1 = __webpack_require__(22);
+var template = __webpack_require__(22);
 function getTodayDate() {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -227,7 +227,7 @@ var OpalCalendar = /** @class */ (function (_super) {
         _this.paramDateDelimiter = '/';
         _this.fromDate = fromDate;
         _this.toDate = toDate;
-        _this.days = function (_, next) {
+        _this.days = function (_cell, next) {
             var dateDelimiter = this.paramDateDelimiter;
             var fromDate = this.fromDate;
             var toDate = this.toDate;
@@ -530,7 +530,7 @@ var OpalCalendar = /** @class */ (function (_super) {
                 weekDaysShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
                 sundayFirst: false
             },
-            template: template_nelm_1.default,
+            template: template,
             events: {
                 monthSelect: {
                     select: function (evt) {
@@ -567,7 +567,7 @@ var OpalCalendar = /** @class */ (function (_super) {
                     }
                 },
                 day: {
-                    click: function (evt, context, dayEl) {
+                    click: function (_evt, _context, dayEl) {
                         this._click(dayEl);
                     }
                 }
@@ -630,11 +630,9 @@ exports.parseDate = parseDate;
 
 /***/ }),
 /* 22 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("header/header {\nbutton/btnPrevMonth (disabled={btnPrevMonthDisabled}) {\nOpalIcon/btnPrevMonthIcon (name=chevronLeft)\n}\nOpalSelect/monthSelect (size=s, value=['{shownMonth}']) {\n@Repeat (class=OpalSelect__menuContent, for=month in constructor.i18n.months) {\nOpalSelectOption (value={=$index}, text={=month})\n}\n}\n' '\nOpalSelect/yearSelect (size=s, value=['{shownYear}']) {\n@Repeat (class=OpalSelect__menuContent, for=year in years) {\nOpalSelectOption (text={=year})\n}\n}\nbutton/btnNextMonth (disabled={btnNextMonthDisabled}) {\nOpalIcon/btnNextMonthIcon (name=chevronRight)\n}\n}\ndiv/body {\ndiv/weekDays {\ndiv/weekDaysRow {\n@Repeat (for=weekDay in weekDaysShort) {\nspan/weekDay {\n'{=weekDay}'\n}\n}\n}\n}\ndiv/days {\n@Repeat (for=weekDays in days) {\ndiv/daysRow {\n@Repeat (for=day in weekDays) {\nspan/day (\nweekDay={=day.weekDay},\ntoday={=day.today},\nselected={=day.selected},\nnotInCurrentMonth={=day.notInCurrentMonth},\ndisabled={=day.disabled},\ntabIndex={=day.tabIndex},\ndata-date={=day.date}\n) {\n'{=day.value}'\n}\n}\n}\n}\n}\n}");
+module.exports = "header/header {\nbutton/btnPrevMonth (disabled={btnPrevMonthDisabled}) {\nOpalIcon/btnPrevMonthIcon (name=chevronLeft)\n}\nOpalSelect/monthSelect (size=s, value=['{shownMonth}']) {\n@Repeat (class=OpalSelect__menuContent, for=month in constructor.i18n.months) {\nOpalSelectOption (value={=$index}, text={=month})\n}\n}\n' '\nOpalSelect/yearSelect (size=s, value=['{shownYear}']) {\n@Repeat (class=OpalSelect__menuContent, for=year in years) {\nOpalSelectOption (text={=year})\n}\n}\nbutton/btnNextMonth (disabled={btnNextMonthDisabled}) {\nOpalIcon/btnNextMonthIcon (name=chevronRight)\n}\n}\ndiv/body {\ndiv/weekDays {\ndiv/weekDaysRow {\n@Repeat (for=weekDay in weekDaysShort) {\nspan/weekDay {\n'{=weekDay}'\n}\n}\n}\n}\ndiv/days {\n@Repeat (for=weekDays in days) {\ndiv/daysRow {\n@Repeat (for=day in weekDays) {\nspan/day (\nweekDay={=day.weekDay},\ntoday={=day.today},\nselected={=day.selected},\nnotInCurrentMonth={=day.notInCurrentMonth},\ndisabled={=day.disabled},\ntabindex={=day.tabIndex},\ndata-date={=day.date}\n) {\n'{=day.value}'\n}\n}\n}\n}\n}\n}"
 
 /***/ })
 /******/ ]);

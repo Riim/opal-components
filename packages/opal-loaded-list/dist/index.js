@@ -137,7 +137,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -159,8 +159,11 @@ var cellx_1 = __webpack_require__(8);
 var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(140);
-var template_nelm_1 = __webpack_require__(141);
-var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name' });
+var template = __webpack_require__(141);
+var defaultDataListItemSchema = Object.freeze({
+    value: 'id',
+    text: 'name'
+});
 var OpalLoadedList = /** @class */ (function (_super) {
     __extends(OpalLoadedList, _super);
     function OpalLoadedList() {
@@ -311,7 +314,11 @@ var OpalLoadedList = /** @class */ (function (_super) {
     var OpalLoadedList_1;
     OpalLoadedList.defaultDataListItemSchema = defaultDataListItemSchema;
     __decorate([
-        rionite_1.Param({ type: eval, default: defaultDataListItemSchema, readonly: true }),
+        rionite_1.Param({
+            type: eval,
+            default: defaultDataListItemSchema,
+            readonly: true
+        }),
         __metadata("design:type", Object)
     ], OpalLoadedList.prototype, "paramDataListItemSchema", void 0);
     __decorate([
@@ -364,7 +371,7 @@ var OpalLoadedList = /** @class */ (function (_super) {
     OpalLoadedList = OpalLoadedList_1 = __decorate([
         rionite_1.Component({
             elementIs: 'OpalLoadedList',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalLoadedList);
     return OpalLoadedList;
@@ -393,11 +400,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 141:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div/list {\n@Repeat (for=$item in dataList) {\n@Slot/listItemSlot (for=listItem, cloneContent, getContext={_getListItemContext}) {\nspan/listItem {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\n}\nOpalLoader/loader (shown={loaderShown}, alignCenter={empty})\n@IfThen (nothingFoundShown) {\n@Slot/nothingFoundSlot (for=nothingFound, getContext={_getListItemContext}) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'Ничего не найдено'\n}\n}\n}\n}");
+module.exports = "div/list {\n@Repeat (for=$item in dataList) {\n@Slot/listItemSlot (for=listItem, cloneContent, getContext={_getListItemContext}) {\nspan/listItem {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\n}\nOpalLoader/loader (shown={loaderShown}, alignCenter={empty})\n@IfThen (nothingFoundShown) {\n@Slot/nothingFoundSlot (for=nothingFound, getContext={_getListItemContext}) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'Ничего не найдено'\n}\n}\n}\n}"
 
 /***/ }),
 

@@ -136,7 +136,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -201,7 +201,10 @@ var OpalRouter = /** @class */ (function (_super) {
                         case PathNodeType_1.PathNodeType.OPTIONAL: {
                             if (node.name) {
                                 rePath.push('(');
-                                props.push({ name: node.name, optional: true });
+                                props.push({
+                                    name: node.name,
+                                    optional: true
+                                });
                             }
                             else {
                                 rePath.push('(?:');
@@ -212,7 +215,10 @@ var OpalRouter = /** @class */ (function (_super) {
                         }
                         case PathNodeType_1.PathNodeType.INSERT: {
                             rePath.push('([^\\/]+)');
-                            props.push({ name: node.name, optional: false });
+                            props.push({
+                                name: node.name,
+                                optional: false
+                            });
                             break;
                         }
                     }
@@ -284,7 +290,7 @@ var OpalRouter = /** @class */ (function (_super) {
         this.refresh();
         return false;
     };
-    OpalRouter.prototype._update = function (path, hash) {
+    OpalRouter.prototype._update = function (path, _hash) {
         if (!path) {
             path = '/';
         }
@@ -474,7 +480,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -498,11 +504,17 @@ var OpalRoute = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
-        rionite_1.Param({ required: true, readonly: true }),
+        rionite_1.Param({
+            required: true,
+            readonly: true
+        }),
         __metadata("design:type", String)
     ], OpalRoute.prototype, "paramPath", void 0);
     __decorate([
-        rionite_1.Param({ required: true, readonly: true }),
+        rionite_1.Param({
+            required: true,
+            readonly: true
+        }),
         __metadata("design:type", String)
     ], OpalRoute.prototype, "paramComponent", void 0);
     OpalRoute = __decorate([

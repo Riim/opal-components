@@ -129,7 +129,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -150,7 +150,7 @@ var next_tick_1 = __webpack_require__(6);
 var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(217);
-var template_nelm_1 = __webpack_require__(218);
+var template = __webpack_require__(218);
 var OpalSwitch = /** @class */ (function (_super) {
     __extends(OpalSwitch, _super);
     function OpalSwitch() {
@@ -161,9 +161,13 @@ var OpalSwitch = /** @class */ (function (_super) {
         _this.paramDisabled = false;
         return _this;
     }
-    OpalSwitch.prototype._tabIndex = function () {
-        return this.paramDisabled ? -1 : this.paramTabIndex;
-    };
+    Object.defineProperty(OpalSwitch.prototype, "_tabIndex", {
+        get: function () {
+            return this.paramDisabled ? -1 : this.paramTabIndex;
+        },
+        enumerable: true,
+        configurable: true
+    });
     OpalSwitch.prototype.ready = function () {
         if (this.paramChecked) {
             this.$('input').checked = true;
@@ -293,14 +297,13 @@ var OpalSwitch = /** @class */ (function (_super) {
     ], OpalSwitch.prototype, "paramDisabled", void 0);
     __decorate([
         cellx_decorators_1.Computed,
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", Number)
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [])
     ], OpalSwitch.prototype, "_tabIndex", null);
     OpalSwitch = __decorate([
         rionite_1.Component({
             elementIs: 'OpalSwitch',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalSwitch);
     return OpalSwitch;
@@ -329,11 +332,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 218:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) {\nspan/thumb\n}\n' '\n@Slot/contentSlot\n}");
+module.exports = "label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex}) {\nspan/thumb\n}\n' '\n@Slot/contentSlot\n}"
 
 /***/ }),
 

@@ -8,7 +8,7 @@ import {
 	Param
 	} from 'rionite';
 import './index.css';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 @Component({
 	elementIs: 'OpalSwitch',
@@ -25,7 +25,7 @@ export class OpalSwitch extends BaseComponent {
 	paramDisabled = false;
 
 	@Computed
-	_tabIndex(): number {
+	get _tabIndex(): number {
 		return this.paramDisabled ? -1 : this.paramTabIndex;
 	}
 

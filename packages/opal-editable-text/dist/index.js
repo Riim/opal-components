@@ -144,7 +144,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -160,7 +160,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(41);
-var template_nelm_1 = __webpack_require__(42);
+var template = __webpack_require__(42);
 var OpalEditableText = /** @class */ (function (_super) {
     __extends(OpalEditableText, _super);
     function OpalEditableText() {
@@ -253,7 +253,7 @@ var OpalEditableText = /** @class */ (function (_super) {
     OpalEditableText = __decorate([
         rionite_1.Component({
             elementIs: 'OpalEditableText',
-            template: template_nelm_1.default,
+            template: template,
             domEvents: {
                 iconEdit: {
                     click: function () {
@@ -289,11 +289,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 42:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("span/contentWrapper {\n@Slot/contentSlot (contenteditable, spellcheck=false)\nOpalIcon/iconEdit (name=compose, strokeWidth=3)\n}");
+module.exports = "span/contentWrapper {\n@Slot/contentSlot (contenteditable, spellcheck=false)\nOpalIcon/iconEdit (name=compose, strokeWidth=3)\n}"
 
 /***/ })
 

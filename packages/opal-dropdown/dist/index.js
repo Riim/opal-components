@@ -129,7 +129,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -150,7 +150,7 @@ var cellx_1 = __webpack_require__(8);
 var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(37);
-var template_nelm_1 = __webpack_require__(38);
+var template = __webpack_require__(38);
 var openedDropdowns = [];
 var OpalDropdown = /** @class */ (function (_super) {
     __extends(OpalDropdown, _super);
@@ -308,7 +308,7 @@ var OpalDropdown = /** @class */ (function (_super) {
     OpalDropdown = __decorate([
         rionite_1.Component({
             elementIs: 'OpalDropdown',
-            template: template_nelm_1.default
+            template: template
         })
     ], OpalDropdown);
     return OpalDropdown;
@@ -337,11 +337,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 38:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (contentRendered) {\n@Slot/contentSlot\n}");
+module.exports = "@IfThen (contentRendered) {\n@Slot/contentSlot\n}"
 
 /***/ }),
 

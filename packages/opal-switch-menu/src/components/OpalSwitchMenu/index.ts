@@ -2,7 +2,7 @@ import { OpalButton } from '@riim/opal-button';
 import { IEvent } from 'cellx';
 import { BaseComponent, Component, IComponentElement } from 'rionite';
 import './index.css';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 const forEach = Array.prototype.forEach;
 const find = Array.prototype.find;

@@ -1,6 +1,6 @@
 import { BaseComponent, Component, IDisposableListening } from 'rionite';
 import './index.css';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 @Component<OpalEditableText>({
 	elementIs: 'OpalEditableText',

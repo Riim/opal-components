@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-dropdown", "@riim/opal-icon", "@riim/opal-text-input", "reflect-metadata", "@riim/next-tick", "@riim/opal-utils", "cellx", "cellx-decorators", "rionite"], factory);
+		define(["@riim/opal-dropdown", "@riim/opal-icon", "@riim/opal-text-input", "reflect-metadata", "@riim/next-tick", "cellx", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/packages/opal-autosuggest/src/index.ts"] = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("@riim/opal-utils"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/packages/opal-autosuggest/src/index.ts"] = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/packages/opal-autosuggest/src/index.ts"] = factory(root["@riim/opal-dropdown"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/next-tick"], root["@riim/opal-utils"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
+		root["@riim/packages/opal-autosuggest/src/index.ts"] = factory(root["@riim/opal-dropdown"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/next-tick"], root["cellx"], root["cellx-decorators"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -147,7 +147,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -165,16 +165,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var next_tick_1 = __webpack_require__(6);
-var opal_utils_1 = __webpack_require__(7);
 var cellx_1 = __webpack_require__(8);
 var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(11);
-var template_nelm_1 = __webpack_require__(12);
+var template = __webpack_require__(12);
 function toComparable(str) {
     return str.replace(/\s+/g, ' ').toLowerCase();
 }
-var defaultDataListItemSchema = Object.freeze({ value: 'id', text: 'name', subtext: 'parent' });
+var defaultDataListItemSchema = Object.freeze({
+    value: 'id',
+    text: 'name',
+    subtext: 'parent'
+});
 var OpalAutosuggest = /** @class */ (function (_super) {
     __extends(OpalAutosuggest, _super);
     function OpalAutosuggest() {
@@ -314,6 +317,9 @@ var OpalAutosuggest = /** @class */ (function (_super) {
                 break;
             }
             el = el.parentElement;
+            if (!el) {
+                return;
+            }
         }
         var focusedListItem = this._focusedListItem;
         if (!focusedListItem || el != focusedListItem) {
@@ -325,8 +331,7 @@ var OpalAutosuggest = /** @class */ (function (_super) {
         }
     };
     OpalAutosuggest.prototype._onDocumentFocus = function (evt) {
-        if (opal_utils_1.isFocusable(evt.target) &&
-            !this.element.contains(evt.target.parentNode)) {
+        if (!this.element.contains(evt.target.parentElement)) {
             this.closeMenu();
             this._selectItem();
         }
@@ -526,7 +531,11 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     var OpalAutosuggest_1;
     OpalAutosuggest.defaultDataListItemSchema = defaultDataListItemSchema;
     __decorate([
-        rionite_1.Param({ type: eval, default: defaultDataListItemSchema, readonly: true }),
+        rionite_1.Param({
+            type: eval,
+            default: defaultDataListItemSchema,
+            readonly: true
+        }),
         __metadata("design:type", Object)
     ], OpalAutosuggest.prototype, "paramDataListItemSchema", void 0);
     __decorate([
@@ -573,10 +582,10 @@ var OpalAutosuggest = /** @class */ (function (_super) {
     OpalAutosuggest = OpalAutosuggest_1 = __decorate([
         rionite_1.Component({
             elementIs: 'OpalAutosuggest',
-            template: template_nelm_1.default,
+            template: template,
             domEvents: {
                 listItem: {
-                    click: function (evt, context) {
+                    click: function (_evt, context) {
                         var _a;
                         var textInput = this.$('textInput');
                         var item = context.item;
@@ -605,12 +614,7 @@ exports.OpalAutosuggest = OpalAutosuggest;
 module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
-
-/***/ }),
+/* 7 */,
 /* 8 */
 /***/ (function(module, exports) {
 
@@ -647,11 +651,9 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 12 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder=Начните вводить для поиска,\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown/menu {\n@Slot (for=menuHeader)\ndiv/list {\n@Repeat (for=item in dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (dataList.length) {\n@Slot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'Ничего не найдено'\n}\n}\n}\n}\n@Slot/menuFooterSlot (for=menuFooter)\n}");
+module.exports = "@Slot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder=Начните вводить для поиска,\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown/menu {\n@Slot (for=menuHeader)\ndiv/list {\n@Repeat (for=item in dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (dataList.length) {\n@Slot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'Ничего не найдено'\n}\n}\n}\n}\n@Slot/menuFooterSlot (for=menuFooter)\n}"
 
 /***/ })
 /******/ ]);

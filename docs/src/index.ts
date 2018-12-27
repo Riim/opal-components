@@ -1,7 +1,7 @@
 import { ObservableList } from 'cellx';
 import { ObservableTreeList } from 'opal-components';
 import { BaseComponent, Component, formatters } from 'rionite';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 formatters.log = (msg: any): any => {
 	console.log(msg);

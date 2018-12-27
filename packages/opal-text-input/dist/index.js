@@ -145,7 +145,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -166,7 +166,7 @@ var next_tick_1 = __webpack_require__(6);
 var cellx_decorators_1 = __webpack_require__(9);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(243);
-var template_nelm_1 = __webpack_require__(244);
+var template = __webpack_require__(244);
 var OpalTextInput = /** @class */ (function (_super) {
     __extends(OpalTextInput, _super);
     function OpalTextInput() {
@@ -349,11 +349,7 @@ var OpalTextInput = /** @class */ (function (_super) {
             var lineHeight = parseInt(getComputedStyle(textField).lineHeight, 10);
             textField.style.height = this._initialHeight - lineHeight + 'px';
             textField.style.height =
-                textField.offsetHeight +
-                    textField.scrollHeight -
-                    textField.clientHeight +
-                    lineHeight +
-                    'px';
+                textField.scrollHeight + textField.offsetHeight - textField.clientHeight + 'px';
         }
     };
     OpalTextInput.prototype.clear = function () {
@@ -457,7 +453,7 @@ var OpalTextInput = /** @class */ (function (_super) {
     OpalTextInput = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTextInput',
-            template: template_nelm_1.default,
+            template: template,
             domEvents: {
                 btnClear: {
                     click: function () {
@@ -496,11 +492,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 244:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (paramMultiline) {\ntextarea/, textField (\nrows={paramRows},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfElse (paramMultiline) {\ninput/, textField (\ntype={paramInputType},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfThen (paramStartIcon) {\nOpalIcon/startIcon (name={paramStartIcon})\n}\n@Slot/endIconSlot (for=endIcon, shown={endIconShown}) {\n@IfThen (paramEndIcon) {\nOpalIcon/endIcon (name={paramEndIcon})\n}\n}\n@IfThen (paramClearable) {\nbutton/btnClear (shown={btnClearShown}) {\nOpalIcon/btnClearIcon (name=cross)\n}\n}\n@IfThen (paramLoading) {\nOpalLoader/loader (size=s, shown)\n}");
+module.exports = "@IfThen (paramMultiline) {\ntextarea/, textField (\nrows={paramRows},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabindex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfElse (paramMultiline) {\ninput/, textField (\ntype={paramInputType},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabindex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfThen (paramStartIcon) {\nOpalIcon/startIcon (name={paramStartIcon})\n}\n@Slot/endIconSlot (for=endIcon, shown={endIconShown}) {\n@IfThen (paramEndIcon) {\nOpalIcon/endIcon (name={paramEndIcon})\n}\n}\n@IfThen (paramClearable) {\nbutton/btnClear (shown={btnClearShown}) {\nOpalIcon/btnClearIcon (name=cross)\n}\n}\n@IfThen (paramLoading) {\nOpalLoader/loader (size=s, shown)\n}"
 
 /***/ }),
 

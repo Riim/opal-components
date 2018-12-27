@@ -169,7 +169,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -191,7 +191,7 @@ var opal_tree_list_1 = __webpack_require__(258);
 var cellx_1 = __webpack_require__(8);
 var rionite_1 = __webpack_require__(10);
 __webpack_require__(260);
-var template_nelm_1 = __webpack_require__(261);
+var template = __webpack_require__(261);
 var OpalTreeSelect = /** @class */ (function (_super) {
     __extends(OpalTreeSelect, _super);
     function OpalTreeSelect() {
@@ -264,7 +264,7 @@ var OpalTreeSelect = /** @class */ (function (_super) {
     OpalTreeSelect = __decorate([
         rionite_1.Component({
             elementIs: 'OpalTreeSelect',
-            template: template_nelm_1.default,
+            template: template,
             events: {
                 btnClose: {
                     click: function () {
@@ -300,11 +300,9 @@ module.exports = (function(d) {
 /***/ }),
 
 /***/ 261:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("OpalModal/menu {\n@Slot (for=menuHeaderSlot) {\n@Slot/menuHeaderSlot (for=menuHeader)\n}\nOpalFilteredList/filteredList {\nOpalTreeList/treeList (\nclass=OpalFilteredList__list,\ndataTreeList={dataTreeList},\ndataTreeListItemSchema={paramDataTreeListItemSchema |dump },\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\nquery={paramQuery}\n) {\nOpalSelectOption/option (\nclass=OpalTreeList__selectionControl,\ntext={$item.name},\nselected={$selected},\nindeterminate={$indeterminate}\n)\n}\n}\ndiv/footer {\nOpalButton/btnClose {\n'Готово'\n}\n}\n}");
+module.exports = "OpalModal/menu {\n@Slot (for=menuHeaderSlot) {\n@Slot/menuHeaderSlot (for=menuHeader)\n}\nOpalFilteredList/filteredList {\nOpalTreeList/treeList (\nclass=OpalFilteredList__list,\ndataTreeList={dataTreeList},\ndataTreeListItemSchema={paramDataTreeListItemSchema |dump },\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\nquery={paramQuery}\n) {\nOpalSelectOption/option (\nclass=OpalTreeList__selectionControl,\ntext={$item.name},\nselected={$selected},\nindeterminate={$indeterminate}\n)\n}\n}\ndiv/footer {\nOpalButton/btnClose {\n'Готово'\n}\n}\n}"
 
 /***/ }),
 

@@ -5,7 +5,6 @@ import { OpalDropdown } from '@riim/opal-dropdown';
 import { OpalFilteredList } from '@riim/opal-filtered-list';
 import { OpalLoadedList } from '@riim/opal-loaded-list';
 import { OpalTextInput } from '@riim/opal-text-input';
-import { isFocusable } from '@riim/opal-utils';
 import {
 	Cell,
 	define,
@@ -25,7 +24,7 @@ import {
 import { OpalSelectOption } from '../OpalSelectOption';
 import './index.css';
 import { isEqualArray } from './isEqualArray';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 export { OpalSelectOption };
 
@@ -775,10 +774,7 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	_onDocumentFocus(evt: Event) {
-		if (
-			isFocusable(evt.target as HTMLElement) &&
-			!this.element.contains((evt.target as Node).parentNode!)
-		) {
+		if (!this.element.contains((evt.target as Node).parentElement)) {
 			this.close();
 		}
 	}

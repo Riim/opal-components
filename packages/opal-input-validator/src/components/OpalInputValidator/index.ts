@@ -2,7 +2,7 @@ import { Computed, Observable } from 'cellx-decorators';
 import { BaseComponent, Component, IComponentElement } from 'rionite';
 import { OpalInputValidatorRule } from '../OpalInputValidatorRule';
 import './index.css';
-import template from './template.nelm';
+import template = require('./template.nelm');
 
 export { OpalInputValidatorRule };
 
