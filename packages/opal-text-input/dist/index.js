@@ -209,33 +209,20 @@ var OpalTextInput = /** @class */ (function (_super) {
         configurable: true
     });
     OpalTextInput.prototype.ready = function () {
-        var textField = (this.textField = this.$('textField'));
+        this.textField = this.$('textField');
         if (this.paramValue) {
-            this._textFieldValue = textField.value = this.paramValue;
+            this._textFieldValue = this.textField.value = this.paramValue;
         }
         else if (this.paramStoreKey) {
-            this._textFieldValue = textField.value = localStorage.getItem(this.paramStoreKey) || '';
+            this._textFieldValue = this.textField.value =
+                localStorage.getItem(this.paramStoreKey) || '';
         }
         else {
             this._textFieldValue = '';
         }
         this._prevValue = this.value;
         if (this.paramMultiline && this.paramAutoHeight) {
-            var offsetHeight = textField.offsetHeight;
-            if (offsetHeight) {
-                this._initialHeight =
-                    offsetHeight + textField.scrollHeight - textField.clientHeight;
-            }
-            else {
-                var style = getComputedStyle(textField);
-                this._initialHeight =
-                    parseInt(style.paddingTop, 10) +
-                        parseInt(style.paddingBottom, 10) +
-                        parseInt(style.borderTop, 10) +
-                        parseInt(style.borderBottom, 10) +
-                        parseInt(style.lineHeight, 10) * this.paramRows;
-                this._initialHeight + 'px';
-            }
+            this._fixMinHeight();
             this._fixHeight();
         }
         if (this.paramFocused) {
@@ -244,6 +231,7 @@ var OpalTextInput = /** @class */ (function (_super) {
     };
     OpalTextInput.prototype.elementAttached = function () {
         this.listenTo(this, {
+            'change:paramRows': this._onParamRowsChange,
             'change:paramValue': this._onParamValueChange,
             'change:paramFocused': this._onParamFocusedChange
         });
@@ -256,6 +244,11 @@ var OpalTextInput = /** @class */ (function (_super) {
             keypress: this._onTextFieldKeyPress,
             keyup: this._onTextFieldKeyUp
         });
+    };
+    OpalTextInput.prototype._onParamRowsChange = function () {
+        if (this.paramMultiline && this.paramAutoHeight) {
+            this._fixMinHeight();
+        }
     };
     OpalTextInput.prototype._onParamValueChange = function (evt) {
         if (this.textField.value != evt.data.value) {
@@ -311,11 +304,6 @@ var OpalTextInput = /** @class */ (function (_super) {
         });
     };
     OpalTextInput.prototype._onTextFieldKeyDown = function (evt) {
-        // if (this.paramMultiline && this.paramAutoHeight) {
-        // 	setTimeout(() => {
-        // 		this._fixHeight();
-        // 	}, 1);
-        // }
         this.emit({
             type: 'keydown',
             data: {
@@ -335,9 +323,6 @@ var OpalTextInput = /** @class */ (function (_super) {
         });
     };
     OpalTextInput.prototype._onTextFieldKeyUp = function (evt) {
-        // if (this.paramMultiline && this.paramAutoHeight) {
-        // 	this._fixHeight();
-        // }
         this.emit({
             type: 'keyup',
             data: {
@@ -345,18 +330,17 @@ var OpalTextInput = /** @class */ (function (_super) {
             }
         });
     };
+    OpalTextInput.prototype._fixMinHeight = function () {
+        var style = getComputedStyle(this.textField);
+        this.$('textareaHeight').style.minHeight =
+            parseInt(style.paddingTop, 10) +
+                parseInt(style.paddingBottom, 10) +
+                parseInt(style.borderTop, 10) +
+                parseInt(style.borderBottom, 10) +
+                parseInt(style.lineHeight, 10) * this.paramRows +
+                'px';
+    };
     OpalTextInput.prototype._fixHeight = function () {
-        // let textField = this.textField;
-        // if (textField.offsetHeight) {
-        // 	let lineHeight = parseInt(getComputedStyle(textField).lineHeight!, 10);
-        // 	textField.style.height = this._initialHeight - lineHeight + 'px';
-        // 	textField.style.height =
-        // 		textField.offsetHeight +
-        // 		textField.scrollHeight -
-        // 		textField.clientHeight +
-        // 		lineHeight +
-        // 		'px';
-        // }
         this.$('textareaHeight').innerHTML = this.textField.value + '\n';
     };
     OpalTextInput.prototype.clear = function () {

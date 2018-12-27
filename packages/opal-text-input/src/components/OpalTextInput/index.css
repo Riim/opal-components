@@ -29,6 +29,7 @@
 		-webkit-tap-highlight-color: transparent;
 	}
 
+	/* http://www.brianchu.com/blog/2013/11/02/creating-an-auto-growing-text-input/ */
 	@el textareaContainer {
 		position: relative;
 	}

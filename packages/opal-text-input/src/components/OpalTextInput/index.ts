@@ -80,15 +80,14 @@ export class OpalTextInput extends BaseComponent {
 		return !this.paramLoading && !this.btnClearShown;
 	}
 
-	_initialHeight: number;
-
 	ready() {
-		let textField = (this.textField = this.$<HTMLInputElement>('textField')!);
+		this.textField = this.$<HTMLInputElement>('textField')!;
 
 		if (this.paramValue) {
-			this._textFieldValue = textField.value = this.paramValue;
+			this._textFieldValue = this.textField.value = this.paramValue;
 		} else if (this.paramStoreKey) {
-			this._textFieldValue = textField.value = localStorage.getItem(this.paramStoreKey) || '';
+			this._textFieldValue = this.textField.value =
+				localStorage.getItem(this.paramStoreKey) || '';
 		} else {
 			this._textFieldValue = '';
 		}
@@ -96,24 +95,7 @@ export class OpalTextInput extends BaseComponent {
 		this._prevValue = this.value;
 
 		if (this.paramMultiline && this.paramAutoHeight) {
-			let offsetHeight = textField.offsetHeight;
-
-			if (offsetHeight) {
-				this._initialHeight =
-					offsetHeight + textField.scrollHeight - textField.clientHeight;
-			} else {
-				let style = getComputedStyle(textField);
-
-				this._initialHeight =
-					parseInt(style.paddingTop!, 10) +
-					parseInt(style.paddingBottom!, 10) +
-					parseInt(style.borderTop!, 10) +
-					parseInt(style.borderBottom!, 10) +
-					parseInt(style.lineHeight!, 10) * this.paramRows;
-
-				this._initialHeight + 'px';
-			}
-
+			this._fixMinHeight();
 			this._fixHeight();
 		}
 
@@ -124,6 +106,7 @@ export class OpalTextInput extends BaseComponent {
 
 	elementAttached() {
 		this.listenTo(this, {
+			'change:paramRows': this._onParamRowsChange,
 			'change:paramValue': this._onParamValueChange,
 			'change:paramFocused': this._onParamFocusedChange
 		});
@@ -136,6 +119,12 @@ export class OpalTextInput extends BaseComponent {
 			keypress: this._onTextFieldKeyPress,
 			keyup: this._onTextFieldKeyUp
 		});
+	}
+
+	_onParamRowsChange() {
+		if (this.paramMultiline && this.paramAutoHeight) {
+			this._fixMinHeight();
+		}
 	}
 
 	_onParamValueChange(evt: IEvent) {
@@ -202,12 +191,6 @@ export class OpalTextInput extends BaseComponent {
 	}
 
 	_onTextFieldKeyDown(evt: Event) {
-		// if (this.paramMultiline && this.paramAutoHeight) {
-		// 	setTimeout(() => {
-		// 		this._fixHeight();
-		// 	}, 1);
-		// }
-
 		this.emit({
 			type: 'keydown',
 			data: {
@@ -230,10 +213,6 @@ export class OpalTextInput extends BaseComponent {
 	}
 
 	_onTextFieldKeyUp(evt: Event) {
-		// if (this.paramMultiline && this.paramAutoHeight) {
-		// 	this._fixHeight();
-		// }
-
 		this.emit({
 			type: 'keyup',
 			data: {
@@ -242,21 +221,19 @@ export class OpalTextInput extends BaseComponent {
 		});
 	}
 
+	_fixMinHeight() {
+		let style = getComputedStyle(this.textField);
+
+		this.$<HTMLElement>('textareaHeight')!.style.minHeight =
+			parseInt(style.paddingTop!, 10) +
+			parseInt(style.paddingBottom!, 10) +
+			parseInt(style.borderTop!, 10) +
+			parseInt(style.borderBottom!, 10) +
+			parseInt(style.lineHeight!, 10) * this.paramRows +
+			'px';
+	}
+
 	_fixHeight() {
-		// let textField = this.textField;
-
-		// if (textField.offsetHeight) {
-		// 	let lineHeight = parseInt(getComputedStyle(textField).lineHeight!, 10);
-
-		// 	textField.style.height = this._initialHeight - lineHeight + 'px';
-		// 	textField.style.height =
-		// 		textField.offsetHeight +
-		// 		textField.scrollHeight -
-		// 		textField.clientHeight +
-		// 		lineHeight +
-		// 		'px';
-		// }
-
 		this.$<Element>('textareaHeight')!.innerHTML = this.textField.value + '\n';
 	}
 

@@ -24,9 +24,9 @@ export declare class OpalTextInput extends BaseComponent {
     _prevValue: string | null;
     readonly btnClearShown: boolean;
     readonly endIconShown: boolean;
-    _initialHeight: number;
     ready(): void;
     elementAttached(): void;
+    _onParamRowsChange(): void;
     _onParamValueChange(evt: IEvent): void;
     _onParamFocusedChange(evt: IEvent): void;
     _onTextFieldFocus(evt: Event): void;
@@ -36,6 +36,7 @@ export declare class OpalTextInput extends BaseComponent {
     _onTextFieldKeyDown(evt: Event): void;
     _onTextFieldKeyPress(evt: KeyboardEvent): void;
     _onTextFieldKeyUp(evt: Event): void;
+    _fixMinHeight(): void;
     _fixHeight(): void;
     clear(): this;
     focus(): this;
