@@ -1,6 +1,6 @@
 {
   "name": "opal-components",
-  "version": "0.33.167",
+  "version": "0.33.168",
   "description": "",
   "main": "dist/OpalComponents.js",
   "types": "dist/index.d.ts",
@@ -78,7 +78,7 @@
     "@riim/opal-switch-menu": "^0.33.167",
     "@riim/opal-tabs": "^0.33.167",
     "@riim/opal-tag-select": "^0.33.167",
-    "@riim/opal-text-input": "^0.33.167",
+    "@riim/opal-text-input": "^0.33.168",
     "@riim/opal-text-input-validator": "^0.33.167",
     "@riim/opal-tree-list": "^0.33.167",
     "@riim/opal-tree-select": "^0.33.167",

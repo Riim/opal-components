@@ -101,7 +101,6 @@ export class OpalTextInput extends BaseComponent {
 			if (offsetHeight) {
 				this._initialHeight =
 					offsetHeight + textField.scrollHeight - textField.clientHeight;
-				this._fixHeight();
 			} else {
 				let style = getComputedStyle(textField);
 
@@ -112,8 +111,10 @@ export class OpalTextInput extends BaseComponent {
 					parseInt(style.borderBottom!, 10) +
 					parseInt(style.lineHeight!, 10) * this.paramRows;
 
-				textField.style.height = this._initialHeight + 'px';
+				this._initialHeight + 'px';
 			}
+
+			this._fixHeight();
 		}
 
 		if (this.paramFocused) {
@@ -172,6 +173,10 @@ export class OpalTextInput extends BaseComponent {
 	_onTextFieldInput(evt: Event) {
 		this._textFieldValue = this.textField.value;
 
+		if (this.paramMultiline && this.paramAutoHeight) {
+			this._fixHeight();
+		}
+
 		this.emit('input', {
 			initialEvent: evt
 		});
@@ -197,11 +202,11 @@ export class OpalTextInput extends BaseComponent {
 	}
 
 	_onTextFieldKeyDown(evt: Event) {
-		if (this.paramMultiline && this.paramAutoHeight) {
-			setTimeout(() => {
-				this._fixHeight();
-			}, 1);
-		}
+		// if (this.paramMultiline && this.paramAutoHeight) {
+		// 	setTimeout(() => {
+		// 		this._fixHeight();
+		// 	}, 1);
+		// }
 
 		this.emit({
 			type: 'keydown',
@@ -225,9 +230,9 @@ export class OpalTextInput extends BaseComponent {
 	}
 
 	_onTextFieldKeyUp(evt: Event) {
-		if (this.paramMultiline && this.paramAutoHeight) {
-			this._fixHeight();
-		}
+		// if (this.paramMultiline && this.paramAutoHeight) {
+		// 	this._fixHeight();
+		// }
 
 		this.emit({
 			type: 'keyup',
@@ -238,15 +243,21 @@ export class OpalTextInput extends BaseComponent {
 	}
 
 	_fixHeight() {
-		let textField = this.textField;
+		// let textField = this.textField;
 
-		if (textField.offsetHeight) {
-			let lineHeight = parseInt(getComputedStyle(textField).lineHeight!, 10);
+		// if (textField.offsetHeight) {
+		// 	let lineHeight = parseInt(getComputedStyle(textField).lineHeight!, 10);
 
-			textField.style.height = this._initialHeight - lineHeight + 'px';
-			textField.style.height =
-				textField.scrollHeight + textField.offsetHeight - textField.clientHeight + 'px';
-		}
+		// 	textField.style.height = this._initialHeight - lineHeight + 'px';
+		// 	textField.style.height =
+		// 		textField.offsetHeight +
+		// 		textField.scrollHeight -
+		// 		textField.clientHeight +
+		// 		lineHeight +
+		// 		'px';
+		// }
+
+		this.$<Element>('textareaHeight')!.innerHTML = this.textField.value + '\n';
 	}
 
 	clear(): this {

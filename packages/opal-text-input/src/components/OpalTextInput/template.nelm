@@ -1,11 +1,14 @@
 @IfThen (paramMultiline) {
-	textarea/, textField (
-		rows={paramRows},
-		name={paramInputName},
-		placeholder={paramPlaceholder},
-		tabindex={paramTabIndex},
-		disabled={paramDisabled}
-	)
+	div/textareaContainer {
+		textarea/textarea, textField (
+			rows={paramRows},
+			name={paramInputName},
+			placeholder={paramPlaceholder},
+			tabindex={paramTabIndex},
+			disabled={paramDisabled}
+		)
+		div/textareaHeight
+	}
 }
 @IfElse (paramMultiline) {
 	input/, textField (

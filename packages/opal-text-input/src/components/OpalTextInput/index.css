@@ -4,7 +4,9 @@
 	width: 400px;
 	vertical-align: middle;
 
-	@el textField {
+	@el textField,
+		textareaHeight
+	{
 		display: block;
 		box-sizing: border-box;
 		padding: 6px 36px 6px 12px;
@@ -26,6 +28,26 @@
 		-ms-text-size-adjust: 100%;
 		-webkit-tap-highlight-color: transparent;
 	}
+
+	@el textareaContainer {
+		position: relative;
+	}
+		@el textarea {
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			height: 100%;
+			white-space: normal;
+			resize: none;
+		}
+
+		@el textareaHeight {
+			visibility: hidden;
+			white-space: pre-wrap;
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+		}
 
 	@el startIcon,
 		endIcon
