@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-autosuggest",
-  "version": "0.33.167",
+  "version": "0.33.171",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,7 @@
   "dependencies": {
     "@riim/opal-dropdown": "^0.33.167",
     "@riim/opal-icon": "^0.33.167",
-    "@riim/opal-text-input": "^0.33.167",
+    "@riim/opal-text-input": "^0.33.171",
     "cellx": "^1.7.95",
     "cellx-decorators": "^1.4.11",
     "reflect-metadata": "^0.1.12",
