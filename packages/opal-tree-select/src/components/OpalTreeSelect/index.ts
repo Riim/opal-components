@@ -8,7 +8,6 @@ import template = require('./template.nelm');
 
 @Component({
 	elementIs: 'OpalTreeSelect',
-
 	template,
 
 	events: {

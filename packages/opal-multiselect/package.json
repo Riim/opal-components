@@ -13,7 +13,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/gettext": "^1.1.1",
     "@riim/opal-button": "^0.33.167",
     "@riim/opal-icon": "^0.33.167",
     "@riim/opal-loaded-list": "^0.33.167",

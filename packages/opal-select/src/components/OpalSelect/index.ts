@@ -52,31 +52,7 @@ const defaultVMItemSchema = Object.freeze({
 
 @Component<OpalSelect>({
 	elementIs: 'OpalSelect',
-	template,
-
-	events: {
-		menuSlot: {
-			'<*>loaded'(evt) {
-				if (this._onсeFocusedAfterLoading || evt.target !== this.$('loadedList')) {
-					return;
-				}
-
-				this._onсeFocusedAfterLoading = true;
-
-				this._focusOptions();
-
-				let focusTarget =
-					this.$<HTMLElement | OpalTextInput>('focus') ||
-					this.$<OpalFilteredList>('filteredList');
-
-				if (focusTarget) {
-					nextTick(() => {
-						focusTarget!.focus();
-					});
-				}
-			}
-		}
-	}
+	template
 })
 export class OpalSelect extends BaseComponent {
 	static defaultDataListItemSchema = defaultDataListItemSchema;
@@ -135,6 +111,7 @@ export class OpalSelect extends BaseComponent {
 	@Param
 	paramDisabled = false;
 
+	dataListCell: Cell<TDataList | null> | null = null;
 	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;
@@ -166,7 +143,7 @@ export class OpalSelect extends BaseComponent {
 		}
 
 		if (text.length > this.paramMaxTextLength) {
-			text = getText.nt('Выбран{n:|о|о} {n}', this.viewModel.length);
+			text = getText.t('Выбран{n:|о|о} {n}', this.viewModel.length);
 		}
 
 		return text;
@@ -194,6 +171,8 @@ export class OpalSelect extends BaseComponent {
 	_documentClickListening: IDisposableListening | null | undefined;
 	_documentFocusListening: IDisposableListening;
 	_documentKeyDownListening: IDisposableListening | null | undefined;
+	_dataListChangeListeneng: IDisposableListening;
+	_menuLoadedListeneng: IDisposableListening;
 
 	initialize() {
 		if (this.paramDataListKeypath) {
@@ -714,6 +693,20 @@ export class OpalSelect extends BaseComponent {
 			);
 		}
 
+		if (this.dataListCell) {
+			this._dataListChangeListeneng = this.listenTo(
+				this,
+				'change:dataList',
+				this._onDataListChange
+			);
+		}
+
+		this._menuLoadedListeneng = this.listenTo(
+			this.$<BaseComponent>('menu')!,
+			'<*>loaded',
+			this._onMenuLoaded
+		);
+
 		this.$<OpalButton>('button')!.check();
 		this._notUpdateOptions = true;
 		this.$<OpalDropdown>('menu')!.open();
@@ -748,6 +741,12 @@ export class OpalSelect extends BaseComponent {
 			this._documentKeyDownListening!.stop();
 			this._documentKeyDownListening = null;
 		}
+
+		if (this._dataListChangeListeneng) {
+			this._dataListChangeListeneng.stop();
+		}
+
+		this._menuLoadedListeneng.stop();
 
 		this.$<OpalButton>('button')!.uncheck();
 		this.$<OpalDropdown>('menu')!.close();
@@ -896,6 +895,36 @@ export class OpalSelect extends BaseComponent {
 				this.focus();
 				break;
 			}
+		}
+	}
+
+	_onDataListChange(evt: IEvent) {
+		if (!evt.data.prevValue) {
+			nextTick(() => {
+				if (this._opened) {
+					this.focus();
+				}
+			});
+		}
+	}
+
+	_onMenuLoaded(evt: IEvent) {
+		if (this._onсeFocusedAfterLoading || evt.target !== this.$('loadedList')) {
+			return;
+		}
+
+		this._onсeFocusedAfterLoading = true;
+
+		this._focusOptions();
+
+		let focusTarget =
+			this.$<HTMLElement | OpalTextInput>('focus') ||
+			this.$<OpalFilteredList>('filteredList');
+
+		if (focusTarget) {
+			nextTick(() => {
+				focusTarget!.focus();
+			});
 		}
 	}
 

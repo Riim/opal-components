@@ -216,6 +216,7 @@ var OpalSelect = /** @class */ (function (_super) {
         _this.paramTabIndex = 0;
         _this.paramFocused = false;
         _this.paramDisabled = false;
+        _this.dataListCell = null;
         _this._needOptionsUpdating = false;
         _this._notUpdateOptions = false;
         _this._opened = false;
@@ -241,7 +242,7 @@ var OpalSelect = /** @class */ (function (_super) {
                 return this.paramPlaceholder;
             }
             if (text.length > this.paramMaxTextLength) {
-                text = gettext_1.getText.nt('Выбран{n:|о|о} {n}', this.viewModel.length);
+                text = gettext_1.getText.t('Выбран{n:|о|о} {n}', this.viewModel.length);
             }
             return text;
         },
@@ -666,6 +667,10 @@ var OpalSelect = /** @class */ (function (_super) {
         if (!this._documentKeyDownListening) {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
         }
+        if (this.dataListCell) {
+            this._dataListChangeListeneng = this.listenTo(this, 'change:dataList', this._onDataListChange);
+        }
+        this._menuLoadedListeneng = this.listenTo(this.$('menu'), '<*>loaded', this._onMenuLoaded);
         this.$('button').check();
         this._notUpdateOptions = true;
         this.$('menu').open();
@@ -692,6 +697,10 @@ var OpalSelect = /** @class */ (function (_super) {
             this._documentKeyDownListening.stop();
             this._documentKeyDownListening = null;
         }
+        if (this._dataListChangeListeneng) {
+            this._dataListChangeListeneng.stop();
+        }
+        this._menuLoadedListeneng.stop();
         this.$('button').uncheck();
         this.$('menu').close();
         if (this.paramMultiple) {
@@ -815,6 +824,30 @@ var OpalSelect = /** @class */ (function (_super) {
                 this.focus();
                 break;
             }
+        }
+    };
+    OpalSelect.prototype._onDataListChange = function (evt) {
+        var _this = this;
+        if (!evt.data.prevValue) {
+            next_tick_1.nextTick(function () {
+                if (_this._opened) {
+                    _this.focus();
+                }
+            });
+        }
+    };
+    OpalSelect.prototype._onMenuLoaded = function (evt) {
+        if (this._onсeFocusedAfterLoading || evt.target !== this.$('loadedList')) {
+            return;
+        }
+        this._onсeFocusedAfterLoading = true;
+        this._focusOptions();
+        var focusTarget = this.$('focus') ||
+            this.$('filteredList');
+        if (focusTarget) {
+            next_tick_1.nextTick(function () {
+                focusTarget.focus();
+            });
         }
     };
     OpalSelect.prototype._updateOptions = function () {
@@ -971,25 +1004,7 @@ var OpalSelect = /** @class */ (function (_super) {
     OpalSelect = OpalSelect_1 = __decorate([
         rionite_1.Component({
             elementIs: 'OpalSelect',
-            template: template,
-            events: {
-                menuSlot: {
-                    '<*>loaded': function (evt) {
-                        if (this._onсeFocusedAfterLoading || evt.target !== this.$('loadedList')) {
-                            return;
-                        }
-                        this._onсeFocusedAfterLoading = true;
-                        this._focusOptions();
-                        var focusTarget = this.$('focus') ||
-                            this.$('filteredList');
-                        if (focusTarget) {
-                            next_tick_1.nextTick(function () {
-                                focusTarget.focus();
-                            });
-                        }
-                    }
-                }
-            }
+            template: template
         })
     ], OpalSelect);
     return OpalSelect;

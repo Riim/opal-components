@@ -14,7 +14,6 @@ import template = require('./template.nelm');
 
 @Component<OpalTreeListItem>({
 	elementIs: 'OpalTreeListItem',
-
 	template,
 
 	events: {

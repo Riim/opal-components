@@ -4,7 +4,6 @@ import template = require('./template.nelm');
 
 @Component<OpalEditableText>({
 	elementIs: 'OpalEditableText',
-
 	template,
 
 	domEvents: {

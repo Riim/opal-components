@@ -52,6 +52,7 @@ export declare class OpalSelect extends BaseComponent {
     paramTabIndex: number;
     paramFocused: boolean;
     paramDisabled: boolean;
+    dataListCell: Cell<TDataList | null> | null;
     dataList: TDataList | null;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
@@ -79,6 +80,8 @@ export declare class OpalSelect extends BaseComponent {
     _documentClickListening: IDisposableListening | null | undefined;
     _documentFocusListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening | null | undefined;
+    _dataListChangeListeneng: IDisposableListening;
+    _menuLoadedListeneng: IDisposableListening;
     initialize(): void;
     ready(): void;
     _initViewModel(): void;
@@ -106,6 +109,8 @@ export declare class OpalSelect extends BaseComponent {
     toggle(value?: boolean): boolean;
     _onDocumentFocus(evt: Event): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
+    _onDataListChange(evt: IEvent): void;
+    _onMenuLoaded(evt: IEvent): void;
     _updateOptions(): void;
     focus(): this;
     blur(): this;

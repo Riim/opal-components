@@ -24,7 +24,6 @@ function pad(num: number): string {
 
 @Component({
 	elementIs: 'OpalDateInput',
-
 	template,
 
 	events: {

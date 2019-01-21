@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/gettext": "^1.1.1",
+    "@riim/gettext": "^1.2.0",
     "@riim/opal-filtered-list": "^0.33.167",
     "@riim/opal-loaded-list": "^0.33.167",
     "@riim/opal-loader": "^0.33.167",

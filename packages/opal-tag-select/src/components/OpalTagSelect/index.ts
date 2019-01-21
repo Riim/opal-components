@@ -31,7 +31,6 @@ const defaultVMItemSchema = Object.freeze({
 
 @Component<OpalTagSelect>({
 	elementIs: 'OpalTagSelect',
-
 	template,
 
 	domEvents: {
