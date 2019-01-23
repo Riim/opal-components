@@ -773,7 +773,7 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	_onDocumentFocus(evt: Event) {
-		if (!this.element.contains((evt.target as Node).parentElement)) {
+		if (!this.element.contains((evt.target as Node).parentElement!)) {
 			this.close();
 		}
 	}

@@ -211,7 +211,7 @@ var OpalSelect = /** @class */ (function (_super) {
         _this.paramSize = 'm';
         _this.paramMultiple = false;
         _this.paramMaxTextLength = 20;
-        _this.paramPlaceholder = gettext_1.getText.t('Не выбрано');
+        _this.paramPlaceholder = gettext_1.t('Не выбрано');
         _this.openOnClick = false;
         _this.paramTabIndex = 0;
         _this.paramFocused = false;
@@ -242,7 +242,7 @@ var OpalSelect = /** @class */ (function (_super) {
                 return this.paramPlaceholder;
             }
             if (text.length > this.paramMaxTextLength) {
-                text = gettext_1.getText.t('Выбран{n:|о|о} {n}', this.viewModel.length);
+                text = gettext_1.t('Выбран{n:|о|о} {n}', this.viewModel.length);
             }
             return text;
         },

@@ -215,7 +215,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
     __extends(OpalTagSelect, _super);
     function OpalTagSelect() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramPlaceholder = gettext_1.getText.t('Не выбрано');
+        _this.paramPlaceholder = gettext_1.t('Не выбрано');
         _this.paramPopoverPosition = 'bottom';
         _this.paramTabIndex = 0;
         _this.paramFocused = false;
