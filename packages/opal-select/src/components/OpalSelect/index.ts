@@ -1,4 +1,4 @@
-import { getText } from '@riim/gettext';
+import { t } from '@riim/gettext';
 import { nextTick } from '@riim/next-tick';
 import { OpalButton } from '@riim/opal-button';
 import { OpalDropdown } from '@riim/opal-dropdown';
@@ -101,7 +101,7 @@ export class OpalSelect extends BaseComponent {
 	@Param
 	paramMaxTextLength = 20;
 	@Param
-	paramPlaceholder = getText.t('Не выбрано');
+	paramPlaceholder = t('Не выбрано');
 	@Param({ readonly: true })
 	openOnClick = false;
 	@Param
@@ -143,7 +143,7 @@ export class OpalSelect extends BaseComponent {
 		}
 
 		if (text.length > this.paramMaxTextLength) {
-			text = getText.t('Выбран{n:|о|о} {n}', this.viewModel.length);
+			text = t('Выбран{n:|о|о} {n}', this.viewModel.length);
 		}
 
 		return text;

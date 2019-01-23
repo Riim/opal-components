@@ -28,7 +28,7 @@
     "collapse-line-breaks-loader": "^0.2.1",
     "glob": "^7.1.3",
     "gulp": "^4.0.0",
-    "lerna": "^3.10.6",
+    "lerna": "^3.10.7",
     "mkdirp": "^0.5.1",
     "postcss-color-function": "^4.0.1",
     "postcss-css-variables": "^0.11.0",
@@ -85,6 +85,6 @@
     "@riim/opal-tree-tag-select": "^0.33.167",
     "@riim/opal-utils": "^0.33.167",
     "cellx": "^1.7.95",
-    "rionite": "^0.32.99"
+    "rionite": "^0.32.100"
   }
 }

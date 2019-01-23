@@ -11,6 +11,6 @@
   "dependencies": {
     "cellx": "^1.7.95",
     "opal-components": "^0.33.167",
-    "rionite": "^0.32.99"
+    "rionite": "^0.32.100"
   }
 }

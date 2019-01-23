@@ -18,6 +18,6 @@
     "@riim/opal-text-input": "^0.33.171",
     "cellx": "^1.7.95",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.99"
+    "rionite": "^0.32.100"
   }
 }

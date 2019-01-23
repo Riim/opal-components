@@ -1,4 +1,4 @@
-import { getText } from '@riim/gettext';
+import { t } from '@riim/gettext';
 import { IDataProvider } from '@riim/opal-loaded-list';
 import {
 	IDataListItem,
@@ -95,7 +95,7 @@ export class OpalTagSelect extends BaseComponent {
 	@Param({ readonly: true })
 	paramAddNewItem: (text: string) => Promise<{ [name: string]: string }>;
 	@Param
-	paramPlaceholder = getText.t('Не выбрано');
+	paramPlaceholder = t('Не выбрано');
 	@Param
 	paramPopoverPosition = 'bottom';
 	@Param

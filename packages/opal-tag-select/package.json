@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/gettext": "^1.2.0",
+    "@riim/gettext": "^2.0.0",
     "@riim/opal-filtered-list": "^0.33.171",
     "@riim/opal-loaded-list": "^0.33.171",
     "@riim/opal-loader": "^0.33.167",
@@ -23,6 +23,6 @@
     "cellx": "^1.7.95",
     "cellx-decorators": "^1.4.11",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.99"
+    "rionite": "^0.32.100"
   }
 }
