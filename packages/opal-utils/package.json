@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-utils",
-  "version": "0.33.172",
+  "version": "0.33.173",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
