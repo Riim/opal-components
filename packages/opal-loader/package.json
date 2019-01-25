@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-loader",
-  "version": "0.33.173",
+  "version": "0.33.174",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
