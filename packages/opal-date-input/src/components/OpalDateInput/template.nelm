@@ -15,7 +15,7 @@ OpalTextInputValidator/textInputValidator {
 			required,
 			popoverPosition={paramPopoverPosition}
 		) {
-			'Поле обязательно для заполнения'
+			'{"Поле обязательно для заполнения" |t }'
 		}
 	}
 
@@ -23,14 +23,14 @@ OpalTextInputValidator/textInputValidator {
 		test={dateExists},
 		popoverPosition={paramPopoverPosition}
 	) {
-		'Несуществующая дата'
+		'{"Несуществующая дата" |t }'
 	}
 
 	OpalTextInputValidatorRule/textInputValidatorRuleDateInRange (
 		test={_isDateInRange},
 		popoverPosition={paramPopoverPosition}
 	) {
-		'Дата вне допустимого диапазона'
+		'{"Дата вне допустимого диапазона" |t }'
 	}
 }
 

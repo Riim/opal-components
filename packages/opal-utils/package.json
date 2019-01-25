@@ -13,6 +13,6 @@
     "access": "public"
   },
   "dependencies": {
-    "rionite": "^0.32.100"
+    "rionite": "^0.32.102"
   }
 }

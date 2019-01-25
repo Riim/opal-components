@@ -14,7 +14,7 @@ OpalLoader/loader (shown={loaderShown}, alignCenter={empty})
 	@Slot/nothingFoundSlot (for=nothingFound, getContext={_getListItemContext}) {
 		span/nothingFound {
 			span/nothingFoundMessage {
-				'Ничего не найдено'
+				'{"Ничего не найдено" |t }'
 			}
 		}
 	}

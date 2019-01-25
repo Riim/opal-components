@@ -287,7 +287,7 @@ export class OpalAutosuggest extends BaseComponent {
 	}
 
 	_onDocumentFocus(evt: Event) {
-		if (!this.element.contains((evt.target as HTMLElement).parentElement)) {
+		if (!this.element.contains((evt.target as HTMLElement).parentElement!)) {
 			this.closeMenu();
 			this._selectItem();
 		}

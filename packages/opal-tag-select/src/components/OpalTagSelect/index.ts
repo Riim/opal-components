@@ -95,7 +95,7 @@ export class OpalTagSelect extends BaseComponent {
 	@Param({ readonly: true })
 	paramAddNewItem: (text: string) => Promise<{ [name: string]: string }>;
 	@Param
-	paramPlaceholder = t('Не выбрано');
+	paramPlaceholder = t('Не выбрано'); // ;;; ничего не выбрано
 	@Param
 	paramPopoverPosition = 'bottom';
 	@Param

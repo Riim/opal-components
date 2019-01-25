@@ -22,6 +22,6 @@
     "cellx": "^1.7.95",
     "date-exists": "^1.0.1",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.100"
+    "rionite": "^0.32.102"
   }
 }

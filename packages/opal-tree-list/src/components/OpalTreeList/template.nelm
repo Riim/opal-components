@@ -30,7 +30,7 @@
 		@Slot/nothingFoundSlot (for=nothingFound) {
 			span/nothingFound {
 				span/nothingFoundMessage {
-					'Ничего не найдено'
+					'{"Ничего не найдено" |t }'
 				}
 			}
 		}

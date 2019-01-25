@@ -75,7 +75,7 @@ export declare class OpalSelect extends BaseComponent {
     _notUpdateOptions: boolean;
     _opened: boolean;
     _valueOnOpen: Array<string>;
-    _onсeFocusedAfterLoading: boolean;
+    _onceFocusedAfterLoading: boolean;
     _paramDataListSpecified: boolean;
     _documentClickListening: IDisposableListening | null | undefined;
     _documentFocusListening: IDisposableListening;

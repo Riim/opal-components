@@ -101,7 +101,7 @@ export class OpalSelect extends BaseComponent {
 	@Param
 	paramMaxTextLength = 20;
 	@Param
-	paramPlaceholder = t('Не выбрано');
+	paramPlaceholder = t('Не выбрано'); // ;;; ничего не выбрано
 	@Param({ readonly: true })
 	openOnClick = false;
 	@Param
@@ -164,7 +164,7 @@ export class OpalSelect extends BaseComponent {
 	_opened: boolean = false;
 	_valueOnOpen: Array<string>;
 
-	_onсeFocusedAfterLoading: boolean = false;
+	_onceFocusedAfterLoading: boolean = false;
 
 	_paramDataListSpecified: boolean;
 
@@ -909,11 +909,11 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	_onMenuLoaded(evt: IEvent) {
-		if (this._onсeFocusedAfterLoading || evt.target !== this.$('loadedList')) {
+		if (this._onceFocusedAfterLoading || evt.target !== this.$('loadedList')) {
 			return;
 		}
 
-		this._onсeFocusedAfterLoading = true;
+		this._onceFocusedAfterLoading = true;
 
 		this._focusOptions();
 

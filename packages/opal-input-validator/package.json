@@ -16,6 +16,6 @@
     "@riim/opal-popover": "^0.33.173",
     "cellx-decorators": "^1.4.11",
     "reflect-metadata": "^0.1.12",
-    "rionite": "^0.32.100"
+    "rionite": "^0.32.102"
   }
 }

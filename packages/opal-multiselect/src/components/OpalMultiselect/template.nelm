@@ -1,7 +1,11 @@
 /menu (super!, autoHeight=no) {
 	div/menuHeader {
 		div/menuHeaderLeftPart {
-			OpalTextInput/queryInput (class={_queryInputClass}, clearable, placeholder=Поиск) {
+			OpalTextInput/queryInput (
+				class={_queryInputClass},
+				clearable,
+				placeholder={'Поиск' |t }
+			) {
 				OpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)
 			}
 		}
@@ -10,7 +14,7 @@
 			@Slot/menuHeaderContentSlot (for=menuHeaderContent) {
 				@IfThen (viewModel.length) {
 					span/selectedCount {
-						'выбрано {viewModel.length}'
+						'{"выбрано {n}" |t(viewModel.length) }'
 					}
 				}
 			}
@@ -46,7 +50,7 @@
 			@Slot/nothingSelectedSlot (for=nothingSelected) {
 				span/nothingSelected {
 					span/nothingSelectedMessage {
-						'Ничего не выбрано'
+						'{"Ничего не выбрано" |t }'
 					}
 				}
 			}
@@ -60,7 +64,7 @@
 
 		div/menuFooterRightPart {
 			OpalButton/btnClose {
-				'Закрыть'
+				'{"Закрыть" |t }'
 			}
 		}
 	}

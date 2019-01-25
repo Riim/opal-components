@@ -23,7 +23,8 @@ OpalModal/menu {
 
 	div/footer {
 		OpalButton/btnClose {
-			'Готово'
+			// ;;; подтверждение выбора
+			'{"Готово" |pt("OpalTreeSelect__btnClose") }'
 		}
 	}
 }

@@ -15,7 +15,7 @@ let documentFocusListening: IDisposableListening;
 let documentKeyUpListening: IDisposableListening;
 
 function onDocumentFocus(evt: Event) {
-	if (!openedModals[0].element.contains((evt.target as Node).parentElement)) {
+	if (!openedModals[0].element.contains((evt.target as Node).parentElement!)) {
 		openedModals[0].$<HTMLElement>('btnClose')!.focus();
 	}
 }
