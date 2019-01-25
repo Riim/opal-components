@@ -302,7 +302,7 @@ module.exports = (function(d) {
 /***/ 261:
 /***/ (function(module, exports) {
 
-module.exports = "OpalModal/menu {\n@Slot (for=menuHeaderSlot) {\n@Slot/menuHeaderSlot (for=menuHeader)\n}\nOpalFilteredList/filteredList {\nOpalTreeList/treeList (\nclass=OpalFilteredList__list,\ndataTreeList={dataTreeList},\ndataTreeListItemSchema={paramDataTreeListItemSchema |dump },\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\nquery={paramQuery}\n) {\nOpalSelectOption/option (\nclass=OpalTreeList__selectionControl,\ntext={$item.name},\nselected={$selected},\nindeterminate={$indeterminate}\n)\n}\n}\ndiv/footer {\nOpalButton/btnClose {\n'Готово'\n}\n}\n}"
+module.exports = "OpalModal/menu {\n@Slot (for=menuHeaderSlot) {\n@Slot/menuHeaderSlot (for=menuHeader)\n}\nOpalFilteredList/filteredList {\nOpalTreeList/treeList (\nclass=OpalFilteredList__list,\ndataTreeList={dataTreeList},\ndataTreeListItemSchema={paramDataTreeListItemSchema |dump },\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\nquery={paramQuery}\n) {\nOpalSelectOption/option (\nclass=OpalTreeList__selectionControl,\ntext={$item.name},\nselected={$selected},\nindeterminate={$indeterminate}\n)\n}\n}\ndiv/footer {\nOpalButton/btnClose {\n// ;;; подтверждение выбора триселекта\n// ;;; https://yadi.sk/i/j9g1w-7xj9Xsew\n'{\"Готово\" |pt(\"OpalTreeSelect__btnClose\") }'\n}\n}\n}"
 
 /***/ }),
 

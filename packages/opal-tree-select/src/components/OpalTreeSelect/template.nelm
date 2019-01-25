@@ -23,7 +23,8 @@ OpalModal/menu {
 
 	div/footer {
 		OpalButton/btnClose {
-			// ;;; подтверждение выбора
+			// ;;; подтверждение выбора триселекта
+			// ;;; https://yadi.sk/i/j9g1w-7xj9Xsew
 			'{"Готово" |pt("OpalTreeSelect__btnClose") }'
 		}
 	}

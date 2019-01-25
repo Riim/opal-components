@@ -211,7 +211,9 @@ var OpalSelect = /** @class */ (function (_super) {
         _this.paramSize = 'm';
         _this.paramMultiple = false;
         _this.paramMaxTextLength = 20;
-        _this.paramPlaceholder = gettext_1.t('Не выбрано');
+        // ;;; Плейсхолдер селекта.
+        // ;;; Можно перевести как призыв к выбору -- Select (англ.).
+        _this.paramPlaceholder = gettext_1.pt('OpalSelect#paramPlaceholder', 'Не выбрано');
         _this.openOnClick = false;
         _this.paramTabIndex = 0;
         _this.paramFocused = false;
@@ -220,7 +222,7 @@ var OpalSelect = /** @class */ (function (_super) {
         _this._needOptionsUpdating = false;
         _this._notUpdateOptions = false;
         _this._opened = false;
-        _this._onсeFocusedAfterLoading = false;
+        _this._onceFocusedAfterLoading = false;
         return _this;
     }
     OpalSelect_1 = OpalSelect;
@@ -837,10 +839,10 @@ var OpalSelect = /** @class */ (function (_super) {
         }
     };
     OpalSelect.prototype._onMenuLoaded = function (evt) {
-        if (this._onсeFocusedAfterLoading || evt.target !== this.$('loadedList')) {
+        if (this._onceFocusedAfterLoading || evt.target !== this.$('loadedList')) {
             return;
         }
-        this._onсeFocusedAfterLoading = true;
+        this._onceFocusedAfterLoading = true;
         this._focusOptions();
         var focusTarget = this.$('focus') ||
             this.$('filteredList');

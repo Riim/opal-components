@@ -215,7 +215,9 @@ var OpalTagSelect = /** @class */ (function (_super) {
     __extends(OpalTagSelect, _super);
     function OpalTagSelect() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramPlaceholder = gettext_1.t('Не выбрано');
+        // ;;; Плейсхолдер тегселекта.
+        // ;;; Можно перевести как призыв к выбору -- Select (англ.).
+        _this.paramPlaceholder = gettext_1.pt('OpalTagSelect#paramPlaceholder', 'Не выбрано');
         _this.paramPopoverPosition = 'bottom';
         _this.paramTabIndex = 0;
         _this.paramFocused = false;

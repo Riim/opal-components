@@ -1,4 +1,4 @@
-import { t } from '@riim/gettext';
+import { pt } from '@riim/gettext';
 import { IDataProvider } from '@riim/opal-loaded-list';
 import {
 	IDataListItem,
@@ -95,7 +95,9 @@ export class OpalTagSelect extends BaseComponent {
 	@Param({ readonly: true })
 	paramAddNewItem: (text: string) => Promise<{ [name: string]: string }>;
 	@Param
-	paramPlaceholder = t('Не выбрано'); // ;;; ничего не выбрано
+	// ;;; Плейсхолдер тегселекта.
+	// ;;; Можно перевести как призыв к выбору -- Select (англ.).
+	paramPlaceholder = pt('OpalTagSelect#paramPlaceholder', 'Не выбрано');
 	@Param
 	paramPopoverPosition = 'bottom';
 	@Param

@@ -240,7 +240,7 @@ module.exports = (function(d) {
 /***/ 47:
 /***/ (function(module, exports) {
 
-module.exports = "@Slot (for=queryInputSlot) {\n@Slot/queryInputSlot (for=queryInput) {\nOpalTextInput/queryInput (placeholder=Поиск, clearable) {\nOpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\n}\n@Slot/listSlot (for=list)"
+module.exports = "@Slot (for=queryInputSlot) {\n@Slot/queryInputSlot (for=queryInput) {\nOpalTextInput/queryInput (placeholder={'Поиск' |t }, clearable) {\nOpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\n}\n@Slot/listSlot (for=list)"
 
 /***/ })
 

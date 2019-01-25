@@ -1,4 +1,4 @@
-import { t } from '@riim/gettext';
+import { pt, t } from '@riim/gettext';
 import { nextTick } from '@riim/next-tick';
 import { OpalButton } from '@riim/opal-button';
 import { OpalDropdown } from '@riim/opal-dropdown';
@@ -101,7 +101,9 @@ export class OpalSelect extends BaseComponent {
 	@Param
 	paramMaxTextLength = 20;
 	@Param
-	paramPlaceholder = t('Не выбрано'); // ;;; ничего не выбрано
+	// ;;; Плейсхолдер селекта.
+	// ;;; Можно перевести как призыв к выбору -- Select (англ.).
+	paramPlaceholder = pt('OpalSelect#paramPlaceholder', 'Не выбрано');
 	@Param({ readonly: true })
 	openOnClick = false;
 	@Param

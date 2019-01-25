@@ -402,7 +402,7 @@ module.exports = (function(d) {
 /***/ 141:
 /***/ (function(module, exports) {
 
-module.exports = "div/list {\n@Repeat (for=$item in dataList) {\n@Slot/listItemSlot (for=listItem, cloneContent, getContext={_getListItemContext}) {\nspan/listItem {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\n}\nOpalLoader/loader (shown={loaderShown}, alignCenter={empty})\n@IfThen (nothingFoundShown) {\n@Slot/nothingFoundSlot (for=nothingFound, getContext={_getListItemContext}) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'Ничего не найдено'\n}\n}\n}\n}"
+module.exports = "div/list {\n@Repeat (for=$item in dataList) {\n@Slot/listItemSlot (for=listItem, cloneContent, getContext={_getListItemContext}) {\nspan/listItem {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\n}\nOpalLoader/loader (shown={loaderShown}, alignCenter={empty})\n@IfThen (nothingFoundShown) {\n@Slot/nothingFoundSlot (for=nothingFound, getContext={_getListItemContext}) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\n}"
 
 /***/ }),
 
