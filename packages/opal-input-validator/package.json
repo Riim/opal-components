@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-input-validator",
-  "version": "0.33.173",
+  "version": "0.33.174",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-popover": "^0.33.173",
+    "@riim/opal-popover": "^0.33.174",
     "cellx-decorators": "^1.4.11",
     "reflect-metadata": "^0.1.12",
     "rionite": "^0.32.102"
