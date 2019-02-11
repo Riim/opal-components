@@ -4,10 +4,10 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["reflect-metadata", "rionite", "@riim/next-uid", "@riim/kebab-case", "@riim/rionite-snake-case-attribute-name", "history/createBrowserHistory"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/packages/opal-router/src/index.ts"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/next-uid"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("history/createBrowserHistory"));
+		exports["@riim/opal-router"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/next-uid"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("history/createBrowserHistory"));
 	else
-		root["@riim/packages/opal-router/src/index.ts"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/next-uid"], root["@riim/kebab-case"], root["@riim/rionite-snake-case-attribute-name"], root["history/createBrowserHistory"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__152__, __WEBPACK_EXTERNAL_MODULE__180__, __WEBPACK_EXTERNAL_MODULE__181__, __WEBPACK_EXTERNAL_MODULE__182__) {
+		root["@riim/opal-router"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/next-uid"], root["@riim/kebab-case"], root["@riim/rionite-snake-case-attribute-name"], root["history/createBrowserHistory"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__178__, __WEBPACK_EXTERNAL_MODULE__205__, __WEBPACK_EXTERNAL_MODULE__206__, __WEBPACK_EXTERNAL_MODULE__207__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,26 +91,19 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 178);
+/******/ 	return __webpack_require__(__webpack_require__.s = 203);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 10:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
-
-/***/ }),
-
-/***/ 152:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__152__;
-
-/***/ }),
-
 /***/ 178:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__178__;
+
+/***/ }),
+
+/***/ 203:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -120,12 +113,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(4);
-__export(__webpack_require__(179));
+__export(__webpack_require__(204));
 
 
 /***/ }),
 
-/***/ 179:
+/***/ 204:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -153,17 +146,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var kebab_case_1 = __webpack_require__(180);
-var next_uid_1 = __webpack_require__(152);
-var rionite_snake_case_attribute_name_1 = __webpack_require__(181);
-var createBrowserHistory_1 = __webpack_require__(182);
-var rionite_1 = __webpack_require__(10);
-var OpalRoute_1 = __webpack_require__(183);
+var kebab_case_1 = __webpack_require__(205);
+var next_uid_1 = __webpack_require__(178);
+var rionite_snake_case_attribute_name_1 = __webpack_require__(206);
+var createBrowserHistory_1 = __webpack_require__(207);
+var rionite_1 = __webpack_require__(9);
+var OpalRoute_1 = __webpack_require__(208);
 exports.OpalRoute = OpalRoute_1.OpalRoute;
-var escapeRegExp_1 = __webpack_require__(184);
-__webpack_require__(185);
-var parsePath_1 = __webpack_require__(186);
-var PathNodeType_1 = __webpack_require__(187);
+var escapeRegExp_1 = __webpack_require__(209);
+__webpack_require__(210);
+var parsePath_1 = __webpack_require__(211);
+var PathNodeType_1 = __webpack_require__(212);
 var forEach = Array.prototype.forEach;
 var history = createBrowserHistory_1.default();
 function valueToAttributeValue(value) {
@@ -448,28 +441,28 @@ exports.OpalRouter = OpalRouter;
 
 /***/ }),
 
-/***/ 180:
+/***/ 205:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__180__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__205__;
 
 /***/ }),
 
-/***/ 181:
+/***/ 206:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__181__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__206__;
 
 /***/ }),
 
-/***/ 182:
+/***/ 207:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__182__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__207__;
 
 /***/ }),
 
-/***/ 183:
+/***/ 208:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -497,7 +490,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(10);
+var rionite_1 = __webpack_require__(9);
 var OpalRoute = /** @class */ (function (_super) {
     __extends(OpalRoute, _super);
     function OpalRoute() {
@@ -529,7 +522,7 @@ exports.OpalRoute = OpalRoute;
 
 /***/ }),
 
-/***/ 184:
+/***/ 209:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -544,7 +537,7 @@ exports.escapeRegExp = escapeRegExp;
 
 /***/ }),
 
-/***/ 185:
+/***/ 210:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -562,13 +555,13 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 186:
+/***/ 211:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType_1 = __webpack_require__(187);
+var PathNodeType_1 = __webpack_require__(212);
 var reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
     var ctx = PathNodeType_1.PathNodeType.SIMPLE;
@@ -722,7 +715,7 @@ exports.parsePath = parsePath;
 
 /***/ }),
 
-/***/ 187:
+/***/ 212:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -742,6 +735,13 @@ var PathNodeType;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
 
 /***/ })
 

@@ -4,10 +4,10 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["reflect-metadata", "cellx", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/packages/opal-modal/src/index.ts"] = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-modal"] = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/packages/opal-modal/src/index.ts"] = factory(root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
+		root["@riim/opal-modal"] = factory(root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,19 +91,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 145);
+/******/ 	return __webpack_require__(__webpack_require__.s = 172);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 10:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
-
-/***/ }),
-
-/***/ 145:
+/***/ 172:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -113,12 +106,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(4);
-__export(__webpack_require__(146));
+__export(__webpack_require__(173));
 
 
 /***/ }),
 
-/***/ 146:
+/***/ 173:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -146,11 +139,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(8);
-var cellx_decorators_1 = __webpack_require__(9);
-var rionite_1 = __webpack_require__(10);
-__webpack_require__(147);
-var template = __webpack_require__(148);
+var cellx_1 = __webpack_require__(7);
+var cellx_decorators_1 = __webpack_require__(8);
+var rionite_1 = __webpack_require__(9);
+__webpack_require__(174);
+var template = __webpack_require__(175);
 var openedModals = [];
 var documentFocusListening;
 var documentKeyUpListening;
@@ -311,7 +304,7 @@ exports.OpalModal = OpalModal;
 
 /***/ }),
 
-/***/ 147:
+/***/ 174:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -329,7 +322,7 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 148:
+/***/ 175:
 /***/ (function(module, exports) {
 
 module.exports = "div/window {\ndiv/btnCloseWrapper {\nbutton/btnClose\n}\n@IfThen (contentRendered) {\n@Slot/contentSlot\n}\n}"
@@ -340,6 +333,13 @@ module.exports = "div/window {\ndiv/btnCloseWrapper {\nbutton/btnClose\n}\n@IfTh
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+
+/***/ }),
+
+/***/ 7:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
 
 /***/ }),
 

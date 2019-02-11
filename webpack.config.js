@@ -1,4 +1,5 @@
 const path = require('path');
+const glob = require('glob');
 const webpack = require('webpack');
 const postcssCSSVariables = require('postcss-css-variables');
 const postcssRioniteComponent = require('@riim/postcss-rionite-component');
@@ -21,14 +22,15 @@ module.exports = env => {
 	return {
 		mode: 'none',
 
-		entry: {
-			OpalComponents: './src/index.ts'
-		},
+		entry: glob.sync('packages/*/src/index.ts').reduce((entries, p) => {
+			entries[p.split('/')[1]] = './' + p;
+			return entries;
+		}, {}),
 
 		output: {
-			path: path.join(__dirname, 'dist'),
-			filename: '[name].js',
-			library: '[name]',
+			path: path.join(__dirname, 'packages'),
+			filename: '[name]/dist/index.js',
+			library: '@riim/[name]',
 			libraryTarget: 'umd'
 		},
 
@@ -70,7 +72,10 @@ module.exports = env => {
 				},
 				{
 					test: /\.svg$/,
-					loader: 'simple-svg-loader'
+					loader: 'simple-svg-loader',
+					options: {
+						removeAttributes: ['stroke-width', 'stroke', 'fill']
+					}
 				}
 			]
 		},
@@ -139,8 +144,6 @@ module.exports = env => {
 
 		plugins,
 
-		watch: env.dev,
-
 		node: {
 			console: false,
 			global: false,
@@ -149,6 +152,8 @@ module.exports = env => {
 			__dirname: false,
 			Buffer: false,
 			setImmediate: false
-		}
+		},
+
+		recordsPath: path.join(__dirname, 'build/paths.json')
 	};
 };

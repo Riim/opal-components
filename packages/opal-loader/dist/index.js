@@ -4,10 +4,10 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["reflect-metadata", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/packages/opal-loader/src/index.ts"] = factory(require("reflect-metadata"), require("rionite"));
+		exports["@riim/opal-loader"] = factory(require("reflect-metadata"), require("rionite"));
 	else
-		root["@riim/packages/opal-loader/src/index.ts"] = factory(root["reflect-metadata"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__) {
+		root["@riim/opal-loader"] = factory(root["reflect-metadata"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__9__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,19 +91,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 142);
+/******/ 	return __webpack_require__(__webpack_require__.s = 169);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 10:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
-
-/***/ }),
-
-/***/ 142:
+/***/ 169:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -113,12 +106,12 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(4);
-__export(__webpack_require__(143));
+__export(__webpack_require__(170));
 
 
 /***/ }),
 
-/***/ 143:
+/***/ 170:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -146,8 +139,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(10);
-__webpack_require__(144);
+var rionite_1 = __webpack_require__(9);
+__webpack_require__(171);
 var OpalLoader = /** @class */ (function (_super) {
     __extends(OpalLoader, _super);
     function OpalLoader() {
@@ -176,7 +169,7 @@ exports.OpalLoader = OpalLoader;
 
 /***/ }),
 
-/***/ 144:
+/***/ 171:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -198,6 +191,13 @@ module.exports = (function(d) {
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
 
 /***/ })
 

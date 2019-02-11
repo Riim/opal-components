@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/packages/opal-utils/src/index.ts"] = factory();
+		exports["@riim/opal-utils"] = factory();
 	else
-		root["@riim/packages/opal-utils/src/index.ts"] = factory();
+		root["@riim/opal-utils"] = factory();
 })(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -91,12 +91,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 267);
+/******/ 	return __webpack_require__(__webpack_require__.s = 283);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 267:
+/***/ 283:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,12 +105,12 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(268));
+__export(__webpack_require__(284));
 
 
 /***/ }),
 
-/***/ 268:
+/***/ 284:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

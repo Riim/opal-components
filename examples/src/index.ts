@@ -11,7 +11,7 @@ formatters.log = (msg: any): any => {
 @Component({
 	template
 })
-export class OpalComponentsDocs extends BaseComponent {
+export class OpalComponentsExamples extends BaseComponent {
 	dataList1 = new ObservableList([
 		{ id: '1', name: '1' },
 		{ id: '2', name: '2' },

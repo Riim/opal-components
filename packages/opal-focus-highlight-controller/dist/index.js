@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/packages/opal-focus-highlight-controller/src/index.ts"] = factory();
+		exports["@riim/opal-focus-highlight-controller"] = factory();
 	else
-		root["@riim/packages/opal-focus-highlight-controller/src/index.ts"] = factory();
+		root["@riim/opal-focus-highlight-controller"] = factory();
 })(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -91,18 +91,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 48);
+/******/ 	return __webpack_require__(__webpack_require__.s = 77);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 48:
+/***/ 77:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(49);
+__webpack_require__(78);
 document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
     document.removeEventListener('DOMContentLoaded', onDOMContentLoaded);
     var body = document.body;
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
 
 /***/ }),
 
-/***/ 49:
+/***/ 78:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {

@@ -1,5 +1,5 @@
 {
-  "name": "@riim/opal-components-docs",
+  "name": "@riim/opal-components-examples",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
@@ -8,9 +8,12 @@
   },
   "author": "Dmitry Vibe",
   "license": "MIT",
+  "devDependencies": {
+    "@types/history": "^4.7.2"
+  },
   "dependencies": {
     "cellx": "^1.7.95",
-    "opal-components": "^0.33.173",
-    "rionite": "^0.32.102"
+    "opal-components": "^0.33.177",
+    "rionite": "^0.32.107"
   }
 }

@@ -4,10 +4,10 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["reflect-metadata", "rionite", "@riim/opal-button"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/packages/opal-switch-menu/src/index.ts"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/opal-button"));
+		exports["@riim/opal-switch-menu"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/opal-button"));
 	else
-		root["@riim/packages/opal-switch-menu/src/index.ts"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/opal-button"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__159__) {
+		root["@riim/opal-switch-menu"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/opal-button"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__30__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,26 +91,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 211);
+/******/ 	return __webpack_require__(__webpack_require__.s = 233);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 10:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
-
-/***/ }),
-
-/***/ 159:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__159__;
-
-/***/ }),
-
-/***/ 211:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -119,14 +105,14 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(159);
+__webpack_require__(30);
 __webpack_require__(4);
-__export(__webpack_require__(212));
+__export(__webpack_require__(234));
 
 
 /***/ }),
 
-/***/ 212:
+/***/ 234:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -151,9 +137,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(10);
-__webpack_require__(213);
-var template = __webpack_require__(214);
+var rionite_1 = __webpack_require__(9);
+__webpack_require__(235);
+var template = __webpack_require__(236);
 var forEach = Array.prototype.forEach;
 var find = Array.prototype.find;
 var OpalSwitchMenu = /** @class */ (function (_super) {
@@ -230,7 +216,7 @@ exports.OpalSwitchMenu = OpalSwitchMenu;
 
 /***/ }),
 
-/***/ 213:
+/***/ 235:
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -248,10 +234,17 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ 214:
+/***/ 236:
 /***/ (function(module, exports) {
 
 module.exports = "@Slot/contentSlot"
+
+/***/ }),
+
+/***/ 30:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__30__;
 
 /***/ }),
 
@@ -259,6 +252,13 @@ module.exports = "@Slot/contentSlot"
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
 
 /***/ })
 
