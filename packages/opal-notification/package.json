@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-notification",
-  "version": "0.33.175",
+  "version": "0.33.176",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@riim/map-set-polyfill": "^1.0.2",
-    "@riim/opal-icon": "^0.33.175",
+    "@riim/opal-icon": "^0.33.176",
     "cellx": "^1.7.95",
     "reflect-metadata": "^0.1.12",
     "rionite": "^0.32.102"
