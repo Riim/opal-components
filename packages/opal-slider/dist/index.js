@@ -120,19 +120,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -143,116 +130,105 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_decorators_1 = __webpack_require__(3);
-var rionite_1 = __webpack_require__(4);
+const cellx_decorators_1 = __webpack_require__(3);
+const rionite_1 = __webpack_require__(4);
 __webpack_require__(5);
-var template = __webpack_require__(6);
-var OpalSlider = /** @class */ (function (_super) {
-    __extends(OpalSlider, _super);
-    function OpalSlider() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramMin = 0;
-        _this.paramMax = 100;
-        _this.paramStep = 1;
-        _this.paramValue = 0;
-        return _this;
+const template = __webpack_require__(6);
+let OpalSlider = class OpalSlider extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramMin = 0;
+        this.paramMax = 100;
+        this.paramStep = 1;
+        this.paramValue = 0;
     }
-    Object.defineProperty(OpalSlider.prototype, "_firstInputWidth", {
-        get: function () {
-            var min = this.paramMin;
-            var all = this.paramMax - min;
-            return (Math.round((((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) / 2) *
-                1e5) / 1e3);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalSlider.prototype.initialize = function () {
-        var range = this.paramRange;
+    get _firstInputWidth() {
+        let min = this.paramMin;
+        let all = this.paramMax - min;
+        return (Math.round((((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) / 2) *
+            1e5) / 1e3);
+    }
+    initialize() {
+        let range = this.paramRange;
         if (range) {
             this._firstInputValue = range[0];
             this._secondInputValue = range[1];
         }
-    };
-    OpalSlider.prototype.elementAttached = function () {
+    }
+    elementAttached() {
         if (this.paramRange) {
             this.listenTo('firstInput', 'input', this._onFirstInputInput);
             this.listenTo('secondInput', 'input', this._onSecondInputInput);
         }
-    };
-    OpalSlider.prototype._onFirstInputInput = function (evt) {
-        var secondInput = this.$('secondInput');
-        var value = (this._firstInputValue = +evt.target.value);
+    }
+    _onFirstInputInput(evt) {
+        let secondInput = this.$('secondInput');
+        let value = (this._firstInputValue = +evt.target.value);
         if (+secondInput.value < value) {
             secondInput.value = this._secondInputValue = value;
         }
-    };
-    OpalSlider.prototype._onSecondInputInput = function (evt) {
-        var firstInput = this.$('firstInput');
-        var value = (this._secondInputValue = +evt.target.value);
+    }
+    _onSecondInputInput(evt) {
+        let firstInput = this.$('firstInput');
+        let value = (this._secondInputValue = +evt.target.value);
         if (+firstInput.value > value) {
             firstInput.value = this._firstInputValue = value;
         }
-    };
-    Object.defineProperty(OpalSlider.prototype, "value", {
-        get: function () {
-            return this.paramRange
-                ? [this._firstInputValue, this._secondInputValue]
-                : +this.$('input').value;
-        },
-        set: function (value) {
-            if (this.paramRange) {
-                this.$('firstInput').value = this._firstInputValue = value[0];
-                this.$('secondInput').value = this._secondInputValue = value[1];
-            }
-            else {
-                this.$('input').value = value;
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalSlider.prototype, "paramMin", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalSlider.prototype, "paramMax", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalSlider.prototype, "paramStep", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalSlider.prototype, "paramValue", void 0);
-    __decorate([
-        rionite_1.Param({ type: eval }),
-        __metadata("design:type", Array)
-    ], OpalSlider.prototype, "paramRange", void 0);
-    __decorate([
-        cellx_decorators_1.Observable,
-        __metadata("design:type", Number)
-    ], OpalSlider.prototype, "_firstInputValue", void 0);
-    __decorate([
-        cellx_decorators_1.Observable,
-        __metadata("design:type", Number)
-    ], OpalSlider.prototype, "_secondInputValue", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Number),
-        __metadata("design:paramtypes", [])
-    ], OpalSlider.prototype, "_firstInputWidth", null);
-    OpalSlider = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalSlider',
-            template: template
-        })
-    ], OpalSlider);
-    return OpalSlider;
-}(rionite_1.BaseComponent));
+    }
+    get value() {
+        return this.paramRange
+            ? [this._firstInputValue, this._secondInputValue]
+            : +this.$('input').value;
+    }
+    set value(value) {
+        if (this.paramRange) {
+            this.$('firstInput').value = this._firstInputValue = value[0];
+            this.$('secondInput').value = this._secondInputValue = value[1];
+        }
+        else {
+            this.$('input').value = value;
+        }
+    }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSlider.prototype, "paramMin", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSlider.prototype, "paramMax", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSlider.prototype, "paramStep", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSlider.prototype, "paramValue", void 0);
+__decorate([
+    rionite_1.Param({ type: eval }),
+    __metadata("design:type", Array)
+], OpalSlider.prototype, "paramRange", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Number)
+], OpalSlider.prototype, "_firstInputValue", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Number)
+], OpalSlider.prototype, "_secondInputValue", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Number),
+    __metadata("design:paramtypes", [])
+], OpalSlider.prototype, "_firstInputWidth", null);
+OpalSlider = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalSlider',
+        template
+    })
+], OpalSlider);
 exports.OpalSlider = OpalSlider;
 
 

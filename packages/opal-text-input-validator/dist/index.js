@@ -134,19 +134,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -154,44 +141,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_input_validator_1 = __webpack_require__(1);
-var rionite_1 = __webpack_require__(5);
-var OpalTextInputValidatorRule_1 = __webpack_require__(6);
+const opal_input_validator_1 = __webpack_require__(1);
+const rionite_1 = __webpack_require__(5);
+const OpalTextInputValidatorRule_1 = __webpack_require__(6);
 exports.OpalTextInputValidatorRule = OpalTextInputValidatorRule_1.OpalTextInputValidatorRule;
 __webpack_require__(7);
-var OpalTextInputValidator = /** @class */ (function (_super) {
-    __extends(OpalTextInputValidator, _super);
-    function OpalTextInputValidator() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    OpalTextInputValidator.prototype.ready = function () {
-        _super.prototype.ready.call(this);
+let OpalTextInputValidator = class OpalTextInputValidator extends opal_input_validator_1.OpalInputValidator {
+    ready() {
+        super.ready();
         this.target = this.textInput = this.$('textInput');
-    };
-    OpalTextInputValidator.prototype.elementAttached = function () {
-        _super.prototype.elementAttached.call(this);
+    }
+    elementAttached() {
+        super.elementAttached();
         this.listenTo(this.textInput, 'input', this._onTextInputInput);
-    };
-    OpalTextInputValidator.prototype._onTextInputInput = function () {
+    }
+    _onTextInputInput() {
         if (this.failedRule) {
             this._validate([this.failedRule]);
         }
-    };
-    OpalTextInputValidator.prototype._checkValue = function (rule) {
-        var value = this.textInput.value;
+    }
+    _checkValue(rule) {
+        let value = this.textInput.value;
         return !(value
             ? (rule.paramMinLength && value.length < rule.paramMinLength) ||
                 (rule.paramRegex && !rule.paramRegex.test(value)) ||
                 (rule.paramTest && !rule.paramTest.call(this.ownerComponent, value))
             : rule.paramRequired);
-    };
-    OpalTextInputValidator = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalTextInputValidator'
-        })
-    ], OpalTextInputValidator);
-    return OpalTextInputValidator;
-}(opal_input_validator_1.OpalInputValidator));
+    }
+};
+OpalTextInputValidator = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalTextInputValidator'
+    })
+], OpalTextInputValidator);
 exports.OpalTextInputValidator = OpalTextInputValidator;
 
 
@@ -207,19 +189,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -230,31 +199,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_input_validator_1 = __webpack_require__(1);
-var rionite_1 = __webpack_require__(5);
-var OpalTextInputValidatorRule = /** @class */ (function (_super) {
-    __extends(OpalTextInputValidatorRule, _super);
-    function OpalTextInputValidatorRule() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", Number)
-    ], OpalTextInputValidatorRule.prototype, "paramMinLength", void 0);
-    __decorate([
-        rionite_1.Param({
-            type: eval,
-            readonly: true
-        }),
-        __metadata("design:type", RegExp)
-    ], OpalTextInputValidatorRule.prototype, "paramRegex", void 0);
-    OpalTextInputValidatorRule = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalTextInputValidatorRule'
-        })
-    ], OpalTextInputValidatorRule);
-    return OpalTextInputValidatorRule;
-}(opal_input_validator_1.OpalInputValidatorRule));
+const opal_input_validator_1 = __webpack_require__(1);
+const rionite_1 = __webpack_require__(5);
+let OpalTextInputValidatorRule = class OpalTextInputValidatorRule extends opal_input_validator_1.OpalInputValidatorRule {
+};
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", Number)
+], OpalTextInputValidatorRule.prototype, "paramMinLength", void 0);
+__decorate([
+    rionite_1.Param({
+        type: eval,
+        readonly: true
+    }),
+    __metadata("design:type", RegExp)
+], OpalTextInputValidatorRule.prototype, "paramRegex", void 0);
+OpalTextInputValidatorRule = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalTextInputValidatorRule'
+    })
+], OpalTextInputValidatorRule);
 exports.OpalTextInputValidatorRule = OpalTextInputValidatorRule;
 
 

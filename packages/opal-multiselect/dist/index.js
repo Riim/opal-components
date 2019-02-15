@@ -155,19 +155,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -178,28 +165,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_select_1 = __webpack_require__(4);
-var platform_1 = __webpack_require__(8);
-var cellx_decorators_1 = __webpack_require__(9);
-var rionite_1 = __webpack_require__(10);
+const opal_select_1 = __webpack_require__(4);
+const platform_1 = __webpack_require__(8);
+const cellx_decorators_1 = __webpack_require__(9);
+const rionite_1 = __webpack_require__(10);
 __webpack_require__(11);
-var template = __webpack_require__(12);
-var OpalMultiselect = /** @class */ (function (_super) {
-    __extends(OpalMultiselect, _super);
-    function OpalMultiselect() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramMultiple = true;
-        return _this;
+const template = __webpack_require__(12);
+let OpalMultiselect = class OpalMultiselect extends opal_select_1.OpalSelect {
+    constructor() {
+        super(...arguments);
+        this.paramMultiple = true;
     }
-    Object.defineProperty(OpalMultiselect.prototype, "nothingSelectedShown", {
-        get: function () {
-            return !this.viewModel.length;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalMultiselect.prototype.initialize = function () {
-        _super.prototype.initialize.call(this);
+    get nothingSelectedShown() {
+        return !this.viewModel.length;
+    }
+    initialize() {
+        super.initialize();
         if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
             throw new TypeError('Parameter "dataProvider" is required');
         }
@@ -210,51 +191,50 @@ var OpalMultiselect = /** @class */ (function (_super) {
         if (!platform_1.isMobile) {
             this._queryInputClass = 'OpalSelect__focus';
         }
-    };
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalMultiselect.prototype, "paramMultiple", void 0);
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", Object)
-    ], OpalMultiselect.prototype, "paramDataProvider", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Boolean),
-        __metadata("design:paramtypes", [])
-    ], OpalMultiselect.prototype, "nothingSelectedShown", null);
-    OpalMultiselect = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalMultiselect',
-            template: opal_select_1.OpalSelect.template.extend(template),
-            events: {
-                queryInput: {
-                    input: function (evt) {
-                        this.$('loadedList').paramQuery = evt.target.value;
-                    },
-                    clear: function () {
-                        this.$('loadedList').paramQuery = '';
-                    }
+    }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalMultiselect.prototype, "paramMultiple", void 0);
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", Object)
+], OpalMultiselect.prototype, "paramDataProvider", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [])
+], OpalMultiselect.prototype, "nothingSelectedShown", null);
+OpalMultiselect = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalMultiselect',
+        template: opal_select_1.OpalSelect.template.extend(template),
+        events: {
+            queryInput: {
+                input(evt) {
+                    this.$('loadedList').paramQuery = evt.target.value;
                 },
-                btnClose: {
-                    click: function () {
-                        this.close();
-                        this.focus();
-                    }
+                clear() {
+                    this.$('loadedList').paramQuery = '';
                 }
             },
-            domEvents: {
-                btnDeselectItem: {
-                    click: function (evt, context) {
-                        this.viewModel.remove(context.item);
-                    }
+            btnClose: {
+                click() {
+                    this.close();
+                    this.focus();
                 }
             }
-        })
-    ], OpalMultiselect);
-    return OpalMultiselect;
-}(opal_select_1.OpalSelect));
+        },
+        domEvents: {
+            btnDeselectItem: {
+                click(evt, context) {
+                    this.viewModel.remove(context.item);
+                }
+            }
+        }
+    })
+], OpalMultiselect);
 exports.OpalMultiselect = OpalMultiselect;
 
 

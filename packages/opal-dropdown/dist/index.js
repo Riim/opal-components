@@ -120,19 +120,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -143,64 +130,62 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(3);
-var cellx_decorators_1 = __webpack_require__(4);
-var rionite_1 = __webpack_require__(5);
+const cellx_1 = __webpack_require__(3);
+const cellx_decorators_1 = __webpack_require__(4);
+const rionite_1 = __webpack_require__(5);
 __webpack_require__(6);
-var template = __webpack_require__(7);
-var openedDropdowns = [];
-var OpalDropdown = /** @class */ (function (_super) {
-    __extends(OpalDropdown, _super);
-    function OpalDropdown() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramAutoHeight = true;
-        _this.paramOpened = false;
-        _this.contentRendered = false;
-        return _this;
+const template = __webpack_require__(7);
+const openedDropdowns = [];
+let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramAutoHeight = true;
+        this.paramOpened = false;
+        this.contentRendered = false;
     }
-    OpalDropdown.prototype.ready = function () {
+    ready() {
         if (this.paramOpened) {
             this._open();
         }
-    };
-    OpalDropdown.prototype.elementAttached = function () {
+    }
+    elementAttached() {
         this.listenTo(this, 'change:paramOpened', this._onParamOpenedChange);
-    };
-    OpalDropdown.prototype._onParamOpenedChange = function (evt) {
+    }
+    _onParamOpenedChange(evt) {
         if (evt.data.value) {
             this._open();
         }
         else {
             this._close();
         }
-    };
-    OpalDropdown.prototype.renderContent = function () {
+    }
+    renderContent() {
         this.contentRendered = true;
         cellx_1.Cell.forceRelease();
-    };
-    OpalDropdown.prototype.open = function () {
+    }
+    open() {
         if (this.paramOpened) {
             return false;
         }
         this.paramOpened = true;
         cellx_1.Cell.forceRelease();
         return true;
-    };
-    OpalDropdown.prototype.close = function () {
+    }
+    close() {
         if (!this.paramOpened) {
             return false;
         }
         this.paramOpened = false;
         cellx_1.Cell.forceRelease();
         return true;
-    };
-    OpalDropdown.prototype.toggle = function (value) {
+    }
+    toggle(value) {
         if (value !== undefined) {
             return value ? this.open() : !this.close();
         }
         return this.open() || !this.close();
-    };
-    OpalDropdown.prototype._open = function () {
+    }
+    _open() {
         openedDropdowns.push(this);
         if (this.contentRendered) {
             this._open$();
@@ -210,18 +195,17 @@ var OpalDropdown = /** @class */ (function (_super) {
             cellx_1.Cell.forceRelease();
             this._open$();
         }
-    };
-    OpalDropdown.prototype._open$ = function () {
-        var _this = this;
-        var el = this.element;
-        var elStyle = el.style;
+    }
+    _open$() {
+        let el = this.element;
+        let elStyle = el.style;
         elStyle.top = '100%';
         elStyle.right = 'auto';
         elStyle.bottom = 'auto';
         elStyle.left = '0';
         elStyle.maxHeight = 'none';
-        var containerClientRect = el.offsetParent.getBoundingClientRect();
-        var elClientRect = el.getBoundingClientRect();
+        let containerClientRect = el.offsetParent.getBoundingClientRect();
+        let elClientRect = el.getBoundingClientRect();
         if (elClientRect.right > containerClientRect.right &&
             elClientRect.right > document.documentElement.clientWidth) {
             if (containerClientRect.right - el.offsetWidth >= 0) {
@@ -233,10 +217,10 @@ var OpalDropdown = /** @class */ (function (_super) {
                     Math.max(-containerClientRect.left, document.documentElement.clientWidth - elClientRect.right) + 'px';
             }
         }
-        var margin = elClientRect.top - containerClientRect.bottom;
-        var excess = elClientRect.bottom + margin - document.documentElement.clientHeight;
+        let margin = elClientRect.top - containerClientRect.bottom;
+        let excess = elClientRect.bottom + margin - document.documentElement.clientHeight;
         if (excess > 0) {
-            var diff = containerClientRect.top -
+            let diff = containerClientRect.top -
                 (document.documentElement.clientHeight - containerClientRect.bottom);
             if (this.paramAutoHeight) {
                 if (diff > 0) {
@@ -257,24 +241,24 @@ var OpalDropdown = /** @class */ (function (_super) {
             }
         }
         if (this.paramCloseOn) {
-            setTimeout(function () {
-                if (_this.paramOpened) {
-                    _this._closingEventListening = _this.listenTo(document, _this.paramCloseOn, _this._onClosingEvent);
+            setTimeout(() => {
+                if (this.paramOpened) {
+                    this._closingEventListening = this.listenTo(document, this.paramCloseOn, this._onClosingEvent);
                 }
             }, 1);
         }
-    };
-    OpalDropdown.prototype._close = function () {
+    }
+    _close() {
         openedDropdowns.splice(openedDropdowns.indexOf(this), 1);
         if (this._closingEventListening) {
             this._closingEventListening.stop();
             this._closingEventListening = null;
         }
-    };
-    OpalDropdown.prototype._onClosingEvent = function (evt) {
-        var docEl = document.documentElement;
-        var componentEl = this.element;
-        for (var el = evt.target; el != componentEl;) {
+    }
+    _onClosingEvent(evt) {
+        let docEl = document.documentElement;
+        let componentEl = this.element;
+        for (let el = evt.target; el != componentEl;) {
             if (el == docEl || el.tagName == 'A') {
                 this.close();
                 this.emit('close');
@@ -285,31 +269,30 @@ var OpalDropdown = /** @class */ (function (_super) {
                 break;
             }
         }
-    };
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalDropdown.prototype, "paramAutoHeight", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalDropdown.prototype, "paramCloseOn", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalDropdown.prototype, "paramOpened", void 0);
-    __decorate([
-        cellx_decorators_1.Observable,
-        __metadata("design:type", Object)
-    ], OpalDropdown.prototype, "contentRendered", void 0);
-    OpalDropdown = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalDropdown',
-            template: template
-        })
-    ], OpalDropdown);
-    return OpalDropdown;
-}(rionite_1.BaseComponent));
+    }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalDropdown.prototype, "paramAutoHeight", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalDropdown.prototype, "paramCloseOn", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalDropdown.prototype, "paramOpened", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Object)
+], OpalDropdown.prototype, "contentRendered", void 0);
+OpalDropdown = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalDropdown',
+        template
+    })
+], OpalDropdown);
 exports.OpalDropdown = OpalDropdown;
 
 

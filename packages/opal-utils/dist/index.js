@@ -115,7 +115,7 @@ __export(__webpack_require__(1));
 
 Object.defineProperty(exports, "__esModule", { value: true });
 function closestComponent(component, componentClass) {
-    var c = component;
+    let c = component;
     for (;;) {
         if (c instanceof componentClass || !(c = c.parentComponent)) {
             break;

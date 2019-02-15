@@ -1,5 +1,5 @@
+import { ObservableTreeList } from '@riim/opal-components';
 import { ObservableList } from 'cellx';
-import { ObservableTreeList } from 'opal-components';
 import { BaseComponent, Component, formatters } from 'rionite';
 import template = require('./template.nelm');
 

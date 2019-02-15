@@ -1,5 +1,5 @@
+import { ObservableTreeList } from '@riim/opal-components';
 import { ObservableList } from 'cellx';
-import { ObservableTreeList } from 'opal-components';
 import { BaseComponent } from 'rionite';
 export declare class OpalComponentsExamples extends BaseComponent {
     dataList1: ObservableList<{

@@ -149,76 +149,55 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
-var object_assign_polyfill_1 = __webpack_require__(7);
-var cellx_1 = __webpack_require__(8);
-var ERROR_INDEXPATH_EMPTY = 'Indexpath cannot be empty';
-function setParent(items, parent) {
-    if (parent === void 0) { parent = null; }
-    for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
-        var item = items_1[_i];
+const object_assign_polyfill_1 = __webpack_require__(7);
+const cellx_1 = __webpack_require__(8);
+const ERROR_INDEXPATH_EMPTY = 'Indexpath cannot be empty';
+function setParent(items, parent = null) {
+    for (let item of items) {
         item.parent = parent;
         setParent(item.children, item);
     }
     return items;
 }
 exports.setParent = setParent;
-var ObservableTreeList = /** @class */ (function (_super) {
-    __extends(ObservableTreeList, _super);
-    function ObservableTreeList(items) {
-        var _this = _super.call(this) || this;
-        _this._items = items
+class ObservableTreeList extends cellx_1.EventEmitter {
+    constructor(items) {
+        super();
+        this._items = items
             ? setParent(items.map(function _(item) {
                 return object_assign_polyfill_1.assign(object_assign_polyfill_1.assign({}, item), {
                     children: item.children ? item.children.map(_) : []
                 });
             }))
             : [];
-        return _this;
     }
-    Object.defineProperty(ObservableTreeList.prototype, "length", {
-        get: function () {
-            return this._items.length;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ObservableTreeList.prototype.get = function (indexpath) {
+    get length() {
+        return this._items.length;
+    }
+    get(indexpath) {
         if (typeof indexpath == 'number') {
             return this._items[indexpath];
         }
         if (!indexpath.length) {
             throw new TypeError(ERROR_INDEXPATH_EMPTY);
         }
-        var item = this._items[indexpath[0]];
-        for (var i = 1, l = indexpath.length; item && i < l; i++) {
+        let item = this._items[indexpath[0]];
+        for (let i = 1, l = indexpath.length; item && i < l; i++) {
             item = item.children && item.children[indexpath[i]];
         }
         return item;
-    };
-    ObservableTreeList.prototype.set = function (indexpath, item) {
-        var items;
-        var parent;
-        var index;
+    }
+    set(indexpath, item) {
+        let items;
+        let parent;
+        let index;
         if (typeof indexpath == 'number') {
             items = this._items;
             index = indexpath;
         }
         else {
-            var indexpathLength = indexpath.length;
+            let indexpathLength = indexpath.length;
             if (!indexpathLength) {
                 throw new TypeError(ERROR_INDEXPATH_EMPTY);
             }
@@ -226,12 +205,12 @@ var ObservableTreeList = /** @class */ (function (_super) {
                 items = this._items;
             }
             else {
-                var node = this._items[indexpath[0]];
-                for (var i = 1, l = indexpathLength - 1; node && i < l; i++) {
+                let node = this._items[indexpath[0]];
+                for (let i = 1, l = indexpathLength - 1; node && i < l; i++) {
                     node = node.children && node.children[indexpath[i]];
                 }
                 if (!node) {
-                    throw new TypeError("Item by indexpath \"[" + indexpath.slice(0, -1).join(',') + "]\" is not exist");
+                    throw new TypeError(`Item by indexpath "[${indexpath.slice(0, -1).join(',')}]" is not exist`);
                 }
                 items = node.children || (node.children = []);
                 parent = node;
@@ -249,43 +228,42 @@ var ObservableTreeList = /** @class */ (function (_super) {
             this.emit('change');
         }
         return this;
-    };
-    ObservableTreeList.prototype.forEach = function (callback, context) { };
-    ObservableTreeList.prototype.map = function (callback, context) {
+    }
+    forEach(callback, context) { }
+    map(callback, context) {
         return 0;
-    };
-    ObservableTreeList.prototype.filter = function (callback, context) {
+    }
+    filter(callback, context) {
         return 0;
-    };
-    ObservableTreeList.prototype.every = function (callback, context) {
+    }
+    every(callback, context) {
         return 0;
-    };
-    ObservableTreeList.prototype.some = function (callback, context) {
+    }
+    some(callback, context) {
         return 0;
-    };
-    ObservableTreeList.prototype.reduce = function (callback, initialValue) {
+    }
+    reduce(callback, initialValue) {
         return 0;
-    };
-    ObservableTreeList.prototype.reduceRight = function (callback, initialValue) {
+    }
+    reduceRight(callback, initialValue) {
         return 0;
-    };
-    ObservableTreeList.prototype.toArray = function () {
+    }
+    toArray() {
         return this._items.slice();
-    };
-    return ObservableTreeList;
-}(cellx_1.EventEmitter));
+    }
+}
 exports.ObservableTreeList = ObservableTreeList;
-['forEach', 'map', 'filter', 'every', 'some'].forEach(function (name) {
+['forEach', 'map', 'filter', 'every', 'some'].forEach(name => {
     ObservableTreeList.prototype[name] = function (callback, context) {
         return this._items[name](function (item, index) {
             return callback.call(context, item, index, this);
         }, this);
     };
 });
-['reduce', 'reduceRight'].forEach(function (name) {
+['reduce', 'reduceRight'].forEach(name => {
     ObservableTreeList.prototype[name] = function (callback, initialValue) {
-        var items = this._items;
-        var list = this;
+        let items = this._items;
+        let list = this;
         function wrapper(accumulator, item, index) {
             return callback(accumulator, item, index, list);
         }
@@ -312,19 +290,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -335,22 +300,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_utils_1 = __webpack_require__(10);
-var cellx_1 = __webpack_require__(8);
-var cellx_decorators_1 = __webpack_require__(11);
-var rionite_1 = __webpack_require__(12);
-var ObservableTreeList_1 = __webpack_require__(6);
+var OpalTreeList_1;
+const opal_utils_1 = __webpack_require__(10);
+const cellx_1 = __webpack_require__(8);
+const cellx_decorators_1 = __webpack_require__(11);
+const rionite_1 = __webpack_require__(12);
+const ObservableTreeList_1 = __webpack_require__(6);
 __webpack_require__(13);
-var OpalTreeListItem_1 = __webpack_require__(13);
+const OpalTreeListItem_1 = __webpack_require__(13);
 exports.OpalTreeListItem = OpalTreeListItem_1.OpalTreeListItem;
-var _getListItemContext_1 = __webpack_require__(14);
+const _getListItemContext_1 = __webpack_require__(14);
 __webpack_require__(17);
-var template = __webpack_require__(18);
-var defaultDataTreeListItemSchema = Object.freeze({
+const template = __webpack_require__(18);
+const defaultDataTreeListItemSchema = Object.freeze({
     value: 'id',
     text: 'name'
 });
-var defaultVMItemSchema = Object.freeze({
+const defaultVMItemSchema = Object.freeze({
     value: 'id',
     text: 'name'
 });
@@ -361,67 +327,52 @@ function toComparable(str) {
             .replace(/\s+/g, ' ')
             .toLowerCase());
 }
-var OpalTreeList = /** @class */ (function (_super) {
-    __extends(OpalTreeList, _super);
-    function OpalTreeList() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this._queryTimeout = null;
-        return _this;
+let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this._queryTimeout = null;
     }
-    OpalTreeList_1 = OpalTreeList;
-    Object.defineProperty(OpalTreeList.prototype, "filteredDataTreeList", {
-        get: function () {
-            var dataTreeList = this.dataTreeList;
-            if (!dataTreeList) {
-                return null;
-            }
-            var query = this.query;
-            if (!query) {
-                return dataTreeList;
-            }
-            var dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName;
-            var dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
-            return new ObservableTreeList_1.ObservableTreeList(ObservableTreeList_1.setParent(dataTreeList.reduce(function _(filteredDataTreeList, item) {
-                var _a, _b;
-                if (item.children.length) {
-                    var filteredChildren = item.children.reduce(_, []);
-                    if (filteredChildren.length ||
-                        toComparable(item[dataTreeListItemTextFieldName]).indexOf(query) != -1) {
-                        filteredDataTreeList.push((_a = {
-                                $original: item
-                            },
-                            _a[dataTreeListItemValueFieldName] = item[dataTreeListItemValueFieldName],
-                            _a[dataTreeListItemTextFieldName] = item[dataTreeListItemTextFieldName],
-                            _a.children = filteredChildren,
-                            _a));
-                    }
+    get filteredDataTreeList() {
+        let dataTreeList = this.dataTreeList;
+        if (!dataTreeList) {
+            return null;
+        }
+        let query = this.query;
+        if (!query) {
+            return dataTreeList;
+        }
+        let dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName;
+        let dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
+        return new ObservableTreeList_1.ObservableTreeList(ObservableTreeList_1.setParent(dataTreeList.reduce(function _(filteredDataTreeList, item) {
+            if (item.children.length) {
+                let filteredChildren = item.children.reduce(_, []);
+                if (filteredChildren.length ||
+                    toComparable(item[dataTreeListItemTextFieldName]).indexOf(query) != -1) {
+                    filteredDataTreeList.push({
+                        $original: item,
+                        [dataTreeListItemValueFieldName]: item[dataTreeListItemValueFieldName],
+                        [dataTreeListItemTextFieldName]: item[dataTreeListItemTextFieldName],
+                        children: filteredChildren
+                    });
                 }
-                else if (toComparable(item[dataTreeListItemTextFieldName]).indexOf(query) != -1) {
-                    filteredDataTreeList.push((_b = {
-                            $original: item
-                        },
-                        _b[dataTreeListItemValueFieldName] = item[dataTreeListItemValueFieldName],
-                        _b[dataTreeListItemTextFieldName] = item[dataTreeListItemTextFieldName],
-                        _b.children = [],
-                        _b));
-                }
-                return filteredDataTreeList;
-            }, [])));
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalTreeList.prototype, "listShown", {
-        get: function () {
-            return !!this.dataTreeList && !this._queryTimeout;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalTreeList.prototype.initialize = function () {
-        var _this = this;
+            }
+            else if (toComparable(item[dataTreeListItemTextFieldName]).indexOf(query) != -1) {
+                filteredDataTreeList.push({
+                    $original: item,
+                    [dataTreeListItemValueFieldName]: item[dataTreeListItemValueFieldName],
+                    [dataTreeListItemTextFieldName]: item[dataTreeListItemTextFieldName],
+                    children: []
+                });
+            }
+            return filteredDataTreeList;
+        }, [])));
+    }
+    get listShown() {
+        return !!this.dataTreeList && !this._queryTimeout;
+    }
+    initialize() {
         if (this.paramDataTreeListKeypath) {
-            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function("return this." + this.paramDataTreeListKeypath + ";"), {
+            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function(`return this.${this.paramDataTreeListKeypath};`), {
                 context: this.ownerComponent || window
             }));
         }
@@ -429,174 +380,158 @@ var OpalTreeList = /** @class */ (function (_super) {
             if (!this.$specifiedParams || !this.$specifiedParams.has('dataTreeList')) {
                 throw new TypeError('Parameter "dataTreeList" is required');
             }
-            cellx_1.define(this, 'dataTreeList', function () { return _this.paramDataTreeList; });
+            cellx_1.define(this, 'dataTreeList', () => this.paramDataTreeList);
         }
-        var dataTreeListItemSchema = this.paramDataTreeListItemSchema;
-        var defaultDataTreeListItemSchema = this.constructor
+        let dataTreeListItemSchema = this.paramDataTreeListItemSchema;
+        let defaultDataTreeListItemSchema = this.constructor
             .defaultDataTreeListItemSchema;
         this._dataTreeListItemValueFieldName =
             dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;
         this._dataTreeListItemTextFieldName =
             dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
         this.viewModel = this.paramViewModel || new cellx_1.ObservableList();
-        var vmItemSchema = this.paramViewModelItemSchema;
-        var defaultVMItemSchema = this.constructor
+        let vmItemSchema = this.paramViewModelItemSchema;
+        let defaultVMItemSchema = this.constructor
             .defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
-    };
-    OpalTreeList.prototype.elementAttached = function () {
+    }
+    elementAttached() {
         this.listenTo(this, 'change:paramQuery', this._onParamQueryChange);
         this.listenTo(this, '<*>change', this._onChange);
-    };
-    OpalTreeList.prototype._onParamQueryChange = function () {
+    }
+    _onParamQueryChange() {
         if (this._queryTimeout) {
             this._queryTimeout.clear();
         }
         this._queryTimeout = this.setTimeout(this._onQueryTimeout, 300);
-    };
-    OpalTreeList.prototype._onQueryTimeout = function () {
+    }
+    _onQueryTimeout() {
         this._queryTimeout = null;
         this.query = toComparable(this.paramQuery);
-    };
-    OpalTreeList.prototype._onChange = function (evt) {
-        var _a;
-        var component = evt.target;
+    }
+    _onChange(evt) {
+        let component = evt.target;
         if (component.element.classList.contains('OpalTreeList__selectionControl')) {
-            var dataTreeListItemValueFieldName_1 = this._dataTreeListItemValueFieldName;
-            var dataTreeListItemTextFieldName_1 = this._dataTreeListItemTextFieldName;
-            var vm_1 = this.viewModel;
-            var viewModelItemValueFieldName_1 = this._viewModelItemValueFieldName;
-            var viewModelItemTextFieldName_1 = this._viewModelItemTextFieldName;
-            var item_1 = opal_utils_1.closestComponent(component.parentComponent, OpalTreeListItem_1.OpalTreeListItem).$context.$item;
-            if (item_1.$original) {
-                item_1 = item_1.$original;
+            let dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName;
+            let dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
+            let vm = this.viewModel;
+            let viewModelItemValueFieldName = this._viewModelItemValueFieldName;
+            let viewModelItemTextFieldName = this._viewModelItemTextFieldName;
+            let item = opal_utils_1.closestComponent(component.parentComponent, OpalTreeListItem_1.OpalTreeListItem).$context.$item;
+            if (item.$original) {
+                item = item.$original;
             }
             if (component.selected) {
-                for (var parent_1; (parent_1 = item_1.parent) &&
-                    parent_1.children.every(function (child) {
-                        return child == item_1 ||
-                            !!vm_1.find(function (vmItem) {
-                                return vmItem[viewModelItemValueFieldName_1] ==
-                                    child[dataTreeListItemValueFieldName_1];
-                            });
-                    });) {
-                    item_1 = parent_1;
+                for (let parent; (parent = item.parent) &&
+                    parent.children.every(child => child == item ||
+                        !!vm.find(vmItem => vmItem[viewModelItemValueFieldName] ==
+                            child[dataTreeListItemValueFieldName]));) {
+                    item = parent;
                 }
-                item_1.children.forEach(function _(child) {
-                    var childIndex = vm_1.findIndex(function (vmItem) {
-                        return vmItem[viewModelItemValueFieldName_1] ==
-                            child[dataTreeListItemValueFieldName_1];
-                    });
+                item.children.forEach(function _(child) {
+                    let childIndex = vm.findIndex(vmItem => vmItem[viewModelItemValueFieldName] ==
+                        child[dataTreeListItemValueFieldName]);
                     if (childIndex != -1) {
-                        vm_1.removeAt(childIndex);
+                        vm.removeAt(childIndex);
                     }
                     child.children.forEach(_);
                 });
-                vm_1.add((_a = {},
-                    _a[viewModelItemValueFieldName_1] = item_1[dataTreeListItemValueFieldName_1],
-                    _a[viewModelItemTextFieldName_1] = item_1[dataTreeListItemTextFieldName_1],
-                    _a));
+                vm.add({
+                    [viewModelItemValueFieldName]: item[dataTreeListItemValueFieldName],
+                    [viewModelItemTextFieldName]: item[dataTreeListItemTextFieldName]
+                });
             }
             else {
-                var itemIndex = vm_1.findIndex(function (vmItem) {
-                    return vmItem[viewModelItemValueFieldName_1] == item_1[dataTreeListItemValueFieldName_1];
-                });
+                let itemIndex = vm.findIndex(vmItem => vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]);
                 if (itemIndex != -1) {
-                    vm_1.removeAt(itemIndex);
+                    vm.removeAt(itemIndex);
                 }
                 else {
-                    var parent_2 = item_1.parent;
+                    let parent = item.parent;
                     for (;;) {
-                        var parentIndex = vm_1.findIndex(function (vmItem) {
-                            return vmItem[viewModelItemValueFieldName_1] ==
-                                parent_2[dataTreeListItemValueFieldName_1];
-                        });
-                        vm_1.addRange((parent_2.$original || parent_2).children
-                            .filter(function (child) { return child != item_1; })
-                            .map(function (child) {
-                            var _a;
-                            return (_a = {},
-                                _a[viewModelItemValueFieldName_1] = child[dataTreeListItemValueFieldName_1],
-                                _a[viewModelItemTextFieldName_1] = child[dataTreeListItemTextFieldName_1],
-                                _a);
-                        }));
+                        let parentIndex = vm.findIndex(vmItem => vmItem[viewModelItemValueFieldName] ==
+                            parent[dataTreeListItemValueFieldName]);
+                        vm.addRange((parent.$original || parent).children
+                            .filter(child => child != item)
+                            .map(child => ({
+                            [viewModelItemValueFieldName]: child[dataTreeListItemValueFieldName],
+                            [viewModelItemTextFieldName]: child[dataTreeListItemTextFieldName]
+                        })));
                         if (parentIndex != -1) {
-                            vm_1.removeAt(parentIndex);
+                            vm.removeAt(parentIndex);
                             break;
                         }
-                        item_1 = parent_2;
-                        parent_2 = item_1.parent;
+                        item = parent;
+                        parent = item.parent;
                     }
                 }
             }
         }
-    };
-    var OpalTreeList_1;
-    OpalTreeList.defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
-    OpalTreeList.defaultViewModelItemSchema = defaultVMItemSchema;
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTreeList.prototype, "paramDataTreeList", void 0);
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", String)
-    ], OpalTreeList.prototype, "paramDataTreeListKeypath", void 0);
-    __decorate([
-        rionite_1.Param({
-            type: eval,
-            default: defaultDataTreeListItemSchema,
-            readonly: true
-        }),
-        __metadata("design:type", Object)
-    ], OpalTreeList.prototype, "paramDataTreeListItemSchema", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTreeList.prototype, "paramViewModel", void 0);
-    __decorate([
-        rionite_1.Param({
-            type: eval,
-            default: defaultVMItemSchema,
-            readonly: true
-        }),
-        __metadata("design:type", Object)
-    ], OpalTreeList.prototype, "paramViewModelItemSchema", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalTreeList.prototype, "paramQuery", void 0);
-    __decorate([
-        cellx_decorators_1.Observable,
-        __metadata("design:type", Object)
-    ], OpalTreeList.prototype, "query", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Object),
-        __metadata("design:paramtypes", [])
-    ], OpalTreeList.prototype, "filteredDataTreeList", null);
-    __decorate([
-        cellx_decorators_1.Observable,
-        __metadata("design:type", Object)
-    ], OpalTreeList.prototype, "viewModel", void 0);
-    __decorate([
-        cellx_decorators_1.Observable,
-        __metadata("design:type", Object)
-    ], OpalTreeList.prototype, "_queryTimeout", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Boolean),
-        __metadata("design:paramtypes", [])
-    ], OpalTreeList.prototype, "listShown", null);
-    OpalTreeList = OpalTreeList_1 = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalTreeList',
-            template: template
-        })
-    ], OpalTreeList);
-    return OpalTreeList;
-}(rionite_1.BaseComponent));
+    }
+};
+OpalTreeList.defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
+OpalTreeList.defaultViewModelItemSchema = defaultVMItemSchema;
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTreeList.prototype, "paramDataTreeList", void 0);
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", String)
+], OpalTreeList.prototype, "paramDataTreeListKeypath", void 0);
+__decorate([
+    rionite_1.Param({
+        type: eval,
+        default: defaultDataTreeListItemSchema,
+        readonly: true
+    }),
+    __metadata("design:type", Object)
+], OpalTreeList.prototype, "paramDataTreeListItemSchema", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTreeList.prototype, "paramViewModel", void 0);
+__decorate([
+    rionite_1.Param({
+        type: eval,
+        default: defaultVMItemSchema,
+        readonly: true
+    }),
+    __metadata("design:type", Object)
+], OpalTreeList.prototype, "paramViewModelItemSchema", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalTreeList.prototype, "paramQuery", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Object)
+], OpalTreeList.prototype, "query", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [])
+], OpalTreeList.prototype, "filteredDataTreeList", null);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Object)
+], OpalTreeList.prototype, "viewModel", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Object)
+], OpalTreeList.prototype, "_queryTimeout", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [])
+], OpalTreeList.prototype, "listShown", null);
+OpalTreeList = OpalTreeList_1 = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalTreeList',
+        template
+    })
+], OpalTreeList);
 exports.OpalTreeList = OpalTreeList;
 OpalTreeList.prototype._getListItemContext = _getListItemContext_1.default;
 
@@ -625,19 +560,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__12__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -648,120 +570,109 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_decorators_1 = __webpack_require__(11);
-var rionite_1 = __webpack_require__(12);
-var _getListItemContext_1 = __webpack_require__(14);
+const cellx_decorators_1 = __webpack_require__(11);
+const rionite_1 = __webpack_require__(12);
+const _getListItemContext_1 = __webpack_require__(14);
 __webpack_require__(15);
-var template = __webpack_require__(16);
-var OpalTreeListItem = /** @class */ (function (_super) {
-    __extends(OpalTreeListItem, _super);
-    function OpalTreeListItem() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramOpened = false;
-        return _this;
+const template = __webpack_require__(16);
+let OpalTreeListItem = class OpalTreeListItem extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramOpened = false;
     }
-    Object.defineProperty(OpalTreeListItem.prototype, "dataTreeList", {
-        get: function () {
-            return this.paramDataTreeList;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalTreeListItem.prototype, "viewModel", {
-        get: function () {
-            return this.paramViewModel;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalTreeListItem.prototype.initialize = function () {
+    get dataTreeList() {
+        return this.paramDataTreeList;
+    }
+    get viewModel() {
+        return this.paramViewModel;
+    }
+    initialize() {
         this.dataTreeListItem = this.paramFilteredDataTreeList.get(this.paramIndexpath);
         this._dataTreeListItemValueFieldName = this.paramDataTreeListItemValueFieldName;
         this._dataTreeListItemTextFieldName = this.paramDataTreeListItemTextFieldName;
         this._viewModelItemValueFieldName = this.paramViewModelItemValueFieldName;
         this._viewModelItemTextFieldName = this.paramViewModelItemTextFieldName;
-    };
-    __decorate([
-        rionite_1.Param({ required: true }),
-        __metadata("design:type", Object)
-    ], OpalTreeListItem.prototype, "paramDataTreeList", void 0);
-    __decorate([
-        rionite_1.Param({ required: true }),
-        __metadata("design:type", Object)
-    ], OpalTreeListItem.prototype, "paramFilteredDataTreeList", void 0);
-    __decorate([
-        rionite_1.Param({
-            required: true,
-            readonly: true
-        }),
-        __metadata("design:type", String)
-    ], OpalTreeListItem.prototype, "paramDataTreeListItemValueFieldName", void 0);
-    __decorate([
-        rionite_1.Param({
-            required: true,
-            readonly: true
-        }),
-        __metadata("design:type", String)
-    ], OpalTreeListItem.prototype, "paramDataTreeListItemTextFieldName", void 0);
-    __decorate([
-        rionite_1.Param({ required: true }),
-        __metadata("design:type", Object)
-    ], OpalTreeListItem.prototype, "paramViewModel", void 0);
-    __decorate([
-        rionite_1.Param({
-            required: true,
-            readonly: true
-        }),
-        __metadata("design:type", String)
-    ], OpalTreeListItem.prototype, "paramViewModelItemValueFieldName", void 0);
-    __decorate([
-        rionite_1.Param({
-            required: true,
-            readonly: true
-        }),
-        __metadata("design:type", String)
-    ], OpalTreeListItem.prototype, "paramViewModelItemTextFieldName", void 0);
-    __decorate([
-        rionite_1.Param({
-            type: eval,
-            required: true,
-            readonly: true
-        }),
-        __metadata("design:type", Array)
-    ], OpalTreeListItem.prototype, "paramIndexpath", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalTreeListItem.prototype, "paramQuery", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTreeListItem.prototype, "paramOpened", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Object),
-        __metadata("design:paramtypes", [])
-    ], OpalTreeListItem.prototype, "dataTreeList", null);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Object),
-        __metadata("design:paramtypes", [])
-    ], OpalTreeListItem.prototype, "viewModel", null);
-    OpalTreeListItem = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalTreeListItem',
-            template: template,
-            events: {
-                btnToggleChildren: {
-                    change: function (evt) {
-                        this.paramOpened = evt.target.checked;
-                    }
+    }
+};
+__decorate([
+    rionite_1.Param({ required: true }),
+    __metadata("design:type", Object)
+], OpalTreeListItem.prototype, "paramDataTreeList", void 0);
+__decorate([
+    rionite_1.Param({ required: true }),
+    __metadata("design:type", Object)
+], OpalTreeListItem.prototype, "paramFilteredDataTreeList", void 0);
+__decorate([
+    rionite_1.Param({
+        required: true,
+        readonly: true
+    }),
+    __metadata("design:type", String)
+], OpalTreeListItem.prototype, "paramDataTreeListItemValueFieldName", void 0);
+__decorate([
+    rionite_1.Param({
+        required: true,
+        readonly: true
+    }),
+    __metadata("design:type", String)
+], OpalTreeListItem.prototype, "paramDataTreeListItemTextFieldName", void 0);
+__decorate([
+    rionite_1.Param({ required: true }),
+    __metadata("design:type", Object)
+], OpalTreeListItem.prototype, "paramViewModel", void 0);
+__decorate([
+    rionite_1.Param({
+        required: true,
+        readonly: true
+    }),
+    __metadata("design:type", String)
+], OpalTreeListItem.prototype, "paramViewModelItemValueFieldName", void 0);
+__decorate([
+    rionite_1.Param({
+        required: true,
+        readonly: true
+    }),
+    __metadata("design:type", String)
+], OpalTreeListItem.prototype, "paramViewModelItemTextFieldName", void 0);
+__decorate([
+    rionite_1.Param({
+        type: eval,
+        required: true,
+        readonly: true
+    }),
+    __metadata("design:type", Array)
+], OpalTreeListItem.prototype, "paramIndexpath", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalTreeListItem.prototype, "paramQuery", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTreeListItem.prototype, "paramOpened", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [])
+], OpalTreeListItem.prototype, "dataTreeList", null);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [])
+], OpalTreeListItem.prototype, "viewModel", null);
+OpalTreeListItem = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalTreeListItem',
+        template,
+        events: {
+            btnToggleChildren: {
+                change(evt) {
+                    this.paramOpened = evt.target.checked;
                 }
             }
-        })
-    ], OpalTreeListItem);
-    return OpalTreeListItem;
-}(rionite_1.BaseComponent));
+        }
+    })
+], OpalTreeListItem);
 exports.OpalTreeListItem = OpalTreeListItem;
 OpalTreeListItem.prototype._getListItemContext = _getListItemContext_1.default;
 
@@ -773,12 +684,10 @@ OpalTreeListItem.prototype._getListItemContext = _getListItemContext_1.default;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(8);
+const cellx_1 = __webpack_require__(8);
 function isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
     do {
-        if (vm.find(function (vmItem) {
-            return vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName];
-        })) {
+        if (vm.find(vmItem => vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName])) {
             return true;
         }
     } while ((item = item.parent));
@@ -787,18 +696,14 @@ function isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemV
 function isIndeterminateItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
     return (!!item.children.length &&
         !isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
-        item.children.some(function (child) {
-            return !!vm.find(function (vmItem) {
-                return vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName];
-            }) ||
-                isIndeterminateItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName);
-        }));
+        item.children.some(child => !!vm.find(vmItem => vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]) ||
+            isIndeterminateItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName)));
 }
 function _getListItemContext(context, slot) {
-    var $item = slot.$context.$item;
+    let $item = slot.$context.$item;
     return cellx_1.define({
         __proto__: context,
-        $item: $item
+        $item
     }, {
         $selected: new cellx_1.Cell(function () {
             this.dataTreeList;

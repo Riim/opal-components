@@ -120,19 +120,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -143,46 +130,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var kebab_case_1 = __webpack_require__(3);
-var next_uid_1 = __webpack_require__(4);
-var rionite_snake_case_attribute_name_1 = __webpack_require__(5);
-var createBrowserHistory_1 = __webpack_require__(6);
-var rionite_1 = __webpack_require__(7);
-var OpalRoute_1 = __webpack_require__(8);
+const kebab_case_1 = __webpack_require__(3);
+const next_uid_1 = __webpack_require__(4);
+const rionite_snake_case_attribute_name_1 = __webpack_require__(5);
+const createBrowserHistory_1 = __webpack_require__(6);
+const rionite_1 = __webpack_require__(7);
+const OpalRoute_1 = __webpack_require__(8);
 exports.OpalRoute = OpalRoute_1.OpalRoute;
-var escapeRegExp_1 = __webpack_require__(9);
+const escapeRegExp_1 = __webpack_require__(9);
 __webpack_require__(10);
-var parsePath_1 = __webpack_require__(11);
-var PathNodeType_1 = __webpack_require__(12);
-var forEach = Array.prototype.forEach;
-var history = createBrowserHistory_1.default();
+const parsePath_1 = __webpack_require__(11);
+const PathNodeType_1 = __webpack_require__(12);
+const forEach = Array.prototype.forEach;
+const history = createBrowserHistory_1.default();
 function valueToAttributeValue(value) {
     return value === false ? 'no' : value === true ? 'yes' : value;
 }
-var OpalRouter = /** @class */ (function (_super) {
-    __extends(OpalRouter, _super);
-    function OpalRouter() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramUseLocationHash = false;
-        _this.paramScrollTopOnChange = true;
-        _this.paramScrollTopOnChangeComponent = true;
-        _this._route = null;
-        _this._state = null;
-        _this._componentElement = null;
-        return _this;
+let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramUseLocationHash = false;
+        this.paramScrollTopOnChange = true;
+        this.paramScrollTopOnChangeComponent = true;
+        this._route = null;
+        this._state = null;
+        this._componentElement = null;
     }
-    OpalRouter.prototype.initialize = function () {
+    initialize() {
         this._routes = [];
-    };
-    OpalRouter.prototype.ready = function () {
-        var routes = this._routes;
-        forEach.call(this.element.getElementsByTagName('opal-route'), function (routeEl) {
-            var path = routeEl.$component.paramPath;
-            var rePath = [];
-            var props = [];
+    }
+    ready() {
+        let routes = this._routes;
+        forEach.call(this.element.getElementsByTagName('opal-route'), (routeEl) => {
+            let path = routeEl.$component.paramPath;
+            let rePath = [];
+            let props = [];
             (function processPath(path) {
-                for (var _i = 0, path_1 = path; _i < path_1.length; _i++) {
-                    var node = path_1[_i];
+                for (let node of path) {
                     switch (node.type) {
                         case PathNodeType_1.PathNodeType.SIMPLE: {
                             rePath.push(escapeRegExp_1.escapeRegExp(node.value).replace('\\*', '.*?'));
@@ -216,18 +200,17 @@ var OpalRouter = /** @class */ (function (_super) {
             })(parsePath_1.parsePath(path));
             rePath = rePath.join('');
             routes.push({
-                path: path,
-                rePath: RegExp("^" + rePath + (rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?') + "$"),
+                path,
+                rePath: RegExp(`^${rePath}${rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?'}$`),
                 properties: props,
                 componentName: kebab_case_1.kebabCase(routeEl.$component.paramComponent)
             });
         });
-    };
-    OpalRouter.prototype.elementAttached = function () {
-        var _this = this;
+    }
+    elementAttached() {
         this._disposables[next_uid_1.nextUID()] = {
-            dispose: history.listen(function (location) {
-                _this._onHistoryChange(location);
+            dispose: history.listen(location => {
+                this._onHistoryChange(location);
             })
         };
         if (!this.paramUseLocationHash) {
@@ -240,32 +223,32 @@ var OpalRouter = /** @class */ (function (_super) {
         else {
             this._update(history.location.pathname, history.location.hash);
         }
-    };
-    OpalRouter.prototype.elementDetached = function () {
+    }
+    elementDetached() {
         this._clear();
-    };
-    OpalRouter.prototype._onHistoryChange = function (location) {
+    }
+    _onHistoryChange(location) {
         if (this.paramUseLocationHash) {
             this._update(location.hash.slice(1), '');
         }
         else {
             this._update(location.pathname, location.hash);
         }
-    };
-    OpalRouter.prototype._onBodyClick = function (evt) {
-        var el = evt.target;
+    }
+    _onBodyClick(evt) {
+        let el = evt.target;
         while (el.tagName != 'A') {
             el = el.parentElement;
             if (!el) {
                 return;
             }
         }
-        var href = el.getAttribute('href');
+        let href = el.getAttribute('href');
         if (!href) {
             return;
         }
-        var hashIndex = href.indexOf('#');
-        var path = hashIndex == -1 ? href : href.slice(0, hashIndex);
+        let hashIndex = href.indexOf('#');
+        let path = hashIndex == -1 ? href : href.slice(0, hashIndex);
         if (path &&
             !/^(?:\w+:|\/\/)/.test(path) &&
             el.getAttribute('target') != '_blank' &&
@@ -275,48 +258,48 @@ var OpalRouter = /** @class */ (function (_super) {
                 history.push(href);
             }
         }
-    };
-    OpalRouter.prototype._onRefreshRouter = function () {
+    }
+    _onRefreshRouter() {
         this.refresh();
         return false;
-    };
-    OpalRouter.prototype._update = function (path, _hash) {
+    }
+    _update(path, _hash) {
         if (!path) {
             path = '/';
         }
-        var _loop_1 = function (route) {
-            var match = path.match(route.rePath);
+        for (let route of this._routes) {
+            let match = path.match(route.rePath);
             if (!match) {
-                return "continue";
+                continue;
             }
-            var state = route.properties.reduce(function (state, prop, index) {
+            let state = route.properties.reduce((state, prop, index) => {
                 if (prop.optional) {
                     state[prop.name] = !!match[index + 1];
                 }
                 else {
-                    var value = match[index + 1];
+                    let value = match[index + 1];
                     state[prop.name] = value && decodeURIComponent(value);
                 }
                 return state;
             }, Object.create(null));
-            if (route === this_1._route) {
-                var prevState_1 = this_1._state;
-                var stateKeys = Object.keys(state);
-                if (stateKeys.length == Object.keys(prevState_1).length &&
-                    stateKeys.every(function (name) { return state[name] === prevState_1[name]; })) {
-                    return { value: true };
+            if (route === this._route) {
+                let prevState = this._state;
+                let stateKeys = Object.keys(state);
+                if (stateKeys.length == Object.keys(prevState).length &&
+                    stateKeys.every(name => state[name] === prevState[name])) {
+                    return true;
                 }
-                var componentEl_1 = this_1._componentElement;
-                var $paramsConfig = componentEl_1.$component.constructor[rionite_1.KEY_PARAMS_CONFIG];
-                var attrs = componentEl_1.attributes;
-                var canWrite = true;
+                let componentEl = this._componentElement;
+                let $paramsConfig = componentEl.$component.constructor[rionite_1.KEY_PARAMS_CONFIG];
+                let attrs = componentEl.attributes;
+                let canWrite = true;
                 if ($paramsConfig) {
-                    for (var i = attrs.length; i;) {
-                        var name_1 = attrs.item(--i).name;
-                        if (name_1 == 'class') {
+                    for (let i = attrs.length; i;) {
+                        let name = attrs.item(--i).name;
+                        if (name == 'class') {
                             continue;
                         }
-                        var $paramConfig = $paramsConfig[name_1];
+                        let $paramConfig = $paramsConfig[name];
                         if ($paramConfig &&
                             $paramConfig.readonly &&
                             !($paramConfig.name in state)) {
@@ -325,10 +308,10 @@ var OpalRouter = /** @class */ (function (_super) {
                         }
                     }
                     if (canWrite) {
-                        for (var name_2 in state) {
-                            if ($paramsConfig[name_2].readonly &&
-                                componentEl_1.getAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name_2, true)) !==
-                                    valueToAttributeValue(state[name_2])) {
+                        for (let name in state) {
+                            if ($paramsConfig[name].readonly &&
+                                componentEl.getAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name, true)) !==
+                                    valueToAttributeValue(state[name])) {
                                 canWrite = false;
                                 break;
                             }
@@ -337,74 +320,67 @@ var OpalRouter = /** @class */ (function (_super) {
                 }
                 if (canWrite) {
                     if ($paramsConfig) {
-                        for (var i = attrs.length; i;) {
-                            var name_3 = attrs.item(--i).name;
-                            if (name_3 == 'class') {
+                        for (let i = attrs.length; i;) {
+                            let name = attrs.item(--i).name;
+                            if (name == 'class') {
                                 continue;
                             }
-                            var $paramConfig = $paramsConfig[name_3];
+                            let $paramConfig = $paramsConfig[name];
                             if ($paramConfig && !($paramConfig.name in state)) {
-                                componentEl_1.removeAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name_3, true));
+                                componentEl.removeAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name, true));
                             }
                         }
                     }
-                    this_1._state = state;
-                    this_1._applyState();
-                    if (this_1.paramScrollTopOnChange) {
+                    this._state = state;
+                    this._applyState();
+                    if (this.paramScrollTopOnChange) {
                         window.scrollTo(window.pageXOffset, 0);
                     }
-                    this_1.emit('change');
-                    return { value: true };
+                    this.emit('change');
+                    return true;
                 }
             }
-            if (this_1._componentElement) {
-                this_1.element.removeChild(this_1._componentElement);
+            if (this._componentElement) {
+                this.element.removeChild(this._componentElement);
             }
-            this_1._route = route;
-            this_1._state = state;
-            var componentEl = (this_1._componentElement = document.createElement(route.componentName));
-            this_1._applyState();
-            componentEl.rioniteComponent.ownerComponent = this_1;
-            this_1.element.appendChild(componentEl);
-            if (this_1.paramScrollTopOnChange || this_1.paramScrollTopOnChangeComponent) {
+            this._route = route;
+            this._state = state;
+            let componentEl = (this._componentElement = document.createElement(route.componentName));
+            this._applyState();
+            componentEl.rioniteComponent.ownerComponent = this;
+            this.element.appendChild(componentEl);
+            if (this.paramScrollTopOnChange || this.paramScrollTopOnChangeComponent) {
                 window.scrollTo(window.pageXOffset, 0);
             }
-            this_1.emit('change');
-            return { value: true };
-        };
-        var this_1 = this;
-        for (var _i = 0, _a = this._routes; _i < _a.length; _i++) {
-            var route = _a[_i];
-            var state_1 = _loop_1(route);
-            if (typeof state_1 === "object")
-                return state_1.value;
+            this.emit('change');
+            return true;
         }
         if (this._route) {
             this.emit('change');
             this._clear();
         }
         return false;
-    };
-    OpalRouter.prototype._applyState = function () {
-        var state = this._state;
-        var componentEl = this._componentElement;
-        for (var name_4 in state) {
-            componentEl.setAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name_4, true), valueToAttributeValue(state[name_4]));
+    }
+    _applyState() {
+        let state = this._state;
+        let componentEl = this._componentElement;
+        for (let name in state) {
+            componentEl.setAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name, true), valueToAttributeValue(state[name]));
         }
-    };
-    OpalRouter.prototype._clear = function () {
+    }
+    _clear() {
         if (this._route) {
             this._route = null;
             this._state = null;
             this.element.removeChild(this._componentElement);
             this._componentElement = null;
         }
-    };
-    OpalRouter.prototype.refresh = function () {
-        var route = this._route;
+    }
+    refresh() {
+        let route = this._route;
         if (route) {
             this.element.removeChild(this._componentElement);
-            var componentEl = (this._componentElement = document.createElement(route.componentName));
+            let componentEl = (this._componentElement = document.createElement(route.componentName));
             this._applyState();
             componentEl.rioniteComponent.ownerComponent = this;
             this.element.appendChild(componentEl);
@@ -412,27 +388,26 @@ var OpalRouter = /** @class */ (function (_super) {
                 window.scrollTo(window.pageXOffset, 0);
             }
         }
-    };
-    OpalRouter.history = history;
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", Object)
-    ], OpalRouter.prototype, "paramUseLocationHash", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalRouter.prototype, "paramScrollTopOnChange", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalRouter.prototype, "paramScrollTopOnChangeComponent", void 0);
-    OpalRouter = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalRouter'
-        })
-    ], OpalRouter);
-    return OpalRouter;
-}(rionite_1.BaseComponent));
+    }
+};
+OpalRouter.history = history;
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", Object)
+], OpalRouter.prototype, "paramUseLocationHash", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalRouter.prototype, "paramScrollTopOnChange", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalRouter.prototype, "paramScrollTopOnChangeComponent", void 0);
+OpalRouter = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalRouter'
+    })
+], OpalRouter);
 exports.OpalRouter = OpalRouter;
 
 
@@ -472,19 +447,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -495,33 +457,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(7);
-var OpalRoute = /** @class */ (function (_super) {
-    __extends(OpalRoute, _super);
-    function OpalRoute() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    __decorate([
-        rionite_1.Param({
-            required: true,
-            readonly: true
-        }),
-        __metadata("design:type", String)
-    ], OpalRoute.prototype, "paramPath", void 0);
-    __decorate([
-        rionite_1.Param({
-            required: true,
-            readonly: true
-        }),
-        __metadata("design:type", String)
-    ], OpalRoute.prototype, "paramComponent", void 0);
-    OpalRoute = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalRoute'
-        })
-    ], OpalRoute);
-    return OpalRoute;
-}(rionite_1.BaseComponent));
+const rionite_1 = __webpack_require__(7);
+let OpalRoute = class OpalRoute extends rionite_1.BaseComponent {
+};
+__decorate([
+    rionite_1.Param({
+        required: true,
+        readonly: true
+    }),
+    __metadata("design:type", String)
+], OpalRoute.prototype, "paramPath", void 0);
+__decorate([
+    rionite_1.Param({
+        required: true,
+        readonly: true
+    }),
+    __metadata("design:type", String)
+], OpalRoute.prototype, "paramComponent", void 0);
+OpalRoute = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalRoute'
+    })
+], OpalRoute);
 exports.OpalRoute = OpalRoute;
 
 
@@ -532,7 +489,7 @@ exports.OpalRoute = OpalRoute;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var reEscapableChars = /([?+|$(){}[^.\-\]\/\\*])/g;
+const reEscapableChars = /([?+|$(){}[^.\-\]\/\\*])/g;
 function escapeRegExp(str) {
     return str.replace(reEscapableChars, '\\$1');
 }
@@ -563,27 +520,27 @@ module.exports = (function(d) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType_1 = __webpack_require__(12);
-var reName = /[a-z][0-9a-z]*/i;
+const PathNodeType_1 = __webpack_require__(12);
+const reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
-    var ctx = PathNodeType_1.PathNodeType.SIMPLE;
-    var at = 0;
-    var chr = path[0];
+    let ctx = PathNodeType_1.PathNodeType.SIMPLE;
+    let at = 0;
+    let chr = path[0];
     return readPath();
     function next(c) {
         if (c && c != chr) {
             throw {
                 name: 'SyntaxError',
-                message: "Expected \"" + c + "\" instead of \"" + chr + "\"",
-                at: at,
-                path: path
+                message: `Expected "${c}" instead of "${chr}"`,
+                at,
+                path
             };
         }
         chr = path[++at];
         return chr;
     }
     function readPath() {
-        var path = [];
+        let path = [];
         while (chr) {
             if (chr == '(') {
                 path.push(readOptionalNode());
@@ -598,7 +555,7 @@ function parsePath(path) {
         return path;
     }
     function readSimpleNode() {
-        var value = chr;
+        let value = chr;
         while (next()) {
             if (chr == '(' || chr == '[' || (ctx == PathNodeType_1.PathNodeType.OPTIONAL && chr == ')')) {
                 break;
@@ -607,18 +564,18 @@ function parsePath(path) {
         }
         return {
             type: PathNodeType_1.PathNodeType.SIMPLE,
-            value: value
+            value
         };
     }
     function readOptionalNode() {
-        var optionalNodeAt = at;
+        let optionalNodeAt = at;
         next('(');
-        var name;
+        let name;
         if (chr == '|') {
             name = readOptionalNodeName();
         }
-        var childNodes = [];
-        var prevCtx = ctx;
+        let childNodes = [];
+        let prevCtx = ctx;
         ctx = PathNodeType_1.PathNodeType.OPTIONAL;
         while (chr) {
             if (chr == ')') {
@@ -627,7 +584,7 @@ function parsePath(path) {
                 return {
                     type: PathNodeType_1.PathNodeType.OPTIONAL,
                     name: name || null,
-                    childNodes: childNodes
+                    childNodes
                 };
             }
             else if (chr == '(') {
@@ -644,21 +601,21 @@ function parsePath(path) {
             name: 'SyntaxError',
             message: 'Missing ")" in compound statement',
             at: optionalNodeAt,
-            path: path
+            path
         };
     }
     function readOptionalNodeName() {
         next('|');
-        var optionalNodeNameAt = at;
-        var name = '';
+        let optionalNodeNameAt = at;
+        let name = '';
         while (chr) {
             if (chr == '|') {
                 if (!reName.test(name) || name == 'class') {
                     throw {
                         name: 'SyntaxError',
-                        message: "Invalid name \"" + name + "\"",
+                        message: `Invalid name "${name}"`,
                         at: optionalNodeNameAt,
-                        path: path
+                        path
                     };
                 }
                 next();
@@ -673,30 +630,30 @@ function parsePath(path) {
             name: 'SyntaxError',
             message: 'Missing ":" in compound statement',
             at: optionalNodeNameAt,
-            path: path
+            path
         };
     }
     function readInsert() {
-        var insertAt = at;
+        let insertAt = at;
         next('[');
-        var name = '';
-        var prevCtx = ctx;
+        let name = '';
+        let prevCtx = ctx;
         ctx = PathNodeType_1.PathNodeType.INSERT;
         while (chr) {
             if (chr == ']') {
                 if (!reName.test(name) || name == 'class') {
                     throw {
                         name: 'SyntaxError',
-                        message: "Invalid name \"" + name + "\"",
+                        message: `Invalid name "${name}"`,
                         at: insertAt + 1,
-                        path: path
+                        path
                     };
                 }
                 next();
                 ctx = prevCtx;
                 return {
                     type: PathNodeType_1.PathNodeType.INSERT,
-                    name: name
+                    name
                 };
             }
             else {
@@ -708,7 +665,7 @@ function parsePath(path) {
             name: 'SyntaxError',
             message: 'Missing "]" in compound statement',
             at: insertAt,
-            path: path
+            path
         };
     }
 }

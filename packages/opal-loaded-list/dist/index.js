@@ -127,19 +127,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -150,53 +137,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(4);
-var cellx_1 = __webpack_require__(5);
-var cellx_decorators_1 = __webpack_require__(6);
-var rionite_1 = __webpack_require__(7);
+var OpalLoadedList_1;
+const next_tick_1 = __webpack_require__(4);
+const cellx_1 = __webpack_require__(5);
+const cellx_decorators_1 = __webpack_require__(6);
+const rionite_1 = __webpack_require__(7);
 __webpack_require__(8);
-var template = __webpack_require__(9);
-var defaultDataListItemSchema = Object.freeze({
+const template = __webpack_require__(9);
+let defaultDataListItemSchema = Object.freeze({
     value: 'id',
     text: 'name'
 });
-var OpalLoadedList = /** @class */ (function (_super) {
-    __extends(OpalLoadedList, _super);
-    function OpalLoadedList() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramCount = 100;
-        _this.paramPreloading = false;
-        _this.dataList = new cellx_1.ObservableList();
-        _this._scrollingInProcessing = false;
-        _this._loadingCheckPlanned = false;
-        _this.loading = false;
-        _this._lastRequestedQuery = null;
-        _this._lastLoadedQuery = null;
-        return _this;
+let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramCount = 100;
+        this.paramPreloading = false;
+        this.dataList = new cellx_1.ObservableList();
+        this._scrollingInProcessing = false;
+        this._loadingCheckPlanned = false;
+        this.loading = false;
+        this._lastRequestedQuery = null;
+        this._lastLoadedQuery = null;
     }
-    OpalLoadedList_1 = OpalLoadedList;
-    Object.defineProperty(OpalLoadedList.prototype, "empty", {
-        get: function () {
-            return !this.dataList.length;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalLoadedList.prototype, "loaderShown", {
-        get: function () {
-            return this.total === undefined || this.dataList.length < this.total || this.loading;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalLoadedList.prototype, "nothingFoundShown", {
-        get: function () {
-            return this.total === 0 && !this._loadingCheckPlanned && !this.loading;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalLoadedList.prototype.initialize = function () {
+    get empty() {
+        return !this.dataList.length;
+    }
+    get loaderShown() {
+        return this.total === undefined || this.dataList.length < this.total || this.loading;
+    }
+    get nothingFoundShown() {
+        return this.total === 0 && !this._loadingCheckPlanned && !this.loading;
+    }
+    initialize() {
         this._dataListItemTextFieldName =
             this.paramDataListItemSchema.text ||
                 this.constructor.defaultDataListItemSchema.text;
@@ -207,8 +180,8 @@ var OpalLoadedList = /** @class */ (function (_super) {
         if (!this.dataProvider) {
             throw new TypeError('"dataProvider" is not defined');
         }
-    };
-    OpalLoadedList.prototype.elementAttached = function () {
+    }
+    elementAttached() {
         this.listenTo(this, 'change:paramQuery', this._onParamQueryChange);
         this.listenTo(this.element, 'scroll', this._onElementScroll);
         if (this.paramPreloading) {
@@ -217,9 +190,8 @@ var OpalLoadedList = /** @class */ (function (_super) {
         else {
             this.checkLoading();
         }
-    };
-    OpalLoadedList.prototype._onParamQueryChange = function () {
-        var _this = this;
+    }
+    _onParamQueryChange() {
         if (this.loading) {
             this._requestCallback.cancel();
             this.loading = false;
@@ -232,14 +204,13 @@ var OpalLoadedList = /** @class */ (function (_super) {
         else {
             this._loadingCheckPlanned = true;
         }
-        this._loadingCheckTimeout = this.setTimeout(function () {
-            _this._scrollingInProcessing = false;
-            _this._loadingCheckPlanned = false;
-            _this.checkLoading();
+        this._loadingCheckTimeout = this.setTimeout(() => {
+            this._scrollingInProcessing = false;
+            this._loadingCheckPlanned = false;
+            this.checkLoading();
         }, 300);
-    };
-    OpalLoadedList.prototype._onElementScroll = function () {
-        var _this = this;
+    }
+    _onElementScroll() {
         if (this._scrollingInProcessing) {
             return;
         }
@@ -250,30 +221,30 @@ var OpalLoadedList = /** @class */ (function (_super) {
         else {
             this._loadingCheckPlanned = true;
         }
-        this._loadingCheckTimeout = this.setTimeout(function () {
-            _this._scrollingInProcessing = false;
-            _this._loadingCheckPlanned = false;
-            _this.checkLoading();
+        this._loadingCheckTimeout = this.setTimeout(() => {
+            this._scrollingInProcessing = false;
+            this._loadingCheckPlanned = false;
+            this.checkLoading();
         }, 150);
-    };
-    OpalLoadedList.prototype.checkLoading = function () {
+    }
+    checkLoading() {
         if (this.paramQuery === this._lastRequestedQuery &&
             (this.loading || (this.total !== undefined && this.dataList.length == this.total))) {
             return;
         }
-        var elRect = this.element.getBoundingClientRect();
+        let elRect = this.element.getBoundingClientRect();
         if (elRect.height &&
             elRect.bottom > this.$('loader').element.getBoundingClientRect().top) {
             this._load();
         }
-    };
-    OpalLoadedList.prototype._load = function () {
+    }
+    _load() {
         if (this.loading) {
             this._requestCallback.cancel();
         }
-        var infinite = this.dataProvider.getItems.length >= 2;
-        var query = (this._lastRequestedQuery = this.paramQuery);
-        var args = [query];
+        let infinite = this.dataProvider.getItems.length >= 2;
+        let query = (this._lastRequestedQuery = this.paramQuery);
+        let args = [query];
         if (infinite) {
             args.unshift(this.paramCount, this.dataList.length
                 ? this.dataList.get(-1)[this.paramDataListItemSchema.value ||
@@ -283,9 +254,8 @@ var OpalLoadedList = /** @class */ (function (_super) {
         }
         this.loading = true;
         this.dataProvider.getItems.apply(this.dataProvider, args).then((this._requestCallback = this.registerCallback(function (data) {
-            var _this = this;
             this.loading = false;
-            var items = data.items;
+            let items = data.items;
             this.total = infinite && data.total !== undefined ? data.total : items.length;
             if (query === this._lastLoadedQuery) {
                 this.dataList.addRange(items);
@@ -296,82 +266,80 @@ var OpalLoadedList = /** @class */ (function (_super) {
             }
             cellx_1.Cell.forceRelease();
             this.emit('loaded');
-            next_tick_1.nextTick(function () {
-                _this.checkLoading();
+            next_tick_1.nextTick(() => {
+                this.checkLoading();
             });
         })));
-    };
-    OpalLoadedList.prototype._getListItemContext = function (context, slot) {
+    }
+    _getListItemContext(context, slot) {
         return {
             __proto__: context,
             $item: slot.$context.$item
         };
-    };
-    var OpalLoadedList_1;
-    OpalLoadedList.defaultDataListItemSchema = defaultDataListItemSchema;
-    __decorate([
-        rionite_1.Param({
-            type: eval,
-            default: defaultDataListItemSchema,
-            readonly: true
-        }),
-        __metadata("design:type", Object)
-    ], OpalLoadedList.prototype, "paramDataListItemSchema", void 0);
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", Object)
-    ], OpalLoadedList.prototype, "paramDataProvider", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalLoadedList.prototype, "paramCount", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalLoadedList.prototype, "paramQuery", void 0);
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", Object)
-    ], OpalLoadedList.prototype, "paramPreloading", void 0);
-    __decorate([
-        cellx_decorators_1.Observable,
-        __metadata("design:type", Object)
-    ], OpalLoadedList.prototype, "dataList", void 0);
-    __decorate([
-        cellx_decorators_1.Observable,
-        __metadata("design:type", Object)
-    ], OpalLoadedList.prototype, "total", void 0);
-    __decorate([
-        cellx_decorators_1.Observable,
-        __metadata("design:type", Object)
-    ], OpalLoadedList.prototype, "_loadingCheckPlanned", void 0);
-    __decorate([
-        cellx_decorators_1.Observable,
-        __metadata("design:type", Object)
-    ], OpalLoadedList.prototype, "loading", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Boolean),
-        __metadata("design:paramtypes", [])
-    ], OpalLoadedList.prototype, "empty", null);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Boolean),
-        __metadata("design:paramtypes", [])
-    ], OpalLoadedList.prototype, "loaderShown", null);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Boolean),
-        __metadata("design:paramtypes", [])
-    ], OpalLoadedList.prototype, "nothingFoundShown", null);
-    OpalLoadedList = OpalLoadedList_1 = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalLoadedList',
-            template: template
-        })
-    ], OpalLoadedList);
-    return OpalLoadedList;
-}(rionite_1.BaseComponent));
+    }
+};
+OpalLoadedList.defaultDataListItemSchema = defaultDataListItemSchema;
+__decorate([
+    rionite_1.Param({
+        type: eval,
+        default: defaultDataListItemSchema,
+        readonly: true
+    }),
+    __metadata("design:type", Object)
+], OpalLoadedList.prototype, "paramDataListItemSchema", void 0);
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", Object)
+], OpalLoadedList.prototype, "paramDataProvider", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalLoadedList.prototype, "paramCount", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalLoadedList.prototype, "paramQuery", void 0);
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", Object)
+], OpalLoadedList.prototype, "paramPreloading", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Object)
+], OpalLoadedList.prototype, "dataList", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Object)
+], OpalLoadedList.prototype, "total", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Object)
+], OpalLoadedList.prototype, "_loadingCheckPlanned", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Object)
+], OpalLoadedList.prototype, "loading", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [])
+], OpalLoadedList.prototype, "empty", null);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [])
+], OpalLoadedList.prototype, "loaderShown", null);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [])
+], OpalLoadedList.prototype, "nothingFoundShown", null);
+OpalLoadedList = OpalLoadedList_1 = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalLoadedList',
+        template
+    })
+], OpalLoadedList);
 exports.OpalLoadedList = OpalLoadedList;
 
 

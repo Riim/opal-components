@@ -134,19 +134,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -154,34 +141,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_input_validator_1 = __webpack_require__(1);
-var rionite_1 = __webpack_require__(5);
-var OpalSelectValidatorRule_1 = __webpack_require__(6);
+const opal_input_validator_1 = __webpack_require__(1);
+const rionite_1 = __webpack_require__(5);
+const OpalSelectValidatorRule_1 = __webpack_require__(6);
 exports.OpalSelectValidatorRule = OpalSelectValidatorRule_1.OpalSelectValidatorRule;
 __webpack_require__(7);
-var OpalSelectValidator = /** @class */ (function (_super) {
-    __extends(OpalSelectValidator, _super);
-    function OpalSelectValidator() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    OpalSelectValidator.prototype.ready = function () {
-        _super.prototype.ready.call(this);
+let OpalSelectValidator = class OpalSelectValidator extends opal_input_validator_1.OpalInputValidator {
+    ready() {
+        super.ready();
         this.target = this.select = this.$('select');
-    };
-    OpalSelectValidator.prototype._checkValue = function (rule) {
-        var vm = this.select.viewModel;
+    }
+    _checkValue(rule) {
+        let vm = this.select.viewModel;
         return !(vm.length
             ? (rule.paramMinCount && vm.length < rule.paramMinCount) ||
                 (rule.paramTest && !rule.paramTest.call(this.ownerComponent, vm))
             : rule.paramRequired);
-    };
-    OpalSelectValidator = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalSelectValidator'
-        })
-    ], OpalSelectValidator);
-    return OpalSelectValidator;
-}(opal_input_validator_1.OpalInputValidator));
+    }
+};
+OpalSelectValidator = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalSelectValidator'
+    })
+], OpalSelectValidator);
 exports.OpalSelectValidator = OpalSelectValidator;
 
 
@@ -197,19 +179,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -220,24 +189,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_input_validator_1 = __webpack_require__(1);
-var rionite_1 = __webpack_require__(5);
-var OpalSelectValidatorRule = /** @class */ (function (_super) {
-    __extends(OpalSelectValidatorRule, _super);
-    function OpalSelectValidatorRule() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", Number)
-    ], OpalSelectValidatorRule.prototype, "paramMinCount", void 0);
-    OpalSelectValidatorRule = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalSelectValidatorRule'
-        })
-    ], OpalSelectValidatorRule);
-    return OpalSelectValidatorRule;
-}(opal_input_validator_1.OpalInputValidatorRule));
+const opal_input_validator_1 = __webpack_require__(1);
+const rionite_1 = __webpack_require__(5);
+let OpalSelectValidatorRule = class OpalSelectValidatorRule extends opal_input_validator_1.OpalInputValidatorRule {
+};
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", Number)
+], OpalSelectValidatorRule.prototype, "paramMinCount", void 0);
+OpalSelectValidatorRule = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalSelectValidatorRule'
+    })
+], OpalSelectValidatorRule);
 exports.OpalSelectValidatorRule = OpalSelectValidatorRule;
 
 

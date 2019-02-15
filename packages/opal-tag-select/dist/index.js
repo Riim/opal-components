@@ -162,19 +162,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -185,63 +172,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var gettext_1 = __webpack_require__(9);
-var cellx_1 = __webpack_require__(10);
-var cellx_decorators_1 = __webpack_require__(11);
-var rionite_1 = __webpack_require__(12);
+const gettext_1 = __webpack_require__(9);
+const cellx_1 = __webpack_require__(10);
+const cellx_decorators_1 = __webpack_require__(11);
+const rionite_1 = __webpack_require__(12);
 __webpack_require__(13);
-var template = __webpack_require__(14);
-var defaultDataListItemSchema = Object.freeze({
+const template = __webpack_require__(14);
+const defaultDataListItemSchema = Object.freeze({
     value: 'id',
     text: 'name',
     subtext: 'parent',
     disabled: 'disabled'
 });
-var defaultVMItemSchema = Object.freeze({
+const defaultVMItemSchema = Object.freeze({
     value: 'id',
     text: 'name',
     disabled: 'disabled'
 });
-var OpalTagSelect = /** @class */ (function (_super) {
-    __extends(OpalTagSelect, _super);
-    function OpalTagSelect() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+let OpalTagSelect = class OpalTagSelect extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
         // ;;; Плейсхолдер тегселекта.
         // ;;; Можно перевести как призыв к выбору -- Select (англ.).
-        _this.paramPlaceholder = gettext_1.pt('OpalTagSelect#paramPlaceholder', 'Не выбрано');
-        _this.paramPopoverPosition = 'bottom';
-        _this.paramTabIndex = 0;
-        _this.paramFocused = false;
-        _this.paramDisabled = false;
-        return _this;
+        this.paramPlaceholder = gettext_1.pt('OpalTagSelect#paramPlaceholder', 'Не выбрано');
+        this.paramPopoverPosition = 'bottom';
+        this.paramTabIndex = 0;
+        this.paramFocused = false;
+        this.paramDisabled = false;
     }
-    Object.defineProperty(OpalTagSelect.prototype, "value", {
-        get: function () {
-            var _this = this;
-            return this.viewModel.map(function (item) { return item[_this._viewModelItemValueFieldName]; });
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalTagSelect.prototype, "placeholderShown", {
-        get: function () {
-            return !!this.paramPlaceholder && !this.viewModel.length;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalTagSelect.prototype._isItemDisabled = function (item) {
+    get value() {
+        return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
+    }
+    get placeholderShown() {
+        return !!this.paramPlaceholder && !this.viewModel.length;
+    }
+    _isItemDisabled(item) {
         return this.paramDisabled || item[this._viewModelItemDisabledFieldName];
-    };
-    OpalTagSelect.prototype.initialize = function () {
-        var _this = this;
-        var dataListKeypath = this.paramDataListKeypath;
+    }
+    initialize() {
+        let dataListKeypath = this.paramDataListKeypath;
         if (dataListKeypath || (this.$specifiedParams && this.$specifiedParams.has('dataList'))) {
             cellx_1.define(this, 'dataList', dataListKeypath
-                ? new cellx_1.Cell(Function("return this." + dataListKeypath + ";"), {
+                ? new cellx_1.Cell(Function(`return this.${dataListKeypath};`), {
                     context: this.ownerComponent || window
                 })
-                : function () { return _this.paramDataList; });
+                : () => this.paramDataList);
             this.dataProvider = null;
             this._dataListKeypathParam = 'dataList';
         }
@@ -250,7 +225,7 @@ var OpalTagSelect = /** @class */ (function (_super) {
             this.dataProvider = this.paramDataProvider;
             this._dataListKeypathParam = null;
         }
-        var dataListItemSchema = this.paramDataListItemSchema;
+        let dataListItemSchema = this.paramDataListItemSchema;
         this._dataListItemValueFieldName =
             dataListItemSchema.value || defaultDataListItemSchema.value;
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
@@ -259,18 +234,18 @@ var OpalTagSelect = /** @class */ (function (_super) {
         this._dataListItemDisabledFieldName =
             dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
         this.viewModel = this.paramViewModel || new cellx_1.ObservableList();
-        var vmItemSchema = this.paramViewModelItemSchema;
-        var defaultVMItemSchema = this.constructor
+        let vmItemSchema = this.paramViewModelItemSchema;
+        let defaultVMItemSchema = this.constructor
             .defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
         this._viewModelItemDisabledFieldName =
             vmItemSchema.disabled || defaultVMItemSchema.disabled;
-    };
-    OpalTagSelect.prototype.ready = function () {
+    }
+    ready() {
         this.select = this.$('select');
-    };
-    OpalTagSelect.prototype.elementAttached = function () {
+    }
+    elementAttached() {
         this.listenTo(this, 'change:paramDisabled', this._onParamDisabledChange);
         this.listenTo('control', 'click', this._onControlClick);
         this.listenTo(this.select, {
@@ -279,20 +254,20 @@ var OpalTagSelect = /** @class */ (function (_super) {
             select: this._onSelectSelect,
             deselect: this._onSelectDeselect
         });
-    };
-    OpalTagSelect.prototype._onParamDisabledChange = function (evt) {
+    }
+    _onParamDisabledChange(evt) {
         if (evt.data.value) {
             this.close();
         }
-    };
-    OpalTagSelect.prototype._onControlClick = function (evt) {
+    }
+    _onControlClick(evt) {
         if (this.paramDisabled) {
             return;
         }
-        var selectEl = this.select.element;
-        var el = evt.target;
+        let selectEl = this.select.element;
+        let el = evt.target;
         if (el != selectEl) {
-            var control = this.$('control');
+            let control = this.$('control');
             do {
                 if (el == control) {
                     this.select.toggle();
@@ -301,147 +276,146 @@ var OpalTagSelect = /** @class */ (function (_super) {
                 el = el.parentElement;
             } while (el && el != selectEl);
         }
-    };
-    OpalTagSelect.prototype._onSelectInput = function () {
+    }
+    _onSelectInput() {
         this.select.close();
         this.emit('input');
         return false;
-    };
-    OpalTagSelect.prototype._onSelectChange = function () {
+    }
+    _onSelectChange() {
         this.emit('change');
         return false;
-    };
-    OpalTagSelect.prototype._onSelectSelect = function () {
+    }
+    _onSelectSelect() {
         this.select.close();
         return false;
-    };
-    OpalTagSelect.prototype._onSelectDeselect = function () {
+    }
+    _onSelectDeselect() {
         this.select.close();
         return false;
-    };
-    OpalTagSelect.prototype.open = function () {
+    }
+    open() {
         return this.select.open();
-    };
-    OpalTagSelect.prototype.close = function () {
+    }
+    close() {
         return this.select.close();
-    };
-    OpalTagSelect.prototype.toggle = function () {
+    }
+    toggle() {
         return this.select.toggle();
-    };
-    OpalTagSelect.prototype.focus = function () {
+    }
+    focus() {
         this.select.focus();
         return this;
-    };
-    OpalTagSelect.prototype.blur = function () {
+    }
+    blur() {
         this.select.blur();
         return this;
-    };
-    OpalTagSelect.defaultDataListItemSchema = defaultDataListItemSchema;
-    OpalTagSelect.defaultViewModelItemSchema = defaultVMItemSchema;
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalTagSelect.prototype, "paramViewType", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTagSelect.prototype, "paramDataList", void 0);
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", String)
-    ], OpalTagSelect.prototype, "paramDataListKeypath", void 0);
-    __decorate([
-        rionite_1.Param({
-            type: eval,
-            default: defaultDataListItemSchema,
-            readonly: true
-        }),
-        __metadata("design:type", Object)
-    ], OpalTagSelect.prototype, "paramDataListItemSchema", void 0);
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", Object)
-    ], OpalTagSelect.prototype, "paramDataProvider", void 0);
-    __decorate([
-        rionite_1.Param({ type: eval }),
-        __metadata("design:type", Array)
-    ], OpalTagSelect.prototype, "paramValue", void 0);
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", Object)
-    ], OpalTagSelect.prototype, "paramViewModel", void 0);
-    __decorate([
-        rionite_1.Param({
-            type: eval,
-            default: defaultVMItemSchema,
-            readonly: true
-        }),
-        __metadata("design:type", Object)
-    ], OpalTagSelect.prototype, "paramViewModelItemSchema", void 0);
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", Function)
-    ], OpalTagSelect.prototype, "paramAddNewItem", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTagSelect.prototype, "paramPlaceholder", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTagSelect.prototype, "paramPopoverPosition", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTagSelect.prototype, "paramTabIndex", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTagSelect.prototype, "paramFocused", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTagSelect.prototype, "paramDisabled", void 0);
-    __decorate([
-        cellx_decorators_1.Observable,
-        __metadata("design:type", Object)
-    ], OpalTagSelect.prototype, "viewModel", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Array),
-        __metadata("design:paramtypes", [])
-    ], OpalTagSelect.prototype, "value", null);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Boolean),
-        __metadata("design:paramtypes", [])
-    ], OpalTagSelect.prototype, "placeholderShown", null);
-    OpalTagSelect = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalTagSelect',
-            template: template,
-            domEvents: {
-                tag: {
-                    click: function (evt, context, tag) {
-                        if (tag != evt.target) {
-                            return;
-                        }
-                        this.emit('tag-click', {
-                            value: context.tag[this._viewModelItemValueFieldName]
-                        });
+    }
+};
+OpalTagSelect.defaultDataListItemSchema = defaultDataListItemSchema;
+OpalTagSelect.defaultViewModelItemSchema = defaultVMItemSchema;
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalTagSelect.prototype, "paramViewType", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTagSelect.prototype, "paramDataList", void 0);
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", String)
+], OpalTagSelect.prototype, "paramDataListKeypath", void 0);
+__decorate([
+    rionite_1.Param({
+        type: eval,
+        default: defaultDataListItemSchema,
+        readonly: true
+    }),
+    __metadata("design:type", Object)
+], OpalTagSelect.prototype, "paramDataListItemSchema", void 0);
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", Object)
+], OpalTagSelect.prototype, "paramDataProvider", void 0);
+__decorate([
+    rionite_1.Param({ type: eval }),
+    __metadata("design:type", Array)
+], OpalTagSelect.prototype, "paramValue", void 0);
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", Object)
+], OpalTagSelect.prototype, "paramViewModel", void 0);
+__decorate([
+    rionite_1.Param({
+        type: eval,
+        default: defaultVMItemSchema,
+        readonly: true
+    }),
+    __metadata("design:type", Object)
+], OpalTagSelect.prototype, "paramViewModelItemSchema", void 0);
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", Function)
+], OpalTagSelect.prototype, "paramAddNewItem", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTagSelect.prototype, "paramPlaceholder", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTagSelect.prototype, "paramPopoverPosition", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTagSelect.prototype, "paramTabIndex", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTagSelect.prototype, "paramFocused", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTagSelect.prototype, "paramDisabled", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Object)
+], OpalTagSelect.prototype, "viewModel", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Array),
+    __metadata("design:paramtypes", [])
+], OpalTagSelect.prototype, "value", null);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [])
+], OpalTagSelect.prototype, "placeholderShown", null);
+OpalTagSelect = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalTagSelect',
+        template,
+        domEvents: {
+            tag: {
+                click(evt, context, tag) {
+                    if (tag != evt.target) {
+                        return;
                     }
-                },
-                btnRemoveTag: {
-                    click: function (_evt, context) {
-                        this.viewModel.remove(context.tag);
-                        this.emit('change');
-                    }
+                    this.emit('tag-click', {
+                        value: context.tag[this._viewModelItemValueFieldName]
+                    });
+                }
+            },
+            btnRemoveTag: {
+                click(_evt, context) {
+                    this.viewModel.remove(context.tag);
+                    this.emit('change');
                 }
             }
-        })
-    ], OpalTagSelect);
-    return OpalTagSelect;
-}(rionite_1.BaseComponent));
+        }
+    })
+], OpalTagSelect);
 exports.OpalTagSelect = OpalTagSelect;
 
 

@@ -120,19 +120,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -143,65 +130,63 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(3);
-var cellx_decorators_1 = __webpack_require__(4);
-var rionite_1 = __webpack_require__(5);
+const cellx_1 = __webpack_require__(3);
+const cellx_decorators_1 = __webpack_require__(4);
+const rionite_1 = __webpack_require__(5);
 __webpack_require__(6);
-var template = __webpack_require__(7);
-var OpalPopover = /** @class */ (function (_super) {
-    __extends(OpalPopover, _super);
-    function OpalPopover() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramPosition = 'right';
-        _this.paramPositionOffset = 0;
-        _this.paramAutoDirection = true;
-        _this.paramOpened = false;
-        _this.contentRendered = false;
-        return _this;
+const template = __webpack_require__(7);
+let OpalPopover = class OpalPopover extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramPosition = 'right';
+        this.paramPositionOffset = 0;
+        this.paramAutoDirection = true;
+        this.paramOpened = false;
+        this.contentRendered = false;
     }
-    OpalPopover.prototype.ready = function () {
+    ready() {
         if (this.paramOpened) {
             this._open();
         }
-    };
-    OpalPopover.prototype.elementAttached = function () {
+    }
+    elementAttached() {
         this.listenTo(this, 'change:paramOpened', this._onParamOpenedChange);
-    };
-    OpalPopover.prototype._onParamOpenedChange = function (evt) {
+    }
+    _onParamOpenedChange(evt) {
         if (evt.data.value) {
             this._open();
         }
         else {
             this._close();
         }
-    };
-    OpalPopover.prototype.renderContent = function () {
+    }
+    renderContent() {
         this.contentRendered = true;
         cellx_1.Cell.forceRelease();
-    };
-    OpalPopover.prototype.open = function () {
+    }
+    open() {
         if (this.paramOpened) {
             return false;
         }
         this.paramOpened = true;
         cellx_1.Cell.forceRelease();
         return true;
-    };
-    OpalPopover.prototype.close = function () {
+    }
+    close() {
         if (!this.paramOpened) {
             return false;
         }
         this.paramOpened = false;
         cellx_1.Cell.forceRelease();
         return true;
-    };
-    OpalPopover.prototype.toggle = function (value) {
+    }
+    toggle(value) {
         if (value !== undefined) {
             return value ? this.open() : !this.close();
         }
         return this.open() || !this.close();
-    };
-    OpalPopover.prototype._open = function () {
+    }
+    _open() {
         if (this.contentRendered) {
             this._open$();
         }
@@ -210,23 +195,22 @@ var OpalPopover = /** @class */ (function (_super) {
             cellx_1.Cell.forceRelease();
             this._open$();
         }
-    };
-    OpalPopover.prototype._open$ = function () {
-        var _this = this;
-        var el = this.element;
+    }
+    _open$() {
+        let el = this.element;
         if (this.paramAutoDirection) {
-            var docEl = document.documentElement;
-            var containerClientRect = el.offsetParent.getBoundingClientRect();
-            var elClientRect = el.getBoundingClientRect();
-            var position_1 = (this._positionOnOpen = this.paramPosition).split('-');
-            switch (position_1[0]) {
+            let docEl = document.documentElement;
+            let containerClientRect = el.offsetParent.getBoundingClientRect();
+            let elClientRect = el.getBoundingClientRect();
+            let position = (this._positionOnOpen = this.paramPosition).split('-');
+            switch (position[0]) {
                 case 'left': {
                     if (elClientRect.left + window.pageXOffset < 0 ||
                         (elClientRect.left < 0 &&
                             containerClientRect.left <
                                 docEl.clientWidth - containerClientRect.right)) {
                         this.paramPosition =
-                            'right' + (position_1.length == 2 ? '-' + position_1[1] : '');
+                            'right' + (position.length == 2 ? '-' + position[1] : '');
                     }
                     break;
                 }
@@ -236,7 +220,7 @@ var OpalPopover = /** @class */ (function (_super) {
                             containerClientRect.top <
                                 docEl.clientHeight - containerClientRect.bottom)) {
                         this.paramPosition =
-                            'bottom' + (position_1.length == 2 ? '-' + position_1[1] : '');
+                            'bottom' + (position.length == 2 ? '-' + position[1] : '');
                     }
                     break;
                 }
@@ -246,7 +230,7 @@ var OpalPopover = /** @class */ (function (_super) {
                         containerClientRect.left + window.pageXOffset >=
                             elClientRect.right - containerClientRect.right) {
                         this.paramPosition =
-                            'left' + (position_1.length == 2 ? '-' + position_1[1] : '');
+                            'left' + (position.length == 2 ? '-' + position[1] : '');
                     }
                     break;
                 }
@@ -256,14 +240,14 @@ var OpalPopover = /** @class */ (function (_super) {
                         containerClientRect.top + window.pageYOffset >=
                             elClientRect.bottom - containerClientRect.bottom) {
                         this.paramPosition =
-                            'top' + (position_1.length == 2 ? '-' + position_1[1] : '');
+                            'top' + (position.length == 2 ? '-' + position[1] : '');
                     }
                     break;
                 }
             }
         }
-        var position = this.paramPosition.split('-');
-        var arrowStyle = this.$('arrow').style;
+        let position = this.paramPosition.split('-');
+        let arrowStyle = this.$('arrow').style;
         arrowStyle.top = arrowStyle.right = arrowStyle.bottom = arrowStyle.left = '';
         if (position.length == 2) {
             el.style[position[1]] = this.paramPositionOffset + 'px';
@@ -274,14 +258,14 @@ var OpalPopover = /** @class */ (function (_super) {
                     'px';
         }
         if (this.paramCloseOn) {
-            setTimeout(function () {
-                if (_this.paramOpened) {
-                    _this._closingEventListening = _this.listenTo(document, _this.paramCloseOn, _this._onClosingEvent);
+            setTimeout(() => {
+                if (this.paramOpened) {
+                    this._closingEventListening = this.listenTo(document, this.paramCloseOn, this._onClosingEvent);
                 }
             }, 1);
         }
-    };
-    OpalPopover.prototype._close = function () {
+    }
+    _close() {
         if (this.paramAutoDirection) {
             this.paramPosition = this._positionOnOpen;
         }
@@ -289,11 +273,11 @@ var OpalPopover = /** @class */ (function (_super) {
             this._closingEventListening.stop();
             this._closingEventListening = null;
         }
-    };
-    OpalPopover.prototype._onClosingEvent = function (evt) {
-        var docEl = document.documentElement;
-        var componentEl = this.element;
-        for (var el = evt.target; el != componentEl;) {
+    }
+    _onClosingEvent(evt) {
+        let docEl = document.documentElement;
+        let componentEl = this.element;
+        for (let el = evt.target; el != componentEl;) {
             if (el == docEl || el.tagName == 'A') {
                 this.close();
                 this.emit('close');
@@ -304,39 +288,38 @@ var OpalPopover = /** @class */ (function (_super) {
                 break;
             }
         }
-    };
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalPopover.prototype, "paramPosition", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalPopover.prototype, "paramPositionOffset", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalPopover.prototype, "paramAutoDirection", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalPopover.prototype, "paramCloseOn", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalPopover.prototype, "paramOpened", void 0);
-    __decorate([
-        cellx_decorators_1.Observable,
-        __metadata("design:type", Object)
-    ], OpalPopover.prototype, "contentRendered", void 0);
-    OpalPopover = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalPopover',
-            template: template
-        })
-    ], OpalPopover);
-    return OpalPopover;
-}(rionite_1.BaseComponent));
+    }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalPopover.prototype, "paramPosition", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalPopover.prototype, "paramPositionOffset", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalPopover.prototype, "paramAutoDirection", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalPopover.prototype, "paramCloseOn", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalPopover.prototype, "paramOpened", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Object)
+], OpalPopover.prototype, "contentRendered", void 0);
+OpalPopover = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalPopover',
+        template
+    })
+], OpalPopover);
 exports.OpalPopover = OpalPopover;
 
 

@@ -141,19 +141,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -161,46 +148,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(6);
+const rionite_1 = __webpack_require__(6);
 __webpack_require__(7);
-var template = __webpack_require__(8);
-var OpalFilteredList = /** @class */ (function (_super) {
-    __extends(OpalFilteredList, _super);
-    function OpalFilteredList() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    OpalFilteredList.prototype.elementAttached = function () {
-        var queryInput = this.$('queryInput');
+const template = __webpack_require__(8);
+let OpalFilteredList = class OpalFilteredList extends rionite_1.BaseComponent {
+    elementAttached() {
+        let queryInput = this.$('queryInput');
         if (queryInput) {
             this.listenTo(queryInput, 'input', this._onQueryInputInput);
             this.listenTo(queryInput, 'change', this._onQueryInputChange);
         }
-    };
-    OpalFilteredList.prototype._onQueryInputInput = function (evt) {
+    }
+    _onQueryInputInput(evt) {
         this._setListQuery(evt.target.value);
-    };
-    OpalFilteredList.prototype._onQueryInputChange = function (evt) {
+    }
+    _onQueryInputChange(evt) {
         this._setListQuery(evt.target.value);
-    };
-    OpalFilteredList.prototype._setListQuery = function (query) {
+    }
+    _setListQuery(query) {
         this.$('list').paramQuery = query;
-    };
-    OpalFilteredList.prototype.focus = function () {
-        var queryInput = this.$('queryInput');
+    }
+    focus() {
+        let queryInput = this.$('queryInput');
         if (queryInput) {
             queryInput.focus();
             return true;
         }
         return false;
-    };
-    OpalFilteredList = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalFilteredList',
-            template: template
-        })
-    ], OpalFilteredList);
-    return OpalFilteredList;
-}(rionite_1.BaseComponent));
+    }
+};
+OpalFilteredList = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalFilteredList',
+        template
+    })
+], OpalFilteredList);
 exports.OpalFilteredList = OpalFilteredList;
 
 

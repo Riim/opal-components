@@ -102,7 +102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-var Utils = __webpack_require__(2);
+const Utils = __webpack_require__(2);
 exports.Utils = Utils;
 var opal_icon_1 = __webpack_require__(3);
 exports.OpalIcon = opal_icon_1.OpalIcon;

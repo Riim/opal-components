@@ -120,19 +120,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -140,20 +127,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(3);
+const rionite_1 = __webpack_require__(3);
 __webpack_require__(4);
-var OpalGroup = /** @class */ (function (_super) {
-    __extends(OpalGroup, _super);
-    function OpalGroup() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    OpalGroup = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalGroup'
-        })
-    ], OpalGroup);
-    return OpalGroup;
-}(rionite_1.BaseComponent));
+let OpalGroup = class OpalGroup extends rionite_1.BaseComponent {
+};
+OpalGroup = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalGroup'
+    })
+], OpalGroup);
 exports.OpalGroup = OpalGroup;
 
 

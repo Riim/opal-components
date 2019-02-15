@@ -127,19 +127,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -150,64 +137,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(4);
-var cellx_decorators_1 = __webpack_require__(5);
-var rionite_1 = __webpack_require__(6);
-var OpalInputMaskDefinition_1 = __webpack_require__(7);
+var OpalInputMask_1;
+const next_tick_1 = __webpack_require__(4);
+const cellx_decorators_1 = __webpack_require__(5);
+const rionite_1 = __webpack_require__(6);
+const OpalInputMaskDefinition_1 = __webpack_require__(7);
 exports.OpalInputMaskDefinition = OpalInputMaskDefinition_1.OpalInputMaskDefinition;
-var template = __webpack_require__(9);
-var forEach = Array.prototype.forEach;
-var iPhone = /iphone/i.test(navigator.userAgent);
-var ie11 = !window.ActiveXObject && 'ActiveXObject' in window;
-var OpalInputMask = /** @class */ (function (_super) {
-    __extends(OpalInputMask, _super);
-    function OpalInputMask() {
-        return _super !== null && _super.apply(this, arguments) || this;
+const template = __webpack_require__(9);
+const forEach = Array.prototype.forEach;
+const iPhone = /iphone/i.test(navigator.userAgent);
+const ie11 = !window.ActiveXObject && 'ActiveXObject' in window;
+let OpalInputMask = OpalInputMask_1 = class OpalInputMask extends rionite_1.BaseComponent {
+    get _mask() {
+        return this.paramMask.split('').filter(chr => chr != '?');
     }
-    OpalInputMask_1 = OpalInputMask;
-    Object.defineProperty(OpalInputMask.prototype, "_mask", {
-        get: function () {
-            return this.paramMask.split('').filter(function (chr) { return chr != '?'; });
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalInputMask.prototype, "_partialIndex", {
-        get: function () {
-            var index = this.paramMask.indexOf('?');
-            return index == -1 ? this.paramMask.length : index;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalInputMask.prototype, "_tests", {
-        get: function () {
-            var _this = this;
-            return this._mask.map(function (chr) { return _this._definitions[chr] || null; });
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalInputMask.prototype, "_firstTestIndex", {
-        get: function () {
-            return this._tests.findIndex(function (test) { return !!test; });
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalInputMask.prototype.initialize = function () {
+    get _partialIndex() {
+        let index = this.paramMask.indexOf('?');
+        return index == -1 ? this.paramMask.length : index;
+    }
+    get _tests() {
+        return this._mask.map(chr => this._definitions[chr] || null);
+    }
+    get _firstTestIndex() {
+        return this._tests.findIndex(test => !!test);
+    }
+    initialize() {
         this._definitions = Object.create(this.constructor.defaultDefinitions);
-    };
-    OpalInputMask.prototype.ready = function () {
+    }
+    ready() {
         this.textInput = this.$('textInput');
         this.textField = this.textInput.textField;
-        var definitions = this._definitions;
-        forEach.call(this.element.getElementsByClassName('OpalInputMaskDefinition'), function (inputMaskDefinition) {
+        let definitions = this._definitions;
+        forEach.call(this.element.getElementsByClassName('OpalInputMaskDefinition'), (inputMaskDefinition) => {
             definitions[inputMaskDefinition.$component.paramMaskChar] = inputMaskDefinition.$component.paramRegex;
         });
         this._initBuffer();
-    };
-    OpalInputMask.prototype.elementAttached = function () {
+    }
+    elementAttached() {
         this.listenTo(this, 'change:_mask', this._onMaskChange);
         this.listenTo(this.textField, {
             focus: this._onTextFieldFocus,
@@ -219,35 +185,34 @@ var OpalInputMask = /** @class */ (function (_super) {
         if (!ie11) {
             this._checkValue(false, false);
         }
-    };
-    OpalInputMask.prototype._onMaskChange = function () {
+    }
+    _onMaskChange() {
         this._initBuffer();
         this._checkValue(false, true);
-    };
-    OpalInputMask.prototype._onTextFieldFocus = function () {
-        var _this = this;
-        next_tick_1.nextTick(function () {
-            if (document.activeElement == _this.textField) {
-                _this._setTextFieldSelection(0, _this._checkValue(false, false));
-                _this._textOnFocus = _this.textField.value;
-                _this._writeBuffer();
+    }
+    _onTextFieldFocus() {
+        next_tick_1.nextTick(() => {
+            if (document.activeElement == this.textField) {
+                this._setTextFieldSelection(0, this._checkValue(false, false));
+                this._textOnFocus = this.textField.value;
+                this._writeBuffer();
             }
         });
-    };
-    OpalInputMask.prototype._onTextFieldBlur = function () {
+    }
+    _onTextFieldBlur() {
         this._checkValue(false, false);
         if (this.textField.value != this._textOnFocus) {
             this.textInput.emit('change');
         }
-    };
-    OpalInputMask.prototype._onTextFieldKeyDown = function (evt) {
-        var textField = this.textField;
-        var key = evt.which;
+    }
+    _onTextFieldKeyDown(evt) {
+        let textField = this.textField;
+        let key = evt.which;
         // Backspace, delete, and escape get special treatment
         if (key == 8 || key == 46 || (iPhone && key == 127)) {
             evt.preventDefault();
-            var start = textField.selectionStart;
-            var end = textField.selectionEnd;
+            let start = textField.selectionStart;
+            let end = textField.selectionEnd;
             if (start == end) {
                 if (key == 46) {
                     start = this._nextTestIndex(start - 1);
@@ -257,7 +222,7 @@ var OpalInputMask = /** @class */ (function (_super) {
                     start = this._prevTestIndex(start);
                 }
             }
-            var value = textField.value;
+            let value = textField.value;
             this._clearBuffer(start, end);
             this._shiftLeft(start, end - 1);
             if (value != textField.value) {
@@ -272,14 +237,14 @@ var OpalInputMask = /** @class */ (function (_super) {
                 this.textInput._onTextFieldInput(evt);
             }
         }
-    };
-    OpalInputMask.prototype._onTextFieldKeyPress = function (evt) {
-        var tests = this._tests;
-        var bufferLen = this._buffer.length;
-        var textField = this.textField;
-        var start = textField.selectionStart;
-        var end = textField.selectionEnd;
-        var key = evt.which;
+    }
+    _onTextFieldKeyPress(evt) {
+        let tests = this._tests;
+        let bufferLen = this._buffer.length;
+        let textField = this.textField;
+        let start = textField.selectionStart;
+        let end = textField.selectionEnd;
+        let key = evt.which;
         if (evt.ctrlKey || evt.altKey || evt.metaKey || key < 32 /* Space */) {
             return;
         }
@@ -289,9 +254,9 @@ var OpalInputMask = /** @class */ (function (_super) {
                 this._clearBuffer(start, end);
                 this._shiftLeft(start, end - 1);
             }
-            var index = this._nextTestIndex(start - 1);
+            let index = this._nextTestIndex(start - 1);
             if (index < bufferLen) {
-                var chr = String.fromCharCode(key);
+                let chr = String.fromCharCode(key);
                 if (tests[index].test(chr)) {
                     this._shiftRight(index);
                     this._buffer[index] = chr;
@@ -311,32 +276,32 @@ var OpalInputMask = /** @class */ (function (_super) {
                 }
             }
         }
-    };
-    OpalInputMask.prototype._onTextFieldInput = function () {
+    }
+    _onTextFieldInput() {
         if (ie11) {
             return;
         }
         this._setTextFieldSelection(this._checkValue(true, false));
-    };
-    OpalInputMask.prototype._initBuffer = function () {
-        var definitions = this._definitions;
-        this._buffer = this._mask.map(function (chr) { return (definitions[chr] ? null : chr); });
-    };
-    OpalInputMask.prototype._checkValue = function (allowNotCompleted, maskChanged) {
-        var partialIndex = this._partialIndex;
-        var tests = this._tests;
-        var buffer = this._buffer;
-        var bufferLen = buffer.length;
-        var value = this.textField.value;
-        var valueLen = value.length;
-        var index = 0;
-        var lastMatchIndex = -1;
-        var hasUserInput = false;
-        for (var j = 0; index < bufferLen; index++) {
+    }
+    _initBuffer() {
+        let definitions = this._definitions;
+        this._buffer = this._mask.map((chr) => (definitions[chr] ? null : chr));
+    }
+    _checkValue(allowNotCompleted, maskChanged) {
+        let partialIndex = this._partialIndex;
+        let tests = this._tests;
+        let buffer = this._buffer;
+        let bufferLen = buffer.length;
+        let value = this.textField.value;
+        let valueLen = value.length;
+        let index = 0;
+        let lastMatchIndex = -1;
+        let hasUserInput = false;
+        for (let j = 0; index < bufferLen; index++) {
             if (tests[index]) {
                 buffer[index] = null;
                 while (j++ < valueLen) {
-                    var chr = value.charAt(j - 1);
+                    let chr = value.charAt(j - 1);
                     if (tests[index].test(chr)) {
                         buffer[index] = chr;
                         lastMatchIndex = index;
@@ -370,17 +335,17 @@ var OpalInputMask = /** @class */ (function (_super) {
             this.textInput.value = buffer.slice(0, lastMatchIndex + 1).join('');
         }
         return index;
-    };
-    OpalInputMask.prototype._shiftLeft = function (start, end) {
+    }
+    _shiftLeft(start, end) {
         if (start < 0) {
             return;
         }
-        var tests = this._tests;
-        var buffer = this._buffer;
-        for (var i = start, j = this._nextTestIndex(end), l = buffer.length; i < l; i++) {
-            var test = tests[i];
+        let tests = this._tests;
+        let buffer = this._buffer;
+        for (let i = start, j = this._nextTestIndex(end), l = buffer.length; i < l; i++) {
+            let test = tests[i];
             if (test) {
-                var chr = void 0;
+                let chr;
                 if (j < l && (chr = buffer[j]) && test.test(chr)) {
                     buffer[i] = chr;
                     buffer[j] = null;
@@ -393,16 +358,16 @@ var OpalInputMask = /** @class */ (function (_super) {
         }
         this._writeBuffer();
         this._setTextFieldSelection(Math.max(this._firstTestIndex, start));
-    };
-    OpalInputMask.prototype._shiftRight = function (index) {
-        var tests = this._tests;
-        var buffer = this._buffer;
-        var chr = null;
-        for (var l = buffer.length; index < l; index++) {
+    }
+    _shiftRight(index) {
+        let tests = this._tests;
+        let buffer = this._buffer;
+        let chr = null;
+        for (let l = buffer.length; index < l; index++) {
             if (tests[index]) {
-                var nextChr = buffer[index];
+                let nextChr = buffer[index];
                 buffer[index] = chr;
-                var j = this._nextTestIndex(index);
+                let j = this._nextTestIndex(index);
                 if (j < l && nextChr && tests[j].test(nextChr)) {
                     chr = nextChr;
                 }
@@ -411,77 +376,74 @@ var OpalInputMask = /** @class */ (function (_super) {
                 }
             }
         }
-    };
-    OpalInputMask.prototype._nextTestIndex = function (index) {
-        var tests = this._tests;
-        for (var l = tests.length; ++index < l && !tests[index];) { }
+    }
+    _nextTestIndex(index) {
+        let tests = this._tests;
+        for (let l = tests.length; ++index < l && !tests[index];) { }
         return index;
-    };
-    OpalInputMask.prototype._prevTestIndex = function (index) {
-        var tests = this._tests;
+    }
+    _prevTestIndex(index) {
+        let tests = this._tests;
         while (--index >= 0 && !tests[index]) { }
         return index;
-    };
-    OpalInputMask.prototype._writeBuffer = function () {
-        var buffer = this._buffer;
-        var toIndex = buffer.indexOf(null);
+    }
+    _writeBuffer() {
+        let buffer = this._buffer;
+        let toIndex = buffer.indexOf(null);
         this.textInput.value = (toIndex == -1 ? buffer : buffer.slice(0, toIndex)).join('');
-    };
-    OpalInputMask.prototype._clearBuffer = function (start, end) {
-        var tests = this._tests;
-        var buffer = this._buffer;
+    }
+    _clearBuffer(start, end) {
+        let tests = this._tests;
+        let buffer = this._buffer;
         if (end > buffer.length) {
             end = buffer.length;
         }
-        for (var i = start; i < end; i++) {
+        for (let i = start; i < end; i++) {
             if (tests[i]) {
                 buffer[i] = null;
             }
         }
-    };
-    OpalInputMask.prototype._setTextFieldSelection = function (start, end) {
-        if (end === void 0) { end = start; }
+    }
+    _setTextFieldSelection(start, end = start) {
         this.textField.setSelectionRange(start, end);
-    };
-    var OpalInputMask_1;
-    OpalInputMask.defaultDefinitions = {
-        __proto__: null,
-        9: /\d/,
-        z: /[a-zA-Z]/,
-        '*': /[0-9a-zA-Z]/
-    };
-    __decorate([
-        rionite_1.Param({ required: true }),
-        __metadata("design:type", String)
-    ], OpalInputMask.prototype, "paramMask", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Array),
-        __metadata("design:paramtypes", [])
-    ], OpalInputMask.prototype, "_mask", null);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Number),
-        __metadata("design:paramtypes", [])
-    ], OpalInputMask.prototype, "_partialIndex", null);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Array),
-        __metadata("design:paramtypes", [])
-    ], OpalInputMask.prototype, "_tests", null);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Number),
-        __metadata("design:paramtypes", [])
-    ], OpalInputMask.prototype, "_firstTestIndex", null);
-    OpalInputMask = OpalInputMask_1 = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalInputMask',
-            template: template
-        })
-    ], OpalInputMask);
-    return OpalInputMask;
-}(rionite_1.BaseComponent));
+    }
+};
+OpalInputMask.defaultDefinitions = {
+    __proto__: null,
+    9: /\d/,
+    z: /[a-zA-Z]/,
+    '*': /[0-9a-zA-Z]/
+};
+__decorate([
+    rionite_1.Param({ required: true }),
+    __metadata("design:type", String)
+], OpalInputMask.prototype, "paramMask", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Array),
+    __metadata("design:paramtypes", [])
+], OpalInputMask.prototype, "_mask", null);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Number),
+    __metadata("design:paramtypes", [])
+], OpalInputMask.prototype, "_partialIndex", null);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Array),
+    __metadata("design:paramtypes", [])
+], OpalInputMask.prototype, "_tests", null);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Number),
+    __metadata("design:paramtypes", [])
+], OpalInputMask.prototype, "_firstTestIndex", null);
+OpalInputMask = OpalInputMask_1 = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalInputMask',
+        template
+    })
+], OpalInputMask);
 exports.OpalInputMask = OpalInputMask;
 
 
@@ -509,19 +471,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -532,28 +481,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(6);
+const rionite_1 = __webpack_require__(6);
 __webpack_require__(8);
-var OpalInputMaskDefinition = /** @class */ (function (_super) {
-    __extends(OpalInputMaskDefinition, _super);
-    function OpalInputMaskDefinition() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    __decorate([
-        rionite_1.Param({ required: true, readonly: true }),
-        __metadata("design:type", String)
-    ], OpalInputMaskDefinition.prototype, "paramMaskChar", void 0);
-    __decorate([
-        rionite_1.Param({ type: eval, required: true, readonly: true }),
-        __metadata("design:type", RegExp)
-    ], OpalInputMaskDefinition.prototype, "paramRegex", void 0);
-    OpalInputMaskDefinition = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalInputMaskDefinition'
-        })
-    ], OpalInputMaskDefinition);
-    return OpalInputMaskDefinition;
-}(rionite_1.BaseComponent));
+let OpalInputMaskDefinition = class OpalInputMaskDefinition extends rionite_1.BaseComponent {
+};
+__decorate([
+    rionite_1.Param({ required: true, readonly: true }),
+    __metadata("design:type", String)
+], OpalInputMaskDefinition.prototype, "paramMaskChar", void 0);
+__decorate([
+    rionite_1.Param({ type: eval, required: true, readonly: true }),
+    __metadata("design:type", RegExp)
+], OpalInputMaskDefinition.prototype, "paramRegex", void 0);
+OpalInputMaskDefinition = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalInputMaskDefinition'
+    })
+], OpalInputMaskDefinition);
 exports.OpalInputMaskDefinition = OpalInputMaskDefinition;
 
 

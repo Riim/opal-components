@@ -589,19 +589,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -612,59 +599,52 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_decorators_1 = __webpack_require__(70);
-var rionite_1 = __webpack_require__(71);
+const cellx_decorators_1 = __webpack_require__(70);
+const rionite_1 = __webpack_require__(71);
 __webpack_require__(72);
-var template = __webpack_require__(73);
-var OpalIcon = /** @class */ (function (_super) {
-    __extends(OpalIcon, _super);
-    function OpalIcon() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramSize = 'm';
-        _this.paramStrokeWidth = 3;
-        _this.paramFilled = false;
-        return _this;
+const template = __webpack_require__(73);
+let OpalIcon = class OpalIcon extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramSize = 'm';
+        this.paramStrokeWidth = 3;
+        this.paramFilled = false;
     }
-    Object.defineProperty(OpalIcon.prototype, "xlinkHref", {
-        get: function () {
-            var name = this.paramName;
-            return '#OpalIcon__icon' + name.charAt(0).toUpperCase() + name.slice(1);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    __decorate([
-        rionite_1.Param({
-            required: true,
-            readonly: true
-        }),
-        __metadata("design:type", String)
-    ], OpalIcon.prototype, "paramName", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalIcon.prototype, "paramSize", void 0);
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", Object)
-    ], OpalIcon.prototype, "paramStrokeWidth", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalIcon.prototype, "paramFilled", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Object),
-        __metadata("design:paramtypes", [])
-    ], OpalIcon.prototype, "xlinkHref", null);
-    OpalIcon = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalIcon',
-            template: template
-        })
-    ], OpalIcon);
-    return OpalIcon;
-}(rionite_1.BaseComponent));
+    get xlinkHref() {
+        let name = this.paramName;
+        return '#OpalIcon__icon' + name.charAt(0).toUpperCase() + name.slice(1);
+    }
+};
+__decorate([
+    rionite_1.Param({
+        required: true,
+        readonly: true
+    }),
+    __metadata("design:type", String)
+], OpalIcon.prototype, "paramName", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalIcon.prototype, "paramSize", void 0);
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", Object)
+], OpalIcon.prototype, "paramStrokeWidth", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalIcon.prototype, "paramFilled", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [])
+], OpalIcon.prototype, "xlinkHref", null);
+OpalIcon = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalIcon',
+        template
+    })
+], OpalIcon);
 exports.OpalIcon = OpalIcon;
 
 

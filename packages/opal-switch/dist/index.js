@@ -120,19 +120,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -143,37 +130,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(3);
-var cellx_decorators_1 = __webpack_require__(4);
-var rionite_1 = __webpack_require__(5);
+const next_tick_1 = __webpack_require__(3);
+const cellx_decorators_1 = __webpack_require__(4);
+const rionite_1 = __webpack_require__(5);
 __webpack_require__(6);
-var template = __webpack_require__(7);
-var OpalSwitch = /** @class */ (function (_super) {
-    __extends(OpalSwitch, _super);
-    function OpalSwitch() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramChecked = false;
-        _this.paramTabIndex = 0;
-        _this.paramFocused = false;
-        _this.paramDisabled = false;
-        return _this;
+const template = __webpack_require__(7);
+let OpalSwitch = class OpalSwitch extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramChecked = false;
+        this.paramTabIndex = 0;
+        this.paramFocused = false;
+        this.paramDisabled = false;
     }
-    Object.defineProperty(OpalSwitch.prototype, "_tabIndex", {
-        get: function () {
-            return this.paramDisabled ? -1 : this.paramTabIndex;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalSwitch.prototype.ready = function () {
+    get _tabIndex() {
+        return this.paramDisabled ? -1 : this.paramTabIndex;
+    }
+    ready() {
         if (this.paramChecked) {
             this.$('input').checked = true;
         }
         if (this.paramFocused) {
             this.focus();
         }
-    };
-    OpalSwitch.prototype.elementAttached = function () {
+    }
+    elementAttached() {
         this.listenTo(this, {
             'change:paramChecked': this._onParamCheckedChange,
             'change:paramFocused': this._onParamFocusedChange
@@ -183,11 +164,11 @@ var OpalSwitch = /** @class */ (function (_super) {
             focus: this._onControlFocus,
             blur: this._onControlBlur
         });
-    };
-    OpalSwitch.prototype._onParamCheckedChange = function (evt) {
+    }
+    _onParamCheckedChange(evt) {
         this.$('input').checked = evt.data.value;
-    };
-    OpalSwitch.prototype._onParamFocusedChange = function (evt) {
+    }
+    _onParamFocusedChange(evt) {
         if (evt.data.value) {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             this.focus();
@@ -196,8 +177,8 @@ var OpalSwitch = /** @class */ (function (_super) {
             this._documentKeyDownListening.stop();
             this.blur();
         }
-    };
-    OpalSwitch.prototype._onDocumentKeyDown = function (evt) {
+    }
+    _onDocumentKeyDown(evt) {
         if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
             evt.preventDefault();
             if (!this.paramDisabled) {
@@ -205,106 +186,96 @@ var OpalSwitch = /** @class */ (function (_super) {
                 this.emit('change');
             }
         }
-    };
-    OpalSwitch.prototype._onInputChange = function (evt) {
+    }
+    _onInputChange(evt) {
         this.emit((this.paramChecked = evt.target.checked) ? 'check' : 'uncheck');
         this.emit('change');
-    };
-    OpalSwitch.prototype._onControlFocus = function (evt) {
-        var _this = this;
-        next_tick_1.nextTick(function () {
+    }
+    _onControlFocus(evt) {
+        next_tick_1.nextTick(() => {
             if (document.activeElement == evt.target) {
-                _this.paramFocused = true;
-                _this.emit('focus');
+                this.paramFocused = true;
+                this.emit('focus');
             }
         });
-    };
-    OpalSwitch.prototype._onControlBlur = function () {
+    }
+    _onControlBlur() {
         this.paramFocused = false;
         this.emit('blur');
-    };
-    Object.defineProperty(OpalSwitch.prototype, "checked", {
-        get: function () {
-            return this.paramChecked;
-        },
-        set: function (checked) {
-            this.paramChecked = checked;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalSwitch.prototype, "selected", {
-        get: function () {
-            return this.checked;
-        },
-        set: function (selected) {
-            this.checked = selected;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalSwitch.prototype.check = function () {
+    }
+    get checked() {
+        return this.paramChecked;
+    }
+    set checked(checked) {
+        this.paramChecked = checked;
+    }
+    get selected() {
+        return this.checked;
+    }
+    set selected(selected) {
+        this.checked = selected;
+    }
+    check() {
         if (!this.paramChecked) {
             this.paramChecked = true;
             return true;
         }
         return false;
-    };
-    OpalSwitch.prototype.uncheck = function () {
+    }
+    uncheck() {
         if (this.paramChecked) {
             this.paramChecked = false;
             return true;
         }
         return false;
-    };
-    OpalSwitch.prototype.toggle = function (value) {
+    }
+    toggle(value) {
         return (this.paramChecked = value === undefined ? !this.paramChecked : value);
-    };
-    OpalSwitch.prototype.focus = function () {
+    }
+    focus() {
         this.$('control').focus();
         return this;
-    };
-    OpalSwitch.prototype.blur = function () {
+    }
+    blur() {
         this.$('control').blur();
         return this;
-    };
-    OpalSwitch.prototype.enable = function () {
+    }
+    enable() {
         this.paramDisabled = false;
         return this;
-    };
-    OpalSwitch.prototype.disable = function () {
+    }
+    disable() {
         this.paramDisabled = true;
         return this;
-    };
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalSwitch.prototype, "paramChecked", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalSwitch.prototype, "paramTabIndex", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalSwitch.prototype, "paramFocused", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalSwitch.prototype, "paramDisabled", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Number),
-        __metadata("design:paramtypes", [])
-    ], OpalSwitch.prototype, "_tabIndex", null);
-    OpalSwitch = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalSwitch',
-            template: template
-        })
-    ], OpalSwitch);
-    return OpalSwitch;
-}(rionite_1.BaseComponent));
+    }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSwitch.prototype, "paramChecked", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSwitch.prototype, "paramTabIndex", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSwitch.prototype, "paramFocused", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSwitch.prototype, "paramDisabled", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Number),
+    __metadata("design:paramtypes", [])
+], OpalSwitch.prototype, "_tabIndex", null);
+OpalSwitch = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalSwitch',
+        template
+    })
+], OpalSwitch);
 exports.OpalSwitch = OpalSwitch;
 
 

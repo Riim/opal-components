@@ -127,19 +127,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -147,69 +134,61 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(4);
+const rionite_1 = __webpack_require__(4);
 __webpack_require__(5);
-var template = __webpack_require__(6);
-var OpalEditableText = /** @class */ (function (_super) {
-    __extends(OpalEditableText, _super);
-    function OpalEditableText() {
-        return _super !== null && _super.apply(this, arguments) || this;
+const template = __webpack_require__(6);
+let OpalEditableText = class OpalEditableText extends rionite_1.BaseComponent {
+    get value() {
+        return this._value;
     }
-    Object.defineProperty(OpalEditableText.prototype, "value", {
-        get: function () {
-            return this._value;
-        },
-        set: function (value) {
-            this._value = this._fixedValue = (value && value.trim()) || null;
-            this._textNode.nodeValue = value || '';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalEditableText.prototype.ready = function () {
-        var contentSlotEl = this.$('contentSlot').element;
-        var firstChild = contentSlotEl.firstChild;
+    set value(value) {
+        this._value = this._fixedValue = (value && value.trim()) || null;
+        this._textNode.nodeValue = value || '';
+    }
+    ready() {
+        let contentSlotEl = this.$('contentSlot').element;
+        let firstChild = contentSlotEl.firstChild;
         if (!firstChild || firstChild.nodeType != Node.TEXT_NODE) {
             throw new TypeError('Content must be text node');
         }
         this._textNode = firstChild;
         this._value = this._fixedValue = contentSlotEl.textContent.trim() || null;
-    };
-    OpalEditableText.prototype.elementAttached = function () {
+    }
+    elementAttached() {
         this.listenTo(this.element, 'click', this._onElementClick);
         this.listenTo(this.$('contentSlot').element, {
             focus: this._onContentSlotElementFocus,
             blur: this._onContentSlotElementBlur,
             input: this._onContentSlotElementInput
         });
-    };
-    OpalEditableText.prototype._onElementClick = function (evt) {
+    }
+    _onElementClick(evt) {
         if (evt.target == this.element) {
             this.focus();
         }
-    };
-    OpalEditableText.prototype._onContentSlotElementFocus = function () {
+    }
+    _onContentSlotElementFocus() {
         this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-    };
-    OpalEditableText.prototype._onContentSlotElementBlur = function () {
+    }
+    _onContentSlotElementBlur() {
         this._documentKeyDownListening.stop();
         if (this._fixedValue != this._value) {
             this._fixedValue = this._value;
             this.emit('change');
         }
-    };
-    OpalEditableText.prototype._onContentSlotElementInput = function () {
-        var contentSlotEl = this.$('contentSlot').element;
-        var text = contentSlotEl.textContent;
+    }
+    _onContentSlotElementInput() {
+        let contentSlotEl = this.$('contentSlot').element;
+        let text = contentSlotEl.textContent;
         if (contentSlotEl.innerHTML != text) {
             while (contentSlotEl.lastChild) {
                 contentSlotEl.removeChild(contentSlotEl.lastChild);
             }
-            var textNode = this._textNode;
+            let textNode = this._textNode;
             textNode.nodeValue = text;
             contentSlotEl.appendChild(textNode);
-            var sel = window.getSelection();
-            var rng = document.createRange();
+            let sel = window.getSelection();
+            let rng = document.createRange();
             rng.setStart(textNode, text.length);
             sel.removeAllRanges();
             sel.addRange(rng);
@@ -220,16 +199,16 @@ var OpalEditableText = /** @class */ (function (_super) {
         }
         this._value = text.trim() || null;
         this.emit('input');
-    };
-    OpalEditableText.prototype._onDocumentKeyDown = function (evt) {
+    }
+    _onDocumentKeyDown(evt) {
         if (evt.which == 13) {
             evt.preventDefault();
         }
-    };
-    OpalEditableText.prototype.focus = function (selectAll) {
-        var textNode = this._textNode;
-        var sel = window.getSelection();
-        var rng = document.createRange();
+    }
+    focus(selectAll) {
+        let textNode = this._textNode;
+        let sel = window.getSelection();
+        let rng = document.createRange();
         if (selectAll) {
             rng.selectNode(textNode);
         }
@@ -238,22 +217,21 @@ var OpalEditableText = /** @class */ (function (_super) {
         }
         sel.removeAllRanges();
         sel.addRange(rng);
-    };
-    OpalEditableText = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalEditableText',
-            template: template,
-            domEvents: {
-                iconEdit: {
-                    click: function () {
-                        this.focus(true);
-                    }
+    }
+};
+OpalEditableText = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalEditableText',
+        template,
+        domEvents: {
+            iconEdit: {
+                click() {
+                    this.focus(true);
                 }
             }
-        })
-    ], OpalEditableText);
-    return OpalEditableText;
-}(rionite_1.BaseComponent));
+        }
+    })
+], OpalEditableText);
 exports.OpalEditableText = OpalEditableText;
 
 

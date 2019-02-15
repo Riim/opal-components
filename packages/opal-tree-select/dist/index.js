@@ -155,19 +155,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -178,25 +165,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_select_1 = __webpack_require__(4);
-var opal_tree_list_1 = __webpack_require__(5);
-var cellx_1 = __webpack_require__(8);
-var rionite_1 = __webpack_require__(9);
+const opal_select_1 = __webpack_require__(4);
+const opal_tree_list_1 = __webpack_require__(5);
+const cellx_1 = __webpack_require__(8);
+const rionite_1 = __webpack_require__(9);
 __webpack_require__(10);
-var template = __webpack_require__(11);
-var OpalTreeSelect = /** @class */ (function (_super) {
-    __extends(OpalTreeSelect, _super);
-    function OpalTreeSelect() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramMultiple = true;
-        _this.openOnClick = true;
-        return _this;
+const template = __webpack_require__(11);
+let OpalTreeSelect = class OpalTreeSelect extends opal_select_1.OpalSelect {
+    constructor() {
+        super(...arguments);
+        this.paramMultiple = true;
+        this.openOnClick = true;
     }
-    OpalTreeSelect.prototype.initialize = function () {
-        var _this = this;
-        _super.prototype.initialize.call(this);
+    initialize() {
+        super.initialize();
         if (this.paramDataTreeListKeypath) {
-            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function("return this." + this.paramDataTreeListKeypath + ";"), {
+            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function(`return this.${this.paramDataTreeListKeypath};`), {
                 context: this.ownerComponent || window
             }));
         }
@@ -204,70 +188,69 @@ var OpalTreeSelect = /** @class */ (function (_super) {
             if (!this.$specifiedParams || !this.$specifiedParams.has('dataTreeList')) {
                 throw new TypeError('Parameter "dataTreeList" is required');
             }
-            cellx_1.define(this, 'dataTreeList', function () { return _this.paramDataTreeList; });
+            cellx_1.define(this, 'dataTreeList', () => this.paramDataTreeList);
         }
-    };
-    OpalTreeSelect.prototype._onMenuSelectOptionSelect = function () {
+    }
+    _onMenuSelectOptionSelect() {
         return false;
-    };
-    OpalTreeSelect.prototype._onMenuSelectOptionDeselect = function () {
+    }
+    _onMenuSelectOptionDeselect() {
         return false;
-    };
-    OpalTreeSelect.prototype._onMenuChange = function () {
+    }
+    _onMenuChange() {
         return false;
-    };
-    OpalTreeSelect.prototype._updateOptions = function () { };
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTreeSelect.prototype, "paramMultiple", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTreeSelect.prototype, "paramDataTreeList", void 0);
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", String)
-    ], OpalTreeSelect.prototype, "paramDataTreeListKeypath", void 0);
-    __decorate([
-        rionite_1.Param({
-            type: eval,
-            default: opal_tree_list_1.OpalTreeList.defaultDataTreeListItemSchema,
-            readonly: true
-        }),
-        __metadata("design:type", Object)
-    ], OpalTreeSelect.prototype, "paramDataTreeListItemSchema", void 0);
-    __decorate([
-        rionite_1.Param({
-            type: eval,
-            default: opal_tree_list_1.OpalTreeList.defaultViewModelItemSchema,
-            readonly: true
-        }),
-        __metadata("design:type", Object)
-    ], OpalTreeSelect.prototype, "paramViewModelItemSchema", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalTreeSelect.prototype, "paramQuery", void 0);
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", Object)
-    ], OpalTreeSelect.prototype, "openOnClick", void 0);
-    OpalTreeSelect = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalTreeSelect',
-            template: template,
-            events: {
-                btnClose: {
-                    click: function () {
-                        this.$('menu').close();
-                    }
+    }
+    _updateOptions() { }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTreeSelect.prototype, "paramMultiple", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTreeSelect.prototype, "paramDataTreeList", void 0);
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", String)
+], OpalTreeSelect.prototype, "paramDataTreeListKeypath", void 0);
+__decorate([
+    rionite_1.Param({
+        type: eval,
+        default: opal_tree_list_1.OpalTreeList.defaultDataTreeListItemSchema,
+        readonly: true
+    }),
+    __metadata("design:type", Object)
+], OpalTreeSelect.prototype, "paramDataTreeListItemSchema", void 0);
+__decorate([
+    rionite_1.Param({
+        type: eval,
+        default: opal_tree_list_1.OpalTreeList.defaultViewModelItemSchema,
+        readonly: true
+    }),
+    __metadata("design:type", Object)
+], OpalTreeSelect.prototype, "paramViewModelItemSchema", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalTreeSelect.prototype, "paramQuery", void 0);
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", Object)
+], OpalTreeSelect.prototype, "openOnClick", void 0);
+OpalTreeSelect = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalTreeSelect',
+        template,
+        events: {
+            btnClose: {
+                click() {
+                    this.$('menu').close();
                 }
             }
-        })
-    ], OpalTreeSelect);
-    return OpalTreeSelect;
-}(opal_select_1.OpalSelect));
+        }
+    })
+], OpalTreeSelect);
 exports.OpalTreeSelect = OpalTreeSelect;
 
 

@@ -120,19 +120,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -143,45 +130,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_uid_1 = __webpack_require__(3);
-var opal_router_1 = __webpack_require__(4);
-var cellx_1 = __webpack_require__(5);
-var rionite_1 = __webpack_require__(6);
-var OpalTabList_1 = __webpack_require__(7);
+const next_uid_1 = __webpack_require__(3);
+const opal_router_1 = __webpack_require__(4);
+const cellx_1 = __webpack_require__(5);
+const rionite_1 = __webpack_require__(6);
+const OpalTabList_1 = __webpack_require__(7);
 exports.OpalTab = OpalTabList_1.OpalTab;
-var OpalTabPanel_1 = __webpack_require__(15);
+const OpalTabPanel_1 = __webpack_require__(15);
 exports.OpalTabPanel = OpalTabPanel_1.OpalTabPanel;
 __webpack_require__(18);
-var template = __webpack_require__(19);
+const template = __webpack_require__(19);
 var OpalTabList_2 = __webpack_require__(7);
 exports.OpalTabList = OpalTabList_2.OpalTabList;
-var indexOf = Array.prototype.indexOf;
-var forEach = Array.prototype.forEach;
-var find = Array.prototype.find;
-var reTabLabel = /(?:#|&)tab=([^&]+)/;
-var OpalTabs = /** @class */ (function (_super) {
-    __extends(OpalTabs, _super);
-    function OpalTabs() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramUseLocationHash = false;
-        _this._startSelectedTab = null;
-        _this._selectedTab = null;
-        return _this;
+const indexOf = Array.prototype.indexOf;
+const forEach = Array.prototype.forEach;
+const find = Array.prototype.find;
+const reTabLabel = /(?:#|&)tab=([^&]+)/;
+let OpalTabs = class OpalTabs extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramUseLocationHash = false;
+        this._startSelectedTab = null;
+        this._selectedTab = null;
     }
-    OpalTabs.prototype.ready = function () {
-        var _this = this;
-        var tabs = (this.tabs = this.element.getElementsByClassName('OpalTab'));
-        var tabPanels = (this.tabPanels = this.element.getElementsByClassName('OpalTabPanel'));
-        var selectedTab;
-        var selectedTabIndex;
-        forEach.call(tabs, function (tabEl, index) {
-            var tab = tabEl.$component;
+    ready() {
+        let tabs = (this.tabs = this.element.getElementsByClassName('OpalTab'));
+        let tabPanels = (this.tabPanels = this.element.getElementsByClassName('OpalTabPanel'));
+        let selectedTab;
+        let selectedTabIndex;
+        forEach.call(tabs, (tabEl, index) => {
+            let tab = tabEl.$component;
             if (tab.selected) {
                 if (selectedTab) {
                     tab.deselect();
                 }
                 else {
-                    selectedTab = _this._selectedTab = tab;
+                    selectedTab = this._selectedTab = tab;
                     selectedTabIndex = index;
                 }
             }
@@ -193,9 +177,8 @@ var OpalTabs = /** @class */ (function (_super) {
             selectedTab.select();
         }
         tabPanels[selectedTabIndex].$component.paramShown = true;
-    };
-    OpalTabs.prototype.elementAttached = function () {
-        var _this = this;
+    }
+    elementAttached() {
         this.listenTo(this.element.getElementsByClassName('OpalTabList')[0]
             .$component, {
             '<OpalTab>select': this._onTabListSelect,
@@ -207,19 +190,19 @@ var OpalTabs = /** @class */ (function (_super) {
                 this.goToTab(RegExp.$1);
             }
             this._disposables[next_uid_1.nextUID()] = {
-                dispose: opal_router_1.OpalRouter.history.listen(function (location) {
-                    _this._onHistoryChange(location);
+                dispose: opal_router_1.OpalRouter.history.listen(location => {
+                    this._onHistoryChange(location);
                 })
             };
         }
-    };
-    OpalTabs.prototype._onTabListSelect = function (evt) {
+    }
+    _onTabListSelect(evt) {
         this._selectTab(evt.target);
-    };
-    OpalTabs.prototype._onTabListDeselect = function (evt) {
+    }
+    _onTabListDeselect(evt) {
         evt.target.select();
-    };
-    OpalTabs.prototype._onHistoryChange = function (location) {
+    }
+    _onHistoryChange(location) {
         reTabLabel.test(location.hash);
         if (RegExp.$1) {
             if (this._selectedTab && RegExp.$1 !== this._selectedTab.paramLabel) {
@@ -229,23 +212,23 @@ var OpalTabs = /** @class */ (function (_super) {
         else if (this._startSelectedTab) {
             this._selectTab(this._startSelectedTab, true);
         }
-    };
-    OpalTabs.prototype.goToTab = function (label) {
+    }
+    goToTab(label) {
         if (this._selectedTab && this._selectedTab.paramLabel === label) {
             return true;
         }
-        var tab = find.call(this.tabs, function (tab) { return tab.$component.paramLabel == label; });
+        let tab = find.call(this.tabs, (tab) => tab.$component.paramLabel == label);
         if (tab && !tab.$component.paramHidden) {
             this._selectTab(tab.$component);
             return true;
         }
         return false;
-    };
-    OpalTabs.prototype._selectTab = function (tab, notUseLocationHash) {
+    }
+    _selectTab(tab, notUseLocationHash) {
         if (tab === this._selectedTab) {
             return;
         }
-        var selectedTab = this._selectedTab;
+        let selectedTab = this._selectedTab;
         if (selectedTab) {
             this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$component.paramShown = false;
             selectedTab.deselect();
@@ -254,34 +237,33 @@ var OpalTabs = /** @class */ (function (_super) {
         tab.select();
         this._selectedTab = tab;
         if (!notUseLocationHash && this.paramUseLocationHash) {
-            var label_1 = tab.paramLabel;
-            var locationHash = opal_router_1.OpalRouter.history.location.hash;
-            var tabInLocationHashFound_1 = false;
-            var newLocationHash = locationHash.replace(/(#|&)tab=[^&]+/, function (_match, sep) {
-                tabInLocationHashFound_1 = true;
-                return (sep == '#' ? '#' : '') + (label_1 ? 'tab=' + label_1 : '');
+            let label = tab.paramLabel;
+            let locationHash = opal_router_1.OpalRouter.history.location.hash;
+            let tabInLocationHashFound = false;
+            let newLocationHash = locationHash.replace(/(#|&)tab=[^&]+/, (_match, sep) => {
+                tabInLocationHashFound = true;
+                return (sep == '#' ? '#' : '') + (label ? 'tab=' + label : '');
             });
-            if (!tabInLocationHashFound_1 || newLocationHash != locationHash) {
-                location.hash = tabInLocationHashFound_1
+            if (!tabInLocationHashFound || newLocationHash != locationHash) {
+                location.hash = tabInLocationHashFound
                     ? newLocationHash
-                    : (locationHash ? locationHash + '&tab=' : '#tab=') + label_1;
+                    : (locationHash ? locationHash + '&tab=' : '#tab=') + label;
             }
         }
         cellx_1.Cell.forceRelease();
         this.emit('change');
-    };
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTabs.prototype, "paramUseLocationHash", void 0);
-    OpalTabs = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalTabs',
-            template: template
-        })
-    ], OpalTabs);
-    return OpalTabs;
-}(rionite_1.BaseComponent));
+    }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTabs.prototype, "paramUseLocationHash", void 0);
+OpalTabs = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalTabs',
+        template
+    })
+], OpalTabs);
 exports.OpalTabs = OpalTabs;
 
 
@@ -315,19 +297,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -335,24 +304,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(6);
-var OpalTab_1 = __webpack_require__(8);
+const rionite_1 = __webpack_require__(6);
+const OpalTab_1 = __webpack_require__(8);
 exports.OpalTab = OpalTab_1.OpalTab;
 __webpack_require__(13);
-var template = __webpack_require__(14);
-var OpalTabList = /** @class */ (function (_super) {
-    __extends(OpalTabList, _super);
-    function OpalTabList() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    OpalTabList = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalTabList',
-            template: template
-        })
-    ], OpalTabList);
-    return OpalTabList;
-}(rionite_1.BaseComponent));
+const template = __webpack_require__(14);
+let OpalTabList = class OpalTabList extends rionite_1.BaseComponent {
+};
+OpalTabList = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalTabList',
+        template
+    })
+], OpalTabList);
 exports.OpalTabList = OpalTabList;
 
 
@@ -362,19 +326,6 @@ exports.OpalTabList = OpalTabList;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -385,151 +336,139 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(9);
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(6);
+const next_tick_1 = __webpack_require__(9);
+const cellx_decorators_1 = __webpack_require__(10);
+const rionite_1 = __webpack_require__(6);
 __webpack_require__(11);
-var template = __webpack_require__(12);
-var OpalTab = /** @class */ (function (_super) {
-    __extends(OpalTab, _super);
-    function OpalTab() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramSelected = false;
-        _this.paramTabIndex = 0;
-        _this.paramFocused = false;
-        _this.paramHidden = false;
-        _this.paramDisabled = false;
-        return _this;
+const template = __webpack_require__(12);
+let OpalTab = class OpalTab extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramSelected = false;
+        this.paramTabIndex = 0;
+        this.paramFocused = false;
+        this.paramHidden = false;
+        this.paramDisabled = false;
     }
-    Object.defineProperty(OpalTab.prototype, "_tabIndex", {
-        get: function () {
-            return this.paramDisabled ? -1 : this.paramTabIndex;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalTab.prototype.elementAttached = function () {
+    get _tabIndex() {
+        return this.paramDisabled ? -1 : this.paramTabIndex;
+    }
+    elementAttached() {
         this.listenTo(this, 'change:paramFocused', this._onParamFocusedChange);
         this.listenTo('control', {
             focus: this._onControlFocus,
             blur: this._onControlBlur,
             click: this._onControlClick
         });
-    };
-    OpalTab.prototype.ready = function () {
+    }
+    ready() {
         if (this.paramFocused) {
             this.focus();
         }
-    };
-    OpalTab.prototype._onParamFocusedChange = function (evt) {
+    }
+    _onParamFocusedChange(evt) {
         if (evt.data.value) {
             this.focus();
         }
         else {
             this.blur();
         }
-    };
-    OpalTab.prototype._onControlFocus = function (evt) {
-        var _this = this;
-        next_tick_1.nextTick(function () {
+    }
+    _onControlFocus(evt) {
+        next_tick_1.nextTick(() => {
             if (document.activeElement == evt.target) {
-                _this.paramFocused = true;
+                this.paramFocused = true;
             }
         });
-    };
-    OpalTab.prototype._onControlBlur = function () {
+    }
+    _onControlBlur() {
         this.paramFocused = false;
-    };
-    OpalTab.prototype._onControlClick = function (evt) {
+    }
+    _onControlClick(evt) {
         evt.preventDefault();
         if (!this.paramDisabled) {
             this.click();
         }
-    };
-    OpalTab.prototype.click = function () {
+    }
+    click() {
         this.emit(this.toggle() ? 'select' : 'deselect');
         return this;
-    };
-    Object.defineProperty(OpalTab.prototype, "selected", {
-        get: function () {
-            return this.paramSelected;
-        },
-        set: function (selected) {
-            this.paramSelected = selected;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalTab.prototype.select = function () {
+    }
+    get selected() {
+        return this.paramSelected;
+    }
+    set selected(selected) {
+        this.paramSelected = selected;
+    }
+    select() {
         if (!this.paramSelected) {
             this.paramSelected = true;
             return true;
         }
         return false;
-    };
-    OpalTab.prototype.deselect = function () {
+    }
+    deselect() {
         if (this.paramSelected) {
             this.paramSelected = false;
             return true;
         }
         return false;
-    };
-    OpalTab.prototype.toggle = function (value) {
+    }
+    toggle(value) {
         return (this.paramSelected = value === undefined ? !this.paramSelected : value);
-    };
-    OpalTab.prototype.focus = function () {
+    }
+    focus() {
         this.$('control').focus();
         return this;
-    };
-    OpalTab.prototype.blur = function () {
+    }
+    blur() {
         this.$('control').blur();
         return this;
-    };
-    OpalTab.prototype.enable = function () {
+    }
+    enable() {
         this.paramDisabled = false;
         return this;
-    };
-    OpalTab.prototype.disable = function () {
+    }
+    disable() {
         this.paramDisabled = true;
         return this;
-    };
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalTab.prototype, "paramLabel", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTab.prototype, "paramSelected", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTab.prototype, "paramTabIndex", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTab.prototype, "paramFocused", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTab.prototype, "paramHidden", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTab.prototype, "paramDisabled", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Number),
-        __metadata("design:paramtypes", [])
-    ], OpalTab.prototype, "_tabIndex", null);
-    OpalTab = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalTab',
-            template: template
-        })
-    ], OpalTab);
-    return OpalTab;
-}(rionite_1.BaseComponent));
+    }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalTab.prototype, "paramLabel", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTab.prototype, "paramSelected", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTab.prototype, "paramTabIndex", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTab.prototype, "paramFocused", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTab.prototype, "paramHidden", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTab.prototype, "paramDisabled", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Number),
+    __metadata("design:paramtypes", [])
+], OpalTab.prototype, "_tabIndex", null);
+OpalTab = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalTab',
+        template
+    })
+], OpalTab);
 exports.OpalTab = OpalTab;
 
 
@@ -597,19 +536,6 @@ module.exports = "@Slot/contentSlot"
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -620,47 +546,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(5);
-var cellx_decorators_1 = __webpack_require__(10);
-var rionite_1 = __webpack_require__(6);
+const cellx_1 = __webpack_require__(5);
+const cellx_decorators_1 = __webpack_require__(10);
+const rionite_1 = __webpack_require__(6);
 __webpack_require__(16);
-var template = __webpack_require__(17);
-var OpalTabPanel = /** @class */ (function (_super) {
-    __extends(OpalTabPanel, _super);
-    function OpalTabPanel() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramShown = false;
-        _this.contentRendered = false;
-        return _this;
+const template = __webpack_require__(17);
+let OpalTabPanel = class OpalTabPanel extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramShown = false;
+        this.contentRendered = false;
     }
-    OpalTabPanel.prototype.initialize = function () {
+    initialize() {
         this.listenTo(this, 'change:paramShown', this._onParamShownChange);
-    };
-    OpalTabPanel.prototype._onParamShownChange = function (evt) {
+    }
+    _onParamShownChange(evt) {
         if (evt.data.value) {
             this.contentRendered = true;
         }
-    };
-    OpalTabPanel.prototype.renderContent = function () {
+    }
+    renderContent() {
         this.contentRendered = true;
         cellx_1.Cell.forceRelease();
-    };
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTabPanel.prototype, "paramShown", void 0);
-    __decorate([
-        cellx_decorators_1.Observable,
-        __metadata("design:type", Object)
-    ], OpalTabPanel.prototype, "contentRendered", void 0);
-    OpalTabPanel = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalTabPanel',
-            template: template
-        })
-    ], OpalTabPanel);
-    return OpalTabPanel;
-}(rionite_1.BaseComponent));
+    }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTabPanel.prototype, "paramShown", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Object)
+], OpalTabPanel.prototype, "contentRendered", void 0);
+OpalTabPanel = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalTabPanel',
+        template
+    })
+], OpalTabPanel);
 exports.OpalTabPanel = OpalTabPanel;
 
 

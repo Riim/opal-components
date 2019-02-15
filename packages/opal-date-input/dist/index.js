@@ -162,19 +162,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -185,54 +172,52 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_calendar_1 = __webpack_require__(1);
-var date_exists_1 = __webpack_require__(9);
-var rionite_1 = __webpack_require__(10);
+const opal_calendar_1 = __webpack_require__(1);
+const date_exists_1 = __webpack_require__(9);
+const rionite_1 = __webpack_require__(10);
 __webpack_require__(11);
-var template = __webpack_require__(12);
+const template = __webpack_require__(12);
 function pad(num) {
     return (num < 10 ? '0' : '') + num;
 }
-var OpalDateInput = /** @class */ (function (_super) {
-    __extends(OpalDateInput, _super);
-    function OpalDateInput() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramPlaceholder = 'dd.mm.yyyy';
-        _this.paramMask = '99.99.9999';
-        _this.paramRequired = false;
-        _this.paramPopoverPosition = 'right';
-        _this.dateExists = date_exists_1.dateExists;
-        return _this;
+let OpalDateInput = class OpalDateInput extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramPlaceholder = 'dd.mm.yyyy';
+        this.paramMask = '99.99.9999';
+        this.paramRequired = false;
+        this.paramPopoverPosition = 'right';
+        this.dateExists = date_exists_1.dateExists;
     }
-    OpalDateInput.prototype._isDateInRange = function (date) {
-        var calendar = this.$('calendar');
-        var match = date.match(/\d+/g);
-        var day = +match[0];
-        var month = +match[1] - 1;
-        var year = +match[2];
+    _isDateInRange(date) {
+        let calendar = this.$('calendar');
+        let match = date.match(/\d+/g);
+        let day = +match[0];
+        let month = +match[1] - 1;
+        let year = +match[2];
         if (year < 100) {
             year += year < 50 ? 2000 : 1900;
         }
-        var d = new Date(year, month, day);
+        let d = new Date(year, month, day);
         if (calendar) {
             return d >= calendar.fromDate && d <= calendar.toDate;
         }
         return d >= opal_calendar_1.fromDate.call(this) && d <= opal_calendar_1.toDate.call(this);
-    };
-    OpalDateInput.prototype.elementAttached = function () {
+    }
+    elementAttached() {
         this.listenTo('textInput', 'change', this._onTextInputChange);
         this.listenTo(this.$('textInput').element, 'click', this._onTextInputElementClick);
         this.listenTo('calendarMenu', 'change:paramOpened', this._onCalendarMenuParamOpenedChange);
-    };
-    OpalDateInput.prototype._onTextInputChange = function (evt) {
+    }
+    _onTextInputChange(evt) {
         if (this.$('textInputValidator').valid) {
             this.$('calendar').stringValue = evt.target.value;
         }
-    };
-    OpalDateInput.prototype._onTextInputElementClick = function () {
+    }
+    _onTextInputElementClick() {
         this.$('calendarMenu').open();
-    };
-    OpalDateInput.prototype._onCalendarMenuParamOpenedChange = function (evt) {
+    }
+    _onCalendarMenuParamOpenedChange(evt) {
         if (evt.data.value) {
             this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
@@ -243,36 +228,32 @@ var OpalDateInput = /** @class */ (function (_super) {
             this._documentKeyDownListening.stop();
             this._documentClickListening.stop();
         }
-    };
-    OpalDateInput.prototype._onDocumentFocus = function (evt) {
+    }
+    _onDocumentFocus(evt) {
         if (!this.element.contains(evt.target.parentElement)) {
             this.$('calendarMenu').close();
         }
-    };
-    OpalDateInput.prototype._onDocumentKeyDown = function (evt) {
+    }
+    _onDocumentKeyDown(evt) {
         if (evt.which == 27 /* Esc */) {
             evt.preventDefault();
             this.$('calendarMenu').close();
         }
-    };
-    OpalDateInput.prototype._onDocumentClick = function (evt) {
+    }
+    _onDocumentClick(evt) {
         if (!this.element.contains(evt.target)) {
             this.$('calendarMenu').close();
         }
-    };
-    Object.defineProperty(OpalDateInput.prototype, "value", {
-        get: function () {
-            var calendar = this.$('calendar');
-            if (calendar) {
-                return calendar.value;
-            }
-            return this.paramValue ? opal_calendar_1.parseDate(this.paramValue) : null;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalDateInput.prototype.getISOValue = function (h, m, s, ms) {
-        var date = this.value;
+    }
+    get value() {
+        let calendar = this.$('calendar');
+        if (calendar) {
+            return calendar.value;
+        }
+        return this.paramValue ? opal_calendar_1.parseDate(this.paramValue) : null;
+    }
+    getISOValue(h, m, s, ms) {
+        let date = this.value;
         if (!date) {
             return null;
         }
@@ -289,7 +270,7 @@ var OpalDateInput = /** @class */ (function (_super) {
         if (ms) {
             date.setMilliseconds(ms);
         }
-        var tsOffset = new Date().getTimezoneOffset() / 60;
+        let tsOffset = new Date().getTimezoneOffset() / 60;
         return (('000' + date.getUTCFullYear()).slice(-4) +
             '-' +
             pad(date.getUTCMonth() + 1) +
@@ -304,57 +285,56 @@ var OpalDateInput = /** @class */ (function (_super) {
             '.' +
             ('00' + date.getUTCMilliseconds()).slice(-3) +
             (tsOffset < 0 ? '-' + pad(-tsOffset) : '+' + pad(tsOffset)));
-    };
-    OpalDateInput.prototype.validate = function () {
+    }
+    validate() {
         return this.$('textInputValidator').validate();
-    };
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalDateInput.prototype, "paramFromDate", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalDateInput.prototype, "paramToDate", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalDateInput.prototype, "paramValue", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalDateInput.prototype, "paramPlaceholder", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalDateInput.prototype, "paramMask", void 0);
-    __decorate([
-        rionite_1.Param({ readonly: true }),
-        __metadata("design:type", Object)
-    ], OpalDateInput.prototype, "paramRequired", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalDateInput.prototype, "paramPopoverPosition", void 0);
-    OpalDateInput = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalDateInput',
-            template: template,
-            events: {
-                calendar: {
-                    change: function (evt) {
-                        this.$('calendarMenu').close();
-                        var textInput = this.$('textInput');
-                        textInput.value = evt.target.stringValue;
-                        textInput.focus();
-                        this.$('textInputValidator').validate();
-                    }
+    }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalDateInput.prototype, "paramFromDate", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalDateInput.prototype, "paramToDate", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalDateInput.prototype, "paramValue", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalDateInput.prototype, "paramPlaceholder", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalDateInput.prototype, "paramMask", void 0);
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", Object)
+], OpalDateInput.prototype, "paramRequired", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalDateInput.prototype, "paramPopoverPosition", void 0);
+OpalDateInput = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalDateInput',
+        template,
+        events: {
+            calendar: {
+                change(evt) {
+                    this.$('calendarMenu').close();
+                    let textInput = this.$('textInput');
+                    textInput.value = evt.target.stringValue;
+                    textInput.focus();
+                    this.$('textInputValidator').validate();
                 }
             }
-        })
-    ], OpalDateInput);
-    return OpalDateInput;
-}(rionite_1.BaseComponent));
+        }
+    })
+], OpalDateInput);
 exports.OpalDateInput = OpalDateInput;
 
 

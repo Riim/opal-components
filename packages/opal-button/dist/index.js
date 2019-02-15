@@ -120,19 +120,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -143,38 +130,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(3);
-var cellx_decorators_1 = __webpack_require__(4);
-var rionite_1 = __webpack_require__(5);
+const next_tick_1 = __webpack_require__(3);
+const cellx_decorators_1 = __webpack_require__(4);
+const rionite_1 = __webpack_require__(5);
 __webpack_require__(6);
-var OpalButton = /** @class */ (function (_super) {
-    __extends(OpalButton, _super);
-    function OpalButton() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramViewType = 'default';
-        _this.paramSize = 'm';
-        _this.paramCheckable = false;
-        _this.paramChecked = false;
-        _this.paramLoading = false;
-        _this.paramTabIndex = 0;
-        _this.paramFocused = false;
-        _this.paramDisabled = false;
-        return _this;
+let OpalButton = class OpalButton extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramViewType = 'default';
+        this.paramSize = 'm';
+        this.paramCheckable = false;
+        this.paramChecked = false;
+        this.paramLoading = false;
+        this.paramTabIndex = 0;
+        this.paramFocused = false;
+        this.paramDisabled = false;
     }
-    Object.defineProperty(OpalButton.prototype, "_tabIndex", {
-        get: function () {
-            return this.paramDisabled ? -1 : this.paramTabIndex;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalButton.prototype.ready = function () {
+    get _tabIndex() {
+        return this.paramDisabled ? -1 : this.paramTabIndex;
+    }
+    ready() {
         if (this.paramFocused) {
             this.element.tabIndex = this._tabIndex;
             this.focus();
         }
-    };
-    OpalButton.prototype.elementAttached = function () {
+    }
+    elementAttached() {
         this.listenTo(this, {
             'change:paramFocused': this._onParamFocusedChange,
             'change:_tabIndex': this._onTabIndexChange
@@ -185,155 +166,145 @@ var OpalButton = /** @class */ (function (_super) {
             click: this._onElementClick
         });
         this.element.tabIndex = this._tabIndex;
-    };
-    OpalButton.prototype._onParamFocusedChange = function (evt) {
+    }
+    _onParamFocusedChange(evt) {
         if (evt.data.value) {
             this.focus();
         }
         else {
             this.blur();
         }
-    };
-    OpalButton.prototype._onTabIndexChange = function () {
+    }
+    _onTabIndexChange() {
         this.element.tabIndex = this._tabIndex;
-    };
-    OpalButton.prototype._onElementFocus = function (evt) {
-        var _this = this;
-        next_tick_1.nextTick(function () {
-            if (document.activeElement != _this.element) {
+    }
+    _onElementFocus(evt) {
+        next_tick_1.nextTick(() => {
+            if (document.activeElement != this.element) {
                 return;
             }
-            if (_this.element.tagName.indexOf('-', 1) != -1) {
-                _this._documentKeyDownListening = _this.listenTo(document, 'keydown', _this._onDocumentKeyDown);
+            if (this.element.tagName.indexOf('-', 1) != -1) {
+                this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             }
-            _this.paramFocused = true;
-            _this.emit('focus');
+            this.paramFocused = true;
+            this.emit('focus');
         });
-    };
-    OpalButton.prototype._onElementBlur = function () {
+    }
+    _onElementBlur() {
         if (this._documentKeyDownListening) {
             this._documentKeyDownListening.stop();
         }
         this.paramFocused = false;
         this.emit('blur');
-    };
-    OpalButton.prototype._onElementClick = function () {
+    }
+    _onElementClick() {
         if (!this.paramDisabled) {
             this.click();
         }
-    };
-    OpalButton.prototype._onDocumentKeyDown = function (evt) {
+    }
+    _onDocumentKeyDown(evt) {
         if (evt.which == 13 /* Enter */) {
             evt.preventDefault();
             if (!this.paramDisabled) {
                 this.click();
             }
         }
-    };
-    OpalButton.prototype.click = function () {
+    }
+    click() {
         if (!this.emit('click').defaultPrevented && this.paramCheckable) {
             this.emit(this.toggle() ? 'check' : 'uncheck');
             this.emit('change');
         }
         return this;
-    };
-    Object.defineProperty(OpalButton.prototype, "checked", {
-        get: function () {
-            return this.paramChecked;
-        },
-        set: function (checked) {
-            this.paramChecked = checked;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalButton.prototype, "selected", {
-        get: function () {
-            return this.checked;
-        },
-        set: function (selected) {
-            this.checked = selected;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalButton.prototype.check = function () {
+    }
+    get checked() {
+        return this.paramChecked;
+    }
+    set checked(checked) {
+        this.paramChecked = checked;
+    }
+    get selected() {
+        return this.checked;
+    }
+    set selected(selected) {
+        this.checked = selected;
+    }
+    check() {
         if (!this.paramChecked) {
             this.paramChecked = true;
             return true;
         }
         return false;
-    };
-    OpalButton.prototype.uncheck = function () {
+    }
+    uncheck() {
         if (this.paramChecked) {
             this.paramChecked = false;
             return true;
         }
         return false;
-    };
-    OpalButton.prototype.toggle = function (value) {
+    }
+    toggle(value) {
         return (this.paramChecked = value === undefined ? !this.paramChecked : value);
-    };
-    OpalButton.prototype.focus = function () {
+    }
+    focus() {
         this.element.focus();
         return this;
-    };
-    OpalButton.prototype.blur = function () {
+    }
+    blur() {
         this.element.blur();
         return this;
-    };
-    OpalButton.prototype.enable = function () {
+    }
+    enable() {
         this.paramDisabled = false;
         return this;
-    };
-    OpalButton.prototype.disable = function () {
+    }
+    disable() {
         this.paramDisabled = true;
         return this;
-    };
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalButton.prototype, "paramViewType", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalButton.prototype, "paramSize", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalButton.prototype, "paramCheckable", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalButton.prototype, "paramChecked", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalButton.prototype, "paramLoading", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalButton.prototype, "paramTabIndex", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalButton.prototype, "paramFocused", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalButton.prototype, "paramDisabled", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Number),
-        __metadata("design:paramtypes", [])
-    ], OpalButton.prototype, "_tabIndex", null);
-    OpalButton = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalButton'
-        })
-    ], OpalButton);
-    return OpalButton;
-}(rionite_1.BaseComponent));
+    }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalButton.prototype, "paramViewType", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalButton.prototype, "paramSize", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalButton.prototype, "paramCheckable", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalButton.prototype, "paramChecked", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalButton.prototype, "paramLoading", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalButton.prototype, "paramTabIndex", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalButton.prototype, "paramFocused", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalButton.prototype, "paramDisabled", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Number),
+    __metadata("design:paramtypes", [])
+], OpalButton.prototype, "_tabIndex", null);
+OpalButton = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalButton'
+    })
+], OpalButton);
 exports.OpalButton = OpalButton;
 
 

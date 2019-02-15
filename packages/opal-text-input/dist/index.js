@@ -134,19 +134,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -157,53 +144,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(5);
-var cellx_decorators_1 = __webpack_require__(6);
-var rionite_1 = __webpack_require__(7);
+const next_tick_1 = __webpack_require__(5);
+const cellx_decorators_1 = __webpack_require__(6);
+const rionite_1 = __webpack_require__(7);
 __webpack_require__(8);
-var template = __webpack_require__(9);
-var OpalTextInput = /** @class */ (function (_super) {
-    __extends(OpalTextInput, _super);
-    function OpalTextInput() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramInputType = 'text';
-        _this.paramSize = 'm';
-        _this.paramMultiline = false;
-        _this.paramRows = 5;
-        _this.paramAutoHeight = true;
-        _this.paramValue = '';
-        _this.paramClearable = false;
-        _this.paramLoading = false;
-        _this.paramTabIndex = 0;
-        _this.paramFocused = false;
-        _this.paramDisabled = false;
-        return _this;
+const template = __webpack_require__(9);
+let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramInputType = 'text';
+        this.paramSize = 'm';
+        this.paramMultiline = false;
+        this.paramRows = 5;
+        this.paramAutoHeight = true;
+        this.paramValue = '';
+        this.paramClearable = false;
+        this.paramLoading = false;
+        this.paramTabIndex = 0;
+        this.paramFocused = false;
+        this.paramDisabled = false;
     }
-    Object.defineProperty(OpalTextInput.prototype, "value", {
-        get: function () {
-            return this._textFieldValue.trim() || null;
-        },
-        set: function (value) {
-            this._textFieldValue = this.textField.value = value || '';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalTextInput.prototype, "btnClearShown", {
-        get: function () {
-            return this.paramClearable && !this.paramLoading && !!this._textFieldValue;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalTextInput.prototype, "endIconShown", {
-        get: function () {
-            return !this.paramLoading && !this.btnClearShown;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalTextInput.prototype.ready = function () {
+    get value() {
+        return this._textFieldValue.trim() || null;
+    }
+    set value(value) {
+        this._textFieldValue = this.textField.value = value || '';
+    }
+    get btnClearShown() {
+        return this.paramClearable && !this.paramLoading && !!this._textFieldValue;
+    }
+    get endIconShown() {
+        return !this.paramLoading && !this.btnClearShown;
+    }
+    ready() {
         this.textField = this.$('textField');
         if (this.paramValue) {
             this._textFieldValue = this.textField.value = this.paramValue;
@@ -223,8 +196,8 @@ var OpalTextInput = /** @class */ (function (_super) {
         if (this.paramFocused) {
             this.focus();
         }
-    };
-    OpalTextInput.prototype.elementAttached = function () {
+    }
+    elementAttached() {
         this.listenTo(this, {
             'change:paramRows': this._onParamRowsChange,
             'change:paramValue': this._onParamValueChange,
@@ -239,42 +212,41 @@ var OpalTextInput = /** @class */ (function (_super) {
             keypress: this._onTextFieldKeyPress,
             keyup: this._onTextFieldKeyUp
         });
-    };
-    OpalTextInput.prototype._onParamRowsChange = function () {
+    }
+    _onParamRowsChange() {
         if (this.paramMultiline && this.paramAutoHeight) {
             this._fixMinHeight();
         }
-    };
-    OpalTextInput.prototype._onParamValueChange = function (evt) {
+    }
+    _onParamValueChange(evt) {
         if (this.textField.value != evt.data.value) {
             this._textFieldValue = this.textField.value = evt.data.value;
             if (this.paramMultiline && this.paramAutoHeight) {
                 this._fixHeight();
             }
         }
-    };
-    OpalTextInput.prototype._onParamFocusedChange = function (evt) {
+    }
+    _onParamFocusedChange(evt) {
         if (evt.data.value) {
             this.focus();
         }
         else {
             this.blur();
         }
-    };
-    OpalTextInput.prototype._onTextFieldFocus = function (evt) {
-        var _this = this;
-        next_tick_1.nextTick(function () {
-            if (document.activeElement == _this.textField) {
-                _this.paramFocused = true;
-                _this.emit('focus');
+    }
+    _onTextFieldFocus(evt) {
+        next_tick_1.nextTick(() => {
+            if (document.activeElement == this.textField) {
+                this.paramFocused = true;
+                this.emit('focus');
             }
         });
-    };
-    OpalTextInput.prototype._onTextFieldBlur = function () {
+    }
+    _onTextFieldBlur() {
         this.paramFocused = false;
         this.emit('blur');
-    };
-    OpalTextInput.prototype._onTextFieldInput = function (evt) {
+    }
+    _onTextFieldInput(evt) {
         this._textFieldValue = this.textField.value;
         if (this.paramMultiline && this.paramAutoHeight) {
             this._fixHeight();
@@ -282,8 +254,8 @@ var OpalTextInput = /** @class */ (function (_super) {
         this.emit('input', {
             initialEvent: evt
         });
-    };
-    OpalTextInput.prototype._onTextFieldChange = function (evt) {
+    }
+    _onTextFieldChange(evt) {
         if (this.value === this._prevValue) {
             return;
         }
@@ -297,16 +269,16 @@ var OpalTextInput = /** @class */ (function (_super) {
                 initialEvent: evt
             }
         });
-    };
-    OpalTextInput.prototype._onTextFieldKeyDown = function (evt) {
+    }
+    _onTextFieldKeyDown(evt) {
         this.emit({
             type: 'keydown',
             data: {
                 initialEvent: evt
             }
         });
-    };
-    OpalTextInput.prototype._onTextFieldKeyPress = function (evt) {
+    }
+    _onTextFieldKeyPress(evt) {
         if (evt.which == 13 /* Enter */ && this.value) {
             this.emit('confirm');
         }
@@ -316,17 +288,17 @@ var OpalTextInput = /** @class */ (function (_super) {
                 initialEvent: evt
             }
         });
-    };
-    OpalTextInput.prototype._onTextFieldKeyUp = function (evt) {
+    }
+    _onTextFieldKeyUp(evt) {
         this.emit({
             type: 'keyup',
             data: {
                 initialEvent: evt
             }
         });
-    };
-    OpalTextInput.prototype._fixMinHeight = function () {
-        var style = getComputedStyle(this.textField);
+    }
+    _fixMinHeight() {
+        let style = getComputedStyle(this.textField);
         this.$('textareaHeight').style.minHeight =
             parseInt(style.paddingTop, 10) +
                 parseInt(style.paddingBottom, 10) +
@@ -334,126 +306,125 @@ var OpalTextInput = /** @class */ (function (_super) {
                 parseInt(style.borderBottom, 10) +
                 parseInt(style.lineHeight, 10) * this.paramRows +
                 'px';
-    };
-    OpalTextInput.prototype._fixHeight = function () {
+    }
+    _fixHeight() {
         this.$('textareaHeight').innerHTML = this.textField.value + '\n';
-    };
-    OpalTextInput.prototype.clear = function () {
+    }
+    clear() {
         this.value = null;
         return this;
-    };
-    OpalTextInput.prototype.focus = function () {
+    }
+    focus() {
         this.textField.focus();
         return this;
-    };
-    OpalTextInput.prototype.blur = function () {
+    }
+    blur() {
         this.textField.blur();
         return this;
-    };
-    OpalTextInput.prototype.enable = function () {
+    }
+    enable() {
         this.paramDisabled = false;
         return this;
-    };
-    OpalTextInput.prototype.disable = function () {
+    }
+    disable() {
         this.paramDisabled = true;
         return this;
-    };
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTextInput.prototype, "paramInputType", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTextInput.prototype, "paramSize", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTextInput.prototype, "paramMultiline", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTextInput.prototype, "paramRows", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTextInput.prototype, "paramAutoHeight", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalTextInput.prototype, "paramInputName", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTextInput.prototype, "paramValue", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalTextInput.prototype, "paramStoreKey", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalTextInput.prototype, "paramPlaceholder", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalTextInput.prototype, "paramStartIcon", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalTextInput.prototype, "paramEndIcon", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTextInput.prototype, "paramClearable", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTextInput.prototype, "paramLoading", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTextInput.prototype, "paramTabIndex", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTextInput.prototype, "paramFocused", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalTextInput.prototype, "paramDisabled", void 0);
-    __decorate([
-        cellx_decorators_1.Observable,
-        __metadata("design:type", String)
-    ], OpalTextInput.prototype, "_textFieldValue", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Boolean),
-        __metadata("design:paramtypes", [])
-    ], OpalTextInput.prototype, "btnClearShown", null);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Boolean),
-        __metadata("design:paramtypes", [])
-    ], OpalTextInput.prototype, "endIconShown", null);
-    OpalTextInput = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalTextInput',
-            template: template,
-            domEvents: {
-                btnClear: {
-                    click: function () {
-                        this.value = null;
-                        this.textField.focus();
-                        this.emit('clear');
-                        this.emit('change');
-                    }
+    }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTextInput.prototype, "paramInputType", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTextInput.prototype, "paramSize", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTextInput.prototype, "paramMultiline", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTextInput.prototype, "paramRows", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTextInput.prototype, "paramAutoHeight", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalTextInput.prototype, "paramInputName", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTextInput.prototype, "paramValue", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalTextInput.prototype, "paramStoreKey", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalTextInput.prototype, "paramPlaceholder", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalTextInput.prototype, "paramStartIcon", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalTextInput.prototype, "paramEndIcon", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTextInput.prototype, "paramClearable", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTextInput.prototype, "paramLoading", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTextInput.prototype, "paramTabIndex", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTextInput.prototype, "paramFocused", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTextInput.prototype, "paramDisabled", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", String)
+], OpalTextInput.prototype, "_textFieldValue", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [])
+], OpalTextInput.prototype, "btnClearShown", null);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [])
+], OpalTextInput.prototype, "endIconShown", null);
+OpalTextInput = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalTextInput',
+        template,
+        domEvents: {
+            btnClear: {
+                click() {
+                    this.value = null;
+                    this.textField.focus();
+                    this.emit('clear');
+                    this.emit('change');
                 }
             }
-        })
-    ], OpalTextInput);
-    return OpalTextInput;
-}(rionite_1.BaseComponent));
+        }
+    })
+], OpalTextInput);
 exports.OpalTextInput = OpalTextInput;
 
 

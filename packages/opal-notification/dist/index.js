@@ -127,19 +127,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -150,13 +137,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var map_set_polyfill_1 = __webpack_require__(4);
-var cellx_1 = __webpack_require__(5);
-var rionite_1 = __webpack_require__(6);
+const map_set_polyfill_1 = __webpack_require__(4);
+const cellx_1 = __webpack_require__(5);
+const rionite_1 = __webpack_require__(6);
 __webpack_require__(7);
-var template = __webpack_require__(8);
-var container;
-var shownNotifications = new map_set_polyfill_1.Set();
+const template = __webpack_require__(8);
+let container;
+const shownNotifications = new map_set_polyfill_1.Set();
 function initContainer(notification) {
     if (!container) {
         container = document.createElement('div');
@@ -166,94 +153,90 @@ function initContainer(notification) {
     }
     return container;
 }
-var OpalNotification = /** @class */ (function (_super) {
-    __extends(OpalNotification, _super);
-    function OpalNotification() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramViewType = 'default';
-        _this.paramIconSize = 'xs';
-        _this.paramButtonHide = true;
-        _this.paramTimeout = 0;
-        _this.paramShown = false;
-        return _this;
+let OpalNotification = class OpalNotification extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramViewType = 'default';
+        this.paramIconSize = 'xs';
+        this.paramButtonHide = true;
+        this.paramTimeout = 0;
+        this.paramShown = false;
     }
-    OpalNotification.prototype.$ = function (name, container) {
-        if (container === void 0) { container = this.bar; }
-        return _super.prototype.$.call(this, name, container);
-    };
-    OpalNotification.prototype.ready = function () {
+    $(name, container = this.bar) {
+        return super.$(name, container);
+    }
+    ready() {
         initContainer(this);
-        var bar = (this.bar = this.$('bar', this));
+        let bar = (this.bar = this.$('bar', this));
         this.element.removeChild(bar);
         if (this.paramShown) {
             this._show();
         }
-    };
-    OpalNotification.prototype.elementAttached = function () {
+    }
+    elementAttached() {
         this.listenTo(this, 'change:paramShown', this._onParamShownChange);
         this.listenTo('btnHide', 'click', this._onBtnHideClick);
-    };
-    OpalNotification.prototype.elementDetached = function () {
+    }
+    elementDetached() {
         this.hide();
-    };
-    OpalNotification.prototype._onParamShownChange = function (evt) {
+    }
+    _onParamShownChange(evt) {
         if (evt.data.value) {
             this._show();
         }
         else {
             this._hide();
         }
-    };
-    OpalNotification.prototype._onBtnHideClick = function () {
+    }
+    _onBtnHideClick() {
         this.hide();
         this.emit('hide');
         this.emit('close');
-    };
-    OpalNotification.prototype.show = function () {
+    }
+    show() {
         if (this.paramShown) {
             return false;
         }
         this.paramShown = true;
         cellx_1.Cell.forceRelease();
         return true;
-    };
-    OpalNotification.prototype.hide = function () {
+    }
+    hide() {
         if (!this.paramShown) {
             return false;
         }
         this.paramShown = false;
         cellx_1.Cell.forceRelease();
         return true;
-    };
-    OpalNotification.prototype.open = function () {
+    }
+    open() {
         return this.show();
-    };
-    OpalNotification.prototype.close = function () {
+    }
+    close() {
         return this.hide();
-    };
-    OpalNotification.prototype.toggle = function (value) {
+    }
+    toggle(value) {
         if (value !== undefined) {
             return value ? this.show() : !this.hide();
         }
         return this.show() || !this.hide();
-    };
-    OpalNotification.prototype._show = function () {
-        var _this = this;
+    }
+    _show() {
         shownNotifications.add(this);
         container.appendChild(this.bar);
-        setTimeout(function () {
+        setTimeout(() => {
             // для анимации
-            _this.bar.setAttribute('shown', '');
-            if (_this.paramTimeout) {
-                _this._closingTimeoutId = setTimeout(function () {
-                    _this.hide();
-                    _this.emit('hide');
-                    _this.emit('close');
-                }, _this.paramTimeout);
+            this.bar.setAttribute('shown', '');
+            if (this.paramTimeout) {
+                this._closingTimeoutId = setTimeout(() => {
+                    this.hide();
+                    this.emit('hide');
+                    this.emit('close');
+                }, this.paramTimeout);
             }
         }, 100);
-    };
-    OpalNotification.prototype._hide = function () {
+    }
+    _hide() {
         if (this._closingTimeoutId) {
             clearTimeout(this._closingTimeoutId);
             this._closingTimeoutId = null;
@@ -261,47 +244,46 @@ var OpalNotification = /** @class */ (function (_super) {
         shownNotifications.delete(this);
         container.removeChild(this.bar);
         this.bar.removeAttribute('shown');
-    };
-    OpalNotification.prototype.focus = function () {
-        var focusEl = this.$('focus');
+    }
+    focus() {
+        let focusEl = this.$('focus');
         if (focusEl) {
             document.body.classList.remove('_noFocusHighlight');
             focusEl.focus();
         }
         return this;
-    };
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalNotification.prototype, "paramViewType", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalNotification.prototype, "paramIcon", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalNotification.prototype, "paramIconSize", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalNotification.prototype, "paramButtonHide", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalNotification.prototype, "paramTimeout", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalNotification.prototype, "paramShown", void 0);
-    OpalNotification = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalNotification',
-            template: template
-        })
-    ], OpalNotification);
-    return OpalNotification;
-}(rionite_1.BaseComponent));
+    }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalNotification.prototype, "paramViewType", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalNotification.prototype, "paramIcon", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalNotification.prototype, "paramIconSize", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalNotification.prototype, "paramButtonHide", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalNotification.prototype, "paramTimeout", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalNotification.prototype, "paramShown", void 0);
+OpalNotification = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalNotification',
+        template
+    })
+], OpalNotification);
 exports.OpalNotification = OpalNotification;
 
 

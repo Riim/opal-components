@@ -120,19 +120,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -143,170 +130,154 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(3);
-var cellx_decorators_1 = __webpack_require__(4);
-var rionite_1 = __webpack_require__(5);
+const next_tick_1 = __webpack_require__(3);
+const cellx_decorators_1 = __webpack_require__(4);
+const rionite_1 = __webpack_require__(5);
 __webpack_require__(6);
-var template = __webpack_require__(7);
-var OpalSignButton = /** @class */ (function (_super) {
-    __extends(OpalSignButton, _super);
-    function OpalSignButton() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.paramCheckable = false;
-        _this.paramChecked = false;
-        _this.paramTabIndex = 0;
-        _this.paramFocused = false;
-        _this.paramDisabled = false;
-        return _this;
+const template = __webpack_require__(7);
+let OpalSignButton = class OpalSignButton extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.paramCheckable = false;
+        this.paramChecked = false;
+        this.paramTabIndex = 0;
+        this.paramFocused = false;
+        this.paramDisabled = false;
     }
-    Object.defineProperty(OpalSignButton.prototype, "_tabIndex", {
-        get: function () {
-            return this.paramDisabled ? -1 : this.paramTabIndex;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalSignButton.prototype.elementAttached = function () {
+    get _tabIndex() {
+        return this.paramDisabled ? -1 : this.paramTabIndex;
+    }
+    elementAttached() {
         this.listenTo(this, 'change:paramFocused', this._onParamFocusedChange);
         this.listenTo('control', {
             focus: this._onControlFocus,
             blur: this._onControlBlur,
             click: this._onControlClick
         });
-    };
-    OpalSignButton.prototype.ready = function () {
+    }
+    ready() {
         if (this.paramFocused) {
             this.focus();
         }
-    };
-    OpalSignButton.prototype._onParamFocusedChange = function (evt) {
+    }
+    _onParamFocusedChange(evt) {
         if (evt.data.value) {
             this.focus();
         }
         else {
             this.blur();
         }
-    };
-    OpalSignButton.prototype._onControlFocus = function (evt) {
-        var _this = this;
-        next_tick_1.nextTick(function () {
+    }
+    _onControlFocus(evt) {
+        next_tick_1.nextTick(() => {
             if (document.activeElement == evt.target) {
-                _this.paramFocused = true;
-                _this.emit('focus');
+                this.paramFocused = true;
+                this.emit('focus');
             }
         });
-    };
-    OpalSignButton.prototype._onControlBlur = function () {
+    }
+    _onControlBlur() {
         this.paramFocused = false;
         this.emit('blur');
-    };
-    OpalSignButton.prototype._onControlClick = function (evt) {
+    }
+    _onControlClick(evt) {
         evt.preventDefault();
         if (!this.paramDisabled) {
             this.click();
         }
-    };
-    OpalSignButton.prototype.click = function () {
+    }
+    click() {
         if (!this.emit('click').defaultPrevented && this.paramCheckable) {
             this.emit(this.toggle() ? 'check' : 'uncheck');
             this.emit('change');
         }
         return this;
-    };
-    Object.defineProperty(OpalSignButton.prototype, "checked", {
-        get: function () {
-            return this.paramChecked;
-        },
-        set: function (checked) {
-            this.paramChecked = checked;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OpalSignButton.prototype, "selected", {
-        get: function () {
-            return this.checked;
-        },
-        set: function (selected) {
-            this.checked = selected;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    OpalSignButton.prototype.check = function () {
+    }
+    get checked() {
+        return this.paramChecked;
+    }
+    set checked(checked) {
+        this.paramChecked = checked;
+    }
+    get selected() {
+        return this.checked;
+    }
+    set selected(selected) {
+        this.checked = selected;
+    }
+    check() {
         if (!this.paramChecked) {
             this.paramChecked = true;
             return true;
         }
         return false;
-    };
-    OpalSignButton.prototype.uncheck = function () {
+    }
+    uncheck() {
         if (this.paramChecked) {
             this.paramChecked = false;
             return true;
         }
         return false;
-    };
-    OpalSignButton.prototype.toggle = function (value) {
+    }
+    toggle(value) {
         return (this.paramChecked = value === undefined ? !this.paramChecked : value);
-    };
-    OpalSignButton.prototype.focus = function () {
+    }
+    focus() {
         this.$('control').focus();
         return this;
-    };
-    OpalSignButton.prototype.blur = function () {
+    }
+    blur() {
         this.$('control').blur();
         return this;
-    };
-    OpalSignButton.prototype.enable = function () {
+    }
+    enable() {
         this.paramDisabled = false;
         return this;
-    };
-    OpalSignButton.prototype.disable = function () {
+    }
+    disable() {
         this.paramDisabled = true;
         return this;
-    };
-    __decorate([
-        rionite_1.Param({ required: true }),
-        __metadata("design:type", String)
-    ], OpalSignButton.prototype, "paramSign", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", String)
-    ], OpalSignButton.prototype, "paramViewType", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalSignButton.prototype, "paramCheckable", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalSignButton.prototype, "paramChecked", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalSignButton.prototype, "paramTabIndex", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalSignButton.prototype, "paramFocused", void 0);
-    __decorate([
-        rionite_1.Param,
-        __metadata("design:type", Object)
-    ], OpalSignButton.prototype, "paramDisabled", void 0);
-    __decorate([
-        cellx_decorators_1.Computed,
-        __metadata("design:type", Number),
-        __metadata("design:paramtypes", [])
-    ], OpalSignButton.prototype, "_tabIndex", null);
-    OpalSignButton = __decorate([
-        rionite_1.Component({
-            elementIs: 'OpalSignButton',
-            template: template
-        })
-    ], OpalSignButton);
-    return OpalSignButton;
-}(rionite_1.BaseComponent));
+    }
+};
+__decorate([
+    rionite_1.Param({ required: true }),
+    __metadata("design:type", String)
+], OpalSignButton.prototype, "paramSign", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", String)
+], OpalSignButton.prototype, "paramViewType", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSignButton.prototype, "paramCheckable", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSignButton.prototype, "paramChecked", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSignButton.prototype, "paramTabIndex", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSignButton.prototype, "paramFocused", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSignButton.prototype, "paramDisabled", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Number),
+    __metadata("design:paramtypes", [])
+], OpalSignButton.prototype, "_tabIndex", null);
+OpalSignButton = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalSignButton',
+        template
+    })
+], OpalSignButton);
 exports.OpalSignButton = OpalSignButton;
 
 
