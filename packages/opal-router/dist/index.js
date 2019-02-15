@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("rionite"), require("@riim/next-uid"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("history/createBrowserHistory"));
+		module.exports = factory(require("reflect-metadata"), require("@riim/kebab-case"), require("@riim/next-uid"), require("@riim/rionite-snake-case-attribute-name"), require("history/createBrowserHistory"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "rionite", "@riim/next-uid", "@riim/kebab-case", "@riim/rionite-snake-case-attribute-name", "history/createBrowserHistory"], factory);
+		define(["reflect-metadata", "@riim/kebab-case", "@riim/next-uid", "@riim/rionite-snake-case-attribute-name", "history/createBrowserHistory", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-router"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/next-uid"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("history/createBrowserHistory"));
+		exports["@riim/opal-router"] = factory(require("reflect-metadata"), require("@riim/kebab-case"), require("@riim/next-uid"), require("@riim/rionite-snake-case-attribute-name"), require("history/createBrowserHistory"), require("rionite"));
 	else
-		root["@riim/opal-router"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/next-uid"], root["@riim/kebab-case"], root["@riim/rionite-snake-case-attribute-name"], root["history/createBrowserHistory"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__178__, __WEBPACK_EXTERNAL_MODULE__205__, __WEBPACK_EXTERNAL_MODULE__206__, __WEBPACK_EXTERNAL_MODULE__207__) {
+		root["@riim/opal-router"] = factory(root["reflect-metadata"], root["@riim/kebab-case"], root["@riim/next-uid"], root["@riim/rionite-snake-case-attribute-name"], root["history/createBrowserHistory"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,19 +91,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 203);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 178:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__178__;
-
-/***/ }),
-
-/***/ 203:
+/******/ ([
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112,13 +104,18 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(4);
-__export(__webpack_require__(204));
+__webpack_require__(1);
+__export(__webpack_require__(2));
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports) {
 
-/***/ 204:
+module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -146,17 +143,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var kebab_case_1 = __webpack_require__(205);
-var next_uid_1 = __webpack_require__(178);
-var rionite_snake_case_attribute_name_1 = __webpack_require__(206);
-var createBrowserHistory_1 = __webpack_require__(207);
-var rionite_1 = __webpack_require__(9);
-var OpalRoute_1 = __webpack_require__(208);
+var kebab_case_1 = __webpack_require__(3);
+var next_uid_1 = __webpack_require__(4);
+var rionite_snake_case_attribute_name_1 = __webpack_require__(5);
+var createBrowserHistory_1 = __webpack_require__(6);
+var rionite_1 = __webpack_require__(7);
+var OpalRoute_1 = __webpack_require__(8);
 exports.OpalRoute = OpalRoute_1.OpalRoute;
-var escapeRegExp_1 = __webpack_require__(209);
-__webpack_require__(210);
-var parsePath_1 = __webpack_require__(211);
-var PathNodeType_1 = __webpack_require__(212);
+var escapeRegExp_1 = __webpack_require__(9);
+__webpack_require__(10);
+var parsePath_1 = __webpack_require__(11);
+var PathNodeType_1 = __webpack_require__(12);
 var forEach = Array.prototype.forEach;
 var history = createBrowserHistory_1.default();
 function valueToAttributeValue(value) {
@@ -440,29 +437,37 @@ exports.OpalRouter = OpalRouter;
 
 
 /***/ }),
-
-/***/ 205:
+/* 3 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__205__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 /***/ }),
-
-/***/ 206:
+/* 4 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__206__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
-
-/***/ 207:
+/* 5 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__207__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
 
 /***/ }),
+/* 6 */
+/***/ (function(module, exports) {
 
-/***/ 208:
+module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -490,7 +495,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(7);
 var OpalRoute = /** @class */ (function (_super) {
     __extends(OpalRoute, _super);
     function OpalRoute() {
@@ -521,8 +526,7 @@ exports.OpalRoute = OpalRoute;
 
 
 /***/ }),
-
-/***/ 209:
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -536,8 +540,7 @@ exports.escapeRegExp = escapeRegExp;
 
 
 /***/ }),
-
-/***/ 210:
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -554,14 +557,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-
-/***/ 211:
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var PathNodeType_1 = __webpack_require__(212);
+var PathNodeType_1 = __webpack_require__(12);
 var reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
     var ctx = PathNodeType_1.PathNodeType.SIMPLE;
@@ -714,8 +716,7 @@ exports.parsePath = parsePath;
 
 
 /***/ }),
-
-/***/ 212:
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -729,21 +730,6 @@ var PathNodeType;
 })(PathNodeType = exports.PathNodeType || (exports.PathNodeType = {}));
 
 
-/***/ }),
-
-/***/ 4:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
-
 /***/ })
-
-/******/ });
+/******/ ]);
 });

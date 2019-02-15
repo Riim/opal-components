@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-router"), require("@riim/next-uid"));
+		module.exports = factory(require("reflect-metadata"), require("@riim/next-uid"), require("@riim/opal-router"), require("cellx"), require("rionite"), require("@riim/next-tick"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "@riim/next-tick", "cellx", "cellx-decorators", "rionite", "@riim/opal-router", "@riim/next-uid"], factory);
+		define(["reflect-metadata", "@riim/next-uid", "@riim/opal-router", "cellx", "rionite", "@riim/next-tick", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tabs"] = factory(require("reflect-metadata"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"), require("@riim/opal-router"), require("@riim/next-uid"));
+		exports["@riim/opal-tabs"] = factory(require("reflect-metadata"), require("@riim/next-uid"), require("@riim/opal-router"), require("cellx"), require("rionite"), require("@riim/next-tick"), require("cellx-decorators"));
 	else
-		root["@riim/opal-tabs"] = factory(root["reflect-metadata"], root["@riim/next-tick"], root["cellx"], root["cellx-decorators"], root["rionite"], root["@riim/opal-router"], root["@riim/next-uid"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__59__, __WEBPACK_EXTERNAL_MODULE__178__) {
+		root["@riim/opal-tabs"] = factory(root["reflect-metadata"], root["@riim/next-uid"], root["@riim/opal-router"], root["cellx"], root["rionite"], root["@riim/next-tick"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,19 +91,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 241);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 178:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__178__;
-
-/***/ }),
-
-/***/ 241:
+/******/ ([
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112,13 +104,18 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(4);
-__export(__webpack_require__(242));
+__webpack_require__(1);
+__export(__webpack_require__(2));
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports) {
 
-/***/ 242:
+module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -146,17 +143,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_uid_1 = __webpack_require__(178);
-var opal_router_1 = __webpack_require__(59);
-var cellx_1 = __webpack_require__(7);
-var rionite_1 = __webpack_require__(9);
-var OpalTabList_1 = __webpack_require__(243);
+var next_uid_1 = __webpack_require__(3);
+var opal_router_1 = __webpack_require__(4);
+var cellx_1 = __webpack_require__(5);
+var rionite_1 = __webpack_require__(6);
+var OpalTabList_1 = __webpack_require__(7);
 exports.OpalTab = OpalTabList_1.OpalTab;
-var OpalTabPanel_1 = __webpack_require__(249);
+var OpalTabPanel_1 = __webpack_require__(15);
 exports.OpalTabPanel = OpalTabPanel_1.OpalTabPanel;
-__webpack_require__(252);
-var template = __webpack_require__(253);
-var OpalTabList_2 = __webpack_require__(243);
+__webpack_require__(18);
+var template = __webpack_require__(19);
+var OpalTabList_2 = __webpack_require__(7);
 exports.OpalTabList = OpalTabList_2.OpalTabList;
 var indexOf = Array.prototype.indexOf;
 var forEach = Array.prototype.forEach;
@@ -289,8 +286,31 @@ exports.OpalTabs = OpalTabs;
 
 
 /***/ }),
+/* 3 */
+/***/ (function(module, exports) {
 
-/***/ 243:
+module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -315,11 +335,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var rionite_1 = __webpack_require__(9);
-var OpalTab_1 = __webpack_require__(244);
+var rionite_1 = __webpack_require__(6);
+var OpalTab_1 = __webpack_require__(8);
 exports.OpalTab = OpalTab_1.OpalTab;
-__webpack_require__(247);
-var template = __webpack_require__(248);
+__webpack_require__(13);
+var template = __webpack_require__(14);
 var OpalTabList = /** @class */ (function (_super) {
     __extends(OpalTabList, _super);
     function OpalTabList() {
@@ -337,8 +357,7 @@ exports.OpalTabList = OpalTabList;
 
 
 /***/ }),
-
-/***/ 244:
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -366,11 +385,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var next_tick_1 = __webpack_require__(6);
-var cellx_decorators_1 = __webpack_require__(8);
-var rionite_1 = __webpack_require__(9);
-__webpack_require__(245);
-var template = __webpack_require__(246);
+var next_tick_1 = __webpack_require__(9);
+var cellx_decorators_1 = __webpack_require__(10);
+var rionite_1 = __webpack_require__(6);
+__webpack_require__(11);
+var template = __webpack_require__(12);
 var OpalTab = /** @class */ (function (_super) {
     __extends(OpalTab, _super);
     function OpalTab() {
@@ -515,8 +534,19 @@ exports.OpalTab = OpalTab;
 
 
 /***/ }),
+/* 9 */
+/***/ (function(module, exports) {
 
-/***/ 245:
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -533,15 +563,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-
-/***/ 246:
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = "button/control (tabindex={_tabIndex}) {\n@Slot/contentSlot\n}"
 
 /***/ }),
-
-/***/ 247:
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -558,15 +586,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-
-/***/ 248:
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = "@Slot/contentSlot"
 
 /***/ }),
-
-/***/ 249:
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -594,11 +620,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var cellx_1 = __webpack_require__(7);
-var cellx_decorators_1 = __webpack_require__(8);
-var rionite_1 = __webpack_require__(9);
-__webpack_require__(250);
-var template = __webpack_require__(251);
+var cellx_1 = __webpack_require__(5);
+var cellx_decorators_1 = __webpack_require__(10);
+var rionite_1 = __webpack_require__(6);
+__webpack_require__(16);
+var template = __webpack_require__(17);
 var OpalTabPanel = /** @class */ (function (_super) {
     __extends(OpalTabPanel, _super);
     function OpalTabPanel() {
@@ -639,8 +665,7 @@ exports.OpalTabPanel = OpalTabPanel;
 
 
 /***/ }),
-
-/***/ 250:
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -657,15 +682,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-
-/***/ 251:
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = "@IfThen (contentRendered) {\n@Slot/contentSlot\n}"
 
 /***/ }),
-
-/***/ 252:
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -682,55 +705,11 @@ module.exports = (function(d) {
 
 
 /***/ }),
-
-/***/ 253:
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = "@Slot/tabListSlot (forTag=opal-tab-list) {\nOpalTabList/tabList {\n@Slot/tabs (forTag=opal-tab)\n}\n}\n@Slot/tabPanels (forTag=opal-tab-panel)"
 
-/***/ }),
-
-/***/ 4:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
-
-/***/ }),
-
-/***/ 59:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__59__;
-
-/***/ }),
-
-/***/ 6:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
-
-/***/ }),
-
-/***/ 7:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
-
-/***/ }),
-
-/***/ 8:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
-
 /***/ })
-
-/******/ });
+/******/ ]);
 });

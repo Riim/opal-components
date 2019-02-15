@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("cellx-decorators"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-button"), require("@riim/opal-loaded-list"), require("@riim/platform"));
+		module.exports = factory(require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-loaded-list"), require("@riim/opal-select"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/platform"), require("cellx-decorators"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-icon", "@riim/opal-text-input", "reflect-metadata", "cellx-decorators", "rionite", "@riim/opal-select", "@riim/opal-button", "@riim/opal-loaded-list", "@riim/platform"], factory);
+		define(["@riim/opal-button", "@riim/opal-icon", "@riim/opal-loaded-list", "@riim/opal-select", "@riim/opal-text-input", "reflect-metadata", "@riim/platform", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-multiselect"] = factory(require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("cellx-decorators"), require("rionite"), require("@riim/opal-select"), require("@riim/opal-button"), require("@riim/opal-loaded-list"), require("@riim/platform"));
+		exports["@riim/opal-multiselect"] = factory(require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-loaded-list"), require("@riim/opal-select"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/platform"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/opal-multiselect"] = factory(root["@riim/opal-icon"], root["@riim/opal-text-input"], root["reflect-metadata"], root["cellx-decorators"], root["rionite"], root["@riim/opal-select"], root["@riim/opal-button"], root["@riim/opal-loaded-list"], root["@riim/platform"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__16__, __WEBPACK_EXTERNAL_MODULE__30__, __WEBPACK_EXTERNAL_MODULE__49__, __WEBPACK_EXTERNAL_MODULE__186__) {
+		root["@riim/opal-multiselect"] = factory(root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/opal-loaded-list"], root["@riim/opal-select"], root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/platform"], root["cellx-decorators"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,19 +91,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 184);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 16:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__16__;
-
-/***/ }),
-
-/***/ 184:
+/******/ ([
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112,18 +104,53 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(30);
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(49);
-__webpack_require__(16);
 __webpack_require__(3);
 __webpack_require__(4);
-__export(__webpack_require__(185));
+__webpack_require__(5);
+__webpack_require__(6);
+__export(__webpack_require__(7));
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports) {
 
-/***/ 185:
+module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -151,12 +178,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var opal_select_1 = __webpack_require__(16);
-var platform_1 = __webpack_require__(186);
-var cellx_decorators_1 = __webpack_require__(8);
-var rionite_1 = __webpack_require__(9);
-__webpack_require__(187);
-var template = __webpack_require__(188);
+var opal_select_1 = __webpack_require__(4);
+var platform_1 = __webpack_require__(8);
+var cellx_decorators_1 = __webpack_require__(9);
+var rionite_1 = __webpack_require__(10);
+__webpack_require__(11);
+var template = __webpack_require__(12);
 var OpalMultiselect = /** @class */ (function (_super) {
     __extends(OpalMultiselect, _super);
     function OpalMultiselect() {
@@ -232,15 +259,25 @@ exports.OpalMultiselect = OpalMultiselect;
 
 
 /***/ }),
-
-/***/ 186:
+/* 8 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__186__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
 
 /***/ }),
+/* 9 */
+/***/ (function(module, exports) {
 
-/***/ 187:
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -257,62 +294,11 @@ module.exports = (function(d) {
 
 
 /***/ }),
-
-/***/ 188:
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = "/menu (super!, autoHeight=no) {\ndiv/menuHeader {\ndiv/menuHeaderLeftPart {\nOpalTextInput/queryInput (\nclass={_queryInputClass},\nclearable,\nplaceholder={'Поиск' |t }\n) {\nOpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\ndiv/menuHeaderRightPart {\n@Slot/menuHeaderContentSlot (for=menuHeaderContent) {\n@IfThen (viewModel.length) {\nspan/selectedCount {\n'{\"выбрано {n}\" |t(viewModel.length) }'\n}\n}\n}\n}\n}\ndiv/menuList {\nOpalLoadedList/loadedList (\ndataProvider={dataProvider},\ndataListItemValueName={_dataListItemValueFieldName}\n) {\nOpalSelectOption/option (\nclass=OpalLoadedList__listItem,\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }',\nsubtext='{$item |key(_dataListItemSubtextFieldName) }'\n)\n}\n}\ndiv/menuSelected {\n@Repeat (for=item in viewModel) {\ndiv/selectedItem {\n'{item |key(_viewModelItemTextFieldName) }'\nbutton/btnDeselectItem (tabindex=-1) {\nOpalIcon/btnDeselectItemIcon (name=cross)\n}\n}\n}\n@IfThen (nothingSelectedShown) {\n@Slot/nothingSelectedSlot (for=nothingSelected) {\nspan/nothingSelected {\nspan/nothingSelectedMessage {\n'{\"Ничего не выбрано\" |t }'\n}\n}\n}\n}\n}\ndiv/menuFooter {\ndiv/menuFooterLeftPart {\n@Slot/menuFooterContentSlot (for=menuFooterContent)\n}\ndiv/menuFooterRightPart {\nOpalButton/btnClose {\n'{\"Закрыть\" |t }'\n}\n}\n}\n}"
 
-/***/ }),
-
-/***/ 2:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
-
-/***/ }),
-
-/***/ 3:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
-
-/***/ }),
-
-/***/ 30:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__30__;
-
-/***/ }),
-
-/***/ 4:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
-
-/***/ }),
-
-/***/ 49:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__49__;
-
-/***/ }),
-
-/***/ 8:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
-
 /***/ })
-
-/******/ });
+/******/ ]);
 });

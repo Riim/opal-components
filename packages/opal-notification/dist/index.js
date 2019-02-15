@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("cellx"), require("rionite"), require("@riim/map-set-polyfill"));
+		module.exports = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/map-set-polyfill"), require("cellx"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-icon", "reflect-metadata", "cellx", "rionite", "@riim/map-set-polyfill"], factory);
+		define(["@riim/opal-icon", "reflect-metadata", "@riim/map-set-polyfill", "cellx", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-notification"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("cellx"), require("rionite"), require("@riim/map-set-polyfill"));
+		exports["@riim/opal-notification"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/map-set-polyfill"), require("cellx"), require("rionite"));
 	else
-		root["@riim/opal-notification"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["cellx"], root["rionite"], root["@riim/map-set-polyfill"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__191__) {
+		root["@riim/opal-notification"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["@riim/map-set-polyfill"], root["cellx"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,12 +91,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 189);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 189:
+/******/ ([
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -105,14 +104,25 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(1);
 __webpack_require__(2);
-__webpack_require__(4);
-__export(__webpack_require__(190));
+__export(__webpack_require__(3));
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports) {
 
-/***/ 190:
+module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -140,11 +150,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var map_set_polyfill_1 = __webpack_require__(191);
-var cellx_1 = __webpack_require__(7);
-var rionite_1 = __webpack_require__(9);
-__webpack_require__(192);
-var template = __webpack_require__(193);
+var map_set_polyfill_1 = __webpack_require__(4);
+var cellx_1 = __webpack_require__(5);
+var rionite_1 = __webpack_require__(6);
+__webpack_require__(7);
+var template = __webpack_require__(8);
 var container;
 var shownNotifications = new map_set_polyfill_1.Set();
 function initContainer(notification) {
@@ -296,15 +306,25 @@ exports.OpalNotification = OpalNotification;
 
 
 /***/ }),
-
-/***/ 191:
+/* 4 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__191__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
+/* 5 */
+/***/ (function(module, exports) {
 
-/***/ 192:
+module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -321,41 +341,11 @@ module.exports = (function(d) {
 
 
 /***/ }),
-
-/***/ 193:
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = "div/bar (\nviewType={paramViewType},\nhasIcon={paramIcon |notnot },\niconSize={paramIconSize},\nbuttonHide={paramButtonHide}\n) {\n@IfThen (paramIcon) {\nOpalIcon/icon (name={paramIcon}, size={paramIconSize})\n}\n@Slot/contentSlot\nbutton/btnHide (hide={paramButtonHide |not }) {\nOpalIcon/btnHideIcon (name=cross)\n}\n}"
 
-/***/ }),
-
-/***/ 2:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
-
-/***/ }),
-
-/***/ 4:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
-
-/***/ }),
-
-/***/ 7:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
-
 /***/ })
-
-/******/ });
+/******/ ]);
 });
