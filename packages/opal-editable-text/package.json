@@ -15,6 +15,6 @@
   "dependencies": {
     "@riim/opal-icon": "^0.35.0-alpha.0",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.36.0-alpha.0"
+    "rionite": "^0.36.0-alpha.3"
   }
 }
