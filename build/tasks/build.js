@@ -7,8 +7,11 @@ const numCPUs = require('os').cpus().length;
 gulp.task('build', done => {
 	let packages = glob.sync(`packages/*/src/index.ts`);
 	let index = 0;
+	let inProcessCount = 0;
 
 	function buildPackage(p) {
+		inProcessCount++;
+
 		let process = child_process.exec(
 			'gulp buildPackage --package=' + p.split('/')[1],
 			(err, stdout, stderr) => {
@@ -28,6 +31,10 @@ gulp.task('build', done => {
 
 			if (index < packages.length) {
 				buildPackage(packages[index++]);
+			}
+
+			if (!--inProcessCount) {
+				done();
 			}
 		});
 	}
