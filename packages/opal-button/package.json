@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-button",
-  "version": "0.35.0-alpha.1",
+  "version": "0.35.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

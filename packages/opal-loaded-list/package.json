@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-loaded-list",
-  "version": "0.35.0-alpha.1",
+  "version": "0.35.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@riim/next-tick": "^1.0.2",
-    "@riim/opal-loader": "^0.35.0-alpha.1",
+    "@riim/opal-loader": "^0.35.0",
     "cellx": "^1.7.95",
     "cellx-decorators": "^1.4.11",
     "reflect-metadata": "^0.1.13",
