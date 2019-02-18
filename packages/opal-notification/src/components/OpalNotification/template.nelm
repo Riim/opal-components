@@ -1,6 +1,6 @@
 div/bar (
 	viewType={paramViewType},
-	hasIcon={paramIcon |notnot },
+	hasIcon={paramIcon |bool },
 	iconSize={paramIconSize},
 	buttonHide={paramButtonHide}
 ) {

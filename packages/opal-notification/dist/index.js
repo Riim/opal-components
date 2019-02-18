@@ -326,7 +326,7 @@ module.exports = (function(d) {
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = "div/bar (\nviewType={paramViewType},\nhasIcon={paramIcon |notnot },\niconSize={paramIconSize},\nbuttonHide={paramButtonHide}\n) {\n@IfThen (paramIcon) {\nOpalIcon/icon (name={paramIcon}, size={paramIconSize})\n}\n@Slot/contentSlot\nbutton/btnHide (hide={paramButtonHide |not }) {\nOpalIcon/btnHideIcon (name=cross)\n}\n}"
+module.exports = "div/bar (\nviewType={paramViewType},\nhasIcon={paramIcon |bool },\niconSize={paramIconSize},\nbuttonHide={paramButtonHide}\n) {\n@IfThen (paramIcon) {\nOpalIcon/icon (name={paramIcon}, size={paramIconSize})\n}\n@Slot/contentSlot\nbutton/btnHide (hide={paramButtonHide |not }) {\nOpalIcon/btnHideIcon (name=cross)\n}\n}"
 
 /***/ })
 /******/ ]);
