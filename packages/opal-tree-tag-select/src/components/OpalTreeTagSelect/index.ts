@@ -1,6 +1,6 @@
 import { OpalTagSelect } from '@riim/opal-tag-select';
 import { Component } from 'rionite';
-import template = require('./template.nelm');
+import template = require('./template.rnt');
 
 @Component({
 	elementIs: 'OpalTreeTagSelect',

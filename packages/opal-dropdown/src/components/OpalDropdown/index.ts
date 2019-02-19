@@ -7,7 +7,7 @@ import {
 	Param
 	} from 'rionite';
 import './index.css';
-import template = require('./template.nelm');
+import template = require('./template.rnt');
 
 const openedDropdowns: Array<OpalDropdown> = [];
 

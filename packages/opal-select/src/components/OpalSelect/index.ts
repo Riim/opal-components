@@ -24,7 +24,7 @@ import {
 import { OpalSelectOption } from '../OpalSelectOption';
 import './index.css';
 import { isEqualArray } from './isEqualArray';
-import template = require('./template.nelm');
+import template = require('./template.rnt');
 
 export { OpalSelectOption };
 

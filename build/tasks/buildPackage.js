@@ -99,7 +99,7 @@ gulp.task('buildPackage', done => {
 					loader: 'awesome-typescript-loader'
 				},
 				{
-					test: /\.nelm$/,
+					test: /\.rnt$/,
 					loader: ['raw-loader', 'trim-lines-loader', 'collapse-line-breaks-loader']
 				},
 				{

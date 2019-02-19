@@ -1,6 +1,6 @@
 import { BaseComponent, Component } from 'rionite';
 import './index.css';
-import template = require('./template.nelm');
+import template = require('./template.rnt');
 
 @Component({
 	elementIs: 'OpalMultirowRow',

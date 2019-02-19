@@ -10,7 +10,7 @@ import {
 import { OpalTab } from '../OpalTabList';
 import { OpalTabPanel } from '../OpalTabPanel';
 import './index.css';
-import template = require('./template.nelm');
+import template = require('./template.rnt');
 
 export { OpalTab };
 export { OpalTabList } from '../OpalTabList';

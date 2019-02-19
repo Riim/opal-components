@@ -46,7 +46,7 @@ module.exports = env => {
 					loader: 'awesome-typescript-loader'
 				},
 				{
-					test: /\.nelm$/,
+					test: /\.rnt$/,
 					loader: ['raw-loader', 'collapse-line-breaks-loader', 'trim-lines-loader']
 				},
 				{
