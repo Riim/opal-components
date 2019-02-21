@@ -1024,7 +1024,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const next_tick_1 = __webpack_require__(11);
 const cellx_decorators_1 = __webpack_require__(13);
 const rionite_1 = __webpack_require__(14);
 __webpack_require__(16);
@@ -1037,7 +1036,7 @@ let OpalSelectOption = class OpalSelectOption extends rionite_1.BaseComponent {
         this.paramTabIndex = 0;
         this.paramFocused = false;
         this.paramDisabled = false;
-        this._mouseWasUp = false;
+        this._mouseUpEvent = false;
     }
     get _tabIndex() {
         return this.paramDisabled ? -1 : this.paramTabIndex;
@@ -1078,26 +1077,22 @@ let OpalSelectOption = class OpalSelectOption extends rionite_1.BaseComponent {
             this.blur();
         }
     }
-    _onControlFocus(evt) {
-        next_tick_1.nextTick(() => {
-            if (document.activeElement == evt.target) {
-                this.paramFocused = true;
-            }
-        });
+    _onControlFocus() {
+        this.paramFocused = true;
     }
     _onControlBlur() {
         this.paramFocused = false;
     }
     _onControlMouseUp() {
-        this._mouseWasUp = true;
+        this._mouseUpEvent = true;
         if (!this.paramDisabled) {
             this.click();
         }
     }
     _onControlClick(evt) {
         evt.preventDefault();
-        if (this._mouseWasUp) {
-            this._mouseWasUp = true;
+        if (this._mouseUpEvent) {
+            this._mouseUpEvent = false;
         }
         else if (!this.paramDisabled) {
             this.click();

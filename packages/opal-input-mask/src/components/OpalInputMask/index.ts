@@ -1,4 +1,3 @@
-import { nextTick } from '@riim/next-tick';
 import { OpalTextInput } from '@riim/opal-text-input';
 import { Computed } from 'cellx-decorators';
 import {
@@ -108,13 +107,9 @@ export class OpalInputMask extends BaseComponent {
 	}
 
 	_onTextFieldFocus() {
-		nextTick(() => {
-			if (document.activeElement == this.textField) {
-				this._setTextFieldSelection(0, this._checkValue(false, false));
-				this._textOnFocus = this.textField.value;
-				this._writeBuffer();
-			}
-		});
+		this._setTextFieldSelection(0, this._checkValue(false, false));
+		this._textOnFocus = this.textField.value;
+		this._writeBuffer();
 	}
 
 	_onTextFieldBlur() {

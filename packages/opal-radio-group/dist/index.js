@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("rionite"), require("@riim/next-tick"), require("cellx-decorators"));
+		module.exports = factory(require("reflect-metadata"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "rionite", "@riim/next-tick", "cellx-decorators"], factory);
+		define(["reflect-metadata", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-radio-group"] = factory(require("reflect-metadata"), require("rionite"), require("@riim/next-tick"), require("cellx-decorators"));
+		exports["@riim/opal-radio-group"] = factory(require("reflect-metadata"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-radio-group"] = factory(root["reflect-metadata"], root["rionite"], root["@riim/next-tick"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__) {
+		root["@riim/opal-radio-group"] = factory(root["reflect-metadata"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__5__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -183,11 +183,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const next_tick_1 = __webpack_require__(5);
-const cellx_decorators_1 = __webpack_require__(6);
+const cellx_decorators_1 = __webpack_require__(5);
 const rionite_1 = __webpack_require__(3);
-__webpack_require__(7);
-const template = __webpack_require__(8);
+__webpack_require__(6);
+const template = __webpack_require__(7);
 let OpalRadioButton = class OpalRadioButton extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -244,13 +243,9 @@ let OpalRadioButton = class OpalRadioButton extends rionite_1.BaseComponent {
         this.emit((this.paramChecked = evt.target.checked) ? 'check' : 'uncheck');
         this.emit('change');
     }
-    _onControlFocus(evt) {
-        next_tick_1.nextTick(() => {
-            if (document.activeElement == evt.target) {
-                this.paramFocused = true;
-                this.emit('focus');
-            }
-        });
+    _onControlFocus() {
+        this.paramFocused = true;
+        this.emit('focus');
     }
     _onControlBlur() {
         this.paramFocused = false;
@@ -342,12 +337,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
 module.exports = (function(d) {
         var head = d.head || d.getElementsByTagName('head')[0];
         if (head) {
@@ -362,7 +351,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = "label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\n@Slot/contentSlot\n}"

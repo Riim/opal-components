@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("cellx-decorators"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-icon", "@riim/opal-loader", "reflect-metadata", "@riim/next-tick", "cellx-decorators", "rionite"], factory);
+		define(["@riim/opal-icon", "@riim/opal-loader", "reflect-metadata", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-text-input"] = factory(require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-text-input"] = factory(require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/opal-text-input"] = factory(root["@riim/opal-icon"], root["@riim/opal-loader"], root["reflect-metadata"], root["@riim/next-tick"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__) {
+		root["@riim/opal-text-input"] = factory(root["@riim/opal-icon"], root["@riim/opal-loader"], root["reflect-metadata"], root["cellx-decorators"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -144,11 +144,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const next_tick_1 = __webpack_require__(5);
-const cellx_decorators_1 = __webpack_require__(6);
-const rionite_1 = __webpack_require__(7);
-__webpack_require__(8);
-const template = __webpack_require__(9);
+const cellx_decorators_1 = __webpack_require__(5);
+const rionite_1 = __webpack_require__(6);
+__webpack_require__(7);
+const template = __webpack_require__(8);
 let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -234,13 +233,9 @@ let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
             this.blur();
         }
     }
-    _onTextFieldFocus(evt) {
-        next_tick_1.nextTick(() => {
-            if (document.activeElement == this.textField) {
-                this.paramFocused = true;
-                this.emit('focus');
-            }
-        });
+    _onTextFieldFocus() {
+        this.paramFocused = true;
+        this.emit('focus');
     }
     _onTextFieldBlur() {
         this.paramFocused = false;
@@ -444,12 +439,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
 module.exports = (function(d) {
         var head = d.head || d.getElementsByTagName('head')[0];
         if (head) {
@@ -464,7 +453,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = "@IfThen (paramMultiline) {\ndiv/textareaContainer {\ntextarea/textarea, textField (\nrows={paramRows},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabindex={paramTabIndex},\ndisabled={paramDisabled}\n)\ndiv/textareaHeight\n}\n}\n@IfElse (paramMultiline) {\ninput/, textField (\ntype={paramInputType},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabindex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfThen (paramStartIcon) {\nOpalIcon/startIcon (name={paramStartIcon})\n}\n@Slot/endIconSlot (for=endIcon, shown={endIconShown}) {\n@IfThen (paramEndIcon) {\nOpalIcon/endIcon (name={paramEndIcon})\n}\n}\n@IfThen (paramClearable) {\nbutton/btnClear (shown={btnClearShown}) {\nOpalIcon/btnClearIcon (name=cross)\n}\n}\n@IfThen (paramLoading) {\nOpalLoader/loader (size=s, shown)\n}"

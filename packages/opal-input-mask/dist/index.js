@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("@riim/opal-text-input"), require("reflect-metadata"), require("cellx-decorators"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-text-input", "reflect-metadata", "@riim/next-tick", "cellx-decorators", "rionite"], factory);
+		define(["@riim/opal-text-input", "reflect-metadata", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-input-mask"] = factory(require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-input-mask"] = factory(require("@riim/opal-text-input"), require("reflect-metadata"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/opal-input-mask"] = factory(root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/next-tick"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__) {
+		root["@riim/opal-input-mask"] = factory(root["@riim/opal-text-input"], root["reflect-metadata"], root["cellx-decorators"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -138,12 +138,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var OpalInputMask_1;
-const next_tick_1 = __webpack_require__(4);
-const cellx_decorators_1 = __webpack_require__(5);
-const rionite_1 = __webpack_require__(6);
-const OpalInputMaskDefinition_1 = __webpack_require__(7);
+const cellx_decorators_1 = __webpack_require__(4);
+const rionite_1 = __webpack_require__(5);
+const OpalInputMaskDefinition_1 = __webpack_require__(6);
 exports.OpalInputMaskDefinition = OpalInputMaskDefinition_1.OpalInputMaskDefinition;
-const template = __webpack_require__(9);
+const template = __webpack_require__(8);
 const forEach = Array.prototype.forEach;
 const iPhone = /iphone/i.test(navigator.userAgent);
 const ie11 = !window.ActiveXObject && 'ActiveXObject' in window;
@@ -191,13 +190,9 @@ let OpalInputMask = OpalInputMask_1 = class OpalInputMask extends rionite_1.Base
         this._checkValue(false, true);
     }
     _onTextFieldFocus() {
-        next_tick_1.nextTick(() => {
-            if (document.activeElement == this.textField) {
-                this._setTextFieldSelection(0, this._checkValue(false, false));
-                this._textOnFocus = this.textField.value;
-                this._writeBuffer();
-            }
-        });
+        this._setTextFieldSelection(0, this._checkValue(false, false));
+        this._textOnFocus = this.textField.value;
+        this._writeBuffer();
     }
     _onTextFieldBlur() {
         this._checkValue(false, false);
@@ -461,12 +456,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
-
-/***/ }),
-/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -481,8 +470,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const rionite_1 = __webpack_require__(6);
-__webpack_require__(8);
+const rionite_1 = __webpack_require__(5);
+__webpack_require__(7);
 let OpalInputMaskDefinition = class OpalInputMaskDefinition extends rionite_1.BaseComponent {
 };
 __decorate([
@@ -502,7 +491,7 @@ exports.OpalInputMaskDefinition = OpalInputMaskDefinition;
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -519,7 +508,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = "@Slot/contentSlot"

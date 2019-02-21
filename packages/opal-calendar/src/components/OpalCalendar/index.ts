@@ -370,26 +370,25 @@ export class OpalCalendar extends BaseComponent {
 	}
 
 	_onDaysFocus(evt: Event) {
-		if ((evt.target as HTMLElement).classList.contains('OpalCalendar__day')) {
-			nextTick(() => {
-				if (document.activeElement == evt.target && !this._documentKeyDownListening) {
-					this._documentKeyDownListening = this.listenTo(
-						document,
-						'keydown',
-						this._onDocumentKeyDown
-					);
-				}
-			});
+		if (
+			!this._documentKeyDownListening &&
+			(evt.target as HTMLElement).classList.contains('OpalCalendar__day')
+		) {
+			this._documentKeyDownListening = this.listenTo(
+				document,
+				'keydown',
+				this._onDocumentKeyDown
+			);
 		}
 	}
 
 	_onDaysBlur() {
-		setTimeout(() => {
+		nextTick(() => {
 			if (!document.activeElement!.classList.contains('OpalCalendar__day')) {
 				this._documentKeyDownListening!.stop();
 				this._documentKeyDownListening = null;
 			}
-		}, 1);
+		});
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {

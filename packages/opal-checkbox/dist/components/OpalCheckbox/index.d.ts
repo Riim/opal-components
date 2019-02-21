@@ -16,7 +16,7 @@ export declare class OpalCheckbox extends BaseComponent {
     _onParamFocusedChange(evt: IEvent): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _onInputChange(evt: Event): void;
-    _onControlFocus(evt: Event): void;
+    _onControlFocus(): void;
     _onControlBlur(): void;
     checked: boolean;
     selected: boolean;

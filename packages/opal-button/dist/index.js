@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("reflect-metadata"), require("cellx-decorators"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "@riim/next-tick", "cellx-decorators", "rionite"], factory);
+		define(["reflect-metadata", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-button"] = factory(require("reflect-metadata"), require("@riim/next-tick"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-button"] = factory(require("reflect-metadata"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/opal-button"] = factory(root["reflect-metadata"], root["@riim/next-tick"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__) {
+		root["@riim/opal-button"] = factory(root["reflect-metadata"], root["cellx-decorators"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -130,10 +130,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const next_tick_1 = __webpack_require__(3);
-const cellx_decorators_1 = __webpack_require__(4);
-const rionite_1 = __webpack_require__(5);
-__webpack_require__(6);
+const cellx_decorators_1 = __webpack_require__(3);
+const rionite_1 = __webpack_require__(4);
+__webpack_require__(5);
 let OpalButton = class OpalButton extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -178,21 +177,17 @@ let OpalButton = class OpalButton extends rionite_1.BaseComponent {
     _onTabIndexChange() {
         this.element.tabIndex = this._tabIndex;
     }
-    _onElementFocus(evt) {
-        next_tick_1.nextTick(() => {
-            if (document.activeElement != this.element) {
-                return;
-            }
-            if (this.element.tagName.indexOf('-', 1) != -1) {
-                this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-            }
-            this.paramFocused = true;
-            this.emit('focus');
-        });
+    _onElementFocus() {
+        if (!this._documentKeyDownListening && this.element.tagName.indexOf('-') != -1) {
+            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
+        }
+        this.paramFocused = true;
+        this.emit('focus');
     }
     _onElementBlur() {
         if (this._documentKeyDownListening) {
             this._documentKeyDownListening.stop();
+            this._documentKeyDownListening = null;
         }
         this.paramFocused = false;
         this.emit('blur');
@@ -322,12 +317,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
-
-/***/ }),
-/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {

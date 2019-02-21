@@ -13,7 +13,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/next-tick": "^1.0.2",
     "@riim/opal-text-input": "^0.35.1",
     "cellx-decorators": "^1.4.11",
     "reflect-metadata": "^0.1.13",

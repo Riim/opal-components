@@ -1,4 +1,3 @@
-import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
 import { Computed } from 'cellx-decorators';
 import {
@@ -35,7 +34,7 @@ export class OpalButton extends BaseComponent {
 		return this.paramDisabled ? -1 : this.paramTabIndex;
 	}
 
-	_documentKeyDownListening: IDisposableListening | undefined;
+	_documentKeyDownListening: IDisposableListening | null | undefined;
 
 	ready() {
 		if (this.paramFocused) {
@@ -70,28 +69,23 @@ export class OpalButton extends BaseComponent {
 		this.element.tabIndex = this._tabIndex;
 	}
 
-	_onElementFocus(evt: Event) {
-		nextTick(() => {
-			if (document.activeElement != this.element) {
-				return;
-			}
+	_onElementFocus() {
+		if (!this._documentKeyDownListening && this.element.tagName.indexOf('-') != -1) {
+			this._documentKeyDownListening = this.listenTo(
+				document,
+				'keydown',
+				this._onDocumentKeyDown
+			);
+		}
 
-			if (this.element.tagName.indexOf('-', 1) != -1) {
-				this._documentKeyDownListening = this.listenTo(
-					document,
-					'keydown',
-					this._onDocumentKeyDown
-				);
-			}
-
-			this.paramFocused = true;
-			this.emit('focus');
-		});
+		this.paramFocused = true;
+		this.emit('focus');
 	}
 
 	_onElementBlur() {
 		if (this._documentKeyDownListening) {
 			this._documentKeyDownListening.stop();
+			this._documentKeyDownListening = null;
 		}
 
 		this.paramFocused = false;

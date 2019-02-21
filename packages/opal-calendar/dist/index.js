@@ -318,21 +318,18 @@ let OpalCalendar = OpalCalendar_1 = class OpalCalendar extends rionite_1.BaseCom
         }, this, true);
     }
     _onDaysFocus(evt) {
-        if (evt.target.classList.contains('OpalCalendar__day')) {
-            next_tick_1.nextTick(() => {
-                if (document.activeElement == evt.target && !this._documentKeyDownListening) {
-                    this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-                }
-            });
+        if (!this._documentKeyDownListening &&
+            evt.target.classList.contains('OpalCalendar__day')) {
+            this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
         }
     }
     _onDaysBlur() {
-        setTimeout(() => {
+        next_tick_1.nextTick(() => {
             if (!document.activeElement.classList.contains('OpalCalendar__day')) {
                 this._documentKeyDownListening.stop();
                 this._documentKeyDownListening = null;
             }
-        }, 1);
+        });
     }
     _onDocumentKeyDown(evt) {
         if (evt.which == 13 /* Enter */) {

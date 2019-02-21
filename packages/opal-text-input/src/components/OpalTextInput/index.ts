@@ -1,4 +1,3 @@
-import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
@@ -144,13 +143,9 @@ export class OpalTextInput extends BaseComponent {
 		}
 	}
 
-	_onTextFieldFocus(evt: Event) {
-		nextTick(() => {
-			if (document.activeElement == this.textField) {
-				this.paramFocused = true;
-				this.emit('focus');
-			}
-		});
+	_onTextFieldFocus() {
+		this.paramFocused = true;
+		this.emit('focus');
 	}
 
 	_onTextFieldBlur() {

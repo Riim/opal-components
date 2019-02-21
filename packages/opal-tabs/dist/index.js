@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("@riim/next-uid"), require("@riim/opal-router"), require("cellx"), require("rionite"), require("@riim/next-tick"), require("cellx-decorators"));
+		module.exports = factory(require("reflect-metadata"), require("@riim/next-uid"), require("@riim/opal-router"), require("cellx"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "@riim/next-uid", "@riim/opal-router", "cellx", "rionite", "@riim/next-tick", "cellx-decorators"], factory);
+		define(["reflect-metadata", "@riim/next-uid", "@riim/opal-router", "cellx", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tabs"] = factory(require("reflect-metadata"), require("@riim/next-uid"), require("@riim/opal-router"), require("cellx"), require("rionite"), require("@riim/next-tick"), require("cellx-decorators"));
+		exports["@riim/opal-tabs"] = factory(require("reflect-metadata"), require("@riim/next-uid"), require("@riim/opal-router"), require("cellx"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-tabs"] = factory(root["reflect-metadata"], root["@riim/next-uid"], root["@riim/opal-router"], root["cellx"], root["rionite"], root["@riim/next-tick"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__) {
+		root["@riim/opal-tabs"] = factory(root["reflect-metadata"], root["@riim/next-uid"], root["@riim/opal-router"], root["cellx"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -136,10 +136,10 @@ const cellx_1 = __webpack_require__(5);
 const rionite_1 = __webpack_require__(6);
 const OpalTabList_1 = __webpack_require__(7);
 exports.OpalTab = OpalTabList_1.OpalTab;
-const OpalTabPanel_1 = __webpack_require__(15);
+const OpalTabPanel_1 = __webpack_require__(14);
 exports.OpalTabPanel = OpalTabPanel_1.OpalTabPanel;
-__webpack_require__(18);
-const template = __webpack_require__(19);
+__webpack_require__(17);
+const template = __webpack_require__(18);
 var OpalTabList_2 = __webpack_require__(7);
 exports.OpalTabList = OpalTabList_2.OpalTabList;
 const indexOf = Array.prototype.indexOf;
@@ -307,8 +307,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rionite_1 = __webpack_require__(6);
 const OpalTab_1 = __webpack_require__(8);
 exports.OpalTab = OpalTab_1.OpalTab;
-__webpack_require__(13);
-const template = __webpack_require__(14);
+__webpack_require__(12);
+const template = __webpack_require__(13);
 let OpalTabList = class OpalTabList extends rionite_1.BaseComponent {
 };
 OpalTabList = __decorate([
@@ -336,11 +336,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const next_tick_1 = __webpack_require__(9);
-const cellx_decorators_1 = __webpack_require__(10);
+const cellx_decorators_1 = __webpack_require__(9);
 const rionite_1 = __webpack_require__(6);
-__webpack_require__(11);
-const template = __webpack_require__(12);
+__webpack_require__(10);
+const template = __webpack_require__(11);
 let OpalTab = class OpalTab extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -374,12 +373,8 @@ let OpalTab = class OpalTab extends rionite_1.BaseComponent {
             this.blur();
         }
     }
-    _onControlFocus(evt) {
-        next_tick_1.nextTick(() => {
-            if (document.activeElement == evt.target) {
-                this.paramFocused = true;
-            }
-        });
+    _onControlFocus() {
+        this.paramFocused = true;
     }
     _onControlBlur() {
         this.paramFocused = false;
@@ -482,12 +477,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
 /* 10 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
 module.exports = (function(d) {
         var head = d.head || d.getElementsByTagName('head')[0];
         if (head) {
@@ -502,13 +491,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = "button/control (tabindex={_tabIndex}) {\n@Slot/contentSlot\n}"
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -525,13 +514,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = "@Slot/contentSlot"
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -547,10 +536,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_1 = __webpack_require__(5);
-const cellx_decorators_1 = __webpack_require__(10);
+const cellx_decorators_1 = __webpack_require__(9);
 const rionite_1 = __webpack_require__(6);
-__webpack_require__(16);
-const template = __webpack_require__(17);
+__webpack_require__(15);
+const template = __webpack_require__(16);
 let OpalTabPanel = class OpalTabPanel extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -588,7 +577,7 @@ exports.OpalTabPanel = OpalTabPanel;
 
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -605,13 +594,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = "@IfThen (contentRendered) {\n@Slot/contentSlot\n}"
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -628,7 +617,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = "@Slot/tabListSlot (forTag=opal-tab-list) {\nOpalTabList/tabList {\n@Slot/tabs (forTag=opal-tab)\n}\n}\n@Slot/tabPanels (forTag=opal-tab-panel)"

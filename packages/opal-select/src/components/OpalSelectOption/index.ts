@@ -1,4 +1,3 @@
-import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
 import { Computed } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
@@ -32,7 +31,7 @@ export class OpalSelectOption extends BaseComponent {
 		return this.paramDisabled ? -1 : this.paramTabIndex;
 	}
 
-	_mouseWasUp = false;
+	_mouseUpEvent = false;
 
 	elementAttached() {
 		this.listenTo(this, {
@@ -74,12 +73,8 @@ export class OpalSelectOption extends BaseComponent {
 		}
 	}
 
-	_onControlFocus(evt: Event) {
-		nextTick(() => {
-			if (document.activeElement == evt.target) {
-				this.paramFocused = true;
-			}
-		});
+	_onControlFocus() {
+		this.paramFocused = true;
 	}
 
 	_onControlBlur() {
@@ -87,7 +82,7 @@ export class OpalSelectOption extends BaseComponent {
 	}
 
 	_onControlMouseUp() {
-		this._mouseWasUp = true;
+		this._mouseUpEvent = true;
 
 		if (!this.paramDisabled) {
 			this.click();
@@ -97,8 +92,8 @@ export class OpalSelectOption extends BaseComponent {
 	_onControlClick(evt: Event) {
 		evt.preventDefault();
 
-		if (this._mouseWasUp) {
-			this._mouseWasUp = true;
+		if (this._mouseUpEvent) {
+			this._mouseUpEvent = false;
 		} else if (!this.paramDisabled) {
 			this.click();
 		}

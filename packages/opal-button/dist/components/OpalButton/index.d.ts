@@ -11,12 +11,12 @@ export declare class OpalButton extends BaseComponent {
     paramFocused: boolean;
     paramDisabled: boolean;
     readonly _tabIndex: number;
-    _documentKeyDownListening: IDisposableListening | undefined;
+    _documentKeyDownListening: IDisposableListening | null | undefined;
     ready(): void;
     elementAttached(): void;
     _onParamFocusedChange(evt: IEvent): void;
     _onTabIndexChange(): void;
-    _onElementFocus(evt: Event): void;
+    _onElementFocus(): void;
     _onElementBlur(): void;
     _onElementClick(): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;

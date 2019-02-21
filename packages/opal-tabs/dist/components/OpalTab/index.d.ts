@@ -12,7 +12,7 @@ export declare class OpalTab extends BaseComponent {
     elementAttached(): void;
     ready(): void;
     _onParamFocusedChange(evt: IEvent): void;
-    _onControlFocus(evt: Event): void;
+    _onControlFocus(): void;
     _onControlBlur(): void;
     _onControlClick(evt: Event): void;
     click(): this;

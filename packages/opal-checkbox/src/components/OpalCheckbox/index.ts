@@ -1,4 +1,3 @@
-import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
 import { Computed } from 'cellx-decorators';
 import {
@@ -103,13 +102,9 @@ export class OpalCheckbox extends BaseComponent {
 		this.emit('change');
 	}
 
-	_onControlFocus(evt: Event) {
-		nextTick(() => {
-			if (document.activeElement == evt.target) {
-				this.paramFocused = true;
-				this.emit('focus');
-			}
-		});
+	_onControlFocus() {
+		this.paramFocused = true;
+		this.emit('focus');
 	}
 
 	_onControlBlur() {

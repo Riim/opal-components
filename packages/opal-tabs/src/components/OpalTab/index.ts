@@ -1,4 +1,3 @@
-import { nextTick } from '@riim/next-tick';
 import { IEvent } from 'cellx';
 import { Computed } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
@@ -51,12 +50,8 @@ export class OpalTab extends BaseComponent {
 		}
 	}
 
-	_onControlFocus(evt: Event) {
-		nextTick(() => {
-			if (document.activeElement == evt.target) {
-				this.paramFocused = true;
-			}
-		});
+	_onControlFocus() {
+		this.paramFocused = true;
 	}
 
 	_onControlBlur() {
