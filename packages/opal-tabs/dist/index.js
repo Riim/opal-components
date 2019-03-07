@@ -353,7 +353,6 @@ let OpalTab = class OpalTab extends rionite_1.BaseComponent {
         return this.paramDisabled ? -1 : this.paramTabIndex;
     }
     elementAttached() {
-        this.listenTo(this, 'change:paramFocused', this._onParamFocusedChange);
         this.listenTo('control', {
             focus: this._onControlFocus,
             blur: this._onControlBlur,
@@ -363,14 +362,6 @@ let OpalTab = class OpalTab extends rionite_1.BaseComponent {
     ready() {
         if (this.paramFocused) {
             this.focus();
-        }
-    }
-    _onParamFocusedChange(evt) {
-        if (evt.data.value) {
-            this.focus();
-        }
-        else {
-            this.blur();
         }
     }
     _onControlFocus() {

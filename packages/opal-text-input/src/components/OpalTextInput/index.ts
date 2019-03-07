@@ -105,8 +105,7 @@ export class OpalTextInput extends BaseComponent {
 	elementAttached() {
 		this.listenTo(this, {
 			'change:paramRows': this._onParamRowsChange,
-			'change:paramValue': this._onParamValueChange,
-			'change:paramFocused': this._onParamFocusedChange
+			'change:paramValue': this._onParamValueChange
 		});
 		this.listenTo(this.textField, {
 			focus: this._onTextFieldFocus,
@@ -132,14 +131,6 @@ export class OpalTextInput extends BaseComponent {
 			if (this.paramMultiline && this.paramAutoHeight) {
 				this._fixHeight();
 			}
-		}
-	}
-
-	_onParamFocusedChange(evt: IEvent) {
-		if (evt.data.value) {
-			this.focus();
-		} else {
-			this.blur();
 		}
 	}
 

@@ -28,7 +28,6 @@ export declare class OpalTextInput extends BaseComponent {
     elementAttached(): void;
     _onParamRowsChange(): void;
     _onParamValueChange(evt: IEvent): void;
-    _onParamFocusedChange(evt: IEvent): void;
     _onTextFieldFocus(): void;
     _onTextFieldBlur(): void;
     _onTextFieldInput(evt: Event): void;

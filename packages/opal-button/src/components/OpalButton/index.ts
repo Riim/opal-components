@@ -1,4 +1,3 @@
-import { IEvent } from 'cellx';
 import { Computed } from 'cellx-decorators';
 import {
 	BaseComponent,
@@ -44,10 +43,7 @@ export class OpalButton extends BaseComponent {
 	}
 
 	elementAttached() {
-		this.listenTo(this, {
-			'change:paramFocused': this._onParamFocusedChange,
-			'change:_tabIndex': this._onTabIndexChange
-		});
+		this.listenTo(this, 'change:_tabIndex', this._onTabIndexChange);
 		this.listenTo(this.element, {
 			focus: this._onElementFocus,
 			blur: this._onElementBlur,
@@ -55,14 +51,6 @@ export class OpalButton extends BaseComponent {
 		});
 
 		this.element.tabIndex = this._tabIndex;
-	}
-
-	_onParamFocusedChange(evt: IEvent) {
-		if (evt.data.value) {
-			this.focus();
-		} else {
-			this.blur();
-		}
 	}
 
 	_onTabIndexChange() {

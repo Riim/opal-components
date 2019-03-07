@@ -155,24 +155,13 @@ let OpalButton = class OpalButton extends rionite_1.BaseComponent {
         }
     }
     elementAttached() {
-        this.listenTo(this, {
-            'change:paramFocused': this._onParamFocusedChange,
-            'change:_tabIndex': this._onTabIndexChange
-        });
+        this.listenTo(this, 'change:_tabIndex', this._onTabIndexChange);
         this.listenTo(this.element, {
             focus: this._onElementFocus,
             blur: this._onElementBlur,
             click: this._onElementClick
         });
         this.element.tabIndex = this._tabIndex;
-    }
-    _onParamFocusedChange(evt) {
-        if (evt.data.value) {
-            this.focus();
-        }
-        else {
-            this.blur();
-        }
     }
     _onTabIndexChange() {
         this.element.tabIndex = this._tabIndex;

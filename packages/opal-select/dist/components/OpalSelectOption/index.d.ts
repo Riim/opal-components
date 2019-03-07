@@ -16,7 +16,6 @@ export declare class OpalSelectOption extends BaseComponent {
     ready(): void;
     _onParamSelectedChange(evt: IEvent): void;
     _onParamIndeterminateChange(evt: IEvent): void;
-    _onParamFocusedChange(evt: IEvent): void;
     _onControlFocus(): void;
     _onControlBlur(): void;
     _onControlMouseUp(): void;

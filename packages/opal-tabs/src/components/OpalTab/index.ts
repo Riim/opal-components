@@ -1,4 +1,3 @@
-import { IEvent } from 'cellx';
 import { Computed } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
 import './index.css';
@@ -28,7 +27,6 @@ export class OpalTab extends BaseComponent {
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'change:paramFocused', this._onParamFocusedChange);
 		this.listenTo('control', {
 			focus: this._onControlFocus,
 			blur: this._onControlBlur,
@@ -39,14 +37,6 @@ export class OpalTab extends BaseComponent {
 	ready() {
 		if (this.paramFocused) {
 			this.focus();
-		}
-	}
-
-	_onParamFocusedChange(evt: IEvent) {
-		if (evt.data.value) {
-			this.focus();
-		} else {
-			this.blur();
 		}
 	}
 

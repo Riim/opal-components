@@ -181,11 +181,9 @@ let OpalCheckbox = class OpalCheckbox extends rionite_1.BaseComponent {
     _onParamFocusedChange(evt) {
         if (evt.data.value) {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
-            this.focus();
         }
         else {
             this._documentKeyDownListening.stop();
-            this.blur();
         }
     }
     _onDocumentKeyDown(evt) {

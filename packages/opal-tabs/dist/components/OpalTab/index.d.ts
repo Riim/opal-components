@@ -1,4 +1,3 @@
-import { IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalTab extends BaseComponent {
@@ -11,7 +10,6 @@ export declare class OpalTab extends BaseComponent {
     readonly _tabIndex: number;
     elementAttached(): void;
     ready(): void;
-    _onParamFocusedChange(evt: IEvent): void;
     _onControlFocus(): void;
     _onControlBlur(): void;
     _onControlClick(evt: Event): void;

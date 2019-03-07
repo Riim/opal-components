@@ -1,4 +1,3 @@
-import { IEvent } from 'cellx';
 import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalSignButton extends BaseComponent {
@@ -13,7 +12,6 @@ export declare class OpalSignButton extends BaseComponent {
     _documentKeyDownListening: IDisposableListening;
     elementAttached(): void;
     ready(): void;
-    _onParamFocusedChange(evt: IEvent): void;
     _onControlFocus(): void;
     _onControlBlur(): void;
     _onControlClick(evt: Event): void;

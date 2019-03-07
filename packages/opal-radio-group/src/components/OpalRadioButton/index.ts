@@ -63,10 +63,8 @@ export class OpalRadioButton extends BaseComponent {
 				'keydown',
 				this._onDocumentKeyDown
 			);
-			this.focus();
 		} else {
 			this._documentKeyDownListening.stop();
-			this.blur();
 		}
 	}
 

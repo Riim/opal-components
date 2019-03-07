@@ -432,7 +432,6 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             if (!this._documentKeyDownListening) {
                 this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             }
-            this.focus();
             this.emit('focus');
         }
         else {
@@ -440,7 +439,6 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
                 this._documentKeyDownListening.stop();
                 this._documentKeyDownListening = null;
             }
-            this.blur();
             this.emit('blur');
         }
     }
@@ -1044,8 +1042,7 @@ let OpalSelectOption = class OpalSelectOption extends rionite_1.BaseComponent {
     elementAttached() {
         this.listenTo(this, {
             'change:paramSelected': this._onParamSelectedChange,
-            'change:paramIndeterminate': this._onParamIndeterminateChange,
-            'change:paramFocused': this._onParamFocusedChange
+            'change:paramIndeterminate': this._onParamIndeterminateChange
         });
         this.listenTo('control', {
             focus: this._onControlFocus,
@@ -1067,14 +1064,6 @@ let OpalSelectOption = class OpalSelectOption extends rionite_1.BaseComponent {
     _onParamIndeterminateChange(evt) {
         if (evt.data.value) {
             this.paramSelected = false;
-        }
-    }
-    _onParamFocusedChange(evt) {
-        if (evt.data.value) {
-            this.focus();
-        }
-        else {
-            this.blur();
         }
     }
     _onControlFocus() {

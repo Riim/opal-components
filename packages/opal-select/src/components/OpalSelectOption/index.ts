@@ -36,8 +36,7 @@ export class OpalSelectOption extends BaseComponent {
 	elementAttached() {
 		this.listenTo(this, {
 			'change:paramSelected': this._onParamSelectedChange,
-			'change:paramIndeterminate': this._onParamIndeterminateChange,
-			'change:paramFocused': this._onParamFocusedChange
+			'change:paramIndeterminate': this._onParamIndeterminateChange
 		});
 		this.listenTo('control', {
 			focus: this._onControlFocus,
@@ -62,14 +61,6 @@ export class OpalSelectOption extends BaseComponent {
 	_onParamIndeterminateChange(evt: IEvent) {
 		if (evt.data.value) {
 			this.paramSelected = false;
-		}
-	}
-
-	_onParamFocusedChange(evt: IEvent) {
-		if (evt.data.value) {
-			this.focus();
-		} else {
-			this.blur();
 		}
 	}
 

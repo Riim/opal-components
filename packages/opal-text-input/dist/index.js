@@ -199,8 +199,7 @@ let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
     elementAttached() {
         this.listenTo(this, {
             'change:paramRows': this._onParamRowsChange,
-            'change:paramValue': this._onParamValueChange,
-            'change:paramFocused': this._onParamFocusedChange
+            'change:paramValue': this._onParamValueChange
         });
         this.listenTo(this.textField, {
             focus: this._onTextFieldFocus,
@@ -223,14 +222,6 @@ let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
             if (this.paramMultiline && this.paramAutoHeight) {
                 this._fixHeight();
             }
-        }
-    }
-    _onParamFocusedChange(evt) {
-        if (evt.data.value) {
-            this.focus();
-        }
-        else {
-            this.blur();
         }
     }
     _onTextFieldFocus() {

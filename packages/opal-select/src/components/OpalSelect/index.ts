@@ -420,16 +420,12 @@ export class OpalSelect extends BaseComponent {
 				);
 			}
 
-			this.focus();
-
 			this.emit('focus');
 		} else {
 			if (!this._opened) {
 				this._documentKeyDownListening!.stop();
 				this._documentKeyDownListening = null;
 			}
-
-			this.blur();
 
 			this.emit('blur');
 		}
