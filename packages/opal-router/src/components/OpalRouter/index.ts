@@ -1,8 +1,7 @@
 import { kebabCase } from '@riim/kebab-case';
 import { nextUID } from '@riim/next-uid';
 import { snakeCaseAttributeName } from '@riim/rionite-snake-case-attribute-name';
-import { History, Location } from 'history';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory, History, Location } from 'history';
 import {
 	BaseComponent,
 	Component,
@@ -38,7 +37,7 @@ export interface IComponentState {
 	[name: string]: boolean | string;
 }
 
-const history = createHistory();
+const history = createBrowserHistory();
 
 function valueToAttributeValue(value: boolean | string): string {
 	return value === false ? 'no' : value === true ? 'yes' : value;

@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("@riim/kebab-case"), require("@riim/next-uid"), require("@riim/rionite-snake-case-attribute-name"), require("history/createBrowserHistory"), require("rionite"));
+		module.exports = factory(require("reflect-metadata"), require("@riim/kebab-case"), require("@riim/next-uid"), require("@riim/rionite-snake-case-attribute-name"), require("history"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "@riim/kebab-case", "@riim/next-uid", "@riim/rionite-snake-case-attribute-name", "history/createBrowserHistory", "rionite"], factory);
+		define(["reflect-metadata", "@riim/kebab-case", "@riim/next-uid", "@riim/rionite-snake-case-attribute-name", "history", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-router"] = factory(require("reflect-metadata"), require("@riim/kebab-case"), require("@riim/next-uid"), require("@riim/rionite-snake-case-attribute-name"), require("history/createBrowserHistory"), require("rionite"));
+		exports["@riim/opal-router"] = factory(require("reflect-metadata"), require("@riim/kebab-case"), require("@riim/next-uid"), require("@riim/rionite-snake-case-attribute-name"), require("history"), require("rionite"));
 	else
-		root["@riim/opal-router"] = factory(root["reflect-metadata"], root["@riim/kebab-case"], root["@riim/next-uid"], root["@riim/rionite-snake-case-attribute-name"], root["history/createBrowserHistory"], root["rionite"]);
+		root["@riim/opal-router"] = factory(root["reflect-metadata"], root["@riim/kebab-case"], root["@riim/next-uid"], root["@riim/rionite-snake-case-attribute-name"], root["history"], root["rionite"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -133,7 +133,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const kebab_case_1 = __webpack_require__(3);
 const next_uid_1 = __webpack_require__(4);
 const rionite_snake_case_attribute_name_1 = __webpack_require__(5);
-const createBrowserHistory_1 = __webpack_require__(6);
+const history_1 = __webpack_require__(6);
 const rionite_1 = __webpack_require__(7);
 const OpalRoute_1 = __webpack_require__(8);
 exports.OpalRoute = OpalRoute_1.OpalRoute;
@@ -142,7 +142,7 @@ __webpack_require__(10);
 const parsePath_1 = __webpack_require__(11);
 const PathNodeType_1 = __webpack_require__(12);
 const forEach = Array.prototype.forEach;
-const history = createBrowserHistory_1.default();
+const history = history_1.createBrowserHistory();
 function valueToAttributeValue(value) {
     return value === false ? 'no' : value === true ? 'yes' : value;
 }

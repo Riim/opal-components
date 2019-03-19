@@ -24,7 +24,6 @@ const externals = [
 	'cellx-decorators',
 	'date-exists',
 	'history',
-	'history/createBrowserHistory',
 	'reflect-metadata',
 	'rionite',
 
