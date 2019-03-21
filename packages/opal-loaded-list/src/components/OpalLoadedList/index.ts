@@ -10,7 +10,7 @@ import {
 	RnSlot
 	} from 'rionite';
 import './index.css';
-import template = require('./template.rnt');
+import template from './template.rnt';
 
 export interface IDataListItem {
 	[name: string]: any;

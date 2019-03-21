@@ -176,7 +176,7 @@ const opal_calendar_1 = __webpack_require__(1);
 const date_exists_1 = __webpack_require__(9);
 const rionite_1 = __webpack_require__(10);
 __webpack_require__(11);
-const template = __webpack_require__(12);
+const template_rnt_1 = __webpack_require__(12);
 function pad(num) {
     return (num < 10 ? '0' : '') + num;
 }
@@ -321,7 +321,7 @@ __decorate([
 OpalDateInput = __decorate([
     rionite_1.Component({
         elementIs: 'OpalDateInput',
-        template,
+        template: template_rnt_1.default,
         events: {
             calendar: {
                 change(evt) {
@@ -369,9 +369,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "OpalTextInputValidator/textInputValidator {\nOpalInputMask/inputMask (mask={paramMask}) {\nOpalTextInput/textInput (\nclass=OpalInputValidator__textInput OpalInputMask__textInput,\nvalue={paramValue},\nplaceholder={paramPlaceholder},\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=calendar)\n}\n}\n@IfThen (paramRequired) {\nOpalTextInputValidatorRule/textInputValidatorRuleRequired (\nrequired,\npopoverPosition={paramPopoverPosition}\n) {\n'{\"Поле обязательно для заполнения\" |t }'\n}\n}\nOpalTextInputValidatorRule/textInputValidatorRuleDateExists (\ntest={dateExists},\npopoverPosition={paramPopoverPosition}\n) {\n'{\"Несуществующая дата\" |t }'\n}\nOpalTextInputValidatorRule/textInputValidatorRuleDateInRange (\ntest={_isDateInRange},\npopoverPosition={paramPopoverPosition}\n) {\n'{\"Дата вне допустимого диапазона\" |t }'\n}\n}\nOpalDropdown/calendarMenu (autoHeight=no) {\nOpalCalendar/calendar (\nfromDate={paramFromDate},\ntoDate={paramToDate},\nvalue={paramValue},\ndateDelimiter=.\n)\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("OpalTextInputValidator/textInputValidator {\nOpalInputMask/inputMask (mask={paramMask}) {\nOpalTextInput/textInput (\nclass=OpalInputValidator__textInput OpalInputMask__textInput,\nvalue={paramValue},\nplaceholder={paramPlaceholder},\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=calendar)\n}\n}\n@IfThen (paramRequired) {\nOpalTextInputValidatorRule/textInputValidatorRuleRequired (\nrequired,\npopoverPosition={paramPopoverPosition}\n) {\n'{\"Поле обязательно для заполнения\" |t }'\n}\n}\nOpalTextInputValidatorRule/textInputValidatorRuleDateExists (\ntest={dateExists},\npopoverPosition={paramPopoverPosition}\n) {\n'{\"Несуществующая дата\" |t }'\n}\nOpalTextInputValidatorRule/textInputValidatorRuleDateInRange (\ntest={_isDateInRange},\npopoverPosition={paramPopoverPosition}\n) {\n'{\"Дата вне допустимого диапазона\" |t }'\n}\n}\nOpalDropdown/calendarMenu (autoHeight=no) {\nOpalCalendar/calendar (\nfromDate={paramFromDate},\ntoDate={paramToDate},\nvalue={paramValue},\ndateDelimiter=.\n)\n}");
 
 /***/ })
 /******/ ]);

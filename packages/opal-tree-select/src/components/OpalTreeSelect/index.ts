@@ -4,7 +4,7 @@ import { OpalTreeList, TDataTreeList } from '@riim/opal-tree-list';
 import { Cell, define } from 'cellx';
 import { Component, Param } from 'rionite';
 import './index.css';
-import template = require('./template.rnt');
+import template from './template.rnt';
 
 @Component({
 	elementIs: 'OpalTreeSelect',

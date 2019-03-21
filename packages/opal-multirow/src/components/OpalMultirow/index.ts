@@ -4,7 +4,7 @@ import { Computed, Observable } from 'cellx-decorators';
 import { BaseComponent, Component } from 'rionite';
 import { OpalMultirowRow } from '../OpalMultirowRow';
 import './index.css';
-import template = require('./template.rnt');
+import template from './template.rnt';
 
 export { OpalMultirowRow };
 

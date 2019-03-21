@@ -170,7 +170,7 @@ const opal_tree_list_1 = __webpack_require__(5);
 const cellx_1 = __webpack_require__(8);
 const rionite_1 = __webpack_require__(9);
 __webpack_require__(10);
-const template = __webpack_require__(11);
+const template_rnt_1 = __webpack_require__(11);
 let OpalTreeSelect = class OpalTreeSelect extends opal_select_1.OpalSelect {
     constructor() {
         super(...arguments);
@@ -241,7 +241,7 @@ __decorate([
 OpalTreeSelect = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTreeSelect',
-        template,
+        template: template_rnt_1.default,
         events: {
             btnClose: {
                 click() {
@@ -285,9 +285,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "OpalModal/menu {\n@Slot (for=menuHeaderSlot) {\n@Slot/menuHeaderSlot (for=menuHeader)\n}\nOpalFilteredList/filteredList {\nOpalTreeList/treeList (\nclass=OpalFilteredList__list,\ndataTreeList={dataTreeList},\ndataTreeListItemSchema={paramDataTreeListItemSchema |dump },\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\nquery={paramQuery}\n) {\nOpalSelectOption/option (\nclass=OpalTreeList__selectionControl,\ntext={$item.name},\nselected={$selected},\nindeterminate={$indeterminate}\n)\n}\n}\ndiv/footer {\nOpalButton/btnClose {\n// ;;; подтверждение выбора триселекта\n// ;;; https://yadi.sk/i/j9g1w-7xj9Xsew\n'{\"Готово\" |pt(\"OpalTreeSelect__btnClose\") }'\n}\n}\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("OpalModal/menu {\n@Slot (for=menuHeaderSlot) {\n@Slot/menuHeaderSlot (for=menuHeader)\n}\nOpalFilteredList/filteredList {\nOpalTreeList/treeList (\nclass=OpalFilteredList__list,\ndataTreeList={dataTreeList},\ndataTreeListItemSchema={paramDataTreeListItemSchema |dump },\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\nquery={paramQuery}\n) {\nOpalSelectOption/option (\nclass=OpalTreeList__selectionControl,\ntext={$item.name},\nselected={$selected},\nindeterminate={$indeterminate}\n)\n}\n}\ndiv/footer {\nOpalButton/btnClose {\n// ;;; подтверждение выбора триселекта\n// ;;; https://yadi.sk/i/j9g1w-7xj9Xsew\n'{\"Готово\" |pt(\"OpalTreeSelect__btnClose\") }'\n}\n}\n}");
 
 /***/ })
 /******/ ]);

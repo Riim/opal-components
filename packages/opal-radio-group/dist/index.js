@@ -186,7 +186,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(5);
 const rionite_1 = __webpack_require__(3);
 __webpack_require__(6);
-const template = __webpack_require__(7);
+const template_rnt_1 = __webpack_require__(7);
 let OpalRadioButton = class OpalRadioButton extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -319,7 +319,7 @@ __decorate([
 OpalRadioButton = __decorate([
     rionite_1.Component({
         elementIs: 'OpalRadioButton',
-        template
+        template: template_rnt_1.default
     })
 ], OpalRadioButton);
 exports.OpalRadioButton = OpalRadioButton;
@@ -350,9 +350,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\n@Slot/contentSlot\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\n@Slot/contentSlot\n}");
 
 /***/ })
 /******/ ]);

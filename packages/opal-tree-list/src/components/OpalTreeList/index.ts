@@ -18,7 +18,7 @@ import '../OpalTreeListItem';
 import { OpalTreeListItem } from '../OpalTreeListItem';
 import _getListItemContext from './_getListItemContext';
 import './index.css';
-import template = require('./template.rnt');
+import template from './template.rnt';
 
 export { OpalTreeListItem };
 

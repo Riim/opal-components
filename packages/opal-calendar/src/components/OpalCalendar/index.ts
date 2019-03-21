@@ -12,7 +12,7 @@ import {
 import { formatDate } from './formatDate';
 import './index.css';
 import { parseDate } from './parseDate';
-import template = require('./template.rnt');
+import template from './template.rnt';
 
 export { formatDate };
 export { parseDate };

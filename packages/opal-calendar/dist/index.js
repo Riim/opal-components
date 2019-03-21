@@ -154,7 +154,7 @@ exports.formatDate = formatDate_1.formatDate;
 __webpack_require__(10);
 const parseDate_1 = __webpack_require__(11);
 exports.parseDate = parseDate_1.parseDate;
-const template = __webpack_require__(12);
+const template_rnt_1 = __webpack_require__(12);
 function getTodayDate() {
     let now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -469,7 +469,7 @@ OpalCalendar = OpalCalendar_1 = __decorate([
             ],
             sundayFirst: false
         },
-        template,
+        template: template_rnt_1.default,
         events: {
             monthSelect: {
                 select(evt) {
@@ -590,9 +590,11 @@ exports.parseDate = parseDate;
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "header/header {\nbutton/btnPrevMonth (disabled={btnPrevMonthDisabled}) {\nOpalIcon/btnPrevMonthIcon (name=chevronLeft)\n}\nOpalSelect/monthSelect (size=s, value=['{shownMonth}']) {\n@Repeat (class=OpalSelect__menuContent, for=month in constructor.i18n.months) {\nOpalSelectOption (value={=$index}, text={=month})\n}\n}\n' '\nOpalSelect/yearSelect (size=s, value=['{shownYear}']) {\n@Repeat (class=OpalSelect__menuContent, for=year in years) {\nOpalSelectOption (text={=year})\n}\n}\nbutton/btnNextMonth (disabled={btnNextMonthDisabled}) {\nOpalIcon/btnNextMonthIcon (name=chevronRight)\n}\n}\ndiv/body {\ndiv/weekDays {\ndiv/weekDaysRow {\n@Repeat (for=weekDay in weekDaysShort) {\nspan/weekDay {\n'{=weekDay}'\n}\n}\n}\n}\ndiv/days {\n@Repeat (for=weekDays in days) {\ndiv/daysRow {\n@Repeat (for=day in weekDays) {\nspan/day (\nweekDay={=day.weekDay},\ntoday={=day.today},\nselected={=day.selected},\nnotInCurrentMonth={=day.notInCurrentMonth},\ndisabled={=day.disabled},\ntabindex={=day.tabIndex},\ndata-date={=day.date}\n) {\n'{=day.value}'\n}\n}\n}\n}\n}\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("header/header {\nbutton/btnPrevMonth (disabled={btnPrevMonthDisabled}) {\nOpalIcon/btnPrevMonthIcon (name=chevronLeft)\n}\nOpalSelect/monthSelect (size=s, value=['{shownMonth}']) {\n@Repeat (class=OpalSelect__menuContent, for=month in constructor.i18n.months) {\nOpalSelectOption (value={=$index}, text={=month})\n}\n}\n' '\nOpalSelect/yearSelect (size=s, value=['{shownYear}']) {\n@Repeat (class=OpalSelect__menuContent, for=year in years) {\nOpalSelectOption (text={=year})\n}\n}\nbutton/btnNextMonth (disabled={btnNextMonthDisabled}) {\nOpalIcon/btnNextMonthIcon (name=chevronRight)\n}\n}\ndiv/body {\ndiv/weekDays {\ndiv/weekDaysRow {\n@Repeat (for=weekDay in weekDaysShort) {\nspan/weekDay {\n'{=weekDay}'\n}\n}\n}\n}\ndiv/days {\n@Repeat (for=weekDays in days) {\ndiv/daysRow {\n@Repeat (for=day in weekDays) {\nspan/day (\nweekDay={=day.weekDay},\ntoday={=day.today},\nselected={=day.selected},\nnotInCurrentMonth={=day.notInCurrentMonth},\ndisabled={=day.disabled},\ntabindex={=day.tabIndex},\ndata-date={=day.date}\n) {\n'{=day.value}'\n}\n}\n}\n}\n}\n}");
 
 /***/ })
 /******/ ]);

@@ -134,7 +134,7 @@ const cellx_1 = __webpack_require__(3);
 const cellx_decorators_1 = __webpack_require__(4);
 const rionite_1 = __webpack_require__(5);
 __webpack_require__(6);
-const template = __webpack_require__(7);
+const template_rnt_1 = __webpack_require__(7);
 const openedDropdowns = [];
 let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
     constructor() {
@@ -290,7 +290,7 @@ __decorate([
 OpalDropdown = __decorate([
     rionite_1.Component({
         elementIs: 'OpalDropdown',
-        template
+        template: template_rnt_1.default
     })
 ], OpalDropdown);
 exports.OpalDropdown = OpalDropdown;
@@ -333,9 +333,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@IfThen (contentRendered) {\n@Slot/contentSlot\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (contentRendered) {\n@Slot/contentSlot\n}");
 
 /***/ })
 /******/ ]);

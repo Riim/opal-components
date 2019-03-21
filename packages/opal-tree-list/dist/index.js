@@ -311,7 +311,7 @@ const OpalTreeListItem_1 = __webpack_require__(13);
 exports.OpalTreeListItem = OpalTreeListItem_1.OpalTreeListItem;
 const _getListItemContext_1 = __webpack_require__(14);
 __webpack_require__(17);
-const template = __webpack_require__(18);
+const template_rnt_1 = __webpack_require__(18);
 const defaultDataTreeListItemSchema = Object.freeze({
     value: 'id',
     text: 'name'
@@ -529,7 +529,7 @@ __decorate([
 OpalTreeList = OpalTreeList_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTreeList',
-        template
+        template: template_rnt_1.default
     })
 ], OpalTreeList);
 exports.OpalTreeList = OpalTreeList;
@@ -574,7 +574,7 @@ const cellx_decorators_1 = __webpack_require__(11);
 const rionite_1 = __webpack_require__(12);
 const _getListItemContext_1 = __webpack_require__(14);
 __webpack_require__(15);
-const template = __webpack_require__(16);
+const template_rnt_1 = __webpack_require__(16);
 let OpalTreeListItem = class OpalTreeListItem extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -663,7 +663,7 @@ __decorate([
 OpalTreeListItem = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTreeListItem',
-        template,
+        template: template_rnt_1.default,
         events: {
             btnToggleChildren: {
                 change(evt) {
@@ -737,9 +737,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 16 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "div/head {\nOpalButton/btnToggleChildren (viewType=clean, checkable, checked={paramOpened}) {\nOpalIcon/btnToggleChildrenIcon (name=chevronRight)\n}\nspan/contentSlotWrapper {\n@Slot/contentSlot (cloneContent)\n}\n}\n@IfThen (dataTreeListItem.children.length) {\ndiv/children {\n@Repeat (for=$item in dataTreeListItem.children) {\nOpalTreeListItem/item (\ndataTreeList={paramDataTreeList},\nfilteredDataTreeList={paramFilteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath='[{paramIndexpath},{$index}]',\nquery={paramQuery},\nopened={paramQuery |bool },\nnestingLevel={paramIndexpath.length},\nhasChildren='{$item.children.length |gt(0) }'\n) {\n@Slot (cloneContent, getContext={_getListItemContext})\n}\n}\n}\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("div/head {\nOpalButton/btnToggleChildren (viewType=clean, checkable, checked={paramOpened}) {\nOpalIcon/btnToggleChildrenIcon (name=chevronRight)\n}\nspan/contentSlotWrapper {\n@Slot/contentSlot (cloneContent)\n}\n}\n@IfThen (dataTreeListItem.children.length) {\ndiv/children {\n@Repeat (for=$item in dataTreeListItem.children) {\nOpalTreeListItem/item (\ndataTreeList={paramDataTreeList},\nfilteredDataTreeList={paramFilteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath='[{paramIndexpath},{$index}]',\nquery={paramQuery},\nopened={paramQuery |bool },\nnestingLevel={paramIndexpath.length},\nhasChildren='{$item.children.length |gt(0) }'\n) {\n@Slot (cloneContent, getContext={_getListItemContext})\n}\n}\n}\n}");
 
 /***/ }),
 /* 17 */
@@ -760,9 +762,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 18 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@IfThen (listShown) {\n@IfThen (filteredDataTreeList.length) {\n@Repeat (for=$item in filteredDataTreeList) {\nOpalTreeListItem/item (\ndataTreeList={dataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={paramQuery},\nopened={paramQuery |bool },\nnestingLevel=0,\nhasChildren='{$item.children.length |gt(0) }'\n) {\n@Slot (cloneContent, getContext={_getListItemContext}) {\nOpalCheckbox/selectionControl (\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@IfElse (filteredDataTreeList.length) {\n@Slot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\n}\n}\n@IfElse (listShown) {\nOpalLoader/loader (shown)\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (listShown) {\n@IfThen (filteredDataTreeList.length) {\n@Repeat (for=$item in filteredDataTreeList) {\nOpalTreeListItem/item (\ndataTreeList={dataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={paramQuery},\nopened={paramQuery |bool },\nnestingLevel=0,\nhasChildren='{$item.children.length |gt(0) }'\n) {\n@Slot (cloneContent, getContext={_getListItemContext}) {\nOpalCheckbox/selectionControl (\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@IfElse (filteredDataTreeList.length) {\n@Slot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\n}\n}\n@IfElse (listShown) {\nOpalLoader/loader (shown)\n}");
 
 /***/ })
 /******/ ]);

@@ -602,7 +602,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(70);
 const rionite_1 = __webpack_require__(71);
 __webpack_require__(72);
-const template = __webpack_require__(73);
+const template_rnt_1 = __webpack_require__(73);
 let OpalIcon = class OpalIcon extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -642,7 +642,7 @@ __decorate([
 OpalIcon = __decorate([
     rionite_1.Component({
         elementIs: 'OpalIcon',
-        template
+        template: template_rnt_1.default
     })
 ], OpalIcon);
 exports.OpalIcon = OpalIcon;
@@ -679,9 +679,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 73 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "svg/svg (stroke-width={paramStrokeWidth}) {\nuse (xlink:href={xlinkHref})\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("svg/svg (stroke-width={paramStrokeWidth}) {\nuse (xlink:href={xlinkHref})\n}");
 
 /***/ })
 /******/ ]);

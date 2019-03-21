@@ -157,7 +157,7 @@ const cellx_1 = __webpack_require__(7);
 const cellx_decorators_1 = __webpack_require__(8);
 const rionite_1 = __webpack_require__(9);
 __webpack_require__(10);
-const template = __webpack_require__(11);
+const template_rnt_1 = __webpack_require__(11);
 function toComparable(str) {
     return str.replace(/\s+/g, ' ').toLowerCase();
 }
@@ -558,7 +558,7 @@ __decorate([
 OpalAutosuggest = OpalAutosuggest_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalAutosuggest',
-        template,
+        template: template_rnt_1.default,
         domEvents: {
             listItem: {
                 click(_evt, context) {
@@ -623,9 +623,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@Slot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={'Начните вводить для поиска' |t },\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown/menu {\n@Slot (for=menuHeader)\ndiv/list {\n@Repeat (for=item in dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (dataList.length) {\n@Slot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\n}\n@Slot/menuFooterSlot (for=menuFooter)\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@Slot (for=textInput) {\nOpalTextInput/textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={'Начните вводить для поиска' |t },\nclearable\n) {\nOpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown/menu {\n@Slot (for=menuHeader)\ndiv/list {\n@Repeat (for=item in dataList) {\ndiv/listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (dataList.length) {\n@Slot/nothingFoundSlot (for=nothingFound) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\n}\n@Slot/menuFooterSlot (for=menuFooter)\n}");
 
 /***/ })
 /******/ ]);

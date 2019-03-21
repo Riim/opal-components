@@ -170,7 +170,7 @@ const platform_1 = __webpack_require__(8);
 const cellx_decorators_1 = __webpack_require__(9);
 const rionite_1 = __webpack_require__(10);
 __webpack_require__(11);
-const template = __webpack_require__(12);
+const template_rnt_1 = __webpack_require__(12);
 let OpalMultiselect = class OpalMultiselect extends opal_select_1.OpalSelect {
     constructor() {
         super(...arguments);
@@ -209,7 +209,7 @@ __decorate([
 OpalMultiselect = __decorate([
     rionite_1.Component({
         elementIs: 'OpalMultiselect',
-        template: opal_select_1.OpalSelect.template.extend(template),
+        template: opal_select_1.OpalSelect.template.extend(template_rnt_1.default),
         events: {
             queryInput: {
                 input(evt) {
@@ -275,9 +275,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "/menu (super!, autoHeight=no) {\ndiv/menuHeader {\ndiv/menuHeaderLeftPart {\nOpalTextInput/queryInput (\nclass={_queryInputClass},\nclearable,\nplaceholder={'Поиск' |t }\n) {\nOpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\ndiv/menuHeaderRightPart {\n@Slot/menuHeaderContentSlot (for=menuHeaderContent) {\n@IfThen (viewModel.length) {\nspan/selectedCount {\n'{\"выбрано {n}\" |t(viewModel.length) }'\n}\n}\n}\n}\n}\ndiv/menuList {\nOpalLoadedList/loadedList (\ndataProvider={dataProvider},\ndataListItemValueName={_dataListItemValueFieldName}\n) {\nOpalSelectOption/option (\nclass=OpalLoadedList__listItem,\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }',\nsubtext='{$item |key(_dataListItemSubtextFieldName) }'\n)\n}\n}\ndiv/menuSelected {\n@Repeat (for=item in viewModel) {\ndiv/selectedItem {\n'{item |key(_viewModelItemTextFieldName) }'\nbutton/btnDeselectItem (tabindex=-1) {\nOpalIcon/btnDeselectItemIcon (name=cross)\n}\n}\n}\n@IfThen (nothingSelectedShown) {\n@Slot/nothingSelectedSlot (for=nothingSelected) {\nspan/nothingSelected {\nspan/nothingSelectedMessage {\n'{\"Ничего не выбрано\" |t }'\n}\n}\n}\n}\n}\ndiv/menuFooter {\ndiv/menuFooterLeftPart {\n@Slot/menuFooterContentSlot (for=menuFooterContent)\n}\ndiv/menuFooterRightPart {\nOpalButton/btnClose {\n'{\"Закрыть\" |t }'\n}\n}\n}\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("/menu (super!, autoHeight=no) {\ndiv/menuHeader {\ndiv/menuHeaderLeftPart {\nOpalTextInput/queryInput (\nclass={_queryInputClass},\nclearable,\nplaceholder={'Поиск' |t }\n) {\nOpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\ndiv/menuHeaderRightPart {\n@Slot/menuHeaderContentSlot (for=menuHeaderContent) {\n@IfThen (viewModel.length) {\nspan/selectedCount {\n'{\"выбрано {n}\" |t(viewModel.length) }'\n}\n}\n}\n}\n}\ndiv/menuList {\nOpalLoadedList/loadedList (\ndataProvider={dataProvider},\ndataListItemValueName={_dataListItemValueFieldName}\n) {\nOpalSelectOption/option (\nclass=OpalLoadedList__listItem,\nvalue='{$item |key(_dataListItemValueFieldName) }',\ntext='{$item |key(_dataListItemTextFieldName) }',\nsubtext='{$item |key(_dataListItemSubtextFieldName) }'\n)\n}\n}\ndiv/menuSelected {\n@Repeat (for=item in viewModel) {\ndiv/selectedItem {\n'{item |key(_viewModelItemTextFieldName) }'\nbutton/btnDeselectItem (tabindex=-1) {\nOpalIcon/btnDeselectItemIcon (name=cross)\n}\n}\n}\n@IfThen (nothingSelectedShown) {\n@Slot/nothingSelectedSlot (for=nothingSelected) {\nspan/nothingSelected {\nspan/nothingSelectedMessage {\n'{\"Ничего не выбрано\" |t }'\n}\n}\n}\n}\n}\ndiv/menuFooter {\ndiv/menuFooterLeftPart {\n@Slot/menuFooterContentSlot (for=menuFooterContent)\n}\ndiv/menuFooterRightPart {\nOpalButton/btnClose {\n'{\"Закрыть\" |t }'\n}\n}\n}\n}");
 
 /***/ })
 /******/ ]);

@@ -133,7 +133,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(3);
 const rionite_1 = __webpack_require__(4);
 __webpack_require__(5);
-const template = __webpack_require__(6);
+const template_rnt_1 = __webpack_require__(6);
 let OpalCheckbox = class OpalCheckbox extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -281,7 +281,7 @@ __decorate([
 OpalCheckbox = __decorate([
     rionite_1.Component({
         elementIs: 'OpalCheckbox',
-        template
+        template: template_rnt_1.default
     })
 ], OpalCheckbox);
 exports.OpalCheckbox = OpalCheckbox;
@@ -318,9 +318,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\n@Slot/contentSlot\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("label/label {\ninput/input (type=checkbox)\nspan/control (tabindex={_tabIndex})\n' '\n@Slot/contentSlot\n}");
 
 /***/ })
 /******/ ]);

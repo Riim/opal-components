@@ -17,6 +17,6 @@
     "@riim/opal-icon": "^0.35.1",
     "cellx": "^1.7.95",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.36.0"
+    "rionite": "^0.36.5"
   }
 }

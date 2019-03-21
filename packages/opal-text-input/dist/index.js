@@ -147,7 +147,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(5);
 const rionite_1 = __webpack_require__(6);
 __webpack_require__(7);
-const template = __webpack_require__(8);
+const template_rnt_1 = __webpack_require__(8);
 let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -398,7 +398,7 @@ __decorate([
 OpalTextInput = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTextInput',
-        template,
+        template: template_rnt_1.default,
         domEvents: {
             btnClear: {
                 click() {
@@ -445,9 +445,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@IfThen (paramMultiline) {\ndiv/textareaContainer {\ntextarea/textarea, textField (\nrows={paramRows},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabindex={paramTabIndex},\ndisabled={paramDisabled}\n)\ndiv/textareaHeight\n}\n}\n@IfElse (paramMultiline) {\ninput/, textField (\ntype={paramInputType},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabindex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfThen (paramStartIcon) {\nOpalIcon/startIcon (name={paramStartIcon})\n}\n@Slot/endIconSlot (for=endIcon, shown={endIconShown}) {\n@IfThen (paramEndIcon) {\nOpalIcon/endIcon (name={paramEndIcon})\n}\n}\n@IfThen (paramClearable) {\nbutton/btnClear (shown={btnClearShown}) {\nOpalIcon/btnClearIcon (name=cross)\n}\n}\n@IfThen (paramLoading) {\nOpalLoader/loader (size=s, shown)\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (paramMultiline) {\ndiv/textareaContainer {\ntextarea/textarea, textField (\nrows={paramRows},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabindex={paramTabIndex},\ndisabled={paramDisabled}\n)\ndiv/textareaHeight\n}\n}\n@IfElse (paramMultiline) {\ninput/, textField (\ntype={paramInputType},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabindex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}\n@IfThen (paramStartIcon) {\nOpalIcon/startIcon (name={paramStartIcon})\n}\n@Slot/endIconSlot (for=endIcon, shown={endIconShown}) {\n@IfThen (paramEndIcon) {\nOpalIcon/endIcon (name={paramEndIcon})\n}\n}\n@IfThen (paramClearable) {\nbutton/btnClear (shown={btnClearShown}) {\nOpalIcon/btnClearIcon (name=cross)\n}\n}\n@IfThen (paramLoading) {\nOpalLoader/loader (size=s, shown)\n}");
 
 /***/ })
 /******/ ]);

@@ -142,7 +142,7 @@ const rionite_1 = __webpack_require__(5);
 const OpalInputValidatorRule_1 = __webpack_require__(6);
 exports.OpalInputValidatorRule = OpalInputValidatorRule_1.OpalInputValidatorRule;
 __webpack_require__(9);
-const template = __webpack_require__(10);
+const template_rnt_1 = __webpack_require__(10);
 let OpalInputValidator = class OpalInputValidator extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -208,7 +208,7 @@ __decorate([
 OpalInputValidator = __decorate([
     rionite_1.Component({
         elementIs: 'OpalInputValidator',
-        template
+        template: template_rnt_1.default
     })
 ], OpalInputValidator);
 exports.OpalInputValidator = OpalInputValidator;
@@ -244,7 +244,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const rionite_1 = __webpack_require__(5);
 __webpack_require__(7);
-const template = __webpack_require__(8);
+const template_rnt_1 = __webpack_require__(8);
 let OpalInputValidatorRule = class OpalInputValidatorRule extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -273,7 +273,7 @@ __decorate([
 OpalInputValidatorRule = __decorate([
     rionite_1.Component({
         elementIs: 'OpalInputValidatorRule',
-        template
+        template: template_rnt_1.default
     })
 ], OpalInputValidatorRule);
 exports.OpalInputValidatorRule = OpalInputValidatorRule;
@@ -298,9 +298,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "OpalPopover/popover (viewType=danger, position={paramPopoverPosition}) {\n@Slot/contentSlot\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("OpalPopover/popover (viewType=danger, position={paramPopoverPosition}) {\n@Slot/contentSlot\n}");
 
 /***/ }),
 /* 9 */
@@ -321,9 +323,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 10 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@Slot/contentSlot"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@Slot/contentSlot");
 
 /***/ })
 /******/ ]);

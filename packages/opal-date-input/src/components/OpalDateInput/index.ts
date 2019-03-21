@@ -16,7 +16,7 @@ import {
 	Param
 	} from 'rionite';
 import './index.css';
-import template = require('./template.rnt');
+import template from './template.rnt';
 
 function pad(num: number): string {
 	return (num < 10 ? '0' : '') + num;

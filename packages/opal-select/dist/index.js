@@ -189,7 +189,7 @@ const OpalSelectOption_1 = __webpack_require__(15);
 exports.OpalSelectOption = OpalSelectOption_1.OpalSelectOption;
 __webpack_require__(18);
 const isEqualArray_1 = __webpack_require__(19);
-const template = __webpack_require__(20);
+const template_rnt_1 = __webpack_require__(20);
 const map = Array.prototype.map;
 const defaultDataListItemSchema = Object.freeze({
     value: 'value',
@@ -970,7 +970,7 @@ __decorate([
 OpalSelect = OpalSelect_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSelect',
-        template
+        template: template_rnt_1.default
     })
 ], OpalSelect);
 exports.OpalSelect = OpalSelect;
@@ -1025,7 +1025,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(13);
 const rionite_1 = __webpack_require__(14);
 __webpack_require__(16);
-const template = __webpack_require__(17);
+const template_rnt_1 = __webpack_require__(17);
 let OpalSelectOption = class OpalSelectOption extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -1196,7 +1196,7 @@ __decorate([
 OpalSelectOption = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSelectOption',
-        template
+        template: template_rnt_1.default
     })
 ], OpalSelectOption);
 exports.OpalSelectOption = OpalSelectOption;
@@ -1221,9 +1221,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 17 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "button/control (tabindex={_tabIndex}) {\n@Slot/contentSlot {\n'{paramText}'\n@IfThen (paramSubtext) {\nsub {\n'{paramSubtext}'\n}\n}\n}\n@IfThen (selected) {\nOpalIcon/iconSelected (name=checkmark)\n}\n@IfThen (indeterminate) {\nOpalIcon/iconIndeterminate (name=minus)\n}\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("button/control (tabindex={_tabIndex}) {\n@Slot/contentSlot {\n'{paramText}'\n@IfThen (paramSubtext) {\nsub {\n'{paramSubtext}'\n}\n}\n}\n@IfThen (selected) {\nOpalIcon/iconSelected (name=checkmark)\n}\n@IfThen (indeterminate) {\nOpalIcon/iconIndeterminate (name=minus)\n}\n}");
 
 /***/ }),
 /* 18 */
@@ -1266,9 +1268,11 @@ exports.isEqualArray = isEqualArray;
 
 /***/ }),
 /* 20 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@Slot (for=button) {\nOpalButton/button (\nviewType={paramViewType},\nsize={paramSize},\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n) {\n@IfThen (paramText) {\n'{paramText}'\n}\n@IfElse (paramText) {\n'{_buttonText}'\n}\nOpalIcon/buttonIcon (name=chevronDown)\n}\n}\n@Slot (for=menuSlot) {\n@Slot/menuSlot (for=menu) {\nOpalDropdown/menu (closeOn=mousedown) {\n@Slot (for=menuHeader)\n@Slot (for=menuContent) {\n@IfThen (_paramDataListSpecified) {\ndiv/, menuContent {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {\nOpalSelectOption/option (\nvalue='{=item |key(_dataListItemValueFieldName) }',\ntext='{=item |key(_dataListItemTextFieldName) }',\nsubtext='{=item |key(_dataListItemSubtextFieldName) }',\ndisabled='{=item |key(_dataListItemDisabledFieldName) }'\n)\n}\n@Slot/newItemInputSlot // ...\n}\n@IfElse (dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (_paramDataListSpecified) {\ndiv/, menuContent {\n@Slot/options (forTag=opal-select-option)\n@Slot (for=newItemInputSlot) {\n@Slot/newItemInputSlot (for=newItemInput)\n}\n}\n}\n}\n@Slot (for=menuFooter)\n}\n}\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@Slot (for=button) {\nOpalButton/button (\nviewType={paramViewType},\nsize={paramSize},\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n) {\n@IfThen (paramText) {\n'{paramText}'\n}\n@IfElse (paramText) {\n'{_buttonText}'\n}\nOpalIcon/buttonIcon (name=chevronDown)\n}\n}\n@Slot (for=menuSlot) {\n@Slot/menuSlot (for=menu) {\nOpalDropdown/menu (closeOn=mousedown) {\n@Slot (for=menuHeader)\n@Slot (for=menuContent) {\n@IfThen (_paramDataListSpecified) {\ndiv/, menuContent {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {\nOpalSelectOption/option (\nvalue='{=item |key(_dataListItemValueFieldName) }',\ntext='{=item |key(_dataListItemTextFieldName) }',\nsubtext='{=item |key(_dataListItemSubtextFieldName) }',\ndisabled='{=item |key(_dataListItemDisabledFieldName) }'\n)\n}\n@Slot/newItemInputSlot // ...\n}\n@IfElse (dataList) {\nOpalLoader/menuLoader (shown)\n}\n}\n}\n@IfElse (_paramDataListSpecified) {\ndiv/, menuContent {\n@Slot/options (forTag=opal-select-option)\n@Slot (for=newItemInputSlot) {\n@Slot/newItemInputSlot (for=newItemInput)\n}\n}\n}\n}\n@Slot (for=menuFooter)\n}\n}\n}");
 
 /***/ })
 /******/ ]);

@@ -2,7 +2,7 @@ import { Set } from '@riim/map-set-polyfill';
 import { Cell, IEvent } from 'cellx';
 import { BaseComponent, Component, Param } from 'rionite';
 import './index.css';
-import template = require('./template.rnt');
+import template from './template.rnt';
 
 let container: HTMLElement | undefined;
 

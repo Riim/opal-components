@@ -144,7 +144,7 @@ const rionite_1 = __webpack_require__(7);
 const OpalMultirowRow_1 = __webpack_require__(8);
 exports.OpalMultirowRow = OpalMultirowRow_1.OpalMultirowRow;
 __webpack_require__(11);
-const template = __webpack_require__(12);
+const template_rnt_1 = __webpack_require__(12);
 let OpalMultirow = class OpalMultirow extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -219,7 +219,7 @@ __decorate([
 OpalMultirow = __decorate([
     rionite_1.Component({
         elementIs: 'OpalMultirow',
-        template
+        template: template_rnt_1.default
     })
 ], OpalMultirow);
 exports.OpalMultirow = OpalMultirow;
@@ -264,13 +264,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const rionite_1 = __webpack_require__(7);
 __webpack_require__(9);
-const template = __webpack_require__(10);
+const template_rnt_1 = __webpack_require__(10);
 let OpalMultirowRow = class OpalMultirowRow extends rionite_1.BaseComponent {
 };
 OpalMultirowRow = __decorate([
     rionite_1.Component({
         elementIs: 'OpalMultirowRow',
-        template,
+        template: template_rnt_1.default,
         events: {
             btnRemoveRow: {
                 click() {
@@ -307,9 +307,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 10 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@Slot/contentSlot\nOpalSignButton/btnRemoveRow (sign=minus)\nOpalSignButton/btnAddRow (sign=plus)"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@Slot/contentSlot\nOpalSignButton/btnRemoveRow (sign=minus)\nOpalSignButton/btnAddRow (sign=plus)");
 
 /***/ }),
 /* 11 */
@@ -330,9 +332,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@Slot/presetRowsSlot (\nfor=presetRows,\nnotHaveNewRows={_notHaveNewRows},\nnotSingleRow={_notSingleRow}\n) {\n@Slot/presetRows (for=presetRow)\n}\ndiv/newRows (notSingleRow={_notSingleRow}) {\n@Repeat (for=row in _newRows, trackBy=key) {\n@Slot/newRowSlot (cloneContent, data-key={row.key})\n}\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@Slot/presetRowsSlot (\nfor=presetRows,\nnotHaveNewRows={_notHaveNewRows},\nnotSingleRow={_notSingleRow}\n) {\n@Slot/presetRows (for=presetRow)\n}\ndiv/newRows (notSingleRow={_notSingleRow}) {\n@Repeat (for=row in _newRows, trackBy=key) {\n@Slot/newRowSlot (cloneContent, data-key={row.key})\n}\n}");
 
 /***/ })
 /******/ ]);

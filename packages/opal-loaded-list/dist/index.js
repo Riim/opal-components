@@ -143,7 +143,7 @@ const cellx_1 = __webpack_require__(5);
 const cellx_decorators_1 = __webpack_require__(6);
 const rionite_1 = __webpack_require__(7);
 __webpack_require__(8);
-const template = __webpack_require__(9);
+const template_rnt_1 = __webpack_require__(9);
 let defaultDataListItemSchema = Object.freeze({
     value: 'id',
     text: 'name'
@@ -337,7 +337,7 @@ __decorate([
 OpalLoadedList = OpalLoadedList_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalLoadedList',
-        template
+        template: template_rnt_1.default
     })
 ], OpalLoadedList);
 exports.OpalLoadedList = OpalLoadedList;
@@ -386,9 +386,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "div/list {\n@Repeat (for=$item in dataList) {\n@Slot/listItemSlot (for=listItem, cloneContent, getContext={_getListItemContext}) {\nspan/listItem {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\n}\nOpalLoader/loader (shown={loaderShown}, alignCenter={empty})\n@IfThen (nothingFoundShown) {\n@Slot/nothingFoundSlot (for=nothingFound, getContext={_getListItemContext}) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("div/list {\n@Repeat (for=$item in dataList) {\n@Slot/listItemSlot (for=listItem, cloneContent, getContext={_getListItemContext}) {\nspan/listItem {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\n}\nOpalLoader/loader (shown={loaderShown}, alignCenter={empty})\n@IfThen (nothingFoundShown) {\n@Slot/nothingFoundSlot (for=nothingFound, getContext={_getListItemContext}) {\nspan/nothingFound {\nspan/nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\n}");
 
 /***/ })
 /******/ ]);

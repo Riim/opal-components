@@ -1,7 +1,7 @@
 import { OpalPopover } from '@riim/opal-popover';
 import { BaseComponent, Component, Param } from 'rionite';
 import './index.css';
-import template = require('./template.rnt');
+import template from './template.rnt';
 
 @Component({
 	elementIs: 'OpalInputValidatorRule',

@@ -142,7 +142,7 @@ const cellx_decorators_1 = __webpack_require__(4);
 const rionite_1 = __webpack_require__(5);
 const OpalInputMaskDefinition_1 = __webpack_require__(6);
 exports.OpalInputMaskDefinition = OpalInputMaskDefinition_1.OpalInputMaskDefinition;
-const template = __webpack_require__(8);
+const template_rnt_1 = __webpack_require__(8);
 const forEach = Array.prototype.forEach;
 const iPhone = /iphone/i.test(navigator.userAgent);
 const ie11 = !window.ActiveXObject && 'ActiveXObject' in window;
@@ -436,7 +436,7 @@ __decorate([
 OpalInputMask = OpalInputMask_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalInputMask',
-        template
+        template: template_rnt_1.default
     })
 ], OpalInputMask);
 exports.OpalInputMask = OpalInputMask;
@@ -509,9 +509,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@Slot/contentSlot"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@Slot/contentSlot");
 
 /***/ })
 /******/ ]);

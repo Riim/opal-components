@@ -150,7 +150,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const opal_tag_select_1 = __webpack_require__(2);
 const rionite_1 = __webpack_require__(6);
-const template = __webpack_require__(7);
+const template_rnt_1 = __webpack_require__(7);
 let OpalTreeTagSelect = class OpalTreeTagSelect extends opal_tag_select_1.OpalTagSelect {
     _onSelectSelect() {
         return false;
@@ -162,7 +162,7 @@ let OpalTreeTagSelect = class OpalTreeTagSelect extends opal_tag_select_1.OpalTa
 OpalTreeTagSelect = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTreeTagSelect',
-        template
+        template: template_rnt_1.default
     })
 ], OpalTreeTagSelect);
 exports.OpalTreeTagSelect = OpalTreeTagSelect;
@@ -176,9 +176,11 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "OpalTreeSelect/select (\nviewType=clean,\ndataTreeListKeypath={_dataListKeypathParam},\ndataTreeListItemSchema={paramDataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\naddNewItem={paramAddNewItem},\nfocused={paramFocused}\n) {\n@Slot (class=OpalSelect__menuHeaderSlot, for=OpalSelect__menuHeader)\nOpalSignButton/button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("OpalTreeSelect/select (\nviewType=clean,\ndataTreeListKeypath={_dataListKeypathParam},\ndataTreeListItemSchema={paramDataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\naddNewItem={paramAddNewItem},\nfocused={paramFocused}\n) {\n@Slot (class=OpalSelect__menuHeaderSlot, for=OpalSelect__menuHeader)\nOpalSignButton/button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}");
 
 /***/ })
 /******/ ]);

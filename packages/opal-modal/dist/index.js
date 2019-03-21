@@ -134,7 +134,7 @@ const cellx_1 = __webpack_require__(3);
 const cellx_decorators_1 = __webpack_require__(4);
 const rionite_1 = __webpack_require__(5);
 __webpack_require__(6);
-const template = __webpack_require__(7);
+const template_rnt_1 = __webpack_require__(7);
 const openedModals = [];
 let documentFocusListening;
 let documentKeyUpListening;
@@ -276,7 +276,7 @@ __decorate([
 OpalModal = __decorate([
     rionite_1.Component({
         elementIs: 'OpalModal',
-        template,
+        template: template_rnt_1.default,
         domEvents: {
             btnClose: {
                 click() {
@@ -327,9 +327,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "div/window {\ndiv/btnCloseWrapper {\nbutton/btnClose\n}\n@IfThen (contentRendered) {\n@Slot/contentSlot\n}\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("div/window {\ndiv/btnCloseWrapper {\nbutton/btnClose\n}\n@IfThen (contentRendered) {\n@Slot/contentSlot\n}\n}");
 
 /***/ })
 /******/ ]);

@@ -136,7 +136,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const rionite_1 = __webpack_require__(4);
 __webpack_require__(5);
-const template = __webpack_require__(6);
+const template_rnt_1 = __webpack_require__(6);
 const forEach = Array.prototype.forEach;
 const find = Array.prototype.find;
 let OpalSwitchMenu = class OpalSwitchMenu extends rionite_1.BaseComponent {
@@ -196,7 +196,7 @@ let OpalSwitchMenu = class OpalSwitchMenu extends rionite_1.BaseComponent {
 OpalSwitchMenu = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSwitchMenu',
-        template
+        template: template_rnt_1.default
     })
 ], OpalSwitchMenu);
 exports.OpalSwitchMenu = OpalSwitchMenu;
@@ -227,9 +227,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@Slot/contentSlot"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@Slot/contentSlot");
 
 /***/ })
 /******/ ]);

@@ -133,7 +133,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(3);
 const rionite_1 = __webpack_require__(4);
 __webpack_require__(5);
-const template = __webpack_require__(6);
+const template_rnt_1 = __webpack_require__(6);
 let OpalSignButton = class OpalSignButton extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -261,7 +261,7 @@ __decorate([
 OpalSignButton = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSignButton',
-        template
+        template: template_rnt_1.default
     })
 ], OpalSignButton);
 exports.OpalSignButton = OpalSignButton;
@@ -298,9 +298,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "button/control (tabindex={_tabIndex}) {\nspan/sign\n' '\n@Slot/contentSlot\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("button/control (tabindex={_tabIndex}) {\nspan/sign\n' '\n@Slot/contentSlot\n}");
 
 /***/ })
 /******/ ]);

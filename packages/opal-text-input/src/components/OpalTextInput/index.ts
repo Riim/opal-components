@@ -2,7 +2,7 @@ import { IEvent } from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
 import './index.css';
-import template = require('./template.rnt');
+import template from './template.rnt';
 
 @Component<OpalTextInput>({
 	elementIs: 'OpalTextInput',

@@ -133,7 +133,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(3);
 const rionite_1 = __webpack_require__(4);
 __webpack_require__(5);
-const template = __webpack_require__(6);
+const template_rnt_1 = __webpack_require__(6);
 let OpalSlider = class OpalSlider extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -226,7 +226,7 @@ __decorate([
 OpalSlider = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSlider',
-        template
+        template: template_rnt_1.default
     })
 ], OpalSlider);
 exports.OpalSlider = OpalSlider;
@@ -263,9 +263,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "@IfThen (paramRange) {\ndiv/firstInputWrapper3 {\ndiv/firstInputWrapper2 (style=width: {_firstInputWidth}%) {\ndiv/firstInputWrapper {\ninput/firstInput (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramRange.0}\n)\n}\n}\n}\ndiv/secondInputWrapper {\ninput/secondInput (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramRange.1}\n)\n}\n}\n@IfElse (paramRange) {\ninput/input (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramValue}\n)\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (paramRange) {\ndiv/firstInputWrapper3 {\ndiv/firstInputWrapper2 (style=width: {_firstInputWidth}%) {\ndiv/firstInputWrapper {\ninput/firstInput (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramRange.0}\n)\n}\n}\n}\ndiv/secondInputWrapper {\ninput/secondInput (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramRange.1}\n)\n}\n}\n@IfElse (paramRange) {\ninput/input (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramValue}\n)\n}");
 
 /***/ })
 /******/ ]);

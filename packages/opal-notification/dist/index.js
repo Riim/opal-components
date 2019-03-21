@@ -141,7 +141,7 @@ const map_set_polyfill_1 = __webpack_require__(4);
 const cellx_1 = __webpack_require__(5);
 const rionite_1 = __webpack_require__(6);
 __webpack_require__(7);
-const template = __webpack_require__(8);
+const template_rnt_1 = __webpack_require__(8);
 let container;
 const shownNotifications = new map_set_polyfill_1.Set();
 function initContainer(notification) {
@@ -281,7 +281,7 @@ __decorate([
 OpalNotification = __decorate([
     rionite_1.Component({
         elementIs: 'OpalNotification',
-        template
+        template: template_rnt_1.default
     })
 ], OpalNotification);
 exports.OpalNotification = OpalNotification;
@@ -324,9 +324,11 @@ module.exports = (function(d) {
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "div/bar (\nviewType={paramViewType},\nhasIcon={paramIcon |bool },\niconSize={paramIconSize},\nbuttonHide={paramButtonHide}\n) {\n@IfThen (paramIcon) {\nOpalIcon/icon (name={paramIcon}, size={paramIconSize})\n}\n@Slot/contentSlot\nbutton/btnHide (hide={paramButtonHide |not }) {\nOpalIcon/btnHideIcon (name=cross)\n}\n}"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("div/bar (\nviewType={paramViewType},\nhasIcon={paramIcon |bool },\niconSize={paramIconSize},\nbuttonHide={paramButtonHide}\n) {\n@IfThen (paramIcon) {\nOpalIcon/icon (name={paramIcon}, size={paramIconSize})\n}\n@Slot/contentSlot\nbutton/btnHide (hide={paramButtonHide |not }) {\nOpalIcon/btnHideIcon (name=cross)\n}\n}");
 
 /***/ })
 /******/ ]);

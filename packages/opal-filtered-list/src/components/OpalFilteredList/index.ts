@@ -3,7 +3,7 @@ import { OpalTextInput } from '@riim/opal-text-input';
 import { IEvent } from 'cellx';
 import { BaseComponent, Component } from 'rionite';
 import './index.css';
-import template = require('./template.rnt');
+import template from './template.rnt';
 
 @Component({
 	elementIs: 'OpalFilteredList',
