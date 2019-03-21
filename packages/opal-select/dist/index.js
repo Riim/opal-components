@@ -435,7 +435,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             this.emit('focus');
         }
         else {
-            if (!this._opened) {
+            if (this._documentKeyDownListening && !this._opened) {
                 this._documentKeyDownListening.stop();
                 this._documentKeyDownListening = null;
             }

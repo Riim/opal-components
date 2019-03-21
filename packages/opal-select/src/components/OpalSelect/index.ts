@@ -422,8 +422,8 @@ export class OpalSelect extends BaseComponent {
 
 			this.emit('focus');
 		} else {
-			if (!this._opened) {
-				this._documentKeyDownListening!.stop();
+			if (this._documentKeyDownListening && !this._opened) {
+				this._documentKeyDownListening.stop();
 				this._documentKeyDownListening = null;
 			}
 
