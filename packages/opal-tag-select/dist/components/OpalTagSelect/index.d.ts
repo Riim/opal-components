@@ -32,9 +32,7 @@ export declare class OpalTagSelect extends BaseComponent {
         text?: string;
         disabled?: string;
     };
-    paramAddNewItem: (text: string) => Promise<{
-        [name: string]: string;
-    }>;
+    paramAddNewItem: (text: string) => Promise<Record<string, string>>;
     paramPlaceholder: string;
     paramPopoverPosition: string;
     paramTabIndex: number;

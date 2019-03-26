@@ -3,13 +3,9 @@ import { BaseComponent } from 'rionite';
 import { OpalInputMaskDefinition } from '../OpalInputMaskDefinition';
 export { OpalInputMaskDefinition };
 export declare class OpalInputMask extends BaseComponent {
-    static defaultDefinitions: {
-        [chr: string]: RegExp;
-    };
+    static defaultDefinitions: Record<string, RegExp>;
     paramMask: string;
-    _definitions: {
-        [chr: string]: RegExp;
-    };
+    _definitions: Record<string, RegExp>;
     readonly _mask: Array<string>;
     readonly _partialIndex: number;
     readonly _tests: Array<RegExp | null>;

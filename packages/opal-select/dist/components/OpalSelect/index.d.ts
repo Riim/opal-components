@@ -42,9 +42,7 @@ export declare class OpalSelect extends BaseComponent {
         subtext?: string;
         disabled?: string;
     };
-    paramAddNewItem: (text: string) => Promise<{
-        [name: string]: string;
-    }>;
+    paramAddNewItem: (text: string) => Promise<Record<string, string>>;
     paramText: string;
     paramMaxTextLength: number;
     paramPlaceholder: string;
@@ -64,9 +62,7 @@ export declare class OpalSelect extends BaseComponent {
     _viewModelItemSubtextFieldName: string;
     _viewModelItemDisabledFieldName: string;
     readonly value: Array<string>;
-    _addNewItem: ((text: string) => Promise<{
-        [name: string]: string;
-    }>) | null;
+    _addNewItem: ((text: string) => Promise<Record<string, string>>) | null;
     readonly _buttonText: string;
     optionElements: HTMLCollectionOf<IComponentElement>;
     optionsCell: Cell<Array<OpalSelectOption>>;
@@ -100,9 +96,7 @@ export declare class OpalSelect extends BaseComponent {
     _onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>): false;
     _onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void;
     _onMenuButtonClick(evt: IEvent<OpalButton>): false | void;
-    _addNewItem$(newItem: {
-        [name: string]: string;
-    }): void;
+    _addNewItem$(newItem: Record<string, string>): void;
     _onMenuChange(evt: IEvent): void;
     open(): boolean;
     close(): boolean;

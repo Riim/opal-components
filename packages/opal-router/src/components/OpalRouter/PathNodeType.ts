@@ -1,5 +1,5 @@
 export enum PathNodeType {
-	SIMPLE,
+	STATIC,
 	OPTIONAL,
 	INSERT
 }

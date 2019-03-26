@@ -19,8 +19,6 @@ import { PathNodeType } from './PathNodeType';
 export { History, Location };
 export { OpalRoute };
 
-const forEach = Array.prototype.forEach;
-
 export interface IRouteProperty {
 	name: string;
 	optional: boolean;
@@ -68,7 +66,7 @@ export class OpalRouter extends BaseComponent {
 	ready() {
 		let routes = this._routes;
 
-		forEach.call(
+		Array.prototype.forEach.call(
 			this.element.getElementsByTagName('opal-route'),
 			(routeEl: IComponentElement<OpalRoute>) => {
 				let path = routeEl.$component!.paramPath;
@@ -78,7 +76,7 @@ export class OpalRouter extends BaseComponent {
 				(function processPath(path) {
 					for (let node of path) {
 						switch (node.type) {
-							case PathNodeType.SIMPLE: {
+							case PathNodeType.STATIC: {
 								rePath.push(escapeRegExp(node.value).replace('\\*', '.*?'));
 								break;
 							}
@@ -93,7 +91,7 @@ export class OpalRouter extends BaseComponent {
 									rePath.push('(?:');
 								}
 
-								processPath(node.childNodes);
+								processPath(node.children);
 
 								rePath.push(')?');
 
@@ -209,19 +207,20 @@ export class OpalRouter extends BaseComponent {
 				continue;
 			}
 
-			let state = route.properties.reduce(
-				(state, prop, index) => {
-					if (prop.optional) {
-						state[prop.name] = !!match![index + 1];
-					} else {
-						let value = match![index + 1];
-						state[prop.name] = value && decodeURIComponent(value);
-					}
+			let state: IComponentState = route.properties.reduce((state, prop, index) => {
+				if (prop.optional) {
+					state[prop.name] = !!match![index + 1];
+				} else {
+					let value = match![index + 1];
 
-					return state;
-				},
-				Object.create(null) as IComponentState
-			);
+					// `/password-recovery(/[email])`
+					if (value) {
+						state[prop.name] = decodeURIComponent(value);
+					}
+				}
+
+				return state;
+			}, Object.create(null));
 
 			if (route === this._route) {
 				let prevState = this._state!;
@@ -236,7 +235,7 @@ export class OpalRouter extends BaseComponent {
 
 				let componentEl = this._componentElement!;
 				let $paramsConfig:
-					| { [name: string]: I$ComponentParamConfig }
+					| Record<string, I$ComponentParamConfig>
 					| undefined = componentEl.$component!.constructor[KEY_PARAMS_CONFIG];
 				let attrs = componentEl.attributes;
 				let canWrite = true;

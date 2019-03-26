@@ -2,15 +2,15 @@ import { PathNodeType } from './PathNodeType';
 
 const reName = /[a-z][0-9a-z]*/i;
 
-export interface IPathSimpleNode {
-	type: PathNodeType.SIMPLE;
+export interface IPathStaticNode {
+	type: PathNodeType.STATIC;
 	value: string;
 }
 
 export interface IPathOptionalNode {
 	type: PathNodeType.OPTIONAL;
 	name: string | null;
-	childNodes: Array<TPathNode>;
+	children: Array<TPathNode>;
 }
 
 export interface IPathInsertNode {
@@ -18,12 +18,12 @@ export interface IPathInsertNode {
 	name: string;
 }
 
-export type TPathNode = IPathSimpleNode | IPathOptionalNode | IPathInsertNode;
+export type TPathNode = IPathStaticNode | IPathOptionalNode | IPathInsertNode;
 
 export function parsePath(path: string): Array<TPathNode> {
-	let ctx = PathNodeType.SIMPLE;
+	let ctx = PathNodeType.STATIC;
 
-	let at = 0;
+	let pos = 0;
 	let chr = path[0];
 
 	return readPath();
@@ -33,12 +33,12 @@ export function parsePath(path: string): Array<TPathNode> {
 			throw {
 				name: 'SyntaxError',
 				message: `Expected "${c}" instead of "${chr}"`,
-				at,
+				pos,
 				path
 			};
 		}
 
-		chr = path[++at];
+		chr = path[++pos];
 		return chr;
 	}
 
@@ -51,14 +51,14 @@ export function parsePath(path: string): Array<TPathNode> {
 			} else if (chr == '[') {
 				path.push(readInsert());
 			} else {
-				path.push(readSimpleNode());
+				path.push(readStaticNode());
 			}
 		}
 
 		return path;
 	}
 
-	function readSimpleNode(): IPathSimpleNode {
+	function readStaticNode(): IPathStaticNode {
 		let value = chr;
 
 		while (next()) {
@@ -70,13 +70,13 @@ export function parsePath(path: string): Array<TPathNode> {
 		}
 
 		return {
-			type: PathNodeType.SIMPLE,
+			type: PathNodeType.STATIC,
 			value
 		};
 	}
 
 	function readOptionalNode(): IPathOptionalNode {
-		let optionalNodeAt = at;
+		let optionalNodePos = pos;
 
 		next('(');
 
@@ -86,7 +86,7 @@ export function parsePath(path: string): Array<TPathNode> {
 			name = readOptionalNodeName();
 		}
 
-		let childNodes: Array<TPathNode> = [];
+		let children: Array<TPathNode> = [];
 
 		let prevCtx = ctx;
 		ctx = PathNodeType.OPTIONAL;
@@ -99,21 +99,21 @@ export function parsePath(path: string): Array<TPathNode> {
 				return {
 					type: PathNodeType.OPTIONAL,
 					name: name || null,
-					childNodes
+					children
 				};
 			} else if (chr == '(') {
-				childNodes.push(readOptionalNode());
+				children.push(readOptionalNode());
 			} else if (chr == '[') {
-				childNodes.push(readInsert());
+				children.push(readInsert());
 			} else {
-				childNodes.push(readSimpleNode());
+				children.push(readStaticNode());
 			}
 		}
 
 		throw {
 			name: 'SyntaxError',
 			message: 'Missing ")" in compound statement',
-			at: optionalNodeAt,
+			pos: optionalNodePos,
 			path
 		};
 	}
@@ -121,7 +121,7 @@ export function parsePath(path: string): Array<TPathNode> {
 	function readOptionalNodeName(): string {
 		next('|');
 
-		let optionalNodeNameAt = at;
+		let optionalNodeNamePos = pos;
 		let name = '';
 
 		while (chr) {
@@ -130,7 +130,7 @@ export function parsePath(path: string): Array<TPathNode> {
 					throw {
 						name: 'SyntaxError',
 						message: `Invalid name "${name}"`,
-						at: optionalNodeNameAt,
+						pos: optionalNodeNamePos,
 						path
 					};
 				}
@@ -147,13 +147,13 @@ export function parsePath(path: string): Array<TPathNode> {
 		throw {
 			name: 'SyntaxError',
 			message: 'Missing ":" in compound statement',
-			at: optionalNodeNameAt,
+			pos: optionalNodeNamePos,
 			path
 		};
 	}
 
 	function readInsert(): IPathInsertNode {
-		let insertAt = at;
+		let insertPos = pos;
 
 		next('[');
 
@@ -168,7 +168,7 @@ export function parsePath(path: string): Array<TPathNode> {
 					throw {
 						name: 'SyntaxError',
 						message: `Invalid name "${name}"`,
-						at: insertAt + 1,
+						pos: insertPos + 1,
 						path
 					};
 				}
@@ -189,7 +189,7 @@ export function parsePath(path: string): Array<TPathNode> {
 		throw {
 			name: 'SyntaxError',
 			message: 'Missing "]" in compound statement',
-			at: insertAt,
+			pos: insertPos,
 			path
 		};
 	}

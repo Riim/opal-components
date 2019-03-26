@@ -141,7 +141,6 @@ const escapeRegExp_1 = __webpack_require__(9);
 __webpack_require__(10);
 const parsePath_1 = __webpack_require__(11);
 const PathNodeType_1 = __webpack_require__(12);
-const forEach = Array.prototype.forEach;
 const history = history_1.createBrowserHistory();
 function valueToAttributeValue(value) {
     return value === false ? 'no' : value === true ? 'yes' : value;
@@ -161,14 +160,14 @@ let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
     }
     ready() {
         let routes = this._routes;
-        forEach.call(this.element.getElementsByTagName('opal-route'), (routeEl) => {
+        Array.prototype.forEach.call(this.element.getElementsByTagName('opal-route'), (routeEl) => {
             let path = routeEl.$component.paramPath;
             let rePath = [];
             let props = [];
             (function processPath(path) {
                 for (let node of path) {
                     switch (node.type) {
-                        case PathNodeType_1.PathNodeType.SIMPLE: {
+                        case PathNodeType_1.PathNodeType.STATIC: {
                             rePath.push(escapeRegExp_1.escapeRegExp(node.value).replace('\\*', '.*?'));
                             break;
                         }
@@ -183,7 +182,7 @@ let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
                             else {
                                 rePath.push('(?:');
                             }
-                            processPath(node.childNodes);
+                            processPath(node.children);
                             rePath.push(')?');
                             break;
                         }
@@ -278,7 +277,10 @@ let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
                 }
                 else {
                     let value = match[index + 1];
-                    state[prop.name] = value && decodeURIComponent(value);
+                    // `/password-recovery(/[email])`
+                    if (value) {
+                        state[prop.name] = decodeURIComponent(value);
+                    }
                 }
                 return state;
             }, Object.create(null));
@@ -523,8 +525,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const PathNodeType_1 = __webpack_require__(12);
 const reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
-    let ctx = PathNodeType_1.PathNodeType.SIMPLE;
-    let at = 0;
+    let ctx = PathNodeType_1.PathNodeType.STATIC;
+    let pos = 0;
     let chr = path[0];
     return readPath();
     function next(c) {
@@ -532,11 +534,11 @@ function parsePath(path) {
             throw {
                 name: 'SyntaxError',
                 message: `Expected "${c}" instead of "${chr}"`,
-                at,
+                pos,
                 path
             };
         }
-        chr = path[++at];
+        chr = path[++pos];
         return chr;
     }
     function readPath() {
@@ -549,12 +551,12 @@ function parsePath(path) {
                 path.push(readInsert());
             }
             else {
-                path.push(readSimpleNode());
+                path.push(readStaticNode());
             }
         }
         return path;
     }
-    function readSimpleNode() {
+    function readStaticNode() {
         let value = chr;
         while (next()) {
             if (chr == '(' || chr == '[' || (ctx == PathNodeType_1.PathNodeType.OPTIONAL && chr == ')')) {
@@ -563,18 +565,18 @@ function parsePath(path) {
             value += chr;
         }
         return {
-            type: PathNodeType_1.PathNodeType.SIMPLE,
+            type: PathNodeType_1.PathNodeType.STATIC,
             value
         };
     }
     function readOptionalNode() {
-        let optionalNodeAt = at;
+        let optionalNodePos = pos;
         next('(');
         let name;
         if (chr == '|') {
             name = readOptionalNodeName();
         }
-        let childNodes = [];
+        let children = [];
         let prevCtx = ctx;
         ctx = PathNodeType_1.PathNodeType.OPTIONAL;
         while (chr) {
@@ -584,29 +586,29 @@ function parsePath(path) {
                 return {
                     type: PathNodeType_1.PathNodeType.OPTIONAL,
                     name: name || null,
-                    childNodes
+                    children
                 };
             }
             else if (chr == '(') {
-                childNodes.push(readOptionalNode());
+                children.push(readOptionalNode());
             }
             else if (chr == '[') {
-                childNodes.push(readInsert());
+                children.push(readInsert());
             }
             else {
-                childNodes.push(readSimpleNode());
+                children.push(readStaticNode());
             }
         }
         throw {
             name: 'SyntaxError',
             message: 'Missing ")" in compound statement',
-            at: optionalNodeAt,
+            pos: optionalNodePos,
             path
         };
     }
     function readOptionalNodeName() {
         next('|');
-        let optionalNodeNameAt = at;
+        let optionalNodeNamePos = pos;
         let name = '';
         while (chr) {
             if (chr == '|') {
@@ -614,7 +616,7 @@ function parsePath(path) {
                     throw {
                         name: 'SyntaxError',
                         message: `Invalid name "${name}"`,
-                        at: optionalNodeNameAt,
+                        pos: optionalNodeNamePos,
                         path
                     };
                 }
@@ -629,12 +631,12 @@ function parsePath(path) {
         throw {
             name: 'SyntaxError',
             message: 'Missing ":" in compound statement',
-            at: optionalNodeNameAt,
+            pos: optionalNodeNamePos,
             path
         };
     }
     function readInsert() {
-        let insertAt = at;
+        let insertPos = pos;
         next('[');
         let name = '';
         let prevCtx = ctx;
@@ -645,7 +647,7 @@ function parsePath(path) {
                     throw {
                         name: 'SyntaxError',
                         message: `Invalid name "${name}"`,
-                        at: insertAt + 1,
+                        pos: insertPos + 1,
                         path
                     };
                 }
@@ -664,7 +666,7 @@ function parsePath(path) {
         throw {
             name: 'SyntaxError',
             message: 'Missing "]" in compound statement',
-            at: insertAt,
+            pos: insertPos,
             path
         };
     }
@@ -681,7 +683,7 @@ exports.parsePath = parsePath;
 Object.defineProperty(exports, "__esModule", { value: true });
 var PathNodeType;
 (function (PathNodeType) {
-    PathNodeType[PathNodeType["SIMPLE"] = 0] = "SIMPLE";
+    PathNodeType[PathNodeType["STATIC"] = 0] = "STATIC";
     PathNodeType[PathNodeType["OPTIONAL"] = 1] = "OPTIONAL";
     PathNodeType[PathNodeType["INSERT"] = 2] = "INSERT";
 })(PathNodeType = exports.PathNodeType || (exports.PathNodeType = {}));

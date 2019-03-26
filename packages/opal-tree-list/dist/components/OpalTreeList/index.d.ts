@@ -19,9 +19,7 @@ export interface IFilteredDataTreeListItem {
 }
 export declare type TDataTreeList = ObservableTreeList<IDataTreeListItem>;
 export declare type TFilteredDataTreeList = ObservableTreeList<IFilteredDataTreeListItem>;
-export declare type TViewModel = ObservableList<{
-    [name: string]: any;
-}>;
+export declare type TViewModel = ObservableList<Record<string, any>>;
 export declare class OpalTreeList extends BaseComponent {
     static defaultDataTreeListItemSchema: Readonly<{
         value: string;

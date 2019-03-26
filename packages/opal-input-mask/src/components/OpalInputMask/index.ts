@@ -21,7 +21,7 @@ const ie11 = !(window as any).ActiveXObject && 'ActiveXObject' in window;
 	template
 })
 export class OpalInputMask extends BaseComponent {
-	static defaultDefinitions: { [chr: string]: RegExp } = {
+	static defaultDefinitions: Record<string, RegExp> = {
 		__proto__: null as any,
 
 		9: /\d/,
@@ -32,7 +32,7 @@ export class OpalInputMask extends BaseComponent {
 	@Param({ required: true })
 	paramMask: string;
 
-	_definitions: { [chr: string]: RegExp };
+	_definitions: Record<string, RegExp>;
 
 	@Computed
 	get _mask(): Array<string> {

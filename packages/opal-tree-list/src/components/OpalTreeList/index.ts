@@ -37,7 +37,7 @@ export interface IFilteredDataTreeListItem {
 
 export type TDataTreeList = ObservableTreeList<IDataTreeListItem>;
 export type TFilteredDataTreeList = ObservableTreeList<IFilteredDataTreeListItem>;
-export type TViewModel = ObservableList<{ [name: string]: any }>;
+export type TViewModel = ObservableList<Record<string, any>>;
 
 const defaultDataTreeListItemSchema = Object.freeze({
 	value: 'id',
