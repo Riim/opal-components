@@ -95,9 +95,10 @@ export class OpalCheckbox extends BaseComponent {
 
 	_onInputChange(evt: Event) {
 		this.emit(
-			(this.paramChecked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck'
+			(this.paramChecked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck',
+			{ originalEvent: evt }
 		);
-		this.emit('change');
+		this.emit('change', { originalEvent: evt });
 	}
 
 	_onControlFocus() {

@@ -196,8 +196,8 @@ let OpalCheckbox = class OpalCheckbox extends rionite_1.BaseComponent {
         }
     }
     _onInputChange(evt) {
-        this.emit((this.paramChecked = evt.target.checked) ? 'check' : 'uncheck');
-        this.emit('change');
+        this.emit((this.paramChecked = evt.target.checked) ? 'check' : 'uncheck', { originalEvent: evt });
+        this.emit('change', { originalEvent: evt });
     }
     _onControlFocus() {
         this.paramFocused = true;
