@@ -948,17 +948,19 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	focus(): this {
-		if (this._opened) {
-			let focusTarget =
-				this.$<HTMLElement | OpalTextInput>('focus') ||
-				this.$<OpalFilteredList>('filteredList');
+		nextTick(() => {
+			if (this._opened) {
+				let focusTarget =
+					this.$<HTMLElement | OpalTextInput>('focus') ||
+					this.$<OpalFilteredList>('filteredList');
 
-			if ((focusTarget && focusTarget.focus() !== false) || this._focusOptions()) {
-				return this;
+				if ((focusTarget && focusTarget.focus() !== false) || this._focusOptions()) {
+					return;
+				}
 			}
-		}
 
-		this.$<OpalSelect>('button')!.focus();
+			this.$<OpalSelect>('button')!.focus();
+		});
 
 		return this;
 	}

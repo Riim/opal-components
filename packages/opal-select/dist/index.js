@@ -836,14 +836,16 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         });
     }
     focus() {
-        if (this._opened) {
-            let focusTarget = this.$('focus') ||
-                this.$('filteredList');
-            if ((focusTarget && focusTarget.focus() !== false) || this._focusOptions()) {
-                return this;
+        next_tick_1.nextTick(() => {
+            if (this._opened) {
+                let focusTarget = this.$('focus') ||
+                    this.$('filteredList');
+                if ((focusTarget && focusTarget.focus() !== false) || this._focusOptions()) {
+                    return;
+                }
             }
-        }
-        this.$('button').focus();
+            this.$('button').focus();
+        });
         return this;
     }
     blur() {
