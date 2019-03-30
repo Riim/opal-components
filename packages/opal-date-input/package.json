@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-date-input",
-  "version": "0.35.7",
+  "version": "0.35.9",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-calendar": "^0.35.7",
+    "@riim/opal-calendar": "^0.35.9",
     "@riim/opal-dropdown": "^0.35.6",
     "@riim/opal-icon": "^0.35.6",
     "@riim/opal-input-mask": "^0.35.7",
