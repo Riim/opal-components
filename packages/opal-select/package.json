@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-select",
-  "version": "0.35.9",
+  "version": "0.35.10",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
