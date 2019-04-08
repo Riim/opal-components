@@ -477,7 +477,9 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             this.close();
         }
         else {
-            this.open();
+            setTimeout(() => {
+                this.open();
+            }, 1);
         }
     }
     _onDocumentClick() {
@@ -836,16 +838,14 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         });
     }
     focus() {
-        next_tick_1.nextTick(() => {
-            if (this._opened) {
-                let focusTarget = this.$('focus') ||
-                    this.$('filteredList');
-                if ((focusTarget && focusTarget.focus() !== false) || this._focusOptions()) {
-                    return;
-                }
+        if (this._opened) {
+            let focusTarget = this.$('focus') ||
+                this.$('filteredList');
+            if ((focusTarget && focusTarget.focus() !== false) || this._focusOptions()) {
+                return this;
             }
-            this.$('button').focus();
-        });
+        }
+        this.$('button').focus();
         return this;
     }
     blur() {
