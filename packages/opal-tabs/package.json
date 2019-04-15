@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tabs",
-  "version": "0.35.7",
+  "version": "0.35.11",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@riim/next-uid": "^1.0.0",
-    "@riim/opal-router": "^0.35.7",
+    "@riim/opal-router": "^0.35.11",
     "cellx": "^1.7.96",
     "cellx-decorators": "^1.4.12",
     "reflect-metadata": "^0.1.13",
