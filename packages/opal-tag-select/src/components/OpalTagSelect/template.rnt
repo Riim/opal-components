@@ -62,7 +62,7 @@ span/control {
 									for=OpalSelect__newItemInput
 								)
 							}
-							@IfElse (dataList) {
+							@IfElse (if=dataList, withUndefined) {
 								OpalLoader/menuLoader (shown)
 							}
 						}
