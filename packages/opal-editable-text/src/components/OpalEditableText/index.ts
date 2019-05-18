@@ -88,7 +88,7 @@ export class OpalEditableText extends BaseComponent {
 			textNode.nodeValue = text;
 			contentSlotEl.appendChild(textNode);
 
-			let sel = window.getSelection();
+			let sel = window.getSelection()!;
 			let rng = document.createRange();
 			rng.setStart(textNode, text.length);
 			sel.removeAllRanges();
@@ -111,7 +111,7 @@ export class OpalEditableText extends BaseComponent {
 
 	focus(selectAll?: boolean) {
 		let textNode = this._textNode;
-		let sel = window.getSelection();
+		let sel = window.getSelection()!;
 		let rng = document.createRange();
 
 		if (selectAll) {

@@ -17,9 +17,9 @@
   },
   "dependencies": {
     "@riim/kebab-case": "^1.0.0",
-    "@riim/rionite-snake-case-attribute-name": "^1.0.1",
+    "@riim/rionite-snake-case-attribute-name": "^0.36.18",
     "history": "^4.9.0",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.36.9"
+    "rionite": "^0.36.18"
   }
 }
