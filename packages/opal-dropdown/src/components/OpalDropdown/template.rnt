@@ -1,3 +1,3 @@
 @IfThen (contentRendered) {
-	@Slot/contentSlot
+	@Slot:contentSlot
 }

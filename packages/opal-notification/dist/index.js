@@ -328,7 +328,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div/bar (\nviewType={paramViewType},\nhasIcon={paramIcon |bool },\niconSize={paramIconSize},\nbuttonHide={paramButtonHide}\n) {\n@IfThen (paramIcon) {\nOpalIcon/icon (name={paramIcon}, size={paramIconSize})\n}\n@Slot/contentSlot\nbutton/btnHide (hide={paramButtonHide |not }) {\nOpalIcon/btnHideIcon (name=cross)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("div:bar (\nviewType={paramViewType},\nhasIcon={paramIcon |bool },\niconSize={paramIconSize},\nbuttonHide={paramButtonHide}\n) {\n@IfThen (paramIcon) {\nOpalIcon:icon (name={paramIcon}, size={paramIconSize})\n}\n@Slot:contentSlot\nbutton:btnHide (hide={paramButtonHide |not }) {\nOpalIcon:btnHideIcon (name=cross)\n}\n}");
 
 /***/ })
 /******/ ]);

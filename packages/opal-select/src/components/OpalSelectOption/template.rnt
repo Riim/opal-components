@@ -1,5 +1,5 @@
-button/control (tabindex={_tabIndex}) {
-	@Slot/contentSlot {
+button:control (tabindex={_tabIndex}) {
+	@Slot:contentSlot {
 		'{paramText}'
 
 		@IfThen (paramSubtext) {
@@ -10,10 +10,10 @@ button/control (tabindex={_tabIndex}) {
 	}
 
 	@IfThen (selected) {
-		OpalIcon/iconSelected (name=checkmark)
+		OpalIcon:iconSelected (name=checkmark)
 	}
 
 	@IfThen (indeterminate) {
-		OpalIcon/iconIndeterminate (name=minus)
+		OpalIcon:iconIndeterminate (name=minus)
 	}
 }

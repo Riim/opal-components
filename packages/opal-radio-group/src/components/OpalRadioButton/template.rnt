@@ -1,8 +1,8 @@
-label/label {
-	input/input (type=checkbox)
+label:label {
+	input:input (type=checkbox)
 
-	span/control (tabindex={_tabIndex})
+	span:control (tabindex={_tabIndex})
 	' '
 
-	@Slot/contentSlot
+	@Slot:contentSlot
 }

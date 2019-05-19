@@ -1,17 +1,17 @@
-OpalTextInputValidator/textInputValidator {
-	OpalInputMask/inputMask (mask={paramMask}) {
-		OpalTextInput/textInput (
+OpalTextInputValidator:textInputValidator {
+	OpalInputMask:inputMask (mask={paramMask}) {
+		OpalTextInput:textInput (
 			class=OpalInputValidator__textInput OpalInputMask__textInput,
 			value={paramValue},
 			placeholder={paramPlaceholder},
 			clearable
 		) {
-			OpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=calendar)
+			OpalIcon:textInputEndIcon (class=OpalTextInput__endIcon, name=calendar)
 		}
 	}
 
 	@IfThen (paramRequired) {
-		OpalTextInputValidatorRule/textInputValidatorRuleRequired (
+		OpalTextInputValidatorRule:textInputValidatorRuleRequired (
 			required,
 			popoverPosition={paramPopoverPosition}
 		) {
@@ -19,14 +19,14 @@ OpalTextInputValidator/textInputValidator {
 		}
 	}
 
-	OpalTextInputValidatorRule/textInputValidatorRuleDateExists (
+	OpalTextInputValidatorRule:textInputValidatorRuleDateExists (
 		test={dateExists},
 		popoverPosition={paramPopoverPosition}
 	) {
 		'{"Несуществующая дата" |t }'
 	}
 
-	OpalTextInputValidatorRule/textInputValidatorRuleDateInRange (
+	OpalTextInputValidatorRule:textInputValidatorRuleDateInRange (
 		test={_isDateInRange},
 		popoverPosition={paramPopoverPosition}
 	) {
@@ -34,8 +34,8 @@ OpalTextInputValidator/textInputValidator {
 	}
 }
 
-OpalDropdown/calendarMenu (autoHeight=no) {
-	OpalCalendar/calendar (
+OpalDropdown:calendarMenu (autoHeight=no) {
+	OpalCalendar:calendar (
 		fromDate={paramFromDate},
 		toDate={paramToDate},
 		value={paramValue},

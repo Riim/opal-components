@@ -1,19 +1,19 @@
-/menu (super!, autoHeight=no) {
-	div/menuHeader {
-		div/menuHeaderLeftPart {
-			OpalTextInput/queryInput (
+:menu (super!, autoHeight=no) {
+	div:menuHeader {
+		div:menuHeaderLeftPart {
+			OpalTextInput:queryInput (
 				class={_queryInputClass},
 				clearable,
 				placeholder={'Поиск' |t }
 			) {
-				OpalIcon/queryInputEndIcon (class=OpalTextInput__endIcon, name=search)
+				OpalIcon:queryInputEndIcon (class=OpalTextInput__endIcon, name=search)
 			}
 		}
 
-		div/menuHeaderRightPart {
-			@Slot/menuHeaderContentSlot (for=menuHeaderContent) {
+		div:menuHeaderRightPart {
+			@Slot:menuHeaderContentSlot (for=menuHeaderContent) {
 				@IfThen (viewModel.length) {
-					span/selectedCount {
+					span:selectedCount {
 						'{"выбрано {n}" |t(viewModel.length) }'
 					}
 				}
@@ -21,12 +21,12 @@
 		}
 	}
 
-	div/menuList {
-		OpalLoadedList/loadedList (
+	div:menuList {
+		OpalLoadedList:loadedList (
 			dataProvider={dataProvider},
 			dataListItemValueName={_dataListItemValueFieldName}
 		) {
-			OpalSelectOption/option (
+			OpalSelectOption:option (
 				class=OpalLoadedList__listItem,
 				value='{$item |key(_dataListItemValueFieldName) }',
 				text='{$item |key(_dataListItemTextFieldName) }',
@@ -35,21 +35,21 @@
 		}
 	}
 
-	div/menuSelected {
+	div:menuSelected {
 		@Repeat (for=item in viewModel) {
-			div/selectedItem {
+			div:selectedItem {
 				'{item |key(_viewModelItemTextFieldName) }'
 
-				button/btnDeselectItem (tabindex=-1) {
-					OpalIcon/btnDeselectItemIcon (name=cross)
+				button:btnDeselectItem (tabindex=-1) {
+					OpalIcon:btnDeselectItemIcon (name=cross)
 				}
 			}
 		}
 
 		@IfThen (nothingSelectedShown) {
-			@Slot/nothingSelectedSlot (for=nothingSelected) {
-				span/nothingSelected {
-					span/nothingSelectedMessage {
+			@Slot:nothingSelectedSlot (for=nothingSelected) {
+				span:nothingSelected {
+					span:nothingSelectedMessage {
 						'{"Ничего не выбрано" |t }'
 					}
 				}
@@ -57,13 +57,13 @@
 		}
 	}
 
-	div/menuFooter {
-		div/menuFooterLeftPart {
-			@Slot/menuFooterContentSlot (for=menuFooterContent)
+	div:menuFooter {
+		div:menuFooterLeftPart {
+			@Slot:menuFooterContentSlot (for=menuFooterContent)
 		}
 
-		div/menuFooterRightPart {
-			OpalButton/btnClose {
+		div:menuFooterRightPart {
+			OpalButton:btnClose {
 				'{"Закрыть" |t }'
 			}
 		}

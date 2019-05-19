@@ -364,7 +364,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("span/arrow\n@IfThen (contentRendered) {\n@Slot/contentSlot\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("span:arrow\n@IfThen (contentRendered) {\n@Slot:contentSlot\n}");
 
 /***/ })
 /******/ ]);

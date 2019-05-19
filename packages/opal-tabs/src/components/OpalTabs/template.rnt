@@ -1,7 +1,7 @@
-@Slot/tabListSlot (forTag=opal-tab-list) {
-	OpalTabList/tabList {
-		@Slot/tabs (forTag=opal-tab)
+@Slot:tabListSlot (forTag=opal-tab-list) {
+	OpalTabList:tabList {
+		@Slot:tabs (forTag=opal-tab)
 	}
 }
 
-@Slot/tabPanels (forTag=opal-tab-panel)
+@Slot:tabPanels (forTag=opal-tab-panel)

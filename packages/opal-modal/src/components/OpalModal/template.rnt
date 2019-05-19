@@ -1,9 +1,9 @@
-div/window {
-	div/btnCloseWrapper {
-		button/btnClose
+div:window {
+	div:btnCloseWrapper {
+		button:btnClose
 	}
 
 	@IfThen (contentRendered) {
-		@Slot/contentSlot
+		@Slot:contentSlot
 	}
 }

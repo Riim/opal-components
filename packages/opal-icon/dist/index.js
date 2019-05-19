@@ -683,7 +683,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("svg/svg (stroke-width={paramStrokeWidth}) {\nuse (xlink:href={xlinkHref})\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("svg:svg (stroke-width={paramStrokeWidth}) {\nuse (xlink:href={xlinkHref})\n}");
 
 /***/ })
 /******/ ]);

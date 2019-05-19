@@ -1,17 +1,17 @@
-div/head {
-	OpalButton/btnToggleChildren (viewType=clean, checkable, checked={paramOpened}) {
-		OpalIcon/btnToggleChildrenIcon (name=chevronRight)
+div:head {
+	OpalButton:btnToggleChildren (viewType=clean, checkable, checked={paramOpened}) {
+		OpalIcon:btnToggleChildrenIcon (name=chevronRight)
 	}
 
-	span/contentSlotWrapper {
-		@Slot/contentSlot (cloneContent)
+	span:contentSlotWrapper {
+		@Slot:contentSlot (cloneContent)
 	}
 }
 
 @IfThen (dataTreeListItem.children.length) {
-	div/children {
+	div:children {
 		@Repeat (for=$item in dataTreeListItem.children) {
-			OpalTreeListItem/item (
+			OpalTreeListItem:item (
 				dataTreeList={paramDataTreeList},
 				filteredDataTreeList={paramFilteredDataTreeList},
 				dataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},

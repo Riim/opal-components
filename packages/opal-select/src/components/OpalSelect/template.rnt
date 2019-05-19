@@ -1,5 +1,5 @@
 @Slot (for=button) {
-	OpalButton/button (
+	OpalButton:button (
 		viewType={paramViewType},
 		size={paramSize},
 		checkable,
@@ -13,20 +13,20 @@
 			'{_buttonText}'
 		}
 
-		OpalIcon/buttonIcon (name=chevronDown)
+		OpalIcon:buttonIcon (name=chevronDown)
 	}
 }
 
 @Slot (for=menuSlot) {
-	@Slot/menuSlot (for=menu) {
-		OpalDropdown/menu (closeOn=mousedown) {
+	@Slot:menuSlot (for=menu) {
+		OpalDropdown:menu (closeOn=mousedown) {
 			@Slot (for=menuHeader)
 			@Slot (for=menuContent) {
 				@IfThen (_paramDataListSpecified) {
-					div/, menuContent {
+					div::menuContent {
 						@IfThen (dataList) {
 							@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {
-								OpalSelectOption/option (
+								OpalSelectOption:option (
 									value='{=item |key(_dataListItemValueFieldName) }',
 									text='{=item |key(_dataListItemTextFieldName) }',
 									subtext='{=item |key(_dataListItemSubtextFieldName) }',
@@ -34,19 +34,19 @@
 								)
 							}
 
-							@Slot/newItemInputSlot // ...
+							@Slot:newItemInputSlot // ...
 						}
 						@IfElse (dataList) {
-							OpalLoader/menuLoader (shown)
+							OpalLoader:menuLoader (shown)
 						}
 					}
 				}
 				@IfElse (_paramDataListSpecified) {
-					div/, menuContent {
-						@Slot/options (forTag=opal-select-option)
+					div::menuContent {
+						@Slot:options (forTag=opal-select-option)
 
 						@Slot (for=newItemInputSlot) {
-							@Slot/newItemInputSlot (for=newItemInput)
+							@Slot:newItemInputSlot (for=newItemInput)
 						}
 					}
 				}

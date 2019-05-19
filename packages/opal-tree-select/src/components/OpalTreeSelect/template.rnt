@@ -1,10 +1,10 @@
-OpalModal/menu {
+OpalModal:menu {
 	@Slot (for=menuHeaderSlot) {
-		@Slot/menuHeaderSlot (for=menuHeader)
+		@Slot:menuHeaderSlot (for=menuHeader)
 	}
 
-	OpalFilteredList/filteredList {
-		OpalTreeList/treeList (
+	OpalFilteredList:filteredList {
+		OpalTreeList:treeList (
 			class=OpalFilteredList__list,
 			dataTreeList={dataTreeList},
 			dataTreeListItemSchema={paramDataTreeListItemSchema |dump },
@@ -12,7 +12,7 @@ OpalModal/menu {
 			viewModelItemSchema={paramViewModelItemSchema |dump },
 			query={paramQuery}
 		) {
-			OpalSelectOption/option (
+			OpalSelectOption:option (
 				class=OpalTreeList__selectionControl,
 				text={$item.name},
 				selected={$selected},
@@ -21,8 +21,8 @@ OpalModal/menu {
 		}
 	}
 
-	div/footer {
-		OpalButton/btnClose {
+	div:footer {
+		OpalButton:btnClose {
 			// ;;; подтверждение выбора триселекта
 			// ;;; https://yadi.sk/i/j9g1w-7xj9Xsew
 			'{"Готово" |pt("OpalTreeSelect__btnClose") }'

@@ -1,5 +1,5 @@
-span/arrow
+span:arrow
 
 @IfThen (contentRendered) {
-	@Slot/contentSlot
+	@Slot:contentSlot
 }

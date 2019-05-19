@@ -1,19 +1,19 @@
 @Slot (for=textInput) {
-	OpalTextInput/textInput (
+	OpalTextInput:textInput (
 		value='{paramValue |key(_dataListItemTextFieldName) }',
 		placeholder={'Начните вводить для поиска' |t },
 		clearable
 	) {
-		OpalIcon/textInputEndIcon (class=OpalTextInput__endIcon, name=search)
+		OpalIcon:textInputEndIcon (class=OpalTextInput__endIcon, name=search)
 	}
 }
 
-OpalDropdown/menu {
+OpalDropdown:menu {
 	@Slot (for=menuHeader)
 
-	div/list {
+	div:list {
 		@Repeat (for=item in dataList) {
-			div/listItem (
+			div:listItem (
 				data-value='{item |key(_dataListItemValueFieldName) }',
 				data-text='{item |key(_dataListItemTextFieldName) }',
 				data-subtext='{item |key(_dataListItemSubtextFieldName) }'
@@ -28,14 +28,14 @@ OpalDropdown/menu {
 	}
 
 	@IfElse (dataList.length) {
-		@Slot/nothingFoundSlot (for=nothingFound) {
-			span/nothingFound {
-				span/nothingFoundMessage {
+		@Slot:nothingFoundSlot (for=nothingFound) {
+			span:nothingFound {
+				span:nothingFoundMessage {
 					'{"Ничего не найдено" |t }'
 				}
 			}
 		}
 	}
 
-	@Slot/menuFooterSlot (for=menuFooter)
+	@Slot:menuFooterSlot (for=menuFooter)
 }

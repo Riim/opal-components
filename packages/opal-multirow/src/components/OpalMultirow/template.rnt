@@ -1,13 +1,13 @@
-@Slot/presetRowsSlot (
+@Slot:presetRowsSlot (
 	for=presetRows,
 	notHaveNewRows={_notHaveNewRows},
 	notSingleRow={_notSingleRow}
 ) {
-	@Slot/presetRows (for=presetRow)
+	@Slot:presetRows (for=presetRow)
 }
 
-div/newRows (notSingleRow={_notSingleRow}) {
+div:newRows (notSingleRow={_notSingleRow}) {
 	@Repeat (for=row in _newRows, trackBy=key) {
-		@Slot/newRowSlot (cloneContent, data-key={row.key})
+		@Slot:newRowSlot (cloneContent, data-key={row.key})
 	}
 }

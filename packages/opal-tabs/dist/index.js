@@ -487,7 +487,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("button/control (tabindex={_tabIndex}) {\n@Slot/contentSlot\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("button:control (tabindex={_tabIndex}) {\n@Slot:contentSlot\n}");
 
 /***/ }),
 /* 12 */
@@ -512,7 +512,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot/contentSlot");
+/* harmony default export */ __webpack_exports__["default"] = ("@Slot:contentSlot");
 
 /***/ }),
 /* 14 */
@@ -594,7 +594,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (contentRendered) {\n@Slot/contentSlot\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (contentRendered) {\n@Slot:contentSlot\n}");
 
 /***/ }),
 /* 17 */
@@ -619,7 +619,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot/tabListSlot (forTag=opal-tab-list) {\nOpalTabList/tabList {\n@Slot/tabs (forTag=opal-tab)\n}\n}\n@Slot/tabPanels (forTag=opal-tab-panel)");
+/* harmony default export */ __webpack_exports__["default"] = ("@Slot:tabListSlot (forTag=opal-tab-list) {\nOpalTabList:tabList {\n@Slot:tabs (forTag=opal-tab)\n}\n}\n@Slot:tabPanels (forTag=opal-tab-panel)");
 
 /***/ })
 /******/ ]);

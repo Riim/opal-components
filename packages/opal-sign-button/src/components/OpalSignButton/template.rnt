@@ -1,6 +1,6 @@
-button/control (tabindex={_tabIndex}) {
-	span/sign
+button:control (tabindex={_tabIndex}) {
+	span:sign
 	' '
 
-	@Slot/contentSlot
+	@Slot:contentSlot
 }

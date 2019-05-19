@@ -1,42 +1,42 @@
-header/header {
-	button/btnPrevMonth (disabled={btnPrevMonthDisabled}) {
-		OpalIcon/btnPrevMonthIcon (name=chevronLeft)
+header:header {
+	button:btnPrevMonth (disabled={btnPrevMonthDisabled}) {
+		OpalIcon:btnPrevMonthIcon (name=chevronLeft)
 	}
 
-	OpalSelect/monthSelect (size=s, value=['{shownMonth}']) {
+	OpalSelect:monthSelect (size=s, value=['{shownMonth}']) {
 		@Repeat (class=OpalSelect__menuContent, for=month in constructor.i18n.months) {
 			OpalSelectOption (value={=$index}, text={=month})
 		}
 	}
 	' '
 
-	OpalSelect/yearSelect (size=s, value=['{shownYear}']) {
+	OpalSelect:yearSelect (size=s, value=['{shownYear}']) {
 		@Repeat (class=OpalSelect__menuContent, for=year in years) {
 			OpalSelectOption (text={=year})
 		}
 	}
 
-	button/btnNextMonth (disabled={btnNextMonthDisabled}) {
-		OpalIcon/btnNextMonthIcon (name=chevronRight)
+	button:btnNextMonth (disabled={btnNextMonthDisabled}) {
+		OpalIcon:btnNextMonthIcon (name=chevronRight)
 	}
 }
 
-div/body {
-	div/weekDays {
-		div/weekDaysRow {
+div:body {
+	div:weekDays {
+		div:weekDaysRow {
 			@Repeat (for=weekDay in weekDaysShort) {
-				span/weekDay {
+				span:weekDay {
 					'{=weekDay}'
 				}
 			}
 		}
 	}
 
-	div/days {
+	div:days {
 		@Repeat (for=weekDays in days) {
-			div/daysRow {
+			div:daysRow {
 				@Repeat (for=day in weekDays) {
-					span/day (
+					span:day (
 						weekDay={=day.weekDay},
 						today={=day.today},
 						selected={=day.selected},

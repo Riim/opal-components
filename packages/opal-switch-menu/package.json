@@ -16,6 +16,6 @@
     "@riim/opal-button": "^0.35.11",
     "cellx": "^1.7.96",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.36.9"
+    "rionite": "^0.37.0"
   }
 }

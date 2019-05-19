@@ -1,17 +1,17 @@
 @IfThen (paramMultiline) {
-	div/textareaContainer {
-		textarea/textarea, textField (
+	div:textareaContainer {
+		textarea:textarea:textField (
 			rows={paramRows},
 			name={paramInputName},
 			placeholder={paramPlaceholder},
 			tabindex={paramTabIndex},
 			disabled={paramDisabled}
 		)
-		div/textareaHeight
+		div:textareaHeight
 	}
 }
 @IfElse (paramMultiline) {
-	input/, textField (
+	input::textField (
 		type={paramInputType},
 		name={paramInputName},
 		placeholder={paramPlaceholder},
@@ -21,21 +21,21 @@
 }
 
 @IfThen (paramStartIcon) {
-	OpalIcon/startIcon (name={paramStartIcon})
+	OpalIcon:startIcon (name={paramStartIcon})
 }
 
-@Slot/endIconSlot (for=endIcon, shown={endIconShown}) {
+@Slot:endIconSlot (for=endIcon, shown={endIconShown}) {
 	@IfThen (paramEndIcon) {
-		OpalIcon/endIcon (name={paramEndIcon})
+		OpalIcon:endIcon (name={paramEndIcon})
 	}
 }
 
 @IfThen (paramClearable) {
-	button/btnClear (shown={btnClearShown}) {
-		OpalIcon/btnClearIcon (name=cross)
+	button:btnClear (shown={btnClearShown}) {
+		OpalIcon:btnClearIcon (name=cross)
 	}
 }
 
 @IfThen (paramLoading) {
-	OpalLoader/loader (size=s, shown)
+	OpalLoader:loader (size=s, shown)
 }

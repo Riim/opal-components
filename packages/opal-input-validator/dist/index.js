@@ -302,7 +302,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("OpalPopover/popover (viewType=danger, position={paramPopoverPosition}) {\n@Slot/contentSlot\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("OpalPopover:popover (viewType=danger, position={paramPopoverPosition}) {\n@Slot:contentSlot\n}");
 
 /***/ }),
 /* 9 */
@@ -327,7 +327,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot/contentSlot");
+/* harmony default export */ __webpack_exports__["default"] = ("@Slot:contentSlot");
 
 /***/ })
 /******/ ]);

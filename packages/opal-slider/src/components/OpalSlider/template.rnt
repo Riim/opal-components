@@ -1,8 +1,8 @@
 @IfThen (paramRange) {
-	div/firstInputWrapper3 {
-		div/firstInputWrapper2 (style=width: {_firstInputWidth}%) {
-			div/firstInputWrapper {
-				input/firstInput (
+	div:firstInputWrapper3 {
+		div:firstInputWrapper2 (style=width: {_firstInputWidth}%) {
+			div:firstInputWrapper {
+				input:firstInput (
 					type=range,
 					min={paramMin},
 					max={paramMax},
@@ -13,8 +13,8 @@
 		}
 	}
 
-	div/secondInputWrapper {
-		input/secondInput (
+	div:secondInputWrapper {
+		input:secondInput (
 			type=range,
 			min={paramMin},
 			max={paramMax},
@@ -25,7 +25,7 @@
 }
 
 @IfElse (paramRange) {
-	input/input (
+	input:input (
 		type=range,
 		min={paramMin},
 		max={paramMax},

@@ -1,4 +1,4 @@
-OpalTreeSelect/select (
+OpalTreeSelect:select (
 	viewType=clean,
 	dataTreeListKeypath={_dataListKeypathParam},
 	dataTreeListItemSchema={paramDataListItemSchema |dump },
@@ -10,7 +10,7 @@ OpalTreeSelect/select (
 ) {
 	@Slot (class=OpalSelect__menuHeaderSlot, for=OpalSelect__menuHeader)
 
-	OpalSignButton/button (
+	OpalSignButton:button (
 		class=OpalSelect__button,
 		sign=plus,
 		checkable,

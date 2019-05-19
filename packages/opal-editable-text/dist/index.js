@@ -264,7 +264,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("span/contentWrapper {\n@Slot/contentSlot (contenteditable, spellcheck=false)\nOpalIcon/iconEdit (name=compose, strokeWidth=3)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("span:contentWrapper {\n@Slot:contentSlot (contenteditable, spellcheck=false)\nOpalIcon:iconEdit (name=compose, strokeWidth=3)\n}");
 
 /***/ })
 /******/ ]);

@@ -5,7 +5,6 @@ const gutil = require('gulp-util');
 const webpack = require('webpack');
 const postcssCSSVariables = require('postcss-css-variables');
 const postcssRioniteComponent = require('postcss-rionite-component');
-const postcssNested = require('postcss-nested');
 const postcssColorFunction = require('postcss-color-function');
 const autoprefixer = require('autoprefixer');
 const csso = require('postcss-csso');
@@ -111,7 +110,6 @@ gulp.task('buildPackage', done => {
 								plugins: [
 									postcssCSSVariables(),
 									postcssRioniteComponent(),
-									postcssNested(),
 									postcssColorFunction(),
 									autoprefixer({ browsers: ['last 3 versions'] }),
 									csso({ restructure: false })

@@ -1,7 +1,7 @@
 @IfThen (listShown) {
 	@IfThen (filteredDataTreeList.length) {
 		@Repeat (for=$item in filteredDataTreeList) {
-			OpalTreeListItem/item (
+			OpalTreeListItem:item (
 				dataTreeList={dataTreeList},
 				filteredDataTreeList={filteredDataTreeList},
 				dataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},
@@ -16,7 +16,7 @@
 				hasChildren='{$item.children.length |gt(0) }'
 			) {
 				@Slot (cloneContent, getContext={_getListItemContext}) {
-					OpalCheckbox/selectionControl (
+					OpalCheckbox:selectionControl (
 						checked={$selected},
 						indeterminate={$indeterminate}
 					) {
@@ -27,9 +27,9 @@
 		}
 	}
 	@IfElse (filteredDataTreeList.length) {
-		@Slot/nothingFoundSlot (for=nothingFound) {
-			span/nothingFound {
-				span/nothingFoundMessage {
+		@Slot:nothingFoundSlot (for=nothingFound) {
+			span:nothingFound {
+				span:nothingFoundMessage {
 					'{"Ничего не найдено" |t }'
 				}
 			}
@@ -37,5 +37,5 @@
 	}
 }
 @IfElse (listShown) {
-	OpalLoader/loader (shown)
+	OpalLoader:loader (shown)
 }
