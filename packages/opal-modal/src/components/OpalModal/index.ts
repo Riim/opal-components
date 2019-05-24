@@ -137,13 +137,13 @@ export class OpalModal extends BaseComponent {
 			documentKeyUpListening = this.listenTo(document, 'keyup', onDocumentKeyUp, document);
 
 			let body = document.body;
-			let initialBodyWidth = body.offsetWidth;
+			let bodyWidth = body.offsetWidth;
 
 			body.style.overflow = 'hidden';
-
-			if (initialBodyWidth < body.offsetWidth) {
-				body.style.marginRight = body.offsetWidth - initialBodyWidth + 'px';
-			}
+			body.style.marginRight =
+				(bodyWidth < body.offsetWidth
+					? body.offsetWidth - bodyWidth
+					: this.element.offsetWidth - this.element.clientWidth) + 'px';
 		}
 
 		openedModals.unshift(this);
