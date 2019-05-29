@@ -62,7 +62,7 @@ export declare class OpalSelect extends BaseComponent {
     _viewModelItemSubtextFieldName: string;
     _viewModelItemDisabledFieldName: string;
     readonly value: Array<string>;
-    _addNewItem: ((text: string) => Promise<Record<string, string>>) | null;
+    _addNewItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
     readonly _buttonText: string;
     optionElements: HTMLCollectionOf<IComponentElement>;
     optionsCell: Cell<Array<OpalSelectOption>>;

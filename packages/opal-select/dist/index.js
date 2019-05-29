@@ -549,7 +549,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         textInput.clear();
         textInput.paramLoading = true;
         textInput.disable();
-        this._addNewItem(text).then((newItem) => {
+        this._addNewItem(text, this).then((newItem) => {
             textInput.paramLoading = false;
             textInput.enable();
             if (newItem) {
@@ -572,7 +572,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         let text = button.element.dataset.newItemText;
         button.paramLoading = true;
         button.disable();
-        this._addNewItem(text).then((newItem) => {
+        this._addNewItem(text, this).then((newItem) => {
             button.paramLoading = false;
             button.enable();
             if (newItem) {

@@ -95,7 +95,7 @@ export class OpalSelect extends BaseComponent {
 		disabled?: string;
 	};
 	@Param({ readonly: true })
-	paramAddNewItem: (text: string) => Promise<Record<string, string>>;
+	paramAddNewItem: (text: string, select: OpalSelect) => Promise<Record<string, string>>;
 	@Param
 	paramText: string;
 	@Param
@@ -132,7 +132,7 @@ export class OpalSelect extends BaseComponent {
 		return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
 	}
 
-	_addNewItem: ((text: string) => Promise<Record<string, string>>) | null;
+	_addNewItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
 
 	@Computed
 	get _buttonText(): string {
@@ -561,7 +561,7 @@ export class OpalSelect extends BaseComponent {
 		textInput.paramLoading = true;
 		textInput.disable();
 
-		this._addNewItem(text).then(
+		this._addNewItem(text, this).then(
 			(newItem: Record<string, string> | false | null | undefined) => {
 				textInput.paramLoading = false;
 				textInput.enable();
@@ -595,7 +595,7 @@ export class OpalSelect extends BaseComponent {
 		button.paramLoading = true;
 		button.disable();
 
-		this._addNewItem(text).then(
+		this._addNewItem(text, this).then(
 			(newItem: Record<string, string> | false | null | undefined) => {
 				button.paramLoading = false;
 				button.enable();
