@@ -8,9 +8,9 @@ import template from './template.rnt';
 	template
 })
 export class OpalInputValidatorRule extends BaseComponent {
-	@Param({ readonly: true })
+	@Param
 	paramRequired = false;
-	@Param({ readonly: true })
+	@Param
 	paramTest: (this: BaseComponent, value: any) => boolean;
 	@Param
 	paramPopoverPosition = 'right';

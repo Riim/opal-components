@@ -102,7 +102,6 @@ export class OpalSelect extends BaseComponent {
 	paramMaxTextLength = 20;
 	@Param
 	// ;;; Плейсхолдер селекта.
-	// ;;; Можно перевести как призыв к выбору -- Select (англ.).
 	paramPlaceholder = pt('OpalSelect#paramPlaceholder', 'Не выбрано');
 	@Param({ readonly: true })
 	openOnClick = false;

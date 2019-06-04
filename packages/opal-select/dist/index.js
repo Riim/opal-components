@@ -210,7 +210,6 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         this.paramMultiple = false;
         this.paramMaxTextLength = 20;
         // ;;; Плейсхолдер селекта.
-        // ;;; Можно перевести как призыв к выбору -- Select (англ.).
         this.paramPlaceholder = gettext_1.pt('OpalSelect#paramPlaceholder', 'Не выбрано');
         this.openOnClick = false;
         this.paramTabIndex = 0;

@@ -42,7 +42,7 @@ export declare class OpalSelect extends BaseComponent {
         subtext?: string;
         disabled?: string;
     };
-    paramAddNewItem: (text: string) => Promise<Record<string, string>>;
+    paramAddNewItem: (text: string, select: OpalSelect) => Promise<Record<string, string>>;
     paramText: string;
     paramMaxTextLength: number;
     paramPlaceholder: string;

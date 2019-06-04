@@ -259,11 +259,11 @@ let OpalInputValidatorRule = class OpalInputValidatorRule extends rionite_1.Base
     }
 };
 __decorate([
-    rionite_1.Param({ readonly: true }),
+    rionite_1.Param,
     __metadata("design:type", Object)
 ], OpalInputValidatorRule.prototype, "paramRequired", void 0);
 __decorate([
-    rionite_1.Param({ readonly: true }),
+    rionite_1.Param,
     __metadata("design:type", Function)
 ], OpalInputValidatorRule.prototype, "paramTest", void 0);
 __decorate([

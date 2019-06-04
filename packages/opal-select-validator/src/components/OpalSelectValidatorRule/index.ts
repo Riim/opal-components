@@ -5,6 +5,6 @@ import { Component, Param } from 'rionite';
 	elementIs: 'OpalSelectValidatorRule'
 })
 export class OpalSelectValidatorRule extends OpalInputValidatorRule {
-	@Param({ readonly: true })
+	@Param
 	paramMinCount: number;
 }

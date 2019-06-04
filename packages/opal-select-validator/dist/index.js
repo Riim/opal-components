@@ -194,7 +194,7 @@ const rionite_1 = __webpack_require__(5);
 let OpalSelectValidatorRule = class OpalSelectValidatorRule extends opal_input_validator_1.OpalInputValidatorRule {
 };
 __decorate([
-    rionite_1.Param({ readonly: true }),
+    rionite_1.Param,
     __metadata("design:type", Number)
 ], OpalSelectValidatorRule.prototype, "paramMinCount", void 0);
 OpalSelectValidatorRule = __decorate([

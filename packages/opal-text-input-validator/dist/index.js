@@ -204,14 +204,11 @@ const rionite_1 = __webpack_require__(5);
 let OpalTextInputValidatorRule = class OpalTextInputValidatorRule extends opal_input_validator_1.OpalInputValidatorRule {
 };
 __decorate([
-    rionite_1.Param({ readonly: true }),
+    rionite_1.Param,
     __metadata("design:type", Number)
 ], OpalTextInputValidatorRule.prototype, "paramMinLength", void 0);
 __decorate([
-    rionite_1.Param({
-        type: eval,
-        readonly: true
-    }),
+    rionite_1.Param({ type: eval }),
     __metadata("design:type", RegExp)
 ], OpalTextInputValidatorRule.prototype, "paramRegex", void 0);
 OpalTextInputValidatorRule = __decorate([
