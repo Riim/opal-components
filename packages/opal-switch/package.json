@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-switch",
-  "version": "0.36.1",
+  "version": "0.36.4",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
