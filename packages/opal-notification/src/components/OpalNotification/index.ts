@@ -88,7 +88,7 @@ export class OpalNotification extends BaseComponent {
 		}
 
 		this.paramShown = true;
-		Cell.forceRelease();
+		Cell.release();
 
 		return true;
 	}
@@ -99,7 +99,7 @@ export class OpalNotification extends BaseComponent {
 		}
 
 		this.paramShown = false;
-		Cell.forceRelease();
+		Cell.release();
 
 		return true;
 	}

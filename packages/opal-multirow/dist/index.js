@@ -183,13 +183,13 @@ let OpalMultirow = class OpalMultirow extends rionite_1.BaseComponent {
             let key = evt.target.parentComponent.element.dataset.key;
             this._newRows.removeAt(this._newRows.findIndex(row => row.key == key));
         }
-        cellx_1.Cell.forceRelease();
+        cellx_1.Cell.release();
         this.emit('remove-row');
         this.emit('change');
     }
     _onAddRowClick() {
         this._newRows.add({ key: next_uid_1.nextUID() });
-        cellx_1.Cell.forceRelease();
+        cellx_1.Cell.release();
         let focusable = this.$('focus', this.$$('newRowSlot').slice(-1)[0]);
         if (focusable) {
             focusable.focus();

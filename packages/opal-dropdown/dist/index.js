@@ -161,14 +161,14 @@ let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
     }
     renderContent() {
         this.contentRendered = true;
-        cellx_1.Cell.forceRelease();
+        cellx_1.Cell.release();
     }
     open() {
         if (this.paramOpened) {
             return false;
         }
         this.paramOpened = true;
-        cellx_1.Cell.forceRelease();
+        cellx_1.Cell.release();
         return true;
     }
     close() {
@@ -176,7 +176,7 @@ let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
             return false;
         }
         this.paramOpened = false;
-        cellx_1.Cell.forceRelease();
+        cellx_1.Cell.release();
         return true;
     }
     toggle(value) {
@@ -192,7 +192,7 @@ let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
         }
         else {
             this.contentRendered = true;
-            cellx_1.Cell.forceRelease();
+            cellx_1.Cell.release();
             this._open$();
         }
     }

@@ -428,7 +428,7 @@ export class OpalAutosuggest extends BaseComponent {
 		if (items.length) {
 			this.dataList.addRange(items);
 
-			// Cell.forceRelease();
+			// Cell.release();
 			// Содержимое OpalDropdown рендерится лениво, из-за этого обработчик изменения dataList
 			// в RnRepeat оказывается после _onDataListChange (RnRepeat рендерится после
 			// elementAttached). При первом открытии меню всё хорошо, тк. появившийся RnRepeat
@@ -437,7 +437,7 @@ export class OpalAutosuggest extends BaseComponent {
 			// для меню считается выравнивание, но RnRepeat ещё не обновился тк. обработчик
 			// изменения dataList в нём идёт сразу за текущим.
 			// В результате выравнивание меню получается неправильным.
-			// По этой причине вместо Cell.forceRelease здесь nextTick и nextTick добавлен в
+			// По этой причине вместо Cell.release здесь nextTick и nextTick добавлен в
 			// _onDataListChange.
 			nextTick(() => {
 				let focusedListItem = this.$<HTMLElement>('listItem')!;

@@ -198,7 +198,7 @@ let OpalNotification = class OpalNotification extends rionite_1.BaseComponent {
             return false;
         }
         this.paramShown = true;
-        cellx_1.Cell.forceRelease();
+        cellx_1.Cell.release();
         return true;
     }
     hide() {
@@ -206,7 +206,7 @@ let OpalNotification = class OpalNotification extends rionite_1.BaseComponent {
             return false;
         }
         this.paramShown = false;
-        cellx_1.Cell.forceRelease();
+        cellx_1.Cell.release();
         return true;
     }
     open() {

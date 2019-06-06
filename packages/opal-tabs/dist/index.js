@@ -250,7 +250,7 @@ let OpalTabs = class OpalTabs extends rionite_1.BaseComponent {
                     : (locationHash ? locationHash + '&tab=' : '#tab=') + label;
             }
         }
-        cellx_1.Cell.forceRelease();
+        cellx_1.Cell.release();
         this.emit('change');
     }
 };
@@ -551,7 +551,7 @@ let OpalTabPanel = class OpalTabPanel extends rionite_1.BaseComponent {
     }
     renderContent() {
         this.contentRendered = true;
-        cellx_1.Cell.forceRelease();
+        cellx_1.Cell.release();
     }
 };
 __decorate([

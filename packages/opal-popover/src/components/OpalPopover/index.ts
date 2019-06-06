@@ -52,7 +52,7 @@ export class OpalPopover extends BaseComponent {
 
 	renderContent() {
 		this.contentRendered = true;
-		Cell.forceRelease();
+		Cell.release();
 	}
 
 	open(): boolean {
@@ -61,7 +61,7 @@ export class OpalPopover extends BaseComponent {
 		}
 
 		this.paramOpened = true;
-		Cell.forceRelease();
+		Cell.release();
 
 		return true;
 	}
@@ -72,7 +72,7 @@ export class OpalPopover extends BaseComponent {
 		}
 
 		this.paramOpened = false;
-		Cell.forceRelease();
+		Cell.release();
 
 		return true;
 	}
@@ -89,7 +89,7 @@ export class OpalPopover extends BaseComponent {
 			this._open$();
 		} else {
 			this.contentRendered = true;
-			Cell.forceRelease();
+			Cell.release();
 			this._open$();
 		}
 	}

@@ -27,6 +27,6 @@ export class OpalTabPanel extends BaseComponent {
 
 	renderContent() {
 		this.contentRendered = true;
-		Cell.forceRelease();
+		Cell.release();
 	}
 }

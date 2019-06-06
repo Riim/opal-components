@@ -224,7 +224,7 @@ export class OpalLoadedList extends BaseComponent {
 					this._lastLoadedQuery = query;
 				}
 
-				Cell.forceRelease();
+				Cell.release();
 
 				this.emit('loaded');
 

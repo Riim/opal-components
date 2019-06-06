@@ -61,7 +61,7 @@ export class OpalMultirow extends BaseComponent {
 			this._newRows.removeAt(this._newRows.findIndex(row => row.key == key));
 		}
 
-		Cell.forceRelease();
+		Cell.release();
 
 		this.emit('remove-row');
 		this.emit('change');
@@ -70,7 +70,7 @@ export class OpalMultirow extends BaseComponent {
 	_onAddRowClick() {
 		this._newRows.add({ key: nextUID() });
 
-		Cell.forceRelease();
+		Cell.release();
 
 		let focusable = this.$('focus', this.$$<BaseComponent>('newRowSlot').slice(-1)[0]) as {
 			focus: () => {};

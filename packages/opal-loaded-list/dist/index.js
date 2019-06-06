@@ -136,8 +136,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var OpalLoadedList_1;
+Object.defineProperty(exports, "__esModule", { value: true });
 const next_tick_1 = __webpack_require__(4);
 const cellx_1 = __webpack_require__(5);
 const cellx_decorators_1 = __webpack_require__(6);
@@ -264,7 +264,7 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
                 this.dataList.clear().addRange(items);
                 this._lastLoadedQuery = query;
             }
-            cellx_1.Cell.forceRelease();
+            cellx_1.Cell.release();
             this.emit('loaded');
             next_tick_1.nextTick(() => {
                 this.checkLoading();

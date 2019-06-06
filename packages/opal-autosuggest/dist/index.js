@@ -150,8 +150,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var OpalAutosuggest_1;
+Object.defineProperty(exports, "__esModule", { value: true });
 const next_tick_1 = __webpack_require__(6);
 const cellx_1 = __webpack_require__(7);
 const cellx_decorators_1 = __webpack_require__(8);
@@ -419,7 +419,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
         let items = data.items;
         if (items.length) {
             this.dataList.addRange(items);
-            // Cell.forceRelease();
+            // Cell.release();
             // Содержимое OpalDropdown рендерится лениво, из-за этого обработчик изменения dataList
             // в RnRepeat оказывается после _onDataListChange (RnRepeat рендерится после
             // elementAttached). При первом открытии меню всё хорошо, тк. появившийся RnRepeat
@@ -428,7 +428,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
             // для меню считается выравнивание, но RnRepeat ещё не обновился тк. обработчик
             // изменения dataList в нём идёт сразу за текущим.
             // В результате выравнивание меню получается неправильным.
-            // По этой причине вместо Cell.forceRelease здесь nextTick и nextTick добавлен в
+            // По этой причине вместо Cell.release здесь nextTick и nextTick добавлен в
             // _onDataListChange.
             next_tick_1.nextTick(() => {
                 let focusedListItem = this.$('listItem');
