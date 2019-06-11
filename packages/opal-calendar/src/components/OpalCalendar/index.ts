@@ -1,5 +1,4 @@
 import { t } from '@riim/gettext';
-import { nextTick } from '@riim/next-tick';
 import { OpalSelect } from '@riim/opal-select';
 import { Cell, IEvent } from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
@@ -383,12 +382,10 @@ export class OpalCalendar extends BaseComponent {
 	}
 
 	_onDaysBlur() {
-		nextTick(() => {
-			if (!document.activeElement!.classList.contains('OpalCalendar__day')) {
-				this._documentKeyDownListening!.stop();
-				this._documentKeyDownListening = null;
-			}
-		});
+		if (!document.activeElement!.classList.contains('OpalCalendar__day')) {
+			this._documentKeyDownListening!.stop();
+			this._documentKeyDownListening = null;
+		}
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {

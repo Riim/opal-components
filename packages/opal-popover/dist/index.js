@@ -202,7 +202,7 @@ let OpalPopover = class OpalPopover extends rionite_1.BaseComponent {
             let docEl = document.documentElement;
             let containerClientRect = el.offsetParent.getBoundingClientRect();
             let elClientRect = el.getBoundingClientRect();
-            let position = (this._positionOnOpen = this.paramPosition).split('-');
+            let position = (this._positionAtOpening = this.paramPosition).split('-');
             switch (position[0]) {
                 case 'left': {
                     if (elClientRect.left + window.pageXOffset < 0 ||
@@ -267,7 +267,7 @@ let OpalPopover = class OpalPopover extends rionite_1.BaseComponent {
     }
     _close() {
         if (this.paramAutoDirection) {
-            this.paramPosition = this._positionOnOpen;
+            this.paramPosition = this._positionAtOpening;
         }
         if (this._closingEventListening) {
             this._closingEventListening.stop();

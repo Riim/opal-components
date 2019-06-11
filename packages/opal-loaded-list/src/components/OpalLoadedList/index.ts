@@ -1,4 +1,3 @@
-import { nextTick } from '@riim/next-tick';
 import { Cell, ObservableList } from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
 import {
@@ -228,9 +227,7 @@ export class OpalLoadedList extends BaseComponent {
 
 				this.emit('loaded');
 
-				nextTick(() => {
-					this.checkLoading();
-				});
+				this.checkLoading();
 			}))
 		);
 	}

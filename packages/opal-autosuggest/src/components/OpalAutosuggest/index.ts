@@ -428,17 +428,18 @@ export class OpalAutosuggest extends BaseComponent {
 		if (items.length) {
 			this.dataList.addRange(items);
 
-			// Cell.release();
-			// Содержимое OpalDropdown рендерится лениво, из-за этого обработчик изменения dataList
-			// в RnRepeat оказывается после _onDataListChange (RnRepeat рендерится после
-			// elementAttached). При первом открытии меню всё хорошо, тк. появившийся RnRepeat
-			// показывает свои items в RnRepeat#elementConnected, но при втором открытии возможно
-			// следующее: срабатывает _onDataListChange в котором открывается меню,
-			// для меню считается выравнивание, но RnRepeat ещё не обновился тк. обработчик
-			// изменения dataList в нём идёт сразу за текущим.
-			// В результате выравнивание меню получается неправильным.
-			// По этой причине вместо Cell.release здесь nextTick и nextTick добавлен в
-			// _onDataListChange.
+            // Cell.release();
+            // Содержимое OpalDropdown рендерится лениво, из-за этого обработчик изменения dataList
+            // в RnRepeat оказывается после _onDataListChange. При первом открытии меню всё хорошо,
+			// тк. RnRepeat#_render запускается в RnRepeat#elementConnected: OpalDropdown#_open() ->
+			// this.contentRendered = true; -> RnRepeat#elementConnected -> RnRepeat#_render ->
+			// OpalDropdown#_open$(). То есть при запуске OpalDropdown#_open$ RnRepeat уже
+			// отрендерился. Но при втором открытии возможно следующее: срабатывает
+			// _onDataListChange в котором открывается меню, для меню считается выравнивание, но
+			// RnRepeat ещё не обновился тк. обработчик изменения dataList в нём идёт сразу за
+			// местным. В результате выравнивание меню получается неправильным. По этой причине в
+			// _onDataListChange добавлен nextTick и как следствие здесь вместо Cell.release тоже
+			// необходимо использовать nextTick.
 			nextTick(() => {
 				let focusedListItem = this.$<HTMLElement>('listItem')!;
 

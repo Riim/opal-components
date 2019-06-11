@@ -8,7 +8,7 @@ export declare class OpalPopover extends BaseComponent {
     paramCloseOn: string;
     paramOpened: boolean;
     contentRendered: boolean;
-    _positionOnOpen: string;
+    _positionAtOpening: string;
     _closingEventListening: IDisposableListening | null | undefined;
     ready(): void;
     elementAttached(): void;

@@ -9,8 +9,6 @@ import {
 import './index.css';
 import template from './template.rnt';
 
-const openedDropdowns: Array<OpalDropdown> = [];
-
 @Component({
 	elementIs: 'OpalDropdown',
 	template
@@ -81,8 +79,6 @@ export class OpalDropdown extends BaseComponent {
 	}
 
 	_open() {
-		openedDropdowns.push(this);
-
 		if (this.contentRendered) {
 			this._open$();
 		} else {
@@ -162,8 +158,6 @@ export class OpalDropdown extends BaseComponent {
 	}
 
 	_close() {
-		openedDropdowns.splice(openedDropdowns.indexOf(this), 1);
-
 		if (this._closingEventListening) {
 			this._closingEventListening.stop();
 			this._closingEventListening = null;

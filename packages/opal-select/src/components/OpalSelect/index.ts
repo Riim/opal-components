@@ -921,9 +921,7 @@ export class OpalSelect extends BaseComponent {
 			this.$<OpalFilteredList>('filteredList');
 
 		if (focusTarget) {
-			nextTick(() => {
-				focusTarget!.focus();
-			});
+			focusTarget!.focus();
 		}
 	}
 

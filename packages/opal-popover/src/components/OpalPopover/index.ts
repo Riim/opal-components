@@ -28,7 +28,7 @@ export class OpalPopover extends BaseComponent {
 	@Observable
 	contentRendered = false;
 
-	_positionOnOpen: string;
+	_positionAtOpening: string;
 
 	_closingEventListening: IDisposableListening | null | undefined;
 
@@ -101,7 +101,7 @@ export class OpalPopover extends BaseComponent {
 			let docEl = document.documentElement!;
 			let containerClientRect = el.offsetParent!.getBoundingClientRect();
 			let elClientRect = el.getBoundingClientRect();
-			let position = (this._positionOnOpen = this.paramPosition).split('-');
+			let position = (this._positionAtOpening = this.paramPosition).split('-');
 
 			switch (position[0]) {
 				case 'left': {
@@ -191,7 +191,7 @@ export class OpalPopover extends BaseComponent {
 
 	_close() {
 		if (this.paramAutoDirection) {
-			this.paramPosition = this._positionOnOpen;
+			this.paramPosition = this._positionAtOpening;
 		}
 
 		if (this._closingEventListening) {

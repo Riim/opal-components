@@ -178,8 +178,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var OpalSelect_1;
+Object.defineProperty(exports, "__esModule", { value: true });
 const gettext_1 = __webpack_require__(10);
 const next_tick_1 = __webpack_require__(11);
 const cellx_1 = __webpack_require__(12);
@@ -813,9 +813,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         let focusTarget = this.$('focus') ||
             this.$('filteredList');
         if (focusTarget) {
-            next_tick_1.nextTick(() => {
-                focusTarget.focus();
-            });
+            focusTarget.focus();
         }
     }
     _updateOptions() {
