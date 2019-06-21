@@ -24,12 +24,11 @@
 	}
 }
 
-@IfElse (paramRange) {
-	input:input (
-		type=range,
-		min={paramMin},
-		max={paramMax},
-		step={paramStep},
-		value={paramValue}
-	)
-}
+input:input (
+	@unless=paramRange,
+	type=range,
+	min={paramMin},
+	max={paramMax},
+	step={paramStep},
+	value={paramValue}
+)

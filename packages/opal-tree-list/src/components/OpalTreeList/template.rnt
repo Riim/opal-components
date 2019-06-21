@@ -1,41 +1,31 @@
 @IfThen (listShown) {
-	@IfThen (filteredDataTreeList.length) {
-		@Repeat (for=$item in filteredDataTreeList) {
-			OpalTreeListItem:item (
-				dataTreeList={dataTreeList},
-				filteredDataTreeList={filteredDataTreeList},
-				dataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},
-				dataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},
-				viewModel={viewModel},
-				viewModelItemValueFieldName={_viewModelItemValueFieldName},
-				viewModelItemTextFieldName={_viewModelItemTextFieldName},
-				indexpath=[{$index}],
-				query={paramQuery},
-				opened={paramQuery |bool },
-				nestingLevel=0,
-				hasChildren='{$item.children.length |gt(0) }'
-			) {
-				@Slot (cloneContent, getContext={_getListItemContext}) {
-					OpalCheckbox:selectionControl (
-						checked={$selected},
-						indeterminate={$indeterminate}
-					) {
-						'{$item |key(_dataTreeListItemTextFieldName) }'
-					}
-				}
+	OpalTreeListItem:item (
+		@for=$item in filteredDataTreeList,
+		dataTreeList={dataTreeList},
+		filteredDataTreeList={filteredDataTreeList},
+		dataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},
+		dataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},
+		viewModel={viewModel},
+		viewModelItemValueFieldName={_viewModelItemValueFieldName},
+		viewModelItemTextFieldName={_viewModelItemTextFieldName},
+		indexpath=[{$index}],
+		query={paramQuery},
+		opened={paramQuery |bool },
+		nestingLevel=0,
+		hasChildren='{$item.children.length |gt(0) }'
+	) {
+		RnSlot (cloneContent, getContext={_getListItemContext}) {
+			OpalCheckbox:selectionControl (checked={$selected}, indeterminate={$indeterminate}) {
+				'{$item |key(_dataTreeListItemTextFieldName) }'
 			}
 		}
 	}
-	@IfElse (filteredDataTreeList.length) {
-		@Slot:nothingFoundSlot (for=nothingFound) {
-			span:nothingFound {
-				span:nothingFoundMessage {
-					'{"Ничего не найдено" |t }'
-				}
+	RnSlot:nothingFoundSlot (@unless=filteredDataTreeList.length, for=nothingFound) {
+		span:nothingFound {
+			span:nothingFoundMessage {
+				'{"Ничего не найдено" |t }'
 			}
 		}
 	}
 }
-@IfElse (listShown) {
-	OpalLoader:loader (shown)
-}
+OpalLoader:loader (@unless=listShown, shown)

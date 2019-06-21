@@ -11,11 +11,9 @@
 		}
 
 		div:menuHeaderRightPart {
-			@Slot:menuHeaderContentSlot (for=menuHeaderContent) {
-				@IfThen (viewModel.length) {
-					span:selectedCount {
-						'{"выбрано {n}" |t(viewModel.length) }'
-					}
+			RnSlot:menuHeaderContentSlot (for=menuHeaderContent) {
+				span:selectedCount (@if=viewModel.length) {
+					'{"выбрано {n}" |t(viewModel.length) }'
 				}
 			}
 		}
@@ -36,22 +34,18 @@
 	}
 
 	div:menuSelected {
-		@Repeat (for=item in viewModel) {
-			div:selectedItem {
-				'{item |key(_viewModelItemTextFieldName) }'
+		div:selectedItem (@for=item in viewModel) {
+			'{item |key(_viewModelItemTextFieldName) }'
 
-				button:btnDeselectItem (tabindex=-1) {
-					OpalIcon:btnDeselectItemIcon (name=cross)
-				}
+			button:btnDeselectItem (tabindex=-1) {
+				OpalIcon:btnDeselectItemIcon (name=cross)
 			}
 		}
 
-		@IfThen (nothingSelectedShown) {
-			@Slot:nothingSelectedSlot (for=nothingSelected) {
-				span:nothingSelected {
-					span:nothingSelectedMessage {
-						'{"Ничего не выбрано" |t }'
-					}
+		RnSlot:nothingSelectedSlot (@if=nothingSelectedShown, for=nothingSelected) {
+			span:nothingSelected {
+				span:nothingSelectedMessage {
+					'{"Ничего не выбрано" |t }'
 				}
 			}
 		}
@@ -59,7 +53,7 @@
 
 	div:menuFooter {
 		div:menuFooterLeftPart {
-			@Slot:menuFooterContentSlot (for=menuFooterContent)
+			RnSlot:menuFooterContentSlot (for=menuFooterContent)
 		}
 
 		div:menuFooterRightPart {

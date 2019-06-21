@@ -4,5 +4,5 @@ label:label {
 	span:control (tabindex={_tabIndex})
 	' '
 
-	@Slot:contentSlot
+	RnSlot:contentSlot
 }

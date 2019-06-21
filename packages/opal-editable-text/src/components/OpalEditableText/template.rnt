@@ -1,4 +1,4 @@
 span:contentWrapper {
-	@Slot:contentSlot (contenteditable, spellcheck=false)
+	RnSlot:contentSlot (contenteditable, spellcheck=false)
 	OpalIcon:iconEdit (name=compose, strokeWidth=3)
 }

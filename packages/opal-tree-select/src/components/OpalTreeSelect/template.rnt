@@ -1,6 +1,6 @@
 OpalModal:menu {
-	@Slot (for=menuHeaderSlot) {
-		@Slot:menuHeaderSlot (for=menuHeader)
+	RnSlot (for=menuHeaderSlot) {
+		RnSlot:menuHeaderSlot (for=menuHeader)
 	}
 
 	OpalFilteredList:filteredList {

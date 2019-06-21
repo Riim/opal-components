@@ -1,4 +1,4 @@
-@Slot (for=textInput) {
+RnSlot (for=textInput) {
 	OpalTextInput:textInput (
 		value='{paramValue |key(_dataListItemTextFieldName) }',
 		placeholder={'Начните вводить для поиска' |t },
@@ -9,33 +9,30 @@
 }
 
 OpalDropdown:menu {
-	@Slot (for=menuHeader)
+	RnSlot (for=menuHeader)
 
 	div:list {
-		@Repeat (for=item in dataList) {
-			div:listItem (
-				data-value='{item |key(_dataListItemValueFieldName) }',
-				data-text='{item |key(_dataListItemTextFieldName) }',
-				data-subtext='{item |key(_dataListItemSubtextFieldName) }'
-			) {
-				'{item |key(_dataListItemTextFieldName) }'
+		div:listItem (
+			@for=item in dataList,
+			data-value='{item |key(_dataListItemValueFieldName) }',
+			data-text='{item |key(_dataListItemTextFieldName) }',
+			data-subtext='{item |key(_dataListItemSubtextFieldName) }'
+		) {
+			'{item |key(_dataListItemTextFieldName) }'
 
-				sub {
-					'{item |key(_dataListItemSubtextFieldName) }'
-				}
+			sub {
+				'{item |key(_dataListItemSubtextFieldName) }'
 			}
 		}
 	}
 
-	@IfElse (dataList.length) {
-		@Slot:nothingFoundSlot (for=nothingFound) {
-			span:nothingFound {
-				span:nothingFoundMessage {
-					'{"Ничего не найдено" |t }'
-				}
+	RnSlot:nothingFoundSlot (@unless=dataList.length, for=nothingFound) {
+		span:nothingFound {
+			span:nothingFoundMessage {
+				'{"Ничего не найдено" |t }'
 			}
 		}
 	}
 
-	@Slot:menuFooterSlot (for=menuFooter)
+	RnSlot:menuFooterSlot (for=menuFooter)
 }

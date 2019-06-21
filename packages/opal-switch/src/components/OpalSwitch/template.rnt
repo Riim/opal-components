@@ -6,5 +6,5 @@ label:label {
 	}
 	' '
 
-	@Slot:contentSlot
+	RnSlot:contentSlot
 }

@@ -8,10 +8,8 @@ span:tags {
 }
 
 span:control {
-	@IfThen (placeholderShown) {
-		span:placeholder {
-			'{paramPlaceholder}'
-		}
+	span:placeholder (@if=placeholderShown) {
+		'{paramPlaceholder}'
 	}
 
 	OpalSelect:select (
@@ -34,63 +32,57 @@ span:control {
 			disabled={paramDisabled}
 		)
 
-		@Slot (class=OpalSelect__menuSlot, for=OpalSelect__menu) {
+		RnSlot (class=OpalSelect__menuSlot, for=OpalSelect__menu) {
 			OpalPopover:menu (
 				class=OpalSelect__menu,
 				position={paramPopoverPosition},
 				closeOn=mousedown
 			) {
-				@Slot (for=OpalSelect__menuHeader)
-				@Slot (for=OpalSelect__menuContent) {
-					@IfThen (_dataListKeypathParam) {
-						div (class=OpalSelect__menuContent) {
-							@IfThen (dataList) {
-								@Repeat (
-									for=item in dataList,
-									trackBy={_dataListItemValueFieldName}
-								) {
-									OpalSelectOption:dataListSelectOption:selectOption (
-										value='{item |key(_dataListItemValueFieldName) }',
-										text='{item |key(_dataListItemTextFieldName) }',
-										subtext='{item |key(_dataListItemSubtextFieldName) }',
-										disabled='{item |key(_dataListItemDisabledFieldName) }'
-									)
-								}
-
-								@Slot (
-									class=OpalSelect__newItemInputSlot,
-									for=OpalSelect__newItemInput
+				RnSlot (for=OpalSelect__menuHeader)
+				RnSlot (for=OpalSelect__menuContent) {
+					div (@if=_dataListKeypathParam, class=OpalSelect__menuContent) {
+						@IfThen (dataList) {
+							@Repeat (for=item in dataList, trackBy={_dataListItemValueFieldName}) {
+								OpalSelectOption:dataListSelectOption:selectOption (
+									value='{item |key(_dataListItemValueFieldName) }',
+									text='{item |key(_dataListItemTextFieldName) }',
+									subtext='{item |key(_dataListItemSubtextFieldName) }',
+									disabled='{item |key(_dataListItemDisabledFieldName) }'
 								)
 							}
-							@IfElse (if=dataList, withUndefined) {
-								OpalLoader:menuLoader (shown)
-							}
+
+							RnSlot (
+								class=OpalSelect__newItemInputSlot,
+								for=OpalSelect__newItemInput
+							)
+						}
+						@IfElse (if=dataList, withUndefined) {
+							OpalLoader:menuLoader (shown)
 						}
 					}
-					@IfElse (_dataListKeypathParam) {
-						OpalFilteredList:menuFilteredList (
-							class=OpalSelect__menuContent OpalSelect__filteredList
-						) {
-							@Slot (
-								class=OpalFilteredList__queryInputSlot,
-								for=OpalFilteredList__queryInput
-							)
+					OpalFilteredList:menuFilteredList (
+						@unless=_dataListKeypathParam,
+						class=OpalSelect__menuContent OpalSelect__filteredList
+					) {
+						RnSlot (
+							class=OpalFilteredList__queryInputSlot,
+							for=OpalFilteredList__queryInput
+						)
 
-							OpalLoadedList:menuLoadedList (
-								class=OpalSelect__loadedList OpalFilteredList__list,
-								dataProvider={dataProvider}
-							) {
-								OpalSelectOption:loadedListSelectOption:selectOption (
-									class=OpalLoadedList__listItem,
-									value='{$item |key(_dataListItemValueFieldName) }',
-									text='{$item |key(_dataListItemTextFieldName) }',
-									subtext='{$item |key(_dataListItemSubtextFieldName) }'
-								)
-							}
+						OpalLoadedList:menuLoadedList (
+							class=OpalSelect__loadedList OpalFilteredList__list,
+							dataProvider={dataProvider}
+						) {
+							OpalSelectOption:loadedListSelectOption:selectOption (
+								class=OpalLoadedList__listItem,
+								value='{$item |key(_dataListItemValueFieldName) }',
+								text='{$item |key(_dataListItemTextFieldName) }',
+								subtext='{$item |key(_dataListItemSubtextFieldName) }'
+							)
 						}
 					}
 				}
-				@Slot (for=OpalSelect__menuFooter)
+				RnSlot (for=OpalSelect__menuFooter)
 			}
 		}
 	}

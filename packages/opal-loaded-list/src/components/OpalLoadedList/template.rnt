@@ -1,21 +1,26 @@
 div:list {
-	@Repeat (for=$item in dataList) {
-		@Slot:listItemSlot (for=listItem, cloneContent, getContext={_getListItemContext}) {
-			span:listItem {
-				'{$item |key(_dataListItemTextFieldName) }'
-			}
+	RnSlot:listItemSlot (
+		@for=$item in dataList,
+		for=listItem,
+		cloneContent,
+		getContext={_getListItemContext}
+	) {
+		span:listItem {
+			'{$item |key(_dataListItemTextFieldName) }'
 		}
 	}
 }
 
 OpalLoader:loader (shown={loaderShown}, alignCenter={empty})
 
-@IfThen (nothingFoundShown) {
-	@Slot:nothingFoundSlot (for=nothingFound, getContext={_getListItemContext}) {
-		span:nothingFound {
-			span:nothingFoundMessage {
-				'{"Ничего не найдено" |t }'
-			}
+RnSlot:nothingFoundSlot (
+	@if=nothingFoundShown,
+	for=nothingFound,
+	getContext={_getListItemContext}
+) {
+	span:nothingFound {
+		span:nothingFoundMessage {
+			'{"Ничего не найдено" |t }'
 		}
 	}
 }

@@ -1,4 +1,4 @@
-@Slot:contentSlot
+RnSlot:contentSlot
 
 OpalSignButton:btnRemoveRow (sign=minus)
 OpalSignButton:btnAddRow (sign=plus)

@@ -4,11 +4,9 @@ div:bar (
 	iconSize={paramIconSize},
 	buttonHide={paramButtonHide}
 ) {
-	@IfThen (paramIcon) {
-		OpalIcon:icon (name={paramIcon}, size={paramIconSize})
-	}
+	OpalIcon:icon (@if=paramIcon, name={paramIcon}, size={paramIconSize})
 
-	@Slot:contentSlot
+	RnSlot:contentSlot
 
 	button:btnHide (hide={paramButtonHide |not }) {
 		OpalIcon:btnHideIcon (name=cross)

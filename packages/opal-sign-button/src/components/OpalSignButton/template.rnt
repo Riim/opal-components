@@ -2,5 +2,5 @@ button:control (tabindex={_tabIndex}) {
 	span:sign
 	' '
 
-	@Slot:contentSlot
+	RnSlot:contentSlot
 }

@@ -10,13 +10,12 @@ OpalTextInputValidator:textInputValidator {
 		}
 	}
 
-	@IfThen (paramRequired) {
-		OpalTextInputValidatorRule:textInputValidatorRuleRequired (
-			required,
-			popoverPosition={paramPopoverPosition}
-		) {
-			'{"Поле обязательно для заполнения" |t }'
-		}
+	OpalTextInputValidatorRule:textInputValidatorRuleRequired (
+		@if=paramRequired,
+		required,
+		popoverPosition={paramPopoverPosition}
+	) {
+		'{"Поле обязательно для заполнения" |t }'
 	}
 
 	OpalTextInputValidatorRule:textInputValidatorRuleDateExists (

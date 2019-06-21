@@ -24,30 +24,25 @@ header:header {
 div:body {
 	div:weekDays {
 		div:weekDaysRow {
-			@Repeat (for=weekDay in weekDaysShort) {
-				span:weekDay {
-					'{=weekDay}'
-				}
+			span:weekDay (@for=weekDay in weekDaysShort) {
+				'{=weekDay}'
 			}
 		}
 	}
 
 	div:days {
-		@Repeat (for=weekDays in days) {
-			div:daysRow {
-				@Repeat (for=day in weekDays) {
-					span:day (
-						weekDay={=day.weekDay},
-						today={=day.today},
-						selected={=day.selected},
-						notInCurrentMonth={=day.notInCurrentMonth},
-						disabled={=day.disabled},
-						tabindex={=day.tabIndex},
-						data-date={=day.date}
-					) {
-						'{=day.value}'
-					}
-				}
+		div:daysRow (@for=weekDays in days) {
+			span:day (
+				@for=day in weekDays,
+				weekDay={=day.weekDay},
+				today={=day.today},
+				selected={=day.selected},
+				notInCurrentMonth={=day.notInCurrentMonth},
+				disabled={=day.disabled},
+				tabindex={=day.tabIndex},
+				data-date={=day.date}
+			) {
+				'{=day.value}'
 			}
 		}
 	}

@@ -1,9 +1,9 @@
-@Slot (for=queryInputSlot) {
-	@Slot:queryInputSlot (for=queryInput) {
+RnSlot (for=queryInputSlot) {
+	RnSlot:queryInputSlot (for=queryInput) {
 		OpalTextInput:queryInput (placeholder={'Поиск' |t }, clearable) {
 			OpalIcon:queryInputEndIcon (class=OpalTextInput__endIcon, name=search)
 		}
 	}
 }
 
-@Slot:listSlot (for=list)
+RnSlot:listSlot (for=list)

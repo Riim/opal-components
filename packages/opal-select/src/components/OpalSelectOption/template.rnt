@@ -1,19 +1,12 @@
 button:control (tabindex={_tabIndex}) {
-	@Slot:contentSlot {
+	RnSlot:contentSlot {
 		'{paramText}'
 
-		@IfThen (paramSubtext) {
-			sub {
-				'{paramSubtext}'
-			}
+		sub (@if=paramSubtext) {
+			'{paramSubtext}'
 		}
 	}
 
-	@IfThen (selected) {
-		OpalIcon:iconSelected (name=checkmark)
-	}
-
-	@IfThen (indeterminate) {
-		OpalIcon:iconIndeterminate (name=minus)
-	}
+	OpalIcon:iconSelected (@if=selected, name=checkmark)
+	OpalIcon:iconIndeterminate (@if=indeterminate, name=minus)
 }

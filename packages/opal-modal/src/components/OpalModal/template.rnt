@@ -3,7 +3,5 @@ div:window {
 		button:btnClose
 	}
 
-	@IfThen (contentRendered) {
-		@Slot:contentSlot
-	}
+	RnSlot:contentSlot (@if=contentRendered)
 }

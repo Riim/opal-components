@@ -1,3 +1,1 @@
-@IfThen (contentRendered) {
-	@Slot:contentSlot
-}
+RnSlot:contentSlot (@if=contentRendered)

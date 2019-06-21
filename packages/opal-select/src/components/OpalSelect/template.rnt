@@ -1,4 +1,4 @@
-@Slot (for=button) {
+RnSlot (for=button) {
 	OpalButton:button (
 		viewType={paramViewType},
 		size={paramSize},
@@ -17,41 +17,35 @@
 	}
 }
 
-@Slot (for=menuSlot) {
-	@Slot:menuSlot (for=menu) {
+RnSlot (for=menuSlot) {
+	RnSlot:menuSlot (for=menu) {
 		OpalDropdown:menu (closeOn=mousedown) {
-			@Slot (for=menuHeader)
-			@Slot (for=menuContent) {
-				@IfThen (_paramDataListSpecified) {
-					div::menuContent {
-						@IfThen (dataList) {
-							@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {
-								OpalSelectOption:option (
-									value='{=item |key(_dataListItemValueFieldName) }',
-									text='{=item |key(_dataListItemTextFieldName) }',
-									subtext='{=item |key(_dataListItemSubtextFieldName) }',
-									disabled='{=item |key(_dataListItemDisabledFieldName) }'
-								)
-							}
+			RnSlot (for=menuHeader)
+			RnSlot (for=menuContent) {
+				div::menuContent (@if=_paramDataListSpecified) {
+					@IfThen (dataList) {
+						@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {
+							OpalSelectOption:option (
+								value='{=item |key(_dataListItemValueFieldName) }',
+								text='{=item |key(_dataListItemTextFieldName) }',
+								subtext='{=item |key(_dataListItemSubtextFieldName) }',
+								disabled='{=item |key(_dataListItemDisabledFieldName) }'
+							)
+						}
 
-							@Slot:newItemInputSlot // ...
-						}
-						@IfElse (dataList) {
-							OpalLoader:menuLoader (shown)
-						}
+						RnSlot:newItemInputSlot // ...
 					}
+					OpalLoader:menuLoader (@unless=dataList, shown)
 				}
-				@IfElse (_paramDataListSpecified) {
-					div::menuContent {
-						@Slot:options (forTag=opal-select-option)
+				div::menuContent (@unless=_paramDataListSpecified) {
+					RnSlot:options (forTag=opal-select-option)
 
-						@Slot (for=newItemInputSlot) {
-							@Slot:newItemInputSlot (for=newItemInput)
-						}
+					RnSlot (for=newItemInputSlot) {
+						RnSlot:newItemInputSlot (for=newItemInput)
 					}
 				}
 			}
-			@Slot (for=menuFooter)
+			RnSlot (for=menuFooter)
 		}
 	}
 }
