@@ -90,8 +90,10 @@ export class OpalModal extends BaseComponent {
 	}
 
 	renderContent() {
-		this.contentRendered = true;
-		Cell.release();
+		if (!this.contentRendered) {
+			this.contentRendered = true;
+			Cell.release();
+		}
 	}
 
 	open(): boolean {
@@ -148,8 +150,7 @@ export class OpalModal extends BaseComponent {
 
 		openedModals.unshift(this);
 
-		this.contentRendered = true;
-		Cell.release();
+		this.renderContent();
 
 		this.focus();
 	}

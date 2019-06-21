@@ -21,12 +21,14 @@ export class OpalTabPanel extends BaseComponent {
 
 	_onParamShownChange(evt: IEvent) {
 		if (evt.data.value) {
-			this.contentRendered = true;
+			this.renderContent();
 		}
 	}
 
 	renderContent() {
-		this.contentRendered = true;
-		Cell.release();
+		if (!this.contentRendered) {
+			this.contentRendered = true;
+			Cell.release();
+		}
 	}
 }

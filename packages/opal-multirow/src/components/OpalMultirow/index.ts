@@ -72,9 +72,10 @@ export class OpalMultirow extends BaseComponent {
 
 		Cell.release();
 
-		let focusable = this.$('focus', this.$$<BaseComponent>('newRowSlot').slice(-1)[0]) as {
-			focus: () => {};
-		};
+		let focusable = this.$<{ focus: () => {} }>(
+			'focus',
+			this.$$<BaseComponent>('newRowSlot').slice(-1)[0]
+		);
 
 		if (focusable) {
 			focusable.focus();

@@ -45,8 +45,10 @@ export class OpalDropdown extends BaseComponent {
 	}
 
 	renderContent() {
-		this.contentRendered = true;
-		Cell.release();
+		if (!this.contentRendered) {
+			this.contentRendered = true;
+			Cell.release();
+		}
 	}
 
 	open(): boolean {
@@ -79,16 +81,6 @@ export class OpalDropdown extends BaseComponent {
 	}
 
 	_open() {
-		if (this.contentRendered) {
-			this._open$();
-		} else {
-			this.contentRendered = true;
-			Cell.release();
-			this._open$();
-		}
-	}
-
-	_open$() {
 		let el = this.element;
 		let elStyle = el.style;
 
@@ -97,6 +89,8 @@ export class OpalDropdown extends BaseComponent {
 		elStyle.bottom = 'auto';
 		elStyle.left = '0';
 		elStyle.maxHeight = 'none';
+
+		this.renderContent();
 
 		let containerClientRect = el.offsetParent!.getBoundingClientRect();
 		let elClientRect = el.getBoundingClientRect();

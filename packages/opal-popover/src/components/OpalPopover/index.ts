@@ -51,8 +51,10 @@ export class OpalPopover extends BaseComponent {
 	}
 
 	renderContent() {
-		this.contentRendered = true;
-		Cell.release();
+		if (!this.contentRendered) {
+			this.contentRendered = true;
+			Cell.release();
+		}
 	}
 
 	open(): boolean {
@@ -85,16 +87,8 @@ export class OpalPopover extends BaseComponent {
 	}
 
 	_open() {
-		if (this.contentRendered) {
-			this._open$();
-		} else {
-			this.contentRendered = true;
-			Cell.release();
-			this._open$();
-		}
-	}
+		this.renderContent();
 
-	_open$() {
 		let el = this.element;
 
 		if (this.paramAutoDirection) {

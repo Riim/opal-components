@@ -439,7 +439,7 @@ export class OpalAutosuggest extends BaseComponent {
 			// RnRepeat ещё не обновился тк. обработчик изменения dataList в нём идёт сразу за
 			// местным. В результате выравнивание меню получается неправильным. По этой причине в
 			// _onDataListChange добавлен nextTick и как следствие здесь вместо Cell.release тоже
-			// необходимо использовать nextTick.
+			// нужно использовать nextTick.
 			nextTick(() => {
 				let focusedListItem = this.$<HTMLElement>('listItem')!;
 

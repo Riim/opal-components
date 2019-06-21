@@ -168,6 +168,7 @@ export class OpalTabs extends BaseComponent {
 		}
 
 		Cell.release();
+
 		this.emit('change');
 	}
 }
