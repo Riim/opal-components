@@ -1,0 +1,175 @@
+@component OpalFileUpload {
+	display: block;
+	box-sizing: border-box;
+	padding: 12px;
+	min-width: 400px;
+	border: 1px solid hsl(0,0%,80%);
+	color: hsl(0,0%,30%);
+	font-size: 1rem;
+	line-height: 1.5;
+
+	@el fileList {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+		@el file {
+			position: relative;
+			margin-bottom: 10px;
+			padding: 12px 52px 12px 20px;
+			border-radius: 3px;
+			background: hsl(0,0%,95%);
+		}
+			@el filePreviewWrapper {
+				position: relative;
+				display: inline-block;
+				margin-right: 10px;
+				width: 48px;
+				height: 48px;
+				vertical-align: middle;
+			}
+				@el filePreview,
+					fileIcon,
+					fileLoadingIcon
+				{
+					position: absolute;
+					top: 0;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					display: block;
+					margin: auto;
+				}
+
+				@el filePreview {
+					max-width: 48px;
+					max-height: 48px;
+					border: 0;
+					border-radius: 3px;
+				}
+
+				@el fileIcon {
+					width: 48px;
+					height: 48px;
+					fill: currentColor;
+				}
+
+				@el fileLoadingIcon {
+					width: 20px;
+					height: 20px;
+					animation: OpalFileUpload__fileLoadingIconAnimation 1.2s infinite linear;
+					fill: currentColor;
+				}
+
+			@el fileText {
+				vertical-align: middle;
+				font-weight: bold;
+			}
+
+			@el btnRemoveFile {
+				position: absolute;
+				top: 0;
+				right: 10px;
+				bottom: 0;
+				display: block;
+				margin: auto;
+				padding: 10px;
+				width: 42px;
+				height: 42px;
+				border: 0;
+				background: transparent;
+				color: hsl(0,0%,60%);
+				cursor: pointer;
+				transition: color .1s;
+				transform: translateY(-1px);
+
+				&:hover {
+					color: hsl(0,0%,30%);
+				}
+
+				&:active {
+					transform: translateY(0);
+				}
+			}
+				@el btnRemoveFileIcon {
+					display: block;
+					width: 22px;
+					height: 22px;
+					fill: currentColor;
+				}
+
+	@el dropZone {
+		position: relative;
+		padding: 25px;
+		border: 2px dashed hsl(0,0%,60%);
+		border-radius: 5px;
+		background: hsl(0,0%,95%);
+		color: hsl(0,0%,50%);
+		text-align: center;
+		cursor: pointer;
+
+		@mod over {
+			border-color: hsl(208,90%,52%);
+
+			@el drop-zone-text {
+				pointer-events: none;
+			}
+		}
+
+		@mod error {
+			@el dropZoneErrorMessageWrapper {
+				display: block;
+			}
+		}
+	}
+		@el dropZoneErrorMessageWrapper {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			display: none;
+			border-radius: inherit;
+			background: inherit;
+			white-space: nowrap;
+			font-size: 0;
+
+			&::after {
+				display: inline-block;
+				width: 0;
+				height: 100%;
+				content: '';
+				vertical-align: middle;
+			}
+		}
+			@el dropZoneErrorMessage {
+				color: hsl(0,100%,50%);
+				vertical-align: middle;
+				font-size: 1rem;
+			}
+
+		@el dropZoneText {
+		}
+			@el btnSelectFiles {
+				display: inline;
+				padding: 0;
+				border: 0;
+				background: transparent;
+				color: hsl(208,90%,52%);
+				font: inherit;
+				cursor: inherit;
+			}
+
+	@el filesInput {
+		display: none;
+	}
+}
+
+@keyframes OpalFileUpload__fileLoadingIconAnimation {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

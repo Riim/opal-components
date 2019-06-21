@@ -1,4 +1,4 @@
-const child_process = require('child_process');
+const childProcess = require('child_process');
 const glob = require('glob');
 const gulp = require('gulp');
 
@@ -12,7 +12,7 @@ gulp.task('build', done => {
 	function buildPackage(p) {
 		inProcessCount++;
 
-		let process = child_process.exec(
+		let process = childProcess.exec(
 			'gulp buildPackage --package=' + p.split('/')[1],
 			(err, stdout, stderr) => {
 				if (err) {

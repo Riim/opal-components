@@ -1,0 +1,46 @@
+ul:fileList {
+	@Repeat (for=file in files, trackBy=id) {
+		li:file {
+			div:filePreviewWrapper {
+				@IfThen (if=file.readed) {
+					img:filePreview (@if=file.isImage, src={file.dataURI})
+					svg:fileIcon (@unless=file.isImage, viewBox=0 0 32 32) {
+						use (xlink:href=#OpalFileUpload__iconFile)
+					}
+				}
+				svg:fileLoadingIcon (@unless=file.readed, viewBox=0 0 32 32) {
+					use (xlink:href=#OpalFileUpload__iconSpinner)
+				}
+			}
+
+			span:fileText {
+				'{file.name}'
+			}
+
+			button:btnRemoveFile {
+				svg:btnRemoveFileIcon (viewBox=0 0 32 32) {
+					use (xlink:href=#OpalFileUpload__iconTrash)
+				}
+			}
+		}
+	}
+}
+
+div:dropZone (error={error}) {
+	div:dropZoneErrorMessageWrapper {
+		span:dropZoneErrorMessage {
+			'{errorMessage}'
+		}
+	}
+
+	span:dropZoneText {
+		'{"Перетащите файлы в эту область или" |t }'
+		br
+
+		button:btnSelectFiles {
+			'{"нажмите для выбора в проводнике" |t }'
+		}
+	}
+}
+
+input:filesInput (type=file, multiple)

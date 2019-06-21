@@ -11,6 +11,7 @@ const csso = require('postcss-csso');
 
 const externals = [
 	'@riim/debounce-throttle',
+	'@riim/escape-regexp',
 	'@riim/gettext',
 	'@riim/kebab-case',
 	'@riim/map-set-polyfill',
@@ -19,8 +20,8 @@ const externals = [
 	'@riim/object-assign-polyfill',
 	'@riim/platform',
 	'@riim/rionite-snake-case-attribute-name',
-	'cellx',
 	'cellx-decorators',
+	'cellx',
 	'date-exists',
 	'history',
 	'reflect-metadata',
