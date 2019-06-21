@@ -191,8 +191,10 @@ let OpalModal = class OpalModal extends rionite_1.BaseComponent {
         }
     }
     renderContent() {
-        this.contentRendered = true;
-        cellx_1.Cell.release();
+        if (!this.contentRendered) {
+            this.contentRendered = true;
+            cellx_1.Cell.release();
+        }
     }
     open() {
         if (this.paramOpened) {
@@ -232,8 +234,7 @@ let OpalModal = class OpalModal extends rionite_1.BaseComponent {
                     : this.element.offsetWidth - this.element.clientWidth) + 'px';
         }
         openedModals.unshift(this);
-        this.contentRendered = true;
-        cellx_1.Cell.release();
+        this.renderContent();
         this.focus();
     }
     _close() {
@@ -332,7 +333,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:window {\ndiv:btnCloseWrapper {\nbutton:btnClose\n}\n@IfThen (contentRendered) {\n@Slot:contentSlot\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("div:window {\ndiv:btnCloseWrapper {\nbutton:btnClose\n}\nRnSlot:contentSlot (@if=contentRendered)\n}");
 
 /***/ })
 /******/ ]);

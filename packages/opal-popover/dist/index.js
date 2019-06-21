@@ -161,8 +161,10 @@ let OpalPopover = class OpalPopover extends rionite_1.BaseComponent {
         }
     }
     renderContent() {
-        this.contentRendered = true;
-        cellx_1.Cell.release();
+        if (!this.contentRendered) {
+            this.contentRendered = true;
+            cellx_1.Cell.release();
+        }
     }
     open() {
         if (this.paramOpened) {
@@ -187,16 +189,7 @@ let OpalPopover = class OpalPopover extends rionite_1.BaseComponent {
         return this.open() || !this.close();
     }
     _open() {
-        if (this.contentRendered) {
-            this._open$();
-        }
-        else {
-            this.contentRendered = true;
-            cellx_1.Cell.release();
-            this._open$();
-        }
-    }
-    _open$() {
+        this.renderContent();
         let el = this.element;
         if (this.paramAutoDirection) {
             let docEl = document.documentElement;
@@ -364,7 +357,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("span:arrow\n@IfThen (contentRendered) {\n@Slot:contentSlot\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("span:arrow\nRnSlot:contentSlot (@if=contentRendered)");
 
 /***/ })
 /******/ ]);

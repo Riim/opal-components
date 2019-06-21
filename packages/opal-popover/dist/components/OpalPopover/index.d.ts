@@ -18,7 +18,6 @@ export declare class OpalPopover extends BaseComponent {
     close(): boolean;
     toggle(value?: boolean): boolean;
     _open(): void;
-    _open$(): void;
     _close(): void;
     _onClosingEvent(evt: Event): void;
 }

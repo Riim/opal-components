@@ -381,7 +381,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:list {\n@Repeat (for=$item in dataList) {\n@Slot:listItemSlot (for=listItem, cloneContent, getContext={_getListItemContext}) {\nspan:listItem {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\n}\nOpalLoader:loader (shown={loaderShown}, alignCenter={empty})\n@IfThen (nothingFoundShown) {\n@Slot:nothingFoundSlot (for=nothingFound, getContext={_getListItemContext}) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("div:list {\nRnSlot:listItemSlot (\n@for=$item in dataList,\nfor=listItem,\ncloneContent,\ngetContext={_getListItemContext}\n) {\nspan:listItem {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nOpalLoader:loader (shown={loaderShown}, alignCenter={empty})\nRnSlot:nothingFoundSlot (\n@if=nothingFoundShown,\nfor=nothingFound,\ngetContext={_getListItemContext}\n) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}");
 
 /***/ })
 /******/ ]);

@@ -159,8 +159,10 @@ let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
         }
     }
     renderContent() {
-        this.contentRendered = true;
-        cellx_1.Cell.release();
+        if (!this.contentRendered) {
+            this.contentRendered = true;
+            cellx_1.Cell.release();
+        }
     }
     open() {
         if (this.paramOpened) {
@@ -185,16 +187,6 @@ let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
         return this.open() || !this.close();
     }
     _open() {
-        if (this.contentRendered) {
-            this._open$();
-        }
-        else {
-            this.contentRendered = true;
-            cellx_1.Cell.release();
-            this._open$();
-        }
-    }
-    _open$() {
         let el = this.element;
         let elStyle = el.style;
         elStyle.top = '100%';
@@ -202,6 +194,7 @@ let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
         elStyle.bottom = 'auto';
         elStyle.left = '0';
         elStyle.maxHeight = 'none';
+        this.renderContent();
         let containerClientRect = el.offsetParent.getBoundingClientRect();
         let elClientRect = el.getBoundingClientRect();
         if (elClientRect.right > containerClientRect.right &&
@@ -334,7 +327,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (contentRendered) {\n@Slot:contentSlot\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot (@if=contentRendered)");
 
 /***/ })
 /******/ ]);

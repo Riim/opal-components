@@ -487,7 +487,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("button:control (tabindex={_tabIndex}) {\n@Slot:contentSlot\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("button:control (tabindex={_tabIndex}) {\nRnSlot:contentSlot\n}");
 
 /***/ }),
 /* 12 */
@@ -512,7 +512,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot:contentSlot");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot");
 
 /***/ }),
 /* 14 */
@@ -546,12 +546,14 @@ let OpalTabPanel = class OpalTabPanel extends rionite_1.BaseComponent {
     }
     _onParamShownChange(evt) {
         if (evt.data.value) {
-            this.contentRendered = true;
+            this.renderContent();
         }
     }
     renderContent() {
-        this.contentRendered = true;
-        cellx_1.Cell.release();
+        if (!this.contentRendered) {
+            this.contentRendered = true;
+            cellx_1.Cell.release();
+        }
     }
 };
 __decorate([
@@ -594,7 +596,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (contentRendered) {\n@Slot:contentSlot\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot (@if=contentRendered)");
 
 /***/ }),
 /* 17 */
@@ -619,7 +621,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot:tabListSlot (forTag=opal-tab-list) {\nOpalTabList:tabList {\n@Slot:tabs (forTag=opal-tab)\n}\n}\n@Slot:tabPanels (forTag=opal-tab-panel)");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:tabListSlot (forTag=opal-tab-list) {\nOpalTabList:tabList {\nRnSlot:tabs (forTag=opal-tab)\n}\n}\nRnSlot:tabPanels (forTag=opal-tab-panel)");
 
 /***/ })
 /******/ ]);

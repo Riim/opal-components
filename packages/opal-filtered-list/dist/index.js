@@ -215,7 +215,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot (for=queryInputSlot) {\n@Slot:queryInputSlot (for=queryInput) {\nOpalTextInput:queryInput (placeholder={'Поиск' |t }, clearable) {\nOpalIcon:queryInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\n}\n@Slot:listSlot (for=list)");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=queryInputSlot) {\nRnSlot:queryInputSlot (for=queryInput) {\nOpalTextInput:queryInput (placeholder={'Поиск' |t }, clearable) {\nOpalIcon:queryInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\n}\nRnSlot:listSlot (for=list)");
 
 /***/ })
 /******/ ]);

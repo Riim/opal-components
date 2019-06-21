@@ -430,7 +430,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
             // RnRepeat ещё не обновился тк. обработчик изменения dataList в нём идёт сразу за
             // местным. В результате выравнивание меню получается неправильным. По этой причине в
             // _onDataListChange добавлен nextTick и как следствие здесь вместо Cell.release тоже
-            // необходимо использовать nextTick.
+            // нужно использовать nextTick.
             next_tick_1.nextTick(() => {
                 let focusedListItem = this.$('listItem');
                 this._focusedListItem = focusedListItem;
@@ -628,7 +628,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot (for=textInput) {\nOpalTextInput:textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={'Начните вводить для поиска' |t },\nclearable\n) {\nOpalIcon:textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown:menu {\n@Slot (for=menuHeader)\ndiv:list {\n@Repeat (for=item in dataList) {\ndiv:listItem (\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\n}\n@IfElse (dataList.length) {\n@Slot:nothingFoundSlot (for=nothingFound) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\n}\n@Slot:menuFooterSlot (for=menuFooter)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=textInput) {\nOpalTextInput:textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={'Начните вводить для поиска' |t },\nclearable\n) {\nOpalIcon:textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown:menu {\nRnSlot (for=menuHeader)\ndiv:list {\ndiv:listItem (\n@for=item in dataList,\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\nRnSlot:nothingFoundSlot (@unless=dataList.length, for=nothingFound) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\nRnSlot:menuFooterSlot (for=menuFooter)\n}");
 
 /***/ })
 /******/ ]);

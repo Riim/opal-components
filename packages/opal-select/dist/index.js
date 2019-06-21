@@ -1224,7 +1224,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("button:control (tabindex={_tabIndex}) {\n@Slot:contentSlot {\n'{paramText}'\n@IfThen (paramSubtext) {\nsub {\n'{paramSubtext}'\n}\n}\n}\n@IfThen (selected) {\nOpalIcon:iconSelected (name=checkmark)\n}\n@IfThen (indeterminate) {\nOpalIcon:iconIndeterminate (name=minus)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("button:control (tabindex={_tabIndex}) {\nRnSlot:contentSlot {\n'{paramText}'\nsub (@if=paramSubtext) {\n'{paramSubtext}'\n}\n}\nOpalIcon:iconSelected (@if=selected, name=checkmark)\nOpalIcon:iconIndeterminate (@if=indeterminate, name=minus)\n}");
 
 /***/ }),
 /* 18 */
@@ -1271,7 +1271,7 @@ exports.isEqualArray = isEqualArray;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot (for=button) {\nOpalButton:button (\nviewType={paramViewType},\nsize={paramSize},\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n) {\n@IfThen (paramText) {\n'{paramText}'\n}\n@IfElse (paramText) {\n'{_buttonText}'\n}\nOpalIcon:buttonIcon (name=chevronDown)\n}\n}\n@Slot (for=menuSlot) {\n@Slot:menuSlot (for=menu) {\nOpalDropdown:menu (closeOn=mousedown) {\n@Slot (for=menuHeader)\n@Slot (for=menuContent) {\n@IfThen (_paramDataListSpecified) {\ndiv::menuContent {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {\nOpalSelectOption:option (\nvalue='{=item |key(_dataListItemValueFieldName) }',\ntext='{=item |key(_dataListItemTextFieldName) }',\nsubtext='{=item |key(_dataListItemSubtextFieldName) }',\ndisabled='{=item |key(_dataListItemDisabledFieldName) }'\n)\n}\n@Slot:newItemInputSlot // ...\n}\n@IfElse (dataList) {\nOpalLoader:menuLoader (shown)\n}\n}\n}\n@IfElse (_paramDataListSpecified) {\ndiv::menuContent {\n@Slot:options (forTag=opal-select-option)\n@Slot (for=newItemInputSlot) {\n@Slot:newItemInputSlot (for=newItemInput)\n}\n}\n}\n}\n@Slot (for=menuFooter)\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=button) {\nOpalButton:button (\nviewType={paramViewType},\nsize={paramSize},\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n) {\n@IfThen (paramText) {\n'{paramText}'\n}\n@IfElse (paramText) {\n'{_buttonText}'\n}\nOpalIcon:buttonIcon (name=chevronDown)\n}\n}\nRnSlot (for=menuSlot) {\nRnSlot:menuSlot (for=menu) {\nOpalDropdown:menu (closeOn=mousedown) {\nRnSlot (for=menuHeader)\nRnSlot (for=menuContent) {\ndiv::menuContent (@if=_paramDataListSpecified) {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {\nOpalSelectOption:option (\nvalue='{=item |key(_dataListItemValueFieldName) }',\ntext='{=item |key(_dataListItemTextFieldName) }',\nsubtext='{=item |key(_dataListItemSubtextFieldName) }',\ndisabled='{=item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRnSlot:newItemInputSlot // ...\n}\nOpalLoader:menuLoader (@unless=dataList, shown)\n}\ndiv::menuContent (@unless=_paramDataListSpecified) {\nRnSlot:options (forTag=opal-select-option)\nRnSlot (for=newItemInputSlot) {\nRnSlot:newItemInputSlot (for=newItemInput)\n}\n}\n}\nRnSlot (for=menuFooter)\n}\n}\n}");
 
 /***/ })
 /******/ ]);

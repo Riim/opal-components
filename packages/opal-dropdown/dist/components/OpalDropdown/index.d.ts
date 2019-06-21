@@ -15,7 +15,6 @@ export declare class OpalDropdown extends BaseComponent {
     close(): boolean;
     toggle(value?: boolean): boolean;
     _open(): void;
-    _open$(): void;
     _close(): void;
     _onClosingEvent(evt: Event): void;
 }

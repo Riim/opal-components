@@ -311,7 +311,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot:contentSlot\nOpalSignButton:btnRemoveRow (sign=minus)\nOpalSignButton:btnAddRow (sign=plus)");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot\nOpalSignButton:btnRemoveRow (sign=minus)\nOpalSignButton:btnAddRow (sign=plus)");
 
 /***/ }),
 /* 11 */
@@ -336,7 +336,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@Slot:presetRowsSlot (\nfor=presetRows,\nnotHaveNewRows={_notHaveNewRows},\nnotSingleRow={_notSingleRow}\n) {\n@Slot:presetRows (for=presetRow)\n}\ndiv:newRows (notSingleRow={_notSingleRow}) {\n@Repeat (for=row in _newRows, trackBy=key) {\n@Slot:newRowSlot (cloneContent, data-key={row.key})\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:presetRowsSlot (\nfor=presetRows,\nnotHaveNewRows={_notHaveNewRows},\nnotSingleRow={_notSingleRow}\n) {\nRnSlot:presetRows (for=presetRow)\n}\ndiv:newRows (notSingleRow={_notSingleRow}) {\n@Repeat (for=row in _newRows, trackBy=key) {\nRnSlot:newRowSlot (cloneContent, data-key={row.key})\n}\n}");
 
 /***/ })
 /******/ ]);

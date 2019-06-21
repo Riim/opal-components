@@ -299,8 +299,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var OpalTreeList_1;
+Object.defineProperty(exports, "__esModule", { value: true });
 const opal_utils_1 = __webpack_require__(10);
 const cellx_1 = __webpack_require__(8);
 const cellx_decorators_1 = __webpack_require__(11);
@@ -741,7 +741,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:head {\nOpalButton:btnToggleChildren (viewType=clean, checkable, checked={paramOpened}) {\nOpalIcon:btnToggleChildrenIcon (name=chevronRight)\n}\nspan:contentSlotWrapper {\n@Slot:contentSlot (cloneContent)\n}\n}\n@IfThen (dataTreeListItem.children.length) {\ndiv:children {\n@Repeat (for=$item in dataTreeListItem.children) {\nOpalTreeListItem:item (\ndataTreeList={paramDataTreeList},\nfilteredDataTreeList={paramFilteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath='[{paramIndexpath},{$index}]',\nquery={paramQuery},\nopened={paramQuery |bool },\nnestingLevel={paramIndexpath.length},\nhasChildren='{$item.children.length |gt(0) }'\n) {\n@Slot (cloneContent, getContext={_getListItemContext})\n}\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("div:head {\nOpalButton:btnToggleChildren (viewType=clean, checkable, checked={paramOpened}) {\nOpalIcon:btnToggleChildrenIcon (name=chevronRight)\n}\nspan:contentSlotWrapper {\nRnSlot:contentSlot (cloneContent)\n}\n}\ndiv:children (@if=dataTreeListItem.children.length) {\nOpalTreeListItem:item (\n@for=$item in dataTreeListItem.children,\ndataTreeList={paramDataTreeList},\nfilteredDataTreeList={paramFilteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath='[{paramIndexpath},{$index}]',\nquery={paramQuery},\nopened={paramQuery |bool },\nnestingLevel={paramIndexpath.length},\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext})\n}\n}");
 
 /***/ }),
 /* 17 */
@@ -766,7 +766,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (listShown) {\n@IfThen (filteredDataTreeList.length) {\n@Repeat (for=$item in filteredDataTreeList) {\nOpalTreeListItem:item (\ndataTreeList={dataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={paramQuery},\nopened={paramQuery |bool },\nnestingLevel=0,\nhasChildren='{$item.children.length |gt(0) }'\n) {\n@Slot (cloneContent, getContext={_getListItemContext}) {\nOpalCheckbox:selectionControl (\nchecked={$selected},\nindeterminate={$indeterminate}\n) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\n}\n@IfElse (filteredDataTreeList.length) {\n@Slot:nothingFoundSlot (for=nothingFound) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\n}\n}\n@IfElse (listShown) {\nOpalLoader:loader (shown)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (listShown) {\nOpalTreeListItem:item (\n@for=$item in filteredDataTreeList,\ndataTreeList={dataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={paramQuery},\nopened={paramQuery |bool },\nnestingLevel=0,\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext}) {\nOpalCheckbox:selectionControl (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\nRnSlot:nothingFoundSlot (@unless=filteredDataTreeList.length, for=nothingFound) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\n}\nOpalLoader:loader (@unless=listShown, shown)");
 
 /***/ })
 /******/ ]);
