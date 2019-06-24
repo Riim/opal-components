@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-text-input",
-  "version": "0.37.4",
+  "version": "0.37.9",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@riim/opal-icon": "^0.37.4",
-    "@riim/opal-loader": "^0.37.0",
+    "@riim/opal-loader": "^0.37.9",
     "cellx": "^1.8.0",
     "cellx-decorators": "^1.5.0",
     "reflect-metadata": "^0.1.13",
