@@ -9,21 +9,22 @@ div:head {
 }
 
 div:children (@if=dataTreeListItem.children.length) {
-	OpalTreeListItem:item (
-		@for=$item in dataTreeListItem.children,
-		dataTreeList={paramDataTreeList},
-		filteredDataTreeList={paramFilteredDataTreeList},
-		dataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},
-		dataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},
-		viewModel={viewModel},
-		viewModelItemValueFieldName={_viewModelItemValueFieldName},
-		viewModelItemTextFieldName={_viewModelItemTextFieldName},
-		indexpath='[{paramIndexpath},{$index}]',
-		query={paramQuery},
-		opened={paramQuery |bool },
-		nestingLevel={paramIndexpath.length},
-		hasChildren='{$item.children.length |gt(0) }'
-	) {
-		RnSlot (cloneContent, getContext={_getListItemContext})
+	@Repeat (for=$item in dataTreeListItem.children) {
+		OpalTreeListItem:item (
+			dataTreeList={paramDataTreeList},
+			filteredDataTreeList={paramFilteredDataTreeList},
+			dataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},
+			dataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},
+			viewModel={viewModel},
+			viewModelItemValueFieldName={_viewModelItemValueFieldName},
+			viewModelItemTextFieldName={_viewModelItemTextFieldName},
+			indexpath='[{paramIndexpath},{$index}]',
+			query={paramQuery},
+			opened={paramQuery |bool },
+			nestingLevel={paramIndexpath.length},
+			hasChildren='{$item.children.length |gt(0) }'
+		) {
+			RnSlot (cloneContent, getContext={_getListItemContext})
+		}
 	}
 }

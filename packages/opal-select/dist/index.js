@@ -569,16 +569,16 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             throw new TypeError('Parameter "addNewItem" is required');
         }
         let text = button.element.dataset.newItemText;
-        button.paramLoading = true;
+        button.loading = true;
         button.disable();
         this._addNewItem(text, this).then((newItem) => {
-            button.paramLoading = false;
+            button.loading = false;
             button.enable();
             if (newItem) {
                 this._addNewItem$(newItem);
             }
         }, () => {
-            button.paramLoading = false;
+            button.loading = false;
             button.enable();
         });
         return false;

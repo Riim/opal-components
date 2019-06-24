@@ -346,7 +346,7 @@ export class OpalAutosuggest extends BaseComponent {
 									(tabbableComponentEl.$component as any).focus();
 									document.body.classList.remove('_noFocusHighlight');
 									break;
-								} else if ((tabbableComponentEl.$component as any).paramFocused) {
+								} else if ((tabbableComponentEl.$component as any).focused) {
 									document.body.classList.remove('_noFocusHighlight');
 									break;
 								}

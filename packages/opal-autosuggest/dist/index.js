@@ -357,7 +357,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
                                     document.body.classList.remove('_noFocusHighlight');
                                     break;
                                 }
-                                else if (tabbableComponentEl.$component.paramFocused) {
+                                else if (tabbableComponentEl.$component.focused) {
                                     document.body.classList.remove('_noFocusHighlight');
                                     break;
                                 }

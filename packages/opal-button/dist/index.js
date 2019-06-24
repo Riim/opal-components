@@ -136,20 +136,20 @@ __webpack_require__(5);
 let OpalButton = class OpalButton extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramViewType = 'default';
-        this.paramSize = 'm';
-        this.paramCheckable = false;
-        this.paramChecked = false;
-        this.paramLoading = false;
-        this.paramTabIndex = 0;
-        this.paramFocused = false;
-        this.paramDisabled = false;
+        this.viewType = 'default';
+        this.size = 'm';
+        this.checkable = false;
+        this.checked = false;
+        this.loading = false;
+        this.tabIndex = 0;
+        this.focused = false;
+        this.disabled = false;
     }
     get _tabIndex() {
-        return this.paramDisabled ? -1 : this.paramTabIndex;
+        return this.disabled ? -1 : this.tabIndex;
     }
     ready() {
-        if (this.paramFocused) {
+        if (this.focused) {
             this.element.tabIndex = this._tabIndex;
             this.focus();
         }
@@ -170,7 +170,7 @@ let OpalButton = class OpalButton extends rionite_1.BaseComponent {
         if (!this._documentKeyDownListening && this.element.tagName.indexOf('-') != -1) {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
         }
-        this.paramFocused = true;
+        this.focused = true;
         this.emit('focus');
     }
     _onElementBlur() {
@@ -178,34 +178,28 @@ let OpalButton = class OpalButton extends rionite_1.BaseComponent {
             this._documentKeyDownListening.stop();
             this._documentKeyDownListening = null;
         }
-        this.paramFocused = false;
+        this.focused = false;
         this.emit('blur');
     }
     _onElementClick() {
-        if (!this.paramDisabled) {
+        if (!this.disabled) {
             this.click();
         }
     }
     _onDocumentKeyDown(evt) {
         if (evt.which == 13 /* Enter */) {
             evt.preventDefault();
-            if (!this.paramDisabled) {
+            if (!this.disabled) {
                 this.click();
             }
         }
     }
     click() {
-        if (!this.emit('click').defaultPrevented && this.paramCheckable) {
+        if (!this.emit('click').defaultPrevented && this.checkable) {
             this.emit(this.toggle() ? 'check' : 'uncheck');
             this.emit('change');
         }
         return this;
-    }
-    get checked() {
-        return this.paramChecked;
-    }
-    set checked(checked) {
-        this.paramChecked = checked;
     }
     get selected() {
         return this.checked;
@@ -214,21 +208,21 @@ let OpalButton = class OpalButton extends rionite_1.BaseComponent {
         this.checked = selected;
     }
     check() {
-        if (!this.paramChecked) {
-            this.paramChecked = true;
+        if (!this.checked) {
+            this.checked = true;
             return true;
         }
         return false;
     }
     uncheck() {
-        if (this.paramChecked) {
-            this.paramChecked = false;
+        if (this.checked) {
+            this.checked = false;
             return true;
         }
         return false;
     }
     toggle(value) {
-        return (this.paramChecked = value === undefined ? !this.paramChecked : value);
+        return (this.checked = value === undefined ? !this.checked : value);
     }
     focus() {
         this.element.focus();
@@ -239,46 +233,46 @@ let OpalButton = class OpalButton extends rionite_1.BaseComponent {
         return this;
     }
     enable() {
-        this.paramDisabled = false;
+        this.disabled = false;
         return this;
     }
     disable() {
-        this.paramDisabled = true;
+        this.disabled = true;
         return this;
     }
 };
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalButton.prototype, "paramViewType", void 0);
+], OpalButton.prototype, "viewType", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalButton.prototype, "paramSize", void 0);
+], OpalButton.prototype, "size", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalButton.prototype, "paramCheckable", void 0);
+], OpalButton.prototype, "checkable", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalButton.prototype, "paramChecked", void 0);
+], OpalButton.prototype, "checked", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalButton.prototype, "paramLoading", void 0);
+], OpalButton.prototype, "loading", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalButton.prototype, "paramTabIndex", void 0);
+], OpalButton.prototype, "tabIndex", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalButton.prototype, "paramFocused", void 0);
+], OpalButton.prototype, "focused", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalButton.prototype, "paramDisabled", void 0);
+], OpalButton.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Number),

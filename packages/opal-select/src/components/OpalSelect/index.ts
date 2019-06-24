@@ -591,12 +591,12 @@ export class OpalSelect extends BaseComponent {
 
 		let text = button.element.dataset.newItemText!;
 
-		button.paramLoading = true;
+		button.loading = true;
 		button.disable();
 
 		this._addNewItem(text, this).then(
 			(newItem: Record<string, string> | false | null | undefined) => {
-				button.paramLoading = false;
+				button.loading = false;
 				button.enable();
 
 				if (newItem) {
@@ -604,7 +604,7 @@ export class OpalSelect extends BaseComponent {
 				}
 			},
 			() => {
-				button.paramLoading = false;
+				button.loading = false;
 				button.enable();
 			}
 		);

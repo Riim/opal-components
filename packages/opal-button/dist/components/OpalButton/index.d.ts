@@ -1,14 +1,14 @@
 import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalButton extends BaseComponent {
-    paramViewType: string;
-    paramSize: string;
-    paramCheckable: boolean;
-    paramChecked: boolean;
-    paramLoading: boolean;
-    paramTabIndex: number;
-    paramFocused: boolean;
-    paramDisabled: boolean;
+    viewType: string;
+    size: string;
+    checkable: boolean;
+    checked: boolean;
+    loading: boolean;
+    tabIndex: number;
+    focused: boolean;
+    disabled: boolean;
     readonly _tabIndex: number;
     _documentKeyDownListening: IDisposableListening | null | undefined;
     ready(): void;
@@ -19,7 +19,6 @@ export declare class OpalButton extends BaseComponent {
     _onElementClick(): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     click(): this;
-    checked: boolean;
     selected: boolean;
     check(): boolean;
     uncheck(): boolean;
