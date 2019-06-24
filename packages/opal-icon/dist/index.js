@@ -204,12 +204,12 @@ __webpack_require__(73);
 let OpalIcon = class OpalIcon extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramSize = 'm';
-        this.paramStrokeWidth = 3;
-        this.paramFilled = false;
+        this.size = 'm';
+        this.strokeWidth = 3;
+        this.filled = false;
     }
     get xlinkHref() {
-        let name = this.paramName;
+        let name = this.name;
         return '#OpalIcon__icon' + name.charAt(0).toUpperCase() + name.slice(1);
     }
 };
@@ -219,19 +219,19 @@ __decorate([
         readonly: true
     }),
     __metadata("design:type", String)
-], OpalIcon.prototype, "paramName", void 0);
+], OpalIcon.prototype, "name", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalIcon.prototype, "paramSize", void 0);
+], OpalIcon.prototype, "size", void 0);
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
-], OpalIcon.prototype, "paramStrokeWidth", void 0);
+], OpalIcon.prototype, "strokeWidth", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalIcon.prototype, "paramFilled", void 0);
+], OpalIcon.prototype, "filled", void 0);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Object),
@@ -281,7 +281,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("svg:svg (stroke-width={paramStrokeWidth}) {\nuse (xlink:href={xlinkHref})\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("svg:svg (stroke-width={strokeWidth}) {\nuse (xlink:href={xlinkHref})\n}");
 
 /***/ }),
 /* 7 */

@@ -79,17 +79,17 @@ export class OpalIcon extends BaseComponent {
 		required: true,
 		readonly: true
 	})
-	paramName: string;
+	name: string;
 	@Param
-	paramSize = 'm';
+	size = 'm';
 	@Param({ readonly: true })
-	paramStrokeWidth = 3;
+	strokeWidth = 3;
 	@Param
-	paramFilled = false;
+	filled = false;
 
 	@Computed
 	get xlinkHref() {
-		let name = this.paramName;
+		let name = this.name;
 		return '#OpalIcon__icon' + name.charAt(0).toUpperCase() + name.slice(1);
 	}
 }

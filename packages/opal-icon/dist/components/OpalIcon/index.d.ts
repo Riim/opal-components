@@ -68,9 +68,9 @@ import './icons/unlock.svg?id=OpalIcon__iconUnlock';
 import './icons/upload.svg?id=OpalIcon__iconUpload';
 import './icons/user.svg?id=OpalIcon__iconUser';
 export declare class OpalIcon extends BaseComponent {
-    paramName: string;
-    paramSize: string;
-    paramStrokeWidth: number;
-    paramFilled: boolean;
+    name: string;
+    size: string;
+    strokeWidth: number;
+    filled: boolean;
     readonly xlinkHref: string;
 }
