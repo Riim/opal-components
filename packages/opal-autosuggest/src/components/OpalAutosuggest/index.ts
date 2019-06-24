@@ -179,7 +179,7 @@ export class OpalAutosuggest extends BaseComponent {
 	}
 
 	_onLoaderShownChange(evt: IEvent) {
-		this.$<OpalTextInput>('textInput')!.paramLoading = evt.data.value;
+		this.$<OpalTextInput>('textInput')!.loading = evt.data.value;
 	}
 
 	_onDataListChange() {

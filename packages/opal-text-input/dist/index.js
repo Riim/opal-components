@@ -151,17 +151,17 @@ const template_rnt_1 = __webpack_require__(8);
 let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramInputType = 'text';
-        this.paramSize = 'm';
-        this.paramMultiline = false;
-        this.paramRows = 5;
-        this.paramAutoHeight = true;
+        this.inputType = 'text';
+        this.size = 'm';
+        this.multiline = false;
+        this.rows = 5;
+        this.autoHeight = true;
         this.paramValue = '';
-        this.paramClearable = false;
-        this.paramLoading = false;
-        this.paramTabIndex = 0;
-        this.paramFocused = false;
-        this.paramDisabled = false;
+        this.clearable = false;
+        this.loading = false;
+        this.tabIndex = 0;
+        this.focused = false;
+        this.disabled = false;
     }
     get value() {
         return this._textFieldValue.trim() || null;
@@ -170,35 +170,34 @@ let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
         this._textFieldValue = this.textField.value = value || '';
     }
     get btnClearShown() {
-        return this.paramClearable && !this.paramLoading && !!this._textFieldValue;
+        return this.clearable && !this.loading && !!this._textFieldValue;
     }
     get endIconShown() {
-        return !this.paramLoading && !this.btnClearShown;
+        return !this.loading && !this.btnClearShown;
     }
     ready() {
         this.textField = this.$('textField');
         if (this.paramValue) {
             this._textFieldValue = this.textField.value = this.paramValue;
         }
-        else if (this.paramStoreKey) {
-            this._textFieldValue = this.textField.value =
-                localStorage.getItem(this.paramStoreKey) || '';
+        else if (this.storeKey) {
+            this._textFieldValue = this.textField.value = localStorage.getItem(this.storeKey) || '';
         }
         else {
             this._textFieldValue = '';
         }
         this._prevValue = this.value;
-        if (this.paramMultiline && this.paramAutoHeight) {
+        if (this.multiline && this.autoHeight) {
             this._fixMinHeight();
             this._fixHeight();
         }
-        if (this.paramFocused) {
+        if (this.focused) {
             this.focus();
         }
     }
     elementAttached() {
         this.listenTo(this, {
-            'change:paramRows': this._onParamRowsChange,
+            'change:rows': this._onRowsChange,
             'change:paramValue': this._onParamValueChange
         });
         this.listenTo(this.textField, {
@@ -211,30 +210,30 @@ let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
             keyup: this._onTextFieldKeyUp
         });
     }
-    _onParamRowsChange() {
-        if (this.paramMultiline && this.paramAutoHeight) {
+    _onRowsChange() {
+        if (this.multiline && this.autoHeight) {
             this._fixMinHeight();
         }
     }
     _onParamValueChange(evt) {
         if (this.textField.value != evt.data.value) {
             this._textFieldValue = this.textField.value = evt.data.value;
-            if (this.paramMultiline && this.paramAutoHeight) {
+            if (this.multiline && this.autoHeight) {
                 this._fixHeight();
             }
         }
     }
     _onTextFieldFocus() {
-        this.paramFocused = true;
+        this.focused = true;
         this.emit('focus');
     }
     _onTextFieldBlur() {
-        this.paramFocused = false;
+        this.focused = false;
         this.emit('blur');
     }
     _onTextFieldInput(evt) {
         this._textFieldValue = this.textField.value;
-        if (this.paramMultiline && this.paramAutoHeight) {
+        if (this.multiline && this.autoHeight) {
             this._fixHeight();
         }
         this.emit('input', {
@@ -246,8 +245,8 @@ let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
             return;
         }
         this._prevValue = this.value;
-        if (this.paramStoreKey) {
-            localStorage.setItem(this.paramStoreKey, this.textField.value);
+        if (this.storeKey) {
+            localStorage.setItem(this.storeKey, this.textField.value);
         }
         this.emit({
             type: 'change',
@@ -290,7 +289,7 @@ let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
                 parseInt(style.paddingBottom, 10) +
                 parseInt(style.borderTop, 10) +
                 parseInt(style.borderBottom, 10) +
-                parseInt(style.lineHeight, 10) * this.paramRows +
+                parseInt(style.lineHeight, 10) * this.rows +
                 'px';
     }
     _fixHeight() {
@@ -309,38 +308,38 @@ let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
         return this;
     }
     enable() {
-        this.paramDisabled = false;
+        this.disabled = false;
         return this;
     }
     disable() {
-        this.paramDisabled = true;
+        this.disabled = true;
         return this;
     }
 };
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalTextInput.prototype, "paramInputType", void 0);
+], OpalTextInput.prototype, "inputType", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalTextInput.prototype, "paramSize", void 0);
+], OpalTextInput.prototype, "size", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalTextInput.prototype, "paramMultiline", void 0);
+], OpalTextInput.prototype, "multiline", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalTextInput.prototype, "paramRows", void 0);
+], OpalTextInput.prototype, "rows", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalTextInput.prototype, "paramAutoHeight", void 0);
+], OpalTextInput.prototype, "autoHeight", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalTextInput.prototype, "paramInputName", void 0);
+], OpalTextInput.prototype, "inputName", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
@@ -348,39 +347,39 @@ __decorate([
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalTextInput.prototype, "paramStoreKey", void 0);
+], OpalTextInput.prototype, "storeKey", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalTextInput.prototype, "paramPlaceholder", void 0);
+], OpalTextInput.prototype, "placeholder", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalTextInput.prototype, "paramStartIcon", void 0);
+], OpalTextInput.prototype, "startIcon", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalTextInput.prototype, "paramEndIcon", void 0);
+], OpalTextInput.prototype, "endIcon", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalTextInput.prototype, "paramClearable", void 0);
+], OpalTextInput.prototype, "clearable", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalTextInput.prototype, "paramLoading", void 0);
+], OpalTextInput.prototype, "loading", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalTextInput.prototype, "paramTabIndex", void 0);
+], OpalTextInput.prototype, "tabIndex", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalTextInput.prototype, "paramFocused", void 0);
+], OpalTextInput.prototype, "focused", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalTextInput.prototype, "paramDisabled", void 0);
+], OpalTextInput.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", String)
@@ -449,7 +448,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:textareaContainer (@if=paramMultiline) {\ntextarea:textarea:textField (\nrows={paramRows},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabindex={paramTabIndex},\ndisabled={paramDisabled}\n)\ndiv:textareaHeight\n}\ninput::textField (\n@unless=paramMultiline,\ntype={paramInputType},\nname={paramInputName},\nplaceholder={paramPlaceholder},\ntabindex={paramTabIndex},\ndisabled={paramDisabled}\n)\nOpalIcon:startIcon (@if=paramStartIcon, name={paramStartIcon})\nRnSlot:endIconSlot (for=endIcon, shown={endIconShown}) {\nOpalIcon:endIcon (@if=paramEndIcon, name={paramEndIcon})\n}\nbutton:btnClear (@if=paramClearable, shown={btnClearShown}) {\nOpalIcon:btnClearIcon (name=cross)\n}\nOpalLoader:loader (@if=paramLoading, size=s, shown)");
+/* harmony default export */ __webpack_exports__["default"] = ("div:textareaContainer (@if=multiline) {\ntextarea:textarea:textField (\nrows={rows},\nname={inputName},\nplaceholder={placeholder},\ntabindex={tabIndex},\ndisabled={disabled}\n)\ndiv:textareaHeight\n}\ninput::textField (\n@unless=multiline,\ntype={inputType},\nname={inputName},\nplaceholder={placeholder},\ntabindex={tabIndex},\ndisabled={disabled}\n)\nOpalIcon:startIcon (@if=startIcon, name={startIcon})\nRnSlot:endIconSlot (for=endIcon, shown={endIconShown}) {\nOpalIcon:endIcon (@if=endIcon, name={endIcon})\n}\nbutton:btnClear (@if=clearable, shown={btnClearShown}) {\nOpalIcon:btnClearIcon (name=cross)\n}\nOpalLoader:loader (@if=loading, size=s, shown)");
 
 /***/ })
 /******/ ]);

@@ -228,7 +228,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
             : '';
     }
     _onLoaderShownChange(evt) {
-        this.$('textInput').paramLoading = evt.data.value;
+        this.$('textInput').loading = evt.data.value;
     }
     _onDataListChange() {
         // Смотри _itemsRequestCallback

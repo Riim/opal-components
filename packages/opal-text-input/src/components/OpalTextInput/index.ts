@@ -22,37 +22,37 @@ import template from './template.rnt';
 })
 export class OpalTextInput extends BaseComponent {
 	@Param
-	paramInputType = 'text';
+	inputType = 'text';
 	@Param
-	paramSize = 'm';
+	size = 'm';
 	@Param
-	paramMultiline = false;
+	multiline = false;
 	@Param
-	paramRows = 5;
+	rows = 5;
 	@Param
-	paramAutoHeight = true;
+	autoHeight = true;
 	@Param
-	paramInputName: string;
+	inputName: string;
 	@Param
 	paramValue = '';
 	@Param
-	paramStoreKey: string;
+	storeKey: string;
 	@Param
-	paramPlaceholder: string;
+	placeholder: string;
 	@Param
-	paramStartIcon: string;
+	startIcon: string;
 	@Param
-	paramEndIcon: string;
+	endIcon: string;
 	@Param
-	paramClearable = false;
+	clearable = false;
 	@Param
-	paramLoading = false;
+	loading = false;
 	@Param
-	paramTabIndex = 0;
+	tabIndex = 0;
 	@Param
-	paramFocused = false;
+	focused = false;
 	@Param
-	paramDisabled = false;
+	disabled = false;
 
 	textField: HTMLInputElement;
 
@@ -70,12 +70,12 @@ export class OpalTextInput extends BaseComponent {
 
 	@Computed
 	get btnClearShown(): boolean {
-		return this.paramClearable && !this.paramLoading && !!this._textFieldValue;
+		return this.clearable && !this.loading && !!this._textFieldValue;
 	}
 
 	@Computed
 	get endIconShown(): boolean {
-		return !this.paramLoading && !this.btnClearShown;
+		return !this.loading && !this.btnClearShown;
 	}
 
 	ready() {
@@ -83,28 +83,27 @@ export class OpalTextInput extends BaseComponent {
 
 		if (this.paramValue) {
 			this._textFieldValue = this.textField.value = this.paramValue;
-		} else if (this.paramStoreKey) {
-			this._textFieldValue = this.textField.value =
-				localStorage.getItem(this.paramStoreKey) || '';
+		} else if (this.storeKey) {
+			this._textFieldValue = this.textField.value = localStorage.getItem(this.storeKey) || '';
 		} else {
 			this._textFieldValue = '';
 		}
 
 		this._prevValue = this.value;
 
-		if (this.paramMultiline && this.paramAutoHeight) {
+		if (this.multiline && this.autoHeight) {
 			this._fixMinHeight();
 			this._fixHeight();
 		}
 
-		if (this.paramFocused) {
+		if (this.focused) {
 			this.focus();
 		}
 	}
 
 	elementAttached() {
 		this.listenTo(this, {
-			'change:paramRows': this._onParamRowsChange,
+			'change:rows': this._onRowsChange,
 			'change:paramValue': this._onParamValueChange
 		});
 		this.listenTo(this.textField, {
@@ -118,8 +117,8 @@ export class OpalTextInput extends BaseComponent {
 		});
 	}
 
-	_onParamRowsChange() {
-		if (this.paramMultiline && this.paramAutoHeight) {
+	_onRowsChange() {
+		if (this.multiline && this.autoHeight) {
 			this._fixMinHeight();
 		}
 	}
@@ -128,26 +127,26 @@ export class OpalTextInput extends BaseComponent {
 		if (this.textField.value != evt.data.value) {
 			this._textFieldValue = this.textField.value = evt.data.value;
 
-			if (this.paramMultiline && this.paramAutoHeight) {
+			if (this.multiline && this.autoHeight) {
 				this._fixHeight();
 			}
 		}
 	}
 
 	_onTextFieldFocus() {
-		this.paramFocused = true;
+		this.focused = true;
 		this.emit('focus');
 	}
 
 	_onTextFieldBlur() {
-		this.paramFocused = false;
+		this.focused = false;
 		this.emit('blur');
 	}
 
 	_onTextFieldInput(evt: Event) {
 		this._textFieldValue = this.textField.value;
 
-		if (this.paramMultiline && this.paramAutoHeight) {
+		if (this.multiline && this.autoHeight) {
 			this._fixHeight();
 		}
 
@@ -163,8 +162,8 @@ export class OpalTextInput extends BaseComponent {
 
 		this._prevValue = this.value;
 
-		if (this.paramStoreKey) {
-			localStorage.setItem(this.paramStoreKey, this.textField.value);
+		if (this.storeKey) {
+			localStorage.setItem(this.storeKey, this.textField.value);
 		}
 
 		this.emit({
@@ -214,7 +213,7 @@ export class OpalTextInput extends BaseComponent {
 			parseInt(style.paddingBottom!, 10) +
 			parseInt(style.borderTop!, 10) +
 			parseInt(style.borderBottom!, 10) +
-			parseInt(style.lineHeight!, 10) * this.paramRows +
+			parseInt(style.lineHeight!, 10) * this.rows +
 			'px';
 	}
 
@@ -238,12 +237,12 @@ export class OpalTextInput extends BaseComponent {
 	}
 
 	enable(): this {
-		this.paramDisabled = false;
+		this.disabled = false;
 		return this;
 	}
 
 	disable(): this {
-		this.paramDisabled = true;
+		this.disabled = true;
 		return this;
 	}
 }

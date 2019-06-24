@@ -557,12 +557,12 @@ export class OpalSelect extends BaseComponent {
 		let text = textInput.value!;
 
 		textInput.clear();
-		textInput.paramLoading = true;
+		textInput.loading = true;
 		textInput.disable();
 
 		this._addNewItem(text, this).then(
 			(newItem: Record<string, string> | false | null | undefined) => {
-				textInput.paramLoading = false;
+				textInput.loading = false;
 				textInput.enable();
 
 				if (newItem) {
@@ -570,7 +570,7 @@ export class OpalSelect extends BaseComponent {
 				}
 			},
 			() => {
-				textInput.paramLoading = false;
+				textInput.loading = false;
 				textInput.enable();
 			}
 		);

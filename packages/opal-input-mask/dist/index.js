@@ -322,7 +322,7 @@ let OpalInputMask = OpalInputMask_1 = class OpalInputMask extends rionite_1.Base
             this._writeBuffer();
         }
         else if (lastMatchIndex + 1 < partialIndex &&
-            (!maskChanged || (!hasUserInput && !this.textInput.paramFocused))) {
+            (!maskChanged || (!hasUserInput && !this.textInput.focused))) {
             this._clearBuffer(0, bufferLen);
             this.textInput.value = '';
         }

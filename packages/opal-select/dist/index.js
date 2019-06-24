@@ -546,16 +546,16 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         }
         let text = textInput.value;
         textInput.clear();
-        textInput.paramLoading = true;
+        textInput.loading = true;
         textInput.disable();
         this._addNewItem(text, this).then((newItem) => {
-            textInput.paramLoading = false;
+            textInput.loading = false;
             textInput.enable();
             if (newItem) {
                 this._addNewItem$(newItem);
             }
         }, () => {
-            textInput.paramLoading = false;
+            textInput.loading = false;
             textInput.enable();
         });
         return false;

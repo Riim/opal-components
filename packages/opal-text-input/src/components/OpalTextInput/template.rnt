@@ -1,30 +1,30 @@
-div:textareaContainer (@if=paramMultiline) {
+div:textareaContainer (@if=multiline) {
 	textarea:textarea:textField (
-		rows={paramRows},
-		name={paramInputName},
-		placeholder={paramPlaceholder},
-		tabindex={paramTabIndex},
-		disabled={paramDisabled}
+		rows={rows},
+		name={inputName},
+		placeholder={placeholder},
+		tabindex={tabIndex},
+		disabled={disabled}
 	)
 	div:textareaHeight
 }
 input::textField (
-	@unless=paramMultiline,
-	type={paramInputType},
-	name={paramInputName},
-	placeholder={paramPlaceholder},
-	tabindex={paramTabIndex},
-	disabled={paramDisabled}
+	@unless=multiline,
+	type={inputType},
+	name={inputName},
+	placeholder={placeholder},
+	tabindex={tabIndex},
+	disabled={disabled}
 )
 
-OpalIcon:startIcon (@if=paramStartIcon, name={paramStartIcon})
+OpalIcon:startIcon (@if=startIcon, name={startIcon})
 
 RnSlot:endIconSlot (for=endIcon, shown={endIconShown}) {
-	OpalIcon:endIcon (@if=paramEndIcon, name={paramEndIcon})
+	OpalIcon:endIcon (@if=endIcon, name={endIcon})
 }
 
-button:btnClear (@if=paramClearable, shown={btnClearShown}) {
+button:btnClear (@if=clearable, shown={btnClearShown}) {
 	OpalIcon:btnClearIcon (name=cross)
 }
 
-OpalLoader:loader (@if=paramLoading, size=s, shown)
+OpalLoader:loader (@if=loading, size=s, shown)
