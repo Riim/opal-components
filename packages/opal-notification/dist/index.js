@@ -156,11 +156,11 @@ function initContainer(notification) {
 let OpalNotification = class OpalNotification extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramViewType = 'default';
-        this.paramIconSize = 'xs';
-        this.paramButtonHide = true;
-        this.paramTimeout = 0;
-        this.paramShown = false;
+        this.viewType = 'default';
+        this.iconSize = 'xs';
+        this.buttonHide = true;
+        this.timeout = 0;
+        this.shown = false;
     }
     $(name, container = this.bar) {
         return super.$(name, container);
@@ -169,18 +169,18 @@ let OpalNotification = class OpalNotification extends rionite_1.BaseComponent {
         initContainer(this);
         let bar = (this.bar = this.$('bar', this));
         this.element.removeChild(bar);
-        if (this.paramShown) {
+        if (this.shown) {
             this._show();
         }
     }
     elementAttached() {
-        this.listenTo(this, 'change:paramShown', this._onParamShownChange);
+        this.listenTo(this, 'change:shown', this._onShownChange);
         this.listenTo('btnHide', 'click', this._onBtnHideClick);
     }
     elementDetached() {
         this.hide();
     }
-    _onParamShownChange(evt) {
+    _onShownChange(evt) {
         if (evt.data.value) {
             this._show();
         }
@@ -194,18 +194,18 @@ let OpalNotification = class OpalNotification extends rionite_1.BaseComponent {
         this.emit('close');
     }
     show() {
-        if (this.paramShown) {
+        if (this.shown) {
             return false;
         }
-        this.paramShown = true;
+        this.shown = true;
         cellx_1.Cell.release();
         return true;
     }
     hide() {
-        if (!this.paramShown) {
+        if (!this.shown) {
             return false;
         }
-        this.paramShown = false;
+        this.shown = false;
         cellx_1.Cell.release();
         return true;
     }
@@ -227,12 +227,12 @@ let OpalNotification = class OpalNotification extends rionite_1.BaseComponent {
         setTimeout(() => {
             // для анимации
             this.bar.setAttribute('shown', '');
-            if (this.paramTimeout) {
+            if (this.timeout) {
                 this._closingTimeoutId = setTimeout(() => {
                     this.hide();
                     this.emit('hide');
                     this.emit('close');
-                }, this.paramTimeout);
+                }, this.timeout);
             }
         }, 100);
     }
@@ -257,27 +257,27 @@ let OpalNotification = class OpalNotification extends rionite_1.BaseComponent {
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalNotification.prototype, "paramViewType", void 0);
+], OpalNotification.prototype, "viewType", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalNotification.prototype, "paramIcon", void 0);
+], OpalNotification.prototype, "icon", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalNotification.prototype, "paramIconSize", void 0);
+], OpalNotification.prototype, "iconSize", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalNotification.prototype, "paramButtonHide", void 0);
+], OpalNotification.prototype, "buttonHide", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalNotification.prototype, "paramTimeout", void 0);
+], OpalNotification.prototype, "timeout", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalNotification.prototype, "paramShown", void 0);
+], OpalNotification.prototype, "shown", void 0);
 OpalNotification = __decorate([
     rionite_1.Component({
         elementIs: 'OpalNotification',
@@ -328,7 +328,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:bar (\nviewType={paramViewType},\nhasIcon={paramIcon |bool },\niconSize={paramIconSize},\nbuttonHide={paramButtonHide}\n) {\nOpalIcon:icon (@if=paramIcon, name={paramIcon}, size={paramIconSize})\nRnSlot:contentSlot\nbutton:btnHide (hide={paramButtonHide |not }) {\nOpalIcon:btnHideIcon (name=cross)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("div:bar (viewType={viewType}, hasIcon={icon |bool }, iconSize={iconSize}, buttonHide={buttonHide}) {\nOpalIcon:icon (@if=icon, name={icon}, size={iconSize})\nRnSlot:contentSlot\nbutton:btnHide (hide={buttonHide |not }) {\nOpalIcon:btnHideIcon (name=cross)\n}\n}");
 
 /***/ })
 /******/ ]);

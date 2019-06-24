@@ -190,26 +190,26 @@ const template_rnt_1 = __webpack_require__(7);
 let OpalRadioButton = class OpalRadioButton extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramChecked = false;
-        this.paramTabIndex = 0;
-        this.paramFocused = false;
-        this.paramDisabled = false;
+        this.checked = false;
+        this.tabIndex = 0;
+        this.focused = false;
+        this.disabled = false;
     }
     get _tabIndex() {
-        return this.paramDisabled ? -1 : this.paramTabIndex;
+        return this.disabled ? -1 : this.tabIndex;
     }
     ready() {
-        if (this.paramChecked) {
+        if (this.checked) {
             this.$('input').checked = true;
         }
-        if (this.paramFocused) {
+        if (this.focused) {
             this.focus();
         }
     }
     elementAttached() {
         this.listenTo(this, {
-            'change:paramChecked': this._onParamCheckedChange,
-            'change:paramFocused': this._onParamFocusedChange
+            'change:checked': this._onCheckedChange,
+            'change:focused': this._onFocusedChange
         });
         this.listenTo('input', 'change', this._onInputChange);
         this.listenTo('control', {
@@ -217,10 +217,10 @@ let OpalRadioButton = class OpalRadioButton extends rionite_1.BaseComponent {
             blur: this._onControlBlur
         });
     }
-    _onParamCheckedChange(evt) {
+    _onCheckedChange(evt) {
         this.$('input').checked = evt.data.value;
     }
-    _onParamFocusedChange(evt) {
+    _onFocusedChange(evt) {
         if (evt.data.value) {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
         }
@@ -231,29 +231,23 @@ let OpalRadioButton = class OpalRadioButton extends rionite_1.BaseComponent {
     _onDocumentKeyDown(evt) {
         if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
             evt.preventDefault();
-            if (!this.paramDisabled) {
-                this.emit((this.paramChecked = !this.paramChecked) ? 'check' : 'uncheck');
+            if (!this.disabled) {
+                this.emit((this.checked = !this.checked) ? 'check' : 'uncheck');
                 this.emit('change');
             }
         }
     }
     _onInputChange(evt) {
-        this.emit((this.paramChecked = evt.target.checked) ? 'check' : 'uncheck');
+        this.emit((this.checked = evt.target.checked) ? 'check' : 'uncheck');
         this.emit('change');
     }
     _onControlFocus() {
-        this.paramFocused = true;
+        this.focused = true;
         this.emit('focus');
     }
     _onControlBlur() {
-        this.paramFocused = false;
+        this.focused = false;
         this.emit('blur');
-    }
-    get checked() {
-        return this.paramChecked;
-    }
-    set checked(checked) {
-        this.paramChecked = checked;
     }
     get selected() {
         return this.checked;
@@ -262,21 +256,21 @@ let OpalRadioButton = class OpalRadioButton extends rionite_1.BaseComponent {
         this.checked = selected;
     }
     check() {
-        if (!this.paramChecked) {
-            this.paramChecked = true;
+        if (!this.checked) {
+            this.checked = true;
             return true;
         }
         return false;
     }
     uncheck() {
-        if (this.paramChecked) {
-            this.paramChecked = false;
+        if (this.checked) {
+            this.checked = false;
             return true;
         }
         return false;
     }
     toggle(value) {
-        return (this.paramChecked = value === undefined ? !this.paramChecked : value);
+        return (this.checked = value === undefined ? !this.checked : value);
     }
     focus() {
         this.$('control').focus();
@@ -287,30 +281,30 @@ let OpalRadioButton = class OpalRadioButton extends rionite_1.BaseComponent {
         return this;
     }
     enable() {
-        this.paramDisabled = false;
+        this.disabled = false;
         return this;
     }
     disable() {
-        this.paramDisabled = true;
+        this.disabled = true;
         return this;
     }
 };
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalRadioButton.prototype, "paramChecked", void 0);
+], OpalRadioButton.prototype, "checked", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalRadioButton.prototype, "paramTabIndex", void 0);
+], OpalRadioButton.prototype, "tabIndex", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalRadioButton.prototype, "paramFocused", void 0);
+], OpalRadioButton.prototype, "focused", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalRadioButton.prototype, "paramDisabled", void 0);
+], OpalRadioButton.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Number),

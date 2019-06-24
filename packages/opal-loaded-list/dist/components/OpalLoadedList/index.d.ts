@@ -25,7 +25,7 @@ export declare class OpalLoadedList extends BaseComponent {
     paramDataProvider: IDataProvider;
     limit: number;
     query: string;
-    paramPreloading: boolean;
+    preloading: boolean;
     dataList: ObservableList<IDataListItem>;
     _dataListItemTextFieldName: string;
     total: number | undefined;

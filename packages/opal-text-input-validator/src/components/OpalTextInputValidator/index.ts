@@ -32,8 +32,8 @@ export class OpalTextInputValidator extends OpalInputValidator {
 		let value = this.textInput.value;
 
 		return !(value
-			? (rule.paramMinLength && value.length < rule.paramMinLength) ||
-			  (rule.paramRegex && !rule.paramRegex.test(value)) ||
+			? (rule.minLength && value.length < rule.minLength) ||
+			  (rule.regex && !rule.regex.test(value)) ||
 			  (rule.test && !rule.test.call(this.ownerComponent, value))
 			: rule.required);
 	}

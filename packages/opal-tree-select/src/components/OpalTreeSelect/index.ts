@@ -20,7 +20,7 @@ import template from './template.rnt';
 })
 export class OpalTreeSelect extends OpalSelect {
 	@Param
-	paramMultiple = true;
+	multiple = true;
 	@Param
 	paramDataTreeList: TDataTreeList;
 	@Param({ readonly: true })
@@ -39,7 +39,7 @@ export class OpalTreeSelect extends OpalSelect {
 		default: OpalTreeList.defaultViewModelItemSchema,
 		readonly: true
 	})
-	paramViewModelItemSchema: {
+	viewModelItemSchema: {
 		value?: string;
 		text?: string;
 	};

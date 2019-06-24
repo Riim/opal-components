@@ -135,18 +135,18 @@ __webpack_require__(4);
 let OpalLoader = class OpalLoader extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramSize = 'm';
-        this.paramShown = false;
+        this.size = 'm';
+        this.shown = false;
     }
 };
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalLoader.prototype, "paramSize", void 0);
+], OpalLoader.prototype, "size", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalLoader.prototype, "paramShown", void 0);
+], OpalLoader.prototype, "shown", void 0);
 OpalLoader = __decorate([
     rionite_1.Component({
         elementIs: 'OpalLoader'

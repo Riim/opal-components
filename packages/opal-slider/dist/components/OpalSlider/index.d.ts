@@ -1,11 +1,11 @@
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalSlider extends BaseComponent {
-    paramMin: number;
-    paramMax: number;
-    paramStep: number;
+    min: number;
+    max: number;
+    step: number;
     paramValue: number;
-    paramRange: [number, number];
+    range: [number, number];
     _firstInputValue: number;
     _secondInputValue: number;
     readonly _firstInputWidth: number;

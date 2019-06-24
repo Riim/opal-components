@@ -1,13 +1,13 @@
-@IfThen (paramRange) {
+@IfThen (range) {
 	div:firstInputWrapper3 {
 		div:firstInputWrapper2 (style=width: {_firstInputWidth}%) {
 			div:firstInputWrapper {
 				input:firstInput (
 					type=range,
-					min={paramMin},
-					max={paramMax},
-					step={paramStep},
-					value={paramRange.0}
+					min={min},
+					max={max},
+					step={step},
+					value={range.0}
 				)
 			}
 		}
@@ -16,19 +16,19 @@
 	div:secondInputWrapper {
 		input:secondInput (
 			type=range,
-			min={paramMin},
-			max={paramMax},
-			step={paramStep},
-			value={paramRange.1}
+			min={min},
+			max={max},
+			step={step},
+			value={range.1}
 		)
 	}
 }
 
 input:input (
-	@unless=paramRange,
+	@unless=range,
 	type=range,
-	min={paramMin},
-	max={paramMax},
-	step={paramStep},
+	min={min},
+	max={max},
+	step={step},
 	value={paramValue}
 )

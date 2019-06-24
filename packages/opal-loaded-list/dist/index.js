@@ -151,7 +151,7 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
     constructor() {
         super(...arguments);
         this.limit = 100;
-        this.paramPreloading = false;
+        this.preloading = false;
         this.dataList = new cellx_1.ObservableList();
         this._scrollingInProcessing = false;
         this._loadingCheckPlanned = false;
@@ -183,7 +183,7 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
     elementAttached() {
         this.listenTo(this, 'change:query', this._onQueryChange);
         this.listenTo(this.element, 'scroll', this._onElementScroll);
-        if (this.paramPreloading) {
+        if (this.preloading) {
             this._load();
         }
         else {
@@ -299,7 +299,7 @@ __decorate([
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
-], OpalLoadedList.prototype, "paramPreloading", void 0);
+], OpalLoadedList.prototype, "preloading", void 0);
 __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)

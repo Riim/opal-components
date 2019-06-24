@@ -28,17 +28,17 @@ function initContainer(notification: OpalNotification): HTMLElement {
 })
 export class OpalNotification extends BaseComponent {
 	@Param
-	paramViewType = 'default';
+	viewType = 'default';
 	@Param
-	paramIcon: string;
+	icon: string;
 	@Param
-	paramIconSize = 'xs';
+	iconSize = 'xs';
 	@Param
-	paramButtonHide = true;
+	buttonHide = true;
 	@Param
-	paramTimeout = 0;
+	timeout = 0;
 	@Param
-	paramShown = false;
+	shown = false;
 
 	bar: HTMLElement;
 
@@ -54,13 +54,13 @@ export class OpalNotification extends BaseComponent {
 		let bar = (this.bar = this.$<HTMLElement>('bar', this)!);
 		this.element.removeChild(bar);
 
-		if (this.paramShown) {
+		if (this.shown) {
 			this._show();
 		}
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'change:paramShown', this._onParamShownChange);
+		this.listenTo(this, 'change:shown', this._onShownChange);
 		this.listenTo('btnHide', 'click', this._onBtnHideClick);
 	}
 
@@ -68,7 +68,7 @@ export class OpalNotification extends BaseComponent {
 		this.hide();
 	}
 
-	_onParamShownChange(evt: IEvent) {
+	_onShownChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._show();
 		} else {
@@ -83,22 +83,22 @@ export class OpalNotification extends BaseComponent {
 	}
 
 	show(): boolean {
-		if (this.paramShown) {
+		if (this.shown) {
 			return false;
 		}
 
-		this.paramShown = true;
+		this.shown = true;
 		Cell.release();
 
 		return true;
 	}
 
 	hide(): boolean {
-		if (!this.paramShown) {
+		if (!this.shown) {
 			return false;
 		}
 
-		this.paramShown = false;
+		this.shown = false;
 		Cell.release();
 
 		return true;
@@ -127,12 +127,12 @@ export class OpalNotification extends BaseComponent {
 			// для анимации
 			this.bar.setAttribute('shown', '');
 
-			if (this.paramTimeout) {
+			if (this.timeout) {
 				this._closingTimeoutId = setTimeout(() => {
 					this.hide();
 					this.emit('hide');
 					this.emit('close');
-				}, this.paramTimeout);
+				}, this.timeout);
 			}
 		}, 100);
 	}

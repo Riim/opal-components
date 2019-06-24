@@ -42,7 +42,7 @@ import template from './template.rnt';
 })
 export class OpalMultiselect extends OpalSelect {
 	@Param
-	paramMultiple = true;
+	multiple = true;
 	@Param({ readonly: true })
 	paramDataProvider: IDataProvider;
 

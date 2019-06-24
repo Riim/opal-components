@@ -206,15 +206,15 @@ const defaultVMItemSchema = Object.freeze({
 let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramSize = 'm';
-        this.paramMultiple = false;
-        this.paramMaxTextLength = 20;
+        this.size = 'm';
+        this.multiple = false;
+        this.maxTextLength = 20;
         // ;;; Плейсхолдер селекта.
-        this.paramPlaceholder = gettext_1.pt('OpalSelect#paramPlaceholder', 'Не выбрано');
+        this.placeholder = gettext_1.pt('OpalSelect#placeholder', 'Не выбрано');
         this.openOnClick = false;
-        this.paramTabIndex = 0;
-        this.paramFocused = false;
-        this.paramDisabled = false;
+        this.tabIndex = 0;
+        this.focused = false;
+        this.disabled = false;
         this.dataListCell = null;
         this._needOptionsUpdating = false;
         this._notUpdateOptions = false;
@@ -229,9 +229,9 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             .map((item) => item[this._viewModelItemTextFieldName])
             .join(', ');
         if (!text) {
-            return this.paramPlaceholder;
+            return this.placeholder;
         }
-        if (text.length > this.paramMaxTextLength) {
+        if (text.length > this.maxTextLength) {
             text = gettext_1.t('Выбран{n:|о|о} {n}', this.viewModel.length);
         }
         return text;
@@ -240,8 +240,8 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         return map.call(this.optionElements, (option) => option.$component);
     }
     initialize() {
-        if (this.paramDataListKeypath) {
-            cellx_1.define(this, 'dataList', new cellx_1.Cell(Function(`return this.${this.paramDataListKeypath};`), {
+        if (this.dataListKeypath) {
+            cellx_1.define(this, 'dataList', new cellx_1.Cell(Function(`return this.${this.dataListKeypath};`), {
                 context: this.ownerComponent || window
             }));
             this._paramDataListSpecified = true;
@@ -254,7 +254,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             this.dataList = null;
             this._paramDataListSpecified = false;
         }
-        let dataListItemSchema = this.paramDataListItemSchema;
+        let dataListItemSchema = this.dataListItemSchema;
         let defaultDataListItemSchema = this.constructor
             .defaultDataListItemSchema;
         this._dataListItemValueFieldName =
@@ -265,7 +265,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         this._dataListItemDisabledFieldName =
             dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
         this.viewModel = this.paramViewModel || new cellx_1.ObservableList();
-        let vmItemSchema = this.paramViewModelItemSchema;
+        let vmItemSchema = this.viewModelItemSchema;
         let defaultVMItemSchema = this.constructor
             .defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
@@ -273,7 +273,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         this._viewModelItemSubtextFieldName = vmItemSchema.subtext || defaultVMItemSchema.subtext;
         this._viewModelItemDisabledFieldName =
             vmItemSchema.disabled || defaultVMItemSchema.disabled;
-        this._addNewItem = this.paramAddNewItem;
+        this._addNewItem = this.addNewItem;
     }
     ready() {
         this.optionElements = this.element.getElementsByClassName('OpalSelectOption');
@@ -297,7 +297,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             this._notUpdateOptions = true;
             this.viewModel.clear();
             if (value.length) {
-                if (this.paramMultiple) {
+                if (this.multiple) {
                     selectedOptions = this.options.filter(option => value.indexOf(option.value) != -1);
                 }
                 else {
@@ -309,7 +309,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
                 }
             }
         }
-        else if (this.paramMultiple) {
+        else if (this.multiple) {
             selectedOptions = this.options.filter(option => option.selected);
         }
         else {
@@ -332,13 +332,13 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         }
     }
     elementAttached() {
-        if (this.paramFocused) {
+        if (this.focused) {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             this.focus();
         }
         this.listenTo(this, {
             'change:paramValue': this._onParamValueChange,
-            'change:paramFocused': this._onParamFocusedChange
+            'change:focused': this._onFocusedChange
         });
         this.listenTo(this.viewModel, 'change', this._onViewModelChange);
         this.listenTo('button', {
@@ -366,7 +366,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
                 throw new TypeError('Parameter "value" must be an array');
             }
             if (value.length) {
-                let multiple = this.paramMultiple;
+                let multiple = this.multiple;
                 if (multiple ||
                     !vm.length ||
                     value[0] != vm.get(0)[this._viewModelItemValueFieldName]) {
@@ -426,7 +426,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             }
         }
     }
-    _onParamFocusedChange(evt) {
+    _onFocusedChange(evt) {
         if (evt.data.value) {
             if (!this._documentKeyDownListening) {
                 this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
@@ -447,10 +447,10 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         }
     }
     _onButtonFocus() {
-        this.paramFocused = true;
+        this.focused = true;
     }
     _onButtonBlur() {
-        this.paramFocused = false;
+        this.focused = false;
     }
     _onButtonClick(evt) {
         evt.defaultPrevented = true;
@@ -466,7 +466,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         }
     }
     _onButtonElementMouseDown() {
-        if (this.paramDisabled) {
+        if (this.disabled) {
             return;
         }
         if (!this._documentClickListening) {
@@ -500,7 +500,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             [this._viewModelItemTextFieldName]: evt.target.text,
             [this._viewModelItemSubtextFieldName]: evt.target.subtext
         };
-        if (this.paramMultiple) {
+        if (this.multiple) {
             this._notUpdateOptions = true;
             vm.add(vmItem);
             this._notUpdateOptions = false;
@@ -521,7 +521,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         return false;
     }
     _onMenuSelectOptionDeselect(evt) {
-        if (this.paramMultiple) {
+        if (this.multiple) {
             let vmItemValueFieldName = this._viewModelItemValueFieldName;
             let value = evt.target.value;
             this._notUpdateOptions = true;
@@ -604,7 +604,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             [this._viewModelItemTextFieldName]: text,
             [this._dataListItemSubtextFieldName]: subtext
         };
-        if (this.paramMultiple) {
+        if (this.multiple) {
             vm.add(vmItem);
             this.emit('input');
         }
@@ -663,7 +663,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         }
         this._opened = false;
         this._documentFocusListening.stop();
-        if (!this.paramFocused) {
+        if (!this.focused) {
             this._documentKeyDownListening.stop();
             this._documentKeyDownListening = null;
         }
@@ -673,7 +673,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         this._menuLoadedListeneng.stop();
         this.$('button').uncheck();
         this.$('menu').close();
-        if (this.paramMultiple) {
+        if (this.multiple) {
             if (!isEqualArray_1.isEqualArray(this.viewModel.map((item) => item[this._viewModelItemValueFieldName]), this._valueOnOpen)) {
                 this.emit('change');
             }
@@ -695,7 +695,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         switch (evt.which) {
             case 32 /* Space */: {
                 if (this._opened) {
-                    if (this.paramFocused) {
+                    if (this.focused) {
                         evt.preventDefault();
                         this.close();
                     }
@@ -717,13 +717,12 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
                     else {
                         let options = this.options;
                         for (let i = 0, l = options.length; i < l; i++) {
-                            if (options[i].paramFocused) {
+                            if (options[i].focused) {
                                 for (;;) {
                                     if (!i) {
                                         for (let j = options.length; j;) {
                                             let option = options[--j];
-                                            if (!option.paramDisabled &&
-                                                option.element.offsetWidth) {
+                                            if (!option.disabled && option.element.offsetWidth) {
                                                 option.focus();
                                                 break;
                                             }
@@ -731,7 +730,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
                                         break;
                                     }
                                     let option = options[--i];
-                                    if (!option.paramDisabled && option.element.offsetWidth) {
+                                    if (!option.disabled && option.element.offsetWidth) {
                                         document.body.classList.remove('_noFocusHighlight');
                                         option.focus();
                                         break;
@@ -758,12 +757,11 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
                     else {
                         let options = this.options;
                         for (let i = 0, l = options.length; i < l; i++) {
-                            if (options[i].paramFocused) {
+                            if (options[i].focused) {
                                 for (;;) {
                                     if (i + 1 == l) {
                                         for (let option of options) {
-                                            if (!option.paramDisabled &&
-                                                option.element.offsetWidth) {
+                                            if (!option.disabled && option.element.offsetWidth) {
                                                 option.focus();
                                                 break;
                                             }
@@ -771,7 +769,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
                                         break;
                                     }
                                     let option = options[++i];
-                                    if (!option.paramDisabled && option.element.offsetWidth) {
+                                    if (!option.disabled && option.element.offsetWidth) {
                                         document.body.classList.remove('_noFocusHighlight');
                                         option.focus();
                                         break;
@@ -852,7 +850,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
     _focusOptions() {
         let focusTarget;
         for (let option of this.options) {
-            if (!option.paramDisabled && option.element.offsetWidth) {
+            if (!option.disabled && option.element.offsetWidth) {
                 if (option.selected) {
                     focusTarget = option;
                     break;
@@ -874,15 +872,15 @@ OpalSelect.defaultViewModelItemSchema = defaultVMItemSchema;
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalSelect.prototype, "paramViewType", void 0);
+], OpalSelect.prototype, "viewType", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSelect.prototype, "paramSize", void 0);
+], OpalSelect.prototype, "size", void 0);
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
-], OpalSelect.prototype, "paramMultiple", void 0);
+], OpalSelect.prototype, "multiple", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
@@ -890,7 +888,7 @@ __decorate([
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", String)
-], OpalSelect.prototype, "paramDataListKeypath", void 0);
+], OpalSelect.prototype, "dataListKeypath", void 0);
 __decorate([
     rionite_1.Param({
         type: eval,
@@ -898,7 +896,7 @@ __decorate([
         readonly: true
     }),
     __metadata("design:type", Object)
-], OpalSelect.prototype, "paramDataListItemSchema", void 0);
+], OpalSelect.prototype, "dataListItemSchema", void 0);
 __decorate([
     rionite_1.Param({ type: eval }),
     __metadata("design:type", Array)
@@ -914,23 +912,23 @@ __decorate([
         readonly: true
     }),
     __metadata("design:type", Object)
-], OpalSelect.prototype, "paramViewModelItemSchema", void 0);
+], OpalSelect.prototype, "viewModelItemSchema", void 0);
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Function)
-], OpalSelect.prototype, "paramAddNewItem", void 0);
+], OpalSelect.prototype, "addNewItem", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalSelect.prototype, "paramText", void 0);
+], OpalSelect.prototype, "text", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSelect.prototype, "paramMaxTextLength", void 0);
+], OpalSelect.prototype, "maxTextLength", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSelect.prototype, "paramPlaceholder", void 0);
+], OpalSelect.prototype, "placeholder", void 0);
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
@@ -938,15 +936,15 @@ __decorate([
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSelect.prototype, "paramTabIndex", void 0);
+], OpalSelect.prototype, "tabIndex", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSelect.prototype, "paramFocused", void 0);
+], OpalSelect.prototype, "focused", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSelect.prototype, "paramDisabled", void 0);
+], OpalSelect.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
@@ -1028,20 +1026,20 @@ const template_rnt_1 = __webpack_require__(17);
 let OpalSelectOption = class OpalSelectOption extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramSelected = false;
-        this.paramIndeterminate = false;
-        this.paramTabIndex = 0;
-        this.paramFocused = false;
-        this.paramDisabled = false;
+        this.selected = false;
+        this.indeterminate = false;
+        this.tabIndex = 0;
+        this.focused = false;
+        this.disabled = false;
         this._mouseUpEvent = false;
     }
     get _tabIndex() {
-        return this.paramDisabled ? -1 : this.paramTabIndex;
+        return this.disabled ? -1 : this.tabIndex;
     }
     elementAttached() {
         this.listenTo(this, {
-            'change:paramSelected': this._onParamSelectedChange,
-            'change:paramIndeterminate': this._onParamIndeterminateChange
+            'change:selected': this._onSelectedChange,
+            'change:indeterminate': this._onIndeterminateChange
         });
         this.listenTo('control', {
             focus: this._onControlFocus,
@@ -1051,29 +1049,29 @@ let OpalSelectOption = class OpalSelectOption extends rionite_1.BaseComponent {
         });
     }
     ready() {
-        if (this.paramSelected) {
-            this.paramIndeterminate = false;
+        if (this.selected) {
+            this.indeterminate = false;
         }
     }
-    _onParamSelectedChange(evt) {
+    _onSelectedChange(evt) {
         if (evt.data.value) {
-            this.paramIndeterminate = false;
+            this.indeterminate = false;
         }
     }
-    _onParamIndeterminateChange(evt) {
+    _onIndeterminateChange(evt) {
         if (evt.data.value) {
-            this.paramSelected = false;
+            this.selected = false;
         }
     }
     _onControlFocus() {
-        this.paramFocused = true;
+        this.focused = true;
     }
     _onControlBlur() {
-        this.paramFocused = false;
+        this.focused = false;
     }
     _onControlMouseUp() {
         this._mouseUpEvent = true;
-        if (!this.paramDisabled) {
+        if (!this.disabled) {
             this.click();
         }
     }
@@ -1082,7 +1080,7 @@ let OpalSelectOption = class OpalSelectOption extends rionite_1.BaseComponent {
         if (this._mouseUpEvent) {
             this._mouseUpEvent = false;
         }
-        else if (!this.paramDisabled) {
+        else if (!this.disabled) {
             this.click();
         }
     }
@@ -1109,34 +1107,22 @@ let OpalSelectOption = class OpalSelectOption extends rionite_1.BaseComponent {
     set subtext(subtext) {
         this.paramSubtext = subtext;
     }
-    get selected() {
-        return this.paramSelected;
-    }
-    set selected(selected) {
-        this.paramSelected = selected;
-    }
-    get disabled() {
-        return this.paramDisabled;
-    }
-    set disabled(disabled) {
-        this.paramDisabled = disabled;
-    }
     select() {
-        if (!this.paramSelected) {
-            this.paramSelected = true;
+        if (!this.selected) {
+            this.selected = true;
             return true;
         }
         return false;
     }
     deselect() {
-        if (this.paramSelected) {
-            this.paramSelected = false;
+        if (this.selected) {
+            this.selected = false;
             return true;
         }
         return false;
     }
     toggle(value) {
-        return (this.paramSelected = value === undefined ? !this.paramSelected : value);
+        return (this.selected = value === undefined ? !this.selected : value);
     }
     focus() {
         this.$('control').focus();
@@ -1147,11 +1133,11 @@ let OpalSelectOption = class OpalSelectOption extends rionite_1.BaseComponent {
         return this;
     }
     enable() {
-        this.paramDisabled = false;
+        this.disabled = false;
         return this;
     }
     disable() {
-        this.paramDisabled = true;
+        this.disabled = true;
         return this;
     }
 };
@@ -1170,23 +1156,23 @@ __decorate([
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSelectOption.prototype, "paramSelected", void 0);
+], OpalSelectOption.prototype, "selected", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSelectOption.prototype, "paramIndeterminate", void 0);
+], OpalSelectOption.prototype, "indeterminate", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSelectOption.prototype, "paramTabIndex", void 0);
+], OpalSelectOption.prototype, "tabIndex", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSelectOption.prototype, "paramFocused", void 0);
+], OpalSelectOption.prototype, "focused", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSelectOption.prototype, "paramDisabled", void 0);
+], OpalSelectOption.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Number),
@@ -1271,7 +1257,7 @@ exports.isEqualArray = isEqualArray;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=button) {\nOpalButton:button (\nviewType={paramViewType},\nsize={paramSize},\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n) {\n@IfThen (paramText) {\n'{paramText}'\n}\n@IfElse (paramText) {\n'{_buttonText}'\n}\nOpalIcon:buttonIcon (name=chevronDown)\n}\n}\nRnSlot (for=menuSlot) {\nRnSlot:menuSlot (for=menu) {\nOpalDropdown:menu (closeOn=mousedown) {\nRnSlot (for=menuHeader)\nRnSlot (for=menuContent) {\ndiv::menuContent (@if=_paramDataListSpecified) {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {\nOpalSelectOption:option (\nvalue='{=item |key(_dataListItemValueFieldName) }',\ntext='{=item |key(_dataListItemTextFieldName) }',\nsubtext='{=item |key(_dataListItemSubtextFieldName) }',\ndisabled='{=item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRnSlot:newItemInputSlot // ...\n}\nOpalLoader:menuLoader (@unless=dataList, shown)\n}\ndiv::menuContent (@unless=_paramDataListSpecified) {\nRnSlot:options (forTag=opal-select-option)\nRnSlot (for=newItemInputSlot) {\nRnSlot:newItemInputSlot (for=newItemInput)\n}\n}\n}\nRnSlot (for=menuFooter)\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=button) {\nOpalButton:button (\nviewType={viewType},\nsize={size},\ncheckable,\ntabIndex={tabIndex},\ndisabled={disabled}\n) {\n@IfThen (text) {\n'{text}'\n}\n@IfElse (text) {\n'{_buttonText}'\n}\nOpalIcon:buttonIcon (name=chevronDown)\n}\n}\nRnSlot (for=menuSlot) {\nRnSlot:menuSlot (for=menu) {\nOpalDropdown:menu (closeOn=mousedown) {\nRnSlot (for=menuHeader)\nRnSlot (for=menuContent) {\ndiv::menuContent (@if=_paramDataListSpecified) {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {\nOpalSelectOption:option (\nvalue='{=item |key(_dataListItemValueFieldName) }',\ntext='{=item |key(_dataListItemTextFieldName) }',\nsubtext='{=item |key(_dataListItemSubtextFieldName) }',\ndisabled='{=item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRnSlot:newItemInputSlot // ...\n}\nOpalLoader:menuLoader (@unless=dataList, shown)\n}\ndiv::menuContent (@unless=_paramDataListSpecified) {\nRnSlot:options (forTag=opal-select-option)\nRnSlot (for=newItemInputSlot) {\nRnSlot:newItemInputSlot (for=newItemInput)\n}\n}\n}\nRnSlot (for=menuFooter)\n}\n}\n}");
 
 /***/ })
 /******/ ]);

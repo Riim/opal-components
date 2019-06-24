@@ -174,7 +174,7 @@ const template_rnt_1 = __webpack_require__(12);
 let OpalMultiselect = class OpalMultiselect extends opal_select_1.OpalSelect {
     constructor() {
         super(...arguments);
-        this.paramMultiple = true;
+        this.multiple = true;
     }
     get nothingSelectedShown() {
         return !this.viewModel.length;
@@ -196,7 +196,7 @@ let OpalMultiselect = class OpalMultiselect extends opal_select_1.OpalSelect {
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalMultiselect.prototype, "paramMultiple", void 0);
+], OpalMultiselect.prototype, "multiple", void 0);
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)

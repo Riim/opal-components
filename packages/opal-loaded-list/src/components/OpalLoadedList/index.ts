@@ -55,7 +55,7 @@ export class OpalLoadedList extends BaseComponent {
 	@Param
 	query: string;
 	@Param({ readonly: true })
-	paramPreloading = false;
+	preloading = false;
 
 	@Observable
 	dataList = new ObservableList<IDataListItem>();
@@ -112,7 +112,7 @@ export class OpalLoadedList extends BaseComponent {
 		this.listenTo(this, 'change:query', this._onQueryChange);
 		this.listenTo(this.element, 'scroll', this._onElementScroll);
 
-		if (this.paramPreloading) {
+		if (this.preloading) {
 			this._load();
 		} else {
 			this.checkLoading();

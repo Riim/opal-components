@@ -1,14 +1,9 @@
-div:bar (
-	viewType={paramViewType},
-	hasIcon={paramIcon |bool },
-	iconSize={paramIconSize},
-	buttonHide={paramButtonHide}
-) {
-	OpalIcon:icon (@if=paramIcon, name={paramIcon}, size={paramIconSize})
+div:bar (viewType={viewType}, hasIcon={icon |bool }, iconSize={iconSize}, buttonHide={buttonHide}) {
+	OpalIcon:icon (@if=icon, name={icon}, size={iconSize})
 
 	RnSlot:contentSlot
 
-	button:btnHide (hide={paramButtonHide |not }) {
+	button:btnHide (hide={buttonHide |not }) {
 		OpalIcon:btnHideIcon (name=cross)
 	}
 }

@@ -9,15 +9,15 @@ import template from './template.rnt';
 })
 export class OpalSlider extends BaseComponent {
 	@Param
-	paramMin = 0;
+	min = 0;
 	@Param
-	paramMax = 100;
+	max = 100;
 	@Param
-	paramStep = 1;
+	step = 1;
 	@Param
 	paramValue = 0;
 	@Param({ type: eval })
-	paramRange: [number, number];
+	range: [number, number];
 
 	@Observable
 	_firstInputValue: number;
@@ -26,8 +26,8 @@ export class OpalSlider extends BaseComponent {
 
 	@Computed
 	get _firstInputWidth(): number {
-		let min = this.paramMin;
-		let all = this.paramMax - min;
+		let min = this.min;
+		let all = this.max - min;
 
 		return (
 			Math.round(
@@ -38,7 +38,7 @@ export class OpalSlider extends BaseComponent {
 	}
 
 	initialize() {
-		let range = this.paramRange;
+		let range = this.range;
 
 		if (range) {
 			this._firstInputValue = range[0];
@@ -47,7 +47,7 @@ export class OpalSlider extends BaseComponent {
 	}
 
 	elementAttached() {
-		if (this.paramRange) {
+		if (this.range) {
 			this.listenTo('firstInput', 'input', this._onFirstInputInput);
 			this.listenTo('secondInput', 'input', this._onSecondInputInput);
 		}
@@ -72,12 +72,12 @@ export class OpalSlider extends BaseComponent {
 	}
 
 	get value(): number | Array<number> {
-		return this.paramRange
+		return this.range
 			? [this._firstInputValue, this._secondInputValue]
 			: +this.$<HTMLInputElement>('input')!.value;
 	}
 	set value(value: number | Array<number>) {
-		if (this.paramRange) {
+		if (this.range) {
 			this.$<HTMLInputElement>('firstInput')!.value = this._firstInputValue = value[0];
 			this.$<HTMLInputElement>('secondInput')!.value = this._secondInputValue = value[1];
 		} else {

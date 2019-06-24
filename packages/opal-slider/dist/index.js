@@ -137,26 +137,26 @@ const template_rnt_1 = __webpack_require__(6);
 let OpalSlider = class OpalSlider extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramMin = 0;
-        this.paramMax = 100;
-        this.paramStep = 1;
+        this.min = 0;
+        this.max = 100;
+        this.step = 1;
         this.paramValue = 0;
     }
     get _firstInputWidth() {
-        let min = this.paramMin;
-        let all = this.paramMax - min;
+        let min = this.min;
+        let all = this.max - min;
         return (Math.round((((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) / 2) *
             1e5) / 1e3);
     }
     initialize() {
-        let range = this.paramRange;
+        let range = this.range;
         if (range) {
             this._firstInputValue = range[0];
             this._secondInputValue = range[1];
         }
     }
     elementAttached() {
-        if (this.paramRange) {
+        if (this.range) {
             this.listenTo('firstInput', 'input', this._onFirstInputInput);
             this.listenTo('secondInput', 'input', this._onSecondInputInput);
         }
@@ -176,12 +176,12 @@ let OpalSlider = class OpalSlider extends rionite_1.BaseComponent {
         }
     }
     get value() {
-        return this.paramRange
+        return this.range
             ? [this._firstInputValue, this._secondInputValue]
             : +this.$('input').value;
     }
     set value(value) {
-        if (this.paramRange) {
+        if (this.range) {
             this.$('firstInput').value = this._firstInputValue = value[0];
             this.$('secondInput').value = this._secondInputValue = value[1];
         }
@@ -193,15 +193,15 @@ let OpalSlider = class OpalSlider extends rionite_1.BaseComponent {
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSlider.prototype, "paramMin", void 0);
+], OpalSlider.prototype, "min", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSlider.prototype, "paramMax", void 0);
+], OpalSlider.prototype, "max", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSlider.prototype, "paramStep", void 0);
+], OpalSlider.prototype, "step", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
@@ -209,7 +209,7 @@ __decorate([
 __decorate([
     rionite_1.Param({ type: eval }),
     __metadata("design:type", Array)
-], OpalSlider.prototype, "paramRange", void 0);
+], OpalSlider.prototype, "range", void 0);
 __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Number)
@@ -267,7 +267,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (paramRange) {\ndiv:firstInputWrapper3 {\ndiv:firstInputWrapper2 (style=width: {_firstInputWidth}%) {\ndiv:firstInputWrapper {\ninput:firstInput (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramRange.0}\n)\n}\n}\n}\ndiv:secondInputWrapper {\ninput:secondInput (\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramRange.1}\n)\n}\n}\ninput:input (\n@unless=paramRange,\ntype=range,\nmin={paramMin},\nmax={paramMax},\nstep={paramStep},\nvalue={paramValue}\n)");
+/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (range) {\ndiv:firstInputWrapper3 {\ndiv:firstInputWrapper2 (style=width: {_firstInputWidth}%) {\ndiv:firstInputWrapper {\ninput:firstInput (\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={range.0}\n)\n}\n}\n}\ndiv:secondInputWrapper {\ninput:secondInput (\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={range.1}\n)\n}\n}\ninput:input (\n@unless=range,\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={paramValue}\n)");
 
 /***/ })
 /******/ ]);

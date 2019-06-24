@@ -9,7 +9,7 @@ OpalModal:menu {
 			dataTreeList={dataTreeList},
 			dataTreeListItemSchema={paramDataTreeListItemSchema |dump },
 			viewModel={viewModel},
-			viewModelItemSchema={paramViewModelItemSchema |dump },
+			viewModelItemSchema={viewModelItemSchema |dump },
 			query={paramQuery}
 		) {
 			OpalSelectOption:option (

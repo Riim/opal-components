@@ -1,15 +1,15 @@
 RnSlot (for=button) {
 	OpalButton:button (
-		viewType={paramViewType},
-		size={paramSize},
+		viewType={viewType},
+		size={size},
 		checkable,
-		tabIndex={paramTabIndex},
-		disabled={paramDisabled}
+		tabIndex={tabIndex},
+		disabled={disabled}
 	) {
-		@IfThen (paramText) {
-			'{paramText}'
+		@IfThen (text) {
+			'{text}'
 		}
-		@IfElse (paramText) {
+		@IfElse (text) {
 			'{_buttonText}'
 		}
 

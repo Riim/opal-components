@@ -23,12 +23,12 @@ export declare class OpalSelect extends BaseComponent {
         subtext: string;
         disabled: string;
     }>;
-    paramViewType: string;
-    paramSize: string;
-    paramMultiple: boolean;
+    viewType: string;
+    size: string;
+    multiple: boolean;
     paramDataList: TDataList;
-    paramDataListKeypath: string;
-    paramDataListItemSchema: {
+    dataListKeypath: string;
+    dataListItemSchema: {
         value?: string;
         text?: string;
         subtext?: string;
@@ -36,20 +36,20 @@ export declare class OpalSelect extends BaseComponent {
     };
     paramValue: Array<string>;
     paramViewModel: TViewModel;
-    paramViewModelItemSchema: {
+    viewModelItemSchema: {
         value?: string;
         text?: string;
         subtext?: string;
         disabled?: string;
     };
-    paramAddNewItem: (text: string, select: OpalSelect) => Promise<Record<string, string>>;
-    paramText: string;
-    paramMaxTextLength: number;
-    paramPlaceholder: string;
+    addNewItem: (text: string, select: OpalSelect) => Promise<Record<string, string>>;
+    text: string;
+    maxTextLength: number;
+    placeholder: string;
     openOnClick: boolean;
-    paramTabIndex: number;
-    paramFocused: boolean;
-    paramDisabled: boolean;
+    tabIndex: number;
+    focused: boolean;
+    disabled: boolean;
     dataListCell: Cell<TDataList | null> | null;
     dataList: TDataList | null;
     _dataListItemValueFieldName: string;
@@ -84,7 +84,7 @@ export declare class OpalSelect extends BaseComponent {
     elementAttached(): void;
     _onParamValueChange(evt: IEvent): void;
     _updateViewModel(value: any, multiple: boolean): void;
-    _onParamFocusedChange(evt: IEvent): void;
+    _onFocusedChange(evt: IEvent): void;
     _onViewModelChange(): void;
     _onButtonFocus(): void;
     _onButtonBlur(): void;

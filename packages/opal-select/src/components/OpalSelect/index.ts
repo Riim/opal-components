@@ -59,21 +59,21 @@ export class OpalSelect extends BaseComponent {
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
 	@Param
-	paramViewType: string;
+	viewType: string;
 	@Param
-	paramSize = 'm';
+	size = 'm';
 	@Param({ readonly: true })
-	paramMultiple = false;
+	multiple = false;
 	@Param
 	paramDataList: TDataList;
 	@Param({ readonly: true })
-	paramDataListKeypath: string;
+	dataListKeypath: string;
 	@Param({
 		type: eval,
 		default: defaultDataListItemSchema,
 		readonly: true
 	})
-	paramDataListItemSchema: {
+	dataListItemSchema: {
 		value?: string;
 		text?: string;
 		subtext?: string;
@@ -88,29 +88,29 @@ export class OpalSelect extends BaseComponent {
 		default: defaultVMItemSchema,
 		readonly: true
 	})
-	paramViewModelItemSchema: {
+	viewModelItemSchema: {
 		value?: string;
 		text?: string;
 		subtext?: string;
 		disabled?: string;
 	};
 	@Param({ readonly: true })
-	paramAddNewItem: (text: string, select: OpalSelect) => Promise<Record<string, string>>;
+	addNewItem: (text: string, select: OpalSelect) => Promise<Record<string, string>>;
 	@Param
-	paramText: string;
+	text: string;
 	@Param
-	paramMaxTextLength = 20;
+	maxTextLength = 20;
 	@Param
 	// ;;; Плейсхолдер селекта.
-	paramPlaceholder = pt('OpalSelect#paramPlaceholder', 'Не выбрано');
+	placeholder = pt('OpalSelect#placeholder', 'Не выбрано');
 	@Param({ readonly: true })
 	openOnClick = false;
 	@Param
-	paramTabIndex = 0;
+	tabIndex = 0;
 	@Param
-	paramFocused = false;
+	focused = false;
 	@Param
-	paramDisabled = false;
+	disabled = false;
 
 	dataListCell: Cell<TDataList | null> | null = null;
 	dataList: TDataList | null;
@@ -140,10 +140,10 @@ export class OpalSelect extends BaseComponent {
 			.join(', ');
 
 		if (!text) {
-			return this.paramPlaceholder;
+			return this.placeholder;
 		}
 
-		if (text.length > this.paramMaxTextLength) {
+		if (text.length > this.maxTextLength) {
 			text = t('Выбран{n:|о|о} {n}', this.viewModel.length);
 		}
 
@@ -176,13 +176,10 @@ export class OpalSelect extends BaseComponent {
 	_menuLoadedListeneng: IDisposableListening;
 
 	initialize() {
-		if (this.paramDataListKeypath) {
-			define(this, 'dataList', new Cell(
-				Function(`return this.${this.paramDataListKeypath};`),
-				{
-					context: this.ownerComponent || window
-				}
-			));
+		if (this.dataListKeypath) {
+			define(this, 'dataList', new Cell(Function(`return this.${this.dataListKeypath};`), {
+				context: this.ownerComponent || window
+			}));
 
 			this._paramDataListSpecified = true;
 		} else if (this.$specifiedParams && this.$specifiedParams.has('dataList')) {
@@ -193,7 +190,7 @@ export class OpalSelect extends BaseComponent {
 			this._paramDataListSpecified = false;
 		}
 
-		let dataListItemSchema = this.paramDataListItemSchema;
+		let dataListItemSchema = this.dataListItemSchema;
 		let defaultDataListItemSchema = (this.constructor as typeof OpalSelect)
 			.defaultDataListItemSchema;
 
@@ -207,7 +204,7 @@ export class OpalSelect extends BaseComponent {
 
 		this.viewModel = this.paramViewModel || new ObservableList();
 
-		let vmItemSchema = this.paramViewModelItemSchema;
+		let vmItemSchema = this.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalSelect)
 			.defaultViewModelItemSchema;
 
@@ -217,7 +214,7 @@ export class OpalSelect extends BaseComponent {
 		this._viewModelItemDisabledFieldName =
 			vmItemSchema.disabled || defaultVMItemSchema.disabled;
 
-		this._addNewItem = this.paramAddNewItem;
+		this._addNewItem = this.addNewItem;
 	}
 
 	ready() {
@@ -246,7 +243,7 @@ export class OpalSelect extends BaseComponent {
 			this.viewModel.clear();
 
 			if (value.length) {
-				if (this.paramMultiple) {
+				if (this.multiple) {
 					selectedOptions = this.options.filter(
 						option => value.indexOf(option.value) != -1
 					);
@@ -260,7 +257,7 @@ export class OpalSelect extends BaseComponent {
 					}
 				}
 			}
-		} else if (this.paramMultiple) {
+		} else if (this.multiple) {
 			selectedOptions = this.options.filter(option => option.selected);
 		} else {
 			let selectedOption = this.options.find(option => option.selected);
@@ -289,7 +286,7 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	elementAttached() {
-		if (this.paramFocused) {
+		if (this.focused) {
 			this._documentKeyDownListening = this.listenTo(
 				document,
 				'keydown',
@@ -301,7 +298,7 @@ export class OpalSelect extends BaseComponent {
 
 		this.listenTo(this, {
 			'change:paramValue': this._onParamValueChange,
-			'change:paramFocused': this._onParamFocusedChange
+			'change:focused': this._onFocusedChange
 		});
 		this.listenTo(this.viewModel, 'change', this._onViewModelChange);
 		this.listenTo('button', {
@@ -338,7 +335,7 @@ export class OpalSelect extends BaseComponent {
 			}
 
 			if (value.length) {
-				let multiple = this.paramMultiple;
+				let multiple = this.multiple;
 
 				if (
 					multiple ||
@@ -409,7 +406,7 @@ export class OpalSelect extends BaseComponent {
 		}
 	}
 
-	_onParamFocusedChange(evt: IEvent) {
+	_onFocusedChange(evt: IEvent) {
 		if (evt.data.value) {
 			if (!this._documentKeyDownListening) {
 				this._documentKeyDownListening = this.listenTo(
@@ -437,11 +434,11 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	_onButtonFocus() {
-		this.paramFocused = true;
+		this.focused = true;
 	}
 
 	_onButtonBlur() {
-		this.paramFocused = false;
+		this.focused = false;
 	}
 
 	_onButtonClick(evt: IEvent<OpalButton>) {
@@ -458,7 +455,7 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	_onButtonElementMouseDown() {
-		if (this.paramDisabled) {
+		if (this.disabled) {
 			return;
 		}
 
@@ -498,7 +495,7 @@ export class OpalSelect extends BaseComponent {
 			[this._viewModelItemSubtextFieldName]: evt.target.subtext
 		};
 
-		if (this.paramMultiple) {
+		if (this.multiple) {
 			this._notUpdateOptions = true;
 			vm.add(vmItem);
 			this._notUpdateOptions = false;
@@ -522,7 +519,7 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	_onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>): false {
-		if (this.paramMultiple) {
+		if (this.multiple) {
 			let vmItemValueFieldName = this._viewModelItemValueFieldName;
 			let value = evt.target.value;
 
@@ -638,7 +635,7 @@ export class OpalSelect extends BaseComponent {
 			[this._dataListItemSubtextFieldName]: subtext
 		};
 
-		if (this.paramMultiple) {
+		if (this.multiple) {
 			vm.add(vmItem);
 			this.emit('input');
 		} else {
@@ -736,7 +733,7 @@ export class OpalSelect extends BaseComponent {
 
 		this._documentFocusListening.stop();
 
-		if (!this.paramFocused) {
+		if (!this.focused) {
 			this._documentKeyDownListening!.stop();
 			this._documentKeyDownListening = null;
 		}
@@ -750,7 +747,7 @@ export class OpalSelect extends BaseComponent {
 		this.$<OpalButton>('button')!.uncheck();
 		this.$<OpalDropdown>('menu')!.close();
 
-		if (this.paramMultiple) {
+		if (this.multiple) {
 			if (
 				!isEqualArray(
 					this.viewModel.map((item): string => item[this._viewModelItemValueFieldName]),
@@ -781,7 +778,7 @@ export class OpalSelect extends BaseComponent {
 		switch (evt.which) {
 			case 32 /* Space */: {
 				if (this._opened) {
-					if (this.paramFocused) {
+					if (this.focused) {
 						evt.preventDefault();
 						this.close();
 					}
@@ -804,16 +801,13 @@ export class OpalSelect extends BaseComponent {
 						let options = this.options;
 
 						for (let i = 0, l = options.length; i < l; i++) {
-							if (options[i].paramFocused) {
+							if (options[i].focused) {
 								for (;;) {
 									if (!i) {
 										for (let j = options.length; j; ) {
 											let option = options[--j];
 
-											if (
-												!option.paramDisabled &&
-												option.element.offsetWidth
-											) {
+											if (!option.disabled && option.element.offsetWidth) {
 												option.focus();
 												break;
 											}
@@ -824,7 +818,7 @@ export class OpalSelect extends BaseComponent {
 
 									let option = options[--i];
 
-									if (!option.paramDisabled && option.element.offsetWidth) {
+									if (!option.disabled && option.element.offsetWidth) {
 										document.body.classList.remove('_noFocusHighlight');
 										option.focus();
 										break;
@@ -853,14 +847,11 @@ export class OpalSelect extends BaseComponent {
 						let options = this.options;
 
 						for (let i = 0, l = options.length; i < l; i++) {
-							if (options[i].paramFocused) {
+							if (options[i].focused) {
 								for (;;) {
 									if (i + 1 == l) {
 										for (let option of options) {
-											if (
-												!option.paramDisabled &&
-												option.element.offsetWidth
-											) {
+											if (!option.disabled && option.element.offsetWidth) {
 												option.focus();
 												break;
 											}
@@ -871,7 +862,7 @@ export class OpalSelect extends BaseComponent {
 
 									let option = options[++i];
 
-									if (!option.paramDisabled && option.element.offsetWidth) {
+									if (!option.disabled && option.element.offsetWidth) {
 										document.body.classList.remove('_noFocusHighlight');
 										option.focus();
 										break;
@@ -971,7 +962,7 @@ export class OpalSelect extends BaseComponent {
 		let focusTarget;
 
 		for (let option of this.options) {
-			if (!option.paramDisabled && option.element.offsetWidth) {
+			if (!option.disabled && option.element.offsetWidth) {
 				if (option.selected) {
 					focusTarget = option;
 					break;

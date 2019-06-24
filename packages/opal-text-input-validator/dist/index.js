@@ -163,8 +163,8 @@ let OpalTextInputValidator = class OpalTextInputValidator extends opal_input_val
     _checkValue(rule) {
         let value = this.textInput.value;
         return !(value
-            ? (rule.paramMinLength && value.length < rule.paramMinLength) ||
-                (rule.paramRegex && !rule.paramRegex.test(value)) ||
+            ? (rule.minLength && value.length < rule.minLength) ||
+                (rule.regex && !rule.regex.test(value)) ||
                 (rule.test && !rule.test.call(this.ownerComponent, value))
             : rule.required);
     }
@@ -206,11 +206,11 @@ let OpalTextInputValidatorRule = class OpalTextInputValidatorRule extends opal_i
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Number)
-], OpalTextInputValidatorRule.prototype, "paramMinLength", void 0);
+], OpalTextInputValidatorRule.prototype, "minLength", void 0);
 __decorate([
     rionite_1.Param({ type: eval }),
     __metadata("design:type", RegExp)
-], OpalTextInputValidatorRule.prototype, "paramRegex", void 0);
+], OpalTextInputValidatorRule.prototype, "regex", void 0);
 OpalTextInputValidatorRule = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTextInputValidatorRule'

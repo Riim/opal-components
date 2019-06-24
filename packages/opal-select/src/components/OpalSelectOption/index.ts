@@ -16,27 +16,27 @@ export class OpalSelectOption extends BaseComponent {
 	@Param
 	paramSubtext: string;
 	@Param
-	paramSelected = false;
+	selected = false;
 	@Param
-	paramIndeterminate = false;
+	indeterminate = false;
 	@Param
-	paramTabIndex = 0;
+	tabIndex = 0;
 	@Param
-	paramFocused = false;
+	focused = false;
 	@Param
-	paramDisabled = false;
+	disabled = false;
 
 	@Computed
 	get _tabIndex(): number {
-		return this.paramDisabled ? -1 : this.paramTabIndex;
+		return this.disabled ? -1 : this.tabIndex;
 	}
 
 	_mouseUpEvent = false;
 
 	elementAttached() {
 		this.listenTo(this, {
-			'change:paramSelected': this._onParamSelectedChange,
-			'change:paramIndeterminate': this._onParamIndeterminateChange
+			'change:selected': this._onSelectedChange,
+			'change:indeterminate': this._onIndeterminateChange
 		});
 		this.listenTo('control', {
 			focus: this._onControlFocus,
@@ -47,35 +47,35 @@ export class OpalSelectOption extends BaseComponent {
 	}
 
 	ready() {
-		if (this.paramSelected) {
-			this.paramIndeterminate = false;
+		if (this.selected) {
+			this.indeterminate = false;
 		}
 	}
 
-	_onParamSelectedChange(evt: IEvent) {
+	_onSelectedChange(evt: IEvent) {
 		if (evt.data.value) {
-			this.paramIndeterminate = false;
+			this.indeterminate = false;
 		}
 	}
 
-	_onParamIndeterminateChange(evt: IEvent) {
+	_onIndeterminateChange(evt: IEvent) {
 		if (evt.data.value) {
-			this.paramSelected = false;
+			this.selected = false;
 		}
 	}
 
 	_onControlFocus() {
-		this.paramFocused = true;
+		this.focused = true;
 	}
 
 	_onControlBlur() {
-		this.paramFocused = false;
+		this.focused = false;
 	}
 
 	_onControlMouseUp() {
 		this._mouseUpEvent = true;
 
-		if (!this.paramDisabled) {
+		if (!this.disabled) {
 			this.click();
 		}
 	}
@@ -85,7 +85,7 @@ export class OpalSelectOption extends BaseComponent {
 
 		if (this._mouseUpEvent) {
 			this._mouseUpEvent = false;
-		} else if (!this.paramDisabled) {
+		} else if (!this.disabled) {
 			this.click();
 		}
 	}
@@ -117,23 +117,9 @@ export class OpalSelectOption extends BaseComponent {
 		this.paramSubtext = subtext as any;
 	}
 
-	get selected(): boolean {
-		return this.paramSelected;
-	}
-	set selected(selected: boolean) {
-		this.paramSelected = selected;
-	}
-
-	get disabled(): boolean {
-		return this.paramDisabled;
-	}
-	set disabled(disabled: boolean) {
-		this.paramDisabled = disabled;
-	}
-
 	select(): boolean {
-		if (!this.paramSelected) {
-			this.paramSelected = true;
+		if (!this.selected) {
+			this.selected = true;
 			return true;
 		}
 
@@ -141,8 +127,8 @@ export class OpalSelectOption extends BaseComponent {
 	}
 
 	deselect(): boolean {
-		if (this.paramSelected) {
-			this.paramSelected = false;
+		if (this.selected) {
+			this.selected = false;
 			return true;
 		}
 
@@ -150,7 +136,7 @@ export class OpalSelectOption extends BaseComponent {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.paramSelected = value === undefined ? !this.paramSelected : value);
+		return (this.selected = value === undefined ? !this.selected : value);
 	}
 
 	focus(): this {
@@ -164,12 +150,12 @@ export class OpalSelectOption extends BaseComponent {
 	}
 
 	enable(): this {
-		this.paramDisabled = false;
+		this.disabled = false;
 		return this;
 	}
 
 	disable(): this {
-		this.paramDisabled = true;
+		this.disabled = true;
 		return this;
 	}
 }

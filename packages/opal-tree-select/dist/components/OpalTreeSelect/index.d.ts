@@ -2,14 +2,14 @@ import { OpalSelect } from '@riim/opal-select';
 import { TDataTreeList } from '@riim/opal-tree-list';
 import './index.css';
 export declare class OpalTreeSelect extends OpalSelect {
-    paramMultiple: boolean;
+    multiple: boolean;
     paramDataTreeList: TDataTreeList;
     paramDataTreeListKeypath: string;
     paramDataTreeListItemSchema: {
         value?: string;
         text?: string;
     };
-    paramViewModelItemSchema: {
+    viewModelItemSchema: {
         value?: string;
         text?: string;
     };
