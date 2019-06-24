@@ -350,7 +350,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             this.listenTo(this.$('button').element, 'mousedown', this._onButtonElementMouseDown);
         }
         this.listenTo('menu', {
-            'change:paramOpened': this._onMenuParamOpenedChange,
+            'change:opened': this._onMenuOpenedChange,
             '<OpalSelectOption>select': this._onMenuSelectOptionSelect,
             '<OpalSelectOption>deselect': this._onMenuSelectOptionDeselect,
             '<OpalTextInput>confirm': this._onMenuTextInputConfirm,
@@ -487,7 +487,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             this._documentClickListening = null;
         }
     }
-    _onMenuParamOpenedChange(evt) {
+    _onMenuOpenedChange(evt) {
         if (!evt.data.value) {
             this.close();
         }

@@ -42,19 +42,19 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 })
 export class OpalModal extends BaseComponent {
 	@Param
-	paramOpened = false;
+	opened = false;
 
 	@Observable
 	contentRendered = false;
 
 	ready() {
-		if (this.paramOpened) {
+		if (this.opened) {
 			this._open();
 		}
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'change:paramOpened', this._onParamOpenedChange);
+		this.listenTo(this, 'change:opened', this._onOpenedChange);
 		this.listenTo(this.element, 'click', this._onElementClick);
 	}
 
@@ -62,7 +62,7 @@ export class OpalModal extends BaseComponent {
 		this.close();
 	}
 
-	_onParamOpenedChange(evt: IEvent) {
+	_onOpenedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._open();
 		} else {
@@ -97,22 +97,22 @@ export class OpalModal extends BaseComponent {
 	}
 
 	open(): boolean {
-		if (this.paramOpened) {
+		if (this.opened) {
 			return false;
 		}
 
-		this.paramOpened = true;
+		this.opened = true;
 		Cell.release();
 
 		return true;
 	}
 
 	close(): boolean {
-		if (!this.paramOpened) {
+		if (!this.opened) {
 			return false;
 		}
 
-		this.paramOpened = false;
+		this.opened = false;
 		Cell.release();
 
 		return true;

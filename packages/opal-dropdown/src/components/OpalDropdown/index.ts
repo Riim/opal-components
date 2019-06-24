@@ -15,11 +15,11 @@ import template from './template.rnt';
 })
 export class OpalDropdown extends BaseComponent {
 	@Param
-	paramAutoHeight = true;
+	autoHeight = true;
 	@Param
-	paramCloseOn: string; // click | mousedown
+	closeOn: string; // click | mousedown
 	@Param
-	paramOpened = false;
+	opened = false;
 
 	@Observable
 	contentRendered = false;
@@ -27,16 +27,16 @@ export class OpalDropdown extends BaseComponent {
 	_closingEventListening: IDisposableListening | null | undefined;
 
 	ready() {
-		if (this.paramOpened) {
+		if (this.opened) {
 			this._open();
 		}
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'change:paramOpened', this._onParamOpenedChange);
+		this.listenTo(this, 'change:opened', this._onOpenedChange);
 	}
 
-	_onParamOpenedChange(evt: IEvent) {
+	_onOpenedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._open();
 		} else {
@@ -52,22 +52,22 @@ export class OpalDropdown extends BaseComponent {
 	}
 
 	open(): boolean {
-		if (this.paramOpened) {
+		if (this.opened) {
 			return false;
 		}
 
-		this.paramOpened = true;
+		this.opened = true;
 		Cell.release();
 
 		return true;
 	}
 
 	close(): boolean {
-		if (!this.paramOpened) {
+		if (!this.opened) {
 			return false;
 		}
 
-		this.paramOpened = false;
+		this.opened = false;
 		Cell.release();
 
 		return true;
@@ -119,7 +119,7 @@ export class OpalDropdown extends BaseComponent {
 				containerClientRect.top -
 				(document.documentElement!.clientHeight - containerClientRect.bottom);
 
-			if (this.paramAutoHeight) {
+			if (this.autoHeight) {
 				if (diff > 0) {
 					elStyle.top = 'auto';
 					elStyle.bottom = '100%';
@@ -138,12 +138,12 @@ export class OpalDropdown extends BaseComponent {
 			}
 		}
 
-		if (this.paramCloseOn) {
+		if (this.closeOn) {
 			setTimeout(() => {
-				if (this.paramOpened) {
+				if (this.opened) {
 					this._closingEventListening = this.listenTo(
 						document,
-						this.paramCloseOn,
+						this.closeOn,
 						this._onClosingEvent
 					);
 				}

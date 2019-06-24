@@ -2,12 +2,12 @@ import { IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalModal extends BaseComponent {
-    paramOpened: boolean;
+    opened: boolean;
     contentRendered: boolean;
     ready(): void;
     elementAttached(): void;
     elementDetached(): void;
-    _onParamOpenedChange(evt: IEvent): void;
+    _onOpenedChange(evt: IEvent): void;
     _onElementClick(evt: Event): void;
     renderContent(): void;
     open(): boolean;

@@ -11,7 +11,7 @@ export declare class OpalTreeListItem extends BaseComponent {
     paramViewModelItemTextFieldName: string;
     paramIndexpath: Array<number>;
     paramQuery: string;
-    paramOpened: boolean;
+    opened: boolean;
     readonly dataTreeList: TDataTreeList;
     dataTreeListItem: IFilteredDataTreeListItem;
     _dataTreeListItemValueFieldName: string;

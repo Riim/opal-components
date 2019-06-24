@@ -578,7 +578,7 @@ const template_rnt_1 = __webpack_require__(16);
 let OpalTreeListItem = class OpalTreeListItem extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramOpened = false;
+        this.opened = false;
     }
     get dataTreeList() {
         return this.paramDataTreeList;
@@ -649,7 +649,7 @@ __decorate([
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalTreeListItem.prototype, "paramOpened", void 0);
+], OpalTreeListItem.prototype, "opened", void 0);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Object),
@@ -667,7 +667,7 @@ OpalTreeListItem = __decorate([
         events: {
             btnToggleChildren: {
                 change(evt) {
-                    this.paramOpened = evt.target.checked;
+                    this.opened = evt.target.checked;
                 }
             }
         }
@@ -741,7 +741,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:head {\nOpalButton:btnToggleChildren (viewType=clean, checkable, checked={paramOpened}) {\nOpalIcon:btnToggleChildrenIcon (name=chevronRight)\n}\nspan:contentSlotWrapper {\nRnSlot:contentSlot (cloneContent)\n}\n}\ndiv:children (@if=dataTreeListItem.children.length) {\n@Repeat (for=$item in dataTreeListItem.children) {\nOpalTreeListItem:item (\ndataTreeList={paramDataTreeList},\nfilteredDataTreeList={paramFilteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath='[{paramIndexpath},{$index}]',\nquery={paramQuery},\nopened={paramQuery |bool },\nnestingLevel={paramIndexpath.length},\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext})\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("div:head {\nOpalButton:btnToggleChildren (viewType=clean, checkable, checked={opened}) {\nOpalIcon:btnToggleChildrenIcon (name=chevronRight)\n}\nspan:contentSlotWrapper {\nRnSlot:contentSlot (cloneContent)\n}\n}\ndiv:children (@if=dataTreeListItem.children.length) {\n@Repeat (for=$item in dataTreeListItem.children) {\nOpalTreeListItem:item (\ndataTreeList={paramDataTreeList},\nfilteredDataTreeList={paramFilteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath='[{paramIndexpath},{$index}]',\nquery={paramQuery},\nopened={paramQuery |bool },\nnestingLevel={paramIndexpath.length},\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext})\n}\n}\n}");
 
 /***/ }),
 /* 17 */

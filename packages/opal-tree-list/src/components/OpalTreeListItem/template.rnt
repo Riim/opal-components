@@ -1,5 +1,5 @@
 div:head {
-	OpalButton:btnToggleChildren (viewType=clean, checkable, checked={paramOpened}) {
+	OpalButton:btnToggleChildren (viewType=clean, checkable, checked={opened}) {
 		OpalIcon:btnToggleChildrenIcon (name=chevronRight)
 	}
 

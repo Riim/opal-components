@@ -207,7 +207,7 @@ let OpalDateInput = class OpalDateInput extends rionite_1.BaseComponent {
     elementAttached() {
         this.listenTo('textInput', 'change', this._onTextInputChange);
         this.listenTo(this.$('textInput').element, 'click', this._onTextInputElementClick);
-        this.listenTo('calendarMenu', 'change:paramOpened', this._onCalendarMenuParamOpenedChange);
+        this.listenTo('calendarMenu', 'change:opened', this._onCalendarMenuOpenedChange);
     }
     _onTextInputChange(evt) {
         if (this.$('textInputValidator').valid) {
@@ -217,7 +217,7 @@ let OpalDateInput = class OpalDateInput extends rionite_1.BaseComponent {
     _onTextInputElementClick() {
         this.$('calendarMenu').open();
     }
-    _onCalendarMenuParamOpenedChange(evt) {
+    _onCalendarMenuOpenedChange(evt) {
         if (evt.data.value) {
             this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);

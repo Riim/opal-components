@@ -211,7 +211,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
             change: this._onTextInputChange
         });
         this.listenTo(this.$('textInput').textField, 'click', this._onTextFieldClick);
-        this.listenTo('menu', 'change:paramOpened', this._onMenuParamOpenedChange);
+        this.listenTo('menu', 'change:opened', this._onMenuOpenedChange);
         this.listenTo(this.$('menu').element, 'mouseover', this._onMenuElementMouseOver);
     }
     ready() {
@@ -245,7 +245,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
         // 1. выбираем что-то;
         // 2. изменяем запрос так чтобы ничего не нашлось;
         // 3. убираем фокус.
-        if (!this.$('menu').paramOpened) {
+        if (!this.$('menu').opened) {
             this._selectItem();
         }
     }
@@ -272,7 +272,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
     _onTextFieldClick() {
         this.openMenu();
     }
-    _onMenuParamOpenedChange(evt) {
+    _onMenuOpenedChange(evt) {
         if (evt.data.value) {
             this._documentFocusListening = this.listenTo(document, 'focus', this._onDocumentFocus, this, true);
             this._documentListening = this.listenTo(document, {

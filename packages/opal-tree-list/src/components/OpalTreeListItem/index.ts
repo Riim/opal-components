@@ -19,7 +19,7 @@ import template from './template.rnt';
 	events: {
 		btnToggleChildren: {
 			change(evt: IEvent<OpalButton>) {
-				this.paramOpened = evt.target.checked;
+				this.opened = evt.target.checked;
 			}
 		}
 	}
@@ -60,7 +60,7 @@ export class OpalTreeListItem extends BaseComponent {
 	@Param
 	paramQuery: string;
 	@Param
-	paramOpened = false;
+	opened = false;
 
 	@Computed
 	get dataTreeList(): TDataTreeList {

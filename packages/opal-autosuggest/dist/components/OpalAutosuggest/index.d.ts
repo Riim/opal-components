@@ -55,7 +55,7 @@ export declare class OpalAutosuggest extends BaseComponent {
     _onTextInputInput(evt: IEvent<OpalTextInput>): void;
     _onTextInputChange(evt: IEvent<OpalTextInput>): void;
     _onTextFieldClick(): void;
-    _onMenuParamOpenedChange(evt: IEvent): void;
+    _onMenuOpenedChange(evt: IEvent): void;
     _onMenuElementMouseOver(evt: Event): void;
     _onDocumentFocus(evt: Event): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;

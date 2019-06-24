@@ -90,7 +90,7 @@ export class OpalDateInput extends BaseComponent {
 			'click',
 			this._onTextInputElementClick
 		);
-		this.listenTo('calendarMenu', 'change:paramOpened', this._onCalendarMenuParamOpenedChange);
+		this.listenTo('calendarMenu', 'change:opened', this._onCalendarMenuOpenedChange);
 	}
 
 	_onTextInputChange(evt: IEvent<OpalTextInput>) {
@@ -103,7 +103,7 @@ export class OpalDateInput extends BaseComponent {
 		this.$<OpalDropdown>('calendarMenu')!.open();
 	}
 
-	_onCalendarMenuParamOpenedChange(evt: IEvent) {
+	_onCalendarMenuOpenedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._documentFocusListening = this.listenTo(
 				document,

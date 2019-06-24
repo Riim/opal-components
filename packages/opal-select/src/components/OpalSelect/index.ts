@@ -319,7 +319,7 @@ export class OpalSelect extends BaseComponent {
 		}
 
 		this.listenTo('menu', {
-			'change:paramOpened': this._onMenuParamOpenedChange,
+			'change:opened': this._onMenuOpenedChange,
 			'<OpalSelectOption>select': this._onMenuSelectOptionSelect,
 			'<OpalSelectOption>deselect': this._onMenuSelectOptionDeselect,
 			'<OpalTextInput>confirm': this._onMenuTextInputConfirm,
@@ -482,7 +482,7 @@ export class OpalSelect extends BaseComponent {
 		}
 	}
 
-	_onMenuParamOpenedChange(evt: IEvent): false {
+	_onMenuOpenedChange(evt: IEvent): false {
 		if (!evt.data.value) {
 			this.close();
 		}

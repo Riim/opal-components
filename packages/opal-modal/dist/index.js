@@ -152,22 +152,22 @@ function onDocumentKeyUp(evt) {
 let OpalModal = class OpalModal extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramOpened = false;
+        this.opened = false;
         this.contentRendered = false;
     }
     ready() {
-        if (this.paramOpened) {
+        if (this.opened) {
             this._open();
         }
     }
     elementAttached() {
-        this.listenTo(this, 'change:paramOpened', this._onParamOpenedChange);
+        this.listenTo(this, 'change:opened', this._onOpenedChange);
         this.listenTo(this.element, 'click', this._onElementClick);
     }
     elementDetached() {
         this.close();
     }
-    _onParamOpenedChange(evt) {
+    _onOpenedChange(evt) {
         if (evt.data.value) {
             this._open();
         }
@@ -197,18 +197,18 @@ let OpalModal = class OpalModal extends rionite_1.BaseComponent {
         }
     }
     open() {
-        if (this.paramOpened) {
+        if (this.opened) {
             return false;
         }
-        this.paramOpened = true;
+        this.opened = true;
         cellx_1.Cell.release();
         return true;
     }
     close() {
-        if (!this.paramOpened) {
+        if (!this.opened) {
             return false;
         }
-        this.paramOpened = false;
+        this.opened = false;
         cellx_1.Cell.release();
         return true;
     }
@@ -270,7 +270,7 @@ let OpalModal = class OpalModal extends rionite_1.BaseComponent {
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalModal.prototype, "paramOpened", void 0);
+], OpalModal.prototype, "opened", void 0);
 __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)

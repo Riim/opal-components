@@ -138,19 +138,19 @@ const template_rnt_1 = __webpack_require__(7);
 let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramAutoHeight = true;
-        this.paramOpened = false;
+        this.autoHeight = true;
+        this.opened = false;
         this.contentRendered = false;
     }
     ready() {
-        if (this.paramOpened) {
+        if (this.opened) {
             this._open();
         }
     }
     elementAttached() {
-        this.listenTo(this, 'change:paramOpened', this._onParamOpenedChange);
+        this.listenTo(this, 'change:opened', this._onOpenedChange);
     }
-    _onParamOpenedChange(evt) {
+    _onOpenedChange(evt) {
         if (evt.data.value) {
             this._open();
         }
@@ -165,18 +165,18 @@ let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
         }
     }
     open() {
-        if (this.paramOpened) {
+        if (this.opened) {
             return false;
         }
-        this.paramOpened = true;
+        this.opened = true;
         cellx_1.Cell.release();
         return true;
     }
     close() {
-        if (!this.paramOpened) {
+        if (!this.opened) {
             return false;
         }
-        this.paramOpened = false;
+        this.opened = false;
         cellx_1.Cell.release();
         return true;
     }
@@ -213,7 +213,7 @@ let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
         if (excess > 0) {
             let diff = containerClientRect.top -
                 (document.documentElement.clientHeight - containerClientRect.bottom);
-            if (this.paramAutoHeight) {
+            if (this.autoHeight) {
                 if (diff > 0) {
                     elStyle.top = 'auto';
                     elStyle.bottom = '100%';
@@ -231,10 +231,10 @@ let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
                 elStyle.bottom = '100%';
             }
         }
-        if (this.paramCloseOn) {
+        if (this.closeOn) {
             setTimeout(() => {
-                if (this.paramOpened) {
-                    this._closingEventListening = this.listenTo(document, this.paramCloseOn, this._onClosingEvent);
+                if (this.opened) {
+                    this._closingEventListening = this.listenTo(document, this.closeOn, this._onClosingEvent);
                 }
             }, 1);
         }
@@ -264,15 +264,15 @@ let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalDropdown.prototype, "paramAutoHeight", void 0);
+], OpalDropdown.prototype, "autoHeight", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalDropdown.prototype, "paramCloseOn", void 0);
+], OpalDropdown.prototype, "closeOn", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalDropdown.prototype, "paramOpened", void 0);
+], OpalDropdown.prototype, "opened", void 0);
 __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)

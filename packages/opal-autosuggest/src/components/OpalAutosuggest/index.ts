@@ -153,7 +153,7 @@ export class OpalAutosuggest extends BaseComponent {
 			'click',
 			this._onTextFieldClick
 		);
-		this.listenTo('menu', 'change:paramOpened', this._onMenuParamOpenedChange);
+		this.listenTo('menu', 'change:opened', this._onMenuOpenedChange);
 		this.listenTo(
 			this.$<BaseComponent>('menu')!.element,
 			'mouseover',
@@ -200,7 +200,7 @@ export class OpalAutosuggest extends BaseComponent {
 		// 1. выбираем что-то;
 		// 2. изменяем запрос так чтобы ничего не нашлось;
 		// 3. убираем фокус.
-		if (!this.$<OpalDropdown>('menu')!.paramOpened) {
+		if (!this.$<OpalDropdown>('menu')!.opened) {
 			this._selectItem();
 		}
 	}
@@ -235,7 +235,7 @@ export class OpalAutosuggest extends BaseComponent {
 		this.openMenu();
 	}
 
-	_onMenuParamOpenedChange(evt: IEvent) {
+	_onMenuOpenedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._documentFocusListening = this.listenTo(
 				document,
@@ -428,9 +428,9 @@ export class OpalAutosuggest extends BaseComponent {
 		if (items.length) {
 			this.dataList.addRange(items);
 
-            // Cell.release();
-            // Содержимое OpalDropdown рендерится лениво, из-за этого обработчик изменения dataList
-            // в RnRepeat оказывается после _onDataListChange. При первом открытии меню всё хорошо,
+			// Cell.release();
+			// Содержимое OpalDropdown рендерится лениво, из-за этого обработчик изменения dataList
+			// в RnRepeat оказывается после _onDataListChange. При первом открытии меню всё хорошо,
 			// тк. RnRepeat#_render запускается в RnRepeat#elementConnected: OpalDropdown#_open() ->
 			// this.contentRendered = true; -> RnRepeat#elementConnected -> RnRepeat#_render ->
 			// OpalDropdown#_open$(). То есть при запуске OpalDropdown#_open$ RnRepeat уже
