@@ -9,21 +9,21 @@ export interface IDataProvider {
     getItems(query: string): PromiseLike<{
         items: Array<IDataListItem>;
     }>;
-    getItems(count: number, query: string): PromiseLike<{
+    getItems(limit: number, query: string): PromiseLike<{
         items: Array<IDataListItem>;
     }>;
 }
 export declare class OpalAutosuggest extends BaseComponent {
-    paramDataListItemSchema: {
+    dataListItemSchema: {
         value?: string;
         text?: string;
         subtext?: string;
     };
     paramDataProvider: IDataProvider;
     paramValue: IDataListItem;
-    paramMinQueryLength: number;
-    paramCount: number;
-    paramOpenMenuOnNothingFound: boolean;
+    minQueryLength: number;
+    limit: number;
+    openMenuOnNothingFound: boolean;
     static defaultDataListItemSchema: Readonly<{
         value: string;
         text: string;
@@ -41,7 +41,7 @@ export declare class OpalAutosuggest extends BaseComponent {
     _requestCallback: IDisposableCallback;
     loading: boolean;
     readonly loaderShown: boolean;
-    _focusedListItem: HTMLElement | null;
+    _focusedOption: HTMLElement | null;
     _documentFocusListening: IDisposableListening;
     _documentListening: IDisposableListening;
     initialize(): void;
