@@ -148,8 +148,8 @@ let OpalFileUpload = class OpalFileUpload extends rionite_1.BaseComponent {
     }
     initialize() {
         this.files = new cellx_1.ObservableList();
-        if (this.paramAllowType) {
-            this._reFileType = RegExp(`^(?:${this.paramAllowType
+        if (this.allowType) {
+            this._reFileType = RegExp(`^(?:${this.allowType
                 .split(',')
                 .map(type => escape_regexp_1.escapeRegExp(type.trim()))
                 .join('|')
@@ -200,8 +200,8 @@ let OpalFileUpload = class OpalFileUpload extends rionite_1.BaseComponent {
         }
     }
     _addFiles(files) {
-        let sizeLimit = this.paramSizeLimit;
-        let totalSizeLimit = this.paramTotalSizeLimit;
+        let sizeLimit = this.sizeLimit;
+        let totalSizeLimit = this.totalSizeLimit;
         let reFileType = this._reFileType;
         let size = this._size;
         let errorMessage;
@@ -235,15 +235,15 @@ let OpalFileUpload = class OpalFileUpload extends rionite_1.BaseComponent {
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", String)
-], OpalFileUpload.prototype, "paramAllowType", void 0);
+], OpalFileUpload.prototype, "allowType", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Number)
-], OpalFileUpload.prototype, "paramSizeLimit", void 0);
+], OpalFileUpload.prototype, "sizeLimit", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Number)
-], OpalFileUpload.prototype, "paramTotalSizeLimit", void 0);
+], OpalFileUpload.prototype, "totalSizeLimit", void 0);
 OpalFileUpload = __decorate([
     rionite_1.Component({
         elementIs: 'OpalFileUpload',

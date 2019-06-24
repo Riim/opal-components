@@ -7,9 +7,9 @@ import './icons/iconSpinner.svg?id=OpalFileUpload__iconSpinner';
 import './icons/iconTrash.svg?id=OpalFileUpload__iconTrash';
 export { ReadableFile };
 export declare class OpalFileUpload extends BaseComponent {
-    paramAllowType: string;
-    paramSizeLimit: number;
-    paramTotalSizeLimit: number;
+    allowType: string;
+    sizeLimit: number;
+    totalSizeLimit: number;
     _reFileType: RegExp;
     _size: number;
     files: ObservableList<ReadableFile>;

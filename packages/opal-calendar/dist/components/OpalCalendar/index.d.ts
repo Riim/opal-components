@@ -24,7 +24,7 @@ export declare class OpalCalendar extends BaseComponent {
     paramFromDate: string;
     paramToDate: string;
     paramValue: string;
-    paramDateDelimiter: string;
+    dateDelimiter: string;
     weekDays: Array<string>;
     weekDaysShort: Array<string>;
     fromDate: Date;

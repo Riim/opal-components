@@ -164,7 +164,7 @@ export class OpalCalendar extends BaseComponent {
 	@Param
 	paramValue: string;
 	@Param
-	paramDateDelimiter = '/';
+	dateDelimiter = '/';
 
 	weekDays: Array<string>;
 	weekDaysShort: Array<string>;
@@ -227,7 +227,7 @@ export class OpalCalendar extends BaseComponent {
 
 	@Computed
 	days: TDays = function(this: OpalCalendar, _cell: any, next: TDays | undefined): TDays {
-		let dateDelimiter = this.paramDateDelimiter;
+		let dateDelimiter = this.dateDelimiter;
 
 		let fromDate = this.fromDate;
 		let toDate = this.toDate;

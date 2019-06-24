@@ -154,9 +154,9 @@ let OpalSelectValidator = class OpalSelectValidator extends opal_input_validator
     _checkValue(rule) {
         let vm = this.select.viewModel;
         return !(vm.length
-            ? (rule.paramMinCount && vm.length < rule.paramMinCount) ||
-                (rule.paramTest && !rule.paramTest.call(this.ownerComponent, vm))
-            : rule.paramRequired);
+            ? (rule.minCount && vm.length < rule.minCount) ||
+                (rule.test && !rule.test.call(this.ownerComponent, vm))
+            : rule.required);
     }
 };
 OpalSelectValidator = __decorate([
@@ -196,7 +196,7 @@ let OpalSelectValidatorRule = class OpalSelectValidatorRule extends opal_input_v
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Number)
-], OpalSelectValidatorRule.prototype, "paramMinCount", void 0);
+], OpalSelectValidatorRule.prototype, "minCount", void 0);
 OpalSelectValidatorRule = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSelectValidatorRule'

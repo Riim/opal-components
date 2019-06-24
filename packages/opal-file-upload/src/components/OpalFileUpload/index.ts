@@ -27,11 +27,11 @@ export { ReadableFile };
 })
 export class OpalFileUpload extends BaseComponent {
 	@Param({ readonly: true })
-	paramAllowType: string;
+	allowType: string;
 	@Param
-	paramSizeLimit: number;
+	sizeLimit: number;
 	@Param
-	paramTotalSizeLimit: number;
+	totalSizeLimit: number;
 
 	_reFileType: RegExp;
 
@@ -45,9 +45,9 @@ export class OpalFileUpload extends BaseComponent {
 	initialize() {
 		this.files = new ObservableList<ReadableFile>();
 
-		if (this.paramAllowType) {
+		if (this.allowType) {
 			this._reFileType = RegExp(
-				`^(?:${this.paramAllowType
+				`^(?:${this.allowType
 					.split(',')
 					.map(type => escapeRegExp(type.trim()))
 					.join('|')
@@ -107,8 +107,8 @@ export class OpalFileUpload extends BaseComponent {
 	}
 
 	_addFiles(files: FileList): boolean {
-		let sizeLimit = this.paramSizeLimit;
-		let totalSizeLimit = this.paramTotalSizeLimit;
+		let sizeLimit = this.sizeLimit;
+		let totalSizeLimit = this.totalSizeLimit;
 		let reFileType = this._reFileType;
 		let size = this._size;
 		let errorMessage: string | undefined;

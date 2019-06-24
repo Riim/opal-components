@@ -165,8 +165,8 @@ let OpalTextInputValidator = class OpalTextInputValidator extends opal_input_val
         return !(value
             ? (rule.paramMinLength && value.length < rule.paramMinLength) ||
                 (rule.paramRegex && !rule.paramRegex.test(value)) ||
-                (rule.paramTest && !rule.paramTest.call(this.ownerComponent, value))
-            : rule.paramRequired);
+                (rule.test && !rule.test.call(this.ownerComponent, value))
+            : rule.required);
     }
 };
 OpalTextInputValidator = __decorate([

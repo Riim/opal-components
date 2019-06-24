@@ -182,11 +182,11 @@ exports.toDate = toDate;
 let OpalCalendar = OpalCalendar_1 = class OpalCalendar extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramDateDelimiter = '/';
+        this.dateDelimiter = '/';
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.days = function (_cell, next) {
-            let dateDelimiter = this.paramDateDelimiter;
+            let dateDelimiter = this.dateDelimiter;
             let fromDate = this.fromDate;
             let toDate = this.toDate;
             let value = this.value;
@@ -363,7 +363,7 @@ __decorate([
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalCalendar.prototype, "paramDateDelimiter", void 0);
+], OpalCalendar.prototype, "dateDelimiter", void 0);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Date)

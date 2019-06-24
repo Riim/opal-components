@@ -248,8 +248,8 @@ const template_rnt_1 = __webpack_require__(8);
 let OpalInputValidatorRule = class OpalInputValidatorRule extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramRequired = false;
-        this.paramPopoverPosition = 'right';
+        this.required = false;
+        this.popoverPosition = 'right';
     }
     showMessage() {
         this.$('popover').open();
@@ -261,15 +261,15 @@ let OpalInputValidatorRule = class OpalInputValidatorRule extends rionite_1.Base
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalInputValidatorRule.prototype, "paramRequired", void 0);
+], OpalInputValidatorRule.prototype, "required", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Function)
-], OpalInputValidatorRule.prototype, "paramTest", void 0);
+], OpalInputValidatorRule.prototype, "test", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalInputValidatorRule.prototype, "paramPopoverPosition", void 0);
+], OpalInputValidatorRule.prototype, "popoverPosition", void 0);
 OpalInputValidatorRule = __decorate([
     rionite_1.Component({
         elementIs: 'OpalInputValidatorRule',
@@ -302,7 +302,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("OpalPopover:popover (viewType=danger, position={paramPopoverPosition}) {\nRnSlot:contentSlot\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("OpalPopover:popover (viewType=danger, position={popoverPosition}) {\nRnSlot:contentSlot\n}");
 
 /***/ }),
 /* 9 */

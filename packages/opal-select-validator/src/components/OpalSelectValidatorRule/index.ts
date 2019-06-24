@@ -6,5 +6,5 @@ import { Component, Param } from 'rionite';
 })
 export class OpalSelectValidatorRule extends OpalInputValidatorRule {
 	@Param
-	paramMinCount: number;
+	minCount: number;
 }

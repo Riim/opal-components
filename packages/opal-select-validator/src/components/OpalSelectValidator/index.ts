@@ -21,8 +21,8 @@ export class OpalSelectValidator extends OpalInputValidator {
 		let vm = this.select.viewModel;
 
 		return !(vm.length
-			? (rule.paramMinCount && vm.length < rule.paramMinCount) ||
-			  (rule.paramTest && !rule.paramTest.call(this.ownerComponent, vm))
-			: rule.paramRequired);
+			? (rule.minCount && vm.length < rule.minCount) ||
+			  (rule.test && !rule.test.call(this.ownerComponent, vm))
+			: rule.required);
 	}
 }

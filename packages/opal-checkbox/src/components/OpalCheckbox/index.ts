@@ -15,28 +15,28 @@ import template from './template.rnt';
 })
 export class OpalCheckbox extends BaseComponent {
 	@Param
-	paramChecked = false;
+	checked = false;
 	@Param
-	paramIndeterminate = false;
+	indeterminate = false;
 	@Param
-	paramTabIndex = 0;
+	tabIndex = 0;
 	@Param
-	paramFocused = false;
+	focused = false;
 	@Param
-	paramDisabled = false;
+	disabled = false;
 
 	@Computed
 	get _tabIndex(): number {
-		return this.paramDisabled ? -1 : this.paramTabIndex;
+		return this.disabled ? -1 : this.tabIndex;
 	}
 
 	_documentKeyDownListening: IDisposableListening;
 
 	elementAttached() {
 		this.listenTo(this, {
-			'change:paramChecked': this._onParamCheckedChange,
-			'change:paramIndeterminate': this._onParamIndeterminateChange,
-			'change:paramFocused': this._onParamFocusedChange
+			'change:checked': this._onCheckedChange,
+			'change:indeterminate': this._onIndeterminateChange,
+			'change:focused': this._onFocusedChange
 		});
 		this.listenTo('input', 'change', this._onInputChange);
 		this.listenTo('control', {
@@ -46,31 +46,31 @@ export class OpalCheckbox extends BaseComponent {
 	}
 
 	ready() {
-		if (this.paramChecked) {
-			this.paramIndeterminate = false;
+		if (this.checked) {
+			this.indeterminate = false;
 			this.$<HTMLInputElement>('input')!.checked = true;
 		}
 
-		if (this.paramFocused) {
+		if (this.focused) {
 			this.focus();
 		}
 	}
 
-	_onParamCheckedChange(evt: IEvent) {
+	_onCheckedChange(evt: IEvent) {
 		if (evt.data.value) {
-			this.paramIndeterminate = false;
+			this.indeterminate = false;
 		}
 
 		this.$<HTMLInputElement>('input')!.checked = evt.data.value;
 	}
 
-	_onParamIndeterminateChange(evt: IEvent) {
+	_onIndeterminateChange(evt: IEvent) {
 		if (evt.data.value) {
-			this.paramChecked = false;
+			this.checked = false;
 		}
 	}
 
-	_onParamFocusedChange(evt: IEvent) {
+	_onFocusedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._documentKeyDownListening = this.listenTo(
 				document,
@@ -86,35 +86,26 @@ export class OpalCheckbox extends BaseComponent {
 		if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
 			evt.preventDefault();
 
-			if (!this.paramDisabled) {
-				this.emit((this.paramChecked = !this.paramChecked) ? 'check' : 'uncheck');
+			if (!this.disabled) {
+				this.emit((this.checked = !this.checked) ? 'check' : 'uncheck');
 				this.emit('change');
 			}
 		}
 	}
 
 	_onInputChange(evt: Event) {
-		this.emit(
-			(this.paramChecked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck'
-		);
+		this.emit((this.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
 		this.emit('change');
 	}
 
 	_onControlFocus() {
-		this.paramFocused = true;
+		this.focused = true;
 		this.emit('focus');
 	}
 
 	_onControlBlur() {
-		this.paramFocused = false;
+		this.focused = false;
 		this.emit('blur');
-	}
-
-	get checked(): boolean {
-		return this.paramChecked;
-	}
-	set checked(checked: boolean) {
-		this.paramChecked = checked;
 	}
 
 	get selected(): boolean {
@@ -125,8 +116,8 @@ export class OpalCheckbox extends BaseComponent {
 	}
 
 	check(): boolean {
-		if (!this.paramChecked) {
-			this.paramChecked = true;
+		if (!this.checked) {
+			this.checked = true;
 			return true;
 		}
 
@@ -134,8 +125,8 @@ export class OpalCheckbox extends BaseComponent {
 	}
 
 	uncheck(): boolean {
-		if (this.paramChecked) {
-			this.paramChecked = false;
+		if (this.checked) {
+			this.checked = false;
 			return true;
 		}
 
@@ -143,7 +134,7 @@ export class OpalCheckbox extends BaseComponent {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.paramChecked = value === undefined ? !this.paramChecked : value);
+		return (this.checked = value === undefined ? !this.checked : value);
 	}
 
 	focus(): this {
@@ -157,12 +148,12 @@ export class OpalCheckbox extends BaseComponent {
 	}
 
 	enable(): this {
-		this.paramDisabled = false;
+		this.disabled = false;
 		return this;
 	}
 
 	disable(): this {
-		this.paramDisabled = true;
+		this.disabled = true;
 		return this;
 	}
 }
