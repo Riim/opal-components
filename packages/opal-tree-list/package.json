@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tree-list",
-  "version": "0.37.1",
+  "version": "0.37.4",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,7 +16,7 @@
     "@riim/object-assign-polyfill": "^1.0.0",
     "@riim/opal-button": "^0.37.1",
     "@riim/opal-checkbox": "^0.37.0",
-    "@riim/opal-icon": "^0.37.0",
+    "@riim/opal-icon": "^0.37.4",
     "@riim/opal-loader": "^0.37.0",
     "@riim/opal-utils": "^0.37.0",
     "cellx": "^1.8.0",
