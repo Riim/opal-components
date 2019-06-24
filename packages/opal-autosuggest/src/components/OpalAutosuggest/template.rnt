@@ -11,8 +11,8 @@ RnSlot (for=textInput) {
 OpalDropdown:menu {
 	RnSlot (for=menuHeader)
 
-	div:list {
-		div:listItem (
+	div:optionList {
+		div:option (
 			@for=item in dataList,
 			data-value='{item |key(_dataListItemValueFieldName) }',
 			data-text='{item |key(_dataListItemTextFieldName) }',

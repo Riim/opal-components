@@ -21,7 +21,7 @@ export interface IDataListItem {
 
 export interface IDataProvider {
 	getItems(query: string): PromiseLike<{ items: Array<IDataListItem> }>;
-	getItems(count: number, query: string): PromiseLike<{ items: Array<IDataListItem> }>;
+	getItems(limit: number, query: string): PromiseLike<{ items: Array<IDataListItem> }>;
 }
 
 function toComparable(str: string): string {
@@ -39,7 +39,7 @@ const defaultDataListItemSchema = Object.freeze({
 	template,
 
 	domEvents: {
-		listItem: {
+		option: {
 			click(_evt, context) {
 				let textInput = this.$<OpalTextInput>('textInput')!;
 				let item = context.item;
@@ -64,7 +64,7 @@ export class OpalAutosuggest extends BaseComponent {
 		default: defaultDataListItemSchema,
 		readonly: true
 	})
-	paramDataListItemSchema: {
+	dataListItemSchema: {
 		value?: string;
 		text?: string;
 		subtext?: string;
@@ -74,11 +74,11 @@ export class OpalAutosuggest extends BaseComponent {
 	@Param({ type: eval })
 	paramValue: IDataListItem;
 	@Param
-	paramMinQueryLength = 3;
+	minQueryLength = 3;
 	@Param
-	paramCount = 5;
+	limit = 5;
 	@Param
-	paramOpenMenuOnNothingFound = false;
+	openMenuOnNothingFound = false;
 
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 
@@ -107,13 +107,13 @@ export class OpalAutosuggest extends BaseComponent {
 		return this._loadingPlanned || this.loading;
 	}
 
-	_focusedListItem: HTMLElement | null;
+	_focusedOption: HTMLElement | null;
 
 	_documentFocusListening: IDisposableListening;
 	_documentListening: IDisposableListening;
 
 	initialize() {
-		let dataListItemSchema = this.paramDataListItemSchema;
+		let dataListItemSchema = this.dataListItemSchema;
 		let defaultDataListItemSchema = (this.constructor as typeof OpalAutosuggest)
 			.defaultDataListItemSchema;
 
@@ -210,7 +210,7 @@ export class OpalAutosuggest extends BaseComponent {
 
 		this._clearDataList();
 
-		if ((evt.target.value || '').length >= this.paramMinQueryLength) {
+		if ((evt.target.value || '').length >= this.minQueryLength) {
 			this._loadingPlanned = true;
 
 			this._loadingTimeout = this.setTimeout(() => {
@@ -274,13 +274,13 @@ export class OpalAutosuggest extends BaseComponent {
 			}
 		}
 
-		let focusedListItem = this._focusedListItem;
+		let focusedOption = this._focusedOption;
 
-		if (!focusedListItem || el != focusedListItem) {
-			this._focusedListItem = el as HTMLElement;
+		if (!focusedOption || el != focusedOption) {
+			this._focusedOption = el as HTMLElement;
 
-			if (focusedListItem) {
-				focusedListItem.removeAttribute('focused');
+			if (focusedOption) {
+				focusedOption.removeAttribute('focused');
 			}
 			el.setAttribute('focused', '');
 		}
@@ -299,18 +299,18 @@ export class OpalAutosuggest extends BaseComponent {
 			case 40 /* Bottom */: {
 				evt.preventDefault();
 
-				let focusedListItem = this._focusedListItem;
-				let listItems = this.$$<HTMLElement>('listItem');
+				let focusedOption = this._focusedOption;
+				let options = this.$$<HTMLElement>('option');
 
-				if (focusedListItem) {
-					let index = listItems.indexOf(focusedListItem);
+				if (focusedOption) {
+					let index = options.indexOf(focusedOption);
 
-					if (evt.which == 38 ? index > 0 : index < listItems.length - 1) {
-						let newFocusedListItem = listItems[index + (evt.which == 38 ? -1 : 1)];
+					if (evt.which == 38 ? index > 0 : index < options.length - 1) {
+						let newFocusedOption = options[index + (evt.which == 38 ? -1 : 1)];
 
-						this._focusedListItem = newFocusedListItem;
-						focusedListItem.removeAttribute('focused');
-						newFocusedListItem.setAttribute('focused', '');
+						this._focusedOption = newFocusedOption;
+						focusedOption.removeAttribute('focused');
+						newFocusedOption.setAttribute('focused', '');
 					} else if (evt.which == 40) {
 						let menuFooterSlot = this.$<BaseComponent>('menuFooterSlot');
 
@@ -320,9 +320,9 @@ export class OpalAutosuggest extends BaseComponent {
 							);
 
 							if (tabbableComponentEl && tabbableComponentEl.$component) {
-								if (focusedListItem) {
-									this._focusedListItem = null;
-									focusedListItem.removeAttribute('focused');
+								if (focusedOption) {
+									this._focusedOption = null;
+									focusedOption.removeAttribute('focused');
 								}
 
 								(tabbableComponentEl.$component as any).focus();
@@ -342,7 +342,7 @@ export class OpalAutosuggest extends BaseComponent {
 							);
 
 							if (tabbableComponentEl && tabbableComponentEl.$component) {
-								if (!listItems.length) {
+								if (!options.length) {
 									(tabbableComponentEl.$component as any).focus();
 									document.body.classList.remove('_noFocusHighlight');
 									break;
@@ -354,11 +354,10 @@ export class OpalAutosuggest extends BaseComponent {
 						}
 					}
 
-					if (listItems.length) {
-						let newFocusedListItem =
-							listItems[evt.which == 38 ? listItems.length - 1 : 0];
-						this._focusedListItem = newFocusedListItem;
-						newFocusedListItem.setAttribute('focused', '');
+					if (options.length) {
+						let newFocusedOption = options[evt.which == 38 ? options.length - 1 : 0];
+						this._focusedOption = newFocusedOption;
+						newFocusedOption.setAttribute('focused', '');
 					}
 				}
 
@@ -369,22 +368,22 @@ export class OpalAutosuggest extends BaseComponent {
 			case 13 /* Enter */:
 			case 39 /* Right */: {
 				if (
-					this._focusedListItem &&
+					this._focusedOption &&
 					(document.activeElement == this.$<OpalTextInput>('textInput')!.textField ||
 						document.activeElement == document.body)
 				) {
 					evt.preventDefault();
 
-					let focusedListItemDataSet = this._focusedListItem.dataset;
+					let focusedOptionDataSet = this._focusedOption.dataset;
 
-					this.$<OpalTextInput>('textInput')!.value = focusedListItemDataSet.text!;
+					this.$<OpalTextInput>('textInput')!.value = focusedOptionDataSet.text!;
 
 					this._clearDataList();
 
 					this._selectItem({
-						[this._dataListItemValueFieldName]: focusedListItemDataSet.value,
-						[this._dataListItemTextFieldName]: focusedListItemDataSet.text,
-						[this._dataListItemSubtextFieldName]: focusedListItemDataSet.subtext
+						[this._dataListItemValueFieldName]: focusedOptionDataSet.value,
+						[this._dataListItemTextFieldName]: focusedOptionDataSet.text,
+						[this._dataListItemSubtextFieldName]: focusedOptionDataSet.subtext
 					});
 				}
 
@@ -412,7 +411,7 @@ export class OpalAutosuggest extends BaseComponent {
 		let args: Array<any> = [this.$<OpalTextInput>('textInput')!.value];
 
 		if (this.dataProvider.getItems.length >= 2) {
-			args.unshift(this.paramCount);
+			args.unshift(this.limit);
 		}
 
 		this.dataProvider.getItems
@@ -441,12 +440,12 @@ export class OpalAutosuggest extends BaseComponent {
 			// _onDataListChange добавлен nextTick и как следствие здесь вместо Cell.release тоже
 			// нужно использовать nextTick.
 			nextTick(() => {
-				let focusedListItem = this.$<HTMLElement>('listItem')!;
+				let focusedOption = this.$<HTMLElement>('option')!;
 
-				this._focusedListItem = focusedListItem;
-				focusedListItem.setAttribute('focused', '');
+				this._focusedOption = focusedOption;
+				focusedOption.setAttribute('focused', '');
 			});
-		} else if (this.paramOpenMenuOnNothingFound) {
+		} else if (this.openMenuOnNothingFound) {
 			this.openMenu(true);
 		}
 	}
@@ -530,6 +529,6 @@ export class OpalAutosuggest extends BaseComponent {
 		this.closeMenu();
 
 		this.dataList.clear();
-		this._focusedListItem = null;
+		this._focusedOption = null;
 	}
 }

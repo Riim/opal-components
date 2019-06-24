@@ -166,7 +166,7 @@ let OpalFilteredList = class OpalFilteredList extends rionite_1.BaseComponent {
         this._setListQuery(evt.target.value);
     }
     _setListQuery(query) {
-        this.$('list').paramQuery = query;
+        this.$('list').query = query;
     }
     focus() {
         let queryInput = this.$('queryInput');

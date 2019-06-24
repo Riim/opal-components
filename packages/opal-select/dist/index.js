@@ -596,7 +596,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         }
         let loadedList = this.$('loadedList');
         if (loadedList) {
-            loadedList.paramQuery = '';
+            loadedList.query = '';
         }
         let vm = this.viewModel;
         let vmItem = {

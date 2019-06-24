@@ -628,7 +628,7 @@ export class OpalSelect extends BaseComponent {
 		let loadedList = this.$<OpalLoadedList>('loadedList');
 
 		if (loadedList) {
-			loadedList.paramQuery = '';
+			loadedList.query = '';
 		}
 
 		let vm = this.viewModel;

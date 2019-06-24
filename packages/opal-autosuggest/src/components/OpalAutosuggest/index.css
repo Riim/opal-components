@@ -11,9 +11,9 @@
 
 	@el menu {
 	}
-		@el list {
+		@el optionList {
 		}
-			@el listItem {
+			@el option {
 				position: relative;
 				overflow: hidden;
 				padding: 7px 22px;

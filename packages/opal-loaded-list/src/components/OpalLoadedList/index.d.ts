@@ -1,10 +1,5 @@
 import { ObservableList } from 'cellx';
-import {
-	BaseComponent,
-	IDisposableCallback,
-	IDisposableTimeout,
-	RnSlot
-	} from 'rionite';
+import { BaseComponent, IDisposableCallback, IDisposableTimeout, RnSlot } from 'rionite';
 import './index.css';
 export interface IDataListItem {
     [name: string]: any;
@@ -13,7 +8,7 @@ export interface IDataProvider {
     getItems(query?: string): PromiseLike<{
         items: Array<IDataListItem>;
     }>;
-    getItems(count: number, after?: string, query?: string): PromiseLike<{
+    getItems(limit: number, after?: string, query?: string): PromiseLike<{
         items: Array<IDataListItem>;
         total?: number;
     }>;
@@ -23,12 +18,12 @@ export declare class OpalLoadedList extends BaseComponent {
         value: string;
         text: string;
     }>;
-    paramDataListItemSchema: {
+    dataListItemSchema: {
         value?: string;
         text?: string;
     };
     paramDataProvider: IDataProvider;
-    paramCount: number;
+    limit: number;
     query: string;
     paramPreloading: boolean;
     dataList: ObservableList<IDataListItem>;
@@ -47,7 +42,7 @@ export declare class OpalLoadedList extends BaseComponent {
     readonly nothingFoundShown: boolean;
     initialize(): void;
     elementAttached(): void;
-    _onParamQueryChange(): void;
+    _onQueryChange(): void;
     _onElementScroll(): void;
     checkLoading(): void;
     _load(): void;

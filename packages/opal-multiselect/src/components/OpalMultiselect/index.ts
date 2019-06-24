@@ -16,11 +16,11 @@ import template from './template.rnt';
 	events: {
 		queryInput: {
 			input(evt: IEvent<OpalTextInput>) {
-				this.$<OpalLoadedList>('loadedList')!.paramQuery = evt.target.value as any;
+				this.$<OpalLoadedList>('loadedList')!.query = evt.target.value as any;
 			},
 
 			clear() {
-				this.$<OpalLoadedList>('loadedList')!.paramQuery = '';
+				this.$<OpalLoadedList>('loadedList')!.query = '';
 			}
 		},
 

@@ -169,9 +169,9 @@ const defaultDataListItemSchema = Object.freeze({
 let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramMinQueryLength = 3;
-        this.paramCount = 5;
-        this.paramOpenMenuOnNothingFound = false;
+        this.minQueryLength = 3;
+        this.limit = 5;
+        this.openMenuOnNothingFound = false;
         this.dataList = new cellx_1.ObservableList();
         this._inputNotConfirmed = false;
         this._loadingPlanned = false;
@@ -181,7 +181,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
         return this._loadingPlanned || this.loading;
     }
     initialize() {
-        let dataListItemSchema = this.paramDataListItemSchema;
+        let dataListItemSchema = this.dataListItemSchema;
         let defaultDataListItemSchema = this.constructor
             .defaultDataListItemSchema;
         this._dataListItemValueFieldName =
@@ -252,7 +252,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
     _onTextInputInput(evt) {
         this._inputNotConfirmed = true;
         this._clearDataList();
-        if ((evt.target.value || '').length >= this.paramMinQueryLength) {
+        if ((evt.target.value || '').length >= this.minQueryLength) {
             this._loadingPlanned = true;
             this._loadingTimeout = this.setTimeout(() => {
                 this._loadingPlanned = false;
@@ -300,11 +300,11 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
                 return;
             }
         }
-        let focusedListItem = this._focusedListItem;
-        if (!focusedListItem || el != focusedListItem) {
-            this._focusedListItem = el;
-            if (focusedListItem) {
-                focusedListItem.removeAttribute('focused');
+        let focusedOption = this._focusedOption;
+        if (!focusedOption || el != focusedOption) {
+            this._focusedOption = el;
+            if (focusedOption) {
+                focusedOption.removeAttribute('focused');
             }
             el.setAttribute('focused', '');
         }
@@ -320,24 +320,24 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
             case 38 /* Up */:
             case 40 /* Bottom */: {
                 evt.preventDefault();
-                let focusedListItem = this._focusedListItem;
-                let listItems = this.$$('listItem');
-                if (focusedListItem) {
-                    let index = listItems.indexOf(focusedListItem);
-                    if (evt.which == 38 ? index > 0 : index < listItems.length - 1) {
-                        let newFocusedListItem = listItems[index + (evt.which == 38 ? -1 : 1)];
-                        this._focusedListItem = newFocusedListItem;
-                        focusedListItem.removeAttribute('focused');
-                        newFocusedListItem.setAttribute('focused', '');
+                let focusedOption = this._focusedOption;
+                let options = this.$$('option');
+                if (focusedOption) {
+                    let index = options.indexOf(focusedOption);
+                    if (evt.which == 38 ? index > 0 : index < options.length - 1) {
+                        let newFocusedOption = options[index + (evt.which == 38 ? -1 : 1)];
+                        this._focusedOption = newFocusedOption;
+                        focusedOption.removeAttribute('focused');
+                        newFocusedOption.setAttribute('focused', '');
                     }
                     else if (evt.which == 40) {
                         let menuFooterSlot = this.$('menuFooterSlot');
                         if (menuFooterSlot) {
                             let tabbableComponentEl = menuFooterSlot.element.querySelector('[tab_index]');
                             if (tabbableComponentEl && tabbableComponentEl.$component) {
-                                if (focusedListItem) {
-                                    this._focusedListItem = null;
-                                    focusedListItem.removeAttribute('focused');
+                                if (focusedOption) {
+                                    this._focusedOption = null;
+                                    focusedOption.removeAttribute('focused');
                                 }
                                 tabbableComponentEl.$component.focus();
                                 document.body.classList.remove('_noFocusHighlight');
@@ -352,7 +352,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
                         if (menuFooterSlot) {
                             let tabbableComponentEl = menuFooterSlot.element.querySelector('[tab_index]');
                             if (tabbableComponentEl && tabbableComponentEl.$component) {
-                                if (!listItems.length) {
+                                if (!options.length) {
                                     tabbableComponentEl.$component.focus();
                                     document.body.classList.remove('_noFocusHighlight');
                                     break;
@@ -364,10 +364,10 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
                             }
                         }
                     }
-                    if (listItems.length) {
-                        let newFocusedListItem = listItems[evt.which == 38 ? listItems.length - 1 : 0];
-                        this._focusedListItem = newFocusedListItem;
-                        newFocusedListItem.setAttribute('focused', '');
+                    if (options.length) {
+                        let newFocusedOption = options[evt.which == 38 ? options.length - 1 : 0];
+                        this._focusedOption = newFocusedOption;
+                        newFocusedOption.setAttribute('focused', '');
                     }
                 }
                 this.$('textInput').focus();
@@ -375,17 +375,17 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
             }
             case 13 /* Enter */:
             case 39 /* Right */: {
-                if (this._focusedListItem &&
+                if (this._focusedOption &&
                     (document.activeElement == this.$('textInput').textField ||
                         document.activeElement == document.body)) {
                     evt.preventDefault();
-                    let focusedListItemDataSet = this._focusedListItem.dataset;
-                    this.$('textInput').value = focusedListItemDataSet.text;
+                    let focusedOptionDataSet = this._focusedOption.dataset;
+                    this.$('textInput').value = focusedOptionDataSet.text;
                     this._clearDataList();
                     this._selectItem({
-                        [this._dataListItemValueFieldName]: focusedListItemDataSet.value,
-                        [this._dataListItemTextFieldName]: focusedListItemDataSet.text,
-                        [this._dataListItemSubtextFieldName]: focusedListItemDataSet.subtext
+                        [this._dataListItemValueFieldName]: focusedOptionDataSet.value,
+                        [this._dataListItemTextFieldName]: focusedOptionDataSet.text,
+                        [this._dataListItemSubtextFieldName]: focusedOptionDataSet.subtext
                     });
                 }
                 break;
@@ -408,7 +408,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
         this.loading = true;
         let args = [this.$('textInput').value];
         if (this.dataProvider.getItems.length >= 2) {
-            args.unshift(this.paramCount);
+            args.unshift(this.limit);
         }
         this.dataProvider.getItems
             .apply(this.dataProvider, args)
@@ -432,12 +432,12 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
             // _onDataListChange добавлен nextTick и как следствие здесь вместо Cell.release тоже
             // нужно использовать nextTick.
             next_tick_1.nextTick(() => {
-                let focusedListItem = this.$('listItem');
-                this._focusedListItem = focusedListItem;
-                focusedListItem.setAttribute('focused', '');
+                let focusedOption = this.$('option');
+                this._focusedOption = focusedOption;
+                focusedOption.setAttribute('focused', '');
             });
         }
-        else if (this.paramOpenMenuOnNothingFound) {
+        else if (this.openMenuOnNothingFound) {
             this.openMenu(true);
         }
     }
@@ -503,7 +503,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
         this._cancelLoading();
         this.closeMenu();
         this.dataList.clear();
-        this._focusedListItem = null;
+        this._focusedOption = null;
     }
 };
 OpalAutosuggest.defaultDataListItemSchema = defaultDataListItemSchema;
@@ -514,7 +514,7 @@ __decorate([
         readonly: true
     }),
     __metadata("design:type", Object)
-], OpalAutosuggest.prototype, "paramDataListItemSchema", void 0);
+], OpalAutosuggest.prototype, "dataListItemSchema", void 0);
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
@@ -526,15 +526,15 @@ __decorate([
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalAutosuggest.prototype, "paramMinQueryLength", void 0);
+], OpalAutosuggest.prototype, "minQueryLength", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalAutosuggest.prototype, "paramCount", void 0);
+], OpalAutosuggest.prototype, "limit", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalAutosuggest.prototype, "paramOpenMenuOnNothingFound", void 0);
+], OpalAutosuggest.prototype, "openMenuOnNothingFound", void 0);
 __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
@@ -561,7 +561,7 @@ OpalAutosuggest = OpalAutosuggest_1 = __decorate([
         elementIs: 'OpalAutosuggest',
         template: template_rnt_1.default,
         domEvents: {
-            listItem: {
+            option: {
                 click(_evt, context) {
                     let textInput = this.$('textInput');
                     let item = context.item;
@@ -614,7 +614,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalAutosuggest{position:relative;display:inline-block;vertical-align:middle}.OpalAutosuggest .OpalAutosuggest__textInput{display:block}.OpalAutosuggest .OpalAutosuggest__listItem{position:relative;overflow:hidden;padding:7px 22px;background:#fff;color:#000;text-align:left;-o-text-overflow:ellipsis;text-overflow:ellipsis;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalAutosuggest .OpalAutosuggest__listItem:hover,.OpalAutosuggest .OpalAutosuggest__listItem[focused]{background:#e6e6e6}.OpalAutosuggest .OpalAutosuggest__listItem:active{background:#ccc}.OpalAutosuggest .OpalAutosuggest__listItem sub{bottom:0;display:block;font-size:.9em;line-height:1.5;opacity:.5}.OpalAutosuggest .OpalAutosuggest__nothingFoundSlot{display:block;padding:12px;text-align:center}.OpalAutosuggest .OpalAutosuggest__nothingFoundMessage{white-space:nowrap;opacity:.6}.OpalAutosuggest .OpalAutosuggest__menuFooter{display:block;margin:12px 22px}.OpalTextInputValidator .OpalAutosuggest{display:block}";
+            style.textContent = ".OpalAutosuggest{position:relative;display:inline-block;vertical-align:middle}.OpalAutosuggest .OpalAutosuggest__textInput{display:block}.OpalAutosuggest .OpalAutosuggest__option{position:relative;overflow:hidden;padding:7px 22px;background:#fff;color:#000;text-align:left;-o-text-overflow:ellipsis;text-overflow:ellipsis;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalAutosuggest .OpalAutosuggest__option:hover,.OpalAutosuggest .OpalAutosuggest__option[focused]{background:#e6e6e6}.OpalAutosuggest .OpalAutosuggest__option:active{background:#ccc}.OpalAutosuggest .OpalAutosuggest__option sub{bottom:0;display:block;font-size:.9em;line-height:1.5;opacity:.5}.OpalAutosuggest .OpalAutosuggest__nothingFoundSlot{display:block;padding:12px;text-align:center}.OpalAutosuggest .OpalAutosuggest__nothingFoundMessage{white-space:nowrap;opacity:.6}.OpalAutosuggest .OpalAutosuggest__menuFooter{display:block;margin:12px 22px}.OpalTextInputValidator .OpalAutosuggest{display:block}";
             head.appendChild(style);
             return style;
         }
@@ -628,7 +628,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=textInput) {\nOpalTextInput:textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={'Начните вводить для поиска' |t },\nclearable\n) {\nOpalIcon:textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown:menu {\nRnSlot (for=menuHeader)\ndiv:list {\ndiv:listItem (\n@for=item in dataList,\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\nRnSlot:nothingFoundSlot (@unless=dataList.length, for=nothingFound) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\nRnSlot:menuFooterSlot (for=menuFooter)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=textInput) {\nOpalTextInput:textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={'Начните вводить для поиска' |t },\nclearable\n) {\nOpalIcon:textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown:menu {\nRnSlot (for=menuHeader)\ndiv:optionList {\ndiv:option (\n@for=item in dataList,\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\nRnSlot:nothingFoundSlot (@unless=dataList.length, for=nothingFound) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\nRnSlot:menuFooterSlot (for=menuFooter)\n}");
 
 /***/ })
 /******/ ]);

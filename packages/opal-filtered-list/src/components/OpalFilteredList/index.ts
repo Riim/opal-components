@@ -28,7 +28,7 @@ export class OpalFilteredList extends BaseComponent {
 	}
 
 	_setListQuery(query: string | null) {
-		this.$<OpalLoadedList>('list')!.paramQuery = query as any;
+		this.$<OpalLoadedList>('list')!.query = query!;
 	}
 
 	focus(): boolean {

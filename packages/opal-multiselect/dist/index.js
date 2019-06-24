@@ -213,10 +213,10 @@ OpalMultiselect = __decorate([
         events: {
             queryInput: {
                 input(evt) {
-                    this.$('loadedList').paramQuery = evt.target.value;
+                    this.$('loadedList').query = evt.target.value;
                 },
                 clear() {
-                    this.$('loadedList').paramQuery = '';
+                    this.$('loadedList').query = '';
                 }
             },
             btnClose: {

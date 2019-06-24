@@ -150,7 +150,7 @@ let defaultDataListItemSchema = Object.freeze({
 let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramCount = 100;
+        this.limit = 100;
         this.paramPreloading = false;
         this.dataList = new cellx_1.ObservableList();
         this._scrollingInProcessing = false;
@@ -170,7 +170,7 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
     }
     initialize() {
         this._dataListItemTextFieldName =
-            this.paramDataListItemSchema.text ||
+            this.dataListItemSchema.text ||
                 this.constructor.defaultDataListItemSchema.text;
         if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
             throw new TypeError('Parameter "dataProvider" is required');
@@ -181,7 +181,7 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
         }
     }
     elementAttached() {
-        this.listenTo(this, 'change:paramQuery', this._onParamQueryChange);
+        this.listenTo(this, 'change:query', this._onQueryChange);
         this.listenTo(this.element, 'scroll', this._onElementScroll);
         if (this.paramPreloading) {
             this._load();
@@ -190,7 +190,7 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
             this.checkLoading();
         }
     }
-    _onParamQueryChange() {
+    _onQueryChange() {
         if (this.loading) {
             this._requestCallback.cancel();
             this.loading = false;
@@ -227,7 +227,7 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
         }, 150);
     }
     checkLoading() {
-        if (this.paramQuery === this._lastRequestedQuery &&
+        if (this.query === this._lastRequestedQuery &&
             (this.loading || (this.total !== undefined && this.dataList.length == this.total))) {
             return;
         }
@@ -242,11 +242,11 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
             this._requestCallback.cancel();
         }
         let infinite = this.dataProvider.getItems.length >= 2;
-        let query = (this._lastRequestedQuery = this.paramQuery);
+        let query = (this._lastRequestedQuery = this.query);
         let args = [query];
         if (infinite) {
-            args.unshift(this.paramCount, this.dataList.length
-                ? this.dataList.get(-1)[this.paramDataListItemSchema.value ||
+            args.unshift(this.limit, this.dataList.length
+                ? this.dataList.get(-1)[this.dataListItemSchema.value ||
                     this.constructor
                         .defaultDataListItemSchema.value]
                 : null);
@@ -283,7 +283,7 @@ __decorate([
         readonly: true
     }),
     __metadata("design:type", Object)
-], OpalLoadedList.prototype, "paramDataListItemSchema", void 0);
+], OpalLoadedList.prototype, "dataListItemSchema", void 0);
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
@@ -291,11 +291,11 @@ __decorate([
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalLoadedList.prototype, "paramCount", void 0);
+], OpalLoadedList.prototype, "limit", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalLoadedList.prototype, "paramQuery", void 0);
+], OpalLoadedList.prototype, "query", void 0);
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)

@@ -18,7 +18,7 @@ export interface IDataListItem {
 export interface IDataProvider {
 	getItems(query?: string): PromiseLike<{ items: Array<IDataListItem> }>;
 	getItems(
-		count: number,
+		limit: number,
 		after?: string,
 		query?: string
 	): PromiseLike<{
@@ -44,16 +44,16 @@ export class OpalLoadedList extends BaseComponent {
 		default: defaultDataListItemSchema,
 		readonly: true
 	})
-	paramDataListItemSchema: {
+	dataListItemSchema: {
 		value?: string;
 		text?: string;
 	};
 	@Param({ readonly: true })
 	paramDataProvider: IDataProvider;
 	@Param
-	paramCount = 100;
+	limit = 100;
 	@Param
-	paramQuery: string;
+	query: string;
 	@Param({ readonly: true })
 	paramPreloading = false;
 
@@ -94,7 +94,7 @@ export class OpalLoadedList extends BaseComponent {
 
 	initialize() {
 		this._dataListItemTextFieldName =
-			this.paramDataListItemSchema.text ||
+			this.dataListItemSchema.text ||
 			(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema.text;
 
 		if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
@@ -109,7 +109,7 @@ export class OpalLoadedList extends BaseComponent {
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'change:paramQuery', this._onParamQueryChange);
+		this.listenTo(this, 'change:query', this._onQueryChange);
 		this.listenTo(this.element, 'scroll', this._onElementScroll);
 
 		if (this.paramPreloading) {
@@ -119,7 +119,7 @@ export class OpalLoadedList extends BaseComponent {
 		}
 	}
 
-	_onParamQueryChange() {
+	_onQueryChange() {
 		if (this.loading) {
 			this._requestCallback.cancel();
 			this.loading = false;
@@ -162,7 +162,7 @@ export class OpalLoadedList extends BaseComponent {
 
 	checkLoading() {
 		if (
-			this.paramQuery === this._lastRequestedQuery &&
+			this.query === this._lastRequestedQuery &&
 			(this.loading || (this.total !== undefined && this.dataList.length == this.total))
 		) {
 			return;
@@ -184,15 +184,15 @@ export class OpalLoadedList extends BaseComponent {
 		}
 
 		let infinite = this.dataProvider.getItems.length >= 2;
-		let query: string | null = (this._lastRequestedQuery = this.paramQuery);
+		let query: string | null = (this._lastRequestedQuery = this.query);
 		let args: Array<any> = [query];
 
 		if (infinite) {
 			args.unshift(
-				this.paramCount,
+				this.limit,
 				this.dataList.length
 					? this.dataList.get(-1)![
-							this.paramDataListItemSchema.value ||
+							this.dataListItemSchema.value ||
 								(this.constructor as typeof OpalLoadedList)
 									.defaultDataListItemSchema.value
 					  ]

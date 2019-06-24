@@ -530,8 +530,8 @@ p {
 							'Ничего не найдено'
 						}
 
-						OpalButton (class=OpalSelect__btnAddNewItem, dataItemText={paramQuery}) {
-							'Добавить "{paramQuery}"'
+						OpalButton (class=OpalSelect__btnAddNewItem, dataItemText={query}) {
+							'Добавить "{query}"'
 						}
 					}
 				}
