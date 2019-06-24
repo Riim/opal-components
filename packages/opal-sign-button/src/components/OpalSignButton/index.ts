@@ -14,23 +14,23 @@ import template from './template.rnt';
 })
 export class OpalSignButton extends BaseComponent {
 	@Param({ required: true })
-	paramSign: string;
+	sign: string;
 	@Param
-	paramViewType: string;
+	viewType: string;
 	@Param
-	paramCheckable = false;
+	checkable = false;
 	@Param
-	paramChecked = false;
+	checked = false;
 	@Param
-	paramTabIndex = 0;
+	tabIndex = 0;
 	@Param
-	paramFocused = false;
+	focused = false;
 	@Param
-	paramDisabled = false;
+	disabled = false;
 
 	@Computed
 	get _tabIndex(): number {
-		return this.paramDisabled ? -1 : this.paramTabIndex;
+		return this.disabled ? -1 : this.tabIndex;
 	}
 
 	_documentKeyDownListening: IDisposableListening;
@@ -44,43 +44,36 @@ export class OpalSignButton extends BaseComponent {
 	}
 
 	ready() {
-		if (this.paramFocused) {
+		if (this.focused) {
 			this.focus();
 		}
 	}
 
 	_onControlFocus() {
-		this.paramFocused = true;
+		this.focused = true;
 		this.emit('focus');
 	}
 
 	_onControlBlur() {
-		this.paramFocused = false;
+		this.focused = false;
 		this.emit('blur');
 	}
 
 	_onControlClick(evt: Event) {
 		evt.preventDefault();
 
-		if (!this.paramDisabled) {
+		if (!this.disabled) {
 			this.click();
 		}
 	}
 
 	click(): this {
-		if (!this.emit('click').defaultPrevented && this.paramCheckable) {
+		if (!this.emit('click').defaultPrevented && this.checkable) {
 			this.emit(this.toggle() ? 'check' : 'uncheck');
 			this.emit('change');
 		}
 
 		return this;
-	}
-
-	get checked(): boolean {
-		return this.paramChecked;
-	}
-	set checked(checked: boolean) {
-		this.paramChecked = checked;
 	}
 
 	get selected(): boolean {
@@ -91,8 +84,8 @@ export class OpalSignButton extends BaseComponent {
 	}
 
 	check(): boolean {
-		if (!this.paramChecked) {
-			this.paramChecked = true;
+		if (!this.checked) {
+			this.checked = true;
 			return true;
 		}
 
@@ -100,8 +93,8 @@ export class OpalSignButton extends BaseComponent {
 	}
 
 	uncheck(): boolean {
-		if (this.paramChecked) {
-			this.paramChecked = false;
+		if (this.checked) {
+			this.checked = false;
 			return true;
 		}
 
@@ -109,7 +102,7 @@ export class OpalSignButton extends BaseComponent {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.paramChecked = value === undefined ? !this.paramChecked : value);
+		return (this.checked = value === undefined ? !this.checked : value);
 	}
 
 	focus(): this {
@@ -123,12 +116,12 @@ export class OpalSignButton extends BaseComponent {
 	}
 
 	enable(): this {
-		this.paramDisabled = false;
+		this.disabled = false;
 		return this;
 	}
 
 	disable(): this {
-		this.paramDisabled = true;
+		this.disabled = true;
 		return this;
 	}
 }

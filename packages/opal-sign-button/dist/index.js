@@ -137,14 +137,14 @@ const template_rnt_1 = __webpack_require__(6);
 let OpalSignButton = class OpalSignButton extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramCheckable = false;
-        this.paramChecked = false;
-        this.paramTabIndex = 0;
-        this.paramFocused = false;
-        this.paramDisabled = false;
+        this.checkable = false;
+        this.checked = false;
+        this.tabIndex = 0;
+        this.focused = false;
+        this.disabled = false;
     }
     get _tabIndex() {
-        return this.paramDisabled ? -1 : this.paramTabIndex;
+        return this.disabled ? -1 : this.tabIndex;
     }
     elementAttached() {
         this.listenTo('control', {
@@ -154,36 +154,30 @@ let OpalSignButton = class OpalSignButton extends rionite_1.BaseComponent {
         });
     }
     ready() {
-        if (this.paramFocused) {
+        if (this.focused) {
             this.focus();
         }
     }
     _onControlFocus() {
-        this.paramFocused = true;
+        this.focused = true;
         this.emit('focus');
     }
     _onControlBlur() {
-        this.paramFocused = false;
+        this.focused = false;
         this.emit('blur');
     }
     _onControlClick(evt) {
         evt.preventDefault();
-        if (!this.paramDisabled) {
+        if (!this.disabled) {
             this.click();
         }
     }
     click() {
-        if (!this.emit('click').defaultPrevented && this.paramCheckable) {
+        if (!this.emit('click').defaultPrevented && this.checkable) {
             this.emit(this.toggle() ? 'check' : 'uncheck');
             this.emit('change');
         }
         return this;
-    }
-    get checked() {
-        return this.paramChecked;
-    }
-    set checked(checked) {
-        this.paramChecked = checked;
     }
     get selected() {
         return this.checked;
@@ -192,21 +186,21 @@ let OpalSignButton = class OpalSignButton extends rionite_1.BaseComponent {
         this.checked = selected;
     }
     check() {
-        if (!this.paramChecked) {
-            this.paramChecked = true;
+        if (!this.checked) {
+            this.checked = true;
             return true;
         }
         return false;
     }
     uncheck() {
-        if (this.paramChecked) {
-            this.paramChecked = false;
+        if (this.checked) {
+            this.checked = false;
             return true;
         }
         return false;
     }
     toggle(value) {
-        return (this.paramChecked = value === undefined ? !this.paramChecked : value);
+        return (this.checked = value === undefined ? !this.checked : value);
     }
     focus() {
         this.$('control').focus();
@@ -217,42 +211,42 @@ let OpalSignButton = class OpalSignButton extends rionite_1.BaseComponent {
         return this;
     }
     enable() {
-        this.paramDisabled = false;
+        this.disabled = false;
         return this;
     }
     disable() {
-        this.paramDisabled = true;
+        this.disabled = true;
         return this;
     }
 };
 __decorate([
     rionite_1.Param({ required: true }),
     __metadata("design:type", String)
-], OpalSignButton.prototype, "paramSign", void 0);
+], OpalSignButton.prototype, "sign", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalSignButton.prototype, "paramViewType", void 0);
+], OpalSignButton.prototype, "viewType", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSignButton.prototype, "paramCheckable", void 0);
+], OpalSignButton.prototype, "checkable", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSignButton.prototype, "paramChecked", void 0);
+], OpalSignButton.prototype, "checked", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSignButton.prototype, "paramTabIndex", void 0);
+], OpalSignButton.prototype, "tabIndex", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSignButton.prototype, "paramFocused", void 0);
+], OpalSignButton.prototype, "focused", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSignButton.prototype, "paramDisabled", void 0);
+], OpalSignButton.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Number),
