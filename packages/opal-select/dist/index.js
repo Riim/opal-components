@@ -208,6 +208,8 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         super(...arguments);
         this.size = 'm';
         this.multiple = false;
+        this.value = [];
+        this.viewModel = new cellx_1.ObservableList();
         this.maxTextLength = 20;
         // ;;; Плейсхолдер селекта.
         this.placeholder = gettext_1.pt('OpalSelect#placeholder', 'Не выбрано');
@@ -220,9 +222,6 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         this._notUpdateOptions = false;
         this._opened = false;
         this._onceFocusedAfterLoading = false;
-    }
-    get value() {
-        return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
     }
     get _buttonText() {
         let text = this.viewModel
@@ -244,15 +243,15 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             cellx_1.define(this, 'dataList', new cellx_1.Cell(Function(`return this.${this.dataListKeypath};`), {
                 context: this.ownerComponent || window
             }));
-            this._paramDataListSpecified = true;
+            this._isDataListSpecified = true;
         }
         else if (this.$specifiedParams && this.$specifiedParams.has('dataList')) {
             cellx_1.define(this, 'dataList', () => this.paramDataList);
-            this._paramDataListSpecified = true;
+            this._isDataListSpecified = true;
         }
         else {
             this.dataList = null;
-            this._paramDataListSpecified = false;
+            this._isDataListSpecified = false;
         }
         let dataListItemSchema = this.dataListItemSchema;
         let defaultDataListItemSchema = this.constructor
@@ -264,7 +263,6 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             dataListItemSchema.subtext || defaultDataListItemSchema.subtext;
         this._dataListItemDisabledFieldName =
             dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
-        this.viewModel = this.paramViewModel || new cellx_1.ObservableList();
         let vmItemSchema = this.viewModelItemSchema;
         let defaultVMItemSchema = this.constructor
             .defaultViewModelItemSchema;
@@ -277,7 +275,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
     }
     ready() {
         this.optionElements = this.element.getElementsByClassName('OpalSelectOption');
-        if (this.paramViewModel && !this.paramValue) {
+        if (this.$specifiedParams.has('viewModel') && !this.value) {
             this._needOptionsUpdating = true;
         }
         else {
@@ -288,9 +286,9 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         }
     }
     _initViewModel() {
-        let value = this.paramValue;
         let selectedOptions;
-        if (value) {
+        if (this.$specifiedParams.has('value')) {
+            let value = this.value;
             if (!Array.isArray(value)) {
                 throw new TypeError('Parameter "value" must be an array');
             }
@@ -327,7 +325,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             })));
         }
         this._notUpdateOptions = false;
-        if (value) {
+        if (this.$specifiedParams.has('value')) {
             this._updateOptions();
         }
     }
@@ -337,7 +335,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             this.focus();
         }
         this.listenTo(this, {
-            'change:paramValue': this._onParamValueChange,
+            'change:value': this._onValueChange,
             'change:focused': this._onFocusedChange
         });
         this.listenTo(this.viewModel, 'change', this._onViewModelChange);
@@ -358,7 +356,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             '<*>change': this._onMenuChange
         });
     }
-    _onParamValueChange(evt) {
+    _onValueChange(evt) {
         let vm = this.viewModel;
         let value = evt.data.value;
         if (value) {
@@ -442,6 +440,9 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         }
     }
     _onViewModelChange() {
+        cellx_1.EventEmitter.silently(() => {
+            this.value = this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
+        });
         if (!this._needOptionsUpdating && !this._notUpdateOptions) {
             this._updateOptions();
         }
@@ -882,7 +883,7 @@ __decorate([
     __metadata("design:type", Object)
 ], OpalSelect.prototype, "multiple", void 0);
 __decorate([
-    rionite_1.Param,
+    rionite_1.Param('dataList'),
     __metadata("design:type", Object)
 ], OpalSelect.prototype, "paramDataList", void 0);
 __decorate([
@@ -900,11 +901,11 @@ __decorate([
 __decorate([
     rionite_1.Param({ type: eval }),
     __metadata("design:type", Array)
-], OpalSelect.prototype, "paramValue", void 0);
+], OpalSelect.prototype, "value", void 0);
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
-], OpalSelect.prototype, "paramViewModel", void 0);
+], OpalSelect.prototype, "viewModel", void 0);
 __decorate([
     rionite_1.Param({
         type: eval,
@@ -945,15 +946,6 @@ __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
 ], OpalSelect.prototype, "disabled", void 0);
-__decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
-], OpalSelect.prototype, "viewModel", void 0);
-__decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Array),
-    __metadata("design:paramtypes", [])
-], OpalSelect.prototype, "value", null);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", String),
@@ -1142,15 +1134,15 @@ let OpalSelectOption = class OpalSelectOption extends rionite_1.BaseComponent {
     }
 };
 __decorate([
-    rionite_1.Param,
+    rionite_1.Param('value'),
     __metadata("design:type", String)
 ], OpalSelectOption.prototype, "paramValue", void 0);
 __decorate([
-    rionite_1.Param({ required: true }),
+    rionite_1.Param('text', { required: true }),
     __metadata("design:type", String)
 ], OpalSelectOption.prototype, "paramText", void 0);
 __decorate([
-    rionite_1.Param,
+    rionite_1.Param('subtext'),
     __metadata("design:type", String)
 ], OpalSelectOption.prototype, "paramSubtext", void 0);
 __decorate([
@@ -1257,7 +1249,7 @@ exports.isEqualArray = isEqualArray;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=button) {\nOpalButton:button (\nviewType={viewType},\nsize={size},\ncheckable,\ntabIndex={tabIndex},\ndisabled={disabled}\n) {\n@IfThen (text) {\n'{text}'\n}\n@IfElse (text) {\n'{_buttonText}'\n}\nOpalIcon:buttonIcon (name=chevronDown)\n}\n}\nRnSlot (for=menuSlot) {\nRnSlot:menuSlot (for=menu) {\nOpalDropdown:menu (closeOn=mousedown) {\nRnSlot (for=menuHeader)\nRnSlot (for=menuContent) {\ndiv::menuContent (@if=_paramDataListSpecified) {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {\nOpalSelectOption:option (\nvalue='{=item |key(_dataListItemValueFieldName) }',\ntext='{=item |key(_dataListItemTextFieldName) }',\nsubtext='{=item |key(_dataListItemSubtextFieldName) }',\ndisabled='{=item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRnSlot:newItemInputSlot // ...\n}\nOpalLoader:menuLoader (@unless=dataList, shown)\n}\ndiv::menuContent (@unless=_paramDataListSpecified) {\nRnSlot:options (forTag=opal-select-option)\nRnSlot (for=newItemInputSlot) {\nRnSlot:newItemInputSlot (for=newItemInput)\n}\n}\n}\nRnSlot (for=menuFooter)\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=button) {\nOpalButton:button (\nviewType={viewType},\nsize={size},\ncheckable,\ntabIndex={tabIndex},\ndisabled={disabled}\n) {\n@IfThen (text) {\n'{text}'\n}\n@IfElse (text) {\n'{_buttonText}'\n}\nOpalIcon:buttonIcon (name=chevronDown)\n}\n}\nRnSlot (for=menuSlot) {\nRnSlot:menuSlot (for=menu) {\nOpalDropdown:menu (closeOn=mousedown) {\nRnSlot (for=menuHeader)\nRnSlot (for=menuContent) {\ndiv::menuContent (@if=_isDataListSpecified) {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {\nOpalSelectOption:option (\nvalue='{=item |key(_dataListItemValueFieldName) }',\ntext='{=item |key(_dataListItemTextFieldName) }',\nsubtext='{=item |key(_dataListItemSubtextFieldName) }',\ndisabled='{=item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRnSlot:newItemInputSlot // ...\n}\nOpalLoader:menuLoader (@unless=dataList, shown)\n}\ndiv::menuContent (@unless=_isDataListSpecified) {\nRnSlot:options (forTag=opal-select-option)\nRnSlot (for=newItemInputSlot) {\nRnSlot:newItemInputSlot (for=newItemInput)\n}\n}\n}\nRnSlot (for=menuFooter)\n}\n}\n}");
 
 /***/ })
 /******/ ]);

@@ -207,7 +207,7 @@ __decorate([
     __metadata("design:type", Object)
 ], OpalTreeSelect.prototype, "multiple", void 0);
 __decorate([
-    rionite_1.Param,
+    rionite_1.Param('dataTreeList'),
     __metadata("design:type", Object)
 ], OpalTreeSelect.prototype, "paramDataTreeList", void 0);
 __decorate([

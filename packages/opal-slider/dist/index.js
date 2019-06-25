@@ -140,20 +140,13 @@ let OpalSlider = class OpalSlider extends rionite_1.BaseComponent {
         this.min = 0;
         this.max = 100;
         this.step = 1;
-        this.paramValue = 0;
+        this.value = 0;
     }
     get _firstInputWidth() {
         let min = this.min;
         let all = this.max - min;
-        return (Math.round((((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) / 2) *
-            1e5) / 1e3);
-    }
-    initialize() {
-        let range = this.range;
-        if (range) {
-            this._firstInputValue = range[0];
-            this._secondInputValue = range[1];
-        }
+        return (Math.round((((this.range[0] - min) / all + (this.range[1] - min) / all) / 2) * 1e5) /
+            1e3);
     }
     elementAttached() {
         if (this.range) {
@@ -163,30 +156,24 @@ let OpalSlider = class OpalSlider extends rionite_1.BaseComponent {
     }
     _onFirstInputInput(evt) {
         let secondInput = this.$('secondInput');
-        let value = (this._firstInputValue = +evt.target.value);
-        if (+secondInput.value < value) {
-            secondInput.value = this._secondInputValue = value;
+        let firstInputValue = +evt.target.value;
+        if (+secondInput.value < firstInputValue) {
+            secondInput.value = firstInputValue;
+            this.range = [firstInputValue, firstInputValue];
+        }
+        else {
+            this.range = [firstInputValue, this.range[1]];
         }
     }
     _onSecondInputInput(evt) {
         let firstInput = this.$('firstInput');
-        let value = (this._secondInputValue = +evt.target.value);
-        if (+firstInput.value > value) {
-            firstInput.value = this._firstInputValue = value;
-        }
-    }
-    get value() {
-        return this.range
-            ? [this._firstInputValue, this._secondInputValue]
-            : +this.$('input').value;
-    }
-    set value(value) {
-        if (this.range) {
-            this.$('firstInput').value = this._firstInputValue = value[0];
-            this.$('secondInput').value = this._secondInputValue = value[1];
+        let secondInputValue = +evt.target.value;
+        if (+firstInput.value > secondInputValue) {
+            firstInput.value = secondInputValue;
+            this.range = [secondInputValue, secondInputValue];
         }
         else {
-            this.$('input').value = value;
+            this.range = [this.range[0], secondInputValue];
         }
     }
 };
@@ -205,19 +192,11 @@ __decorate([
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalSlider.prototype, "paramValue", void 0);
+], OpalSlider.prototype, "value", void 0);
 __decorate([
     rionite_1.Param({ type: eval }),
     __metadata("design:type", Array)
 ], OpalSlider.prototype, "range", void 0);
-__decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Number)
-], OpalSlider.prototype, "_firstInputValue", void 0);
-__decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Number)
-], OpalSlider.prototype, "_secondInputValue", void 0);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Number),
@@ -267,7 +246,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (range) {\ndiv:firstInputWrapper3 {\ndiv:firstInputWrapper2 (style=width: {_firstInputWidth}%) {\ndiv:firstInputWrapper {\ninput:firstInput (\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={range.0}\n)\n}\n}\n}\ndiv:secondInputWrapper {\ninput:secondInput (\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={range.1}\n)\n}\n}\ninput:input (\n@unless=range,\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={paramValue}\n)");
+/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (range) {\ndiv:firstInputWrapper3 {\ndiv:firstInputWrapper2 (style=width: {_firstInputWidth}%) {\ndiv:firstInputWrapper {\ninput:firstInput (\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={range.0}\n)\n}\n}\n}\ndiv:secondInputWrapper {\ninput:secondInput (\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={range.1}\n)\n}\n}\ninput:input (\n@unless=range,\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={value}\n)");
 
 /***/ })
 /******/ ]);

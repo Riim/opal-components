@@ -349,15 +349,15 @@ let OpalCalendar = OpalCalendar_1 = class OpalCalendar extends rionite_1.BaseCom
     }
 };
 __decorate([
-    rionite_1.Param,
+    rionite_1.Param('fromDate'),
     __metadata("design:type", String)
 ], OpalCalendar.prototype, "paramFromDate", void 0);
 __decorate([
-    rionite_1.Param,
+    rionite_1.Param('toDate'),
     __metadata("design:type", String)
 ], OpalCalendar.prototype, "paramToDate", void 0);
 __decorate([
-    rionite_1.Param,
+    rionite_1.Param('value'),
     __metadata("design:type", String)
 ], OpalCalendar.prototype, "paramValue", void 0);
 __decorate([

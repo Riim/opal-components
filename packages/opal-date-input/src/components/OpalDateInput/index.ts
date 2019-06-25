@@ -46,7 +46,7 @@ export class OpalDateInput extends BaseComponent {
 	fromDate: string;
 	@Param
 	toDate: string;
-	@Param
+	@Param('value')
 	paramValue: string;
 	@Param
 	placeholder = 'dd.mm.yyyy';

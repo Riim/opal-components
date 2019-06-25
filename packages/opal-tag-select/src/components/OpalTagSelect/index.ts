@@ -12,7 +12,7 @@ import {
 	IEvent,
 	ObservableList
 	} from 'cellx';
-import { Computed, Observable } from 'cellx-decorators';
+import { Computed } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
 import './index.css';
 import template from './template.rnt';
@@ -60,7 +60,7 @@ export class OpalTagSelect extends BaseComponent {
 
 	@Param
 	viewType: string;
-	@Param
+	@Param('dataList')
 	paramDataList: TDataList;
 	@Param({ readonly: true })
 	dataListKeypath: string;
@@ -78,10 +78,10 @@ export class OpalTagSelect extends BaseComponent {
 	// необязательный, так как может указываться на передаваемом OpalLoadedList
 	@Param({ readonly: true })
 	dataProvider: IDataProvider;
-	@Param({ type: eval })
+	@Param('value', { type: eval })
 	paramValue: Array<string>;
 	@Param({ readonly: true })
-	paramViewModel: TViewModel;
+	viewModel: TViewModel = new ObservableList();
 	@Param({
 		type: eval,
 		default: defaultVMItemSchema,
@@ -113,8 +113,6 @@ export class OpalTagSelect extends BaseComponent {
 	_dataListItemSubtextFieldName: string;
 	_dataListItemDisabledFieldName: string;
 
-	@Observable
-	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 	_viewModelItemDisabledFieldName: string;
@@ -162,8 +160,6 @@ export class OpalTagSelect extends BaseComponent {
 			dataListItemSchema.subtext || defaultDataListItemSchema.subtext;
 		this._dataListItemDisabledFieldName =
 			dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
-
-		this.viewModel = this.paramViewModel || new ObservableList();
 
 		let vmItemSchema = this.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalSelect)

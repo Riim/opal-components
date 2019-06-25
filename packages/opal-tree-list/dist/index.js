@@ -330,6 +330,7 @@ function toComparable(str) {
 let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
+        this.viewModel = new cellx_1.ObservableList();
         this._queryTimeout = null;
     }
     get filteredDataTreeList() {
@@ -337,7 +338,7 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
         if (!dataTreeList) {
             return null;
         }
-        let query = this.query;
+        let query = this.comparableQuery;
         if (!query) {
             return dataTreeList;
         }
@@ -389,7 +390,6 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
             dataTreeListItemSchema.value || defaultDataTreeListItemSchema.value;
         this._dataTreeListItemTextFieldName =
             dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
-        this.viewModel = this.paramViewModel || new cellx_1.ObservableList();
         let vmItemSchema = this.viewModelItemSchema;
         let defaultVMItemSchema = this.constructor
             .defaultViewModelItemSchema;
@@ -397,10 +397,12 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
     }
     elementAttached() {
-        this.listenTo(this, 'change:paramQuery', this._onParamQueryChange);
-        this.listenTo(this, '<*>change', this._onChange);
+        this.listenTo(this, {
+            'change:query': this._onQueryChange,
+            '<*>change': this._onChange
+        });
     }
-    _onParamQueryChange() {
+    _onQueryChange() {
         if (this._queryTimeout) {
             this._queryTimeout.clear();
         }
@@ -408,7 +410,7 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
     }
     _onQueryTimeout() {
         this._queryTimeout = null;
-        this.query = toComparable(this.paramQuery);
+        this.comparableQuery = toComparable(this.query);
     }
     _onChange(evt) {
         let component = evt.target;
@@ -473,7 +475,7 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
 OpalTreeList.defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
 OpalTreeList.defaultViewModelItemSchema = defaultVMItemSchema;
 __decorate([
-    rionite_1.Param,
+    rionite_1.Param('dataTreeList'),
     __metadata("design:type", Object)
 ], OpalTreeList.prototype, "paramDataTreeList", void 0);
 __decorate([
@@ -491,7 +493,7 @@ __decorate([
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalTreeList.prototype, "paramViewModel", void 0);
+], OpalTreeList.prototype, "viewModel", void 0);
 __decorate([
     rionite_1.Param({
         type: eval,
@@ -503,20 +505,16 @@ __decorate([
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalTreeList.prototype, "paramQuery", void 0);
+], OpalTreeList.prototype, "query", void 0);
 __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
-], OpalTreeList.prototype, "query", void 0);
+], OpalTreeList.prototype, "comparableQuery", void 0);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Object),
     __metadata("design:paramtypes", [])
 ], OpalTreeList.prototype, "filteredDataTreeList", null);
-__decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
-], OpalTreeList.prototype, "viewModel", void 0);
 __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
@@ -570,7 +568,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const cellx_decorators_1 = __webpack_require__(11);
 const rionite_1 = __webpack_require__(12);
 const _getListItemContext_1 = __webpack_require__(14);
 __webpack_require__(15);
@@ -579,9 +576,6 @@ let OpalTreeListItem = class OpalTreeListItem extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.opened = false;
-    }
-    get dataTreeList() {
-        return this.paramDataTreeList;
     }
     initialize() {
         this.dataTreeListItem = this.filteredDataTreeList.get(this.indexpath);
@@ -594,7 +588,7 @@ let OpalTreeListItem = class OpalTreeListItem extends rionite_1.BaseComponent {
 __decorate([
     rionite_1.Param({ required: true }),
     __metadata("design:type", Object)
-], OpalTreeListItem.prototype, "paramDataTreeList", void 0);
+], OpalTreeListItem.prototype, "dataTreeList", void 0);
 __decorate([
     rionite_1.Param({ required: true }),
     __metadata("design:type", Object)
@@ -647,11 +641,6 @@ __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
 ], OpalTreeListItem.prototype, "opened", void 0);
-__decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Object),
-    __metadata("design:paramtypes", [])
-], OpalTreeListItem.prototype, "dataTreeList", null);
 OpalTreeListItem = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTreeListItem',
@@ -733,7 +722,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:head {\nOpalButton:btnToggleChildren (viewType=clean, checkable, checked={opened}) {\nOpalIcon:btnToggleChildrenIcon (name=chevronRight)\n}\nspan:contentSlotWrapper {\nRnSlot:contentSlot (cloneContent)\n}\n}\ndiv:children (@if=dataTreeListItem.children.length) {\n@Repeat (for=$item in dataTreeListItem.children) {\nOpalTreeListItem:item (\ndataTreeList={paramDataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath='[{indexpath},{$index}]',\nquery={query},\nopened={query |bool },\nnestingLevel={indexpath.length},\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext})\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("div:head {\nOpalButton:btnToggleChildren (viewType=clean, checkable, checked={opened}) {\nOpalIcon:btnToggleChildrenIcon (name=chevronRight)\n}\nspan:contentSlotWrapper {\nRnSlot:contentSlot (cloneContent)\n}\n}\ndiv:children (@if=dataTreeListItem.children.length) {\n@Repeat (for=$item in dataTreeListItem.children) {\nOpalTreeListItem:item (\ndataTreeList={dataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath='[{indexpath},{$index}]',\nquery={query},\nopened={query |bool },\nnestingLevel={indexpath.length},\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext})\n}\n}\n}");
 
 /***/ }),
 /* 17 */
@@ -758,7 +747,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (listShown) {\n@Repeat (for=$item in filteredDataTreeList) {\nOpalTreeListItem:item (\ndataTreeList={dataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={paramQuery},\nopened={paramQuery |bool },\nnestingLevel=0,\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext}) {\nOpalCheckbox:selectionControl (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\nRnSlot:nothingFoundSlot (@unless=filteredDataTreeList.length, for=nothingFound) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\n}\nOpalLoader:loader (@unless=listShown, shown)");
+/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (listShown) {\n@Repeat (for=$item in filteredDataTreeList) {\nOpalTreeListItem:item (\ndataTreeList={dataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath=[{$index}],\nquery={query},\nopened={query |bool },\nnestingLevel=0,\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext}) {\nOpalCheckbox:selectionControl (checked={$selected}, indeterminate={$indeterminate}) {\n'{$item |key(_dataTreeListItemTextFieldName) }'\n}\n}\n}\n}\nRnSlot:nothingFoundSlot (@unless=filteredDataTreeList.length, for=nothingFound) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\n}\nOpalLoader:loader (@unless=listShown, shown)");
 
 /***/ })
 /******/ ]);

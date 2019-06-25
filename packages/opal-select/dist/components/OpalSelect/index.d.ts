@@ -34,8 +34,8 @@ export declare class OpalSelect extends BaseComponent {
         subtext?: string;
         disabled?: string;
     };
-    paramValue: Array<string>;
-    paramViewModel: TViewModel;
+    value: Array<string>;
+    viewModel: TViewModel;
     viewModelItemSchema: {
         value?: string;
         text?: string;
@@ -56,12 +56,10 @@ export declare class OpalSelect extends BaseComponent {
     _dataListItemTextFieldName: string;
     _dataListItemSubtextFieldName: string;
     _dataListItemDisabledFieldName: string;
-    viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _viewModelItemSubtextFieldName: string;
     _viewModelItemDisabledFieldName: string;
-    readonly value: Array<string>;
     _addNewItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
     readonly _buttonText: string;
     optionElements: HTMLCollectionOf<IComponentElement>;
@@ -72,7 +70,7 @@ export declare class OpalSelect extends BaseComponent {
     _opened: boolean;
     _valueOnOpen: Array<string>;
     _onceFocusedAfterLoading: boolean;
-    _paramDataListSpecified: boolean;
+    _isDataListSpecified: boolean;
     _documentClickListening: IDisposableListening | null | undefined;
     _documentFocusListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening | null | undefined;
@@ -82,7 +80,7 @@ export declare class OpalSelect extends BaseComponent {
     ready(): void;
     _initViewModel(): void;
     elementAttached(): void;
-    _onParamValueChange(evt: IEvent): void;
+    _onValueChange(evt: IEvent): void;
     _updateViewModel(value: any, multiple: boolean): void;
     _onFocusedChange(evt: IEvent): void;
     _onViewModelChange(): void;

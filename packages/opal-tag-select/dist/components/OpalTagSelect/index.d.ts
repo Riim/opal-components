@@ -26,7 +26,7 @@ export declare class OpalTagSelect extends BaseComponent {
     };
     dataProvider: IDataProvider;
     paramValue: Array<string>;
-    paramViewModel: TViewModel;
+    viewModel: TViewModel;
     viewModelItemSchema: {
         value?: string;
         text?: string;
@@ -43,7 +43,6 @@ export declare class OpalTagSelect extends BaseComponent {
     _dataListItemTextFieldName: string;
     _dataListItemSubtextFieldName: string;
     _dataListItemDisabledFieldName: string;
-    viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _viewModelItemDisabledFieldName: string;

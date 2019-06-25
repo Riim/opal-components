@@ -9,11 +9,11 @@ import template from './template.rnt';
 	template
 })
 export class OpalSelectOption extends BaseComponent {
-	@Param
+	@Param('value')
 	paramValue: string;
-	@Param({ required: true })
+	@Param('text', { required: true })
 	paramText: string;
-	@Param
+	@Param('subtext')
 	paramSubtext: string;
 	@Param
 	selected = false;

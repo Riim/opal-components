@@ -2,7 +2,7 @@ import { BaseComponent } from 'rionite';
 import { IFilteredDataTreeListItem, TDataTreeList, TFilteredDataTreeList, TViewModel } from '../OpalTreeList';
 import './index.css';
 export declare class OpalTreeListItem extends BaseComponent {
-    paramDataTreeList: TDataTreeList;
+    dataTreeList: TDataTreeList;
     filteredDataTreeList: TFilteredDataTreeList;
     dataTreeListItemValueFieldName: string;
     dataTreeListItemTextFieldName: string;
@@ -12,7 +12,6 @@ export declare class OpalTreeListItem extends BaseComponent {
     indexpath: Array<number>;
     query: string;
     opened: boolean;
-    readonly dataTreeList: TDataTreeList;
     dataTreeListItem: IFilteredDataTreeListItem;
     _dataTreeListItemValueFieldName: string;
     _dataTreeListItemTextFieldName: string;

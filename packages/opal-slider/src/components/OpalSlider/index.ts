@@ -1,4 +1,4 @@
-import { Computed, Observable } from 'cellx-decorators';
+import { Computed } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
 import './index.css';
 import template from './template.rnt';
@@ -15,14 +15,9 @@ export class OpalSlider extends BaseComponent {
 	@Param
 	step = 1;
 	@Param
-	paramValue = 0;
+	value = 0;
 	@Param({ type: eval })
 	range: [number, number];
-
-	@Observable
-	_firstInputValue: number;
-	@Observable
-	_secondInputValue: number;
 
 	@Computed
 	get _firstInputWidth(): number {
@@ -30,20 +25,9 @@ export class OpalSlider extends BaseComponent {
 		let all = this.max - min;
 
 		return (
-			Math.round(
-				(((this._firstInputValue - min) / all + (this._secondInputValue - min) / all) / 2) *
-					1e5
-			) / 1e3
+			Math.round((((this.range[0] - min) / all + (this.range[1] - min) / all) / 2) * 1e5) /
+			1e3
 		);
-	}
-
-	initialize() {
-		let range = this.range;
-
-		if (range) {
-			this._firstInputValue = range[0];
-			this._secondInputValue = range[1];
-		}
 	}
 
 	elementAttached() {
@@ -55,33 +39,25 @@ export class OpalSlider extends BaseComponent {
 
 	_onFirstInputInput(evt: Event) {
 		let secondInput = this.$<HTMLInputElement>('secondInput')!;
-		let value = (this._firstInputValue = +(evt.target as HTMLInputElement).value);
+		let firstInputValue = +(evt.target as HTMLInputElement).value;
 
-		if (+secondInput.value < value) {
-			(secondInput as any).value = this._secondInputValue = value;
+		if (+secondInput.value < firstInputValue) {
+			(secondInput as any).value = firstInputValue;
+			this.range = [firstInputValue, firstInputValue];
+		} else {
+			this.range = [firstInputValue, this.range[1]];
 		}
 	}
 
 	_onSecondInputInput(evt: Event) {
 		let firstInput = this.$<HTMLInputElement>('firstInput')!;
-		let value = (this._secondInputValue = +(evt.target as HTMLInputElement).value);
+		let secondInputValue = +(evt.target as HTMLInputElement).value;
 
-		if (+firstInput.value > value) {
-			(firstInput as any).value = this._firstInputValue = value;
-		}
-	}
-
-	get value(): number | Array<number> {
-		return this.range
-			? [this._firstInputValue, this._secondInputValue]
-			: +this.$<HTMLInputElement>('input')!.value;
-	}
-	set value(value: number | Array<number>) {
-		if (this.range) {
-			this.$<HTMLInputElement>('firstInput')!.value = this._firstInputValue = value[0];
-			this.$<HTMLInputElement>('secondInput')!.value = this._secondInputValue = value[1];
+		if (+firstInput.value > secondInputValue) {
+			(firstInput as any).value = secondInputValue;
+			this.range = [secondInputValue, secondInputValue];
 		} else {
-			this.$<HTMLInputElement>('input')!.value = value as any;
+			this.range = [this.range[0], secondInputValue];
 		}
 	}
 }

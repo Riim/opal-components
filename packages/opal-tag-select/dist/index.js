@@ -192,6 +192,7 @@ const defaultVMItemSchema = Object.freeze({
 let OpalTagSelect = class OpalTagSelect extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
+        this.viewModel = new cellx_1.ObservableList();
         // ;;; Плейсхолдер тегселекта.
         // ;;; Можно перевести как призыв к выбору -- Select (англ.).
         this.placeholder = gettext_1.pt('OpalTagSelect#placeholder', 'Не выбрано');
@@ -231,7 +232,6 @@ let OpalTagSelect = class OpalTagSelect extends rionite_1.BaseComponent {
             dataListItemSchema.subtext || defaultDataListItemSchema.subtext;
         this._dataListItemDisabledFieldName =
             dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
-        this.viewModel = this.paramViewModel || new cellx_1.ObservableList();
         let vmItemSchema = this.viewModelItemSchema;
         let defaultVMItemSchema = this.constructor
             .defaultViewModelItemSchema;
@@ -317,7 +317,7 @@ __decorate([
     __metadata("design:type", String)
 ], OpalTagSelect.prototype, "viewType", void 0);
 __decorate([
-    rionite_1.Param,
+    rionite_1.Param('dataList'),
     __metadata("design:type", Object)
 ], OpalTagSelect.prototype, "paramDataList", void 0);
 __decorate([
@@ -337,13 +337,13 @@ __decorate([
     __metadata("design:type", Object)
 ], OpalTagSelect.prototype, "dataProvider", void 0);
 __decorate([
-    rionite_1.Param({ type: eval }),
+    rionite_1.Param('value', { type: eval }),
     __metadata("design:type", Array)
 ], OpalTagSelect.prototype, "paramValue", void 0);
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
-], OpalTagSelect.prototype, "paramViewModel", void 0);
+], OpalTagSelect.prototype, "viewModel", void 0);
 __decorate([
     rionite_1.Param({
         type: eval,
@@ -376,10 +376,6 @@ __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
 ], OpalTagSelect.prototype, "disabled", void 0);
-__decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
-], OpalTagSelect.prototype, "viewModel", void 0);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Array),

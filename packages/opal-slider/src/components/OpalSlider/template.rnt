@@ -30,5 +30,5 @@ input:input (
 	min={min},
 	max={max},
 	step={step},
-	value={paramValue}
+	value={value}
 )

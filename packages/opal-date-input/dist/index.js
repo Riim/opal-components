@@ -299,7 +299,7 @@ __decorate([
     __metadata("design:type", String)
 ], OpalDateInput.prototype, "toDate", void 0);
 __decorate([
-    rionite_1.Param,
+    rionite_1.Param('value'),
     __metadata("design:type", String)
 ], OpalDateInput.prototype, "paramValue", void 0);
 __decorate([

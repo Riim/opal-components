@@ -8,10 +8,11 @@ import { OpalTextInput } from '@riim/opal-text-input';
 import {
 	Cell,
 	define,
+	EventEmitter,
 	IEvent,
 	ObservableList
 	} from 'cellx';
-import { Computed, Observable } from 'cellx-decorators';
+import { Computed } from 'cellx-decorators';
 import {
 	BaseComponent,
 	Component,
@@ -64,7 +65,7 @@ export class OpalSelect extends BaseComponent {
 	size = 'm';
 	@Param({ readonly: true })
 	multiple = false;
-	@Param
+	@Param('dataList')
 	paramDataList: TDataList;
 	@Param({ readonly: true })
 	dataListKeypath: string;
@@ -80,9 +81,9 @@ export class OpalSelect extends BaseComponent {
 		disabled?: string;
 	};
 	@Param({ type: eval })
-	paramValue: Array<string>;
+	value: Array<string> = [];
 	@Param({ readonly: true })
-	paramViewModel: TViewModel;
+	viewModel: TViewModel = new ObservableList();
 	@Param({
 		type: eval,
 		default: defaultVMItemSchema,
@@ -119,17 +120,10 @@ export class OpalSelect extends BaseComponent {
 	_dataListItemSubtextFieldName: string;
 	_dataListItemDisabledFieldName: string;
 
-	@Observable
-	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 	_viewModelItemSubtextFieldName: string;
 	_viewModelItemDisabledFieldName: string;
-
-	@Computed
-	get value(): Array<string> {
-		return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
-	}
 
 	_addNewItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
 
@@ -167,7 +161,7 @@ export class OpalSelect extends BaseComponent {
 
 	_onceFocusedAfterLoading: boolean = false;
 
-	_paramDataListSpecified: boolean;
+	_isDataListSpecified: boolean;
 
 	_documentClickListening: IDisposableListening | null | undefined;
 	_documentFocusListening: IDisposableListening;
@@ -181,13 +175,13 @@ export class OpalSelect extends BaseComponent {
 				context: this.ownerComponent || window
 			}));
 
-			this._paramDataListSpecified = true;
+			this._isDataListSpecified = true;
 		} else if (this.$specifiedParams && this.$specifiedParams.has('dataList')) {
 			define(this, 'dataList', () => this.paramDataList);
-			this._paramDataListSpecified = true;
+			this._isDataListSpecified = true;
 		} else {
 			this.dataList = null;
-			this._paramDataListSpecified = false;
+			this._isDataListSpecified = false;
 		}
 
 		let dataListItemSchema = this.dataListItemSchema;
@@ -201,8 +195,6 @@ export class OpalSelect extends BaseComponent {
 			dataListItemSchema.subtext || defaultDataListItemSchema.subtext;
 		this._dataListItemDisabledFieldName =
 			dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
-
-		this.viewModel = this.paramViewModel || new ObservableList();
 
 		let vmItemSchema = this.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalSelect)
@@ -220,7 +212,7 @@ export class OpalSelect extends BaseComponent {
 	ready() {
 		this.optionElements = this.element.getElementsByClassName('OpalSelectOption') as any;
 
-		if (this.paramViewModel && !this.paramValue) {
+		if (this.$specifiedParams!.has('viewModel') && !this.value) {
 			this._needOptionsUpdating = true;
 		} else {
 			this._notUpdateOptions = true;
@@ -231,10 +223,11 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	_initViewModel() {
-		let value: any = this.paramValue;
 		let selectedOptions: Array<OpalSelectOption> | undefined;
 
-		if (value) {
+		if (this.$specifiedParams!.has('value')) {
+			let value: any = this.value;
+
 			if (!Array.isArray(value)) {
 				throw new TypeError('Parameter "value" must be an array');
 			}
@@ -280,7 +273,7 @@ export class OpalSelect extends BaseComponent {
 
 		this._notUpdateOptions = false;
 
-		if (value) {
+		if (this.$specifiedParams!.has('value')) {
 			this._updateOptions();
 		}
 	}
@@ -297,7 +290,7 @@ export class OpalSelect extends BaseComponent {
 		}
 
 		this.listenTo(this, {
-			'change:paramValue': this._onParamValueChange,
+			'change:value': this._onValueChange,
 			'change:focused': this._onFocusedChange
 		});
 		this.listenTo(this.viewModel, 'change', this._onViewModelChange);
@@ -325,7 +318,7 @@ export class OpalSelect extends BaseComponent {
 		});
 	}
 
-	_onParamValueChange(evt: IEvent) {
+	_onValueChange(evt: IEvent) {
 		let vm = this.viewModel;
 		let value: Array<string> | null = evt.data.value;
 
@@ -428,6 +421,10 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	_onViewModelChange() {
+		EventEmitter.silently(() => {
+			this.value = this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
+		});
+
 		if (!this._needOptionsUpdating && !this._notUpdateOptions) {
 			this._updateOptions();
 		}

@@ -11,7 +11,7 @@ div:head {
 div:children (@if=dataTreeListItem.children.length) {
 	@Repeat (for=$item in dataTreeListItem.children) {
 		OpalTreeListItem:item (
-			dataTreeList={paramDataTreeList},
+			dataTreeList={dataTreeList},
 			filteredDataTreeList={filteredDataTreeList},
 			dataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},
 			dataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},

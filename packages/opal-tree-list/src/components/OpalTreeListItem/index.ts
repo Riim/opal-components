@@ -1,6 +1,5 @@
 import { OpalButton } from '@riim/opal-button';
 import { IEvent } from 'cellx';
-import { Computed } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
 import {
 	IFilteredDataTreeListItem,
@@ -26,7 +25,7 @@ import template from './template.rnt';
 })
 export class OpalTreeListItem extends BaseComponent {
 	@Param({ required: true })
-	paramDataTreeList: TDataTreeList;
+	dataTreeList: TDataTreeList;
 	@Param({ required: true })
 	filteredDataTreeList: TFilteredDataTreeList;
 	@Param({
@@ -61,11 +60,6 @@ export class OpalTreeListItem extends BaseComponent {
 	query: string;
 	@Param
 	opened = false;
-
-	@Computed
-	get dataTreeList(): TDataTreeList {
-		return this.paramDataTreeList;
-	}
 
 	dataTreeListItem: IFilteredDataTreeListItem;
 	_dataTreeListItemValueFieldName: string;

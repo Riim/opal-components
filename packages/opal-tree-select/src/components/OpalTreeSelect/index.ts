@@ -21,7 +21,7 @@ import template from './template.rnt';
 export class OpalTreeSelect extends OpalSelect {
 	@Param
 	multiple = true;
-	@Param
+	@Param('dataTreeList')
 	paramDataTreeList: TDataTreeList;
 	@Param({ readonly: true })
 	dataTreeListKeypath: string;

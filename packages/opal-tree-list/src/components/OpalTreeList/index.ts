@@ -66,7 +66,7 @@ export class OpalTreeList extends BaseComponent {
 	static defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
-	@Param
+	@Param('dataTreeList')
 	paramDataTreeList: TDataTreeList;
 	@Param({ readonly: true })
 	dataTreeListKeypath: string;
@@ -80,7 +80,7 @@ export class OpalTreeList extends BaseComponent {
 		text?: string;
 	};
 	@Param
-	paramViewModel: TViewModel;
+	viewModel: TViewModel = new ObservableList();
 	@Param({
 		type: eval,
 		default: defaultVMItemSchema,
@@ -91,14 +91,14 @@ export class OpalTreeList extends BaseComponent {
 		text?: string;
 	};
 	@Param
-	paramQuery: string;
+	query: string;
 
 	dataTreeList: TDataTreeList | null;
 	_dataTreeListItemValueFieldName: string;
 	_dataTreeListItemTextFieldName: string;
 
 	@Observable
-	query: string | null;
+	comparableQuery: string | null;
 
 	@Computed
 	get filteredDataTreeList(): TDataTreeList | null {
@@ -108,7 +108,7 @@ export class OpalTreeList extends BaseComponent {
 			return null;
 		}
 
-		let query = this.query;
+		let query = this.comparableQuery;
 
 		if (!query) {
 			return dataTreeList;
@@ -160,8 +160,6 @@ export class OpalTreeList extends BaseComponent {
 		);
 	}
 
-	@Observable
-	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 
@@ -198,8 +196,6 @@ export class OpalTreeList extends BaseComponent {
 		this._dataTreeListItemTextFieldName =
 			dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
 
-		this.viewModel = this.paramViewModel || new ObservableList();
-
 		let vmItemSchema = this.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalTreeList)
 			.defaultViewModelItemSchema;
@@ -209,11 +205,13 @@ export class OpalTreeList extends BaseComponent {
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'change:paramQuery', this._onParamQueryChange);
-		this.listenTo(this, '<*>change', this._onChange);
+		this.listenTo(this, {
+			'change:query': this._onQueryChange,
+			'<*>change': this._onChange
+		});
 	}
 
-	_onParamQueryChange() {
+	_onQueryChange() {
 		if (this._queryTimeout) {
 			this._queryTimeout.clear();
 		}
@@ -223,7 +221,7 @@ export class OpalTreeList extends BaseComponent {
 
 	_onQueryTimeout() {
 		this._queryTimeout = null;
-		this.query = toComparable(this.paramQuery);
+		this.comparableQuery = toComparable(this.query);
 	}
 
 	_onChange(evt: IEvent<OpalCheckbox>) {

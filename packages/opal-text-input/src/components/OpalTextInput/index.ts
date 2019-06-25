@@ -33,7 +33,7 @@ export class OpalTextInput extends BaseComponent {
 	autoHeight = true;
 	@Param
 	inputName: string;
-	@Param
+	@Param('value')
 	paramValue = '';
 	@Param
 	storeKey: string;

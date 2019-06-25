@@ -35,25 +35,24 @@ export declare class OpalTreeList extends BaseComponent {
         value?: string;
         text?: string;
     };
-    paramViewModel: TViewModel;
+    viewModel: TViewModel;
     viewModelItemSchema: {
         value?: string;
         text?: string;
     };
-    paramQuery: string;
+    query: string;
     dataTreeList: TDataTreeList | null;
     _dataTreeListItemValueFieldName: string;
     _dataTreeListItemTextFieldName: string;
-    query: string | null;
+    comparableQuery: string | null;
     readonly filteredDataTreeList: TDataTreeList | null;
-    viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _queryTimeout: IDisposableTimeout | null;
     readonly listShown: boolean;
     initialize(): void;
     elementAttached(): void;
-    _onParamQueryChange(): void;
+    _onQueryChange(): void;
     _onQueryTimeout(): void;
     _onChange(evt: IEvent<OpalCheckbox>): void;
 }

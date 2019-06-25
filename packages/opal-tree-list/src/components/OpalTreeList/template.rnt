@@ -9,8 +9,8 @@
 			viewModelItemValueFieldName={_viewModelItemValueFieldName},
 			viewModelItemTextFieldName={_viewModelItemTextFieldName},
 			indexpath=[{$index}],
-			query={paramQuery},
-			opened={paramQuery |bool },
+			query={query},
+			opened={query |bool },
 			nestingLevel=0,
 			hasChildren='{$item.children.length |gt(0) }'
 		) {

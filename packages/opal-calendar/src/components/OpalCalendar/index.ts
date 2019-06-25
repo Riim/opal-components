@@ -157,11 +157,11 @@ export function toDate(this: OpalCalendar) {
 	}
 })
 export class OpalCalendar extends BaseComponent {
-	@Param
+	@Param('fromDate')
 	paramFromDate: string;
-	@Param
+	@Param('toDate')
 	paramToDate: string;
-	@Param
+	@Param('value')
 	paramValue: string;
 	@Param
 	dateDelimiter = '/';

@@ -475,11 +475,18 @@ __webpack_require__(7);
 let OpalInputMaskDefinition = class OpalInputMaskDefinition extends rionite_1.BaseComponent {
 };
 __decorate([
-    rionite_1.Param({ required: true, readonly: true }),
+    rionite_1.Param({
+        required: true,
+        readonly: true
+    }),
     __metadata("design:type", String)
 ], OpalInputMaskDefinition.prototype, "maskChar", void 0);
 __decorate([
-    rionite_1.Param({ type: eval, required: true, readonly: true }),
+    rionite_1.Param({
+        type: eval,
+        required: true,
+        readonly: true
+    }),
     __metadata("design:type", RegExp)
 ], OpalInputMaskDefinition.prototype, "regex", void 0);
 OpalInputMaskDefinition = __decorate([
