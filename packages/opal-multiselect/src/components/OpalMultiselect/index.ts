@@ -44,9 +44,7 @@ export class OpalMultiselect extends OpalSelect {
 	@Param
 	multiple = true;
 	@Param({ readonly: true })
-	paramDataProvider: IDataProvider;
-
-	dataProvider: IDataProvider | null;
+	dataProvider: IDataProvider;
 
 	@Computed
 	get nothingSelectedShown(): boolean {
@@ -61,8 +59,6 @@ export class OpalMultiselect extends OpalSelect {
 		if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
 			throw new TypeError('Parameter "dataProvider" is required');
 		}
-
-		this.dataProvider = this.paramDataProvider;
 
 		if (!this.dataProvider) {
 			throw new TypeError('"dataProvider" is not defined');

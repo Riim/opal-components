@@ -1,6 +1,6 @@
 RnSlot (for=textInput) {
 	OpalTextInput:textInput (
-		value='{paramValue |key(_dataListItemTextFieldName) }',
+		value='{value |key(_dataListItemTextFieldName) }',
 		placeholder={'Начните вводить для поиска' |t },
 		clearable
 	) {

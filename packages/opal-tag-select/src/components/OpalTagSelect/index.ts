@@ -77,7 +77,7 @@ export class OpalTagSelect extends BaseComponent {
 	};
 	// необязательный, так как может указываться на передаваемом OpalLoadedList
 	@Param({ readonly: true })
-	paramDataProvider: IDataProvider;
+	dataProvider: IDataProvider;
 	@Param({ type: eval })
 	paramValue: Array<string>;
 	@Param({ readonly: true })
@@ -113,8 +113,6 @@ export class OpalTagSelect extends BaseComponent {
 	_dataListItemSubtextFieldName: string;
 	_dataListItemDisabledFieldName: string;
 
-	dataProvider: IDataProvider | null;
-
 	@Observable
 	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
@@ -131,7 +129,7 @@ export class OpalTagSelect extends BaseComponent {
 		return !!this.placeholder && !this.viewModel.length;
 	}
 
-	_dataListKeypathParam: string | null;
+	_selectDataListKeypath: string | null;
 
 	select: OpalSelect;
 
@@ -149,13 +147,10 @@ export class OpalTagSelect extends BaseComponent {
 				  })
 				: () => this.paramDataList);
 
-			this.dataProvider = null;
-
-			this._dataListKeypathParam = 'dataList';
+			this._selectDataListKeypath = 'dataList';
 		} else {
 			this.dataList = null;
-			this.dataProvider = this.paramDataProvider;
-			this._dataListKeypathParam = null;
+			this._selectDataListKeypath = null;
 		}
 
 		let dataListItemSchema = this.dataListItemSchema;

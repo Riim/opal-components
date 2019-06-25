@@ -19,8 +19,8 @@ export declare class OpalAutosuggest extends BaseComponent {
         text?: string;
         subtext?: string;
     };
-    paramDataProvider: IDataProvider;
-    paramValue: IDataListItem;
+    dataProvider: IDataProvider;
+    value: IDataListItem | null;
     minQueryLength: number;
     limit: number;
     openMenuOnNothingFound: boolean;
@@ -33,8 +33,6 @@ export declare class OpalAutosuggest extends BaseComponent {
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
     _dataListItemSubtextFieldName: string;
-    dataProvider: IDataProvider;
-    value: IDataListItem | null;
     _inputNotConfirmed: boolean;
     _loadingPlanned: boolean;
     _loadingTimeout: IDisposableTimeout;

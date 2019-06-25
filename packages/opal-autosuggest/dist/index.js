@@ -192,11 +192,9 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
         if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
             throw new TypeError('Parameter "dataProvider" is required');
         }
-        this.dataProvider = this.paramDataProvider;
         if (!this.dataProvider) {
             throw new TypeError('"dataProvider" is not defined');
         }
-        this.value = this.paramValue;
     }
     elementAttached() {
         this.listenTo(this, {
@@ -518,11 +516,11 @@ __decorate([
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
-], OpalAutosuggest.prototype, "paramDataProvider", void 0);
+], OpalAutosuggest.prototype, "dataProvider", void 0);
 __decorate([
     rionite_1.Param({ type: eval }),
     __metadata("design:type", Object)
-], OpalAutosuggest.prototype, "paramValue", void 0);
+], OpalAutosuggest.prototype, "value", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
@@ -539,10 +537,6 @@ __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
 ], OpalAutosuggest.prototype, "dataList", void 0);
-__decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
-], OpalAutosuggest.prototype, "value", void 0);
 __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
@@ -628,7 +622,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=textInput) {\nOpalTextInput:textInput (\nvalue='{paramValue |key(_dataListItemTextFieldName) }',\nplaceholder={'Начните вводить для поиска' |t },\nclearable\n) {\nOpalIcon:textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown:menu {\nRnSlot (for=menuHeader)\ndiv:optionList {\ndiv:option (\n@for=item in dataList,\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\nRnSlot:nothingFoundSlot (@unless=dataList.length, for=nothingFound) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\nRnSlot:menuFooterSlot (for=menuFooter)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=textInput) {\nOpalTextInput:textInput (\nvalue='{value |key(_dataListItemTextFieldName) }',\nplaceholder={'Начните вводить для поиска' |t },\nclearable\n) {\nOpalIcon:textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown:menu {\nRnSlot (for=menuHeader)\ndiv:optionList {\ndiv:option (\n@for=item in dataList,\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\nRnSlot:nothingFoundSlot (@unless=dataList.length, for=nothingFound) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\nRnSlot:menuFooterSlot (for=menuFooter)\n}");
 
 /***/ })
 /******/ ]);

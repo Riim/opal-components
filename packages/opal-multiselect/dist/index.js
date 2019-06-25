@@ -184,7 +184,6 @@ let OpalMultiselect = class OpalMultiselect extends opal_select_1.OpalSelect {
         if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
             throw new TypeError('Parameter "dataProvider" is required');
         }
-        this.dataProvider = this.paramDataProvider;
         if (!this.dataProvider) {
             throw new TypeError('"dataProvider" is not defined');
         }
@@ -200,7 +199,7 @@ __decorate([
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
-], OpalMultiselect.prototype, "paramDataProvider", void 0);
+], OpalMultiselect.prototype, "dataProvider", void 0);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Boolean),

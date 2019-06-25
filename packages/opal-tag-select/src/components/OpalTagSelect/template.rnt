@@ -15,7 +15,7 @@ span:control {
 	OpalSelect:select (
 		viewType=clean,
 		multiple,
-		dataListKeypath={_dataListKeypathParam},
+		dataListKeypath={_selectDataListKeypath},
 		dataListItemSchema={dataListItemSchema |dump },
 		value={paramValue},
 		viewModel={viewModel},
@@ -40,7 +40,7 @@ span:control {
 			) {
 				RnSlot (for=OpalSelect__menuHeader)
 				RnSlot (for=OpalSelect__menuContent) {
-					div (@if=_dataListKeypathParam, class=OpalSelect__menuContent) {
+					div (@if=_selectDataListKeypath, class=OpalSelect__menuContent) {
 						@IfThen (dataList) {
 							@Repeat (for=item in dataList, trackBy={_dataListItemValueFieldName}) {
 								OpalSelectOption:dataListSelectOption:selectOption (
@@ -61,7 +61,7 @@ span:control {
 						}
 					}
 					OpalFilteredList:menuFilteredList (
-						@unless=_dataListKeypathParam,
+						@unless=_selectDataListKeypath,
 						class=OpalSelect__menuContent OpalSelect__filteredList
 					) {
 						RnSlot (

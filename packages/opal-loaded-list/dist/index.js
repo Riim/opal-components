@@ -175,7 +175,6 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
         if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
             throw new TypeError('Parameter "dataProvider" is required');
         }
-        this.dataProvider = this.paramDataProvider;
         if (!this.dataProvider) {
             throw new TypeError('"dataProvider" is not defined');
         }
@@ -287,7 +286,7 @@ __decorate([
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
-], OpalLoadedList.prototype, "paramDataProvider", void 0);
+], OpalLoadedList.prototype, "dataProvider", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)

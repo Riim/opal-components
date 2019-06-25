@@ -1,6 +1,6 @@
 OpalTreeSelect:select (
 	viewType=clean,
-	dataTreeListKeypath={_dataListKeypathParam},
+	dataTreeListKeypath={_selectDataListKeypath},
 	dataTreeListItemSchema={dataListItemSchema |dump },
 	value={paramValue},
 	viewModel={viewModel},

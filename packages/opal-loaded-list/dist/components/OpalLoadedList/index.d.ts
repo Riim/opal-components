@@ -22,14 +22,13 @@ export declare class OpalLoadedList extends BaseComponent {
         value?: string;
         text?: string;
     };
-    paramDataProvider: IDataProvider;
+    dataProvider: IDataProvider;
     limit: number;
     query: string;
     preloading: boolean;
     dataList: ObservableList<IDataListItem>;
     _dataListItemTextFieldName: string;
     total: number | undefined;
-    dataProvider: IDataProvider;
     _scrollingInProcessing: boolean;
     _loadingCheckPlanned: boolean;
     _loadingCheckTimeout: IDisposableTimeout;

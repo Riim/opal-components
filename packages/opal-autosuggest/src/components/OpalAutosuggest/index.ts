@@ -70,9 +70,9 @@ export class OpalAutosuggest extends BaseComponent {
 		subtext?: string;
 	};
 	@Param({ readonly: true })
-	paramDataProvider: IDataProvider;
+	dataProvider: IDataProvider;
 	@Param({ type: eval })
-	paramValue: IDataListItem;
+	value: IDataListItem | null;
 	@Param
 	minQueryLength = 3;
 	@Param
@@ -87,11 +87,6 @@ export class OpalAutosuggest extends BaseComponent {
 	_dataListItemValueFieldName: string;
 	_dataListItemTextFieldName: string;
 	_dataListItemSubtextFieldName: string;
-
-	dataProvider: IDataProvider;
-
-	@Observable
-	value: IDataListItem | null;
 
 	_inputNotConfirmed = false;
 
@@ -127,13 +122,9 @@ export class OpalAutosuggest extends BaseComponent {
 			throw new TypeError('Parameter "dataProvider" is required');
 		}
 
-		this.dataProvider = this.paramDataProvider;
-
 		if (!this.dataProvider) {
 			throw new TypeError('"dataProvider" is not defined');
 		}
-
-		this.value = this.paramValue;
 	}
 
 	elementAttached() {

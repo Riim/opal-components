@@ -3,8 +3,7 @@ import { OpalSelect } from '@riim/opal-select';
 import './index.css';
 export declare class OpalMultiselect extends OpalSelect {
     multiple: boolean;
-    paramDataProvider: IDataProvider;
-    dataProvider: IDataProvider | null;
+    dataProvider: IDataProvider;
     readonly nothingSelectedShown: boolean;
     _queryInputClass: string | undefined;
     initialize(): void;

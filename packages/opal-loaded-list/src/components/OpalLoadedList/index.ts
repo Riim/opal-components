@@ -49,7 +49,7 @@ export class OpalLoadedList extends BaseComponent {
 		text?: string;
 	};
 	@Param({ readonly: true })
-	paramDataProvider: IDataProvider;
+	dataProvider: IDataProvider;
 	@Param
 	limit = 100;
 	@Param
@@ -63,8 +63,6 @@ export class OpalLoadedList extends BaseComponent {
 
 	@Observable
 	total: number | undefined;
-
-	dataProvider: IDataProvider;
 
 	_scrollingInProcessing = false;
 	@Observable
@@ -100,8 +98,6 @@ export class OpalLoadedList extends BaseComponent {
 		if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
 			throw new TypeError('Parameter "dataProvider" is required');
 		}
-
-		this.dataProvider = this.paramDataProvider;
 
 		if (!this.dataProvider) {
 			throw new TypeError('"dataProvider" is not defined');
