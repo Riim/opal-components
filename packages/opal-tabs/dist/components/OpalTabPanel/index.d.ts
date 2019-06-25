@@ -2,9 +2,9 @@ import { IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalTabPanel extends BaseComponent {
-    paramShown: boolean;
+    shown: boolean;
     contentRendered: boolean;
     initialize(): void;
-    _onParamShownChange(evt: IEvent): void;
+    _onShownChange(evt: IEvent): void;
     renderContent(): void;
 }

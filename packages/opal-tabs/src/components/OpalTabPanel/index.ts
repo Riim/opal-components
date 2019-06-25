@@ -10,16 +10,16 @@ import template from './template.rnt';
 })
 export class OpalTabPanel extends BaseComponent {
 	@Param
-	paramShown = false;
+	shown = false;
 
 	@Observable
 	contentRendered = false;
 
 	initialize() {
-		this.listenTo(this, 'change:paramShown', this._onParamShownChange);
+		this.listenTo(this, 'change:shown', this._onShownChange);
 	}
 
-	_onParamShownChange(evt: IEvent) {
+	_onShownChange(evt: IEvent) {
 		if (evt.data.value) {
 			this.renderContent();
 		}

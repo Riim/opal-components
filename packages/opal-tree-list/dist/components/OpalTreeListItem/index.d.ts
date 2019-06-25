@@ -3,20 +3,19 @@ import { IFilteredDataTreeListItem, TDataTreeList, TFilteredDataTreeList, TViewM
 import './index.css';
 export declare class OpalTreeListItem extends BaseComponent {
     paramDataTreeList: TDataTreeList;
-    paramFilteredDataTreeList: TFilteredDataTreeList;
-    paramDataTreeListItemValueFieldName: string;
-    paramDataTreeListItemTextFieldName: string;
-    paramViewModel: TViewModel;
-    paramViewModelItemValueFieldName: string;
-    paramViewModelItemTextFieldName: string;
-    paramIndexpath: Array<number>;
-    paramQuery: string;
+    filteredDataTreeList: TFilteredDataTreeList;
+    dataTreeListItemValueFieldName: string;
+    dataTreeListItemTextFieldName: string;
+    viewModel: TViewModel;
+    viewModelItemValueFieldName: string;
+    viewModelItemTextFieldName: string;
+    indexpath: Array<number>;
+    query: string;
     opened: boolean;
     readonly dataTreeList: TDataTreeList;
     dataTreeListItem: IFilteredDataTreeListItem;
     _dataTreeListItemValueFieldName: string;
     _dataTreeListItemTextFieldName: string;
-    readonly viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     initialize(): void;

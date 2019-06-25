@@ -48,11 +48,11 @@ export class OpalRouter extends BaseComponent {
 	static history = history;
 
 	@Param({ readonly: true })
-	paramUseLocationHash = false;
+	useLocationHash = false;
 	@Param
-	paramScrollTopOnChange = true;
+	scrollTopOnChange = true;
 	@Param
-	paramScrollTopOnChangeComponent = true;
+	scrollTopOnChangeComponent = true;
 
 	_routes: Array<IRoute>;
 	_route: IRoute | null = null;
@@ -69,7 +69,7 @@ export class OpalRouter extends BaseComponent {
 		Array.prototype.forEach.call(
 			this.element.getElementsByTagName('opal-route'),
 			(routeEl: IComponentElement<OpalRoute>) => {
-				let path = routeEl.$component!.paramPath;
+				let path = routeEl.$component!.path;
 				let rePath: Array<string> | string = [];
 				let props: Array<IRouteProperty> = [];
 
@@ -118,7 +118,7 @@ export class OpalRouter extends BaseComponent {
 						`^${rePath}${rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?'}$`
 					),
 					properties: props,
-					componentName: kebabCase(routeEl.$component!.paramComponent)
+					componentName: kebabCase(routeEl.$component!.component)
 				});
 			}
 		);
@@ -131,13 +131,13 @@ export class OpalRouter extends BaseComponent {
 			})
 		};
 
-		if (!this.paramUseLocationHash) {
+		if (!this.useLocationHash) {
 			this.listenTo(document.body, 'click', this._onBodyClick);
 		}
 
 		this.listenTo(this, '<*>refresh-router', this._onRefreshRouter);
 
-		if (this.paramUseLocationHash) {
+		if (this.useLocationHash) {
 			this._update(history.location.hash.slice(1), '');
 		} else {
 			this._update(history.location.pathname, history.location.hash);
@@ -149,7 +149,7 @@ export class OpalRouter extends BaseComponent {
 	}
 
 	_onHistoryChange(location: Location) {
-		if (this.paramUseLocationHash) {
+		if (this.useLocationHash) {
 			this._update(location.hash.slice(1), '');
 		} else {
 			this._update(location.pathname, location.hash);
@@ -295,7 +295,7 @@ export class OpalRouter extends BaseComponent {
 
 					this._applyState();
 
-					if (this.paramScrollTopOnChange) {
+					if (this.scrollTopOnChange) {
 						window.scrollTo(window.pageXOffset, 0);
 					}
 
@@ -319,7 +319,7 @@ export class OpalRouter extends BaseComponent {
 			componentEl.rioniteComponent.ownerComponent = this;
 			this.element.appendChild(componentEl);
 
-			if (this.paramScrollTopOnChange || this.paramScrollTopOnChangeComponent) {
+			if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
 				window.scrollTo(window.pageXOffset, 0);
 			}
 
@@ -371,7 +371,7 @@ export class OpalRouter extends BaseComponent {
 			componentEl.rioniteComponent.ownerComponent = this;
 			this.element.appendChild(componentEl);
 
-			if (this.paramScrollTopOnChange || this.paramScrollTopOnChangeComponent) {
+			if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
 				window.scrollTo(window.pageXOffset, 0);
 			}
 		}

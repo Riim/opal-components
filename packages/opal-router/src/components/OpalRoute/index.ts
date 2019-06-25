@@ -8,10 +8,10 @@ export class OpalRoute extends BaseComponent {
 		required: true,
 		readonly: true
 	})
-	paramPath: string;
+	path: string;
 	@Param({
 		required: true,
 		readonly: true
 	})
-	paramComponent: string;
+	component: string;
 }

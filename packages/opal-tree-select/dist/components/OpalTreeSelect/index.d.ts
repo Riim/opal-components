@@ -4,8 +4,8 @@ import './index.css';
 export declare class OpalTreeSelect extends OpalSelect {
     multiple: boolean;
     paramDataTreeList: TDataTreeList;
-    paramDataTreeListKeypath: string;
-    paramDataTreeListItemSchema: {
+    dataTreeListKeypath: string;
+    dataTreeListItemSchema: {
         value?: string;
         text?: string;
     };
@@ -13,7 +13,7 @@ export declare class OpalTreeSelect extends OpalSelect {
         value?: string;
         text?: string;
     };
-    paramQuery: string;
+    query: string;
     openOnClick: boolean;
     dataTreeList: TDataTreeList;
     initialize(): void;

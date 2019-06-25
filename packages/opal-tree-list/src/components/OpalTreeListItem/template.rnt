@@ -12,16 +12,16 @@ div:children (@if=dataTreeListItem.children.length) {
 	@Repeat (for=$item in dataTreeListItem.children) {
 		OpalTreeListItem:item (
 			dataTreeList={paramDataTreeList},
-			filteredDataTreeList={paramFilteredDataTreeList},
+			filteredDataTreeList={filteredDataTreeList},
 			dataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},
 			dataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},
 			viewModel={viewModel},
 			viewModelItemValueFieldName={_viewModelItemValueFieldName},
 			viewModelItemTextFieldName={_viewModelItemTextFieldName},
-			indexpath='[{paramIndexpath},{$index}]',
-			query={paramQuery},
-			opened={paramQuery |bool },
-			nestingLevel={paramIndexpath.length},
+			indexpath='[{indexpath},{$index}]',
+			query={query},
+			opened={query |bool },
+			nestingLevel={indexpath.length},
 			hasChildren='{$item.children.length |gt(0) }'
 		) {
 			RnSlot (cloneContent, getContext={_getListItemContext})

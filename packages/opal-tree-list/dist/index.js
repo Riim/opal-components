@@ -371,8 +371,8 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
         return !!this.dataTreeList && !this._queryTimeout;
     }
     initialize() {
-        if (this.paramDataTreeListKeypath) {
-            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function(`return this.${this.paramDataTreeListKeypath};`), {
+        if (this.dataTreeListKeypath) {
+            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function(`return this.${this.dataTreeListKeypath};`), {
                 context: this.ownerComponent || window
             }));
         }
@@ -382,7 +382,7 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
             }
             cellx_1.define(this, 'dataTreeList', () => this.paramDataTreeList);
         }
-        let dataTreeListItemSchema = this.paramDataTreeListItemSchema;
+        let dataTreeListItemSchema = this.dataTreeListItemSchema;
         let defaultDataTreeListItemSchema = this.constructor
             .defaultDataTreeListItemSchema;
         this._dataTreeListItemValueFieldName =
@@ -390,7 +390,7 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
         this._dataTreeListItemTextFieldName =
             dataTreeListItemSchema.text || defaultDataTreeListItemSchema.text;
         this.viewModel = this.paramViewModel || new cellx_1.ObservableList();
-        let vmItemSchema = this.paramViewModelItemSchema;
+        let vmItemSchema = this.viewModelItemSchema;
         let defaultVMItemSchema = this.constructor
             .defaultViewModelItemSchema;
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
@@ -479,7 +479,7 @@ __decorate([
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", String)
-], OpalTreeList.prototype, "paramDataTreeListKeypath", void 0);
+], OpalTreeList.prototype, "dataTreeListKeypath", void 0);
 __decorate([
     rionite_1.Param({
         type: eval,
@@ -487,7 +487,7 @@ __decorate([
         readonly: true
     }),
     __metadata("design:type", Object)
-], OpalTreeList.prototype, "paramDataTreeListItemSchema", void 0);
+], OpalTreeList.prototype, "dataTreeListItemSchema", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
@@ -499,7 +499,7 @@ __decorate([
         readonly: true
     }),
     __metadata("design:type", Object)
-], OpalTreeList.prototype, "paramViewModelItemSchema", void 0);
+], OpalTreeList.prototype, "viewModelItemSchema", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
@@ -583,15 +583,12 @@ let OpalTreeListItem = class OpalTreeListItem extends rionite_1.BaseComponent {
     get dataTreeList() {
         return this.paramDataTreeList;
     }
-    get viewModel() {
-        return this.paramViewModel;
-    }
     initialize() {
-        this.dataTreeListItem = this.paramFilteredDataTreeList.get(this.paramIndexpath);
-        this._dataTreeListItemValueFieldName = this.paramDataTreeListItemValueFieldName;
-        this._dataTreeListItemTextFieldName = this.paramDataTreeListItemTextFieldName;
-        this._viewModelItemValueFieldName = this.paramViewModelItemValueFieldName;
-        this._viewModelItemTextFieldName = this.paramViewModelItemTextFieldName;
+        this.dataTreeListItem = this.filteredDataTreeList.get(this.indexpath);
+        this._dataTreeListItemValueFieldName = this.dataTreeListItemValueFieldName;
+        this._dataTreeListItemTextFieldName = this.dataTreeListItemTextFieldName;
+        this._viewModelItemValueFieldName = this.viewModelItemValueFieldName;
+        this._viewModelItemTextFieldName = this.viewModelItemTextFieldName;
     }
 };
 __decorate([
@@ -601,39 +598,39 @@ __decorate([
 __decorate([
     rionite_1.Param({ required: true }),
     __metadata("design:type", Object)
-], OpalTreeListItem.prototype, "paramFilteredDataTreeList", void 0);
+], OpalTreeListItem.prototype, "filteredDataTreeList", void 0);
 __decorate([
     rionite_1.Param({
         required: true,
         readonly: true
     }),
     __metadata("design:type", String)
-], OpalTreeListItem.prototype, "paramDataTreeListItemValueFieldName", void 0);
+], OpalTreeListItem.prototype, "dataTreeListItemValueFieldName", void 0);
 __decorate([
     rionite_1.Param({
         required: true,
         readonly: true
     }),
     __metadata("design:type", String)
-], OpalTreeListItem.prototype, "paramDataTreeListItemTextFieldName", void 0);
+], OpalTreeListItem.prototype, "dataTreeListItemTextFieldName", void 0);
 __decorate([
     rionite_1.Param({ required: true }),
     __metadata("design:type", Object)
-], OpalTreeListItem.prototype, "paramViewModel", void 0);
+], OpalTreeListItem.prototype, "viewModel", void 0);
 __decorate([
     rionite_1.Param({
         required: true,
         readonly: true
     }),
     __metadata("design:type", String)
-], OpalTreeListItem.prototype, "paramViewModelItemValueFieldName", void 0);
+], OpalTreeListItem.prototype, "viewModelItemValueFieldName", void 0);
 __decorate([
     rionite_1.Param({
         required: true,
         readonly: true
     }),
     __metadata("design:type", String)
-], OpalTreeListItem.prototype, "paramViewModelItemTextFieldName", void 0);
+], OpalTreeListItem.prototype, "viewModelItemTextFieldName", void 0);
 __decorate([
     rionite_1.Param({
         type: eval,
@@ -641,11 +638,11 @@ __decorate([
         readonly: true
     }),
     __metadata("design:type", Array)
-], OpalTreeListItem.prototype, "paramIndexpath", void 0);
+], OpalTreeListItem.prototype, "indexpath", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalTreeListItem.prototype, "paramQuery", void 0);
+], OpalTreeListItem.prototype, "query", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
@@ -655,11 +652,6 @@ __decorate([
     __metadata("design:type", Object),
     __metadata("design:paramtypes", [])
 ], OpalTreeListItem.prototype, "dataTreeList", null);
-__decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Object),
-    __metadata("design:paramtypes", [])
-], OpalTreeListItem.prototype, "viewModel", null);
 OpalTreeListItem = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTreeListItem',
@@ -741,7 +733,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:head {\nOpalButton:btnToggleChildren (viewType=clean, checkable, checked={opened}) {\nOpalIcon:btnToggleChildrenIcon (name=chevronRight)\n}\nspan:contentSlotWrapper {\nRnSlot:contentSlot (cloneContent)\n}\n}\ndiv:children (@if=dataTreeListItem.children.length) {\n@Repeat (for=$item in dataTreeListItem.children) {\nOpalTreeListItem:item (\ndataTreeList={paramDataTreeList},\nfilteredDataTreeList={paramFilteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath='[{paramIndexpath},{$index}]',\nquery={paramQuery},\nopened={paramQuery |bool },\nnestingLevel={paramIndexpath.length},\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext})\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("div:head {\nOpalButton:btnToggleChildren (viewType=clean, checkable, checked={opened}) {\nOpalIcon:btnToggleChildrenIcon (name=chevronRight)\n}\nspan:contentSlotWrapper {\nRnSlot:contentSlot (cloneContent)\n}\n}\ndiv:children (@if=dataTreeListItem.children.length) {\n@Repeat (for=$item in dataTreeListItem.children) {\nOpalTreeListItem:item (\ndataTreeList={paramDataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath='[{indexpath},{$index}]',\nquery={query},\nopened={query |bool },\nnestingLevel={indexpath.length},\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext})\n}\n}\n}");
 
 /***/ }),
 /* 17 */

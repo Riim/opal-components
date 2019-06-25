@@ -30,13 +30,13 @@ export declare class OpalTreeList extends BaseComponent {
         text: string;
     }>;
     paramDataTreeList: TDataTreeList;
-    paramDataTreeListKeypath: string;
-    paramDataTreeListItemSchema: {
+    dataTreeListKeypath: string;
+    dataTreeListItemSchema: {
         value?: string;
         text?: string;
     };
     paramViewModel: TViewModel;
-    paramViewModelItemSchema: {
+    viewModelItemSchema: {
         value?: string;
         text?: string;
     };

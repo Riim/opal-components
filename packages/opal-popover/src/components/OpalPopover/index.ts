@@ -15,13 +15,13 @@ import template from './template.rnt';
 })
 export class OpalPopover extends BaseComponent {
 	@Param
-	paramPosition = 'right';
+	position = 'right';
 	@Param
-	paramPositionOffset = 0;
+	positionOffset = 0;
 	@Param
-	paramAutoDirection = true;
+	autoDirection = true;
 	@Param
-	paramCloseOn: string; // click | mousedown
+	closeOn: string; // click | mousedown
 	@Param
 	opened = false;
 
@@ -91,11 +91,11 @@ export class OpalPopover extends BaseComponent {
 
 		let el = this.element;
 
-		if (this.paramAutoDirection) {
+		if (this.autoDirection) {
 			let docEl = document.documentElement!;
 			let containerClientRect = el.offsetParent!.getBoundingClientRect();
 			let elClientRect = el.getBoundingClientRect();
-			let position = (this._positionAtOpening = this.paramPosition).split('-');
+			let position = (this._positionAtOpening = this.position).split('-');
 
 			switch (position[0]) {
 				case 'left': {
@@ -105,8 +105,7 @@ export class OpalPopover extends BaseComponent {
 							containerClientRect.left <
 								docEl.clientWidth - containerClientRect.right)
 					) {
-						this.paramPosition =
-							'right' + (position.length == 2 ? '-' + position[1] : '');
+						this.position = 'right' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
 					break;
@@ -118,8 +117,7 @@ export class OpalPopover extends BaseComponent {
 							containerClientRect.top <
 								docEl.clientHeight - containerClientRect.bottom)
 					) {
-						this.paramPosition =
-							'bottom' + (position.length == 2 ? '-' + position[1] : '');
+						this.position = 'bottom' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
 					break;
@@ -131,8 +129,7 @@ export class OpalPopover extends BaseComponent {
 						containerClientRect.left + window.pageXOffset >=
 							elClientRect.right - containerClientRect.right
 					) {
-						this.paramPosition =
-							'left' + (position.length == 2 ? '-' + position[1] : '');
+						this.position = 'left' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
 					break;
@@ -144,8 +141,7 @@ export class OpalPopover extends BaseComponent {
 						containerClientRect.top + window.pageYOffset >=
 							elClientRect.bottom - containerClientRect.bottom
 					) {
-						this.paramPosition =
-							'top' + (position.length == 2 ? '-' + position[1] : '');
+						this.position = 'top' + (position.length == 2 ? '-' + position[1] : '');
 					}
 
 					break;
@@ -153,29 +149,29 @@ export class OpalPopover extends BaseComponent {
 			}
 		}
 
-		let position = this.paramPosition.split('-');
+		let position = this.position.split('-');
 		let arrowStyle = this.$<HTMLElement>('arrow')!.style;
 
 		arrowStyle.top = arrowStyle.right = arrowStyle.bottom = arrowStyle.left = '';
 
 		if (position.length == 2) {
-			el.style[position[1]] = this.paramPositionOffset + 'px';
+			el.style[position[1]] = this.positionOffset + 'px';
 
 			arrowStyle[position[1]] =
 				el.offsetParent![
 					position[1] == 'left' || position[1] == 'right' ? 'clientWidth' : 'clientHeight'
 				] /
 					2 -
-				this.paramPositionOffset +
+				this.positionOffset +
 				'px';
 		}
 
-		if (this.paramCloseOn) {
+		if (this.closeOn) {
 			setTimeout(() => {
 				if (this.opened) {
 					this._closingEventListening = this.listenTo(
 						document,
-						this.paramCloseOn,
+						this.closeOn,
 						this._onClosingEvent
 					);
 				}
@@ -184,8 +180,8 @@ export class OpalPopover extends BaseComponent {
 	}
 
 	_close() {
-		if (this.paramAutoDirection) {
-			this.paramPosition = this._positionAtOpening;
+		if (this.autoDirection) {
+			this.position = this._positionAtOpening;
 		}
 
 		if (this._closingEventListening) {

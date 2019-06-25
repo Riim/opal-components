@@ -9,21 +9,21 @@ import template from './template.rnt';
 })
 export class OpalTab extends BaseComponent {
 	@Param
-	paramLabel: string;
+	label: string;
 	@Param
-	paramSelected = false;
+	selected = false;
 	@Param
-	paramTabIndex = 0;
+	tabIndex = 0;
 	@Param
-	paramFocused = false;
+	focused = false;
 	@Param
-	paramHidden = false;
+	hidden = false;
 	@Param
-	paramDisabled = false;
+	disabled = false;
 
 	@Computed
 	get _tabIndex(): number {
-		return this.paramDisabled ? -1 : this.paramTabIndex;
+		return this.disabled ? -1 : this.tabIndex;
 	}
 
 	elementAttached() {
@@ -35,23 +35,23 @@ export class OpalTab extends BaseComponent {
 	}
 
 	ready() {
-		if (this.paramFocused) {
+		if (this.focused) {
 			this.focus();
 		}
 	}
 
 	_onControlFocus() {
-		this.paramFocused = true;
+		this.focused = true;
 	}
 
 	_onControlBlur() {
-		this.paramFocused = false;
+		this.focused = false;
 	}
 
 	_onControlClick(evt: Event) {
 		evt.preventDefault();
 
-		if (!this.paramDisabled) {
+		if (!this.disabled) {
 			this.click();
 		}
 	}
@@ -61,16 +61,9 @@ export class OpalTab extends BaseComponent {
 		return this;
 	}
 
-	get selected(): boolean {
-		return this.paramSelected;
-	}
-	set selected(selected: boolean) {
-		this.paramSelected = selected;
-	}
-
 	select(): boolean {
-		if (!this.paramSelected) {
-			this.paramSelected = true;
+		if (!this.selected) {
+			this.selected = true;
 			return true;
 		}
 
@@ -78,8 +71,8 @@ export class OpalTab extends BaseComponent {
 	}
 
 	deselect(): boolean {
-		if (this.paramSelected) {
-			this.paramSelected = false;
+		if (this.selected) {
+			this.selected = false;
 			return true;
 		}
 
@@ -87,7 +80,7 @@ export class OpalTab extends BaseComponent {
 	}
 
 	toggle(value?: boolean): boolean {
-		return (this.paramSelected = value === undefined ? !this.paramSelected : value);
+		return (this.selected = value === undefined ? !this.selected : value);
 	}
 
 	focus(): this {
@@ -101,12 +94,12 @@ export class OpalTab extends BaseComponent {
 	}
 
 	enable(): this {
-		this.paramDisabled = false;
+		this.disabled = false;
 		return this;
 	}
 
 	disable(): this {
-		this.paramDisabled = true;
+		this.disabled = true;
 		return this;
 	}
 }

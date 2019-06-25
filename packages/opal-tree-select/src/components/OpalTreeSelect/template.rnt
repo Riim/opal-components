@@ -7,10 +7,10 @@ OpalModal:menu {
 		OpalTreeList:treeList (
 			class=OpalFilteredList__list,
 			dataTreeList={dataTreeList},
-			dataTreeListItemSchema={paramDataTreeListItemSchema |dump },
+			dataTreeListItemSchema={dataTreeListItemSchema |dump },
 			viewModel={viewModel},
 			viewModelItemSchema={viewModelItemSchema |dump },
-			query={paramQuery}
+			query={query}
 		) {
 			OpalSelectOption:option (
 				class=OpalTreeList__selectionControl,

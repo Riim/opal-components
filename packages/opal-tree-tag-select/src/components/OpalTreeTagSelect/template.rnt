@@ -1,12 +1,12 @@
 OpalTreeSelect:select (
 	viewType=clean,
 	dataTreeListKeypath={_dataListKeypathParam},
-	dataTreeListItemSchema={paramDataListItemSchema |dump },
+	dataTreeListItemSchema={dataListItemSchema |dump },
 	value={paramValue},
 	viewModel={viewModel},
-	viewModelItemSchema={paramViewModelItemSchema |dump },
-	addNewItem={paramAddNewItem},
-	focused={paramFocused}
+	viewModelItemSchema={viewModelItemSchema |dump },
+	addNewItem={addNewItem},
+	focused={focused}
 ) {
 	RnSlot (class=OpalSelect__menuHeaderSlot, for=OpalSelect__menuHeader)
 
@@ -14,7 +14,7 @@ OpalTreeSelect:select (
 		class=OpalSelect__button,
 		sign=plus,
 		checkable,
-		tabIndex={paramTabIndex},
-		disabled={paramDisabled}
+		tabIndex={tabIndex},
+		disabled={disabled}
 	)
 }

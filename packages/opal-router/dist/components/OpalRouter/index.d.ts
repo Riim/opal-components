@@ -19,9 +19,9 @@ export interface IComponentState {
 }
 export declare class OpalRouter extends BaseComponent {
     static history: History<any>;
-    paramUseLocationHash: boolean;
-    paramScrollTopOnChange: boolean;
-    paramScrollTopOnChangeComponent: boolean;
+    useLocationHash: boolean;
+    scrollTopOnChange: boolean;
+    scrollTopOnChangeComponent: boolean;
     _routes: Array<IRoute>;
     _route: IRoute | null;
     _state: IComponentState | null;

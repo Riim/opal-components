@@ -2,10 +2,10 @@ import { IEvent } from 'cellx';
 import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalPopover extends BaseComponent {
-    paramPosition: string;
-    paramPositionOffset: number;
-    paramAutoDirection: boolean;
-    paramCloseOn: string;
+    position: string;
+    positionOffset: number;
+    autoDirection: boolean;
+    closeOn: string;
     opened: boolean;
     contentRendered: boolean;
     _positionAtOpening: string;

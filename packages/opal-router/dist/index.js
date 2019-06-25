@@ -148,9 +148,9 @@ function valueToAttributeValue(value) {
 let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramUseLocationHash = false;
-        this.paramScrollTopOnChange = true;
-        this.paramScrollTopOnChangeComponent = true;
+        this.useLocationHash = false;
+        this.scrollTopOnChange = true;
+        this.scrollTopOnChangeComponent = true;
         this._route = null;
         this._state = null;
         this._componentElement = null;
@@ -161,7 +161,7 @@ let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
     ready() {
         let routes = this._routes;
         Array.prototype.forEach.call(this.element.getElementsByTagName('opal-route'), (routeEl) => {
-            let path = routeEl.$component.paramPath;
+            let path = routeEl.$component.path;
             let rePath = [];
             let props = [];
             (function processPath(path) {
@@ -202,7 +202,7 @@ let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
                 path,
                 rePath: RegExp(`^${rePath}${rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?'}$`),
                 properties: props,
-                componentName: kebab_case_1.kebabCase(routeEl.$component.paramComponent)
+                componentName: kebab_case_1.kebabCase(routeEl.$component.component)
             });
         });
     }
@@ -212,11 +212,11 @@ let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
                 this._onHistoryChange(location);
             })
         };
-        if (!this.paramUseLocationHash) {
+        if (!this.useLocationHash) {
             this.listenTo(document.body, 'click', this._onBodyClick);
         }
         this.listenTo(this, '<*>refresh-router', this._onRefreshRouter);
-        if (this.paramUseLocationHash) {
+        if (this.useLocationHash) {
             this._update(history.location.hash.slice(1), '');
         }
         else {
@@ -227,7 +227,7 @@ let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
         this._clear();
     }
     _onHistoryChange(location) {
-        if (this.paramUseLocationHash) {
+        if (this.useLocationHash) {
             this._update(location.hash.slice(1), '');
         }
         else {
@@ -335,7 +335,7 @@ let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
                     }
                     this._state = state;
                     this._applyState();
-                    if (this.paramScrollTopOnChange) {
+                    if (this.scrollTopOnChange) {
                         window.scrollTo(window.pageXOffset, 0);
                     }
                     this.emit('change');
@@ -351,7 +351,7 @@ let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
             this._applyState();
             componentEl.rioniteComponent.ownerComponent = this;
             this.element.appendChild(componentEl);
-            if (this.paramScrollTopOnChange || this.paramScrollTopOnChangeComponent) {
+            if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
                 window.scrollTo(window.pageXOffset, 0);
             }
             this.emit('change');
@@ -386,7 +386,7 @@ let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
             this._applyState();
             componentEl.rioniteComponent.ownerComponent = this;
             this.element.appendChild(componentEl);
-            if (this.paramScrollTopOnChange || this.paramScrollTopOnChangeComponent) {
+            if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
                 window.scrollTo(window.pageXOffset, 0);
             }
         }
@@ -396,15 +396,15 @@ OpalRouter.history = history;
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
-], OpalRouter.prototype, "paramUseLocationHash", void 0);
+], OpalRouter.prototype, "useLocationHash", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalRouter.prototype, "paramScrollTopOnChange", void 0);
+], OpalRouter.prototype, "scrollTopOnChange", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalRouter.prototype, "paramScrollTopOnChangeComponent", void 0);
+], OpalRouter.prototype, "scrollTopOnChangeComponent", void 0);
 OpalRouter = __decorate([
     rionite_1.Component({
         elementIs: 'OpalRouter'
@@ -468,14 +468,14 @@ __decorate([
         readonly: true
     }),
     __metadata("design:type", String)
-], OpalRoute.prototype, "paramPath", void 0);
+], OpalRoute.prototype, "path", void 0);
 __decorate([
     rionite_1.Param({
         required: true,
         readonly: true
     }),
     __metadata("design:type", String)
-], OpalRoute.prototype, "paramComponent", void 0);
+], OpalRoute.prototype, "component", void 0);
 OpalRoute = __decorate([
     rionite_1.Component({
         elementIs: 'OpalRoute'

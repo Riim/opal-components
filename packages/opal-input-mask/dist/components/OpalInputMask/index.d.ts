@@ -4,7 +4,7 @@ import { OpalInputMaskDefinition } from '../OpalInputMaskDefinition';
 export { OpalInputMaskDefinition };
 export declare class OpalInputMask extends BaseComponent {
     static defaultDefinitions: Record<string, RegExp>;
-    paramMask: string;
+    mask: string;
     _definitions: Record<string, RegExp>;
     readonly _mask: Array<string>;
     readonly _partialIndex: number;

@@ -183,10 +183,10 @@ function pad(num) {
 let OpalDateInput = class OpalDateInput extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.paramPlaceholder = 'dd.mm.yyyy';
-        this.paramMask = '99.99.9999';
-        this.paramRequired = false;
-        this.paramPopoverPosition = 'right';
+        this.placeholder = 'dd.mm.yyyy';
+        this.mask = '99.99.9999';
+        this.required = false;
+        this.popoverPosition = 'right';
         this.dateExists = date_exists_1.dateExists;
     }
     _isDateInRange(date) {
@@ -293,11 +293,11 @@ let OpalDateInput = class OpalDateInput extends rionite_1.BaseComponent {
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalDateInput.prototype, "paramFromDate", void 0);
+], OpalDateInput.prototype, "fromDate", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalDateInput.prototype, "paramToDate", void 0);
+], OpalDateInput.prototype, "toDate", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
@@ -305,19 +305,19 @@ __decorate([
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalDateInput.prototype, "paramPlaceholder", void 0);
+], OpalDateInput.prototype, "placeholder", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalDateInput.prototype, "paramMask", void 0);
+], OpalDateInput.prototype, "mask", void 0);
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
-], OpalDateInput.prototype, "paramRequired", void 0);
+], OpalDateInput.prototype, "required", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
-], OpalDateInput.prototype, "paramPopoverPosition", void 0);
+], OpalDateInput.prototype, "popoverPosition", void 0);
 OpalDateInput = __decorate([
     rionite_1.Component({
         elementIs: 'OpalDateInput',
@@ -373,7 +373,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("OpalTextInputValidator:textInputValidator {\nOpalInputMask:inputMask (mask={paramMask}) {\nOpalTextInput:textInput (\nclass=OpalInputValidator__textInput OpalInputMask__textInput,\nvalue={paramValue},\nplaceholder={paramPlaceholder},\nclearable\n) {\nOpalIcon:textInputEndIcon (class=OpalTextInput__endIcon, name=calendar)\n}\n}\nOpalTextInputValidatorRule:textInputValidatorRuleRequired (\n@if=paramRequired,\nrequired,\npopoverPosition={paramPopoverPosition}\n) {\n'{\"Поле обязательно для заполнения\" |t }'\n}\nOpalTextInputValidatorRule:textInputValidatorRuleDateExists (\ntest={dateExists},\npopoverPosition={paramPopoverPosition}\n) {\n'{\"Несуществующая дата\" |t }'\n}\nOpalTextInputValidatorRule:textInputValidatorRuleDateInRange (\ntest={_isDateInRange},\npopoverPosition={paramPopoverPosition}\n) {\n'{\"Дата вне допустимого диапазона\" |t }'\n}\n}\nOpalDropdown:calendarMenu (autoHeight=no) {\nOpalCalendar:calendar (\nfromDate={paramFromDate},\ntoDate={paramToDate},\nvalue={paramValue},\ndateDelimiter=.\n)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("OpalTextInputValidator:textInputValidator {\nOpalInputMask:inputMask (mask={mask}) {\nOpalTextInput:textInput (\nclass=OpalInputValidator__textInput OpalInputMask__textInput,\nvalue={paramValue},\nplaceholder={placeholder},\nclearable\n) {\nOpalIcon:textInputEndIcon (class=OpalTextInput__endIcon, name=calendar)\n}\n}\nOpalTextInputValidatorRule:textInputValidatorRuleRequired (\n@if=required,\nrequired,\npopoverPosition={popoverPosition}\n) {\n'{\"Поле обязательно для заполнения\" |t }'\n}\nOpalTextInputValidatorRule:textInputValidatorRuleDateExists (\ntest={dateExists},\npopoverPosition={popoverPosition}\n) {\n'{\"Несуществующая дата\" |t }'\n}\nOpalTextInputValidatorRule:textInputValidatorRuleDateInRange (\ntest={_isDateInRange},\npopoverPosition={popoverPosition}\n) {\n'{\"Дата вне допустимого диапазона\" |t }'\n}\n}\nOpalDropdown:calendarMenu (autoHeight=no) {\nOpalCalendar:calendar (\nfromDate={fromDate},\ntoDate={toDate},\nvalue={paramValue},\ndateDelimiter=.\n)\n}");
 
 /***/ })
 /******/ ]);

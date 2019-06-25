@@ -59,17 +59,17 @@ export class OpalTagSelect extends BaseComponent {
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
 	@Param
-	paramViewType: string;
+	viewType: string;
 	@Param
 	paramDataList: TDataList;
 	@Param({ readonly: true })
-	paramDataListKeypath: string;
+	dataListKeypath: string;
 	@Param({
 		type: eval,
 		default: defaultDataListItemSchema,
 		readonly: true
 	})
-	paramDataListItemSchema: {
+	dataListItemSchema: {
 		value?: string;
 		text?: string;
 		subtext?: string;
@@ -87,25 +87,25 @@ export class OpalTagSelect extends BaseComponent {
 		default: defaultVMItemSchema,
 		readonly: true
 	})
-	paramViewModelItemSchema: {
+	viewModelItemSchema: {
 		value?: string;
 		text?: string;
 		disabled?: string;
 	};
 	@Param({ readonly: true })
-	paramAddNewItem: (text: string) => Promise<Record<string, string>>;
+	addNewItem: (text: string) => Promise<Record<string, string>>;
 	@Param
 	// ;;; Плейсхолдер тегселекта.
 	// ;;; Можно перевести как призыв к выбору -- Select (англ.).
-	paramPlaceholder = pt('OpalTagSelect#paramPlaceholder', 'Не выбрано');
+	placeholder = pt('OpalTagSelect#placeholder', 'Не выбрано');
 	@Param
-	paramPopoverPosition = 'bottom';
+	popoverPosition = 'bottom';
 	@Param
-	paramTabIndex = 0;
+	tabIndex = 0;
 	@Param
-	paramFocused = false;
+	focused = false;
 	@Param
-	paramDisabled = false;
+	disabled = false;
 
 	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
@@ -128,7 +128,7 @@ export class OpalTagSelect extends BaseComponent {
 
 	@Computed
 	get placeholderShown(): boolean {
-		return !!this.paramPlaceholder && !this.viewModel.length;
+		return !!this.placeholder && !this.viewModel.length;
 	}
 
 	_dataListKeypathParam: string | null;
@@ -136,11 +136,11 @@ export class OpalTagSelect extends BaseComponent {
 	select: OpalSelect;
 
 	_isItemDisabled(item: IDataListItem) {
-		return this.paramDisabled || item[this._viewModelItemDisabledFieldName];
+		return this.disabled || item[this._viewModelItemDisabledFieldName];
 	}
 
 	initialize() {
-		let dataListKeypath = this.paramDataListKeypath;
+		let dataListKeypath = this.dataListKeypath;
 
 		if (dataListKeypath || (this.$specifiedParams && this.$specifiedParams.has('dataList'))) {
 			define(this, 'dataList', dataListKeypath
@@ -158,7 +158,7 @@ export class OpalTagSelect extends BaseComponent {
 			this._dataListKeypathParam = null;
 		}
 
-		let dataListItemSchema = this.paramDataListItemSchema;
+		let dataListItemSchema = this.dataListItemSchema;
 
 		this._dataListItemValueFieldName =
 			dataListItemSchema.value || defaultDataListItemSchema.value;
@@ -170,7 +170,7 @@ export class OpalTagSelect extends BaseComponent {
 
 		this.viewModel = this.paramViewModel || new ObservableList();
 
-		let vmItemSchema = this.paramViewModelItemSchema;
+		let vmItemSchema = this.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalSelect)
 			.defaultViewModelItemSchema;
 
@@ -185,7 +185,7 @@ export class OpalTagSelect extends BaseComponent {
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'change:paramDisabled', this._onParamDisabledChange);
+		this.listenTo(this, 'change:disabled', this._onDisabledChange);
 		this.listenTo('control', 'click', this._onControlClick);
 		this.listenTo(this.select, {
 			input: this._onSelectInput,
@@ -195,14 +195,14 @@ export class OpalTagSelect extends BaseComponent {
 		});
 	}
 
-	_onParamDisabledChange(evt: IEvent) {
+	_onDisabledChange(evt: IEvent) {
 		if (evt.data.value) {
 			this.close();
 		}
 	}
 
 	_onControlClick(evt: Event) {
-		if (this.paramDisabled) {
+		if (this.disabled) {
 			return;
 		}
 

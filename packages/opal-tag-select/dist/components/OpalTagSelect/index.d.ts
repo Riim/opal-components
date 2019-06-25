@@ -15,10 +15,10 @@ export declare class OpalTagSelect extends BaseComponent {
         text: string;
         disabled: string;
     }>;
-    paramViewType: string;
+    viewType: string;
     paramDataList: TDataList;
-    paramDataListKeypath: string;
-    paramDataListItemSchema: {
+    dataListKeypath: string;
+    dataListItemSchema: {
         value?: string;
         text?: string;
         subtext?: string;
@@ -27,17 +27,17 @@ export declare class OpalTagSelect extends BaseComponent {
     paramDataProvider: IDataProvider;
     paramValue: Array<string>;
     paramViewModel: TViewModel;
-    paramViewModelItemSchema: {
+    viewModelItemSchema: {
         value?: string;
         text?: string;
         disabled?: string;
     };
-    paramAddNewItem: (text: string) => Promise<Record<string, string>>;
-    paramPlaceholder: string;
-    paramPopoverPosition: string;
-    paramTabIndex: number;
-    paramFocused: boolean;
-    paramDisabled: boolean;
+    addNewItem: (text: string) => Promise<Record<string, string>>;
+    placeholder: string;
+    popoverPosition: string;
+    tabIndex: number;
+    focused: boolean;
+    disabled: boolean;
     dataList: TDataList | null;
     _dataListItemValueFieldName: string;
     _dataListItemTextFieldName: string;
@@ -56,7 +56,7 @@ export declare class OpalTagSelect extends BaseComponent {
     initialize(): void;
     ready(): void;
     elementAttached(): void;
-    _onParamDisabledChange(evt: IEvent): void;
+    _onDisabledChange(evt: IEvent): void;
     _onControlClick(evt: Event): void;
     _onSelectInput(): false;
     _onSelectChange(): false;

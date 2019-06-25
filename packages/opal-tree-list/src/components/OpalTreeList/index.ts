@@ -69,13 +69,13 @@ export class OpalTreeList extends BaseComponent {
 	@Param
 	paramDataTreeList: TDataTreeList;
 	@Param({ readonly: true })
-	paramDataTreeListKeypath: string;
+	dataTreeListKeypath: string;
 	@Param({
 		type: eval,
 		default: defaultDataTreeListItemSchema,
 		readonly: true
 	})
-	paramDataTreeListItemSchema: {
+	dataTreeListItemSchema: {
 		value?: string;
 		text?: string;
 	};
@@ -86,7 +86,7 @@ export class OpalTreeList extends BaseComponent {
 		default: defaultVMItemSchema,
 		readonly: true
 	})
-	paramViewModelItemSchema: {
+	viewModelItemSchema: {
 		value?: string;
 		text?: string;
 	};
@@ -174,9 +174,9 @@ export class OpalTreeList extends BaseComponent {
 	}
 
 	initialize() {
-		if (this.paramDataTreeListKeypath) {
+		if (this.dataTreeListKeypath) {
 			define(this, 'dataTreeList', new Cell(
-				Function(`return this.${this.paramDataTreeListKeypath};`),
+				Function(`return this.${this.dataTreeListKeypath};`),
 				{
 					context: this.ownerComponent || window
 				}
@@ -189,7 +189,7 @@ export class OpalTreeList extends BaseComponent {
 			define(this, 'dataTreeList', () => this.paramDataTreeList);
 		}
 
-		let dataTreeListItemSchema = this.paramDataTreeListItemSchema;
+		let dataTreeListItemSchema = this.dataTreeListItemSchema;
 		let defaultDataTreeListItemSchema = (this.constructor as typeof OpalTreeList)
 			.defaultDataTreeListItemSchema;
 
@@ -200,7 +200,7 @@ export class OpalTreeList extends BaseComponent {
 
 		this.viewModel = this.paramViewModel || new ObservableList();
 
-		let vmItemSchema = this.paramViewModelItemSchema;
+		let vmItemSchema = this.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalTreeList)
 			.defaultViewModelItemSchema;
 

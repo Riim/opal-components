@@ -179,8 +179,8 @@ let OpalTreeSelect = class OpalTreeSelect extends opal_select_1.OpalSelect {
     }
     initialize() {
         super.initialize();
-        if (this.paramDataTreeListKeypath) {
-            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function(`return this.${this.paramDataTreeListKeypath};`), {
+        if (this.dataTreeListKeypath) {
+            cellx_1.define(this, 'dataTreeList', new cellx_1.Cell(Function(`return this.${this.dataTreeListKeypath};`), {
                 context: this.ownerComponent || window
             }));
         }
@@ -213,7 +213,7 @@ __decorate([
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", String)
-], OpalTreeSelect.prototype, "paramDataTreeListKeypath", void 0);
+], OpalTreeSelect.prototype, "dataTreeListKeypath", void 0);
 __decorate([
     rionite_1.Param({
         type: eval,
@@ -221,7 +221,7 @@ __decorate([
         readonly: true
     }),
     __metadata("design:type", Object)
-], OpalTreeSelect.prototype, "paramDataTreeListItemSchema", void 0);
+], OpalTreeSelect.prototype, "dataTreeListItemSchema", void 0);
 __decorate([
     rionite_1.Param({
         type: eval,
@@ -233,7 +233,7 @@ __decorate([
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
-], OpalTreeSelect.prototype, "paramQuery", void 0);
+], OpalTreeSelect.prototype, "query", void 0);
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
@@ -289,7 +289,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("OpalModal:menu {\nRnSlot (for=menuHeaderSlot) {\nRnSlot:menuHeaderSlot (for=menuHeader)\n}\nOpalFilteredList:filteredList {\nOpalTreeList:treeList (\nclass=OpalFilteredList__list,\ndataTreeList={dataTreeList},\ndataTreeListItemSchema={paramDataTreeListItemSchema |dump },\nviewModel={viewModel},\nviewModelItemSchema={viewModelItemSchema |dump },\nquery={paramQuery}\n) {\nOpalSelectOption:option (\nclass=OpalTreeList__selectionControl,\ntext={$item.name},\nselected={$selected},\nindeterminate={$indeterminate}\n)\n}\n}\ndiv:footer {\nOpalButton:btnClose {\n// ;;; подтверждение выбора триселекта\n// ;;; https://yadi.sk/i/j9g1w-7xj9Xsew\n'{\"Готово\" |pt(\"OpalTreeSelect__btnClose\") }'\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("OpalModal:menu {\nRnSlot (for=menuHeaderSlot) {\nRnSlot:menuHeaderSlot (for=menuHeader)\n}\nOpalFilteredList:filteredList {\nOpalTreeList:treeList (\nclass=OpalFilteredList__list,\ndataTreeList={dataTreeList},\ndataTreeListItemSchema={dataTreeListItemSchema |dump },\nviewModel={viewModel},\nviewModelItemSchema={viewModelItemSchema |dump },\nquery={query}\n) {\nOpalSelectOption:option (\nclass=OpalTreeList__selectionControl,\ntext={$item.name},\nselected={$selected},\nindeterminate={$indeterminate}\n)\n}\n}\ndiv:footer {\nOpalButton:btnClose {\n// ;;; подтверждение выбора триселекта\n// ;;; https://yadi.sk/i/j9g1w-7xj9Xsew\n'{\"Готово\" |pt(\"OpalTreeSelect__btnClose\") }'\n}\n}\n}");
 
 /***/ })
 /******/ ]);

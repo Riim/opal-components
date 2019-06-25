@@ -28,7 +28,7 @@ const reTabLabel = /(?:#|&)tab=([^&]+)/;
 })
 export class OpalTabs extends BaseComponent {
 	@Param
-	paramUseLocationHash = false;
+	useLocationHash = false;
 
 	tabs: HTMLCollectionOf<IComponentElement>;
 	tabPanels: HTMLCollectionOf<IComponentElement<OpalTabPanel>>;
@@ -40,7 +40,7 @@ export class OpalTabs extends BaseComponent {
 		let tabs = (this.tabs = this.element.getElementsByClassName('OpalTab') as any);
 		let tabPanels = (this.tabPanels = this.element.getElementsByClassName(
 			'OpalTabPanel'
-		) as any);
+		) as HTMLCollectionOf<IComponentElement<OpalTabPanel>>);
 
 		let selectedTab: OpalTab | undefined;
 		let selectedTabIndex: number | undefined;
@@ -66,7 +66,7 @@ export class OpalTabs extends BaseComponent {
 			selectedTab.select();
 		}
 
-		tabPanels[selectedTabIndex!].$component!.paramShown = true;
+		tabPanels[selectedTabIndex!].$component!.shown = true;
 	}
 
 	elementAttached() {
@@ -79,7 +79,7 @@ export class OpalTabs extends BaseComponent {
 			}
 		);
 
-		if (this.paramUseLocationHash) {
+		if (this.useLocationHash) {
 			reTabLabel.test(OpalRouter.history.location.hash);
 
 			if (RegExp.$1) {
@@ -106,7 +106,7 @@ export class OpalTabs extends BaseComponent {
 		reTabLabel.test(location.hash);
 
 		if (RegExp.$1) {
-			if (this._selectedTab && RegExp.$1 !== this._selectedTab.paramLabel) {
+			if (this._selectedTab && RegExp.$1 !== this._selectedTab.label) {
 				this.goToTab(RegExp.$1);
 			}
 		} else if (this._startSelectedTab) {
@@ -115,16 +115,16 @@ export class OpalTabs extends BaseComponent {
 	}
 
 	goToTab(label: string): boolean {
-		if (this._selectedTab && this._selectedTab!.paramLabel === label) {
+		if (this._selectedTab && this._selectedTab!.label === label) {
 			return true;
 		}
 
 		let tab: IComponentElement<OpalTab> = find.call(
 			this.tabs,
-			(tab: IComponentElement<OpalTab>) => tab.$component!.paramLabel == label
+			(tab: IComponentElement<OpalTab>) => tab.$component!.label == label
 		);
 
-		if (tab && !tab.$component!.paramHidden) {
+		if (tab && !tab.$component!.hidden) {
 			this._selectTab(tab.$component!);
 			return true;
 		}
@@ -140,19 +140,17 @@ export class OpalTabs extends BaseComponent {
 		let selectedTab = this._selectedTab;
 
 		if (selectedTab) {
-			this.tabPanels[
-				indexOf.call(this.tabs, selectedTab.element)
-			].$component!.paramShown = false;
+			this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$component!.shown = false;
 			selectedTab.deselect();
 		}
 
-		this.tabPanels[indexOf.call(this.tabs, tab.element)].$component!.paramShown = true;
+		this.tabPanels[indexOf.call(this.tabs, tab.element)].$component!.shown = true;
 		tab.select();
 
 		this._selectedTab = tab;
 
-		if (!notUseLocationHash && this.paramUseLocationHash) {
-			let label = tab.paramLabel;
+		if (!notUseLocationHash && this.useLocationHash) {
+			let label = tab.label;
 			let locationHash = OpalRouter.history.location.hash;
 			let tabInLocationHashFound = false;
 			let newLocationHash = locationHash.replace(/(#|&)tab=[^&]+/, (_match, sep) => {

@@ -9,33 +9,33 @@ span:tags {
 
 span:control {
 	span:placeholder (@if=placeholderShown) {
-		'{paramPlaceholder}'
+		'{placeholder}'
 	}
 
 	OpalSelect:select (
 		viewType=clean,
 		multiple,
 		dataListKeypath={_dataListKeypathParam},
-		dataListItemSchema={paramDataListItemSchema |dump },
+		dataListItemSchema={dataListItemSchema |dump },
 		value={paramValue},
 		viewModel={viewModel},
-		viewModelItemSchema={paramViewModelItemSchema |dump },
-		addNewItem={paramAddNewItem},
-		focused={paramFocused}
+		viewModelItemSchema={viewModelItemSchema |dump },
+		addNewItem={addNewItem},
+		focused={focused}
 	) {
 		OpalSignButton:button (
 			class=OpalSelect__button,
 			sign=plus,
-			viewType={paramViewType},
+			viewType={viewType},
 			checkable,
-			tabIndex={paramTabIndex},
-			disabled={paramDisabled}
+			tabIndex={tabIndex},
+			disabled={disabled}
 		)
 
 		RnSlot (class=OpalSelect__menuSlot, for=OpalSelect__menu) {
 			OpalPopover:menu (
 				class=OpalSelect__menu,
-				position={paramPopoverPosition},
+				position={popoverPosition},
 				closeOn=mousedown
 			) {
 				RnSlot (for=OpalSelect__menuHeader)

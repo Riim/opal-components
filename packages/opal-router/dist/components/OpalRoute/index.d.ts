@@ -1,5 +1,5 @@
 import { BaseComponent } from 'rionite';
 export declare class OpalRoute extends BaseComponent {
-    paramPath: string;
-    paramComponent: string;
+    path: string;
+    component: string;
 }

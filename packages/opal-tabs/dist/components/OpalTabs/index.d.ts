@@ -8,7 +8,7 @@ export { OpalTab };
 export { OpalTabList } from '../OpalTabList';
 export { OpalTabPanel };
 export declare class OpalTabs extends BaseComponent {
-    paramUseLocationHash: boolean;
+    useLocationHash: boolean;
     tabs: HTMLCollectionOf<IComponentElement>;
     tabPanels: HTMLCollectionOf<IComponentElement<OpalTabPanel>>;
     _startSelectedTab: OpalTab | null;

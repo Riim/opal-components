@@ -28,37 +28,37 @@ export class OpalTreeListItem extends BaseComponent {
 	@Param({ required: true })
 	paramDataTreeList: TDataTreeList;
 	@Param({ required: true })
-	paramFilteredDataTreeList: TFilteredDataTreeList;
+	filteredDataTreeList: TFilteredDataTreeList;
 	@Param({
 		required: true,
 		readonly: true
 	})
-	paramDataTreeListItemValueFieldName: string;
+	dataTreeListItemValueFieldName: string;
 	@Param({
 		required: true,
 		readonly: true
 	})
-	paramDataTreeListItemTextFieldName: string;
+	dataTreeListItemTextFieldName: string;
 	@Param({ required: true })
-	paramViewModel: TViewModel;
+	viewModel: TViewModel;
 	@Param({
 		required: true,
 		readonly: true
 	})
-	paramViewModelItemValueFieldName: string;
+	viewModelItemValueFieldName: string;
 	@Param({
 		required: true,
 		readonly: true
 	})
-	paramViewModelItemTextFieldName: string;
+	viewModelItemTextFieldName: string;
 	@Param({
 		type: eval,
 		required: true,
 		readonly: true
 	})
-	paramIndexpath: Array<number>;
+	indexpath: Array<number>;
 	@Param
-	paramQuery: string;
+	query: string;
 	@Param
 	opened = false;
 
@@ -71,21 +71,16 @@ export class OpalTreeListItem extends BaseComponent {
 	_dataTreeListItemValueFieldName: string;
 	_dataTreeListItemTextFieldName: string;
 
-	@Computed
-	get viewModel(): TViewModel {
-		return this.paramViewModel;
-	}
-
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 
 	initialize() {
-		this.dataTreeListItem = this.paramFilteredDataTreeList.get(this.paramIndexpath)!;
-		this._dataTreeListItemValueFieldName = this.paramDataTreeListItemValueFieldName;
-		this._dataTreeListItemTextFieldName = this.paramDataTreeListItemTextFieldName;
+		this.dataTreeListItem = this.filteredDataTreeList.get(this.indexpath)!;
+		this._dataTreeListItemValueFieldName = this.dataTreeListItemValueFieldName;
+		this._dataTreeListItemTextFieldName = this.dataTreeListItemTextFieldName;
 
-		this._viewModelItemValueFieldName = this.paramViewModelItemValueFieldName;
-		this._viewModelItemTextFieldName = this.paramViewModelItemTextFieldName;
+		this._viewModelItemValueFieldName = this.viewModelItemValueFieldName;
+		this._viewModelItemTextFieldName = this.viewModelItemTextFieldName;
 	}
 }
 

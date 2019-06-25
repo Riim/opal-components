@@ -1,12 +1,12 @@
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalTab extends BaseComponent {
-    paramLabel: string;
-    paramSelected: boolean;
-    paramTabIndex: number;
-    paramFocused: boolean;
-    paramHidden: boolean;
-    paramDisabled: boolean;
+    label: string;
+    selected: boolean;
+    tabIndex: number;
+    focused: boolean;
+    hidden: boolean;
+    disabled: boolean;
     readonly _tabIndex: number;
     elementAttached(): void;
     ready(): void;
@@ -14,7 +14,6 @@ export declare class OpalTab extends BaseComponent {
     _onControlBlur(): void;
     _onControlClick(evt: Event): void;
     click(): this;
-    selected: boolean;
     select(): boolean;
     deselect(): boolean;
     toggle(value?: boolean): boolean;

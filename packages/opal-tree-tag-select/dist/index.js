@@ -180,7 +180,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("OpalTreeSelect:select (\nviewType=clean,\ndataTreeListKeypath={_dataListKeypathParam},\ndataTreeListItemSchema={paramDataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={paramViewModelItemSchema |dump },\naddNewItem={paramAddNewItem},\nfocused={paramFocused}\n) {\nRnSlot (class=OpalSelect__menuHeaderSlot, for=OpalSelect__menuHeader)\nOpalSignButton:button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntabIndex={paramTabIndex},\ndisabled={paramDisabled}\n)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("OpalTreeSelect:select (\nviewType=clean,\ndataTreeListKeypath={_dataListKeypathParam},\ndataTreeListItemSchema={dataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={viewModelItemSchema |dump },\naddNewItem={addNewItem},\nfocused={focused}\n) {\nRnSlot (class=OpalSelect__menuHeaderSlot, for=OpalSelect__menuHeader)\nOpalSignButton:button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntabIndex={tabIndex},\ndisabled={disabled}\n)\n}");
 
 /***/ })
 /******/ ]);

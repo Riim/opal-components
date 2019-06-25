@@ -30,19 +30,19 @@ export class OpalInputMask extends BaseComponent {
 	};
 
 	@Param({ required: true })
-	paramMask: string;
+	mask: string;
 
 	_definitions: Record<string, RegExp>;
 
 	@Computed
 	get _mask(): Array<string> {
-		return this.paramMask.split('').filter(chr => chr != '?');
+		return this.mask.split('').filter(chr => chr != '?');
 	}
 
 	@Computed
 	get _partialIndex(): number {
-		let index = this.paramMask.indexOf('?');
-		return index == -1 ? this.paramMask.length : index;
+		let index = this.mask.indexOf('?');
+		return index == -1 ? this.mask.length : index;
 	}
 
 	@Computed
@@ -78,8 +78,8 @@ export class OpalInputMask extends BaseComponent {
 			this.element.getElementsByClassName('OpalInputMaskDefinition'),
 			(inputMaskDefinition: IComponentElement) => {
 				definitions[
-					(inputMaskDefinition.$component as OpalInputMaskDefinition).paramMaskChar
-				] = (inputMaskDefinition.$component as OpalInputMaskDefinition).paramRegex;
+					(inputMaskDefinition.$component as OpalInputMaskDefinition).maskChar
+				] = (inputMaskDefinition.$component as OpalInputMaskDefinition).regex;
 			}
 		);
 

@@ -148,11 +148,11 @@ const iPhone = /iphone/i.test(navigator.userAgent);
 const ie11 = !window.ActiveXObject && 'ActiveXObject' in window;
 let OpalInputMask = OpalInputMask_1 = class OpalInputMask extends rionite_1.BaseComponent {
     get _mask() {
-        return this.paramMask.split('').filter(chr => chr != '?');
+        return this.mask.split('').filter(chr => chr != '?');
     }
     get _partialIndex() {
-        let index = this.paramMask.indexOf('?');
-        return index == -1 ? this.paramMask.length : index;
+        let index = this.mask.indexOf('?');
+        return index == -1 ? this.mask.length : index;
     }
     get _tests() {
         return this._mask.map(chr => this._definitions[chr] || null);
@@ -168,7 +168,7 @@ let OpalInputMask = OpalInputMask_1 = class OpalInputMask extends rionite_1.Base
         this.textField = this.textInput.textField;
         let definitions = this._definitions;
         forEach.call(this.element.getElementsByClassName('OpalInputMaskDefinition'), (inputMaskDefinition) => {
-            definitions[inputMaskDefinition.$component.paramMaskChar] = inputMaskDefinition.$component.paramRegex;
+            definitions[inputMaskDefinition.$component.maskChar] = inputMaskDefinition.$component.regex;
         });
         this._initBuffer();
     }
@@ -412,7 +412,7 @@ OpalInputMask.defaultDefinitions = {
 __decorate([
     rionite_1.Param({ required: true }),
     __metadata("design:type", String)
-], OpalInputMask.prototype, "paramMask", void 0);
+], OpalInputMask.prototype, "mask", void 0);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Array),
@@ -477,11 +477,11 @@ let OpalInputMaskDefinition = class OpalInputMaskDefinition extends rionite_1.Ba
 __decorate([
     rionite_1.Param({ required: true, readonly: true }),
     __metadata("design:type", String)
-], OpalInputMaskDefinition.prototype, "paramMaskChar", void 0);
+], OpalInputMaskDefinition.prototype, "maskChar", void 0);
 __decorate([
     rionite_1.Param({ type: eval, required: true, readonly: true }),
     __metadata("design:type", RegExp)
-], OpalInputMaskDefinition.prototype, "paramRegex", void 0);
+], OpalInputMaskDefinition.prototype, "regex", void 0);
 OpalInputMaskDefinition = __decorate([
     rionite_1.Component({
         elementIs: 'OpalInputMaskDefinition'
