@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-components",
-  "version": "0.37.11",
+  "version": "0.37.12",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-autosuggest": "^0.37.11",
+    "@riim/opal-autosuggest": "^0.37.12",
     "@riim/opal-button": "^0.37.1",
     "@riim/opal-calendar": "^0.37.11",
     "@riim/opal-checkbox": "^0.37.8",
