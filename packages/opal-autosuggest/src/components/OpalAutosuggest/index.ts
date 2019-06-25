@@ -129,7 +129,7 @@ export class OpalAutosuggest extends BaseComponent {
 
 	elementAttached() {
 		this.listenTo(this, {
-			'change:paramValue': this._onParamValueChange,
+			'change:value': this._onValueChange,
 			'change:loaderShown': this._onLoaderShownChange
 		});
 		this.listenTo(this.dataList, 'change', this._onDataListChange);
@@ -158,7 +158,7 @@ export class OpalAutosuggest extends BaseComponent {
 		}
 	}
 
-	_onParamValueChange(evt: IEvent) {
+	_onValueChange(evt: IEvent) {
 		let item: IDataListItem = evt.data.value;
 
 		this._clearDataList();

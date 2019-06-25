@@ -45,7 +45,7 @@ export declare class OpalAutosuggest extends BaseComponent {
     initialize(): void;
     elementAttached(): void;
     ready(): void;
-    _onParamValueChange(evt: IEvent): void;
+    _onValueChange(evt: IEvent): void;
     _onLoaderShownChange(evt: IEvent): void;
     _onDataListChange(): void;
     _onTextInputFocus(): void;

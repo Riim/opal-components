@@ -198,7 +198,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
     }
     elementAttached() {
         this.listenTo(this, {
-            'change:paramValue': this._onParamValueChange,
+            'change:value': this._onValueChange,
             'change:loaderShown': this._onLoaderShownChange
         });
         this.listenTo(this.dataList, 'change', this._onDataListChange);
@@ -217,7 +217,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
             this.$('textInput').value = this.value[this._dataListItemTextFieldName];
         }
     }
-    _onParamValueChange(evt) {
+    _onValueChange(evt) {
         let item = evt.data.value;
         this._clearDataList();
         this.value = item;
