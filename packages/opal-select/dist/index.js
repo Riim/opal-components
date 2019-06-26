@@ -209,7 +209,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         this.size = 'm';
         this.multiple = false;
         this.value = [];
-        this.viewModel = new cellx_1.ObservableList();
+        this.viewModelCell = new cellx_1.Cell(new cellx_1.ObservableList());
         this.maxTextLength = 20;
         // ;;; Плейсхолдер селекта.
         this.placeholder = gettext_1.pt('OpalSelect#placeholder', 'Не выбрано');
@@ -243,15 +243,15 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             cellx_1.define(this, 'dataList', new cellx_1.Cell(Function(`return this.${this.dataListKeypath};`), {
                 context: this.ownerComponent || window
             }));
-            this._isDataListSpecified = true;
+            this._isParamDataListSpecified = true;
         }
         else if (this.$specifiedParams && this.$specifiedParams.has('dataList')) {
             cellx_1.define(this, 'dataList', () => this.paramDataList);
-            this._isDataListSpecified = true;
+            this._isParamDataListSpecified = true;
         }
         else {
             this.dataList = null;
-            this._isDataListSpecified = false;
+            this._isParamDataListSpecified = false;
         }
         let dataListItemSchema = this.dataListItemSchema;
         let defaultDataListItemSchema = this.constructor
@@ -1249,7 +1249,7 @@ exports.isEqualArray = isEqualArray;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=button) {\nOpalButton:button (\nviewType={viewType},\nsize={size},\ncheckable,\ntabIndex={tabIndex},\ndisabled={disabled}\n) {\n@IfThen (text) {\n'{text}'\n}\n@IfElse (text) {\n'{_buttonText}'\n}\nOpalIcon:buttonIcon (name=chevronDown)\n}\n}\nRnSlot (for=menuSlot) {\nRnSlot:menuSlot (for=menu) {\nOpalDropdown:menu (closeOn=mousedown) {\nRnSlot (for=menuHeader)\nRnSlot (for=menuContent) {\ndiv::menuContent (@if=_isDataListSpecified) {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {\nOpalSelectOption:option (\nvalue='{=item |key(_dataListItemValueFieldName) }',\ntext='{=item |key(_dataListItemTextFieldName) }',\nsubtext='{=item |key(_dataListItemSubtextFieldName) }',\ndisabled='{=item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRnSlot:newItemInputSlot // ...\n}\nOpalLoader:menuLoader (@unless=dataList, shown)\n}\ndiv::menuContent (@unless=_isDataListSpecified) {\nRnSlot:options (forTag=opal-select-option)\nRnSlot (for=newItemInputSlot) {\nRnSlot:newItemInputSlot (for=newItemInput)\n}\n}\n}\nRnSlot (for=menuFooter)\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=button) {\nOpalButton:button (\nviewType={viewType},\nsize={size},\ncheckable,\ntabIndex={tabIndex},\ndisabled={disabled}\n) {\n@IfThen (text) {\n'{text}'\n}\n@IfElse (text) {\n'{_buttonText}'\n}\nOpalIcon:buttonIcon (name=chevronDown)\n}\n}\nRnSlot (for=menuSlot) {\nRnSlot:menuSlot (for=menu) {\nOpalDropdown:menu (closeOn=mousedown) {\nRnSlot (for=menuHeader)\nRnSlot (for=menuContent) {\ndiv::menuContent (@if=_isParamDataListSpecified) {\n@IfThen (dataList) {\n@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {\nOpalSelectOption:option (\nvalue='{=item |key(_dataListItemValueFieldName) }',\ntext='{=item |key(_dataListItemTextFieldName) }',\nsubtext='{=item |key(_dataListItemSubtextFieldName) }',\ndisabled='{=item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRnSlot:newItemInputSlot // ...\n}\nOpalLoader:menuLoader (@unless=dataList, shown)\n}\ndiv::menuContent (@unless=_isParamDataListSpecified) {\nRnSlot:options (forTag=opal-select-option)\nRnSlot (for=newItemInputSlot) {\nRnSlot:newItemInputSlot (for=newItemInput)\n}\n}\n}\nRnSlot (for=menuFooter)\n}\n}\n}");
 
 /***/ })
 /******/ ]);

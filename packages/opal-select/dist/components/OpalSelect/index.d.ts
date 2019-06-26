@@ -36,6 +36,7 @@ export declare class OpalSelect extends BaseComponent {
     };
     value: Array<string>;
     viewModel: TViewModel;
+    viewModelCell: Cell<ObservableList<any>, any>;
     viewModelItemSchema: {
         value?: string;
         text?: string;
@@ -70,7 +71,7 @@ export declare class OpalSelect extends BaseComponent {
     _opened: boolean;
     _valueOnOpen: Array<string>;
     _onceFocusedAfterLoading: boolean;
-    _isDataListSpecified: boolean;
+    _isParamDataListSpecified: boolean;
     _documentClickListening: IDisposableListening | null | undefined;
     _documentFocusListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening | null | undefined;

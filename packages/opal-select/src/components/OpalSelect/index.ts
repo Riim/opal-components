@@ -83,7 +83,8 @@ export class OpalSelect extends BaseComponent {
 	@Param({ type: eval })
 	value: Array<string> = [];
 	@Param({ readonly: true })
-	viewModel: TViewModel = new ObservableList();
+	viewModel: TViewModel;
+	viewModelCell = new Cell(new ObservableList());
 	@Param({
 		type: eval,
 		default: defaultVMItemSchema,
@@ -161,7 +162,7 @@ export class OpalSelect extends BaseComponent {
 
 	_onceFocusedAfterLoading: boolean = false;
 
-	_isDataListSpecified: boolean;
+	_isParamDataListSpecified: boolean;
 
 	_documentClickListening: IDisposableListening | null | undefined;
 	_documentFocusListening: IDisposableListening;
@@ -175,13 +176,13 @@ export class OpalSelect extends BaseComponent {
 				context: this.ownerComponent || window
 			}));
 
-			this._isDataListSpecified = true;
+			this._isParamDataListSpecified = true;
 		} else if (this.$specifiedParams && this.$specifiedParams.has('dataList')) {
 			define(this, 'dataList', () => this.paramDataList);
-			this._isDataListSpecified = true;
+			this._isParamDataListSpecified = true;
 		} else {
 			this.dataList = null;
-			this._isDataListSpecified = false;
+			this._isParamDataListSpecified = false;
 		}
 
 		let dataListItemSchema = this.dataListItemSchema;
