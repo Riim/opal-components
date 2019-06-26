@@ -208,7 +208,6 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         super(...arguments);
         this.size = 'm';
         this.multiple = false;
-        this.value = [];
         this.viewModelCell = new cellx_1.Cell(new cellx_1.ObservableList());
         this.maxTextLength = 20;
         // ;;; Плейсхолдер селекта.
@@ -222,6 +221,12 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         this._notUpdateOptions = false;
         this._opened = false;
         this._onceFocusedAfterLoading = false;
+    }
+    get value() {
+        return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
+    }
+    set value(value) {
+        this.paramValue = value;
     }
     get _buttonText() {
         let text = this.viewModel
@@ -275,7 +280,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
     }
     ready() {
         this.optionElements = this.element.getElementsByClassName('OpalSelectOption');
-        if (this.$specifiedParams.has('viewModel') && !this.value) {
+        if (this.$specifiedParams.has('viewModel') && !this.paramValue) {
             this._needOptionsUpdating = true;
         }
         else {
@@ -286,9 +291,9 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         }
     }
     _initViewModel() {
+        let value = this.value;
         let selectedOptions;
-        if (this.$specifiedParams.has('value')) {
-            let value = this.value;
+        if (value) {
             if (!Array.isArray(value)) {
                 throw new TypeError('Parameter "value" must be an array');
             }
@@ -325,7 +330,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             })));
         }
         this._notUpdateOptions = false;
-        if (this.$specifiedParams.has('value')) {
+        if (value) {
             this._updateOptions();
         }
     }
@@ -335,7 +340,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             this.focus();
         }
         this.listenTo(this, {
-            'change:value': this._onValueChange,
+            'change:paramValue': this._onParamValueChange,
             'change:focused': this._onFocusedChange
         });
         this.listenTo(this.viewModel, 'change', this._onViewModelChange);
@@ -356,7 +361,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             '<*>change': this._onMenuChange
         });
     }
-    _onValueChange(evt) {
+    _onParamValueChange(evt) {
         let vm = this.viewModel;
         let value = evt.data.value;
         if (value) {
@@ -440,9 +445,6 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         }
     }
     _onViewModelChange() {
-        cellx_1.EventEmitter.silently(() => {
-            this.value = this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
-        });
         if (!this._needOptionsUpdating && !this._notUpdateOptions) {
             this._updateOptions();
         }
@@ -899,9 +901,9 @@ __decorate([
     __metadata("design:type", Object)
 ], OpalSelect.prototype, "dataListItemSchema", void 0);
 __decorate([
-    rionite_1.Param({ type: eval }),
+    rionite_1.Param('value', { type: eval }),
     __metadata("design:type", Array)
-], OpalSelect.prototype, "value", void 0);
+], OpalSelect.prototype, "paramValue", void 0);
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
@@ -946,6 +948,11 @@ __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
 ], OpalSelect.prototype, "disabled", void 0);
+__decorate([
+    cellx_decorators_1.Computed,
+    __metadata("design:type", Array),
+    __metadata("design:paramtypes", [Array])
+], OpalSelect.prototype, "value", null);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", String),
