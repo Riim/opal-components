@@ -19,9 +19,9 @@
     "@riim/opal-input-mask": "^0.37.14",
     "@riim/opal-text-input": "^0.37.14",
     "@riim/opal-text-input-validator": "^0.37.14",
-    "cellx": "^1.8.0",
+    "cellx": "^1.8.1",
     "date-exists": "^1.0.1",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.6"
+    "rionite": "^0.37.7"
   }
 }
