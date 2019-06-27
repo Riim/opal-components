@@ -1,6 +1,6 @@
 import { IDataProvider } from '@riim/opal-loaded-list';
 import { IDataListItem, OpalSelect, TDataList, TViewModel } from '@riim/opal-select';
-import { IEvent } from 'cellx';
+import { Cell, IEvent, ObservableList } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalTagSelect extends BaseComponent {
@@ -26,6 +26,7 @@ export declare class OpalTagSelect extends BaseComponent {
     };
     dataProvider: IDataProvider;
     paramValue: Array<string>;
+    viewModelCell: Cell<ObservableList<any>, any>;
     viewModel: TViewModel;
     viewModelItemSchema: {
         value?: string;
