@@ -192,7 +192,7 @@ const defaultVMItemSchema = Object.freeze({
 let OpalTagSelect = class OpalTagSelect extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.viewModelCell = new cellx_1.Cell(new cellx_1.ObservableList());
+        this.viewModel = new cellx_1.ObservableList();
         // ;;; Плейсхолдер тегселекта.
         // ;;; Можно перевести как призыв к выбору -- Select (англ.).
         this.placeholder = gettext_1.pt('OpalTagSelect#placeholder', 'Не выбрано');

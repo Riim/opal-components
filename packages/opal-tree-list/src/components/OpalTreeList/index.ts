@@ -79,9 +79,8 @@ export class OpalTreeList extends BaseComponent {
 		value?: string;
 		text?: string;
 	};
-	viewModelCell = new Cell(new ObservableList());
 	@Param({ readonly: true })
-	viewModel: TViewModel;
+	viewModel: TViewModel = new ObservableList();
 	@Param({
 		type: eval,
 		default: defaultVMItemSchema,

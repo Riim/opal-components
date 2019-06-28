@@ -1,5 +1,5 @@
 import { OpalCheckbox } from '@riim/opal-checkbox';
-import { Cell, IEvent, ObservableList } from 'cellx';
+import { IEvent, ObservableList } from 'cellx';
 import { BaseComponent, IDisposableTimeout } from 'rionite';
 import { ObservableTreeList } from '../../ObservableTreeList';
 import '../OpalTreeListItem';
@@ -35,7 +35,6 @@ export declare class OpalTreeList extends BaseComponent {
         value?: string;
         text?: string;
     };
-    viewModelCell: Cell<ObservableList<any>, any>;
     viewModel: TViewModel;
     viewModelItemSchema: {
         value?: string;

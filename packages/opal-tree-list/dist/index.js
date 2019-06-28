@@ -330,7 +330,7 @@ function toComparable(str) {
 let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.viewModelCell = new cellx_1.Cell(new cellx_1.ObservableList());
+        this.viewModel = new cellx_1.ObservableList();
         this._queryTimeout = null;
     }
     get filteredDataTreeList() {

@@ -35,7 +35,6 @@ export declare class OpalSelect extends BaseComponent {
         disabled?: string;
     };
     paramValue: Array<string>;
-    viewModelCell: Cell<ObservableList<any>, any>;
     viewModel: TViewModel;
     viewModelItemSchema: {
         value?: string;

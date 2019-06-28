@@ -208,7 +208,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         super(...arguments);
         this.size = 'm';
         this.multiple = false;
-        this.viewModelCell = new cellx_1.Cell(new cellx_1.ObservableList());
+        this.viewModel = new cellx_1.ObservableList();
         this.maxTextLength = 20;
         // ;;; Плейсхолдер селекта.
         this.placeholder = gettext_1.pt('OpalSelect#placeholder', 'Не выбрано');

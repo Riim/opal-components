@@ -81,9 +81,8 @@ export class OpalSelect extends BaseComponent {
 	};
 	@Param('value', { type: eval })
 	paramValue: Array<string>;
-	viewModelCell = new Cell(new ObservableList());
 	@Param({ readonly: true })
-	viewModel: TViewModel;
+	viewModel: TViewModel = new ObservableList();
 	@Param({
 		type: eval,
 		default: defaultVMItemSchema,
