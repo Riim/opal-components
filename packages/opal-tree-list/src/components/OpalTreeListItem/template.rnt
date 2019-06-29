@@ -9,22 +9,21 @@ div:head {
 }
 
 div:children (@if=dataTreeListItem.children.length) {
-	@Repeat (for=$item in dataTreeListItem.children) {
-		OpalTreeListItem:item (
-			dataTreeList={dataTreeList},
-			filteredDataTreeList={filteredDataTreeList},
-			dataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},
-			dataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},
-			viewModel={viewModel},
-			viewModelItemValueFieldName={_viewModelItemValueFieldName},
-			viewModelItemTextFieldName={_viewModelItemTextFieldName},
-			indexpath='[{indexpath},{$index}]',
-			query={query},
-			opened={query |bool },
-			nestingLevel={indexpath.length},
-			hasChildren='{$item.children.length |gt(0) }'
-		) {
-			RnSlot (cloneContent, getContext={_getListItemContext})
-		}
+	OpalTreeListItem:item (
+		@for=$item in dataTreeListItem.children,
+		dataTreeList={dataTreeList},
+		filteredDataTreeList={filteredDataTreeList},
+		dataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},
+		dataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},
+		viewModel={viewModel},
+		viewModelItemValueFieldName={_viewModelItemValueFieldName},
+		viewModelItemTextFieldName={_viewModelItemTextFieldName},
+		indexpath='[{indexpath},{$index}]',
+		query={query},
+		opened={query |bool },
+		nestingLevel={indexpath.length},
+		hasChildren='{$item.children.length |gt(0) }'
+	) {
+		RnSlot (cloneContent, getContext={_getListItemContext})
 	}
 }

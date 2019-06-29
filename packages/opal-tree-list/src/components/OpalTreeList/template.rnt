@@ -1,23 +1,22 @@
 @IfThen (listShown) {
-	@Repeat (for=$item in filteredDataTreeList) {
-		OpalTreeListItem:item (
-			dataTreeList={dataTreeList},
-			filteredDataTreeList={filteredDataTreeList},
-			dataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},
-			dataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},
-			viewModel={viewModel},
-			viewModelItemValueFieldName={_viewModelItemValueFieldName},
-			viewModelItemTextFieldName={_viewModelItemTextFieldName},
-			indexpath=[{$index}],
-			query={query},
-			opened={query |bool },
-			nestingLevel=0,
-			hasChildren='{$item.children.length |gt(0) }'
-		) {
-			RnSlot (cloneContent, getContext={_getListItemContext}) {
-				OpalCheckbox:selectionControl (checked={$selected}, indeterminate={$indeterminate}) {
-					'{$item |key(_dataTreeListItemTextFieldName) }'
-				}
+	OpalTreeListItem:item (
+		@for=$item in filteredDataTreeList,
+		dataTreeList={dataTreeList},
+		filteredDataTreeList={filteredDataTreeList},
+		dataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},
+		dataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},
+		viewModel={viewModel},
+		viewModelItemValueFieldName={_viewModelItemValueFieldName},
+		viewModelItemTextFieldName={_viewModelItemTextFieldName},
+		indexpath=[{$index}],
+		query={query},
+		opened={query |bool },
+		nestingLevel=0,
+		hasChildren='{$item.children.length |gt(0) }'
+	) {
+		RnSlot (cloneContent, getContext={_getListItemContext}) {
+			OpalCheckbox:selectionControl (checked={$selected}, indeterminate={$indeterminate}) {
+				'{$item |key(_dataTreeListItemTextFieldName) }'
 			}
 		}
 	}

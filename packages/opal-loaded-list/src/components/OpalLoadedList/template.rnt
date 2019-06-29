@@ -1,9 +1,12 @@
 div:list {
-	@Repeat (for=$item in dataList) {
-		RnSlot:listItemSlot (for=listItem, cloneContent, getContext={_getListItemContext}) {
-			span:listItem {
-				'{$item |key(_dataListItemTextFieldName) }'
-			}
+	RnSlot:listItemSlot (
+		@for=$item in dataList,
+		for=listItem,
+		cloneContent,
+		getContext={_getListItemContext}
+	) {
+		span:listItem {
+			'{$item |key(_dataListItemTextFieldName) }'
 		}
 	}
 }

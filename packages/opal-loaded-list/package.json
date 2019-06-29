@@ -15,9 +15,9 @@
   "dependencies": {
     "@riim/next-tick": "^1.1.1",
     "@riim/opal-loader": "^0.37.16",
-    "cellx": "^1.8.1",
+    "cellx": "^1.8.5",
     "cellx-decorators": "^1.5.0",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.7"
+    "rionite": "^0.37.12"
   }
 }
