@@ -22,7 +22,7 @@ RnSlot (for=menuSlot) {
 		OpalDropdown:menu (closeOn=mousedown) {
 			RnSlot (for=menuHeader)
 			RnSlot (for=menuContent) {
-				div::menuContent (@if=_isParamDataListSpecified) {
+				div::menuContent (@if=_paramDataListSpecified) {
 					@IfThen (dataList) {
 						@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {
 							OpalSelectOption:option (
@@ -37,7 +37,7 @@ RnSlot (for=menuSlot) {
 					}
 					OpalLoader:menuLoader (@unless=dataList, shown)
 				}
-				div::menuContent (@unless=_isParamDataListSpecified) {
+				div::menuContent (@unless=_paramDataListSpecified) {
 					RnSlot:options (forTag=opal-select-option)
 
 					RnSlot (for=newItemInputSlot) {

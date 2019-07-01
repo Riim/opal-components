@@ -24,7 +24,10 @@ import template from './template.rnt';
 	}
 })
 export class OpalTreeListItem extends BaseComponent {
-	@Param({ required: true })
+	@Param({
+		required: true,
+		readonly: true
+	})
 	dataTreeList: TDataTreeList;
 	@Param({ required: true })
 	filteredDataTreeList: TFilteredDataTreeList;

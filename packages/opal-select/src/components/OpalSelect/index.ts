@@ -11,7 +11,7 @@ import {
 	IEvent,
 	ObservableList
 	} from 'cellx';
-import { Computed } from 'cellx-decorators';
+import { Computed, Observable } from 'cellx-decorators';
 import {
 	BaseComponent,
 	Component,
@@ -23,7 +23,7 @@ import {
 	} from 'rionite';
 import { OpalSelectOption } from '../OpalSelectOption';
 import './index.css';
-import { isEqualArray } from './isEqualArray';
+import { isArraysEqual } from './isArraysEqual';
 import template from './template.rnt';
 
 export { OpalSelectOption };
@@ -81,8 +81,8 @@ export class OpalSelect extends BaseComponent {
 	};
 	@Param('value', { type: eval })
 	paramValue: Array<string>;
-	@Param({ readonly: true })
-	viewModel: TViewModel = new ObservableList();
+	@Param('viewModel', { readonly: true })
+	paramViewModel: TViewModel;
 	@Param({
 		type: eval,
 		default: defaultVMItemSchema,
@@ -119,6 +119,8 @@ export class OpalSelect extends BaseComponent {
 	_dataListItemSubtextFieldName: string;
 	_dataListItemDisabledFieldName: string;
 
+	@Observable
+	viewModel: TViewModel;
 	_viewModelItemValueFieldName: string;
 	_viewModelItemTextFieldName: string;
 	_viewModelItemSubtextFieldName: string;
@@ -168,7 +170,7 @@ export class OpalSelect extends BaseComponent {
 
 	_onceFocusedAfterLoading: boolean = false;
 
-	_isParamDataListSpecified: boolean;
+	_paramDataListSpecified: boolean;
 
 	_documentClickListening: IDisposableListening | null | undefined;
 	_documentFocusListening: IDisposableListening;
@@ -177,18 +179,19 @@ export class OpalSelect extends BaseComponent {
 	_menuLoadedListeneng: IDisposableListening;
 
 	initialize() {
-		if (this.dataListKeypath) {
-			define(this, 'dataList', new Cell(Function(`return this.${this.dataListKeypath};`), {
-				context: this.ownerComponent || window
-			}));
+		let dataListKeypath = this.dataListKeypath;
 
-			this._isParamDataListSpecified = true;
-		} else if (this.$specifiedParams && this.$specifiedParams.has('dataList')) {
-			define(this, 'dataList', () => this.paramDataList);
-			this._isParamDataListSpecified = true;
+		if (dataListKeypath || (this.$specifiedParams && this.$specifiedParams.has('dataList'))) {
+			define(this, 'dataList', dataListKeypath
+				? new Cell(Function(`return this.${dataListKeypath};`), {
+						context: this.ownerComponent || window
+				  })
+				: () => this.paramDataList);
+
+			this._paramDataListSpecified = true;
 		} else {
 			this.dataList = null;
-			this._isParamDataListSpecified = false;
+			this._paramDataListSpecified = false;
 		}
 
 		let dataListItemSchema = this.dataListItemSchema;
@@ -202,6 +205,8 @@ export class OpalSelect extends BaseComponent {
 			dataListItemSchema.subtext || defaultDataListItemSchema.subtext;
 		this._dataListItemDisabledFieldName =
 			dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
+
+		this.viewModel = this.paramViewModel || new ObservableList();
 
 		let vmItemSchema = this.viewModelItemSchema;
 		let defaultVMItemSchema = (this.constructor as typeof OpalSelect)
@@ -219,7 +224,7 @@ export class OpalSelect extends BaseComponent {
 	ready() {
 		this.optionElements = this.element.getElementsByClassName('OpalSelectOption') as any;
 
-		if (this.$specifiedParams!.has('viewModel') && !this.paramValue) {
+		if (this.paramViewModel && !this.paramValue) {
 			this._needOptionsUpdating = true;
 		} else {
 			this._notUpdateOptions = true;
@@ -230,7 +235,7 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	_initViewModel() {
-		let value: any = this.value;
+		let value: any = this.paramValue;
 		let selectedOptions: Array<OpalSelectOption> | undefined;
 
 		if (value) {
@@ -748,7 +753,7 @@ export class OpalSelect extends BaseComponent {
 
 		if (this.multiple) {
 			if (
-				!isEqualArray(
+				!isArraysEqual(
 					this.viewModel.map((item): string => item[this._viewModelItemValueFieldName]),
 					this._valueOnOpen
 				)

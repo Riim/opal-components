@@ -586,7 +586,10 @@ let OpalTreeListItem = class OpalTreeListItem extends rionite_1.BaseComponent {
     }
 };
 __decorate([
-    rionite_1.Param({ required: true }),
+    rionite_1.Param({
+        required: true,
+        readonly: true
+    }),
     __metadata("design:type", Object)
 ], OpalTreeListItem.prototype, "dataTreeList", void 0);
 __decorate([
@@ -666,7 +669,7 @@ OpalTreeListItem.prototype._getListItemContext = _getListItemContext_1.default;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_1 = __webpack_require__(8);
-function isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
+function isItemSelected(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
     do {
         if (vm.find(vmItem => vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName])) {
             return true;
@@ -674,11 +677,11 @@ function isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemV
     } while ((item = item.parent));
     return false;
 }
-function isIndeterminateItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
+function isItemIndeterminate(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
     return (!!item.children.length &&
-        !isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
+        !isItemSelected(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
         item.children.some(child => !!vm.find(vmItem => vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]) ||
-            isIndeterminateItem(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName)));
+            isItemIndeterminate(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName)));
 }
 function _getListItemContext(context, slot) {
     let $item = slot.$context.$item;
@@ -688,11 +691,11 @@ function _getListItemContext(context, slot) {
     }, {
         $selected: new cellx_1.Cell(function () {
             this.dataTreeList;
-            return isSelectedItem($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
+            return isItemSelected($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
         }, { context: this }),
         $indeterminate: new cellx_1.Cell(function () {
             this.dataTreeList;
-            return isIndeterminateItem($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
+            return isItemIndeterminate($item.$original || $item, this.viewModel, this._dataTreeListItemValueFieldName, this._viewModelItemValueFieldName);
         }, { context: this })
     });
 }

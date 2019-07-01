@@ -8,7 +8,7 @@ import {
 	TViewModel
 	} from './';
 
-function isSelectedItem(
+function isItemSelected(
 	item: IDataTreeListItem,
 	vm: TViewModel,
 	dataTreeListItemValueFieldName: string,
@@ -28,7 +28,7 @@ function isSelectedItem(
 	return false;
 }
 
-function isIndeterminateItem(
+function isItemIndeterminate(
 	item: IDataTreeListItem,
 	vm: TViewModel,
 	dataTreeListItemValueFieldName: string,
@@ -36,14 +36,14 @@ function isIndeterminateItem(
 ): boolean {
 	return (
 		!!item.children.length &&
-		!isSelectedItem(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
+		!isItemSelected(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
 		item.children.some(
 			child =>
 				!!vm.find(
 					vmItem =>
 						vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]
 				) ||
-				isIndeterminateItem(
+				isItemIndeterminate(
 					child,
 					vm,
 					dataTreeListItemValueFieldName,
@@ -64,7 +64,7 @@ export default function _getListItemContext(context: Object, slot: RnSlot) {
 			function(this: OpalTreeList) {
 				this.dataTreeList;
 
-				return isSelectedItem(
+				return isItemSelected(
 					$item.$original || $item,
 					this.viewModel,
 					this._dataTreeListItemValueFieldName,
@@ -78,7 +78,7 @@ export default function _getListItemContext(context: Object, slot: RnSlot) {
 			function(this: OpalTreeList | OpalTreeListItem) {
 				this.dataTreeList;
 
-				return isIndeterminateItem(
+				return isItemIndeterminate(
 					$item.$original || $item,
 					this.viewModel,
 					this._dataTreeListItemValueFieldName,

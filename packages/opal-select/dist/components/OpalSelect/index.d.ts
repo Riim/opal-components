@@ -35,7 +35,7 @@ export declare class OpalSelect extends BaseComponent {
         disabled?: string;
     };
     paramValue: Array<string>;
-    viewModel: TViewModel;
+    paramViewModel: TViewModel;
     viewModelItemSchema: {
         value?: string;
         text?: string;
@@ -56,6 +56,7 @@ export declare class OpalSelect extends BaseComponent {
     _dataListItemTextFieldName: string;
     _dataListItemSubtextFieldName: string;
     _dataListItemDisabledFieldName: string;
+    viewModel: TViewModel;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _viewModelItemSubtextFieldName: string;
@@ -71,7 +72,7 @@ export declare class OpalSelect extends BaseComponent {
     _opened: boolean;
     _valueOnOpen: Array<string>;
     _onceFocusedAfterLoading: boolean;
-    _isParamDataListSpecified: boolean;
+    _paramDataListSpecified: boolean;
     _documentClickListening: IDisposableListening | null | undefined;
     _documentFocusListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening | null | undefined;
