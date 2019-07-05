@@ -78,7 +78,6 @@
 
 		@mod disabled {
 			opacity: .5;
-			pointer-events: none;
 		}
 
 		/* Combinations */
@@ -106,6 +105,10 @@
 			border-top-right-radius: 0;
 			border-bottom-right-radius: 0;
 		}
+	}
+
+	@mod disabled {
+		pointer-events: none;
 	}
 
 	@mod viewType=primary {
