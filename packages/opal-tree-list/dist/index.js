@@ -414,59 +414,59 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
     }
     _onChange(evt) {
         let component = evt.target;
-        if (component.element.classList.contains('OpalTreeList__selectionControl')) {
-            let dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName;
-            let dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
-            let vm = this.viewModel;
-            let viewModelItemValueFieldName = this._viewModelItemValueFieldName;
-            let viewModelItemTextFieldName = this._viewModelItemTextFieldName;
-            let item = opal_utils_1.closestComponent(component.parentComponent, OpalTreeListItem_1.OpalTreeListItem).$context.$item;
-            if (item.$original) {
-                item = item.$original;
+        if (!component.element.classList.contains('OpalTreeList__selectionControl')) {
+            return;
+        }
+        let dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName;
+        let dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
+        let vm = this.viewModel;
+        let viewModelItemValueFieldName = this._viewModelItemValueFieldName;
+        let viewModelItemTextFieldName = this._viewModelItemTextFieldName;
+        let item = opal_utils_1.closestComponent(component.parentComponent, OpalTreeListItem_1.OpalTreeListItem).$context.$item;
+        if (item.$original) {
+            item = item.$original;
+        }
+        if (component.selected) {
+            for (let parent; (parent = item.parent) &&
+                parent.children.every(child => child == item ||
+                    !!vm.find(vmItem => vmItem[viewModelItemValueFieldName] ==
+                        child[dataTreeListItemValueFieldName]));) {
+                item = parent;
             }
-            if (component.selected) {
-                for (let parent; (parent = item.parent) &&
-                    parent.children.every(child => child == item ||
-                        !!vm.find(vmItem => vmItem[viewModelItemValueFieldName] ==
-                            child[dataTreeListItemValueFieldName]));) {
-                    item = parent;
+            item.children.forEach(function _(child) {
+                let childIndex = vm.findIndex(vmItem => vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]);
+                if (childIndex != -1) {
+                    vm.removeAt(childIndex);
                 }
-                item.children.forEach(function _(child) {
-                    let childIndex = vm.findIndex(vmItem => vmItem[viewModelItemValueFieldName] ==
-                        child[dataTreeListItemValueFieldName]);
-                    if (childIndex != -1) {
-                        vm.removeAt(childIndex);
-                    }
-                    child.children.forEach(_);
-                });
-                vm.add({
-                    [viewModelItemValueFieldName]: item[dataTreeListItemValueFieldName],
-                    [viewModelItemTextFieldName]: item[dataTreeListItemTextFieldName]
-                });
+                child.children.forEach(_);
+            });
+            vm.add({
+                [viewModelItemValueFieldName]: item[dataTreeListItemValueFieldName],
+                [viewModelItemTextFieldName]: item[dataTreeListItemTextFieldName]
+            });
+        }
+        else {
+            let itemIndex = vm.findIndex(vmItem => vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]);
+            if (itemIndex != -1) {
+                vm.removeAt(itemIndex);
             }
             else {
-                let itemIndex = vm.findIndex(vmItem => vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]);
-                if (itemIndex != -1) {
-                    vm.removeAt(itemIndex);
-                }
-                else {
-                    let parent = item.parent;
-                    for (;;) {
-                        let parentIndex = vm.findIndex(vmItem => vmItem[viewModelItemValueFieldName] ==
-                            parent[dataTreeListItemValueFieldName]);
-                        vm.addRange((parent.$original || parent).children
-                            .filter(child => child != item)
-                            .map(child => ({
-                            [viewModelItemValueFieldName]: child[dataTreeListItemValueFieldName],
-                            [viewModelItemTextFieldName]: child[dataTreeListItemTextFieldName]
-                        })));
-                        if (parentIndex != -1) {
-                            vm.removeAt(parentIndex);
-                            break;
-                        }
-                        item = parent;
-                        parent = item.parent;
+                let parent = item.parent;
+                for (;;) {
+                    let parentIndex = vm.findIndex(vmItem => vmItem[viewModelItemValueFieldName] ==
+                        parent[dataTreeListItemValueFieldName]);
+                    vm.addRange((parent.$original || parent).children
+                        .filter(child => child != item)
+                        .map(child => ({
+                        [viewModelItemValueFieldName]: child[dataTreeListItemValueFieldName],
+                        [viewModelItemTextFieldName]: child[dataTreeListItemTextFieldName]
+                    })));
+                    if (parentIndex != -1) {
+                        vm.removeAt(parentIndex);
+                        break;
                     }
+                    item = parent;
+                    parent = item.parent;
                 }
             }
         }
