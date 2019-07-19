@@ -24,7 +24,6 @@ export declare class OpalTextInput extends BaseComponent {
     _prevValue: string | null;
     readonly btnClearShown: boolean;
     readonly endIconShown: boolean;
-    ready(): void;
     elementAttached(): void;
     _onRowsChange(): void;
     _onParamValueChange(evt: IEvent): void;

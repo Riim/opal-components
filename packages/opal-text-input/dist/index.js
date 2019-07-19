@@ -175,9 +175,12 @@ let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
     get endIconShown() {
         return !this.loading && !this.btnClearShown;
     }
-    ready() {
+    elementAttached() {
         this.textField = this.$('textField');
-        if (this.paramValue) {
+        if (this._textFieldValue) {
+            this.textField.value = this._textFieldValue;
+        }
+        else if (this.paramValue) {
             this._textFieldValue = this.textField.value = this.paramValue;
         }
         else if (this.storeKey) {
@@ -194,8 +197,6 @@ let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
         if (this.focused) {
             this.focus();
         }
-    }
-    elementAttached() {
         this.listenTo(this, {
             'change:rows': this._onRowsChange,
             'change:paramValue': this._onParamValueChange

@@ -78,10 +78,12 @@ export class OpalTextInput extends BaseComponent {
 		return !this.loading && !this.btnClearShown;
 	}
 
-	ready() {
+	elementAttached() {
 		this.textField = this.$<HTMLInputElement>('textField')!;
 
-		if (this.paramValue) {
+		if (this._textFieldValue) {
+			this.textField.value = this._textFieldValue;
+		} else if (this.paramValue) {
 			this._textFieldValue = this.textField.value = this.paramValue;
 		} else if (this.storeKey) {
 			this._textFieldValue = this.textField.value = localStorage.getItem(this.storeKey) || '';
@@ -99,9 +101,7 @@ export class OpalTextInput extends BaseComponent {
 		if (this.focused) {
 			this.focus();
 		}
-	}
 
-	elementAttached() {
 		this.listenTo(this, {
 			'change:rows': this._onRowsChange,
 			'change:paramValue': this._onParamValueChange
