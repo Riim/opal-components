@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@riim/gettext": "^2.0.0",
-    "@riim/next-tick": "^1.1.1",
+    "@riim/next-tick": "^1.2.3",
     "@riim/opal-button": "^0.37.22",
     "@riim/opal-dropdown": "^0.37.16",
     "@riim/opal-filtered-list": "^0.37.23",
@@ -22,9 +22,9 @@
     "@riim/opal-loaded-list": "^0.37.20",
     "@riim/opal-loader": "^0.37.16",
     "@riim/opal-text-input": "^0.37.23",
-    "cellx": "^1.8.6",
+    "cellx": "^1.9.1",
     "cellx-decorators": "^1.5.0",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.17"
+    "rionite": "^0.37.29"
   }
 }

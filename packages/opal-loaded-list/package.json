@@ -13,11 +13,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/next-tick": "^1.1.1",
+    "@riim/next-tick": "^1.2.3",
     "@riim/opal-loader": "^0.37.16",
-    "cellx": "^1.8.5",
+    "cellx": "^1.9.1",
     "cellx-decorators": "^1.5.0",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.12"
+    "rionite": "^0.37.29"
   }
 }

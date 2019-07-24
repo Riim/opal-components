@@ -16,8 +16,8 @@
     "@riim/escape-regexp": "^1.0.0",
     "@riim/gettext": "^2.0.0",
     "@riim/next-uid": "^1.0.0",
-    "cellx": "^1.8.1",
+    "cellx": "^1.9.1",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.7"
+    "rionite": "^0.37.29"
   }
 }
