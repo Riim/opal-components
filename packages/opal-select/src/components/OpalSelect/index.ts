@@ -61,7 +61,7 @@ export class OpalSelect extends BaseComponent {
 	@Param
 	viewType: string;
 	@Param
-	size = 'm';
+	size: typeof OpalButton.prototype.size = 'm';
 	@Param({ readonly: true })
 	multiple = false;
 	@Param('dataList')

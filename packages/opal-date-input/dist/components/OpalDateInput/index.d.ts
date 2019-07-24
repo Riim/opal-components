@@ -1,3 +1,4 @@
+import { OpalPopover } from '@riim/opal-popover';
 import { OpalTextInput } from '@riim/opal-text-input';
 import { IEvent } from 'cellx';
 import { dateExists } from 'date-exists';
@@ -10,7 +11,7 @@ export declare class OpalDateInput extends BaseComponent {
     placeholder: string;
     mask: string;
     required: boolean;
-    popoverPosition: string;
+    popoverPosition: typeof OpalPopover.prototype.position;
     dateExists: typeof dateExists;
     _isDateInRange(date: string): boolean;
     _documentFocusListening: IDisposableListening;

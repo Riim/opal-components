@@ -323,7 +323,7 @@ __decorate([
 ], OpalTextInput.prototype, "inputType", void 0);
 __decorate([
     rionite_1.Param,
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], OpalTextInput.prototype, "size", void 0);
 __decorate([
     rionite_1.Param,

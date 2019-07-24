@@ -5,6 +5,7 @@ import {
 	toDate
 	} from '@riim/opal-calendar';
 import { OpalDropdown } from '@riim/opal-dropdown';
+import { OpalPopover } from '@riim/opal-popover';
 import { OpalTextInput } from '@riim/opal-text-input';
 import { OpalTextInputValidator } from '@riim/opal-text-input-validator';
 import { IEvent } from 'cellx';
@@ -55,7 +56,7 @@ export class OpalDateInput extends BaseComponent {
 	@Param({ readonly: true })
 	required = false;
 	@Param
-	popoverPosition = 'right';
+	popoverPosition: typeof OpalPopover.prototype.position = 'right';
 
 	dateExists = dateExists;
 

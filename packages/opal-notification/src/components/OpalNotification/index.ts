@@ -28,11 +28,11 @@ function initContainer(notification: OpalNotification): HTMLElement {
 })
 export class OpalNotification extends BaseComponent {
 	@Param
-	viewType = 'default';
+	viewType: 'default' | 'primary' | 'success' | 'danger' = 'default';
 	@Param
 	icon: string;
 	@Param
-	iconSize = 'xs';
+	iconSize: 'xs' | 's' | 'm' = 'xs';
 	@Param
 	buttonHide = true;
 	@Param
@@ -132,7 +132,7 @@ export class OpalNotification extends BaseComponent {
 					this.hide();
 					this.emit('hide');
 					this.emit('close');
-				}, this.timeout);
+				}, this.timeout) as any;
 			}
 		}, 100);
 	}

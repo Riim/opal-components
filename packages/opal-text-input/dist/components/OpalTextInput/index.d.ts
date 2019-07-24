@@ -3,7 +3,7 @@ import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalTextInput extends BaseComponent {
     inputType: string;
-    size: string;
+    size: 'm';
     multiline: boolean;
     rows: number;
     autoHeight: boolean;

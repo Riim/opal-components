@@ -17,6 +17,7 @@
     "@riim/opal-dropdown": "^0.37.16",
     "@riim/opal-icon": "^0.37.16",
     "@riim/opal-input-mask": "^0.37.23",
+	"@riim/opal-popover": "^0.37.16",
     "@riim/opal-text-input": "^0.37.23",
     "@riim/opal-text-input-validator": "^0.37.23",
     "cellx": "^1.9.1",

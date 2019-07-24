@@ -24,7 +24,7 @@ export class OpalTextInput extends BaseComponent {
 	@Param
 	inputType = 'text';
 	@Param
-	size = 'm';
+	size: 'm' = 'm';
 	@Param
 	multiline = false;
 	@Param

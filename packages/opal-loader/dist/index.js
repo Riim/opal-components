@@ -141,7 +141,7 @@ let OpalLoader = class OpalLoader extends rionite_1.BaseComponent {
 };
 __decorate([
     rionite_1.Param,
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], OpalLoader.prototype, "size", void 0);
 __decorate([
     rionite_1.Param,

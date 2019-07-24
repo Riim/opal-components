@@ -1,8 +1,8 @@
 import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalButton extends BaseComponent {
-    viewType: string;
-    size: string;
+    viewType: 'default' | 'primary' | 'danger';
+    size: 's' | 'm';
     checkable: boolean;
     checked: boolean;
     loading: boolean;

@@ -1,4 +1,5 @@
 import { IDataProvider } from '@riim/opal-loaded-list';
+import { OpalPopover } from '@riim/opal-popover';
 import { IDataListItem, OpalSelect, TDataList, TViewModel } from '@riim/opal-select';
 import { IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
@@ -34,7 +35,7 @@ export declare class OpalTagSelect extends BaseComponent {
     };
     addNewItem: (text: string) => Promise<Record<string, string>>;
     placeholder: string;
-    popoverPosition: string;
+    popoverPosition: typeof OpalPopover.prototype.position;
     tabIndex: number;
     focused: boolean;
     disabled: boolean;

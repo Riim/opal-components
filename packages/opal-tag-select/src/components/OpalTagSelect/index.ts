@@ -1,5 +1,6 @@
 import { pt } from '@riim/gettext';
 import { IDataProvider } from '@riim/opal-loaded-list';
+import { OpalPopover } from '@riim/opal-popover';
 import {
 	IDataListItem,
 	OpalSelect,
@@ -99,7 +100,7 @@ export class OpalTagSelect extends BaseComponent {
 	// ;;; Можно перевести как призыв к выбору -- Select (англ.).
 	placeholder = pt('OpalTagSelect#placeholder', 'Не выбрано');
 	@Param
-	popoverPosition = 'bottom';
+	popoverPosition: typeof OpalPopover.prototype.position = 'bottom';
 	@Param
 	tabIndex = 0;
 	@Param

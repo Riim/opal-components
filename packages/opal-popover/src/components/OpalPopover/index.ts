@@ -15,7 +15,19 @@ import template from './template.rnt';
 })
 export class OpalPopover extends BaseComponent {
 	@Param
-	position = 'right';
+	position:
+		| 'top'
+		| 'top-left'
+		| 'top-right'
+		| 'right'
+		| 'right-top'
+		| 'right-bottom'
+		| 'bottom'
+		| 'bottom-left'
+		| 'bottom-right'
+		| 'left'
+		| 'left-top'
+		| 'left-bottom' = 'right';
 	@Param
 	positionOffset = 0;
 	@Param
@@ -105,7 +117,8 @@ export class OpalPopover extends BaseComponent {
 							containerClientRect.left <
 								docEl.clientWidth - containerClientRect.right)
 					) {
-						this.position = 'right' + (position.length == 2 ? '-' + position[1] : '');
+						this.position = ('right' +
+							(position.length == 2 ? '-' + position[1] : '')) as any;
 					}
 
 					break;
@@ -117,7 +130,8 @@ export class OpalPopover extends BaseComponent {
 							containerClientRect.top <
 								docEl.clientHeight - containerClientRect.bottom)
 					) {
-						this.position = 'bottom' + (position.length == 2 ? '-' + position[1] : '');
+						this.position = ('bottom' +
+							(position.length == 2 ? '-' + position[1] : '')) as any;
 					}
 
 					break;
@@ -129,7 +143,8 @@ export class OpalPopover extends BaseComponent {
 						containerClientRect.left + window.pageXOffset >=
 							elClientRect.right - containerClientRect.right
 					) {
-						this.position = 'left' + (position.length == 2 ? '-' + position[1] : '');
+						this.position = ('left' +
+							(position.length == 2 ? '-' + position[1] : '')) as any;
 					}
 
 					break;
@@ -141,7 +156,8 @@ export class OpalPopover extends BaseComponent {
 						containerClientRect.top + window.pageYOffset >=
 							elClientRect.bottom - containerClientRect.bottom
 					) {
-						this.position = 'top' + (position.length == 2 ? '-' + position[1] : '');
+						this.position = ('top' +
+							(position.length == 2 ? '-' + position[1] : '')) as any;
 					}
 
 					break;
@@ -181,7 +197,7 @@ export class OpalPopover extends BaseComponent {
 
 	_close() {
 		if (this.autoDirection) {
-			this.position = this._positionAtOpening;
+			this.position = this._positionAtOpening as any;
 		}
 
 		if (this._closingEventListening) {

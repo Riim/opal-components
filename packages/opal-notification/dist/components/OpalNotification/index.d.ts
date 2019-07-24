@@ -2,9 +2,9 @@ import { IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalNotification extends BaseComponent {
-    viewType: string;
+    viewType: 'default' | 'primary' | 'success' | 'danger';
     icon: string;
-    iconSize: string;
+    iconSize: 'xs' | 's' | 'm';
     buttonHide: boolean;
     timeout: number;
     shown: boolean;

@@ -256,7 +256,7 @@ let OpalNotification = class OpalNotification extends rionite_1.BaseComponent {
 };
 __decorate([
     rionite_1.Param,
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], OpalNotification.prototype, "viewType", void 0);
 __decorate([
     rionite_1.Param,
@@ -264,7 +264,7 @@ __decorate([
 ], OpalNotification.prototype, "icon", void 0);
 __decorate([
     rionite_1.Param,
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], OpalNotification.prototype, "iconSize", void 0);
 __decorate([
     rionite_1.Param,

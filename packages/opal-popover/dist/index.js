@@ -202,7 +202,8 @@ let OpalPopover = class OpalPopover extends rionite_1.BaseComponent {
                         (elClientRect.left < 0 &&
                             containerClientRect.left <
                                 docEl.clientWidth - containerClientRect.right)) {
-                        this.position = 'right' + (position.length == 2 ? '-' + position[1] : '');
+                        this.position = ('right' +
+                            (position.length == 2 ? '-' + position[1] : ''));
                     }
                     break;
                 }
@@ -211,7 +212,8 @@ let OpalPopover = class OpalPopover extends rionite_1.BaseComponent {
                         (elClientRect.top < 0 &&
                             containerClientRect.top <
                                 docEl.clientHeight - containerClientRect.bottom)) {
-                        this.position = 'bottom' + (position.length == 2 ? '-' + position[1] : '');
+                        this.position = ('bottom' +
+                            (position.length == 2 ? '-' + position[1] : ''));
                     }
                     break;
                 }
@@ -220,7 +222,8 @@ let OpalPopover = class OpalPopover extends rionite_1.BaseComponent {
                         containerClientRect.left > docEl.clientWidth - containerClientRect.right &&
                         containerClientRect.left + window.pageXOffset >=
                             elClientRect.right - containerClientRect.right) {
-                        this.position = 'left' + (position.length == 2 ? '-' + position[1] : '');
+                        this.position = ('left' +
+                            (position.length == 2 ? '-' + position[1] : ''));
                     }
                     break;
                 }
@@ -229,7 +232,8 @@ let OpalPopover = class OpalPopover extends rionite_1.BaseComponent {
                         containerClientRect.top > docEl.clientHeight - containerClientRect.bottom &&
                         containerClientRect.top + window.pageYOffset >=
                             elClientRect.bottom - containerClientRect.bottom) {
-                        this.position = 'top' + (position.length == 2 ? '-' + position[1] : '');
+                        this.position = ('top' +
+                            (position.length == 2 ? '-' + position[1] : ''));
                     }
                     break;
                 }
@@ -281,7 +285,7 @@ let OpalPopover = class OpalPopover extends rionite_1.BaseComponent {
 };
 __decorate([
     rionite_1.Param,
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], OpalPopover.prototype, "position", void 0);
 __decorate([
     rionite_1.Param,
