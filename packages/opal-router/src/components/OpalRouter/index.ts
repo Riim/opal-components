@@ -45,6 +45,8 @@ function valueToAttributeValue(value: boolean | string): string {
 	elementIs: 'OpalRouter'
 })
 export class OpalRouter extends BaseComponent {
+	static EVENT_REFRESH_ROUTER = Symbol('refresh-router');
+
 	static history = history;
 
 	@Param({ readonly: true })
@@ -135,7 +137,7 @@ export class OpalRouter extends BaseComponent {
 			this.listenTo(document.body, 'click', this._onBodyClick);
 		}
 
-		this.listenTo(this, '<*>refresh-router', this._onRefreshRouter);
+		this.listenTo(this, OpalRouter.EVENT_REFRESH_ROUTER, this._onRefreshRouter);
 
 		if (this.useLocationHash) {
 			this._update(history.location.hash.slice(1), '');
@@ -349,31 +351,35 @@ export class OpalRouter extends BaseComponent {
 	}
 
 	_clear() {
-		if (this._route) {
-			this._route = null;
-			this._state = null;
-
-			this.element.removeChild(this._componentElement!);
-			this._componentElement = null;
+		if (!this._route) {
+			return;
 		}
+
+		this._route = null;
+		this._state = null;
+
+		this.element.removeChild(this._componentElement!);
+		this._componentElement = null;
 	}
 
 	refresh() {
 		let route = this._route;
 
-		if (route) {
-			this.element.removeChild(this._componentElement!);
+		if (!route) {
+			return;
+		}
 
-			let componentEl = (this._componentElement = document.createElement(
-				route.componentName
-			) as IComponentElement);
-			this._applyState();
-			componentEl.rioniteComponent.ownerComponent = this;
-			this.element.appendChild(componentEl);
+		this.element.removeChild(this._componentElement!);
 
-			if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
-				window.scrollTo(window.pageXOffset, 0);
-			}
+		let componentEl = (this._componentElement = document.createElement(
+			route.componentName
+		) as IComponentElement);
+		this._applyState();
+		componentEl.rioniteComponent.ownerComponent = this;
+		this.element.appendChild(componentEl);
+
+		if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
+			window.scrollTo(window.pageXOffset, 0);
 		}
 	}
 }

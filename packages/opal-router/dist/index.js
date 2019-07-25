@@ -129,6 +129,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalRouter_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const kebab_case_1 = __webpack_require__(3);
 const next_uid_1 = __webpack_require__(4);
@@ -145,7 +146,7 @@ const history = history_1.createBrowserHistory();
 function valueToAttributeValue(value) {
     return value === false ? 'no' : value === true ? 'yes' : value;
 }
-let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
+let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.useLocationHash = false;
@@ -215,7 +216,7 @@ let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
         if (!this.useLocationHash) {
             this.listenTo(document.body, 'click', this._onBodyClick);
         }
-        this.listenTo(this, '<*>refresh-router', this._onRefreshRouter);
+        this.listenTo(this, OpalRouter_1.EVENT_REFRESH_ROUTER, this._onRefreshRouter);
         if (this.useLocationHash) {
             this._update(history.location.hash.slice(1), '');
         }
@@ -371,27 +372,30 @@ let OpalRouter = class OpalRouter extends rionite_1.BaseComponent {
         }
     }
     _clear() {
-        if (this._route) {
-            this._route = null;
-            this._state = null;
-            this.element.removeChild(this._componentElement);
-            this._componentElement = null;
+        if (!this._route) {
+            return;
         }
+        this._route = null;
+        this._state = null;
+        this.element.removeChild(this._componentElement);
+        this._componentElement = null;
     }
     refresh() {
         let route = this._route;
-        if (route) {
-            this.element.removeChild(this._componentElement);
-            let componentEl = (this._componentElement = document.createElement(route.componentName));
-            this._applyState();
-            componentEl.rioniteComponent.ownerComponent = this;
-            this.element.appendChild(componentEl);
-            if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
-                window.scrollTo(window.pageXOffset, 0);
-            }
+        if (!route) {
+            return;
+        }
+        this.element.removeChild(this._componentElement);
+        let componentEl = (this._componentElement = document.createElement(route.componentName));
+        this._applyState();
+        componentEl.rioniteComponent.ownerComponent = this;
+        this.element.appendChild(componentEl);
+        if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
+            window.scrollTo(window.pageXOffset, 0);
         }
     }
 };
+OpalRouter.EVENT_REFRESH_ROUTER = Symbol('refresh-router');
 OpalRouter.history = history;
 __decorate([
     rionite_1.Param({ readonly: true }),
@@ -405,7 +409,7 @@ __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
 ], OpalRouter.prototype, "scrollTopOnChangeComponent", void 0);
-OpalRouter = __decorate([
+OpalRouter = OpalRouter_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalRouter'
     })
