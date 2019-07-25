@@ -28,11 +28,11 @@ function initContainer(notification: OpalNotification): HTMLElement {
 })
 export class OpalNotification extends BaseComponent {
 	@Param
-	viewType: 'default' | 'primary' | 'success' | 'danger' = 'default';
+	viewType: 'default' | 'primary' | 'success' | 'danger' | string = 'default';
 	@Param
 	icon: string;
 	@Param
-	iconSize: 'xs' | 's' | 'm' = 'xs';
+	iconSize: 'xs' | 's' | 'm' | string = 'xs';
 	@Param
 	buttonHide = true;
 	@Param

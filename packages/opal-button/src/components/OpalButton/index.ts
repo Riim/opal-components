@@ -12,9 +12,9 @@ import './index.css';
 })
 export class OpalButton extends BaseComponent {
 	@Param
-	viewType: 'default' | 'primary' | 'danger' = 'default';
+	viewType: 'default' | 'primary' | 'danger' | 'clean' | string = 'default';
 	@Param
-	size: 's' | 'm' = 'm';
+	size: 's' | 'm' | string = 'm';
 	@Param
 	checkable = false;
 	@Param

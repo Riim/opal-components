@@ -69,7 +69,7 @@ import './icons/upload.svg?id=OpalIcon__iconUpload';
 import './icons/user.svg?id=OpalIcon__iconUser';
 export declare class OpalIcon extends BaseComponent {
     name: string;
-    size: 's' | 'xs' | 'xxs' | 'm' | 's' | 'xs' | 'xxs';
+    size: 's' | 'xs' | 'xxs' | 'm' | 's' | 'xs' | 'xxs' | string;
     strokeWidth: number;
     filled: boolean;
     readonly xlinkHref: string;

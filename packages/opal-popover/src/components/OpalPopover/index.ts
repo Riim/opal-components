@@ -27,7 +27,8 @@ export class OpalPopover extends BaseComponent {
 		| 'bottom-right'
 		| 'left'
 		| 'left-top'
-		| 'left-bottom' = 'right';
+		| 'left-bottom'
+		| string = 'right';
 	@Param
 	positionOffset = 0;
 	@Param

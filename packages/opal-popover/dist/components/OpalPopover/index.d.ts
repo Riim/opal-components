@@ -2,7 +2,7 @@ import { IEvent } from 'cellx';
 import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalPopover extends BaseComponent {
-    position: 'top' | 'top-left' | 'top-right' | 'right' | 'right-top' | 'right-bottom' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'left-top' | 'left-bottom';
+    position: 'top' | 'top-left' | 'top-right' | 'right' | 'right-top' | 'right-bottom' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'left-top' | 'left-bottom' | string;
     positionOffset: number;
     autoDirection: boolean;
     closeOn: string;
