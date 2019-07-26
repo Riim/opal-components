@@ -22,9 +22,9 @@
     "@riim/opal-loaded-list": "^0.37.25",
     "@riim/opal-loader": "^0.37.25",
     "@riim/opal-text-input": "^0.37.25",
-    "cellx": "^1.9.1",
+    "cellx": "^1.9.6",
     "cellx-decorators": "^1.5.0",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.29"
+    "rionite": "^0.37.30"
   }
 }
