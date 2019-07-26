@@ -2,6 +2,7 @@ import { IEvent } from 'cellx';
 import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalDropdown extends BaseComponent {
+    static EVENT_CLOSE: symbol;
     autoHeight: boolean;
     closeOn: 'click' | 'mousedown' | string;
     opened: boolean;

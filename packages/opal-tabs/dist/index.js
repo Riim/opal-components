@@ -129,6 +129,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalTabs_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const next_uid_1 = __webpack_require__(3);
 const opal_router_1 = __webpack_require__(4);
@@ -146,7 +147,7 @@ const indexOf = Array.prototype.indexOf;
 const forEach = Array.prototype.forEach;
 const find = Array.prototype.find;
 const reTabLabel = /(?:#|&)tab=([^&]+)/;
-let OpalTabs = class OpalTabs extends rionite_1.BaseComponent {
+let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.useLocationHash = false;
@@ -181,8 +182,8 @@ let OpalTabs = class OpalTabs extends rionite_1.BaseComponent {
     elementAttached() {
         this.listenTo(this.element.getElementsByClassName('OpalTabList')[0]
             .$component, {
-            '<OpalTab>select': this._onTabListSelect,
-            '<OpalTab>deselect': this._onTabListDeselect
+            [OpalTabList_1.OpalTab.EVENT_SELECT]: this._onTabListSelect,
+            [OpalTabList_1.OpalTab.EVENT_DESELECT]: this._onTabListDeselect
         });
         if (this.useLocationHash) {
             reTabLabel.test(opal_router_1.OpalRouter.history.location.hash);
@@ -251,14 +252,15 @@ let OpalTabs = class OpalTabs extends rionite_1.BaseComponent {
             }
         }
         cellx_1.Cell.release();
-        this.emit('change');
+        this.emit(OpalTabs_1.EVENT_CHANGE);
     }
 };
+OpalTabs.EVENT_CHANGE = Symbol('change');
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
 ], OpalTabs.prototype, "useLocationHash", void 0);
-OpalTabs = __decorate([
+OpalTabs = OpalTabs_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTabs',
         template: template_rnt_1.default
@@ -335,12 +337,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalTab_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(9);
 const rionite_1 = __webpack_require__(6);
 __webpack_require__(10);
 const template_rnt_1 = __webpack_require__(11);
-let OpalTab = class OpalTab extends rionite_1.BaseComponent {
+let OpalTab = OpalTab_1 = class OpalTab extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.selected = false;
@@ -377,7 +380,7 @@ let OpalTab = class OpalTab extends rionite_1.BaseComponent {
         }
     }
     click() {
-        this.emit(this.toggle() ? 'select' : 'deselect');
+        this.emit(this.toggle() ? OpalTab_1.EVENT_SELECT : OpalTab_1.EVENT_DESELECT);
         return this;
     }
     select() {
@@ -414,6 +417,8 @@ let OpalTab = class OpalTab extends rionite_1.BaseComponent {
         return this;
     }
 };
+OpalTab.EVENT_SELECT = Symbol('select');
+OpalTab.EVENT_DESELECT = Symbol('deselect');
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
@@ -443,7 +448,7 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalTab.prototype, "_tabIndex", null);
-OpalTab = __decorate([
+OpalTab = OpalTab_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTab',
         template: template_rnt_1.default

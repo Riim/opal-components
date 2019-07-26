@@ -3,6 +3,9 @@ import { OpalInputValidatorRule } from '../OpalInputValidatorRule';
 import './index.css';
 export { OpalInputValidatorRule };
 export declare class OpalInputValidator extends BaseComponent {
+    static EVENT_INPUT_VALIDATION_ERROR: symbol;
+    static EVENT_INPUT_VALIDATION_VALID: symbol;
+    static TARGET_CHANGE_EVENT: symbol;
     target: BaseComponent;
     rules: Array<OpalInputValidatorRule>;
     failedRule: OpalInputValidatorRule | null;

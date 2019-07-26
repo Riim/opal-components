@@ -18,12 +18,12 @@ export class OpalRadioGroup extends BaseComponent {
 
 	elementAttached() {
 		this.listenTo(this, {
-			'<OpalRadioButton>check': this._onCheck,
-			'<OpalRadioButton>uncheck': this._onUncheck
+			[OpalRadioButton.EVENT_CHECK]: this._onButtonCheck,
+			[OpalRadioButton.EVENT_UNCHECK]: this._onButtonUncheck
 		});
 	}
 
-	_onCheck(evt: IEvent) {
+	_onButtonCheck(evt: IEvent) {
 		let checkedButton = evt.target;
 
 		forEach.call(this.buttonElements, (btnEl: IComponentElement<OpalRadioButton>) => {
@@ -33,7 +33,7 @@ export class OpalRadioGroup extends BaseComponent {
 		});
 	}
 
-	_onUncheck(evt: IEvent<OpalRadioButton>) {
+	_onButtonUncheck(evt: IEvent<OpalRadioButton>) {
 		evt.target.check();
 	}
 }

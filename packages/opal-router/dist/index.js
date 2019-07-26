@@ -339,7 +339,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
                     if (this.scrollTopOnChange) {
                         window.scrollTo(window.pageXOffset, 0);
                     }
-                    this.emit('change');
+                    this.emit(OpalRouter_1.EVENT_CHANGE);
                     return true;
                 }
             }
@@ -355,11 +355,11 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
             if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
                 window.scrollTo(window.pageXOffset, 0);
             }
-            this.emit('change');
+            this.emit(OpalRouter_1.EVENT_CHANGE);
             return true;
         }
         if (this._route) {
-            this.emit('change');
+            this.emit(OpalRouter_1.EVENT_CHANGE);
             this._clear();
         }
         return false;
@@ -395,6 +395,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
         }
     }
 };
+OpalRouter.EVENT_CHANGE = Symbol('change');
 OpalRouter.EVENT_REFRESH_ROUTER = Symbol('refresh-router');
 OpalRouter.history = history;
 __decorate([

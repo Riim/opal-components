@@ -165,7 +165,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const opal_button_1 = __webpack_require__(1);
 const opal_select_1 = __webpack_require__(4);
+const opal_text_input_1 = __webpack_require__(5);
 const platform_1 = __webpack_require__(8);
 const cellx_decorators_1 = __webpack_require__(9);
 const rionite_1 = __webpack_require__(10);
@@ -211,15 +213,15 @@ OpalMultiselect = __decorate([
         template: opal_select_1.OpalSelect.template.extend(template_rnt_1.default),
         events: {
             queryInput: {
-                input(evt) {
+                [opal_text_input_1.OpalTextInput.EVENT_INPUT](evt) {
                     this.$('loadedList').query = evt.target.value;
                 },
-                clear() {
+                [opal_text_input_1.OpalTextInput.EVENT_CLEAR]() {
                     this.$('loadedList').query = '';
                 }
             },
             btnClose: {
-                click() {
+                [opal_button_1.OpalButton.EVENT_CLICK]() {
                     this.close();
                     this.focus();
                 }

@@ -27,6 +27,8 @@ const reTabLabel = /(?:#|&)tab=([^&]+)/;
 	template
 })
 export class OpalTabs extends BaseComponent {
+	static EVENT_CHANGE = Symbol('change');
+
 	@Param
 	useLocationHash = false;
 
@@ -74,8 +76,8 @@ export class OpalTabs extends BaseComponent {
 			(this.element.getElementsByClassName('OpalTabList')[0] as IComponentElement)
 				.$component!,
 			{
-				'<OpalTab>select': this._onTabListSelect,
-				'<OpalTab>deselect': this._onTabListDeselect
+				[OpalTab.EVENT_SELECT]: this._onTabListSelect,
+				[OpalTab.EVENT_DESELECT]: this._onTabListDeselect
 			}
 		);
 
@@ -167,6 +169,6 @@ export class OpalTabs extends BaseComponent {
 
 		Cell.release();
 
-		this.emit('change');
+		this.emit(OpalTabs.EVENT_CHANGE);
 	}
 }

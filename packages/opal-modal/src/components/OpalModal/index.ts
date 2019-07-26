@@ -35,12 +35,14 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 		btnClose: {
 			click() {
 				this.close();
-				this.emit('close');
+				this.emit(OpalModal.EVENT_CLOSE);
 			}
 		}
 	}
 })
 export class OpalModal extends BaseComponent {
+	static EVENT_CLOSE = Symbol('close');
+
 	@Param
 	opened = false;
 
@@ -77,7 +79,7 @@ export class OpalModal extends BaseComponent {
 		for (let el: Element | null = evt.target as Element; el != windowEl; ) {
 			if (el == componentEl) {
 				this.close();
-				this.emit('close');
+				this.emit(OpalModal.EVENT_CLOSE);
 				break;
 			}
 

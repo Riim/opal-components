@@ -133,13 +133,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var OpalSwitchMenu_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+const opal_button_1 = __webpack_require__(1);
 const rionite_1 = __webpack_require__(4);
 __webpack_require__(5);
 const template_rnt_1 = __webpack_require__(6);
 const forEach = Array.prototype.forEach;
 const find = Array.prototype.find;
-let OpalSwitchMenu = class OpalSwitchMenu extends rionite_1.BaseComponent {
+let OpalSwitchMenu = OpalSwitchMenu_1 = class OpalSwitchMenu extends rionite_1.BaseComponent {
     get checkedButton() {
         if (this._checkedButton !== undefined) {
             return this._checkedButton;
@@ -161,15 +163,15 @@ let OpalSwitchMenu = class OpalSwitchMenu extends rionite_1.BaseComponent {
             }
         });
         this._checkedButton = checkedButton;
-        this.emit('change');
+        this.emit(OpalSwitchMenu_1.EVENT_CHANGE);
     }
     ready() {
         this.buttonElements = this.element.getElementsByClassName('OpalButton');
     }
     elementAttached() {
         this.listenTo(this, {
-            '<OpalButton>check': this._onButtonCheck,
-            '<OpalButton>uncheck': this._onButtonUncheck
+            [opal_button_1.OpalButton.EVENT_CHECK]: this._onButtonCheck,
+            [opal_button_1.OpalButton.EVENT_UNCHECK]: this._onButtonUncheck
         });
     }
     _onButtonCheck(evt) {
@@ -180,7 +182,7 @@ let OpalSwitchMenu = class OpalSwitchMenu extends rionite_1.BaseComponent {
             }
         });
         this._checkedButton = checkedButton;
-        this.emit('change');
+        this.emit(OpalSwitchMenu_1.EVENT_CHANGE);
     }
     _onButtonUncheck(evt) {
         evt.target.check();
@@ -193,7 +195,8 @@ let OpalSwitchMenu = class OpalSwitchMenu extends rionite_1.BaseComponent {
         }
     }
 };
-OpalSwitchMenu = __decorate([
+OpalSwitchMenu.EVENT_CHANGE = Symbol('change');
+OpalSwitchMenu = OpalSwitchMenu_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSwitchMenu',
         template: template_rnt_1.default

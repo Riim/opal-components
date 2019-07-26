@@ -136,6 +136,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalInputValidator_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(4);
 const rionite_1 = __webpack_require__(5);
@@ -143,7 +144,7 @@ const OpalInputValidatorRule_1 = __webpack_require__(6);
 exports.OpalInputValidatorRule = OpalInputValidatorRule_1.OpalInputValidatorRule;
 __webpack_require__(9);
 const template_rnt_1 = __webpack_require__(10);
-let OpalInputValidator = class OpalInputValidator extends rionite_1.BaseComponent {
+let OpalInputValidator = OpalInputValidator_1 = class OpalInputValidator extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.failedRule = null;
@@ -155,7 +156,7 @@ let OpalInputValidator = class OpalInputValidator extends rionite_1.BaseComponen
         this.rules = Array.prototype.map.call(this.element.getElementsByClassName('OpalInputValidatorRule'), (ruleEl) => ruleEl.$component);
     }
     elementAttached() {
-        this.listenTo(this.target, 'change', this._onTargetChange);
+        this.listenTo(this.target, this.constructor.TARGET_CHANGE_EVENT, this._onTargetChange);
     }
     _onTargetChange() {
         this.validate();
@@ -179,11 +180,11 @@ let OpalInputValidator = class OpalInputValidator extends rionite_1.BaseComponen
         if (+!!failedRule ^ +!!prevFailedRule) {
             if (failedRule) {
                 this.element.setAttribute('valid', 'no');
-                this.emit('input-validation-error');
+                this.emit(OpalInputValidator_1.EVENT_INPUT_VALIDATION_ERROR);
             }
             else {
                 this.element.removeAttribute('valid');
-                this.emit('input-validation-valid');
+                this.emit(OpalInputValidator_1.EVENT_INPUT_VALIDATION_VALID);
             }
         }
         return !failedRule;
@@ -196,6 +197,8 @@ let OpalInputValidator = class OpalInputValidator extends rionite_1.BaseComponen
         return this;
     }
 };
+OpalInputValidator.EVENT_INPUT_VALIDATION_ERROR = Symbol('input-validation-error');
+OpalInputValidator.EVENT_INPUT_VALIDATION_VALID = Symbol('input-validation-valid');
 __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
@@ -205,7 +208,7 @@ __decorate([
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], OpalInputValidator.prototype, "valid", null);
-OpalInputValidator = __decorate([
+OpalInputValidator = OpalInputValidator_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalInputValidator',
         template: template_rnt_1.default

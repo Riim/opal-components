@@ -59,6 +59,8 @@ const defaultDataListItemSchema = Object.freeze({
 	}
 })
 export class OpalAutosuggest extends BaseComponent {
+	static EVENT_CHANGE = Symbol('change');
+
 	@Param({
 		type: eval,
 		default: defaultDataListItemSchema,
@@ -134,10 +136,10 @@ export class OpalAutosuggest extends BaseComponent {
 		});
 		this.listenTo(this.dataList, ObservableList.EVENT_CHANGE, this._onDataListChange);
 		this.listenTo('textInput', {
-			focus: this._onTextInputFocus,
-			blur: this._onTextInputBlur,
-			input: this._onTextInputInput,
-			change: this._onTextInputChange
+			[OpalTextInput.EVENT_FOCUS]: this._onTextInputFocus,
+			[OpalTextInput.EVENT_BLUR]: this._onTextInputBlur,
+			[OpalTextInput.EVENT_INPUT]: this._onTextInputInput,
+			[OpalTextInput.EVENT_CHANGE]: this._onTextInputChange
 		});
 		this.listenTo(
 			this.$<OpalTextInput>('textInput')!.textField,
@@ -217,7 +219,7 @@ export class OpalAutosuggest extends BaseComponent {
 
 			if (this.value) {
 				this.value = null;
-				this.emit('change');
+				this.emit(OpalAutosuggest.EVENT_CHANGE);
 			}
 		}
 	}
@@ -498,7 +500,7 @@ export class OpalAutosuggest extends BaseComponent {
 			}
 
 			this.value = item;
-			this.emit('change');
+			this.emit(OpalAutosuggest.EVENT_CHANGE);
 		}
 	}
 

@@ -574,6 +574,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const opal_button_1 = __webpack_require__(1);
 const rionite_1 = __webpack_require__(13);
 const _getListItemContext_1 = __webpack_require__(15);
 __webpack_require__(16);
@@ -656,7 +657,7 @@ OpalTreeListItem = __decorate([
         template: template_rnt_1.default,
         events: {
             btnToggleChildren: {
-                change(evt) {
+                [opal_button_1.OpalButton.EVENT_CHANGE](evt) {
                     this.opened = evt.target.checked;
                 }
             }

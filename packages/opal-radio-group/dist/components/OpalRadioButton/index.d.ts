@@ -2,6 +2,11 @@ import { IEvent } from 'cellx';
 import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalRadioButton extends BaseComponent {
+    static EVENT_BLUR: symbol;
+    static EVENT_CHANGE: symbol;
+    static EVENT_CHECK: symbol;
+    static EVENT_FOCUS: symbol;
+    static EVENT_UNCHECK: symbol;
     checked: boolean;
     tabIndex: number;
     focused: boolean;

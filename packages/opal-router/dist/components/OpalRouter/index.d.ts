@@ -18,6 +18,7 @@ export interface IComponentState {
     [name: string]: boolean | string;
 }
 export declare class OpalRouter extends BaseComponent {
+    static EVENT_CHANGE: symbol;
     static EVENT_REFRESH_ROUTER: symbol;
     static history: History<any>;
     useLocationHash: boolean;

@@ -41,7 +41,7 @@ const defaultVMItemSchema = Object.freeze({
 					return;
 				}
 
-				this.emit('tag-click', {
+				this.emit(OpalTagSelect.EVENT_TAG_CLICK, {
 					value: context.tag[this._viewModelItemValueFieldName]
 				});
 			}
@@ -50,12 +50,16 @@ const defaultVMItemSchema = Object.freeze({
 		btnRemoveTag: {
 			click(_evt, context) {
 				this.viewModel.remove(context.tag);
-				this.emit('change');
+				this.emit(OpalTagSelect.EVENT_CHANGE);
 			}
 		}
 	}
 })
 export class OpalTagSelect extends BaseComponent {
+	static EVENT_CHANGE = Symbol('change');
+	static EVENT_INPUT = Symbol('input');
+	static EVENT_TAG_CLICK = Symbol('tag-click');
+
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
@@ -180,10 +184,10 @@ export class OpalTagSelect extends BaseComponent {
 		this.listenTo(this, 'change:disabled', this._onDisabledChange);
 		this.listenTo('control', 'click', this._onControlClick);
 		this.listenTo(this.select, {
-			input: this._onSelectInput,
-			change: this._onSelectChange,
-			select: this._onSelectSelect,
-			deselect: this._onSelectDeselect
+			[OpalSelect.EVENT_INPUT]: this._onSelectInput,
+			[OpalSelect.EVENT_CHANGE]: this._onSelectChange,
+			[OpalSelect.EVENT_SELECT]: this._onSelectSelect,
+			[OpalSelect.EVENT_DESELECT]: this._onSelectDeselect
 		});
 	}
 
@@ -217,12 +221,12 @@ export class OpalTagSelect extends BaseComponent {
 
 	_onSelectInput(): false {
 		this.select.close();
-		this.emit('input');
+		this.emit(OpalTagSelect.EVENT_INPUT);
 		return false;
 	}
 
 	_onSelectChange(): false {
-		this.emit('change');
+		this.emit(OpalTagSelect.EVENT_CHANGE);
 		return false;
 	}
 

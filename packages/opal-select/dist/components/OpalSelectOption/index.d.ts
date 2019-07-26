@@ -2,6 +2,9 @@ import { IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalSelectOption extends BaseComponent {
+    static EVENT_CHANGE: symbol;
+    static EVENT_DESELECT: symbol;
+    static EVENT_SELECT: symbol;
     paramValue: string;
     paramText: string;
     paramSubtext: string;

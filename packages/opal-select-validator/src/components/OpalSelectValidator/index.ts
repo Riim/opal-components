@@ -10,6 +10,8 @@ export { OpalSelectValidatorRule };
 	elementIs: 'OpalSelectValidator'
 })
 export class OpalSelectValidator extends OpalInputValidator {
+	static TARGET_CHANGE_EVENT = OpalSelect.EVENT_CHANGE;
+
 	select: OpalSelect;
 
 	ready() {

@@ -45,6 +45,7 @@ function valueToAttributeValue(value: boolean | string): string {
 	elementIs: 'OpalRouter'
 })
 export class OpalRouter extends BaseComponent {
+	static EVENT_CHANGE = Symbol('change');
 	static EVENT_REFRESH_ROUTER = Symbol('refresh-router');
 
 	static history = history;
@@ -301,7 +302,7 @@ export class OpalRouter extends BaseComponent {
 						window.scrollTo(window.pageXOffset, 0);
 					}
 
-					this.emit('change');
+					this.emit(OpalRouter.EVENT_CHANGE);
 
 					return true;
 				}
@@ -325,13 +326,13 @@ export class OpalRouter extends BaseComponent {
 				window.scrollTo(window.pageXOffset, 0);
 			}
 
-			this.emit('change');
+			this.emit(OpalRouter.EVENT_CHANGE);
 
 			return true;
 		}
 
 		if (this._route) {
-			this.emit('change');
+			this.emit(OpalRouter.EVENT_CHANGE);
 			this._clear();
 		}
 

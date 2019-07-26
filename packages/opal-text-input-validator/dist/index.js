@@ -142,6 +142,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const opal_input_validator_1 = __webpack_require__(1);
+const opal_text_input_1 = __webpack_require__(2);
 const rionite_1 = __webpack_require__(5);
 const OpalTextInputValidatorRule_1 = __webpack_require__(6);
 exports.OpalTextInputValidatorRule = OpalTextInputValidatorRule_1.OpalTextInputValidatorRule;
@@ -153,7 +154,7 @@ let OpalTextInputValidator = class OpalTextInputValidator extends opal_input_val
     }
     elementAttached() {
         super.elementAttached();
-        this.listenTo(this.textInput, 'input', this._onTextInputInput);
+        this.listenTo(this.textInput, opal_text_input_1.OpalTextInput.EVENT_INPUT, this._onTextInputInput);
     }
     _onTextInputInput() {
         if (this.failedRule) {
@@ -169,6 +170,7 @@ let OpalTextInputValidator = class OpalTextInputValidator extends opal_input_val
             : rule.required);
     }
 };
+OpalTextInputValidator.TARGET_CHANGE_EVENT = opal_text_input_1.OpalTextInput.EVENT_CHANGE;
 OpalTextInputValidator = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTextInputValidator'

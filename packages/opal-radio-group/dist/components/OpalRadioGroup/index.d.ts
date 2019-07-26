@@ -6,6 +6,6 @@ export declare class OpalRadioGroup extends BaseComponent {
     buttonElements: HTMLCollectionOf<IComponentElement>;
     ready(): void;
     elementAttached(): void;
-    _onCheck(evt: IEvent): void;
-    _onUncheck(evt: IEvent<OpalRadioButton>): void;
+    _onButtonCheck(evt: IEvent): void;
+    _onButtonUncheck(evt: IEvent<OpalRadioButton>): void;
 }

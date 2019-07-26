@@ -12,6 +12,8 @@ const find = Array.prototype.find;
 	template
 })
 export class OpalSwitchMenu extends BaseComponent {
+	static EVENT_CHANGE = Symbol('change');
+
 	buttonElements: HTMLCollectionOf<IComponentElement>;
 
 	_checkedButton: OpalButton | null;
@@ -44,7 +46,7 @@ export class OpalSwitchMenu extends BaseComponent {
 
 		this._checkedButton = checkedButton;
 
-		this.emit('change');
+		this.emit(OpalSwitchMenu.EVENT_CHANGE);
 	}
 
 	ready() {
@@ -53,8 +55,8 @@ export class OpalSwitchMenu extends BaseComponent {
 
 	elementAttached() {
 		this.listenTo(this, {
-			'<OpalButton>check': this._onButtonCheck,
-			'<OpalButton>uncheck': this._onButtonUncheck
+			[OpalButton.EVENT_CHECK]: this._onButtonCheck,
+			[OpalButton.EVENT_UNCHECK]: this._onButtonUncheck
 		});
 	}
 
@@ -69,7 +71,7 @@ export class OpalSwitchMenu extends BaseComponent {
 
 		this._checkedButton = checkedButton;
 
-		this.emit('change');
+		this.emit(OpalSwitchMenu.EVENT_CHANGE);
 	}
 
 	_onButtonUncheck(evt: IEvent<OpalButton>) {

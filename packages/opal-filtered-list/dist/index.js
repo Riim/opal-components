@@ -148,6 +148,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const opal_text_input_1 = __webpack_require__(3);
 const rionite_1 = __webpack_require__(6);
 __webpack_require__(7);
 const template_rnt_1 = __webpack_require__(8);
@@ -155,8 +156,10 @@ let OpalFilteredList = class OpalFilteredList extends rionite_1.BaseComponent {
     elementAttached() {
         let queryInput = this.$('queryInput');
         if (queryInput) {
-            this.listenTo(queryInput, 'input', this._onQueryInputInput);
-            this.listenTo(queryInput, 'change', this._onQueryInputChange);
+            this.listenTo(queryInput, {
+                [opal_text_input_1.OpalTextInput.EVENT_INPUT]: this._onQueryInputInput,
+                [opal_text_input_1.OpalTextInput.EVENT_CHANGE]: this._onQueryInputChange
+            });
         }
     }
     _onQueryInputInput(evt) {

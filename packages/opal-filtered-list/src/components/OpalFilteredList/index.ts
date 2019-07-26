@@ -14,8 +14,10 @@ export class OpalFilteredList extends BaseComponent {
 		let queryInput = this.$('queryInput');
 
 		if (queryInput) {
-			this.listenTo(queryInput, 'input', this._onQueryInputInput);
-			this.listenTo(queryInput, 'change', this._onQueryInputChange);
+			this.listenTo(queryInput, {
+				[OpalTextInput.EVENT_INPUT]: this._onQueryInputInput,
+				[OpalTextInput.EVENT_CHANGE]: this._onQueryInputChange
+			});
 		}
 	}
 

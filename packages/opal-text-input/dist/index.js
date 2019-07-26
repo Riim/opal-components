@@ -143,12 +143,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalTextInput_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(5);
 const rionite_1 = __webpack_require__(6);
 __webpack_require__(7);
 const template_rnt_1 = __webpack_require__(8);
-let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
+let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.inputType = 'text';
@@ -230,16 +231,14 @@ let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
     }
     _onTextFieldBlur() {
         this.focused = false;
-        this.emit('blur');
+        this.emit(OpalTextInput_1.EVENT_BLUR);
     }
     _onTextFieldInput(evt) {
         this._textFieldValue = this.textField.value;
         if (this.multiline && this.autoHeight) {
             this._fixHeight();
         }
-        this.emit('input', {
-            initialEvent: evt
-        });
+        this.emit(OpalTextInput_1.EVENT_INPUT, { initialEvent: evt });
     }
     _onTextFieldChange(evt) {
         if (this.value === this._prevValue) {
@@ -249,39 +248,19 @@ let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
         if (this.storeKey) {
             localStorage.setItem(this.storeKey, this.textField.value);
         }
-        this.emit({
-            type: 'change',
-            data: {
-                initialEvent: evt
-            }
-        });
+        this.emit(OpalTextInput_1.EVENT_CHANGE, { initialEvent: evt });
     }
     _onTextFieldKeyDown(evt) {
-        this.emit({
-            type: 'keydown',
-            data: {
-                initialEvent: evt
-            }
-        });
+        this.emit(OpalTextInput_1.EVENT_KEYDOWN, { initialEvent: evt });
     }
     _onTextFieldKeyPress(evt) {
         if (evt.which == 13 /* Enter */ && this.value) {
-            this.emit('confirm');
+            this.emit(OpalTextInput_1.EVENT_CONFIRM);
         }
-        this.emit({
-            type: 'keypress',
-            data: {
-                initialEvent: evt
-            }
-        });
+        this.emit(OpalTextInput_1.EVENT_KEYPRESS, { initialEvent: evt });
     }
     _onTextFieldKeyUp(evt) {
-        this.emit({
-            type: 'keyup',
-            data: {
-                initialEvent: evt
-            }
-        });
+        this.emit(OpalTextInput_1.EVENT_KEYUP, { initialEvent: evt });
     }
     _fixMinHeight() {
         let style = getComputedStyle(this.textField);
@@ -317,6 +296,15 @@ let OpalTextInput = class OpalTextInput extends rionite_1.BaseComponent {
         return this;
     }
 };
+OpalTextInput.EVENT_BLUR = Symbol('blur');
+OpalTextInput.EVENT_CHANGE = Symbol('change');
+OpalTextInput.EVENT_CLEAR = Symbol('clear');
+OpalTextInput.EVENT_CONFIRM = Symbol('confirm');
+OpalTextInput.EVENT_FOCUS = Symbol('focus');
+OpalTextInput.EVENT_INPUT = Symbol('input');
+OpalTextInput.EVENT_KEYDOWN = Symbol('keydown');
+OpalTextInput.EVENT_KEYPRESS = Symbol('keypress');
+OpalTextInput.EVENT_KEYUP = Symbol('keyup');
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
@@ -395,7 +383,7 @@ __decorate([
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], OpalTextInput.prototype, "endIconShown", null);
-OpalTextInput = __decorate([
+OpalTextInput = OpalTextInput_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTextInput',
         template: template_rnt_1.default,
@@ -404,8 +392,8 @@ OpalTextInput = __decorate([
                 click() {
                     this.value = null;
                     this.textField.focus();
-                    this.emit('clear');
-                    this.emit('change');
+                    this.emit(OpalTextInput_1.EVENT_CLEAR);
+                    this.emit(OpalTextInput_1.EVENT_CHANGE);
                 }
             }
         }

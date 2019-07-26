@@ -137,11 +137,11 @@ let OpalRadioGroup = class OpalRadioGroup extends rionite_1.BaseComponent {
     }
     elementAttached() {
         this.listenTo(this, {
-            '<OpalRadioButton>check': this._onCheck,
-            '<OpalRadioButton>uncheck': this._onUncheck
+            [OpalRadioButton_1.OpalRadioButton.EVENT_CHECK]: this._onButtonCheck,
+            [OpalRadioButton_1.OpalRadioButton.EVENT_UNCHECK]: this._onButtonUncheck
         });
     }
-    _onCheck(evt) {
+    _onButtonCheck(evt) {
         let checkedButton = evt.target;
         forEach.call(this.buttonElements, (btnEl) => {
             if (btnEl.$component != checkedButton) {
@@ -149,7 +149,7 @@ let OpalRadioGroup = class OpalRadioGroup extends rionite_1.BaseComponent {
             }
         });
     }
-    _onUncheck(evt) {
+    _onButtonUncheck(evt) {
         evt.target.check();
     }
 };
@@ -182,12 +182,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalRadioButton_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(5);
 const rionite_1 = __webpack_require__(3);
 __webpack_require__(6);
 const template_rnt_1 = __webpack_require__(7);
-let OpalRadioButton = class OpalRadioButton extends rionite_1.BaseComponent {
+let OpalRadioButton = OpalRadioButton_1 = class OpalRadioButton extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.checked = false;
@@ -232,22 +233,26 @@ let OpalRadioButton = class OpalRadioButton extends rionite_1.BaseComponent {
         if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
             evt.preventDefault();
             if (!this.disabled) {
-                this.emit((this.checked = !this.checked) ? 'check' : 'uncheck');
-                this.emit('change');
+                this.emit((this.checked = !this.checked)
+                    ? OpalRadioButton_1.EVENT_CHECK
+                    : OpalRadioButton_1.EVENT_UNCHECK);
+                this.emit(OpalRadioButton_1.EVENT_CHANGE);
             }
         }
     }
     _onInputChange(evt) {
-        this.emit((this.checked = evt.target.checked) ? 'check' : 'uncheck');
-        this.emit('change');
+        this.emit((this.checked = evt.target.checked)
+            ? OpalRadioButton_1.EVENT_CHECK
+            : OpalRadioButton_1.EVENT_UNCHECK);
+        this.emit(OpalRadioButton_1.EVENT_CHANGE);
     }
     _onControlFocus() {
         this.focused = true;
-        this.emit('focus');
+        this.emit(OpalRadioButton_1.EVENT_FOCUS);
     }
     _onControlBlur() {
         this.focused = false;
-        this.emit('blur');
+        this.emit(OpalRadioButton_1.EVENT_BLUR);
     }
     get selected() {
         return this.checked;
@@ -289,6 +294,11 @@ let OpalRadioButton = class OpalRadioButton extends rionite_1.BaseComponent {
         return this;
     }
 };
+OpalRadioButton.EVENT_BLUR = Symbol('blur');
+OpalRadioButton.EVENT_CHANGE = Symbol('change');
+OpalRadioButton.EVENT_CHECK = Symbol('check');
+OpalRadioButton.EVENT_FOCUS = Symbol('focus');
+OpalRadioButton.EVENT_UNCHECK = Symbol('uncheck');
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
@@ -310,7 +320,7 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalRadioButton.prototype, "_tabIndex", null);
-OpalRadioButton = __decorate([
+OpalRadioButton = OpalRadioButton_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalRadioButton',
         template: template_rnt_1.default

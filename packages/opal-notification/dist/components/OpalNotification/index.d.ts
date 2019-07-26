@@ -2,6 +2,8 @@ import { IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalNotification extends BaseComponent {
+    static EVENT_CLOSE: symbol;
+    static EVENT_HIDE: symbol;
     viewType: 'default' | 'primary' | 'success' | 'danger' | string;
     icon: string;
     iconSize: 'xs' | 's' | 'm' | string;

@@ -1,3 +1,4 @@
+import { OpalButton } from '@riim/opal-button';
 import { IDataProvider, OpalLoadedList } from '@riim/opal-loaded-list';
 import { OpalSelect } from '@riim/opal-select';
 import { OpalTextInput } from '@riim/opal-text-input';
@@ -15,17 +16,17 @@ import template from './template.rnt';
 
 	events: {
 		queryInput: {
-			input(evt: IEvent<OpalTextInput>) {
+			[OpalTextInput.EVENT_INPUT](evt: IEvent<OpalTextInput>) {
 				this.$<OpalLoadedList>('loadedList')!.query = evt.target.value as any;
 			},
 
-			clear() {
+			[OpalTextInput.EVENT_CLEAR]() {
 				this.$<OpalLoadedList>('loadedList')!.query = '';
 			}
 		},
 
 		btnClose: {
-			click() {
+			[OpalButton.EVENT_CLICK]() {
 				this.close();
 				this.focus();
 			}

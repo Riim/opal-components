@@ -14,13 +14,23 @@ import template from './template.rnt';
 				this.value = null;
 				this.textField.focus();
 
-				this.emit('clear');
-				this.emit('change');
+				this.emit(OpalTextInput.EVENT_CLEAR);
+				this.emit(OpalTextInput.EVENT_CHANGE);
 			}
 		}
 	}
 })
 export class OpalTextInput extends BaseComponent {
+	static EVENT_BLUR = Symbol('blur');
+	static EVENT_CHANGE = Symbol('change');
+	static EVENT_CLEAR = Symbol('clear');
+	static EVENT_CONFIRM = Symbol('confirm');
+	static EVENT_FOCUS = Symbol('focus');
+	static EVENT_INPUT = Symbol('input');
+	static EVENT_KEYDOWN = Symbol('keydown');
+	static EVENT_KEYPRESS = Symbol('keypress');
+	static EVENT_KEYUP = Symbol('keyup');
+
 	@Param
 	inputType = 'text';
 	@Param
@@ -140,7 +150,7 @@ export class OpalTextInput extends BaseComponent {
 
 	_onTextFieldBlur() {
 		this.focused = false;
-		this.emit('blur');
+		this.emit(OpalTextInput.EVENT_BLUR);
 	}
 
 	_onTextFieldInput(evt: Event) {
@@ -150,7 +160,7 @@ export class OpalTextInput extends BaseComponent {
 			this._fixHeight();
 		}
 
-		this.emit('input', { initialEvent: evt });
+		this.emit(OpalTextInput.EVENT_INPUT, { initialEvent: evt });
 	}
 
 	_onTextFieldChange(evt: Event) {
@@ -164,23 +174,23 @@ export class OpalTextInput extends BaseComponent {
 			localStorage.setItem(this.storeKey, this.textField.value);
 		}
 
-		this.emit('change', { initialEvent: evt });
+		this.emit(OpalTextInput.EVENT_CHANGE, { initialEvent: evt });
 	}
 
 	_onTextFieldKeyDown(evt: Event) {
-		this.emit('keydown', { initialEvent: evt });
+		this.emit(OpalTextInput.EVENT_KEYDOWN, { initialEvent: evt });
 	}
 
 	_onTextFieldKeyPress(evt: KeyboardEvent) {
 		if (evt.which == 13 /* Enter */ && this.value) {
-			this.emit('confirm');
+			this.emit(OpalTextInput.EVENT_CONFIRM);
 		}
 
-		this.emit('keypress', { initialEvent: evt });
+		this.emit(OpalTextInput.EVENT_KEYPRESS, { initialEvent: evt });
 	}
 
 	_onTextFieldKeyUp(evt: Event) {
-		this.emit('keyup', { initialEvent: evt });
+		this.emit(OpalTextInput.EVENT_KEYUP, { initialEvent: evt });
 	}
 
 	_fixMinHeight() {

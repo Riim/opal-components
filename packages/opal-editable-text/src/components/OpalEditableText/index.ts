@@ -15,6 +15,9 @@ import template from './template.rnt';
 	}
 })
 export class OpalEditableText extends BaseComponent {
+	static EVENT_CHANGE = Symbol('change');
+	static EVENT_INPUT = Symbol('input');
+
 	_textNode: Text;
 
 	_value: string | null;
@@ -70,7 +73,7 @@ export class OpalEditableText extends BaseComponent {
 
 		if (this._fixedValue != this._value) {
 			this._fixedValue = this._value;
-			this.emit('change');
+			this.emit(OpalEditableText.EVENT_CHANGE);
 		}
 	}
 
@@ -100,7 +103,7 @@ export class OpalEditableText extends BaseComponent {
 
 		this._value = text.trim() || null;
 
-		this.emit('input');
+		this.emit(OpalEditableText.EVENT_INPUT);
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {

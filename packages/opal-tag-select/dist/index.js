@@ -171,8 +171,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalTagSelect_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const gettext_1 = __webpack_require__(9);
+const opal_select_1 = __webpack_require__(5);
 const cellx_1 = __webpack_require__(10);
 const cellx_decorators_1 = __webpack_require__(11);
 const rionite_1 = __webpack_require__(12);
@@ -189,7 +191,7 @@ const defaultVMItemSchema = Object.freeze({
     text: 'name',
     disabled: 'disabled'
 });
-let OpalTagSelect = class OpalTagSelect extends rionite_1.BaseComponent {
+let OpalTagSelect = OpalTagSelect_1 = class OpalTagSelect extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.viewModel = new cellx_1.ObservableList();
@@ -247,10 +249,10 @@ let OpalTagSelect = class OpalTagSelect extends rionite_1.BaseComponent {
         this.listenTo(this, 'change:disabled', this._onDisabledChange);
         this.listenTo('control', 'click', this._onControlClick);
         this.listenTo(this.select, {
-            input: this._onSelectInput,
-            change: this._onSelectChange,
-            select: this._onSelectSelect,
-            deselect: this._onSelectDeselect
+            [opal_select_1.OpalSelect.EVENT_INPUT]: this._onSelectInput,
+            [opal_select_1.OpalSelect.EVENT_CHANGE]: this._onSelectChange,
+            [opal_select_1.OpalSelect.EVENT_SELECT]: this._onSelectSelect,
+            [opal_select_1.OpalSelect.EVENT_DESELECT]: this._onSelectDeselect
         });
     }
     _onDisabledChange(evt) {
@@ -277,11 +279,11 @@ let OpalTagSelect = class OpalTagSelect extends rionite_1.BaseComponent {
     }
     _onSelectInput() {
         this.select.close();
-        this.emit('input');
+        this.emit(OpalTagSelect_1.EVENT_INPUT);
         return false;
     }
     _onSelectChange() {
-        this.emit('change');
+        this.emit(OpalTagSelect_1.EVENT_CHANGE);
         return false;
     }
     _onSelectSelect() {
@@ -310,6 +312,9 @@ let OpalTagSelect = class OpalTagSelect extends rionite_1.BaseComponent {
         return this;
     }
 };
+OpalTagSelect.EVENT_CHANGE = Symbol('change');
+OpalTagSelect.EVENT_INPUT = Symbol('input');
+OpalTagSelect.EVENT_TAG_CLICK = Symbol('tag-click');
 OpalTagSelect.defaultDataListItemSchema = defaultDataListItemSchema;
 OpalTagSelect.defaultViewModelItemSchema = defaultVMItemSchema;
 __decorate([
@@ -386,7 +391,7 @@ __decorate([
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], OpalTagSelect.prototype, "placeholderShown", null);
-OpalTagSelect = __decorate([
+OpalTagSelect = OpalTagSelect_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTagSelect',
         template: template_rnt_1.default,
@@ -396,7 +401,7 @@ OpalTagSelect = __decorate([
                     if (tag != evt.target) {
                         return;
                     }
-                    this.emit('tag-click', {
+                    this.emit(OpalTagSelect_1.EVENT_TAG_CLICK, {
                         value: context.tag[this._viewModelItemValueFieldName]
                     });
                 }
@@ -404,7 +409,7 @@ OpalTagSelect = __decorate([
             btnRemoveTag: {
                 click(_evt, context) {
                     this.viewModel.remove(context.tag);
-                    this.emit('change');
+                    this.emit(OpalTagSelect_1.EVENT_CHANGE);
                 }
             }
         }

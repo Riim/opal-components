@@ -173,6 +173,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const opal_calendar_1 = __webpack_require__(1);
+const opal_text_input_1 = __webpack_require__(5);
 const date_exists_1 = __webpack_require__(9);
 const rionite_1 = __webpack_require__(10);
 __webpack_require__(11);
@@ -205,7 +206,7 @@ let OpalDateInput = class OpalDateInput extends rionite_1.BaseComponent {
         return d >= opal_calendar_1.fromDate.call(this) && d <= opal_calendar_1.toDate.call(this);
     }
     elementAttached() {
-        this.listenTo('textInput', 'change', this._onTextInputChange);
+        this.listenTo('textInput', opal_text_input_1.OpalTextInput.EVENT_CHANGE, this._onTextInputChange);
         this.listenTo(this.$('textInput').element, 'click', this._onTextInputElementClick);
         this.listenTo('calendarMenu', 'change:opened', this._onCalendarMenuOpenedChange);
     }
@@ -324,7 +325,7 @@ OpalDateInput = __decorate([
         template: template_rnt_1.default,
         events: {
             calendar: {
-                change(evt) {
+                [opal_calendar_1.OpalCalendar.EVENT_CHANGE](evt) {
                     this.$('calendarMenu').close();
                     let textInput = this.$('textInput');
                     textInput.value = evt.target.stringValue;

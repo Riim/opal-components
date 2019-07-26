@@ -13,6 +13,13 @@ import template from './template.rnt';
 	template
 })
 export class OpalSignButton extends BaseComponent {
+	static EVENT_BLUR = Symbol('blur');
+	static EVENT_CHANGE = Symbol('change');
+	static EVENT_CHECK = Symbol('check');
+	static EVENT_CLICK = Symbol('click');
+	static EVENT_FOCUS = Symbol('focus');
+	static EVENT_UNCHECK = Symbol('uncheck');
+
 	@Param({ required: true })
 	sign: string;
 	@Param
@@ -51,12 +58,12 @@ export class OpalSignButton extends BaseComponent {
 
 	_onControlFocus() {
 		this.focused = true;
-		this.emit('focus');
+		this.emit(OpalSignButton.EVENT_FOCUS);
 	}
 
 	_onControlBlur() {
 		this.focused = false;
-		this.emit('blur');
+		this.emit(OpalSignButton.EVENT_BLUR);
 	}
 
 	_onControlClick(evt: Event) {
@@ -68,9 +75,9 @@ export class OpalSignButton extends BaseComponent {
 	}
 
 	click(): this {
-		if (!this.emit('click').defaultPrevented && this.checkable) {
-			this.emit(this.toggle() ? 'check' : 'uncheck');
-			this.emit('change');
+		if (!this.emit(OpalSignButton.EVENT_CLICK).defaultPrevented && this.checkable) {
+			this.emit(this.toggle() ? OpalSignButton.EVENT_CHECK : OpalSignButton.EVENT_UNCHECK);
+			this.emit(OpalSignButton.EVENT_CHANGE);
 		}
 
 		return this;

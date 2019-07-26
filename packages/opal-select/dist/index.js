@@ -182,7 +182,9 @@ var OpalSelect_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const gettext_1 = __webpack_require__(10);
 const next_tick_1 = __webpack_require__(11);
+const opal_button_1 = __webpack_require__(1);
 const opal_loaded_list_1 = __webpack_require__(5);
+const opal_text_input_1 = __webpack_require__(7);
 const cellx_1 = __webpack_require__(12);
 const cellx_decorators_1 = __webpack_require__(13);
 const rionite_1 = __webpack_require__(14);
@@ -343,21 +345,21 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             'change:paramValue': this._onParamValueChange,
             'change:focused': this._onFocusedChange
         });
-        this.listenTo(this.viewModel, 'change', this._onViewModelChange);
+        this.listenTo(this.viewModel, cellx_1.ObservableList.EVENT_CHANGE, this._onViewModelChange);
         this.listenTo('button', {
-            focus: this._onButtonFocus,
-            blur: this._onButtonBlur,
-            click: this._onButtonClick
+            [opal_button_1.OpalButton.EVENT_FOCUS]: this._onButtonFocus,
+            [opal_button_1.OpalButton.EVENT_BLUR]: this._onButtonBlur,
+            [opal_button_1.OpalButton.EVENT_CLICK]: this._onButtonClick
         });
         if (!this.openOnClick) {
             this.listenTo(this.$('button').element, 'mousedown', this._onButtonElementMouseDown);
         }
         this.listenTo('menu', {
             'change:opened': this._onMenuOpenedChange,
-            '<OpalSelectOption>select': this._onMenuSelectOptionSelect,
-            '<OpalSelectOption>deselect': this._onMenuSelectOptionDeselect,
-            '<OpalTextInput>confirm': this._onMenuTextInputConfirm,
-            '<OpalButton>click': this._onMenuButtonClick,
+            [OpalSelectOption_1.OpalSelectOption.EVENT_SELECT]: this._onMenuSelectOptionSelect,
+            [OpalSelectOption_1.OpalSelectOption.EVENT_DESELECT]: this._onMenuSelectOptionDeselect,
+            [opal_text_input_1.OpalTextInput.EVENT_CONFIRM]: this._onMenuTextInputConfirm,
+            [opal_button_1.OpalButton.EVENT_CLICK]: this._onMenuButtonClick,
             [rionite_1.RnIfThen.EVENT_CHANGE]: this._onMenuChange,
             [rionite_1.RnRepeat.EVENT_CHANGE]: this._onMenuChange
         });
@@ -435,14 +437,14 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             if (!this._documentKeyDownListening) {
                 this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             }
-            this.emit('focus');
+            this.emit(OpalSelect_1.EVENT_FOCUS);
         }
         else {
             if (this._documentKeyDownListening && !this._opened) {
                 this._documentKeyDownListening.stop();
                 this._documentKeyDownListening = null;
             }
-            this.emit('blur');
+            this.emit(OpalSelect_1.EVENT_BLUR);
         }
     }
     _onViewModelChange() {
@@ -508,7 +510,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             this._notUpdateOptions = true;
             vm.add(vmItem);
             this._notUpdateOptions = false;
-            this.emit('select');
+            this.emit(OpalSelect_1.EVENT_SELECT);
         }
         else {
             if (vm.length) {
@@ -519,8 +521,8 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             }
             this.close();
             this.focus();
-            this.emit('select');
-            this.emit('change');
+            this.emit(OpalSelect_1.EVENT_SELECT);
+            this.emit(OpalSelect_1.EVENT_CHANGE);
         }
         return false;
     }
@@ -610,7 +612,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         };
         if (this.multiple) {
             vm.add(vmItem);
-            this.emit('input');
+            this.emit(OpalSelect_1.EVENT_INPUT);
         }
         else {
             if (vm.length) {
@@ -621,8 +623,8 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             }
             this.close();
             this.focus();
-            this.emit('input');
-            this.emit('change');
+            this.emit(OpalSelect_1.EVENT_INPUT);
+            this.emit(OpalSelect_1.EVENT_CHANGE);
         }
     }
     _onMenuChange(evt) {
@@ -678,7 +680,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         this.$('menu').close();
         if (this.multiple) {
             if (!isArraysEqual_1.isArraysEqual(this.viewModel.map((item) => item[this._viewModelItemValueFieldName]), this._valueOnOpen)) {
-                this.emit('change');
+                this.emit(OpalSelect_1.EVENT_CHANGE);
             }
         }
         return true;
@@ -870,6 +872,12 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         return false;
     }
 };
+OpalSelect.EVENT_BLUR = Symbol('blur');
+OpalSelect.EVENT_CHANGE = Symbol('change');
+OpalSelect.EVENT_DESELECT = Symbol('deselect');
+OpalSelect.EVENT_FOCUS = Symbol('focus');
+OpalSelect.EVENT_INPUT = Symbol('input');
+OpalSelect.EVENT_SELECT = Symbol('select');
 OpalSelect.LOADED_EVENTS = [opal_loaded_list_1.OpalLoadedList.EVENT_LOADED];
 OpalSelect.defaultDataListItemSchema = defaultDataListItemSchema;
 OpalSelect.defaultViewModelItemSchema = defaultVMItemSchema;
@@ -1022,12 +1030,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalSelectOption_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(13);
 const rionite_1 = __webpack_require__(14);
 __webpack_require__(16);
 const template_rnt_1 = __webpack_require__(17);
-let OpalSelectOption = class OpalSelectOption extends rionite_1.BaseComponent {
+let OpalSelectOption = OpalSelectOption_1 = class OpalSelectOption extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.selected = false;
@@ -1089,8 +1098,8 @@ let OpalSelectOption = class OpalSelectOption extends rionite_1.BaseComponent {
         }
     }
     click() {
-        this.emit(this.toggle() ? 'select' : 'deselect');
-        this.emit('change');
+        this.emit(this.toggle() ? OpalSelectOption_1.EVENT_SELECT : OpalSelectOption_1.EVENT_DESELECT);
+        this.emit(OpalSelectOption_1.EVENT_CHANGE);
         return this;
     }
     get value() {
@@ -1145,6 +1154,9 @@ let OpalSelectOption = class OpalSelectOption extends rionite_1.BaseComponent {
         return this;
     }
 };
+OpalSelectOption.EVENT_CHANGE = Symbol('change');
+OpalSelectOption.EVENT_DESELECT = Symbol('deselect');
+OpalSelectOption.EVENT_SELECT = Symbol('select');
 __decorate([
     rionite_1.Param('value'),
     __metadata("design:type", String)
@@ -1182,7 +1194,7 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalSelectOption.prototype, "_tabIndex", null);
-OpalSelectOption = __decorate([
+OpalSelectOption = OpalSelectOption_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSelectOption',
         template: template_rnt_1.default

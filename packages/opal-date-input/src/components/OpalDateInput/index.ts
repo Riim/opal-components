@@ -29,7 +29,7 @@ function pad(num: number): string {
 
 	events: {
 		calendar: {
-			change(evt: IEvent) {
+			[OpalCalendar.EVENT_CHANGE](evt: IEvent) {
 				this.$<OpalDropdown>('calendarMenu')!.close();
 
 				let textInput = this.$<OpalTextInput>('textInput')!;
@@ -85,7 +85,7 @@ export class OpalDateInput extends BaseComponent {
 	_documentClickListening: IDisposableListening;
 
 	elementAttached() {
-		this.listenTo('textInput', 'change', this._onTextInputChange);
+		this.listenTo('textInput', OpalTextInput.EVENT_CHANGE, this._onTextInputChange);
 		this.listenTo(
 			this.$<BaseComponent>('textInput')!.element,
 			'click',

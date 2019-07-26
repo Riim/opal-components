@@ -2,6 +2,7 @@ import { IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalModal extends BaseComponent {
+    static EVENT_CLOSE: symbol;
     opened: boolean;
     contentRendered: boolean;
     ready(): void;

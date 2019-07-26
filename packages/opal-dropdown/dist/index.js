@@ -129,13 +129,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalDropdown_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_1 = __webpack_require__(3);
 const cellx_decorators_1 = __webpack_require__(4);
 const rionite_1 = __webpack_require__(5);
 __webpack_require__(6);
 const template_rnt_1 = __webpack_require__(7);
-let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
+let OpalDropdown = OpalDropdown_1 = class OpalDropdown extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.autoHeight = true;
@@ -251,7 +252,7 @@ let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
         for (let el = evt.target; el != componentEl;) {
             if (el == docEl || el.tagName == 'A') {
                 this.close();
-                this.emit('close');
+                this.emit(OpalDropdown_1.EVENT_CLOSE);
                 break;
             }
             el = el.parentElement;
@@ -261,6 +262,7 @@ let OpalDropdown = class OpalDropdown extends rionite_1.BaseComponent {
         }
     }
 };
+OpalDropdown.EVENT_CLOSE = Symbol('close');
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
@@ -277,7 +279,7 @@ __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
 ], OpalDropdown.prototype, "contentRendered", void 0);
-OpalDropdown = __decorate([
+OpalDropdown = OpalDropdown_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalDropdown',
         template: template_rnt_1.default

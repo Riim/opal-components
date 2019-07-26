@@ -21,6 +21,8 @@ const ie11 = !(window as any).ActiveXObject && 'ActiveXObject' in window;
 	template
 })
 export class OpalInputMask extends BaseComponent {
+	static EVENT_COMPLETE = Symbol('complete');
+
 	static defaultDefinitions: Record<string, RegExp> = {
 		__proto__: null as any,
 
@@ -116,7 +118,7 @@ export class OpalInputMask extends BaseComponent {
 		this._checkValue(false, false);
 
 		if (this.textField.value != this._textOnFocus) {
-			this.textInput.emit('change');
+			this.textInput.emit(OpalTextInput.EVENT_CHANGE);
 		}
 	}
 
@@ -200,7 +202,7 @@ export class OpalInputMask extends BaseComponent {
 					this.textInput._onTextFieldInput(evt);
 
 					if (index >= bufferLen) {
-						this.emit('complete');
+						this.emit(OpalInputMask.EVENT_COMPLETE);
 					}
 				} else if (start != end) {
 					this.textInput._onTextFieldInput(evt);

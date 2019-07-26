@@ -2,6 +2,7 @@ import { IEvent } from 'cellx';
 import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalPopover extends BaseComponent {
+    static EVENT_CLOSE: symbol;
     position: 'top' | 'top-left' | 'top-right' | 'right' | 'right-top' | 'right-bottom' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'left-top' | 'left-bottom' | string;
     positionOffset: number;
     autoDirection: boolean;

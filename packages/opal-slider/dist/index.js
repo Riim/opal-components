@@ -129,12 +129,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalSlider_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(3);
 const rionite_1 = __webpack_require__(4);
 __webpack_require__(5);
 const template_rnt_1 = __webpack_require__(6);
-let OpalSlider = class OpalSlider extends rionite_1.BaseComponent {
+let OpalSlider = OpalSlider_1 = class OpalSlider extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.min = 0;
@@ -164,6 +165,7 @@ let OpalSlider = class OpalSlider extends rionite_1.BaseComponent {
         else {
             this.range = [firstInputValue, this.range[1]];
         }
+        this.emit(OpalSlider_1.EVENT_CHANGE);
     }
     _onSecondInputInput(evt) {
         let firstInput = this.$('firstInput');
@@ -175,8 +177,10 @@ let OpalSlider = class OpalSlider extends rionite_1.BaseComponent {
         else {
             this.range = [this.range[0], secondInputValue];
         }
+        this.emit(OpalSlider_1.EVENT_CHANGE);
     }
 };
+OpalSlider.EVENT_CHANGE = Symbol('change');
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
@@ -202,7 +206,7 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalSlider.prototype, "_firstInputWidth", null);
-OpalSlider = __decorate([
+OpalSlider = OpalSlider_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSlider',
         template: template_rnt_1.default

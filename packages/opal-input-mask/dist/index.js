@@ -138,6 +138,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalInputMask_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+const opal_text_input_1 = __webpack_require__(1);
 const cellx_decorators_1 = __webpack_require__(4);
 const rionite_1 = __webpack_require__(5);
 const OpalInputMaskDefinition_1 = __webpack_require__(6);
@@ -197,7 +198,7 @@ let OpalInputMask = OpalInputMask_1 = class OpalInputMask extends rionite_1.Base
     _onTextFieldBlur() {
         this._checkValue(false, false);
         if (this.textField.value != this._textOnFocus) {
-            this.textInput.emit('change');
+            this.textInput.emit(opal_text_input_1.OpalTextInput.EVENT_CHANGE);
         }
     }
     _onTextFieldKeyDown(evt) {
@@ -263,7 +264,7 @@ let OpalInputMask = OpalInputMask_1 = class OpalInputMask extends rionite_1.Base
                     }
                     this.textInput._onTextFieldInput(evt);
                     if (index >= bufferLen) {
-                        this.emit('complete');
+                        this.emit(OpalInputMask_1.EVENT_COMPLETE);
                     }
                 }
                 else if (start != end) {
@@ -403,6 +404,7 @@ let OpalInputMask = OpalInputMask_1 = class OpalInputMask extends rionite_1.Base
         this.textField.setSelectionRange(start, end);
     }
 };
+OpalInputMask.EVENT_COMPLETE = Symbol('complete');
 OpalInputMask.defaultDefinitions = {
     __proto__: null,
     9: /\d/,

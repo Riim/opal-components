@@ -14,6 +14,8 @@ import template from './template.rnt';
 	template
 })
 export class OpalDropdown extends BaseComponent {
+	static EVENT_CLOSE = Symbol('close');
+
 	@Param
 	autoHeight = true;
 	@Param
@@ -165,7 +167,7 @@ export class OpalDropdown extends BaseComponent {
 		for (let el: Element | null = evt.target as Element; el != componentEl; ) {
 			if (el == docEl || el.tagName == 'A') {
 				this.close();
-				this.emit('close');
+				this.emit(OpalDropdown.EVENT_CLOSE);
 				break;
 			}
 

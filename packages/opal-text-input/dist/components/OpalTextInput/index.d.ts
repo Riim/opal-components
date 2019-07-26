@@ -2,6 +2,15 @@ import { IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalTextInput extends BaseComponent {
+    static EVENT_BLUR: symbol;
+    static EVENT_CHANGE: symbol;
+    static EVENT_CLEAR: symbol;
+    static EVENT_CONFIRM: symbol;
+    static EVENT_FOCUS: symbol;
+    static EVENT_INPUT: symbol;
+    static EVENT_KEYDOWN: symbol;
+    static EVENT_KEYPRESS: symbol;
+    static EVENT_KEYUP: symbol;
     inputType: string;
     size: 'm' | string;
     multiline: boolean;

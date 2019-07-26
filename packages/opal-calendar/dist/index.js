@@ -146,6 +146,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var OpalCalendar_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const gettext_1 = __webpack_require__(5);
+const opal_select_1 = __webpack_require__(2);
 const cellx_decorators_1 = __webpack_require__(6);
 const rionite_1 = __webpack_require__(7);
 const formatDate_1 = __webpack_require__(8);
@@ -345,9 +346,10 @@ let OpalCalendar = OpalCalendar_1 = class OpalCalendar extends rionite_1.BaseCom
         dayEl.setAttribute('selected', '');
         this._currentlyDateSelection = true;
         this.stringValue = dayEl.dataset.date;
-        this.emit('change');
+        this.emit(OpalCalendar_1.EVENT_CHANGE);
     }
 };
+OpalCalendar.EVENT_CHANGE = Symbol('change');
 __decorate([
     rionite_1.Param('fromDate'),
     __metadata("design:type", String)
@@ -469,12 +471,12 @@ OpalCalendar = OpalCalendar_1 = __decorate([
         template: template_rnt_1.default,
         events: {
             monthSelect: {
-                select(evt) {
+                [opal_select_1.OpalSelect.EVENT_SELECT](evt) {
                     this.shownMonth = +evt.target.viewModel.get(0).value;
                 }
             },
             yearSelect: {
-                select(evt) {
+                [opal_select_1.OpalSelect.EVENT_SELECT](evt) {
                     this.shownYear = +evt.target.viewModel.get(0).value;
                 }
             }

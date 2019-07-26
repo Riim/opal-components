@@ -3,6 +3,7 @@ import { BaseComponent } from 'rionite';
 import { OpalInputMaskDefinition } from '../OpalInputMaskDefinition';
 export { OpalInputMaskDefinition };
 export declare class OpalInputMask extends BaseComponent {
+    static EVENT_COMPLETE: symbol;
     static defaultDefinitions: Record<string, RegExp>;
     mask: string;
     _definitions: Record<string, RegExp>;

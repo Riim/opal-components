@@ -8,6 +8,8 @@ import template from './template.rnt';
 	template
 })
 export class OpalSlider extends BaseComponent {
+	static EVENT_CHANGE = Symbol('change');
+
 	@Param
 	min = 0;
 	@Param
@@ -47,6 +49,8 @@ export class OpalSlider extends BaseComponent {
 		} else {
 			this.range = [firstInputValue, this.range[1]];
 		}
+
+		this.emit(OpalSlider.EVENT_CHANGE);
 	}
 
 	_onSecondInputInput(evt: Event) {
@@ -59,5 +63,7 @@ export class OpalSlider extends BaseComponent {
 		} else {
 			this.range = [this.range[0], secondInputValue];
 		}
+
+		this.emit(OpalSlider.EVENT_CHANGE);
 	}
 }

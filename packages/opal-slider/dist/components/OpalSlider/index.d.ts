@@ -1,6 +1,7 @@
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalSlider extends BaseComponent {
+    static EVENT_CHANGE: symbol;
     min: number;
     max: number;
     step: number;

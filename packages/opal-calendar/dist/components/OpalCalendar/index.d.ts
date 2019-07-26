@@ -21,6 +21,7 @@ export declare function getTodayDate(): Date;
 export declare function fromDate(this: OpalCalendar): Date;
 export declare function toDate(this: OpalCalendar): Date;
 export declare class OpalCalendar extends BaseComponent {
+    static EVENT_CHANGE: symbol;
     paramFromDate: string;
     paramToDate: string;
     paramValue: string;

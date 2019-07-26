@@ -133,11 +133,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var OpalEditableText_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const rionite_1 = __webpack_require__(4);
 __webpack_require__(5);
 const template_rnt_1 = __webpack_require__(6);
-let OpalEditableText = class OpalEditableText extends rionite_1.BaseComponent {
+let OpalEditableText = OpalEditableText_1 = class OpalEditableText extends rionite_1.BaseComponent {
     get value() {
         return this._value;
     }
@@ -174,7 +175,7 @@ let OpalEditableText = class OpalEditableText extends rionite_1.BaseComponent {
         this._documentKeyDownListening.stop();
         if (this._fixedValue != this._value) {
             this._fixedValue = this._value;
-            this.emit('change');
+            this.emit(OpalEditableText_1.EVENT_CHANGE);
         }
     }
     _onContentSlotElementInput() {
@@ -198,7 +199,7 @@ let OpalEditableText = class OpalEditableText extends rionite_1.BaseComponent {
             contentSlotEl.appendChild(this._textNode);
         }
         this._value = text.trim() || null;
-        this.emit('input');
+        this.emit(OpalEditableText_1.EVENT_INPUT);
     }
     _onDocumentKeyDown(evt) {
         if (evt.which == 13) {
@@ -219,7 +220,9 @@ let OpalEditableText = class OpalEditableText extends rionite_1.BaseComponent {
         sel.addRange(rng);
     }
 };
-OpalEditableText = __decorate([
+OpalEditableText.EVENT_CHANGE = Symbol('change');
+OpalEditableText.EVENT_INPUT = Symbol('input');
+OpalEditableText = OpalEditableText_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalEditableText',
         template: template_rnt_1.default,

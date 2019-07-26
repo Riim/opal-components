@@ -5,6 +5,9 @@ import { IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalTagSelect extends BaseComponent {
+    static EVENT_CHANGE: symbol;
+    static EVENT_INPUT: symbol;
+    static EVENT_TAG_CLICK: symbol;
     static defaultDataListItemSchema: Readonly<{
         value: string;
         text: string;

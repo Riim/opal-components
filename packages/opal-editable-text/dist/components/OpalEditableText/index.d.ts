@@ -1,6 +1,8 @@
 import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalEditableText extends BaseComponent {
+    static EVENT_CHANGE: symbol;
+    static EVENT_INPUT: symbol;
     _textNode: Text;
     _value: string | null;
     value: string | null;

@@ -11,6 +11,13 @@ import './index.css';
 	elementIs: 'OpalButton'
 })
 export class OpalButton extends BaseComponent {
+	static EVENT_BLUR = Symbol('blur');
+	static EVENT_CHANGE = Symbol('change');
+	static EVENT_CHECK = Symbol('check');
+	static EVENT_CLICK = Symbol('click');
+	static EVENT_FOCUS = Symbol('focus');
+	static EVENT_UNCHECK = Symbol('uncheck');
+
 	@Param
 	viewType: 'default' | 'primary' | 'danger' | 'clean' | string = 'default';
 	@Param
@@ -67,7 +74,7 @@ export class OpalButton extends BaseComponent {
 		}
 
 		this.focused = true;
-		this.emit('focus');
+		this.emit(OpalButton.EVENT_FOCUS);
 	}
 
 	_onElementBlur() {
@@ -77,7 +84,7 @@ export class OpalButton extends BaseComponent {
 		}
 
 		this.focused = false;
-		this.emit('blur');
+		this.emit(OpalButton.EVENT_BLUR);
 	}
 
 	_onElementClick() {
@@ -97,9 +104,9 @@ export class OpalButton extends BaseComponent {
 	}
 
 	click(): this {
-		if (!this.emit('click').defaultPrevented && this.checkable) {
-			this.emit(this.toggle() ? 'check' : 'uncheck');
-			this.emit('change');
+		if (!this.emit(OpalButton.EVENT_CLICK).defaultPrevented && this.checkable) {
+			this.emit(this.toggle() ? OpalButton.EVENT_CHECK : OpalButton.EVENT_UNCHECK);
+			this.emit(OpalButton.EVENT_CHANGE);
 		}
 
 		return this;

@@ -1,3 +1,4 @@
+import { OpalButton } from '@riim/opal-button';
 import { OpalModal } from '@riim/opal-modal';
 import { OpalSelect } from '@riim/opal-select';
 import { OpalTreeList, TDataTreeList } from '@riim/opal-tree-list';
@@ -12,7 +13,7 @@ import template from './template.rnt';
 
 	events: {
 		btnClose: {
-			click() {
+			[OpalButton.EVENT_CLICK]() {
 				this.$<OpalModal>('menu')!.close();
 			}
 		}

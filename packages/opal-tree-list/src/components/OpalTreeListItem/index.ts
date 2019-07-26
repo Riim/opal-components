@@ -17,7 +17,7 @@ import template from './template.rnt';
 
 	events: {
 		btnToggleChildren: {
-			change(evt: IEvent<OpalButton>) {
+			[OpalButton.EVENT_CHANGE](evt: IEvent<OpalButton>) {
 				this.opened = evt.target.checked;
 			}
 		}

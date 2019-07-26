@@ -129,11 +129,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalButton_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(3);
 const rionite_1 = __webpack_require__(4);
 __webpack_require__(5);
-let OpalButton = class OpalButton extends rionite_1.BaseComponent {
+let OpalButton = OpalButton_1 = class OpalButton extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.viewType = 'default';
@@ -171,7 +172,7 @@ let OpalButton = class OpalButton extends rionite_1.BaseComponent {
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
         }
         this.focused = true;
-        this.emit('focus');
+        this.emit(OpalButton_1.EVENT_FOCUS);
     }
     _onElementBlur() {
         if (this._documentKeyDownListening) {
@@ -179,7 +180,7 @@ let OpalButton = class OpalButton extends rionite_1.BaseComponent {
             this._documentKeyDownListening = null;
         }
         this.focused = false;
-        this.emit('blur');
+        this.emit(OpalButton_1.EVENT_BLUR);
     }
     _onElementClick() {
         if (!this.disabled) {
@@ -195,9 +196,9 @@ let OpalButton = class OpalButton extends rionite_1.BaseComponent {
         }
     }
     click() {
-        if (!this.emit('click').defaultPrevented && this.checkable) {
-            this.emit(this.toggle() ? 'check' : 'uncheck');
-            this.emit('change');
+        if (!this.emit(OpalButton_1.EVENT_CLICK).defaultPrevented && this.checkable) {
+            this.emit(this.toggle() ? OpalButton_1.EVENT_CHECK : OpalButton_1.EVENT_UNCHECK);
+            this.emit(OpalButton_1.EVENT_CHANGE);
         }
         return this;
     }
@@ -241,6 +242,12 @@ let OpalButton = class OpalButton extends rionite_1.BaseComponent {
         return this;
     }
 };
+OpalButton.EVENT_BLUR = Symbol('blur');
+OpalButton.EVENT_CHANGE = Symbol('change');
+OpalButton.EVENT_CHECK = Symbol('check');
+OpalButton.EVENT_CLICK = Symbol('click');
+OpalButton.EVENT_FOCUS = Symbol('focus');
+OpalButton.EVENT_UNCHECK = Symbol('uncheck');
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
@@ -278,7 +285,7 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalButton.prototype, "_tabIndex", null);
-OpalButton = __decorate([
+OpalButton = OpalButton_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalButton'
     })

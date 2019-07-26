@@ -11,6 +11,11 @@ export { OpalInputValidatorRule };
 	template
 })
 export class OpalInputValidator extends BaseComponent {
+	static EVENT_INPUT_VALIDATION_ERROR = Symbol('input-validation-error');
+	static EVENT_INPUT_VALIDATION_VALID = Symbol('input-validation-valid');
+
+	static TARGET_CHANGE_EVENT: symbol;
+
 	target: BaseComponent;
 
 	rules: Array<OpalInputValidatorRule>;
@@ -31,7 +36,11 @@ export class OpalInputValidator extends BaseComponent {
 	}
 
 	elementAttached() {
-		this.listenTo(this.target, 'change', this._onTargetChange);
+		this.listenTo(
+			this.target,
+			(this.constructor as typeof OpalInputValidator).TARGET_CHANGE_EVENT,
+			this._onTargetChange
+		);
 	}
 
 	_onTargetChange() {
@@ -61,10 +70,10 @@ export class OpalInputValidator extends BaseComponent {
 		if (+!!failedRule ^ +!!prevFailedRule) {
 			if (failedRule) {
 				this.element.setAttribute('valid', 'no');
-				this.emit('input-validation-error');
+				this.emit(OpalInputValidator.EVENT_INPUT_VALIDATION_ERROR);
 			} else {
 				this.element.removeAttribute('valid');
-				this.emit('input-validation-valid');
+				this.emit(OpalInputValidator.EVENT_INPUT_VALIDATION_VALID);
 			}
 		}
 

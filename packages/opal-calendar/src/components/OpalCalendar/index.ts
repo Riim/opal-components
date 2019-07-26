@@ -114,13 +114,13 @@ export function toDate(this: OpalCalendar) {
 
 	events: {
 		monthSelect: {
-			select(evt: IEvent<OpalSelect>) {
+			[OpalSelect.EVENT_SELECT](evt: IEvent<OpalSelect>) {
 				this.shownMonth = +evt.target.viewModel.get(0)!.value;
 			}
 		},
 
 		yearSelect: {
-			select(evt: IEvent<OpalSelect>) {
+			[OpalSelect.EVENT_SELECT](evt: IEvent<OpalSelect>) {
 				this.shownYear = +evt.target.viewModel.get(0)!.value;
 			}
 		}
@@ -157,6 +157,8 @@ export function toDate(this: OpalCalendar) {
 	}
 })
 export class OpalCalendar extends BaseComponent {
+	static EVENT_CHANGE = Symbol('change');
+
 	@Param('fromDate')
 	paramFromDate: string;
 	@Param('toDate')
@@ -411,6 +413,6 @@ export class OpalCalendar extends BaseComponent {
 		this._currentlyDateSelection = true;
 		this.stringValue = dayEl.dataset.date!;
 
-		this.emit('change');
+		this.emit(OpalCalendar.EVENT_CHANGE);
 	}
 }

@@ -142,6 +142,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const opal_input_validator_1 = __webpack_require__(1);
+const opal_select_1 = __webpack_require__(2);
 const rionite_1 = __webpack_require__(5);
 const OpalSelectValidatorRule_1 = __webpack_require__(6);
 exports.OpalSelectValidatorRule = OpalSelectValidatorRule_1.OpalSelectValidatorRule;
@@ -159,6 +160,7 @@ let OpalSelectValidator = class OpalSelectValidator extends opal_input_validator
             : rule.required);
     }
 };
+OpalSelectValidator.TARGET_CHANGE_EVENT = opal_select_1.OpalSelect.EVENT_CHANGE;
 OpalSelectValidator = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSelectValidator'

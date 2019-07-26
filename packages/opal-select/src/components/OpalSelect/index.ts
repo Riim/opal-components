@@ -55,6 +55,13 @@ const defaultVMItemSchema = Object.freeze({
 	template
 })
 export class OpalSelect extends BaseComponent {
+	static EVENT_BLUR = Symbol('blur');
+	static EVENT_CHANGE = Symbol('change');
+	static EVENT_DESELECT = Symbol('deselect');
+	static EVENT_FOCUS = Symbol('focus');
+	static EVENT_INPUT = Symbol('input');
+	static EVENT_SELECT = Symbol('select');
+
 	static LOADED_EVENTS = [OpalLoadedList.EVENT_LOADED];
 
 	static defaultDataListItemSchema = defaultDataListItemSchema;
@@ -308,9 +315,9 @@ export class OpalSelect extends BaseComponent {
 		});
 		this.listenTo(this.viewModel, ObservableList.EVENT_CHANGE, this._onViewModelChange);
 		this.listenTo('button', {
-			focus: this._onButtonFocus,
-			blur: this._onButtonBlur,
-			click: this._onButtonClick
+			[OpalButton.EVENT_FOCUS]: this._onButtonFocus,
+			[OpalButton.EVENT_BLUR]: this._onButtonBlur,
+			[OpalButton.EVENT_CLICK]: this._onButtonClick
 		});
 
 		if (!this.openOnClick) {
@@ -325,8 +332,8 @@ export class OpalSelect extends BaseComponent {
 			'change:opened': this._onMenuOpenedChange,
 			[OpalSelectOption.EVENT_SELECT]: this._onMenuSelectOptionSelect,
 			[OpalSelectOption.EVENT_DESELECT]: this._onMenuSelectOptionDeselect,
-			'<OpalTextInput>confirm': this._onMenuTextInputConfirm,
-			'<OpalButton>click': this._onMenuButtonClick,
+			[OpalTextInput.EVENT_CONFIRM]: this._onMenuTextInputConfirm,
+			[OpalButton.EVENT_CLICK]: this._onMenuButtonClick,
 			[RnIfThen.EVENT_CHANGE]: this._onMenuChange,
 			[RnRepeat.EVENT_CHANGE]: this._onMenuChange
 		});
@@ -423,14 +430,14 @@ export class OpalSelect extends BaseComponent {
 				);
 			}
 
-			this.emit('focus');
+			this.emit(OpalSelect.EVENT_FOCUS);
 		} else {
 			if (this._documentKeyDownListening && !this._opened) {
 				this._documentKeyDownListening.stop();
 				this._documentKeyDownListening = null;
 			}
 
-			this.emit('blur');
+			this.emit(OpalSelect.EVENT_BLUR);
 		}
 	}
 
@@ -507,7 +514,7 @@ export class OpalSelect extends BaseComponent {
 			vm.add(vmItem);
 			this._notUpdateOptions = false;
 
-			this.emit('select');
+			this.emit(OpalSelect.EVENT_SELECT);
 		} else {
 			if (vm.length) {
 				vm.set(0, vmItem);
@@ -518,8 +525,8 @@ export class OpalSelect extends BaseComponent {
 			this.close();
 			this.focus();
 
-			this.emit('select');
-			this.emit('change');
+			this.emit(OpalSelect.EVENT_SELECT);
+			this.emit(OpalSelect.EVENT_CHANGE);
 		}
 
 		return false;
@@ -644,7 +651,7 @@ export class OpalSelect extends BaseComponent {
 
 		if (this.multiple) {
 			vm.add(vmItem);
-			this.emit('input');
+			this.emit(OpalSelect.EVENT_INPUT);
 		} else {
 			if (vm.length) {
 				vm.set(0, vmItem);
@@ -655,8 +662,8 @@ export class OpalSelect extends BaseComponent {
 			this.close();
 			this.focus();
 
-			this.emit('input');
-			this.emit('change');
+			this.emit(OpalSelect.EVENT_INPUT);
+			this.emit(OpalSelect.EVENT_CHANGE);
 		}
 	}
 
@@ -758,7 +765,7 @@ export class OpalSelect extends BaseComponent {
 					this._valueOnOpen
 				)
 			) {
-				this.emit('change');
+				this.emit(OpalSelect.EVENT_CHANGE);
 			}
 		}
 

@@ -153,6 +153,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var OpalAutosuggest_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const next_tick_1 = __webpack_require__(6);
+const opal_text_input_1 = __webpack_require__(3);
 const cellx_1 = __webpack_require__(7);
 const cellx_decorators_1 = __webpack_require__(8);
 const rionite_1 = __webpack_require__(9);
@@ -201,12 +202,12 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
             'change:value': this._onValueChange,
             'change:loaderShown': this._onLoaderShownChange
         });
-        this.listenTo(this.dataList, 'change', this._onDataListChange);
+        this.listenTo(this.dataList, cellx_1.ObservableList.EVENT_CHANGE, this._onDataListChange);
         this.listenTo('textInput', {
-            focus: this._onTextInputFocus,
-            blur: this._onTextInputBlur,
-            input: this._onTextInputInput,
-            change: this._onTextInputChange
+            [opal_text_input_1.OpalTextInput.EVENT_FOCUS]: this._onTextInputFocus,
+            [opal_text_input_1.OpalTextInput.EVENT_BLUR]: this._onTextInputBlur,
+            [opal_text_input_1.OpalTextInput.EVENT_INPUT]: this._onTextInputInput,
+            [opal_text_input_1.OpalTextInput.EVENT_CHANGE]: this._onTextInputChange
         });
         this.listenTo(this.$('textInput').textField, 'click', this._onTextFieldClick);
         this.listenTo('menu', 'change:opened', this._onMenuOpenedChange);
@@ -263,7 +264,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
             this._clearDataList();
             if (this.value) {
                 this.value = null;
-                this.emit('change');
+                this.emit(OpalAutosuggest_1.EVENT_CHANGE);
             }
         }
     }
@@ -486,7 +487,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
                 return;
             }
             this.value = item;
-            this.emit('change');
+            this.emit(OpalAutosuggest_1.EVENT_CHANGE);
         }
     }
     clear(textInputValue) {
@@ -504,6 +505,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
         this._focusedOption = null;
     }
 };
+OpalAutosuggest.EVENT_CHANGE = Symbol('change');
 OpalAutosuggest.defaultDataListItemSchema = defaultDataListItemSchema;
 __decorate([
     rionite_1.Param({

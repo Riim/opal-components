@@ -14,6 +14,8 @@ import template from './template.rnt';
 	template
 })
 export class OpalPopover extends BaseComponent {
+	static EVENT_CLOSE = Symbol('close');
+
 	@Param
 	position:
 		| 'top'
@@ -214,7 +216,7 @@ export class OpalPopover extends BaseComponent {
 		for (let el: Element | null = evt.target as Element; el != componentEl; ) {
 			if (el == docEl || el.tagName == 'A') {
 				this.close();
-				this.emit('close');
+				this.emit(OpalPopover.EVENT_CLOSE);
 				break;
 			}
 

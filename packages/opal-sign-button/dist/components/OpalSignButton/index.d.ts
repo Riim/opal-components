@@ -1,6 +1,12 @@
 import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalSignButton extends BaseComponent {
+    static EVENT_BLUR: symbol;
+    static EVENT_CHANGE: symbol;
+    static EVENT_CHECK: symbol;
+    static EVENT_CLICK: symbol;
+    static EVENT_FOCUS: symbol;
+    static EVENT_UNCHECK: symbol;
     sign: string;
     viewType: string;
     checkable: boolean;

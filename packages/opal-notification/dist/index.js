@@ -136,6 +136,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalNotification_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const map_set_polyfill_1 = __webpack_require__(4);
 const cellx_1 = __webpack_require__(5);
@@ -153,7 +154,7 @@ function initContainer(notification) {
     }
     return container;
 }
-let OpalNotification = class OpalNotification extends rionite_1.BaseComponent {
+let OpalNotification = OpalNotification_1 = class OpalNotification extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.viewType = 'default';
@@ -190,8 +191,8 @@ let OpalNotification = class OpalNotification extends rionite_1.BaseComponent {
     }
     _onBtnHideClick() {
         this.hide();
-        this.emit('hide');
-        this.emit('close');
+        this.emit(OpalNotification_1.EVENT_HIDE);
+        this.emit(OpalNotification_1.EVENT_CLOSE);
     }
     show() {
         if (this.shown) {
@@ -230,8 +231,8 @@ let OpalNotification = class OpalNotification extends rionite_1.BaseComponent {
             if (this.timeout) {
                 this._closingTimeoutId = setTimeout(() => {
                     this.hide();
-                    this.emit('hide');
-                    this.emit('close');
+                    this.emit(OpalNotification_1.EVENT_HIDE);
+                    this.emit(OpalNotification_1.EVENT_CLOSE);
                 }, this.timeout);
             }
         }, 100);
@@ -254,6 +255,8 @@ let OpalNotification = class OpalNotification extends rionite_1.BaseComponent {
         return this;
     }
 };
+OpalNotification.EVENT_CLOSE = Symbol('close');
+OpalNotification.EVENT_HIDE = Symbol('hide');
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)
@@ -278,7 +281,7 @@ __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
 ], OpalNotification.prototype, "shown", void 0);
-OpalNotification = __decorate([
+OpalNotification = OpalNotification_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalNotification',
         template: template_rnt_1.default

@@ -2,7 +2,7 @@ const childProcess = require('child_process');
 const glob = require('glob');
 const gulp = require('gulp');
 
-const numCPUs = require('os').cpus().length;
+const useCPUCount = Math.min(1, Math.floor(require('os').cpus().length / 2));
 
 gulp.task('build', done => {
 	let packages = glob.sync(`packages/*/src/index.ts`);
@@ -39,7 +39,7 @@ gulp.task('build', done => {
 		});
 	}
 
-	while (index < numCPUs) {
+	while (index < useCPUCount) {
 		buildPackage(packages[index++]);
 	}
 });

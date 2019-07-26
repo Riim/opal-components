@@ -129,6 +129,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalModal_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_1 = __webpack_require__(3);
 const cellx_decorators_1 = __webpack_require__(4);
@@ -149,7 +150,7 @@ function onDocumentKeyUp(evt) {
         openedModals[0].close();
     }
 }
-let OpalModal = class OpalModal extends rionite_1.BaseComponent {
+let OpalModal = OpalModal_1 = class OpalModal extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.opened = false;
@@ -181,7 +182,7 @@ let OpalModal = class OpalModal extends rionite_1.BaseComponent {
         for (let el = evt.target; el != windowEl;) {
             if (el == componentEl) {
                 this.close();
-                this.emit('close');
+                this.emit(OpalModal_1.EVENT_CLOSE);
                 break;
             }
             el = el.parentElement;
@@ -267,6 +268,7 @@ let OpalModal = class OpalModal extends rionite_1.BaseComponent {
         return this;
     }
 };
+OpalModal.EVENT_CLOSE = Symbol('close');
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
@@ -275,7 +277,7 @@ __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
 ], OpalModal.prototype, "contentRendered", void 0);
-OpalModal = __decorate([
+OpalModal = OpalModal_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalModal',
         template: template_rnt_1.default,
@@ -283,7 +285,7 @@ OpalModal = __decorate([
             btnClose: {
                 click() {
                     this.close();
-                    this.emit('close');
+                    this.emit(OpalModal_1.EVENT_CLOSE);
                 }
             }
         }

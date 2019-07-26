@@ -14,6 +14,7 @@ export interface IDataProvider {
     }>;
 }
 export declare class OpalAutosuggest extends BaseComponent {
+    static EVENT_CHANGE: symbol;
     dataListItemSchema: {
         value?: string;
         text?: string;

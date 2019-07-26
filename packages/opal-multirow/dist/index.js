@@ -136,6 +136,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalMultirow_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const next_uid_1 = __webpack_require__(4);
 const cellx_1 = __webpack_require__(5);
@@ -145,7 +146,7 @@ const OpalMultirowRow_1 = __webpack_require__(8);
 exports.OpalMultirowRow = OpalMultirowRow_1.OpalMultirowRow;
 __webpack_require__(11);
 const template_rnt_1 = __webpack_require__(12);
-let OpalMultirow = class OpalMultirow extends rionite_1.BaseComponent {
+let OpalMultirow = OpalMultirow_1 = class OpalMultirow extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this._presetRowCount = 0;
@@ -169,11 +170,11 @@ let OpalMultirow = class OpalMultirow extends rionite_1.BaseComponent {
     }
     elementAttached() {
         this.listenTo(this, {
-            '<OpalMultirowRow>remove-row-click': this._onRemoveRowClick,
-            '<OpalMultirowRow>add-row-click': this._onAddRowClick
+            [OpalMultirowRow_1.OpalMultirowRow.EVENT_REMOVE_ROW_CLICK]: this._onRowRemoveRowClick,
+            [OpalMultirowRow_1.OpalMultirowRow.EVENT_ADD_ROW_CLICK]: this._onRowAddRowClick
         });
     }
-    _onRemoveRowClick(evt) {
+    _onRowRemoveRowClick(evt) {
         let rowEl = evt.target.element;
         if (rowEl.classList.contains(this._presetRowClassName)) {
             rowEl.parentElement.removeChild(rowEl);
@@ -184,20 +185,23 @@ let OpalMultirow = class OpalMultirow extends rionite_1.BaseComponent {
             this._newRows.removeAt(this._newRows.findIndex(row => row.key == key));
         }
         cellx_1.Cell.release();
-        this.emit('remove-row');
-        this.emit('change');
+        this.emit(OpalMultirow_1.EVENT_REMOVE_ROW);
+        this.emit(OpalMultirow_1.EVENT_CHANGE);
     }
-    _onAddRowClick() {
+    _onRowAddRowClick() {
         this._newRows.add({ key: next_uid_1.nextUID() });
         cellx_1.Cell.release();
         let focusable = this.$('focus', this.$$('newRowSlot').slice(-1)[0]);
         if (focusable) {
             focusable.focus();
         }
-        this.emit('add-row');
-        this.emit('change');
+        this.emit(OpalMultirow_1.EVENT_ADD_ROW);
+        this.emit(OpalMultirow_1.EVENT_CHANGE);
     }
 };
+OpalMultirow.EVENT_ADD_ROW = Symbol('add-row');
+OpalMultirow.EVENT_CHANGE = Symbol('change');
+OpalMultirow.EVENT_REMOVE_ROW = Symbol('remove-row');
 __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
@@ -216,7 +220,7 @@ __decorate([
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], OpalMultirow.prototype, "_notSingleRow", null);
-OpalMultirow = __decorate([
+OpalMultirow = OpalMultirow_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalMultirow',
         template: template_rnt_1.default
@@ -261,25 +265,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var OpalMultirowRow_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+const opal_sign_button_1 = __webpack_require__(1);
 const rionite_1 = __webpack_require__(7);
 __webpack_require__(9);
 const template_rnt_1 = __webpack_require__(10);
-let OpalMultirowRow = class OpalMultirowRow extends rionite_1.BaseComponent {
+let OpalMultirowRow = OpalMultirowRow_1 = class OpalMultirowRow extends rionite_1.BaseComponent {
 };
-OpalMultirowRow = __decorate([
+OpalMultirowRow.EVENT_ADD_ROW_CLICK = Symbol('add-row-click');
+OpalMultirowRow.EVENT_REMOVE_ROW_CLICK = Symbol('remove-row-click');
+OpalMultirowRow = OpalMultirowRow_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalMultirowRow',
         template: template_rnt_1.default,
         events: {
             btnRemoveRow: {
-                click() {
-                    this.emit('remove-row-click');
+                [opal_sign_button_1.OpalSignButton.EVENT_CLICK]() {
+                    this.emit(OpalMultirowRow_1.EVENT_REMOVE_ROW_CLICK);
                 }
             },
             btnAddRow: {
-                click() {
-                    this.emit('add-row-click');
+                [opal_sign_button_1.OpalSignButton.EVENT_CLICK]() {
+                    this.emit(OpalMultirowRow_1.EVENT_ADD_ROW_CLICK);
                 }
             }
         }

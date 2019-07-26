@@ -13,6 +13,10 @@ export { OpalMultirowRow };
 	template
 })
 export class OpalMultirow extends BaseComponent {
+	static EVENT_ADD_ROW = Symbol('add-row');
+	static EVENT_CHANGE = Symbol('change');
+	static EVENT_REMOVE_ROW = Symbol('remove-row');
+
 	_presetRowClassName: string;
 
 	@Observable
@@ -45,12 +49,12 @@ export class OpalMultirow extends BaseComponent {
 
 	elementAttached() {
 		this.listenTo(this, {
-			'<OpalMultirowRow>remove-row-click': this._onRemoveRowClick,
-			'<OpalMultirowRow>add-row-click': this._onAddRowClick
+			[OpalMultirowRow.EVENT_REMOVE_ROW_CLICK]: this._onRowRemoveRowClick,
+			[OpalMultirowRow.EVENT_ADD_ROW_CLICK]: this._onRowAddRowClick
 		});
 	}
 
-	_onRemoveRowClick(evt: IEvent<OpalMultirowRow>) {
+	_onRowRemoveRowClick(evt: IEvent<OpalMultirowRow>) {
 		let rowEl = evt.target.element;
 
 		if (rowEl.classList.contains(this._presetRowClassName)) {
@@ -63,11 +67,11 @@ export class OpalMultirow extends BaseComponent {
 
 		Cell.release();
 
-		this.emit('remove-row');
-		this.emit('change');
+		this.emit(OpalMultirow.EVENT_REMOVE_ROW);
+		this.emit(OpalMultirow.EVENT_CHANGE);
 	}
 
-	_onAddRowClick() {
+	_onRowAddRowClick() {
 		this._newRows.add({ key: nextUID() });
 
 		Cell.release();
@@ -81,7 +85,7 @@ export class OpalMultirow extends BaseComponent {
 			focusable.focus();
 		}
 
-		this.emit('add-row');
-		this.emit('change');
+		this.emit(OpalMultirow.EVENT_ADD_ROW);
+		this.emit(OpalMultirow.EVENT_CHANGE);
 	}
 }

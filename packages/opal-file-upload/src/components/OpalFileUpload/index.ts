@@ -63,8 +63,8 @@ export class OpalFileUpload extends BaseComponent {
 	}
 
 	elementAttached() {
-		this.listenTo(this.$<Node>('filesInput')!, 'change', this._onFilesInputChange);
-		this.listenTo(this.$<Node>('dropZone')!, {
+		this.listenTo(this.$('filesInput')!, 'change', this._onFilesInputChange);
+		this.listenTo(this.$('dropZone')!, {
 			dragenter: this._onDropZoneDragEnter,
 			dragover: this._onDropZoneDragOver,
 			dragleave: this._onDropZoneDragLeave,

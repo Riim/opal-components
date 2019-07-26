@@ -165,6 +165,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const opal_button_1 = __webpack_require__(1);
 const opal_select_1 = __webpack_require__(4);
 const opal_tree_list_1 = __webpack_require__(5);
 const cellx_1 = __webpack_require__(8);
@@ -244,7 +245,7 @@ OpalTreeSelect = __decorate([
         template: template_rnt_1.default,
         events: {
             btnClose: {
-                click() {
+                [opal_button_1.OpalButton.EVENT_CLICK]() {
                     this.$('menu').close();
                 }
             }

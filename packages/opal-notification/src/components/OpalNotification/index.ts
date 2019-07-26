@@ -27,6 +27,9 @@ function initContainer(notification: OpalNotification): HTMLElement {
 	template
 })
 export class OpalNotification extends BaseComponent {
+	static EVENT_CLOSE = Symbol('close');
+	static EVENT_HIDE = Symbol('hide');
+
 	@Param
 	viewType: 'default' | 'primary' | 'success' | 'danger' | string = 'default';
 	@Param
@@ -78,8 +81,8 @@ export class OpalNotification extends BaseComponent {
 
 	_onBtnHideClick() {
 		this.hide();
-		this.emit('hide');
-		this.emit('close');
+		this.emit(OpalNotification.EVENT_HIDE);
+		this.emit(OpalNotification.EVENT_CLOSE);
 	}
 
 	show(): boolean {
@@ -130,8 +133,8 @@ export class OpalNotification extends BaseComponent {
 			if (this.timeout) {
 				this._closingTimeoutId = setTimeout(() => {
 					this.hide();
-					this.emit('hide');
-					this.emit('close');
+					this.emit(OpalNotification.EVENT_HIDE);
+					this.emit(OpalNotification.EVENT_CLOSE);
 				}, this.timeout) as any;
 			}
 		}, 100);

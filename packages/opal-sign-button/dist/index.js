@@ -129,12 +129,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalSignButton_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(3);
 const rionite_1 = __webpack_require__(4);
 __webpack_require__(5);
 const template_rnt_1 = __webpack_require__(6);
-let OpalSignButton = class OpalSignButton extends rionite_1.BaseComponent {
+let OpalSignButton = OpalSignButton_1 = class OpalSignButton extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.checkable = false;
@@ -160,11 +161,11 @@ let OpalSignButton = class OpalSignButton extends rionite_1.BaseComponent {
     }
     _onControlFocus() {
         this.focused = true;
-        this.emit('focus');
+        this.emit(OpalSignButton_1.EVENT_FOCUS);
     }
     _onControlBlur() {
         this.focused = false;
-        this.emit('blur');
+        this.emit(OpalSignButton_1.EVENT_BLUR);
     }
     _onControlClick(evt) {
         evt.preventDefault();
@@ -173,9 +174,9 @@ let OpalSignButton = class OpalSignButton extends rionite_1.BaseComponent {
         }
     }
     click() {
-        if (!this.emit('click').defaultPrevented && this.checkable) {
-            this.emit(this.toggle() ? 'check' : 'uncheck');
-            this.emit('change');
+        if (!this.emit(OpalSignButton_1.EVENT_CLICK).defaultPrevented && this.checkable) {
+            this.emit(this.toggle() ? OpalSignButton_1.EVENT_CHECK : OpalSignButton_1.EVENT_UNCHECK);
+            this.emit(OpalSignButton_1.EVENT_CHANGE);
         }
         return this;
     }
@@ -219,6 +220,12 @@ let OpalSignButton = class OpalSignButton extends rionite_1.BaseComponent {
         return this;
     }
 };
+OpalSignButton.EVENT_BLUR = Symbol('blur');
+OpalSignButton.EVENT_CHANGE = Symbol('change');
+OpalSignButton.EVENT_CHECK = Symbol('check');
+OpalSignButton.EVENT_CLICK = Symbol('click');
+OpalSignButton.EVENT_FOCUS = Symbol('focus');
+OpalSignButton.EVENT_UNCHECK = Symbol('uncheck');
 __decorate([
     rionite_1.Param({ required: true }),
     __metadata("design:type", String)
@@ -252,7 +259,7 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalSignButton.prototype, "_tabIndex", null);
-OpalSignButton = __decorate([
+OpalSignButton = OpalSignButton_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSignButton',
         template: template_rnt_1.default
