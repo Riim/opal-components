@@ -14,6 +14,7 @@ export interface IDataProvider {
     }>;
 }
 export declare class OpalLoadedList extends BaseComponent {
+    static EVENT_LOADED: symbol;
     static defaultDataListItemSchema: Readonly<{
         value: string;
         text: string;

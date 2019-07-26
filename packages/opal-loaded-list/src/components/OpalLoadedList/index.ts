@@ -37,6 +37,8 @@ let defaultDataListItemSchema = Object.freeze({
 	template
 })
 export class OpalLoadedList extends BaseComponent {
+	static EVENT_LOADED = Symbol('loaded');
+
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 
 	@Param({
@@ -221,7 +223,7 @@ export class OpalLoadedList extends BaseComponent {
 
 				Cell.release();
 
-				this.emit('loaded');
+				this.emit(OpalLoadedList.EVENT_LOADED);
 
 				this.checkLoading();
 			}))

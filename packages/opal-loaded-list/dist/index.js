@@ -263,7 +263,7 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
                 this._lastLoadedQuery = query;
             }
             cellx_1.Cell.release();
-            this.emit('loaded');
+            this.emit(OpalLoadedList_1.EVENT_LOADED);
             this.checkLoading();
         })));
     }
@@ -274,6 +274,7 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
         };
     }
 };
+OpalLoadedList.EVENT_LOADED = Symbol('loaded');
 OpalLoadedList.defaultDataListItemSchema = defaultDataListItemSchema;
 __decorate([
     rionite_1.Param({
