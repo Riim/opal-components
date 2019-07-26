@@ -306,7 +306,7 @@ export class OpalSelect extends BaseComponent {
 			'change:paramValue': this._onParamValueChange,
 			'change:focused': this._onFocusedChange
 		});
-		this.listenTo(this.viewModel, 'change', this._onViewModelChange);
+		this.listenTo(this.viewModel, ObservableList.EVENT_CHANGE, this._onViewModelChange);
 		this.listenTo('button', {
 			focus: this._onButtonFocus,
 			blur: this._onButtonBlur,

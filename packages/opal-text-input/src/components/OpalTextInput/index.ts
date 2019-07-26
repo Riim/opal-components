@@ -150,9 +150,7 @@ export class OpalTextInput extends BaseComponent {
 			this._fixHeight();
 		}
 
-		this.emit('input', {
-			initialEvent: evt
-		});
+		this.emit('input', { initialEvent: evt });
 	}
 
 	_onTextFieldChange(evt: Event) {
@@ -166,21 +164,11 @@ export class OpalTextInput extends BaseComponent {
 			localStorage.setItem(this.storeKey, this.textField.value);
 		}
 
-		this.emit({
-			type: 'change',
-			data: {
-				initialEvent: evt
-			}
-		});
+		this.emit('change', { initialEvent: evt });
 	}
 
 	_onTextFieldKeyDown(evt: Event) {
-		this.emit({
-			type: 'keydown',
-			data: {
-				initialEvent: evt
-			}
-		});
+		this.emit('keydown', { initialEvent: evt });
 	}
 
 	_onTextFieldKeyPress(evt: KeyboardEvent) {
@@ -188,21 +176,11 @@ export class OpalTextInput extends BaseComponent {
 			this.emit('confirm');
 		}
 
-		this.emit({
-			type: 'keypress',
-			data: {
-				initialEvent: evt
-			}
-		});
+		this.emit('keypress', { initialEvent: evt });
 	}
 
 	_onTextFieldKeyUp(evt: Event) {
-		this.emit({
-			type: 'keyup',
-			data: {
-				initialEvent: evt
-			}
-		});
+		this.emit('keyup', { initialEvent: evt });
 	}
 
 	_fixMinHeight() {

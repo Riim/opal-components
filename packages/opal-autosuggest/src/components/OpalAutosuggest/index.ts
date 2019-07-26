@@ -132,7 +132,7 @@ export class OpalAutosuggest extends BaseComponent {
 			'change:value': this._onValueChange,
 			'change:loaderShown': this._onLoaderShownChange
 		});
-		this.listenTo(this.dataList, 'change', this._onDataListChange);
+		this.listenTo(this.dataList, ObservableList.EVENT_CHANGE, this._onDataListChange);
 		this.listenTo('textInput', {
 			focus: this._onTextInputFocus,
 			blur: this._onTextInputBlur,
