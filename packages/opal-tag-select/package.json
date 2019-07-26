@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tag-select",
-  "version": "0.37.27",
+  "version": "0.37.28",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     "@riim/opal-loaded-list": "^0.37.27",
     "@riim/opal-loader": "^0.37.27",
     "@riim/opal-popover": "^0.37.27",
-    "@riim/opal-select": "^0.37.27",
+    "@riim/opal-select": "^0.37.28",
     "@riim/opal-sign-button": "^0.37.27",
     "cellx": "^1.9.6",
     "cellx-decorators": "^1.5.0",
