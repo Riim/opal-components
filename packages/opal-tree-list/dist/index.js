@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-button"), require("@riim/opal-checkbox"), require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("@riim/object-assign-polyfill"), require("cellx"), require("@riim/opal-utils"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("@riim/opal-button"), require("@riim/opal-checkbox"), require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("@riim/object-assign-polyfill"), require("cellx"), require("@riim/opal-select"), require("@riim/opal-utils"), require("cellx-decorators"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-button", "@riim/opal-checkbox", "@riim/opal-icon", "@riim/opal-loader", "reflect-metadata", "@riim/object-assign-polyfill", "cellx", "@riim/opal-utils", "cellx-decorators", "rionite"], factory);
+		define(["@riim/opal-button", "@riim/opal-checkbox", "@riim/opal-icon", "@riim/opal-loader", "reflect-metadata", "@riim/object-assign-polyfill", "cellx", "@riim/opal-select", "@riim/opal-utils", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tree-list"] = factory(require("@riim/opal-button"), require("@riim/opal-checkbox"), require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("@riim/object-assign-polyfill"), require("cellx"), require("@riim/opal-utils"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-tree-list"] = factory(require("@riim/opal-button"), require("@riim/opal-checkbox"), require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("@riim/object-assign-polyfill"), require("cellx"), require("@riim/opal-select"), require("@riim/opal-utils"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/opal-tree-list"] = factory(root["@riim/opal-button"], root["@riim/opal-checkbox"], root["@riim/opal-icon"], root["@riim/opal-loader"], root["reflect-metadata"], root["@riim/object-assign-polyfill"], root["cellx"], root["@riim/opal-utils"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__12__) {
+		root["@riim/opal-tree-list"] = factory(root["@riim/opal-button"], root["@riim/opal-checkbox"], root["@riim/opal-icon"], root["@riim/opal-loader"], root["reflect-metadata"], root["@riim/object-assign-polyfill"], root["cellx"], root["@riim/opal-select"], root["@riim/opal-utils"], root["cellx-decorators"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__12__, __WEBPACK_EXTERNAL_MODULE__13__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -301,17 +301,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalTreeList_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const opal_utils_1 = __webpack_require__(10);
+const opal_checkbox_1 = __webpack_require__(2);
+const opal_select_1 = __webpack_require__(10);
+const opal_utils_1 = __webpack_require__(11);
 const cellx_1 = __webpack_require__(8);
-const cellx_decorators_1 = __webpack_require__(11);
-const rionite_1 = __webpack_require__(12);
+const cellx_decorators_1 = __webpack_require__(12);
+const rionite_1 = __webpack_require__(13);
 const ObservableTreeList_1 = __webpack_require__(6);
-__webpack_require__(13);
-const OpalTreeListItem_1 = __webpack_require__(13);
+const OpalTreeListItem_1 = __webpack_require__(14);
 exports.OpalTreeListItem = OpalTreeListItem_1.OpalTreeListItem;
-const _getListItemContext_1 = __webpack_require__(14);
-__webpack_require__(17);
-const template_rnt_1 = __webpack_require__(18);
+__webpack_require__(14);
+const _getListItemContext_1 = __webpack_require__(15);
+__webpack_require__(18);
+const template_rnt_1 = __webpack_require__(19);
 const defaultDataTreeListItemSchema = Object.freeze({
     value: 'id',
     text: 'name'
@@ -397,10 +399,8 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
     }
     elementAttached() {
-        this.listenTo(this, {
-            'change:query': this._onQueryChange,
-            '<*>change': this._onChange
-        });
+        this.listenTo(this, 'change:query', this._onQueryChange);
+        this.listenTo(this, OpalTreeList_1.SELECTION_CONTROL_CHANGE_EVENTS, this._onSelectionControlChange);
     }
     _onQueryChange() {
         if (this._queryTimeout) {
@@ -412,21 +412,17 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
         this._queryTimeout = null;
         this.comparableQuery = toComparable(this.query);
     }
-    _onChange(evt) {
-        let component = evt.target;
-        if (!component.element.classList.contains('OpalTreeList__selectionControl')) {
-            return;
-        }
+    _onSelectionControlChange(evt) {
         let dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName;
         let dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
         let vm = this.viewModel;
         let viewModelItemValueFieldName = this._viewModelItemValueFieldName;
         let viewModelItemTextFieldName = this._viewModelItemTextFieldName;
-        let item = opal_utils_1.closestComponent(component.parentComponent, OpalTreeListItem_1.OpalTreeListItem).$context.$item;
+        let item = opal_utils_1.closestComponent(evt.target.parentComponent, OpalTreeListItem_1.OpalTreeListItem).$context.$item;
         if (item.$original) {
             item = item.$original;
         }
-        if (component.selected) {
+        if (evt.target.selected) {
             for (let parent; (parent = item.parent) &&
                 parent.children.every(child => child == item ||
                     !!vm.find(vmItem => vmItem[viewModelItemValueFieldName] ==
@@ -472,6 +468,10 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
         }
     }
 };
+OpalTreeList.SELECTION_CONTROL_CHANGE_EVENTS = [
+    opal_checkbox_1.OpalCheckbox.EVENT_CHANGE,
+    opal_select_1.OpalSelectOption.EVENT_CHANGE
+];
 OpalTreeList.defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
 OpalTreeList.defaultViewModelItemSchema = defaultVMItemSchema;
 __decorate([
@@ -554,6 +554,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__12__;
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__13__;
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -568,10 +574,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const rionite_1 = __webpack_require__(12);
-const _getListItemContext_1 = __webpack_require__(14);
-__webpack_require__(15);
-const template_rnt_1 = __webpack_require__(16);
+const rionite_1 = __webpack_require__(13);
+const _getListItemContext_1 = __webpack_require__(15);
+__webpack_require__(16);
+const template_rnt_1 = __webpack_require__(17);
 let OpalTreeListItem = class OpalTreeListItem extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -662,7 +668,7 @@ OpalTreeListItem.prototype._getListItemContext = _getListItemContext_1.default;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -703,7 +709,7 @@ exports.default = _getListItemContext;
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -720,7 +726,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -728,7 +734,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("div:head {\nOpalButton:btnToggleChildren (viewType=clean, checkable, checked={opened}) {\nOpalIcon:btnToggleChildrenIcon (name=chevronRight)\n}\nspan:contentSlotWrapper {\nRnSlot:contentSlot (cloneContent)\n}\n}\ndiv:children (@if=dataTreeListItem.children.length) {\nOpalTreeListItem:item (\n@for=$item in dataTreeListItem.children,\ndataTreeList={dataTreeList},\nfilteredDataTreeList={filteredDataTreeList},\ndataTreeListItemValueFieldName={_dataTreeListItemValueFieldName},\ndataTreeListItemTextFieldName={_dataTreeListItemTextFieldName},\nviewModel={viewModel},\nviewModelItemValueFieldName={_viewModelItemValueFieldName},\nviewModelItemTextFieldName={_viewModelItemTextFieldName},\nindexpath='[{indexpath},{$index}]',\nquery={query},\nopened={query |bool },\nnestingLevel={indexpath.length},\nhasChildren='{$item.children.length |gt(0) }'\n) {\nRnSlot (cloneContent, getContext={_getListItemContext})\n}\n}");
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -745,7 +751,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

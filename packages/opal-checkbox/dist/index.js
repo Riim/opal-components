@@ -129,12 +129,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var OpalCheckbox_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__(3);
 const rionite_1 = __webpack_require__(4);
 __webpack_require__(5);
 const template_rnt_1 = __webpack_require__(6);
-let OpalCheckbox = class OpalCheckbox extends rionite_1.BaseComponent {
+let OpalCheckbox = OpalCheckbox_1 = class OpalCheckbox extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this.checked = false;
@@ -190,22 +191,26 @@ let OpalCheckbox = class OpalCheckbox extends rionite_1.BaseComponent {
         if (evt.which == 13 /* Enter */ || evt.which == 32 /* Space */) {
             evt.preventDefault();
             if (!this.disabled) {
-                this.emit((this.checked = !this.checked) ? 'check' : 'uncheck');
-                this.emit('change');
+                this.emit((this.checked = !this.checked)
+                    ? OpalCheckbox_1.EVENT_CHECK
+                    : OpalCheckbox_1.EVENT_UNCHECK);
+                this.emit(OpalCheckbox_1.EVENT_CHANGE);
             }
         }
     }
     _onInputChange(evt) {
-        this.emit((this.checked = evt.target.checked) ? 'check' : 'uncheck');
-        this.emit('change');
+        this.emit((this.checked = evt.target.checked)
+            ? OpalCheckbox_1.EVENT_CHECK
+            : OpalCheckbox_1.EVENT_UNCHECK);
+        this.emit(OpalCheckbox_1.EVENT_CHANGE);
     }
     _onControlFocus() {
         this.focused = true;
-        this.emit('focus');
+        this.emit(OpalCheckbox_1.EVENT_FOCUS);
     }
     _onControlBlur() {
         this.focused = false;
-        this.emit('blur');
+        this.emit(OpalCheckbox_1.EVENT_BLUR);
     }
     get selected() {
         return this.checked;
@@ -247,6 +252,11 @@ let OpalCheckbox = class OpalCheckbox extends rionite_1.BaseComponent {
         return this;
     }
 };
+OpalCheckbox.EVENT_BLUR = Symbol('blur');
+OpalCheckbox.EVENT_CHANGE = Symbol('change');
+OpalCheckbox.EVENT_CHECK = Symbol('check');
+OpalCheckbox.EVENT_FOCUS = Symbol('focus');
+OpalCheckbox.EVENT_UNCHECK = Symbol('uncheck');
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
@@ -272,7 +282,7 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalCheckbox.prototype, "_tabIndex", null);
-OpalCheckbox = __decorate([
+OpalCheckbox = OpalCheckbox_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalCheckbox',
         template: template_rnt_1.default

@@ -14,6 +14,12 @@ import template from './template.rnt';
 	template
 })
 export class OpalCheckbox extends BaseComponent {
+	static EVENT_BLUR = Symbol('blur');
+	static EVENT_CHANGE = Symbol('change');
+	static EVENT_CHECK = Symbol('check');
+	static EVENT_FOCUS = Symbol('focus');
+	static EVENT_UNCHECK = Symbol('uncheck');
+
 	@Param
 	checked = false;
 	@Param
@@ -87,25 +93,33 @@ export class OpalCheckbox extends BaseComponent {
 			evt.preventDefault();
 
 			if (!this.disabled) {
-				this.emit((this.checked = !this.checked) ? 'check' : 'uncheck');
-				this.emit('change');
+				this.emit(
+					(this.checked = !this.checked)
+						? OpalCheckbox.EVENT_CHECK
+						: OpalCheckbox.EVENT_UNCHECK
+				);
+				this.emit(OpalCheckbox.EVENT_CHANGE);
 			}
 		}
 	}
 
 	_onInputChange(evt: Event) {
-		this.emit((this.checked = (evt.target as HTMLInputElement).checked) ? 'check' : 'uncheck');
-		this.emit('change');
+		this.emit(
+			(this.checked = (evt.target as HTMLInputElement).checked)
+				? OpalCheckbox.EVENT_CHECK
+				: OpalCheckbox.EVENT_UNCHECK
+		);
+		this.emit(OpalCheckbox.EVENT_CHANGE);
 	}
 
 	_onControlFocus() {
 		this.focused = true;
-		this.emit('focus');
+		this.emit(OpalCheckbox.EVENT_FOCUS);
 	}
 
 	_onControlBlur() {
 		this.focused = false;
-		this.emit('blur');
+		this.emit(OpalCheckbox.EVENT_BLUR);
 	}
 
 	get selected(): boolean {

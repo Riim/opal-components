@@ -1,4 +1,5 @@
 import { OpalCheckbox } from '@riim/opal-checkbox';
+import { OpalSelectOption } from '@riim/opal-select';
 import { closestComponent } from '@riim/opal-utils';
 import {
 	Cell,
@@ -14,8 +15,8 @@ import {
 	Param
 	} from 'rionite';
 import { ObservableTreeList, setParent } from '../../ObservableTreeList';
-import '../OpalTreeListItem';
 import { OpalTreeListItem } from '../OpalTreeListItem';
+import '../OpalTreeListItem';
 import _getListItemContext from './_getListItemContext';
 import './index.css';
 import template from './template.rnt';
@@ -63,6 +64,11 @@ function toComparable(str: string | null): string | null {
 	template
 })
 export class OpalTreeList extends BaseComponent {
+	static SELECTION_CONTROL_CHANGE_EVENTS = [
+		OpalCheckbox.EVENT_CHANGE,
+		OpalSelectOption.EVENT_CHANGE
+	];
+
 	static defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
@@ -205,10 +211,12 @@ export class OpalTreeList extends BaseComponent {
 	}
 
 	elementAttached() {
-		this.listenTo(this, {
-			'change:query': this._onQueryChange,
-			'<*>change': this._onChange
-		});
+		this.listenTo(this, 'change:query', this._onQueryChange);
+		this.listenTo(
+			this,
+			OpalTreeList.SELECTION_CONTROL_CHANGE_EVENTS,
+			this._onSelectionControlChange
+		);
 	}
 
 	_onQueryChange() {
@@ -224,20 +232,14 @@ export class OpalTreeList extends BaseComponent {
 		this.comparableQuery = toComparable(this.query);
 	}
 
-	_onChange(evt: IEvent<OpalCheckbox>) {
-		let component = evt.target;
-
-		if (!component.element.classList.contains('OpalTreeList__selectionControl')) {
-			return;
-		}
-
+	_onSelectionControlChange(evt: IEvent<OpalCheckbox>) {
 		let dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName;
 		let dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;
 		let vm = this.viewModel;
 		let viewModelItemValueFieldName = this._viewModelItemValueFieldName;
 		let viewModelItemTextFieldName = this._viewModelItemTextFieldName;
 		let item: IDataTreeListItem | IFilteredDataTreeListItem = closestComponent(
-			component.parentComponent!,
+			evt.target.parentComponent!,
 			OpalTreeListItem
 		)!.$context!.$item;
 
@@ -245,7 +247,7 @@ export class OpalTreeList extends BaseComponent {
 			item = item.$original;
 		}
 
-		if (component.selected) {
+		if (evt.target.selected) {
 			for (
 				let parent;
 				(parent = item.parent) &&
