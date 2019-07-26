@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-dropdown",
-  "version": "0.37.27",
+  "version": "0.38.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
