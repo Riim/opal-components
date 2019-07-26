@@ -323,8 +323,8 @@ export class OpalSelect extends BaseComponent {
 
 		this.listenTo('menu', {
 			'change:opened': this._onMenuOpenedChange,
-			'<OpalSelectOption>select': this._onMenuSelectOptionSelect,
-			'<OpalSelectOption>deselect': this._onMenuSelectOptionDeselect,
+			[OpalSelectOption.EVENT_SELECT]: this._onMenuSelectOptionSelect,
+			[OpalSelectOption.EVENT_DESELECT]: this._onMenuSelectOptionDeselect,
 			'<OpalTextInput>confirm': this._onMenuTextInputConfirm,
 			'<OpalButton>click': this._onMenuButtonClick,
 			[RnIfThen.EVENT_CHANGE]: this._onMenuChange,

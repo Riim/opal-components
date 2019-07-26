@@ -9,6 +9,10 @@ import template from './template.rnt';
 	template
 })
 export class OpalSelectOption extends BaseComponent {
+	static EVENT_CHANGE = Symbol('change');
+	static EVENT_DESELECT = Symbol('deselect');
+	static EVENT_SELECT = Symbol('select');
+
 	@Param('value')
 	paramValue: string;
 	@Param('text', { required: true })
@@ -91,8 +95,8 @@ export class OpalSelectOption extends BaseComponent {
 	}
 
 	click(): this {
-		this.emit(this.toggle() ? 'select' : 'deselect');
-		this.emit('change');
+		this.emit(this.toggle() ? OpalSelectOption.EVENT_SELECT : OpalSelectOption.EVENT_DESELECT);
+		this.emit(OpalSelectOption.EVENT_CHANGE);
 		return this;
 	}
 
