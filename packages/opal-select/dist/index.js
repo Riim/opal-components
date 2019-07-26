@@ -182,6 +182,7 @@ var OpalSelect_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const gettext_1 = __webpack_require__(10);
 const next_tick_1 = __webpack_require__(11);
+const opal_loaded_list_1 = __webpack_require__(5);
 const cellx_1 = __webpack_require__(12);
 const cellx_decorators_1 = __webpack_require__(13);
 const rionite_1 = __webpack_require__(14);
@@ -357,7 +358,8 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             '<OpalSelectOption>deselect': this._onMenuSelectOptionDeselect,
             '<OpalTextInput>confirm': this._onMenuTextInputConfirm,
             '<OpalButton>click': this._onMenuButtonClick,
-            '<*>change': this._onMenuChange
+            [rionite_1.RnIfThen.EVENT_CHANGE]: this._onMenuChange,
+            [rionite_1.RnRepeat.EVENT_CHANGE]: this._onMenuChange
         });
     }
     _onParamValueChange(evt) {
@@ -624,8 +626,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         }
     }
     _onMenuChange(evt) {
-        if (!this._notUpdateOptions &&
-            (evt.target instanceof rionite_1.RnIfThen || evt.target instanceof rionite_1.RnRepeat)) {
+        if (!this._notUpdateOptions) {
             this.optionsCell.pull();
             this._updateOptions();
         }
@@ -643,7 +644,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         if (this.dataListCell) {
             this._dataListChangeListeneng = this.listenTo(this, 'change:dataList', this._onDataListChange);
         }
-        this._menuLoadedListeneng = this.listenTo(this.$('menu'), '<*>loaded', this._onMenuLoaded);
+        this._menuLoadedListeneng = this.listenTo(this.$('menu'), OpalSelect_1.LOADED_EVENTS, this._onMenuLoaded);
         this.$('button').check();
         this._notUpdateOptions = true;
         this.$('menu').open();
@@ -869,6 +870,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         return false;
     }
 };
+OpalSelect.LOADED_EVENTS = [opal_loaded_list_1.OpalLoadedList.EVENT_LOADED];
 OpalSelect.defaultDataListItemSchema = defaultDataListItemSchema;
 OpalSelect.defaultViewModelItemSchema = defaultVMItemSchema;
 __decorate([

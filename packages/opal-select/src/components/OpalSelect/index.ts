@@ -55,6 +55,8 @@ const defaultVMItemSchema = Object.freeze({
 	template
 })
 export class OpalSelect extends BaseComponent {
+	static LOADED_EVENTS = [OpalLoadedList.EVENT_LOADED];
+
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
@@ -701,7 +703,7 @@ export class OpalSelect extends BaseComponent {
 
 		this._menuLoadedListeneng = this.listenTo(
 			this.$<BaseComponent>('menu')!,
-			'<*>loaded',
+			OpalSelect.LOADED_EVENTS,
 			this._onMenuLoaded
 		);
 
