@@ -325,7 +325,8 @@ export class OpalSelect extends BaseComponent {
 			'<OpalSelectOption>deselect': this._onMenuSelectOptionDeselect,
 			'<OpalTextInput>confirm': this._onMenuTextInputConfirm,
 			'<OpalButton>click': this._onMenuButtonClick,
-			'<*>change': this._onMenuChange
+			[RnIfThen.EVENT_CHANGE]: this._onMenuChange,
+			[RnRepeat.EVENT_CHANGE]: this._onMenuChange
 		});
 	}
 
@@ -658,10 +659,7 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	_onMenuChange(evt: IEvent) {
-		if (
-			!this._notUpdateOptions &&
-			(evt.target instanceof RnIfThen || evt.target instanceof RnRepeat)
-		) {
+		if (!this._notUpdateOptions) {
 			this.optionsCell.pull();
 			this._updateOptions();
 		}
