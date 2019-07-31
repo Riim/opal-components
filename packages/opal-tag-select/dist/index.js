@@ -247,7 +247,6 @@ let OpalTagSelect = OpalTagSelect_1 = class OpalTagSelect extends rionite_1.Base
     }
     elementAttached() {
         this.listenTo(this, 'change:disabled', this._onDisabledChange);
-        this.listenTo('control', 'click', this._onControlClick);
         this.listenTo(this.select, {
             [opal_select_1.OpalSelect.EVENT_INPUT]: this._onSelectInput,
             [opal_select_1.OpalSelect.EVENT_CHANGE]: this._onSelectChange,
@@ -258,23 +257,6 @@ let OpalTagSelect = OpalTagSelect_1 = class OpalTagSelect extends rionite_1.Base
     _onDisabledChange(evt) {
         if (evt.data.value) {
             this.close();
-        }
-    }
-    _onControlClick(evt) {
-        if (this.disabled) {
-            return;
-        }
-        let selectEl = this.select.element;
-        let el = evt.target;
-        if (el != selectEl) {
-            let control = this.$('control');
-            do {
-                if (el == control) {
-                    this.select.toggle();
-                    break;
-                }
-                el = el.parentElement;
-            } while (el && el != selectEl);
         }
     }
     _onSelectInput() {
@@ -410,6 +392,25 @@ OpalTagSelect = OpalTagSelect_1 = __decorate([
                 click(_evt, context) {
                     this.viewModel.remove(context.tag);
                     this.emit(OpalTagSelect_1.EVENT_CHANGE);
+                }
+            },
+            control: {
+                click(evt) {
+                    if (this.disabled) {
+                        return;
+                    }
+                    let selectEl = this.select.element;
+                    let el = evt.target;
+                    if (el != selectEl) {
+                        let control = this.$('control');
+                        do {
+                            if (el == control) {
+                                this.select.toggle();
+                                break;
+                            }
+                            el = el.parentElement;
+                        } while (el && el != selectEl);
+                    }
                 }
             }
         }

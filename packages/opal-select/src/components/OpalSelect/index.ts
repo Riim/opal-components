@@ -4,6 +4,7 @@ import { OpalButton } from '@riim/opal-button';
 import { OpalDropdown } from '@riim/opal-dropdown';
 import { OpalFilteredList } from '@riim/opal-filtered-list';
 import { OpalLoadedList } from '@riim/opal-loaded-list';
+import { OpalSignButton } from '@riim/opal-sign-button';
 import { OpalTextInput } from '@riim/opal-text-input';
 import {
 	Cell,
@@ -62,7 +63,10 @@ export class OpalSelect extends BaseComponent {
 	static EVENT_INPUT = Symbol('input');
 	static EVENT_SELECT = Symbol('select');
 
-	static LOADED_EVENTS = [OpalLoadedList.EVENT_LOADED];
+	static buttonFocusEvents = [OpalButton.EVENT_FOCUS, OpalSignButton.EVENT_FOCUS];
+	static buttonBlurEvents = [OpalButton.EVENT_BLUR, OpalSignButton.EVENT_BLUR];
+	static buttonClickEvents = [OpalButton.EVENT_CLICK, OpalSignButton.EVENT_CLICK];
+	static loadedEvents = [OpalLoadedList.EVENT_LOADED];
 
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
@@ -314,11 +318,9 @@ export class OpalSelect extends BaseComponent {
 			'change:focused': this._onFocusedChange
 		});
 		this.listenTo(this.viewModel, ObservableList.EVENT_CHANGE, this._onViewModelChange);
-		this.listenTo('button', {
-			[OpalButton.EVENT_FOCUS]: this._onButtonFocus,
-			[OpalButton.EVENT_BLUR]: this._onButtonBlur,
-			[OpalButton.EVENT_CLICK]: this._onButtonClick
-		});
+		this.listenTo('button', OpalSelect.buttonFocusEvents, this._onButtonFocus);
+		this.listenTo('button', OpalSelect.buttonBlurEvents, this._onButtonBlur);
+		this.listenTo('button', OpalSelect.buttonClickEvents, this._onButtonClick);
 
 		if (!this.openOnClick) {
 			this.listenTo(
@@ -710,7 +712,7 @@ export class OpalSelect extends BaseComponent {
 
 		this._menuLoadedListeneng = this.listenTo(
 			this.$<BaseComponent>('menu')!,
-			OpalSelect.LOADED_EVENTS,
+			OpalSelect.loadedEvents,
 			this._onMenuLoaded
 		);
 

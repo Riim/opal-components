@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-button"), require("@riim/opal-dropdown"), require("@riim/opal-filtered-list"), require("@riim/opal-icon"), require("@riim/opal-loaded-list"), require("@riim/opal-loader"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("@riim/opal-button"), require("@riim/opal-dropdown"), require("@riim/opal-filtered-list"), require("@riim/opal-icon"), require("@riim/opal-loaded-list"), require("@riim/opal-loader"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/next-tick"), require("@riim/opal-sign-button"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-button", "@riim/opal-dropdown", "@riim/opal-filtered-list", "@riim/opal-icon", "@riim/opal-loaded-list", "@riim/opal-loader", "@riim/opal-text-input", "reflect-metadata", "@riim/gettext", "@riim/next-tick", "cellx", "cellx-decorators", "rionite"], factory);
+		define(["@riim/opal-button", "@riim/opal-dropdown", "@riim/opal-filtered-list", "@riim/opal-icon", "@riim/opal-loaded-list", "@riim/opal-loader", "@riim/opal-text-input", "reflect-metadata", "@riim/gettext", "@riim/next-tick", "@riim/opal-sign-button", "cellx", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-select"] = factory(require("@riim/opal-button"), require("@riim/opal-dropdown"), require("@riim/opal-filtered-list"), require("@riim/opal-icon"), require("@riim/opal-loaded-list"), require("@riim/opal-loader"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-select"] = factory(require("@riim/opal-button"), require("@riim/opal-dropdown"), require("@riim/opal-filtered-list"), require("@riim/opal-icon"), require("@riim/opal-loaded-list"), require("@riim/opal-loader"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/gettext"), require("@riim/next-tick"), require("@riim/opal-sign-button"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/opal-select"] = factory(root["@riim/opal-button"], root["@riim/opal-dropdown"], root["@riim/opal-filtered-list"], root["@riim/opal-icon"], root["@riim/opal-loaded-list"], root["@riim/opal-loader"], root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/gettext"], root["@riim/next-tick"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__12__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__) {
+		root["@riim/opal-select"] = factory(root["@riim/opal-button"], root["@riim/opal-dropdown"], root["@riim/opal-filtered-list"], root["@riim/opal-icon"], root["@riim/opal-loaded-list"], root["@riim/opal-loader"], root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/gettext"], root["@riim/next-tick"], root["@riim/opal-sign-button"], root["cellx"], root["cellx-decorators"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__12__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__15__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -184,15 +184,16 @@ const gettext_1 = __webpack_require__(10);
 const next_tick_1 = __webpack_require__(11);
 const opal_button_1 = __webpack_require__(1);
 const opal_loaded_list_1 = __webpack_require__(5);
+const opal_sign_button_1 = __webpack_require__(12);
 const opal_text_input_1 = __webpack_require__(7);
-const cellx_1 = __webpack_require__(12);
-const cellx_decorators_1 = __webpack_require__(13);
-const rionite_1 = __webpack_require__(14);
-const OpalSelectOption_1 = __webpack_require__(15);
+const cellx_1 = __webpack_require__(13);
+const cellx_decorators_1 = __webpack_require__(14);
+const rionite_1 = __webpack_require__(15);
+const OpalSelectOption_1 = __webpack_require__(16);
 exports.OpalSelectOption = OpalSelectOption_1.OpalSelectOption;
-__webpack_require__(18);
-const isArraysEqual_1 = __webpack_require__(19);
-const template_rnt_1 = __webpack_require__(20);
+__webpack_require__(19);
+const isArraysEqual_1 = __webpack_require__(20);
+const template_rnt_1 = __webpack_require__(21);
 const map = Array.prototype.map;
 const defaultDataListItemSchema = Object.freeze({
     value: 'value',
@@ -346,11 +347,9 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             'change:focused': this._onFocusedChange
         });
         this.listenTo(this.viewModel, cellx_1.ObservableList.EVENT_CHANGE, this._onViewModelChange);
-        this.listenTo('button', {
-            [opal_button_1.OpalButton.EVENT_FOCUS]: this._onButtonFocus,
-            [opal_button_1.OpalButton.EVENT_BLUR]: this._onButtonBlur,
-            [opal_button_1.OpalButton.EVENT_CLICK]: this._onButtonClick
-        });
+        this.listenTo('button', OpalSelect_1.buttonFocusEvents, this._onButtonFocus);
+        this.listenTo('button', OpalSelect_1.buttonBlurEvents, this._onButtonBlur);
+        this.listenTo('button', OpalSelect_1.buttonClickEvents, this._onButtonClick);
         if (!this.openOnClick) {
             this.listenTo(this.$('button').element, 'mousedown', this._onButtonElementMouseDown);
         }
@@ -646,7 +645,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         if (this.dataListCell) {
             this._dataListChangeListeneng = this.listenTo(this, 'change:dataList', this._onDataListChange);
         }
-        this._menuLoadedListeneng = this.listenTo(this.$('menu'), OpalSelect_1.LOADED_EVENTS, this._onMenuLoaded);
+        this._menuLoadedListeneng = this.listenTo(this.$('menu'), OpalSelect_1.loadedEvents, this._onMenuLoaded);
         this.$('button').check();
         this._notUpdateOptions = true;
         this.$('menu').open();
@@ -878,7 +877,10 @@ OpalSelect.EVENT_DESELECT = Symbol('deselect');
 OpalSelect.EVENT_FOCUS = Symbol('focus');
 OpalSelect.EVENT_INPUT = Symbol('input');
 OpalSelect.EVENT_SELECT = Symbol('select');
-OpalSelect.LOADED_EVENTS = [opal_loaded_list_1.OpalLoadedList.EVENT_LOADED];
+OpalSelect.buttonFocusEvents = [opal_button_1.OpalButton.EVENT_FOCUS, opal_sign_button_1.OpalSignButton.EVENT_FOCUS];
+OpalSelect.buttonBlurEvents = [opal_button_1.OpalButton.EVENT_BLUR, opal_sign_button_1.OpalSignButton.EVENT_BLUR];
+OpalSelect.buttonClickEvents = [opal_button_1.OpalButton.EVENT_CLICK, opal_sign_button_1.OpalSignButton.EVENT_CLICK];
+OpalSelect.loadedEvents = [opal_loaded_list_1.OpalLoadedList.EVENT_LOADED];
 OpalSelect.defaultDataListItemSchema = defaultDataListItemSchema;
 OpalSelect.defaultViewModelItemSchema = defaultVMItemSchema;
 __decorate([
@@ -1017,6 +1019,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__14__;
 
 /***/ }),
 /* 15 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__15__;
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1032,10 +1040,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalSelectOption_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const cellx_decorators_1 = __webpack_require__(13);
-const rionite_1 = __webpack_require__(14);
-__webpack_require__(16);
-const template_rnt_1 = __webpack_require__(17);
+const cellx_decorators_1 = __webpack_require__(14);
+const rionite_1 = __webpack_require__(15);
+__webpack_require__(17);
+const template_rnt_1 = __webpack_require__(18);
 let OpalSelectOption = OpalSelectOption_1 = class OpalSelectOption extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -1204,7 +1212,7 @@ exports.OpalSelectOption = OpalSelectOption;
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -1221,7 +1229,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1229,7 +1237,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("button:control (tabindex={_tabIndex}) {\nRnSlot:contentSlot {\n'{paramText}'\nsub (@if=paramSubtext) {\n'{paramSubtext}'\n}\n}\nOpalIcon:iconSelected (@if=selected, name=checkmark)\nOpalIcon:iconIndeterminate (@if=indeterminate, name=minus)\n}");
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -1246,7 +1254,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1268,7 +1276,7 @@ exports.isArraysEqual = isArraysEqual;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

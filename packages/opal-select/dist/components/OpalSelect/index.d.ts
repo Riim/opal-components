@@ -17,7 +17,10 @@ export declare class OpalSelect extends BaseComponent {
     static EVENT_FOCUS: symbol;
     static EVENT_INPUT: symbol;
     static EVENT_SELECT: symbol;
-    static LOADED_EVENTS: symbol[];
+    static buttonFocusEvents: symbol[];
+    static buttonBlurEvents: symbol[];
+    static buttonClickEvents: symbol[];
+    static loadedEvents: symbol[];
     static defaultDataListItemSchema: Readonly<{
         value: string;
         text: string;

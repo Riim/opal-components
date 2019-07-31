@@ -64,7 +64,7 @@ function toComparable(str: string | null): string | null {
 	template
 })
 export class OpalTreeList extends BaseComponent {
-	static SELECTION_CONTROL_CHANGE_EVENTS = [
+	static selectionControlChangeEvents = [
 		OpalCheckbox.EVENT_CHANGE,
 		OpalSelectOption.EVENT_CHANGE
 	];
@@ -214,7 +214,7 @@ export class OpalTreeList extends BaseComponent {
 		this.listenTo(this, 'change:query', this._onQueryChange);
 		this.listenTo(
 			this,
-			OpalTreeList.SELECTION_CONTROL_CHANGE_EVENTS,
+			OpalTreeList.selectionControlChangeEvents,
 			this._onSelectionControlChange
 		);
 	}

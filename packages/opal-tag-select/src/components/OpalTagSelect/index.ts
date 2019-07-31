@@ -52,6 +52,30 @@ const defaultVMItemSchema = Object.freeze({
 				this.viewModel.remove(context.tag);
 				this.emit(OpalTagSelect.EVENT_CHANGE);
 			}
+		},
+
+		control: {
+			click(evt: Event) {
+				if (this.disabled) {
+					return;
+				}
+
+				let selectEl = this.select.element;
+				let el: Element | null = evt.target as Element;
+
+				if (el != selectEl) {
+					let control = this.$<HTMLElement>('control');
+
+					do {
+						if (el == control) {
+							this.select.toggle();
+							break;
+						}
+
+						el = el.parentElement;
+					} while (el && el != selectEl);
+				}
+			}
 		}
 	}
 })
@@ -182,7 +206,6 @@ export class OpalTagSelect extends BaseComponent {
 
 	elementAttached() {
 		this.listenTo(this, 'change:disabled', this._onDisabledChange);
-		this.listenTo('control', 'click', this._onControlClick);
 		this.listenTo(this.select, {
 			[OpalSelect.EVENT_INPUT]: this._onSelectInput,
 			[OpalSelect.EVENT_CHANGE]: this._onSelectChange,
@@ -194,28 +217,6 @@ export class OpalTagSelect extends BaseComponent {
 	_onDisabledChange(evt: IEvent) {
 		if (evt.data.value) {
 			this.close();
-		}
-	}
-
-	_onControlClick(evt: Event) {
-		if (this.disabled) {
-			return;
-		}
-
-		let selectEl = this.select.element;
-		let el: Element | null = evt.target as Element;
-
-		if (el != selectEl) {
-			let control = this.$<HTMLElement>('control');
-
-			do {
-				if (el == control) {
-					this.select.toggle();
-					break;
-				}
-
-				el = el.parentElement;
-			} while (el && el != selectEl);
 		}
 	}
 

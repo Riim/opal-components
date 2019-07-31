@@ -21,7 +21,7 @@ export declare type TDataTreeList = ObservableTreeList<IDataTreeListItem>;
 export declare type TFilteredDataTreeList = ObservableTreeList<IFilteredDataTreeListItem>;
 export declare type TViewModel = ObservableList<Record<string, any>>;
 export declare class OpalTreeList extends BaseComponent {
-    static SELECTION_CONTROL_CHANGE_EVENTS: (string | symbol)[];
+    static selectionControlChangeEvents: symbol[];
     static defaultDataTreeListItemSchema: Readonly<{
         value: string;
         text: string;

@@ -400,7 +400,7 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
     }
     elementAttached() {
         this.listenTo(this, 'change:query', this._onQueryChange);
-        this.listenTo(this, OpalTreeList_1.SELECTION_CONTROL_CHANGE_EVENTS, this._onSelectionControlChange);
+        this.listenTo(this, OpalTreeList_1.selectionControlChangeEvents, this._onSelectionControlChange);
     }
     _onQueryChange() {
         if (this._queryTimeout) {
@@ -468,7 +468,7 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
         }
     }
 };
-OpalTreeList.SELECTION_CONTROL_CHANGE_EVENTS = [
+OpalTreeList.selectionControlChangeEvents = [
     opal_checkbox_1.OpalCheckbox.EVENT_CHANGE,
     opal_select_1.OpalSelectOption.EVENT_CHANGE
 ];

@@ -59,7 +59,6 @@ export declare class OpalTagSelect extends BaseComponent {
     ready(): void;
     elementAttached(): void;
     _onDisabledChange(evt: IEvent): void;
-    _onControlClick(evt: Event): void;
     _onSelectInput(): false;
     _onSelectChange(): false;
     _onSelectSelect(): false;
