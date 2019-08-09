@@ -11,6 +11,7 @@ export { OpalTextInputValidatorRule };
 })
 export class OpalTextInputValidator extends OpalInputValidator {
 	static targetChangeEvents = [OpalTextInput.EVENT_CHANGE];
+	static targetInputEvents = [OpalTextInput.EVENT_INPUT];
 
 	textInput: OpalTextInput;
 
@@ -21,7 +22,12 @@ export class OpalTextInputValidator extends OpalInputValidator {
 
 	elementAttached() {
 		super.elementAttached();
-		this.listenTo(this.textInput, OpalTextInput.EVENT_INPUT, this._onTextInputInput);
+
+		this.listenTo(
+			this.textInput,
+			(this.constructor as typeof OpalTextInputValidator).targetInputEvents,
+			this._onTextInputInput
+		);
 	}
 
 	_onTextInputInput() {

@@ -140,6 +140,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var OpalTextInputValidator_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const opal_input_validator_1 = __webpack_require__(1);
 const opal_text_input_1 = __webpack_require__(2);
@@ -147,14 +148,14 @@ const rionite_1 = __webpack_require__(5);
 const OpalTextInputValidatorRule_1 = __webpack_require__(6);
 exports.OpalTextInputValidatorRule = OpalTextInputValidatorRule_1.OpalTextInputValidatorRule;
 __webpack_require__(7);
-let OpalTextInputValidator = class OpalTextInputValidator extends opal_input_validator_1.OpalInputValidator {
+let OpalTextInputValidator = OpalTextInputValidator_1 = class OpalTextInputValidator extends opal_input_validator_1.OpalInputValidator {
     ready() {
         super.ready();
         this.target = this.textInput = this.$('textInput');
     }
     elementAttached() {
         super.elementAttached();
-        this.listenTo(this.textInput, opal_text_input_1.OpalTextInput.EVENT_INPUT, this._onTextInputInput);
+        this.listenTo(this.textInput, this.constructor.targetInputEvents, this._onTextInputInput);
     }
     _onTextInputInput() {
         if (this.failedRule) {
@@ -171,7 +172,8 @@ let OpalTextInputValidator = class OpalTextInputValidator extends opal_input_val
     }
 };
 OpalTextInputValidator.targetChangeEvents = [opal_text_input_1.OpalTextInput.EVENT_CHANGE];
-OpalTextInputValidator = __decorate([
+OpalTextInputValidator.targetInputEvents = [opal_text_input_1.OpalTextInput.EVENT_INPUT];
+OpalTextInputValidator = OpalTextInputValidator_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTextInputValidator'
     })
