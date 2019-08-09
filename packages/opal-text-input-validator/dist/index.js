@@ -170,7 +170,7 @@ let OpalTextInputValidator = class OpalTextInputValidator extends opal_input_val
             : rule.required);
     }
 };
-OpalTextInputValidator.TARGET_CHANGE_EVENTS = [opal_text_input_1.OpalTextInput.EVENT_CHANGE];
+OpalTextInputValidator.targetChangeEvents = [opal_text_input_1.OpalTextInput.EVENT_CHANGE];
 OpalTextInputValidator = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTextInputValidator'

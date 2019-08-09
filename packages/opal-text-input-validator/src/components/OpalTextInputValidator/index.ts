@@ -10,7 +10,7 @@ export { OpalTextInputValidatorRule };
 	elementIs: 'OpalTextInputValidator'
 })
 export class OpalTextInputValidator extends OpalInputValidator {
-	static TARGET_CHANGE_EVENTS = [OpalTextInput.EVENT_CHANGE];
+	static targetChangeEvents = [OpalTextInput.EVENT_CHANGE];
 
 	textInput: OpalTextInput;
 

@@ -160,7 +160,7 @@ let OpalSelectValidator = class OpalSelectValidator extends opal_input_validator
             : rule.required);
     }
 };
-OpalSelectValidator.TARGET_CHANGE_EVENTS = [opal_select_1.OpalSelect.EVENT_CHANGE];
+OpalSelectValidator.targetChangeEvents = [opal_select_1.OpalSelect.EVENT_CHANGE];
 OpalSelectValidator = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSelectValidator'
