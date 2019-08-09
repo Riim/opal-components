@@ -4,7 +4,7 @@ import { OpalSelectValidatorRule } from '../OpalSelectValidatorRule';
 import './index.css';
 export { OpalSelectValidatorRule };
 export declare class OpalSelectValidator extends OpalInputValidator {
-    static TARGET_CHANGE_EVENT: symbol;
+    static TARGET_CHANGE_EVENTS: symbol[];
     select: OpalSelect;
     ready(): void;
     _checkValue(rule: OpalSelectValidatorRule): boolean;

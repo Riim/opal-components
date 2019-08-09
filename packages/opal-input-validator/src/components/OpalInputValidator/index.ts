@@ -14,7 +14,7 @@ export class OpalInputValidator extends BaseComponent {
 	static EVENT_INPUT_VALIDATION_ERROR = Symbol('input-validation-error');
 	static EVENT_INPUT_VALIDATION_VALID = Symbol('input-validation-valid');
 
-	static TARGET_CHANGE_EVENT: symbol;
+	static TARGET_CHANGE_EVENTS: Array<symbol>;
 
 	target: BaseComponent;
 
@@ -38,7 +38,7 @@ export class OpalInputValidator extends BaseComponent {
 	elementAttached() {
 		this.listenTo(
 			this.target,
-			(this.constructor as typeof OpalInputValidator).TARGET_CHANGE_EVENT,
+			(this.constructor as typeof OpalInputValidator).TARGET_CHANGE_EVENTS,
 			this._onTargetChange
 		);
 	}

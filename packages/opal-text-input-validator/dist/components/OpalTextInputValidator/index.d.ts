@@ -4,7 +4,7 @@ import { OpalTextInputValidatorRule } from '../OpalTextInputValidatorRule';
 import './index.css';
 export { OpalTextInputValidatorRule };
 export declare class OpalTextInputValidator extends OpalInputValidator {
-    static TARGET_CHANGE_EVENT: symbol;
+    static TARGET_CHANGE_EVENTS: symbol[];
     textInput: OpalTextInput;
     ready(): void;
     elementAttached(): void;

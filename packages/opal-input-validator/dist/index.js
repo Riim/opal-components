@@ -156,7 +156,7 @@ let OpalInputValidator = OpalInputValidator_1 = class OpalInputValidator extends
         this.rules = Array.prototype.map.call(this.element.getElementsByClassName('OpalInputValidatorRule'), (ruleEl) => ruleEl.$component);
     }
     elementAttached() {
-        this.listenTo(this.target, this.constructor.TARGET_CHANGE_EVENT, this._onTargetChange);
+        this.listenTo(this.target, this.constructor.TARGET_CHANGE_EVENTS, this._onTargetChange);
     }
     _onTargetChange() {
         this.validate();
