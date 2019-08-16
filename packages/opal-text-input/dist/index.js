@@ -165,30 +165,24 @@ let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.Base
         this.disabled = false;
     }
     get value() {
-        return this._textFieldValue.trim() || null;
+        return this.paramValue.trim() || null;
     }
     set value(value) {
-        this._textFieldValue = this.textField.value = value || '';
+        this.paramValue = this.textField.value = value || '';
     }
     get btnClearShown() {
-        return this.clearable && !this.loading && !!this._textFieldValue;
+        return this.clearable && !this.loading && !!this.paramValue;
     }
     get endIconShown() {
         return !this.loading && !this.btnClearShown;
     }
     elementAttached() {
         this.textField = this.$('textField');
-        if (this._textFieldValue) {
-            this.textField.value = this._textFieldValue;
-        }
-        else if (this.paramValue) {
-            this._textFieldValue = this.textField.value = this.paramValue;
+        if (this.paramValue) {
+            this.textField.value = this.paramValue;
         }
         else if (this.storeKey) {
-            this._textFieldValue = this.textField.value = localStorage.getItem(this.storeKey) || '';
-        }
-        else {
-            this._textFieldValue = '';
+            this.paramValue = this.textField.value = localStorage.getItem(this.storeKey) || '';
         }
         this._prevValue = this.value;
         if (this.multiline && this.autoHeight) {
@@ -219,7 +213,7 @@ let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.Base
     }
     _onParamValueChange(evt) {
         if (this.textField.value != evt.data.value) {
-            this._textFieldValue = this.textField.value = evt.data.value;
+            this.textField.value = evt.data.value;
             if (this.multiline && this.autoHeight) {
                 this._fixHeight();
             }
@@ -234,7 +228,7 @@ let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.Base
         this.emit(OpalTextInput_1.EVENT_BLUR);
     }
     _onTextFieldInput(evt) {
-        this._textFieldValue = this.textField.value;
+        this.paramValue = this.textField.value;
         if (this.multiline && this.autoHeight) {
             this._fixHeight();
         }
@@ -369,10 +363,6 @@ __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
 ], OpalTextInput.prototype, "disabled", void 0);
-__decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", String)
-], OpalTextInput.prototype, "_textFieldValue", void 0);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Boolean),

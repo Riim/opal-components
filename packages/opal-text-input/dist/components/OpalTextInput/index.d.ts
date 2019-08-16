@@ -28,7 +28,6 @@ export declare class OpalTextInput extends BaseComponent {
     focused: boolean;
     disabled: boolean;
     textField: HTMLInputElement;
-    _textFieldValue: string;
     value: string | null;
     _prevValue: string | null;
     readonly btnClearShown: boolean;

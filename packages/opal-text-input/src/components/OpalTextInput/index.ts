@@ -1,5 +1,5 @@
 import { IEvent } from 'cellx';
-import { Computed, Observable } from 'cellx-decorators';
+import { Computed } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
 import './index.css';
 import template from './template.rnt';
@@ -66,21 +66,18 @@ export class OpalTextInput extends BaseComponent {
 
 	textField: HTMLInputElement;
 
-	@Observable
-	_textFieldValue: string;
-
 	get value(): string | null {
-		return this._textFieldValue.trim() || null;
+		return this.paramValue.trim() || null;
 	}
 	set value(value: string | null) {
-		this._textFieldValue = this.textField.value = value || '';
+		this.paramValue = this.textField.value = value || '';
 	}
 
 	_prevValue: string | null;
 
 	@Computed
 	get btnClearShown(): boolean {
-		return this.clearable && !this.loading && !!this._textFieldValue;
+		return this.clearable && !this.loading && !!this.paramValue;
 	}
 
 	@Computed
@@ -91,14 +88,10 @@ export class OpalTextInput extends BaseComponent {
 	elementAttached() {
 		this.textField = this.$<HTMLInputElement>('textField')!;
 
-		if (this._textFieldValue) {
-			this.textField.value = this._textFieldValue;
-		} else if (this.paramValue) {
-			this._textFieldValue = this.textField.value = this.paramValue;
+		if (this.paramValue) {
+			this.textField.value = this.paramValue;
 		} else if (this.storeKey) {
-			this._textFieldValue = this.textField.value = localStorage.getItem(this.storeKey) || '';
-		} else {
-			this._textFieldValue = '';
+			this.paramValue = this.textField.value = localStorage.getItem(this.storeKey) || '';
 		}
 
 		this._prevValue = this.value;
@@ -135,7 +128,7 @@ export class OpalTextInput extends BaseComponent {
 
 	_onParamValueChange(evt: IEvent) {
 		if (this.textField.value != evt.data.value) {
-			this._textFieldValue = this.textField.value = evt.data.value;
+			this.textField.value = evt.data.value;
 
 			if (this.multiline && this.autoHeight) {
 				this._fixHeight();
@@ -154,7 +147,7 @@ export class OpalTextInput extends BaseComponent {
 	}
 
 	_onTextFieldInput(evt: Event) {
-		this._textFieldValue = this.textField.value;
+		this.paramValue = this.textField.value;
 
 		if (this.multiline && this.autoHeight) {
 			this._fixHeight();
