@@ -26,10 +26,10 @@ RnSlot (for=menuSlot) {
 					@IfThen (dataList) {
 						@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {
 							OpalSelectOption:option (
-								value='{=item |key(_dataListItemValueFieldName) }',
-								text='{=item |key(_dataListItemTextFieldName) }',
-								subtext='{=item |key(_dataListItemSubtextFieldName) }',
-								disabled='{=item |key(_dataListItemDisabledFieldName) }'
+								value='{item |key(_dataListItemValueFieldName) }',
+								text='{item |key(_dataListItemTextFieldName) }',
+								subtext='{item |key(_dataListItemSubtextFieldName) }',
+								disabled='{item |key(_dataListItemDisabledFieldName) }'
 							)
 						}
 
