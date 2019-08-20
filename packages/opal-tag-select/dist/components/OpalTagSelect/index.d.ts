@@ -68,4 +68,6 @@ export declare class OpalTagSelect extends BaseComponent {
     toggle(): boolean;
     focus(): this;
     blur(): this;
+    enable(): this;
+    disable(): this;
 }

@@ -994,4 +994,14 @@ export class OpalSelect extends BaseComponent {
 
 		return false;
 	}
+
+	enable(): this {
+		this.disabled = false;
+		return this;
+	}
+
+	disable(): this {
+		this.disabled = true;
+		return this;
+	}
 }

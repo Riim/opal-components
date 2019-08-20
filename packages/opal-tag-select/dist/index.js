@@ -293,6 +293,14 @@ let OpalTagSelect = OpalTagSelect_1 = class OpalTagSelect extends rionite_1.Base
         this.select.blur();
         return this;
     }
+    enable() {
+        this.disabled = false;
+        return this;
+    }
+    disable() {
+        this.disabled = true;
+        return this;
+    }
 };
 OpalTagSelect.EVENT_CHANGE = Symbol('change');
 OpalTagSelect.EVENT_INPUT = Symbol('input');

@@ -262,4 +262,14 @@ export class OpalTagSelect extends BaseComponent {
 		this.select.blur();
 		return this;
 	}
+
+	enable(): this {
+		this.disabled = false;
+		return this;
+	}
+
+	disable(): this {
+		this.disabled = true;
+		return this;
+	}
 }

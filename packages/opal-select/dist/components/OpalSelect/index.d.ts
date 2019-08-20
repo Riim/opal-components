@@ -119,4 +119,6 @@ export declare class OpalSelect extends BaseComponent {
     focus(): this;
     blur(): this;
     _focusOptions(): boolean;
+    enable(): this;
+    disable(): this;
 }

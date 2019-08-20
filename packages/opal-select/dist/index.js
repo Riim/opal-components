@@ -870,6 +870,14 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         }
         return false;
     }
+    enable() {
+        this.disabled = false;
+        return this;
+    }
+    disable() {
+        this.disabled = true;
+        return this;
+    }
 };
 OpalSelect.EVENT_BLUR = Symbol('blur');
 OpalSelect.EVENT_CHANGE = Symbol('change');
