@@ -20,5 +20,5 @@ export declare class OpalTabs extends BaseComponent {
     _onTabListDeselect(evt: IEvent<OpalTab>): void;
     _onHistoryChange(location: Location): void;
     goToTab(label: string): boolean;
-    _selectTab(tab: OpalTab, notUseLocationHash?: boolean): void;
+    _selectTab(tab: OpalTab, changeEvent: boolean, notUseLocationHash?: boolean): void;
 }

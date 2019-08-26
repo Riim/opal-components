@@ -97,7 +97,7 @@ export class OpalTabs extends BaseComponent {
 	}
 
 	_onTabListSelect(evt: IEvent<OpalTab>) {
-		this._selectTab(evt.target);
+		this._selectTab(evt.target, true);
 	}
 
 	_onTabListDeselect(evt: IEvent<OpalTab>) {
@@ -112,7 +112,7 @@ export class OpalTabs extends BaseComponent {
 				this.goToTab(RegExp.$1);
 			}
 		} else if (this._startSelectedTab) {
-			this._selectTab(this._startSelectedTab, true);
+			this._selectTab(this._startSelectedTab, false, true);
 		}
 	}
 
@@ -127,14 +127,14 @@ export class OpalTabs extends BaseComponent {
 		);
 
 		if (tab && !tab.$component!.hidden) {
-			this._selectTab(tab.$component!);
+			this._selectTab(tab.$component!, false);
 			return true;
 		}
 
 		return false;
 	}
 
-	_selectTab(tab: OpalTab, notUseLocationHash?: boolean) {
+	_selectTab(tab: OpalTab, changeEvent: boolean, notUseLocationHash?: boolean) {
 		if (tab === this._selectedTab) {
 			return;
 		}
@@ -169,6 +169,8 @@ export class OpalTabs extends BaseComponent {
 
 		Cell.release();
 
-		this.emit(OpalTabs.EVENT_CHANGE);
+		if (changeEvent) {
+			this.emit(OpalTabs.EVENT_CHANGE);
+		}
 	}
 }

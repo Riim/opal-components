@@ -198,7 +198,7 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
         }
     }
     _onTabListSelect(evt) {
-        this._selectTab(evt.target);
+        this._selectTab(evt.target, true);
     }
     _onTabListDeselect(evt) {
         evt.target.select();
@@ -211,7 +211,7 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
             }
         }
         else if (this._startSelectedTab) {
-            this._selectTab(this._startSelectedTab, true);
+            this._selectTab(this._startSelectedTab, false, true);
         }
     }
     goToTab(label) {
@@ -220,12 +220,12 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
         }
         let tab = find.call(this.tabs, (tab) => tab.$component.label == label);
         if (tab && !tab.$component.hidden) {
-            this._selectTab(tab.$component);
+            this._selectTab(tab.$component, false);
             return true;
         }
         return false;
     }
-    _selectTab(tab, notUseLocationHash) {
+    _selectTab(tab, changeEvent, notUseLocationHash) {
         if (tab === this._selectedTab) {
             return;
         }
@@ -252,7 +252,9 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
             }
         }
         cellx_1.Cell.release();
-        this.emit(OpalTabs_1.EVENT_CHANGE);
+        if (changeEvent) {
+            this.emit(OpalTabs_1.EVENT_CHANGE);
+        }
     }
 };
 OpalTabs.EVENT_CHANGE = Symbol('change');
