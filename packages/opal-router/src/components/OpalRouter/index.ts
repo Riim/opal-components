@@ -5,7 +5,6 @@ import { createBrowserHistory, History, Location } from 'history';
 import {
 	BaseComponent,
 	Component,
-	I$ComponentParamConfig,
 	IComponentElement,
 	KEY_PARAMS_CONFIG,
 	Param
@@ -237,13 +236,13 @@ export class OpalRouter extends BaseComponent {
 				}
 
 				let componentEl = this._componentElement!;
-				let $paramsConfig:
-					| Record<string, I$ComponentParamConfig>
-					| undefined = componentEl.$component!.constructor[KEY_PARAMS_CONFIG];
+				let $paramsConfig = (componentEl.$component!.constructor as typeof BaseComponent)[
+					KEY_PARAMS_CONFIG
+				]!;
 				let attrs = componentEl.attributes;
 				let canWrite = true;
 
-				if ($paramsConfig) {
+				if ($paramsConfig.size) {
 					for (let i = attrs.length; i; ) {
 						let name = attrs.item(--i)!.name;
 
@@ -251,7 +250,7 @@ export class OpalRouter extends BaseComponent {
 							continue;
 						}
 
-						let $paramConfig = $paramsConfig[name];
+						let $paramConfig = $paramsConfig.get(name);
 
 						if (
 							$paramConfig &&
@@ -266,7 +265,7 @@ export class OpalRouter extends BaseComponent {
 					if (canWrite) {
 						for (let name in state) {
 							if (
-								$paramsConfig[name].readonly &&
+								$paramsConfig.get(name)!.readonly &&
 								componentEl.getAttribute(snakeCaseAttributeName(name, true)) !==
 									valueToAttributeValue(state[name])
 							) {
@@ -278,7 +277,7 @@ export class OpalRouter extends BaseComponent {
 				}
 
 				if (canWrite) {
-					if ($paramsConfig) {
+					if ($paramsConfig.size) {
 						for (let i = attrs.length; i; ) {
 							let name = attrs.item(--i)!.name;
 
@@ -286,7 +285,7 @@ export class OpalRouter extends BaseComponent {
 								continue;
 							}
 
-							let $paramConfig = $paramsConfig[name];
+							let $paramConfig = $paramsConfig.get(name);
 
 							if ($paramConfig && !($paramConfig.name in state)) {
 								componentEl.removeAttribute(snakeCaseAttributeName(name, true));

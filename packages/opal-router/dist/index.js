@@ -296,13 +296,13 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
                 let $paramsConfig = componentEl.$component.constructor[rionite_1.KEY_PARAMS_CONFIG];
                 let attrs = componentEl.attributes;
                 let canWrite = true;
-                if ($paramsConfig) {
+                if ($paramsConfig.size) {
                     for (let i = attrs.length; i;) {
                         let name = attrs.item(--i).name;
                         if (name == 'class') {
                             continue;
                         }
-                        let $paramConfig = $paramsConfig[name];
+                        let $paramConfig = $paramsConfig.get(name);
                         if ($paramConfig &&
                             $paramConfig.readonly &&
                             !($paramConfig.name in state)) {
@@ -312,7 +312,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
                     }
                     if (canWrite) {
                         for (let name in state) {
-                            if ($paramsConfig[name].readonly &&
+                            if ($paramsConfig.get(name).readonly &&
                                 componentEl.getAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name, true)) !==
                                     valueToAttributeValue(state[name])) {
                                 canWrite = false;
@@ -322,13 +322,13 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
                     }
                 }
                 if (canWrite) {
-                    if ($paramsConfig) {
+                    if ($paramsConfig.size) {
                         for (let i = attrs.length; i;) {
                             let name = attrs.item(--i).name;
                             if (name == 'class') {
                                 continue;
                             }
-                            let $paramConfig = $paramsConfig[name];
+                            let $paramConfig = $paramsConfig.get(name);
                             if ($paramConfig && !($paramConfig.name in state)) {
                                 componentEl.removeAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name, true));
                             }
