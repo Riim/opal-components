@@ -157,18 +157,21 @@ let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.Base
         this.multiline = false;
         this.rows = 5;
         this.autoHeight = true;
-        this.paramValue = '';
         this.clearable = false;
         this.loading = false;
         this.tabIndex = 0;
         this.focused = false;
         this.disabled = false;
     }
+    get _inputType() {
+        return this.inputType;
+    }
     get value() {
-        return this.paramValue.trim() || null;
+        return (this.paramValue && this.paramValue.trim()) || null;
     }
     set value(value) {
-        this.paramValue = this.textField.value = value || '';
+        this.paramValue = value || null;
+        this.textField.value = value || '';
     }
     get btnClearShown() {
         return this.clearable && !this.loading && !!this.paramValue;
@@ -179,10 +182,12 @@ let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.Base
     elementAttached() {
         this.textField = this.$('textField');
         if (this.paramValue) {
-            this.textField.value = this.paramValue;
+            this.textField.value = this.paramValue || '';
         }
         else if (this.storeKey) {
-            this.paramValue = this.textField.value = localStorage.getItem(this.storeKey) || '';
+            let value = localStorage.getItem(this.storeKey);
+            this.paramValue = value || null;
+            this.textField.value = value || '';
         }
         this._prevValue = this.value;
         if (this.multiline && this.autoHeight) {
@@ -228,7 +233,7 @@ let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.Base
         this.emit(OpalTextInput_1.EVENT_BLUR);
     }
     _onTextFieldInput(evt) {
-        this.paramValue = this.textField.value;
+        this.paramValue = this.textField.value || null;
         if (this.multiline && this.autoHeight) {
             this._fixHeight();
         }
@@ -301,7 +306,7 @@ OpalTextInput.EVENT_KEYPRESS = Symbol('keypress');
 OpalTextInput.EVENT_KEYUP = Symbol('keyup');
 __decorate([
     rionite_1.Param,
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], OpalTextInput.prototype, "inputType", void 0);
 __decorate([
     rionite_1.Param,
@@ -325,7 +330,7 @@ __decorate([
 ], OpalTextInput.prototype, "inputName", void 0);
 __decorate([
     rionite_1.Param('value'),
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], OpalTextInput.prototype, "paramValue", void 0);
 __decorate([
     rionite_1.Param,
@@ -365,6 +370,11 @@ __decorate([
 ], OpalTextInput.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed,
+    __metadata("design:type", String),
+    __metadata("design:paramtypes", [])
+], OpalTextInput.prototype, "_inputType", null);
+__decorate([
+    cellx_decorators_1.Computed,
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], OpalTextInput.prototype, "btnClearShown", null);
@@ -384,6 +394,15 @@ OpalTextInput = OpalTextInput_1 = __decorate([
                     this.textField.focus();
                     this.emit(OpalTextInput_1.EVENT_CLEAR);
                     this.emit(OpalTextInput_1.EVENT_CHANGE);
+                }
+            },
+            btnShowPassword: {
+                mousedown() {
+                    let listening = this.listenTo(document, 'mouseup', () => {
+                        listening.stop();
+                        this._inputTypeCell.pull();
+                    });
+                    this._inputTypeCell.set('text');
                 }
             }
         }
@@ -413,7 +432,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalTextInput{position:relative;display:inline-block;width:400px;vertical-align:middle}.OpalTextInput .OpalTextInput__textField,.OpalTextInput .OpalTextInput__textareaHeight{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:6px 36px 6px 12px;width:100%;border:1px solid #adadad;border-top-color:#a8a8a8;border-bottom-color:#c7c7c7;border-radius:3px;background:#fff;-webkit-box-shadow:inset 0 1px rgba(0,0,0,.1);box-shadow:inset 0 1px rgba(0,0,0,.1);color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;-webkit-transition:border-color .1s linear;-o-transition:border-color .1s linear;transition:border-color .1s linear;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalTextInput .OpalTextInput__textareaContainer{position:relative}.OpalTextInput .OpalTextInput__textarea{position:absolute;top:0;right:0;left:0;height:100%;white-space:normal;resize:none}.OpalTextInput .OpalTextInput__textareaHeight{visibility:hidden;white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word}.OpalTextInput .OpalTextInput__startIcon,.OpalTextInput .OpalTextInput__endIcon{position:absolute;top:0;bottom:0;display:block;margin:auto;width:18px;height:18px;color:gray}.OpalTextInput .OpalTextInput__startIcon{left:12px}.OpalTextInput .OpalTextInput__endIconSlot{display:none}.OpalTextInput .OpalTextInput__endIconSlot[shown]{display:block}.OpalTextInput .OpalTextInput__endIcon{right:12px}.OpalTextInput .OpalTextInput__btnClear{position:absolute;top:0;right:9px;bottom:0;display:none;margin:auto;padding:0;width:24px;height:24px;border:0;background:0 0;color:gray;cursor:pointer;-webkit-transition:color .1s linear;-o-transition:color .1s linear;transition:color .1s linear}.OpalTextInput .OpalTextInput__btnClear[shown]{display:block}.OpalTextInput .OpalTextInput__btnClear:hover{color:#000}.OpalTextInput .OpalTextInput__btnClear:focus{outline:0}body:not(._noFocusHighlight) .OpalTextInput .OpalTextInput__btnClear:focus{outline:1px solid #1b91f8}.OpalTextInput .OpalTextInput__btnClear:active{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.OpalTextInput .OpalTextInput__btnClearIcon{position:absolute;top:0;right:0;bottom:0;left:0;display:block;margin:auto;width:16px;height:16px}.OpalTextInput .OpalTextInput__loader{position:absolute;top:0;right:12px;bottom:0;margin:auto;border:0;pointer-events:none}.OpalTextInput:hover .OpalTextInput__textField{border-color:#949494;border-top-color:#8f8f8f;border-bottom-color:#adadad}.OpalTextInput .OpalTextInput__textField:focus{outline:0;border-color:#1b91f8}.OpalTextInput[multiline]:not([auto_height=no]) .OpalTextInput__textField{overflow-y:hidden}.OpalTextInput[start_icon] .OpalTextInput__textField{padding-left:36px}.OpalTextInput[valid] .OpalTextInput__textField,.OpalTextInput[valid] .OpalTextInput__textField:focus{border-color:#18b461}.OpalTextInput[valid=no] .OpalTextInput__textField,.OpalTextInput[valid=no] .OpalTextInput__textField:focus{border-color:#f63159}.OpalTextInput[disabled]{opacity:.5;pointer-events:none}.OpalTextInput[disabled] .OpalTextInput__textField{background:#e6e6e6}.OpalGroup>.OpalTextInput:not(:first-child),.OpalGroup>:not(:first-child) .OpalTextInput{margin-right:-1px}.OpalGroup>.OpalTextInput:not(:first-child) .OpalTextInput__textField,.OpalGroup>:not(:first-child) .OpalTextInput .OpalTextInput__textField{border-top-left-radius:0;border-bottom-left-radius:0}.OpalGroup>.OpalTextInput:not(:last-child) .OpalTextInput__textField,.OpalGroup>:not(:last-child) .OpalTextInput .OpalTextInput__textField{border-top-right-radius:0;border-bottom-right-radius:0}";
+            style.textContent = ".OpalTextInput{position:relative;display:inline-block;width:400px;vertical-align:middle}.OpalTextInput .OpalTextInput__textField,.OpalTextInput .OpalTextInput__textareaHeight{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:6px 36px 6px 12px;width:100%;border:1px solid #adadad;border-top-color:#a8a8a8;border-bottom-color:#c7c7c7;border-radius:3px;background:#fff;-webkit-box-shadow:inset 0 1px rgba(0,0,0,.1);box-shadow:inset 0 1px rgba(0,0,0,.1);color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;-webkit-transition:border-color .1s linear;-o-transition:border-color .1s linear;transition:border-color .1s linear;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalTextInput .OpalTextInput__textareaContainer{position:relative}.OpalTextInput .OpalTextInput__textarea{position:absolute;top:0;right:0;left:0;height:100%;white-space:normal;resize:none}.OpalTextInput .OpalTextInput__textareaHeight{visibility:hidden;white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word}.OpalTextInput .OpalTextInput__startIcon,.OpalTextInput .OpalTextInput__endIcon{position:absolute;top:0;bottom:0;display:block;margin:auto;width:18px;height:18px;color:gray}.OpalTextInput .OpalTextInput__startIcon{left:12px}.OpalTextInput .OpalTextInput__endIconSlot{display:none}.OpalTextInput .OpalTextInput__endIconSlot[shown]{display:block}.OpalTextInput .OpalTextInput__endIcon{right:12px}.OpalTextInput .OpalTextInput__btnClear{position:absolute;top:0;right:9px;bottom:0;display:none;margin:auto;padding:0;width:24px;height:24px;border:0;background:0 0;color:gray;cursor:pointer;-webkit-transition:color .1s linear;-o-transition:color .1s linear;transition:color .1s linear}.OpalTextInput .OpalTextInput__btnClear[shown]{display:block}.OpalTextInput .OpalTextInput__btnClear:hover{color:#000}.OpalTextInput .OpalTextInput__btnClear:focus{outline:0}body:not(._noFocusHighlight) .OpalTextInput .OpalTextInput__btnClear:focus{outline:1px solid #1b91f8}.OpalTextInput .OpalTextInput__btnClear:active{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.OpalTextInput .OpalTextInput__btnClearIcon{position:absolute;top:0;right:0;bottom:0;left:0;display:block;margin:auto;width:16px;height:16px}.OpalTextInput .OpalTextInput__loader{position:absolute;top:0;right:12px;bottom:0;margin:auto;border:0;pointer-events:none}.OpalTextInput .OpalTextInput__btnShowPassword{position:absolute;top:0;right:9px;bottom:0;display:block;margin:auto;padding:0;width:24px;height:24px;border:0;background:0 0;color:gray;cursor:pointer;-webkit-transition:color .1s linear;-o-transition:color .1s linear;transition:color .1s linear;pointer-events:none}.OpalTextInput .OpalTextInput__btnShowPassword:hover{color:#000}.OpalTextInput .OpalTextInput__btnShowPassword:focus{outline:0}body:not(._noFocusHighlight) .OpalTextInput .OpalTextInput__btnShowPassword:focus{outline:1px solid #1b91f8}.OpalTextInput .OpalTextInput__btnShowPassword:active{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.OpalTextInput .OpalTextInput__btnShowPasswordIcon{position:absolute;top:0;right:0;bottom:0;left:0;display:block;margin:auto;width:22px;height:22px}.OpalTextInput:hover .OpalTextInput__textField{border-color:#949494;border-top-color:#8f8f8f;border-bottom-color:#adadad}.OpalTextInput .OpalTextInput__textField:focus{outline:0;border-color:#1b91f8}.OpalTextInput[input_type=password] .OpalTextInput__textField,.OpalTextInput[input_type=password] .OpalTextInput__textareaHeight{padding-right:64px}.OpalTextInput[input_type=password] .OpalTextInput__endIcon{right:40px}.OpalTextInput[input_type=password] .OpalTextInput__btnClear{right:37px}.OpalTextInput[input_type=password] .OpalTextInput__loader{right:40px}.OpalTextInput[multiline]:not([auto_height=no]) .OpalTextInput__textField{overflow-y:hidden}.OpalTextInput[value] .OpalTextInput__btnShowPassword{pointer-events:auto}.OpalTextInput[start_icon] .OpalTextInput__textField{padding-left:36px}.OpalTextInput[valid] .OpalTextInput__textField,.OpalTextInput[valid] .OpalTextInput__textField:focus{border-color:#18b461}.OpalTextInput[valid=no] .OpalTextInput__textField,.OpalTextInput[valid=no] .OpalTextInput__textField:focus{border-color:#f63159}.OpalTextInput[disabled]{opacity:.5;pointer-events:none}.OpalTextInput[disabled] .OpalTextInput__textField{background:#e6e6e6}.OpalGroup>.OpalTextInput:not(:first-child),.OpalGroup>:not(:first-child) .OpalTextInput{margin-right:-1px}.OpalGroup>.OpalTextInput:not(:first-child) .OpalTextInput__textField,.OpalGroup>:not(:first-child) .OpalTextInput .OpalTextInput__textField{border-top-left-radius:0;border-bottom-left-radius:0}.OpalGroup>.OpalTextInput:not(:last-child) .OpalTextInput__textField,.OpalGroup>:not(:last-child) .OpalTextInput .OpalTextInput__textField{border-top-right-radius:0;border-bottom-right-radius:0}";
             head.appendChild(style);
             return style;
         }
@@ -427,7 +446,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:textareaContainer (@if=multiline) {\ntextarea:textarea:textField (\nrows={rows},\nname={inputName},\nplaceholder={placeholder},\ntabindex={tabIndex},\ndisabled={disabled}\n)\ndiv:textareaHeight\n}\ninput::textField (\n@unless=multiline,\ntype={inputType},\nname={inputName},\nplaceholder={placeholder},\ntabindex={tabIndex},\ndisabled={disabled}\n)\nOpalIcon:startIcon (@if=startIcon, name={startIcon})\nRnSlot:endIconSlot (for=endIcon, shown={endIconShown}) {\nOpalIcon:endIcon (@if=endIcon, name={endIcon})\n}\nbutton:btnClear (@if=clearable, shown={btnClearShown}) {\nOpalIcon:btnClearIcon (name=cross)\n}\nOpalLoader:loader (@if=loading, size=s, shown)");
+/* harmony default export */ __webpack_exports__["default"] = ("div:textareaContainer (@if=multiline) {\ntextarea:textarea:textField (\nrows={rows},\nname={inputName},\nplaceholder={placeholder},\ntabindex={tabIndex},\ndisabled={disabled}\n)\ndiv:textareaHeight\n}\ninput:input:textField (\n@unless=multiline,\ntype={_inputType},\nname={inputName},\nplaceholder={placeholder},\ntabindex={tabIndex},\ndisabled={disabled}\n)\nOpalIcon:startIcon (@if=startIcon, name={startIcon})\nRnSlot:endIconSlot (for=endIcon, shown={endIconShown}) {\nOpalIcon:endIcon (@if=endIcon, name={endIcon})\n}\nbutton:btnClear (@if=clearable, shown={btnClearShown}) {\nOpalIcon:btnClearIcon (name=cross)\n}\nOpalLoader:loader (@if=loading, size=s, shown)\nbutton:btnShowPassword (@if='inputType |eq(\"password\")') {\nOpalIcon:btnShowPasswordIcon (name=eye, strokeWidth=2)\n}");
 
 /***/ })
 /******/ ]);

@@ -42,7 +42,7 @@ export class OpalTabs extends BaseComponent {
 		let tabs = (this.tabs = this.element.getElementsByClassName('OpalTab') as any);
 		let tabPanels = (this.tabPanels = this.element.getElementsByClassName(
 			'OpalTabPanel'
-		) as HTMLCollectionOf<IComponentElement<OpalTabPanel>>);
+		) as any);
 
 		let selectedTab: OpalTab | undefined;
 		let selectedTabIndex: number | undefined;

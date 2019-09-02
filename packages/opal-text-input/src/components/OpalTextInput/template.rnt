@@ -8,9 +8,9 @@ div:textareaContainer (@if=multiline) {
 	)
 	div:textareaHeight
 }
-input::textField (
+input:input:textField (
 	@unless=multiline,
-	type={inputType},
+	type={_inputType},
 	name={inputName},
 	placeholder={placeholder},
 	tabindex={tabIndex},
@@ -28,3 +28,7 @@ button:btnClear (@if=clearable, shown={btnClearShown}) {
 }
 
 OpalLoader:loader (@if=loading, size=s, shown)
+
+button:btnShowPassword (@if='inputType |eq("password")') {
+	OpalIcon:btnShowPasswordIcon (name=eye, strokeWidth=2)
+}

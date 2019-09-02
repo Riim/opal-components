@@ -1,4 +1,4 @@
-import { IEvent } from 'cellx';
+import { Cell, IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
 export declare class OpalTextInput extends BaseComponent {
@@ -11,7 +11,7 @@ export declare class OpalTextInput extends BaseComponent {
     static EVENT_KEYDOWN: symbol;
     static EVENT_KEYPRESS: symbol;
     static EVENT_KEYUP: symbol;
-    inputType: string;
+    inputType: 'text' | 'password' | string;
     size: 'm' | string;
     multiline: boolean;
     rows: number;
@@ -27,6 +27,8 @@ export declare class OpalTextInput extends BaseComponent {
     tabIndex: number;
     focused: boolean;
     disabled: boolean;
+    _inputTypeCell: Cell<string>;
+    readonly _inputType: string;
     textField: HTMLInputElement;
     value: string | null;
     _prevValue: string | null;

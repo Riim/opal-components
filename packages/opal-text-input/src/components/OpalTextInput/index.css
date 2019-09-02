@@ -9,7 +9,7 @@
 	{
 		display: block;
 		box-sizing: border-box;
-		padding: 6px 36px 6px 12px;
+		padding: 6px 36px 6px 12px; /* 3 + 24 + 9 */
 		width: 100%;
 		border: 1px solid hsl(0,0%,68%);
 		border-top-color: hsl(0,0%,66%);
@@ -136,6 +136,51 @@
 		pointer-events: none;
 	}
 
+	@el btnShowPassword {
+		position: absolute;
+		top: 0;
+		right: 9px;
+		bottom: 0;
+		display: block;
+		margin: auto;
+		padding: 0;
+		width: 24px;
+		height: 24px;
+		border: 0;
+		background: transparent;
+		color: hsl(0,0%,50%);
+		cursor: pointer;
+		transition: color .1s linear;
+		pointer-events: none;
+
+		&:hover {
+			color: #000;
+		}
+
+		&:focus {
+			outline: none;
+
+			body:not(._noFocusHighlight) & {
+				outline: 1px solid hsl(208,94%,54%);
+			}
+		}
+
+		&:active {
+			transform: translateY(1px);
+		}
+	}
+		@el btnShowPasswordIcon {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			display: block;
+			margin: auto;
+			width: 22px;
+			height: 22px;
+		}
+
 	&:hover {
 		@el textField {
 			border-color: hsl(0,0%,58%);
@@ -151,11 +196,37 @@
 		}
 	}
 
+	@mod inputType=password {
+		@el textField,
+			textareaHeight
+		{
+			padding-right: 64px; /* 3 + 24 + 4 + 24 + 9 */
+		}
+
+		@el endIcon {
+			right: 40px; /* 7 + 24 + 9 */
+		}
+
+		@el btnClear {
+			right: 37px; /* 4 + 24 + 9 */
+		}
+
+		@el loader {
+			right: 40px; /* 7 + 24 + 9 */
+		}
+	}
+
 	@mod multiline {
 		&:not([auto_height=no]) {
 			@el textField {
 				overflow-y: hidden;
 			}
+		}
+	}
+
+	@mod value {
+		@el btnShowPassword {
+			pointer-events: auto;
 		}
 	}
 

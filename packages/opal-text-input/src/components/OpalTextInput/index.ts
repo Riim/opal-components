@@ -1,4 +1,4 @@
-import { IEvent } from 'cellx';
+import { Cell, IEvent } from 'cellx';
 import { Computed } from 'cellx-decorators';
 import { BaseComponent, Component, Param } from 'rionite';
 import './index.css';
@@ -17,6 +17,17 @@ import template from './template.rnt';
 				this.emit(OpalTextInput.EVENT_CLEAR);
 				this.emit(OpalTextInput.EVENT_CHANGE);
 			}
+		},
+
+		btnShowPassword: {
+			mousedown() {
+				let listening = this.listenTo(document, 'mouseup', () => {
+					listening.stop();
+					this._inputTypeCell.pull();
+				});
+
+				this._inputTypeCell.set('text');
+			}
 		}
 	}
 })
@@ -32,7 +43,7 @@ export class OpalTextInput extends BaseComponent {
 	static EVENT_KEYUP = Symbol('keyup');
 
 	@Param
-	inputType = 'text';
+	inputType: 'text' | 'password' | string = 'text';
 	@Param
 	size: 'm' | string = 'm';
 	@Param
@@ -44,7 +55,7 @@ export class OpalTextInput extends BaseComponent {
 	@Param
 	inputName: string;
 	@Param('value')
-	paramValue = '';
+	paramValue: string;
 	@Param
 	storeKey: string;
 	@Param
@@ -64,13 +75,20 @@ export class OpalTextInput extends BaseComponent {
 	@Param
 	disabled = false;
 
+	_inputTypeCell: Cell<string>;
+	@Computed
+	get _inputType(): string {
+		return this.inputType;
+	}
+
 	textField: HTMLInputElement;
 
 	get value(): string | null {
-		return this.paramValue.trim() || null;
+		return (this.paramValue && this.paramValue.trim()) || null;
 	}
 	set value(value: string | null) {
-		this.paramValue = this.textField.value = value || '';
+		this.paramValue = value || (null as any);
+		this.textField.value = value || '';
 	}
 
 	_prevValue: string | null;
@@ -89,9 +107,11 @@ export class OpalTextInput extends BaseComponent {
 		this.textField = this.$<HTMLInputElement>('textField')!;
 
 		if (this.paramValue) {
-			this.textField.value = this.paramValue;
+			this.textField.value = this.paramValue || '';
 		} else if (this.storeKey) {
-			this.paramValue = this.textField.value = localStorage.getItem(this.storeKey) || '';
+			let value = localStorage.getItem(this.storeKey);
+			this.paramValue = value || (null as any);
+			this.textField.value = value || '';
 		}
 
 		this._prevValue = this.value;
@@ -147,7 +167,7 @@ export class OpalTextInput extends BaseComponent {
 	}
 
 	_onTextFieldInput(evt: Event) {
-		this.paramValue = this.textField.value;
+		this.paramValue = this.textField.value || (null as any);
 
 		if (this.multiline && this.autoHeight) {
 			this._fixHeight();
