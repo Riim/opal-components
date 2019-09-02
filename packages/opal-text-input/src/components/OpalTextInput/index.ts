@@ -10,7 +10,9 @@ import template from './template.rnt';
 
 	domEvents: {
 		btnClear: {
-			click() {
+			click(evt) {
+				evt.preventDefault();
+
 				this.value = null;
 				this.textField.focus();
 
@@ -27,6 +29,10 @@ import template from './template.rnt';
 				});
 
 				this._inputTypeCell.set('text');
+			},
+
+			click(evt) {
+				evt.preventDefault();
 			}
 		}
 	}

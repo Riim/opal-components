@@ -389,7 +389,8 @@ OpalTextInput = OpalTextInput_1 = __decorate([
         template: template_rnt_1.default,
         domEvents: {
             btnClear: {
-                click() {
+                click(evt) {
+                    evt.preventDefault();
                     this.value = null;
                     this.textField.focus();
                     this.emit(OpalTextInput_1.EVENT_CLEAR);
@@ -403,6 +404,9 @@ OpalTextInput = OpalTextInput_1 = __decorate([
                         this._inputTypeCell.pull();
                     });
                     this._inputTypeCell.set('text');
+                },
+                click(evt) {
+                    evt.preventDefault();
                 }
             }
         }
