@@ -1242,7 +1242,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("button:control (tabindex={_tabIndex}) {\nRnSlot:contentSlot {\n'{paramText}'\nsub (@if=paramSubtext) {\n'{paramSubtext}'\n}\n}\nOpalIcon:iconSelected (@if=selected, name=checkmark)\nOpalIcon:iconIndeterminate (@if=indeterminate, name=minus)\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("button:control (type=button, tabindex={_tabIndex}) {\nRnSlot:contentSlot {\n'{paramText}'\nsub (@if=paramSubtext) {\n'{paramSubtext}'\n}\n}\nOpalIcon:iconSelected (@if=selected, name=checkmark)\nOpalIcon:iconIndeterminate (@if=indeterminate, name=minus)\n}");
 
 /***/ }),
 /* 19 */

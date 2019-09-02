@@ -1,6 +1,6 @@
 div:window {
 	div:btnCloseWrapper {
-		button:btnClose
+		button:btnClose (type=button)
 	}
 
 	RnSlot:contentSlot (@if=contentRendered)

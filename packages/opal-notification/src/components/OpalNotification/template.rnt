@@ -3,7 +3,7 @@ div:bar (viewType={viewType}, hasIcon={icon |bool }, iconSize={iconSize}, button
 
 	RnSlot:contentSlot
 
-	button:btnHide (hide={buttonHide |not }) {
+	button:btnHide (type=button, hide={buttonHide |not }) {
 		OpalIcon:btnHideIcon (name=cross)
 	}
 }

@@ -1,5 +1,5 @@
 header:header {
-	button:btnPrevMonth (disabled={btnPrevMonthDisabled}) {
+	button:btnPrevMonth (type=button, disabled={btnPrevMonthDisabled}) {
 		OpalIcon:btnPrevMonthIcon (name=chevronLeft)
 	}
 
@@ -16,7 +16,7 @@ header:header {
 		}
 	}
 
-	button:btnNextMonth (disabled={btnNextMonthDisabled}) {
+	button:btnNextMonth (type=button, disabled={btnNextMonthDisabled}) {
 		OpalIcon:btnNextMonthIcon (name=chevronRight)
 	}
 }

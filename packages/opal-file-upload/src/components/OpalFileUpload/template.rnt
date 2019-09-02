@@ -17,7 +17,7 @@ ul:fileList {
 				'{file.name}'
 			}
 
-			button:btnRemoveFile {
+			button:btnRemoveFile (type=button) {
 				svg:btnRemoveFileIcon (viewBox=0 0 32 32) {
 					use (xlink:href=#OpalFileUpload__iconTrash)
 				}
@@ -37,7 +37,7 @@ div:dropZone (error={error}) {
 		'{"Перетащите файлы в эту область или" |t }'
 		br
 
-		button:btnSelectFiles {
+		button:btnSelectFiles (type=button) {
 			'{"нажмите для выбора в проводнике" |t }'
 		}
 	}

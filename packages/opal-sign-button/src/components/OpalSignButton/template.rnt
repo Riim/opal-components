@@ -1,4 +1,4 @@
-button:control (tabindex={_tabIndex}) {
+button:control (type=button, tabindex={_tabIndex}) {
 	span:sign
 	' '
 

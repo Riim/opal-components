@@ -23,12 +23,12 @@ RnSlot:endIconSlot (for=endIcon, shown={endIconShown}) {
 	OpalIcon:endIcon (@if=endIcon, name={endIcon})
 }
 
-button:btnClear (@if=clearable, shown={btnClearShown}) {
+button:btnClear (@if=clearable, type=button, shown={btnClearShown}) {
 	OpalIcon:btnClearIcon (name=cross)
 }
 
 OpalLoader:loader (@if=loading, size=s, shown)
 
-button:btnShowPassword (@if='inputType |eq("password")') {
+button:btnShowPassword (@if='inputType |eq("password")', type=button) {
 	OpalIcon:btnShowPasswordIcon (name=eye, strokeWidth=2)
 }

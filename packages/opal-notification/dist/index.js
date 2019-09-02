@@ -331,7 +331,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:bar (viewType={viewType}, hasIcon={icon |bool }, iconSize={iconSize}, buttonHide={buttonHide}) {\nOpalIcon:icon (@if=icon, name={icon}, size={iconSize})\nRnSlot:contentSlot\nbutton:btnHide (hide={buttonHide |not }) {\nOpalIcon:btnHideIcon (name=cross)\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("div:bar (viewType={viewType}, hasIcon={icon |bool }, iconSize={iconSize}, buttonHide={buttonHide}) {\nOpalIcon:icon (@if=icon, name={icon}, size={iconSize})\nRnSlot:contentSlot\nbutton:btnHide (type=button, hide={buttonHide |not }) {\nOpalIcon:btnHideIcon (name=cross)\n}\n}");
 
 /***/ })
 /******/ ]);
