@@ -15,6 +15,11 @@ opal-popover {
 	line-height: 1.5;
 	cursor: default;
 
+	&::before {
+		position: absolute;
+		content: '';
+	}
+
 	@el arrow {
 		position: absolute;
 		width: 0;
@@ -75,6 +80,13 @@ opal-popover {
 		bottom: 100%;
 		margin-bottom: 15px;
 
+		&::before {
+			top: 100%;
+			right: 0;
+			left: 0;
+			height: 16px;
+		}
+
 		@el arrow {
 			top: 100%;
 
@@ -122,6 +134,13 @@ opal-popover {
 	{
 		left: 100%;
 		margin-left: 15px;
+
+		&::before {
+			top: 0;
+			right: 100%;
+			bottom: 0;
+			width: 16px;
+		}
 
 		@el arrow {
 			right: 100%;
@@ -172,6 +191,13 @@ opal-popover {
 		top: 100%;
 		margin-top: 15px;
 
+		&::before {
+			right: 0;
+			bottom: 100%;
+			left: 0;
+			height: 16px;
+		}
+
 		@el arrow {
 			bottom: 100%;
 
@@ -220,6 +246,13 @@ opal-popover {
 	{
 		right: 100%;
 		margin-right: 15px;
+
+		&::before {
+			top: 0;
+			right: 100%;
+			bottom: 0;
+			width: 16px;
+		}
 
 		@el arrow {
 			left: 100%;
