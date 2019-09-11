@@ -61,6 +61,7 @@ export {
 	OpalAutosuggest
 } from '@riim/opal-autosuggest';
 export { OpalMultirowRow, OpalMultirow } from '@riim/opal-multirow';
+export { OpalFileUpload, ReadableFile } from '@riim/opal-file-upload';
 export {
 	OpalRoute,
 	IRouteProperty as IOpalRouterRouteProperty,
