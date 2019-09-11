@@ -17,6 +17,9 @@ export declare class OpalNotification extends BaseComponent {
     elementAttached(): void;
     elementDetached(): void;
     _onShownChange(evt: IEvent): void;
+    _onElementMouseEnter(): void;
+    _onElementMouseLeave(): void;
+    _onClosingTimeout(): void;
     _onBtnHideClick(): void;
     show(): boolean;
     hide(): boolean;

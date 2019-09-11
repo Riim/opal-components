@@ -176,6 +176,10 @@ let OpalNotification = OpalNotification_1 = class OpalNotification extends rioni
     }
     elementAttached() {
         this.listenTo(this, 'change:shown', this._onShownChange);
+        this.listenTo(this.bar, {
+            mouseenter: this._onElementMouseEnter,
+            mouseleave: this._onElementMouseLeave
+        });
         this.listenTo('btnHide', 'click', this._onBtnHideClick);
     }
     elementDetached() {
@@ -188,6 +192,22 @@ let OpalNotification = OpalNotification_1 = class OpalNotification extends rioni
         else {
             this._hide();
         }
+    }
+    _onElementMouseEnter() {
+        if (this._closingTimeoutId) {
+            clearTimeout(this._closingTimeoutId);
+            this._closingTimeoutId = null;
+        }
+    }
+    _onElementMouseLeave() {
+        if (this.timeout) {
+            this._closingTimeoutId = setTimeout(this._onClosingTimeout.bind(this), this.timeout);
+        }
+    }
+    _onClosingTimeout() {
+        this.hide();
+        this.emit(OpalNotification_1.EVENT_HIDE);
+        this.emit(OpalNotification_1.EVENT_CLOSE);
     }
     _onBtnHideClick() {
         this.hide();
@@ -225,17 +245,13 @@ let OpalNotification = OpalNotification_1 = class OpalNotification extends rioni
     _show() {
         shownNotifications.add(this);
         container.appendChild(this.bar);
+        // для анимации
         setTimeout(() => {
-            // для анимации
             this.bar.setAttribute('shown', '');
-            if (this.timeout) {
-                this._closingTimeoutId = setTimeout(() => {
-                    this.hide();
-                    this.emit(OpalNotification_1.EVENT_HIDE);
-                    this.emit(OpalNotification_1.EVENT_CLOSE);
-                }, this.timeout);
-            }
-        }, 100);
+        }, 1);
+        if (this.timeout) {
+            this._closingTimeoutId = setTimeout(this._onClosingTimeout.bind(this), this.timeout);
+        }
     }
     _hide() {
         if (this._closingTimeoutId) {

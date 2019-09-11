@@ -64,6 +64,10 @@ export class OpalNotification extends BaseComponent {
 
 	elementAttached() {
 		this.listenTo(this, 'change:shown', this._onShownChange);
+		this.listenTo(this.bar, {
+			mouseenter: this._onElementMouseEnter,
+			mouseleave: this._onElementMouseLeave
+		});
 		this.listenTo('btnHide', 'click', this._onBtnHideClick);
 	}
 
@@ -77,6 +81,28 @@ export class OpalNotification extends BaseComponent {
 		} else {
 			this._hide();
 		}
+	}
+
+	_onElementMouseEnter() {
+		if (this._closingTimeoutId) {
+			clearTimeout(this._closingTimeoutId);
+			this._closingTimeoutId = null;
+		}
+	}
+
+	_onElementMouseLeave() {
+		if (this.timeout) {
+			this._closingTimeoutId = setTimeout(
+				this._onClosingTimeout.bind(this),
+				this.timeout
+			) as any;
+		}
+	}
+
+	_onClosingTimeout() {
+		this.hide();
+		this.emit(OpalNotification.EVENT_HIDE);
+		this.emit(OpalNotification.EVENT_CLOSE);
 	}
 
 	_onBtnHideClick() {
@@ -126,18 +152,17 @@ export class OpalNotification extends BaseComponent {
 		shownNotifications.add(this);
 		container!.appendChild(this.bar);
 
+		// для анимации
 		setTimeout(() => {
-			// для анимации
 			this.bar.setAttribute('shown', '');
+		}, 1);
 
-			if (this.timeout) {
-				this._closingTimeoutId = setTimeout(() => {
-					this.hide();
-					this.emit(OpalNotification.EVENT_HIDE);
-					this.emit(OpalNotification.EVENT_CLOSE);
-				}, this.timeout) as any;
-			}
-		}, 100);
+		if (this.timeout) {
+			this._closingTimeoutId = setTimeout(
+				this._onClosingTimeout.bind(this),
+				this.timeout
+			) as any;
+		}
 	}
 
 	_hide() {
