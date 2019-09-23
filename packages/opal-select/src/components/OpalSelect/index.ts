@@ -110,6 +110,8 @@ export class OpalSelect extends BaseComponent {
 	@Param({ readonly: true })
 	addNewItem: (text: string, select: OpalSelect) => Promise<Record<string, string>>;
 	@Param
+	clearLoadedListOnOpen = false;
+	@Param
 	text: string;
 	@Param
 	maxTextLength = 20;
@@ -669,7 +671,7 @@ export class OpalSelect extends BaseComponent {
 		}
 	}
 
-	_onMenuChange(evt: IEvent) {
+	_onMenuChange() {
 		if (!this._notUpdateOptions) {
 			this.optionsCell.pull();
 			this._updateOptions();
@@ -728,8 +730,12 @@ export class OpalSelect extends BaseComponent {
 
 		let loadedList = this.$<OpalLoadedList>('loadedList');
 
-		if (loadedList) {
-			loadedList!.checkLoading();
+		if (loadedList && !loadedList.loading) {
+			if (this.clearLoadedListOnOpen) {
+				loadedList.clear();
+			}
+
+			loadedList.checkLoading();
 		}
 
 		this.focus();

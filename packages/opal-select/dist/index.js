@@ -212,6 +212,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         super(...arguments);
         this.size = 'm';
         this.multiple = false;
+        this.clearLoadedListOnOpen = false;
         this.maxTextLength = 20;
         // ;;; Плейсхолдер селекта.
         this.placeholder = gettext_1.pt('OpalSelect#placeholder', 'Не выбрано');
@@ -626,7 +627,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             this.emit(OpalSelect_1.EVENT_CHANGE);
         }
     }
-    _onMenuChange(evt) {
+    _onMenuChange() {
         if (!this._notUpdateOptions) {
             this.optionsCell.pull();
             this._updateOptions();
@@ -655,7 +656,10 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             this._updateOptions();
         }
         let loadedList = this.$('loadedList');
-        if (loadedList) {
+        if (loadedList && !loadedList.loading) {
+            if (this.clearLoadedListOnOpen) {
+                loadedList.clear();
+            }
             loadedList.checkLoading();
         }
         this.focus();
@@ -939,6 +943,10 @@ __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Function)
 ], OpalSelect.prototype, "addNewItem", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSelect.prototype, "clearLoadedListOnOpen", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)

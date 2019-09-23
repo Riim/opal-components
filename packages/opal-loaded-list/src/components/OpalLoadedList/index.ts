@@ -25,6 +25,7 @@ export interface IDataProvider {
 		items: Array<IDataListItem>;
 		total?: number;
 	}>;
+	reset(): void;
 }
 
 let defaultDataListItemSchema = Object.freeze({
@@ -228,6 +229,13 @@ export class OpalLoadedList extends BaseComponent {
 				this.checkLoading();
 			}))
 		);
+	}
+
+	clear() {
+		this.dataList.clear();
+		this.total = undefined;
+		this._lastLoadedQuery = null;
+		this.dataProvider.reset();
 	}
 
 	_getListItemContext(context: Object, slot: RnSlot) {

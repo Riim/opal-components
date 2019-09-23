@@ -267,6 +267,12 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
             this.checkLoading();
         })));
     }
+    clear() {
+        this.dataList.clear();
+        this.total = undefined;
+        this._lastLoadedQuery = null;
+        this.dataProvider.reset();
+    }
     _getListItemContext(context, slot) {
         return {
             __proto__: context,

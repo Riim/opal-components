@@ -53,6 +53,7 @@ export declare class OpalSelect extends BaseComponent {
         disabled?: string;
     };
     addNewItem: (text: string, select: OpalSelect) => Promise<Record<string, string>>;
+    clearLoadedListOnOpen: boolean;
     text: string;
     maxTextLength: number;
     placeholder: string;
@@ -107,7 +108,7 @@ export declare class OpalSelect extends BaseComponent {
     _onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void;
     _onMenuButtonClick(evt: IEvent<OpalButton>): false | void;
     _addNewItem$(newItem: Record<string, string>): void;
-    _onMenuChange(evt: IEvent): void;
+    _onMenuChange(): void;
     open(): boolean;
     close(): boolean;
     toggle(value?: boolean): boolean;

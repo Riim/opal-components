@@ -12,6 +12,7 @@ export interface IDataProvider {
         items: Array<IDataListItem>;
         total?: number;
     }>;
+    reset(): void;
 }
 export declare class OpalLoadedList extends BaseComponent {
     static EVENT_LOADED: symbol;
@@ -46,6 +47,7 @@ export declare class OpalLoadedList extends BaseComponent {
     _onElementScroll(): void;
     checkLoading(): void;
     _load(): void;
+    clear(): void;
     _getListItemContext(context: Object, slot: RnSlot): {
         __proto__: Object;
         $item: any;

@@ -44,8 +44,8 @@
     "tslint": "^5.20.0",
     "tslint-loader": "^3.6.0",
     "typescript": "^3.6.3",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.8",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9",
     "yargs": "^14.0.0"
   }
 }

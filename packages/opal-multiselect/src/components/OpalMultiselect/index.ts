@@ -35,7 +35,7 @@ import template from './template.rnt';
 
 	domEvents: {
 		btnDeselectItem: {
-			click(evt, context) {
+			click(_evt, context) {
 				this.viewModel.remove(context.item);
 			}
 		}

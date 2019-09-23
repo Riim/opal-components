@@ -229,7 +229,7 @@ OpalMultiselect = __decorate([
         },
         domEvents: {
             btnDeselectItem: {
-                click(evt, context) {
+                click(_evt, context) {
                     this.viewModel.remove(context.item);
                 }
             }
