@@ -3,6 +3,7 @@ import {
 	BaseComponent,
 	Component,
 	IDisposableListening,
+	Listen,
 	Param
 	} from 'rionite';
 import './index.css';
@@ -50,20 +51,15 @@ export class OpalButton extends BaseComponent {
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'change:_tabIndex', this._onTabIndexChange);
-		this.listenTo(this.element, {
-			focus: this._onElementFocus,
-			blur: this._onElementBlur,
-			click: this._onElementClick
-		});
-
 		this.element.tabIndex = this._tabIndex;
 	}
 
+	@Listen('change:_tabIndex')
 	_onTabIndexChange() {
 		this.element.tabIndex = this._tabIndex;
 	}
 
+	@Listen('focus', '@element')
 	_onElementFocus() {
 		if (!this._documentKeyDownListening && this.element.tagName.indexOf('-') != -1) {
 			this._documentKeyDownListening = this.listenTo(
@@ -77,6 +73,7 @@ export class OpalButton extends BaseComponent {
 		this.emit(OpalButton.EVENT_FOCUS);
 	}
 
+	@Listen('blur', '@element')
 	_onElementBlur() {
 		if (this._documentKeyDownListening) {
 			this._documentKeyDownListening.stop();
@@ -87,6 +84,7 @@ export class OpalButton extends BaseComponent {
 		this.emit(OpalButton.EVENT_BLUR);
 	}
 
+	@Listen('click', '@element')
 	_onElementClick() {
 		if (!this.disabled) {
 			this.click();

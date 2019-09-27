@@ -10,6 +10,7 @@ import {
 	IDisposableListening,
 	IDisposableTimeout,
 	IPossiblyComponentElement,
+	Listen,
 	Param
 	} from 'rionite';
 import './index.css';
@@ -129,37 +130,13 @@ export class OpalAutosuggest extends BaseComponent {
 		}
 	}
 
-	elementAttached() {
-		this.listenTo(this, {
-			'change:value': this._onValueChange,
-			'change:loaderShown': this._onLoaderShownChange
-		});
-		this.listenTo(this.dataList, ObservableList.EVENT_CHANGE, this._onDataListChange);
-		this.listenTo('textInput', {
-			[OpalTextInput.EVENT_FOCUS]: this._onTextInputFocus,
-			[OpalTextInput.EVENT_BLUR]: this._onTextInputBlur,
-			[OpalTextInput.EVENT_INPUT]: this._onTextInputInput,
-			[OpalTextInput.EVENT_CHANGE]: this._onTextInputChange
-		});
-		this.listenTo(
-			this.$<OpalTextInput>('textInput')!.textField,
-			'click',
-			this._onTextFieldClick
-		);
-		this.listenTo('menu', 'change:opened', this._onMenuOpenedChange);
-		this.listenTo(
-			this.$<BaseComponent>('menu')!.element,
-			'mouseover',
-			this._onMenuElementMouseOver
-		);
-	}
-
 	ready() {
 		if (this.value) {
 			this.$<OpalTextInput>('textInput')!.value = this.value[this._dataListItemTextFieldName];
 		}
 	}
 
+	@Listen('change:value')
 	_onValueChange(evt: IEvent) {
 		let item: IDataListItem = evt.data.value;
 
@@ -171,10 +148,12 @@ export class OpalAutosuggest extends BaseComponent {
 			: '';
 	}
 
+	@Listen('change:loaderShown')
 	_onLoaderShownChange(evt: IEvent) {
 		this.$<OpalTextInput>('textInput')!.loading = evt.data.value;
 	}
 
+	@Listen(ObservableList.EVENT_CHANGE, '@dataList')
 	_onDataListChange() {
 		// Смотри _itemsRequestCallback
 		nextTick(() => {
@@ -182,10 +161,12 @@ export class OpalAutosuggest extends BaseComponent {
 		});
 	}
 
+	@Listen(OpalTextInput.EVENT_FOCUS, 'textInput')
 	_onTextInputFocus() {
 		this.openMenu();
 	}
 
+	@Listen(OpalTextInput.EVENT_BLUR, 'textInput')
 	_onTextInputBlur() {
 		this._cancelLoading();
 
@@ -198,6 +179,7 @@ export class OpalAutosuggest extends BaseComponent {
 		}
 	}
 
+	@Listen(OpalTextInput.EVENT_INPUT, 'textInput')
 	_onTextInputInput(evt: IEvent<OpalTextInput>) {
 		this._inputNotConfirmed = true;
 
@@ -213,6 +195,7 @@ export class OpalAutosuggest extends BaseComponent {
 		}
 	}
 
+	@Listen(OpalTextInput.EVENT_CHANGE, 'textInput')
 	_onTextInputChange(evt: IEvent<OpalTextInput>) {
 		if (!evt.target.value) {
 			this._clearDataList();
@@ -224,10 +207,12 @@ export class OpalAutosuggest extends BaseComponent {
 		}
 	}
 
+	@Listen('click', self => self.$<OpalTextInput>('textInput')!.textField)
 	_onTextFieldClick() {
 		this.openMenu();
 	}
 
+	@Listen('change:opened', 'menu')
 	_onMenuOpenedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._documentFocusListening = this.listenTo(
@@ -247,6 +232,7 @@ export class OpalAutosuggest extends BaseComponent {
 		}
 	}
 
+	@Listen('mouseover', self => self.$<BaseComponent>('menu')!.element)
 	_onMenuElementMouseOver(evt: Event) {
 		let menu = this.$<BaseComponent>('menu')!.element;
 		let el: Element | null = evt.target as Element;

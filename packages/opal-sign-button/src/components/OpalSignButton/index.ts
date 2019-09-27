@@ -3,6 +3,7 @@ import {
 	BaseComponent,
 	Component,
 	IDisposableListening,
+	Listen,
 	Param
 	} from 'rionite';
 import './index.css';
@@ -42,30 +43,25 @@ export class OpalSignButton extends BaseComponent {
 
 	_documentKeyDownListening: IDisposableListening;
 
-	elementAttached() {
-		this.listenTo('control', {
-			focus: this._onControlFocus,
-			blur: this._onControlBlur,
-			click: this._onControlClick
-		});
-	}
-
 	ready() {
 		if (this.focused) {
 			this.focus();
 		}
 	}
 
+	@Listen('focus', 'control')
 	_onControlFocus() {
 		this.focused = true;
 		this.emit(OpalSignButton.EVENT_FOCUS);
 	}
 
+	@Listen('blur', 'control')
 	_onControlBlur() {
 		this.focused = false;
 		this.emit(OpalSignButton.EVENT_BLUR);
 	}
 
+	@Listen('click', 'control')
 	_onControlClick(evt: Event) {
 		evt.preventDefault();
 

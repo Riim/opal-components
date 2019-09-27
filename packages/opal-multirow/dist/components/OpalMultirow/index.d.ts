@@ -16,7 +16,6 @@ export declare class OpalMultirow extends BaseComponent {
     readonly _notSingleRow: boolean;
     initialize(): void;
     ready(): void;
-    elementAttached(): void;
     _onRowRemoveRowClick(evt: IEvent<OpalMultirowRow>): void;
     _onRowAddRowClick(): void;
 }

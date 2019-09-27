@@ -52,7 +52,6 @@ export declare class OpalTreeList extends BaseComponent {
     _queryTimeout: IDisposableTimeout | null;
     readonly listShown: boolean;
     initialize(): void;
-    elementAttached(): void;
     _onQueryChange(): void;
     _onQueryTimeout(): void;
     _onSelectionControlChange(evt: IEvent<OpalCheckbox>): void;

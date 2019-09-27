@@ -1,7 +1,7 @@
 import { nextUID } from '@riim/next-uid';
 import { Cell, IEvent, ObservableList } from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
-import { BaseComponent, Component } from 'rionite';
+import { BaseComponent, Component, Listen } from 'rionite';
 import { OpalMultirowRow } from '../OpalMultirowRow';
 import './index.css';
 import template from './template.rnt';
@@ -47,13 +47,7 @@ export class OpalMultirow extends BaseComponent {
 		}
 	}
 
-	elementAttached() {
-		this.listenTo(this, {
-			[OpalMultirowRow.EVENT_REMOVE_ROW_CLICK]: this._onRowRemoveRowClick,
-			[OpalMultirowRow.EVENT_ADD_ROW_CLICK]: this._onRowAddRowClick
-		});
-	}
-
+	@Listen(OpalMultirowRow.EVENT_REMOVE_ROW_CLICK)
 	_onRowRemoveRowClick(evt: IEvent<OpalMultirowRow>) {
 		let rowEl = evt.target.element;
 
@@ -71,6 +65,7 @@ export class OpalMultirow extends BaseComponent {
 		this.emit(OpalMultirow.EVENT_CHANGE);
 	}
 
+	@Listen(OpalMultirowRow.EVENT_ADD_ROW_CLICK)
 	_onRowAddRowClick() {
 		this._newRows.add({ key: nextUID() });
 

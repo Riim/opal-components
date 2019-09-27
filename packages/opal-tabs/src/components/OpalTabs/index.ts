@@ -5,6 +5,7 @@ import {
 	BaseComponent,
 	Component,
 	IComponentElement,
+	Listen,
 	Param
 	} from 'rionite';
 import { OpalTab } from '../OpalTabList';
@@ -72,15 +73,6 @@ export class OpalTabs extends BaseComponent {
 	}
 
 	elementAttached() {
-		this.listenTo(
-			(this.element.getElementsByClassName('OpalTabList')[0] as IComponentElement)
-				.$component!,
-			{
-				[OpalTab.EVENT_SELECT]: this._onTabListSelect,
-				[OpalTab.EVENT_DESELECT]: this._onTabListDeselect
-			}
-		);
-
 		if (this.useLocationHash) {
 			reTabLabel.test(OpalRouter.history.location.hash);
 
@@ -96,10 +88,20 @@ export class OpalTabs extends BaseComponent {
 		}
 	}
 
+	@Listen(
+		OpalTab.EVENT_SELECT,
+		self =>
+			(self.element.getElementsByClassName('OpalTabList')[0] as IComponentElement).$component!
+	)
 	_onTabListSelect(evt: IEvent<OpalTab>) {
 		this._selectTab(evt.target, true);
 	}
 
+	@Listen(
+		OpalTab.EVENT_DESELECT,
+		self =>
+			(self.element.getElementsByClassName('OpalTabList')[0] as IComponentElement).$component!
+	)
 	_onTabListDeselect(evt: IEvent<OpalTab>) {
 		evt.target.select();
 	}

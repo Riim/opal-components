@@ -4,6 +4,7 @@ import {
 	BaseComponent,
 	Component,
 	IDisposableListening,
+	Listen,
 	Param
 	} from 'rionite';
 import './index.css';
@@ -38,19 +39,6 @@ export class OpalCheckbox extends BaseComponent {
 
 	_documentKeyDownListening: IDisposableListening;
 
-	elementAttached() {
-		this.listenTo(this, {
-			'change:checked': this._onCheckedChange,
-			'change:indeterminate': this._onIndeterminateChange,
-			'change:focused': this._onFocusedChange
-		});
-		this.listenTo('input', 'change', this._onInputChange);
-		this.listenTo('control', {
-			focus: this._onControlFocus,
-			blur: this._onControlBlur
-		});
-	}
-
 	ready() {
 		if (this.checked) {
 			this.indeterminate = false;
@@ -62,6 +50,7 @@ export class OpalCheckbox extends BaseComponent {
 		}
 	}
 
+	@Listen('change:checked')
 	_onCheckedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this.indeterminate = false;
@@ -70,12 +59,14 @@ export class OpalCheckbox extends BaseComponent {
 		this.$<HTMLInputElement>('input')!.checked = evt.data.value;
 	}
 
+	@Listen('change:indeterminate')
 	_onIndeterminateChange(evt: IEvent) {
 		if (evt.data.value) {
 			this.checked = false;
 		}
 	}
 
+	@Listen('change:focused')
 	_onFocusedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._documentKeyDownListening = this.listenTo(
@@ -103,6 +94,7 @@ export class OpalCheckbox extends BaseComponent {
 		}
 	}
 
+	@Listen('change', 'input')
 	_onInputChange(evt: Event) {
 		this.emit(
 			(this.checked = (evt.target as HTMLInputElement).checked)
@@ -112,11 +104,13 @@ export class OpalCheckbox extends BaseComponent {
 		this.emit(OpalCheckbox.EVENT_CHANGE);
 	}
 
+	@Listen('focus', 'control')
 	_onControlFocus() {
 		this.focused = true;
 		this.emit(OpalCheckbox.EVENT_FOCUS);
 	}
 
+	@Listen('blur', 'control')
 	_onControlBlur() {
 		this.focused = false;
 		this.emit(OpalCheckbox.EVENT_BLUR);

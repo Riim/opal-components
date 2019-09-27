@@ -148,9 +148,6 @@ let OpalDropdown = OpalDropdown_1 = class OpalDropdown extends rionite_1.BaseCom
             this._open();
         }
     }
-    elementAttached() {
-        this.listenTo(this, 'change:opened', this._onOpenedChange);
-    }
     _onOpenedChange(evt) {
         if (evt.data.value) {
             this._open();
@@ -279,6 +276,12 @@ __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
 ], OpalDropdown.prototype, "contentRendered", void 0);
+__decorate([
+    rionite_1.Listen('change:opened'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalDropdown.prototype, "_onOpenedChange", null);
 OpalDropdown = OpalDropdown_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalDropdown',

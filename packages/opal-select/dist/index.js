@@ -343,26 +343,9 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             this._documentKeyDownListening = this.listenTo(document, 'keydown', this._onDocumentKeyDown);
             this.focus();
         }
-        this.listenTo(this, {
-            'change:paramValue': this._onParamValueChange,
-            'change:focused': this._onFocusedChange
-        });
-        this.listenTo(this.viewModel, cellx_1.ObservableList.EVENT_CHANGE, this._onViewModelChange);
-        this.listenTo('button', OpalSelect_1.buttonFocusEvents, this._onButtonFocus);
-        this.listenTo('button', OpalSelect_1.buttonBlurEvents, this._onButtonBlur);
-        this.listenTo('button', OpalSelect_1.buttonClickEvents, this._onButtonClick);
         if (!this.openOnClick) {
             this.listenTo(this.$('button').element, 'mousedown', this._onButtonElementMouseDown);
         }
-        this.listenTo('menu', {
-            'change:opened': this._onMenuOpenedChange,
-            [OpalSelectOption_1.OpalSelectOption.EVENT_SELECT]: this._onMenuSelectOptionSelect,
-            [OpalSelectOption_1.OpalSelectOption.EVENT_DESELECT]: this._onMenuSelectOptionDeselect,
-            [opal_text_input_1.OpalTextInput.EVENT_CONFIRM]: this._onMenuTextInputConfirm,
-            [opal_button_1.OpalButton.EVENT_CLICK]: this._onMenuButtonClick,
-            [rionite_1.RnIfThen.EVENT_CHANGE]: this._onMenuChange,
-            [rionite_1.RnRepeat.EVENT_CHANGE]: this._onMenuChange
-        });
     }
     _onParamValueChange(evt) {
         let vm = this.viewModel;
@@ -646,7 +629,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         if (this.dataListCell) {
             this._dataListChangeListeneng = this.listenTo(this, 'change:dataList', this._onDataListChange);
         }
-        this._menuLoadedListeneng = this.listenTo(this.$('menu'), OpalSelect_1.loadedEvents, this._onMenuLoaded);
+        this._menuLoadedListeneng = this.listenTo('menu', this.constructor.menuLoadedEvents, this._onMenuLoaded);
         this.$('button').check();
         this._notUpdateOptions = true;
         this.$('menu').open();
@@ -892,7 +875,8 @@ OpalSelect.EVENT_SELECT = Symbol('select');
 OpalSelect.buttonFocusEvents = [opal_button_1.OpalButton.EVENT_FOCUS, opal_sign_button_1.OpalSignButton.EVENT_FOCUS];
 OpalSelect.buttonBlurEvents = [opal_button_1.OpalButton.EVENT_BLUR, opal_sign_button_1.OpalSignButton.EVENT_BLUR];
 OpalSelect.buttonClickEvents = [opal_button_1.OpalButton.EVENT_CLICK, opal_sign_button_1.OpalSignButton.EVENT_CLICK];
-OpalSelect.loadedEvents = [opal_loaded_list_1.OpalLoadedList.EVENT_LOADED];
+OpalSelect.menuChangeEvents = [rionite_1.RnIfThen.EVENT_CHANGE, rionite_1.RnRepeat.EVENT_CHANGE];
+OpalSelect.menuLoadedEvents = [opal_loaded_list_1.OpalLoadedList.EVENT_LOADED];
 OpalSelect.defaultDataListItemSchema = defaultDataListItemSchema;
 OpalSelect.defaultViewModelItemSchema = defaultVMItemSchema;
 __decorate([
@@ -994,6 +978,78 @@ __decorate([
     __metadata("design:type", Array),
     __metadata("design:paramtypes", [])
 ], OpalSelect.prototype, "options", null);
+__decorate([
+    rionite_1.Listen('change:paramValue'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalSelect.prototype, "_onParamValueChange", null);
+__decorate([
+    rionite_1.Listen('change:focused'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalSelect.prototype, "_onFocusedChange", null);
+__decorate([
+    rionite_1.Listen(cellx_1.ObservableList.EVENT_CHANGE, '@viewModel'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalSelect.prototype, "_onViewModelChange", null);
+__decorate([
+    rionite_1.Listen((ctor) => ctor.buttonFocusEvents, 'button'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalSelect.prototype, "_onButtonFocus", null);
+__decorate([
+    rionite_1.Listen((ctor) => ctor.buttonBlurEvents, 'button'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalSelect.prototype, "_onButtonBlur", null);
+__decorate([
+    rionite_1.Listen((ctor) => ctor.buttonClickEvents, 'button'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalSelect.prototype, "_onButtonClick", null);
+__decorate([
+    rionite_1.Listen('change:opened', 'menu'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Boolean)
+], OpalSelect.prototype, "_onMenuOpenedChange", null);
+__decorate([
+    rionite_1.Listen(OpalSelectOption_1.OpalSelectOption.EVENT_SELECT, 'menu'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Boolean)
+], OpalSelect.prototype, "_onMenuSelectOptionSelect", null);
+__decorate([
+    rionite_1.Listen(OpalSelectOption_1.OpalSelectOption.EVENT_DESELECT, 'menu'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Boolean)
+], OpalSelect.prototype, "_onMenuSelectOptionDeselect", null);
+__decorate([
+    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_CONFIRM, 'menu'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Object)
+], OpalSelect.prototype, "_onMenuTextInputConfirm", null);
+__decorate([
+    rionite_1.Listen(opal_button_1.OpalButton.EVENT_CLICK, 'menu'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Object)
+], OpalSelect.prototype, "_onMenuButtonClick", null);
+__decorate([
+    rionite_1.Listen((ctor) => ctor.menuChangeEvents, 'menu'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalSelect.prototype, "_onMenuChange", null);
 OpalSelect = OpalSelect_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSelect',
@@ -1072,18 +1128,6 @@ let OpalSelectOption = OpalSelectOption_1 = class OpalSelectOption extends rioni
     }
     get _tabIndex() {
         return this.disabled ? -1 : this.tabIndex;
-    }
-    elementAttached() {
-        this.listenTo(this, {
-            'change:selected': this._onSelectedChange,
-            'change:indeterminate': this._onIndeterminateChange
-        });
-        this.listenTo('control', {
-            focus: this._onControlFocus,
-            blur: this._onControlBlur,
-            mouseup: this._onControlMouseUp,
-            click: this._onControlClick
-        });
     }
     ready() {
         if (this.selected) {
@@ -1218,6 +1262,42 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalSelectOption.prototype, "_tabIndex", null);
+__decorate([
+    rionite_1.Listen('change:selected'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalSelectOption.prototype, "_onSelectedChange", null);
+__decorate([
+    rionite_1.Listen('change:indeterminate'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalSelectOption.prototype, "_onIndeterminateChange", null);
+__decorate([
+    rionite_1.Listen('focus', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalSelectOption.prototype, "_onControlFocus", null);
+__decorate([
+    rionite_1.Listen('blur', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalSelectOption.prototype, "_onControlBlur", null);
+__decorate([
+    rionite_1.Listen('mouseup', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalSelectOption.prototype, "_onControlMouseUp", null);
+__decorate([
+    rionite_1.Listen('click', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
+], OpalSelectOption.prototype, "_onControlClick", null);
 OpalSelectOption = OpalSelectOption_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSelectOption',

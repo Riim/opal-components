@@ -1,6 +1,6 @@
 import { OpalInputValidator } from '@riim/opal-input-validator';
 import { OpalTextInput } from '@riim/opal-text-input';
-import { Component } from 'rionite';
+import { Component, Listen } from 'rionite';
 import { OpalTextInputValidatorRule } from '../OpalTextInputValidatorRule';
 import './index.css';
 
@@ -20,16 +20,7 @@ export class OpalTextInputValidator extends OpalInputValidator {
 		this.target = this.textInput = this.$<OpalTextInput>('textInput')!;
 	}
 
-	elementAttached() {
-		super.elementAttached();
-
-		this.listenTo(
-			this.textInput,
-			(this.constructor as typeof OpalTextInputValidator).targetInputEvents,
-			this._onTextInputInput
-		);
-	}
-
+	@Listen((ctor: typeof OpalTextInputValidator) => ctor.targetInputEvents, '@textInput')
 	_onTextInputInput() {
 		if (this.failedRule) {
 			this._validate([this.failedRule]);

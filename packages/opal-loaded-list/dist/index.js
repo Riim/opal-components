@@ -180,8 +180,6 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
         }
     }
     elementAttached() {
-        this.listenTo(this, 'change:query', this._onQueryChange);
-        this.listenTo(this.element, 'scroll', this._onElementScroll);
         if (this.preloading) {
             this._load();
         }
@@ -337,6 +335,18 @@ __decorate([
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], OpalLoadedList.prototype, "nothingFoundShown", null);
+__decorate([
+    rionite_1.Listen('change:query'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalLoadedList.prototype, "_onQueryChange", null);
+__decorate([
+    rionite_1.Listen('scroll', '@element'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalLoadedList.prototype, "_onElementScroll", null);
 OpalLoadedList = OpalLoadedList_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalLoadedList',

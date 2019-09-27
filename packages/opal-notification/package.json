@@ -15,8 +15,8 @@
   "dependencies": {
     "@riim/map-set-polyfill": "^1.0.2",
     "@riim/opal-icon": "^0.38.0",
-    "cellx": "^1.9.6",
+    "cellx": "^1.9.10",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.30"
+    "rionite": "^0.37.46"
   }
 }

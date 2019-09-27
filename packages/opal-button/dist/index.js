@@ -156,12 +156,6 @@ let OpalButton = OpalButton_1 = class OpalButton extends rionite_1.BaseComponent
         }
     }
     elementAttached() {
-        this.listenTo(this, 'change:_tabIndex', this._onTabIndexChange);
-        this.listenTo(this.element, {
-            focus: this._onElementFocus,
-            blur: this._onElementBlur,
-            click: this._onElementClick
-        });
         this.element.tabIndex = this._tabIndex;
     }
     _onTabIndexChange() {
@@ -285,6 +279,30 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalButton.prototype, "_tabIndex", null);
+__decorate([
+    rionite_1.Listen('change:_tabIndex'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalButton.prototype, "_onTabIndexChange", null);
+__decorate([
+    rionite_1.Listen('focus', '@element'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalButton.prototype, "_onElementFocus", null);
+__decorate([
+    rionite_1.Listen('blur', '@element'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalButton.prototype, "_onElementBlur", null);
+__decorate([
+    rionite_1.Listen('click', '@element'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalButton.prototype, "_onElementClick", null);
 OpalButton = OpalButton_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalButton'

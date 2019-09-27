@@ -12,6 +12,7 @@ import {
 	BaseComponent,
 	Component,
 	IDisposableTimeout,
+	Listen,
 	Param
 	} from 'rionite';
 import { ObservableTreeList, setParent } from '../../ObservableTreeList';
@@ -210,15 +211,7 @@ export class OpalTreeList extends BaseComponent {
 		this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
 	}
 
-	elementAttached() {
-		this.listenTo(this, 'change:query', this._onQueryChange);
-		this.listenTo(
-			this,
-			OpalTreeList.selectionControlChangeEvents,
-			this._onSelectionControlChange
-		);
-	}
-
+	@Listen('change:query')
 	_onQueryChange() {
 		if (this._queryTimeout) {
 			this._queryTimeout.clear();
@@ -232,6 +225,7 @@ export class OpalTreeList extends BaseComponent {
 		this.comparableQuery = toComparable(this.query);
 	}
 
+	@Listen((ctor: typeof OpalTreeList) => ctor.selectionControlChangeEvents)
 	_onSelectionControlChange(evt: IEvent<OpalCheckbox>) {
 		let dataTreeListItemValueFieldName = this._dataTreeListItemValueFieldName;
 		let dataTreeListItemTextFieldName = this._dataTreeListItemTextFieldName;

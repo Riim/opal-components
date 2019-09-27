@@ -4,6 +4,7 @@ import {
 	BaseComponent,
 	Component,
 	IDisposableListening,
+	Listen,
 	Param
 	} from 'rionite';
 import './index.css';
@@ -46,22 +47,12 @@ export class OpalSwitch extends BaseComponent {
 		}
 	}
 
-	elementAttached() {
-		this.listenTo(this, {
-			'change:checked': this._onCheckedChange,
-			'change:focused': this._onFocusedChange
-		});
-		this.listenTo('input', 'change', this._onInputChange);
-		this.listenTo('control', {
-			focus: this._onControlFocus,
-			blur: this._onControlBlur
-		});
-	}
-
+	@Listen('change:checked')
 	_onCheckedChange(evt: IEvent) {
 		this.$<HTMLInputElement>('input')!.checked = evt.data.value;
 	}
 
+	@Listen('change:focused')
 	_onFocusedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._documentKeyDownListening = this.listenTo(
@@ -89,6 +80,7 @@ export class OpalSwitch extends BaseComponent {
 		}
 	}
 
+	@Listen('change', 'input')
 	_onInputChange(evt: Event) {
 		this.emit(
 			(this.checked = (evt.target as HTMLInputElement).checked)
@@ -98,11 +90,13 @@ export class OpalSwitch extends BaseComponent {
 		this.emit(OpalSwitch.EVENT_CHANGE);
 	}
 
+	@Listen('focus', 'control')
 	_onControlFocus() {
 		this.focused = true;
 		this.emit(OpalSwitch.EVENT_FOCUS);
 	}
 
+	@Listen('blur', 'control')
 	_onControlBlur() {
 		this.focused = false;
 		this.emit(OpalSwitch.EVENT_BLUR);

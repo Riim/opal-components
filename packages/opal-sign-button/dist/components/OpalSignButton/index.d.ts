@@ -16,7 +16,6 @@ export declare class OpalSignButton extends BaseComponent {
     disabled: boolean;
     readonly _tabIndex: number;
     _documentKeyDownListening: IDisposableListening;
-    elementAttached(): void;
     ready(): void;
     _onControlFocus(): void;
     _onControlBlur(): void;

@@ -168,12 +168,6 @@ let OpalMultirow = OpalMultirow_1 = class OpalMultirow extends rionite_1.BaseCom
             this._newRows.add({ key: next_uid_1.nextUID() });
         }
     }
-    elementAttached() {
-        this.listenTo(this, {
-            [OpalMultirowRow_1.OpalMultirowRow.EVENT_REMOVE_ROW_CLICK]: this._onRowRemoveRowClick,
-            [OpalMultirowRow_1.OpalMultirowRow.EVENT_ADD_ROW_CLICK]: this._onRowAddRowClick
-        });
-    }
     _onRowRemoveRowClick(evt) {
         let rowEl = evt.target.element;
         if (rowEl.classList.contains(this._presetRowClassName)) {
@@ -220,6 +214,18 @@ __decorate([
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], OpalMultirow.prototype, "_notSingleRow", null);
+__decorate([
+    rionite_1.Listen(OpalMultirowRow_1.OpalMultirowRow.EVENT_REMOVE_ROW_CLICK),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalMultirow.prototype, "_onRowRemoveRowClick", null);
+__decorate([
+    rionite_1.Listen(OpalMultirowRow_1.OpalMultirowRow.EVENT_ADD_ROW_CLICK),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalMultirow.prototype, "_onRowAddRowClick", null);
 OpalMultirow = OpalMultirow_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalMultirow',

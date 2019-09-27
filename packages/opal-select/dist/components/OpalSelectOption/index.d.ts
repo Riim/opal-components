@@ -15,7 +15,6 @@ export declare class OpalSelectOption extends BaseComponent {
     disabled: boolean;
     readonly _tabIndex: number;
     _mouseUpEvent: boolean;
-    elementAttached(): void;
     ready(): void;
     _onSelectedChange(evt: IEvent): void;
     _onIndeterminateChange(evt: IEvent): void;

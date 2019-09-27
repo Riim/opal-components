@@ -11,7 +11,6 @@ export declare class OpalInputValidator extends BaseComponent {
     failedRule: OpalInputValidatorRule | null;
     readonly valid: boolean;
     ready(): void;
-    elementAttached(): void;
     _onTargetChange(): void;
     validate(): boolean;
     _validate(rules: Array<OpalInputValidatorRule>): boolean;

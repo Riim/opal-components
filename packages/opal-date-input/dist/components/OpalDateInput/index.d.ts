@@ -17,7 +17,6 @@ export declare class OpalDateInput extends BaseComponent {
     _documentFocusListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening;
     _documentClickListening: IDisposableListening;
-    elementAttached(): void;
     _onTextInputChange(evt: IEvent<OpalTextInput>): void;
     _onTextInputElementClick(): void;
     _onCalendarMenuOpenedChange(evt: IEvent): void;

@@ -1,4 +1,9 @@
-import { BaseComponent, Component, IDisposableListening } from 'rionite';
+import {
+	BaseComponent,
+	Component,
+	IDisposableListening,
+	Listen
+	} from 'rionite';
 import './index.css';
 import template from './template.rnt';
 
@@ -45,21 +50,14 @@ export class OpalEditableText extends BaseComponent {
 		this._value = this._fixedValue = contentSlotEl.textContent!.trim() || null;
 	}
 
-	elementAttached() {
-		this.listenTo(this.element, 'click', this._onElementClick);
-		this.listenTo(this.$<BaseComponent>('contentSlot')!.element, {
-			focus: this._onContentSlotElementFocus,
-			blur: this._onContentSlotElementBlur,
-			input: this._onContentSlotElementInput
-		});
-	}
-
+	@Listen('click', '@element')
 	_onElementClick(evt: Event) {
 		if (evt.target == this.element) {
 			this.focus();
 		}
 	}
 
+	@Listen('focus', self => self.$<BaseComponent>('contentSlot')!.element)
 	_onContentSlotElementFocus() {
 		this._documentKeyDownListening = this.listenTo(
 			document,
@@ -68,6 +66,7 @@ export class OpalEditableText extends BaseComponent {
 		);
 	}
 
+	@Listen('blur', self => self.$<BaseComponent>('contentSlot')!.element)
 	_onContentSlotElementBlur() {
 		this._documentKeyDownListening.stop();
 
@@ -77,6 +76,7 @@ export class OpalEditableText extends BaseComponent {
 		}
 	}
 
+	@Listen('input', self => self.$<BaseComponent>('contentSlot')!.element)
 	_onContentSlotElementInput() {
 		let contentSlotEl = this.$<BaseComponent>('contentSlot')!.element;
 		let text = contentSlotEl.textContent!;

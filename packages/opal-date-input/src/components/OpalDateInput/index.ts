@@ -14,6 +14,7 @@ import {
 	BaseComponent,
 	Component,
 	IDisposableListening,
+	Listen,
 	Param
 	} from 'rionite';
 import './index.css';
@@ -84,26 +85,19 @@ export class OpalDateInput extends BaseComponent {
 	_documentKeyDownListening: IDisposableListening;
 	_documentClickListening: IDisposableListening;
 
-	elementAttached() {
-		this.listenTo('textInput', OpalTextInput.EVENT_CHANGE, this._onTextInputChange);
-		this.listenTo(
-			this.$<BaseComponent>('textInput')!.element,
-			'click',
-			this._onTextInputElementClick
-		);
-		this.listenTo('calendarMenu', 'change:opened', this._onCalendarMenuOpenedChange);
-	}
-
+	@Listen(OpalTextInput.EVENT_CHANGE, 'textInput')
 	_onTextInputChange(evt: IEvent<OpalTextInput>) {
 		if (this.$<OpalTextInputValidator>('textInputValidator')!.valid) {
 			this.$<OpalCalendar>('calendar')!.stringValue = evt.target.value;
 		}
 	}
 
+	@Listen('click', self => self.$<BaseComponent>('textInput')!.element)
 	_onTextInputElementClick() {
 		this.$<OpalDropdown>('calendarMenu')!.open();
 	}
 
+	@Listen('change:opened', 'calendarMenu')
 	_onCalendarMenuOpenedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._documentFocusListening = this.listenTo(

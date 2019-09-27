@@ -6,6 +6,7 @@ import {
 	BaseComponent,
 	Component,
 	IDisposableListening,
+	Listen,
 	Param
 	} from 'rionite';
 import { formatDate } from './formatDate';
@@ -358,18 +359,7 @@ export class OpalCalendar extends BaseComponent {
 		this.shownMonth = shownDate.getMonth();
 	}
 
-	elementAttached() {
-		this.listenTo(
-			'days',
-			{
-				focus: this._onDaysFocus,
-				blur: this._onDaysBlur
-			},
-			this,
-			true
-		);
-	}
-
+	@Listen('focus', 'days', true)
 	_onDaysFocus(evt: Event) {
 		if (
 			!this._documentKeyDownListening &&
@@ -383,6 +373,7 @@ export class OpalCalendar extends BaseComponent {
 		}
 	}
 
+	@Listen('blur', 'days', true)
 	_onDaysBlur() {
 		if (!document.activeElement!.classList.contains('OpalCalendar__day')) {
 			this._documentKeyDownListening!.stop();

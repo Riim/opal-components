@@ -1,6 +1,11 @@
 import { Set } from '@riim/map-set-polyfill';
 import { Cell, IEvent } from 'cellx';
-import { BaseComponent, Component, Param } from 'rionite';
+import {
+	BaseComponent,
+	Component,
+	Listen,
+	Param
+	} from 'rionite';
 import './index.css';
 import template from './template.rnt';
 
@@ -62,19 +67,11 @@ export class OpalNotification extends BaseComponent {
 		}
 	}
 
-	elementAttached() {
-		this.listenTo(this, 'change:shown', this._onShownChange);
-		this.listenTo(this.bar, {
-			mouseenter: this._onElementMouseEnter,
-			mouseleave: this._onElementMouseLeave
-		});
-		this.listenTo('btnHide', 'click', this._onBtnHideClick);
-	}
-
 	elementDetached() {
 		this.hide();
 	}
 
+	@Listen('change:shown')
 	_onShownChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._show();
@@ -83,6 +80,7 @@ export class OpalNotification extends BaseComponent {
 		}
 	}
 
+	@Listen('mouseenter', '@bar')
 	_onElementMouseEnter() {
 		if (this._closingTimeoutId) {
 			clearTimeout(this._closingTimeoutId);
@@ -90,6 +88,7 @@ export class OpalNotification extends BaseComponent {
 		}
 	}
 
+	@Listen('mouseleave', '@bar')
 	_onElementMouseLeave() {
 		if (this.timeout) {
 			this._closingTimeoutId = setTimeout(
@@ -105,6 +104,7 @@ export class OpalNotification extends BaseComponent {
 		this.emit(OpalNotification.EVENT_CLOSE);
 	}
 
+	@Listen('click', 'btnHide')
 	_onBtnHideClick() {
 		this.hide();
 		this.emit(OpalNotification.EVENT_HIDE);

@@ -161,10 +161,6 @@ let OpalModal = OpalModal_1 = class OpalModal extends rionite_1.BaseComponent {
             this._open();
         }
     }
-    elementAttached() {
-        this.listenTo(this, 'change:opened', this._onOpenedChange);
-        this.listenTo(this.element, 'click', this._onElementClick);
-    }
     elementDetached() {
         this.close();
     }
@@ -277,6 +273,18 @@ __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
 ], OpalModal.prototype, "contentRendered", void 0);
+__decorate([
+    rionite_1.Listen('change:opened'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalModal.prototype, "_onOpenedChange", null);
+__decorate([
+    rionite_1.Listen('click', '@element'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
+], OpalModal.prototype, "_onElementClick", null);
 OpalModal = OpalModal_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalModal',

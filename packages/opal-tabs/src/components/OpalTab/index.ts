@@ -1,5 +1,10 @@
 import { Computed } from 'cellx-decorators';
-import { BaseComponent, Component, Param } from 'rionite';
+import {
+	BaseComponent,
+	Component,
+	Listen,
+	Param
+	} from 'rionite';
 import './index.css';
 import template from './template.rnt';
 
@@ -29,28 +34,23 @@ export class OpalTab extends BaseComponent {
 		return this.disabled ? -1 : this.tabIndex;
 	}
 
-	elementAttached() {
-		this.listenTo('control', {
-			focus: this._onControlFocus,
-			blur: this._onControlBlur,
-			click: this._onControlClick
-		});
-	}
-
 	ready() {
 		if (this.focused) {
 			this.focus();
 		}
 	}
 
+	@Listen('focus', 'control')
 	_onControlFocus() {
 		this.focused = true;
 	}
 
+	@Listen('blur', 'control')
 	_onControlBlur() {
 		this.focused = false;
 	}
 
+	@Listen('click', 'control')
 	_onControlClick(evt: Event) {
 		evt.preventDefault();
 

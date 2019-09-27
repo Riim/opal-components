@@ -12,7 +12,6 @@ export declare class OpalPopover extends BaseComponent {
     _positionAtOpening: string;
     _closingEventListening: IDisposableListening | null | undefined;
     ready(): void;
-    elementAttached(): void;
     _onOpenedChange(evt: IEvent): void;
     renderContent(): void;
     open(): boolean;

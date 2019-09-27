@@ -1,6 +1,11 @@
 import { Cell, IEvent } from 'cellx';
 import { Computed } from 'cellx-decorators';
-import { BaseComponent, Component, Param } from 'rionite';
+import {
+	BaseComponent,
+	Component,
+	Listen,
+	Param
+	} from 'rionite';
 import './index.css';
 import template from './template.rnt';
 
@@ -130,28 +135,16 @@ export class OpalTextInput extends BaseComponent {
 		if (this.focused) {
 			this.focus();
 		}
-
-		this.listenTo(this, {
-			'change:rows': this._onRowsChange,
-			'change:paramValue': this._onParamValueChange
-		});
-		this.listenTo(this.textField, {
-			focus: this._onTextFieldFocus,
-			blur: this._onTextFieldBlur,
-			input: this._onTextFieldInput,
-			change: this._onTextFieldChange,
-			keydown: this._onTextFieldKeyDown,
-			keypress: this._onTextFieldKeyPress,
-			keyup: this._onTextFieldKeyUp
-		});
 	}
 
+	@Listen('change:rows')
 	_onRowsChange() {
 		if (this.multiline && this.autoHeight) {
 			this._fixMinHeight();
 		}
 	}
 
+	@Listen('change:paramValue')
 	_onParamValueChange(evt: IEvent) {
 		if (this.textField.value != evt.data.value) {
 			this.textField.value = evt.data.value;
@@ -162,16 +155,19 @@ export class OpalTextInput extends BaseComponent {
 		}
 	}
 
+	@Listen('focus', '@textField')
 	_onTextFieldFocus() {
 		this.focused = true;
 		this.emit('focus');
 	}
 
+	@Listen('blur', '@textField')
 	_onTextFieldBlur() {
 		this.focused = false;
 		this.emit(OpalTextInput.EVENT_BLUR);
 	}
 
+	@Listen('input', '@textField')
 	_onTextFieldInput(evt: Event) {
 		this.paramValue = this.textField.value || (null as any);
 
@@ -182,6 +178,7 @@ export class OpalTextInput extends BaseComponent {
 		this.emit(OpalTextInput.EVENT_INPUT, { initialEvent: evt });
 	}
 
+	@Listen('change', '@textField')
 	_onTextFieldChange(evt: Event) {
 		if (this.value === this._prevValue) {
 			return;
@@ -196,10 +193,12 @@ export class OpalTextInput extends BaseComponent {
 		this.emit(OpalTextInput.EVENT_CHANGE, { initialEvent: evt });
 	}
 
+	@Listen('keydown', '@textField')
 	_onTextFieldKeyDown(evt: Event) {
 		this.emit(OpalTextInput.EVENT_KEYDOWN, { initialEvent: evt });
 	}
 
+	@Listen('keypress', '@textField')
 	_onTextFieldKeyPress(evt: KeyboardEvent) {
 		if (evt.which == 13 /* Enter */ && this.value) {
 			this.emit(OpalTextInput.EVENT_CONFIRM);
@@ -208,6 +207,7 @@ export class OpalTextInput extends BaseComponent {
 		this.emit(OpalTextInput.EVENT_KEYPRESS, { initialEvent: evt });
 	}
 
+	@Listen('keyup', '@textField')
 	_onTextFieldKeyUp(evt: Event) {
 		this.emit(OpalTextInput.EVENT_KEYUP, { initialEvent: evt });
 	}

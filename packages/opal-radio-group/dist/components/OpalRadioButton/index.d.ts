@@ -14,7 +14,6 @@ export declare class OpalRadioButton extends BaseComponent {
     readonly _tabIndex: number;
     _documentKeyDownListening: IDisposableListening;
     ready(): void;
-    elementAttached(): void;
     _onCheckedChange(evt: IEvent): void;
     _onFocusedChange(evt: IEvent): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;

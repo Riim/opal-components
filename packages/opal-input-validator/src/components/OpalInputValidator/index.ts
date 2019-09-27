@@ -1,5 +1,10 @@
 import { Computed, Observable } from 'cellx-decorators';
-import { BaseComponent, Component, IComponentElement } from 'rionite';
+import {
+	BaseComponent,
+	Component,
+	IComponentElement,
+	Listen
+	} from 'rionite';
 import { OpalInputValidatorRule } from '../OpalInputValidatorRule';
 import './index.css';
 import template from './template.rnt';
@@ -35,14 +40,7 @@ export class OpalInputValidator extends BaseComponent {
 		);
 	}
 
-	elementAttached() {
-		this.listenTo(
-			this.target,
-			(this.constructor as typeof OpalInputValidator).targetChangeEvents,
-			this._onTargetChange
-		);
-	}
-
+	@Listen((ctor: typeof OpalInputValidator) => ctor.targetChangeEvents, '@target')
 	_onTargetChange() {
 		this.validate();
 	}

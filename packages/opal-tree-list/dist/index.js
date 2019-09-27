@@ -398,10 +398,6 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
         this._viewModelItemValueFieldName = vmItemSchema.value || defaultVMItemSchema.value;
         this._viewModelItemTextFieldName = vmItemSchema.text || defaultVMItemSchema.text;
     }
-    elementAttached() {
-        this.listenTo(this, 'change:query', this._onQueryChange);
-        this.listenTo(this, OpalTreeList_1.selectionControlChangeEvents, this._onSelectionControlChange);
-    }
     _onQueryChange() {
         if (this._queryTimeout) {
             this._queryTimeout.clear();
@@ -524,6 +520,18 @@ __decorate([
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], OpalTreeList.prototype, "listShown", null);
+__decorate([
+    rionite_1.Listen('change:query'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalTreeList.prototype, "_onQueryChange", null);
+__decorate([
+    rionite_1.Listen((ctor) => ctor.selectionControlChangeEvents),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalTreeList.prototype, "_onSelectionControlChange", null);
 OpalTreeList = OpalTreeList_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTreeList',

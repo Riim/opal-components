@@ -147,13 +147,6 @@ let OpalSignButton = OpalSignButton_1 = class OpalSignButton extends rionite_1.B
     get _tabIndex() {
         return this.disabled ? -1 : this.tabIndex;
     }
-    elementAttached() {
-        this.listenTo('control', {
-            focus: this._onControlFocus,
-            blur: this._onControlBlur,
-            click: this._onControlClick
-        });
-    }
     ready() {
         if (this.focused) {
             this.focus();
@@ -259,6 +252,24 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalSignButton.prototype, "_tabIndex", null);
+__decorate([
+    rionite_1.Listen('focus', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalSignButton.prototype, "_onControlFocus", null);
+__decorate([
+    rionite_1.Listen('blur', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalSignButton.prototype, "_onControlBlur", null);
+__decorate([
+    rionite_1.Listen('click', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
+], OpalSignButton.prototype, "_onControlClick", null);
 OpalSignButton = OpalSignButton_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSignButton',

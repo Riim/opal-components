@@ -197,19 +197,6 @@ let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.Base
         if (this.focused) {
             this.focus();
         }
-        this.listenTo(this, {
-            'change:rows': this._onRowsChange,
-            'change:paramValue': this._onParamValueChange
-        });
-        this.listenTo(this.textField, {
-            focus: this._onTextFieldFocus,
-            blur: this._onTextFieldBlur,
-            input: this._onTextFieldInput,
-            change: this._onTextFieldChange,
-            keydown: this._onTextFieldKeyDown,
-            keypress: this._onTextFieldKeyPress,
-            keyup: this._onTextFieldKeyUp
-        });
     }
     _onRowsChange() {
         if (this.multiline && this.autoHeight) {
@@ -383,6 +370,60 @@ __decorate([
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], OpalTextInput.prototype, "endIconShown", null);
+__decorate([
+    rionite_1.Listen('change:rows'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalTextInput.prototype, "_onRowsChange", null);
+__decorate([
+    rionite_1.Listen('change:paramValue'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalTextInput.prototype, "_onParamValueChange", null);
+__decorate([
+    rionite_1.Listen('focus', '@textField'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalTextInput.prototype, "_onTextFieldFocus", null);
+__decorate([
+    rionite_1.Listen('blur', '@textField'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalTextInput.prototype, "_onTextFieldBlur", null);
+__decorate([
+    rionite_1.Listen('input', '@textField'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
+], OpalTextInput.prototype, "_onTextFieldInput", null);
+__decorate([
+    rionite_1.Listen('change', '@textField'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
+], OpalTextInput.prototype, "_onTextFieldChange", null);
+__decorate([
+    rionite_1.Listen('keydown', '@textField'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
+], OpalTextInput.prototype, "_onTextFieldKeyDown", null);
+__decorate([
+    rionite_1.Listen('keypress', '@textField'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [KeyboardEvent]),
+    __metadata("design:returntype", void 0)
+], OpalTextInput.prototype, "_onTextFieldKeyPress", null);
+__decorate([
+    rionite_1.Listen('keyup', '@textField'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
+], OpalTextInput.prototype, "_onTextFieldKeyUp", null);
 OpalTextInput = OpalTextInput_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTextInput',

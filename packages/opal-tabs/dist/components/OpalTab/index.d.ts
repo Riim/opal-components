@@ -10,7 +10,6 @@ export declare class OpalTab extends BaseComponent {
     hidden: boolean;
     disabled: boolean;
     readonly _tabIndex: number;
-    elementAttached(): void;
     ready(): void;
     _onControlFocus(): void;
     _onControlBlur(): void;

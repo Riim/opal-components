@@ -18,8 +18,8 @@
     "@riim/opal-modal": "^0.38.12",
     "@riim/opal-select": "^0.38.17",
     "@riim/opal-tree-list": "^0.38.17",
-    "cellx": "^1.9.6",
+    "cellx": "^1.9.10",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.30"
+    "rionite": "^0.37.46"
   }
 }

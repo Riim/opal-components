@@ -18,6 +18,7 @@ import {
 	Component,
 	IComponentElement,
 	IDisposableListening,
+	Listen,
 	Param,
 	RnIfThen,
 	RnRepeat
@@ -66,7 +67,8 @@ export class OpalSelect extends BaseComponent {
 	static buttonFocusEvents = [OpalButton.EVENT_FOCUS, OpalSignButton.EVENT_FOCUS];
 	static buttonBlurEvents = [OpalButton.EVENT_BLUR, OpalSignButton.EVENT_BLUR];
 	static buttonClickEvents = [OpalButton.EVENT_CLICK, OpalSignButton.EVENT_CLICK];
-	static loadedEvents = [OpalLoadedList.EVENT_LOADED];
+	static menuChangeEvents = [RnIfThen.EVENT_CHANGE, RnRepeat.EVENT_CHANGE];
+	static menuLoadedEvents = [OpalLoadedList.EVENT_LOADED];
 
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
@@ -315,15 +317,6 @@ export class OpalSelect extends BaseComponent {
 			this.focus();
 		}
 
-		this.listenTo(this, {
-			'change:paramValue': this._onParamValueChange,
-			'change:focused': this._onFocusedChange
-		});
-		this.listenTo(this.viewModel, ObservableList.EVENT_CHANGE, this._onViewModelChange);
-		this.listenTo('button', OpalSelect.buttonFocusEvents, this._onButtonFocus);
-		this.listenTo('button', OpalSelect.buttonBlurEvents, this._onButtonBlur);
-		this.listenTo('button', OpalSelect.buttonClickEvents, this._onButtonClick);
-
 		if (!this.openOnClick) {
 			this.listenTo(
 				this.$<BaseComponent>('button')!.element,
@@ -331,18 +324,9 @@ export class OpalSelect extends BaseComponent {
 				this._onButtonElementMouseDown
 			);
 		}
-
-		this.listenTo('menu', {
-			'change:opened': this._onMenuOpenedChange,
-			[OpalSelectOption.EVENT_SELECT]: this._onMenuSelectOptionSelect,
-			[OpalSelectOption.EVENT_DESELECT]: this._onMenuSelectOptionDeselect,
-			[OpalTextInput.EVENT_CONFIRM]: this._onMenuTextInputConfirm,
-			[OpalButton.EVENT_CLICK]: this._onMenuButtonClick,
-			[RnIfThen.EVENT_CHANGE]: this._onMenuChange,
-			[RnRepeat.EVENT_CHANGE]: this._onMenuChange
-		});
 	}
 
+	@Listen('change:paramValue')
 	_onParamValueChange(evt: IEvent) {
 		let vm = this.viewModel;
 		let value: Array<string> | null = evt.data.value;
@@ -424,6 +408,7 @@ export class OpalSelect extends BaseComponent {
 		}
 	}
 
+	@Listen('change:focused')
 	_onFocusedChange(evt: IEvent) {
 		if (evt.data.value) {
 			if (!this._documentKeyDownListening) {
@@ -445,20 +430,24 @@ export class OpalSelect extends BaseComponent {
 		}
 	}
 
+	@Listen(ObservableList.EVENT_CHANGE, '@viewModel')
 	_onViewModelChange() {
 		if (!this._needOptionsUpdating && !this._notUpdateOptions) {
 			this._updateOptions();
 		}
 	}
 
+	@Listen((ctor: typeof OpalSelect) => ctor.buttonFocusEvents, 'button')
 	_onButtonFocus() {
 		this.focused = true;
 	}
 
+	@Listen((ctor: typeof OpalSelect) => ctor.buttonBlurEvents, 'button')
 	_onButtonBlur() {
 		this.focused = false;
 	}
 
+	@Listen((ctor: typeof OpalSelect) => ctor.buttonClickEvents, 'button')
 	_onButtonClick(evt: IEvent<OpalButton>) {
 		evt.defaultPrevented = true;
 
@@ -497,6 +486,7 @@ export class OpalSelect extends BaseComponent {
 		}
 	}
 
+	@Listen('change:opened', 'menu')
 	_onMenuOpenedChange(evt: IEvent): false {
 		if (!evt.data.value) {
 			this.close();
@@ -505,6 +495,7 @@ export class OpalSelect extends BaseComponent {
 		return false;
 	}
 
+	@Listen(OpalSelectOption.EVENT_SELECT, 'menu')
 	_onMenuSelectOptionSelect(evt: IEvent<OpalSelectOption>): false {
 		let vm = this.viewModel;
 		let vmItem = {
@@ -536,6 +527,7 @@ export class OpalSelect extends BaseComponent {
 		return false;
 	}
 
+	@Listen(OpalSelectOption.EVENT_DESELECT, 'menu')
 	_onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>): false {
 		if (this.multiple) {
 			let vmItemValueFieldName = this._viewModelItemValueFieldName;
@@ -558,6 +550,7 @@ export class OpalSelect extends BaseComponent {
 		return false;
 	}
 
+	@Listen(OpalTextInput.EVENT_CONFIRM, 'menu')
 	_onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void {
 		let textInput = evt.target;
 
@@ -593,6 +586,7 @@ export class OpalSelect extends BaseComponent {
 		return false;
 	}
 
+	@Listen(OpalButton.EVENT_CLICK, 'menu')
 	_onMenuButtonClick(evt: IEvent<OpalButton>): false | void {
 		let button = evt.target;
 
@@ -671,6 +665,7 @@ export class OpalSelect extends BaseComponent {
 		}
 	}
 
+	@Listen((ctor: typeof OpalSelect) => ctor.menuChangeEvents, 'menu')
 	_onMenuChange() {
 		if (!this._notUpdateOptions) {
 			this.optionsCell.pull();
@@ -713,8 +708,8 @@ export class OpalSelect extends BaseComponent {
 		}
 
 		this._menuLoadedListeneng = this.listenTo(
-			this.$<BaseComponent>('menu')!,
-			OpalSelect.loadedEvents,
+			'menu',
+			(this.constructor as typeof OpalSelect).menuLoadedEvents,
 			this._onMenuLoaded
 		);
 

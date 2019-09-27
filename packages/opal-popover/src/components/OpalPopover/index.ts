@@ -4,6 +4,7 @@ import {
 	BaseComponent,
 	Component,
 	IDisposableListening,
+	Listen,
 	Param
 	} from 'rionite';
 import './index.css';
@@ -53,10 +54,7 @@ export class OpalPopover extends BaseComponent {
 		}
 	}
 
-	elementAttached() {
-		this.listenTo(this, 'change:opened', this._onOpenedChange);
-	}
-
+	@Listen('change:opened')
 	_onOpenedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._open();

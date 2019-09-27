@@ -4,6 +4,7 @@ import {
 	BaseComponent,
 	Component,
 	IComponentElement,
+	Listen,
 	Param
 	} from 'rionite';
 import { OpalInputMaskDefinition } from '../OpalInputMaskDefinition';
@@ -89,31 +90,25 @@ export class OpalInputMask extends BaseComponent {
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'change:_mask', this._onMaskChange);
-		this.listenTo(this.textField, {
-			focus: this._onTextFieldFocus,
-			blur: this._onTextFieldBlur,
-			keydown: this._onTextFieldKeyDown,
-			keypress: this._onTextFieldKeyPress,
-			input: this._onTextFieldInput
-		});
-
 		if (!ie11) {
 			this._checkValue(false, false);
 		}
 	}
 
+	@Listen('change:_mask')
 	_onMaskChange() {
 		this._initBuffer();
 		this._checkValue(false, true);
 	}
 
+	@Listen('focus', '@textField')
 	_onTextFieldFocus() {
 		this._setTextFieldSelection(0, this._checkValue(false, false));
 		this._textOnFocus = this.textField.value;
 		this._writeBuffer();
 	}
 
+	@Listen('blur', '@textField')
 	_onTextFieldBlur() {
 		this._checkValue(false, false);
 
@@ -122,6 +117,7 @@ export class OpalInputMask extends BaseComponent {
 		}
 	}
 
+	@Listen('keydown', '@textField')
 	_onTextFieldKeyDown(evt: KeyboardEvent) {
 		let textField = this.textField;
 		let key = evt.which;
@@ -161,6 +157,7 @@ export class OpalInputMask extends BaseComponent {
 		}
 	}
 
+	@Listen('keypress', '@textField')
 	_onTextFieldKeyPress(evt: KeyboardEvent) {
 		let tests = this._tests;
 		let bufferLen = this._buffer.length;
@@ -211,6 +208,7 @@ export class OpalInputMask extends BaseComponent {
 		}
 	}
 
+	@Listen('input', '@textField')
 	_onTextFieldInput() {
 		if (ie11) {
 			return;

@@ -9,7 +9,6 @@ export declare class OpalDropdown extends BaseComponent {
     contentRendered: boolean;
     _closingEventListening: IDisposableListening | null | undefined;
     ready(): void;
-    elementAttached(): void;
     _onOpenedChange(evt: IEvent): void;
     renderContent(): void;
     open(): boolean;

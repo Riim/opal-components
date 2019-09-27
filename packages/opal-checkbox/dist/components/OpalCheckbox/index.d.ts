@@ -14,7 +14,6 @@ export declare class OpalCheckbox extends BaseComponent {
     disabled: boolean;
     readonly _tabIndex: number;
     _documentKeyDownListening: IDisposableListening;
-    elementAttached(): void;
     ready(): void;
     _onCheckedChange(evt: IEvent): void;
     _onIndeterminateChange(evt: IEvent): void;

@@ -150,9 +150,6 @@ let OpalPopover = OpalPopover_1 = class OpalPopover extends rionite_1.BaseCompon
             this._open();
         }
     }
-    elementAttached() {
-        this.listenTo(this, 'change:opened', this._onOpenedChange);
-    }
     _onOpenedChange(evt) {
         if (evt.data.value) {
             this._open();
@@ -309,6 +306,12 @@ __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
 ], OpalPopover.prototype, "contentRendered", void 0);
+__decorate([
+    rionite_1.Listen('change:opened'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalPopover.prototype, "_onOpenedChange", null);
 OpalPopover = OpalPopover_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalPopover',

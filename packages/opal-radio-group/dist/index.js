@@ -126,6 +126,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const rionite_1 = __webpack_require__(3);
 const OpalRadioButton_1 = __webpack_require__(4);
@@ -134,12 +137,6 @@ const forEach = Array.prototype.forEach;
 let OpalRadioGroup = class OpalRadioGroup extends rionite_1.BaseComponent {
     ready() {
         this.buttonElements = this.element.getElementsByClassName('OpalRadioButton');
-    }
-    elementAttached() {
-        this.listenTo(this, {
-            [OpalRadioButton_1.OpalRadioButton.EVENT_CHECK]: this._onButtonCheck,
-            [OpalRadioButton_1.OpalRadioButton.EVENT_UNCHECK]: this._onButtonUncheck
-        });
     }
     _onButtonCheck(evt) {
         let checkedButton = evt.target;
@@ -153,6 +150,18 @@ let OpalRadioGroup = class OpalRadioGroup extends rionite_1.BaseComponent {
         evt.target.check();
     }
 };
+__decorate([
+    rionite_1.Listen(OpalRadioButton_1.OpalRadioButton.EVENT_CHECK),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalRadioGroup.prototype, "_onButtonCheck", null);
+__decorate([
+    rionite_1.Listen(OpalRadioButton_1.OpalRadioButton.EVENT_UNCHECK),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalRadioGroup.prototype, "_onButtonUncheck", null);
 OpalRadioGroup = __decorate([
     rionite_1.Component({
         elementIs: 'OpalRadioGroup'
@@ -206,17 +215,6 @@ let OpalRadioButton = OpalRadioButton_1 = class OpalRadioButton extends rionite_
         if (this.focused) {
             this.focus();
         }
-    }
-    elementAttached() {
-        this.listenTo(this, {
-            'change:checked': this._onCheckedChange,
-            'change:focused': this._onFocusedChange
-        });
-        this.listenTo('input', 'change', this._onInputChange);
-        this.listenTo('control', {
-            focus: this._onControlFocus,
-            blur: this._onControlBlur
-        });
     }
     _onCheckedChange(evt) {
         this.$('input').checked = evt.data.value;
@@ -320,6 +318,36 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalRadioButton.prototype, "_tabIndex", null);
+__decorate([
+    rionite_1.Listen('change:checked'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalRadioButton.prototype, "_onCheckedChange", null);
+__decorate([
+    rionite_1.Listen('change:focused'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalRadioButton.prototype, "_onFocusedChange", null);
+__decorate([
+    rionite_1.Listen('change', 'input'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
+], OpalRadioButton.prototype, "_onInputChange", null);
+__decorate([
+    rionite_1.Listen('focus', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalRadioButton.prototype, "_onControlFocus", null);
+__decorate([
+    rionite_1.Listen('blur', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalRadioButton.prototype, "_onControlBlur", null);
 OpalRadioButton = OpalRadioButton_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalRadioButton',

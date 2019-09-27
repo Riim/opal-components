@@ -245,15 +245,6 @@ let OpalTagSelect = OpalTagSelect_1 = class OpalTagSelect extends rionite_1.Base
     ready() {
         this.select = this.$('select');
     }
-    elementAttached() {
-        this.listenTo(this, 'change:disabled', this._onDisabledChange);
-        this.listenTo(this.select, {
-            [opal_select_1.OpalSelect.EVENT_INPUT]: this._onSelectInput,
-            [opal_select_1.OpalSelect.EVENT_CHANGE]: this._onSelectChange,
-            [opal_select_1.OpalSelect.EVENT_SELECT]: this._onSelectSelect,
-            [opal_select_1.OpalSelect.EVENT_DESELECT]: this._onSelectDeselect
-        });
-    }
     _onDisabledChange(evt) {
         if (evt.data.value) {
             this.close();
@@ -381,6 +372,36 @@ __decorate([
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], OpalTagSelect.prototype, "placeholderShown", null);
+__decorate([
+    rionite_1.Listen('change:disabled'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalTagSelect.prototype, "_onDisabledChange", null);
+__decorate([
+    rionite_1.Listen(opal_select_1.OpalSelect.EVENT_INPUT, '@select'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Boolean)
+], OpalTagSelect.prototype, "_onSelectInput", null);
+__decorate([
+    rionite_1.Listen(opal_select_1.OpalSelect.EVENT_CHANGE, '@select'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Boolean)
+], OpalTagSelect.prototype, "_onSelectChange", null);
+__decorate([
+    rionite_1.Listen(opal_select_1.OpalSelect.EVENT_SELECT, '@select'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Boolean)
+], OpalTagSelect.prototype, "_onSelectSelect", null);
+__decorate([
+    rionite_1.Listen(opal_select_1.OpalSelect.EVENT_DESELECT, '@select'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Boolean)
+], OpalTagSelect.prototype, "_onSelectDeselect", null);
 OpalTagSelect = OpalTagSelect_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTagSelect',

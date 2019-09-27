@@ -1,6 +1,11 @@
 import { OpalButton } from '@riim/opal-button';
 import { IEvent } from 'cellx';
-import { BaseComponent, Component, IComponentElement } from 'rionite';
+import {
+	BaseComponent,
+	Component,
+	IComponentElement,
+	Listen
+	} from 'rionite';
 import './index.css';
 import template from './template.rnt';
 
@@ -53,13 +58,7 @@ export class OpalSwitchMenu extends BaseComponent {
 		this.buttonElements = this.element.getElementsByClassName('OpalButton') as any;
 	}
 
-	elementAttached() {
-		this.listenTo(this, {
-			[OpalButton.EVENT_CHECK]: this._onButtonCheck,
-			[OpalButton.EVENT_UNCHECK]: this._onButtonUncheck
-		});
-	}
-
+	@Listen(OpalButton.EVENT_CHECK)
 	_onButtonCheck(evt: IEvent<OpalButton>) {
 		let checkedButton = evt.target;
 
@@ -74,6 +73,7 @@ export class OpalSwitchMenu extends BaseComponent {
 		this.emit(OpalSwitchMenu.EVENT_CHANGE);
 	}
 
+	@Listen(OpalButton.EVENT_UNCHECK)
 	_onButtonUncheck(evt: IEvent<OpalButton>) {
 		evt.target.check();
 	}

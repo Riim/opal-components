@@ -14,7 +14,12 @@ import {
 	ObservableList
 	} from 'cellx';
 import { Computed } from 'cellx-decorators';
-import { BaseComponent, Component, Param } from 'rionite';
+import {
+	BaseComponent,
+	Component,
+	Listen,
+	Param
+	} from 'rionite';
 import './index.css';
 import template from './template.rnt';
 
@@ -204,38 +209,33 @@ export class OpalTagSelect extends BaseComponent {
 		this.select = this.$<OpalSelect>('select')!;
 	}
 
-	elementAttached() {
-		this.listenTo(this, 'change:disabled', this._onDisabledChange);
-		this.listenTo(this.select, {
-			[OpalSelect.EVENT_INPUT]: this._onSelectInput,
-			[OpalSelect.EVENT_CHANGE]: this._onSelectChange,
-			[OpalSelect.EVENT_SELECT]: this._onSelectSelect,
-			[OpalSelect.EVENT_DESELECT]: this._onSelectDeselect
-		});
-	}
-
+	@Listen('change:disabled')
 	_onDisabledChange(evt: IEvent) {
 		if (evt.data.value) {
 			this.close();
 		}
 	}
 
+	@Listen(OpalSelect.EVENT_INPUT, '@select')
 	_onSelectInput(): false {
 		this.select.close();
 		this.emit(OpalTagSelect.EVENT_INPUT);
 		return false;
 	}
 
+	@Listen(OpalSelect.EVENT_CHANGE, '@select')
 	_onSelectChange(): false {
 		this.emit(OpalTagSelect.EVENT_CHANGE);
 		return false;
 	}
 
+	@Listen(OpalSelect.EVENT_SELECT, '@select')
 	_onSelectSelect(): false {
 		this.select.close();
 		return false;
 	}
 
+	@Listen(OpalSelect.EVENT_DESELECT, '@select')
 	_onSelectDeselect(): false {
 		this.select.close();
 		return false;

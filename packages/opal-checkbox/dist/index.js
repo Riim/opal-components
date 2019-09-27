@@ -147,18 +147,6 @@ let OpalCheckbox = OpalCheckbox_1 = class OpalCheckbox extends rionite_1.BaseCom
     get _tabIndex() {
         return this.disabled ? -1 : this.tabIndex;
     }
-    elementAttached() {
-        this.listenTo(this, {
-            'change:checked': this._onCheckedChange,
-            'change:indeterminate': this._onIndeterminateChange,
-            'change:focused': this._onFocusedChange
-        });
-        this.listenTo('input', 'change', this._onInputChange);
-        this.listenTo('control', {
-            focus: this._onControlFocus,
-            blur: this._onControlBlur
-        });
-    }
     ready() {
         if (this.checked) {
             this.indeterminate = false;
@@ -282,6 +270,42 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalCheckbox.prototype, "_tabIndex", null);
+__decorate([
+    rionite_1.Listen('change:checked'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalCheckbox.prototype, "_onCheckedChange", null);
+__decorate([
+    rionite_1.Listen('change:indeterminate'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalCheckbox.prototype, "_onIndeterminateChange", null);
+__decorate([
+    rionite_1.Listen('change:focused'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalCheckbox.prototype, "_onFocusedChange", null);
+__decorate([
+    rionite_1.Listen('change', 'input'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
+], OpalCheckbox.prototype, "_onInputChange", null);
+__decorate([
+    rionite_1.Listen('focus', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalCheckbox.prototype, "_onControlFocus", null);
+__decorate([
+    rionite_1.Listen('blur', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalCheckbox.prototype, "_onControlBlur", null);
 OpalCheckbox = OpalCheckbox_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalCheckbox',

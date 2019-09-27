@@ -154,17 +154,6 @@ let OpalSwitch = OpalSwitch_1 = class OpalSwitch extends rionite_1.BaseComponent
             this.focus();
         }
     }
-    elementAttached() {
-        this.listenTo(this, {
-            'change:checked': this._onCheckedChange,
-            'change:focused': this._onFocusedChange
-        });
-        this.listenTo('input', 'change', this._onInputChange);
-        this.listenTo('control', {
-            focus: this._onControlFocus,
-            blur: this._onControlBlur
-        });
-    }
     _onCheckedChange(evt) {
         this.$('input').checked = evt.data.value;
     }
@@ -267,6 +256,36 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalSwitch.prototype, "_tabIndex", null);
+__decorate([
+    rionite_1.Listen('change:checked'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalSwitch.prototype, "_onCheckedChange", null);
+__decorate([
+    rionite_1.Listen('change:focused'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalSwitch.prototype, "_onFocusedChange", null);
+__decorate([
+    rionite_1.Listen('change', 'input'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
+], OpalSwitch.prototype, "_onInputChange", null);
+__decorate([
+    rionite_1.Listen('focus', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalSwitch.prototype, "_onControlFocus", null);
+__decorate([
+    rionite_1.Listen('blur', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalSwitch.prototype, "_onControlBlur", null);
 OpalSwitch = OpalSwitch_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSwitch',

@@ -311,12 +311,6 @@ let OpalCalendar = OpalCalendar_1 = class OpalCalendar extends rionite_1.BaseCom
         this.shownYear = shownDate.getFullYear();
         this.shownMonth = shownDate.getMonth();
     }
-    elementAttached() {
-        this.listenTo('days', {
-            focus: this._onDaysFocus,
-            blur: this._onDaysBlur
-        }, this, true);
-    }
     _onDaysFocus(evt) {
         if (!this._documentKeyDownListening &&
             evt.target.classList.contains('OpalCalendar__day')) {
@@ -421,6 +415,18 @@ __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Array)
 ], OpalCalendar.prototype, "days", void 0);
+__decorate([
+    rionite_1.Listen('focus', 'days', true),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
+], OpalCalendar.prototype, "_onDaysFocus", null);
+__decorate([
+    rionite_1.Listen('blur', 'days', true),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalCalendar.prototype, "_onDaysBlur", null);
 OpalCalendar = OpalCalendar_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalCalendar',

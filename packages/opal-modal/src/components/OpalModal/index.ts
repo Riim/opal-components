@@ -4,6 +4,7 @@ import {
 	BaseComponent,
 	Component,
 	IDisposableListening,
+	Listen,
 	Param
 	} from 'rionite';
 import './index.css';
@@ -55,15 +56,11 @@ export class OpalModal extends BaseComponent {
 		}
 	}
 
-	elementAttached() {
-		this.listenTo(this, 'change:opened', this._onOpenedChange);
-		this.listenTo(this.element, 'click', this._onElementClick);
-	}
-
 	elementDetached() {
 		this.close();
 	}
 
+	@Listen('change:opened')
 	_onOpenedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this._open();
@@ -72,6 +69,7 @@ export class OpalModal extends BaseComponent {
 		}
 	}
 
+	@Listen('click', '@element')
 	_onElementClick(evt: Event) {
 		let componentEl = this.element;
 		let windowEl = this.$('window');

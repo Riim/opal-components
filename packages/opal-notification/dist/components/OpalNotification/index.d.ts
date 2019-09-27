@@ -14,7 +14,6 @@ export declare class OpalNotification extends BaseComponent {
     _closingTimeoutId?: number | null;
     $<R>(name: string, container?: BaseComponent | Element): R | null;
     ready(): void;
-    elementAttached(): void;
     elementDetached(): void;
     _onShownChange(evt: IEvent): void;
     _onElementMouseEnter(): void;

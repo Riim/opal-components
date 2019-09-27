@@ -16,7 +16,6 @@ export declare class OpalFileUpload extends BaseComponent {
     errorMessage: string | null;
     error: boolean;
     initialize(): void;
-    elementAttached(): void;
     _onFilesInputChange(evt: Event): void;
     _onDropZoneDragEnter(evt: DragEvent): void;
     _onDropZoneDragOver(evt: DragEvent): void;

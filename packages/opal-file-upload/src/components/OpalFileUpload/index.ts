@@ -1,7 +1,12 @@
 import { escapeRegExp } from '@riim/escape-regexp';
 import { t } from '@riim/gettext';
 import { define, ObservableList } from 'cellx';
-import { BaseComponent, Component, Param } from 'rionite';
+import {
+	BaseComponent,
+	Component,
+	Listen,
+	Param
+	} from 'rionite';
 import './index.css';
 import { ReadableFile } from './ReadableFile';
 import template from './template.rnt';
@@ -62,42 +67,37 @@ export class OpalFileUpload extends BaseComponent {
 		});
 	}
 
-	elementAttached() {
-		this.listenTo(this.$('filesInput')!, 'change', this._onFilesInputChange);
-		this.listenTo(this.$('dropZone')!, {
-			dragenter: this._onDropZoneDragEnter,
-			dragover: this._onDropZoneDragOver,
-			dragleave: this._onDropZoneDragLeave,
-			drop: this._onDropZoneDrop,
-			click: this._onDropZoneClick
-		});
-	}
-
+	@Listen('change', 'filesInput')
 	_onFilesInputChange(evt: Event) {
 		this._addFiles((evt.target as HTMLInputElement).files!);
 		(evt.target as HTMLInputElement).value = '';
 	}
 
+	@Listen('dragenter', 'dropZone')
 	_onDropZoneDragEnter(evt: DragEvent) {
 		this.error = false;
 		(evt.target as HTMLElement).setAttribute('over', '');
 	}
 
+	@Listen('dragover', 'dropZone')
 	_onDropZoneDragOver(evt: DragEvent) {
 		evt.preventDefault();
 		evt.dataTransfer!.dropEffect = 'copy';
 	}
 
+	@Listen('dragleave', 'dropZone')
 	_onDropZoneDragLeave(evt: DragEvent) {
 		(evt.target as HTMLElement).removeAttribute('over');
 	}
 
+	@Listen('drop', 'dropZone')
 	_onDropZoneDrop(evt: DragEvent) {
 		evt.preventDefault();
 		(evt.target as HTMLElement).removeAttribute('over');
 		this._addFiles(evt.dataTransfer!.files);
 	}
 
+	@Listen('click', 'dropZone')
 	_onDropZoneClick() {
 		if (this.error) {
 			this.error = false;

@@ -1,6 +1,11 @@
 import { IEvent } from 'cellx';
 import { Computed } from 'cellx-decorators';
-import { BaseComponent, Component, Param } from 'rionite';
+import {
+	BaseComponent,
+	Component,
+	Listen,
+	Param
+	} from 'rionite';
 import './index.css';
 import template from './template.rnt';
 
@@ -37,45 +42,37 @@ export class OpalSelectOption extends BaseComponent {
 
 	_mouseUpEvent = false;
 
-	elementAttached() {
-		this.listenTo(this, {
-			'change:selected': this._onSelectedChange,
-			'change:indeterminate': this._onIndeterminateChange
-		});
-		this.listenTo('control', {
-			focus: this._onControlFocus,
-			blur: this._onControlBlur,
-			mouseup: this._onControlMouseUp,
-			click: this._onControlClick
-		});
-	}
-
 	ready() {
 		if (this.selected) {
 			this.indeterminate = false;
 		}
 	}
 
+	@Listen('change:selected')
 	_onSelectedChange(evt: IEvent) {
 		if (evt.data.value) {
 			this.indeterminate = false;
 		}
 	}
 
+	@Listen('change:indeterminate')
 	_onIndeterminateChange(evt: IEvent) {
 		if (evt.data.value) {
 			this.selected = false;
 		}
 	}
 
+	@Listen('focus', 'control')
 	_onControlFocus() {
 		this.focused = true;
 	}
 
+	@Listen('blur', 'control')
 	_onControlBlur() {
 		this.focused = false;
 	}
 
+	@Listen('mouseup', 'control')
 	_onControlMouseUp() {
 		this._mouseUpEvent = true;
 
@@ -84,6 +81,7 @@ export class OpalSelectOption extends BaseComponent {
 		}
 	}
 
+	@Listen('click', 'control')
 	_onControlClick(evt: Event) {
 		evt.preventDefault();
 

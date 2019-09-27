@@ -44,7 +44,6 @@ export declare class OpalAutosuggest extends BaseComponent {
     _documentFocusListening: IDisposableListening;
     _documentListening: IDisposableListening;
     initialize(): void;
-    elementAttached(): void;
     ready(): void;
     _onValueChange(evt: IEvent): void;
     _onLoaderShownChange(evt: IEvent): void;

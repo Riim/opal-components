@@ -1,5 +1,10 @@
 import { IEvent } from 'cellx';
-import { BaseComponent, Component, IComponentElement } from 'rionite';
+import {
+	BaseComponent,
+	Component,
+	IComponentElement,
+	Listen
+	} from 'rionite';
 import { OpalRadioButton } from '../OpalRadioButton';
 
 export { OpalRadioButton };
@@ -16,13 +21,7 @@ export class OpalRadioGroup extends BaseComponent {
 		this.buttonElements = this.element.getElementsByClassName('OpalRadioButton') as any;
 	}
 
-	elementAttached() {
-		this.listenTo(this, {
-			[OpalRadioButton.EVENT_CHECK]: this._onButtonCheck,
-			[OpalRadioButton.EVENT_UNCHECK]: this._onButtonUncheck
-		});
-	}
-
+	@Listen(OpalRadioButton.EVENT_CHECK)
 	_onButtonCheck(evt: IEvent) {
 		let checkedButton = evt.target;
 
@@ -33,6 +32,7 @@ export class OpalRadioGroup extends BaseComponent {
 		});
 	}
 
+	@Listen(OpalRadioButton.EVENT_UNCHECK)
 	_onButtonUncheck(evt: IEvent<OpalRadioButton>) {
 		evt.target.check();
 	}

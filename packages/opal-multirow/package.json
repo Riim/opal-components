@@ -15,9 +15,9 @@
   "dependencies": {
     "@riim/next-uid": "^1.0.0",
     "@riim/opal-sign-button": "^0.38.12",
-    "cellx": "^1.9.6",
+    "cellx": "^1.9.10",
     "cellx-decorators": "^1.5.0",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.30"
+    "rionite": "^0.37.46"
   }
 }

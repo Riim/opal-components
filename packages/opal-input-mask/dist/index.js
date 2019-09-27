@@ -174,14 +174,6 @@ let OpalInputMask = OpalInputMask_1 = class OpalInputMask extends rionite_1.Base
         this._initBuffer();
     }
     elementAttached() {
-        this.listenTo(this, 'change:_mask', this._onMaskChange);
-        this.listenTo(this.textField, {
-            focus: this._onTextFieldFocus,
-            blur: this._onTextFieldBlur,
-            keydown: this._onTextFieldKeyDown,
-            keypress: this._onTextFieldKeyPress,
-            input: this._onTextFieldInput
-        });
         if (!ie11) {
             this._checkValue(false, false);
         }
@@ -435,6 +427,42 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalInputMask.prototype, "_firstTestIndex", null);
+__decorate([
+    rionite_1.Listen('change:_mask'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalInputMask.prototype, "_onMaskChange", null);
+__decorate([
+    rionite_1.Listen('focus', '@textField'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalInputMask.prototype, "_onTextFieldFocus", null);
+__decorate([
+    rionite_1.Listen('blur', '@textField'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalInputMask.prototype, "_onTextFieldBlur", null);
+__decorate([
+    rionite_1.Listen('keydown', '@textField'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [KeyboardEvent]),
+    __metadata("design:returntype", void 0)
+], OpalInputMask.prototype, "_onTextFieldKeyDown", null);
+__decorate([
+    rionite_1.Listen('keypress', '@textField'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [KeyboardEvent]),
+    __metadata("design:returntype", void 0)
+], OpalInputMask.prototype, "_onTextFieldKeyPress", null);
+__decorate([
+    rionite_1.Listen('input', '@textField'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalInputMask.prototype, "_onTextFieldInput", null);
 OpalInputMask = OpalInputMask_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalInputMask',

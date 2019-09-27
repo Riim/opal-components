@@ -44,7 +44,6 @@ export declare class OpalCalendar extends BaseComponent {
     _currentlyDateSelection: boolean;
     _documentKeyDownListening: IDisposableListening | null | undefined;
     initialize(): void;
-    elementAttached(): void;
     _onDaysFocus(evt: Event): void;
     _onDaysBlur(): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;

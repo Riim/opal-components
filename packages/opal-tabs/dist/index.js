@@ -180,11 +180,6 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
         tabPanels[selectedTabIndex].$component.shown = true;
     }
     elementAttached() {
-        this.listenTo(this.element.getElementsByClassName('OpalTabList')[0]
-            .$component, {
-            [OpalTabList_1.OpalTab.EVENT_SELECT]: this._onTabListSelect,
-            [OpalTabList_1.OpalTab.EVENT_DESELECT]: this._onTabListDeselect
-        });
         if (this.useLocationHash) {
             reTabLabel.test(opal_router_1.OpalRouter.history.location.hash);
             if (RegExp.$1) {
@@ -262,6 +257,18 @@ __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
 ], OpalTabs.prototype, "useLocationHash", void 0);
+__decorate([
+    rionite_1.Listen(OpalTabList_1.OpalTab.EVENT_SELECT, self => self.element.getElementsByClassName('OpalTabList')[0].$component),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalTabs.prototype, "_onTabListSelect", null);
+__decorate([
+    rionite_1.Listen(OpalTabList_1.OpalTab.EVENT_DESELECT, self => self.element.getElementsByClassName('OpalTabList')[0].$component),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalTabs.prototype, "_onTabListDeselect", null);
 OpalTabs = OpalTabs_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTabs',
@@ -357,13 +364,6 @@ let OpalTab = OpalTab_1 = class OpalTab extends rionite_1.BaseComponent {
     get _tabIndex() {
         return this.disabled ? -1 : this.tabIndex;
     }
-    elementAttached() {
-        this.listenTo('control', {
-            focus: this._onControlFocus,
-            blur: this._onControlBlur,
-            click: this._onControlClick
-        });
-    }
     ready() {
         if (this.focused) {
             this.focus();
@@ -450,6 +450,24 @@ __decorate([
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [])
 ], OpalTab.prototype, "_tabIndex", null);
+__decorate([
+    rionite_1.Listen('focus', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalTab.prototype, "_onControlFocus", null);
+__decorate([
+    rionite_1.Listen('blur', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalTab.prototype, "_onControlBlur", null);
+__decorate([
+    rionite_1.Listen('click', 'control'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
+], OpalTab.prototype, "_onControlClick", null);
 OpalTab = OpalTab_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalTab',

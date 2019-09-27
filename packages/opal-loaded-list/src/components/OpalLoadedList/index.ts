@@ -5,6 +5,7 @@ import {
 	Component,
 	IDisposableCallback,
 	IDisposableTimeout,
+	Listen,
 	Param,
 	RnSlot
 	} from 'rionite';
@@ -108,9 +109,6 @@ export class OpalLoadedList extends BaseComponent {
 	}
 
 	elementAttached() {
-		this.listenTo(this, 'change:query', this._onQueryChange);
-		this.listenTo(this.element, 'scroll', this._onElementScroll);
-
 		if (this.preloading) {
 			this._load();
 		} else {
@@ -118,6 +116,7 @@ export class OpalLoadedList extends BaseComponent {
 		}
 	}
 
+	@Listen('change:query')
 	_onQueryChange() {
 		if (this.loading) {
 			this._requestCallback.cancel();
@@ -140,6 +139,7 @@ export class OpalLoadedList extends BaseComponent {
 		}, 300);
 	}
 
+	@Listen('scroll', '@element')
 	_onElementScroll() {
 		if (this._scrollingInProcessing) {
 			return;

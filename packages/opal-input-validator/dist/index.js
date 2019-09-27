@@ -155,9 +155,6 @@ let OpalInputValidator = OpalInputValidator_1 = class OpalInputValidator extends
     ready() {
         this.rules = Array.prototype.map.call(this.element.getElementsByClassName('OpalInputValidatorRule'), (ruleEl) => ruleEl.$component);
     }
-    elementAttached() {
-        this.listenTo(this.target, this.constructor.targetChangeEvents, this._onTargetChange);
-    }
     _onTargetChange() {
         this.validate();
     }
@@ -208,6 +205,12 @@ __decorate([
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], OpalInputValidator.prototype, "valid", null);
+__decorate([
+    rionite_1.Listen((ctor) => ctor.targetChangeEvents, '@target'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalInputValidator.prototype, "_onTargetChange", null);
 OpalInputValidator = OpalInputValidator_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalInputValidator',

@@ -197,22 +197,6 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
             throw new TypeError('"dataProvider" is not defined');
         }
     }
-    elementAttached() {
-        this.listenTo(this, {
-            'change:value': this._onValueChange,
-            'change:loaderShown': this._onLoaderShownChange
-        });
-        this.listenTo(this.dataList, cellx_1.ObservableList.EVENT_CHANGE, this._onDataListChange);
-        this.listenTo('textInput', {
-            [opal_text_input_1.OpalTextInput.EVENT_FOCUS]: this._onTextInputFocus,
-            [opal_text_input_1.OpalTextInput.EVENT_BLUR]: this._onTextInputBlur,
-            [opal_text_input_1.OpalTextInput.EVENT_INPUT]: this._onTextInputInput,
-            [opal_text_input_1.OpalTextInput.EVENT_CHANGE]: this._onTextInputChange
-        });
-        this.listenTo(this.$('textInput').textField, 'click', this._onTextFieldClick);
-        this.listenTo('menu', 'change:opened', this._onMenuOpenedChange);
-        this.listenTo(this.$('menu').element, 'mouseover', this._onMenuElementMouseOver);
-    }
     ready() {
         if (this.value) {
             this.$('textInput').value = this.value[this._dataListItemTextFieldName];
@@ -552,6 +536,66 @@ __decorate([
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], OpalAutosuggest.prototype, "loaderShown", null);
+__decorate([
+    rionite_1.Listen('change:value'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalAutosuggest.prototype, "_onValueChange", null);
+__decorate([
+    rionite_1.Listen('change:loaderShown'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalAutosuggest.prototype, "_onLoaderShownChange", null);
+__decorate([
+    rionite_1.Listen(cellx_1.ObservableList.EVENT_CHANGE, '@dataList'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalAutosuggest.prototype, "_onDataListChange", null);
+__decorate([
+    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_FOCUS, 'textInput'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalAutosuggest.prototype, "_onTextInputFocus", null);
+__decorate([
+    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_BLUR, 'textInput'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalAutosuggest.prototype, "_onTextInputBlur", null);
+__decorate([
+    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_INPUT, 'textInput'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalAutosuggest.prototype, "_onTextInputInput", null);
+__decorate([
+    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_CHANGE, 'textInput'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalAutosuggest.prototype, "_onTextInputChange", null);
+__decorate([
+    rionite_1.Listen('click', self => self.$('textInput').textField),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalAutosuggest.prototype, "_onTextFieldClick", null);
+__decorate([
+    rionite_1.Listen('change:opened', 'menu'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalAutosuggest.prototype, "_onMenuOpenedChange", null);
+__decorate([
+    rionite_1.Listen('mouseover', self => self.$('menu').element),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
+], OpalAutosuggest.prototype, "_onMenuElementMouseOver", null);
 OpalAutosuggest = OpalAutosuggest_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalAutosuggest',

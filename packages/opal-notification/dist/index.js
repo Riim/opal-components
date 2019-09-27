@@ -174,14 +174,6 @@ let OpalNotification = OpalNotification_1 = class OpalNotification extends rioni
             this._show();
         }
     }
-    elementAttached() {
-        this.listenTo(this, 'change:shown', this._onShownChange);
-        this.listenTo(this.bar, {
-            mouseenter: this._onElementMouseEnter,
-            mouseleave: this._onElementMouseLeave
-        });
-        this.listenTo('btnHide', 'click', this._onBtnHideClick);
-    }
     elementDetached() {
         this.hide();
     }
@@ -297,6 +289,30 @@ __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
 ], OpalNotification.prototype, "shown", void 0);
+__decorate([
+    rionite_1.Listen('change:shown'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalNotification.prototype, "_onShownChange", null);
+__decorate([
+    rionite_1.Listen('mouseenter', '@bar'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalNotification.prototype, "_onElementMouseEnter", null);
+__decorate([
+    rionite_1.Listen('mouseleave', '@bar'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalNotification.prototype, "_onElementMouseLeave", null);
+__decorate([
+    rionite_1.Listen('click', 'btnHide'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalNotification.prototype, "_onBtnHideClick", null);
 OpalNotification = OpalNotification_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalNotification',

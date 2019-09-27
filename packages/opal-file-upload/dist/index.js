@@ -161,16 +161,6 @@ let OpalFileUpload = class OpalFileUpload extends rionite_1.BaseComponent {
             error: false
         });
     }
-    elementAttached() {
-        this.listenTo(this.$('filesInput'), 'change', this._onFilesInputChange);
-        this.listenTo(this.$('dropZone'), {
-            dragenter: this._onDropZoneDragEnter,
-            dragover: this._onDropZoneDragOver,
-            dragleave: this._onDropZoneDragLeave,
-            drop: this._onDropZoneDrop,
-            click: this._onDropZoneClick
-        });
-    }
     _onFilesInputChange(evt) {
         this._addFiles(evt.target.files);
         evt.target.value = '';
@@ -244,6 +234,42 @@ __decorate([
     rionite_1.Param,
     __metadata("design:type", Number)
 ], OpalFileUpload.prototype, "totalSizeLimit", void 0);
+__decorate([
+    rionite_1.Listen('change', 'filesInput'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
+], OpalFileUpload.prototype, "_onFilesInputChange", null);
+__decorate([
+    rionite_1.Listen('dragenter', 'dropZone'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [DragEvent]),
+    __metadata("design:returntype", void 0)
+], OpalFileUpload.prototype, "_onDropZoneDragEnter", null);
+__decorate([
+    rionite_1.Listen('dragover', 'dropZone'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [DragEvent]),
+    __metadata("design:returntype", void 0)
+], OpalFileUpload.prototype, "_onDropZoneDragOver", null);
+__decorate([
+    rionite_1.Listen('dragleave', 'dropZone'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [DragEvent]),
+    __metadata("design:returntype", void 0)
+], OpalFileUpload.prototype, "_onDropZoneDragLeave", null);
+__decorate([
+    rionite_1.Listen('drop', 'dropZone'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [DragEvent]),
+    __metadata("design:returntype", void 0)
+], OpalFileUpload.prototype, "_onDropZoneDrop", null);
+__decorate([
+    rionite_1.Listen('click', 'dropZone'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalFileUpload.prototype, "_onDropZoneClick", null);
 OpalFileUpload = __decorate([
     rionite_1.Component({
         elementIs: 'OpalFileUpload',

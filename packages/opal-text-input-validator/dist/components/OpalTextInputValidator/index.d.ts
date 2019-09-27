@@ -8,7 +8,6 @@ export declare class OpalTextInputValidator extends OpalInputValidator {
     static targetInputEvents: symbol[];
     textInput: OpalTextInput;
     ready(): void;
-    elementAttached(): void;
     _onTextInputInput(): void;
     _checkValue(rule: OpalTextInputValidatorRule): boolean;
 }

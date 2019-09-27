@@ -205,11 +205,6 @@ let OpalDateInput = class OpalDateInput extends rionite_1.BaseComponent {
         }
         return d >= opal_calendar_1.fromDate.call(this) && d <= opal_calendar_1.toDate.call(this);
     }
-    elementAttached() {
-        this.listenTo('textInput', opal_text_input_1.OpalTextInput.EVENT_CHANGE, this._onTextInputChange);
-        this.listenTo(this.$('textInput').element, 'click', this._onTextInputElementClick);
-        this.listenTo('calendarMenu', 'change:opened', this._onCalendarMenuOpenedChange);
-    }
     _onTextInputChange(evt) {
         if (this.$('textInputValidator').valid) {
             this.$('calendar').stringValue = evt.target.value;
@@ -319,6 +314,24 @@ __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
 ], OpalDateInput.prototype, "popoverPosition", void 0);
+__decorate([
+    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_CHANGE, 'textInput'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalDateInput.prototype, "_onTextInputChange", null);
+__decorate([
+    rionite_1.Listen('click', self => self.$('textInput').element),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OpalDateInput.prototype, "_onTextInputElementClick", null);
+__decorate([
+    rionite_1.Listen('change:opened', 'calendarMenu'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OpalDateInput.prototype, "_onCalendarMenuOpenedChange", null);
 OpalDateInput = __decorate([
     rionite_1.Component({
         elementIs: 'OpalDateInput',

@@ -57,7 +57,6 @@ export declare class OpalTagSelect extends BaseComponent {
     _isItemDisabled(item: IDataListItem): any;
     initialize(): void;
     ready(): void;
-    elementAttached(): void;
     _onDisabledChange(evt: IEvent): void;
     _onSelectInput(): false;
     _onSelectChange(): false;
