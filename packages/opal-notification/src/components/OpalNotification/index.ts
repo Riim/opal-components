@@ -1,4 +1,3 @@
-import { Set } from '@riim/map-set-polyfill';
 import { Cell, IEvent } from 'cellx';
 import {
 	BaseComponent,
@@ -59,8 +58,8 @@ export class OpalNotification extends BaseComponent {
 	ready() {
 		initContainer(this);
 
-		let bar = (this.bar = this.$<HTMLElement>('bar', this)!);
-		this.element.removeChild(bar);
+		this.bar = this.$<HTMLElement>('bar', this)!;
+		this.element.removeChild(this.bar);
 
 		if (this.shown) {
 			this._show();

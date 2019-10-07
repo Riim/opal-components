@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/map-set-polyfill"), require("cellx"), require("rionite"));
+		module.exports = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("cellx"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-icon", "reflect-metadata", "@riim/map-set-polyfill", "cellx", "rionite"], factory);
+		define(["@riim/opal-icon", "reflect-metadata", "cellx", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-notification"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("@riim/map-set-polyfill"), require("cellx"), require("rionite"));
+		exports["@riim/opal-notification"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("cellx"), require("rionite"));
 	else
-		root["@riim/opal-notification"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["@riim/map-set-polyfill"], root["cellx"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__) {
+		root["@riim/opal-notification"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["cellx"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -138,13 +138,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalNotification_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const map_set_polyfill_1 = __webpack_require__(4);
-const cellx_1 = __webpack_require__(5);
-const rionite_1 = __webpack_require__(6);
-__webpack_require__(7);
-const template_rnt_1 = __webpack_require__(8);
+const cellx_1 = __webpack_require__(4);
+const rionite_1 = __webpack_require__(5);
+__webpack_require__(6);
+const template_rnt_1 = __webpack_require__(7);
 let container;
-const shownNotifications = new map_set_polyfill_1.Set();
+const shownNotifications = new Set();
 function initContainer(notification) {
     if (!container) {
         container = document.createElement('div');
@@ -168,8 +167,8 @@ let OpalNotification = OpalNotification_1 = class OpalNotification extends rioni
     }
     ready() {
         initContainer(this);
-        let bar = (this.bar = this.$('bar', this));
-        this.element.removeChild(bar);
+        this.bar = this.$('bar', this);
+        this.element.removeChild(this.bar);
         if (this.shown) {
             this._show();
         }
@@ -338,12 +337,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
 module.exports = (function(d) {
         var head = d.head || d.getElementsByTagName('head')[0];
         if (head) {
@@ -358,7 +351,7 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

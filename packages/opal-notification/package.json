@@ -13,10 +13,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/map-set-polyfill": "^1.0.2",
     "@riim/opal-icon": "^0.38.18",
-    "cellx": "^1.9.10",
+    "cellx": "^1.9.11",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.46"
+    "rionite": "^0.37.52"
   }
 }
