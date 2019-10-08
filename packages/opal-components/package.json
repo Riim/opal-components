@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-components",
-  "version": "0.38.19",
+  "version": "0.38.20",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,7 @@
     "@riim/opal-date-input": "^0.38.18",
     "@riim/opal-dropdown": "^0.38.18",
     "@riim/opal-editable-text": "^0.38.18",
-    "@riim/opal-file-upload": "^0.38.19",
+    "@riim/opal-file-upload": "^0.38.20",
     "@riim/opal-filtered-list": "^0.38.18",
     "@riim/opal-focus-highlight-controller": "^0.38.0",
     "@riim/opal-group": "^0.38.18",
