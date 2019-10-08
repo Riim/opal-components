@@ -1,20 +1,26 @@
 ul:fileList {
-	@Repeat (for=file in files, trackBy=id) {
+	@Repeat (for=fileData in dataList) {
 		li:file {
 			div:filePreviewWrapper {
-				@IfThen (if=file.readed) {
-					img:filePreview (@if=file.isImage, src={file.dataURI})
-					svg:fileIcon (@unless=file.isImage, viewBox=0 0 32 32) {
-						use (xlink:href=#OpalFileUpload__iconFile)
+				@IfThen (if='fileData |_isImage') {
+					img:filePreview (
+						@if='fileData.url |or(fileData.dataURI)',
+						src='{fileData.url |or(fileData.dataURI)}'
+					)
+					svg:fileLoadingIcon (
+						@unless='fileData.url |or(fileData.dataURI)',
+						viewBox=0 0 32 32
+					) {
+						use (xlink:href=#OpalFileUpload__iconSpinner)
 					}
 				}
-				svg:fileLoadingIcon (@unless=file.readed, viewBox=0 0 32 32) {
-					use (xlink:href=#OpalFileUpload__iconSpinner)
+				svg:fileIcon (@unless='fileData |_isImage', viewBox=0 0 32 32) {
+					use (xlink:href=#OpalFileUpload__iconFile)
 				}
 			}
 
 			span:fileText {
-				'{file.name}'
+				'{fileData.name}'
 			}
 
 			button:btnRemoveFile (type=button) {
@@ -26,7 +32,7 @@ ul:fileList {
 	}
 }
 
-div:dropZone (error={error}) {
+div:dropZone (error={errorMessage |bool }) {
 	div:dropZoneErrorMessageWrapper {
 		span:dropZoneErrorMessage {
 			'{errorMessage}'

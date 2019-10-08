@@ -33,6 +33,6 @@ export { OpalTreeTagSelect } from '@riim/opal-tree-tag-select';
 export { OpalSelectValidatorRule, OpalSelectValidator } from '@riim/opal-select-validator';
 export { IDataListItem as IOpalAutosuggestDataListItem, IDataProvider as IOpalAutosuggestDataProvider, OpalAutosuggest } from '@riim/opal-autosuggest';
 export { OpalMultirowRow, OpalMultirow } from '@riim/opal-multirow';
-export { OpalFileUpload, ReadableFile } from '@riim/opal-file-upload';
+export { IFileData, TDataList, OpalFileUpload } from '@riim/opal-file-upload';
 export { OpalRoute, IRouteProperty as IOpalRouterRouteProperty, IRoute as IOpalRouterRoute, IComponentState as IOpalRouterComponentState, OpalRouter } from '@riim/opal-router';
 export { Utils };

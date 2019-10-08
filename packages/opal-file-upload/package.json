@@ -15,9 +15,9 @@
   "dependencies": {
     "@riim/escape-regexp": "^1.0.0",
     "@riim/gettext": "^2.0.0",
-    "@riim/next-uid": "^1.0.0",
-    "cellx": "^1.9.10",
+    "cellx": "^1.9.12",
+    "cellx-decorators": "^1.5.0",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.46"
+    "rionite": "^0.37.54"
   }
 }

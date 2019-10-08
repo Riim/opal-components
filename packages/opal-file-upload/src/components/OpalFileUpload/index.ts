@@ -1,6 +1,7 @@
 import { escapeRegExp } from '@riim/escape-regexp';
 import { t } from '@riim/gettext';
-import { define, ObservableList } from 'cellx';
+import { ObservableList } from 'cellx';
+import { Computed, Observable } from 'cellx-decorators';
 import {
 	BaseComponent,
 	Component,
@@ -8,13 +9,21 @@ import {
 	Param
 	} from 'rionite';
 import './index.css';
-import { ReadableFile } from './ReadableFile';
 import template from './template.rnt';
 import './icons/iconFile.svg?id=OpalFileUpload__iconFile';
 import './icons/iconSpinner.svg?id=OpalFileUpload__iconSpinner';
 import './icons/iconTrash.svg?id=OpalFileUpload__iconTrash';
 
-export { ReadableFile };
+export interface IFileData {
+	id?: string;
+	name: string;
+	file?: File;
+	dataURI?: string;
+	url?: string;
+	size?: number;
+}
+
+export type TDataList = ObservableList<IFileData>;
 
 @Component<OpalFileUpload>({
 	elementIs: 'OpalFileUpload',
@@ -23,14 +32,14 @@ export { ReadableFile };
 	domEvents: {
 		btnRemoveFile: {
 			click(_evt, context) {
-				let file: ReadableFile = context.file;
-				this._size -= file.size;
-				this.files.remove(file);
+				this.dataList.remove(context.fileData);
 			}
 		}
 	}
 })
 export class OpalFileUpload extends BaseComponent {
+	@Param('dataList', { default: new ObservableList() })
+	dataList: TDataList;
 	@Param({ readonly: true })
 	allowType: string;
 	@Param
@@ -40,16 +49,15 @@ export class OpalFileUpload extends BaseComponent {
 
 	_reFileType: RegExp;
 
-	_size = 0;
+	@Computed
+	get files(): Array<File> {
+		return this.dataList.map(fileData => fileData.file!).filter(file => file);
+	}
 
-	files: ObservableList<ReadableFile>;
-
+	@Observable
 	errorMessage: string | null;
-	error: boolean;
 
 	initialize() {
-		this.files = new ObservableList<ReadableFile>();
-
 		if (this.allowType) {
 			this._reFileType = RegExp(
 				`^(?:${this.allowType
@@ -60,11 +68,6 @@ export class OpalFileUpload extends BaseComponent {
 					.join('.*')})$`
 			);
 		}
-
-		define(this, {
-			errorMessage: null,
-			error: false
-		});
 	}
 
 	@Listen('change', 'filesInput')
@@ -75,8 +78,8 @@ export class OpalFileUpload extends BaseComponent {
 
 	@Listen('dragenter', 'dropZone')
 	_onDropZoneDragEnter(evt: DragEvent) {
-		this.error = false;
-		(evt.target as HTMLElement).setAttribute('over', '');
+		this.errorMessage = null;
+		(evt.target as HTMLElement).setAttribute('hovering', '');
 	}
 
 	@Listen('dragover', 'dropZone')
@@ -87,20 +90,20 @@ export class OpalFileUpload extends BaseComponent {
 
 	@Listen('dragleave', 'dropZone')
 	_onDropZoneDragLeave(evt: DragEvent) {
-		(evt.target as HTMLElement).removeAttribute('over');
+		(evt.target as HTMLElement).removeAttribute('hovering');
 	}
 
 	@Listen('drop', 'dropZone')
 	_onDropZoneDrop(evt: DragEvent) {
 		evt.preventDefault();
-		(evt.target as HTMLElement).removeAttribute('over');
+		(evt.target as HTMLElement).removeAttribute('hovering');
 		this._addFiles(evt.dataTransfer!.files);
 	}
 
 	@Listen('click', 'dropZone')
 	_onDropZoneClick() {
-		if (this.error) {
-			this.error = false;
+		if (this.errorMessage) {
+			this.errorMessage = null;
 		} else {
 			this.$<HTMLElement>('filesInput')!.click();
 		}
@@ -110,7 +113,7 @@ export class OpalFileUpload extends BaseComponent {
 		let sizeLimit = this.sizeLimit;
 		let totalSizeLimit = this.totalSizeLimit;
 		let reFileType = this._reFileType;
-		let size = this._size;
+		let size = this.dataList.reduce((size, file) => size + (file.size || 0), 0);
 		let errorMessage: string | undefined;
 
 		for (let i = 0, l = files.length; i < l; i++) {
@@ -128,19 +131,43 @@ export class OpalFileUpload extends BaseComponent {
 
 			if (errorMessage) {
 				this.errorMessage = errorMessage;
-				this.error = true;
 				return false;
 			}
 		}
 
-		this._size = size;
-
 		for (let i = 0, l = files.length; i < l; i++) {
-			let readableFile = new ReadableFile(files[i]);
-			readableFile.read();
-			this.files.add(readableFile);
+			let file = files[i];
+			let fileData = {
+				name: file.name,
+				file,
+				size: file.size
+			};
+
+			this.dataList.add(fileData);
+
+			let reader = new FileReader();
+
+			reader.addEventListener('load', evt => {
+				this.dataList.replace(fileData, {
+					...fileData,
+					dataURI: `data:${file.type};base64,${btoa(evt.target!.result as string)}`
+				});
+			});
+
+			reader.readAsBinaryString(file);
 		}
 
 		return true;
+	}
+
+	_isImage(fileData: IFileData): boolean {
+		if (fileData.file && fileData.file.type.startsWith('image/')) {
+			return true;
+		}
+		if (fileData.url && /\.(gif|jpeg|jpg|png|svg)$/.test(fileData.url)) {
+			return true;
+		}
+
+		return false;
 	}
 }

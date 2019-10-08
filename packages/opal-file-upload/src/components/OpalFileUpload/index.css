@@ -108,7 +108,7 @@
 		text-align: center;
 		cursor: pointer;
 
-		@mod over {
+		@mod hovering {
 			border-color: hsl(208,90%,52%);
 
 			@el drop-zone-text {
