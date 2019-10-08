@@ -1,9 +1,6 @@
 import { ObservableList } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
-import './icons/iconFile.svg?id=OpalFileUpload__iconFile';
-import './icons/iconSpinner.svg?id=OpalFileUpload__iconSpinner';
-import './icons/iconTrash.svg?id=OpalFileUpload__iconTrash';
 export interface IFileData {
     id?: string;
     name: string;
@@ -11,6 +8,7 @@ export interface IFileData {
     dataURI?: string;
     url?: string;
     size?: number;
+    [name: string]: any;
 }
 export declare type TDataList = ObservableList<IFileData>;
 export declare class OpalFileUpload extends BaseComponent {

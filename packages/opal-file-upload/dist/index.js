@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("@riim/escape-regexp"), require("@riim/gettext"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("@riim/escape-regexp"), require("@riim/gettext"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "@riim/escape-regexp", "@riim/gettext", "cellx", "cellx-decorators", "rionite"], factory);
+		define(["@riim/opal-icon", "@riim/opal-loader", "reflect-metadata", "@riim/escape-regexp", "@riim/gettext", "cellx", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-file-upload"] = factory(require("reflect-metadata"), require("@riim/escape-regexp"), require("@riim/gettext"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-file-upload"] = factory(require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("@riim/escape-regexp"), require("@riim/gettext"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/opal-file-upload"] = factory(root["reflect-metadata"], root["@riim/escape-regexp"], root["@riim/gettext"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__) {
+		root["@riim/opal-file-upload"] = factory(root["@riim/opal-icon"], root["@riim/opal-loader"], root["reflect-metadata"], root["@riim/escape-regexp"], root["@riim/gettext"], root["cellx"], root["cellx-decorators"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -105,7 +105,9 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(1);
-__export(__webpack_require__(2));
+__webpack_require__(2);
+__webpack_require__(3);
+__export(__webpack_require__(4));
 
 
 /***/ }),
@@ -116,6 +118,18 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -130,16 +144,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const escape_regexp_1 = __webpack_require__(3);
-const gettext_1 = __webpack_require__(4);
-const cellx_1 = __webpack_require__(5);
-const cellx_decorators_1 = __webpack_require__(6);
-const rionite_1 = __webpack_require__(7);
-__webpack_require__(8);
-const template_rnt_1 = __webpack_require__(9);
+const escape_regexp_1 = __webpack_require__(5);
+const gettext_1 = __webpack_require__(6);
+const cellx_1 = __webpack_require__(7);
+const cellx_decorators_1 = __webpack_require__(8);
+const rionite_1 = __webpack_require__(9);
 __webpack_require__(10);
-__webpack_require__(11);
-__webpack_require__(12);
+const template_rnt_1 = __webpack_require__(11);
 let OpalFileUpload = class OpalFileUpload extends rionite_1.BaseComponent {
     get files() {
         return this.dataList.map(fileData => fileData.file).filter(file => file);
@@ -309,18 +320,6 @@ exports.OpalFileUpload = OpalFileUpload;
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
-
-/***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
@@ -342,12 +341,24 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
 /* 8 */
 /***/ (function(module, exports) {
 
+module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
 module.exports = (function(d) {
         var head = d.head || d.getElementsByTagName('head')[0];
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalFileUpload{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;min-width:400px;border:1px solid #ccc;color:#4d4d4d;font-size:1rem;line-height:1.5}.OpalFileUpload .OpalFileUpload__fileList{margin:0;padding:0;list-style:none}.OpalFileUpload .OpalFileUpload__file{position:relative;margin-bottom:10px;padding:12px 52px 12px 20px;border-radius:3px;background:#f2f2f2}.OpalFileUpload .OpalFileUpload__filePreviewWrapper{position:relative;display:inline-block;margin-right:10px;width:48px;height:48px;vertical-align:middle}.OpalFileUpload .OpalFileUpload__filePreview,.OpalFileUpload .OpalFileUpload__fileIcon,.OpalFileUpload .OpalFileUpload__fileLoadingIcon{position:absolute;top:0;right:0;bottom:0;left:0;display:block;margin:auto}.OpalFileUpload .OpalFileUpload__filePreview{max-width:48px;max-height:48px;border:0;border-radius:3px}.OpalFileUpload .OpalFileUpload__fileIcon{width:48px;height:48px;fill:currentColor}.OpalFileUpload .OpalFileUpload__fileLoadingIcon{width:20px;height:20px;-webkit-animation:OpalFileUpload__fileLoadingIconAnimation 1.2s infinite linear;animation:OpalFileUpload__fileLoadingIconAnimation 1.2s infinite linear;fill:currentColor}.OpalFileUpload .OpalFileUpload__fileText{vertical-align:middle;font-weight:700}.OpalFileUpload .OpalFileUpload__btnRemoveFile{position:absolute;top:0;right:10px;bottom:0;display:block;margin:auto;padding:10px;width:42px;height:42px;border:0;background:0 0;color:#999;cursor:pointer;-webkit-transition:color .1s;-o-transition:color .1s;transition:color .1s;-webkit-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px)}.OpalFileUpload .OpalFileUpload__btnRemoveFile:hover{color:#4d4d4d}.OpalFileUpload .OpalFileUpload__btnRemoveFile:active{-webkit-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0)}.OpalFileUpload .OpalFileUpload__btnRemoveFileIcon{display:block;width:22px;height:22px;fill:currentColor}.OpalFileUpload .OpalFileUpload__dropZone{position:relative;padding:25px;border:2px dashed #999;border-radius:5px;background:#f2f2f2;color:gray;text-align:center;cursor:pointer}.OpalFileUpload .OpalFileUpload__dropZone[hovering]{border-color:#168cf3}.OpalFileUpload .OpalFileUpload__dropZone[hovering] .OpalFileUpload__drop-zone-text{pointer-events:none}.OpalFileUpload .OpalFileUpload__dropZone[error] .OpalFileUpload__dropZoneErrorMessageWrapper{display:block}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessageWrapper{position:absolute;top:0;right:0;bottom:0;left:0;display:none;border-radius:inherit;background:inherit;white-space:nowrap;font-size:0}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessageWrapper::after{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessage{color:red;vertical-align:middle;font-size:1rem}.OpalFileUpload .OpalFileUpload__btnSelectFiles{display:inline;padding:0;border:0;background:0 0;color:#168cf3;font:inherit;cursor:inherit}.OpalFileUpload .OpalFileUpload__filesInput{display:none}@-webkit-keyframes OpalFileUpload__fileLoadingIconAnimation{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes OpalFileUpload__fileLoadingIconAnimation{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}";
+            style.textContent = ".OpalFileUpload{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;min-width:400px;border:1px solid #ccc;color:#4d4d4d;font-size:1rem;line-height:1.5}.OpalFileUpload .OpalFileUpload__fileList{margin:0;padding:0;list-style:none}.OpalFileUpload .OpalFileUpload__file{position:relative;margin-bottom:10px;padding:12px 52px 12px 20px;border-radius:3px;background:#f2f2f2}.OpalFileUpload .OpalFileUpload__filePreviewWrapper{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;margin-right:10px;width:48px;height:48px;vertical-align:middle;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.OpalFileUpload .OpalFileUpload__fileLoader{border:0}.OpalFileUpload .OpalFileUpload__filePreview{max-width:100%;max-height:100%;border:0;border-radius:3px}.OpalFileUpload .OpalFileUpload__fileIcon{width:36px;height:36px;stroke:currentColor;stroke-linecap:butt;stroke-linejoin:miter;fill:none}.OpalFileUpload .OpalFileUpload__fileText{vertical-align:middle;font-weight:700}.OpalFileUpload .OpalFileUpload__btnRemoveFile{position:absolute;top:0;right:10px;bottom:0;display:-webkit-box;display:-ms-flexbox;display:flex;margin:auto;width:42px;height:42px;border:0;background:0 0;opacity:.5;cursor:pointer;-webkit-transition:opacity .1s;-o-transition:opacity .1s;transition:opacity .1s;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.OpalFileUpload .OpalFileUpload__btnRemoveFile:hover{opacity:1}.OpalFileUpload .OpalFileUpload__btnRemoveFile:active{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.OpalFileUpload .OpalFileUpload__btnRemoveFileIcon{display:block;width:24px;height:24px;stroke:currentColor;stroke-linecap:butt;stroke-linejoin:miter;fill:none}.OpalFileUpload .OpalFileUpload__dropZone{position:relative;padding:25px;border:2px dashed #999;border-radius:5px;background:#f2f2f2;color:gray;text-align:center;cursor:pointer}.OpalFileUpload .OpalFileUpload__dropZone[hovering]{border-color:#168cf3}.OpalFileUpload .OpalFileUpload__dropZone[hovering] .OpalFileUpload__drop-zone-text{pointer-events:none}.OpalFileUpload .OpalFileUpload__dropZone[error] .OpalFileUpload__dropZoneErrorMessageWrapper{display:block}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessageWrapper{position:absolute;top:0;right:0;bottom:0;left:0;display:none;border-radius:inherit;background:inherit;white-space:nowrap;font-size:0}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessageWrapper::after{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessage{color:red;vertical-align:middle;font-size:1rem}.OpalFileUpload .OpalFileUpload__btnSelectFiles{display:inline;padding:0;border:0;background:0 0;color:#168cf3;font:inherit;cursor:inherit}.OpalFileUpload .OpalFileUpload__filesInput{display:none}";
             head.appendChild(style);
             return style;
         }
@@ -356,30 +367,12 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("ul:fileList {\n@Repeat (for=fileData in dataList) {\nli:file {\ndiv:filePreviewWrapper {\n@IfThen (if='fileData |_isImage') {\nimg:filePreview (\n@if='fileData.url |or(fileData.dataURI)',\nsrc='{fileData.url |or(fileData.dataURI)}'\n)\nsvg:fileLoadingIcon (\n@unless='fileData.url |or(fileData.dataURI)',\nviewBox=0 0 32 32\n) {\nuse (xlink:href=#OpalFileUpload__iconSpinner)\n}\n}\nsvg:fileIcon (@unless='fileData |_isImage', viewBox=0 0 32 32) {\nuse (xlink:href=#OpalFileUpload__iconFile)\n}\n}\nspan:fileText {\n'{fileData.name}'\n}\nbutton:btnRemoveFile (type=button) {\nsvg:btnRemoveFileIcon (viewBox=0 0 32 32) {\nuse (xlink:href=#OpalFileUpload__iconTrash)\n}\n}\n}\n}\n}\ndiv:dropZone (error={errorMessage |bool }) {\ndiv:dropZoneErrorMessageWrapper {\nspan:dropZoneErrorMessage {\n'{errorMessage}'\n}\n}\nspan:dropZoneText {\n'{\"Перетащите файлы в эту область или\" |t }'\nbr\nbutton:btnSelectFiles (type=button) {\n'{\"нажмите для выбора в проводнике\" |t }'\n}\n}\n}\ninput:filesInput (type=file, multiple)");
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 32 32\" id=\"OpalFileUpload__iconFile\"><path d=\"M28.681 7.159c-.694-.947-1.662-2.053-2.724-3.116s-2.169-2.03-3.116-2.724C21.229.137 20.448 0 20 0H4.5A2.503 2.503 0 002 2.5v27C2 30.878 3.122 32 4.5 32h23c1.378 0 2.5-1.122 2.5-2.5V10c0-.448-.137-1.23-1.319-2.841zm-4.138-1.702A27.334 27.334 0 0126.811 8H22V3.189a27.334 27.334 0 012.543 2.268zM28 29.5c0 .271-.229.5-.5.5h-23a.507.507 0 01-.5-.5v-27c0-.271.229-.5.5-.5H20v7a1 1 0 001 1h7v19.5z\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 32 32\" id=\"OpalFileUpload__iconSpinner\"><path d=\"M16 32c-4.274 0-8.292-1.664-11.314-4.686S0 20.274 0 16c0-3.026.849-5.973 2.456-8.522a16.061 16.061 0 016.386-5.791l1.344 2.682a13.044 13.044 0 00-5.192 4.708A12.953 12.953 0 003 15.999c0 7.168 5.832 13 13 13s13-5.832 13-13c0-2.459-.69-4.853-1.994-6.922a13.051 13.051 0 00-5.192-4.708l1.344-2.682a16.047 16.047 0 016.386 5.791A15.953 15.953 0 0132 16c0 4.274-1.664 8.292-4.686 11.314S20.274 32 16 32z\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 32 32\" id=\"OpalFileUpload__iconTrash\"><path d=\"M4 10v20c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V10H4zm6 18H8V14h2v14zm4 0h-2V14h2v14zm4 0h-2V14h2v14zm4 0h-2V14h2v14zM26.5 4H20V1.5c0-.825-.675-1.5-1.5-1.5h-7c-.825 0-1.5.675-1.5 1.5V4H3.5C2.675 4 2 4.675 2 5.5V8h26V5.5c0-.825-.675-1.5-1.5-1.5zM18 4h-6V2.025h6V4z\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+/* harmony default export */ __webpack_exports__["default"] = ("ul:fileList {\nli:file (@for=fileData in dataList) {\ndiv:filePreviewWrapper {\n@IfThen (if='fileData |_isImage') {\nOpalLoader:fileLoader (\n@unless='fileData.url |or(fileData.dataURI)',\nsize=s,\nshown\n)\nimg:filePreview (\n@if='fileData.url |or(fileData.dataURI)',\nsrc='{fileData.url |or(fileData.dataURI)}'\n)\n}\nsvg:fileIcon (@unless='fileData |_isImage', stroke-width=2) {\nuse (xlink:href=#OpalIcon__iconFile)\n}\n}\nspan:fileText {\n'{fileData.name}'\n}\nbutton:btnRemoveFile (type=button) {\nsvg:btnRemoveFileIcon (stroke-width=2) {\nuse (xlink:href=#OpalIcon__iconCross)\n}\n}\n}\n}\ndiv:dropZone (error={errorMessage |bool }) {\ndiv:dropZoneErrorMessageWrapper {\nspan:dropZoneErrorMessage {\n'{errorMessage}'\n}\n}\nspan:dropZoneText {\n'{\"Перетащите файлы в эту область или\" |t }'\nbr\nbutton:btnSelectFiles (type=button) {\n'{\"нажмите для выбора в проводнике\" |t }'\n}\n}\n}\ninput:filesInput (type=file, multiple)");
 
 /***/ })
 /******/ ]);

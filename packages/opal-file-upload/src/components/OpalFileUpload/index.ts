@@ -10,9 +10,6 @@ import {
 	} from 'rionite';
 import './index.css';
 import template from './template.rnt';
-import './icons/iconFile.svg?id=OpalFileUpload__iconFile';
-import './icons/iconSpinner.svg?id=OpalFileUpload__iconSpinner';
-import './icons/iconTrash.svg?id=OpalFileUpload__iconTrash';
 
 export interface IFileData {
 	id?: string;
@@ -21,6 +18,7 @@ export interface IFileData {
 	dataURI?: string;
 	url?: string;
 	size?: number;
+	[name: string]: any;
 }
 
 export type TDataList = ObservableList<IFileData>;

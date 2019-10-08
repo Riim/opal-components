@@ -1,32 +1,29 @@
 ul:fileList {
-	@Repeat (for=fileData in dataList) {
-		li:file {
-			div:filePreviewWrapper {
-				@IfThen (if='fileData |_isImage') {
-					img:filePreview (
-						@if='fileData.url |or(fileData.dataURI)',
-						src='{fileData.url |or(fileData.dataURI)}'
-					)
-					svg:fileLoadingIcon (
-						@unless='fileData.url |or(fileData.dataURI)',
-						viewBox=0 0 32 32
-					) {
-						use (xlink:href=#OpalFileUpload__iconSpinner)
-					}
-				}
-				svg:fileIcon (@unless='fileData |_isImage', viewBox=0 0 32 32) {
-					use (xlink:href=#OpalFileUpload__iconFile)
-				}
+	li:file (@for=fileData in dataList) {
+		div:filePreviewWrapper {
+			@IfThen (if='fileData |_isImage') {
+				OpalLoader:fileLoader (
+					@unless='fileData.url |or(fileData.dataURI)',
+					size=s,
+					shown
+				)
+				img:filePreview (
+					@if='fileData.url |or(fileData.dataURI)',
+					src='{fileData.url |or(fileData.dataURI)}'
+				)
 			}
-
-			span:fileText {
-				'{fileData.name}'
+			svg:fileIcon (@unless='fileData |_isImage', stroke-width=2) {
+				use (xlink:href=#OpalIcon__iconFile)
 			}
+		}
 
-			button:btnRemoveFile (type=button) {
-				svg:btnRemoveFileIcon (viewBox=0 0 32 32) {
-					use (xlink:href=#OpalFileUpload__iconTrash)
-				}
+		span:fileText {
+			'{fileData.name}'
+		}
+
+		button:btnRemoveFile (type=button) {
+			svg:btnRemoveFileIcon (stroke-width=2) {
+				use (xlink:href=#OpalIcon__iconCross)
 			}
 		}
 	}

@@ -21,44 +21,32 @@
 			background: hsl(0,0%,95%);
 		}
 			@el filePreviewWrapper {
-				position: relative;
-				display: inline-block;
+				display: inline-flex;
 				margin-right: 10px;
 				width: 48px;
 				height: 48px;
 				vertical-align: middle;
+				justify-content: center;
+				align-items: center;
 			}
-				@el filePreview,
-					fileIcon,
-					fileLoadingIcon
-				{
-					position: absolute;
-					top: 0;
-					right: 0;
-					bottom: 0;
-					left: 0;
-					display: block;
-					margin: auto;
+				@el fileLoader {
+					border: 0;
 				}
 
 				@el filePreview {
-					max-width: 48px;
-					max-height: 48px;
+					max-width: 100%;
+					max-height: 100%;
 					border: 0;
 					border-radius: 3px;
 				}
 
 				@el fileIcon {
-					width: 48px;
-					height: 48px;
-					fill: currentColor;
-				}
-
-				@el fileLoadingIcon {
-					width: 20px;
-					height: 20px;
-					animation: OpalFileUpload__fileLoadingIconAnimation 1.2s infinite linear;
-					fill: currentColor;
+					width: 36px;
+					height: 36px;
+					stroke: currentColor;
+					stroke-linecap: butt;
+					stroke-linejoin: miter;
+					fill: none;
 				}
 
 			@el fileText {
@@ -71,31 +59,34 @@
 				top: 0;
 				right: 10px;
 				bottom: 0;
-				display: block;
+				display: flex;
 				margin: auto;
-				padding: 10px;
 				width: 42px;
 				height: 42px;
 				border: 0;
 				background: transparent;
-				color: hsl(0,0%,60%);
+				opacity: .5;
 				cursor: pointer;
-				transition: color .1s;
-				transform: translateY(-1px);
+				transition: opacity .1s;
+				justify-content: center;
+				align-items: center;
 
 				&:hover {
-					color: hsl(0,0%,30%);
+					opacity: 1;
 				}
 
 				&:active {
-					transform: translateY(0);
+					transform: translateY(1px);
 				}
 			}
 				@el btnRemoveFileIcon {
 					display: block;
-					width: 22px;
-					height: 22px;
-					fill: currentColor;
+					width: 24px;
+					height: 24px;
+					stroke: currentColor;
+					stroke-linecap: butt;
+					stroke-linejoin: miter;
+					fill: none;
 				}
 
 	@el dropZone {
@@ -162,14 +153,5 @@
 
 	@el filesInput {
 		display: none;
-	}
-}
-
-@keyframes OpalFileUpload__fileLoadingIconAnimation {
-	0% {
-		transform: rotate(0);
-	}
-	100% {
-		transform: rotate(360deg);
 	}
 }
