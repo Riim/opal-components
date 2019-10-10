@@ -1,5 +1,5 @@
 ul:fileList {
-	li:file (@for=fileData in dataList) {
+	li:file (@for=fileData in dataList, draggable=true, data-file-data-uid={fileData |uid }) {
 		div:filePreviewWrapper {
 			@IfThen (if='fileData |_isImage') {
 				OpalLoader:fileLoader (
@@ -9,7 +9,8 @@ ul:fileList {
 				)
 				img:filePreview (
 					@if='fileData.url |or(fileData.dataURI)',
-					src='{fileData.url |or(fileData.dataURI)}'
+					src='{fileData.url |or(fileData.dataURI)}',
+					draggable=false
 				)
 			}
 			svg:fileIcon (@unless='fileData |_isImage', stroke-width=2) {

@@ -1,10 +1,13 @@
 import { escapeRegExp } from '@riim/escape-regexp';
+import { getUID } from '@riim/get-uid';
 import { t } from '@riim/gettext';
-import { ObservableList } from 'cellx';
+import { nextTick } from '@riim/next-tick';
+import { EventEmitter, ObservableList } from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
 import {
 	BaseComponent,
 	Component,
+	IDisposableListening,
 	Listen,
 	Param
 	} from 'rionite';
@@ -22,6 +25,8 @@ export interface IFileData {
 }
 
 export type TDataList = ObservableList<IFileData>;
+
+let dragEl: HTMLElement | null = null;
 
 @Component<OpalFileUpload>({
 	elementIs: 'OpalFileUpload',
@@ -55,6 +60,11 @@ export class OpalFileUpload extends BaseComponent {
 	@Observable
 	errorMessage: string | null;
 
+	fileListEl: HTMLElement;
+	dropZoneEl: HTMLElement;
+
+	_fileListListening: IDisposableListening;
+
 	initialize() {
 		if (this.allowType) {
 			this._reFileType = RegExp(
@@ -68,6 +78,11 @@ export class OpalFileUpload extends BaseComponent {
 		}
 	}
 
+	ready() {
+		this.fileListEl = this.$<HTMLElement>('fileList')!;
+		this.dropZoneEl = this.$<HTMLElement>('dropZone')!;
+	}
+
 	@Listen('change', 'filesInput')
 	_onFilesInputChange(evt: Event) {
 		this._addFiles((evt.target as HTMLInputElement).files!);
@@ -75,9 +90,12 @@ export class OpalFileUpload extends BaseComponent {
 	}
 
 	@Listen('dragenter', 'dropZone')
-	_onDropZoneDragEnter(evt: DragEvent) {
+	_onDropZoneDragEnter() {
 		this.errorMessage = null;
-		(evt.target as HTMLElement).setAttribute('hovering', '');
+
+		if (!dragEl) {
+			this.dropZoneEl.setAttribute('hovering', '');
+		}
 	}
 
 	@Listen('dragover', 'dropZone')
@@ -87,14 +105,14 @@ export class OpalFileUpload extends BaseComponent {
 	}
 
 	@Listen('dragleave', 'dropZone')
-	_onDropZoneDragLeave(evt: DragEvent) {
-		(evt.target as HTMLElement).removeAttribute('hovering');
+	_onDropZoneDragLeave() {
+		this.dropZoneEl.removeAttribute('hovering');
 	}
 
 	@Listen('drop', 'dropZone')
 	_onDropZoneDrop(evt: DragEvent) {
 		evt.preventDefault();
-		(evt.target as HTMLElement).removeAttribute('hovering');
+		this.dropZoneEl.removeAttribute('hovering');
 		this._addFiles(evt.dataTransfer!.files);
 	}
 
@@ -105,6 +123,65 @@ export class OpalFileUpload extends BaseComponent {
 		} else {
 			this.$<HTMLElement>('filesInput')!.click();
 		}
+	}
+
+	@Listen('dragstart', '@fileListEl')
+	_onFileListDragStart(evt: DragEvent) {
+		dragEl = evt.target as HTMLElement;
+
+		evt.dataTransfer!.effectAllowed = 'move';
+		evt.dataTransfer!.setData('Text', dragEl.textContent!);
+
+		this._fileListListening = this.listenTo(this.fileListEl, {
+			dragenter: this._onFileListDragEnter,
+			dragover: this._onFileListDragOver,
+			drop: this._onFileListDrop,
+			dragend: this._onFileListDragEnd
+		});
+
+		nextTick(() => {
+			// Без nextTick перетаскиваемый объект тоже будет иметь этот атрибут.
+			dragEl!.setAttribute('ghost', '');
+		});
+	}
+
+	_onFileListDragEnter(evt: DragEvent) {
+		let target = this._getFileElement(evt.target as HTMLElement);
+
+		if (!target || target === dragEl) {
+			return;
+		}
+
+		let targetFileDataUID = target.dataset.fileDataUid!;
+		let dragElFileDataUID = dragEl!.dataset.fileDataUid!;
+		let targetFileDataIndex = this.dataList.findIndex(
+			fileData => getUID(fileData) == targetFileDataUID
+		);
+		let dragElFileDataIndex = this.dataList.findIndex(
+			fileData => getUID(fileData) == dragElFileDataUID
+		);
+		let targetFileData = this.dataList.get(targetFileDataIndex)!;
+
+		EventEmitter.transact(() => {
+			this.dataList.set(targetFileDataIndex, this.dataList.get(dragElFileDataIndex)!);
+			this.dataList.set(dragElFileDataIndex, targetFileData);
+		});
+	}
+
+	_onFileListDragOver(evt: DragEvent) {
+		evt.preventDefault();
+		evt.dataTransfer!.dropEffect = 'move';
+	}
+
+	_onFileListDrop(evt: DragEvent) {
+		evt.preventDefault();
+	}
+
+	_onFileListDragEnd() {
+		this._fileListListening.stop();
+		dragEl!.removeAttribute('ghost');
+
+		dragEl = null;
 	}
 
 	_addFiles(files: FileList): boolean {
@@ -156,6 +233,18 @@ export class OpalFileUpload extends BaseComponent {
 		}
 
 		return true;
+	}
+
+	_getFileElement(node: Node, stopEl = this.fileListEl): HTMLElement | null {
+		let el = node.nodeType == Node.ELEMENT_NODE ? (node as HTMLElement) : node.parentElement!;
+
+		for (; el != stopEl; el = el.parentElement!) {
+			if (el.dataset.fileDataUid) {
+				return el;
+			}
+		}
+
+		return null;
 	}
 
 	_isImage(fileData: IFileData): boolean {

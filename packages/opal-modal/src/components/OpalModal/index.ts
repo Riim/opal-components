@@ -71,11 +71,11 @@ export class OpalModal extends BaseComponent {
 
 	@Listen('click', '@element')
 	_onElementClick(evt: Event) {
-		let componentEl = this.element;
+		let thisEl = this.element;
 		let windowEl = this.$('window');
 
 		for (let el: Element | null = evt.target as Element; el != windowEl; ) {
-			if (el == componentEl) {
+			if (el == thisEl) {
 				this.close();
 				this.emit(OpalModal.EVENT_CLOSE);
 				break;

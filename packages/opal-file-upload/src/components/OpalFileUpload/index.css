@@ -19,6 +19,11 @@
 			padding: 12px 52px 12px 20px;
 			border-radius: 3px;
 			background: hsl(0,0%,95%);
+			cursor: move;
+
+			@mod ghost {
+				opacity: .4;
+			}
 		}
 			@el filePreviewWrapper {
 				display: inline-flex;
@@ -102,7 +107,7 @@
 		@mod hovering {
 			border-color: hsl(208,90%,52%);
 
-			@el drop-zone-text {
+			@el dropZoneText {
 				pointer-events: none;
 			}
 		}

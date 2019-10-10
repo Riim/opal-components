@@ -173,10 +173,10 @@ let OpalModal = OpalModal_1 = class OpalModal extends rionite_1.BaseComponent {
         }
     }
     _onElementClick(evt) {
-        let componentEl = this.element;
+        let thisEl = this.element;
         let windowEl = this.$('window');
         for (let el = evt.target; el != windowEl;) {
-            if (el == componentEl) {
+            if (el == thisEl) {
                 this.close();
                 this.emit(OpalModal_1.EVENT_CLOSE);
                 break;

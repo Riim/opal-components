@@ -12,6 +12,7 @@ const csso = require('postcss-csso');
 const externals = [
 	'@riim/debounce-throttle',
 	'@riim/escape-regexp',
+	'@riim/get-uid',
 	'@riim/gettext',
 	'@riim/kebab-case',
 	'@riim/map-set-polyfill',

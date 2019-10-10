@@ -33,22 +33,24 @@ export class OpalTabs extends BaseComponent {
 	@Param
 	useLocationHash = false;
 
-	tabs: HTMLCollectionOf<IComponentElement>;
-	tabPanels: HTMLCollectionOf<IComponentElement<OpalTabPanel>>;
+	tabElements: HTMLCollectionOf<IComponentElement>;
+	tabPanelElements: HTMLCollectionOf<IComponentElement<OpalTabPanel>>;
 
 	_startSelectedTab: OpalTab | null = null;
 	_selectedTab: OpalTab | null = null;
 
 	ready() {
-		let tabs = (this.tabs = this.element.getElementsByClassName('OpalTab') as any);
-		let tabPanels = (this.tabPanels = this.element.getElementsByClassName(
+		let tabElements = (this.tabElements = this.element.getElementsByClassName(
+			'OpalTab'
+		) as any);
+		let tabPanelElements = (this.tabPanelElements = this.element.getElementsByClassName(
 			'OpalTabPanel'
 		) as any);
 
 		let selectedTab: OpalTab | undefined;
 		let selectedTabIndex: number | undefined;
 
-		forEach.call(tabs, (tabEl: IComponentElement, index: number) => {
+		forEach.call(tabElements, (tabEl: IComponentElement, index: number) => {
 			let tab = tabEl.$component as OpalTab;
 
 			if (tab.selected) {
@@ -62,14 +64,14 @@ export class OpalTabs extends BaseComponent {
 		});
 
 		if (!selectedTab) {
-			selectedTab = this._startSelectedTab = this._selectedTab = tabs[0]
+			selectedTab = this._startSelectedTab = this._selectedTab = tabElements[0]
 				.$component as OpalTab;
 			selectedTabIndex = 0;
 
 			selectedTab.select();
 		}
 
-		tabPanels[selectedTabIndex!].$component!.shown = true;
+		tabPanelElements[selectedTabIndex!].$component!.shown = true;
 	}
 
 	elementAttached() {
@@ -124,7 +126,7 @@ export class OpalTabs extends BaseComponent {
 		}
 
 		let tab: IComponentElement<OpalTab> = find.call(
-			this.tabs,
+			this.tabElements,
 			(tab: IComponentElement<OpalTab>) => tab.$component!.label == label
 		);
 
@@ -144,11 +146,13 @@ export class OpalTabs extends BaseComponent {
 		let selectedTab = this._selectedTab;
 
 		if (selectedTab) {
-			this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$component!.shown = false;
+			this.tabPanelElements[
+				indexOf.call(this.tabElements, selectedTab.element)
+			].$component!.shown = false;
 			selectedTab.deselect();
 		}
 
-		this.tabPanels[indexOf.call(this.tabs, tab.element)].$component!.shown = true;
+		this.tabPanelElements[indexOf.call(this.tabElements, tab.element)].$component!.shown = true;
 		tab.select();
 
 		this._selectedTab = tab;

@@ -160,9 +160,9 @@ export class OpalDropdown extends BaseComponent {
 
 	_onClosingEvent(evt: Event) {
 		let docEl = document.documentElement;
-		let componentEl = this.element;
+		let thisEl = this.element;
 
-		for (let el: Element | null = evt.target as Element; el != componentEl; ) {
+		for (let el: Element | null = evt.target as Element; el != thisEl; ) {
 			if (el == docEl || el.tagName == 'A') {
 				this.close();
 				this.emit(OpalDropdown.EVENT_CLOSE);

@@ -245,8 +245,8 @@ let OpalDropdown = OpalDropdown_1 = class OpalDropdown extends rionite_1.BaseCom
     }
     _onClosingEvent(evt) {
         let docEl = document.documentElement;
-        let componentEl = this.element;
-        for (let el = evt.target; el != componentEl;) {
+        let thisEl = this.element;
+        for (let el = evt.target; el != thisEl;) {
             if (el == docEl || el.tagName == 'A') {
                 this.close();
                 this.emit(OpalDropdown_1.EVENT_CLOSE);

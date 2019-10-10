@@ -267,8 +267,8 @@ let OpalPopover = OpalPopover_1 = class OpalPopover extends rionite_1.BaseCompon
     }
     _onClosingEvent(evt) {
         let docEl = document.documentElement;
-        let componentEl = this.element;
-        for (let el = evt.target; el != componentEl;) {
+        let thisEl = this.element;
+        for (let el = evt.target; el != thisEl;) {
             if (el == docEl || el.tagName == 'A') {
                 this.close();
                 this.emit(OpalPopover_1.EVENT_CLOSE);

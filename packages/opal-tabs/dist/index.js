@@ -155,11 +155,11 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
         this._selectedTab = null;
     }
     ready() {
-        let tabs = (this.tabs = this.element.getElementsByClassName('OpalTab'));
-        let tabPanels = (this.tabPanels = this.element.getElementsByClassName('OpalTabPanel'));
+        let tabElements = (this.tabElements = this.element.getElementsByClassName('OpalTab'));
+        let tabPanelElements = (this.tabPanelElements = this.element.getElementsByClassName('OpalTabPanel'));
         let selectedTab;
         let selectedTabIndex;
-        forEach.call(tabs, (tabEl, index) => {
+        forEach.call(tabElements, (tabEl, index) => {
             let tab = tabEl.$component;
             if (tab.selected) {
                 if (selectedTab) {
@@ -172,12 +172,12 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
             }
         });
         if (!selectedTab) {
-            selectedTab = this._startSelectedTab = this._selectedTab = tabs[0]
+            selectedTab = this._startSelectedTab = this._selectedTab = tabElements[0]
                 .$component;
             selectedTabIndex = 0;
             selectedTab.select();
         }
-        tabPanels[selectedTabIndex].$component.shown = true;
+        tabPanelElements[selectedTabIndex].$component.shown = true;
     }
     elementAttached() {
         if (this.useLocationHash) {
@@ -213,7 +213,7 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
         if (this._selectedTab && this._selectedTab.label === label) {
             return true;
         }
-        let tab = find.call(this.tabs, (tab) => tab.$component.label == label);
+        let tab = find.call(this.tabElements, (tab) => tab.$component.label == label);
         if (tab && !tab.$component.hidden) {
             this._selectTab(tab.$component, false);
             return true;
@@ -226,10 +226,10 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
         }
         let selectedTab = this._selectedTab;
         if (selectedTab) {
-            this.tabPanels[indexOf.call(this.tabs, selectedTab.element)].$component.shown = false;
+            this.tabPanelElements[indexOf.call(this.tabElements, selectedTab.element)].$component.shown = false;
             selectedTab.deselect();
         }
-        this.tabPanels[indexOf.call(this.tabs, tab.element)].$component.shown = true;
+        this.tabPanelElements[indexOf.call(this.tabElements, tab.element)].$component.shown = true;
         tab.select();
         this._selectedTab = tab;
         if (!notUseLocationHash && this.useLocationHash) {

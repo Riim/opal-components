@@ -14,12 +14,13 @@
   },
   "dependencies": {
     "@riim/escape-regexp": "^1.0.0",
+    "@riim/get-uid": "^1.0.2",
     "@riim/gettext": "^2.0.0",
     "@riim/opal-icon": "^0.38.18",
     "@riim/opal-loader": "^0.38.18",
     "cellx": "^1.9.12",
     "cellx-decorators": "^1.5.0",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.54"
+    "rionite": "^0.37.59"
   }
 }
