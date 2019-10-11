@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("@riim/opal-router"), require("cellx"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("reflect-metadata"), require("@riim/opal-router"), require("@riim/uid"), require("cellx"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "@riim/opal-router", "cellx", "rionite", "cellx-decorators"], factory);
+		define(["reflect-metadata", "@riim/opal-router", "@riim/uid", "cellx", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tabs"] = factory(require("reflect-metadata"), require("@riim/opal-router"), require("cellx"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-tabs"] = factory(require("reflect-metadata"), require("@riim/opal-router"), require("@riim/uid"), require("cellx"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-tabs"] = factory(root["reflect-metadata"], root["@riim/opal-router"], root["cellx"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__) {
+		root["@riim/opal-tabs"] = factory(root["reflect-metadata"], root["@riim/opal-router"], root["@riim/uid"], root["cellx"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -286,22 +286,9 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nextUID", function() { return nextUID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUID", function() { return getUID; });
-const hasOwn = Object.prototype.hasOwnProperty;
-let uidCounter = 0;
-function nextUID() {
-    return String(++uidCounter);
-}
-const KEY_UID = Symbol('uid');
-function getUID(obj) {
-    return hasOwn.call(obj, KEY_UID) ? obj[KEY_UID] : (obj[KEY_UID] = nextUID());
-}
-
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 /* 5 */

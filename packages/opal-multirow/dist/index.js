@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-sign-button"), require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("@riim/opal-sign-button"), require("reflect-metadata"), require("@riim/uid"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-sign-button", "reflect-metadata", "cellx", "cellx-decorators", "rionite"], factory);
+		define(["@riim/opal-sign-button", "reflect-metadata", "@riim/uid", "cellx", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-multirow"] = factory(require("@riim/opal-sign-button"), require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-multirow"] = factory(require("@riim/opal-sign-button"), require("reflect-metadata"), require("@riim/uid"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/opal-multirow"] = factory(root["@riim/opal-sign-button"], root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__) {
+		root["@riim/opal-multirow"] = factory(root["@riim/opal-sign-button"], root["reflect-metadata"], root["@riim/uid"], root["cellx"], root["cellx-decorators"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -237,22 +237,9 @@ exports.OpalMultirow = OpalMultirow;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nextUID", function() { return nextUID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUID", function() { return getUID; });
-const hasOwn = Object.prototype.hasOwnProperty;
-let uidCounter = 0;
-function nextUID() {
-    return String(++uidCounter);
-}
-const KEY_UID = Symbol('uid');
-function getUID(obj) {
-    return hasOwn.call(obj, KEY_UID) ? obj[KEY_UID] : (obj[KEY_UID] = nextUID());
-}
-
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 /* 5 */
