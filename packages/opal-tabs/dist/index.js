@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("@riim/next-uid"), require("@riim/opal-router"), require("cellx"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("reflect-metadata"), require("@riim/opal-router"), require("cellx"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "@riim/next-uid", "@riim/opal-router", "cellx", "rionite", "cellx-decorators"], factory);
+		define(["reflect-metadata", "@riim/opal-router", "cellx", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tabs"] = factory(require("reflect-metadata"), require("@riim/next-uid"), require("@riim/opal-router"), require("cellx"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-tabs"] = factory(require("reflect-metadata"), require("@riim/opal-router"), require("cellx"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-tabs"] = factory(root["reflect-metadata"], root["@riim/next-uid"], root["@riim/opal-router"], root["cellx"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__) {
+		root["@riim/opal-tabs"] = factory(root["reflect-metadata"], root["@riim/opal-router"], root["cellx"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -131,8 +131,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalTabs_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const next_uid_1 = __webpack_require__(3);
-const opal_router_1 = __webpack_require__(4);
+const opal_router_1 = __webpack_require__(3);
+const uid_1 = __webpack_require__(4);
 const cellx_1 = __webpack_require__(5);
 const rionite_1 = __webpack_require__(6);
 const OpalTabList_1 = __webpack_require__(7);
@@ -185,7 +185,7 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
             if (RegExp.$1) {
                 this.goToTab(RegExp.$1);
             }
-            this._disposables[next_uid_1.nextUID()] = {
+            this._disposables[uid_1.nextUID()] = {
                 dispose: opal_router_1.OpalRouter.history.listen(location => {
                     this._onHistoryChange(location);
                 })
@@ -286,9 +286,22 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nextUID", function() { return nextUID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUID", function() { return getUID; });
+const hasOwn = Object.prototype.hasOwnProperty;
+let uidCounter = 0;
+function nextUID() {
+    return String(++uidCounter);
+}
+const KEY_UID = Symbol('uid');
+function getUID(obj) {
+    return hasOwn.call(obj, KEY_UID) ? obj[KEY_UID] : (obj[KEY_UID] = nextUID());
+}
+
 
 /***/ }),
 /* 5 */

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-sign-button"), require("reflect-metadata"), require("@riim/next-uid"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("@riim/opal-sign-button"), require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-sign-button", "reflect-metadata", "@riim/next-uid", "cellx", "cellx-decorators", "rionite"], factory);
+		define(["@riim/opal-sign-button", "reflect-metadata", "cellx", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-multirow"] = factory(require("@riim/opal-sign-button"), require("reflect-metadata"), require("@riim/next-uid"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-multirow"] = factory(require("@riim/opal-sign-button"), require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/opal-multirow"] = factory(root["@riim/opal-sign-button"], root["reflect-metadata"], root["@riim/next-uid"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__) {
+		root["@riim/opal-multirow"] = factory(root["@riim/opal-sign-button"], root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -138,7 +138,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalMultirow_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const next_uid_1 = __webpack_require__(4);
+const uid_1 = __webpack_require__(4);
 const cellx_1 = __webpack_require__(5);
 const cellx_decorators_1 = __webpack_require__(6);
 const rionite_1 = __webpack_require__(7);
@@ -165,7 +165,7 @@ let OpalMultirow = OpalMultirow_1 = class OpalMultirow extends rionite_1.BaseCom
     ready() {
         let presetRowCount = (this._presetRowCount = this.$$('presetRow').length);
         if (!presetRowCount) {
-            this._newRows.add({ key: next_uid_1.nextUID() });
+            this._newRows.add({ key: uid_1.nextUID() });
         }
     }
     _onRowRemoveRowClick(evt) {
@@ -183,7 +183,7 @@ let OpalMultirow = OpalMultirow_1 = class OpalMultirow extends rionite_1.BaseCom
         this.emit(OpalMultirow_1.EVENT_CHANGE);
     }
     _onRowAddRowClick() {
-        this._newRows.add({ key: next_uid_1.nextUID() });
+        this._newRows.add({ key: uid_1.nextUID() });
         cellx_1.Cell.release();
         let focusable = this.$('focus', this.$$('newRowSlot').slice(-1)[0]);
         if (focusable) {
@@ -237,9 +237,22 @@ exports.OpalMultirow = OpalMultirow;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nextUID", function() { return nextUID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUID", function() { return getUID; });
+const hasOwn = Object.prototype.hasOwnProperty;
+let uidCounter = 0;
+function nextUID() {
+    return String(++uidCounter);
+}
+const KEY_UID = Symbol('uid');
+function getUID(obj) {
+    return hasOwn.call(obj, KEY_UID) ? obj[KEY_UID] : (obj[KEY_UID] = nextUID());
+}
+
 
 /***/ }),
 /* 5 */

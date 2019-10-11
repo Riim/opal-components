@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("@riim/escape-regexp"), require("@riim/get-uid"), require("@riim/gettext"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("@riim/escape-regexp"), require("@riim/gettext"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-icon", "@riim/opal-loader", "reflect-metadata", "@riim/escape-regexp", "@riim/get-uid", "@riim/gettext", "@riim/next-tick", "cellx", "cellx-decorators", "rionite"], factory);
+		define(["@riim/opal-icon", "@riim/opal-loader", "reflect-metadata", "@riim/escape-regexp", "@riim/gettext", "@riim/next-tick", "cellx", "cellx-decorators", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-file-upload"] = factory(require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("@riim/escape-regexp"), require("@riim/get-uid"), require("@riim/gettext"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-file-upload"] = factory(require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("@riim/escape-regexp"), require("@riim/gettext"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"));
 	else
-		root["@riim/opal-file-upload"] = factory(root["@riim/opal-icon"], root["@riim/opal-loader"], root["reflect-metadata"], root["@riim/escape-regexp"], root["@riim/get-uid"], root["@riim/gettext"], root["@riim/next-tick"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__) {
+		root["@riim/opal-file-upload"] = factory(root["@riim/opal-icon"], root["@riim/opal-loader"], root["reflect-metadata"], root["@riim/escape-regexp"], root["@riim/gettext"], root["@riim/next-tick"], root["cellx"], root["cellx-decorators"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -145,9 +145,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const escape_regexp_1 = __webpack_require__(5);
-const get_uid_1 = __webpack_require__(6);
-const gettext_1 = __webpack_require__(7);
-const next_tick_1 = __webpack_require__(8);
+const gettext_1 = __webpack_require__(6);
+const next_tick_1 = __webpack_require__(7);
+const uid_1 = __webpack_require__(8);
 const cellx_1 = __webpack_require__(9);
 const cellx_decorators_1 = __webpack_require__(10);
 const rionite_1 = __webpack_require__(11);
@@ -224,8 +224,8 @@ let OpalFileUpload = class OpalFileUpload extends rionite_1.BaseComponent {
         }
         let targetFileDataUID = target.dataset.fileDataUid;
         let dragElFileDataUID = dragEl.dataset.fileDataUid;
-        let targetFileDataIndex = this.dataList.findIndex(fileData => get_uid_1.getUID(fileData) == targetFileDataUID);
-        let dragElFileDataIndex = this.dataList.findIndex(fileData => get_uid_1.getUID(fileData) == dragElFileDataUID);
+        let targetFileDataIndex = this.dataList.findIndex(fileData => uid_1.getUID(fileData) == targetFileDataUID);
+        let dragElFileDataIndex = this.dataList.findIndex(fileData => uid_1.getUID(fileData) == dragElFileDataUID);
         let targetFileData = this.dataList.get(targetFileDataIndex);
         cellx_1.EventEmitter.transact(() => {
             this.dataList.set(targetFileDataIndex, this.dataList.get(dragElFileDataIndex));
@@ -405,9 +405,22 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nextUID", function() { return nextUID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUID", function() { return getUID; });
+const hasOwn = Object.prototype.hasOwnProperty;
+let uidCounter = 0;
+function nextUID() {
+    return String(++uidCounter);
+}
+const KEY_UID = Symbol('uid');
+function getUID(obj) {
+    return hasOwn.call(obj, KEY_UID) ? obj[KEY_UID] : (obj[KEY_UID] = nextUID());
+}
+
 
 /***/ }),
 /* 9 */

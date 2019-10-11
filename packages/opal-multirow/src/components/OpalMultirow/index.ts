@@ -1,4 +1,4 @@
-import { nextUID } from '@riim/next-uid';
+import { nextUID } from '@riim/uid';
 import { Cell, IEvent, ObservableList } from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
 import { BaseComponent, Component, Listen } from 'rionite';

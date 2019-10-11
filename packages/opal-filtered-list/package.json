@@ -16,8 +16,8 @@
     "@riim/opal-icon": "^0.38.18",
     "@riim/opal-loaded-list": "^0.38.18",
     "@riim/opal-text-input": "^0.38.18",
-    "cellx": "^1.9.10",
+    "cellx": "^1.9.16",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.46"
+    "rionite": "^0.37.61"
   }
 }

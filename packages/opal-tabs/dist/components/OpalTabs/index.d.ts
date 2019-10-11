@@ -10,8 +10,8 @@ export { OpalTabPanel };
 export declare class OpalTabs extends BaseComponent {
     static EVENT_CHANGE: symbol;
     useLocationHash: boolean;
-    tabs: HTMLCollectionOf<IComponentElement>;
-    tabPanels: HTMLCollectionOf<IComponentElement<OpalTabPanel>>;
+    tabElements: HTMLCollectionOf<IComponentElement>;
+    tabPanelElements: HTMLCollectionOf<IComponentElement<OpalTabPanel>>;
     _startSelectedTab: OpalTab | null;
     _selectedTab: OpalTab | null;
     ready(): void;

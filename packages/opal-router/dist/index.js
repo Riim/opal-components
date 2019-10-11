@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("@riim/kebab-case"), require("@riim/next-uid"), require("@riim/rionite-snake-case-attribute-name"), require("history"), require("rionite"));
+		module.exports = factory(require("reflect-metadata"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("history"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "@riim/kebab-case", "@riim/next-uid", "@riim/rionite-snake-case-attribute-name", "history", "rionite"], factory);
+		define(["reflect-metadata", "@riim/kebab-case", "@riim/rionite-snake-case-attribute-name", "history", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-router"] = factory(require("reflect-metadata"), require("@riim/kebab-case"), require("@riim/next-uid"), require("@riim/rionite-snake-case-attribute-name"), require("history"), require("rionite"));
+		exports["@riim/opal-router"] = factory(require("reflect-metadata"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("history"), require("rionite"));
 	else
-		root["@riim/opal-router"] = factory(root["reflect-metadata"], root["@riim/kebab-case"], root["@riim/next-uid"], root["@riim/rionite-snake-case-attribute-name"], root["history"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__) {
+		root["@riim/opal-router"] = factory(root["reflect-metadata"], root["@riim/kebab-case"], root["@riim/rionite-snake-case-attribute-name"], root["history"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -132,8 +132,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var OpalRouter_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const kebab_case_1 = __webpack_require__(3);
-const next_uid_1 = __webpack_require__(4);
-const rionite_snake_case_attribute_name_1 = __webpack_require__(5);
+const rionite_snake_case_attribute_name_1 = __webpack_require__(4);
+const uid_1 = __webpack_require__(5);
 const history_1 = __webpack_require__(6);
 const rionite_1 = __webpack_require__(7);
 const OpalRoute_1 = __webpack_require__(8);
@@ -208,7 +208,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
         });
     }
     elementAttached() {
-        this._disposables[next_uid_1.nextUID()] = {
+        this._disposables[uid_1.nextUID()] = {
             dispose: history.listen(location => {
                 this._onHistoryChange(location);
             })
@@ -432,9 +432,22 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nextUID", function() { return nextUID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUID", function() { return getUID; });
+const hasOwn = Object.prototype.hasOwnProperty;
+let uidCounter = 0;
+function nextUID() {
+    return String(++uidCounter);
+}
+const KEY_UID = Symbol('uid');
+function getUID(obj) {
+    return hasOwn.call(obj, KEY_UID) ? obj[KEY_UID] : (obj[KEY_UID] = nextUID());
+}
+
 
 /***/ }),
 /* 6 */

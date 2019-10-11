@@ -1,7 +1,7 @@
 import { escapeRegExp } from '@riim/escape-regexp';
-import { getUID } from '@riim/get-uid';
 import { t } from '@riim/gettext';
 import { nextTick } from '@riim/next-tick';
+import { getUID } from '@riim/uid';
 import { EventEmitter, ObservableList } from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
 import {

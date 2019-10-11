@@ -1,6 +1,6 @@
 import { kebabCase } from '@riim/kebab-case';
-import { nextUID } from '@riim/next-uid';
 import { snakeCaseAttributeName } from '@riim/rionite-snake-case-attribute-name';
+import { nextUID } from '@riim/uid';
 import { createBrowserHistory, History, Location } from 'history';
 import {
 	BaseComponent,
