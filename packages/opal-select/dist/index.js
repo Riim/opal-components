@@ -225,6 +225,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         this._notUpdateOptions = false;
         this._opened = false;
         this._onceFocusedAfterLoading = false;
+        this.validator = null;
     }
     get value() {
         return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
@@ -522,7 +523,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             this.close();
             this.focus();
         }
-        this.emit('deselect');
+        this.emit(OpalSelect_1.EVENT_DESELECT);
         return false;
     }
     _onMenuTextInputConfirm(evt) {
@@ -864,6 +865,9 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
     disable() {
         this.disabled = true;
         return this;
+    }
+    validate() {
+        return !this.validator || this.validator.validate();
     }
 };
 OpalSelect.EVENT_BLUR = Symbol('blur');

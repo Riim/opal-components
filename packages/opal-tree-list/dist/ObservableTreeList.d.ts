@@ -6,6 +6,7 @@ export interface IItem {
 }
 export declare function setParent<T extends IItem>(items: Array<T>, parent?: T | null): Array<T>;
 export declare class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
+    static EVENT_CHANGE: string;
     _items: Array<T>;
     readonly length: number;
     constructor(items?: Array<T>);

@@ -303,7 +303,7 @@ let OpalFileUpload = class OpalFileUpload extends rionite_1.BaseComponent {
     }
 };
 __decorate([
-    rionite_1.Param('dataList', { default: new cellx_1.ObservableList() }),
+    rionite_1.Param({ default: new cellx_1.ObservableList() }),
     __metadata("design:type", Object)
 ], OpalFileUpload.prototype, "dataList", void 0);
 __decorate([

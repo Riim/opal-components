@@ -41,7 +41,7 @@ let dragEl: HTMLElement | null = null;
 	}
 })
 export class OpalFileUpload extends BaseComponent {
-	@Param('dataList', { default: new ObservableList() })
+	@Param({ default: new ObservableList() })
 	dataList: TDataList;
 	@Param({ readonly: true })
 	allowType: string;

@@ -1,3 +1,4 @@
+import { OpalTextInputValidator } from '@riim/opal-text-input-validator';
 import { Cell, IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
@@ -34,6 +35,7 @@ export declare class OpalTextInput extends BaseComponent {
     _prevValue: string | null;
     readonly btnClearShown: boolean;
     readonly endIconShown: boolean;
+    validator: OpalTextInputValidator | null;
     elementAttached(): void;
     _onRowsChange(): void;
     _onParamValueChange(evt: IEvent): void;
@@ -51,4 +53,5 @@ export declare class OpalTextInput extends BaseComponent {
     blur(): this;
     enable(): this;
     disable(): this;
+    validate(): boolean;
 }

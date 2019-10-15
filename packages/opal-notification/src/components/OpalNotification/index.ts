@@ -176,11 +176,11 @@ export class OpalNotification extends BaseComponent {
 	}
 
 	focus(): this {
-		let focusEl = this.$<HTMLElement>('focus');
+		let focusTarget = this.$<HTMLElement>('focus');
 
-		if (focusEl) {
+		if (focusTarget) {
 			document.body.classList.remove('_noFocusHighlight');
-			focusEl.focus();
+			focusTarget.focus();
 		}
 
 		return this;

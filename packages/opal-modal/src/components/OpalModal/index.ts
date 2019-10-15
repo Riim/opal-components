@@ -182,11 +182,11 @@ export class OpalModal extends BaseComponent {
 
 	focus(): this {
 		if (this == openedModals[0]) {
-			let target = this.$<HTMLElement>('focus');
+			let focusTarget = this.$<HTMLElement>('focus');
 
-			(target || this.$<HTMLElement>('btnClose')!).focus();
+			(focusTarget || this.$<HTMLElement>('btnClose')!).focus();
 
-			if (target) {
+			if (focusTarget) {
 				document.body.classList.remove('_noFocusHighlight');
 			}
 		}

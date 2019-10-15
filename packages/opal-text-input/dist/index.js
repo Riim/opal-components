@@ -162,6 +162,7 @@ let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.Base
         this.tabIndex = 0;
         this.focused = false;
         this.disabled = false;
+        this.validator = null;
     }
     get _inputType() {
         return this.inputType;
@@ -213,7 +214,7 @@ let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.Base
     }
     _onTextFieldFocus() {
         this.focused = true;
-        this.emit('focus');
+        this.emit(OpalTextInput_1.EVENT_FOCUS);
     }
     _onTextFieldBlur() {
         this.focused = false;
@@ -280,6 +281,9 @@ let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.Base
     disable() {
         this.disabled = true;
         return this;
+    }
+    validate() {
+        return !this.validator || this.validator.validate();
     }
 };
 OpalTextInput.EVENT_BLUR = Symbol('blur');

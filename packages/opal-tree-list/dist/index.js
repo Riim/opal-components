@@ -225,7 +225,7 @@ class ObservableTreeList extends cellx_1.EventEmitter {
                 item.parent = parent;
             }
             items[index] = item;
-            this.emit('change');
+            this.emit(ObservableTreeList.EVENT_CHANGE);
         }
         return this;
     }
@@ -253,6 +253,7 @@ class ObservableTreeList extends cellx_1.EventEmitter {
     }
 }
 exports.ObservableTreeList = ObservableTreeList;
+ObservableTreeList.EVENT_CHANGE = 'change';
 ['forEach', 'map', 'filter', 'every', 'some'].forEach(name => {
     ObservableTreeList.prototype[name] = function (callback, context) {
         return this._items[name](function (item, index) {

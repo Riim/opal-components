@@ -1,3 +1,4 @@
+import { OpalTextInputValidator } from '@riim/opal-text-input-validator';
 import { Cell, IEvent } from 'cellx';
 import { Computed } from 'cellx-decorators';
 import {
@@ -114,6 +115,8 @@ export class OpalTextInput extends BaseComponent {
 		return !this.loading && !this.btnClearShown;
 	}
 
+	validator: OpalTextInputValidator | null = null;
+
 	elementAttached() {
 		this.textField = this.$<HTMLInputElement>('textField')!;
 
@@ -158,7 +161,7 @@ export class OpalTextInput extends BaseComponent {
 	@Listen('focus', '@textField')
 	_onTextFieldFocus() {
 		this.focused = true;
-		this.emit('focus');
+		this.emit(OpalTextInput.EVENT_FOCUS);
 	}
 
 	@Listen('blur', '@textField')
@@ -251,5 +254,9 @@ export class OpalTextInput extends BaseComponent {
 	disable(): this {
 		this.disabled = true;
 		return this;
+	}
+
+	validate(): boolean {
+		return !this.validator || this.validator.validate();
 	}
 }

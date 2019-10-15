@@ -202,6 +202,7 @@ let OpalTagSelect = OpalTagSelect_1 = class OpalTagSelect extends rionite_1.Base
         this.tabIndex = 0;
         this.focused = false;
         this.disabled = false;
+        this.validator = null;
     }
     get value() {
         return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
@@ -291,6 +292,9 @@ let OpalTagSelect = OpalTagSelect_1 = class OpalTagSelect extends rionite_1.Base
     disable() {
         this.disabled = true;
         return this;
+    }
+    validate() {
+        return !this.validator || this.validator.validate();
     }
 };
 OpalTagSelect.EVENT_CHANGE = Symbol('change');

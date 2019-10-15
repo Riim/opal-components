@@ -1,6 +1,7 @@
 import { IDataProvider } from '@riim/opal-loaded-list';
 import { OpalPopover } from '@riim/opal-popover';
 import { IDataListItem, OpalSelect, TDataList, TViewModel } from '@riim/opal-select';
+import { OpalSelectValidator } from '@riim/opal-select-validator';
 import { IEvent } from 'cellx';
 import { BaseComponent } from 'rionite';
 import './index.css';
@@ -54,6 +55,7 @@ export declare class OpalTagSelect extends BaseComponent {
     readonly placeholderShown: boolean;
     _selectDataListKeypath: string | null;
     select: OpalSelect;
+    validator: OpalSelectValidator | null;
     _isItemDisabled(item: IDataListItem): any;
     initialize(): void;
     ready(): void;
@@ -69,4 +71,5 @@ export declare class OpalTagSelect extends BaseComponent {
     blur(): this;
     enable(): this;
     disable(): this;
+    validate(): boolean;
 }

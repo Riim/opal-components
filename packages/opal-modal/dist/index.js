@@ -255,9 +255,9 @@ let OpalModal = OpalModal_1 = class OpalModal extends rionite_1.BaseComponent {
     }
     focus() {
         if (this == openedModals[0]) {
-            let target = this.$('focus');
-            (target || this.$('btnClose')).focus();
-            if (target) {
+            let focusTarget = this.$('focus');
+            (focusTarget || this.$('btnClose')).focus();
+            if (focusTarget) {
                 document.body.classList.remove('_noFocusHighlight');
             }
         }

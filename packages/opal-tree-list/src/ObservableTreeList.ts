@@ -19,6 +19,8 @@ export function setParent<T extends IItem>(items: Array<T>, parent: T | null = n
 }
 
 export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
+	static EVENT_CHANGE = 'change';
+
 	_items: Array<T>;
 
 	get length(): number {
@@ -104,7 +106,7 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 			}
 
 			items[index] = item;
-			this.emit('change');
+			this.emit(ObservableTreeList.EVENT_CHANGE);
 		}
 
 		return this;

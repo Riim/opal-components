@@ -4,6 +4,7 @@ import { OpalButton } from '@riim/opal-button';
 import { OpalDropdown } from '@riim/opal-dropdown';
 import { OpalFilteredList } from '@riim/opal-filtered-list';
 import { OpalLoadedList } from '@riim/opal-loaded-list';
+import { OpalSelectValidator } from '@riim/opal-select-validator';
 import { OpalSignButton } from '@riim/opal-sign-button';
 import { OpalTextInput } from '@riim/opal-text-input';
 import {
@@ -188,6 +189,8 @@ export class OpalSelect extends BaseComponent {
 	_onceFocusedAfterLoading: boolean = false;
 
 	_paramDataListSpecified: boolean;
+
+	validator: OpalSelectValidator | null = null;
 
 	_documentClickListening: IDisposableListening | null | undefined;
 	_documentFocusListening: IDisposableListening;
@@ -545,7 +548,7 @@ export class OpalSelect extends BaseComponent {
 			this.focus();
 		}
 
-		this.emit('deselect');
+		this.emit(OpalSelect.EVENT_DESELECT);
 
 		return false;
 	}
@@ -1004,5 +1007,9 @@ export class OpalSelect extends BaseComponent {
 	disable(): this {
 		this.disabled = true;
 		return this;
+	}
+
+	validate(): boolean {
+		return !this.validator || this.validator.validate();
 	}
 }

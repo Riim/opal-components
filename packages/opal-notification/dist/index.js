@@ -254,10 +254,10 @@ let OpalNotification = OpalNotification_1 = class OpalNotification extends rioni
         this.bar.removeAttribute('shown');
     }
     focus() {
-        let focusEl = this.$('focus');
-        if (focusEl) {
+        let focusTarget = this.$('focus');
+        if (focusTarget) {
             document.body.classList.remove('_noFocusHighlight');
-            focusEl.focus();
+            focusTarget.focus();
         }
         return this;
     }
