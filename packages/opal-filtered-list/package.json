@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-filtered-list",
-  "version": "0.38.24",
+  "version": "0.38.25",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,7 @@
   "dependencies": {
     "@riim/opal-icon": "^0.38.22",
     "@riim/opal-loaded-list": "^0.38.22",
-    "@riim/opal-text-input": "^0.38.24",
+    "@riim/opal-text-input": "^0.38.25",
     "cellx": "^1.9.16",
     "reflect-metadata": "^0.1.13",
     "rionite": "^0.37.61"
