@@ -18,6 +18,7 @@ export class OpalTextInputValidator extends OpalInputValidator {
 	ready() {
 		super.ready();
 		this.target = this.textInput = this.$<OpalTextInput>('textInput')!;
+		this.textInput.validator = this;
 	}
 
 	@Listen((ctor: typeof OpalTextInputValidator) => ctor.targetInputEvents, '@textInput')

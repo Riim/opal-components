@@ -155,6 +155,7 @@ let OpalTextInputValidator = OpalTextInputValidator_1 = class OpalTextInputValid
     ready() {
         super.ready();
         this.target = this.textInput = this.$('textInput');
+        this.textInput.validator = this;
     }
     _onTextInputInput() {
         if (this.failedRule) {

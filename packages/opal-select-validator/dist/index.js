@@ -151,6 +151,7 @@ let OpalSelectValidator = class OpalSelectValidator extends opal_input_validator
     ready() {
         super.ready();
         this.target = this.select = this.$('select');
+        this.select.validator = this;
     }
     _checkValue(rule) {
         let vm = this.select.viewModel;

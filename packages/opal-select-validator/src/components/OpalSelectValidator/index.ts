@@ -17,6 +17,7 @@ export class OpalSelectValidator extends OpalInputValidator {
 	ready() {
 		super.ready();
 		this.target = this.select = this.$<OpalSelect>('select')!;
+		this.select.validator = this;
 	}
 
 	_checkValue(rule: OpalSelectValidatorRule): boolean {
