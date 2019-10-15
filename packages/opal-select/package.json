@@ -21,7 +21,6 @@
     "@riim/opal-icon": "^0.38.22",
     "@riim/opal-loaded-list": "^0.38.22",
     "@riim/opal-loader": "^0.38.22",
-    "@riim/opal-select-validator": "^0.38.24",
     "@riim/opal-sign-button": "^0.38.22",
     "@riim/opal-text-input": "^0.38.24",
     "cellx": "^1.9.16",

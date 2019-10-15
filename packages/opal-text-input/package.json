@@ -15,7 +15,6 @@
   "dependencies": {
     "@riim/opal-icon": "^0.38.22",
     "@riim/opal-loader": "^0.38.22",
-    "@riim/opal-text-input-validator": "^0.38.24",
     "cellx": "^1.9.16",
     "cellx-decorators": "^1.5.4",
     "reflect-metadata": "^0.1.13",

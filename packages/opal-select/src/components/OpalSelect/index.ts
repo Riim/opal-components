@@ -4,7 +4,6 @@ import { OpalButton } from '@riim/opal-button';
 import { OpalDropdown } from '@riim/opal-dropdown';
 import { OpalFilteredList } from '@riim/opal-filtered-list';
 import { OpalLoadedList } from '@riim/opal-loaded-list';
-import { OpalSelectValidator } from '@riim/opal-select-validator';
 import { OpalSignButton } from '@riim/opal-sign-button';
 import { OpalTextInput } from '@riim/opal-text-input';
 import {
@@ -190,7 +189,7 @@ export class OpalSelect extends BaseComponent {
 
 	_paramDataListSpecified: boolean;
 
-	validator: OpalSelectValidator | null = null;
+	validator: { validate(): boolean } | null = null;
 
 	_documentClickListening: IDisposableListening | null | undefined;
 	_documentFocusListening: IDisposableListening;

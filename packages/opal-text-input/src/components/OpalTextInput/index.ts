@@ -1,4 +1,3 @@
-import { OpalTextInputValidator } from '@riim/opal-text-input-validator';
 import { Cell, IEvent } from 'cellx';
 import { Computed } from 'cellx-decorators';
 import {
@@ -115,7 +114,7 @@ export class OpalTextInput extends BaseComponent {
 		return !this.loading && !this.btnClearShown;
 	}
 
-	validator: OpalTextInputValidator | null = null;
+	validator: { validate(): boolean } | null = null;
 
 	elementAttached() {
 		this.textField = this.$<HTMLInputElement>('textField')!;

@@ -1,5 +1,4 @@
 import { OpalButton } from '@riim/opal-button';
-import { OpalSelectValidator } from '@riim/opal-select-validator';
 import { OpalTextInput } from '@riim/opal-text-input';
 import { Cell, IEvent, ObservableList } from 'cellx';
 import { BaseComponent, IComponentElement, IDisposableListening } from 'rionite';
@@ -86,7 +85,9 @@ export declare class OpalSelect extends BaseComponent {
     _valueOnOpen: Array<string>;
     _onceFocusedAfterLoading: boolean;
     _paramDataListSpecified: boolean;
-    validator: OpalSelectValidator | null;
+    validator: {
+        validate(): boolean;
+    } | null;
     _documentClickListening: IDisposableListening | null | undefined;
     _documentFocusListening: IDisposableListening;
     _documentKeyDownListening: IDisposableListening | null | undefined;

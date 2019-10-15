@@ -7,7 +7,6 @@ import {
 	TDataList,
 	TViewModel
 	} from '@riim/opal-select';
-import { OpalSelectValidator } from '@riim/opal-select-validator';
 import {
 	Cell,
 	define,
@@ -166,7 +165,7 @@ export class OpalTagSelect extends BaseComponent {
 
 	select: OpalSelect;
 
-	validator: OpalSelectValidator | null = null;
+	validator: { validate(): boolean } | null = null;
 
 	_isItemDisabled(item: IDataListItem) {
 		return this.disabled || item[this._viewModelItemDisabledFieldName];
