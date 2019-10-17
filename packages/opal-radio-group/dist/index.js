@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "rionite", "cellx-decorators"], factory);
+		define(["rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-radio-group"] = factory(require("reflect-metadata"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-radio-group"] = factory(require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-radio-group"] = factory(root["reflect-metadata"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__5__) {
+		root["@riim/opal-radio-group"] = factory(root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,31 +91,30 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "RUUp");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
 
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__export(__webpack_require__(2));
-
-
-/***/ }),
-/* 1 */
+/***/ "Gyxf":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalRadioButton{position:relative;display:inline-block}.OpalRadioButton .OpalRadioButton__label:hover .OpalRadioButton__control{border-color:#8a8a8a}.OpalRadioButton .OpalRadioButton__label:hover .OpalRadioButton__control:focus{border-color:#33a0ff}.OpalRadioButton .OpalRadioButton__input{display:none}.OpalRadioButton .OpalRadioButton__control{position:relative;top:-2px;display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;width:22px;height:22px;border:2px solid #a3a3a3;border-radius:50%;background:#fff;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.OpalRadioButton .OpalRadioButton__control:focus{outline:0;border-color:#33a0ff}.OpalRadioButton[checked] .OpalRadioButton__control::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:10px;height:10px;border-radius:50%;background:#000;content:''}.OpalRadioButton[disabled]{opacity:.5;pointer-events:none}.OpalRadioButton[disabled] .OpalRadioButton__control{background:#e6e6e6}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
 
 /***/ }),
-/* 2 */
+
+/***/ "RUUp":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -130,8 +129,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const rionite_1 = __webpack_require__(3);
-const OpalRadioButton_1 = __webpack_require__(4);
+const rionite_1 = __webpack_require__("u4yd");
+const OpalRadioButton_1 = __webpack_require__("thMs");
 exports.OpalRadioButton = OpalRadioButton_1.OpalRadioButton;
 const forEach = Array.prototype.forEach;
 let OpalRadioGroup = class OpalRadioGroup extends rionite_1.BaseComponent {
@@ -171,13 +170,17 @@ exports.OpalRadioGroup = OpalRadioGroup;
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
+/***/ "aUPk":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("label:label {\ninput:input (type=checkbox)\nspan:control (tabindex={_tabIndex})\n' '\nRnSlot:contentSlot\n}");
 
 /***/ }),
-/* 4 */
+
+/***/ "thMs":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -193,10 +196,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalRadioButton_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const cellx_decorators_1 = __webpack_require__(5);
-const rionite_1 = __webpack_require__(3);
-__webpack_require__(6);
-const template_rnt_1 = __webpack_require__(7);
+const cellx_decorators_1 = __webpack_require__("yOaX");
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("Gyxf");
+const template_rnt_1 = __webpack_require__("aUPk");
 let OpalRadioButton = OpalRadioButton_1 = class OpalRadioButton extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -358,36 +361,20 @@ exports.OpalRadioButton = OpalRadioButton;
 
 
 /***/ }),
-/* 5 */
+
+/***/ "u4yd":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 /***/ }),
-/* 6 */
+
+/***/ "yOaX":
 /***/ (function(module, exports) {
 
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".OpalRadioButton{position:relative;display:inline-block}.OpalRadioButton .OpalRadioButton__label:hover .OpalRadioButton__control{border-color:#8a8a8a}.OpalRadioButton .OpalRadioButton__label:hover .OpalRadioButton__control:focus{border-color:#33a0ff}.OpalRadioButton .OpalRadioButton__input{display:none}.OpalRadioButton .OpalRadioButton__control{position:relative;top:-2px;display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;width:22px;height:22px;border:2px solid #a3a3a3;border-radius:50%;background:#fff;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.OpalRadioButton .OpalRadioButton__control:focus{outline:0;border-color:#33a0ff}.OpalRadioButton[checked] .OpalRadioButton__control::before{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:10px;height:10px;border-radius:50%;background:#000;content:''}.OpalRadioButton[disabled]{opacity:.5;pointer-events:none}.OpalRadioButton[disabled] .OpalRadioButton__control{background:#e6e6e6}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("label:label {\ninput:input (type=checkbox)\nspan:control (tabindex={_tabIndex})\n' '\nRnSlot:contentSlot\n}");
+module.exports = __WEBPACK_EXTERNAL_MODULE_yOaX__;
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });

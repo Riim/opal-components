@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("rionite"));
+		module.exports = factory(require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "rionite"], factory);
+		define(["rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-group"] = factory(require("reflect-metadata"), require("rionite"));
+		exports["@riim/opal-group"] = factory(require("rionite"));
 	else
-		root["@riim/opal-group"] = factory(root["reflect-metadata"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__) {
+		root["@riim/opal-group"] = factory(root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,62 +91,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "a95g");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
 
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__export(__webpack_require__(2));
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const rionite_1 = __webpack_require__(3);
-__webpack_require__(4);
-let OpalGroup = class OpalGroup extends rionite_1.BaseComponent {
-};
-OpalGroup = __decorate([
-    rionite_1.Component({
-        elementIs: 'OpalGroup'
-    })
-], OpalGroup);
-exports.OpalGroup = OpalGroup;
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
-
-/***/ }),
-/* 4 */
+/***/ "EeEf":
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -162,6 +112,40 @@ module.exports = (function(d) {
     })(document);
 
 
+/***/ }),
+
+/***/ "a95g":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("EeEf");
+let OpalGroup = class OpalGroup extends rionite_1.BaseComponent {
+};
+OpalGroup = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalGroup'
+    })
+], OpalGroup);
+exports.OpalGroup = OpalGroup;
+
+
+/***/ }),
+
+/***/ "u4yd":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
 /***/ })
-/******/ ]);
+
+/******/ });
 });

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-text-input"), require("reflect-metadata"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("@riim/opal-text-input"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-text-input", "reflect-metadata", "cellx-decorators", "rionite"], factory);
+		define(["@riim/opal-text-input", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-input-mask"] = factory(require("@riim/opal-text-input"), require("reflect-metadata"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-input-mask"] = factory(require("@riim/opal-text-input"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-input-mask"] = factory(root["@riim/opal-text-input"], root["reflect-metadata"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__) {
+		root["@riim/opal-input-mask"] = factory(root["@riim/opal-text-input"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,38 +91,65 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "X+JO");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "DWkP":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot");
+
+/***/ }),
+
+/***/ "Vtn7":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__export(__webpack_require__(3));
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("lXXY");
+let OpalInputMaskDefinition = class OpalInputMaskDefinition extends rionite_1.BaseComponent {
+};
+__decorate([
+    rionite_1.Param({
+        required: true,
+        readonly: true
+    }),
+    __metadata("design:type", String)
+], OpalInputMaskDefinition.prototype, "maskChar", void 0);
+__decorate([
+    rionite_1.Param({
+        type: eval,
+        required: true,
+        readonly: true
+    }),
+    __metadata("design:type", RegExp)
+], OpalInputMaskDefinition.prototype, "regex", void 0);
+OpalInputMaskDefinition = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalInputMaskDefinition'
+    })
+], OpalInputMaskDefinition);
+exports.OpalInputMaskDefinition = OpalInputMaskDefinition;
 
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
-
-/***/ }),
-/* 3 */
+/***/ "X+JO":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -138,12 +165,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalInputMask_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const opal_text_input_1 = __webpack_require__(1);
-const cellx_decorators_1 = __webpack_require__(4);
-const rionite_1 = __webpack_require__(5);
-const OpalInputMaskDefinition_1 = __webpack_require__(6);
+const opal_text_input_1 = __webpack_require__("hl6F");
+const cellx_decorators_1 = __webpack_require__("yOaX");
+const rionite_1 = __webpack_require__("u4yd");
+const OpalInputMaskDefinition_1 = __webpack_require__("Vtn7");
 exports.OpalInputMaskDefinition = OpalInputMaskDefinition_1.OpalInputMaskDefinition;
-const template_rnt_1 = __webpack_require__(8);
+const template_rnt_1 = __webpack_require__("DWkP");
 const forEach = Array.prototype.forEach;
 const iPhone = /iphone/i.test(navigator.userAgent);
 const ie11 = !window.ActiveXObject && 'ActiveXObject' in window;
@@ -473,62 +500,15 @@ exports.OpalInputMask = OpalInputMask;
 
 
 /***/ }),
-/* 4 */
+
+/***/ "hl6F":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_hl6F__;
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const rionite_1 = __webpack_require__(5);
-__webpack_require__(7);
-let OpalInputMaskDefinition = class OpalInputMaskDefinition extends rionite_1.BaseComponent {
-};
-__decorate([
-    rionite_1.Param({
-        required: true,
-        readonly: true
-    }),
-    __metadata("design:type", String)
-], OpalInputMaskDefinition.prototype, "maskChar", void 0);
-__decorate([
-    rionite_1.Param({
-        type: eval,
-        required: true,
-        readonly: true
-    }),
-    __metadata("design:type", RegExp)
-], OpalInputMaskDefinition.prototype, "regex", void 0);
-OpalInputMaskDefinition = __decorate([
-    rionite_1.Component({
-        elementIs: 'OpalInputMaskDefinition'
-    })
-], OpalInputMaskDefinition);
-exports.OpalInputMaskDefinition = OpalInputMaskDefinition;
-
-
-/***/ }),
-/* 7 */
+/***/ "lXXY":
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -545,13 +525,20 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot");
+/***/ "u4yd":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "yOaX":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_yOaX__;
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("@riim/escape-regexp"), require("@riim/gettext"), require("@riim/next-tick"), require("@riim/uid"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("cellx"), require("@riim/next-tick"), require("@riim/gettext"), require("@riim/uid"), require("rionite"), require("@riim/escape-regexp"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-icon", "@riim/opal-loader", "reflect-metadata", "@riim/escape-regexp", "@riim/gettext", "@riim/next-tick", "@riim/uid", "cellx", "cellx-decorators", "rionite"], factory);
+		define(["cellx", "@riim/next-tick", "@riim/gettext", "@riim/uid", "rionite", "@riim/escape-regexp", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-file-upload"] = factory(require("@riim/opal-icon"), require("@riim/opal-loader"), require("reflect-metadata"), require("@riim/escape-regexp"), require("@riim/gettext"), require("@riim/next-tick"), require("@riim/uid"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-file-upload"] = factory(require("cellx"), require("@riim/next-tick"), require("@riim/gettext"), require("@riim/uid"), require("rionite"), require("@riim/escape-regexp"), require("cellx-decorators"));
 	else
-		root["@riim/opal-file-upload"] = factory(root["@riim/opal-icon"], root["@riim/opal-loader"], root["reflect-metadata"], root["@riim/escape-regexp"], root["@riim/gettext"], root["@riim/next-tick"], root["@riim/uid"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__) {
+		root["@riim/opal-file-upload"] = factory(root["cellx"], root["@riim/next-tick"], root["@riim/gettext"], root["@riim/uid"], root["rionite"], root["@riim/escape-regexp"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_mtvJ__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_xFbw__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,45 +91,44 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "bz19");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
 
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-__export(__webpack_require__(4));
-
-
-/***/ }),
-/* 1 */
+/***/ "4j08":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalFileUpload{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;min-width:400px;border:1px solid #ccc;color:#4d4d4d;font-size:1rem;line-height:1.5}.OpalFileUpload .OpalFileUpload__fileList{margin:0;padding:0;list-style:none}.OpalFileUpload .OpalFileUpload__file{position:relative;margin-bottom:10px;padding:12px 52px 12px 20px;border-radius:3px;background:#f2f2f2;cursor:move}.OpalFileUpload .OpalFileUpload__file[ghost]{opacity:.4}.OpalFileUpload .OpalFileUpload__filePreviewWrapper{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;margin-right:10px;width:48px;height:48px;vertical-align:middle;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.OpalFileUpload .OpalFileUpload__fileLoader{border:0}.OpalFileUpload .OpalFileUpload__filePreview{max-width:100%;max-height:100%;border:0;border-radius:3px}.OpalFileUpload .OpalFileUpload__fileIcon{width:36px;height:36px;stroke:currentColor;stroke-linecap:butt;stroke-linejoin:miter;fill:none}.OpalFileUpload .OpalFileUpload__fileText{vertical-align:middle;font-weight:700}.OpalFileUpload .OpalFileUpload__btnRemoveFile{position:absolute;top:0;right:10px;bottom:0;display:-webkit-box;display:-ms-flexbox;display:flex;margin:auto;width:42px;height:42px;border:0;background:0 0;opacity:.5;cursor:pointer;-webkit-transition:opacity .1s;-o-transition:opacity .1s;transition:opacity .1s;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.OpalFileUpload .OpalFileUpload__btnRemoveFile:hover{opacity:1}.OpalFileUpload .OpalFileUpload__btnRemoveFile:active{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.OpalFileUpload .OpalFileUpload__btnRemoveFileIcon{display:block;width:24px;height:24px;stroke:currentColor;stroke-linecap:butt;stroke-linejoin:miter;fill:none}.OpalFileUpload .OpalFileUpload__dropZone{position:relative;padding:25px;border:2px dashed #999;border-radius:5px;background:#f2f2f2;color:gray;text-align:center;cursor:pointer}.OpalFileUpload .OpalFileUpload__dropZone[hovering]{border-color:#168cf3}.OpalFileUpload .OpalFileUpload__dropZone[hovering] .OpalFileUpload__dropZoneText{pointer-events:none}.OpalFileUpload .OpalFileUpload__dropZone[error] .OpalFileUpload__dropZoneErrorMessageWrapper{display:block}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessageWrapper{position:absolute;top:0;right:0;bottom:0;left:0;display:none;border-radius:inherit;background:inherit;white-space:nowrap;font-size:0}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessageWrapper::after{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessage{color:red;vertical-align:middle;font-size:1rem}.OpalFileUpload .OpalFileUpload__btnSelectFiles{display:inline;padding:0;border:0;background:0 0;color:#168cf3;font:inherit;cursor:inherit}.OpalFileUpload .OpalFileUpload__filesInput{display:none}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
 
 /***/ }),
-/* 2 */
+
+/***/ "P7z7":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_P7z7__;
 
 /***/ }),
-/* 3 */
+
+/***/ "WTz/":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_WTz___;
 
 /***/ }),
-/* 4 */
+
+/***/ "bz19":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -144,15 +143,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const escape_regexp_1 = __webpack_require__(5);
-const gettext_1 = __webpack_require__(6);
-const next_tick_1 = __webpack_require__(7);
-const uid_1 = __webpack_require__(8);
-const cellx_1 = __webpack_require__(9);
-const cellx_decorators_1 = __webpack_require__(10);
-const rionite_1 = __webpack_require__(11);
-__webpack_require__(12);
-const template_rnt_1 = __webpack_require__(13);
+const escape_regexp_1 = __webpack_require__("xFbw");
+const gettext_1 = __webpack_require__("eaeG");
+const next_tick_1 = __webpack_require__("WTz/");
+const uid_1 = __webpack_require__("mtvJ");
+const cellx_1 = __webpack_require__("P7z7");
+const cellx_decorators_1 = __webpack_require__("yOaX");
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("4j08");
+const template_rnt_1 = __webpack_require__("wdmy");
 let dragEl = null;
 let OpalFileUpload = class OpalFileUpload extends rionite_1.BaseComponent {
     get files() {
@@ -386,72 +385,50 @@ exports.OpalFileUpload = OpalFileUpload;
 
 
 /***/ }),
-/* 5 */
+
+/***/ "eaeG":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_eaeG__;
 
 /***/ }),
-/* 6 */
+
+/***/ "mtvJ":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_mtvJ__;
 
 /***/ }),
-/* 7 */
+
+/***/ "u4yd":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".OpalFileUpload{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;min-width:400px;border:1px solid #ccc;color:#4d4d4d;font-size:1rem;line-height:1.5}.OpalFileUpload .OpalFileUpload__fileList{margin:0;padding:0;list-style:none}.OpalFileUpload .OpalFileUpload__file{position:relative;margin-bottom:10px;padding:12px 52px 12px 20px;border-radius:3px;background:#f2f2f2;cursor:move}.OpalFileUpload .OpalFileUpload__file[ghost]{opacity:.4}.OpalFileUpload .OpalFileUpload__filePreviewWrapper{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;margin-right:10px;width:48px;height:48px;vertical-align:middle;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.OpalFileUpload .OpalFileUpload__fileLoader{border:0}.OpalFileUpload .OpalFileUpload__filePreview{max-width:100%;max-height:100%;border:0;border-radius:3px}.OpalFileUpload .OpalFileUpload__fileIcon{width:36px;height:36px;stroke:currentColor;stroke-linecap:butt;stroke-linejoin:miter;fill:none}.OpalFileUpload .OpalFileUpload__fileText{vertical-align:middle;font-weight:700}.OpalFileUpload .OpalFileUpload__btnRemoveFile{position:absolute;top:0;right:10px;bottom:0;display:-webkit-box;display:-ms-flexbox;display:flex;margin:auto;width:42px;height:42px;border:0;background:0 0;opacity:.5;cursor:pointer;-webkit-transition:opacity .1s;-o-transition:opacity .1s;transition:opacity .1s;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.OpalFileUpload .OpalFileUpload__btnRemoveFile:hover{opacity:1}.OpalFileUpload .OpalFileUpload__btnRemoveFile:active{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.OpalFileUpload .OpalFileUpload__btnRemoveFileIcon{display:block;width:24px;height:24px;stroke:currentColor;stroke-linecap:butt;stroke-linejoin:miter;fill:none}.OpalFileUpload .OpalFileUpload__dropZone{position:relative;padding:25px;border:2px dashed #999;border-radius:5px;background:#f2f2f2;color:gray;text-align:center;cursor:pointer}.OpalFileUpload .OpalFileUpload__dropZone[hovering]{border-color:#168cf3}.OpalFileUpload .OpalFileUpload__dropZone[hovering] .OpalFileUpload__dropZoneText{pointer-events:none}.OpalFileUpload .OpalFileUpload__dropZone[error] .OpalFileUpload__dropZoneErrorMessageWrapper{display:block}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessageWrapper{position:absolute;top:0;right:0;bottom:0;left:0;display:none;border-radius:inherit;background:inherit;white-space:nowrap;font-size:0}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessageWrapper::after{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessage{color:red;vertical-align:middle;font-size:1rem}.OpalFileUpload .OpalFileUpload__btnSelectFiles{display:inline;padding:0;border:0;background:0 0;color:#168cf3;font:inherit;cursor:inherit}.OpalFileUpload .OpalFileUpload__filesInput{display:none}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 13 */
+/***/ "wdmy":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("ul:fileList {\nli:file (@for=fileData in dataList, draggable=true, data-file-data-uid={fileData |uid }) {\ndiv:filePreviewWrapper {\n@IfThen (if='fileData |_isImage') {\nOpalLoader:fileLoader (\n@unless='fileData.url |or(fileData.dataURI)',\nsize=s,\nshown\n)\nimg:filePreview (\n@if='fileData.url |or(fileData.dataURI)',\nsrc='{fileData.url |or(fileData.dataURI)}',\ndraggable=false\n)\n}\nsvg:fileIcon (@unless='fileData |_isImage', stroke-width=2) {\nuse (xlink:href=#OpalIcon__iconFile)\n}\n}\nspan:fileText {\n'{fileData.name}'\n}\nbutton:btnRemoveFile (type=button) {\nsvg:btnRemoveFileIcon (stroke-width=2) {\nuse (xlink:href=#OpalIcon__iconCross)\n}\n}\n}\n}\ndiv:dropZone (error={errorMessage |bool }) {\ndiv:dropZoneErrorMessageWrapper {\nspan:dropZoneErrorMessage {\n'{errorMessage}'\n}\n}\nspan:dropZoneText {\n'{\"Перетащите файлы в эту область или\" |t }'\nbr\nbutton:btnSelectFiles (type=button) {\n'{\"нажмите для выбора в проводнике\" |t }'\n}\n}\n}\ninput:filesInput (type=file, multiple)");
 
+/***/ }),
+
+/***/ "xFbw":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_xFbw__;
+
+/***/ }),
+
+/***/ "yOaX":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_yOaX__;
+
 /***/ })
-/******/ ]);
+
+/******/ });
 });

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "cellx-decorators", "rionite"], factory);
+		define(["rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-slider"] = factory(require("reflect-metadata"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-slider"] = factory(require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-slider"] = factory(root["reflect-metadata"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__) {
+		root["@riim/opal-slider"] = factory(root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,31 +91,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "0Nex");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
 
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__export(__webpack_require__(2));
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
-
-/***/ }),
-/* 2 */
+/***/ "0Nex":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -131,10 +112,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalSlider_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const cellx_decorators_1 = __webpack_require__(3);
-const rionite_1 = __webpack_require__(4);
-__webpack_require__(5);
-const template_rnt_1 = __webpack_require__(6);
+const cellx_decorators_1 = __webpack_require__("yOaX");
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("1g8T");
+const template_rnt_1 = __webpack_require__("vUBf");
 let OpalSlider = OpalSlider_1 = class OpalSlider extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -216,19 +197,8 @@ exports.OpalSlider = OpalSlider;
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
-
-/***/ }),
-/* 5 */
+/***/ "1g8T":
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -245,13 +215,29 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 6 */
+
+/***/ "u4yd":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vUBf":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("@IfThen (range) {\ndiv:firstInputWrapper3 {\ndiv:firstInputWrapper2 (style=width: {_firstInputWidth}%) {\ndiv:firstInputWrapper {\ninput:firstInput (\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={range.0}\n)\n}\n}\n}\ndiv:secondInputWrapper {\ninput:secondInput (\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={range.1}\n)\n}\n}\ninput:input (\n@unless=range,\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={value}\n)");
 
+/***/ }),
+
+/***/ "yOaX":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_yOaX__;
+
 /***/ })
-/******/ ]);
+
+/******/ });
 });

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("cellx"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "cellx", "cellx-decorators", "rionite"], factory);
+		define(["cellx", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-modal"] = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-modal"] = factory(require("cellx"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-modal"] = factory(root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__) {
+		root["@riim/opal-modal"] = factory(root["cellx"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,31 +91,37 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "Tz1Y");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
 
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__export(__webpack_require__(2));
-
-
-/***/ }),
-/* 1 */
+/***/ "2dyO":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = "opal-modal{display:none}.OpalModal{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1000;display:none;overflow-x:auto;overflow-y:scroll;-webkit-box-sizing:border-box;box-sizing:border-box;padding:20px;background:rgba(0,0,0,.6);text-align:center;white-space:nowrap;cursor:pointer}.OpalModal::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.OpalModal .OpalModal__window{position:relative;display:inline-block;padding:30px;border-radius:3px;background:#fff;-webkit-box-shadow:0 0 20px rgba(0,0,0,.3);box-shadow:0 0 20px rgba(0,0,0,.3);vertical-align:middle;text-align:left;white-space:normal;cursor:default}.OpalModal .OpalModal__window:hover .OpalModal__btnClose::before,.OpalModal .OpalModal__window:hover .OpalModal__btnClose::after{background:#ccc}.OpalModal .OpalModal__window:hover .OpalModal__btnClose:hover::before,.OpalModal .OpalModal__window:hover .OpalModal__btnClose:hover::after{background:#fff}.OpalModal .OpalModal__window:hover .OpalModal__btnClose:active::before,.OpalModal .OpalModal__window:hover .OpalModal__btnClose:active::after{background:#999}.OpalModal .OpalModal__btnCloseWrapper{position:absolute;top:-10px;left:100%;padding:0 10px;height:100%;pointer-events:none}.OpalModal .OpalModal__btnClose{position:relative;position:-webkit-sticky;position:sticky;top:10px;-webkit-box-sizing:content-box;box-sizing:content-box;padding:10px;width:25px;height:25px;border:0;background:0 0;cursor:pointer;pointer-events:auto}.OpalModal .OpalModal__btnClose::before,.OpalModal .OpalModal__btnClose::after{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:25px;height:3px;border-radius:2px;background:#fff;content:'';-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.OpalModal .OpalModal__btnClose::after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.OpalModal .OpalModal__btnClose:hover::before,.OpalModal .OpalModal__btnClose:hover::after{background:#fff}.OpalModal .OpalModal__btnClose:active::before,.OpalModal .OpalModal__btnClose:active::after{background:#999}.OpalModal .OpalModal__contentSlot{position:relative;display:block}.OpalModal[opened]{display:block}.OpalModal._overlapped{left:100%;overflow:visible}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
 
 /***/ }),
-/* 2 */
+
+/***/ "P7z7":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_P7z7__;
+
+/***/ }),
+
+/***/ "Tz1Y":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -131,11 +137,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalModal_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const cellx_1 = __webpack_require__(3);
-const cellx_decorators_1 = __webpack_require__(4);
-const rionite_1 = __webpack_require__(5);
-__webpack_require__(6);
-const template_rnt_1 = __webpack_require__(7);
+const cellx_1 = __webpack_require__("P7z7");
+const cellx_decorators_1 = __webpack_require__("yOaX");
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("2dyO");
+const template_rnt_1 = __webpack_require__("fRrV");
 const openedModals = [];
 let documentFocusListening;
 let documentKeyUpListening;
@@ -303,48 +309,29 @@ exports.OpalModal = OpalModal;
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = "opal-modal{display:none}.OpalModal{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1000;display:none;overflow-x:auto;overflow-y:scroll;-webkit-box-sizing:border-box;box-sizing:border-box;padding:20px;background:rgba(0,0,0,.6);text-align:center;white-space:nowrap;cursor:pointer}.OpalModal::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.OpalModal .OpalModal__window{position:relative;display:inline-block;padding:30px;border-radius:3px;background:#fff;-webkit-box-shadow:0 0 20px rgba(0,0,0,.3);box-shadow:0 0 20px rgba(0,0,0,.3);vertical-align:middle;text-align:left;white-space:normal;cursor:default}.OpalModal .OpalModal__window:hover .OpalModal__btnClose::before,.OpalModal .OpalModal__window:hover .OpalModal__btnClose::after{background:#ccc}.OpalModal .OpalModal__window:hover .OpalModal__btnClose:hover::before,.OpalModal .OpalModal__window:hover .OpalModal__btnClose:hover::after{background:#fff}.OpalModal .OpalModal__window:hover .OpalModal__btnClose:active::before,.OpalModal .OpalModal__window:hover .OpalModal__btnClose:active::after{background:#999}.OpalModal .OpalModal__btnCloseWrapper{position:absolute;top:-10px;left:100%;padding:0 10px;height:100%;pointer-events:none}.OpalModal .OpalModal__btnClose{position:relative;position:-webkit-sticky;position:sticky;top:10px;-webkit-box-sizing:content-box;box-sizing:content-box;padding:10px;width:25px;height:25px;border:0;background:0 0;cursor:pointer;pointer-events:auto}.OpalModal .OpalModal__btnClose::before,.OpalModal .OpalModal__btnClose::after{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:25px;height:3px;border-radius:2px;background:#fff;content:'';-webkit-transition:background .1s linear;-o-transition:background .1s linear;transition:background .1s linear;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.OpalModal .OpalModal__btnClose::after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.OpalModal .OpalModal__btnClose:hover::before,.OpalModal .OpalModal__btnClose:hover::after{background:#fff}.OpalModal .OpalModal__btnClose:active::before,.OpalModal .OpalModal__btnClose:active::after{background:#999}.OpalModal .OpalModal__contentSlot{position:relative;display:block}.OpalModal[opened]{display:block}.OpalModal._overlapped{left:100%;overflow:visible}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 7 */
+/***/ "fRrV":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("div:window {\ndiv:btnCloseWrapper {\nbutton:btnClose (type=button)\n}\nRnSlot:contentSlot (@if=contentRendered)\n}");
 
+/***/ }),
+
+/***/ "u4yd":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "yOaX":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_yOaX__;
+
 /***/ })
-/******/ ]);
+
+/******/ });
 });

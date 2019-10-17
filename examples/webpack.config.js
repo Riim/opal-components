@@ -1,21 +1,16 @@
-let path = require('path');
-let webpack = require('webpack');
-let postcssCSSVariables = require('postcss-css-variables');
-let postcssRioniteComponent = require('postcss-rionite-component');
-let postcssColorFunction = require('postcss-color-function');
-let autoprefixer = require('autoprefixer');
-let csso = require('postcss-csso');
+const path = require('path');
+const webpack = require('webpack');
+const postcssRioniteComponent = require('postcss-rionite-component');
+const postcssColorFunction = require('postcss-color-function');
+const autoprefixer = require('autoprefixer');
+const csso = require('postcss-csso');
 
 module.exports = env => {
 	if (!env) {
 		env = {};
 	}
 
-	let plugins = [
-		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-		})
-	];
+	let plugins = [];
 
 	return {
 		mode: 'none',
@@ -46,7 +41,7 @@ module.exports = env => {
 				},
 				{
 					test: /\.rnt$/,
-					loader: ['raw-loader', 'collapse-line-breaks-loader', 'trim-lines-loader']
+					loader: ['raw-loader', 'trim-lines-loader', 'collapse-line-breaks-loader']
 				},
 				{
 					test: /\.css$/,
@@ -56,7 +51,6 @@ module.exports = env => {
 							loader: 'postcss-loader',
 							options: {
 								plugins: [
-									postcssCSSVariables(),
 									postcssRioniteComponent(),
 									postcssColorFunction(),
 									autoprefixer({ browsers: ['last 3 versions'] }),
@@ -68,7 +62,10 @@ module.exports = env => {
 				},
 				{
 					test: /\.svg$/,
-					loader: 'simple-svg-loader'
+					loader: 'simple-svg-loader',
+					options: {
+						removeAttributes: ['stroke-width', 'stroke', 'fill']
+					}
 				}
 			]
 		},

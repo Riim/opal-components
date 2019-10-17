@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("cellx"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "cellx", "cellx-decorators", "rionite"], factory);
+		define(["cellx", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-popover"] = factory(require("reflect-metadata"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-popover"] = factory(require("cellx"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-popover"] = factory(root["reflect-metadata"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__) {
+		root["@riim/opal-popover"] = factory(root["cellx"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,31 +91,28 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "WwGH");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
 
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__export(__webpack_require__(2));
-
-
-/***/ }),
-/* 1 */
+/***/ "P7z7":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_P7z7__;
 
 /***/ }),
-/* 2 */
+
+/***/ "UFjE":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("span:arrow\nRnSlot:contentSlot (@if=contentRendered)");
+
+/***/ }),
+
+/***/ "WwGH":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -131,11 +128,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalPopover_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const cellx_1 = __webpack_require__(3);
-const cellx_decorators_1 = __webpack_require__(4);
-const rionite_1 = __webpack_require__(5);
-__webpack_require__(6);
-const template_rnt_1 = __webpack_require__(7);
+const cellx_1 = __webpack_require__("P7z7");
+const cellx_decorators_1 = __webpack_require__("yOaX");
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("fDbg");
+const template_rnt_1 = __webpack_require__("UFjE");
 let OpalPopover = OpalPopover_1 = class OpalPopover extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -322,25 +319,8 @@ exports.OpalPopover = OpalPopover;
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
-
-/***/ }),
-/* 6 */
+/***/ "fDbg":
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -357,13 +337,20 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("span:arrow\nRnSlot:contentSlot (@if=contentRendered)");
+/***/ "u4yd":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "yOaX":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_yOaX__;
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });

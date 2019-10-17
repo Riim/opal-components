@@ -4,7 +4,7 @@
   "description": "[Rionite](https://github.com/Riim/Rionite) component set.",
   "main": "index.js",
   "scripts": {
-    "build": "gulp",
+    "build": "webpack && gulp movePackagesDTS",
     "build-examples": "webpack --config=examples/webpack.config.js --env.dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,16 +22,16 @@
     "ajv": "6.8.1"
   },
   "devDependencies": {
-    "autoprefixer": "^9.6.4",
+    "@riim/pascalize": "^1.0.1",
+    "autoprefixer": "^9.6.5",
     "awesome-typescript-loader": "^5.2.1",
     "collapse-line-breaks-loader": "^0.2.1",
     "glob": "^7.1.4",
     "gulp": "^4.0.2",
     "gulp-util": "^3.0.8",
-    "lerna": "^3.17.0",
+    "lerna": "^3.18.1",
     "mkdirp": "^0.5.1",
     "postcss-color-function": "^4.1.0",
-    "postcss-css-variables": "^0.13.0",
     "postcss-csso": "^3.0.0",
     "postcss-loader": "^3.0.0",
     "postcss-rionite-component": "^0.37.27",
@@ -44,7 +44,7 @@
     "tslint": "^5.20.0",
     "tslint-loader": "^3.6.0",
     "typescript": "^3.6.4",
-    "webpack": "^4.41.0",
+    "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "yargs": "^14.2.0"
   }

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("@riim/opal-router"), require("@riim/uid"), require("cellx"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-router"), require("cellx"), require("@riim/uid"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "@riim/opal-router", "@riim/uid", "cellx", "rionite", "cellx-decorators"], factory);
+		define(["@riim/opal-router", "cellx", "@riim/uid", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tabs"] = factory(require("reflect-metadata"), require("@riim/opal-router"), require("@riim/uid"), require("cellx"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-tabs"] = factory(require("@riim/opal-router"), require("cellx"), require("@riim/uid"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-tabs"] = factory(root["reflect-metadata"], root["@riim/opal-router"], root["@riim/uid"], root["cellx"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__9__) {
+		root["@riim/opal-tabs"] = factory(root["@riim/opal-router"], root["cellx"], root["@riim/uid"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_Oufu__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_mtvJ__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,31 +91,167 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "Rwo/");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "/G9H":
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalTab{display:inline-block}.OpalTab .OpalTab__control{position:relative;display:block;padding:5px 22px;border:0;border-radius:0;border-top-left-radius:3px;border-top-right-radius:3px;background:#fff;color:#000;text-align:center;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalTab .OpalTab__control:hover{background:#e6e6e6}.OpalTab .OpalTab__control:focus{outline:0}body:not(._noFocusHighlight) .OpalTab .OpalTab__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;-webkit-box-shadow:inset 0 0 0 1px #1b91f8;box-shadow:inset 0 0 0 1px #1b91f8;content:'';pointer-events:none}.OpalTab .OpalTab__control:active{background:#ccc}.OpalTab .OpalTab__contentSlot{position:relative;display:block}.OpalTab[selected] .OpalTab__control{-webkit-box-shadow:0 3px #1b91f8;box-shadow:0 3px #1b91f8}.OpalTab[hidden]{display:none}.OpalTab[disabled]{opacity:.5;pointer-events:none}.OpalTab[disabled] .OpalTab__control{cursor:default}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+
+/***/ "3mf0":
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalTabs{display:block}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+
+/***/ "6KzM":
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = "opal-tab-panel{display:none}.OpalTabPanel{position:relative;display:none;padding:30px}.OpalTabPanel[shown]{display:block}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+
+/***/ "DBEQ":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot (@if=contentRendered)");
+
+/***/ }),
+
+/***/ "E+E0":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__export(__webpack_require__(2));
+const cellx_1 = __webpack_require__("P7z7");
+const cellx_decorators_1 = __webpack_require__("yOaX");
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("6KzM");
+const template_rnt_1 = __webpack_require__("DBEQ");
+let OpalTabPanel = class OpalTabPanel extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.shown = false;
+        this.contentRendered = false;
+    }
+    initialize() {
+        this.listenTo(this, 'change:shown', this._onShownChange);
+    }
+    _onShownChange(evt) {
+        if (evt.data.value) {
+            this.renderContent();
+        }
+    }
+    renderContent() {
+        if (!this.contentRendered) {
+            this.contentRendered = true;
+            cellx_1.Cell.release();
+        }
+    }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalTabPanel.prototype, "shown", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Object)
+], OpalTabPanel.prototype, "contentRendered", void 0);
+OpalTabPanel = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalTabPanel',
+        template: template_rnt_1.default
+    })
+], OpalTabPanel);
+exports.OpalTabPanel = OpalTabPanel;
 
 
 /***/ }),
-/* 1 */
+
+/***/ "Oufu":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_Oufu__;
 
 /***/ }),
-/* 2 */
+
+/***/ "P7z7":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_P7z7__;
+
+/***/ }),
+
+/***/ "QGS3":
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalTabList{display:block;padding:0 30px;border-bottom:1px solid #dbdbdb;white-space:nowrap;font-size:0;line-height:0}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+
+/***/ "Rwo/":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -131,17 +267,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalTabs_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const opal_router_1 = __webpack_require__(3);
-const uid_1 = __webpack_require__(4);
-const cellx_1 = __webpack_require__(5);
-const rionite_1 = __webpack_require__(6);
-const OpalTabList_1 = __webpack_require__(7);
+const opal_router_1 = __webpack_require__("Oufu");
+const uid_1 = __webpack_require__("mtvJ");
+const cellx_1 = __webpack_require__("P7z7");
+const rionite_1 = __webpack_require__("u4yd");
+const OpalTabList_1 = __webpack_require__("tlR1");
 exports.OpalTab = OpalTabList_1.OpalTab;
-const OpalTabPanel_1 = __webpack_require__(14);
+const OpalTabPanel_1 = __webpack_require__("E+E0");
 exports.OpalTabPanel = OpalTabPanel_1.OpalTabPanel;
-__webpack_require__(17);
-const template_rnt_1 = __webpack_require__(18);
-var OpalTabList_2 = __webpack_require__(7);
+__webpack_require__("3mf0");
+const template_rnt_1 = __webpack_require__("nJc3");
+var OpalTabList_2 = __webpack_require__("tlR1");
 exports.OpalTabList = OpalTabList_2.OpalTabList;
 const indexOf = Array.prototype.indexOf;
 const forEach = Array.prototype.forEach;
@@ -279,31 +415,42 @@ exports.OpalTabs = OpalTabs;
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
+/***/ "T5PU":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("button:control (type=button, tabindex={_tabIndex}) {\nRnSlot:contentSlot\n}");
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
+/***/ "WQPC":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot");
 
 /***/ }),
-/* 7 */
+
+/***/ "mtvJ":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_mtvJ__;
+
+/***/ }),
+
+/***/ "nJc3":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:tabListSlot (forTag=opal-tab-list) {\nOpalTabList:tabList {\nRnSlot:tabs (forTag=opal-tab)\n}\n}\nRnSlot:tabPanels (forTag=opal-tab-panel)");
+
+/***/ }),
+
+/***/ "tlR1":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -315,11 +462,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const rionite_1 = __webpack_require__(6);
-const OpalTab_1 = __webpack_require__(8);
+const rionite_1 = __webpack_require__("u4yd");
+const OpalTab_1 = __webpack_require__("tpnT");
 exports.OpalTab = OpalTab_1.OpalTab;
-__webpack_require__(12);
-const template_rnt_1 = __webpack_require__(13);
+__webpack_require__("QGS3");
+const template_rnt_1 = __webpack_require__("WQPC");
 let OpalTabList = class OpalTabList extends rionite_1.BaseComponent {
 };
 OpalTabList = __decorate([
@@ -332,7 +479,8 @@ exports.OpalTabList = OpalTabList;
 
 
 /***/ }),
-/* 8 */
+
+/***/ "tpnT":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -348,10 +496,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalTab_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const cellx_decorators_1 = __webpack_require__(9);
-const rionite_1 = __webpack_require__(6);
-__webpack_require__(10);
-const template_rnt_1 = __webpack_require__(11);
+const cellx_decorators_1 = __webpack_require__("yOaX");
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("/G9H");
+const template_rnt_1 = __webpack_require__("T5PU");
 let OpalTab = OpalTab_1 = class OpalTab extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -478,170 +626,20 @@ exports.OpalTab = OpalTab;
 
 
 /***/ }),
-/* 9 */
+
+/***/ "u4yd":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 /***/ }),
-/* 10 */
+
+/***/ "yOaX":
 /***/ (function(module, exports) {
 
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".OpalTab{display:inline-block}.OpalTab .OpalTab__control{position:relative;display:block;padding:5px 22px;border:0;border-radius:0;border-top-left-radius:3px;border-top-right-radius:3px;background:#fff;color:#000;text-align:center;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalTab .OpalTab__control:hover{background:#e6e6e6}.OpalTab .OpalTab__control:focus{outline:0}body:not(._noFocusHighlight) .OpalTab .OpalTab__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;-webkit-box-shadow:inset 0 0 0 1px #1b91f8;box-shadow:inset 0 0 0 1px #1b91f8;content:'';pointer-events:none}.OpalTab .OpalTab__control:active{background:#ccc}.OpalTab .OpalTab__contentSlot{position:relative;display:block}.OpalTab[selected] .OpalTab__control{-webkit-box-shadow:0 3px #1b91f8;box-shadow:0 3px #1b91f8}.OpalTab[hidden]{display:none}.OpalTab[disabled]{opacity:.5;pointer-events:none}.OpalTab[disabled] .OpalTab__control{cursor:default}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("button:control (type=button, tabindex={_tabIndex}) {\nRnSlot:contentSlot\n}");
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".OpalTabList{display:block;padding:0 30px;border-bottom:1px solid #dbdbdb;white-space:nowrap;font-size:0;line-height:0}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot");
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const cellx_1 = __webpack_require__(5);
-const cellx_decorators_1 = __webpack_require__(9);
-const rionite_1 = __webpack_require__(6);
-__webpack_require__(15);
-const template_rnt_1 = __webpack_require__(16);
-let OpalTabPanel = class OpalTabPanel extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        this.shown = false;
-        this.contentRendered = false;
-    }
-    initialize() {
-        this.listenTo(this, 'change:shown', this._onShownChange);
-    }
-    _onShownChange(evt) {
-        if (evt.data.value) {
-            this.renderContent();
-        }
-    }
-    renderContent() {
-        if (!this.contentRendered) {
-            this.contentRendered = true;
-            cellx_1.Cell.release();
-        }
-    }
-};
-__decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
-], OpalTabPanel.prototype, "shown", void 0);
-__decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
-], OpalTabPanel.prototype, "contentRendered", void 0);
-OpalTabPanel = __decorate([
-    rionite_1.Component({
-        elementIs: 'OpalTabPanel',
-        template: template_rnt_1.default
-    })
-], OpalTabPanel);
-exports.OpalTabPanel = OpalTabPanel;
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = "opal-tab-panel{display:none}.OpalTabPanel{position:relative;display:none;padding:30px}.OpalTabPanel[shown]{display:block}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot (@if=contentRendered)");
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".OpalTabs{display:block}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 18 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:tabListSlot (forTag=opal-tab-list) {\nOpalTabList:tabList {\nRnSlot:tabs (forTag=opal-tab)\n}\n}\nRnSlot:tabPanels (forTag=opal-tab-panel)");
+module.exports = __WEBPACK_EXTERNAL_MODULE_yOaX__;
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });

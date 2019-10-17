@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("cellx"), require("@riim/next-tick"), require("@riim/opal-text-input"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-dropdown", "@riim/opal-icon", "@riim/opal-text-input", "reflect-metadata", "@riim/next-tick", "cellx", "cellx-decorators", "rionite"], factory);
+		define(["cellx", "@riim/next-tick", "@riim/opal-text-input", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-autosuggest"] = factory(require("@riim/opal-dropdown"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("reflect-metadata"), require("@riim/next-tick"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-autosuggest"] = factory(require("cellx"), require("@riim/next-tick"), require("@riim/opal-text-input"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-autosuggest"] = factory(root["@riim/opal-dropdown"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["reflect-metadata"], root["@riim/next-tick"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__) {
+		root["@riim/opal-autosuggest"] = factory(root["cellx"], root["@riim/next-tick"], root["@riim/opal-text-input"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,52 +91,39 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "9cQR");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
+
+/***/ "0Lqk":
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalAutosuggest{position:relative;display:inline-block;vertical-align:middle}.OpalAutosuggest .OpalAutosuggest__textInput{display:block}.OpalAutosuggest .OpalAutosuggest__option{position:relative;overflow:hidden;padding:7px 22px;background:#fff;color:#000;text-align:left;-o-text-overflow:ellipsis;text-overflow:ellipsis;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalAutosuggest .OpalAutosuggest__option:hover,.OpalAutosuggest .OpalAutosuggest__option[focused]{background:#e6e6e6}.OpalAutosuggest .OpalAutosuggest__option:active{background:#ccc}.OpalAutosuggest .OpalAutosuggest__option sub{bottom:0;display:block;font-size:.9em;line-height:1.5;opacity:.5}.OpalAutosuggest .OpalAutosuggest__nothingFoundSlot{display:block;padding:12px;text-align:center}.OpalAutosuggest .OpalAutosuggest__nothingFoundMessage{white-space:nowrap;opacity:.6}.OpalAutosuggest .OpalAutosuggest__menuFooter{display:block;margin:12px 22px}.OpalTextInputValidator .OpalAutosuggest{display:block}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+
+/***/ "38F0":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-__webpack_require__(4);
-__export(__webpack_require__(5));
-
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=textInput) {\nOpalTextInput:textInput (\nvalue='{value |key(_dataListItemTextFieldName) }',\nplaceholder={'Начните вводить для поиска' |t },\nclearable\n) {\nOpalIcon:textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown:menu {\nRnSlot (for=menuHeader)\ndiv:optionList {\ndiv:option (\n@for=item in dataList,\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\nRnSlot:nothingFoundSlot (@unless=dataList.length, for=nothingFound) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\nRnSlot:menuFooterSlot (for=menuFooter)\n}");
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
-
-/***/ }),
-/* 5 */
+/***/ "9cQR":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -152,13 +139,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalAutosuggest_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const next_tick_1 = __webpack_require__(6);
-const opal_text_input_1 = __webpack_require__(3);
-const cellx_1 = __webpack_require__(7);
-const cellx_decorators_1 = __webpack_require__(8);
-const rionite_1 = __webpack_require__(9);
-__webpack_require__(10);
-const template_rnt_1 = __webpack_require__(11);
+const next_tick_1 = __webpack_require__("WTz/");
+const opal_text_input_1 = __webpack_require__("hl6F");
+const cellx_1 = __webpack_require__("P7z7");
+const cellx_decorators_1 = __webpack_require__("yOaX");
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("0Lqk");
+const template_rnt_1 = __webpack_require__("38F0");
 function toComparable(str) {
     return str.replace(/\s+/g, ' ').toLowerCase();
 }
@@ -622,54 +609,41 @@ exports.OpalAutosuggest = OpalAutosuggest;
 
 
 /***/ }),
-/* 6 */
+
+/***/ "P7z7":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_P7z7__;
 
 /***/ }),
-/* 7 */
+
+/***/ "WTz/":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_WTz___;
 
 /***/ }),
-/* 8 */
+
+/***/ "hl6F":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__8__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_hl6F__;
 
 /***/ }),
-/* 9 */
+
+/***/ "u4yd":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 /***/ }),
-/* 10 */
+
+/***/ "yOaX":
 /***/ (function(module, exports) {
 
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".OpalAutosuggest{position:relative;display:inline-block;vertical-align:middle}.OpalAutosuggest .OpalAutosuggest__textInput{display:block}.OpalAutosuggest .OpalAutosuggest__option{position:relative;overflow:hidden;padding:7px 22px;background:#fff;color:#000;text-align:left;-o-text-overflow:ellipsis;text-overflow:ellipsis;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalAutosuggest .OpalAutosuggest__option:hover,.OpalAutosuggest .OpalAutosuggest__option[focused]{background:#e6e6e6}.OpalAutosuggest .OpalAutosuggest__option:active{background:#ccc}.OpalAutosuggest .OpalAutosuggest__option sub{bottom:0;display:block;font-size:.9em;line-height:1.5;opacity:.5}.OpalAutosuggest .OpalAutosuggest__nothingFoundSlot{display:block;padding:12px;text-align:center}.OpalAutosuggest .OpalAutosuggest__nothingFoundMessage{white-space:nowrap;opacity:.6}.OpalAutosuggest .OpalAutosuggest__menuFooter{display:block;margin:12px 22px}.OpalTextInputValidator .OpalAutosuggest{display:block}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=textInput) {\nOpalTextInput:textInput (\nvalue='{value |key(_dataListItemTextFieldName) }',\nplaceholder={'Начните вводить для поиска' |t },\nclearable\n) {\nOpalIcon:textInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\nOpalDropdown:menu {\nRnSlot (for=menuHeader)\ndiv:optionList {\ndiv:option (\n@for=item in dataList,\ndata-value='{item |key(_dataListItemValueFieldName) }',\ndata-text='{item |key(_dataListItemTextFieldName) }',\ndata-subtext='{item |key(_dataListItemSubtextFieldName) }'\n) {\n'{item |key(_dataListItemTextFieldName) }'\nsub {\n'{item |key(_dataListItemSubtextFieldName) }'\n}\n}\n}\nRnSlot:nothingFoundSlot (@unless=dataList.length, for=nothingFound) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}\nRnSlot:menuFooterSlot (for=menuFooter)\n}");
+module.exports = __WEBPACK_EXTERNAL_MODULE_yOaX__;
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });

@@ -1,7 +1,6 @@
-const argv = require('yargs').argv;
 const path = require('path');
-const gulp = require('gulp');
-const gutil = require('gulp-util');
+const fs = require('fs');
+const { pascalize } = require('@riim/pascalize');
 const webpack = require('webpack');
 const postcssRioniteComponent = require('postcss-rionite-component');
 const postcssColorFunction = require('postcss-color-function');
@@ -65,20 +64,37 @@ const externals = [
 	'@riim/opal-utils'
 ];
 
-gulp.task('buildPackage', done => {
-	console.log('[buildPackage]', argv.package);
+module.exports = env => {
+	if (!env) {
+		env = {};
+	}
 
-	let p = `packages/${argv.package}/src/index.ts`;
 	let plugins = [];
-	let config = {
+
+	return {
 		mode: 'none',
 
-		entry: {
-			[p.split('/')[1]]: './' + p
-		},
+		entry: fs.readdirSync('./packages').reduce(
+			(entries, name) => {
+				if (
+					name != 'opal-components' &&
+					name != 'opal-focus-highlight-controller' &&
+					name != 'opal-utils'
+				) {
+					entries[name] = `./packages/${name}/src/components/${pascalize(name)}/index.ts`;
+				}
+
+				return entries;
+			},
+			{
+				'opal-components': `./packages/opal-components/src/index.ts`,
+				'opal-focus-highlight-controller': `./packages/opal-focus-highlight-controller/src/index.ts`,
+				'opal-utils': `./packages/opal-utils/src/index.ts`
+			}
+		),
 
 		output: {
-			path: path.join(__dirname, '../../packages'),
+			path: path.join(__dirname, 'packages'),
 			filename: '[name]/dist/index.js',
 			library: '@riim/[name]',
 			libraryTarget: 'umd'
@@ -136,7 +152,7 @@ gulp.task('buildPackage', done => {
 			moduleIds: 'hashed'
 		},
 
-		context: path.join(__dirname, '../..'),
+		context: __dirname,
 
 		externals,
 
@@ -151,30 +167,7 @@ gulp.task('buildPackage', done => {
 			Buffer: false,
 			setImmediate: false
 		}
+
+		// recordsPath: path.join(__dirname, 'build/paths.json')
 	};
-
-	webpack(config, onComplete);
-
-	function onComplete(err, stats) {
-		if (err) {
-			onError(err);
-		} else {
-			let strStats = stats.toString({ colors: true, reasons: true });
-
-			if (stats.hasErrors()) {
-				onError(strStats);
-			} else {
-				onSuccess(strStats);
-			}
-		}
-	}
-
-	function onError(err) {
-		done(new gutil.PluginError('webpack', err));
-	}
-
-	function onSuccess(detailInfo) {
-		gutil.log('[webpack]', detailInfo);
-		done();
-	}
-});
+};

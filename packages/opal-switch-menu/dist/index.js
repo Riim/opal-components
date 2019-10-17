@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-button"), require("reflect-metadata"), require("rionite"));
+		module.exports = factory(require("@riim/opal-button"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-button", "reflect-metadata", "rionite"], factory);
+		define(["@riim/opal-button", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-switch-menu"] = factory(require("@riim/opal-button"), require("reflect-metadata"), require("rionite"));
+		exports["@riim/opal-switch-menu"] = factory(require("@riim/opal-button"), require("rionite"));
 	else
-		root["@riim/opal-switch-menu"] = factory(root["@riim/opal-button"], root["reflect-metadata"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__) {
+		root["@riim/opal-switch-menu"] = factory(root["@riim/opal-button"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_u4yd__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,38 +91,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "4clU");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
 
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__export(__webpack_require__(3));
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
-
-/***/ }),
-/* 3 */
+/***/ "4clU":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -138,10 +112,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalSwitchMenu_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const opal_button_1 = __webpack_require__(1);
-const rionite_1 = __webpack_require__(4);
-__webpack_require__(5);
-const template_rnt_1 = __webpack_require__(6);
+const opal_button_1 = __webpack_require__("X6DG");
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("ssXy");
+const template_rnt_1 = __webpack_require__("HNRH");
 const forEach = Array.prototype.forEach;
 const find = Array.prototype.find;
 let OpalSwitchMenu = OpalSwitchMenu_1 = class OpalSwitchMenu extends rionite_1.BaseComponent {
@@ -215,13 +189,24 @@ exports.OpalSwitchMenu = OpalSwitchMenu;
 
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+/***/ "HNRH":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot");
 
 /***/ }),
-/* 5 */
+
+/***/ "X6DG":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_X6DG__;
+
+/***/ }),
+
+/***/ "ssXy":
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -238,13 +223,13 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot");
+/***/ "u4yd":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });

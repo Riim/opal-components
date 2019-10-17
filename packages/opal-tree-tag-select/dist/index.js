@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-sign-button"), require("@riim/opal-tag-select"), require("@riim/opal-tree-select"), require("reflect-metadata"), require("rionite"));
+		module.exports = factory(require("@riim/opal-tag-select"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-sign-button", "@riim/opal-tag-select", "@riim/opal-tree-select", "reflect-metadata", "rionite"], factory);
+		define(["@riim/opal-tag-select", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tree-tag-select"] = factory(require("@riim/opal-sign-button"), require("@riim/opal-tag-select"), require("@riim/opal-tree-select"), require("reflect-metadata"), require("rionite"));
+		exports["@riim/opal-tree-tag-select"] = factory(require("@riim/opal-tag-select"), require("rionite"));
 	else
-		root["@riim/opal-tree-tag-select"] = factory(root["@riim/opal-sign-button"], root["@riim/opal-tag-select"], root["@riim/opal-tree-select"], root["reflect-metadata"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__6__) {
+		root["@riim/opal-tree-tag-select"] = factory(root["@riim/opal-tag-select"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_cu1Y__, __WEBPACK_EXTERNAL_MODULE_u4yd__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,52 +91,35 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "yjNT");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
+
+/***/ "cu1Y":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_cu1Y__;
+
+/***/ }),
+
+/***/ "fGh4":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-__webpack_require__(4);
-__export(__webpack_require__(5));
-
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("OpalTreeSelect:select (\nviewType=clean,\ndataTreeListKeypath={_selectDataListKeypath},\ndataTreeListItemSchema={dataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={viewModelItemSchema |dump },\naddNewItem={addNewItem},\nfocused={focused}\n) {\nRnSlot (class=OpalSelect__menuHeaderSlot, for=OpalSelect__menuHeader)\nOpalSignButton:button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntabIndex={tabIndex},\ndisabled={disabled}\n)\n}");
 
 /***/ }),
-/* 1 */
+
+/***/ "u4yd":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
-
-/***/ }),
-/* 5 */
+/***/ "yjNT":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -148,9 +131,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const opal_tag_select_1 = __webpack_require__(2);
-const rionite_1 = __webpack_require__(6);
-const template_rnt_1 = __webpack_require__(7);
+const opal_tag_select_1 = __webpack_require__("cu1Y");
+const rionite_1 = __webpack_require__("u4yd");
+const template_rnt_1 = __webpack_require__("fGh4");
 let OpalTreeTagSelect = class OpalTreeTagSelect extends opal_tag_select_1.OpalTagSelect {
     _onSelectSelect() {
         return false;
@@ -168,20 +151,7 @@ OpalTreeTagSelect = __decorate([
 exports.OpalTreeTagSelect = OpalTreeTagSelect;
 
 
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("OpalTreeSelect:select (\nviewType=clean,\ndataTreeListKeypath={_selectDataListKeypath},\ndataTreeListItemSchema={dataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={viewModelItemSchema |dump },\naddNewItem={addNewItem},\nfocused={focused}\n) {\nRnSlot (class=OpalSelect__menuHeaderSlot, for=OpalSelect__menuHeader)\nOpalSignButton:button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntabIndex={tabIndex},\ndisabled={disabled}\n)\n}");
-
 /***/ })
-/******/ ]);
+
+/******/ });
 });

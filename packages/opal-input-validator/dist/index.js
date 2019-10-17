@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-popover"), require("reflect-metadata"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-popover", "reflect-metadata", "cellx-decorators", "rionite"], factory);
+		define(["rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-input-validator"] = factory(require("@riim/opal-popover"), require("reflect-metadata"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-input-validator"] = factory(require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-input-validator"] = factory(root["@riim/opal-popover"], root["reflect-metadata"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__) {
+		root["@riim/opal-input-validator"] = factory(root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,38 +91,134 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "za5m");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "0CRM":
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalInputValidatorRule{display:block}.OpalInputValidatorRule .OpalInputValidatorRule__contentSlot{display:block;width:240px;text-align:center}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+
+/***/ "4p0C":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("OpalPopover:popover (viewType=danger, position={popoverPosition}) {\nRnSlot:contentSlot\n}");
+
+/***/ }),
+
+/***/ "55WQ":
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalInputValidator{position:relative;display:inline-block;vertical-align:middle}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+
+/***/ "Vtj1":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__export(__webpack_require__(3));
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("0CRM");
+const template_rnt_1 = __webpack_require__("4p0C");
+let OpalInputValidatorRule = class OpalInputValidatorRule extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.required = false;
+        this.popoverPosition = 'right';
+    }
+    showMessage() {
+        this.$('popover').open();
+    }
+    hideMessage() {
+        this.$('popover').close();
+    }
+};
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalInputValidatorRule.prototype, "required", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Function)
+], OpalInputValidatorRule.prototype, "test", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalInputValidatorRule.prototype, "popoverPosition", void 0);
+OpalInputValidatorRule = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalInputValidatorRule',
+        template: template_rnt_1.default
+    })
+], OpalInputValidatorRule);
+exports.OpalInputValidatorRule = OpalInputValidatorRule;
 
 
 /***/ }),
-/* 1 */
+
+/***/ "nQ2J":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot");
+
+/***/ }),
+
+/***/ "u4yd":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 /***/ }),
-/* 2 */
+
+/***/ "yOaX":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_yOaX__;
 
 /***/ }),
-/* 3 */
+
+/***/ "za5m":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -138,12 +234,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalInputValidator_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const cellx_decorators_1 = __webpack_require__(4);
-const rionite_1 = __webpack_require__(5);
-const OpalInputValidatorRule_1 = __webpack_require__(6);
+const cellx_decorators_1 = __webpack_require__("yOaX");
+const rionite_1 = __webpack_require__("u4yd");
+const OpalInputValidatorRule_1 = __webpack_require__("Vtj1");
 exports.OpalInputValidatorRule = OpalInputValidatorRule_1.OpalInputValidatorRule;
-__webpack_require__(9);
-const template_rnt_1 = __webpack_require__(10);
+__webpack_require__("55WQ");
+const template_rnt_1 = __webpack_require__("nQ2J");
 let OpalInputValidator = OpalInputValidator_1 = class OpalInputValidator extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -220,121 +316,7 @@ OpalInputValidator = OpalInputValidator_1 = __decorate([
 exports.OpalInputValidator = OpalInputValidator;
 
 
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const rionite_1 = __webpack_require__(5);
-__webpack_require__(7);
-const template_rnt_1 = __webpack_require__(8);
-let OpalInputValidatorRule = class OpalInputValidatorRule extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        this.required = false;
-        this.popoverPosition = 'right';
-    }
-    showMessage() {
-        this.$('popover').open();
-    }
-    hideMessage() {
-        this.$('popover').close();
-    }
-};
-__decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
-], OpalInputValidatorRule.prototype, "required", void 0);
-__decorate([
-    rionite_1.Param,
-    __metadata("design:type", Function)
-], OpalInputValidatorRule.prototype, "test", void 0);
-__decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
-], OpalInputValidatorRule.prototype, "popoverPosition", void 0);
-OpalInputValidatorRule = __decorate([
-    rionite_1.Component({
-        elementIs: 'OpalInputValidatorRule',
-        template: template_rnt_1.default
-    })
-], OpalInputValidatorRule);
-exports.OpalInputValidatorRule = OpalInputValidatorRule;
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".OpalInputValidatorRule{display:block}.OpalInputValidatorRule .OpalInputValidatorRule__contentSlot{display:block;width:240px;text-align:center}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("OpalPopover:popover (viewType=danger, position={popoverPosition}) {\nRnSlot:contentSlot\n}");
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".OpalInputValidator{position:relative;display:inline-block;vertical-align:middle}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot");
-
 /***/ })
-/******/ ]);
+
+/******/ });
 });

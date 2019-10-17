@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("rionite"));
+		module.exports = factory(require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-icon", "reflect-metadata", "rionite"], factory);
+		define(["rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-editable-text"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("rionite"));
+		exports["@riim/opal-editable-text"] = factory(require("rionite"));
 	else
-		root["@riim/opal-editable-text"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__) {
+		root["@riim/opal-editable-text"] = factory(root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,38 +91,30 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "3Opk");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
 
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__export(__webpack_require__(3));
-
-
-/***/ }),
-/* 1 */
+/***/ "2Dpl":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalEditableText{display:block;cursor:text}.OpalEditableText .OpalEditableText__contentWrapper{position:relative;display:inline-block;padding-right:24px}.OpalEditableText .OpalEditableText__contentSlot{display:inline-block;padding-right:2px}.OpalEditableText .OpalEditableText__contentSlot:focus{outline:solid 1px #000}.OpalEditableText .OpalEditableText__iconEdit{position:absolute;top:0;right:0;display:block;width:16px;height:16px;border:solid 2px transparent;border-left-width:6px;color:#107cda;cursor:pointer}.OpalEditableText .OpalEditableText__iconEdit:hover,.OpalEditableText .OpalEditableText__iconEdit:active{stroke:#33a0ff}.OpalEditableText .OpalEditableText__iconEdit:active{top:1px}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
-
-/***/ }),
-/* 3 */
+/***/ "3Opk":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -138,9 +130,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalEditableText_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const rionite_1 = __webpack_require__(4);
-__webpack_require__(5);
-const template_rnt_1 = __webpack_require__(6);
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("2Dpl");
+const template_rnt_1 = __webpack_require__("vtB9");
 let OpalEditableText = OpalEditableText_1 = class OpalEditableText extends rionite_1.BaseComponent {
     get value() {
         return this._value;
@@ -258,30 +250,15 @@ exports.OpalEditableText = OpalEditableText;
 
 
 /***/ }),
-/* 4 */
+
+/***/ "u4yd":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
 
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".OpalEditableText{display:block;cursor:text}.OpalEditableText .OpalEditableText__contentWrapper{position:relative;display:inline-block;padding-right:24px}.OpalEditableText .OpalEditableText__contentSlot{display:inline-block;padding-right:2px}.OpalEditableText .OpalEditableText__contentSlot:focus{outline:solid 1px #000}.OpalEditableText .OpalEditableText__iconEdit{position:absolute;top:0;right:0;display:block;width:16px;height:16px;border:solid 2px transparent;border-left-width:6px;color:#107cda;cursor:pointer}.OpalEditableText .OpalEditableText__iconEdit:hover,.OpalEditableText .OpalEditableText__iconEdit:active{stroke:#33a0ff}.OpalEditableText .OpalEditableText__iconEdit:active{top:1px}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 6 */
+/***/ "vtB9":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -289,5 +266,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("span:contentWrapper {\nRnSlot:contentSlot (contenteditable, spellcheck=false)\nOpalIcon:iconEdit (name=compose, strokeWidth=3)\n}");
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });

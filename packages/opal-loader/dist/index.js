@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("reflect-metadata"), require("rionite"));
+		module.exports = factory(require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["reflect-metadata", "rionite"], factory);
+		define(["rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-loader"] = factory(require("reflect-metadata"), require("rionite"));
+		exports["@riim/opal-loader"] = factory(require("rionite"));
 	else
-		root["@riim/opal-loader"] = factory(root["reflect-metadata"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__) {
+		root["@riim/opal-loader"] = factory(root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,31 +91,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "4w3j");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
 
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__export(__webpack_require__(2));
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
-
-/***/ }),
-/* 2 */
+/***/ "4w3j":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -130,8 +111,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const rionite_1 = __webpack_require__(3);
-__webpack_require__(4);
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("Wb+m");
 let OpalLoader = class OpalLoader extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -156,13 +137,8 @@ exports.OpalLoader = OpalLoader;
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
-
-/***/ }),
-/* 4 */
+/***/ "Wb+m":
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -178,6 +154,14 @@ module.exports = (function(d) {
     })(document);
 
 
+/***/ }),
+
+/***/ "u4yd":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
 /***/ })
-/******/ ]);
+
+/******/ });
 });

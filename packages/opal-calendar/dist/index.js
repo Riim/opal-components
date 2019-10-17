@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-icon"), require("@riim/opal-select"), require("reflect-metadata"), require("@riim/gettext"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("@riim/gettext"), require("@riim/opal-select"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-icon", "@riim/opal-select", "reflect-metadata", "@riim/gettext", "cellx-decorators", "rionite"], factory);
+		define(["@riim/gettext", "@riim/opal-select", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-calendar"] = factory(require("@riim/opal-icon"), require("@riim/opal-select"), require("reflect-metadata"), require("@riim/gettext"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-calendar"] = factory(require("@riim/gettext"), require("@riim/opal-select"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-calendar"] = factory(root["@riim/opal-icon"], root["@riim/opal-select"], root["reflect-metadata"], root["@riim/gettext"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__) {
+		root["@riim/opal-calendar"] = factory(root["@riim/gettext"], root["@riim/opal-select"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,45 +91,71 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "q1vq");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "KvHp":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("header:header {\nbutton:btnPrevMonth (type=button, disabled={btnPrevMonthDisabled}) {\nOpalIcon:btnPrevMonthIcon (name=chevronLeft)\n}\nOpalSelect:monthSelect (size=s, value=['{shownMonth}']) {\n@Repeat (class=OpalSelect__menuContent, for=month in constructor.i18n.months) {\nOpalSelectOption (value={=$index}, text={=month})\n}\n}\n' '\nOpalSelect:yearSelect (size=s, value=['{shownYear}']) {\n@Repeat (class=OpalSelect__menuContent, for=year in years) {\nOpalSelectOption (text={=year})\n}\n}\nbutton:btnNextMonth (type=button, disabled={btnNextMonthDisabled}) {\nOpalIcon:btnNextMonthIcon (name=chevronRight)\n}\n}\ndiv:body {\ndiv:weekDays {\ndiv:weekDaysRow {\nspan:weekDay (@for=weekDay in weekDaysShort) {\n'{=weekDay}'\n}\n}\n}\ndiv:days {\ndiv:daysRow (@for=weekDays in days) {\nspan:day (\n@for=day in weekDays,\nweekDay={=day.weekDay},\ntoday={=day.today},\nselected={=day.selected},\nnotInCurrentMonth={=day.notInCurrentMonth},\ndisabled={=day.disabled},\ntabindex={=day.tabIndex},\ndata-date={=day.date}\n) {\n'{=day.value}'\n}\n}\n}\n}");
+
+/***/ }),
+
+/***/ "Wk+9":
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalCalendar{display:block;width:300px;border:1px solid #dbdbdb;border-radius:3px;background:#fff;color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400}.OpalCalendar .OpalCalendar__header{position:relative;padding:8px 44px;text-align:center}.OpalCalendar .OpalCalendar__btnPrevMonth,.OpalCalendar .OpalCalendar__btnNextMonth{position:absolute;top:0;bottom:0;margin:auto;padding:0;width:30px;height:30px;border:0;border-radius:50%;background:0 0;color:gray;cursor:pointer}.OpalCalendar .OpalCalendar__btnPrevMonth:hover,.OpalCalendar .OpalCalendar__btnNextMonth:hover{background:#e6e6e6;color:#000}.OpalCalendar .OpalCalendar__btnPrevMonth:focus,.OpalCalendar .OpalCalendar__btnNextMonth:focus{outline:0}body:not(._noFocusHighlight) .OpalCalendar .OpalCalendar__btnPrevMonth:focus::after,body:not(._noFocusHighlight) .OpalCalendar .OpalCalendar__btnNextMonth:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;-webkit-box-shadow:inset 0 0 0 1px #1b91f8;box-shadow:inset 0 0 0 1px #1b91f8;content:'';pointer-events:none}.OpalCalendar .OpalCalendar__btnPrevMonth:active,.OpalCalendar .OpalCalendar__btnNextMonth:active{background:#ccc}.OpalCalendar .OpalCalendar__btnPrevMonth[disabled],.OpalCalendar .OpalCalendar__btnNextMonth[disabled]{background:0 0;color:#000;opacity:.3;pointer-events:none}.OpalCalendar .OpalCalendar__btnPrevMonth{left:8px}.OpalCalendar .OpalCalendar__btnNextMonth{right:8px}.OpalCalendar .OpalCalendar__btnPrevMonthIcon,.OpalCalendar .OpalCalendar__btnNextMonthIcon{position:absolute;top:0;right:0;bottom:0;left:0;display:block;margin:auto;width:18px;height:18px}.OpalCalendar .OpalCalendar__body{padding:0 8px 8px;text-align:center;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.OpalCalendar .OpalCalendar__weekDays,.OpalCalendar .OpalCalendar__days{width:100%;border-spacing:0;border-collapse:separate}.OpalCalendar .OpalCalendar__weekDay,.OpalCalendar .OpalCalendar__day{display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:5px 7px;width:14.2857%;border:1px solid transparent}.OpalCalendar .OpalCalendar__day{position:relative;border-radius:3px;cursor:pointer}.OpalCalendar .OpalCalendar__day:hover{background:#e6e6e6}.OpalCalendar .OpalCalendar__day:focus{outline:0}body:not(._noFocusHighlight) .OpalCalendar .OpalCalendar__day:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;-webkit-box-shadow:inset 0 0 0 1px #1b91f8;box-shadow:inset 0 0 0 1px #1b91f8;content:'';pointer-events:none}.OpalCalendar .OpalCalendar__day:active{background:#ccc}.OpalCalendar .OpalCalendar__day[today]{text-decoration:underline}.OpalCalendar .OpalCalendar__day[not_in_current_month]{opacity:.45}.OpalCalendar .OpalCalendar__day[disabled]{background:0 0;opacity:.15;cursor:default}.OpalCalendar .OpalCalendar__day[selected]{color:#0d87f2;opacity:1}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+
+/***/ "eaeG":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_eaeG__;
+
+/***/ }),
+
+/***/ "j+lJ":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(3);
-__export(__webpack_require__(4));
+function formatDate(year, month, day, delimiter = '/') {
+    return (('0' + day).slice(-2) +
+        delimiter +
+        ('0' + (month + 1)).slice(-2) +
+        delimiter +
+        ('000' + year).slice(-4));
+}
+exports.formatDate = formatDate;
 
 
 /***/ }),
-/* 1 */
+
+/***/ "jL6t":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_jL6t__;
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
-
-/***/ }),
-/* 4 */
+/***/ "q1vq":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145,16 +171,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalCalendar_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const gettext_1 = __webpack_require__(5);
-const opal_select_1 = __webpack_require__(2);
-const cellx_decorators_1 = __webpack_require__(6);
-const rionite_1 = __webpack_require__(7);
-const formatDate_1 = __webpack_require__(8);
+const gettext_1 = __webpack_require__("eaeG");
+const opal_select_1 = __webpack_require__("jL6t");
+const cellx_decorators_1 = __webpack_require__("yOaX");
+const rionite_1 = __webpack_require__("u4yd");
+const formatDate_1 = __webpack_require__("j+lJ");
 exports.formatDate = formatDate_1.formatDate;
-__webpack_require__(9);
-const parseDate_1 = __webpack_require__(10);
+__webpack_require__("Wk+9");
+const parseDate_1 = __webpack_require__("zhfG");
 exports.parseDate = parseDate_1.parseDate;
-const template_rnt_1 = __webpack_require__(11);
+const template_rnt_1 = __webpack_require__("KvHp");
 function getTodayDate() {
     let now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -522,59 +548,22 @@ exports.OpalCalendar = OpalCalendar;
 
 
 /***/ }),
-/* 5 */
+
+/***/ "u4yd":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 /***/ }),
-/* 6 */
+
+/***/ "yOaX":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_yOaX__;
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-function formatDate(year, month, day, delimiter = '/') {
-    return (('0' + day).slice(-2) +
-        delimiter +
-        ('0' + (month + 1)).slice(-2) +
-        delimiter +
-        ('000' + year).slice(-4));
-}
-exports.formatDate = formatDate;
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".OpalCalendar{display:block;width:300px;border:1px solid #dbdbdb;border-radius:3px;background:#fff;color:#000;text-shadow:none;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400}.OpalCalendar .OpalCalendar__header{position:relative;padding:8px 44px;text-align:center}.OpalCalendar .OpalCalendar__btnPrevMonth,.OpalCalendar .OpalCalendar__btnNextMonth{position:absolute;top:0;bottom:0;margin:auto;padding:0;width:30px;height:30px;border:0;border-radius:50%;background:0 0;color:gray;cursor:pointer}.OpalCalendar .OpalCalendar__btnPrevMonth:hover,.OpalCalendar .OpalCalendar__btnNextMonth:hover{background:#e6e6e6;color:#000}.OpalCalendar .OpalCalendar__btnPrevMonth:focus,.OpalCalendar .OpalCalendar__btnNextMonth:focus{outline:0}body:not(._noFocusHighlight) .OpalCalendar .OpalCalendar__btnPrevMonth:focus::after,body:not(._noFocusHighlight) .OpalCalendar .OpalCalendar__btnNextMonth:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;-webkit-box-shadow:inset 0 0 0 1px #1b91f8;box-shadow:inset 0 0 0 1px #1b91f8;content:'';pointer-events:none}.OpalCalendar .OpalCalendar__btnPrevMonth:active,.OpalCalendar .OpalCalendar__btnNextMonth:active{background:#ccc}.OpalCalendar .OpalCalendar__btnPrevMonth[disabled],.OpalCalendar .OpalCalendar__btnNextMonth[disabled]{background:0 0;color:#000;opacity:.3;pointer-events:none}.OpalCalendar .OpalCalendar__btnPrevMonth{left:8px}.OpalCalendar .OpalCalendar__btnNextMonth{right:8px}.OpalCalendar .OpalCalendar__btnPrevMonthIcon,.OpalCalendar .OpalCalendar__btnNextMonthIcon{position:absolute;top:0;right:0;bottom:0;left:0;display:block;margin:auto;width:18px;height:18px}.OpalCalendar .OpalCalendar__body{padding:0 8px 8px;text-align:center;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.OpalCalendar .OpalCalendar__weekDays,.OpalCalendar .OpalCalendar__days{width:100%;border-spacing:0;border-collapse:separate}.OpalCalendar .OpalCalendar__weekDay,.OpalCalendar .OpalCalendar__day{display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:5px 7px;width:14.2857%;border:1px solid transparent}.OpalCalendar .OpalCalendar__day{position:relative;border-radius:3px;cursor:pointer}.OpalCalendar .OpalCalendar__day:hover{background:#e6e6e6}.OpalCalendar .OpalCalendar__day:focus{outline:0}body:not(._noFocusHighlight) .OpalCalendar .OpalCalendar__day:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;border-radius:inherit;-webkit-box-shadow:inset 0 0 0 1px #1b91f8;box-shadow:inset 0 0 0 1px #1b91f8;content:'';pointer-events:none}.OpalCalendar .OpalCalendar__day:active{background:#ccc}.OpalCalendar .OpalCalendar__day[today]{text-decoration:underline}.OpalCalendar .OpalCalendar__day[not_in_current_month]{opacity:.45}.OpalCalendar .OpalCalendar__day[disabled]{background:0 0;opacity:.15;cursor:default}.OpalCalendar .OpalCalendar__day[selected]{color:#0d87f2;opacity:1}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 10 */
+/***/ "zhfG":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -587,14 +576,7 @@ function parseDate(date) {
 exports.parseDate = parseDate;
 
 
-/***/ }),
-/* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("header:header {\nbutton:btnPrevMonth (type=button, disabled={btnPrevMonthDisabled}) {\nOpalIcon:btnPrevMonthIcon (name=chevronLeft)\n}\nOpalSelect:monthSelect (size=s, value=['{shownMonth}']) {\n@Repeat (class=OpalSelect__menuContent, for=month in constructor.i18n.months) {\nOpalSelectOption (value={=$index}, text={=month})\n}\n}\n' '\nOpalSelect:yearSelect (size=s, value=['{shownYear}']) {\n@Repeat (class=OpalSelect__menuContent, for=year in years) {\nOpalSelectOption (text={=year})\n}\n}\nbutton:btnNextMonth (type=button, disabled={btnNextMonthDisabled}) {\nOpalIcon:btnNextMonthIcon (name=chevronRight)\n}\n}\ndiv:body {\ndiv:weekDays {\ndiv:weekDaysRow {\nspan:weekDay (@for=weekDay in weekDaysShort) {\n'{=weekDay}'\n}\n}\n}\ndiv:days {\ndiv:daysRow (@for=weekDays in days) {\nspan:day (\n@for=day in weekDays,\nweekDay={=day.weekDay},\ntoday={=day.today},\nselected={=day.selected},\nnotInCurrentMonth={=day.notInCurrentMonth},\ndisabled={=day.disabled},\ntabindex={=day.tabIndex},\ndata-date={=day.date}\n) {\n'{=day.value}'\n}\n}\n}\n}");
-
 /***/ })
-/******/ ]);
+
+/******/ });
 });

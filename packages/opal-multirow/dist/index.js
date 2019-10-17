@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-sign-button"), require("reflect-metadata"), require("@riim/uid"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		module.exports = factory(require("cellx"), require("@riim/opal-sign-button"), require("@riim/uid"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-sign-button", "reflect-metadata", "@riim/uid", "cellx", "cellx-decorators", "rionite"], factory);
+		define(["cellx", "@riim/opal-sign-button", "@riim/uid", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-multirow"] = factory(require("@riim/opal-sign-button"), require("reflect-metadata"), require("@riim/uid"), require("cellx"), require("cellx-decorators"), require("rionite"));
+		exports["@riim/opal-multirow"] = factory(require("cellx"), require("@riim/opal-sign-button"), require("@riim/uid"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-multirow"] = factory(root["@riim/opal-sign-button"], root["reflect-metadata"], root["@riim/uid"], root["cellx"], root["cellx-decorators"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__) {
+		root["@riim/opal-multirow"] = factory(root["cellx"], root["@riim/opal-sign-button"], root["@riim/uid"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_mtvJ__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,38 +91,115 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "gyyP");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "44dc":
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalMultirow{display:block}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+
+/***/ "81BU":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:presetRowsSlot (\nfor=presetRows,\nnotHaveNewRows={_notHaveNewRows},\nnotSingleRow={_notSingleRow}\n) {\nRnSlot:presetRows (for=presetRow)\n}\ndiv:newRows (notSingleRow={_notSingleRow}) {\n@Repeat (for=row in _newRows, trackBy=key) {\nRnSlot:newRowSlot (cloneContent, data-key={row.key})\n}\n}");
+
+/***/ }),
+
+/***/ "Nocu":
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalMultirowRow{display:block;white-space:nowrap}.OpalMultirowRow::after{display:table;clear:both;content:''}.OpalMultirowRow .OpalMultirowRow__contentSlot{display:inline-block;margin:0 12px 20px 0}.OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirowRow .OpalMultirowRow__btnAddRow{position:relative;top:1px;display:none}.OpalMultirowRow .OpalMultirowRow__btnRemoveRow{margin-right:9px}.OpalMultirow__presetRowsSlot[not_have_new_rows] .OpalMultirowRow:last-child .OpalMultirowRow__contentSlot,.OpalMultirow__newRows rn-slot:last-child .OpalMultirowRow .OpalMultirowRow__contentSlot{margin-bottom:0}.OpalMultirow__presetRowsSlot[not_single_row] .OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirow__newRows[not_single_row] .OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirow__presetRowsSlot[not_have_new_rows] .OpalMultirowRow:last-child .OpalMultirowRow__btnAddRow,.OpalMultirow__newRows rn-slot:last-child .OpalMultirowRow .OpalMultirowRow__btnAddRow{display:inline-block}.OpalMultirowRow .OpalPopover{white-space:normal}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+
+/***/ "P7z7":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_P7z7__;
+
+/***/ }),
+
+/***/ "c/Q9":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var OpalMultirowRow_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__export(__webpack_require__(3));
+const opal_sign_button_1 = __webpack_require__("ej3F");
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("Nocu");
+const template_rnt_1 = __webpack_require__("q+MW");
+let OpalMultirowRow = OpalMultirowRow_1 = class OpalMultirowRow extends rionite_1.BaseComponent {
+};
+OpalMultirowRow.EVENT_ADD_ROW_CLICK = Symbol('add-row-click');
+OpalMultirowRow.EVENT_REMOVE_ROW_CLICK = Symbol('remove-row-click');
+OpalMultirowRow = OpalMultirowRow_1 = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalMultirowRow',
+        template: template_rnt_1.default,
+        events: {
+            btnRemoveRow: {
+                [opal_sign_button_1.OpalSignButton.EVENT_CLICK]() {
+                    this.emit(OpalMultirowRow_1.EVENT_REMOVE_ROW_CLICK);
+                }
+            },
+            btnAddRow: {
+                [opal_sign_button_1.OpalSignButton.EVENT_CLICK]() {
+                    this.emit(OpalMultirowRow_1.EVENT_ADD_ROW_CLICK);
+                }
+            }
+        }
+    })
+], OpalMultirowRow);
+exports.OpalMultirowRow = OpalMultirowRow;
 
 
 /***/ }),
-/* 1 */
+
+/***/ "ej3F":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_ej3F__;
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
-
-/***/ }),
-/* 3 */
+/***/ "gyyP":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -138,14 +215,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalMultirow_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const uid_1 = __webpack_require__(4);
-const cellx_1 = __webpack_require__(5);
-const cellx_decorators_1 = __webpack_require__(6);
-const rionite_1 = __webpack_require__(7);
-const OpalMultirowRow_1 = __webpack_require__(8);
+const uid_1 = __webpack_require__("mtvJ");
+const cellx_1 = __webpack_require__("P7z7");
+const cellx_decorators_1 = __webpack_require__("yOaX");
+const rionite_1 = __webpack_require__("u4yd");
+const OpalMultirowRow_1 = __webpack_require__("c/Q9");
 exports.OpalMultirowRow = OpalMultirowRow_1.OpalMultirowRow;
-__webpack_require__(11);
-const template_rnt_1 = __webpack_require__(12);
+__webpack_require__("44dc");
+const template_rnt_1 = __webpack_require__("81BU");
 let OpalMultirow = OpalMultirow_1 = class OpalMultirow extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
@@ -236,91 +313,15 @@ exports.OpalMultirow = OpalMultirow;
 
 
 /***/ }),
-/* 4 */
+
+/***/ "mtvJ":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_mtvJ__;
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var OpalMultirowRow_1;
-Object.defineProperty(exports, "__esModule", { value: true });
-const opal_sign_button_1 = __webpack_require__(1);
-const rionite_1 = __webpack_require__(7);
-__webpack_require__(9);
-const template_rnt_1 = __webpack_require__(10);
-let OpalMultirowRow = OpalMultirowRow_1 = class OpalMultirowRow extends rionite_1.BaseComponent {
-};
-OpalMultirowRow.EVENT_ADD_ROW_CLICK = Symbol('add-row-click');
-OpalMultirowRow.EVENT_REMOVE_ROW_CLICK = Symbol('remove-row-click');
-OpalMultirowRow = OpalMultirowRow_1 = __decorate([
-    rionite_1.Component({
-        elementIs: 'OpalMultirowRow',
-        template: template_rnt_1.default,
-        events: {
-            btnRemoveRow: {
-                [opal_sign_button_1.OpalSignButton.EVENT_CLICK]() {
-                    this.emit(OpalMultirowRow_1.EVENT_REMOVE_ROW_CLICK);
-                }
-            },
-            btnAddRow: {
-                [opal_sign_button_1.OpalSignButton.EVENT_CLICK]() {
-                    this.emit(OpalMultirowRow_1.EVENT_ADD_ROW_CLICK);
-                }
-            }
-        }
-    })
-], OpalMultirowRow);
-exports.OpalMultirowRow = OpalMultirowRow;
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".OpalMultirowRow{display:block;white-space:nowrap}.OpalMultirowRow::after{display:table;clear:both;content:''}.OpalMultirowRow .OpalMultirowRow__contentSlot{display:inline-block;margin:0 12px 20px 0}.OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirowRow .OpalMultirowRow__btnAddRow{position:relative;top:1px;display:none}.OpalMultirowRow .OpalMultirowRow__btnRemoveRow{margin-right:9px}.OpalMultirow__presetRowsSlot[not_have_new_rows] .OpalMultirowRow:last-child .OpalMultirowRow__contentSlot,.OpalMultirow__newRows rn-slot:last-child .OpalMultirowRow .OpalMultirowRow__contentSlot{margin-bottom:0}.OpalMultirow__presetRowsSlot[not_single_row] .OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirow__newRows[not_single_row] .OpalMultirowRow .OpalMultirowRow__btnRemoveRow,.OpalMultirow__presetRowsSlot[not_have_new_rows] .OpalMultirowRow:last-child .OpalMultirowRow__btnAddRow,.OpalMultirow__newRows rn-slot:last-child .OpalMultirowRow .OpalMultirowRow__btnAddRow{display:inline-block}.OpalMultirowRow .OpalPopover{white-space:normal}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-/* 10 */
+/***/ "q+MW":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -328,30 +329,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot\nOpalSignButton:btnRemoveRow (sign=minus)\nOpalSignButton:btnAddRow (sign=plus)");
 
 /***/ }),
-/* 11 */
+
+/***/ "u4yd":
 /***/ (function(module, exports) {
 
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".OpalMultirow{display:block}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 /***/ }),
-/* 12 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:presetRowsSlot (\nfor=presetRows,\nnotHaveNewRows={_notHaveNewRows},\nnotSingleRow={_notSingleRow}\n) {\nRnSlot:presetRows (for=presetRow)\n}\ndiv:newRows (notSingleRow={_notSingleRow}) {\n@Repeat (for=row in _newRows, trackBy=key) {\nRnSlot:newRowSlot (cloneContent, data-key={row.key})\n}\n}");
+/***/ "yOaX":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_yOaX__;
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });

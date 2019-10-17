@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("cellx"), require("rionite"));
+		module.exports = factory(require("cellx"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-icon", "reflect-metadata", "cellx", "rionite"], factory);
+		define(["cellx", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-notification"] = factory(require("@riim/opal-icon"), require("reflect-metadata"), require("cellx"), require("rionite"));
+		exports["@riim/opal-notification"] = factory(require("cellx"), require("rionite"));
 	else
-		root["@riim/opal-notification"] = factory(root["@riim/opal-icon"], root["reflect-metadata"], root["cellx"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__) {
+		root["@riim/opal-notification"] = factory(root["cellx"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_u4yd__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,38 +91,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "N8k9");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
 
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(1);
-__webpack_require__(2);
-__export(__webpack_require__(3));
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
-
-/***/ }),
-/* 3 */
+/***/ "N8k9":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -138,10 +112,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalNotification_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const cellx_1 = __webpack_require__(4);
-const rionite_1 = __webpack_require__(5);
-__webpack_require__(6);
-const template_rnt_1 = __webpack_require__(7);
+const cellx_1 = __webpack_require__("P7z7");
+const rionite_1 = __webpack_require__("u4yd");
+__webpack_require__("lQkW");
+const template_rnt_1 = __webpack_require__("tJt2");
 let container;
 const shownNotifications = new Set();
 function initContainer(notification) {
@@ -322,19 +296,15 @@ exports.OpalNotification = OpalNotification;
 
 
 /***/ }),
-/* 4 */
+
+/***/ "P7z7":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_P7z7__;
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
-
-/***/ }),
-/* 6 */
+/***/ "lQkW":
 /***/ (function(module, exports) {
 
 module.exports = (function(d) {
@@ -351,13 +321,22 @@ module.exports = (function(d) {
 
 
 /***/ }),
-/* 7 */
+
+/***/ "tJt2":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("div:bar (viewType={viewType}, hasIcon={icon |bool }, iconSize={iconSize}, buttonHide={buttonHide}) {\nOpalIcon:icon (@if=icon, name={icon}, size={iconSize})\nRnSlot:contentSlot\nbutton:btnHide (type=button, hide={buttonHide |not }) {\nOpalIcon:btnHideIcon (name=cross)\n}\n}");
 
+/***/ }),
+
+/***/ "u4yd":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
 /***/ })
-/******/ ]);
+
+/******/ });
 });
