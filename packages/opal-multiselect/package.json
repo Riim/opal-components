@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-multiselect",
-  "version": "0.38.25",
+  "version": "0.38.27",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,11 +13,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-button": "^0.38.22",
-    "@riim/opal-icon": "^0.38.22",
-    "@riim/opal-loaded-list": "^0.38.22",
-    "@riim/opal-select": "^0.38.25",
-    "@riim/opal-text-input": "^0.38.25",
+    "@riim/opal-button": "^0.38.27",
+    "@riim/opal-icon": "^0.38.27",
+    "@riim/opal-loaded-list": "^0.38.27",
+    "@riim/opal-select": "^0.38.27",
+    "@riim/opal-text-input": "^0.38.27",
     "@riim/platform": "^1.0.0",
     "cellx": "^1.9.16",
     "cellx-decorators": "^1.5.4",
