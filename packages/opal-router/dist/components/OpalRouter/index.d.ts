@@ -12,7 +12,7 @@ export interface IRoute {
     path: string;
     rePath: RegExp;
     properties: Array<IRouteProperty>;
-    componentName: string;
+    component: OpalRoute;
 }
 export interface IComponentState {
     [name: string]: boolean | string;
@@ -28,6 +28,7 @@ export declare class OpalRouter extends BaseComponent {
     _route: IRoute | null;
     _state: IComponentState | null;
     _componentElement: IComponentElement | null;
+    isLoaderShown: boolean;
     initialize(): void;
     ready(): void;
     elementAttached(): void;

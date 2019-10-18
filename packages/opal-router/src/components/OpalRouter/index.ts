@@ -1,6 +1,7 @@
 import { kebabCase } from '@riim/kebab-case';
 import { snakeCaseAttributeName } from '@riim/rionite-snake-case-attribute-name';
 import { nextUID } from '@riim/uid';
+import { Observable } from 'cellx-decorators';
 import { createBrowserHistory, History, Location } from 'history';
 import {
 	BaseComponent,
@@ -10,10 +11,11 @@ import {
 	Param
 	} from 'rionite';
 import { OpalRoute } from '../OpalRoute';
-import { escapeRegExp } from './escapeRegExp';
 import './index.css';
-import { parsePath } from './parsePath';
-import { PathNodeType } from './PathNodeType';
+import { escapeRegExp } from './lib/escapeRegExp';
+import { parsePath } from './lib/parsePath';
+import { PathNodeType } from './lib/PathNodeType';
+import template from './template.rnt';
 
 export { History, Location };
 export { OpalRoute };
@@ -27,7 +29,7 @@ export interface IRoute {
 	path: string;
 	rePath: RegExp;
 	properties: Array<IRouteProperty>;
-	componentName: string;
+	component: OpalRoute;
 }
 
 export interface IComponentState {
@@ -41,7 +43,8 @@ function valueToAttributeValue(value: boolean | string): string {
 }
 
 @Component({
-	elementIs: 'OpalRouter'
+	elementIs: 'OpalRouter',
+	template
 })
 export class OpalRouter extends BaseComponent {
 	static EVENT_CHANGE = Symbol('change');
@@ -60,6 +63,9 @@ export class OpalRouter extends BaseComponent {
 	_route: IRoute | null = null;
 	_state: IComponentState | null = null;
 	_componentElement: IComponentElement | null = null;
+
+	@Observable
+	isLoaderShown = false;
 
 	initialize() {
 		this._routes = [];
@@ -120,7 +126,7 @@ export class OpalRouter extends BaseComponent {
 						`^${rePath}${rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?'}$`
 					),
 					properties: props,
-					componentName: kebabCase(routeEl.$component!.component)
+					component: routeEl.$component!
 				});
 			}
 		);
@@ -314,18 +320,27 @@ export class OpalRouter extends BaseComponent {
 			this._route = route;
 			this._state = state;
 
-			let componentEl = (this._componentElement = document.createElement(
-				route.componentName
-			) as IComponentElement);
-			this._applyState();
-			componentEl.rioniteComponent.ownerComponent = this;
-			this.element.appendChild(componentEl);
+			(route.component.component
+				? Promise.resolve(route.component.component)
+				: ((this.isLoaderShown = true),
+				  route.component.lazyLoadComponent().then(componentConstr => {
+						this.isLoaderShown = false;
+						return componentConstr.elementIs;
+				  }))
+			).then(elementName => {
+				let componentEl = (this._componentElement = document.createElement(
+					kebabCase(elementName, true)
+				) as IComponentElement);
+				this._applyState();
+				componentEl.rioniteComponent.ownerComponent = this;
+				this.element.appendChild(componentEl);
 
-			if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
-				window.scrollTo(window.pageXOffset, 0);
-			}
+				if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
+					window.scrollTo(window.pageXOffset, 0);
+				}
 
-			this.emit(OpalRouter.EVENT_CHANGE);
+				this.emit(OpalRouter.EVENT_CHANGE);
+			});
 
 			return true;
 		}
@@ -371,15 +386,24 @@ export class OpalRouter extends BaseComponent {
 
 		this.element.removeChild(this._componentElement!);
 
-		let componentEl = (this._componentElement = document.createElement(
-			route.componentName
-		) as IComponentElement);
-		this._applyState();
-		componentEl.rioniteComponent.ownerComponent = this;
-		this.element.appendChild(componentEl);
+		(route.component.component
+			? Promise.resolve(route.component.component)
+			: ((this.isLoaderShown = true),
+			  route.component.lazyLoadComponent().then(componentConstr => {
+					this.isLoaderShown = false;
+					return componentConstr.elementIs;
+			  }))
+		).then(elementName => {
+			let componentEl = (this._componentElement = document.createElement(
+				kebabCase(elementName, true)
+			) as IComponentElement);
+			this._applyState();
+			componentEl.rioniteComponent.ownerComponent = this;
+			this.element.appendChild(componentEl);
 
-		if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
-			window.scrollTo(window.pageXOffset, 0);
-		}
+			if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
+				window.scrollTo(window.pageXOffset, 0);
+			}
+		});
 	}
 }

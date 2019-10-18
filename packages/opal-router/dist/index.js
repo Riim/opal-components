@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("history"), require("@riim/uid"), require("rionite"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"));
+		module.exports = factory(require("history"), require("@riim/uid"), require("rionite"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["history", "@riim/uid", "rionite", "@riim/kebab-case", "@riim/rionite-snake-case-attribute-name"], factory);
+		define(["history", "@riim/uid", "rionite", "@riim/kebab-case", "@riim/rionite-snake-case-attribute-name", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-router"] = factory(require("history"), require("@riim/uid"), require("rionite"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"));
+		exports["@riim/opal-router"] = factory(require("history"), require("@riim/uid"), require("rionite"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("cellx-decorators"));
 	else
-		root["@riim/opal-router"] = factory(root["history"], root["@riim/uid"], root["rionite"], root["@riim/kebab-case"], root["@riim/rionite-snake-case-attribute-name"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_ZFcg__, __WEBPACK_EXTERNAL_MODULE_mtvJ__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vRer__, __WEBPACK_EXTERNAL_MODULE_wLwu__) {
+		root["@riim/opal-router"] = factory(root["history"], root["@riim/uid"], root["rionite"], root["@riim/kebab-case"], root["@riim/rionite-snake-case-attribute-name"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_ZFcg__, __WEBPACK_EXTERNAL_MODULE_mtvJ__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vRer__, __WEBPACK_EXTERNAL_MODULE_wLwu__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -96,25 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ({
 
-/***/ "3C5J":
-/***/ (function(module, exports) {
-
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".OpalRouter{display:block}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
-
-
-/***/ }),
-
-/***/ "RawN":
+/***/ "+FrP":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -126,6 +108,24 @@ var PathNodeType;
     PathNodeType[PathNodeType["OPTIONAL"] = 1] = "OPTIONAL";
     PathNodeType[PathNodeType["INSERT"] = 2] = "INSERT";
 })(PathNodeType = exports.PathNodeType || (exports.PathNodeType = {}));
+
+
+/***/ }),
+
+/***/ "3C5J":
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalRouter{position:relative;display:block;min-height:320px}@media (min-height:440px){.OpalRouter{min-height:440px}}@media (min-height:560px){.OpalRouter{min-height:560px}}@media (min-height:680px){.OpalRouter{min-height:680px}}@media (min-height:800px){.OpalRouter{min-height:800px}}@media (min-height:920px){.OpalRouter{min-height:920px}}@media (min-height:1040px){.OpalRouter{min-height:1040px}}@media (min-height:1160px){.OpalRouter{min-height:1160px}}@media (min-height:1280px){.OpalRouter{min-height:1280px}}.OpalRouter .OpalRouter__loader{position:absolute;top:0;right:0;bottom:0;left:0}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
 
 
 /***/ }),
@@ -149,14 +149,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const kebab_case_1 = __webpack_require__("vRer");
 const rionite_snake_case_attribute_name_1 = __webpack_require__("wLwu");
 const uid_1 = __webpack_require__("mtvJ");
+const cellx_decorators_1 = __webpack_require__("yOaX");
 const history_1 = __webpack_require__("ZFcg");
 const rionite_1 = __webpack_require__("u4yd");
 const OpalRoute_1 = __webpack_require__("ZqFQ");
 exports.OpalRoute = OpalRoute_1.OpalRoute;
-const escapeRegExp_1 = __webpack_require__("bn9N");
 __webpack_require__("3C5J");
-const parsePath_1 = __webpack_require__("To3o");
-const PathNodeType_1 = __webpack_require__("RawN");
+const escapeRegExp_1 = __webpack_require__("xb8m");
+const parsePath_1 = __webpack_require__("w1X0");
+const PathNodeType_1 = __webpack_require__("+FrP");
+const template_rnt_1 = __webpack_require__("nuuU");
 const history = history_1.createBrowserHistory();
 function valueToAttributeValue(value) {
     return value === false ? 'no' : value === true ? 'yes' : value;
@@ -170,6 +172,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
         this._route = null;
         this._state = null;
         this._componentElement = null;
+        this.isLoaderShown = false;
     }
     initialize() {
         this._routes = [];
@@ -218,7 +221,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
                 path,
                 rePath: RegExp(`^${rePath}${rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?'}$`),
                 properties: props,
-                componentName: kebab_case_1.kebabCase(routeEl.$component.component)
+                component: routeEl.$component
             });
         });
     }
@@ -363,14 +366,22 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
             }
             this._route = route;
             this._state = state;
-            let componentEl = (this._componentElement = document.createElement(route.componentName));
-            this._applyState();
-            componentEl.rioniteComponent.ownerComponent = this;
-            this.element.appendChild(componentEl);
-            if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
-                window.scrollTo(window.pageXOffset, 0);
-            }
-            this.emit(OpalRouter_1.EVENT_CHANGE);
+            (route.component.component
+                ? Promise.resolve(route.component.component)
+                : ((this.isLoaderShown = true),
+                    route.component.lazyLoadComponent().then(componentConstr => {
+                        this.isLoaderShown = false;
+                        return componentConstr.elementIs;
+                    }))).then(elementName => {
+                let componentEl = (this._componentElement = document.createElement(kebab_case_1.kebabCase(elementName, true)));
+                this._applyState();
+                componentEl.rioniteComponent.ownerComponent = this;
+                this.element.appendChild(componentEl);
+                if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
+                    window.scrollTo(window.pageXOffset, 0);
+                }
+                this.emit(OpalRouter_1.EVENT_CHANGE);
+            });
             return true;
         }
         if (this._route) {
@@ -401,13 +412,21 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
             return;
         }
         this.element.removeChild(this._componentElement);
-        let componentEl = (this._componentElement = document.createElement(route.componentName));
-        this._applyState();
-        componentEl.rioniteComponent.ownerComponent = this;
-        this.element.appendChild(componentEl);
-        if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
-            window.scrollTo(window.pageXOffset, 0);
-        }
+        (route.component.component
+            ? Promise.resolve(route.component.component)
+            : ((this.isLoaderShown = true),
+                route.component.lazyLoadComponent().then(componentConstr => {
+                    this.isLoaderShown = false;
+                    return componentConstr.elementIs;
+                }))).then(elementName => {
+            let componentEl = (this._componentElement = document.createElement(kebab_case_1.kebabCase(elementName, true)));
+            this._applyState();
+            componentEl.rioniteComponent.ownerComponent = this;
+            this.element.appendChild(componentEl);
+            if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
+                window.scrollTo(window.pageXOffset, 0);
+            }
+        });
     }
 };
 OpalRouter.EVENT_CHANGE = Symbol('change');
@@ -425,9 +444,14 @@ __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
 ], OpalRouter.prototype, "scrollTopOnChangeComponent", void 0);
+__decorate([
+    cellx_decorators_1.Observable,
+    __metadata("design:type", Object)
+], OpalRouter.prototype, "isLoaderShown", void 0);
 OpalRouter = OpalRouter_1 = __decorate([
     rionite_1.Component({
-        elementIs: 'OpalRouter'
+        elementIs: 'OpalRouter',
+        template: template_rnt_1.default
     })
 ], OpalRouter);
 exports.OpalRouter = OpalRouter;
@@ -435,13 +459,90 @@ exports.OpalRouter = OpalRouter;
 
 /***/ }),
 
-/***/ "To3o":
+/***/ "ZFcg":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_ZFcg__;
+
+/***/ }),
+
+/***/ "ZqFQ":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const rionite_1 = __webpack_require__("u4yd");
+let OpalRoute = class OpalRoute extends rionite_1.BaseComponent {
+};
+__decorate([
+    rionite_1.Param({ required: true, readonly: true }),
+    __metadata("design:type", String)
+], OpalRoute.prototype, "path", void 0);
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", String)
+], OpalRoute.prototype, "component", void 0);
+__decorate([
+    rionite_1.Param({ readonly: true }),
+    __metadata("design:type", Function)
+], OpalRoute.prototype, "lazyLoadComponent", void 0);
+OpalRoute = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalRoute'
+    })
+], OpalRoute);
+exports.OpalRoute = OpalRoute;
+
+
+/***/ }),
+
+/***/ "mtvJ":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_mtvJ__;
+
+/***/ }),
+
+/***/ "nuuU":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot\nOpalLoader:loader (shown={isLoaderShown})");
+
+/***/ }),
+
+/***/ "u4yd":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vRer":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vRer__;
+
+/***/ }),
+
+/***/ "w1X0":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const PathNodeType_1 = __webpack_require__("RawN");
+const PathNodeType_1 = __webpack_require__("+FrP");
 const reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
     let ctx = PathNodeType_1.PathNodeType.STATIC;
@@ -595,56 +696,14 @@ exports.parsePath = parsePath;
 
 /***/ }),
 
-/***/ "ZFcg":
+/***/ "wLwu":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_ZFcg__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_wLwu__;
 
 /***/ }),
 
-/***/ "ZqFQ":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const rionite_1 = __webpack_require__("u4yd");
-let OpalRoute = class OpalRoute extends rionite_1.BaseComponent {
-};
-__decorate([
-    rionite_1.Param({
-        required: true,
-        readonly: true
-    }),
-    __metadata("design:type", String)
-], OpalRoute.prototype, "path", void 0);
-__decorate([
-    rionite_1.Param({
-        required: true,
-        readonly: true
-    }),
-    __metadata("design:type", String)
-], OpalRoute.prototype, "component", void 0);
-OpalRoute = __decorate([
-    rionite_1.Component({
-        elementIs: 'OpalRoute'
-    })
-], OpalRoute);
-exports.OpalRoute = OpalRoute;
-
-
-/***/ }),
-
-/***/ "bn9N":
+/***/ "xb8m":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -659,31 +718,10 @@ exports.escapeRegExp = escapeRegExp;
 
 /***/ }),
 
-/***/ "mtvJ":
+/***/ "yOaX":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_mtvJ__;
-
-/***/ }),
-
-/***/ "u4yd":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vRer":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vRer__;
-
-/***/ }),
-
-/***/ "wLwu":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_wLwu__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_yOaX__;
 
 /***/ })
 
