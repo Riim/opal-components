@@ -373,6 +373,9 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
                         this.isLoaderShown = false;
                         return componentConstr.elementIs;
                     }))).then(elementName => {
+                if (route !== this._route) {
+                    return;
+                }
                 let componentEl = (this._componentElement = document.createElement(kebab_case_1.kebabCase(elementName, true)));
                 this._applyState();
                 componentEl.rioniteComponent.ownerComponent = this;

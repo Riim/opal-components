@@ -328,6 +328,10 @@ export class OpalRouter extends BaseComponent {
 						return componentConstr.elementIs;
 				  }))
 			).then(elementName => {
+				if (route !== this._route) {
+					return;
+				}
+
 				let componentEl = (this._componentElement = document.createElement(
 					kebabCase(elementName, true)
 				) as IComponentElement);
