@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-router",
-  "version": "0.38.28",
+  "version": "0.38.29",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
