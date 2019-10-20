@@ -1,38 +1,36 @@
 @component OpalRouter {
 	position: relative;
 	display: block;
-	min-height: 320px;
-
-	@media (min-height: 440px) {
-		min-height: 440px;
-	}
-	@media (min-height: 560px) {
-		min-height: 560px;
-	}
-	@media (min-height: 680px) {
-		min-height: 680px;
-	}
-	@media (min-height: 800px) {
-		min-height: 800px;
-	}
-	@media (min-height: 920px) {
-		min-height: 920px;
-	}
-	@media (min-height: 1040px) {
-		min-height: 1040px;
-	}
-	@media (min-height: 1160px) {
-		min-height: 1160px;
-	}
-	@media (min-height: 1280px) {
-		min-height: 1280px;
-	}
 
 	@el loader {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
+		margin: 0;
+		padding: 0;
+		text-align: center;
+		line-height: 320px;
+
+		@media (min-height: 440px) {
+			line-height: 440px;
+		}
+		@media (min-height: 560px) {
+			line-height: 560px;
+		}
+		@media (min-height: 680px) {
+			line-height: 680px;
+		}
+		@media (min-height: 800px) {
+			line-height: 800px;
+		}
+		@media (min-height: 920px) {
+			line-height: 920px;
+		}
+		@media (min-height: 1040px) {
+			line-height: 1040px;
+		}
+		@media (min-height: 1160px) {
+			line-height: 1160px;
+		}
+		@media (min-height: 1280px) {
+			line-height: 1280px;
+		}
 	}
 }
