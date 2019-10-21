@@ -320,31 +320,46 @@ export class OpalRouter extends BaseComponent {
 			this._route = route;
 			this._state = state;
 
-			(route.component.component
-				? Promise.resolve(route.component.component)
-				: ((this.isLoaderShown = true),
-				  route.component.lazyLoadComponent().then(componentConstr => {
-						this.isLoaderShown = false;
-						return componentConstr.elementIs;
-				  }))
-			).then(elementName => {
+			let onComponentLoaded = (elementName: string) => {
 				if (route !== this._route) {
 					return;
 				}
+
+				let f = () => {
+					this.isLoaderShown = false;
+
+					if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
+						window.scrollTo(window.pageXOffset, 0);
+					}
+
+					this.emit(OpalRouter.EVENT_CHANGE);
+				};
 
 				let componentEl = (this._componentElement = document.createElement(
 					kebabCase(elementName, true)
 				) as IComponentElement);
 				this._applyState();
-				componentEl.rioniteComponent.ownerComponent = this;
 				this.element.appendChild(componentEl);
+				let initializationWait = componentEl.rioniteComponent.attach(this);
 
-				if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
-					window.scrollTo(window.pageXOffset, 0);
+				if (initializationWait) {
+					this.isLoaderShown = true;
+					initializationWait.then(f);
+				} else {
+					f();
 				}
+			};
 
-				this.emit(OpalRouter.EVENT_CHANGE);
-			});
+			if (route.component.component) {
+				onComponentLoaded(route.component.component);
+			} else {
+				this.isLoaderShown = true;
+
+				route.component
+					.lazyLoadComponent()
+					.then(componentConstr => componentConstr.elementIs)
+					.then(onComponentLoaded);
+			}
 
 			return true;
 		}
@@ -390,24 +405,43 @@ export class OpalRouter extends BaseComponent {
 
 		this.element.removeChild(this._componentElement!);
 
-		(route.component.component
-			? Promise.resolve(route.component.component)
-			: ((this.isLoaderShown = true),
-			  route.component.lazyLoadComponent().then(componentConstr => {
-					this.isLoaderShown = false;
-					return componentConstr.elementIs;
-			  }))
-		).then(elementName => {
+		let onComponentLoaded = (elementName: string) => {
+			if (route !== this._route) {
+				return;
+			}
+
+			let f = () => {
+				this.isLoaderShown = false;
+
+				if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
+					window.scrollTo(window.pageXOffset, 0);
+				}
+			};
+
 			let componentEl = (this._componentElement = document.createElement(
 				kebabCase(elementName, true)
 			) as IComponentElement);
 			this._applyState();
-			componentEl.rioniteComponent.ownerComponent = this;
 			this.element.appendChild(componentEl);
+			let initializationWait = componentEl.rioniteComponent.attach(this);
 
-			if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
-				window.scrollTo(window.pageXOffset, 0);
+			if (initializationWait) {
+				this.isLoaderShown = true;
+				initializationWait.then(f);
+			} else {
+				f();
 			}
-		});
+		};
+
+		if (route.component.component) {
+			onComponentLoaded(route.component.component);
+		} else {
+			this.isLoaderShown = true;
+
+			route.component
+				.lazyLoadComponent()
+				.then(componentConstr => componentConstr.elementIs)
+				.then(onComponentLoaded);
+		}
 	}
 }

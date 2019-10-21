@@ -120,7 +120,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalRouter{position:relative;display:block}.OpalRouter .OpalRouter__loader{margin:0;padding:0;text-align:center;line-height:320px}@media (min-height:440px){.OpalRouter .OpalRouter__loader{line-height:440px}}@media (min-height:560px){.OpalRouter .OpalRouter__loader{line-height:560px}}@media (min-height:680px){.OpalRouter .OpalRouter__loader{line-height:680px}}@media (min-height:800px){.OpalRouter .OpalRouter__loader{line-height:800px}}@media (min-height:920px){.OpalRouter .OpalRouter__loader{line-height:920px}}@media (min-height:1040px){.OpalRouter .OpalRouter__loader{line-height:1040px}}@media (min-height:1160px){.OpalRouter .OpalRouter__loader{line-height:1160px}}@media (min-height:1280px){.OpalRouter .OpalRouter__loader{line-height:1280px}}";
+            style.textContent = ".OpalRouter{position:relative;display:block;min-height:320px}@media (min-height:440px){.OpalRouter{min-height:440px}}@media (min-height:560px){.OpalRouter{min-height:560px}}@media (min-height:680px){.OpalRouter{min-height:680px}}@media (min-height:800px){.OpalRouter{min-height:800px}}@media (min-height:920px){.OpalRouter{min-height:920px}}@media (min-height:1040px){.OpalRouter{min-height:1040px}}@media (min-height:1160px){.OpalRouter{min-height:1160px}}@media (min-height:1280px){.OpalRouter{min-height:1280px}}.OpalRouter .OpalRouter__loader{position:absolute;top:0;right:0;bottom:0;left:0}";
             head.appendChild(style);
             return style;
         }
@@ -366,25 +366,39 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
             }
             this._route = route;
             this._state = state;
-            (route.component.component
-                ? Promise.resolve(route.component.component)
-                : ((this.isLoaderShown = true),
-                    route.component.lazyLoadComponent().then(componentConstr => {
-                        this.isLoaderShown = false;
-                        return componentConstr.elementIs;
-                    }))).then(elementName => {
+            let onComponentLoaded = (elementName) => {
                 if (route !== this._route) {
                     return;
                 }
+                let f = () => {
+                    this.isLoaderShown = false;
+                    if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
+                        window.scrollTo(window.pageXOffset, 0);
+                    }
+                    this.emit(OpalRouter_1.EVENT_CHANGE);
+                };
                 let componentEl = (this._componentElement = document.createElement(kebab_case_1.kebabCase(elementName, true)));
                 this._applyState();
-                componentEl.rioniteComponent.ownerComponent = this;
                 this.element.appendChild(componentEl);
-                if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
-                    window.scrollTo(window.pageXOffset, 0);
+                let initializationWait = componentEl.rioniteComponent.attach(this);
+                if (initializationWait) {
+                    this.isLoaderShown = true;
+                    initializationWait.then(f);
                 }
-                this.emit(OpalRouter_1.EVENT_CHANGE);
-            });
+                else {
+                    f();
+                }
+            };
+            if (route.component.component) {
+                onComponentLoaded(route.component.component);
+            }
+            else {
+                this.isLoaderShown = true;
+                route.component
+                    .lazyLoadComponent()
+                    .then(componentConstr => componentConstr.elementIs)
+                    .then(onComponentLoaded);
+            }
             return true;
         }
         if (this._route) {
@@ -415,21 +429,38 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
             return;
         }
         this.element.removeChild(this._componentElement);
-        (route.component.component
-            ? Promise.resolve(route.component.component)
-            : ((this.isLoaderShown = true),
-                route.component.lazyLoadComponent().then(componentConstr => {
-                    this.isLoaderShown = false;
-                    return componentConstr.elementIs;
-                }))).then(elementName => {
+        let onComponentLoaded = (elementName) => {
+            if (route !== this._route) {
+                return;
+            }
+            let f = () => {
+                this.isLoaderShown = false;
+                if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
+                    window.scrollTo(window.pageXOffset, 0);
+                }
+            };
             let componentEl = (this._componentElement = document.createElement(kebab_case_1.kebabCase(elementName, true)));
             this._applyState();
-            componentEl.rioniteComponent.ownerComponent = this;
             this.element.appendChild(componentEl);
-            if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
-                window.scrollTo(window.pageXOffset, 0);
+            let initializationWait = componentEl.rioniteComponent.attach(this);
+            if (initializationWait) {
+                this.isLoaderShown = true;
+                initializationWait.then(f);
             }
-        });
+            else {
+                f();
+            }
+        };
+        if (route.component.component) {
+            onComponentLoaded(route.component.component);
+        }
+        else {
+            this.isLoaderShown = true;
+            route.component
+                .lazyLoadComponent()
+                .then(componentConstr => componentConstr.elementIs)
+                .then(onComponentLoaded);
+        }
     }
 };
 OpalRouter.EVENT_CHANGE = Symbol('change');
@@ -521,7 +552,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_mtvJ__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot\nh3:loader (@if=isLoaderShown) {\n'{\"Loading ...\" |t }'\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot\nOpalLoader:loader (shown={isLoaderShown})");
 
 /***/ }),
 

@@ -1,5 +1,2 @@
 RnSlot:contentSlot
-
-h3:loader (@if=isLoaderShown) {
-	'{"Loading ..." |t }'
-}
+OpalLoader:loader (shown={isLoaderShown})
