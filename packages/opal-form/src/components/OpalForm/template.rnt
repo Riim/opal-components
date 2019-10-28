@@ -1,0 +1,4 @@
+form:form {
+	RnSlot:content
+	input (type=submit, style=display: none;)
+}

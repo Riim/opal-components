@@ -1,0 +1,20 @@
+{
+  "name": "@riim/opal-form",
+  "version": "0.38.27",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dmitry Vibe",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@riim/opal-text-input": "^0.38.27",
+    "reflect-metadata": "^0.1.13",
+    "rionite": "^0.37.68"
+  }
+}

@@ -23,6 +23,7 @@
     "@riim/opal-file-upload": "^0.38.27",
     "@riim/opal-filtered-list": "^0.38.27",
     "@riim/opal-focus-highlight-controller": "^0.38.27",
+    "@riim/opal-form": "^0.38.27",
     "@riim/opal-group": "^0.38.27",
     "@riim/opal-icon": "^0.38.27",
     "@riim/opal-input-mask": "^0.38.27",
