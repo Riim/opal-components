@@ -80,11 +80,6 @@ export class OpalLoadedList extends BaseComponent {
 	_lastLoadedQuery: string | null = null;
 
 	@Computed
-	get empty(): boolean {
-		return !this.dataList.length;
-	}
-
-	@Computed
 	get loaderShown(): boolean {
 		return this.total === undefined || this.dataList.length < this.total || this.loading;
 	}
@@ -182,11 +177,11 @@ export class OpalLoadedList extends BaseComponent {
 			this._requestCallback.cancel();
 		}
 
-		let infinite = this.dataProvider.getItems.length >= 2;
+		let getItemsLength = this.dataProvider.getItems.length;
 		let query: string | null = (this._lastRequestedQuery = this.query);
-		let args: Array<any> = [query];
+		let args: Array<any> = getItemsLength ? [query] : [];
 
-		if (infinite) {
+		if (getItemsLength >= 2) {
 			args.unshift(
 				this.limit,
 				this.dataList.length
@@ -213,7 +208,8 @@ export class OpalLoadedList extends BaseComponent {
 
 				let items = data.items;
 
-				this.total = infinite && data.total !== undefined ? data.total : items.length;
+				this.total =
+					getItemsLength >= 2 && data.total !== undefined ? data.total : items.length;
 
 				if (query === this._lastLoadedQuery) {
 					this.dataList.addRange(items);

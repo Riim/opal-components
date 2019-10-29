@@ -3,7 +3,7 @@
 	display: block;
 	overflow-x: hidden;
 	overflow-y: auto;
-	height: 500px;
+	max-height: 460px;
 
 	@el list {
 	}
@@ -12,35 +12,20 @@
 		}
 
 	@el loader {
-		@mod alignCenter {
-			position: absolute;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
+		@mod inCenter {
+			border-top-width: 70px;
+			border-bottom-width: 70px;
 		}
 	}
 
 	@el nothingFoundSlot {
-		display: block;
-		box-sizing: border-box;
+		display: flex;
 		padding: 12px;
-		height: 100%;
-		text-align: center;
-		white-space: nowrap;
-
-		&::before {
-			display: inline-block;
-			width: 0;
-			height: 100%;
-			content: '';
-			vertical-align: middle;
-		}
+		justify-content: center;
+		align-items: center;
 	}
 		@el nothingFound {
-			display: inline-block;
-			vertical-align: middle;
-			white-space: normal;
+			text-align: center;
 		}
 			@el nothingFoundMessage {
 				white-space: nowrap;

@@ -73,8 +73,8 @@
 	}
 
 	& .OpalPopover .OpalPopover__contentSlot {
-		overflow: auto;
-		max-height: 380px;
+		overflow-x: auto;
+		max-height: 400px;
 	}
 
 	& .OpalFilteredList .OpalFilteredList__queryInput {
@@ -86,11 +86,6 @@
 	}
 
 	& .OpalLoadedList {
-		height: 304px; /* 38 * 8 */
-	}
-
-	& .OpalLoader[align_center] {
-		border-top-width: 100px;
-		border-bottom-width: 100px;
+		max-height: 342px; /* 38 * 9 */
 	}
 }

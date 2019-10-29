@@ -11,7 +11,7 @@ div:list {
 	}
 }
 
-OpalLoader:loader (shown={loaderShown}, alignCenter={empty})
+OpalLoader:loader (shown={loaderShown}, inCenter={dataList.length |not })
 
 RnSlot:nothingFoundSlot (
 	@if=nothingFoundShown,

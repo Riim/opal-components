@@ -102,6 +102,13 @@
 				margin: 1px 0;
 			}
 
+			@el menu {
+			}
+				@el menuLoader {
+					border-top-width: 70px;
+					border-bottom-width: 70px;
+				}
+
 	@mod viewType=primary {
 		@el tag {
 			background: hsl(208,100%,48%);

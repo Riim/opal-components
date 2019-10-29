@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:list {\nRnSlot:listItemSlot (\n@for=$item in dataList,\nfor=listItem,\ncloneContent,\ngetContext={_getListItemContext}\n) {\nspan:listItem {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nOpalLoader:loader (shown={loaderShown}, alignCenter={empty})\nRnSlot:nothingFoundSlot (\n@if=nothingFoundShown,\nfor=nothingFound,\ngetContext={_getListItemContext}\n) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("div:list {\nRnSlot:listItemSlot (\n@for=$item in dataList,\nfor=listItem,\ncloneContent,\ngetContext={_getListItemContext}\n) {\nspan:listItem {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nOpalLoader:loader (shown={loaderShown}, inCenter={dataList.length |not })\nRnSlot:nothingFoundSlot (\n@if=nothingFoundShown,\nfor=nothingFound,\ngetContext={_getListItemContext}\n) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}");
 
 /***/ }),
 
@@ -113,7 +113,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalLoadedList{position:relative;display:block;overflow-x:hidden;overflow-y:auto;height:500px}.OpalLoadedList .OpalLoadedList__listItem{display:block}.OpalLoadedList .OpalLoadedList__loader[align_center]{position:absolute;top:0;right:0;bottom:0;left:0}.OpalLoadedList .OpalLoadedList__nothingFoundSlot{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;height:100%;text-align:center;white-space:nowrap}.OpalLoadedList .OpalLoadedList__nothingFoundSlot::before{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.OpalLoadedList .OpalLoadedList__nothingFound{display:inline-block;vertical-align:middle;white-space:normal}.OpalLoadedList .OpalLoadedList__nothingFoundMessage{white-space:nowrap;opacity:.6}.OpalLoadedList .OpalLoadedList__nothingFoundMessage+.OpalSelect__btnAddNewItem{margin-top:18px}.OpalSelect .OpalLoadedList .OpalSelect__btnAddNewItem{display:block}";
+            style.textContent = ".OpalLoadedList{position:relative;display:block;overflow-x:hidden;overflow-y:auto;max-height:460px}.OpalLoadedList .OpalLoadedList__listItem{display:block}.OpalLoadedList .OpalLoadedList__loader[in_center]{border-top-width:70px;border-bottom-width:70px}.OpalLoadedList .OpalLoadedList__nothingFoundSlot{display:-webkit-box;display:-ms-flexbox;display:flex;padding:12px;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.OpalLoadedList .OpalLoadedList__nothingFound{text-align:center}.OpalLoadedList .OpalLoadedList__nothingFoundMessage{white-space:nowrap;opacity:.6}.OpalLoadedList .OpalLoadedList__nothingFoundMessage+.OpalSelect__btnAddNewItem{margin-top:18px}.OpalSelect .OpalLoadedList .OpalSelect__btnAddNewItem{display:block}";
             head.appendChild(style);
             return style;
         }
@@ -166,9 +166,6 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
         this.loading = false;
         this._lastRequestedQuery = null;
         this._lastLoadedQuery = null;
-    }
-    get empty() {
-        return !this.dataList.length;
     }
     get loaderShown() {
         return this.total === undefined || this.dataList.length < this.total || this.loading;
@@ -246,10 +243,10 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
         if (this.loading) {
             this._requestCallback.cancel();
         }
-        let infinite = this.dataProvider.getItems.length >= 2;
+        let getItemsLength = this.dataProvider.getItems.length;
         let query = (this._lastRequestedQuery = this.query);
-        let args = [query];
-        if (infinite) {
+        let args = getItemsLength ? [query] : [];
+        if (getItemsLength >= 2) {
             args.unshift(this.limit, this.dataList.length
                 ? this.dataList.get(-1)[this.dataListItemSchema.value ||
                     this.constructor
@@ -260,7 +257,8 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
         this.dataProvider.getItems.apply(this.dataProvider, args).then((this._requestCallback = this.registerCallback(function (data) {
             this.loading = false;
             let items = data.items;
-            this.total = infinite && data.total !== undefined ? data.total : items.length;
+            this.total =
+                getItemsLength >= 2 && data.total !== undefined ? data.total : items.length;
             if (query === this._lastLoadedQuery) {
                 this.dataList.addRange(items);
             }
@@ -328,11 +326,6 @@ __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
 ], OpalLoadedList.prototype, "loading", void 0);
-__decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
-], OpalLoadedList.prototype, "empty", null);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Boolean),
