@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-loader"), require("cellx"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "rionite", "cellx-decorators"], factory);
+		define(["@riim/opal-loader", "cellx", "rionite", "reflect-metadata", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-loaded-list"] = factory(require("cellx"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-loaded-list"] = factory(require("@riim/opal-loader"), require("cellx"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else
-		root["@riim/opal-loaded-list"] = factory(root["cellx"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-loaded-list"] = factory(root["@riim/opal-loader"], root["cellx"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "jpRZ");
+/******/ 	return __webpack_require__(__webpack_require__.s = "s8ac");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -102,6 +102,13 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("div:list {\nRnSlot:listItemSlot (\n@for=$item in dataList,\nfor=listItem,\ncloneContent,\ngetContext={_getListItemContext}\n) {\nspan:listItem {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nOpalLoader:loader (shown={loaderShown}, inCenter={dataList.length |not })\nRnSlot:nothingFoundSlot (\n@if=nothingFoundShown,\nfor=nothingFound,\ngetContext={_getListItemContext}\n) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}");
+
+/***/ }),
+
+/***/ "BLMt":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_BLMt__;
 
 /***/ }),
 
@@ -359,10 +366,33 @@ exports.OpalLoadedList = OpalLoadedList;
 
 /***/ }),
 
+/***/ "s8ac":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("BLMt");
+__webpack_require__("vA/G");
+__export(__webpack_require__("jpRZ"));
+
+
+/***/ }),
+
 /***/ "u4yd":
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vA/G":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

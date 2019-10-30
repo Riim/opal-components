@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-input-validator"), require("@riim/opal-text-input"), require("rionite"));
+		module.exports = factory(require("@riim/opal-input-validator"), require("@riim/opal-text-input"), require("rionite"), require("reflect-metadata"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-input-validator", "@riim/opal-text-input", "rionite"], factory);
+		define(["@riim/opal-input-validator", "@riim/opal-text-input", "rionite", "reflect-metadata"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-text-input-validator"] = factory(require("@riim/opal-input-validator"), require("@riim/opal-text-input"), require("rionite"));
+		exports["@riim/opal-text-input-validator"] = factory(require("@riim/opal-input-validator"), require("@riim/opal-text-input"), require("rionite"), require("reflect-metadata"));
 	else
-		root["@riim/opal-text-input-validator"] = factory(root["@riim/opal-input-validator"], root["@riim/opal-text-input"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__9L4b__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_u4yd__) {
+		root["@riim/opal-text-input-validator"] = factory(root["@riim/opal-input-validator"], root["@riim/opal-text-input"], root["rionite"], root["reflect-metadata"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__9L4b__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "1p2w");
+/******/ 	return __webpack_require__(__webpack_require__.s = "FXZJ");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -163,6 +163,23 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__9L4b__;
 
 /***/ }),
 
+/***/ "FXZJ":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("9L4b");
+__webpack_require__("hl6F");
+__webpack_require__("vA/G");
+__export(__webpack_require__("1p2w"));
+
+
+/***/ }),
+
 /***/ "NTMD":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -211,6 +228,13 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_hl6F__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vA/G":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "cellx-decorators"], factory);
+		define(["rionite", "reflect-metadata", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-slider"] = factory(require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-slider"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else
-		root["@riim/opal-slider"] = factory(root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-slider"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "0Nex");
+/******/ 	return __webpack_require__(__webpack_require__.s = "qkqE");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -216,10 +216,32 @@ module.exports = (function(d) {
 
 /***/ }),
 
+/***/ "qkqE":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("vA/G");
+__export(__webpack_require__("0Nex"));
+
+
+/***/ }),
+
 /***/ "u4yd":
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vA/G":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

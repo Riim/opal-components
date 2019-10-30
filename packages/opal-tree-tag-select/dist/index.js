@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-tag-select"), require("rionite"));
+		module.exports = factory(require("@riim/opal-tree-select"), require("@riim/opal-tag-select"), require("@riim/opal-sign-button"), require("rionite"), require("reflect-metadata"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-tag-select", "rionite"], factory);
+		define(["@riim/opal-tree-select", "@riim/opal-tag-select", "@riim/opal-sign-button", "rionite", "reflect-metadata"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tree-tag-select"] = factory(require("@riim/opal-tag-select"), require("rionite"));
+		exports["@riim/opal-tree-tag-select"] = factory(require("@riim/opal-tree-select"), require("@riim/opal-tag-select"), require("@riim/opal-sign-button"), require("rionite"), require("reflect-metadata"));
 	else
-		root["@riim/opal-tree-tag-select"] = factory(root["@riim/opal-tag-select"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_cu1Y__, __WEBPACK_EXTERNAL_MODULE_u4yd__) {
+		root["@riim/opal-tree-tag-select"] = factory(root["@riim/opal-tree-select"], root["@riim/opal-tag-select"], root["@riim/opal-sign-button"], root["rionite"], root["reflect-metadata"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__6dQR__, __WEBPACK_EXTERNAL_MODULE_cu1Y__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,15 +91,29 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "yjNT");
+/******/ 	return __webpack_require__(__webpack_require__.s = "l3Dk");
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "6dQR":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__6dQR__;
+
+/***/ }),
 
 /***/ "cu1Y":
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_cu1Y__;
+
+/***/ }),
+
+/***/ "ej3F":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_ej3F__;
 
 /***/ }),
 
@@ -112,10 +126,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "l3Dk":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("ej3F");
+__webpack_require__("cu1Y");
+__webpack_require__("6dQR");
+__webpack_require__("vA/G");
+__export(__webpack_require__("yjNT"));
+
+
+/***/ }),
+
 /***/ "u4yd":
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vA/G":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("rionite"));
+		module.exports = factory(require("cellx"), require("@riim/opal-icon"), require("rionite"), require("reflect-metadata"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "rionite"], factory);
+		define(["cellx", "@riim/opal-icon", "rionite", "reflect-metadata"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-notification"] = factory(require("cellx"), require("rionite"));
+		exports["@riim/opal-notification"] = factory(require("cellx"), require("@riim/opal-icon"), require("rionite"), require("reflect-metadata"));
 	else
-		root["@riim/opal-notification"] = factory(root["cellx"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_u4yd__) {
+		root["@riim/opal-notification"] = factory(root["cellx"], root["@riim/opal-icon"], root["rionite"], root["reflect-metadata"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "N8k9");
+/******/ 	return __webpack_require__(__webpack_require__.s = "mOG4");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -304,6 +304,13 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_P7z7__;
 
 /***/ }),
 
+/***/ "Y0hN":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_Y0hN__;
+
+/***/ }),
+
 /***/ "lQkW":
 /***/ (function(module, exports) {
 
@@ -322,6 +329,22 @@ module.exports = (function(d) {
 
 /***/ }),
 
+/***/ "mOG4":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("Y0hN");
+__webpack_require__("vA/G");
+__export(__webpack_require__("N8k9"));
+
+
+/***/ }),
+
 /***/ "tJt2":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -335,6 +358,13 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vA/G":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ })
 

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"));
+		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite"], factory);
+		define([], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-components-common"] = factory(require("rionite"));
+		exports["@riim/opal-components-common"] = factory();
 	else
-		root["@riim/opal-components-common"] = factory(root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__) {
+		root["@riim/opal-components-common"] = factory();
+})(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,40 +91,42 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "79Zm");
+/******/ 	return __webpack_require__(__webpack_require__.s = "Y4Hb");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "79Zm":
+/***/ "S9kL":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const rionite_1 = __webpack_require__("u4yd");
-let OpalComponentsCommon = class OpalComponentsCommon extends rionite_1.BaseComponent {
-};
-OpalComponentsCommon = __decorate([
-    rionite_1.Component({
-        elementIs: 'OpalComponentsCommon'
-    })
-], OpalComponentsCommon);
-exports.OpalComponentsCommon = OpalComponentsCommon;
+function closestComponent(component, componentClass) {
+    let c = component;
+    for (;;) {
+        if (c instanceof componentClass || !(c = c.parentComponent)) {
+            break;
+        }
+    }
+    return c;
+}
+exports.closestComponent = closestComponent;
 
 
 /***/ }),
 
-/***/ "u4yd":
-/***/ (function(module, exports) {
+/***/ "Y4Hb":
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__("S9kL"));
+
 
 /***/ })
 

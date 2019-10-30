@@ -1,12 +1,7 @@
-import { ObservableTreeList } from '@riim/opal-components';
+import { ObservableTreeList } from '@riim/opal-tree-list';
 import { ObservableList } from 'cellx';
-import { BaseComponent, Component, formatters } from 'rionite';
+import { BaseComponent, Component } from 'rionite';
 import template from './template.rnt';
-
-formatters.log = (msg: any): any => {
-	console.log(msg);
-	return msg;
-};
 
 @Component({
 	template

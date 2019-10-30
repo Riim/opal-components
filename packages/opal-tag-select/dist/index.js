@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("@riim/gettext"), require("@riim/opal-select"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-popover"), require("@riim/opal-loader"), require("cellx"), require("@riim/opal-filtered-list"), require("@riim/gettext"), require("@riim/opal-sign-button"), require("@riim/opal-loaded-list"), require("@riim/opal-select"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "@riim/gettext", "@riim/opal-select", "rionite", "cellx-decorators"], factory);
+		define(["@riim/opal-popover", "@riim/opal-loader", "cellx", "@riim/opal-filtered-list", "@riim/gettext", "@riim/opal-sign-button", "@riim/opal-loaded-list", "@riim/opal-select", "rionite", "reflect-metadata", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tag-select"] = factory(require("cellx"), require("@riim/gettext"), require("@riim/opal-select"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-tag-select"] = factory(require("@riim/opal-popover"), require("@riim/opal-loader"), require("cellx"), require("@riim/opal-filtered-list"), require("@riim/gettext"), require("@riim/opal-sign-button"), require("@riim/opal-loaded-list"), require("@riim/opal-select"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else
-		root["@riim/opal-tag-select"] = factory(root["cellx"], root["@riim/gettext"], root["@riim/opal-select"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-tag-select"] = factory(root["@riim/opal-popover"], root["@riim/opal-loader"], root["cellx"], root["@riim/opal-filtered-list"], root["@riim/gettext"], root["@riim/opal-sign-button"], root["@riim/opal-loaded-list"], root["@riim/opal-select"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__2L3N__, __WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_Y1_I__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_ioIi__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,15 +91,36 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "aUKo");
+/******/ 	return __webpack_require__(__webpack_require__.s = "tHGz");
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "2L3N":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__2L3N__;
+
+/***/ }),
+
+/***/ "BLMt":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_BLMt__;
+
+/***/ }),
 
 /***/ "P7z7":
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_P7z7__;
+
+/***/ }),
+
+/***/ "Y1+I":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_Y1_I__;
 
 /***/ }),
 
@@ -425,6 +446,20 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_eaeG__;
 
 /***/ }),
 
+/***/ "ej3F":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_ej3F__;
+
+/***/ }),
+
+/***/ "ioIi":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_ioIi__;
+
+/***/ }),
+
 /***/ "jL6t":
 /***/ (function(module, exports) {
 
@@ -432,10 +467,38 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_jL6t__;
 
 /***/ }),
 
+/***/ "tHGz":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("Y1+I");
+__webpack_require__("ioIi");
+__webpack_require__("BLMt");
+__webpack_require__("2L3N");
+__webpack_require__("jL6t");
+__webpack_require__("ej3F");
+__webpack_require__("vA/G");
+__export(__webpack_require__("aUKo"));
+
+
+/***/ }),
+
 /***/ "u4yd":
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vA/G":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

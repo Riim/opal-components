@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("@riim/next-tick"), require("@riim/gettext"), require("@riim/uid"), require("rionite"), require("@riim/escape-regexp"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-loader"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/uid"), require("rionite"), require("reflect-metadata"), require("@riim/escape-regexp"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "@riim/next-tick", "@riim/gettext", "@riim/uid", "rionite", "@riim/escape-regexp", "cellx-decorators"], factory);
+		define(["@riim/opal-loader", "cellx", "@riim/next-tick", "@riim/opal-icon", "@riim/gettext", "@riim/uid", "rionite", "reflect-metadata", "@riim/escape-regexp", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-file-upload"] = factory(require("cellx"), require("@riim/next-tick"), require("@riim/gettext"), require("@riim/uid"), require("rionite"), require("@riim/escape-regexp"), require("cellx-decorators"));
+		exports["@riim/opal-file-upload"] = factory(require("@riim/opal-loader"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/uid"), require("rionite"), require("reflect-metadata"), require("@riim/escape-regexp"), require("cellx-decorators"));
 	else
-		root["@riim/opal-file-upload"] = factory(root["cellx"], root["@riim/next-tick"], root["@riim/gettext"], root["@riim/uid"], root["rionite"], root["@riim/escape-regexp"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_mtvJ__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_xFbw__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-file-upload"] = factory(root["@riim/opal-loader"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-icon"], root["@riim/gettext"], root["@riim/uid"], root["rionite"], root["reflect-metadata"], root["@riim/escape-regexp"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_mtvJ__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_xFbw__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "bz19");
+/******/ 	return __webpack_require__(__webpack_require__.s = "eECM");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -114,6 +114,13 @@ module.exports = (function(d) {
 
 /***/ }),
 
+/***/ "BLMt":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_BLMt__;
+
+/***/ }),
+
 /***/ "P7z7":
 /***/ (function(module, exports) {
 
@@ -125,6 +132,13 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_P7z7__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_WTz___;
+
+/***/ }),
+
+/***/ "Y0hN":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_Y0hN__;
 
 /***/ }),
 
@@ -386,6 +400,23 @@ exports.OpalFileUpload = OpalFileUpload;
 
 /***/ }),
 
+/***/ "eECM":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("Y0hN");
+__webpack_require__("BLMt");
+__webpack_require__("vA/G");
+__export(__webpack_require__("bz19"));
+
+
+/***/ }),
+
 /***/ "eaeG":
 /***/ (function(module, exports) {
 
@@ -404,6 +435,13 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_mtvJ__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vA/G":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

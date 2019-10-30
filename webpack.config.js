@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const { pascalize } = require('@riim/pascalize');
 const webpack = require('webpack');
 const postcssVariables = require('postcss-simple-vars');
 const postcssRioniteComponent = require('postcss-rionite-component');
@@ -31,6 +30,7 @@ const externals = [
 	'@riim/opal-button',
 	'@riim/opal-calendar',
 	'@riim/opal-checkbox',
+	'@riim/opal-components-common',
 	'@riim/opal-date-input',
 	'@riim/opal-dropdown',
 	'@riim/opal-editable-text',
@@ -62,8 +62,7 @@ const externals = [
 	'@riim/opal-text-input',
 	'@riim/opal-tree-list',
 	'@riim/opal-tree-select',
-	'@riim/opal-tree-tag-select',
-	'@riim/opal-utils'
+	'@riim/opal-tree-tag-select'
 ];
 
 module.exports = env => {
@@ -80,18 +79,18 @@ module.exports = env => {
 			(entries, name) => {
 				if (
 					name != 'opal-components' &&
-					name != 'opal-focus-highlight-controller' &&
-					name != 'opal-utils'
+					name != 'opal-components-common' &&
+					name != 'opal-focus-highlight-controller'
 				) {
-					entries[name] = `./packages/${name}/src/components/${pascalize(name)}/index.ts`;
+					entries[name] = `./packages/${name}/src/index.ts`;
 				}
 
 				return entries;
 			},
 			{
 				'opal-components': `./packages/opal-components/src/index.ts`,
-				'opal-focus-highlight-controller': `./packages/opal-focus-highlight-controller/src/index.ts`,
-				'opal-utils': `./packages/opal-utils/src/index.ts`
+				'opal-components-common': `./packages/opal-components-common/src/index.ts`,
+				'opal-focus-highlight-controller': `./packages/opal-focus-highlight-controller/src/index.ts`
 			}
 		),
 

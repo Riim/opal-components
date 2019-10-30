@@ -22,7 +22,6 @@
     "ajv": "6.8.1"
   },
   "devDependencies": {
-    "@riim/pascalize": "^1.0.1",
     "autoprefixer": "^9.7.0",
     "awesome-typescript-loader": "^5.2.1",
     "collapse-line-breaks-loader": "^0.2.1",

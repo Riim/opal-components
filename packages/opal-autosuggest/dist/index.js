@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("@riim/next-tick"), require("@riim/opal-text-input"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-dropdown"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "@riim/next-tick", "@riim/opal-text-input", "rionite", "cellx-decorators"], factory);
+		define(["@riim/opal-dropdown", "cellx", "@riim/next-tick", "@riim/opal-icon", "@riim/opal-text-input", "rionite", "reflect-metadata", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-autosuggest"] = factory(require("cellx"), require("@riim/next-tick"), require("@riim/opal-text-input"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-autosuggest"] = factory(require("@riim/opal-dropdown"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else
-		root["@riim/opal-autosuggest"] = factory(root["cellx"], root["@riim/next-tick"], root["@riim/opal-text-input"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-autosuggest"] = factory(root["@riim/opal-dropdown"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_A7KY__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "9cQR");
+/******/ 	return __webpack_require__(__webpack_require__.s = "c1/n");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -610,6 +610,13 @@ exports.OpalAutosuggest = OpalAutosuggest;
 
 /***/ }),
 
+/***/ "A7KY":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_A7KY__;
+
+/***/ }),
+
 /***/ "P7z7":
 /***/ (function(module, exports) {
 
@@ -624,6 +631,31 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_WTz___;
 
 /***/ }),
 
+/***/ "Y0hN":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_Y0hN__;
+
+/***/ }),
+
+/***/ "c1/n":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("A7KY");
+__webpack_require__("Y0hN");
+__webpack_require__("hl6F");
+__webpack_require__("vA/G");
+__export(__webpack_require__("9cQR"));
+
+
+/***/ }),
+
 /***/ "hl6F":
 /***/ (function(module, exports) {
 
@@ -635,6 +667,13 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_hl6F__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vA/G":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

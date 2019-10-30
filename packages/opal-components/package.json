@@ -17,6 +17,7 @@
     "@riim/opal-button": "^0.38.36",
     "@riim/opal-calendar": "^0.38.36",
     "@riim/opal-checkbox": "^0.38.36",
+    "@riim/opal-components-common": "^0.38.36",
     "@riim/opal-date-input": "^0.38.36",
     "@riim/opal-dropdown": "^0.38.27",
     "@riim/opal-editable-text": "^0.38.36",
@@ -49,7 +50,6 @@
     "@riim/opal-text-input-validator": "^0.38.36",
     "@riim/opal-tree-list": "^0.38.36",
     "@riim/opal-tree-select": "^0.38.36",
-    "@riim/opal-tree-tag-select": "^0.38.36",
-    "@riim/opal-utils": "^0.38.27"
+    "@riim/opal-tree-tag-select": "^0.38.36"
   }
 }

@@ -1,6 +1,6 @@
 import { OpalCheckbox } from '@riim/opal-checkbox';
+import { closestComponent } from '@riim/opal-components-common';
 import { OpalSelectOption } from '@riim/opal-select';
-import { closestComponent } from '@riim/opal-utils';
 import {
 	Cell,
 	define,

@@ -14,6 +14,6 @@
   },
   "dependencies": {
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.61"
+    "rionite": "^0.37.68"
   }
 }

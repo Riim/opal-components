@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite"], factory);
+		define(["rionite", "reflect-metadata"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-group"] = factory(require("rionite"));
+		exports["@riim/opal-group"] = factory(require("rionite"), require("reflect-metadata"));
 	else
-		root["@riim/opal-group"] = factory(root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__) {
+		root["@riim/opal-group"] = factory(root["rionite"], root["reflect-metadata"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "a95g");
+/******/ 	return __webpack_require__(__webpack_require__.s = "udhL");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -144,6 +144,28 @@ exports.OpalGroup = OpalGroup;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "udhL":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("vA/G");
+__export(__webpack_require__("a95g"));
+
+
+/***/ }),
+
+/***/ "vA/G":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ })
 

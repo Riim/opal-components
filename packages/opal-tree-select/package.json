@@ -20,6 +20,6 @@
     "@riim/opal-tree-list": "^0.38.36",
     "cellx": "^1.9.16",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.61"
+    "rionite": "^0.37.68"
   }
 }

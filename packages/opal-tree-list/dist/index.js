@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-checkbox"), require("cellx"), require("@riim/opal-button"), require("@riim/opal-select"), require("@riim/opal-utils"), require("@riim/object-assign-polyfill"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-checkbox"), require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-select"), require("@riim/object-assign-polyfill"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-checkbox", "cellx", "@riim/opal-button", "@riim/opal-select", "@riim/opal-utils", "@riim/object-assign-polyfill", "rionite", "cellx-decorators"], factory);
+		define(["@riim/opal-checkbox", "@riim/opal-loader", "@riim/opal-components-common", "cellx", "@riim/opal-button", "@riim/opal-icon", "@riim/opal-select", "@riim/object-assign-polyfill", "rionite", "reflect-metadata", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tree-list"] = factory(require("@riim/opal-checkbox"), require("cellx"), require("@riim/opal-button"), require("@riim/opal-select"), require("@riim/opal-utils"), require("@riim/object-assign-polyfill"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-tree-list"] = factory(require("@riim/opal-checkbox"), require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-select"), require("@riim/object-assign-polyfill"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else
-		root["@riim/opal-tree-list"] = factory(root["@riim/opal-checkbox"], root["cellx"], root["@riim/opal-button"], root["@riim/opal-select"], root["@riim/opal-utils"], root["@riim/object-assign-polyfill"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__7ATV__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_qQaz__, __WEBPACK_EXTERNAL_MODULE_u2fl__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-tree-list"] = factory(root["@riim/opal-checkbox"], root["@riim/opal-loader"], root["@riim/opal-components-common"], root["cellx"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/opal-select"], root["@riim/object-assign-polyfill"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__7ATV__, __WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_MYNt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u2fl__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "QdML");
+/******/ 	return __webpack_require__(__webpack_require__.s = "qFgv");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -100,6 +100,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__7ATV__;
+
+/***/ }),
+
+/***/ "BLMt":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_BLMt__;
 
 /***/ }),
 
@@ -241,6 +248,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "MYNt":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_MYNt__;
+
+/***/ }),
+
 /***/ "P7z7":
 /***/ (function(module, exports) {
 
@@ -265,8 +279,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var OpalTreeList_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const opal_checkbox_1 = __webpack_require__("7ATV");
+const opal_components_common_1 = __webpack_require__("MYNt");
 const opal_select_1 = __webpack_require__("jL6t");
-const opal_utils_1 = __webpack_require__("qQaz");
 const cellx_1 = __webpack_require__("P7z7");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
@@ -377,7 +391,7 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
         let vm = this.viewModel;
         let viewModelItemValueFieldName = this._viewModelItemValueFieldName;
         let viewModelItemTextFieldName = this._viewModelItemTextFieldName;
-        let item = opal_utils_1.closestComponent(evt.target.parentComponent, OpalTreeListItem_1.OpalTreeListItem).$context.$item;
+        let item = opal_components_common_1.closestComponent(evt.target.parentComponent, OpalTreeListItem_1.OpalTreeListItem).$context.$item;
         if (item.$original) {
             item = item.$original;
         }
@@ -645,6 +659,13 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_X6DG__;
 
 /***/ }),
 
+/***/ "Y0hN":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_Y0hN__;
+
+/***/ }),
+
 /***/ "jL6t":
 /***/ (function(module, exports) {
 
@@ -670,10 +691,23 @@ module.exports = (function(d) {
 
 /***/ }),
 
-/***/ "qQaz":
-/***/ (function(module, exports) {
+/***/ "qFgv":
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_qQaz__;
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("X6DG");
+__webpack_require__("7ATV");
+__webpack_require__("Y0hN");
+__webpack_require__("BLMt");
+__webpack_require__("vA/G");
+__export(__webpack_require__("V5Ua"));
+__export(__webpack_require__("QdML"));
+
 
 /***/ }),
 
@@ -739,6 +773,13 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_u2fl__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vA/G":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

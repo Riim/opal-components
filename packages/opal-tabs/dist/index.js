@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-router"), require("cellx"), require("@riim/uid"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-router"), require("cellx"), require("@riim/uid"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-router", "cellx", "@riim/uid", "rionite", "cellx-decorators"], factory);
+		define(["@riim/opal-router", "cellx", "@riim/uid", "rionite", "reflect-metadata", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tabs"] = factory(require("@riim/opal-router"), require("cellx"), require("@riim/uid"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-tabs"] = factory(require("@riim/opal-router"), require("cellx"), require("@riim/uid"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else
-		root["@riim/opal-tabs"] = factory(root["@riim/opal-router"], root["cellx"], root["@riim/uid"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_Oufu__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_mtvJ__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-tabs"] = factory(root["@riim/opal-router"], root["cellx"], root["@riim/uid"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_Oufu__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_mtvJ__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "Rwo/");
+/******/ 	return __webpack_require__(__webpack_require__.s = "vyT0");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -631,6 +631,28 @@ exports.OpalTab = OpalTab;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vA/G":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
+
+/***/ }),
+
+/***/ "vyT0":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("vA/G");
+__export(__webpack_require__("Rwo/"));
+
 
 /***/ }),
 

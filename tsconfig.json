@@ -5,6 +5,7 @@
 		"experimentalDecorators": true,
 		"lib": ["es2017", "dom"],
 		"module": "commonjs",
+		"moduleResolution": "node",
 		"newLine": "lf",
 		"noImplicitAny": true,
 		"noImplicitReturns": true,

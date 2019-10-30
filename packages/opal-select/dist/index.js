@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/gettext"), require("@riim/opal-sign-button"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-dropdown"), require("@riim/opal-loader"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-filtered-list"), require("@riim/gettext"), require("@riim/opal-sign-button"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "@riim/next-tick", "@riim/opal-button", "@riim/gettext", "@riim/opal-sign-button", "@riim/opal-text-input", "@riim/opal-loaded-list", "rionite", "cellx-decorators"], factory);
+		define(["@riim/opal-dropdown", "@riim/opal-loader", "cellx", "@riim/next-tick", "@riim/opal-button", "@riim/opal-icon", "@riim/opal-filtered-list", "@riim/gettext", "@riim/opal-sign-button", "@riim/opal-text-input", "@riim/opal-loaded-list", "rionite", "reflect-metadata", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-select"] = factory(require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/gettext"), require("@riim/opal-sign-button"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-select"] = factory(require("@riim/opal-dropdown"), require("@riim/opal-loader"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-filtered-list"), require("@riim/gettext"), require("@riim/opal-sign-button"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else
-		root["@riim/opal-select"] = factory(root["cellx"], root["@riim/next-tick"], root["@riim/opal-button"], root["@riim/gettext"], root["@riim/opal-sign-button"], root["@riim/opal-text-input"], root["@riim/opal-loaded-list"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_ioIi__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-select"] = factory(root["@riim/opal-dropdown"], root["@riim/opal-loader"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/opal-filtered-list"], root["@riim/gettext"], root["@riim/opal-sign-button"], root["@riim/opal-text-input"], root["@riim/opal-loaded-list"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_A7KY__, __WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_Y1_I__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_ioIi__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "ZuAa");
+/******/ 	return __webpack_require__(__webpack_require__.s = "qudD");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -111,6 +111,20 @@ module.exports = (function(d) {
         return null;
     })(document);
 
+
+/***/ }),
+
+/***/ "A7KY":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_A7KY__;
+
+/***/ }),
+
+/***/ "BLMt":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_BLMt__;
 
 /***/ }),
 
@@ -354,6 +368,20 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_WTz___;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_X6DG__;
+
+/***/ }),
+
+/***/ "Y0hN":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_Y0hN__;
+
+/***/ }),
+
+/***/ "Y1+I":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_Y1_I__;
 
 /***/ }),
 
@@ -1341,10 +1369,39 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "qudD":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("X6DG");
+__webpack_require__("A7KY");
+__webpack_require__("Y1+I");
+__webpack_require__("Y0hN");
+__webpack_require__("ioIi");
+__webpack_require__("BLMt");
+__webpack_require__("hl6F");
+__webpack_require__("vA/G");
+__export(__webpack_require__("ZuAa"));
+
+
+/***/ }),
+
 /***/ "u4yd":
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vA/G":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

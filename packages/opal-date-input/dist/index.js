@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("date-exists"), require("@riim/opal-text-input"), require("@riim/opal-calendar"), require("rionite"));
+		module.exports = factory(require("@riim/opal-text-input-validator"), require("@riim/opal-dropdown"), require("@riim/opal-input-mask"), require("@riim/opal-icon"), require("date-exists"), require("@riim/opal-text-input"), require("@riim/opal-calendar"), require("rionite"), require("reflect-metadata"));
 	else if(typeof define === 'function' && define.amd)
-		define(["date-exists", "@riim/opal-text-input", "@riim/opal-calendar", "rionite"], factory);
+		define(["@riim/opal-text-input-validator", "@riim/opal-dropdown", "@riim/opal-input-mask", "@riim/opal-icon", "date-exists", "@riim/opal-text-input", "@riim/opal-calendar", "rionite", "reflect-metadata"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-date-input"] = factory(require("date-exists"), require("@riim/opal-text-input"), require("@riim/opal-calendar"), require("rionite"));
+		exports["@riim/opal-date-input"] = factory(require("@riim/opal-text-input-validator"), require("@riim/opal-dropdown"), require("@riim/opal-input-mask"), require("@riim/opal-icon"), require("date-exists"), require("@riim/opal-text-input"), require("@riim/opal-calendar"), require("rionite"), require("reflect-metadata"));
 	else
-		root["@riim/opal-date-input"] = factory(root["date-exists"], root["@riim/opal-text-input"], root["@riim/opal-calendar"], root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_aB20__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_iMF9__, __WEBPACK_EXTERNAL_MODULE_u4yd__) {
+		root["@riim/opal-date-input"] = factory(root["@riim/opal-text-input-validator"], root["@riim/opal-dropdown"], root["@riim/opal-input-mask"], root["@riim/opal-icon"], root["date-exists"], root["@riim/opal-text-input"], root["@riim/opal-calendar"], root["rionite"], root["reflect-metadata"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__tCi__, __WEBPACK_EXTERNAL_MODULE_A7KY__, __WEBPACK_EXTERNAL_MODULE_JK3___, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_aB20__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_iMF9__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,10 +91,52 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "ZX14");
+/******/ 	return __webpack_require__(__webpack_require__.s = "9lkO");
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "/tCi":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__tCi__;
+
+/***/ }),
+
+/***/ "9lkO":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("iMF9");
+__webpack_require__("A7KY");
+__webpack_require__("Y0hN");
+__webpack_require__("JK3/");
+__webpack_require__("hl6F");
+__webpack_require__("/tCi");
+__webpack_require__("vA/G");
+__export(__webpack_require__("ZX14"));
+
+
+/***/ }),
+
+/***/ "A7KY":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_A7KY__;
+
+/***/ }),
+
+/***/ "JK3/":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_JK3___;
+
+/***/ }),
 
 /***/ "Lk27":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -120,6 +162,13 @@ module.exports = (function(d) {
         return null;
     })(document);
 
+
+/***/ }),
+
+/***/ "Y0hN":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_Y0hN__;
 
 /***/ }),
 
@@ -345,6 +394,13 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_iMF9__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vA/G":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ })
 

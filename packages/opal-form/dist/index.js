@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"));
+		module.exports = factory(require("rionite"), require("reflect-metadata"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite"], factory);
+		define(["rionite", "reflect-metadata"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-form"] = factory(require("rionite"));
+		exports["@riim/opal-form"] = factory(require("rionite"), require("reflect-metadata"));
 	else
-		root["@riim/opal-form"] = factory(root["rionite"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__) {
+		root["@riim/opal-form"] = factory(root["rionite"], root["reflect-metadata"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,10 +91,25 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "aAdN");
+/******/ 	return __webpack_require__(__webpack_require__.s = "/e6C");
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "/e6C":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("vA/G");
+__export(__webpack_require__("aAdN"));
+
+
+/***/ }),
 
 /***/ "aAdN":
 /***/ (function(module, exports, __webpack_require__) {
@@ -165,6 +180,13 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
+
+/***/ }),
+
+/***/ "vA/G":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ })
 
