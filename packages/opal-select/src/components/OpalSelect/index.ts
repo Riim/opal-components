@@ -79,6 +79,8 @@ export class OpalSelect extends BaseComponent {
 	size: typeof OpalButton.prototype.size = 'm';
 	@Param({ readonly: true })
 	multiple = false;
+	@Param
+	clearOnDeselect = false;
 	@Param('dataList')
 	paramDataList: TDataList;
 	@Param({ readonly: true })
@@ -531,7 +533,7 @@ export class OpalSelect extends BaseComponent {
 
 	@Listen(OpalSelectOption.EVENT_DESELECT, 'menu')
 	_onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>): false {
-		if (this.multiple) {
+		if (this.multiple || this.clearOnDeselect) {
 			let vmItemValueFieldName = this._viewModelItemValueFieldName;
 			let value = evt.target.value;
 

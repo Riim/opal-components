@@ -405,6 +405,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         super(...arguments);
         this.size = 'm';
         this.multiple = false;
+        this.clearOnDeselect = false;
         this.clearLoadedListOnOpen = false;
         this.maxTextLength = 20;
         // ;;; Плейсхолдер селекта.
@@ -704,7 +705,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         return false;
     }
     _onMenuSelectOptionDeselect(evt) {
-        if (this.multiple) {
+        if (this.multiple || this.clearOnDeselect) {
             let vmItemValueFieldName = this._viewModelItemValueFieldName;
             let value = evt.target.value;
             this._notUpdateOptions = true;
@@ -1088,6 +1089,10 @@ __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
 ], OpalSelect.prototype, "multiple", void 0);
+__decorate([
+    rionite_1.Param,
+    __metadata("design:type", Object)
+], OpalSelect.prototype, "clearOnDeselect", void 0);
 __decorate([
     rionite_1.Param('dataList'),
     __metadata("design:type", Object)

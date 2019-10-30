@@ -19,13 +19,11 @@
 	}
 
 	@el nothingFoundSlot {
-		display: flex;
-		padding: 12px;
-		justify-content: center;
-		align-items: center;
+		display: block;
+		padding: 28px;
+		text-align: center;
 	}
 		@el nothingFound {
-			text-align: center;
 		}
 			@el nothingFoundMessage {
 				white-space: nowrap;

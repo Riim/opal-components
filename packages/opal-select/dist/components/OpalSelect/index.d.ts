@@ -37,6 +37,7 @@ export declare class OpalSelect extends BaseComponent {
     viewType: string;
     size: typeof OpalButton.prototype.size;
     multiple: boolean;
+    clearOnDeselect: boolean;
     paramDataList: TDataList;
     dataListKeypath: string;
     dataListItemSchema: {
