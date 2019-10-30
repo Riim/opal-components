@@ -2,10 +2,12 @@ const path = require('path');
 const fs = require('fs');
 const { pascalize } = require('@riim/pascalize');
 const webpack = require('webpack');
+const postcssVariables = require('postcss-simple-vars');
 const postcssRioniteComponent = require('postcss-rionite-component');
 const postcssColorFunction = require('postcss-color-function');
 const autoprefixer = require('autoprefixer');
 const csso = require('postcss-csso');
+const cssVariables = require('./packages/opal-components-common/src/config/cssVariables');
 
 const externals = [
 	'@riim/debounce-throttle',
@@ -125,6 +127,7 @@ module.exports = env => {
 							loader: 'postcss-loader',
 							options: {
 								plugins: [
+									postcssVariables({ variables: cssVariables }),
 									postcssRioniteComponent(),
 									postcssColorFunction(),
 									autoprefixer({ browsers: ['last 3 versions'] }),

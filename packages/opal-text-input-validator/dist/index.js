@@ -222,7 +222,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalTextInputValidator.OpalInputValidator .OpalInputValidator__textInput{display:block}.OpalTextInputValidator.OpalInputValidator[valid=no] .OpalInputValidator__textInput .OpalTextInput__textField{border-color:#f63159}";
+            style.textContent = ".OpalTextInputValidator.OpalInputValidator .OpalInputValidator__textInput{display:block}.OpalTextInputValidator.OpalInputValidator[valid=no] .OpalInputValidator__textInput .OpalTextInput__textField{border-color:#f44034}";
             head.appendChild(style);
             return style;
         }

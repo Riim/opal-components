@@ -37,7 +37,7 @@
 				right: 2px;
 				bottom: 2px;
 				left: 2px;
-				box-shadow: inset 0 0 0 1px hsl(208,100%,60%);
+				box-shadow: inset 0 0 0 1px $primaryColor650;
 				content: '';
 				pointer-events: none;
 			}
@@ -78,7 +78,7 @@
 		indeterminate
 	{
 		@el control {
-			color: hsl(208,90%,50%);
+			color: $primaryColor;
 		}
 	}
 

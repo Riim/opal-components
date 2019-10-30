@@ -20,7 +20,8 @@ export class OpalButton extends BaseComponent {
 	static EVENT_UNCHECK = Symbol('uncheck');
 
 	@Param
-	viewType: 'default' | 'primary' | 'danger' | 'clean' | string = 'default';
+	viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'clean' | string =
+		'default';
 	@Param
 	size: 's' | 'm' | string = 'm';
 	@Param

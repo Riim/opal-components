@@ -57,19 +57,19 @@ opal-popover {
 
 	@mod viewType=primary {
 		@el contentSlot {
-			border: 1px solid hsl(208,94%,54%);
+			border: 1px solid $primaryColor;
 		}
 	}
 
 	@mod viewType=success {
 		@el contentSlot {
-			border: 1px solid hsl(148,76%,40%);
+			border: 1px solid $successColor;
 		}
 	}
 
 	@mod viewType=danger {
 		@el contentSlot {
-			border: 1px solid hsl(348,92%,58%);
+			border: 1px solid $dangerColor;
 		}
 	}
 

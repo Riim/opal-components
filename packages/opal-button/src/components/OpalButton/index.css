@@ -13,7 +13,7 @@
 		box-sizing: border-box;
 		padding: 7px 23px;
 		border-radius: 3px;
-		background: hsl(208,18%,40%);
+		background: $defaultColor;
 		color: #fff;
 		vertical-align: middle;
 		text-align: center;
@@ -40,7 +40,7 @@
 		}
 
 		&:hover {
-			background: hsl(208,24%,46%);
+			background: $defaultColor600;
 		}
 
 		&:focus {
@@ -61,7 +61,7 @@
 
 		&:active,
 		&[checked] {
-			background: hsl(208,6%,28%);
+			background: $defaultColor350;
 		}
 
 		@mod loading {
@@ -112,28 +112,28 @@
 	}
 
 	@mod viewType=primary {
-		background: hsl(208,94%,54%);
+		background: $primaryColor;
 
 		&:hover {
-			background-color: hsl(208,100%,60%);
+			background-color: $primaryColor600;
 		}
 
 		&:active,
 		&[checked] {
-			background-color: hsl(208,82%,42%);
+			background-color: $primaryColor350;
 		}
 	}
 
 	@mod viewType=danger {
-		background: hsl(348,92%,58%);
+		background: $dangerColor;
 
 		&:hover {
-			background-color: hsl(348,98%,64%);
+			background-color: $dangerColor600;
 		}
 
 		&:active,
 		&[checked] {
-			background-color: hsl(348,80%,46%);
+			background-color: $dangerColor350;
 		}
 	}
 }

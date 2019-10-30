@@ -6,7 +6,7 @@
 	@mod valid=no {
 		@el textInput {
 			.OpalTextInput__textField {
-				border-color: hsl(348,92%,58%);
+				border-color: $dangerColor;
 			}
 		}
 	}

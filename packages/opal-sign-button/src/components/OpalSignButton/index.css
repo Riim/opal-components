@@ -22,7 +22,7 @@
 				right: 0;
 				bottom: 1px;
 				left: -3px;
-				border: 1px solid hsl(208,94%,54%);
+				border: 1px solid $primaryColor;
 				border-radius: 3px;
 				content: '';
 				pointer-events: none;
@@ -72,21 +72,21 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: hsl(208,100%,60%);
+					border-color: $primaryColor650;
 
 					&::before,
 					&::after {
-						background: hsl(208,100%,60%);
+						background: $primaryColor650;
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: hsl(208,86%,46%);
+				border-color: $primaryColor450;
 
 				&::before,
 				&::after {
-					background: hsl(208,86%,46%);
+					background: $primaryColor450;
 					content: '';
 				}
 			}
@@ -97,19 +97,19 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: hsl(348,98%,64%);
+					border-color: $dangerColor650;
 
 					&::before {
-						background: hsl(348,98%,64%);
+						background: $dangerColor650;
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: hsl(348,84%,50%);
+				border-color: $dangerColor450;
 
 				&::before {
-					background: hsl(348,84%,50%);
+					background: $dangerColor450;
 					content: '';
 				}
 			}
@@ -120,19 +120,19 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: hsl(208,100%,60%);
+					border-color: $primaryColor650;
 
 					&::before {
-						background: hsl(208,100%,60%);
+						background: $primaryColor650;
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: hsl(208,86%,46%);
+				border-color: $primaryColor450;
 
 				&::before {
-					background: hsl(208,86%,46%);
+					background: $primaryColor450;
 				}
 			}
 	}
@@ -142,21 +142,21 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: hsl(348,98%,64%);
+					border-color: $dangerColor650;
 
 					&::before,
 					&::after {
-						background: hsl(348,98%,64%);
+						background: $dangerColor650;
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: hsl(348,84%,50%);
+				border-color: $dangerColor450;
 
 				&::before,
 				&::after {
-					background: hsl(348,84%,50%);
+					background: $dangerColor450;
 				}
 			}
 	}

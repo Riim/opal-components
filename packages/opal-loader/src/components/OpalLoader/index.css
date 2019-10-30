@@ -18,7 +18,7 @@
 		margin: auto;
 		width: 100%;
 		height: 100%;
-		border: 3px solid hsl(208,94%,54%);
+		border: 3px solid $primaryColor;
 		border-top-color: transparent;
 		border-radius: 50%;
 		content: '';
@@ -28,7 +28,7 @@
 	&::after {
 		width: 26px;
 		height: 26px;
-		border-color: hsl(348,92%,58%);
+		border-color: $dangerColor;
 		border-bottom-color: transparent;
 		animation-direction: reverse;
 	}

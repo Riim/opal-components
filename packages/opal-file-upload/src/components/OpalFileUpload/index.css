@@ -105,7 +105,7 @@
 		cursor: pointer;
 
 		@mod hovering {
-			border-color: hsl(208,90%,52%);
+			border-color: $primaryColor;
 
 			@el dropZoneText {
 				pointer-events: none;
@@ -151,7 +151,7 @@
 				padding: 0;
 				border: 0;
 				background: transparent;
-				color: hsl(208,90%,52%);
+				color: $primaryColor;
 				font: inherit;
 				cursor: inherit;
 			}

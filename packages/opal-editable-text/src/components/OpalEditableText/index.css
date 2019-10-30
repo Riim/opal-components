@@ -25,12 +25,12 @@
 			height: 16px;
 			border: solid 2px transparent;
 			border-left-width: 6px;
-			color: hsl(208,86%,46%);
+			color: $primaryColor450;
 			cursor: pointer;
 
 			&:hover,
 			&:active {
-				stroke: hsl(208,100%,60%);
+				stroke: $primaryColor650;
 			}
 
 			&:active {

@@ -5,7 +5,7 @@
 	@el label {
 		&:hover {
 			@el thumb {
-				background: hsl(208,24%,46%);
+				background: $defaultColor650;
 			}
 		}
 	}
@@ -21,7 +21,7 @@
 			width: 30px;
 			height: 14px;
 			border-radius: 7px;
-			background: hsl(0,0%,84%);
+			background: hsl(0,0%,85%);
 			vertical-align: middle;
 			cursor: pointer;
 			user-select: none;
@@ -52,7 +52,7 @@
 				width: 20px;
 				height: 20px;
 				border-radius: 50%;
-				background: hsl(208,18%,40%);
+				background: $defaultColor;
 				transition: background .1s linear, transform .1s linear;
 			}
 
@@ -63,12 +63,12 @@
 		@el label {
 			&:hover {
 				@el thumb {
-					background: hsl(208,100%,60%);
+					background: $primaryColor650;
 				}
 			}
 		}
 			@el thumb {
-				background: hsl(208,94%,54%);
+				background: $primaryColor;
 				transform: translateX(16px);
 			}
 	}

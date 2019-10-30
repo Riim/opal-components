@@ -1,7 +1,7 @@
 @component OpalTabList {
 	display: block;
 	padding: 0 30px;
-	border-bottom: 1px solid hsl(0,0%,86%);
+	border-bottom: 1px solid hsl(0,0%,85%);
 	white-space: nowrap;
 	font-size: 0;
 	line-height: 0;

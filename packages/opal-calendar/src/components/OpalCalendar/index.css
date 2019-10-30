@@ -1,7 +1,7 @@
 @component OpalCalendar {
 	display: block;
 	width: 300px;
-	border: 1px solid hsl(0,0%,86%);
+	border: 1px solid hsl(0,0%,85%);
 	border-radius: 3px;
 	background: #fff;
 	color: #000;
@@ -45,7 +45,7 @@
 					bottom: 2px;
 					left: 2px;
 					border-radius: inherit;
-					box-shadow: inset 0 0 0 1px hsl(208,94%,54%);
+					box-shadow: inset 0 0 0 1px $primaryColor;
 					content: '';
 					pointer-events: none;
 				}
@@ -147,7 +147,7 @@
 							bottom: 2px;
 							left: 2px;
 							border-radius: inherit;
-							box-shadow: inset 0 0 0 1px hsl(208,94%,54%);
+							box-shadow: inset 0 0 0 1px $primaryColor;
 							content: '';
 							pointer-events: none;
 						}
@@ -172,7 +172,7 @@
 					}
 
 					@mod selected {
-						color: hsl(208,90%,50%);
+						color: $primaryColor450;
 						opacity: 1;
 					}
 				}
