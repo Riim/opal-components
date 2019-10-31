@@ -296,7 +296,7 @@ let OpalPopover = OpalPopover_1 = class OpalPopover extends rionite_1.BaseCompon
 OpalPopover.EVENT_CLOSE = Symbol('close');
 __decorate([
     rionite_1.Param,
-    __metadata("design:type", String)
+    __metadata("design:type", Object)
 ], OpalPopover.prototype, "position", void 0);
 __decorate([
     rionite_1.Param,

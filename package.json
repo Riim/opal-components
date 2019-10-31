@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack && gulp movePackagesDTS",
-    "build-examples": "webpack --config=examples/webpack.config.js --env.dev",
+    "dev": "webpack --config=examples/webpack.config.js --env.dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

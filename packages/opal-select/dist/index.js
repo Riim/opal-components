@@ -431,6 +431,7 @@ const defaultVMItemSchema = Object.freeze({
 let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
+        this.viewType = 'default';
         this.size = 'm';
         this.multiple = false;
         this.clearOnDeselect = false;
@@ -1107,7 +1108,7 @@ OpalSelect.defaultDataListItemSchema = defaultDataListItemSchema;
 OpalSelect.defaultViewModelItemSchema = defaultVMItemSchema;
 __decorate([
     rionite_1.Param,
-    __metadata("design:type", String)
+    __metadata("design:type", Object)
 ], OpalSelect.prototype, "viewType", void 0);
 __decorate([
     rionite_1.Param,

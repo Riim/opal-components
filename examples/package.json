@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack --env.dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dmitry Vibe",
@@ -12,7 +13,7 @@
     "@types/history": "^4.7.3"
   },
   "dependencies": {
-    "@riim/opal-components": "^0.38.37",
+    "@riim/opal-components": "^0.38.38",
     "cellx": "^1.9.16",
     "rionite": "^0.37.68"
   }

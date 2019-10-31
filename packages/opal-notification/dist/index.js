@@ -240,7 +240,7 @@ OpalNotification.EVENT_CLOSE = Symbol('close');
 OpalNotification.EVENT_HIDE = Symbol('hide');
 __decorate([
     rionite_1.Param,
-    __metadata("design:type", String)
+    __metadata("design:type", Object)
 ], OpalNotification.prototype, "viewType", void 0);
 __decorate([
     rionite_1.Param,
@@ -248,7 +248,7 @@ __decorate([
 ], OpalNotification.prototype, "icon", void 0);
 __decorate([
     rionite_1.Param,
-    __metadata("design:type", String)
+    __metadata("design:type", Object)
 ], OpalNotification.prototype, "iconSize", void 0);
 __decorate([
     rionite_1.Param,

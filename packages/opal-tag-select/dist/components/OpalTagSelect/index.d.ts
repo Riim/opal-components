@@ -19,7 +19,9 @@ export declare class OpalTagSelect extends BaseComponent {
         text: string;
         disabled: string;
     }>;
-    viewType: string;
+    viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | string & {
+        _?: never;
+    };
     paramDataList: TDataList;
     dataListKeypath: string;
     dataListItemSchema: {

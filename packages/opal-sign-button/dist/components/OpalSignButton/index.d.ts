@@ -8,7 +8,9 @@ export declare class OpalSignButton extends BaseComponent {
     static EVENT_FOCUS: symbol;
     static EVENT_UNCHECK: symbol;
     sign: string;
-    viewType: string;
+    viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | string & {
+        _?: never;
+    };
     checkable: boolean;
     checked: boolean;
     tabIndex: number;

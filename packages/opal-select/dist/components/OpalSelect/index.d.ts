@@ -34,7 +34,7 @@ export declare class OpalSelect extends BaseComponent {
         subtext: string;
         disabled: string;
     }>;
-    viewType: string;
+    viewType: typeof OpalButton.prototype.viewType;
     size: typeof OpalButton.prototype.size;
     multiple: boolean;
     clearOnDeselect: boolean;

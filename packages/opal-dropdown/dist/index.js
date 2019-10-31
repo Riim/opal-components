@@ -278,7 +278,7 @@ __decorate([
 ], OpalDropdown.prototype, "autoHeight", void 0);
 __decorate([
     rionite_1.Param,
-    __metadata("design:type", String)
+    __metadata("design:type", Object)
 ], OpalDropdown.prototype, "closeOn", void 0);
 __decorate([
     rionite_1.Param,

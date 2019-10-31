@@ -92,32 +92,51 @@ h1 { 'OpalButton' }
 p {
 	OpalButton { 'Button' } ' '
 	OpalButton (viewType=primary) { 'Button' } ' '
+	OpalButton (viewType=success) { 'Button' } ' '
+	OpalButton (viewType=warning) { 'Button' } ' '
 	OpalButton (viewType=danger) { 'Button' } ' '
 }
 p {
 	OpalButton (disabled) { 'Button' } ' '
 	OpalButton (viewType=primary, disabled) { 'Button' } ' '
+	OpalButton (viewType=success, disabled) { 'Button' } ' '
+	OpalButton (viewType=warning, disabled) { 'Button' } ' '
 	OpalButton (viewType=danger, disabled) { 'Button' } ' '
 }
 p {
 	OpalButton (size=s) { 'Button' } ' '
 	OpalButton (viewType=primary, size=s) { 'Button' } ' '
+	OpalButton (viewType=success, size=s) { 'Button' } ' '
+	OpalButton (viewType=warning, size=s) { 'Button' } ' '
 	OpalButton (viewType=danger, size=s) { 'Button' } ' '
 }
 p {
 	OpalButton (loading) { 'Button' } ' '
 	OpalButton (viewType=primary, loading) { 'Button' } ' '
+	OpalButton (viewType=success, loading) { 'Button' } ' '
+	OpalButton (viewType=warning, loading) { 'Button' } ' '
 	OpalButton (viewType=danger, loading) { 'Button' } ' '
 }
 p {
 	OpalButton (loading, disabled) { 'Button' } ' '
 	OpalButton (viewType=primary, loading, disabled) { 'Button' } ' '
+	OpalButton (viewType=success, loading, disabled) { 'Button' } ' '
+	OpalButton (viewType=warning, loading, disabled) { 'Button' } ' '
 	OpalButton (viewType=danger, loading, disabled) { 'Button' } ' '
 }
 
 h1 { 'OpalSignButton' }
 p {
+	OpalSignButton (sign=plus, viewType=default) { 'Button' }
+}
+p {
 	OpalSignButton (sign=plus) { 'Button' }
+}
+p {
+	OpalSignButton (sign=plus, viewType=success) { 'Button' }
+}
+p {
+	OpalSignButton (sign=plus, viewType=warning) { 'Button' }
 }
 p {
 	OpalSignButton (sign=minus) { 'Button' }
@@ -322,7 +341,7 @@ p {
 		'success'
 	}
 
-	OpalNotification (id=notification5, viewType=success, icon=calendar, iconSize=xs) {
+	OpalNotification (id=notification5, viewType=warning, icon=calendar, iconSize=xs) {
 		'success '
 		'success '
 		'success '
