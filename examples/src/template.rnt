@@ -127,18 +127,23 @@ p {
 
 h1 { 'OpalSignButton' }
 p {
-	OpalSignButton (sign=plus, viewType=default) { 'Button' }
+	OpalSignButton (sign=plus, viewType=default) { 'Button' } ' '
+	OpalSignButton (sign=minus, viewType=default) { 'Button' }
 }
 p {
-	OpalSignButton (sign=plus) { 'Button' }
+	OpalSignButton (sign=plus) { 'Button' } ' '
+	OpalSignButton (sign=minus, viewType=primary) { 'Button' }
 }
 p {
-	OpalSignButton (sign=plus, viewType=success) { 'Button' }
+	OpalSignButton (sign=plus, viewType=success) { 'Button' } ' '
+	OpalSignButton (sign=minus, viewType=success) { 'Button' }
 }
 p {
-	OpalSignButton (sign=plus, viewType=warning) { 'Button' }
+	OpalSignButton (sign=plus, viewType=warning) { 'Button' } ' '
+	OpalSignButton (sign=minus, viewType=warning) { 'Button' }
 }
 p {
+	OpalSignButton (sign=plus, viewType=danger) { 'Button' } ' '
 	OpalSignButton (sign=minus) { 'Button' }
 }
 

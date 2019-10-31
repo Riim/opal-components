@@ -82,7 +82,7 @@
 				}
 
 				&:active {
-					background: $defaultColor400;
+					background: $defaultColor300;
 				}
 			}
 
@@ -121,7 +121,7 @@
 				}
 
 				&:active {
-					background: $primaryColor400;
+					background: $primaryColor300;
 				}
 			}
 	}
@@ -138,7 +138,7 @@
 				}
 
 				&:active {
-					background: $successColor400;
+					background: $successColor300;
 				}
 			}
 	}
@@ -155,7 +155,7 @@
 				}
 
 				&:active {
-					background: $warningColor400;
+					background: $warningColor300;
 				}
 			}
 	}
@@ -172,7 +172,7 @@
 				}
 
 				&:active {
-					background: $dangerColor400;
+					background: $dangerColor300;
 				}
 			}
 	}
