@@ -1,3 +1,4 @@
+import '@riim/opal-components';
 import { ObservableTreeList } from '@riim/opal-tree-list';
 import { ObservableList } from 'cellx';
 import { BaseComponent, Component } from 'rionite';

@@ -318,13 +318,11 @@ p {
 		'primary '
 	}
 
-	OpalNotification (id=notification4, viewType=success) {
-		OpalIcon (class=OpalNotification__icon, name=calendar, size=xs)
+	OpalNotification (id=notification4, viewType=success, icon=calendar, iconSize=xs) {
 		'success'
 	}
 
-	OpalNotification (id=notification5, viewType=success) {
-		OpalIcon (class=OpalNotification__icon, name=calendar, size=xs)
+	OpalNotification (id=notification5, viewType=success, icon=calendar, iconSize=xs) {
 		'success '
 		'success '
 		'success '
