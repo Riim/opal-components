@@ -122,7 +122,8 @@
 				@el sign {
 					border-color: $defaultColor600;
 
-					&::before {
+					&::before,
+					&::after {
 						background: $defaultColor600;
 					}
 				}
@@ -131,7 +132,8 @@
 			@el sign {
 				border-color: $defaultColor;
 
-				&::before {
+				&::before,
+				&::after {
 					background: $defaultColor;
 				}
 			}
@@ -144,7 +146,8 @@
 				@el sign {
 					border-color: $primaryColor600;
 
-					&::before {
+					&::before,
+					&::after {
 						background: $primaryColor600;
 					}
 				}
@@ -153,7 +156,8 @@
 			@el sign {
 				border-color: $primaryColor;
 
-				&::before {
+				&::before,
+				&::after {
 					background: $primaryColor;
 				}
 			}
@@ -166,7 +170,8 @@
 				@el sign {
 					border-color: $successColor600;
 
-					&::before {
+					&::before,
+					&::after {
 						background: $successColor600;
 					}
 				}
@@ -175,7 +180,8 @@
 			@el sign {
 				border-color: $successColor;
 
-				&::before {
+				&::before,
+				&::after {
 					background: $successColor;
 				}
 			}
@@ -188,7 +194,8 @@
 				@el sign {
 					border-color: $warningColor600;
 
-					&::before {
+					&::before,
+					&::after {
 						background: $warningColor600;
 					}
 				}
@@ -197,7 +204,8 @@
 			@el sign {
 				border-color: $warningColor;
 
-				&::before {
+				&::before,
+				&::after {
 					background: $warningColor;
 				}
 			}
