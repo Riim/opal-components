@@ -124,6 +124,32 @@
 		}
 	}
 
+	@mod viewType=success {
+		background: $successColor;
+
+		&:hover {
+			background-color: $successColor600;
+		}
+
+		&:active,
+		&[checked] {
+			background-color: $successColor350;
+		}
+	}
+
+	@mod viewType=warning {
+		background: $warningColor;
+
+		&:hover {
+			background-color: $warningColor600;
+		}
+
+		&:active,
+		&[checked] {
+			background-color: $warningColor350;
+		}
+	}
+
 	@mod viewType=danger {
 		background: $dangerColor;
 

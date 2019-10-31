@@ -72,21 +72,21 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: $primaryColor650;
+					border-color: $primaryColor600;
 
 					&::before,
 					&::after {
-						background: $primaryColor650;
+						background: $primaryColor600;
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: $primaryColor450;
+				border-color: $primaryColor;
 
 				&::before,
 				&::after {
-					background: $primaryColor450;
+					background: $primaryColor;
 					content: '';
 				}
 			}
@@ -97,20 +97,42 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: $dangerColor650;
+					border-color: $dangerColor600;
 
 					&::before {
-						background: $dangerColor650;
+						background: $dangerColor600;
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: $dangerColor450;
+				border-color: $dangerColor;
 
 				&::before {
-					background: $dangerColor450;
+					background: $dangerColor;
 					content: '';
+				}
+			}
+	}
+
+	@mod viewType=default {
+		@el control {
+			&:hover,
+			&:active {
+				@el sign {
+					border-color: $defaultColor600;
+
+					&::before {
+						background: $defaultColor600;
+					}
+				}
+			}
+		}
+			@el sign {
+				border-color: $defaultColor;
+
+				&::before {
+					background: $defaultColor;
 				}
 			}
 	}
@@ -120,19 +142,63 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: $primaryColor650;
+					border-color: $primaryColor600;
 
 					&::before {
-						background: $primaryColor650;
+						background: $primaryColor600;
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: $primaryColor450;
+				border-color: $primaryColor;
 
 				&::before {
-					background: $primaryColor450;
+					background: $primaryColor;
+				}
+			}
+	}
+
+	@mod viewType=success {
+		@el control {
+			&:hover,
+			&:active {
+				@el sign {
+					border-color: $successColor600;
+
+					&::before {
+						background: $successColor600;
+					}
+				}
+			}
+		}
+			@el sign {
+				border-color: $successColor;
+
+				&::before {
+					background: $successColor;
+				}
+			}
+	}
+
+	@mod viewType=warning {
+		@el control {
+			&:hover,
+			&:active {
+				@el sign {
+					border-color: $warningColor600;
+
+					&::before {
+						background: $warningColor600;
+					}
+				}
+			}
+		}
+			@el sign {
+				border-color: $warningColor;
+
+				&::before {
+					background: $warningColor;
 				}
 			}
 	}
@@ -142,21 +208,21 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: $dangerColor650;
+					border-color: $dangerColor600;
 
 					&::before,
 					&::after {
-						background: $dangerColor650;
+						background: $dangerColor600;
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: $dangerColor450;
+				border-color: $dangerColor;
 
 				&::before,
 				&::after {
-					background: $dangerColor450;
+					background: $dangerColor;
 				}
 			}
 	}

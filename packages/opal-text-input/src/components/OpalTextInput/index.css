@@ -240,7 +240,7 @@
 		@el textField {
 			&,
 			&:focus {
-				border-color: $successColor400;
+				border-color: $successColor;
 			}
 		}
 	}

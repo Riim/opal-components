@@ -11,7 +11,7 @@
 			padding: 0 10px 0 18px;
 			border-top-left-radius: 16px;
 			border-bottom-left-radius: 16px;
-			background: $defaultColor650;
+			background: $defaultColor;
 			color: #fff;
 			vertical-align: middle;
 			text-decoration: none;
@@ -43,7 +43,7 @@
 				border-radius: 0;
 				border-top-right-radius: 16px;
 				border-bottom-right-radius: 16px;
-				background: $defaultColor;
+				background: $defaultColor400;
 				box-shadow: inset 1px 0 rgba(0,0,0,.4);
 				cursor: pointer;
 				transition: background .1s linear;
@@ -62,7 +62,7 @@
 				}
 
 				&:hover {
-					background: $defaultColor650;
+					background: $defaultColor;
 				}
 
 				&:focus {
@@ -111,13 +111,13 @@
 
 	@mod viewType=primary {
 		@el tag {
-			background: $primaryColor650;
+			background: $primaryColor;
 		}
 			@el btnRemoveTag {
-				background: $primaryColor;
+				background: $primaryColor400;
 
 				&:hover {
-					background: $primaryColor650;
+					background: $primaryColor;
 				}
 
 				&:active {
@@ -126,15 +126,49 @@
 			}
 	}
 
-	@mod viewType=danger {
+	@mod viewType=success {
 		@el tag {
-			background: $dangerColor650;
+			background: $successColor;
 		}
 			@el btnRemoveTag {
-				background: $dangerColor;
+				background: $successColor400;
 
 				&:hover {
-					background: $dangerColor650;
+					background: $successColor;
+				}
+
+				&:active {
+					background: $successColor400;
+				}
+			}
+	}
+
+	@mod viewType=warning {
+		@el tag {
+			background: $warningColor;
+		}
+			@el btnRemoveTag {
+				background: $warningColor400;
+
+				&:hover {
+					background: $warningColor;
+				}
+
+				&:active {
+					background: $warningColor400;
+				}
+			}
+	}
+
+	@mod viewType=danger {
+		@el tag {
+			background: $dangerColor;
+		}
+			@el btnRemoveTag {
+				background: $dangerColor400;
+
+				&:hover {
+					background: $dangerColor;
 				}
 
 				&:active {
