@@ -74,7 +74,7 @@ export class OpalSelect extends BaseComponent {
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
 	@Param
-	viewType: string;
+	viewType: typeof OpalButton.prototype.viewType = 'default';
 	@Param
 	size: typeof OpalButton.prototype.size = 'm';
 	@Param({ readonly: true })

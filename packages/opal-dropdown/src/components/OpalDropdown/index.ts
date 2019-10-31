@@ -20,7 +20,7 @@ export class OpalDropdown extends BaseComponent {
 	@Param
 	autoHeight = true;
 	@Param
-	closeOn: 'click' | 'mousedown' | string;
+	closeOn: 'click' | 'mousedown' | string & { _?: never };
 	@Param
 	opened = false;
 

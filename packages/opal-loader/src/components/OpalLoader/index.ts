@@ -6,7 +6,7 @@ import './index.css';
 })
 export class OpalLoader extends BaseComponent {
 	@Param
-	size: 's' | 'm' | string = 'm';
+	size: 's' | 'm' | string & { _?: never } = 'm';
 	@Param
 	shown = false;
 }

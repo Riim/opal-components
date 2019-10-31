@@ -54,9 +54,9 @@ export class OpalTextInput extends BaseComponent {
 	static EVENT_KEYUP = Symbol('keyup');
 
 	@Param
-	inputType: 'text' | 'password' | string = 'text';
+	inputType: 'text' | 'password' | string & { _?: never } = 'text';
 	@Param
-	size: 'm' | string = 'm';
+	size: 'm' | string & { _?: never } = 'm';
 	@Param
 	multiline = false;
 	@Param

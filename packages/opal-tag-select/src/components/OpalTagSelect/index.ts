@@ -93,7 +93,8 @@ export class OpalTagSelect extends BaseComponent {
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
 	@Param
-	viewType: string;
+	viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | string & { _?: never } =
+		'default';
 	@Param('dataList')
 	paramDataList: TDataList;
 	@Param({ readonly: true })

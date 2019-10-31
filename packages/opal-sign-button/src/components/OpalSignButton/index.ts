@@ -24,7 +24,8 @@ export class OpalSignButton extends BaseComponent {
 	@Param({ required: true })
 	sign: string;
 	@Param
-	viewType: string;
+	viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | string & { _?: never } =
+		'default';
 	@Param
 	checkable = false;
 	@Param

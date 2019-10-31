@@ -35,11 +35,12 @@ export class OpalNotification extends BaseComponent {
 	static EVENT_HIDE = Symbol('hide');
 
 	@Param
-	viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | string = 'default';
+	viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | string & { _?: never } =
+		'default';
 	@Param
 	icon: string;
 	@Param
-	iconSize: 'xs' | 's' | 'm' | string = 'xs';
+	iconSize: 'xs' | 's' | 'm' | string & { _?: never } = 'xs';
 	@Param
 	buttonHide = true;
 	@Param
