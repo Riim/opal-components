@@ -19,7 +19,7 @@ export declare class OpalButton extends BaseComponent {
     tabIndex: number;
     focused: boolean;
     disabled: boolean;
-    readonly _tabIndex: number;
+    get _tabIndex(): number;
     _documentKeyDownListening: IDisposableListening | null | undefined;
     ready(): void;
     elementAttached(): void;
@@ -29,7 +29,8 @@ export declare class OpalButton extends BaseComponent {
     _onElementClick(): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     click(): this;
-    selected: boolean;
+    get selected(): boolean;
+    set selected(selected: boolean);
     check(): boolean;
     uncheck(): boolean;
     toggle(value?: boolean): boolean;

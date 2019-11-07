@@ -7,10 +7,10 @@ export declare class OpalInputMask extends BaseComponent {
     static defaultDefinitions: Record<string, RegExp>;
     mask: string;
     _definitions: Record<string, RegExp>;
-    readonly _mask: Array<string>;
-    readonly _partialIndex: number;
-    readonly _tests: Array<RegExp | null>;
-    readonly _firstTestIndex: number;
+    get _mask(): Array<string>;
+    get _partialIndex(): number;
+    get _tests(): Array<RegExp | null>;
+    get _firstTestIndex(): number;
     _buffer: Array<string | null>;
     textInput: OpalTextInput;
     textField: HTMLInputElement;

@@ -1,5 +1,5 @@
 {
-  "name": "@riim/opal-file-upload",
+  "name": "@riim/opal-file-attach",
   "version": "0.38.39",
   "description": "",
   "main": "dist/index.js",

@@ -38,8 +38,8 @@ export declare class OpalLoadedList extends BaseComponent {
     _requestCallback: IDisposableCallback;
     _lastRequestedQuery: string | null;
     _lastLoadedQuery: string | null;
-    readonly loaderShown: boolean;
-    readonly nothingFoundShown: boolean;
+    get loaderShown(): boolean;
+    get nothingFoundShown(): boolean;
     initialize(): void;
     elementAttached(): void;
     _onQueryChange(): void;

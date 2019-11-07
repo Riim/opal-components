@@ -4,7 +4,7 @@ import './index.css';
 export declare class OpalMultiselect extends OpalSelect {
     multiple: boolean;
     dataProvider: IDataProvider;
-    readonly nothingSelectedShown: boolean;
+    get nothingSelectedShown(): boolean;
     _queryInputClass: string | undefined;
     initialize(): void;
 }

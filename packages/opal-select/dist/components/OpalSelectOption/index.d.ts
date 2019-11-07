@@ -13,7 +13,7 @@ export declare class OpalSelectOption extends BaseComponent {
     tabIndex: number;
     focused: boolean;
     disabled: boolean;
-    readonly _tabIndex: number;
+    get _tabIndex(): number;
     _mouseUpEvent: boolean;
     ready(): void;
     _onSelectedChange(evt: IEvent): void;
@@ -23,9 +23,12 @@ export declare class OpalSelectOption extends BaseComponent {
     _onControlMouseUp(): void;
     _onControlClick(evt: Event): void;
     click(): this;
-    value: string;
-    text: string;
-    subtext: string | null;
+    get value(): string;
+    set value(value: string);
+    get text(): string;
+    set text(text: string);
+    get subtext(): string | null;
+    set subtext(subtext: string | null);
     select(): boolean;
     deselect(): boolean;
     toggle(value?: boolean): boolean;

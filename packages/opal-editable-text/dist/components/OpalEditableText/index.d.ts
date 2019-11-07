@@ -5,7 +5,8 @@ export declare class OpalEditableText extends BaseComponent {
     static EVENT_INPUT: symbol;
     _textNode: Text;
     _value: string | null;
-    value: string | null;
+    get value(): string | null;
+    set value(value: string | null);
     _fixedValue: string | null;
     _documentKeyDownListening: IDisposableListening;
     ready(): void;

@@ -6,7 +6,8 @@ export declare class OpalSwitchMenu extends BaseComponent {
     static EVENT_CHANGE: symbol;
     buttonElements: HTMLCollectionOf<IComponentElement>;
     _checkedButton: OpalButton | null;
-    checkedButton: OpalButton | null;
+    get checkedButton(): OpalButton | null;
+    set checkedButton(checkedButton: OpalButton | null);
     ready(): void;
     _onButtonCheck(evt: IEvent<OpalButton>): void;
     _onButtonUncheck(evt: IEvent<OpalButton>): void;

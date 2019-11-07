@@ -23,7 +23,7 @@ export declare class OpalDateInput extends BaseComponent {
     _onDocumentFocus(evt: Event): void;
     _onDocumentKeyDown(evt: KeyboardEvent): void;
     _onDocumentClick(evt: Event): void;
-    readonly value: Date | null;
+    get value(): Date | null;
     getISOValue(h?: number, m?: number, s?: number, ms?: number): string | null;
     validate(): boolean;
 }

@@ -52,8 +52,8 @@ export declare class OpalTagSelect extends BaseComponent {
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _viewModelItemDisabledFieldName: string;
-    readonly value: Array<string>;
-    readonly placeholderShown: boolean;
+    get value(): Array<string>;
+    get placeholderShown(): boolean;
     _selectDataListKeypath: string | null;
     select: OpalSelect;
     validator: {

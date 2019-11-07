@@ -16,14 +16,15 @@ export declare class OpalSignButton extends BaseComponent {
     tabIndex: number;
     focused: boolean;
     disabled: boolean;
-    readonly _tabIndex: number;
+    get _tabIndex(): number;
     _documentKeyDownListening: IDisposableListening;
     ready(): void;
     _onControlFocus(): void;
     _onControlBlur(): void;
     _onControlClick(evt: Event): void;
     click(): this;
-    selected: boolean;
+    get selected(): boolean;
+    set selected(selected: boolean);
     check(): boolean;
     uncheck(): boolean;
     toggle(value?: boolean): boolean;

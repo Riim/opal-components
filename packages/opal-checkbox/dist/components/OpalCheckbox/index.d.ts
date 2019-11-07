@@ -12,7 +12,7 @@ export declare class OpalCheckbox extends BaseComponent {
     tabIndex: number;
     focused: boolean;
     disabled: boolean;
-    readonly _tabIndex: number;
+    get _tabIndex(): number;
     _documentKeyDownListening: IDisposableListening;
     ready(): void;
     _onCheckedChange(evt: IEvent): void;
@@ -22,7 +22,8 @@ export declare class OpalCheckbox extends BaseComponent {
     _onInputChange(evt: Event): void;
     _onControlFocus(): void;
     _onControlBlur(): void;
-    selected: boolean;
+    get selected(): boolean;
+    set selected(selected: boolean);
     check(): boolean;
     uncheck(): boolean;
     toggle(value?: boolean): boolean;

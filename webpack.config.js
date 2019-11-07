@@ -34,7 +34,7 @@ const externals = [
 	'@riim/opal-date-input',
 	'@riim/opal-dropdown',
 	'@riim/opal-editable-text',
-	'@riim/opal-file-upload',
+	'@riim/opal-file-attach',
 	'@riim/opal-filtered-list',
 	'@riim/opal-focus-highlight-controller',
 	'@riim/opal-group',
@@ -129,7 +129,7 @@ module.exports = env => {
 									postcssVariables({ variables: cssVariables }),
 									postcssRioniteComponent(),
 									postcssColorFunction(),
-									autoprefixer({ browsers: ['last 3 versions'] }),
+									autoprefixer({ overrideBrowserslist: ['last 3 versions'] }),
 									csso({ restructure: false })
 								]
 							}

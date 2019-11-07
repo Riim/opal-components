@@ -74,5 +74,5 @@ export declare class OpalIcon extends BaseComponent {
     };
     strokeWidth: number;
     filled: boolean;
-    readonly xlinkHref: string;
+    get xlinkHref(): string;
 }

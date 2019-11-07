@@ -39,7 +39,7 @@ export declare class OpalAutosuggest extends BaseComponent {
     _loadingTimeout: IDisposableTimeout;
     _requestCallback: IDisposableCallback;
     loading: boolean;
-    readonly loaderShown: boolean;
+    get loaderShown(): boolean;
     _focusedOption: HTMLElement | null;
     _documentFocusListening: IDisposableListening;
     _documentListening: IDisposableListening;

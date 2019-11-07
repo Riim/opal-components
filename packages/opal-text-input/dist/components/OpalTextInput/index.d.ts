@@ -32,12 +32,13 @@ export declare class OpalTextInput extends BaseComponent {
     focused: boolean;
     disabled: boolean;
     _inputTypeCell: Cell<string>;
-    readonly _inputType: string;
+    get _inputType(): string;
     textField: HTMLInputElement;
-    value: string | null;
+    get value(): string | null;
+    set value(value: string | null);
     _prevValue: string | null;
-    readonly btnClearShown: boolean;
-    readonly endIconShown: boolean;
+    get btnClearShown(): boolean;
+    get endIconShown(): boolean;
     validator: {
         validate(): boolean;
     } | null;

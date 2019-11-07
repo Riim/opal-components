@@ -46,11 +46,11 @@ export declare class OpalTreeList extends BaseComponent {
     _dataTreeListItemValueFieldName: string;
     _dataTreeListItemTextFieldName: string;
     comparableQuery: string | null;
-    readonly filteredDataTreeList: TDataTreeList | null;
+    get filteredDataTreeList(): TDataTreeList | null;
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _queryTimeout: IDisposableTimeout | null;
-    readonly listShown: boolean;
+    get listShown(): boolean;
     initialize(): void;
     _onQueryChange(): void;
     _onQueryTimeout(): void;

@@ -28,8 +28,8 @@ export type TDataList = ObservableList<IFileData>;
 
 let dragEl: HTMLElement | null = null;
 
-@Component<OpalFileUpload>({
-	elementIs: 'OpalFileUpload',
+@Component<OpalFileAttach>({
+	elementIs: 'OpalFileAttach',
 	template,
 
 	domEvents: {
@@ -40,7 +40,7 @@ let dragEl: HTMLElement | null = null;
 		}
 	}
 })
-export class OpalFileUpload extends BaseComponent {
+export class OpalFileAttach extends BaseComponent {
 	@Param({ default: new ObservableList() })
 	dataList: TDataList;
 	@Param({ readonly: true })
@@ -99,9 +99,9 @@ export class OpalFileUpload extends BaseComponent {
 	}
 
 	@Listen('dragover', 'dropZone')
-	_onDropZoneDragOver(evt: DragEvent) {
+	_onDropZoneDragOver(evt: Event) {
 		evt.preventDefault();
-		evt.dataTransfer!.dropEffect = 'copy';
+		(evt as DragEvent).dataTransfer!.dropEffect = 'copy';
 	}
 
 	@Listen('dragleave', 'dropZone')
@@ -110,10 +110,10 @@ export class OpalFileUpload extends BaseComponent {
 	}
 
 	@Listen('drop', 'dropZone')
-	_onDropZoneDrop(evt: DragEvent) {
+	_onDropZoneDrop(evt: Event) {
 		evt.preventDefault();
 		this.dropZoneEl.removeAttribute('hovering');
-		this._addFiles(evt.dataTransfer!.files);
+		this._addFiles((evt as DragEvent).dataTransfer!.files);
 	}
 
 	@Listen('click', 'dropZone')
@@ -126,11 +126,11 @@ export class OpalFileUpload extends BaseComponent {
 	}
 
 	@Listen('dragstart', '@fileListEl')
-	_onFileListDragStart(evt: DragEvent) {
+	_onFileListDragStart(evt: Event) {
 		dragEl = evt.target as HTMLElement;
 
-		evt.dataTransfer!.effectAllowed = 'move';
-		evt.dataTransfer!.setData('Text', dragEl.textContent!);
+		(evt as DragEvent).dataTransfer!.effectAllowed = 'move';
+		(evt as DragEvent).dataTransfer!.setData('Text', dragEl.textContent!);
 
 		this._fileListListening = this.listenTo(this.fileListEl, {
 			dragenter: this._onFileListDragEnter,
@@ -145,7 +145,7 @@ export class OpalFileUpload extends BaseComponent {
 		});
 	}
 
-	_onFileListDragEnter(evt: DragEvent) {
+	_onFileListDragEnter(evt: Event) {
 		let target = this._getFileElement(evt.target as HTMLElement);
 
 		if (!target || target === dragEl) {
@@ -168,12 +168,12 @@ export class OpalFileUpload extends BaseComponent {
 		});
 	}
 
-	_onFileListDragOver(evt: DragEvent) {
+	_onFileListDragOver(evt: Event) {
 		evt.preventDefault();
-		evt.dataTransfer!.dropEffect = 'move';
+		(evt as DragEvent).dataTransfer!.dropEffect = 'move';
 	}
 
-	_onFileListDrop(evt: DragEvent) {
+	_onFileListDrop(evt: Event) {
 		evt.preventDefault();
 	}
 

@@ -8,7 +8,7 @@ export declare function setParent<T extends IItem>(items: Array<T>, parent?: T |
 export declare class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
     static EVENT_CHANGE: string;
     _items: Array<T>;
-    readonly length: number;
+    get length(): number;
     constructor(items?: Array<T>);
     get(indexpath: Array<number> | number): T | undefined;
     set(indexpath: Array<number> | number, item: T): this;

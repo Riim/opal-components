@@ -11,13 +11,13 @@ export interface IFileData {
     [name: string]: any;
 }
 export declare type TDataList = ObservableList<IFileData>;
-export declare class OpalFileUpload extends BaseComponent {
+export declare class OpalFileAttach extends BaseComponent {
     dataList: TDataList;
     allowType: string;
     sizeLimit: number;
     totalSizeLimit: number;
     _reFileType: RegExp;
-    readonly files: Array<File>;
+    get files(): Array<File>;
     errorMessage: string | null;
     fileListEl: HTMLElement;
     dropZoneEl: HTMLElement;
@@ -26,14 +26,14 @@ export declare class OpalFileUpload extends BaseComponent {
     ready(): void;
     _onFilesInputChange(evt: Event): void;
     _onDropZoneDragEnter(): void;
-    _onDropZoneDragOver(evt: DragEvent): void;
+    _onDropZoneDragOver(evt: Event): void;
     _onDropZoneDragLeave(): void;
-    _onDropZoneDrop(evt: DragEvent): void;
+    _onDropZoneDrop(evt: Event): void;
     _onDropZoneClick(): void;
-    _onFileListDragStart(evt: DragEvent): void;
-    _onFileListDragEnter(evt: DragEvent): void;
-    _onFileListDragOver(evt: DragEvent): void;
-    _onFileListDrop(evt: DragEvent): void;
+    _onFileListDragStart(evt: Event): void;
+    _onFileListDragEnter(evt: Event): void;
+    _onFileListDragOver(evt: Event): void;
+    _onFileListDrop(evt: Event): void;
     _onFileListDragEnd(): void;
     _addFiles(files: FileList): boolean;
     _getFileElement(node: Node, stopEl?: HTMLElement): HTMLElement | null;

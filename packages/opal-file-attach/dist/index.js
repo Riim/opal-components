@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["@riim/opal-loader", "cellx", "@riim/next-tick", "@riim/opal-icon", "@riim/gettext", "@riim/uid", "rionite", "reflect-metadata", "@riim/escape-regexp", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-file-upload"] = factory(require("@riim/opal-loader"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/uid"), require("rionite"), require("reflect-metadata"), require("@riim/escape-regexp"), require("cellx-decorators"));
+		exports["@riim/opal-file-attach"] = factory(require("@riim/opal-loader"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/uid"), require("rionite"), require("reflect-metadata"), require("@riim/escape-regexp"), require("cellx-decorators"));
 	else
-		root["@riim/opal-file-upload"] = factory(root["@riim/opal-loader"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-icon"], root["@riim/gettext"], root["@riim/uid"], root["rionite"], root["reflect-metadata"], root["@riim/escape-regexp"], root["cellx-decorators"]);
+		root["@riim/opal-file-attach"] = factory(root["@riim/opal-loader"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-icon"], root["@riim/gettext"], root["@riim/uid"], root["rionite"], root["reflect-metadata"], root["@riim/escape-regexp"], root["cellx-decorators"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_mtvJ__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_xFbw__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -91,58 +91,29 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "eECM");
+/******/ 	return __webpack_require__(__webpack_require__.s = "1D2N");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "4j08":
-/***/ (function(module, exports) {
+/***/ "1D2N":
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (function(d) {
-        var head = d.head || d.getElementsByTagName('head')[0];
-        if (head) {
-            var style = d.createElement('style');
-            style.type = 'text/css';
-            style.textContent = ".OpalFileUpload{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;min-width:400px;border:1px solid #ccc;color:#4d4d4d;font-size:1rem;line-height:1.5}.OpalFileUpload .OpalFileUpload__fileList{margin:0;padding:0;list-style:none}.OpalFileUpload .OpalFileUpload__file{position:relative;margin-bottom:10px;padding:12px 52px 12px 20px;border-radius:3px;background:#f2f2f2;cursor:move}.OpalFileUpload .OpalFileUpload__file[ghost]{opacity:.4}.OpalFileUpload .OpalFileUpload__filePreviewWrapper{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;margin-right:10px;width:48px;height:48px;vertical-align:middle;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.OpalFileUpload .OpalFileUpload__fileLoader{border:0}.OpalFileUpload .OpalFileUpload__filePreview{max-width:100%;max-height:100%;border:0;border-radius:3px}.OpalFileUpload .OpalFileUpload__fileIcon{width:36px;height:36px;stroke:currentColor;stroke-linecap:butt;stroke-linejoin:miter;fill:none}.OpalFileUpload .OpalFileUpload__fileText{vertical-align:middle;font-weight:700}.OpalFileUpload .OpalFileUpload__btnRemoveFile{position:absolute;top:0;right:10px;bottom:0;display:-webkit-box;display:-ms-flexbox;display:flex;margin:auto;width:42px;height:42px;border:0;background:0 0;opacity:.5;cursor:pointer;-webkit-transition:opacity .1s;-o-transition:opacity .1s;transition:opacity .1s;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.OpalFileUpload .OpalFileUpload__btnRemoveFile:hover{opacity:1}.OpalFileUpload .OpalFileUpload__btnRemoveFile:active{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.OpalFileUpload .OpalFileUpload__btnRemoveFileIcon{display:block;width:24px;height:24px;stroke:currentColor;stroke-linecap:butt;stroke-linejoin:miter;fill:none}.OpalFileUpload .OpalFileUpload__dropZone{position:relative;padding:25px;border:2px dashed #999;border-radius:5px;background:#f2f2f2;color:gray;text-align:center;cursor:pointer}.OpalFileUpload .OpalFileUpload__dropZone[hovering]{border-color:#0887f7}.OpalFileUpload .OpalFileUpload__dropZone[hovering] .OpalFileUpload__dropZoneText{pointer-events:none}.OpalFileUpload .OpalFileUpload__dropZone[error] .OpalFileUpload__dropZoneErrorMessageWrapper{display:block}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessageWrapper{position:absolute;top:0;right:0;bottom:0;left:0;display:none;border-radius:inherit;background:inherit;white-space:nowrap;font-size:0}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessageWrapper::after{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.OpalFileUpload .OpalFileUpload__dropZoneErrorMessage{color:red;vertical-align:middle;font-size:1rem}.OpalFileUpload .OpalFileUpload__btnSelectFiles{display:inline;padding:0;border:0;background:0 0;color:#0887f7;font:inherit;cursor:inherit}.OpalFileUpload .OpalFileUpload__filesInput{display:none}";
-            head.appendChild(style);
-            return style;
-        }
-        return null;
-    })(document);
+"use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__("Y0hN");
+__webpack_require__("BLMt");
+__webpack_require__("vA/G");
+__export(__webpack_require__("35W3"));
 
-/***/ }),
-
-/***/ "BLMt":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_BLMt__;
 
 /***/ }),
 
-/***/ "P7z7":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_P7z7__;
-
-/***/ }),
-
-/***/ "WTz/":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_WTz___;
-
-/***/ }),
-
-/***/ "Y0hN":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_Y0hN__;
-
-/***/ }),
-
-/***/ "bz19":
+/***/ "35W3":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -164,10 +135,10 @@ const uid_1 = __webpack_require__("mtvJ");
 const cellx_1 = __webpack_require__("P7z7");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
-__webpack_require__("4j08");
-const template_rnt_1 = __webpack_require__("wdmy");
+__webpack_require__("RQTU");
+const template_rnt_1 = __webpack_require__("NpmY");
 let dragEl = null;
-let OpalFileUpload = class OpalFileUpload extends rionite_1.BaseComponent {
+let OpalFileAttach = class OpalFileAttach extends rionite_1.BaseComponent {
     get files() {
         return this.dataList.map(fileData => fileData.file).filter(file => file);
     }
@@ -318,73 +289,73 @@ let OpalFileUpload = class OpalFileUpload extends rionite_1.BaseComponent {
 __decorate([
     rionite_1.Param({ default: new cellx_1.ObservableList() }),
     __metadata("design:type", Object)
-], OpalFileUpload.prototype, "dataList", void 0);
+], OpalFileAttach.prototype, "dataList", void 0);
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", String)
-], OpalFileUpload.prototype, "allowType", void 0);
+], OpalFileAttach.prototype, "allowType", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Number)
-], OpalFileUpload.prototype, "sizeLimit", void 0);
+], OpalFileAttach.prototype, "sizeLimit", void 0);
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Number)
-], OpalFileUpload.prototype, "totalSizeLimit", void 0);
+], OpalFileAttach.prototype, "totalSizeLimit", void 0);
 __decorate([
     cellx_decorators_1.Computed,
     __metadata("design:type", Array),
     __metadata("design:paramtypes", [])
-], OpalFileUpload.prototype, "files", null);
+], OpalFileAttach.prototype, "files", null);
 __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)
-], OpalFileUpload.prototype, "errorMessage", void 0);
+], OpalFileAttach.prototype, "errorMessage", void 0);
 __decorate([
     rionite_1.Listen('change', 'filesInput'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Event]),
     __metadata("design:returntype", void 0)
-], OpalFileUpload.prototype, "_onFilesInputChange", null);
+], OpalFileAttach.prototype, "_onFilesInputChange", null);
 __decorate([
     rionite_1.Listen('dragenter', 'dropZone'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], OpalFileUpload.prototype, "_onDropZoneDragEnter", null);
+], OpalFileAttach.prototype, "_onDropZoneDragEnter", null);
 __decorate([
     rionite_1.Listen('dragover', 'dropZone'),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [DragEvent]),
+    __metadata("design:paramtypes", [Event]),
     __metadata("design:returntype", void 0)
-], OpalFileUpload.prototype, "_onDropZoneDragOver", null);
+], OpalFileAttach.prototype, "_onDropZoneDragOver", null);
 __decorate([
     rionite_1.Listen('dragleave', 'dropZone'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], OpalFileUpload.prototype, "_onDropZoneDragLeave", null);
+], OpalFileAttach.prototype, "_onDropZoneDragLeave", null);
 __decorate([
     rionite_1.Listen('drop', 'dropZone'),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [DragEvent]),
+    __metadata("design:paramtypes", [Event]),
     __metadata("design:returntype", void 0)
-], OpalFileUpload.prototype, "_onDropZoneDrop", null);
+], OpalFileAttach.prototype, "_onDropZoneDrop", null);
 __decorate([
     rionite_1.Listen('click', 'dropZone'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], OpalFileUpload.prototype, "_onDropZoneClick", null);
+], OpalFileAttach.prototype, "_onDropZoneClick", null);
 __decorate([
     rionite_1.Listen('dragstart', '@fileListEl'),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [DragEvent]),
+    __metadata("design:paramtypes", [Event]),
     __metadata("design:returntype", void 0)
-], OpalFileUpload.prototype, "_onFileListDragStart", null);
-OpalFileUpload = __decorate([
+], OpalFileAttach.prototype, "_onFileListDragStart", null);
+OpalFileAttach = __decorate([
     rionite_1.Component({
-        elementIs: 'OpalFileUpload',
+        elementIs: 'OpalFileAttach',
         template: template_rnt_1.default,
         domEvents: {
             btnRemoveFile: {
@@ -394,26 +365,64 @@ OpalFileUpload = __decorate([
             }
         }
     })
-], OpalFileUpload);
-exports.OpalFileUpload = OpalFileUpload;
+], OpalFileAttach);
+exports.OpalFileAttach = OpalFileAttach;
 
 
 /***/ }),
 
-/***/ "eECM":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "BLMt":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_BLMt__;
+
+/***/ }),
+
+/***/ "NpmY":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("ul:fileList {\nli:file (@for=fileData in dataList, draggable=true, data-file-data-uid={fileData |uid }) {\ndiv:filePreviewWrapper {\n@IfThen (if='fileData |_isImage') {\nOpalLoader:fileLoader (\n@unless='fileData.url |or(fileData.dataURI)',\nsize=s,\nshown\n)\nimg:filePreview (\n@if='fileData.url |or(fileData.dataURI)',\nsrc='{fileData.url |or(fileData.dataURI)}',\ndraggable=false\n)\n}\nsvg:fileIcon (@unless='fileData |_isImage', stroke-width=2) {\nuse (xlink:href=#OpalIcon__iconFile)\n}\n}\nspan:fileText {\n'{fileData.name}'\n}\nbutton:btnRemoveFile (type=button) {\nsvg:btnRemoveFileIcon (stroke-width=2) {\nuse (xlink:href=#OpalIcon__iconCross)\n}\n}\n}\n}\ndiv:dropZone (error={errorMessage |bool }) {\ndiv:dropZoneErrorMessageWrapper {\nspan:dropZoneErrorMessage {\n'{errorMessage}'\n}\n}\nspan:dropZoneText {\n'{\"Перетащите файлы в эту область или\" |t }'\nbr\nbutton:btnSelectFiles (type=button) {\n'{\"нажмите для выбора в проводнике\" |t }'\n}\n}\n}\ninput:filesInput (type=file, multiple)");
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__("Y0hN");
-__webpack_require__("BLMt");
-__webpack_require__("vA/G");
-__export(__webpack_require__("bz19"));
+/***/ }),
 
+/***/ "P7z7":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_P7z7__;
+
+/***/ }),
+
+/***/ "RQTU":
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalFileAttach{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:12px;min-width:400px;border:1px solid #ccc;color:#4d4d4d;font-size:1rem;line-height:1.5}.OpalFileAttach .OpalFileAttach__fileList{margin:0;padding:0;list-style:none}.OpalFileAttach .OpalFileAttach__file{position:relative;margin-bottom:10px;padding:12px 52px 12px 20px;border-radius:3px;background:#f2f2f2;cursor:move}.OpalFileAttach .OpalFileAttach__file[ghost]{opacity:.4}.OpalFileAttach .OpalFileAttach__filePreviewWrapper{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;margin-right:10px;width:48px;height:48px;vertical-align:middle;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.OpalFileAttach .OpalFileAttach__fileLoader{border:0}.OpalFileAttach .OpalFileAttach__filePreview{max-width:100%;max-height:100%;border:0;border-radius:3px}.OpalFileAttach .OpalFileAttach__fileIcon{width:36px;height:36px;stroke:currentColor;stroke-linecap:butt;stroke-linejoin:miter;fill:none}.OpalFileAttach .OpalFileAttach__fileText{vertical-align:middle;font-weight:700}.OpalFileAttach .OpalFileAttach__btnRemoveFile{position:absolute;top:0;right:10px;bottom:0;display:-webkit-box;display:-ms-flexbox;display:flex;margin:auto;width:42px;height:42px;border:0;background:0 0;opacity:.5;cursor:pointer;-webkit-transition:opacity .1s;-o-transition:opacity .1s;transition:opacity .1s;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.OpalFileAttach .OpalFileAttach__btnRemoveFile:hover{opacity:1}.OpalFileAttach .OpalFileAttach__btnRemoveFile:active{-webkit-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px)}.OpalFileAttach .OpalFileAttach__btnRemoveFileIcon{display:block;width:24px;height:24px;stroke:currentColor;stroke-linecap:butt;stroke-linejoin:miter;fill:none}.OpalFileAttach .OpalFileAttach__dropZone{position:relative;padding:25px;border:2px dashed #999;border-radius:5px;background:#f2f2f2;color:gray;text-align:center;cursor:pointer}.OpalFileAttach .OpalFileAttach__dropZone[hovering]{border-color:#0887f7}.OpalFileAttach .OpalFileAttach__dropZone[hovering] .OpalFileAttach__dropZoneText{pointer-events:none}.OpalFileAttach .OpalFileAttach__dropZone[error] .OpalFileAttach__dropZoneErrorMessageWrapper{display:block}.OpalFileAttach .OpalFileAttach__dropZoneErrorMessageWrapper{position:absolute;top:0;right:0;bottom:0;left:0;display:none;border-radius:inherit;background:inherit;white-space:nowrap;font-size:0}.OpalFileAttach .OpalFileAttach__dropZoneErrorMessageWrapper::after{display:inline-block;width:0;height:100%;content:'';vertical-align:middle}.OpalFileAttach .OpalFileAttach__dropZoneErrorMessage{color:red;vertical-align:middle;font-size:1rem}.OpalFileAttach .OpalFileAttach__btnSelectFiles{display:inline;padding:0;border:0;background:0 0;color:#0887f7;font:inherit;cursor:inherit}.OpalFileAttach .OpalFileAttach__filesInput{display:none}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+
+/***/ "WTz/":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_WTz___;
+
+/***/ }),
+
+/***/ "Y0hN":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_Y0hN__;
 
 /***/ }),
 
@@ -442,15 +451,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
-
-/***/ }),
-
-/***/ "wdmy":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("ul:fileList {\nli:file (@for=fileData in dataList, draggable=true, data-file-data-uid={fileData |uid }) {\ndiv:filePreviewWrapper {\n@IfThen (if='fileData |_isImage') {\nOpalLoader:fileLoader (\n@unless='fileData.url |or(fileData.dataURI)',\nsize=s,\nshown\n)\nimg:filePreview (\n@if='fileData.url |or(fileData.dataURI)',\nsrc='{fileData.url |or(fileData.dataURI)}',\ndraggable=false\n)\n}\nsvg:fileIcon (@unless='fileData |_isImage', stroke-width=2) {\nuse (xlink:href=#OpalIcon__iconFile)\n}\n}\nspan:fileText {\n'{fileData.name}'\n}\nbutton:btnRemoveFile (type=button) {\nsvg:btnRemoveFileIcon (stroke-width=2) {\nuse (xlink:href=#OpalIcon__iconCross)\n}\n}\n}\n}\ndiv:dropZone (error={errorMessage |bool }) {\ndiv:dropZoneErrorMessageWrapper {\nspan:dropZoneErrorMessage {\n'{errorMessage}'\n}\n}\nspan:dropZoneText {\n'{\"Перетащите файлы в эту область или\" |t }'\nbr\nbutton:btnSelectFiles (type=button) {\n'{\"нажмите для выбора в проводнике\" |t }'\n}\n}\n}\ninput:filesInput (type=file, multiple)");
 
 /***/ }),
 

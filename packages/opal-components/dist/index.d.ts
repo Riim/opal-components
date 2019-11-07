@@ -6,7 +6,7 @@ import '@riim/opal-components-common';
 import '@riim/opal-date-input';
 import '@riim/opal-dropdown';
 import '@riim/opal-editable-text';
-import '@riim/opal-file-upload';
+import '@riim/opal-file-attach';
 import '@riim/opal-filtered-list';
 import '@riim/opal-focus-highlight-controller';
 import '@riim/opal-form';

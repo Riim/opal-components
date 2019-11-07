@@ -12,8 +12,8 @@ export declare class OpalMultirow extends BaseComponent {
     _newRows: ObservableList<{
         key: string;
     }>;
-    readonly _notHaveNewRows: boolean;
-    readonly _notSingleRow: boolean;
+    get _notHaveNewRows(): boolean;
+    get _notSingleRow(): boolean;
     initialize(): void;
     ready(): void;
     _onRowRemoveRowClick(evt: IEvent<OpalMultirowRow>): void;

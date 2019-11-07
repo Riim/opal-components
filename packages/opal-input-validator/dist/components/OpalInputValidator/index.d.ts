@@ -9,7 +9,7 @@ export declare class OpalInputValidator extends BaseComponent {
     target: BaseComponent;
     rules: Array<OpalInputValidatorRule>;
     failedRule: OpalInputValidatorRule | null;
-    readonly valid: boolean;
+    get valid(): boolean;
     ready(): void;
     _onTargetChange(): void;
     validate(): boolean;

@@ -21,7 +21,7 @@
     "@riim/opal-date-input": "^0.38.40",
     "@riim/opal-dropdown": "^0.38.40",
     "@riim/opal-editable-text": "^0.38.39",
-    "@riim/opal-file-upload": "^0.38.39",
+    "@riim/opal-file-attach": "^0.38.39",
     "@riim/opal-filtered-list": "^0.38.39",
     "@riim/opal-focus-highlight-controller": "^0.38.27",
     "@riim/opal-form": "^0.38.39",
