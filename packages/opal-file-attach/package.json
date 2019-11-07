@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-file-attach",
-  "version": "0.38.39",
+  "version": "0.38.42",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,7 @@
   "dependencies": {
     "@riim/escape-regexp": "^1.0.0",
     "@riim/gettext": "^2.0.0",
-    "@riim/opal-icon": "^0.38.39",
+    "@riim/opal-icon": "^0.38.42",
     "@riim/opal-loader": "^0.38.39",
     "@riim/uid": "^1.0.0",
     "cellx": "^1.9.16",
