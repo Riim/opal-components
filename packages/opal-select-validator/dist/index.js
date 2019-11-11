@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-input-validator"), require("@riim/opal-select"), require("rionite"), require("reflect-metadata"));
+		module.exports = factory(require("@riim/opal-input-validator"), require("@riim/opal-tag-select"), require("@riim/opal-select"), require("rionite"), require("reflect-metadata"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-input-validator", "@riim/opal-select", "rionite", "reflect-metadata"], factory);
+		define(["@riim/opal-input-validator", "@riim/opal-tag-select", "@riim/opal-select", "rionite", "reflect-metadata"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-select-validator"] = factory(require("@riim/opal-input-validator"), require("@riim/opal-select"), require("rionite"), require("reflect-metadata"));
+		exports["@riim/opal-select-validator"] = factory(require("@riim/opal-input-validator"), require("@riim/opal-tag-select"), require("@riim/opal-select"), require("rionite"), require("reflect-metadata"));
 	else
-		root["@riim/opal-select-validator"] = factory(root["@riim/opal-input-validator"], root["@riim/opal-select"], root["rionite"], root["reflect-metadata"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__9L4b__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
+		root["@riim/opal-select-validator"] = factory(root["@riim/opal-input-validator"], root["@riim/opal-tag-select"], root["@riim/opal-select"], root["rionite"], root["reflect-metadata"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__9L4b__, __WEBPACK_EXTERNAL_MODULE_cu1Y__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -128,6 +128,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const opal_input_validator_1 = __webpack_require__("9L4b");
 const opal_select_1 = __webpack_require__("jL6t");
+const opal_tag_select_1 = __webpack_require__("cu1Y");
 const rionite_1 = __webpack_require__("u4yd");
 const OpalSelectValidatorRule_1 = __webpack_require__("AiAd");
 exports.OpalSelectValidatorRule = OpalSelectValidatorRule_1.OpalSelectValidatorRule;
@@ -146,7 +147,7 @@ let OpalSelectValidator = class OpalSelectValidator extends opal_input_validator
             : rule.required);
     }
 };
-OpalSelectValidator.targetChangeEvents = [opal_select_1.OpalSelect.EVENT_CHANGE];
+OpalSelectValidator.targetChangeEvents = [opal_select_1.OpalSelect.EVENT_CHANGE, opal_tag_select_1.OpalTagSelect.EVENT_CHANGE];
 OpalSelectValidator = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSelectValidator'
@@ -211,6 +212,13 @@ __webpack_require__("jL6t");
 __webpack_require__("vA/G");
 __export(__webpack_require__("3iSk"));
 
+
+/***/ }),
+
+/***/ "cu1Y":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_cu1Y__;
 
 /***/ }),
 

@@ -205,7 +205,7 @@ let OpalEditableText = OpalEditableText_1 = class OpalEditableText extends rioni
         this.emit(OpalEditableText_1.EVENT_INPUT);
     }
     _onDocumentKeyDown(evt) {
-        if (evt.which == 13) {
+        if (evt.which == 13 /* Enter */) {
             evt.preventDefault();
         }
     }

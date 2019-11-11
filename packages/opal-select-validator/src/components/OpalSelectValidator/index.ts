@@ -1,5 +1,6 @@
 import { OpalInputValidator } from '@riim/opal-input-validator';
 import { OpalSelect } from '@riim/opal-select';
+import { OpalTagSelect } from '@riim/opal-tag-select';
 import { Component } from 'rionite';
 import { OpalSelectValidatorRule } from '../OpalSelectValidatorRule';
 import './index.css';
@@ -10,7 +11,7 @@ export { OpalSelectValidatorRule };
 	elementIs: 'OpalSelectValidator'
 })
 export class OpalSelectValidator extends OpalInputValidator {
-	static targetChangeEvents = [OpalSelect.EVENT_CHANGE];
+	static targetChangeEvents = [OpalSelect.EVENT_CHANGE, OpalTagSelect.EVENT_CHANGE];
 
 	select: OpalSelect;
 

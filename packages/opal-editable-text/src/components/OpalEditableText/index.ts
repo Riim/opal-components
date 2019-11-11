@@ -107,7 +107,7 @@ export class OpalEditableText extends BaseComponent {
 	}
 
 	_onDocumentKeyDown(evt: KeyboardEvent) {
-		if (evt.which == 13) {
+		if (evt.which == 13 /* Enter */) {
 			evt.preventDefault();
 		}
 	}

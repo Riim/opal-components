@@ -15,6 +15,7 @@
   "dependencies": {
     "@riim/opal-input-validator": "^0.38.42",
     "@riim/opal-select": "^0.38.42",
+    "@riim/opal-tag-select": "^0.38.42",
     "reflect-metadata": "^0.1.13",
     "rionite": "^0.37.68"
   }
