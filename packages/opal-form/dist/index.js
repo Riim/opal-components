@@ -135,15 +135,21 @@ let OpalForm = OpalForm_1 = class OpalForm extends rionite_1.BaseComponent {
         }
     }
     validate() {
-        let focused = false;
-        return this.$$('input').reduce((valid, input) => {
-            let inputValid = input.validate();
-            if (!inputValid && !focused) {
-                input.focus();
-                focused = true;
+        let valid = true;
+        for (let input of this.$$('input')) {
+            if (input instanceof HTMLElement
+                ? this.ownerComponent[input.dataset.validate]()
+                : input.element.dataset.validate
+                    ? this.ownerComponent[input.element.dataset.validate]()
+                    : input.validate()) {
+                continue;
             }
-            return valid && inputValid;
-        }, true);
+            if (valid) {
+                input.focus();
+            }
+            valid = false;
+        }
+        return valid;
     }
 };
 OpalForm.EVENT_SUBMIT = Symbol('submit');

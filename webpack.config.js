@@ -37,6 +37,7 @@ const externals = [
 	'@riim/opal-file-attach',
 	'@riim/opal-filtered-list',
 	'@riim/opal-focus-highlight-controller',
+	'@riim/opal-form',
 	'@riim/opal-group',
 	'@riim/opal-icon',
 	'@riim/opal-input-mask',

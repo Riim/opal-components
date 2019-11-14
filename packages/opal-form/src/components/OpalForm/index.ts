@@ -30,17 +30,26 @@ export class OpalForm extends BaseComponent {
 	}
 
 	validate(): boolean {
-		let focused = false;
+		let valid = true;
 
-		return this.$$<OpalTextInput>('input').reduce((valid, input) => {
-			let inputValid = input.validate();
-
-			if (!inputValid && !focused) {
-				input.focus();
-				focused = true;
+		for (let input of this.$$<OpalTextInput | HTMLElement>('input')) {
+			if (
+				input instanceof HTMLElement
+					? this.ownerComponent[input.dataset.validate!]()
+					: input.element.dataset.validate
+					? this.ownerComponent[input.element.dataset.validate]()
+					: input.validate()
+			) {
+				continue;
 			}
 
-			return valid && inputValid;
-		}, true);
+			if (valid) {
+				input.focus();
+			}
+
+			valid = false;
+		}
+
+		return valid;
 	}
 }
