@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-components",
-  "version": "0.38.43",
+  "version": "0.38.44",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -24,7 +24,7 @@
     "@riim/opal-file-attach": "^0.38.42",
     "@riim/opal-filtered-list": "^0.38.42",
     "@riim/opal-focus-highlight-controller": "^0.38.27",
-    "@riim/opal-form": "^0.38.42",
+    "@riim/opal-form": "^0.38.44",
     "@riim/opal-group": "^0.38.37",
     "@riim/opal-icon": "^0.38.42",
     "@riim/opal-input-mask": "^0.38.42",
