@@ -931,25 +931,35 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
                     }
                     else {
                         let options = this.options;
-                        for (let i = 0, l = options.length; i < l; i++) {
-                            if (options[i].focused) {
-                                for (;;) {
-                                    if (!i) {
-                                        for (let j = options.length; j;) {
-                                            let option = options[--j];
-                                            if (!option.disabled && option.element.offsetWidth) {
-                                                option.focus();
-                                                break;
+                        for (let i = 0, l = options.length;; i++) {
+                            if (i < l) {
+                                if (options[i].focused) {
+                                    for (;;) {
+                                        if (!i) {
+                                            for (let j = options.length; j;) {
+                                                let option = options[--j];
+                                                if (!option.disabled &&
+                                                    option.element.offsetWidth) {
+                                                    document.body.classList.remove('_noFocusHighlight');
+                                                    option.focus();
+                                                    break;
+                                                }
                                             }
+                                            break;
                                         }
-                                        break;
+                                        let option = options[--i];
+                                        if (!option.disabled && option.element.offsetWidth) {
+                                            document.body.classList.remove('_noFocusHighlight');
+                                            option.focus();
+                                            break;
+                                        }
                                     }
-                                    let option = options[--i];
-                                    if (!option.disabled && option.element.offsetWidth) {
-                                        document.body.classList.remove('_noFocusHighlight');
-                                        option.focus();
-                                        break;
-                                    }
+                                    break;
+                                }
+                            }
+                            else {
+                                if (this._focusOptions()) {
+                                    document.body.classList.remove('_noFocusHighlight');
                                 }
                                 break;
                             }
@@ -971,24 +981,34 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
                     }
                     else {
                         let options = this.options;
-                        for (let i = 0, l = options.length; i < l; i++) {
-                            if (options[i].focused) {
-                                for (;;) {
-                                    if (i + 1 == l) {
-                                        for (let option of options) {
-                                            if (!option.disabled && option.element.offsetWidth) {
-                                                option.focus();
-                                                break;
+                        for (let i = 0, l = options.length;; i++) {
+                            if (i < l) {
+                                if (options[i].focused) {
+                                    for (;;) {
+                                        if (i + 1 == l) {
+                                            for (let option of options) {
+                                                if (!option.disabled &&
+                                                    option.element.offsetWidth) {
+                                                    document.body.classList.remove('_noFocusHighlight');
+                                                    option.focus();
+                                                    break;
+                                                }
                                             }
+                                            break;
                                         }
-                                        break;
+                                        let option = options[++i];
+                                        if (!option.disabled && option.element.offsetWidth) {
+                                            document.body.classList.remove('_noFocusHighlight');
+                                            option.focus();
+                                            break;
+                                        }
                                     }
-                                    let option = options[++i];
-                                    if (!option.disabled && option.element.offsetWidth) {
-                                        document.body.classList.remove('_noFocusHighlight');
-                                        option.focus();
-                                        break;
-                                    }
+                                    break;
+                                }
+                            }
+                            else {
+                                if (this._focusOptions()) {
+                                    document.body.classList.remove('_noFocusHighlight');
                                 }
                                 break;
                             }
@@ -1022,7 +1042,6 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             return;
         }
         this._onceFocusedAfterLoading = true;
-        this._focusOptions();
         let focusTarget = this.$('focus') ||
             this.$('filteredList');
         if (focusTarget) {
@@ -1051,7 +1070,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         if (this._opened) {
             let focusTarget = this.$('focus') ||
                 this.$('filteredList');
-            if ((focusTarget && focusTarget.focus() !== false) || this._focusOptions()) {
+            if (focusTarget && focusTarget.focus() !== false) {
                 return this;
             }
         }
@@ -1314,7 +1333,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalSelectOption{display:block}.OpalSelectOption .OpalSelectOption__control{position:relative;display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:7px 38px 7px 22px;width:100%;border:0;border-radius:0;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalSelectOption .OpalSelectOption__control:hover{background:#e6e6e6}.OpalSelectOption .OpalSelectOption__control:focus{outline:0}.OpalSelectOption .OpalSelectOption__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;-webkit-box-shadow:inset 0 0 0 1px #52abfa;box-shadow:inset 0 0 0 1px #52abfa;content:'';pointer-events:none}.OpalSelectOption .OpalSelectOption__control:active{background:#ccc}.OpalSelectOption .OpalSelectOption__contentSlot{position:relative;display:block;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.OpalSelectOption .OpalSelectOption__contentSlot sub{bottom:0;display:block;color:gray;font-size:.9em;line-height:1.5}.OpalSelectOption .OpalSelectOption__iconSelected,.OpalSelectOption .OpalSelectOption__iconIndeterminate{position:absolute;top:0;right:14px;bottom:0;margin:auto;width:16px;height:16px;color:#000}.OpalSelectOption[selected] .OpalSelectOption__control,.OpalSelectOption[indeterminate] .OpalSelectOption__control{color:#0887f7}.OpalSelectOption[disabled]{pointer-events:none}.OpalSelectOption[disabled] .OpalSelectOption__control{cursor:default}.OpalSelectOption[disabled] .OpalSelectOption__contentSlot{color:gray}";
+            style.textContent = ".OpalSelectOption{display:block}.OpalSelectOption .OpalSelectOption__control{position:relative;display:block;-webkit-box-sizing:border-box;box-sizing:border-box;padding:7px 38px 7px 22px;width:100%;border:0;border-radius:0;background:#fff;color:#000;text-align:left;text-shadow:none;white-space:nowrap;font:16px/24px Verdana,Geneva,sans-serif;font-weight:400;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.OpalSelectOption .OpalSelectOption__control:hover{background:#e6e6e6}.OpalSelectOption .OpalSelectOption__control:focus{outline:0}body:not(._noFocusHighlight) .OpalSelectOption .OpalSelectOption__control:focus::after{position:absolute;top:2px;right:2px;bottom:2px;left:2px;-webkit-box-shadow:inset 0 0 0 1px #52abfa;box-shadow:inset 0 0 0 1px #52abfa;content:'';pointer-events:none}.OpalSelectOption .OpalSelectOption__control:active{background:#ccc}.OpalSelectOption .OpalSelectOption__contentSlot{position:relative;display:block;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis}.OpalSelectOption .OpalSelectOption__contentSlot sub{bottom:0;display:block;color:gray;font-size:.9em;line-height:1.5}.OpalSelectOption .OpalSelectOption__iconSelected,.OpalSelectOption .OpalSelectOption__iconIndeterminate{position:absolute;top:0;right:14px;bottom:0;margin:auto;width:16px;height:16px;color:#000}.OpalSelectOption[selected] .OpalSelectOption__control,.OpalSelectOption[indeterminate] .OpalSelectOption__control{color:#0887f7}.OpalSelectOption[disabled]{pointer-events:none}.OpalSelectOption[disabled] .OpalSelectOption__control{cursor:default}.OpalSelectOption[disabled] .OpalSelectOption__contentSlot{color:gray}";
             head.appendChild(style);
             return style;
         }

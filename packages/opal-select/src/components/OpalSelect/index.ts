@@ -818,29 +818,43 @@ export class OpalSelect extends BaseComponent {
 					} else {
 						let options = this.options;
 
-						for (let i = 0, l = options.length; i < l; i++) {
-							if (options[i].focused) {
-								for (;;) {
-									if (!i) {
-										for (let j = options.length; j; ) {
-											let option = options[--j];
+						for (let i = 0, l = options.length; ; i++) {
+							if (i < l) {
+								if (options[i].focused) {
+									for (;;) {
+										if (!i) {
+											for (let j = options.length; j; ) {
+												let option = options[--j];
 
-											if (!option.disabled && option.element.offsetWidth) {
-												option.focus();
-												break;
+												if (
+													!option.disabled &&
+													option.element.offsetWidth
+												) {
+													document.body.classList.remove(
+														'_noFocusHighlight'
+													);
+													option.focus();
+													break;
+												}
 											}
+
+											break;
 										}
 
-										break;
+										let option = options[--i];
+
+										if (!option.disabled && option.element.offsetWidth) {
+											document.body.classList.remove('_noFocusHighlight');
+											option.focus();
+											break;
+										}
 									}
 
-									let option = options[--i];
-
-									if (!option.disabled && option.element.offsetWidth) {
-										document.body.classList.remove('_noFocusHighlight');
-										option.focus();
-										break;
-									}
+									break;
+								}
+							} else {
+								if (this._focusOptions()) {
+									document.body.classList.remove('_noFocusHighlight');
 								}
 
 								break;
@@ -864,27 +878,41 @@ export class OpalSelect extends BaseComponent {
 					} else {
 						let options = this.options;
 
-						for (let i = 0, l = options.length; i < l; i++) {
-							if (options[i].focused) {
-								for (;;) {
-									if (i + 1 == l) {
-										for (let option of options) {
-											if (!option.disabled && option.element.offsetWidth) {
-												option.focus();
-												break;
+						for (let i = 0, l = options.length; ; i++) {
+							if (i < l) {
+								if (options[i].focused) {
+									for (;;) {
+										if (i + 1 == l) {
+											for (let option of options) {
+												if (
+													!option.disabled &&
+													option.element.offsetWidth
+												) {
+													document.body.classList.remove(
+														'_noFocusHighlight'
+													);
+													option.focus();
+													break;
+												}
 											}
+
+											break;
 										}
 
-										break;
+										let option = options[++i];
+
+										if (!option.disabled && option.element.offsetWidth) {
+											document.body.classList.remove('_noFocusHighlight');
+											option.focus();
+											break;
+										}
 									}
 
-									let option = options[++i];
-
-									if (!option.disabled && option.element.offsetWidth) {
-										document.body.classList.remove('_noFocusHighlight');
-										option.focus();
-										break;
-									}
+									break;
+								}
+							} else {
+								if (this._focusOptions()) {
+									document.body.classList.remove('_noFocusHighlight');
 								}
 
 								break;
@@ -923,8 +951,6 @@ export class OpalSelect extends BaseComponent {
 
 		this._onceFocusedAfterLoading = true;
 
-		this._focusOptions();
-
 		let focusTarget =
 			this.$<HTMLElement | OpalTextInput>('focus') ||
 			this.$<OpalFilteredList>('filteredList');
@@ -961,7 +987,7 @@ export class OpalSelect extends BaseComponent {
 				this.$<HTMLElement | OpalTextInput>('focus') ||
 				this.$<OpalFilteredList>('filteredList');
 
-			if ((focusTarget && focusTarget.focus() !== false) || this._focusOptions()) {
+			if (focusTarget && focusTarget.focus() !== false) {
 				return this;
 			}
 		}

@@ -30,8 +30,8 @@
 
 		&:focus {
 			outline: none;
-		}
-			&:focus::after {
+
+			body:not(._noFocusHighlight) &::after {
 				position: absolute;
 				top: 2px;
 				right: 2px;
@@ -41,6 +41,7 @@
 				content: '';
 				pointer-events: none;
 			}
+		}
 
 		&:active {
 			background: hsl(0,0%,80%);

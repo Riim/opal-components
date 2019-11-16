@@ -76,24 +76,10 @@ module.exports = env => {
 	return {
 		mode: 'none',
 
-		entry: fs.readdirSync('./packages').reduce(
-			(entries, name) => {
-				if (
-					name != 'opal-components' &&
-					name != 'opal-components-common' &&
-					name != 'opal-focus-highlight-controller'
-				) {
-					entries[name] = `./packages/${name}/src/index.ts`;
-				}
-
-				return entries;
-			},
-			{
-				'opal-components': `./packages/opal-components/src/index.ts`,
-				'opal-components-common': `./packages/opal-components-common/src/index.ts`,
-				'opal-focus-highlight-controller': `./packages/opal-focus-highlight-controller/src/index.ts`
-			}
-		),
+		entry: fs.readdirSync('./packages').reduce((entries, name) => {
+			entries[name] = `./packages/${name}/src/index.ts`;
+			return entries;
+		}, {}),
 
 		output: {
 			path: path.join(__dirname, 'packages'),
