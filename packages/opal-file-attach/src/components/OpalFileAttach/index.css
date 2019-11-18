@@ -2,7 +2,8 @@
 	display: block;
 	box-sizing: border-box;
 	padding: 12px;
-	min-width: 400px;
+	border-radius: 3px;
+	width: 400px;
 	border: 1px solid hsl(0,0%,80%);
 	color: hsl(0,0%,30%);
 	font-size: 1rem;
