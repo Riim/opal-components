@@ -217,7 +217,7 @@
 	}
 
 	@mod multiline {
-		&:not([auto_height=no]) {
+		@mod not auto_height=no {
 			@el textField {
 				overflow-y: hidden;
 			}
