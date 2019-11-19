@@ -6,7 +6,7 @@
 		@el menuHeader {
 			display: flex;
 			width: 100%;
-			border-bottom: 1px solid hsl(0,0%,80%);
+			border-bottom: 1px solid var(--grayColor800, $grayColor800);
 			line-height: 60px;
 		}
 			@el menuHeaderLeftPart,
@@ -46,14 +46,14 @@
 			box-sizing: border-box;
 			width: 299px;
 			height: 304px;
-			border-left: 1px solid hsl(0,0%,80%);
+			border-left: 1px solid var(--grayColor800, $grayColor800);
 		}
 			@el selectedItem {
 				position: relative;
 				overflow: hidden;
 				padding: 7px 38px 7px 22px;
 				background: #fff;
-				color: #000;
+				color: var(--textColor500, $textColor);
 				text-align: left;
 				text-overflow: ellipsis;
 				text-shadow: none;
@@ -85,12 +85,12 @@
 					height: 24px;
 					border: 0;
 					background: transparent;
-					color: hsl(0,0%,50%);
+					color: var(--grayColor500, $grayColor);
 					cursor: pointer;
 					transition: color .1s linear;
 
 					&:hover {
-						color: #000;
+						color: var(--textColor500, $textColor);
 					}
 
 					&:focus {
@@ -142,7 +142,7 @@
 		@el menuFooter {
 			display: flex;
 			width: 100%;
-			border-top: 1px solid hsl(0,0%,80%);
+			border-top: 1px solid var(--grayColor800, $grayColor800);
 			line-height: 60px;
 		}
 			@el menuFooterLeftPart,

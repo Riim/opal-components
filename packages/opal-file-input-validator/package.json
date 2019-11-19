@@ -1,0 +1,21 @@
+{
+  "name": "@riim/opal-file-input-validator",
+  "version": "0.38.42",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dmitry Vibe",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@riim/opal-input-validator": "^0.38.42",
+    "@riim/opal-file-input": "^0.38.42",
+    "reflect-metadata": "^0.1.13",
+    "rionite": "^0.37.68"
+  }
+}

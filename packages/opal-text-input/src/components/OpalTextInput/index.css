@@ -11,13 +11,13 @@
 		box-sizing: border-box;
 		padding: 6px 36px 6px 12px; /* 3 + 24 + 9 */
 		width: 100%;
-		border: 1px solid hsl(0,0%,70%);
-		border-top-color: hsl(0,0%,65%);
-		border-bottom-color: hsl(0,0%,80%);
+		border: 1px solid var(--grayColor700, $grayColor700);
+		border-top-color: var(--grayColor650, $grayColor650);
+		border-bottom-color: var(--grayColor800, $grayColor800);
 		border-radius: 3px;
 		background: #fff;
 		box-shadow: inset 0 1px rgba(0,0,0,.1);
-		color: #000;
+		color: var(--textColor500, $textColor);
 		text-shadow: none;
 		font: 16px/24px Verdana, Geneva, sans-serif;
 		font-weight: normal;
@@ -27,6 +27,44 @@
 		-webkit-text-size-adjust: 100%;
 		-ms-text-size-adjust: 100%;
 		-webkit-tap-highlight-color: transparent;
+
+		&::-webkit-input-placeholder {
+			color: var(--textColor750, $textColor750);
+			transition: color .1s linear;
+		}
+		&::-moz-placeholder {
+			color: var(--textColor750, $textColor750);
+			transition: color .1s linear;
+		}
+		&:-ms-input-placeholder {
+			color: var(--textColor750, $textColor750);
+			transition: color .1s linear;
+		}
+
+		&:hover,
+		&[disabled] {
+			&::-webkit-input-placeholder {
+				color: var(--textColor600, $textColor600);
+			}
+			&::-moz-placeholder {
+				color: var(--textColor600, $textColor600);
+			}
+			&:-ms-input-placeholder {
+				color: var(--textColor600, $textColor600);
+			}
+		}
+
+		&:focus {
+			&::-webkit-input-placeholder {
+				color: var(--textColor600, $textColor600);
+			}
+			&::-moz-placeholder {
+				color: var(--textColor600, $textColor600);
+			}
+			&:-ms-input-placeholder {
+				color: var(--textColor600, $textColor600);
+			}
+		}
 	}
 
 	/* http://www.brianchu.com/blog/2013/11/02/creating-an-auto-growing-text-input/ */
@@ -60,7 +98,7 @@
 		margin: auto;
 		width: 18px;
 		height: 18px;
-		color: hsl(0,0%,50%);
+		color: var(--grayColor500, $grayColor);
 	}
 
 	@el startIcon {
@@ -90,7 +128,7 @@
 		height: 24px;
 		border: 0;
 		background: transparent;
-		color: hsl(0,0%,50%);
+		color: var(--grayColor500, $grayColor);
 		cursor: pointer;
 		transition: color .1s linear;
 
@@ -99,14 +137,14 @@
 		}
 
 		&:hover {
-			color: #000;
+			color: var(--textColor500, $textColor);
 		}
 
 		&:focus {
 			outline: none;
 
 			body:not(._noFocusHighlight) & {
-				outline: 1px solid $primaryColor;
+				outline: 1px solid var(--primaryColor500, $primaryColor);
 			}
 		}
 
@@ -148,20 +186,20 @@
 		height: 24px;
 		border: 0;
 		background: transparent;
-		color: hsl(0,0%,50%);
+		color: var(--grayColor500, $grayColor);
 		cursor: pointer;
 		transition: color .1s linear;
 		pointer-events: none;
 
 		&:hover {
-			color: #000;
+			color: var(--textColor500, $textColor);
 		}
 
 		&:focus {
 			outline: none;
 
 			body:not(._noFocusHighlight) & {
-				outline: 1px solid $primaryColor;
+				outline: 1px solid var(--primaryColor500, $primaryColor);
 			}
 		}
 
@@ -183,16 +221,16 @@
 
 	&:hover {
 		@el textField {
-			border-color: hsl(0,0%,60%);
-			border-top-color: hsl(0,0%,55%);
-			border-bottom-color: hsl(0,0%,70%);
+			border-color: var(--grayColor600, $grayColor600);
+			border-top-color: var(--grayColor550, $grayColor550);
+			border-bottom-color: var(--grayColor700, $grayColor700);
 		}
 	}
 
 	@el textField {
 		&:focus {
 			outline: none;
-			border-color: $primaryColor;
+			border-color: var(--primaryColor500, $primaryColor);
 		}
 	}
 
@@ -240,7 +278,7 @@
 		@el textField {
 			&,
 			&:focus {
-				border-color: $successColor;
+				border-color: var(--successColor500, $successColor);
 			}
 		}
 	}
@@ -249,7 +287,7 @@
 		@el textField {
 			&,
 			&:focus {
-				border-color: $dangerColor;
+				border-color: var(--dangerColor500, $dangerColor);
 			}
 		}
 	}
@@ -259,7 +297,7 @@
 		pointer-events: none;
 
 		@el textField {
-			background: hsl(0,0%,90%);
+			background: var(--grayColor900, $grayColor900);
 		}
 	}
 

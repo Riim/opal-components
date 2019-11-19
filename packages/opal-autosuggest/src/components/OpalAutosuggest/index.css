@@ -18,7 +18,7 @@
 				overflow: hidden;
 				padding: 7px 22px;
 				background: #fff;
-				color: #000;
+				color: var(--textColor500, $textColor);
 				text-align: left;
 				text-overflow: ellipsis;
 				text-shadow: none;
@@ -35,11 +35,11 @@
 
 				&:hover,
 				&[focused] {
-					background: hsl(0,0%,90%);
+					background: var(--grayColor900, $grayColor900);
 				}
 
 				&:active {
-					background: hsl(0,0%,80%);
+					background: var(--grayColor800, $grayColor800);
 				}
 
 				sub {

@@ -302,11 +302,11 @@ let OpalInputValidator = OpalInputValidator_1 = class OpalInputValidator extends
         this.failedRule = failedRule || null;
         if (+!!failedRule ^ +!!prevFailedRule) {
             if (failedRule) {
-                this.element.setAttribute('valid', 'no');
+                this.target.element.setAttribute('valid', 'no');
                 this.emit(OpalInputValidator_1.EVENT_INPUT_VALIDATION_ERROR);
             }
             else {
-                this.element.removeAttribute('valid');
+                this.target.element.removeAttribute('valid');
                 this.emit(OpalInputValidator_1.EVENT_INPUT_VALIDATION_VALID);
             }
         }

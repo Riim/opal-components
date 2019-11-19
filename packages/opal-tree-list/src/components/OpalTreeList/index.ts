@@ -126,27 +126,12 @@ export class OpalTreeList extends BaseComponent {
 
 		return new ObservableTreeList(
 			setParent(
-				dataTreeList.reduce(
-					function _(filteredDataTreeList, item) {
-						if (item.children.length) {
-							let filteredChildren = item.children.reduce(_, []);
+				dataTreeList.reduce(function _(filteredDataTreeList, item) {
+					if (item.children.length) {
+						let filteredChildren = item.children.reduce(_, []);
 
-							if (
-								filteredChildren.length ||
-								toComparable(item[dataTreeListItemTextFieldName])!.indexOf(
-									query!
-								) != -1
-							) {
-								filteredDataTreeList.push({
-									$original: item,
-									[dataTreeListItemValueFieldName]:
-										item[dataTreeListItemValueFieldName],
-									[dataTreeListItemTextFieldName]:
-										item[dataTreeListItemTextFieldName],
-									children: filteredChildren
-								});
-							}
-						} else if (
+						if (
+							filteredChildren.length ||
 							toComparable(item[dataTreeListItemTextFieldName])!.indexOf(query!) != -1
 						) {
 							filteredDataTreeList.push({
@@ -155,14 +140,22 @@ export class OpalTreeList extends BaseComponent {
 									item[dataTreeListItemValueFieldName],
 								[dataTreeListItemTextFieldName]:
 									item[dataTreeListItemTextFieldName],
-								children: []
+								children: filteredChildren
 							});
 						}
+					} else if (
+						toComparable(item[dataTreeListItemTextFieldName])!.indexOf(query!) != -1
+					) {
+						filteredDataTreeList.push({
+							$original: item,
+							[dataTreeListItemValueFieldName]: item[dataTreeListItemValueFieldName],
+							[dataTreeListItemTextFieldName]: item[dataTreeListItemTextFieldName],
+							children: []
+						});
+					}
 
-						return filteredDataTreeList;
-					},
-					[] as Array<IDataTreeListItem>
-				)
+					return filteredDataTreeList;
+				}, [] as Array<IDataTreeListItem>)
 			)
 		);
 	}

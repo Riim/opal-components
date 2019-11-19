@@ -43,7 +43,7 @@ opal-modal {
 			@el btnClose {
 				&::before,
 				&::after {
-					background: hsl(0,0%,80%);
+					background: var(--grayColor800, $grayColor800);
 				}
 
 				&:hover::before,
@@ -53,7 +53,7 @@ opal-modal {
 
 				&:active::before,
 				&:active::after {
-					background: hsl(0,0%,60%);
+					background: var(--grayColor600, $grayColor600);
 				}
 			}
 		}
@@ -107,7 +107,7 @@ opal-modal {
 
 				&:active::before,
 				&:active::after {
-					background: hsl(0,0%,60%);
+					background: var(--grayColor600, $grayColor600);
 				}
 			}
 

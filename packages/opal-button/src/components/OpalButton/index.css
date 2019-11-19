@@ -13,7 +13,7 @@
 		box-sizing: border-box;
 		padding: 7px 23px;
 		border-radius: 3px;
-		background: $defaultColor;
+		background: var(--defaultColor500, $defaultColor);
 		color: #fff;
 		vertical-align: middle;
 		text-align: center;
@@ -40,7 +40,7 @@
 		}
 
 		&:hover {
-			background: $defaultColor600;
+			background: var(--defaultColor600, $defaultColor600);
 		}
 
 		&:focus {
@@ -61,7 +61,7 @@
 
 		&:active,
 		&[checked] {
-			background: $defaultColor350;
+			background: var(--defaultColor350, $defaultColor350);
 		}
 
 		@mod loading {
@@ -112,54 +112,54 @@
 	}
 
 	@mod viewType=primary {
-		background: $primaryColor;
+		background: var(--primaryColor500, $primaryColor);
 
 		&:hover {
-			background-color: $primaryColor600;
+			background-color: var(--primaryColor600, $primaryColor600);
 		}
 
 		&:active,
 		&[checked] {
-			background-color: $primaryColor350;
+			background-color: var(--primaryColor350, $primaryColor350);
 		}
 	}
 
 	@mod viewType=success {
-		background: $successColor;
+		background: var(--successColor500, $successColor);
 
 		&:hover {
-			background-color: $successColor600;
+			background-color: var(--successColor600, $successColor600);
 		}
 
 		&:active,
 		&[checked] {
-			background-color: $successColor350;
+			background-color: var(--successColor350, $successColor350);
 		}
 	}
 
 	@mod viewType=warning {
-		background: $warningColor;
+		background: var(--warningColor500, $warningColor);
 
 		&:hover {
-			background-color: $warningColor600;
+			background-color: var(--warningColor600, $warningColor600);
 		}
 
 		&:active,
 		&[checked] {
-			background-color: $warningColor350;
+			background-color: var(--warningColor350, $warningColor350);
 		}
 	}
 
 	@mod viewType=danger {
-		background: $dangerColor;
+		background: var(--dangerColor500, $dangerColor);
 
 		&:hover {
-			background-color: $dangerColor600;
+			background-color: var(--dangerColor600, $dangerColor600);
 		}
 
 		&:active,
 		&[checked] {
-			background-color: $dangerColor350;
+			background-color: var(--dangerColor350, $dangerColor350);
 		}
 	}
 }

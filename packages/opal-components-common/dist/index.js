@@ -116,6 +116,28 @@ exports.closestComponent = closestComponent;
 
 /***/ }),
 
+/***/ "THfa":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function nodeContains(node, otherNode, stopNode = document.body) {
+    for (let n = otherNode.parentElement; n; n = n.parentElement) {
+        if (n == node) {
+            return true;
+        }
+        if (n == stopNode) {
+            break;
+        }
+    }
+    return false;
+}
+exports.nodeContains = nodeContains;
+
+
+/***/ }),
+
 /***/ "Y4Hb":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -126,6 +148,7 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__("S9kL"));
+__export(__webpack_require__("THfa"));
 
 
 /***/ })

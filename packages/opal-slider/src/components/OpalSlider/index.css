@@ -13,7 +13,7 @@
 		z-index: 0;
 		height: 14px;
 		border-radius: 7px;
-		background: hsl(0,0%,85%);
+		background: var(--grayColor850, $grayColor850);
 		content: '';
 	}
 
@@ -73,7 +73,7 @@
 						height: 20px;
 						border: 0;
 						border-radius: 50%;
-						background: $defaultColor;
+						background: var(--defaultColor500, $defaultColor);
 						cursor: pointer;
 						transition: background .1s linear;
 						-webkit-appearance: none;
@@ -84,7 +84,7 @@
 						height: 20px;
 						border: 0;
 						border-radius: 50%;
-						background: $defaultColor;
+						background: var(--defaultColor500, $defaultColor);
 						cursor: pointer;
 						transition: background .1s linear;
 					}
@@ -94,7 +94,7 @@
 						height: 20px;
 						border: 0;
 						border-radius: 50%;
-						background: $defaultColor;
+						background: var(--defaultColor500, $defaultColor);
 						cursor: pointer;
 						transition: background .1s linear;
 					}
@@ -130,7 +130,7 @@
 						height: 20px;
 						border: 0;
 						border-radius: 50%;
-						background: $primaryColor;
+						background: var(--primaryColor500, $primaryColor);
 						cursor: pointer;
 						transition: background .1s linear;
 						-webkit-appearance: none;
@@ -141,7 +141,7 @@
 						height: 20px;
 						border: 0;
 						border-radius: 50%;
-						background: $primaryColor;
+						background: var(--primaryColor500, $primaryColor);
 						cursor: pointer;
 						transition: background .1s linear;
 					}
@@ -151,7 +151,7 @@
 						height: 20px;
 						border: 0;
 						border-radius: 50%;
-						background: $primaryColor;
+						background: var(--primaryColor500, $primaryColor);
 						cursor: pointer;
 						transition: background .1s linear;
 					}
@@ -194,7 +194,7 @@
 			height: 20px;
 			border: 0;
 			border-radius: 50%;
-			background: $defaultColor;
+			background: var(--defaultColor500, $defaultColor);
 			cursor: pointer;
 			transition: background .1s linear;
 			-webkit-appearance: none;
@@ -206,7 +206,7 @@
 			height: 20px;
 			border: 0;
 			border-radius: 50%;
-			background: $defaultColor;
+			background: var(--defaultColor500, $defaultColor);
 			cursor: pointer;
 			transition: background .1s linear;
 		}
@@ -217,7 +217,7 @@
 			height: 20px;
 			border: 0;
 			border-radius: 50%;
-			background: $defaultColor;
+			background: var(--defaultColor500, $defaultColor);
 			cursor: pointer;
 			transition: background .1s linear;
 		}
@@ -226,33 +226,33 @@
 	/* States */
 
 	& .OpalSlider__firstInput:hover::-webkit-slider-thumb {
-		background: $defaultColor650;
+		background: var(--defaultColor650, $defaultColor650);
 	}
 	& .OpalSlider__firstInput:hover::-moz-range-thumb {
-		background: $defaultColor650;
+		background: var(--defaultColor650, $defaultColor650);
 	}
 	& .OpalSlider__firstInput:hover::-ms-thumb {
-		background: $defaultColor650;
+		background: var(--defaultColor650, $defaultColor650);
 	}
 
 	& .OpalSlider__secondInput:hover::-webkit-slider-thumb {
-		background: $primaryColor650;
+		background: var(--primaryColor650, $primaryColor650);
 	}
 	& .OpalSlider__secondInput:hover::-moz-range-thumb {
-		background: $primaryColor650;
+		background: var(--primaryColor650, $primaryColor650);
 	}
 	& .OpalSlider__secondInput:hover::-ms-thumb {
-		background: $primaryColor650;
+		background: var(--primaryColor650, $primaryColor650);
 	}
 
 	& .OpalSlider__input:hover::-webkit-slider-thumb {
-		background: $defaultColor650;
+		background: var(--defaultColor650, $defaultColor650);
 	}
 	& .OpalSlider__input:hover::-moz-range-thumb {
-		background: $defaultColor650;
+		background: var(--defaultColor650, $defaultColor650);
 	}
 	& .OpalSlider__input:hover::-ms-thumb {
-		background: $defaultColor650;
+		background: var(--defaultColor650, $defaultColor650);
 	}
 
 	& .OpalSlider__firstInput:focus,
@@ -261,62 +261,98 @@
 		outline: none;
 	}
 		body:not(._noFocusHighlight) & .OpalSlider__firstInput:focus::-webkit-slider-thumb {
-			box-shadow: inset 0 0 0 2px $defaultColor, inset 0 0 0 3px rgba(255,255,255,.8);
+			box-shadow:
+				inset 0 0 0 2px var(--defaultColor500, $defaultColor),
+				inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 		body:not(._noFocusHighlight) & .OpalSlider__secondInput:focus::-webkit-slider-thumb {
-			box-shadow: inset 0 0 0 2px $primaryColor, inset 0 0 0 3px rgba(255,255,255,.8);
+			box-shadow:
+				inset 0 0 0 2px var(--primaryColor500, $primaryColor),
+				inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 		body:not(._noFocusHighlight) & .OpalSlider__input:focus::-webkit-slider-thumb {
-			box-shadow: inset 0 0 0 2px $defaultColor, inset 0 0 0 3px rgba(255,255,255,.8);
+			box-shadow:
+				inset 0 0 0 2px var(--defaultColor500, $defaultColor),
+				inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 
 		body:not(._noFocusHighlight) & .OpalSlider__firstInput:focus::-moz-range-thumb {
-			box-shadow: inset 0 0 0 2px $defaultColor, inset 0 0 0 3px rgba(255,255,255,.8);
+			box-shadow:
+				inset 0 0 0 2px var(--defaultColor500, $defaultColor),
+				inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 		body:not(._noFocusHighlight) & .OpalSlider__secondInput:focus::-moz-range-thumb {
-			box-shadow: inset 0 0 0 2px $primaryColor, inset 0 0 0 3px rgba(255,255,255,.8);
+			box-shadow:
+				inset 0 0 0 2px var(--primaryColor500, $primaryColor),
+				inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 		body:not(._noFocusHighlight) & .OpalSlider__input:focus::-moz-range-thumb {
-			box-shadow: inset 0 0 0 2px $defaultColor, inset 0 0 0 3px rgba(255,255,255,.8);
+			box-shadow:
+				inset 0 0 0 2px var(--defaultColor500, $defaultColor),
+				inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 
 		body:not(._noFocusHighlight) & .OpalSlider__firstInput:focus::-ms-thumb {
-			box-shadow: inset 0 0 0 2px $defaultColor, inset 0 0 0 3px rgba(255,255,255,.8);
+			box-shadow:
+				inset 0 0 0 2px var(--defaultColor500, $defaultColor),
+				inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 		body:not(._noFocusHighlight) & .OpalSlider__secondInput:focus::-ms-thumb {
-			box-shadow: inset 0 0 0 2px $primaryColor, inset 0 0 0 3px rgba(255,255,255,.8);
+			box-shadow:
+				inset 0 0 0 2px var(--primaryColor500, $primaryColor),
+				inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 		body:not(._noFocusHighlight) & .OpalSlider__input:focus::-ms-thumb {
-			box-shadow: inset 0 0 0 2px $defaultColor, inset 0 0 0 3px rgba(255,255,255,.8);
+			box-shadow:
+				inset 0 0 0 2px var(--defaultColor500, $defaultColor),
+				inset 0 0 0 3px rgba(255,255,255,.8);
 		}
 
 	body:not(._noFocusHighlight) & .OpalSlider__firstInput:hover:focus::-webkit-slider-thumb {
-		box-shadow: inset 0 0 0 2px $defaultColor650, inset 0 0 0 3px rgba(255,255,255,.8);
+		box-shadow:
+			inset 0 0 0 2px var(--defaultColor650, $defaultColor650),
+			inset 0 0 0 3px rgba(255,255,255,.8);
 	}
 	body:not(._noFocusHighlight) & .OpalSlider__secondInput:hover:focus::-webkit-slider-thumb {
-		box-shadow: inset 0 0 0 2px $primaryColor650, inset 0 0 0 3px rgba(255,255,255,.8);
+		box-shadow:
+			inset 0 0 0 2px var(--primaryColor650, $primaryColor650),
+			inset 0 0 0 3px rgba(255,255,255,.8);
 	}
 	body:not(._noFocusHighlight) & .OpalSlider__input:hover:focus::-webkit-slider-thumb {
-		box-shadow: inset 0 0 0 2px $defaultColor650, inset 0 0 0 3px rgba(255,255,255,.8);
+		box-shadow:
+			inset 0 0 0 2px var(--defaultColor650, $defaultColor650),
+			inset 0 0 0 3px rgba(255,255,255,.8);
 	}
 
 	body:not(._noFocusHighlight) & .OpalSlider__firstInput:hover:focus::-moz-range-thumb {
-		box-shadow: inset 0 0 0 2px $defaultColor650, inset 0 0 0 3px rgba(255,255,255,.8);
+		box-shadow:
+			inset 0 0 0 2px var(--defaultColor650, $defaultColor650),
+			inset 0 0 0 3px rgba(255,255,255,.8);
 	}
 	body:not(._noFocusHighlight) & .OpalSlider__secondInput:hover:focus::-moz-range-thumb {
-		box-shadow: inset 0 0 0 2px $primaryColor650, inset 0 0 0 3px rgba(255,255,255,.8);
+		box-shadow:
+			inset 0 0 0 2px var(--primaryColor650, $primaryColor650),
+			inset 0 0 0 3px rgba(255,255,255,.8);
 	}
 	body:not(._noFocusHighlight) & .OpalSlider__input:hover:focus::-moz-range-thumb {
-		box-shadow: inset 0 0 0 2px $defaultColor650, inset 0 0 0 3px rgba(255,255,255,.8);
+		box-shadow:
+			inset 0 0 0 2px var(--defaultColor650, $defaultColor650),
+			inset 0 0 0 3px rgba(255,255,255,.8);
 	}
 
 	body:not(._noFocusHighlight) & .OpalSlider__firstInput:hover:focus::-ms-thumb {
-		box-shadow: inset 0 0 0 2px $defaultColor650, inset 0 0 0 3px rgba(255,255,255,.8);
+		box-shadow:
+			inset 0 0 0 2px var(--defaultColor500, $defaultColor650),
+			inset 0 0 0 3px rgba(255,255,255,.8);
 	}
 	body:not(._noFocusHighlight) & .OpalSlider__secondInput:hover:focus::-ms-thumb {
-		box-shadow: inset 0 0 0 2px $primaryColor650, inset 0 0 0 3px rgba(255,255,255,.8);
+		box-shadow:
+			inset 0 0 0 2px var(--primaryColor650, $primaryColor650),
+			inset 0 0 0 3px rgba(255,255,255,.8);
 	}
 	body:not(._noFocusHighlight) & .OpalSlider__input:hover:focus::-ms-thumb {
-		box-shadow: inset 0 0 0 2px $defaultColor650, inset 0 0 0 3px rgba(255,255,255,.8);
+		box-shadow:
+			inset 0 0 0 2px var(--defaultColor500, $defaultColor650),
+			inset 0 0 0 3px rgba(255,255,255,.8);
 	}
 }

@@ -10,7 +10,7 @@
 		border-top-left-radius: 3px;
 		border-top-right-radius: 3px;
 		background: #fff;
-		color: #000;
+		color: var(--textColor500, $textColor);
 		text-align: center;
 		text-shadow: none;
 		white-space: nowrap;
@@ -25,7 +25,7 @@
 		-webkit-tap-highlight-color: transparent;
 
 		&:hover {
-			background: hsl(0,0%,90%);
+			background: var(--grayColor900, $grayColor900);
 		}
 
 		&:focus {
@@ -38,14 +38,14 @@
 				bottom: 2px;
 				left: 2px;
 				border-radius: inherit;
-				box-shadow: inset 0 0 0 1px $primaryColor;
+				box-shadow: inset 0 0 0 1px var(--primaryColor500, $primaryColor);
 				content: '';
 				pointer-events: none;
 			}
 		}
 
 		&:active {
-			background: hsl(0,0%,80%);
+			background: var(--grayColor800, $grayColor800);
 		}
 	}
 		@el contentSlot {
@@ -55,7 +55,7 @@
 
 	@mod selected {
 		@el control {
-			box-shadow: 0 3px $primaryColor;
+			box-shadow: 0 3px var(--primaryColor500, $primaryColor);
 		}
 	}
 

@@ -18,7 +18,7 @@
 		margin: auto;
 		width: 100%;
 		height: 100%;
-		border: 3px solid $primaryColor;
+		border: 3px solid var(--primaryColor500, $primaryColor);
 		border-top-color: transparent;
 		border-radius: 50%;
 		content: '';
@@ -28,7 +28,7 @@
 	&::after {
 		width: 26px;
 		height: 26px;
-		border-color: $dangerColor;
+		border-color: var(--dangerColor500, $dangerColor);
 		border-bottom-color: transparent;
 		animation-direction: reverse;
 	}

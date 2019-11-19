@@ -23,7 +23,7 @@
 					bottom: 1px;
 					left: 0;
 					border-radius: 2px;
-					box-shadow: inset 0 0 0 1px $primaryColor;
+					box-shadow: inset 0 0 0 1px var(--primaryColor500, $primaryColor);
 					content: '';
 					pointer-events: none;
 				}

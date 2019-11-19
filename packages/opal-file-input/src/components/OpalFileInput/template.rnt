@@ -1,0 +1,82 @@
+ul:fileList (@if=multiple) {
+	li:file (@for=fileData in dataList, draggable=true, data-file-data-uid={fileData |uid }) {
+		div:filePreviewWrapper {
+			@IfThen (if='fileData |_isImage') {
+				OpalLoader:fileLoader (
+					@unless='fileData.url |or(fileData.dataURI)',
+					size=s,
+					shown
+				)
+				img:filePreview (
+					@if='fileData.url |or(fileData.dataURI)',
+					src='{fileData.url |or(fileData.dataURI)}',
+					draggable=false
+				)
+			}
+			svg:fileIcon (@unless='fileData |_isImage', stroke-width=2) {
+				use (xlink:href=#OpalIcon__iconFile)
+			}
+		}
+
+		span:fileName {
+			'{fileData.name}'
+		}
+
+		button:btnRemoveFile (type=button) {
+			svg:btnRemoveFileIcon (stroke-width=2) {
+				use (xlink:href=#OpalIcon__iconCross)
+			}
+		}
+	}
+}
+
+div:dropZone (error={errorMessage |bool }) {
+	div:dropZoneErrorMessageWrapper (@if=multiple) {
+		span:dropZoneErrorMessage {
+			'{errorMessage}'
+		}
+	}
+
+	span:dropZoneContent {
+		@IfThen (multiple) {
+			'{"Перетащите файлы в эту область или" |t }'
+			br
+
+			button:btnSelectFiles (type=button, tabindex='{disabled |cond(-1, 0) }') {
+				'{"нажмите для выбора в проводнике" |t }'
+			}
+		}
+		OpalButton:btnSelectFile (@unless=multiple, size=s, disabled={disabled}) {
+			'{buttonText}'
+		}
+	}
+
+	@IfElse (multiple) {
+		div:file2 (@if=dataList.length) {
+			a (
+				@if='dataList |get(0) |key("url")',
+				href='{dataList |get(0) |key("url") }',
+				target=_blank
+			) {
+				'{dataList |get(0) |key("name") }'
+			}
+			@IfElse (if='dataList |get(0) |key("url")') {
+				'{dataList |get(0) |key("name") }'
+			}
+		}
+		div:placeholder (@unless=dataList.length) {
+			'{placeholder}'
+		}
+	}
+}
+
+button:btnClear (
+	@unless=multiple,
+	type=button,
+	shown={dataList.length |bool },
+	disabled={disabled}
+) {
+	OpalIcon:btnClearIcon (name=cross)
+}
+
+input:filesInput (type=file, multiple={multiple})

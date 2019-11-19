@@ -67,10 +67,10 @@ export class OpalInputValidator extends BaseComponent {
 
 		if (+!!failedRule ^ +!!prevFailedRule) {
 			if (failedRule) {
-				this.element.setAttribute('valid', 'no');
+				this.target.element.setAttribute('valid', 'no');
 				this.emit(OpalInputValidator.EVENT_INPUT_VALIDATION_ERROR);
 			} else {
-				this.element.removeAttribute('valid');
+				this.target.element.removeAttribute('valid');
 				this.emit(OpalInputValidator.EVENT_INPUT_VALIDATION_VALID);
 			}
 		}

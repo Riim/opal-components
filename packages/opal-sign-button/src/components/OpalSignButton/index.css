@@ -22,7 +22,7 @@
 				right: 0;
 				bottom: 1px;
 				left: -3px;
-				border: 1px solid $primaryColor;
+				border: 1px solid var(--primaryColor500, $primaryColor);
 				border-radius: 3px;
 				content: '';
 				pointer-events: none;
@@ -72,21 +72,21 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: $primaryColor600;
+					border-color: var(--primaryColor600, $primaryColor600);
 
 					&::before,
 					&::after {
-						background: $primaryColor600;
+						background: var(--primaryColor600, $primaryColor600);
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: $primaryColor;
+				border-color: var(--primaryColor500, $primaryColor);
 
 				&::before,
 				&::after {
-					background: $primaryColor;
+					background: var(--primaryColor500, $primaryColor);
 					content: '';
 				}
 			}
@@ -97,19 +97,19 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: $dangerColor600;
+					border-color: var(--dangerColor600, $dangerColor600);
 
 					&::before {
-						background: $dangerColor600;
+						background: var(--dangerColor600, $dangerColor600);
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: $dangerColor;
+				border-color: var(--dangerColor500, $dangerColor);
 
 				&::before {
-					background: $dangerColor;
+					background: var(--dangerColor500, $dangerColor);
 					content: '';
 				}
 			}
@@ -120,21 +120,21 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: $defaultColor600;
+					border-color: var(--defaultColor600, $defaultColor600);
 
 					&::before,
 					&::after {
-						background: $defaultColor600;
+						background: var(--defaultColor600, $defaultColor600);
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: $defaultColor;
+				border-color: var(--defaultColor500, $defaultColor);
 
 				&::before,
 				&::after {
-					background: $defaultColor;
+					background: var(--defaultColor500, $defaultColor);
 				}
 			}
 	}
@@ -144,21 +144,21 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: $primaryColor600;
+					border-color: var(--primaryColor600, $primaryColor600);
 
 					&::before,
 					&::after {
-						background: $primaryColor600;
+						background: var(--primaryColor600, $primaryColor600);
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: $primaryColor;
+				border-color: var(--primaryColor500, $primaryColor);
 
 				&::before,
 				&::after {
-					background: $primaryColor;
+					background: var(--primaryColor500, $primaryColor);
 				}
 			}
 	}
@@ -168,21 +168,21 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: $successColor600;
+					border-color: var(--successColor600, $successColor600);
 
 					&::before,
 					&::after {
-						background: $successColor600;
+						background: var(--successColor600, $successColor600);
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: $successColor;
+				border-color: var(--successColor500, $successColor);
 
 				&::before,
 				&::after {
-					background: $successColor;
+					background: var(--successColor500, $successColor);
 				}
 			}
 	}
@@ -192,21 +192,21 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: $warningColor600;
+					border-color: var(--warningColor600, $warningColor600);
 
 					&::before,
 					&::after {
-						background: $warningColor600;
+						background: var(--warningColor600, $warningColor600);
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: $warningColor;
+				border-color: var(--warningColor500, $warningColor);
 
 				&::before,
 				&::after {
-					background: $warningColor;
+					background: var(--warningColor500, $warningColor);
 				}
 			}
 	}
@@ -216,21 +216,21 @@
 			&:hover,
 			&:active {
 				@el sign {
-					border-color: $dangerColor600;
+					border-color: var(--dangerColor600, $dangerColor600);
 
 					&::before,
 					&::after {
-						background: $dangerColor600;
+						background: var(--dangerColor600, $dangerColor600);
 					}
 				}
 			}
 		}
 			@el sign {
-				border-color: $dangerColor;
+				border-color: var(--dangerColor500, $dangerColor);
 
 				&::before,
 				&::after {
-					background: $dangerColor;
+					background: var(--dangerColor500, $dangerColor);
 				}
 			}
 	}

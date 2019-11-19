@@ -13,7 +13,7 @@
 		padding: 10px 40px 10px 20px;
 		width: 400px;
 		border-radius: 3px;
-		background: $defaultColor;
+		background: var(--defaultColor500, $defaultColor);
 		box-shadow: 0 2px 4px rgba(0,0,0,.3);
 		color: #fff;
 		opacity: 0;
@@ -21,13 +21,13 @@
 	}
 
 	.OpalNotification__container .OpalNotification__bar[view_type=primary] {
-		background: $primaryColor;
+		background: var(--primaryColor500, $primaryColor);
 	}
 	.OpalNotification__container .OpalNotification__bar[view_type=success] {
-		background: $successColor;
+		background: var(--successColor500, $successColor);
 	}
 	.OpalNotification__container .OpalNotification__bar[view_type=danger] {
-		background: $dangerColor;
+		background: var(--dangerColor500, $dangerColor);
 	}
 
 	.OpalNotification__container .OpalNotification__bar[has_icon][icon_size=xs] {
@@ -76,7 +76,7 @@
 				outline: none;
 
 				body:not(._noFocusHighlight) & {
-					outline: 1px solid $primaryColor;
+					outline: 1px solid var(--primaryColor500, $primaryColor);
 				}
 			}
 

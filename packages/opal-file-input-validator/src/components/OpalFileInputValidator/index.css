@@ -1,0 +1,5 @@
+@component OpalFileInputValidator : OpalInputValidator {
+	@el fileInput {
+		display: block;
+	}
+}

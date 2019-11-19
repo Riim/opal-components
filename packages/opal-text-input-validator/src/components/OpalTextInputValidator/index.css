@@ -2,12 +2,4 @@
 	@el textInput {
 		display: block;
 	}
-
-	@mod valid=no {
-		@el textInput {
-			.OpalTextInput__textField {
-				border-color: $dangerColor;
-			}
-		}
-	}
 }

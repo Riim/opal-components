@@ -25,12 +25,12 @@
 			height: 16px;
 			border: solid 2px transparent;
 			border-left-width: 6px;
-			color: $primaryColor450;
+			color: var(--primaryColor450, $primaryColor450);
 			cursor: pointer;
 
 			&:hover,
 			&:active {
-				stroke: $primaryColor650;
+				stroke: var(--primaryColor650, $primaryColor650);
 			}
 
 			&:active {

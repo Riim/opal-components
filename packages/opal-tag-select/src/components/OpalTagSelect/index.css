@@ -11,7 +11,7 @@
 			padding: 0 10px 0 18px;
 			border-top-left-radius: 16px;
 			border-bottom-left-radius: 16px;
-			background: $defaultColor;
+			background: var(--defaultColor500, $defaultColor);
 			color: #fff;
 			vertical-align: middle;
 			text-decoration: none;
@@ -43,7 +43,7 @@
 				border-radius: 0;
 				border-top-right-radius: 16px;
 				border-bottom-right-radius: 16px;
-				background: $defaultColor400;
+				background: var(--defaultColor400, $defaultColor400);
 				box-shadow: inset 1px 0 rgba(0,0,0,.4);
 				cursor: pointer;
 				transition: background .1s linear;
@@ -62,7 +62,7 @@
 				}
 
 				&:hover {
-					background: $defaultColor;
+					background: var(--defaultColor500, $defaultColor);
 				}
 
 				&:focus {
@@ -82,7 +82,7 @@
 				}
 
 				&:active {
-					background: $defaultColor300;
+					background: var(--defaultColor300, $defaultColor300);
 				}
 			}
 
@@ -111,68 +111,68 @@
 
 	@mod viewType=primary {
 		@el tag {
-			background: $primaryColor;
+			background: var(--primaryColor500, $primaryColor);
 		}
 			@el btnRemoveTag {
-				background: $primaryColor400;
+				background: var(--primaryColor400, $primaryColor400);
 
 				&:hover {
-					background: $primaryColor;
+					background: var(--primaryColor500, $primaryColor);
 				}
 
 				&:active {
-					background: $primaryColor300;
+					background: var(--primaryColor300, $primaryColor300);
 				}
 			}
 	}
 
 	@mod viewType=success {
 		@el tag {
-			background: $successColor;
+			background: var(--successColor500, $successColor);
 		}
 			@el btnRemoveTag {
-				background: $successColor400;
+				background: var(--successColor400, $successColor400);
 
 				&:hover {
-					background: $successColor;
+					background: var(--successColor500, $successColor);
 				}
 
 				&:active {
-					background: $successColor300;
+					background: var(--successColor300, $successColor300);
 				}
 			}
 	}
 
 	@mod viewType=warning {
 		@el tag {
-			background: $warningColor;
+			background: var(--warningColor500, $warningColor);
 		}
 			@el btnRemoveTag {
-				background: $warningColor400;
+				background: var(--warningColor400, $warningColor400);
 
 				&:hover {
-					background: $warningColor;
+					background: var(--warningColor500, $warningColor);
 				}
 
 				&:active {
-					background: $warningColor300;
+					background: var(--warningColor300, $warningColor300);
 				}
 			}
 	}
 
 	@mod viewType=danger {
 		@el tag {
-			background: $dangerColor;
+			background: var(--dangerColor500, $dangerColor);
 		}
 			@el btnRemoveTag {
-				background: $dangerColor400;
+				background: var(--dangerColor400, $dangerColor400);
 
 				&:hover {
-					background: $dangerColor;
+					background: var(--dangerColor500, $dangerColor);
 				}
 
 				&:active {
-					background: $dangerColor300;
+					background: var(--dangerColor300, $dangerColor300);
 				}
 			}
 	}

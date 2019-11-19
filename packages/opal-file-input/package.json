@@ -1,5 +1,5 @@
 {
-  "name": "@riim/opal-file-attach",
+  "name": "@riim/opal-file-input",
   "version": "0.38.42",
   "description": "",
   "main": "dist/index.js",
@@ -15,6 +15,8 @@
   "dependencies": {
     "@riim/escape-regexp": "^1.0.0",
     "@riim/gettext": "^2.0.0",
+    "@riim/opal-button": "^0.38.42",
+    "@riim/opal-components-common": "^0.38.37",
     "@riim/opal-icon": "^0.38.42",
     "@riim/opal-loader": "^0.38.39",
     "@riim/uid": "^1.0.0",

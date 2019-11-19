@@ -8,7 +8,7 @@ opal-popover {
 	display: none;
 	box-sizing: border-box;
 	padding: 20px;
-	border: 1px solid hsl(0,0%,80%);
+	border: 1px solid var(--grayColor800, $grayColor800);
 	border-radius: 6px;
 	background: #fff;
 	box-shadow: 0 1px 3px rgba(0,0,0,.2);
@@ -57,19 +57,19 @@ opal-popover {
 
 	@mod viewType=primary {
 		@el contentSlot {
-			border: 1px solid $primaryColor;
+			border: 1px solid var(--primaryColor500, $primaryColor);
 		}
 	}
 
 	@mod viewType=success {
 		@el contentSlot {
-			border: 1px solid $successColor;
+			border: 1px solid var(--successColor500, $successColor);
 		}
 	}
 
 	@mod viewType=danger {
 		@el contentSlot {
-			border: 1px solid $dangerColor;
+			border: 1px solid var(--dangerColor500, $dangerColor);
 		}
 	}
 
@@ -92,7 +92,7 @@ opal-popover {
 
 			&::before,
 			&::after {
-				border-top-color: hsl(0,0%,80%);
+				border-top-color: var(--grayColor800, $grayColor800);
 				border-bottom-width: 0;
 				transform: translateX(-50%);
 			}
@@ -148,7 +148,7 @@ opal-popover {
 			&::before,
 			&::after {
 				right: 0;
-				border-right-color: hsl(0,0%,80%);
+				border-right-color: var(--grayColor800, $grayColor800);
 				border-left-width: 0;
 				transform: translateY(-50%);
 			}
@@ -205,7 +205,7 @@ opal-popover {
 			&::after {
 				bottom: 0;
 				border-top-width: 0;
-				border-bottom-color: hsl(0,0%,80%);
+				border-bottom-color: var(--grayColor800, $grayColor800);
 				transform: translateX(-50%);
 			}
 
@@ -261,7 +261,7 @@ opal-popover {
 			&::after {
 				left: 0;
 				border-right-width: 0;
-				border-left-color: hsl(0,0%,80%);
+				border-left-color: var(--grayColor800, $grayColor800);
 				transform: translateY(-50%);
 			}
 

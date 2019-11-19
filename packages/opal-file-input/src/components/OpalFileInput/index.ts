@@ -1,6 +1,8 @@
 import { escapeRegExp } from '@riim/escape-regexp';
-import { t } from '@riim/gettext';
+import { pt, t } from '@riim/gettext';
 import { nextTick } from '@riim/next-tick';
+import { OpalButton } from '@riim/opal-button';
+import { nodeContains } from '@riim/opal-components-common';
 import { getUID } from '@riim/uid';
 import { EventEmitter, ObservableList } from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
@@ -28,19 +30,47 @@ export type TDataList = ObservableList<IFileData>;
 
 let dragEl: HTMLElement | null = null;
 
-@Component<OpalFileAttach>({
-	elementIs: 'OpalFileAttach',
+@Component<OpalFileInput>({
+	elementIs: 'OpalFileInput',
 	template,
+
+	events: {
+		btnSelectFile: {
+			[OpalButton.EVENT_CLICK]() {
+				this.$<HTMLElement>('filesInput')!.click();
+			}
+		}
+	},
 
 	domEvents: {
 		btnRemoveFile: {
-			click(_evt, context) {
+			click(evt, context) {
+				evt.preventDefault();
+
 				this.dataList.remove(context.fileData);
+				this.emit(OpalFileInput.EVENT_CHANGE);
+			}
+		},
+
+		btnClear: {
+			click(evt) {
+				evt.preventDefault();
+
+				this.dataList.clear();
+				this.$<OpalButton>('btnSelectFile')!.focus();
+
+				this.emit(OpalFileInput.EVENT_CLEAR);
+				this.emit(OpalFileInput.EVENT_CHANGE);
 			}
 		}
 	}
 })
-export class OpalFileAttach extends BaseComponent {
+export class OpalFileInput extends BaseComponent {
+	static EVENT_CHANGE = Symbol('change');
+	static EVENT_CLEAR = Symbol('clear');
+
+	@Param({ readonly: true })
+	multiple = false;
 	@Param({ default: new ObservableList() })
 	dataList: TDataList;
 	@Param({ readonly: true })
@@ -49,6 +79,12 @@ export class OpalFileAttach extends BaseComponent {
 	sizeLimit: number;
 	@Param
 	totalSizeLimit: number;
+	@Param
+	buttonText = pt('OpalFileInput#buttonText', 'Выбрать файл');
+	@Param
+	placeholder = pt('OpalFileInput#placeholder', 'Не выбрано');
+	@Param
+	disabled = false;
 
 	_reFileType: RegExp;
 
@@ -60,10 +96,12 @@ export class OpalFileAttach extends BaseComponent {
 	@Observable
 	errorMessage: string | null;
 
-	fileListEl: HTMLElement;
+	fileListEl: HTMLElement | null;
 	dropZoneEl: HTMLElement;
 
 	_fileListListening: IDisposableListening;
+
+	validator: { validate(): boolean } | null = null;
 
 	initialize() {
 		if (this.allowType) {
@@ -79,8 +117,14 @@ export class OpalFileAttach extends BaseComponent {
 	}
 
 	ready() {
-		this.fileListEl = this.$<HTMLElement>('fileList')!;
+		this.fileListEl = this.$<HTMLElement>('fileList');
 		this.dropZoneEl = this.$<HTMLElement>('dropZone')!;
+	}
+
+	elementAttached() {
+		if (this.fileListEl) {
+			this.listenTo(this.fileListEl, 'dragstart', this._onFileListDragStart);
+		}
 	}
 
 	@Listen('change', 'filesInput')
@@ -117,22 +161,31 @@ export class OpalFileAttach extends BaseComponent {
 	}
 
 	@Listen('click', 'dropZone')
-	_onDropZoneClick() {
+	_onDropZoneClick(evt: Event) {
 		if (this.errorMessage) {
 			this.errorMessage = null;
 		} else {
-			this.$<HTMLElement>('filesInput')!.click();
+			let btnSelectFileEl: Element;
+
+			if (
+				this.multiple ||
+				((evt.target as Element).tagName != 'A' &&
+					(evt.target as Element) !=
+						(btnSelectFileEl = this.$<OpalButton>('btnSelectFile')!.element) &&
+					!nodeContains(btnSelectFileEl, evt.target as Element, this.element))
+			) {
+				this.$<HTMLElement>('filesInput')!.click();
+			}
 		}
 	}
 
-	@Listen('dragstart', '@fileListEl')
 	_onFileListDragStart(evt: Event) {
 		dragEl = evt.target as HTMLElement;
 
 		(evt as DragEvent).dataTransfer!.effectAllowed = 'move';
 		(evt as DragEvent).dataTransfer!.setData('Text', dragEl.textContent!);
 
-		this._fileListListening = this.listenTo(this.fileListEl, {
+		this._fileListListening = this.listenTo(this.fileListEl!, {
 			dragenter: this._onFileListDragEnter,
 			dragover: this._onFileListDragOver,
 			drop: this._onFileListDrop,
@@ -166,6 +219,8 @@ export class OpalFileAttach extends BaseComponent {
 			this.dataList.set(targetFileDataIndex, this.dataList.get(dragElFileDataIndex)!);
 			this.dataList.set(dragElFileDataIndex, targetFileData);
 		});
+
+		this.emit(OpalFileInput.EVENT_CHANGE);
 	}
 
 	_onFileListDragOver(evt: Event) {
@@ -188,7 +243,9 @@ export class OpalFileAttach extends BaseComponent {
 		let sizeLimit = this.sizeLimit;
 		let totalSizeLimit = this.totalSizeLimit;
 		let reFileType = this._reFileType;
-		let size = this.dataList.reduce((size, file) => size + (file.size || 0), 0);
+		let size = this.multiple
+			? this.dataList.reduce((size, file) => size + (file.size || 0), 0)
+			: 0;
 		let errorMessage: string | undefined;
 
 		for (let i = 0, l = files.length; i < l; i++) {
@@ -218,6 +275,10 @@ export class OpalFileAttach extends BaseComponent {
 				size: file.size
 			};
 
+			if (!this.multiple) {
+				this.dataList.clear();
+			}
+
 			this.dataList.add(fileData);
 
 			let reader = new FileReader();
@@ -230,6 +291,8 @@ export class OpalFileAttach extends BaseComponent {
 			});
 
 			reader.readAsBinaryString(file);
+
+			this.emit(OpalFileInput.EVENT_CHANGE);
 		}
 
 		return true;

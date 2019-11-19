@@ -120,7 +120,6 @@ export class OpalSelect extends BaseComponent {
 	@Param
 	maxTextLength = 20;
 	@Param
-	// ;;; Плейсхолдер селекта.
 	placeholder = pt('OpalSelect#placeholder', 'Не выбрано');
 	@Param({ readonly: true })
 	openOnClick = false;
