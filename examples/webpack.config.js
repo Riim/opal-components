@@ -53,7 +53,7 @@ module.exports = env => {
 								plugins: [
 									postcssRioniteComponent(),
 									postcssColorFunction(),
-									autoprefixer({ browsers: ['last 3 versions'] }),
+									autoprefixer({ overrideBrowserslist: ['last 3 versions'] }),
 									csso({ restructure: false })
 								]
 							}
