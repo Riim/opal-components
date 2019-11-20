@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-form",
-  "version": "0.39.0",
+  "version": "0.39.2",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-text-input": "^0.39.0",
+    "@riim/opal-text-input": "^0.39.2",
     "reflect-metadata": "^0.1.13",
     "rionite": "^0.37.68"
   }

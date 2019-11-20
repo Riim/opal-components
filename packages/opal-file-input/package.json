@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-file-input",
-  "version": "0.39.0",
+  "version": "0.39.2",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,10 +15,10 @@
   "dependencies": {
     "@riim/escape-regexp": "^1.0.0",
     "@riim/gettext": "^2.0.0",
-    "@riim/opal-button": "^0.39.0",
-    "@riim/opal-components-common": "^0.39.0",
+    "@riim/opal-button": "^0.39.2",
+    "@riim/opal-components-common": "^0.39.2",
     "@riim/opal-icon": "^0.39.0",
-    "@riim/opal-loader": "^0.39.0",
+    "@riim/opal-loader": "^0.39.2",
     "@riim/uid": "^1.0.0",
     "cellx": "^1.9.16",
     "cellx-decorators": "^1.5.4",
