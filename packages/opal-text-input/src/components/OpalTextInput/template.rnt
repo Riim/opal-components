@@ -23,7 +23,12 @@ RnSlot:endIconSlot (for=endIcon, shown={endIconShown}) {
 	OpalIcon:endIcon (@if=endIcon, name={endIcon})
 }
 
-button:btnClear (@if=clearable, type=button, shown={btnClearShown}) {
+button:btnClear (
+	@if=clearable,
+	type=button,
+	shown={btnClearShown},
+	tabindex='{disabled |cond(-1, 0) }'
+) {
 	OpalIcon:btnClearIcon (name=cross)
 }
 

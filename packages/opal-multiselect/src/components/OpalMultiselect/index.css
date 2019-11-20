@@ -53,7 +53,7 @@
 				overflow: hidden;
 				padding: 7px 38px 7px 22px;
 				background: #fff;
-				color: var(--textColor500, $textColor);
+				color: var(--textColor50, $textColor50);
 				text-align: left;
 				text-overflow: ellipsis;
 				text-shadow: none;
@@ -90,7 +90,7 @@
 					transition: color .1s linear;
 
 					&:hover {
-						color: var(--textColor500, $textColor);
+						color: var(--textColor50, $textColor50);
 					}
 
 					&:focus {

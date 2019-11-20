@@ -10,7 +10,7 @@
 		border-top-left-radius: 3px;
 		border-top-right-radius: 3px;
 		background: #fff;
-		color: var(--textColor500, $textColor);
+		color: var(--textColor50, $textColor50);
 		text-align: center;
 		text-shadow: none;
 		white-space: nowrap;

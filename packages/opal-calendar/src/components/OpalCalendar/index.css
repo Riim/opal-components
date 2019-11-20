@@ -4,7 +4,7 @@
 	border: 1px solid var(--grayColor850, $grayColor850);
 	border-radius: 3px;
 	background: #fff;
-	color: var(--textColor500, $textColor);
+	color: var(--textColor50, $textColor50);
 	text-shadow: none;
 	font: 16px/24px Verdana, Geneva, sans-serif;
 	font-weight: normal;
@@ -32,7 +32,7 @@
 
 			&:hover {
 				background: var(--grayColor900, $grayColor900);
-				color: var(--textColor500, $textColor);
+				color: var(--textColor50, $textColor50);
 			}
 
 			&:focus {
@@ -57,7 +57,7 @@
 
 			@mod disabled {
 				background: none;
-				color: var(--textColor500, $textColor);
+				color: var(--textColor50, $textColor50);
 				opacity: .3;
 				pointer-events: none;
 			}

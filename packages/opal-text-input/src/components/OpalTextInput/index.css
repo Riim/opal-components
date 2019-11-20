@@ -17,7 +17,7 @@
 		border-radius: 3px;
 		background: #fff;
 		box-shadow: inset 0 1px rgba(0,0,0,.1);
-		color: var(--textColor500, $textColor);
+		color: var(--textColor50, $textColor50);
 		text-shadow: none;
 		font: 16px/24px Verdana, Geneva, sans-serif;
 		font-weight: normal;
@@ -29,40 +29,40 @@
 		-webkit-tap-highlight-color: transparent;
 
 		&::-webkit-input-placeholder {
-			color: var(--textColor750, $textColor750);
+			color: var(--textColor650, $textColor650);
 			transition: color .1s linear;
 		}
 		&::-moz-placeholder {
-			color: var(--textColor750, $textColor750);
+			color: var(--textColor650, $textColor650);
 			transition: color .1s linear;
 		}
 		&:-ms-input-placeholder {
-			color: var(--textColor750, $textColor750);
+			color: var(--textColor650, $textColor650);
 			transition: color .1s linear;
 		}
 
 		&:hover,
 		&[disabled] {
 			&::-webkit-input-placeholder {
-				color: var(--textColor600, $textColor600);
+				color: var(--textColor400, $textColor400);
 			}
 			&::-moz-placeholder {
-				color: var(--textColor600, $textColor600);
+				color: var(--textColor400, $textColor400);
 			}
 			&:-ms-input-placeholder {
-				color: var(--textColor600, $textColor600);
+				color: var(--textColor400, $textColor400);
 			}
 		}
 
 		&:focus {
 			&::-webkit-input-placeholder {
-				color: var(--textColor600, $textColor600);
+				color: var(--textColor400, $textColor400);
 			}
 			&::-moz-placeholder {
-				color: var(--textColor600, $textColor600);
+				color: var(--textColor400, $textColor400);
 			}
 			&:-ms-input-placeholder {
-				color: var(--textColor600, $textColor600);
+				color: var(--textColor400, $textColor400);
 			}
 		}
 	}
@@ -137,7 +137,7 @@
 		}
 
 		&:hover {
-			color: var(--textColor500, $textColor);
+			color: var(--textColor50, $textColor50);
 		}
 
 		&:focus {
@@ -192,7 +192,7 @@
 		pointer-events: none;
 
 		&:hover {
-			color: var(--textColor500, $textColor);
+			color: var(--textColor50, $textColor50);
 		}
 
 		&:focus {

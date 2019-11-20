@@ -29,11 +29,11 @@ function gradientColors(color, count = 10) {
 	);
 }
 
-const textColor = 'hsl(208,9%,18%)';
+const textColor = 'hsl(208,10%,50%)';
 const defaultColor = 'hsl(208,18%,36%)';
-const primaryColor = 'hsl(208,94%,50%)';
-const successColor = 'hsl(122,40%,48%)';
-const dangerColor = 'hsl(4,90%,58%)';
+const primaryColor = 'hsl(208,93%,50%)';
+const successColor = 'hsl(123,40%,48%)';
+const dangerColor = 'hsl(5,90%,57%)';
 const warningColor = 'hsl(40,100%,50%)';
 const textColors = gradientColors(textColor);
 const defaultColors = gradientColors(defaultColor);

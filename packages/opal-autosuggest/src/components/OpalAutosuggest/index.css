@@ -18,7 +18,7 @@
 				overflow: hidden;
 				padding: 7px 22px;
 				background: #fff;
-				color: var(--textColor500, $textColor);
+				color: var(--textColor50, $textColor50);
 				text-align: left;
 				text-overflow: ellipsis;
 				text-shadow: none;

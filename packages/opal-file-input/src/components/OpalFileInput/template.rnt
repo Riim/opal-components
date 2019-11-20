@@ -46,7 +46,7 @@ div:dropZone (error={errorMessage |bool }) {
 				'{"нажмите для выбора в проводнике" |t }'
 			}
 		}
-		OpalButton:btnSelectFile (@unless=multiple, size=s, disabled={disabled}) {
+		OpalButton:btnSelectFile (@unless=multiple, size=s, tabIndex='{disabled |cond(-1, 0) }') {
 			'{buttonText}'
 		}
 	}
@@ -56,7 +56,8 @@ div:dropZone (error={errorMessage |bool }) {
 			a (
 				@if='dataList |get(0) |key("url")',
 				href='{dataList |get(0) |key("url") }',
-				target=_blank
+				target=_blank,
+				tabindex='{disabled |cond(-1, 0) }'
 			) {
 				'{dataList |get(0) |key("name") }'
 			}
@@ -74,7 +75,7 @@ button:btnClear (
 	@unless=multiple,
 	type=button,
 	shown={dataList.length |bool },
-	disabled={disabled}
+	tabindex='{disabled |cond(-1, 0) }'
 ) {
 	OpalIcon:btnClearIcon (name=cross)
 }
