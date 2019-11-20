@@ -57,7 +57,7 @@ let dragEl: HTMLElement | null = null;
 				evt.preventDefault();
 
 				this.dataList.clear();
-				this.$<OpalButton>('btnSelectFile')!.focus();
+				this.btnSelectFile!.focus();
 
 				this.emit(OpalFileInput.EVENT_CLEAR);
 				this.emit(OpalFileInput.EVENT_CHANGE);
@@ -98,6 +98,7 @@ export class OpalFileInput extends BaseComponent {
 
 	fileListEl: HTMLElement | null;
 	dropZoneEl: HTMLElement;
+	btnSelectFile: OpalButton | null;
 
 	_fileListListening: IDisposableListening;
 
@@ -119,6 +120,7 @@ export class OpalFileInput extends BaseComponent {
 	ready() {
 		this.fileListEl = this.$<HTMLElement>('fileList');
 		this.dropZoneEl = this.$<HTMLElement>('dropZone')!;
+		this.btnSelectFile = this.$<OpalButton>('btnSelectFile');
 	}
 
 	elementAttached() {
@@ -164,18 +166,13 @@ export class OpalFileInput extends BaseComponent {
 	_onDropZoneClick(evt: Event) {
 		if (this.errorMessage) {
 			this.errorMessage = null;
-		} else {
-			let btnSelectFileEl: Element;
-
-			if (
-				this.multiple ||
-				((evt.target as Element).tagName != 'A' &&
-					(evt.target as Element) !=
-						(btnSelectFileEl = this.$<OpalButton>('btnSelectFile')!.element) &&
-					!nodeContains(btnSelectFileEl, evt.target as Element, this.element))
-			) {
-				this.$<HTMLElement>('filesInput')!.click();
-			}
+		} else if (
+			this.multiple ||
+			((evt.target as Element).tagName != 'A' &&
+				(evt.target as Element) != this.btnSelectFile!.element &&
+				!nodeContains(this.btnSelectFile!.element, evt.target as Element, this.element))
+		) {
+			this.$<HTMLElement>('filesInput')!.click();
 		}
 	}
 
@@ -319,5 +316,34 @@ export class OpalFileInput extends BaseComponent {
 		}
 
 		return false;
+	}
+
+	clear(): this {
+		this.dataList.clear();
+		return this;
+	}
+
+	focus(): this {
+		(this.btnSelectFile || this.$<HTMLElement>('btnSelectFiles'))!.focus();
+		return this;
+	}
+
+	blur(): this {
+		(this.btnSelectFile || this.$<HTMLElement>('btnSelectFiles'))!.blur();
+		return this;
+	}
+
+	enable(): this {
+		this.disabled = false;
+		return this;
+	}
+
+	disable(): this {
+		this.disabled = true;
+		return this;
+	}
+
+	validate(): boolean {
+		return !this.validator || this.validator.validate();
 	}
 }

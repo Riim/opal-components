@@ -69,7 +69,7 @@ opal-popover {
 
 	@mod viewType=danger {
 		@el contentSlot {
-			border: 1px solid var(--dangerColor500, $dangerColor);
+			border: 1px solid var(--dangerColor400, $dangerColor400);
 		}
 	}
 

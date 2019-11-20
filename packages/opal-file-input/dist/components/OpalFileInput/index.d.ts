@@ -1,3 +1,4 @@
+import { OpalButton } from '@riim/opal-button';
 import { ObservableList } from 'cellx';
 import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
@@ -27,6 +28,7 @@ export declare class OpalFileInput extends BaseComponent {
     errorMessage: string | null;
     fileListEl: HTMLElement | null;
     dropZoneEl: HTMLElement;
+    btnSelectFile: OpalButton | null;
     _fileListListening: IDisposableListening;
     validator: {
         validate(): boolean;
@@ -48,4 +50,10 @@ export declare class OpalFileInput extends BaseComponent {
     _addFiles(files: FileList): boolean;
     _getFileElement(node: Node, stopEl?: HTMLElement | null): HTMLElement | null;
     _isImage(fileData: IFileData): boolean;
+    clear(): this;
+    focus(): this;
+    blur(): this;
+    enable(): this;
+    disable(): this;
+    validate(): boolean;
 }

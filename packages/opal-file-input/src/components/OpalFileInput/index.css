@@ -147,7 +147,7 @@
 			}
 		}
 			@el dropZoneErrorMessage {
-				color: var(--dangerColor500, $dangerColor);
+				color: var(--dangerColor400, $dangerColor400);
 				vertical-align: middle;
 				font-size: 1rem;
 			}
@@ -311,7 +311,7 @@
 		@el dropZone {
 			&,
 			&:focus {
-				border-color: var(--dangerColor500, $dangerColor);
+				border-color: var(--dangerColor400, $dangerColor400);
 			}
 		}
 	}
@@ -319,7 +319,7 @@
 	@mod not multiple {
 		@el dropZone {
 			@mod error {
-				border-color: var(--dangerColor500, $dangerColor);
+				border-color: var(--dangerColor400, $dangerColor400);
 			}
 		}
 	}
