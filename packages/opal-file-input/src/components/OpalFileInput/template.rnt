@@ -38,7 +38,7 @@ div:dropZone (error={errorMessage |bool }) {
 	}
 
 	span:dropZoneContent {
-		@IfThen (multiple) {
+		@IfThen (if=multiple) {
 			'{"Перетащите файлы в эту область или" |t }'
 			br
 
@@ -51,7 +51,7 @@ div:dropZone (error={errorMessage |bool }) {
 		}
 	}
 
-	@IfElse (multiple) {
+	@IfElse (if=multiple) {
 		div:file2 (@if=dataList.length) {
 			a (
 				@if='dataList |get(0) |key("url")',

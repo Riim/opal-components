@@ -250,7 +250,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (range) {\ndiv:firstInputWrapper3 {\ndiv:firstInputWrapper2 (style=width: {_firstInputWidth}%) {\ndiv:firstInputWrapper {\ninput:firstInput (\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={range.0}\n)\n}\n}\n}\ndiv:secondInputWrapper {\ninput:secondInput (\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={range.1}\n)\n}\n}\ninput:input (\n@unless=range,\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={value}\n)");
+/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (if=range) {\ndiv:firstInputWrapper3 {\ndiv:firstInputWrapper2 (style=width: {_firstInputWidth}%) {\ndiv:firstInputWrapper {\ninput:firstInput (\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={range.0}\n)\n}\n}\n}\ndiv:secondInputWrapper {\ninput:secondInput (\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={range.1}\n)\n}\n}\ninput:input (\n@unless=range,\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={value}\n)");
 
 /***/ }),
 

@@ -17,6 +17,6 @@
     "@riim/opal-select": "^0.39.3",
     "@riim/opal-tag-select": "^0.39.3",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.68"
+    "rionite": "^0.38.0"
   }
 }

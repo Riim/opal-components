@@ -41,7 +41,7 @@ span:control {
 				RnSlot (for=OpalSelect__menuHeader)
 				RnSlot (for=OpalSelect__menuContent) {
 					div (@if=_selectDataListKeypath, class=OpalSelect__menuContent) {
-						@IfThen (dataList) {
+						@IfThen (if=dataList) {
 							@Repeat (for=item in dataList, trackBy={_dataListItemValueFieldName}) {
 								OpalSelectOption:dataListSelectOption:selectOption (
 									value='{item |key(_dataListItemValueFieldName) }',

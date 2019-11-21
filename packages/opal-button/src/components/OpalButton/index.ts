@@ -27,9 +27,9 @@ export class OpalButton extends BaseComponent {
 		| 'warning'
 		| 'danger'
 		| 'clean'
-		| string & { _?: never } = 'default';
+		| (string & { _?: never }) = 'default';
 	@Param
-	size: 's' | 'm' | string & { _?: never } = 'm';
+	size: 's' | 'm' | (string & { _?: never }) = 'm';
 	@Param
 	checkable = false;
 	@Param

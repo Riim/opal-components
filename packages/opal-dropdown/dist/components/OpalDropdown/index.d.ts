@@ -4,9 +4,9 @@ import './index.css';
 export declare class OpalDropdown extends BaseComponent {
     static EVENT_CLOSE: symbol;
     autoHeight: boolean;
-    closeOn: 'click' | 'mousedown' | string & {
+    closeOn: 'click' | 'mousedown' | (string & {
         _?: never;
-    };
+    });
     opened: boolean;
     contentRendered: boolean;
     _closingEventListening: IDisposableListening | null | undefined;

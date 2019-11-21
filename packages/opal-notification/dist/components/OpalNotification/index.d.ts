@@ -4,13 +4,13 @@ import './index.css';
 export declare class OpalNotification extends BaseComponent {
     static EVENT_CLOSE: symbol;
     static EVENT_HIDE: symbol;
-    viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | string & {
+    viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | (string & {
         _?: never;
-    };
+    });
     icon: string;
-    iconSize: 'xs' | 's' | 'm' | string & {
+    iconSize: 'xs' | 's' | 'm' | (string & {
         _?: never;
-    };
+    });
     buttonHide: boolean;
     timeout: number;
     shown: boolean;

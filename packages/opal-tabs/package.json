@@ -18,6 +18,6 @@
     "cellx": "^1.9.16",
     "cellx-decorators": "^1.5.4",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.37.68"
+    "rionite": "^0.38.0"
   }
 }

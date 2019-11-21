@@ -7,12 +7,12 @@ export declare class OpalButton extends BaseComponent {
     static EVENT_CLICK: symbol;
     static EVENT_FOCUS: symbol;
     static EVENT_UNCHECK: symbol;
-    viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'clean' | string & {
+    viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'clean' | (string & {
         _?: never;
-    };
-    size: 's' | 'm' | string & {
+    });
+    size: 's' | 'm' | (string & {
         _?: never;
-    };
+    });
     checkable: boolean;
     checked: boolean;
     loading: boolean;

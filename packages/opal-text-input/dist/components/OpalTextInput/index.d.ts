@@ -11,12 +11,12 @@ export declare class OpalTextInput extends BaseComponent {
     static EVENT_KEYDOWN: symbol;
     static EVENT_KEYPRESS: symbol;
     static EVENT_KEYUP: symbol;
-    inputType: 'text' | 'password' | string & {
+    inputType: 'text' | 'password' | (string & {
         _?: never;
-    };
-    size: 'm' | string & {
+    });
+    size: 'm' | (string & {
         _?: never;
-    };
+    });
     multiline: boolean;
     rows: number;
     autoHeight: boolean;

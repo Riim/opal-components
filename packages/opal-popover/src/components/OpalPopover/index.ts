@@ -31,7 +31,7 @@ export class OpalPopover extends BaseComponent {
 		| 'left'
 		| 'left-top'
 		| 'left-bottom'
-		| string & { _?: never } = 'right';
+		| (string & { _?: never }) = 'right';
 	@Param
 	positionOffset = 0;
 	@Param
