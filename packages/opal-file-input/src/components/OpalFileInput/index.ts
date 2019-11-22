@@ -1,9 +1,9 @@
 import { escapeRegExp } from '@riim/escape-regexp';
 import { pt, t } from '@riim/gettext';
 import { nextTick } from '@riim/next-tick';
+import { getUID } from '@riim/next-uid';
 import { OpalButton } from '@riim/opal-button';
 import { nodeContains } from '@riim/opal-components-common';
-import { getUID } from '@riim/uid';
 import { EventEmitter, ObservableList } from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
 import {

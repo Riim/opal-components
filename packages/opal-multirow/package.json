@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@riim/opal-sign-button": "^0.40.1",
-    "@riim/uid": "^1.0.0",
+    "@riim/next-uid": "^1.1.0",
     "cellx": "^1.9.16",
     "cellx-decorators": "^1.5.4",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.38.2"
+    "rionite": "^0.38.3"
   }
 }

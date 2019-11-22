@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/uid"), require("rionite"), require("reflect-metadata"), require("@riim/escape-regexp"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/next-uid"), require("@riim/gettext"), require("rionite"), require("reflect-metadata"), require("@riim/escape-regexp"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-loader", "@riim/opal-components-common", "cellx", "@riim/next-tick", "@riim/opal-button", "@riim/opal-icon", "@riim/gettext", "@riim/uid", "rionite", "reflect-metadata", "@riim/escape-regexp", "cellx-decorators"], factory);
+		define(["@riim/opal-loader", "@riim/opal-components-common", "cellx", "@riim/next-tick", "@riim/opal-button", "@riim/opal-icon", "@riim/next-uid", "@riim/gettext", "rionite", "reflect-metadata", "@riim/escape-regexp", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-file-input"] = factory(require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/uid"), require("rionite"), require("reflect-metadata"), require("@riim/escape-regexp"), require("cellx-decorators"));
+		exports["@riim/opal-file-input"] = factory(require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/next-uid"), require("@riim/gettext"), require("rionite"), require("reflect-metadata"), require("@riim/escape-regexp"), require("cellx-decorators"));
 	else
-		root["@riim/opal-file-input"] = factory(root["@riim/opal-loader"], root["@riim/opal-components-common"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/gettext"], root["@riim/uid"], root["rionite"], root["reflect-metadata"], root["@riim/escape-regexp"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_MYNt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_mtvJ__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_xFbw__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-file-input"] = factory(root["@riim/opal-loader"], root["@riim/opal-components-common"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/next-uid"], root["@riim/gettext"], root["rionite"], root["reflect-metadata"], root["@riim/escape-regexp"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_MYNt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_cIp5__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_xFbw__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -132,9 +132,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const escape_regexp_1 = __webpack_require__("xFbw");
 const gettext_1 = __webpack_require__("eaeG");
 const next_tick_1 = __webpack_require__("WTz/");
+const next_uid_1 = __webpack_require__("cIp5");
 const opal_button_1 = __webpack_require__("X6DG");
 const opal_components_common_1 = __webpack_require__("MYNt");
-const uid_1 = __webpack_require__("mtvJ");
 const cellx_1 = __webpack_require__("P7z7");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
@@ -228,8 +228,8 @@ let OpalFileInput = OpalFileInput_1 = class OpalFileInput extends rionite_1.Base
         }
         let targetFileDataUID = target.dataset.fileDataUid;
         let dragElFileDataUID = dragEl.dataset.fileDataUid;
-        let targetFileDataIndex = this.dataList.findIndex(fileData => uid_1.getUID(fileData) == targetFileDataUID);
-        let dragElFileDataIndex = this.dataList.findIndex(fileData => uid_1.getUID(fileData) == dragElFileDataUID);
+        let targetFileDataIndex = this.dataList.findIndex(fileData => next_uid_1.getUID(fileData) == targetFileDataUID);
+        let dragElFileDataIndex = this.dataList.findIndex(fileData => next_uid_1.getUID(fileData) == dragElFileDataUID);
         let targetFileData = this.dataList.get(targetFileDataIndex);
         cellx_1.EventEmitter.transact(() => {
             this.dataList.set(targetFileDataIndex, this.dataList.get(dragElFileDataIndex));
@@ -504,17 +504,17 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_Y0hN__;
 
 /***/ }),
 
+/***/ "cIp5":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_cIp5__;
+
+/***/ }),
+
 /***/ "eaeG":
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_eaeG__;
-
-/***/ }),
-
-/***/ "mtvJ":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_mtvJ__;
 
 /***/ }),
 

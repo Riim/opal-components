@@ -1,5 +1,5 @@
+import { nextUID } from '@riim/next-uid';
 import { Location, OpalRouter } from '@riim/opal-router';
-import { nextUID } from '@riim/uid';
 import { Cell, IEvent } from 'cellx';
 import {
 	BaseComponent,

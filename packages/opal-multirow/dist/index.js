@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("@riim/opal-sign-button"), require("@riim/uid"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		module.exports = factory(require("cellx"), require("@riim/next-uid"), require("@riim/opal-sign-button"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "@riim/opal-sign-button", "@riim/uid", "rionite", "reflect-metadata", "cellx-decorators"], factory);
+		define(["cellx", "@riim/next-uid", "@riim/opal-sign-button", "rionite", "reflect-metadata", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-multirow"] = factory(require("cellx"), require("@riim/opal-sign-button"), require("@riim/uid"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		exports["@riim/opal-multirow"] = factory(require("cellx"), require("@riim/next-uid"), require("@riim/opal-sign-button"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
 	else
-		root["@riim/opal-multirow"] = factory(root["cellx"], root["@riim/opal-sign-button"], root["@riim/uid"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_mtvJ__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-multirow"] = factory(root["cellx"], root["@riim/next-uid"], root["@riim/opal-sign-button"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_cIp5__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -209,6 +209,13 @@ exports.OpalMultirowRow = OpalMultirowRow;
 
 /***/ }),
 
+/***/ "cIp5":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_cIp5__;
+
+/***/ }),
+
 /***/ "ej3F":
 /***/ (function(module, exports) {
 
@@ -232,7 +239,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var OpalMultirow_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-const uid_1 = __webpack_require__("mtvJ");
+const next_uid_1 = __webpack_require__("cIp5");
 const cellx_1 = __webpack_require__("P7z7");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
@@ -259,7 +266,7 @@ let OpalMultirow = OpalMultirow_1 = class OpalMultirow extends rionite_1.BaseCom
     ready() {
         let presetRowCount = (this._presetRowCount = this.$$('presetRow').length);
         if (!presetRowCount) {
-            this._newRows.add({ key: uid_1.nextUID() });
+            this._newRows.add({ key: next_uid_1.nextUID() });
         }
     }
     _onRowRemoveRowClick(evt) {
@@ -277,7 +284,7 @@ let OpalMultirow = OpalMultirow_1 = class OpalMultirow extends rionite_1.BaseCom
         this.emit(OpalMultirow_1.EVENT_CHANGE);
     }
     _onRowAddRowClick() {
-        this._newRows.add({ key: uid_1.nextUID() });
+        this._newRows.add({ key: next_uid_1.nextUID() });
         cellx_1.Cell.release();
         let focusable = this.$('focus', this.$$('newRowSlot').slice(-1)[0]);
         if (focusable) {
@@ -328,13 +335,6 @@ OpalMultirow = OpalMultirow_1 = __decorate([
 ], OpalMultirow);
 exports.OpalMultirow = OpalMultirow;
 
-
-/***/ }),
-
-/***/ "mtvJ":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_mtvJ__;
 
 /***/ }),
 

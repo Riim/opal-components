@@ -18,7 +18,7 @@ const externals = [
 	'@riim/object-assign-polyfill',
 	'@riim/platform',
 	'@riim/rionite-snake-case-attribute-name',
-	'@riim/uid',
+	'@riim/next-uid',
 	'cellx-decorators',
 	'cellx',
 	'date-exists',
