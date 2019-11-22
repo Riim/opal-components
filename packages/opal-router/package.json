@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-router",
-  "version": "0.40.1",
+  "version": "0.40.3",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@riim/kebab-case": "^1.0.0",
-    "@riim/rionite-snake-case-attribute-name": "^0.37.27",
     "@riim/next-uid": "^1.1.0",
+    "@riim/rionite-snake-case-attribute-name": "^0.37.27",
     "cellx-decorators": "^1.5.4",
     "history": "^4.10.1",
     "reflect-metadata": "^0.1.13",
