@@ -158,7 +158,8 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_ioIi__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=queryInputSlot) {\nRnSlot:queryInputSlot (for=queryInput) {\nOpalTextInput:queryInput (placeholder={'Поиск' |t }, clearable) {\nOpalIcon:queryInputEndIcon (class=OpalTextInput__endIcon, name=search)\n}\n}\n}\nRnSlot:listSlot (for=list)");
+const template = [[1,,"RnSlot",,[,[[,"for","queryInputSlot"]]],[[1,,"RnSlot",["queryInputSlot"],[,[[,"for","queryInput"]]],[[1,,"OpalTextInput",["queryInput"],[,[[,"placeholder","{'Поиск' |t }"],[,"clearable",""]]],[[1,,"OpalIcon",["queryInputEndIcon"],[,[[,"class","OpalTextInput__endIcon"],[,"name","search"]]],]]]]]]],[1,,"RnSlot",["listSlot"],[,[[,"for","list"]]],]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

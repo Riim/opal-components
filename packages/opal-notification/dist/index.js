@@ -350,7 +350,8 @@ __export(__webpack_require__("N8k9"));
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:bar (viewType={viewType}, hasIcon={icon |bool }, iconSize={iconSize}, buttonHide={buttonHide}) {\nOpalIcon:icon (@if=icon, name={icon}, size={iconSize})\nRnSlot:contentSlot\nbutton:btnHide (type=button, hide={buttonHide |not }) {\nOpalIcon:btnHideIcon (name=cross)\n}\n}");
+const template = [[1,,"div",["bar"],[,[[,"viewType","{viewType}"],[,"hasIcon","{icon |bool }"],[,"iconSize","{iconSize}"],[,"buttonHide","{buttonHide}"]]],[[1,,"OpalIcon",["icon"],[,[[1,"if","icon"],[,"name","{icon}"],[,"size","{iconSize}"]]],],[1,,"RnSlot",["contentSlot"],,],[1,,"button",["btnHide"],[,[[,"type","button"],[,"hide","{buttonHide |not }"]]],[[1,,"OpalIcon",["btnHideIcon"],[,[[,"name","cross"]]],]]]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

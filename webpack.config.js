@@ -104,7 +104,8 @@ module.exports = env => {
 				},
 				{
 					test: /\.rnt$/,
-					loader: ['raw-loader', 'trim-lines-loader', 'collapse-line-breaks-loader']
+					// loader: ['raw-loader', 'trim-lines-loader', 'collapse-line-breaks-loader']
+					loader: ['rionite-template-loader']
 				},
 				{
 					test: /\.css$/,

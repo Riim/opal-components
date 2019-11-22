@@ -101,7 +101,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("OpalModal:menu {\nRnSlot (for=menuHeaderSlot) {\nRnSlot:menuHeaderSlot (for=menuHeader)\n}\nOpalFilteredList:filteredList {\nOpalTreeList:treeList (\nclass=OpalFilteredList__list,\ndataTreeList={dataTreeList},\ndataTreeListItemSchema={dataTreeListItemSchema |dump },\nviewModel={viewModel},\nviewModelItemSchema={viewModelItemSchema |dump },\nquery={query}\n) {\nOpalSelectOption:option (\nclass=OpalTreeList__selectionControl,\ntext={$item.name},\nselected={$selected},\nindeterminate={$indeterminate}\n)\n}\n}\ndiv:footer {\nOpalButton:btnClose {\n// ;;; подтверждение выбора триселекта\n// ;;; https://yadi.sk/i/j9g1w-7xj9Xsew\n'{\"Готово\" |pt(\"OpalTreeSelect__btnClose\") }'\n}\n}\n}");
+const template = [[1,,"OpalModal",["menu"],,[[1,,"RnSlot",,[,[[,"for","menuHeaderSlot"]]],[[1,,"RnSlot",["menuHeaderSlot"],[,[[,"for","menuHeader"]]],]]],[1,,"OpalFilteredList",["filteredList"],,[[1,,"OpalTreeList",["treeList"],[,[[,"class","OpalFilteredList__list"],[,"dataTreeList","{dataTreeList}"],[,"dataTreeListItemSchema","{dataTreeListItemSchema |dump }"],[,"viewModel","{viewModel}"],[,"viewModelItemSchema","{viewModelItemSchema |dump }"],[,"query","{query}"]]],[[1,,"OpalSelectOption",["option"],[,[[,"class","OpalTreeList__selectionControl"],[,"text","{$item.name}"],[,"selected","{$selected}"],[,"indeterminate","{$indeterminate}"]]],]]]]],[1,,"div",["footer"],,[[1,,"OpalButton",["btnClose"],,[[3,"{\"Готово\" |pt(\"OpalTreeSelect__btnClose\") }"]]]]]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

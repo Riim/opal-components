@@ -101,7 +101,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("label:label {\ninput:input (type=checkbox)\nspan:control (tabindex={_tabIndex}) {\nspan:thumb\n}\n' '\nRnSlot:contentSlot\n}");
+const template = [[1,,"label",["label"],,[[1,,"input",["input"],[,[[,"type","checkbox"]]],],[1,,"span",["control"],[,[[,"tabindex","{_tabIndex}"]]],[[1,,"span",["thumb"],,]]],[3," "],[1,,"RnSlot",["contentSlot"],,]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

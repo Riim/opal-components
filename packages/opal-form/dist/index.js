@@ -159,6 +159,9 @@ OpalForm = OpalForm_1 = __decorate([
         domEvents: {
             form: {
                 submit(evt) {
+                    if (evt.defaultPrevented) {
+                        return;
+                    }
                     evt.preventDefault();
                     if (this.validate()) {
                         this.emit(OpalForm_1.EVENT_SUBMIT);
@@ -178,7 +181,8 @@ exports.OpalForm = OpalForm;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("form:form {\nRnSlot:content\ninput (type=submit, style=display: none;)\n}");
+const template = [[1,,"form",["form"],,[[1,,"RnSlot",["content"],,],[1,,"input",,[,[[,"type","submit"],[,"style","display: none;"]]],]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

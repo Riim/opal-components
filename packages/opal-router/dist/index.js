@@ -567,7 +567,8 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_mtvJ__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot\nOpalLoader:loader (shown={isLoaderShown})");
+const template = [[1,,"RnSlot",["contentSlot"],,],[1,,"OpalLoader",["loader"],[,[[,"shown","{isLoaderShown}"]]],]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

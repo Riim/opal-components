@@ -119,7 +119,8 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:presetRowsSlot (\nfor=presetRows,\nnotHaveNewRows={_notHaveNewRows},\nnotSingleRow={_notSingleRow}\n) {\nRnSlot:presetRows (for=presetRow)\n}\ndiv:newRows (notSingleRow={_notSingleRow}) {\n@Repeat (for=row in _newRows, trackBy=key) {\nRnSlot:newRowSlot (cloneContent, data-key={row.key})\n}\n}");
+const template = [[1,,"RnSlot",["presetRowsSlot"],[,[[,"for","presetRows"],[,"notHaveNewRows","{_notHaveNewRows}"],[,"notSingleRow","{_notSingleRow}"]]],[[1,,"RnSlot",["presetRows"],[,[[,"for","presetRow"]]],]]],[1,,"div",["newRows"],[,[[,"notSingleRow","{_notSingleRow}"]]],[[1,1,"Repeat",,[,[[,"for","row in _newRows"],[,"trackBy","key"]]],[[1,,"RnSlot",["newRowSlot"],[,[[,"cloneContent",""],[,"data-key","{row.key}"]]],]]]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 
@@ -342,7 +343,8 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_mtvJ__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot\nOpalSignButton:btnRemoveRow (sign=minus)\nOpalSignButton:btnAddRow (sign=plus)");
+const template = [[1,,"RnSlot",["contentSlot"],,],[1,,"OpalSignButton",["btnRemoveRow"],[,[[,"sign","minus"]]],],[1,,"OpalSignButton",["btnAddRow"],[,[[,"sign","plus"]]],]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

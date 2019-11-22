@@ -142,7 +142,8 @@ __export(__webpack_require__("za5m"));
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("OpalPopover:popover (viewType=danger, position={popoverPosition}) {\nRnSlot:contentSlot\n}");
+const template = [[1,,"OpalPopover",["popover"],[,[[,"viewType","danger"],[,"position","{popoverPosition}"]]],[[1,,"RnSlot",["contentSlot"],,]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 
@@ -223,7 +224,8 @@ exports.OpalInputValidatorRule = OpalInputValidatorRule;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot");
+const template = [[1,,"RnSlot",["contentSlot"],,]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

@@ -101,7 +101,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:list {\nRnSlot:listItemSlot (\n@for=$item in dataList,\nfor=listItem,\ncloneContent,\ngetContext={_getListItemContext}\n) {\nspan:listItem {\n'{$item |key(_dataListItemTextFieldName) }'\n}\n}\n}\nOpalLoader:loader (shown={loaderShown}, inCenter={dataList.length |not })\nRnSlot:nothingFoundSlot (\n@if=nothingFoundShown,\nfor=nothingFound,\ngetContext={_getListItemContext}\n) {\nspan:nothingFound {\nspan:nothingFoundMessage {\n'{\"Ничего не найдено\" |t }'\n}\n}\n}");
+const template = [[1,,"div",["list"],,[[1,,"RnSlot",["listItemSlot"],[,[[1,"for","$item in dataList"],[,"for","listItem"],[,"cloneContent",""],[,"getContext","{_getListItemContext}"]]],[[1,,"span",["listItem"],,[[3,"{$item |key(_dataListItemTextFieldName) }"]]]]]]],[1,,"OpalLoader",["loader"],[,[[,"shown","{loaderShown}"],[,"inCenter","{dataList.length |not }"]]],],[1,,"RnSlot",["nothingFoundSlot"],[,[[1,"if","nothingFoundShown"],[,"for","nothingFound"],[,"getContext","{_getListItemContext}"]]],[[1,,"span",["nothingFound"],,[[1,,"span",["nothingFoundMessage"],,[[3,"{\"Ничего не найдено\" |t }"]]]]]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

@@ -8,6 +8,10 @@ import template from './template.rnt';
 	domEvents: {
 		form: {
 			submit(evt) {
+				if (evt.defaultPrevented) {
+					return;
+				}
+
 				evt.preventDefault();
 
 				if (this.validate()) {

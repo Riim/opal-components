@@ -250,7 +250,8 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("@IfThen (if=range) {\ndiv:firstInputWrapper3 {\ndiv:firstInputWrapper2 (style=width: {_firstInputWidth}%) {\ndiv:firstInputWrapper {\ninput:firstInput (\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={range.0}\n)\n}\n}\n}\ndiv:secondInputWrapper {\ninput:secondInput (\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={range.1}\n)\n}\n}\ninput:input (\n@unless=range,\ntype=range,\nmin={min},\nmax={max},\nstep={step},\nvalue={value}\n)");
+const template = [[1,1,"IfThen",,[,[[,"if","range"]]],[[1,,"div",["firstInputWrapper3"],,[[1,,"div",["firstInputWrapper2"],[,[[,"style","width: {_firstInputWidth}%"]]],[[1,,"div",["firstInputWrapper"],,[[1,,"input",["firstInput"],[,[[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{range.0}"]]],]]]]]]],[1,,"div",["secondInputWrapper"],,[[1,,"input",["secondInput"],[,[[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{range.1}"]]],]]]]],[1,,"input",["input"],[,[[1,"unless","range"],[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{value}"]]],]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

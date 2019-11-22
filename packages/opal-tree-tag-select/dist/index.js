@@ -122,7 +122,8 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_ej3F__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("OpalTreeSelect:select (\nviewType=clean,\ndataTreeListKeypath={_selectDataListKeypath},\ndataTreeListItemSchema={dataListItemSchema |dump },\nvalue={paramValue},\nviewModel={viewModel},\nviewModelItemSchema={viewModelItemSchema |dump },\naddNewItem={addNewItem},\nfocused={focused}\n) {\nRnSlot (class=OpalSelect__menuHeaderSlot, for=OpalSelect__menuHeader)\nOpalSignButton:button (\nclass=OpalSelect__button,\nsign=plus,\ncheckable,\ntabIndex={tabIndex},\ndisabled={disabled}\n)\n}");
+const template = [[1,,"OpalTreeSelect",["select"],[,[[,"viewType","clean"],[,"dataTreeListKeypath","{_selectDataListKeypath}"],[,"dataTreeListItemSchema","{dataListItemSchema |dump }"],[,"value","{paramValue}"],[,"viewModel","{viewModel}"],[,"viewModelItemSchema","{viewModelItemSchema |dump }"],[,"addNewItem","{addNewItem}"],[,"focused","{focused}"]]],[[1,,"RnSlot",,[,[[,"class","OpalSelect__menuHeaderSlot"],[,"for","OpalSelect__menuHeader"]]],],[1,,"OpalSignButton",["button"],[,[[,"class","OpalSelect__button"],[,"sign","plus"],[,"checkable",""],[,"tabIndex","{tabIndex}"],[,"disabled","{disabled}"]]],]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

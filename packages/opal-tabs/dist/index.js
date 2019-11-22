@@ -155,7 +155,8 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot (@if=contentRendered)");
+const template = [[1,,"RnSlot",["contentSlot"],[,[[1,"if","contentRendered"]]],]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 
@@ -421,7 +422,8 @@ exports.OpalTabs = OpalTabs;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("button:control (type=button, tabindex={_tabIndex}) {\nRnSlot:contentSlot\n}");
+const template = [[1,,"button",["control"],[,[[,"type","button"],[,"tabindex","{_tabIndex}"]]],[[1,,"RnSlot",["contentSlot"],,]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 
@@ -430,7 +432,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot");
+const template = [[1,,"RnSlot",["contentSlot"],,]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 
@@ -446,7 +449,8 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_mtvJ__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:tabListSlot (forTag=opal-tab-list) {\nOpalTabList:tabList {\nRnSlot:tabs (forTag=opal-tab)\n}\n}\nRnSlot:tabPanels (forTag=opal-tab-panel)");
+const template = [[1,,"RnSlot",["tabListSlot"],[,[[,"forTag","opal-tab-list"]]],[[1,,"OpalTabList",["tabList"],,[[1,,"RnSlot",["tabs"],[,[[,"forTag","opal-tab"]]],]]]]],[1,,"RnSlot",["tabPanels"],[,[[,"forTag","opal-tab-panel"]]],]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

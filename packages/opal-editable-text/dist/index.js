@@ -293,7 +293,8 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("span:contentWrapper {\nRnSlot:contentSlot (contenteditable, spellcheck=false)\nOpalIcon:iconEdit (name=compose, strokeWidth=3)\n}");
+const template = [[1,,"span",["contentWrapper"],,[[1,,"RnSlot",["contentSlot"],[,[[,"contenteditable",""],[,"spellcheck","false"]]],],[1,,"OpalIcon",["iconEdit"],[,[[,"name","compose"],[,"strokeWidth","3"]]],]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ })
 

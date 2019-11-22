@@ -116,7 +116,8 @@ __export(__webpack_require__("TzsL"));
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("label:label {\ninput:input (type=checkbox)\nspan:control (tabindex={_tabIndex})\n' '\nRnSlot:contentSlot\n}");
+const template = [[1,,"label",["label"],,[[1,,"input",["input"],[,[[,"type","checkbox"]]],],[1,,"span",["control"],[,[[,"tabindex","{_tabIndex}"]]],],[3," "],[1,,"RnSlot",["contentSlot"],,]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

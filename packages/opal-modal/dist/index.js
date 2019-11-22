@@ -330,7 +330,8 @@ __export(__webpack_require__("Tz1Y"));
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:window {\ndiv:btnCloseWrapper {\nbutton:btnClose (type=button)\n}\nRnSlot:contentSlot (@if=contentRendered)\n}");
+const template = [[1,,"div",["window"],,[[1,,"div",["btnCloseWrapper"],,[[1,,"button",["btnClose"],[,[[,"type","button"]]],]]],[1,,"RnSlot",["contentSlot"],[,[[1,"if","contentRendered"]]],]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

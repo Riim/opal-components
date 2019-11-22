@@ -117,7 +117,8 @@ __export(__webpack_require__("X+JO"));
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot");
+const template = [[1,,"RnSlot",["contentSlot"],,]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

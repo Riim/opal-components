@@ -267,7 +267,8 @@ exports.OpalSignButton = OpalSignButton;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("button:control (type=button, tabindex={_tabIndex}) {\nspan:sign\n' '\nRnSlot:contentSlot\n}");
+const template = [[1,,"button",["control"],[,[[,"type","button"],[,"tabindex","{_tabIndex}"]]],[[1,,"span",["sign"],,],[3," "],[1,,"RnSlot",["contentSlot"],,]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

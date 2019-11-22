@@ -565,6 +565,8 @@ export class OpalSelect extends BaseComponent {
 			throw new TypeError('Parameter "addNewItem" is required');
 		}
 
+		evt.data.initialEvent.defaultPrevented = true;
+
 		let text = textInput.value!;
 
 		textInput.clear();

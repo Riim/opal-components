@@ -203,7 +203,7 @@ export class OpalTextInput extends BaseComponent {
 	@Listen('keypress', '@textField')
 	_onTextFieldKeyPress(evt: KeyboardEvent) {
 		if (evt.which == 13 /* Enter */ && this.value) {
-			this.emit(OpalTextInput.EVENT_CONFIRM);
+			this.emit(OpalTextInput.EVENT_CONFIRM, { initialEvent: evt });
 		}
 
 		this.emit(OpalTextInput.EVENT_KEYPRESS, { initialEvent: evt });

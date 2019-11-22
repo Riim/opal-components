@@ -123,7 +123,8 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_P7z7__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("span:arrow\nRnSlot:contentSlot (@if=contentRendered)");
+const template = [[1,,"span",["arrow"],,],[1,,"RnSlot",["contentSlot"],[,[[1,"if","contentRendered"]]],]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

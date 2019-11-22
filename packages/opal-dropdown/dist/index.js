@@ -116,7 +116,8 @@ __export(__webpack_require__("V22z"));
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot:contentSlot (@if=contentRendered)");
+const template = [[1,,"RnSlot",["contentSlot"],[,[[1,"if","contentRendered"]]],]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

@@ -133,7 +133,8 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_BLMt__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("RnSlot (for=button) {\nOpalButton:button (\nviewType={viewType},\nsize={size},\ncheckable,\ntabIndex={tabIndex},\ndisabled={disabled}\n) {\n@IfThen (if=text) {\n'{text}'\n}\n@IfElse (if=text) {\n'{_buttonText}'\n}\nOpalIcon:buttonIcon (name=chevronDown)\n}\n}\nRnSlot (for=menuSlot) {\nRnSlot:menuSlot (for=menu) {\nOpalDropdown:menu (closeOn=mousedown) {\nRnSlot (for=menuHeader)\nRnSlot (for=menuContent) {\ndiv::menuContent (@if=_paramDataListSpecified) {\n@IfThen (if=dataList) {\n@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {\nOpalSelectOption:option (\nvalue='{item |key(_dataListItemValueFieldName) }',\ntext='{item |key(_dataListItemTextFieldName) }',\nsubtext='{item |key(_dataListItemSubtextFieldName) }',\ndisabled='{item |key(_dataListItemDisabledFieldName) }'\n)\n}\nRnSlot:newItemInputSlot // ...\n}\nOpalLoader:menuLoader (@unless=dataList, shown)\n}\ndiv::menuContent (@unless=_paramDataListSpecified) {\nRnSlot:options (forTag=opal-select-option)\nRnSlot (for=newItemInputSlot) {\nRnSlot:newItemInputSlot (for=newItemInput)\n}\n}\n}\nRnSlot (for=menuFooter)\n}\n}\n}");
+const template = [[1,,"RnSlot",,[,[[,"for","button"]]],[[1,,"OpalButton",["button"],[,[[,"viewType","{viewType}"],[,"size","{size}"],[,"checkable",""],[,"tabIndex","{tabIndex}"],[,"disabled","{disabled}"]]],[[1,1,"IfThen",,[,[[,"if","text"]]],[[3,"{text}"]]],[1,1,"IfElse",,[,[[,"if","text"]]],[[3,"{_buttonText}"]]],[1,,"OpalIcon",["buttonIcon"],[,[[,"name","chevronDown"]]],]]]]],[1,,"RnSlot",,[,[[,"for","menuSlot"]]],[[1,,"RnSlot",["menuSlot"],[,[[,"for","menu"]]],[[1,,"OpalDropdown",["menu"],[,[[,"closeOn","mousedown"]]],[[1,,"RnSlot",,[,[[,"for","menuHeader"]]],],[1,,"RnSlot",,[,[[,"for","menuContent"]]],[[1,,"div",[,"menuContent"],[,[[1,"if","_paramDataListSpecified"]]],[[1,1,"IfThen",,[,[[,"if","dataList"]]],[[1,1,"Repeat",,[,[[,"for","item in dataList"],[,"trackBy","{=_dataListItemValueFieldName}"]]],[[1,,"OpalSelectOption",["option"],[,[[,"value","{item |key(_dataListItemValueFieldName) }"],[,"text","{item |key(_dataListItemTextFieldName) }"],[,"subtext","{item |key(_dataListItemSubtextFieldName) }"],[,"disabled","{item |key(_dataListItemDisabledFieldName) }"]]],]]],[1,,"RnSlot",["newItemInputSlot"],,]]],[1,,"OpalLoader",["menuLoader"],[,[[1,"unless","dataList"],[,"shown",""]]],]]],[1,,"div",[,"menuContent"],[,[[1,"unless","_paramDataListSpecified"]]],[[1,,"RnSlot",["options"],[,[[,"forTag","opal-select-option"]]],],[1,,"RnSlot",,[,[[,"for","newItemInputSlot"]]],[[1,,"RnSlot",["newItemInputSlot"],[,[[,"for","newItemInput"]]],]]]]]]],[1,,"RnSlot",,[,[[,"for","menuFooter"]]],]]]]]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 
@@ -756,6 +757,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         if (!this._addNewItem) {
             throw new TypeError('Parameter "addNewItem" is required');
         }
+        evt.data.initialEvent.defaultPrevented = true;
         let text = textInput.value;
         textInput.clear();
         textInput.loading = true;
@@ -1384,7 +1386,8 @@ exports.isArraysEqual = isArraysEqual;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("button:control (type=button, tabindex={_tabIndex}) {\nRnSlot:contentSlot {\n'{paramText}'\nsub (@if=paramSubtext) {\n'{paramSubtext}'\n}\n}\nOpalIcon:iconSelected (@if=selected, name=checkmark)\nOpalIcon:iconIndeterminate (@if=indeterminate, name=minus)\n}");
+const template = [[1,,"button",["control"],[,[[,"type","button"],[,"tabindex","{_tabIndex}"]]],[[1,,"RnSlot",["contentSlot"],,[[3,"{paramText}"],[1,,"sub",,[,[[1,"if","paramSubtext"]]],[[3,"{paramSubtext}"]]]]],[1,,"OpalIcon",["iconSelected"],[,[[1,"if","selected"],[,"name","checkmark"]]],],[1,,"OpalIcon",["iconIndeterminate"],[,[[1,"if","indeterminate"],[,"name","minus"]]],]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

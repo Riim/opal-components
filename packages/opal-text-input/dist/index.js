@@ -251,7 +251,7 @@ let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.Base
     }
     _onTextFieldKeyPress(evt) {
         if (evt.which == 13 /* Enter */ && this.value) {
-            this.emit(OpalTextInput_1.EVENT_CONFIRM);
+            this.emit(OpalTextInput_1.EVENT_CONFIRM, { initialEvent: evt });
         }
         this.emit(OpalTextInput_1.EVENT_KEYPRESS, { initialEvent: evt });
     }
@@ -483,7 +483,8 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_Y0hN__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("div:textareaContainer (@if=multiline) {\ntextarea:textarea:textField (\nrows={rows},\nname={inputName},\nplaceholder={placeholder},\ntabindex={tabIndex},\ndisabled={disabled}\n)\ndiv:textareaHeight\n}\ninput:input:textField (\n@unless=multiline,\ntype={_inputType},\nname={inputName},\nplaceholder={placeholder},\ntabindex={tabIndex},\ndisabled={disabled}\n)\nOpalIcon:startIcon (@if=startIcon, name={startIcon})\nRnSlot:endIconSlot (for=endIcon, shown={endIconShown}) {\nOpalIcon:endIcon (@if=endIcon, name={endIcon})\n}\nbutton:btnClear (\n@if=clearable,\ntype=button,\nshown={btnClearShown},\ntabindex='{disabled |cond(-1, 0) }'\n) {\nOpalIcon:btnClearIcon (name=cross)\n}\nOpalLoader:loader (@if=loading, size=s, shown)\nbutton:btnShowPassword (@if='inputType |eq(\"password\")', type=button) {\nOpalIcon:btnShowPasswordIcon (name=eye, strokeWidth=2)\n}");
+const template = [[1,,"div",["textareaContainer"],[,[[1,"if","multiline"]]],[[1,,"textarea",["textarea","textField"],[,[[,"rows","{rows}"],[,"name","{inputName}"],[,"placeholder","{placeholder}"],[,"tabindex","{tabIndex}"],[,"disabled","{disabled}"]]],],[1,,"div",["textareaHeight"],,]]],[1,,"input",["input","textField"],[,[[1,"unless","multiline"],[,"type","{_inputType}"],[,"name","{inputName}"],[,"placeholder","{placeholder}"],[,"tabindex","{tabIndex}"],[,"disabled","{disabled}"]]],],[1,,"OpalIcon",["startIcon"],[,[[1,"if","startIcon"],[,"name","{startIcon}"]]],],[1,,"RnSlot",["endIconSlot"],[,[[,"for","endIcon"],[,"shown","{endIconShown}"]]],[[1,,"OpalIcon",["endIcon"],[,[[1,"if","endIcon"],[,"name","{endIcon}"]]],]]],[1,,"button",["btnClear"],[,[[1,"if","clearable"],[,"type","button"],[,"shown","{btnClearShown}"],[,"tabindex","{disabled |cond(-1, 0) }"]]],[[1,,"OpalIcon",["btnClearIcon"],[,[[,"name","cross"]]],]]],[1,,"OpalLoader",["loader"],[,[[1,"if","loading"],[,"size","s"],[,"shown",""]]],],[1,,"button",["btnShowPassword"],[,[[1,"if","inputType |eq(\"password\")"],[,"type","button"]]],[[1,,"OpalIcon",["btnShowPasswordIcon"],[,[[,"name","eye"],[,"strokeWidth","2"]]],]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 

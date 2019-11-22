@@ -351,7 +351,8 @@ __export(__webpack_require__("jT9T"));
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("svg:svg (stroke-width={strokeWidth}) {\nuse (xlink:href={xlinkHref})\n}");
+const template = [[1,,"svg",["svg"],[,[[,"stroke-width","{strokeWidth}"]]],[[1,,"use",,[,[[,"xlink:href","{xlinkHref}"]]],]]]];
+/* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
 
