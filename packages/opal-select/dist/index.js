@@ -757,7 +757,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         if (!this._addNewItem) {
             throw new TypeError('Parameter "addNewItem" is required');
         }
-        evt.data.initialEvent.defaultPrevented = true;
+        evt.data.initialEvent.preventDefault();
         let text = textInput.value;
         textInput.clear();
         textInput.loading = true;
