@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-group",
-  "version": "0.40.0",
+  "version": "0.40.1",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

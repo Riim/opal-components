@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-input-mask",
-  "version": "0.40.0",
+  "version": "0.40.1",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-text-input": "^0.40.0",
+    "@riim/opal-text-input": "^0.40.1",
     "cellx-decorators": "^1.5.4",
     "reflect-metadata": "^0.1.13",
     "rionite": "^0.38.2"
