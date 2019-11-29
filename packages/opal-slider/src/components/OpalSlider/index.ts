@@ -10,16 +10,16 @@ import template from './template.rnt';
 export class OpalSlider extends BaseComponent {
 	static EVENT_CHANGE = Symbol('change');
 
-	@Param
-	min = 0;
-	@Param
-	max = 100;
-	@Param
-	step = 1;
-	@Param
-	value = 0;
-	@Param({ type: eval })
-	range: [number, number];
+	@Param({ default: 0 })
+	declare min: number;
+	@Param({ default: 100 })
+	declare max: number;
+	@Param({ default: 1 })
+	declare step: number;
+	@Param({ default: 0 })
+	declare value: number;
+	@Param(eval)
+	declare range: [number, number] | null;
 
 	@Computed
 	get _firstInputWidth(): number {
@@ -27,7 +27,7 @@ export class OpalSlider extends BaseComponent {
 		let all = this.max - min;
 
 		return (
-			Math.round((((this.range[0] - min) / all + (this.range[1] - min) / all) / 2) * 1e5) /
+			Math.round((((this.range![0] - min) / all + (this.range![1] - min) / all) / 2) * 1e5) /
 			1e3
 		);
 	}
@@ -47,7 +47,7 @@ export class OpalSlider extends BaseComponent {
 			(secondInput as any).value = firstInputValue;
 			this.range = [firstInputValue, firstInputValue];
 		} else {
-			this.range = [firstInputValue, this.range[1]];
+			this.range = [firstInputValue, this.range![1]];
 		}
 
 		this.emit(OpalSlider.EVENT_CHANGE);
@@ -61,7 +61,7 @@ export class OpalSlider extends BaseComponent {
 			(firstInput as any).value = secondInputValue;
 			this.range = [secondInputValue, secondInputValue];
 		} else {
-			this.range = [this.range[0], secondInputValue];
+			this.range = [this.range![0], secondInputValue];
 		}
 
 		this.emit(OpalSlider.EVENT_CHANGE);

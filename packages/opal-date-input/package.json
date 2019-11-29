@@ -22,7 +22,6 @@
     "@riim/opal-text-input-validator": "^0.40.4",
     "cellx": "^1.9.19",
     "date-exists": "^1.0.1",
-    "reflect-metadata": "^0.1.13",
-    "rionite": "^0.38.4"
+    "rionite": "^0.38.6"
   }
 }

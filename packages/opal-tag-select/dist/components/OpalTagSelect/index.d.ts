@@ -22,23 +22,23 @@ export declare class OpalTagSelect extends BaseComponent {
     viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | (string & {
         _?: never;
     });
-    paramDataList: TDataList;
-    dataListKeypath: string;
+    paramDataList: TDataList | null;
+    dataListKeypath: string | null;
     dataListItemSchema: {
         value?: string;
         text?: string;
         subtext?: string;
         disabled?: string;
     };
-    dataProvider: IDataProvider;
-    paramValue: Array<string>;
+    dataProvider: IDataProvider | null;
+    paramValue: Array<string> | null;
     viewModel: TViewModel;
     viewModelItemSchema: {
         value?: string;
         text?: string;
         disabled?: string;
     };
-    addNewItem: (text: string) => Promise<Record<string, string>>;
+    addNewItem: ((text: string) => Promise<Record<string, string>>) | null;
     placeholder: string;
     popoverPosition: typeof OpalPopover.prototype.position;
     tabIndex: number;

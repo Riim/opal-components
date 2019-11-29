@@ -6,7 +6,7 @@ export declare class OpalDropdown extends BaseComponent {
     autoHeight: boolean;
     closeOn: 'click' | 'mousedown' | (string & {
         _?: never;
-    });
+    }) | null;
     opened: boolean;
     contentRendered: boolean;
     _closingEventListening: IDisposableListening | null | undefined;

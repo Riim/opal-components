@@ -75,17 +75,14 @@ import './icons/user.svg?id=OpalIcon__iconUser';
 	template
 })
 export class OpalIcon extends BaseComponent {
-	@Param({
-		required: true,
-		readonly: true
-	})
-	name: string;
-	@Param
-	size: 's' | 'xs' | 'xxs' | 'm' | 's' | 'xs' | 'xxs' | (string & { _?: never }) = 'm';
-	@Param({ readonly: true })
-	strokeWidth = 3;
-	@Param
-	filled = false;
+	@Param({ type: String, required: true, readonly: true })
+	declare name: string;
+	@Param({ default: 'm' })
+	declare size: 's' | 'xs' | 'xxs' | 'm' | 's' | 'xs' | 'xxs' | (string & { _?: never });
+	@Param({ default: 3, readonly: true })
+	declare strokeWidth: number;
+	@Param({ default: false })
+	declare filled: boolean;
 
 	@Computed
 	get xlinkHref() {

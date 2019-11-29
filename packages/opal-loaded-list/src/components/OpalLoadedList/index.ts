@@ -43,23 +43,19 @@ export class OpalLoadedList extends BaseComponent {
 
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 
-	@Param({
-		type: eval,
-		default: defaultDataListItemSchema,
-		readonly: true
-	})
-	dataListItemSchema: {
+	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
+	declare dataListItemSchema: {
 		value?: string;
 		text?: string;
 	};
-	@Param({ readonly: true })
-	dataProvider: IDataProvider;
-	@Param
-	limit = 100;
-	@Param
-	query: string;
-	@Param({ readonly: true })
-	preloading = false;
+	@Param({ required: true, readonly: true })
+	declare dataProvider: IDataProvider;
+	@Param({ default: 100 })
+	declare limit: number;
+	@Param(String)
+	declare query: string | null;
+	@Param({ default: false, readonly: true })
+	declare preloading: boolean;
 
 	@Observable
 	dataList = new ObservableList<IDataListItem>();
@@ -93,14 +89,6 @@ export class OpalLoadedList extends BaseComponent {
 		this._dataListItemTextFieldName =
 			this.dataListItemSchema.text ||
 			(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema.text;
-
-		if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
-			throw new TypeError('Parameter "dataProvider" is required');
-		}
-
-		if (!this.dataProvider) {
-			throw new TypeError('"dataProvider" is not defined');
-		}
 	}
 
 	elementAttached() {
@@ -177,7 +165,7 @@ export class OpalLoadedList extends BaseComponent {
 			this._requestCallback.cancel();
 		}
 
-		let getItemsLength = this.dataProvider.getItems.length;
+		let getItemsLength = this.dataProvider!.getItems.length;
 		let query: string | null = (this._lastRequestedQuery = this.query);
 		let args: Array<any> = getItemsLength ? [query] : [];
 
@@ -196,7 +184,7 @@ export class OpalLoadedList extends BaseComponent {
 
 		this.loading = true;
 
-		this.dataProvider.getItems.apply(this.dataProvider, args).then(
+		this.dataProvider!.getItems.apply(this.dataProvider, args).then(
 			(this._requestCallback = this.registerCallback(function(
 				this: OpalLoadedList,
 				data: {
@@ -231,7 +219,7 @@ export class OpalLoadedList extends BaseComponent {
 		this.dataList.clear();
 		this.total = undefined;
 		this._lastLoadedQuery = null;
-		this.dataProvider.reset();
+		this.dataProvider!.reset();
 	}
 
 	_getListItemContext(context: Object, slot: RnSlot) {

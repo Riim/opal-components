@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-icon"), require("rionite"), require("reflect-metadata"));
+		module.exports = factory(require("@riim/opal-icon"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-icon", "rionite", "reflect-metadata"], factory);
+		define(["@riim/opal-icon", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-editable-text"] = factory(require("@riim/opal-icon"), require("rionite"), require("reflect-metadata"));
+		exports["@riim/opal-editable-text"] = factory(require("@riim/opal-icon"), require("rionite"));
 	else
-		root["@riim/opal-editable-text"] = factory(root["@riim/opal-icon"], root["rionite"], root["reflect-metadata"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
+		root["@riim/opal-editable-text"] = factory(root["@riim/opal-icon"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_u4yd__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -106,7 +106,6 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("Y0hN");
-__webpack_require__("vA/G");
 __export(__webpack_require__("3Opk"));
 
 
@@ -140,9 +139,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var OpalEditableText_1;
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -263,28 +259,16 @@ Object.defineProperty(OpalEditableText, "EVENT_INPUT", {
     value: Symbol('input')
 });
 __decorate([
-    rionite_1.Listen('click', '@element'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Event]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('click', '@element')
 ], OpalEditableText.prototype, "_onElementClick", null);
 __decorate([
-    rionite_1.Listen('focus', self => self.$('contentSlot').element),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('focus', self => self.$('contentSlot').element)
 ], OpalEditableText.prototype, "_onContentSlotElementFocus", null);
 __decorate([
-    rionite_1.Listen('blur', self => self.$('contentSlot').element),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('blur', self => self.$('contentSlot').element)
 ], OpalEditableText.prototype, "_onContentSlotElementBlur", null);
 __decorate([
-    rionite_1.Listen('input', self => self.$('contentSlot').element),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('input', self => self.$('contentSlot').element)
 ], OpalEditableText.prototype, "_onContentSlotElementInput", null);
 OpalEditableText = OpalEditableText_1 = __decorate([
     rionite_1.Component({
@@ -315,13 +299,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_Y0hN__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

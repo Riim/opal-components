@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("history"), require("@riim/next-uid"), require("rionite"), require("reflect-metadata"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("cellx-decorators"));
+		module.exports = factory(require("history"), require("@riim/next-uid"), require("rionite"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["history", "@riim/next-uid", "rionite", "reflect-metadata", "@riim/kebab-case", "@riim/rionite-snake-case-attribute-name", "cellx-decorators"], factory);
+		define(["history", "@riim/next-uid", "rionite", "@riim/kebab-case", "@riim/rionite-snake-case-attribute-name", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-router"] = factory(require("history"), require("@riim/next-uid"), require("rionite"), require("reflect-metadata"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("cellx-decorators"));
+		exports["@riim/opal-router"] = factory(require("history"), require("@riim/next-uid"), require("rionite"), require("@riim/kebab-case"), require("@riim/rionite-snake-case-attribute-name"), require("cellx-decorators"));
 	else
-		root["@riim/opal-router"] = factory(root["history"], root["@riim/next-uid"], root["rionite"], root["reflect-metadata"], root["@riim/kebab-case"], root["@riim/rionite-snake-case-attribute-name"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_ZFcg__, __WEBPACK_EXTERNAL_MODULE_cIp5__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_vRer__, __WEBPACK_EXTERNAL_MODULE_wLwu__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-router"] = factory(root["history"], root["@riim/next-uid"], root["rionite"], root["@riim/kebab-case"], root["@riim/rionite-snake-case-attribute-name"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_ZFcg__, __WEBPACK_EXTERNAL_MODULE_cIp5__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vRer__, __WEBPACK_EXTERNAL_MODULE_wLwu__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -139,7 +139,6 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__("vA/G");
 __export(__webpack_require__("SN5g"));
 
 
@@ -155,9 +154,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var OpalRouter_1;
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -181,24 +177,6 @@ function valueToAttributeValue(value) {
 let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "useLocationHash", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "scrollTopOnChange", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: true
-        });
-        Object.defineProperty(this, "scrollTopOnChangeComponent", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: true
-        });
         Object.defineProperty(this, "_routes", {
             enumerable: true,
             configurable: true,
@@ -538,20 +516,16 @@ Object.defineProperty(OpalRouter, "history", {
     value: history
 });
 __decorate([
-    rionite_1.Param({ readonly: true }),
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false, readonly: true })
 ], OpalRouter.prototype, "useLocationHash", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: true })
 ], OpalRouter.prototype, "scrollTopOnChange", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: true })
 ], OpalRouter.prototype, "scrollTopOnChangeComponent", void 0);
 __decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
+    cellx_decorators_1.Observable
 ], OpalRouter.prototype, "isLoaderShown", void 0);
 OpalRouter = OpalRouter_1 = __decorate([
     rionite_1.Component({
@@ -582,45 +556,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const rionite_1 = __webpack_require__("u4yd");
 let OpalRoute = class OpalRoute extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "path", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "component", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "lazyLoadComponent", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
 };
 __decorate([
-    rionite_1.Param({ required: true, readonly: true }),
-    __metadata("design:type", String)
+    rionite_1.Param({ type: String, required: true, readonly: true })
 ], OpalRoute.prototype, "path", void 0);
 __decorate([
-    rionite_1.Param({ readonly: true }),
-    __metadata("design:type", String)
+    rionite_1.Param({ type: String, readonly: true })
 ], OpalRoute.prototype, "component", void 0);
 __decorate([
-    rionite_1.Param({ readonly: true }),
-    __metadata("design:type", Function)
+    rionite_1.Param({ readonly: true })
 ], OpalRoute.prototype, "lazyLoadComponent", void 0);
 OpalRoute = __decorate([
     rionite_1.Component({
@@ -653,13 +600,6 @@ const template = [[1,,"RnSlot",["contentSlot"],,],[1,,"OpalLoader",["loader"],[,
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"));
+		module.exports = factory(require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata"], factory);
+		define(["rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-loader"] = factory(require("rionite"), require("reflect-metadata"));
+		exports["@riim/opal-loader"] = factory(require("rionite"));
 	else
-		root["@riim/opal-loader"] = factory(root["rionite"], root["reflect-metadata"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
+		root["@riim/opal-loader"] = factory(root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -107,36 +107,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("Wb+m");
 let OpalLoader = class OpalLoader extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "size", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 'm'
-        });
-        Object.defineProperty(this, "shown", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-    }
 };
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 'm' })
 ], OpalLoader.prototype, "size", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalLoader.prototype, "shown", void 0);
 OpalLoader = __decorate([
     rionite_1.Component({
@@ -157,7 +137,6 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__("vA/G");
 __export(__webpack_require__("4w3j"));
 
 
@@ -185,13 +164,6 @@ module.exports = (function(d) {
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ })
 

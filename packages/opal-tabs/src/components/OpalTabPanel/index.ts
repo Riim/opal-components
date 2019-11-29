@@ -9,8 +9,8 @@ import template from './template.rnt';
 	template
 })
 export class OpalTabPanel extends BaseComponent {
-	@Param
-	shown = false;
+	@Param({ default: false })
+	declare shown: boolean;
 
 	@Observable
 	contentRendered = false;

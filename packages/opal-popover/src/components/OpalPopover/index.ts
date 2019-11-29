@@ -17,8 +17,8 @@ import template from './template.rnt';
 export class OpalPopover extends BaseComponent {
 	static EVENT_CLOSE = Symbol('close');
 
-	@Param
-	position:
+	@Param({ default: 'right' })
+	declare position:
 		| 'top'
 		| 'top-left'
 		| 'top-right'
@@ -31,15 +31,15 @@ export class OpalPopover extends BaseComponent {
 		| 'left'
 		| 'left-top'
 		| 'left-bottom'
-		| (string & { _?: never }) = 'right';
-	@Param
-	positionOffset = 0;
-	@Param
-	autoDirection = true;
-	@Param({ type: String })
-	closeOn: 'click' | 'mousedown' | (string & { _?: never });
-	@Param
-	opened = false;
+		| (string & { _?: never });
+	@Param({ default: 0 })
+	declare positionOffset: number;
+	@Param({ default: true })
+	declare autoDirection: boolean;
+	@Param(String)
+	declare closeOn: 'click' | 'mousedown' | (string & { _?: never });
+	@Param({ default: false })
+	declare opened: boolean;
 
 	@Observable
 	contentRendered = false;

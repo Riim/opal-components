@@ -74,31 +74,23 @@ export class OpalTreeList extends BaseComponent {
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
 	@Param('dataTreeList')
-	paramDataTreeList: TDataTreeList;
-	@Param({ readonly: true })
-	dataTreeListKeypath: string;
-	@Param({
-		type: eval,
-		default: defaultDataTreeListItemSchema,
-		readonly: true
-	})
-	dataTreeListItemSchema: {
+	declare paramDataTreeList: TDataTreeList | null;
+	@Param({ type: String, readonly: true })
+	declare dataTreeListKeypath: string | null;
+	@Param({ type: eval, default: defaultDataTreeListItemSchema, readonly: true })
+	declare dataTreeListItemSchema: {
 		value?: string;
 		text?: string;
 	};
-	@Param({ readonly: true })
-	viewModel: TViewModel = new ObservableList();
-	@Param({
-		type: eval,
-		default: defaultVMItemSchema,
-		readonly: true
-	})
+	@Param({ default: new ObservableList(), readonly: true })
+	declare viewModel: TViewModel;
+	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
 	declare viewModelItemSchema: {
 		value?: string;
 		text?: string;
 	};
-	@Param
-	query: string;
+	@Param(String)
+	declare query: string | null;
 
 	dataTreeList: TDataTreeList | null;
 	_dataTreeListItemValueFieldName: string;
@@ -139,8 +131,7 @@ export class OpalTreeList extends BaseComponent {
 								children: filteredChildren,
 								[dataTreeListItemValueFieldName]:
 									item[dataTreeListItemValueFieldName],
-								[dataTreeListItemTextFieldName]:
-									item[dataTreeListItemTextFieldName]
+								[dataTreeListItemTextFieldName]: item[dataTreeListItemTextFieldName]
 							});
 						}
 					} else if (
@@ -180,7 +171,7 @@ export class OpalTreeList extends BaseComponent {
 				}
 			));
 		} else {
-			if (!this.$specifiedParams || !this.$specifiedParams.has('dataTreeList')) {
+			if (!this.$specifiedParams.has('dataTreeList')) {
 				throw new TypeError('Parameter "dataTreeList" is required');
 			}
 

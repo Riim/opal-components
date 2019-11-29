@@ -52,12 +52,12 @@ export class OpalRouter extends BaseComponent {
 
 	static history = history;
 
-	@Param({ readonly: true })
-	useLocationHash = false;
-	@Param
-	scrollTopOnChange = true;
-	@Param
-	scrollTopOnChangeComponent = true;
+	@Param({ default: false, readonly: true })
+	declare useLocationHash: boolean;
+	@Param({ default: true })
+	declare scrollTopOnChange: boolean;
+	@Param({ default: true })
+	declare scrollTopOnChangeComponent: boolean;
 
 	_routes: Array<IRoute>;
 	_route: IRoute | null = null;
@@ -356,7 +356,7 @@ export class OpalRouter extends BaseComponent {
 				this.isLoaderShown = true;
 
 				route.component
-					.lazyLoadComponent()
+					.lazyLoadComponent!()
 					.then(componentConstr => componentConstr.elementIs)
 					.then(onComponentLoaded);
 			}
@@ -439,7 +439,7 @@ export class OpalRouter extends BaseComponent {
 			this.isLoaderShown = true;
 
 			route.component
-				.lazyLoadComponent()
+				.lazyLoadComponent!()
 				.then(componentConstr => componentConstr.elementIs)
 				.then(onComponentLoaded);
 		}

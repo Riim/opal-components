@@ -17,12 +17,12 @@ import template from './template.rnt';
 export class OpalDropdown extends BaseComponent {
 	static EVENT_CLOSE = Symbol('close');
 
-	@Param
-	autoHeight = true;
+	@Param({ default: true })
+	declare autoHeight: boolean;
 	@Param(String)
-	closeOn: 'click' | 'mousedown' | (string & { _?: never });
-	@Param
-	opened = false;
+	declare closeOn: 'click' | 'mousedown' | (string & { _?: never }) | null;
+	@Param({ default: false })
+	declare opened: boolean;
 
 	@Observable
 	contentRendered = false;
@@ -143,7 +143,7 @@ export class OpalDropdown extends BaseComponent {
 				if (this.opened) {
 					this._closingEventListening = this.listenTo(
 						document,
-						this.closeOn,
+						this.closeOn!,
 						this._onClosingEvent
 					);
 				}

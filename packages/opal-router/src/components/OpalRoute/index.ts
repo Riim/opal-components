@@ -4,10 +4,10 @@ import { BaseComponent, Component, Param } from 'rionite';
 	elementIs: 'OpalRoute'
 })
 export class OpalRoute extends BaseComponent {
-	@Param({ required: true, readonly: true })
-	path: string;
+	@Param({ type: String, required: true, readonly: true })
+	declare path: string;
+	@Param({ type: String, readonly: true })
+	declare component: string | null;
 	@Param({ readonly: true })
-	component: string;
-	@Param({ readonly: true })
-	lazyLoadComponent: () => Promise<typeof BaseComponent>;
+	declare lazyLoadComponent: (() => Promise<typeof BaseComponent>) | null;
 }

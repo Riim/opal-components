@@ -73,62 +73,56 @@ export class OpalSelect extends BaseComponent {
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
-	@Param
-	viewType: typeof OpalButton.prototype.viewType = 'default';
-	@Param
-	size: typeof OpalButton.prototype.size = 'm';
-	@Param({ readonly: true })
-	multiple = false;
-	@Param
-	clearOnDeselect = false;
+	@Param({ default: 'default' })
+	declare viewType: typeof OpalButton.prototype.viewType;
+	@Param({ default: 'm' })
+	declare size: typeof OpalButton.prototype.size;
+	@Param({ default: false, readonly: true })
+	declare multiple: boolean;
+	@Param({ default: false })
+	declare clearOnDeselect: boolean;
 	@Param('dataList')
-	paramDataList: TDataList;
-	@Param({ readonly: true })
-	dataListKeypath: string;
-	@Param({
-		type: eval,
-		default: defaultDataListItemSchema,
-		readonly: true
-	})
-	dataListItemSchema: {
+	declare paramDataList: TDataList | null;
+	@Param({ type: String, readonly: true })
+	declare dataListKeypath: string | null;
+	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
+	declare dataListItemSchema: {
 		value?: string;
 		text?: string;
 		subtext?: string;
 		disabled?: string;
 	};
-	@Param('value', { type: eval })
-	paramValue: Array<string>;
+	@Param('value', eval)
+	declare paramValue: Array<string> | null;
 	@Param('viewModel', { readonly: true })
-	paramViewModel: TViewModel;
-	@Param({
-		type: eval,
-		default: defaultVMItemSchema,
-		readonly: true
-	})
-	viewModelItemSchema: {
+	declare paramViewModel: TViewModel | null;
+	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
+	declare viewModelItemSchema: {
 		value?: string;
 		text?: string;
 		subtext?: string;
 		disabled?: string;
 	};
 	@Param({ readonly: true })
-	addNewItem: (text: string, select: OpalSelect) => Promise<Record<string, string>>;
-	@Param
-	clearLoadedListOnOpen = false;
-	@Param
-	text: string;
-	@Param
-	maxTextLength = 20;
-	@Param
-	placeholder = pt('OpalSelect#placeholder', 'Не выбрано');
-	@Param({ readonly: true })
-	openOnClick = false;
-	@Param
-	tabIndex = 0;
-	@Param
-	focused = false;
-	@Param
-	disabled = false;
+	declare addNewItem:
+		| ((text: string, select: OpalSelect) => Promise<Record<string, string>>)
+		| null;
+	@Param({ default: false })
+	clearLoadedListOnOpen: boolean;
+	@Param(String)
+	declare text: string | null;
+	@Param({ default: 20 })
+	declare maxTextLength: number;
+	@Param({ default: pt('OpalSelect#placeholder', 'Не выбрано') })
+	declare placeholder: string;
+	@Param({ default: false, readonly: true })
+	declare openOnClick: boolean;
+	@Param({ default: 0 })
+	declare tabIndex: number;
+	@Param({ default: false })
+	declare focused: boolean;
+	@Param({ default: false })
+	declare disabled: boolean;
 
 	dataListCell: Cell<TDataList | null> | null = null;
 	dataList: TDataList | null;
@@ -201,7 +195,7 @@ export class OpalSelect extends BaseComponent {
 	initialize() {
 		let dataListKeypath = this.dataListKeypath;
 
-		if (dataListKeypath || (this.$specifiedParams && this.$specifiedParams.has('dataList'))) {
+		if (dataListKeypath || this.$specifiedParams.has('dataList')) {
 			define(this, 'dataList', dataListKeypath
 				? new Cell(Function(`return this.${dataListKeypath};`), {
 						context: this.ownerComponent || window

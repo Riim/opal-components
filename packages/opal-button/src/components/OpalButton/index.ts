@@ -19,29 +19,29 @@ export class OpalButton extends BaseComponent {
 	static EVENT_FOCUS = Symbol('focus');
 	static EVENT_UNCHECK = Symbol('uncheck');
 
-	@Param
-	viewType:
+	@Param({ default: 'default' })
+	declare viewType:
 		| 'default'
 		| 'primary'
 		| 'success'
 		| 'warning'
 		| 'danger'
 		| 'clean'
-		| (string & { _?: never }) = 'default';
-	@Param
-	size: 's' | 'm' | (string & { _?: never }) = 'm';
-	@Param
-	checkable = false;
-	@Param
-	checked = false;
-	@Param
-	loading = false;
-	@Param
-	tabIndex = 0;
-	@Param
-	focused = false;
-	@Param
-	disabled = false;
+		| (string & { _?: never });
+	@Param({ default: 'm' })
+	declare size: 's' | 'm' | (string & { _?: never });
+	@Param({ default: false })
+	declare checkable: boolean;
+	@Param({ default: false })
+	declare checked: boolean;
+	@Param({ default: false })
+	declare loading: boolean;
+	@Param({ default: 0 })
+	declare tabIndex: number;
+	@Param({ default: false })
+	declare focused: boolean;
+	@Param({ default: false })
+	declare disabled: boolean;
 
 	@Computed
 	get _tabIndex(): number {

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-popover"), require("@riim/opal-loader"), require("cellx"), require("@riim/opal-filtered-list"), require("@riim/gettext"), require("@riim/opal-sign-button"), require("@riim/opal-loaded-list"), require("@riim/opal-select"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-popover"), require("@riim/opal-loader"), require("cellx"), require("@riim/opal-filtered-list"), require("@riim/gettext"), require("@riim/opal-sign-button"), require("@riim/opal-loaded-list"), require("@riim/opal-select"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-popover", "@riim/opal-loader", "cellx", "@riim/opal-filtered-list", "@riim/gettext", "@riim/opal-sign-button", "@riim/opal-loaded-list", "@riim/opal-select", "rionite", "reflect-metadata", "cellx-decorators"], factory);
+		define(["@riim/opal-popover", "@riim/opal-loader", "cellx", "@riim/opal-filtered-list", "@riim/gettext", "@riim/opal-sign-button", "@riim/opal-loaded-list", "@riim/opal-select", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tag-select"] = factory(require("@riim/opal-popover"), require("@riim/opal-loader"), require("cellx"), require("@riim/opal-filtered-list"), require("@riim/gettext"), require("@riim/opal-sign-button"), require("@riim/opal-loaded-list"), require("@riim/opal-select"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		exports["@riim/opal-tag-select"] = factory(require("@riim/opal-popover"), require("@riim/opal-loader"), require("cellx"), require("@riim/opal-filtered-list"), require("@riim/gettext"), require("@riim/opal-sign-button"), require("@riim/opal-loaded-list"), require("@riim/opal-select"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-tag-select"] = factory(root["@riim/opal-popover"], root["@riim/opal-loader"], root["cellx"], root["@riim/opal-filtered-list"], root["@riim/gettext"], root["@riim/opal-sign-button"], root["@riim/opal-loaded-list"], root["@riim/opal-select"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__2L3N__, __WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_Y1_I__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_ioIi__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-tag-select"] = factory(root["@riim/opal-popover"], root["@riim/opal-loader"], root["cellx"], root["@riim/opal-filtered-list"], root["@riim/gettext"], root["@riim/opal-sign-button"], root["@riim/opal-loaded-list"], root["@riim/opal-select"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__2L3N__, __WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_Y1_I__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_ioIi__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -135,9 +135,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var OpalTagSelect_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const gettext_1 = __webpack_require__("eaeG");
@@ -161,91 +158,6 @@ const defaultVMItemSchema = Object.freeze({
 let OpalTagSelect = OpalTagSelect_1 = class OpalTagSelect extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "viewType", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 'default'
-        });
-        Object.defineProperty(this, "paramDataList", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "dataListKeypath", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "dataListItemSchema", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        // необязательный, так как может указываться на передаваемом OpalLoadedList
-        Object.defineProperty(this, "dataProvider", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "paramValue", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "viewModel", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: new cellx_1.ObservableList()
-        });
-        Object.defineProperty(this, "viewModelItemSchema", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "addNewItem", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "placeholder", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: gettext_1.pt('OpalTagSelect#placeholder', 'Не выбрано')
-        });
-        Object.defineProperty(this, "popoverPosition", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 'bottom'
-        });
-        Object.defineProperty(this, "tabIndex", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 0
-        });
-        Object.defineProperty(this, "focused", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "disabled", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
         Object.defineProperty(this, "dataList", {
             enumerable: true,
             configurable: true,
@@ -324,7 +236,7 @@ let OpalTagSelect = OpalTagSelect_1 = class OpalTagSelect extends rionite_1.Base
     }
     initialize() {
         let dataListKeypath = this.dataListKeypath;
-        if (dataListKeypath || (this.$specifiedParams && this.$specifiedParams.has('dataList'))) {
+        if (dataListKeypath || this.$specifiedParams.has('dataList')) {
             cellx_1.define(this, 'dataList', dataListKeypath
                 ? new cellx_1.Cell(Function(`return this.${dataListKeypath};`), {
                     context: this.ownerComponent || window
@@ -437,108 +349,67 @@ Object.defineProperty(OpalTagSelect, "defaultViewModelItemSchema", {
     value: defaultVMItemSchema
 });
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 'default' })
 ], OpalTagSelect.prototype, "viewType", void 0);
 __decorate([
-    rionite_1.Param('dataList'),
-    __metadata("design:type", Object)
+    rionite_1.Param('dataList')
 ], OpalTagSelect.prototype, "paramDataList", void 0);
 __decorate([
-    rionite_1.Param({ readonly: true }),
-    __metadata("design:type", String)
+    rionite_1.Param({ type: String, readonly: true })
 ], OpalTagSelect.prototype, "dataListKeypath", void 0);
 __decorate([
-    rionite_1.Param({
-        type: eval,
-        default: defaultDataListItemSchema,
-        readonly: true
-    }),
-    __metadata("design:type", Object)
+    rionite_1.Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
 ], OpalTagSelect.prototype, "dataListItemSchema", void 0);
 __decorate([
-    rionite_1.Param({ readonly: true }),
-    __metadata("design:type", Object)
+    rionite_1.Param({ readonly: true })
 ], OpalTagSelect.prototype, "dataProvider", void 0);
 __decorate([
-    rionite_1.Param('value', { type: eval }),
-    __metadata("design:type", Array)
+    rionite_1.Param('value', eval)
 ], OpalTagSelect.prototype, "paramValue", void 0);
 __decorate([
-    rionite_1.Param({ readonly: true }),
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: new cellx_1.ObservableList(), readonly: true })
 ], OpalTagSelect.prototype, "viewModel", void 0);
 __decorate([
-    rionite_1.Param({
-        type: eval,
-        default: defaultVMItemSchema,
-        readonly: true
-    }),
-    __metadata("design:type", Object)
+    rionite_1.Param({ type: eval, default: defaultVMItemSchema, readonly: true })
 ], OpalTagSelect.prototype, "viewModelItemSchema", void 0);
 __decorate([
-    rionite_1.Param({ readonly: true }),
-    __metadata("design:type", Function)
+    rionite_1.Param({ readonly: true })
 ], OpalTagSelect.prototype, "addNewItem", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: gettext_1.pt('OpalTagSelect#placeholder', 'Не выбрано') })
 ], OpalTagSelect.prototype, "placeholder", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 'bottom' })
 ], OpalTagSelect.prototype, "popoverPosition", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 0 })
 ], OpalTagSelect.prototype, "tabIndex", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalTagSelect.prototype, "focused", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalTagSelect.prototype, "disabled", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Array),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalTagSelect.prototype, "value", null);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalTagSelect.prototype, "placeholderShown", null);
 __decorate([
-    rionite_1.Listen('change:disabled'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change:disabled')
 ], OpalTagSelect.prototype, "_onDisabledChange", null);
 __decorate([
-    rionite_1.Listen(opal_select_1.OpalSelect.EVENT_INPUT, '@select'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Boolean)
+    rionite_1.Listen(opal_select_1.OpalSelect.EVENT_INPUT, '@select')
 ], OpalTagSelect.prototype, "_onSelectInput", null);
 __decorate([
-    rionite_1.Listen(opal_select_1.OpalSelect.EVENT_CHANGE, '@select'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Boolean)
+    rionite_1.Listen(opal_select_1.OpalSelect.EVENT_CHANGE, '@select')
 ], OpalTagSelect.prototype, "_onSelectChange", null);
 __decorate([
-    rionite_1.Listen(opal_select_1.OpalSelect.EVENT_SELECT, '@select'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Boolean)
+    rionite_1.Listen(opal_select_1.OpalSelect.EVENT_SELECT, '@select')
 ], OpalTagSelect.prototype, "_onSelectSelect", null);
 __decorate([
-    rionite_1.Listen(opal_select_1.OpalSelect.EVENT_DESELECT, '@select'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Boolean)
+    rionite_1.Listen(opal_select_1.OpalSelect.EVENT_DESELECT, '@select')
 ], OpalTagSelect.prototype, "_onSelectDeselect", null);
 OpalTagSelect = OpalTagSelect_1 = __decorate([
     rionite_1.Component({
@@ -649,7 +520,6 @@ __webpack_require__("BLMt");
 __webpack_require__("2L3N");
 __webpack_require__("jL6t");
 __webpack_require__("ej3F");
-__webpack_require__("vA/G");
 __export(__webpack_require__("aUKo"));
 
 
@@ -659,13 +529,6 @@ __export(__webpack_require__("aUKo"));
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

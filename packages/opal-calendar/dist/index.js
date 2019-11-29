@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-select"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-select"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-icon", "@riim/gettext", "@riim/opal-select", "rionite", "reflect-metadata", "cellx-decorators"], factory);
+		define(["@riim/opal-icon", "@riim/gettext", "@riim/opal-select", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-calendar"] = factory(require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-select"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		exports["@riim/opal-calendar"] = factory(require("@riim/opal-icon"), require("@riim/gettext"), require("@riim/opal-select"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-calendar"] = factory(root["@riim/opal-icon"], root["@riim/gettext"], root["@riim/opal-select"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-calendar"] = factory(root["@riim/opal-icon"], root["@riim/gettext"], root["@riim/opal-select"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -117,7 +117,6 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("Y0hN");
 __webpack_require__("jL6t");
-__webpack_require__("vA/G");
 __export(__webpack_require__("q1vq"));
 
 
@@ -191,9 +190,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var OpalCalendar_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const gettext_1 = __webpack_require__("eaeG");
@@ -234,30 +230,6 @@ exports.toDate = toDate;
 let OpalCalendar = OpalCalendar_1 = class OpalCalendar extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "paramFromDate", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "paramToDate", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "paramValue", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "dateDelimiter", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: '/'
-        });
         Object.defineProperty(this, "weekDays", {
             enumerable: true,
             configurable: true,
@@ -481,87 +453,58 @@ Object.defineProperty(OpalCalendar, "EVENT_CHANGE", {
     value: Symbol('change')
 });
 __decorate([
-    rionite_1.Param('fromDate'),
-    __metadata("design:type", String)
+    rionite_1.Param('fromDate')
 ], OpalCalendar.prototype, "paramFromDate", void 0);
 __decorate([
-    rionite_1.Param('toDate'),
-    __metadata("design:type", String)
+    rionite_1.Param('toDate')
 ], OpalCalendar.prototype, "paramToDate", void 0);
 __decorate([
-    rionite_1.Param('value'),
-    __metadata("design:type", String)
+    rionite_1.Param('value')
 ], OpalCalendar.prototype, "paramValue", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: '/' })
 ], OpalCalendar.prototype, "dateDelimiter", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Date)
+    cellx_decorators_1.Computed
 ], OpalCalendar.prototype, "fromDate", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Date)
+    cellx_decorators_1.Computed
 ], OpalCalendar.prototype, "toDate", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Number),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalCalendar.prototype, "fromYear", null);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Number),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalCalendar.prototype, "toYear", null);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Array),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalCalendar.prototype, "years", null);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Object),
-    __metadata("design:paramtypes", [Object])
+    cellx_decorators_1.Computed
 ], OpalCalendar.prototype, "stringValue", null);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Object),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalCalendar.prototype, "value", null);
 __decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Number)
+    cellx_decorators_1.Observable
 ], OpalCalendar.prototype, "shownYear", void 0);
 __decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Number)
+    cellx_decorators_1.Observable
 ], OpalCalendar.prototype, "shownMonth", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalCalendar.prototype, "btnPrevMonthDisabled", null);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalCalendar.prototype, "btnNextMonthDisabled", null);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Array)
+    cellx_decorators_1.Computed
 ], OpalCalendar.prototype, "days", void 0);
 __decorate([
-    rionite_1.Listen('focus', 'days', true),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Event]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('focus', 'days', true)
 ], OpalCalendar.prototype, "_onDaysFocus", null);
 __decorate([
-    rionite_1.Listen('blur', 'days', true),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('blur', 'days', true)
 ], OpalCalendar.prototype, "_onDaysBlur", null);
 OpalCalendar = OpalCalendar_1 = __decorate([
     rionite_1.Component({
@@ -663,13 +606,6 @@ exports.OpalCalendar = OpalCalendar;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

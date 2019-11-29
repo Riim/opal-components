@@ -3,7 +3,7 @@ import './index.css';
 export declare class OpalTab extends BaseComponent {
     static EVENT_SELECT: symbol;
     static EVENT_DESELECT: symbol;
-    label: string;
+    label: string | null;
     selected: boolean;
     tabIndex: number;
     focused: boolean;

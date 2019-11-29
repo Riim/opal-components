@@ -20,12 +20,12 @@ export declare class OpalTextInput extends BaseComponent {
     multiline: boolean;
     rows: number;
     autoHeight: boolean;
-    inputName: string;
-    paramValue: string;
-    storeKey: string;
-    placeholder: string;
-    startIcon: string;
-    endIcon: string;
+    inputName: string | null;
+    paramValue: string | null;
+    storeKey: string | null;
+    placeholder: string | null;
+    startIcon: string | null;
+    endIcon: string | null;
     clearable: boolean;
     loading: boolean;
     tabIndex: number;

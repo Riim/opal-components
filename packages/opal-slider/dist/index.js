@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		module.exports = factory(require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx-decorators"], factory);
+		define(["rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-slider"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		exports["@riim/opal-slider"] = factory(require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-slider"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-slider"] = factory(root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -107,9 +107,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var OpalSlider_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__("yOaX");
@@ -117,39 +114,6 @@ const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("1g8T");
 const template_rnt_1 = __webpack_require__("vUBf");
 let OpalSlider = OpalSlider_1 = class OpalSlider extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "min", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 0
-        });
-        Object.defineProperty(this, "max", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 100
-        });
-        Object.defineProperty(this, "step", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 1
-        });
-        Object.defineProperty(this, "value", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 0
-        });
-        Object.defineProperty(this, "range", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
     get _firstInputWidth() {
         let min = this.min;
         let all = this.max - min;
@@ -194,29 +158,22 @@ Object.defineProperty(OpalSlider, "EVENT_CHANGE", {
     value: Symbol('change')
 });
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 0 })
 ], OpalSlider.prototype, "min", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 100 })
 ], OpalSlider.prototype, "max", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 1 })
 ], OpalSlider.prototype, "step", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 0 })
 ], OpalSlider.prototype, "value", void 0);
 __decorate([
-    rionite_1.Param({ type: eval }),
-    __metadata("design:type", Array)
+    rionite_1.Param(eval)
 ], OpalSlider.prototype, "range", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Number),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalSlider.prototype, "_firstInputWidth", null);
 OpalSlider = OpalSlider_1 = __decorate([
     rionite_1.Component({
@@ -256,7 +213,6 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__("vA/G");
 __export(__webpack_require__("0Nex"));
 
 
@@ -266,13 +222,6 @@ __export(__webpack_require__("0Nex"));
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

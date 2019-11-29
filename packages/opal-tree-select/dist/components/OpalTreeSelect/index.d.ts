@@ -3,8 +3,8 @@ import { TDataTreeList } from '@riim/opal-tree-list';
 import './index.css';
 export declare class OpalTreeSelect extends OpalSelect {
     multiple: boolean;
-    paramDataTreeList: TDataTreeList;
-    dataTreeListKeypath: string;
+    paramDataTreeList: TDataTreeList | null;
+    dataTreeListKeypath: string | null;
     dataTreeListItemSchema: {
         value?: string;
         text?: string;
@@ -13,7 +13,7 @@ export declare class OpalTreeSelect extends OpalSelect {
         value?: string;
         text?: string;
     };
-    query: string;
+    query: string | null;
     openOnClick: boolean;
     dataTreeList: TDataTreeList;
     initialize(): void;

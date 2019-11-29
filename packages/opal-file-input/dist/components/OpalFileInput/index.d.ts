@@ -17,9 +17,9 @@ export declare class OpalFileInput extends BaseComponent {
     static EVENT_CLEAR: symbol;
     multiple: boolean;
     dataList: TDataList;
-    allowType: string;
-    sizeLimit: number;
-    totalSizeLimit: number;
+    allowType: string | null;
+    sizeLimit: number | null;
+    totalSizeLimit: number | null;
     buttonText: string;
     placeholder: string;
     disabled: boolean;

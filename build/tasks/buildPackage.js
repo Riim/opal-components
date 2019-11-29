@@ -23,7 +23,6 @@ const externals = [
 	'cellx',
 	'date-exists',
 	'history',
-	'reflect-metadata',
 	'rionite',
 
 	'@riim/opal-autosuggest',

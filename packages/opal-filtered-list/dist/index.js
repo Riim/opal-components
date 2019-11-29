@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-icon"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("rionite"), require("reflect-metadata"));
+		module.exports = factory(require("@riim/opal-icon"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-icon", "@riim/opal-text-input", "@riim/opal-loaded-list", "rionite", "reflect-metadata"], factory);
+		define(["@riim/opal-icon", "@riim/opal-text-input", "@riim/opal-loaded-list", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-filtered-list"] = factory(require("@riim/opal-icon"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("rionite"), require("reflect-metadata"));
+		exports["@riim/opal-filtered-list"] = factory(require("@riim/opal-icon"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("rionite"));
 	else
-		root["@riim/opal-filtered-list"] = factory(root["@riim/opal-icon"], root["@riim/opal-text-input"], root["@riim/opal-loaded-list"], root["rionite"], root["reflect-metadata"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_ioIi__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
+		root["@riim/opal-filtered-list"] = factory(root["@riim/opal-icon"], root["@riim/opal-text-input"], root["@riim/opal-loaded-list"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_ioIi__, __WEBPACK_EXTERNAL_MODULE_u4yd__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -108,7 +108,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("Y0hN");
 __webpack_require__("ioIi");
 __webpack_require__("hl6F");
-__webpack_require__("vA/G");
 __export(__webpack_require__("wRAt"));
 
 
@@ -167,13 +166,6 @@ const template = [[1,,"RnSlot",,[,[[,"for","queryInputSlot"]]],[[1,,"RnSlot",["q
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

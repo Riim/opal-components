@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		module.exports = factory(require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx-decorators"], factory);
+		define(["rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-sign-button"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		exports["@riim/opal-sign-button"] = factory(require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-sign-button"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-sign-button"] = factory(root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -107,9 +107,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var OpalSignButton_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__("yOaX");
@@ -119,48 +116,6 @@ const template_rnt_1 = __webpack_require__("IjPK");
 let OpalSignButton = OpalSignButton_1 = class OpalSignButton extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "sign", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "viewType", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "checkable", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "checked", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "tabIndex", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 0
-        });
-        Object.defineProperty(this, "focused", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "disabled", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
         Object.defineProperty(this, "_documentKeyDownListening", {
             enumerable: true,
             configurable: true,
@@ -274,55 +229,37 @@ Object.defineProperty(OpalSignButton, "EVENT_UNCHECK", {
     value: Symbol('uncheck')
 });
 __decorate([
-    rionite_1.Param({ required: true }),
-    __metadata("design:type", String)
+    rionite_1.Param({ type: String, required: true })
 ], OpalSignButton.prototype, "sign", void 0);
 __decorate([
-    rionite_1.Param(String),
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 'default' })
 ], OpalSignButton.prototype, "viewType", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalSignButton.prototype, "checkable", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalSignButton.prototype, "checked", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 0 })
 ], OpalSignButton.prototype, "tabIndex", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalSignButton.prototype, "focused", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalSignButton.prototype, "disabled", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Number),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalSignButton.prototype, "_tabIndex", null);
 __decorate([
-    rionite_1.Listen('focus', 'control'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('focus', 'control')
 ], OpalSignButton.prototype, "_onControlFocus", null);
 __decorate([
-    rionite_1.Listen('blur', 'control'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('blur', 'control')
 ], OpalSignButton.prototype, "_onControlBlur", null);
 __decorate([
-    rionite_1.Listen('click', 'control'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Event]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('click', 'control')
 ], OpalSignButton.prototype, "_onControlClick", null);
 OpalSignButton = OpalSignButton_1 = __decorate([
     rionite_1.Component({
@@ -370,13 +307,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 /***/ }),
 
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
-
-/***/ }),
-
 /***/ "wpLm":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -386,7 +316,6 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__("vA/G");
 __export(__webpack_require__("6Ig9"));
 
 

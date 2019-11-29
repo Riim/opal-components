@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		module.exports = factory(require("cellx"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "rionite", "reflect-metadata", "cellx-decorators"], factory);
+		define(["cellx", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-modal"] = factory(require("cellx"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		exports["@riim/opal-modal"] = factory(require("cellx"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-modal"] = factory(root["cellx"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-modal"] = factory(root["cellx"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -132,9 +132,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var OpalModal_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_1 = __webpack_require__("P7z7");
@@ -159,12 +156,6 @@ function onDocumentKeyUp(evt) {
 let OpalModal = OpalModal_1 = class OpalModal extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "opened", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
         Object.defineProperty(this, "contentRendered", {
             enumerable: true,
             configurable: true,
@@ -287,24 +278,16 @@ Object.defineProperty(OpalModal, "EVENT_CLOSE", {
     value: Symbol('close')
 });
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalModal.prototype, "opened", void 0);
 __decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
+    cellx_decorators_1.Observable
 ], OpalModal.prototype, "contentRendered", void 0);
 __decorate([
-    rionite_1.Listen('change:opened'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change:opened')
 ], OpalModal.prototype, "_onOpenedChange", null);
 __decorate([
-    rionite_1.Listen('click', '@element'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Event]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('click', '@element')
 ], OpalModal.prototype, "_onElementClick", null);
 OpalModal = OpalModal_1 = __decorate([
     rionite_1.Component({
@@ -334,7 +317,6 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__("vA/G");
 __export(__webpack_require__("Tz1Y"));
 
 
@@ -354,13 +336,6 @@ const template = [[1,,"div",["window"],,[[1,,"div",["btnCloseWrapper"],,[[1,,"bu
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

@@ -21,20 +21,26 @@ export class OpalSignButton extends BaseComponent {
 	static EVENT_FOCUS = Symbol('focus');
 	static EVENT_UNCHECK = Symbol('uncheck');
 
-	@Param({ required: true })
-	sign: string;
-	@Param(String)
-	viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | (string & { _?: never });
-	@Param
-	checkable = false;
-	@Param
-	checked = false;
-	@Param
-	tabIndex = 0;
-	@Param
-	focused = false;
-	@Param
-	disabled = false;
+	@Param({ type: String, required: true })
+	declare sign: string;
+	@Param({ default: 'default' })
+	declare viewType:
+		| 'default'
+		| 'primary'
+		| 'success'
+		| 'warning'
+		| 'danger'
+		| (string & { _?: never });
+	@Param({ default: false })
+	declare checkable: boolean;
+	@Param({ default: false })
+	declare checked: boolean;
+	@Param({ default: 0 })
+	declare tabIndex: number;
+	@Param({ default: false })
+	declare focused: boolean;
+	@Param({ default: false })
+	declare disabled: boolean;
 
 	@Computed
 	get _tabIndex(): number {

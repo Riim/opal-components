@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		module.exports = factory(require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "reflect-metadata", "cellx-decorators"], factory);
+		define(["rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-switch"] = factory(require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		exports["@riim/opal-switch"] = factory(require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-switch"] = factory(root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-switch"] = factory(root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -115,7 +115,6 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__("vA/G");
 __export(__webpack_require__("jJDM"));
 
 
@@ -150,9 +149,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var OpalSwitch_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__("yOaX");
@@ -162,30 +158,6 @@ const template_rnt_1 = __webpack_require__("8DG6");
 let OpalSwitch = OpalSwitch_1 = class OpalSwitch extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "checked", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "tabIndex", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 0
-        });
-        Object.defineProperty(this, "focused", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "disabled", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
         Object.defineProperty(this, "_documentKeyDownListening", {
             enumerable: true,
             configurable: true,
@@ -311,55 +283,34 @@ Object.defineProperty(OpalSwitch, "EVENT_UNCHECK", {
     value: Symbol('uncheck')
 });
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalSwitch.prototype, "checked", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 0 })
 ], OpalSwitch.prototype, "tabIndex", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalSwitch.prototype, "focused", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalSwitch.prototype, "disabled", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Number),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalSwitch.prototype, "_tabIndex", null);
 __decorate([
-    rionite_1.Listen('change:checked'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change:checked')
 ], OpalSwitch.prototype, "_onCheckedChange", null);
 __decorate([
-    rionite_1.Listen('change:focused'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change:focused')
 ], OpalSwitch.prototype, "_onFocusedChange", null);
 __decorate([
-    rionite_1.Listen('change', 'input'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Event]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change', 'input')
 ], OpalSwitch.prototype, "_onInputChange", null);
 __decorate([
-    rionite_1.Listen('focus', 'control'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('focus', 'control')
 ], OpalSwitch.prototype, "_onControlFocus", null);
 __decorate([
-    rionite_1.Listen('blur', 'control'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('blur', 'control')
 ], OpalSwitch.prototype, "_onControlBlur", null);
 OpalSwitch = OpalSwitch_1 = __decorate([
     rionite_1.Component({
@@ -376,13 +327,6 @@ exports.OpalSwitch = OpalSwitch;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

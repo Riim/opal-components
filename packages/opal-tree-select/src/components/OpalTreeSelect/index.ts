@@ -20,34 +20,26 @@ import template from './template.rnt';
 	}
 })
 export class OpalTreeSelect extends OpalSelect {
-	@Param
-	multiple = true;
+	@Param({ default: true })
+	declare multiple: boolean;
 	@Param('dataTreeList')
-	paramDataTreeList: TDataTreeList;
-	@Param({ readonly: true })
-	dataTreeListKeypath: string;
-	@Param({
-		type: eval,
-		default: OpalTreeList.defaultDataTreeListItemSchema,
-		readonly: true
-	})
-	dataTreeListItemSchema: {
+	declare paramDataTreeList: TDataTreeList | null;
+	@Param({ type: String, readonly: true })
+	declare dataTreeListKeypath: string | null;
+	@Param({ type: eval, default: OpalTreeList.defaultDataTreeListItemSchema, readonly: true })
+	declare dataTreeListItemSchema: {
 		value?: string;
 		text?: string;
 	};
-	@Param({
-		type: eval,
-		default: OpalTreeList.defaultViewModelItemSchema,
-		readonly: true
-	})
+	@Param({ type: eval, default: OpalTreeList.defaultViewModelItemSchema, readonly: true })
 	declare viewModelItemSchema: {
 		value?: string;
 		text?: string;
 	};
-	@Param
-	query: string;
-	@Param({ readonly: true })
-	openOnClick = true;
+	@Param(String)
+	declare query: string | null;
+	@Param({ default: true, readonly: true })
+	declare openOnClick: boolean;
 
 	dataTreeList: TDataTreeList;
 
@@ -57,12 +49,10 @@ export class OpalTreeSelect extends OpalSelect {
 		if (this.dataTreeListKeypath) {
 			define(this, 'dataTreeList', new Cell(
 				Function(`return this.${this.dataTreeListKeypath};`),
-				{
-					context: this.ownerComponent || window
-				}
+				{ context: this.ownerComponent || window }
 			));
 		} else {
-			if (!this.$specifiedParams || !this.$specifiedParams.has('dataTreeList')) {
+			if (!this.$specifiedParams.has('dataTreeList')) {
 				throw new TypeError('Parameter "dataTreeList" is required');
 			}
 

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-dropdown"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-dropdown"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-dropdown", "cellx", "@riim/next-tick", "@riim/opal-icon", "@riim/opal-text-input", "rionite", "reflect-metadata", "cellx-decorators"], factory);
+		define(["@riim/opal-dropdown", "cellx", "@riim/next-tick", "@riim/opal-icon", "@riim/opal-text-input", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-autosuggest"] = factory(require("@riim/opal-dropdown"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		exports["@riim/opal-autosuggest"] = factory(require("@riim/opal-dropdown"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-autosuggest"] = factory(root["@riim/opal-dropdown"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_A7KY__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-autosuggest"] = factory(root["@riim/opal-dropdown"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_A7KY__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -135,9 +135,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var OpalAutosuggest_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const next_tick_1 = __webpack_require__("WTz/");
@@ -158,42 +155,6 @@ const defaultDataListItemSchema = Object.freeze({
 let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "dataListItemSchema", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "dataProvider", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "value", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "minQueryLength", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 3
-        });
-        Object.defineProperty(this, "limit", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 5
-        });
-        Object.defineProperty(this, "openMenuOnNothingFound", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
         Object.defineProperty(this, "dataList", {
             enumerable: true,
             configurable: true,
@@ -279,12 +240,6 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
         this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
         this._dataListItemSubtextFieldName =
             dataListItemSchema.subtext || defaultDataListItemSchema.subtext;
-        if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
-            throw new TypeError('Parameter "dataProvider" is required');
-        }
-        if (!this.dataProvider) {
-            throw new TypeError('"dataProvider" is not defined');
-        }
     }
     ready() {
         if (this.value) {
@@ -591,109 +546,64 @@ Object.defineProperty(OpalAutosuggest, "defaultDataListItemSchema", {
     value: defaultDataListItemSchema
 });
 __decorate([
-    rionite_1.Param({
-        type: eval,
-        default: defaultDataListItemSchema,
-        readonly: true
-    }),
-    __metadata("design:type", Object)
+    rionite_1.Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
 ], OpalAutosuggest.prototype, "dataListItemSchema", void 0);
 __decorate([
-    rionite_1.Param({ readonly: true }),
-    __metadata("design:type", Object)
+    rionite_1.Param({ required: true, readonly: true })
 ], OpalAutosuggest.prototype, "dataProvider", void 0);
 __decorate([
-    rionite_1.Param({ type: eval }),
-    __metadata("design:type", Object)
+    rionite_1.Param(eval)
 ], OpalAutosuggest.prototype, "value", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 3 })
 ], OpalAutosuggest.prototype, "minQueryLength", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 5 })
 ], OpalAutosuggest.prototype, "limit", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalAutosuggest.prototype, "openMenuOnNothingFound", void 0);
 __decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
+    cellx_decorators_1.Observable
 ], OpalAutosuggest.prototype, "dataList", void 0);
 __decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
+    cellx_decorators_1.Observable
 ], OpalAutosuggest.prototype, "_loadingPlanned", void 0);
 __decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
+    cellx_decorators_1.Observable
 ], OpalAutosuggest.prototype, "loading", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalAutosuggest.prototype, "loaderShown", null);
 __decorate([
-    rionite_1.Listen('change:value'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change:value')
 ], OpalAutosuggest.prototype, "_onValueChange", null);
 __decorate([
-    rionite_1.Listen('change:loaderShown'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change:loaderShown')
 ], OpalAutosuggest.prototype, "_onLoaderShownChange", null);
 __decorate([
-    rionite_1.Listen(cellx_1.ObservableList.EVENT_CHANGE, '@dataList'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen(cellx_1.ObservableList.EVENT_CHANGE, '@dataList')
 ], OpalAutosuggest.prototype, "_onDataListChange", null);
 __decorate([
-    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_FOCUS, 'textInput'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_FOCUS, 'textInput')
 ], OpalAutosuggest.prototype, "_onTextInputFocus", null);
 __decorate([
-    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_BLUR, 'textInput'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_BLUR, 'textInput')
 ], OpalAutosuggest.prototype, "_onTextInputBlur", null);
 __decorate([
-    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_INPUT, 'textInput'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_INPUT, 'textInput')
 ], OpalAutosuggest.prototype, "_onTextInputInput", null);
 __decorate([
-    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_CHANGE, 'textInput'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_CHANGE, 'textInput')
 ], OpalAutosuggest.prototype, "_onTextInputChange", null);
 __decorate([
-    rionite_1.Listen('click', self => self.$('textInput').textField),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('click', self => self.$('textInput').textField)
 ], OpalAutosuggest.prototype, "_onTextFieldClick", null);
 __decorate([
-    rionite_1.Listen('change:opened', 'menu'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change:opened', 'menu')
 ], OpalAutosuggest.prototype, "_onMenuOpenedChange", null);
 __decorate([
-    rionite_1.Listen('mouseover', self => self.$('menu').element),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Event]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('mouseover', self => self.$('menu').element)
 ], OpalAutosuggest.prototype, "_onMenuElementMouseOver", null);
 OpalAutosuggest = OpalAutosuggest_1 = __decorate([
     rionite_1.Component({
@@ -762,7 +672,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("A7KY");
 __webpack_require__("Y0hN");
 __webpack_require__("hl6F");
-__webpack_require__("vA/G");
 __export(__webpack_require__("9cQR"));
 
 
@@ -779,13 +688,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_hl6F__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

@@ -92,19 +92,20 @@ export class OpalTagSelect extends BaseComponent {
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
-	@Param
-	viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | (string & { _?: never }) =
-		'default';
+	@Param({ default: 'default' })
+	declare viewType:
+		| 'default'
+		| 'primary'
+		| 'success'
+		| 'warning'
+		| 'danger'
+		| (string & { _?: never });
 	@Param('dataList')
-	paramDataList: TDataList;
-	@Param({ readonly: true })
-	dataListKeypath: string;
-	@Param({
-		type: eval,
-		default: defaultDataListItemSchema,
-		readonly: true
-	})
-	dataListItemSchema: {
+	declare paramDataList: TDataList | null;
+	@Param({ type: String, readonly: true })
+	declare dataListKeypath: string | null;
+	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
+	declare dataListItemSchema: {
 		value?: string;
 		text?: string;
 		subtext?: string;
@@ -112,35 +113,31 @@ export class OpalTagSelect extends BaseComponent {
 	};
 	// необязательный, так как может указываться на передаваемом OpalLoadedList
 	@Param({ readonly: true })
-	dataProvider: IDataProvider;
-	@Param('value', { type: eval })
-	paramValue: Array<string>;
-	@Param({ readonly: true })
-	viewModel: TViewModel = new ObservableList();
-	@Param({
-		type: eval,
-		default: defaultVMItemSchema,
-		readonly: true
-	})
-	viewModelItemSchema: {
+	declare dataProvider: IDataProvider | null;
+	@Param('value', eval)
+	declare paramValue: Array<string> | null;
+	@Param({ default: new ObservableList(), readonly: true })
+	declare viewModel: TViewModel;
+	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
+	declare viewModelItemSchema: {
 		value?: string;
 		text?: string;
 		disabled?: string;
 	};
 	@Param({ readonly: true })
-	addNewItem: (text: string) => Promise<Record<string, string>>;
-	@Param
+	declare addNewItem: ((text: string) => Promise<Record<string, string>>) | null;
 	// ;;; Плейсхолдер тегселекта.
 	// ;;; Можно перевести как призыв к выбору -- Select (англ.).
-	placeholder = pt('OpalTagSelect#placeholder', 'Не выбрано');
-	@Param
-	popoverPosition: typeof OpalPopover.prototype.position = 'bottom';
-	@Param
-	tabIndex = 0;
-	@Param
-	focused = false;
-	@Param
-	disabled = false;
+	@Param({ default: pt('OpalTagSelect#placeholder', 'Не выбрано') })
+	declare placeholder: string;
+	@Param({ default: 'bottom' })
+	declare popoverPosition: typeof OpalPopover.prototype.position;
+	@Param({ default: 0 })
+	declare tabIndex: number;
+	@Param({ default: false })
+	declare focused: boolean;
+	@Param({ default: false })
+	declare disabled: boolean;
 
 	dataList: TDataList | null;
 	_dataListItemValueFieldName: string;
@@ -175,7 +172,7 @@ export class OpalTagSelect extends BaseComponent {
 	initialize() {
 		let dataListKeypath = this.dataListKeypath;
 
-		if (dataListKeypath || (this.$specifiedParams && this.$specifiedParams.has('dataList'))) {
+		if (dataListKeypath || this.$specifiedParams.has('dataList')) {
 			define(this, 'dataList', dataListKeypath
 				? new Cell(Function(`return this.${dataListKeypath};`), {
 						context: this.ownerComponent || window

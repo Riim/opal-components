@@ -6,7 +6,7 @@ import { Component, Param } from 'rionite';
 })
 export class OpalTextInputValidatorRule extends OpalInputValidatorRule {
 	@Param
-	minLength: number;
-	@Param({ type: eval })
-	regex: RegExp;
+	declare minLength: number | null;
+	@Param(eval)
+	declare regex: RegExp | null;
 }

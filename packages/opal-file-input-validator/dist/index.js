@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-file-input"), require("@riim/opal-input-validator"), require("rionite"), require("reflect-metadata"));
+		module.exports = factory(require("@riim/opal-file-input"), require("@riim/opal-input-validator"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-file-input", "@riim/opal-input-validator", "rionite", "reflect-metadata"], factory);
+		define(["@riim/opal-file-input", "@riim/opal-input-validator", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-file-input-validator"] = factory(require("@riim/opal-file-input"), require("@riim/opal-input-validator"), require("rionite"), require("reflect-metadata"));
+		exports["@riim/opal-file-input-validator"] = factory(require("@riim/opal-file-input"), require("@riim/opal-input-validator"), require("rionite"));
 	else
-		root["@riim/opal-file-input-validator"] = factory(root["@riim/opal-file-input"], root["@riim/opal-input-validator"], root["rionite"], root["reflect-metadata"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__7gVv__, __WEBPACK_EXTERNAL_MODULE__9L4b__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
+		root["@riim/opal-file-input-validator"] = factory(root["@riim/opal-file-input"], root["@riim/opal-input-validator"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__7gVv__, __WEBPACK_EXTERNAL_MODULE__9L4b__, __WEBPACK_EXTERNAL_MODULE_u4yd__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -107,7 +107,6 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("7gVv");
 __webpack_require__("9L4b");
-__webpack_require__("vA/G");
 __export(__webpack_require__("bt6Z"));
 
 
@@ -195,26 +194,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const opal_input_validator_1 = __webpack_require__("9L4b");
 const rionite_1 = __webpack_require__("u4yd");
 let OpalFileInputValidatorRule = class OpalFileInputValidatorRule extends opal_input_validator_1.OpalInputValidatorRule {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "minCount", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
 };
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Number)
+    rionite_1.Param(Number)
 ], OpalFileInputValidatorRule.prototype, "minCount", void 0);
 OpalFileInputValidatorRule = __decorate([
     rionite_1.Component({
@@ -248,13 +234,6 @@ module.exports = (function(d) {
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ })
 

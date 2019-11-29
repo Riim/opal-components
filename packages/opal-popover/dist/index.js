@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		module.exports = factory(require("cellx"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "rionite", "reflect-metadata", "cellx-decorators"], factory);
+		define(["cellx", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-popover"] = factory(require("cellx"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		exports["@riim/opal-popover"] = factory(require("cellx"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-popover"] = factory(root["cellx"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-popover"] = factory(root["cellx"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -105,7 +105,6 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__("vA/G");
 __export(__webpack_require__("WwGH"));
 
 
@@ -139,9 +138,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var OpalPopover_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_1 = __webpack_require__("P7z7");
@@ -152,36 +148,6 @@ const template_rnt_1 = __webpack_require__("UFjE");
 let OpalPopover = OpalPopover_1 = class OpalPopover extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "position", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 'right'
-        });
-        Object.defineProperty(this, "positionOffset", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 0
-        });
-        Object.defineProperty(this, "autoDirection", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: true
-        });
-        Object.defineProperty(this, "closeOn", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "opened", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
         Object.defineProperty(this, "contentRendered", {
             enumerable: true,
             configurable: true,
@@ -344,34 +310,25 @@ Object.defineProperty(OpalPopover, "EVENT_CLOSE", {
     value: Symbol('close')
 });
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 'right' })
 ], OpalPopover.prototype, "position", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 0 })
 ], OpalPopover.prototype, "positionOffset", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: true })
 ], OpalPopover.prototype, "autoDirection", void 0);
 __decorate([
-    rionite_1.Param({ type: String }),
-    __metadata("design:type", Object)
+    rionite_1.Param(String)
 ], OpalPopover.prototype, "closeOn", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalPopover.prototype, "opened", void 0);
 __decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
+    cellx_decorators_1.Observable
 ], OpalPopover.prototype, "contentRendered", void 0);
 __decorate([
-    rionite_1.Listen('change:opened'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change:opened')
 ], OpalPopover.prototype, "_onOpenedChange", null);
 OpalPopover = OpalPopover_1 = __decorate([
     rionite_1.Component({
@@ -406,13 +363,6 @@ module.exports = (function(d) {
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

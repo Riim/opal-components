@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-loader"), require("cellx"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-loader"), require("cellx"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-loader", "cellx", "rionite", "reflect-metadata", "cellx-decorators"], factory);
+		define(["@riim/opal-loader", "cellx", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-loaded-list"] = factory(require("@riim/opal-loader"), require("cellx"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		exports["@riim/opal-loaded-list"] = factory(require("@riim/opal-loader"), require("cellx"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-loaded-list"] = factory(root["@riim/opal-loader"], root["cellx"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-loaded-list"] = factory(root["@riim/opal-loader"], root["cellx"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -149,9 +149,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var OpalLoadedList_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_1 = __webpack_require__("P7z7");
@@ -166,36 +163,6 @@ let defaultDataListItemSchema = Object.freeze({
 let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "dataListItemSchema", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "dataProvider", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "limit", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 100
-        });
-        Object.defineProperty(this, "query", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "preloading", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
         Object.defineProperty(this, "dataList", {
             enumerable: true,
             configurable: true,
@@ -267,12 +234,6 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
         this._dataListItemTextFieldName =
             this.dataListItemSchema.text ||
                 this.constructor.defaultDataListItemSchema.text;
-        if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
-            throw new TypeError('Parameter "dataProvider" is required');
-        }
-        if (!this.dataProvider) {
-            throw new TypeError('"dataProvider" is not defined');
-        }
     }
     elementAttached() {
         if (this.preloading) {
@@ -387,66 +348,43 @@ Object.defineProperty(OpalLoadedList, "defaultDataListItemSchema", {
     value: defaultDataListItemSchema
 });
 __decorate([
-    rionite_1.Param({
-        type: eval,
-        default: defaultDataListItemSchema,
-        readonly: true
-    }),
-    __metadata("design:type", Object)
+    rionite_1.Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
 ], OpalLoadedList.prototype, "dataListItemSchema", void 0);
 __decorate([
-    rionite_1.Param({ readonly: true }),
-    __metadata("design:type", Object)
+    rionite_1.Param({ required: true, readonly: true })
 ], OpalLoadedList.prototype, "dataProvider", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 100 })
 ], OpalLoadedList.prototype, "limit", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", String)
+    rionite_1.Param(String)
 ], OpalLoadedList.prototype, "query", void 0);
 __decorate([
-    rionite_1.Param({ readonly: true }),
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false, readonly: true })
 ], OpalLoadedList.prototype, "preloading", void 0);
 __decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
+    cellx_decorators_1.Observable
 ], OpalLoadedList.prototype, "dataList", void 0);
 __decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
+    cellx_decorators_1.Observable
 ], OpalLoadedList.prototype, "total", void 0);
 __decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
+    cellx_decorators_1.Observable
 ], OpalLoadedList.prototype, "_loadingCheckPlanned", void 0);
 __decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
+    cellx_decorators_1.Observable
 ], OpalLoadedList.prototype, "loading", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalLoadedList.prototype, "loaderShown", null);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalLoadedList.prototype, "nothingFoundShown", null);
 __decorate([
-    rionite_1.Listen('change:query'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change:query')
 ], OpalLoadedList.prototype, "_onQueryChange", null);
 __decorate([
-    rionite_1.Listen('scroll', '@element'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('scroll', '@element')
 ], OpalLoadedList.prototype, "_onElementScroll", null);
 OpalLoadedList = OpalLoadedList_1 = __decorate([
     rionite_1.Component({
@@ -469,7 +407,6 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("BLMt");
-__webpack_require__("vA/G");
 __export(__webpack_require__("jpRZ"));
 
 
@@ -479,13 +416,6 @@ __export(__webpack_require__("jpRZ"));
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

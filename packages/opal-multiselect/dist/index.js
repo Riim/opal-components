@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/platform"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("@riim/opal-select"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/platform"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("@riim/opal-select"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/platform", "@riim/opal-button", "@riim/opal-icon", "@riim/opal-text-input", "@riim/opal-loaded-list", "@riim/opal-select", "rionite", "reflect-metadata", "cellx-decorators"], factory);
+		define(["@riim/platform", "@riim/opal-button", "@riim/opal-icon", "@riim/opal-text-input", "@riim/opal-loaded-list", "@riim/opal-select", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-multiselect"] = factory(require("@riim/platform"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("@riim/opal-select"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		exports["@riim/opal-multiselect"] = factory(require("@riim/platform"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("@riim/opal-select"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-multiselect"] = factory(root["@riim/platform"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["@riim/opal-loaded-list"], root["@riim/opal-select"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__4C_D__, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_ioIi__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-multiselect"] = factory(root["@riim/platform"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["@riim/opal-loaded-list"], root["@riim/opal-select"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__4C_D__, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_ioIi__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -107,9 +107,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const opal_button_1 = __webpack_require__("X6DG");
 const opal_select_1 = __webpack_require__("jL6t");
@@ -122,18 +119,6 @@ const template_rnt_1 = __webpack_require__("b1cT");
 let OpalMultiselect = class OpalMultiselect extends opal_select_1.OpalSelect {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "multiple", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: true
-        });
-        Object.defineProperty(this, "dataProvider", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
         Object.defineProperty(this, "_queryInputClass", {
             enumerable: true,
             configurable: true,
@@ -146,29 +131,19 @@ let OpalMultiselect = class OpalMultiselect extends opal_select_1.OpalSelect {
     }
     initialize() {
         super.initialize();
-        if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
-            throw new TypeError('Parameter "dataProvider" is required');
-        }
-        if (!this.dataProvider) {
-            throw new TypeError('"dataProvider" is not defined');
-        }
         if (!platform_1.isMobile) {
             this._queryInputClass = 'OpalSelect__focus';
         }
     }
 };
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: true })
 ], OpalMultiselect.prototype, "multiple", void 0);
 __decorate([
-    rionite_1.Param({ readonly: true }),
-    __metadata("design:type", Object)
+    rionite_1.Param({ required: true, readonly: true })
 ], OpalMultiselect.prototype, "dataProvider", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalMultiselect.prototype, "nothingSelectedShown", null);
 OpalMultiselect = __decorate([
     rionite_1.Component({
@@ -267,7 +242,6 @@ __webpack_require__("Y0hN");
 __webpack_require__("ioIi");
 __webpack_require__("jL6t");
 __webpack_require__("hl6F");
-__webpack_require__("vA/G");
 __export(__webpack_require__("/Yv1"));
 
 
@@ -298,13 +272,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_jL6t__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

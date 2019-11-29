@@ -24,45 +24,26 @@ import template from './template.rnt';
 	}
 })
 export class OpalTreeListItem extends BaseComponent {
-	@Param({
-		required: true,
-		readonly: true
-	})
-	dataTreeList: TDataTreeList;
+	@Param({ required: true, readonly: true })
+	declare dataTreeList: TDataTreeList;
 	@Param({ required: true })
-	filteredDataTreeList: TFilteredDataTreeList;
-	@Param({
-		required: true,
-		readonly: true
-	})
-	dataTreeListItemValueFieldName: string;
-	@Param({
-		required: true,
-		readonly: true
-	})
-	dataTreeListItemTextFieldName: string;
+	declare filteredDataTreeList: TFilteredDataTreeList;
+	@Param({ type: String, required: true, readonly: true })
+	declare dataTreeListItemValueFieldName: string;
+	@Param({ type: String, required: true, readonly: true })
+	declare dataTreeListItemTextFieldName: string;
 	@Param({ required: true })
-	viewModel: TViewModel;
-	@Param({
-		required: true,
-		readonly: true
-	})
-	viewModelItemValueFieldName: string;
-	@Param({
-		required: true,
-		readonly: true
-	})
-	viewModelItemTextFieldName: string;
-	@Param({
-		type: eval,
-		required: true,
-		readonly: true
-	})
-	indexpath: Array<number>;
-	@Param
-	query: string;
-	@Param
-	opened = false;
+	declare viewModel: TViewModel;
+	@Param({ type: String, required: true, readonly: true })
+	declare viewModelItemValueFieldName: string;
+	@Param({ type: String, required: true, readonly: true })
+	declare viewModelItemTextFieldName: string;
+	@Param({ type: eval, required: true, readonly: true })
+	declare indexpath: Array<number>;
+	@Param(String)
+	declare query: string | null;
+	@Param({ default: false })
+	declare opened: boolean;
 
 	dataTreeListItem: IFilteredDataTreeListItem;
 	_dataTreeListItemValueFieldName: string;

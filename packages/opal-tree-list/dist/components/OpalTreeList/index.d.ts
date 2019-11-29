@@ -30,8 +30,8 @@ export declare class OpalTreeList extends BaseComponent {
         value: string;
         text: string;
     }>;
-    paramDataTreeList: TDataTreeList;
-    dataTreeListKeypath: string;
+    paramDataTreeList: TDataTreeList | null;
+    dataTreeListKeypath: string | null;
     dataTreeListItemSchema: {
         value?: string;
         text?: string;
@@ -41,7 +41,7 @@ export declare class OpalTreeList extends BaseComponent {
         value?: string;
         text?: string;
     };
-    query: string;
+    query: string | null;
     dataTreeList: TDataTreeList | null;
     _dataTreeListItemValueFieldName: string;
     _dataTreeListItemTextFieldName: string;

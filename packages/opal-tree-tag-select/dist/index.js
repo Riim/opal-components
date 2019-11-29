@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-tree-select"), require("@riim/opal-tag-select"), require("@riim/opal-sign-button"), require("rionite"), require("reflect-metadata"));
+		module.exports = factory(require("@riim/opal-tree-select"), require("@riim/opal-tag-select"), require("@riim/opal-sign-button"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-tree-select", "@riim/opal-tag-select", "@riim/opal-sign-button", "rionite", "reflect-metadata"], factory);
+		define(["@riim/opal-tree-select", "@riim/opal-tag-select", "@riim/opal-sign-button", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tree-tag-select"] = factory(require("@riim/opal-tree-select"), require("@riim/opal-tag-select"), require("@riim/opal-sign-button"), require("rionite"), require("reflect-metadata"));
+		exports["@riim/opal-tree-tag-select"] = factory(require("@riim/opal-tree-select"), require("@riim/opal-tag-select"), require("@riim/opal-sign-button"), require("rionite"));
 	else
-		root["@riim/opal-tree-tag-select"] = factory(root["@riim/opal-tree-select"], root["@riim/opal-tag-select"], root["@riim/opal-sign-button"], root["rionite"], root["reflect-metadata"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__6dQR__, __WEBPACK_EXTERNAL_MODULE_cu1Y__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
+		root["@riim/opal-tree-tag-select"] = factory(root["@riim/opal-tree-select"], root["@riim/opal-tag-select"], root["@riim/opal-sign-button"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__6dQR__, __WEBPACK_EXTERNAL_MODULE_cu1Y__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_u4yd__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -139,7 +139,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("ej3F");
 __webpack_require__("cu1Y");
 __webpack_require__("6dQR");
-__webpack_require__("vA/G");
 __export(__webpack_require__("yjNT"));
 
 
@@ -149,13 +148,6 @@ __export(__webpack_require__("yjNT"));
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

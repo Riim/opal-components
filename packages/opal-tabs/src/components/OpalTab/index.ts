@@ -16,18 +16,18 @@ export class OpalTab extends BaseComponent {
 	static EVENT_SELECT = Symbol('select');
 	static EVENT_DESELECT = Symbol('deselect');
 
-	@Param
-	label: string;
-	@Param
-	selected = false;
-	@Param
-	tabIndex = 0;
-	@Param
-	focused = false;
-	@Param
-	hidden = false;
-	@Param
-	disabled = false;
+	@Param(String)
+	declare label: string | null;
+	@Param({ default: false })
+	declare selected: boolean;
+	@Param({ default: 0 })
+	declare tabIndex: number;
+	@Param({ default: false })
+	declare focused: boolean;
+	@Param({ default: false })
+	declare hidden: boolean;
+	@Param({ default: false })
+	declare disabled: boolean;
 
 	@Computed
 	get _tabIndex(): number {

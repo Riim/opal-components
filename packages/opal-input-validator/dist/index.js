@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-popover"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-popover"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-popover", "rionite", "reflect-metadata", "cellx-decorators"], factory);
+		define(["@riim/opal-popover", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-input-validator"] = factory(require("@riim/opal-popover"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		exports["@riim/opal-input-validator"] = factory(require("@riim/opal-popover"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-input-validator"] = factory(root["@riim/opal-popover"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__2L3N__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-input-validator"] = factory(root["@riim/opal-popover"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__2L3N__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -131,7 +131,6 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("2L3N");
-__webpack_require__("vA/G");
 __export(__webpack_require__("za5m"));
 
 
@@ -176,35 +175,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("0CRM");
 const template_rnt_1 = __webpack_require__("4p0C");
 let OpalInputValidatorRule = class OpalInputValidatorRule extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "required", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "test", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "popoverPosition", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 'right'
-        });
-    }
     showMessage() {
         this.$('popover').open();
     }
@@ -213,16 +188,13 @@ let OpalInputValidatorRule = class OpalInputValidatorRule extends rionite_1.Base
     }
 };
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalInputValidatorRule.prototype, "required", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Function)
+    rionite_1.Param
 ], OpalInputValidatorRule.prototype, "test", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 'right' })
 ], OpalInputValidatorRule.prototype, "popoverPosition", void 0);
 OpalInputValidatorRule = __decorate([
     rionite_1.Component({
@@ -252,13 +224,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 /***/ }),
 
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
-
-/***/ }),
-
 /***/ "yOaX":
 /***/ (function(module, exports) {
 
@@ -276,9 +241,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var OpalInputValidator_1;
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -368,19 +330,13 @@ Object.defineProperty(OpalInputValidator, "EVENT_INPUT_VALIDATION_VALID", {
     value: Symbol('input-validation-valid')
 });
 __decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
+    cellx_decorators_1.Observable
 ], OpalInputValidator.prototype, "failedRule", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalInputValidator.prototype, "valid", null);
 __decorate([
-    rionite_1.Listen((ctor) => ctor.targetChangeEvents, '@target'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen((ctor) => ctor.targetChangeEvents, '@target')
 ], OpalInputValidator.prototype, "_onTargetChange", null);
 OpalInputValidator = OpalInputValidator_1 = __decorate([
     rionite_1.Component({

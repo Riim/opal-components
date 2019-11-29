@@ -32,8 +32,8 @@ export class OpalInputMask extends BaseComponent {
 		'*': /[0-9a-zA-Z]/
 	};
 
-	@Param({ required: true })
-	mask: string;
+	@Param({ type: String, required: true })
+	declare mask: string;
 
 	_definitions: Record<string, RegExp>;
 

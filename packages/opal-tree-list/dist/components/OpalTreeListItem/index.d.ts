@@ -10,7 +10,7 @@ export declare class OpalTreeListItem extends BaseComponent {
     viewModelItemValueFieldName: string;
     viewModelItemTextFieldName: string;
     indexpath: Array<number>;
-    query: string;
+    query: string | null;
     opened: boolean;
     dataTreeListItem: IFilteredDataTreeListItem;
     _dataTreeListItemValueFieldName: string;

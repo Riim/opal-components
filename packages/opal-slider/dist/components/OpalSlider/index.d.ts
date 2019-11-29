@@ -6,7 +6,7 @@ export declare class OpalSlider extends BaseComponent {
     max: number;
     step: number;
     value: number;
-    range: [number, number];
+    range: [number, number] | null;
     get _firstInputWidth(): number;
     elementAttached(): void;
     _onFirstInputInput(evt: Event): void;

@@ -44,20 +44,20 @@ function pad(num: number): string {
 	}
 })
 export class OpalDateInput extends BaseComponent {
-	@Param
-	fromDate: string;
-	@Param
-	toDate: string;
-	@Param('value')
-	paramValue: string;
-	@Param
-	placeholder = 'dd.mm.yyyy';
-	@Param
-	mask = '99.99.9999';
-	@Param({ readonly: true })
-	required = false;
-	@Param
-	popoverPosition: typeof OpalPopover.prototype.position = 'right';
+	@Param(String)
+	declare fromDate: string | null;
+	@Param(String)
+	declare toDate: string | null;
+	@Param('value', String)
+	declare paramValue: string | null;
+	@Param({ default: 'dd.mm.yyyy' })
+	declare placeholder: string;
+	@Param({ default: '99.99.9999' })
+	declare mask: string;
+	@Param({ default: false, readonly: true })
+	declare required: boolean;
+	@Param({ default: 'right' })
+	declare popoverPosition: typeof OpalPopover.prototype.position;
 
 	dateExists = dateExists;
 

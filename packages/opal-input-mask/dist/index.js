@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-text-input"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-text-input"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-text-input", "rionite", "reflect-metadata", "cellx-decorators"], factory);
+		define(["@riim/opal-text-input", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-input-mask"] = factory(require("@riim/opal-text-input"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		exports["@riim/opal-input-mask"] = factory(require("@riim/opal-text-input"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-input-mask"] = factory(root["@riim/opal-text-input"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-input-mask"] = factory(root["@riim/opal-text-input"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -106,7 +106,6 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("hl6F");
-__webpack_require__("vA/G");
 __export(__webpack_require__("X+JO"));
 
 
@@ -133,43 +132,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("lXXY");
 let OpalInputMaskDefinition = class OpalInputMaskDefinition extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "maskChar", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "regex", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
 };
 __decorate([
-    rionite_1.Param({
-        required: true,
-        readonly: true
-    }),
-    __metadata("design:type", String)
+    rionite_1.Param({ type: String, required: true, readonly: true })
 ], OpalInputMaskDefinition.prototype, "maskChar", void 0);
 __decorate([
-    rionite_1.Param({
-        type: eval,
-        required: true,
-        readonly: true
-    }),
-    __metadata("design:type", RegExp)
+    rionite_1.Param({ type: eval, required: true, readonly: true })
 ], OpalInputMaskDefinition.prototype, "regex", void 0);
 OpalInputMaskDefinition = __decorate([
     rionite_1.Component({
@@ -192,9 +164,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var OpalInputMask_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const opal_text_input_1 = __webpack_require__("hl6F");
@@ -209,12 +178,6 @@ const ie11 = !window.ActiveXObject && 'ActiveXObject' in window;
 let OpalInputMask = OpalInputMask_1 = class OpalInputMask extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "mask", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
         Object.defineProperty(this, "_definitions", {
             enumerable: true,
             configurable: true,
@@ -512,64 +475,37 @@ Object.defineProperty(OpalInputMask, "defaultDefinitions", {
     }
 });
 __decorate([
-    rionite_1.Param({ required: true }),
-    __metadata("design:type", String)
+    rionite_1.Param({ type: String, required: true })
 ], OpalInputMask.prototype, "mask", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Array),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalInputMask.prototype, "_mask", null);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Number),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalInputMask.prototype, "_partialIndex", null);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Array),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalInputMask.prototype, "_tests", null);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Number),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalInputMask.prototype, "_firstTestIndex", null);
 __decorate([
-    rionite_1.Listen('change:_mask'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change:_mask')
 ], OpalInputMask.prototype, "_onMaskChange", null);
 __decorate([
-    rionite_1.Listen('focus', '@textField'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('focus', '@textField')
 ], OpalInputMask.prototype, "_onTextFieldFocus", null);
 __decorate([
-    rionite_1.Listen('blur', '@textField'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('blur', '@textField')
 ], OpalInputMask.prototype, "_onTextFieldBlur", null);
 __decorate([
-    rionite_1.Listen('keydown', '@textField'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [KeyboardEvent]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('keydown', '@textField')
 ], OpalInputMask.prototype, "_onTextFieldKeyDown", null);
 __decorate([
-    rionite_1.Listen('keypress', '@textField'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [KeyboardEvent]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('keypress', '@textField')
 ], OpalInputMask.prototype, "_onTextFieldKeyPress", null);
 __decorate([
-    rionite_1.Listen('input', '@textField'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('input', '@textField')
 ], OpalInputMask.prototype, "_onTextFieldInput", null);
 OpalInputMask = OpalInputMask_1 = __decorate([
     rionite_1.Component({
@@ -611,13 +547,6 @@ module.exports = (function(d) {
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 

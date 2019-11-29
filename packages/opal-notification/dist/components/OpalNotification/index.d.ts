@@ -7,7 +7,7 @@ export declare class OpalNotification extends BaseComponent {
     viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | (string & {
         _?: never;
     });
-    icon: string;
+    icon: string | null;
     iconSize: 'xs' | 's' | 'm' | (string & {
         _?: never;
     });

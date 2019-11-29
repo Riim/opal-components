@@ -5,8 +5,8 @@ import './index.css';
 	elementIs: 'OpalLoader'
 })
 export class OpalLoader extends BaseComponent {
-	@Param
-	size: 's' | 'm' | (string & { _?: never }) = 'm';
-	@Param
-	shown = false;
+	@Param({ default: 'm' })
+	declare size: 's' | 'm' | (string & { _?: never });
+	@Param({ default: false })
+	declare shown: boolean;
 }

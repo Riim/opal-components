@@ -127,8 +127,8 @@ p {
 
 h1 { 'OpalSignButton' }
 p {
-	OpalSignButton (sign=plus, viewType=default) { 'Button' } ' '
-	OpalSignButton (sign=minus, viewType=default) { 'Button' }
+	OpalSignButton (sign=plus) { 'Button' } ' '
+	OpalSignButton (sign=minus) { 'Button' }
 }
 p {
 	OpalSignButton (sign=plus) { 'Button' } ' '

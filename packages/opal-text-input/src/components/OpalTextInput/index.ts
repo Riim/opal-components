@@ -53,38 +53,38 @@ export class OpalTextInput extends BaseComponent {
 	static EVENT_KEYPRESS = Symbol('keypress');
 	static EVENT_KEYUP = Symbol('keyup');
 
-	@Param
-	inputType: 'text' | 'password' | (string & { _?: never }) = 'text';
-	@Param
-	size: 'm' | (string & { _?: never }) = 'm';
-	@Param
-	multiline = false;
-	@Param
-	rows = 5;
-	@Param
-	autoHeight = true;
-	@Param
-	inputName: string;
-	@Param('value')
-	paramValue: string;
-	@Param
-	storeKey: string;
-	@Param
-	placeholder: string;
-	@Param
-	startIcon: string;
-	@Param
-	endIcon: string;
-	@Param
-	clearable = false;
-	@Param
-	loading = false;
-	@Param
-	tabIndex = 0;
-	@Param
-	focused = false;
-	@Param
-	disabled = false;
+	@Param({ default: 'text' })
+	declare inputType: 'text' | 'password' | (string & { _?: never });
+	@Param({ default: 'm' })
+	declare size: 'm' | (string & { _?: never });
+	@Param({ default: false })
+	declare multiline: boolean;
+	@Param({ default: 5 })
+	declare rows: number;
+	@Param({ default: true })
+	declare autoHeight: boolean;
+	@Param(String)
+	declare inputName: string | null;
+	@Param('value', String)
+	declare paramValue: string | null;
+	@Param(String)
+	declare storeKey: string | null;
+	@Param(String)
+	declare placeholder: string | null;
+	@Param(String)
+	declare startIcon: string | null;
+	@Param(String)
+	declare endIcon: string | null;
+	@Param({ default: false })
+	declare clearable: boolean;
+	@Param({ default: false })
+	declare loading: boolean;
+	@Param({ default: 0 })
+	declare tabIndex: number;
+	@Param({ default: false })
+	declare focused: boolean;
+	@Param({ default: false })
+	declare disabled: boolean;
 
 	_inputTypeCell: Cell<string>;
 	@Computed

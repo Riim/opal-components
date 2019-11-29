@@ -22,9 +22,9 @@ export declare function fromDate(this: OpalCalendar): Date;
 export declare function toDate(this: OpalCalendar): Date;
 export declare class OpalCalendar extends BaseComponent {
     static EVENT_CHANGE: symbol;
-    paramFromDate: string;
-    paramToDate: string;
-    paramValue: string;
+    paramFromDate: string | null;
+    paramToDate: string | null;
+    paramValue: string | null;
     dateDelimiter: string;
     weekDays: Array<string>;
     weekDaysShort: Array<string>;

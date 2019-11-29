@@ -69,22 +69,22 @@ export class OpalFileInput extends BaseComponent {
 	static EVENT_CHANGE = Symbol('change');
 	static EVENT_CLEAR = Symbol('clear');
 
-	@Param({ readonly: true })
-	multiple = false;
+	@Param({ default: false, readonly: true })
+	declare multiple: boolean;
 	@Param({ default: new ObservableList() })
-	dataList: TDataList;
-	@Param({ readonly: true })
-	allowType: string;
-	@Param
-	sizeLimit: number;
-	@Param
-	totalSizeLimit: number;
-	@Param
-	buttonText = pt('OpalFileInput#buttonText', 'Выбрать файл');
-	@Param
-	placeholder = pt('OpalFileInput#placeholder', 'Не выбрано');
-	@Param
-	disabled = false;
+	declare dataList: TDataList;
+	@Param({ type: String, readonly: true })
+	declare allowType: string | null;
+	@Param(Number)
+	declare sizeLimit: number | null;
+	@Param(Number)
+	declare totalSizeLimit: number | null;
+	@Param({ default: pt('OpalFileInput#buttonText', 'Выбрать файл') })
+	declare buttonText: string;
+	@Param({ default: pt('OpalFileInput#placeholder', 'Не выбрано') })
+	declare placeholder: string;
+	@Param({ default: false })
+	declare disabled: boolean;
 
 	_reFileType: RegExp;
 

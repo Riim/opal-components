@@ -42,10 +42,10 @@ import template from './template.rnt';
 	}
 })
 export class OpalMultiselect extends OpalSelect {
-	@Param
-	multiple = true;
-	@Param({ readonly: true })
-	dataProvider: IDataProvider;
+	@Param({ default: true })
+	declare multiple: boolean;
+	@Param({ required: true, readonly: true })
+	declare dataProvider: IDataProvider;
 
 	@Computed
 	get nothingSelectedShown(): boolean {
@@ -56,14 +56,6 @@ export class OpalMultiselect extends OpalSelect {
 
 	initialize() {
 		super.initialize();
-
-		if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
-			throw new TypeError('Parameter "dataProvider" is required');
-		}
-
-		if (!this.dataProvider) {
-			throw new TypeError('"dataProvider" is not defined');
-		}
 
 		if (!isMobile) {
 			this._queryInputClass = 'OpalSelect__focus';

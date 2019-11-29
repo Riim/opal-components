@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-text-input-validator"), require("@riim/opal-dropdown"), require("@riim/opal-input-mask"), require("@riim/opal-icon"), require("date-exists"), require("@riim/opal-text-input"), require("@riim/opal-calendar"), require("rionite"), require("reflect-metadata"));
+		module.exports = factory(require("@riim/opal-text-input-validator"), require("@riim/opal-dropdown"), require("@riim/opal-input-mask"), require("@riim/opal-icon"), require("date-exists"), require("@riim/opal-text-input"), require("@riim/opal-calendar"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-text-input-validator", "@riim/opal-dropdown", "@riim/opal-input-mask", "@riim/opal-icon", "date-exists", "@riim/opal-text-input", "@riim/opal-calendar", "rionite", "reflect-metadata"], factory);
+		define(["@riim/opal-text-input-validator", "@riim/opal-dropdown", "@riim/opal-input-mask", "@riim/opal-icon", "date-exists", "@riim/opal-text-input", "@riim/opal-calendar", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-date-input"] = factory(require("@riim/opal-text-input-validator"), require("@riim/opal-dropdown"), require("@riim/opal-input-mask"), require("@riim/opal-icon"), require("date-exists"), require("@riim/opal-text-input"), require("@riim/opal-calendar"), require("rionite"), require("reflect-metadata"));
+		exports["@riim/opal-date-input"] = factory(require("@riim/opal-text-input-validator"), require("@riim/opal-dropdown"), require("@riim/opal-input-mask"), require("@riim/opal-icon"), require("date-exists"), require("@riim/opal-text-input"), require("@riim/opal-calendar"), require("rionite"));
 	else
-		root["@riim/opal-date-input"] = factory(root["@riim/opal-text-input-validator"], root["@riim/opal-dropdown"], root["@riim/opal-input-mask"], root["@riim/opal-icon"], root["date-exists"], root["@riim/opal-text-input"], root["@riim/opal-calendar"], root["rionite"], root["reflect-metadata"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__tCi__, __WEBPACK_EXTERNAL_MODULE_A7KY__, __WEBPACK_EXTERNAL_MODULE_JK3___, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_aB20__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_iMF9__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
+		root["@riim/opal-date-input"] = factory(root["@riim/opal-text-input-validator"], root["@riim/opal-dropdown"], root["@riim/opal-input-mask"], root["@riim/opal-icon"], root["date-exists"], root["@riim/opal-text-input"], root["@riim/opal-calendar"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__tCi__, __WEBPACK_EXTERNAL_MODULE_A7KY__, __WEBPACK_EXTERNAL_MODULE_JK3___, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_aB20__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_iMF9__, __WEBPACK_EXTERNAL_MODULE_u4yd__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -118,7 +118,6 @@ __webpack_require__("Y0hN");
 __webpack_require__("JK3/");
 __webpack_require__("hl6F");
 __webpack_require__("/tCi");
-__webpack_require__("vA/G");
 __export(__webpack_require__("ZX14"));
 
 
@@ -184,9 +183,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const opal_calendar_1 = __webpack_require__("iMF9");
 const opal_text_input_1 = __webpack_require__("hl6F");
@@ -200,48 +196,6 @@ function pad(num) {
 let OpalDateInput = class OpalDateInput extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "fromDate", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "toDate", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "paramValue", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "placeholder", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 'dd.mm.yyyy'
-        });
-        Object.defineProperty(this, "mask", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: '99.99.9999'
-        });
-        Object.defineProperty(this, "required", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "popoverPosition", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 'right'
-        });
         Object.defineProperty(this, "dateExists", {
             enumerable: true,
             configurable: true,
@@ -364,50 +318,34 @@ let OpalDateInput = class OpalDateInput extends rionite_1.BaseComponent {
     }
 };
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", String)
+    rionite_1.Param(String)
 ], OpalDateInput.prototype, "fromDate", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", String)
+    rionite_1.Param(String)
 ], OpalDateInput.prototype, "toDate", void 0);
 __decorate([
-    rionite_1.Param('value'),
-    __metadata("design:type", String)
+    rionite_1.Param('value', String)
 ], OpalDateInput.prototype, "paramValue", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 'dd.mm.yyyy' })
 ], OpalDateInput.prototype, "placeholder", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: '99.99.9999' })
 ], OpalDateInput.prototype, "mask", void 0);
 __decorate([
-    rionite_1.Param({ readonly: true }),
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false, readonly: true })
 ], OpalDateInput.prototype, "required", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 'right' })
 ], OpalDateInput.prototype, "popoverPosition", void 0);
 __decorate([
-    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_CHANGE, 'textInput'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_CHANGE, 'textInput')
 ], OpalDateInput.prototype, "_onTextInputChange", null);
 __decorate([
-    rionite_1.Listen('click', self => self.$('textInput').element),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('click', self => self.$('textInput').element)
 ], OpalDateInput.prototype, "_onTextInputElementClick", null);
 __decorate([
-    rionite_1.Listen('change:opened', 'calendarMenu'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change:opened', 'calendarMenu')
 ], OpalDateInput.prototype, "_onCalendarMenuOpenedChange", null);
 OpalDateInput = __decorate([
     rionite_1.Component({
@@ -456,13 +394,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_iMF9__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ })
 

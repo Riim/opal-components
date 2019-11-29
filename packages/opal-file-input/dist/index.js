@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/next-uid"), require("@riim/gettext"), require("rionite"), require("reflect-metadata"), require("@riim/escape-regexp"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/next-uid"), require("@riim/gettext"), require("rionite"), require("@riim/escape-regexp"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-loader", "@riim/opal-components-common", "cellx", "@riim/next-tick", "@riim/opal-button", "@riim/opal-icon", "@riim/next-uid", "@riim/gettext", "rionite", "reflect-metadata", "@riim/escape-regexp", "cellx-decorators"], factory);
+		define(["@riim/opal-loader", "@riim/opal-components-common", "cellx", "@riim/next-tick", "@riim/opal-button", "@riim/opal-icon", "@riim/next-uid", "@riim/gettext", "rionite", "@riim/escape-regexp", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-file-input"] = factory(require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/next-uid"), require("@riim/gettext"), require("rionite"), require("reflect-metadata"), require("@riim/escape-regexp"), require("cellx-decorators"));
+		exports["@riim/opal-file-input"] = factory(require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/next-uid"), require("@riim/gettext"), require("rionite"), require("@riim/escape-regexp"), require("cellx-decorators"));
 	else
-		root["@riim/opal-file-input"] = factory(root["@riim/opal-loader"], root["@riim/opal-components-common"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/next-uid"], root["@riim/gettext"], root["rionite"], root["reflect-metadata"], root["@riim/escape-regexp"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_MYNt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_cIp5__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_xFbw__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-file-input"] = factory(root["@riim/opal-loader"], root["@riim/opal-components-common"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/next-uid"], root["@riim/gettext"], root["rionite"], root["@riim/escape-regexp"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_MYNt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_cIp5__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_xFbw__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -124,9 +124,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var OpalFileInput_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const escape_regexp_1 = __webpack_require__("xFbw");
@@ -144,54 +141,6 @@ let dragEl = null;
 let OpalFileInput = OpalFileInput_1 = class OpalFileInput extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "multiple", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "dataList", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "allowType", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "sizeLimit", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "totalSizeLimit", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "buttonText", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: gettext_1.pt('OpalFileInput#buttonText', 'Выбрать файл')
-        });
-        Object.defineProperty(this, "placeholder", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: gettext_1.pt('OpalFileInput#placeholder', 'Не выбрано')
-        });
-        Object.defineProperty(this, "disabled", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
         Object.defineProperty(this, "_reFileType", {
             enumerable: true,
             configurable: true,
@@ -434,81 +383,52 @@ Object.defineProperty(OpalFileInput, "EVENT_CLEAR", {
     value: Symbol('clear')
 });
 __decorate([
-    rionite_1.Param({ readonly: true }),
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false, readonly: true })
 ], OpalFileInput.prototype, "multiple", void 0);
 __decorate([
-    rionite_1.Param({ default: new cellx_1.ObservableList() }),
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: new cellx_1.ObservableList() })
 ], OpalFileInput.prototype, "dataList", void 0);
 __decorate([
-    rionite_1.Param({ readonly: true }),
-    __metadata("design:type", String)
+    rionite_1.Param({ type: String, readonly: true })
 ], OpalFileInput.prototype, "allowType", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Number)
+    rionite_1.Param(Number)
 ], OpalFileInput.prototype, "sizeLimit", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Number)
+    rionite_1.Param(Number)
 ], OpalFileInput.prototype, "totalSizeLimit", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: gettext_1.pt('OpalFileInput#buttonText', 'Выбрать файл') })
 ], OpalFileInput.prototype, "buttonText", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: gettext_1.pt('OpalFileInput#placeholder', 'Не выбрано') })
 ], OpalFileInput.prototype, "placeholder", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalFileInput.prototype, "disabled", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Array),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalFileInput.prototype, "files", null);
 __decorate([
-    cellx_decorators_1.Observable,
-    __metadata("design:type", Object)
+    cellx_decorators_1.Observable
 ], OpalFileInput.prototype, "errorMessage", void 0);
 __decorate([
-    rionite_1.Listen('change', 'filesInput'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Event]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change', 'filesInput')
 ], OpalFileInput.prototype, "_onFilesInputChange", null);
 __decorate([
-    rionite_1.Listen('dragenter', 'dropZone'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('dragenter', 'dropZone')
 ], OpalFileInput.prototype, "_onDropZoneDragEnter", null);
 __decorate([
-    rionite_1.Listen('dragover', 'dropZone'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Event]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('dragover', 'dropZone')
 ], OpalFileInput.prototype, "_onDropZoneDragOver", null);
 __decorate([
-    rionite_1.Listen('dragleave', 'dropZone'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('dragleave', 'dropZone')
 ], OpalFileInput.prototype, "_onDropZoneDragLeave", null);
 __decorate([
-    rionite_1.Listen('drop', 'dropZone'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Event]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('drop', 'dropZone')
 ], OpalFileInput.prototype, "_onDropZoneDrop", null);
 __decorate([
-    rionite_1.Listen('click', 'dropZone'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Event]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('click', 'dropZone')
 ], OpalFileInput.prototype, "_onDropZoneClick", null);
 OpalFileInput = OpalFileInput_1 = __decorate([
     rionite_1.Component({
@@ -620,13 +540,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 /***/ }),
 
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
-
-/***/ }),
-
 /***/ "xFbw":
 /***/ (function(module, exports) {
 
@@ -652,7 +565,6 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("Y0hN");
 __webpack_require__("BLMt");
-__webpack_require__("vA/G");
 __export(__webpack_require__("JRKk"));
 
 

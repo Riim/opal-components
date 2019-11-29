@@ -5,9 +5,9 @@ export declare class OpalSelectOption extends BaseComponent {
     static EVENT_CHANGE: symbol;
     static EVENT_DESELECT: symbol;
     static EVENT_SELECT: symbol;
-    paramValue: string;
+    paramValue: string | null;
     paramText: string;
-    paramSubtext: string;
+    paramSubtext: string | null;
     selected: boolean;
     indeterminate: boolean;
     tabIndex: number;

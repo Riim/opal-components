@@ -5,15 +5,8 @@ import './index.css';
 	elementIs: 'OpalInputMaskDefinition'
 })
 export class OpalInputMaskDefinition extends BaseComponent {
-	@Param({
-		required: true,
-		readonly: true
-	})
-	maskChar: string;
-	@Param({
-		type: eval,
-		required: true,
-		readonly: true
-	})
-	regex: RegExp;
+	@Param({ type: String, required: true, readonly: true })
+	declare maskChar: string;
+	@Param({ type: eval, required: true, readonly: true })
+	declare regex: RegExp;
 }

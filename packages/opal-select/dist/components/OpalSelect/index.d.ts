@@ -38,25 +38,25 @@ export declare class OpalSelect extends BaseComponent {
     size: typeof OpalButton.prototype.size;
     multiple: boolean;
     clearOnDeselect: boolean;
-    paramDataList: TDataList;
-    dataListKeypath: string;
+    paramDataList: TDataList | null;
+    dataListKeypath: string | null;
     dataListItemSchema: {
         value?: string;
         text?: string;
         subtext?: string;
         disabled?: string;
     };
-    paramValue: Array<string>;
-    paramViewModel: TViewModel;
+    paramValue: Array<string> | null;
+    paramViewModel: TViewModel | null;
     viewModelItemSchema: {
         value?: string;
         text?: string;
         subtext?: string;
         disabled?: string;
     };
-    addNewItem: (text: string, select: OpalSelect) => Promise<Record<string, string>>;
+    addNewItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
     clearLoadedListOnOpen: boolean;
-    text: string;
+    text: string | null;
     maxTextLength: number;
     placeholder: string;
     openOnClick: boolean;

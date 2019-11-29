@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("@riim/opal-icon"), require("rionite"), require("reflect-metadata"));
+		module.exports = factory(require("cellx"), require("@riim/opal-icon"), require("rionite"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "@riim/opal-icon", "rionite", "reflect-metadata"], factory);
+		define(["cellx", "@riim/opal-icon", "rionite"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-notification"] = factory(require("cellx"), require("@riim/opal-icon"), require("rionite"), require("reflect-metadata"));
+		exports["@riim/opal-notification"] = factory(require("cellx"), require("@riim/opal-icon"), require("rionite"));
 	else
-		root["@riim/opal-notification"] = factory(root["cellx"], root["@riim/opal-icon"], root["rionite"], root["reflect-metadata"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__) {
+		root["@riim/opal-notification"] = factory(root["cellx"], root["@riim/opal-icon"], root["rionite"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_u4yd__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -107,9 +107,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var OpalNotification_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_1 = __webpack_require__("P7z7");
@@ -130,42 +127,6 @@ function initContainer(notification) {
 let OpalNotification = OpalNotification_1 = class OpalNotification extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "viewType", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 'default'
-        });
-        Object.defineProperty(this, "icon", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "iconSize", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 'xs'
-        });
-        Object.defineProperty(this, "buttonHide", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: true
-        });
-        Object.defineProperty(this, "timeout", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 0
-        });
-        Object.defineProperty(this, "shown", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
         Object.defineProperty(this, "bar", {
             enumerable: true,
             configurable: true,
@@ -292,52 +253,34 @@ Object.defineProperty(OpalNotification, "EVENT_HIDE", {
     value: Symbol('hide')
 });
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 'default' })
 ], OpalNotification.prototype, "viewType", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", String)
+    rionite_1.Param(String)
 ], OpalNotification.prototype, "icon", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 'xs' })
 ], OpalNotification.prototype, "iconSize", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: true })
 ], OpalNotification.prototype, "buttonHide", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 0 })
 ], OpalNotification.prototype, "timeout", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalNotification.prototype, "shown", void 0);
 __decorate([
-    rionite_1.Listen('change:shown'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change:shown')
 ], OpalNotification.prototype, "_onShownChange", null);
 __decorate([
-    rionite_1.Listen('mouseenter', '@bar'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('mouseenter', '@bar')
 ], OpalNotification.prototype, "_onElementMouseEnter", null);
 __decorate([
-    rionite_1.Listen('mouseleave', '@bar'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('mouseleave', '@bar')
 ], OpalNotification.prototype, "_onElementMouseLeave", null);
 __decorate([
-    rionite_1.Listen('click', 'btnHide'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('click', 'btnHide')
 ], OpalNotification.prototype, "_onBtnHideClick", null);
 OpalNotification = OpalNotification_1 = __decorate([
     rionite_1.Component({
@@ -392,7 +335,6 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("Y0hN");
-__webpack_require__("vA/G");
 __export(__webpack_require__("N8k9"));
 
 
@@ -412,13 +354,6 @@ const template = [[1,,"div",["bar"],[,[[,"viewType","{viewType}"],[,"hasIcon","{
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ })
 

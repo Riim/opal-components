@@ -21,14 +21,14 @@ export class OpalSwitch extends BaseComponent {
 	static EVENT_FOCUS = Symbol('focus');
 	static EVENT_UNCHECK = Symbol('uncheck');
 
-	@Param
-	checked = false;
-	@Param
-	tabIndex = 0;
-	@Param
-	focused = false;
-	@Param
-	disabled = false;
+	@Param({ default: false })
+	declare checked: boolean;
+	@Param({ default: 0 })
+	declare tabIndex: number;
+	@Param({ default: false })
+	declare focused: boolean;
+	@Param({ default: false })
+	declare disabled: boolean;
 
 	@Computed
 	get _tabIndex(): number {

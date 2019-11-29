@@ -62,26 +62,22 @@ const defaultDataListItemSchema = Object.freeze({
 export class OpalAutosuggest extends BaseComponent {
 	static EVENT_CHANGE = Symbol('change');
 
-	@Param({
-		type: eval,
-		default: defaultDataListItemSchema,
-		readonly: true
-	})
-	dataListItemSchema: {
+	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
+	declare dataListItemSchema: {
 		value?: string;
 		text?: string;
 		subtext?: string;
 	};
-	@Param({ readonly: true })
-	dataProvider: IDataProvider;
-	@Param({ type: eval })
-	value: IDataListItem | null;
-	@Param
-	minQueryLength = 3;
-	@Param
-	limit = 5;
-	@Param
-	openMenuOnNothingFound = false;
+	@Param({ required: true, readonly: true })
+	declare dataProvider: IDataProvider;
+	@Param(eval)
+	declare value: IDataListItem | null;
+	@Param({ default: 3 })
+	declare minQueryLength: number;
+	@Param({ default: 5 })
+	declare limit: number;
+	@Param({ default: false })
+	declare openMenuOnNothingFound: boolean;
 
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 
@@ -120,14 +116,6 @@ export class OpalAutosuggest extends BaseComponent {
 		this._dataListItemTextFieldName = dataListItemSchema.text || defaultDataListItemSchema.text;
 		this._dataListItemSubtextFieldName =
 			dataListItemSchema.subtext || defaultDataListItemSchema.subtext;
-
-		if (!this.$specifiedParams || !this.$specifiedParams.has('dataProvider')) {
-			throw new TypeError('Parameter "dataProvider" is required');
-		}
-
-		if (!this.dataProvider) {
-			throw new TypeError('"dataProvider" is not defined');
-		}
 	}
 
 	ready() {
@@ -389,11 +377,11 @@ export class OpalAutosuggest extends BaseComponent {
 
 		let args: Array<any> = [this.$<OpalTextInput>('textInput')!.value];
 
-		if (this.dataProvider.getItems.length >= 2) {
+		if (this.dataProvider!.getItems.length >= 2) {
 			args.unshift(this.limit);
 		}
 
-		this.dataProvider.getItems
+		this.dataProvider!.getItems
 			.apply(this.dataProvider, args)
 			.then((this._requestCallback = this.registerCallback(this._itemsRequestCallback)));
 	}

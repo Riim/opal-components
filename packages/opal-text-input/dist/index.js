@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-loader"), require("@riim/opal-icon"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-loader"), require("@riim/opal-icon"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-loader", "@riim/opal-icon", "rionite", "reflect-metadata", "cellx-decorators"], factory);
+		define(["@riim/opal-loader", "@riim/opal-icon", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-text-input"] = factory(require("@riim/opal-loader"), require("@riim/opal-icon"), require("rionite"), require("reflect-metadata"), require("cellx-decorators"));
+		exports["@riim/opal-text-input"] = factory(require("@riim/opal-loader"), require("@riim/opal-icon"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-text-input"] = factory(root["@riim/opal-loader"], root["@riim/opal-icon"], root["rionite"], root["reflect-metadata"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_vA_G__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-text-input"] = factory(root["@riim/opal-loader"], root["@riim/opal-icon"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -107,7 +107,6 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("Y0hN");
 __webpack_require__("BLMt");
-__webpack_require__("vA/G");
 __export(__webpack_require__("LsaU"));
 
 
@@ -149,9 +148,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var OpalTextInput_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_decorators_1 = __webpack_require__("yOaX");
@@ -161,102 +157,6 @@ const template_rnt_1 = __webpack_require__("idvu");
 let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "inputType", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 'text'
-        });
-        Object.defineProperty(this, "size", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 'm'
-        });
-        Object.defineProperty(this, "multiline", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "rows", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 5
-        });
-        Object.defineProperty(this, "autoHeight", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: true
-        });
-        Object.defineProperty(this, "inputName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "paramValue", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "storeKey", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "placeholder", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "startIcon", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "endIcon", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "clearable", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "loading", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "tabIndex", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 0
-        });
-        Object.defineProperty(this, "focused", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "disabled", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
         Object.defineProperty(this, "_inputTypeCell", {
             enumerable: true,
             configurable: true,
@@ -459,137 +359,88 @@ Object.defineProperty(OpalTextInput, "EVENT_KEYUP", {
     value: Symbol('keyup')
 });
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 'text' })
 ], OpalTextInput.prototype, "inputType", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 'm' })
 ], OpalTextInput.prototype, "size", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalTextInput.prototype, "multiline", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 5 })
 ], OpalTextInput.prototype, "rows", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: true })
 ], OpalTextInput.prototype, "autoHeight", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", String)
+    rionite_1.Param(String)
 ], OpalTextInput.prototype, "inputName", void 0);
 __decorate([
-    rionite_1.Param('value'),
-    __metadata("design:type", String)
+    rionite_1.Param('value', String)
 ], OpalTextInput.prototype, "paramValue", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", String)
+    rionite_1.Param(String)
 ], OpalTextInput.prototype, "storeKey", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", String)
+    rionite_1.Param(String)
 ], OpalTextInput.prototype, "placeholder", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", String)
+    rionite_1.Param(String)
 ], OpalTextInput.prototype, "startIcon", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", String)
+    rionite_1.Param(String)
 ], OpalTextInput.prototype, "endIcon", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalTextInput.prototype, "clearable", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalTextInput.prototype, "loading", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: 0 })
 ], OpalTextInput.prototype, "tabIndex", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalTextInput.prototype, "focused", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", Object)
+    rionite_1.Param({ default: false })
 ], OpalTextInput.prototype, "disabled", void 0);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", String),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalTextInput.prototype, "_inputType", null);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalTextInput.prototype, "btnClearShown", null);
 __decorate([
-    cellx_decorators_1.Computed,
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
+    cellx_decorators_1.Computed
 ], OpalTextInput.prototype, "endIconShown", null);
 __decorate([
-    rionite_1.Listen('change:rows'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change:rows')
 ], OpalTextInput.prototype, "_onRowsChange", null);
 __decorate([
-    rionite_1.Listen('change:paramValue'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change:paramValue')
 ], OpalTextInput.prototype, "_onParamValueChange", null);
 __decorate([
-    rionite_1.Listen('focus', '@textField'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('focus', '@textField')
 ], OpalTextInput.prototype, "_onTextFieldFocus", null);
 __decorate([
-    rionite_1.Listen('blur', '@textField'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('blur', '@textField')
 ], OpalTextInput.prototype, "_onTextFieldBlur", null);
 __decorate([
-    rionite_1.Listen('input', '@textField'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Event]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('input', '@textField')
 ], OpalTextInput.prototype, "_onTextFieldInput", null);
 __decorate([
-    rionite_1.Listen('change', '@textField'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Event]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('change', '@textField')
 ], OpalTextInput.prototype, "_onTextFieldChange", null);
 __decorate([
-    rionite_1.Listen('keydown', '@textField'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Event]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('keydown', '@textField')
 ], OpalTextInput.prototype, "_onTextFieldKeyDown", null);
 __decorate([
-    rionite_1.Listen('keypress', '@textField'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [KeyboardEvent]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('keypress', '@textField')
 ], OpalTextInput.prototype, "_onTextFieldKeyPress", null);
 __decorate([
-    rionite_1.Listen('keyup', '@textField'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Event]),
-    __metadata("design:returntype", void 0)
+    rionite_1.Listen('keyup', '@textField')
 ], OpalTextInput.prototype, "_onTextFieldKeyUp", null);
 OpalTextInput = OpalTextInput_1 = __decorate([
     rionite_1.Component({
@@ -646,13 +497,6 @@ const template = [[1,,"div",["textareaContainer"],[,[[1,"if","multiline"]]],[[1,
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
-
-/***/ }),
-
-/***/ "vA/G":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_vA_G__;
 
 /***/ }),
 
