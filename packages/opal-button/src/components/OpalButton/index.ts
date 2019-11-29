@@ -68,7 +68,7 @@ export class OpalButton extends BaseComponent {
 
 	@Listen('focus', '@element')
 	_onElementFocus() {
-		if (!this._documentKeyDownListening && this.element.tagName.indexOf('-') != -1) {
+		if (!this._documentKeyDownListening && this.element.tagName.includes('-')) {
 			this._documentKeyDownListening = this.listenTo(
 				document,
 				'keydown',

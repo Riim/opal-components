@@ -116,8 +116,18 @@ __webpack_require__("Wb+m");
 let OpalLoader = class OpalLoader extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.size = 'm';
-        this.shown = false;
+        Object.defineProperty(this, "size", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'm'
+        });
+        Object.defineProperty(this, "shown", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
     }
 };
 __decorate([

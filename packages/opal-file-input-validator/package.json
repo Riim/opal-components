@@ -16,6 +16,6 @@
     "@riim/opal-file-input": "^0.40.3",
     "@riim/opal-input-validator": "^0.40.1",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.38.2"
+    "rionite": "^0.38.4"
   }
 }

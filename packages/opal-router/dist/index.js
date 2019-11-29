@@ -181,13 +181,54 @@ function valueToAttributeValue(value) {
 let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.useLocationHash = false;
-        this.scrollTopOnChange = true;
-        this.scrollTopOnChangeComponent = true;
-        this._route = null;
-        this._state = null;
-        this._componentElement = null;
-        this.isLoaderShown = false;
+        Object.defineProperty(this, "useLocationHash", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "scrollTopOnChange", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: true
+        });
+        Object.defineProperty(this, "scrollTopOnChangeComponent", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: true
+        });
+        Object.defineProperty(this, "_routes", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_route", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: null
+        });
+        Object.defineProperty(this, "_state", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: null
+        });
+        Object.defineProperty(this, "_componentElement", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: null
+        });
+        Object.defineProperty(this, "isLoaderShown", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
     }
     initialize() {
         this._routes = [];
@@ -478,9 +519,24 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
         }
     }
 };
-OpalRouter.EVENT_CHANGE = Symbol('change');
-OpalRouter.EVENT_REFRESH_ROUTER = Symbol('refresh-router');
-OpalRouter.history = history;
+Object.defineProperty(OpalRouter, "EVENT_CHANGE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('change')
+});
+Object.defineProperty(OpalRouter, "EVENT_REFRESH_ROUTER", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('refresh-router')
+});
+Object.defineProperty(OpalRouter, "history", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: history
+});
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)
@@ -532,6 +588,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const rionite_1 = __webpack_require__("u4yd");
 let OpalRoute = class OpalRoute extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        Object.defineProperty(this, "path", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "component", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "lazyLoadComponent", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+    }
 };
 __decorate([
     rionite_1.Param({ required: true, readonly: true }),

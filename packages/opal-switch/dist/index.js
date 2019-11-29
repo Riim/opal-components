@@ -162,10 +162,36 @@ const template_rnt_1 = __webpack_require__("8DG6");
 let OpalSwitch = OpalSwitch_1 = class OpalSwitch extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.checked = false;
-        this.tabIndex = 0;
-        this.focused = false;
-        this.disabled = false;
+        Object.defineProperty(this, "checked", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "tabIndex", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "focused", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "disabled", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "_documentKeyDownListening", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
     }
     get _tabIndex() {
         return this.disabled ? -1 : this.tabIndex;
@@ -254,11 +280,36 @@ let OpalSwitch = OpalSwitch_1 = class OpalSwitch extends rionite_1.BaseComponent
         return this;
     }
 };
-OpalSwitch.EVENT_BLUR = Symbol('blur');
-OpalSwitch.EVENT_CHANGE = Symbol('change');
-OpalSwitch.EVENT_CHECK = Symbol('check');
-OpalSwitch.EVENT_FOCUS = Symbol('focus');
-OpalSwitch.EVENT_UNCHECK = Symbol('uncheck');
+Object.defineProperty(OpalSwitch, "EVENT_BLUR", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('blur')
+});
+Object.defineProperty(OpalSwitch, "EVENT_CHANGE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('change')
+});
+Object.defineProperty(OpalSwitch, "EVENT_CHECK", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('check')
+});
+Object.defineProperty(OpalSwitch, "EVENT_FOCUS", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('focus')
+});
+Object.defineProperty(OpalSwitch, "EVENT_UNCHECK", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('uncheck')
+});
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)

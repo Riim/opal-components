@@ -40,7 +40,7 @@ export class OpalTreeSelect extends OpalSelect {
 		default: OpalTreeList.defaultViewModelItemSchema,
 		readonly: true
 	})
-	viewModelItemSchema: {
+	declare viewModelItemSchema: {
 		value?: string;
 		text?: string;
 	};

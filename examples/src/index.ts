@@ -43,7 +43,10 @@ export class OpalComponentsExamples extends BaseComponent {
 		{
 			id: '4',
 			name: '4',
-			children: [{ id: '4.1', name: '4.1' }, { id: '4.2', name: '4.2' }]
+			children: [
+				{ id: '4.1', name: '4.1' },
+				{ id: '4.2', name: '4.2' }
+			]
 		},
 		{ id: '5', name: '5' }
 	]);
@@ -61,16 +64,8 @@ export class OpalComponentsExamples extends BaseComponent {
 					count = 50;
 				}
 
-				let filteredItems = query
-					? items.filter(item => {
-							return item.name.indexOf(query) != -1;
-					  })
-					: items;
-				let from = after
-					? filteredItems.findIndex(item => {
-							return item.id == after;
-					  }) + 1
-					: 0;
+				let filteredItems = query ? items.filter(item => item.name.includes(query)) : items;
+				let from = after ? filteredItems.findIndex(item => item.id == after) + 1 : 0;
 
 				return new Promise<{
 					items: Array<{ id: string; name: string; parent: string }>;
@@ -117,12 +112,9 @@ export class OpalComponentsExamples extends BaseComponent {
 					setTimeout(() => {
 						resolve({
 							items: query
-								? items.filter(item => {
-										return (
-											item.name.toLowerCase().indexOf(query.toLowerCase()) !=
-											-1
-										);
-								  })
+								? items.filter(item =>
+										item.name.toLowerCase().includes(query.toLowerCase())
+								  )
 								: items
 						});
 					}, 500);

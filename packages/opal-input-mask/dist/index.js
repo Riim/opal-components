@@ -140,6 +140,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("lXXY");
 let OpalInputMaskDefinition = class OpalInputMaskDefinition extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        Object.defineProperty(this, "maskChar", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "regex", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+    }
 };
 __decorate([
     rionite_1.Param({
@@ -192,6 +207,45 @@ const forEach = Array.prototype.forEach;
 const iPhone = /iphone/i.test(navigator.userAgent);
 const ie11 = !window.ActiveXObject && 'ActiveXObject' in window;
 let OpalInputMask = OpalInputMask_1 = class OpalInputMask extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        Object.defineProperty(this, "mask", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_definitions", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_buffer", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "textInput", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "textField", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_textOnFocus", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+    }
     get _mask() {
         return this.mask.split('').filter(chr => chr != '?');
     }
@@ -440,13 +494,23 @@ let OpalInputMask = OpalInputMask_1 = class OpalInputMask extends rionite_1.Base
         this.textField.setSelectionRange(start, end);
     }
 };
-OpalInputMask.EVENT_COMPLETE = Symbol('complete');
-OpalInputMask.defaultDefinitions = {
-    __proto__: null,
-    9: /\d/,
-    z: /[a-zA-Z]/,
-    '*': /[0-9a-zA-Z]/
-};
+Object.defineProperty(OpalInputMask, "EVENT_COMPLETE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('complete')
+});
+Object.defineProperty(OpalInputMask, "defaultDefinitions", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: {
+        __proto__: null,
+        9: /\d/,
+        z: /[a-zA-Z]/,
+        '*': /[0-9a-zA-Z]/
+    }
+});
 __decorate([
     rionite_1.Param({ required: true }),
     __metadata("design:type", String)

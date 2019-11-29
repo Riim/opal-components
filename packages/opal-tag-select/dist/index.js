@@ -161,16 +161,157 @@ const defaultVMItemSchema = Object.freeze({
 let OpalTagSelect = OpalTagSelect_1 = class OpalTagSelect extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.viewType = 'default';
-        this.viewModel = new cellx_1.ObservableList();
-        // ;;; Плейсхолдер тегселекта.
-        // ;;; Можно перевести как призыв к выбору -- Select (англ.).
-        this.placeholder = gettext_1.pt('OpalTagSelect#placeholder', 'Не выбрано');
-        this.popoverPosition = 'bottom';
-        this.tabIndex = 0;
-        this.focused = false;
-        this.disabled = false;
-        this.validator = null;
+        Object.defineProperty(this, "viewType", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'default'
+        });
+        Object.defineProperty(this, "paramDataList", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "dataListKeypath", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "dataListItemSchema", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        // необязательный, так как может указываться на передаваемом OpalLoadedList
+        Object.defineProperty(this, "dataProvider", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "paramValue", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "viewModel", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: new cellx_1.ObservableList()
+        });
+        Object.defineProperty(this, "viewModelItemSchema", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "addNewItem", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "placeholder", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: gettext_1.pt('OpalTagSelect#placeholder', 'Не выбрано')
+        });
+        Object.defineProperty(this, "popoverPosition", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'bottom'
+        });
+        Object.defineProperty(this, "tabIndex", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "focused", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "disabled", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "dataList", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_dataListItemValueFieldName", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_dataListItemTextFieldName", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_dataListItemSubtextFieldName", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_dataListItemDisabledFieldName", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_viewModelItemValueFieldName", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_viewModelItemTextFieldName", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_viewModelItemDisabledFieldName", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_selectDataListKeypath", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "select", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "validator", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: null
+        });
     }
     get value() {
         return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
@@ -265,11 +406,36 @@ let OpalTagSelect = OpalTagSelect_1 = class OpalTagSelect extends rionite_1.Base
         return !this.validator || this.validator.validate();
     }
 };
-OpalTagSelect.EVENT_CHANGE = Symbol('change');
-OpalTagSelect.EVENT_INPUT = Symbol('input');
-OpalTagSelect.EVENT_TAG_CLICK = Symbol('tag-click');
-OpalTagSelect.defaultDataListItemSchema = defaultDataListItemSchema;
-OpalTagSelect.defaultViewModelItemSchema = defaultVMItemSchema;
+Object.defineProperty(OpalTagSelect, "EVENT_CHANGE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('change')
+});
+Object.defineProperty(OpalTagSelect, "EVENT_INPUT", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('input')
+});
+Object.defineProperty(OpalTagSelect, "EVENT_TAG_CLICK", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('tag-click')
+});
+Object.defineProperty(OpalTagSelect, "defaultDataListItemSchema", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: defaultDataListItemSchema
+});
+Object.defineProperty(OpalTagSelect, "defaultViewModelItemSchema", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: defaultVMItemSchema
+});
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)

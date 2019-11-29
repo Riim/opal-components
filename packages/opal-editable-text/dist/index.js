@@ -150,6 +150,33 @@ const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("2Dpl");
 const template_rnt_1 = __webpack_require__("vtB9");
 let OpalEditableText = OpalEditableText_1 = class OpalEditableText extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        Object.defineProperty(this, "_textNode", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_value", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_fixedValue", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_documentKeyDownListening", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+    }
     get value() {
         return this._value;
     }
@@ -223,8 +250,18 @@ let OpalEditableText = OpalEditableText_1 = class OpalEditableText extends rioni
         sel.addRange(rng);
     }
 };
-OpalEditableText.EVENT_CHANGE = Symbol('change');
-OpalEditableText.EVENT_INPUT = Symbol('input');
+Object.defineProperty(OpalEditableText, "EVENT_CHANGE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('change')
+});
+Object.defineProperty(OpalEditableText, "EVENT_INPUT", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('input')
+});
 __decorate([
     rionite_1.Listen('click', '@element'),
     __metadata("design:type", Function),

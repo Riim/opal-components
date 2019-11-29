@@ -130,11 +130,54 @@ function initContainer(notification) {
 let OpalNotification = OpalNotification_1 = class OpalNotification extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.viewType = 'default';
-        this.iconSize = 'xs';
-        this.buttonHide = true;
-        this.timeout = 0;
-        this.shown = false;
+        Object.defineProperty(this, "viewType", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'default'
+        });
+        Object.defineProperty(this, "icon", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "iconSize", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'xs'
+        });
+        Object.defineProperty(this, "buttonHide", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: true
+        });
+        Object.defineProperty(this, "timeout", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "shown", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "bar", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_closingTimeoutId", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
     }
     $(name, container = this.bar) {
         return super.$(name, container);
@@ -236,8 +279,18 @@ let OpalNotification = OpalNotification_1 = class OpalNotification extends rioni
         return this;
     }
 };
-OpalNotification.EVENT_CLOSE = Symbol('close');
-OpalNotification.EVENT_HIDE = Symbol('hide');
+Object.defineProperty(OpalNotification, "EVENT_CLOSE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('close')
+});
+Object.defineProperty(OpalNotification, "EVENT_HIDE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('hide')
+});
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)

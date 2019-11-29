@@ -144,11 +144,96 @@ let dragEl = null;
 let OpalFileInput = OpalFileInput_1 = class OpalFileInput extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.multiple = false;
-        this.buttonText = gettext_1.pt('OpalFileInput#buttonText', 'Выбрать файл');
-        this.placeholder = gettext_1.pt('OpalFileInput#placeholder', 'Не выбрано');
-        this.disabled = false;
-        this.validator = null;
+        Object.defineProperty(this, "multiple", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "dataList", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "allowType", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "sizeLimit", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "totalSizeLimit", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "buttonText", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: gettext_1.pt('OpalFileInput#buttonText', 'Выбрать файл')
+        });
+        Object.defineProperty(this, "placeholder", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: gettext_1.pt('OpalFileInput#placeholder', 'Не выбрано')
+        });
+        Object.defineProperty(this, "disabled", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "_reFileType", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "errorMessage", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "fileListEl", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "dropZoneEl", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "btnSelectFile", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_fileListListening", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "validator", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: null
+        });
     }
     get files() {
         return this.dataList.map(fileData => fileData.file).filter(file => file);
@@ -336,8 +421,18 @@ let OpalFileInput = OpalFileInput_1 = class OpalFileInput extends rionite_1.Base
         return !this.validator || this.validator.validate();
     }
 };
-OpalFileInput.EVENT_CHANGE = Symbol('change');
-OpalFileInput.EVENT_CLEAR = Symbol('clear');
+Object.defineProperty(OpalFileInput, "EVENT_CHANGE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('change')
+});
+Object.defineProperty(OpalFileInput, "EVENT_CLEAR", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('clear')
+});
 __decorate([
     rionite_1.Param({ readonly: true }),
     __metadata("design:type", Object)

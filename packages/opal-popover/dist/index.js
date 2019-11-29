@@ -152,11 +152,54 @@ const template_rnt_1 = __webpack_require__("UFjE");
 let OpalPopover = OpalPopover_1 = class OpalPopover extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.position = 'right';
-        this.positionOffset = 0;
-        this.autoDirection = true;
-        this.opened = false;
-        this.contentRendered = false;
+        Object.defineProperty(this, "position", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'right'
+        });
+        Object.defineProperty(this, "positionOffset", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "autoDirection", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: true
+        });
+        Object.defineProperty(this, "closeOn", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "opened", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "contentRendered", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "_positionAtOpening", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_closingEventListening", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
     }
     ready() {
         if (this.opened) {
@@ -294,7 +337,12 @@ let OpalPopover = OpalPopover_1 = class OpalPopover extends rionite_1.BaseCompon
         }
     }
 };
-OpalPopover.EVENT_CLOSE = Symbol('close');
+Object.defineProperty(OpalPopover, "EVENT_CLOSE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('close')
+});
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
@@ -308,8 +356,8 @@ __decorate([
     __metadata("design:type", Object)
 ], OpalPopover.prototype, "autoDirection", void 0);
 __decorate([
-    rionite_1.Param,
-    __metadata("design:type", String)
+    rionite_1.Param({ type: String }),
+    __metadata("design:type", Object)
 ], OpalPopover.prototype, "closeOn", void 0);
 __decorate([
     rionite_1.Param,

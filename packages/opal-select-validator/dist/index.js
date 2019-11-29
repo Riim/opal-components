@@ -134,6 +134,15 @@ const OpalSelectValidatorRule_1 = __webpack_require__("AiAd");
 exports.OpalSelectValidatorRule = OpalSelectValidatorRule_1.OpalSelectValidatorRule;
 __webpack_require__("1EIP");
 let OpalSelectValidator = class OpalSelectValidator extends opal_input_validator_1.OpalInputValidator {
+    constructor() {
+        super(...arguments);
+        Object.defineProperty(this, "select", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+    }
     ready() {
         super.ready();
         this.target = this.select = this.$('select');
@@ -147,7 +156,12 @@ let OpalSelectValidator = class OpalSelectValidator extends opal_input_validator
             : rule.required);
     }
 };
-OpalSelectValidator.targetChangeEvents = [opal_select_1.OpalSelect.EVENT_CHANGE, opal_tag_select_1.OpalTagSelect.EVENT_CHANGE];
+Object.defineProperty(OpalSelectValidator, "targetChangeEvents", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: [opal_select_1.OpalSelect.EVENT_CHANGE, opal_tag_select_1.OpalTagSelect.EVENT_CHANGE]
+});
 OpalSelectValidator = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSelectValidator'
@@ -183,6 +197,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const opal_input_validator_1 = __webpack_require__("9L4b");
 const rionite_1 = __webpack_require__("u4yd");
 let OpalSelectValidatorRule = class OpalSelectValidatorRule extends opal_input_validator_1.OpalInputValidatorRule {
+    constructor() {
+        super(...arguments);
+        Object.defineProperty(this, "minCount", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+    }
 };
 __decorate([
     rionite_1.Param,

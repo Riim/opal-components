@@ -12,10 +12,10 @@ export interface IDataTreeListItem {
     children: Array<IDataTreeListItem>;
 }
 export interface IFilteredDataTreeListItem {
-    [name: string]: any;
+    $original: IDataTreeListItem;
     parent?: IDataTreeListItem | null;
     children: Array<IDataTreeListItem>;
-    $original: IDataTreeListItem;
+    [name: string]: any;
 }
 export declare type TDataTreeList = ObservableTreeList<IDataTreeListItem>;
 export declare type TFilteredDataTreeList = ObservableTreeList<IFilteredDataTreeListItem>;

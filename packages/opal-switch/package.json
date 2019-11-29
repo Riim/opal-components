@@ -13,9 +13,9 @@
     "access": "public"
   },
   "dependencies": {
-    "cellx": "^1.9.16",
+    "cellx": "^1.9.19",
     "cellx-decorators": "^1.5.4",
     "reflect-metadata": "^0.1.13",
-    "rionite": "^0.38.2"
+    "rionite": "^0.38.4"
   }
 }

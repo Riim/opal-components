@@ -152,9 +152,36 @@ const template_rnt_1 = __webpack_require__("BALO");
 let OpalDropdown = OpalDropdown_1 = class OpalDropdown extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.autoHeight = true;
-        this.opened = false;
-        this.contentRendered = false;
+        Object.defineProperty(this, "autoHeight", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: true
+        });
+        Object.defineProperty(this, "closeOn", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "opened", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "contentRendered", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "_closingEventListening", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
     }
     ready() {
         if (this.opened) {
@@ -272,7 +299,12 @@ let OpalDropdown = OpalDropdown_1 = class OpalDropdown extends rionite_1.BaseCom
         }
     }
 };
-OpalDropdown.EVENT_CLOSE = Symbol('close');
+Object.defineProperty(OpalDropdown, "EVENT_CLOSE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('close')
+});
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)

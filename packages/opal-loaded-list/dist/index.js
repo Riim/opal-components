@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"div",["list"],,[[1,,"RnSlot",["listItemSlot"],[,[[1,"for","$item in dataList"],[,"for","listItem"],[,"cloneContent",""],[,"getContext","{_getListItemContext}"]]],[[1,,"span",["listItem"],,[[3,"{$item |key(_dataListItemTextFieldName) }"]]]]]]],[1,,"OpalLoader",["loader"],[,[[,"shown","{loaderShown}"],[,"inCenter","{dataList.length |not }"]]],],[1,,"RnSlot",["nothingFoundSlot"],[,[[1,"if","nothingFoundShown"],[,"for","nothingFound"],[,"getContext","{_getListItemContext}"]]],[[1,,"span",["nothingFound"],,[[1,,"span",["nothingFoundMessage"],,[[3,"{\"Ничего не найдено\" |t }"]]]]]]]];
+const template = [[1,,"div",["list"],,[[1,,"RnSlot",["listItemSlot"],[,[[1,"for","$item in dataList"],[,"for","listItem"],[,"cloneContent",""],[,"getContext","{_getListItemContext}"]]],[[1,,"span",["listItem"],,[[3,"{$item |key(_dataListItemTextFieldName) }"]]]]]]],[1,,"OpalLoader",["loader"],[,[[,"shown","{loaderShown}"],[,"inCenter","{dataList.length |not }"]]],],[1,,"RnSlot",["nothingFoundSlot"],[,[[1,"if","nothingFoundShown"],[,"for","nothingFound"]]],[[1,,"span",["nothingFound"],,[[1,,"span",["nothingFoundMessage"],,[[3,"{\"Ничего не найдено\" |t }"]]]]]]]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
@@ -166,14 +166,96 @@ let defaultDataListItemSchema = Object.freeze({
 let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.limit = 100;
-        this.preloading = false;
-        this.dataList = new cellx_1.ObservableList();
-        this._scrollingInProcessing = false;
-        this._loadingCheckPlanned = false;
-        this.loading = false;
-        this._lastRequestedQuery = null;
-        this._lastLoadedQuery = null;
+        Object.defineProperty(this, "dataListItemSchema", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "dataProvider", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "limit", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 100
+        });
+        Object.defineProperty(this, "query", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "preloading", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "dataList", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: new cellx_1.ObservableList()
+        });
+        Object.defineProperty(this, "_dataListItemTextFieldName", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "total", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_scrollingInProcessing", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "_loadingCheckPlanned", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "_loadingCheckTimeout", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "loading", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "_requestCallback", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_lastRequestedQuery", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: null
+        });
+        Object.defineProperty(this, "_lastLoadedQuery", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: null
+        });
     }
     get loaderShown() {
         return this.total === undefined || this.dataList.length < this.total || this.loading;
@@ -292,8 +374,18 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
         };
     }
 };
-OpalLoadedList.EVENT_LOADED = Symbol('loaded');
-OpalLoadedList.defaultDataListItemSchema = defaultDataListItemSchema;
+Object.defineProperty(OpalLoadedList, "EVENT_LOADED", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('loaded')
+});
+Object.defineProperty(OpalLoadedList, "defaultDataListItemSchema", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: defaultDataListItemSchema
+});
 __decorate([
     rionite_1.Param({
         type: eval,

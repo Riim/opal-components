@@ -3,7 +3,7 @@ const fs = require('fs');
 const webpack = require('webpack');
 const postcssVariables = require('postcss-simple-vars');
 const postcssRioniteComponent = require('postcss-rionite-component');
-const postcssColorFunction = require('postcss-color-function');
+const postcssSassColorFunctions = require('postcss-sass-color-functions');
 const autoprefixer = require('autoprefixer');
 const csso = require('postcss-csso');
 const cssVariables = require('./packages/opal-components-common/src/config/cssVariables');
@@ -105,7 +105,7 @@ module.exports = env => {
 				{
 					test: /\.rnt$/,
 					// loader: ['raw-loader', 'trim-lines-loader', 'collapse-line-breaks-loader']
-					loader: ['rionite-template-loader']
+					loader: 'rionite-template-loader'
 				},
 				{
 					test: /\.css$/,
@@ -117,7 +117,7 @@ module.exports = env => {
 								plugins: [
 									postcssVariables({ variables: cssVariables }),
 									postcssRioniteComponent(),
-									postcssColorFunction(),
+									postcssSassColorFunctions(),
 									autoprefixer({ overrideBrowserslist: ['last 3 versions'] }),
 									csso({ restructure: false })
 								]

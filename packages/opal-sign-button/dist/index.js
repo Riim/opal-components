@@ -119,11 +119,54 @@ const template_rnt_1 = __webpack_require__("IjPK");
 let OpalSignButton = OpalSignButton_1 = class OpalSignButton extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.checkable = false;
-        this.checked = false;
-        this.tabIndex = 0;
-        this.focused = false;
-        this.disabled = false;
+        Object.defineProperty(this, "sign", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "viewType", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "checkable", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "checked", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "tabIndex", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "focused", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "disabled", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "_documentKeyDownListening", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
     }
     get _tabIndex() {
         return this.disabled ? -1 : this.tabIndex;
@@ -194,12 +237,42 @@ let OpalSignButton = OpalSignButton_1 = class OpalSignButton extends rionite_1.B
         return this;
     }
 };
-OpalSignButton.EVENT_BLUR = Symbol('blur');
-OpalSignButton.EVENT_CHANGE = Symbol('change');
-OpalSignButton.EVENT_CHECK = Symbol('check');
-OpalSignButton.EVENT_CLICK = Symbol('click');
-OpalSignButton.EVENT_FOCUS = Symbol('focus');
-OpalSignButton.EVENT_UNCHECK = Symbol('uncheck');
+Object.defineProperty(OpalSignButton, "EVENT_BLUR", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('blur')
+});
+Object.defineProperty(OpalSignButton, "EVENT_CHANGE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('change')
+});
+Object.defineProperty(OpalSignButton, "EVENT_CHECK", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('check')
+});
+Object.defineProperty(OpalSignButton, "EVENT_CLICK", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('click')
+});
+Object.defineProperty(OpalSignButton, "EVENT_FOCUS", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('focus')
+});
+Object.defineProperty(OpalSignButton, "EVENT_UNCHECK", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('uncheck')
+});
 __decorate([
     rionite_1.Param({ required: true }),
     __metadata("design:type", String)

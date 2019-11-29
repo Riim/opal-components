@@ -144,11 +144,42 @@ const template_rnt_1 = __webpack_require__("4Rfg");
 let OpalCheckbox = OpalCheckbox_1 = class OpalCheckbox extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.checked = false;
-        this.indeterminate = false;
-        this.tabIndex = 0;
-        this.focused = false;
-        this.disabled = false;
+        Object.defineProperty(this, "checked", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "indeterminate", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "tabIndex", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "focused", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "disabled", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "_documentKeyDownListening", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
     }
     get _tabIndex() {
         return this.disabled ? -1 : this.tabIndex;
@@ -246,11 +277,36 @@ let OpalCheckbox = OpalCheckbox_1 = class OpalCheckbox extends rionite_1.BaseCom
         return this;
     }
 };
-OpalCheckbox.EVENT_BLUR = Symbol('blur');
-OpalCheckbox.EVENT_CHANGE = Symbol('change');
-OpalCheckbox.EVENT_CHECK = Symbol('check');
-OpalCheckbox.EVENT_FOCUS = Symbol('focus');
-OpalCheckbox.EVENT_UNCHECK = Symbol('uncheck');
+Object.defineProperty(OpalCheckbox, "EVENT_BLUR", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('blur')
+});
+Object.defineProperty(OpalCheckbox, "EVENT_CHANGE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('change')
+});
+Object.defineProperty(OpalCheckbox, "EVENT_CHECK", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('check')
+});
+Object.defineProperty(OpalCheckbox, "EVENT_FOCUS", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('focus')
+});
+Object.defineProperty(OpalCheckbox, "EVENT_UNCHECK", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('uncheck')
+});
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)

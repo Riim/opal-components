@@ -90,6 +90,15 @@ export class OpalIcon extends BaseComponent {
 	@Computed
 	get xlinkHref() {
 		let name = this.name;
-		return '#OpalIcon__icon' + name.charAt(0).toUpperCase() + name.slice(1);
+		let id = '#OpalIcon__icon' + name.charAt(0).toUpperCase() + name.slice(1);
+
+		if (!document.getElementById(id)) {
+			id = '#icon' + name.charAt(0).toUpperCase() + name.slice(1);
+		}
+		if (!document.getElementById(id)) {
+			id = '#' + name.slice(1);
+		}
+
+		return id;
 	}
 }

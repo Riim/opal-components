@@ -36,8 +36,8 @@ export class OpalPopover extends BaseComponent {
 	positionOffset = 0;
 	@Param
 	autoDirection = true;
-	@Param
-	closeOn: string; // click | mousedown
+	@Param({ type: String })
+	closeOn: 'click' | 'mousedown' | (string & { _?: never });
 	@Param
 	opened = false;
 

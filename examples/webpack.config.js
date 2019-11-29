@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const postcssRioniteComponent = require('postcss-rionite-component');
-const postcssColorFunction = require('postcss-color-function');
+const postcssSassColorFunctions = require('postcss-sass-color-functions');
 const autoprefixer = require('autoprefixer');
 const csso = require('postcss-csso');
 

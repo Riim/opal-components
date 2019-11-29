@@ -172,8 +172,48 @@ const template_rnt_1 = __webpack_require__("L9Xs");
 let OpalTreeSelect = class OpalTreeSelect extends opal_select_1.OpalSelect {
     constructor() {
         super(...arguments);
-        this.multiple = true;
-        this.openOnClick = true;
+        Object.defineProperty(this, "multiple", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: true
+        });
+        Object.defineProperty(this, "paramDataTreeList", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "dataTreeListKeypath", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "dataTreeListItemSchema", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "query", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "openOnClick", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: true
+        });
+        Object.defineProperty(this, "dataTreeList", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
     }
     initialize() {
         super.initialize();

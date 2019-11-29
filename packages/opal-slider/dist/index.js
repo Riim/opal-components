@@ -119,10 +119,36 @@ const template_rnt_1 = __webpack_require__("vUBf");
 let OpalSlider = OpalSlider_1 = class OpalSlider extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.min = 0;
-        this.max = 100;
-        this.step = 1;
-        this.value = 0;
+        Object.defineProperty(this, "min", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "max", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 100
+        });
+        Object.defineProperty(this, "step", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 1
+        });
+        Object.defineProperty(this, "value", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "range", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
     }
     get _firstInputWidth() {
         let min = this.min;
@@ -161,7 +187,12 @@ let OpalSlider = OpalSlider_1 = class OpalSlider extends rionite_1.BaseComponent
         this.emit(OpalSlider_1.EVENT_CHANGE);
     }
 };
-OpalSlider.EVENT_CHANGE = Symbol('change');
+Object.defineProperty(OpalSlider, "EVENT_CHANGE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('change')
+});
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)

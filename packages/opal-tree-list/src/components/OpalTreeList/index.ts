@@ -31,10 +31,10 @@ export interface IDataTreeListItem {
 }
 
 export interface IFilteredDataTreeListItem {
-	[name: string]: any;
+	$original: IDataTreeListItem;
 	parent?: IDataTreeListItem | null;
 	children: Array<IDataTreeListItem>;
-	$original: IDataTreeListItem;
+	[name: string]: any;
 }
 
 export type TDataTreeList = ObservableTreeList<IDataTreeListItem>;
@@ -93,7 +93,7 @@ export class OpalTreeList extends BaseComponent {
 		default: defaultVMItemSchema,
 		readonly: true
 	})
-	viewModelItemSchema: {
+	declare viewModelItemSchema: {
 		value?: string;
 		text?: string;
 	};
@@ -132,25 +132,25 @@ export class OpalTreeList extends BaseComponent {
 
 						if (
 							filteredChildren.length ||
-							toComparable(item[dataTreeListItemTextFieldName])!.indexOf(query!) != -1
+							toComparable(item[dataTreeListItemTextFieldName])!.includes(query!)
 						) {
 							filteredDataTreeList.push({
 								$original: item,
+								children: filteredChildren,
 								[dataTreeListItemValueFieldName]:
 									item[dataTreeListItemValueFieldName],
 								[dataTreeListItemTextFieldName]:
-									item[dataTreeListItemTextFieldName],
-								children: filteredChildren
+									item[dataTreeListItemTextFieldName]
 							});
 						}
 					} else if (
-						toComparable(item[dataTreeListItemTextFieldName])!.indexOf(query!) != -1
+						toComparable(item[dataTreeListItemTextFieldName])!.includes(query!)
 					) {
 						filteredDataTreeList.push({
 							$original: item,
+							children: [],
 							[dataTreeListItemValueFieldName]: item[dataTreeListItemValueFieldName],
-							[dataTreeListItemTextFieldName]: item[dataTreeListItemTextFieldName],
-							children: []
+							[dataTreeListItemTextFieldName]: item[dataTreeListItemTextFieldName]
 						});
 					}
 

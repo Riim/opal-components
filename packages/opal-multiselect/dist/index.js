@@ -122,7 +122,24 @@ const template_rnt_1 = __webpack_require__("b1cT");
 let OpalMultiselect = class OpalMultiselect extends opal_select_1.OpalSelect {
     constructor() {
         super(...arguments);
-        this.multiple = true;
+        Object.defineProperty(this, "multiple", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: true
+        });
+        Object.defineProperty(this, "dataProvider", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_queryInputClass", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
     }
     get nothingSelectedShown() {
         return !this.viewModel.length;

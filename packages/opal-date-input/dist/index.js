@@ -200,11 +200,72 @@ function pad(num) {
 let OpalDateInput = class OpalDateInput extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.placeholder = 'dd.mm.yyyy';
-        this.mask = '99.99.9999';
-        this.required = false;
-        this.popoverPosition = 'right';
-        this.dateExists = date_exists_1.dateExists;
+        Object.defineProperty(this, "fromDate", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "toDate", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "paramValue", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "placeholder", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'dd.mm.yyyy'
+        });
+        Object.defineProperty(this, "mask", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: '99.99.9999'
+        });
+        Object.defineProperty(this, "required", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "popoverPosition", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'right'
+        });
+        Object.defineProperty(this, "dateExists", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: date_exists_1.dateExists
+        });
+        Object.defineProperty(this, "_documentFocusListening", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_documentKeyDownListening", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_documentClickListening", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
     }
     _isDateInRange(date) {
         let calendar = this.$('calendar');

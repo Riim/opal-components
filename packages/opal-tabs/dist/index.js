@@ -183,8 +183,18 @@ const template_rnt_1 = __webpack_require__("DBEQ");
 let OpalTabPanel = class OpalTabPanel extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.shown = false;
-        this.contentRendered = false;
+        Object.defineProperty(this, "shown", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "contentRendered", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
     }
     initialize() {
         this.listenTo(this, 'change:shown', this._onShownChange);
@@ -287,9 +297,36 @@ const reTabLabel = /(?:#|&)tab=([^&]+)/;
 let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.useLocationHash = false;
-        this._startSelectedTab = null;
-        this._selectedTab = null;
+        Object.defineProperty(this, "useLocationHash", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "tabElements", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "tabPanelElements", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "_startSelectedTab", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: null
+        });
+        Object.defineProperty(this, "_selectedTab", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: null
+        });
     }
     ready() {
         let tabElements = (this.tabElements = this.element.getElementsByClassName('OpalTab'));
@@ -389,7 +426,12 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
         }
     }
 };
-OpalTabs.EVENT_CHANGE = Symbol('change');
+Object.defineProperty(OpalTabs, "EVENT_CHANGE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('change')
+});
 __decorate([
     rionite_1.Param,
     __metadata("design:type", Object)
@@ -507,11 +549,42 @@ const template_rnt_1 = __webpack_require__("T5PU");
 let OpalTab = OpalTab_1 = class OpalTab extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.selected = false;
-        this.tabIndex = 0;
-        this.focused = false;
-        this.hidden = false;
-        this.disabled = false;
+        Object.defineProperty(this, "label", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "selected", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "tabIndex", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "focused", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "hidden", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "disabled", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
     }
     get _tabIndex() {
         return this.disabled ? -1 : this.tabIndex;
@@ -571,8 +644,18 @@ let OpalTab = OpalTab_1 = class OpalTab extends rionite_1.BaseComponent {
         return this;
     }
 };
-OpalTab.EVENT_SELECT = Symbol('select');
-OpalTab.EVENT_DESELECT = Symbol('deselect');
+Object.defineProperty(OpalTab, "EVENT_SELECT", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('select')
+});
+Object.defineProperty(OpalTab, "EVENT_DESELECT", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('deselect')
+});
 __decorate([
     rionite_1.Param,
     __metadata("design:type", String)

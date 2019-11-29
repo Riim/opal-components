@@ -268,8 +268,8 @@ export class OpalSelect extends BaseComponent {
 
 			if (value.length) {
 				if (this.multiple) {
-					selectedOptions = this.options.filter(
-						option => value.indexOf(option.value) != -1
+					selectedOptions = this.options.filter(option =>
+						(value as Array<string>).includes(option.value)
 					);
 				} else {
 					value = value[0];
@@ -376,7 +376,7 @@ export class OpalSelect extends BaseComponent {
 				let optionValue = option.value;
 				let itemIndex = vm.findIndex(item => item[vmItemValueFieldName] == optionValue);
 
-				if (value.indexOf(optionValue) == -1) {
+				if (!(value as Array<string>).includes(optionValue)) {
 					if (itemIndex != -1) {
 						vm.removeAt(itemIndex);
 					}

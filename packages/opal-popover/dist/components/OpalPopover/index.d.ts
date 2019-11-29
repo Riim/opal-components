@@ -8,7 +8,9 @@ export declare class OpalPopover extends BaseComponent {
     });
     positionOffset: number;
     autoDirection: boolean;
-    closeOn: string;
+    closeOn: 'click' | 'mousedown' | (string & {
+        _?: never;
+    });
     opened: boolean;
     contentRendered: boolean;
     _positionAtOpening: string;

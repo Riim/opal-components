@@ -186,8 +186,24 @@ const template_rnt_1 = __webpack_require__("4p0C");
 let OpalInputValidatorRule = class OpalInputValidatorRule extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.required = false;
-        this.popoverPosition = 'right';
+        Object.defineProperty(this, "required", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "test", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "popoverPosition", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'right'
+        });
     }
     showMessage() {
         this.$('popover').open();
@@ -275,7 +291,24 @@ const template_rnt_1 = __webpack_require__("nQ2J");
 let OpalInputValidator = OpalInputValidator_1 = class OpalInputValidator extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.failedRule = null;
+        Object.defineProperty(this, "target", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "rules", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "failedRule", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: null
+        });
     }
     get valid() {
         return !this.failedRule;
@@ -322,8 +355,18 @@ let OpalInputValidator = OpalInputValidator_1 = class OpalInputValidator extends
         return this;
     }
 };
-OpalInputValidator.EVENT_INPUT_VALIDATION_ERROR = Symbol('input-validation-error');
-OpalInputValidator.EVENT_INPUT_VALIDATION_VALID = Symbol('input-validation-valid');
+Object.defineProperty(OpalInputValidator, "EVENT_INPUT_VALIDATION_ERROR", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('input-validation-error')
+});
+Object.defineProperty(OpalInputValidator, "EVENT_INPUT_VALIDATION_VALID", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: Symbol('input-validation-valid')
+});
 __decorate([
     cellx_decorators_1.Observable,
     __metadata("design:type", Object)

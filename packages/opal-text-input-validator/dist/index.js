@@ -119,6 +119,15 @@ const OpalTextInputValidatorRule_1 = __webpack_require__("NTMD");
 exports.OpalTextInputValidatorRule = OpalTextInputValidatorRule_1.OpalTextInputValidatorRule;
 __webpack_require__("zK37");
 let OpalTextInputValidator = OpalTextInputValidator_1 = class OpalTextInputValidator extends opal_input_validator_1.OpalInputValidator {
+    constructor() {
+        super(...arguments);
+        Object.defineProperty(this, "textInput", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+    }
     ready() {
         super.ready();
         this.target = this.textInput = this.$('textInput');
@@ -138,8 +147,18 @@ let OpalTextInputValidator = OpalTextInputValidator_1 = class OpalTextInputValid
             : rule.required);
     }
 };
-OpalTextInputValidator.targetChangeEvents = [opal_text_input_1.OpalTextInput.EVENT_CHANGE];
-OpalTextInputValidator.targetInputEvents = [opal_text_input_1.OpalTextInput.EVENT_INPUT];
+Object.defineProperty(OpalTextInputValidator, "targetChangeEvents", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: [opal_text_input_1.OpalTextInput.EVENT_CHANGE]
+});
+Object.defineProperty(OpalTextInputValidator, "targetInputEvents", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: [opal_text_input_1.OpalTextInput.EVENT_INPUT]
+});
 __decorate([
     rionite_1.Listen((ctor) => ctor.targetInputEvents, '@textInput'),
     __metadata("design:type", Function),
@@ -198,6 +217,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const opal_input_validator_1 = __webpack_require__("9L4b");
 const rionite_1 = __webpack_require__("u4yd");
 let OpalTextInputValidatorRule = class OpalTextInputValidatorRule extends opal_input_validator_1.OpalInputValidatorRule {
+    constructor() {
+        super(...arguments);
+        Object.defineProperty(this, "minLength", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "regex", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+    }
 };
 __decorate([
     rionite_1.Param,
