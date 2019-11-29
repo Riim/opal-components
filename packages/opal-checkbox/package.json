@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-checkbox",
-  "version": "0.40.1",
+  "version": "0.40.4",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
