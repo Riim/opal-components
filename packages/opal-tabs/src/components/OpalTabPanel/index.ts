@@ -9,7 +9,7 @@ import template from './template.rnt';
 	template
 })
 export class OpalTabPanel extends BaseComponent {
-	@Param({ default: false })
+	@Param(Boolean)
 	declare shown: boolean;
 
 	@Observable

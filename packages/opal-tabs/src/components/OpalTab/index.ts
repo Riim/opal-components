@@ -18,15 +18,15 @@ export class OpalTab extends BaseComponent {
 
 	@Param(String)
 	declare label: string | null;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare selected: boolean;
 	@Param({ default: 0 })
 	declare tabIndex: number;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare focused: boolean;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare hidden: boolean;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare disabled: boolean;
 
 	@Computed

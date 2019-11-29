@@ -54,7 +54,7 @@ export class OpalDateInput extends BaseComponent {
 	declare placeholder: string;
 	@Param({ default: '99.99.9999' })
 	declare mask: string;
-	@Param({ default: false, readonly: true })
+	@Param({ type: Boolean, readonly: true })
 	declare required: boolean;
 	@Param({ default: 'right' })
 	declare popoverPosition: typeof OpalPopover.prototype.position;

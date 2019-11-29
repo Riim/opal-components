@@ -81,7 +81,7 @@ export class OpalIcon extends BaseComponent {
 	declare size: 's' | 'xs' | 'xxs' | 'm' | 's' | 'xs' | 'xxs' | (string & { _?: never });
 	@Param({ default: 3, readonly: true })
 	declare strokeWidth: number;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare filled: boolean;
 
 	@Computed

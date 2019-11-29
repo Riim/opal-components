@@ -21,15 +21,15 @@ export class OpalCheckbox extends BaseComponent {
 	static EVENT_FOCUS = Symbol('focus');
 	static EVENT_UNCHECK = Symbol('uncheck');
 
-	@Param({ default: false })
+	@Param(Boolean)
 	declare checked: boolean;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare indeterminate: boolean;
 	@Param({ default: 0 })
 	declare tabIndex: number;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare focused: boolean;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare disabled: boolean;
 
 	@Computed

@@ -54,7 +54,7 @@ export class OpalLoadedList extends BaseComponent {
 	declare limit: number;
 	@Param(String)
 	declare query: string | null;
-	@Param({ default: false, readonly: true })
+	@Param({ type: Boolean, readonly: true })
 	declare preloading: boolean;
 
 	@Observable

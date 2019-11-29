@@ -38,7 +38,7 @@ export class OpalPopover extends BaseComponent {
 	declare autoDirection: boolean;
 	@Param(String)
 	declare closeOn: 'click' | 'mousedown' | (string & { _?: never });
-	@Param({ default: false })
+	@Param(Boolean)
 	declare opened: boolean;
 
 	@Observable

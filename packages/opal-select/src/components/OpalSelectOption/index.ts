@@ -24,15 +24,15 @@ export class OpalSelectOption extends BaseComponent {
 	declare paramText: string;
 	@Param('subtext', String)
 	declare paramSubtext: string | null;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare selected: boolean;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare indeterminate: boolean;
 	@Param({ default: 0 })
 	declare tabIndex: number;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare focused: boolean;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare disabled: boolean;
 
 	@Computed

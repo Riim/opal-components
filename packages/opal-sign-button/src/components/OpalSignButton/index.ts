@@ -31,15 +31,15 @@ export class OpalSignButton extends BaseComponent {
 		| 'warning'
 		| 'danger'
 		| (string & { _?: never });
-	@Param({ default: false })
+	@Param(Boolean)
 	declare checkable: boolean;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare checked: boolean;
 	@Param({ default: 0 })
 	declare tabIndex: number;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare focused: boolean;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare disabled: boolean;
 
 	@Computed

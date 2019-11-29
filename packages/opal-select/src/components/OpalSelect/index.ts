@@ -77,9 +77,9 @@ export class OpalSelect extends BaseComponent {
 	declare viewType: typeof OpalButton.prototype.viewType;
 	@Param({ default: 'm' })
 	declare size: typeof OpalButton.prototype.size;
-	@Param({ default: false, readonly: true })
+	@Param({ type: Boolean, readonly: true })
 	declare multiple: boolean;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare clearOnDeselect: boolean;
 	@Param('dataList')
 	declare paramDataList: TDataList | null;
@@ -107,7 +107,7 @@ export class OpalSelect extends BaseComponent {
 	declare addNewItem:
 		| ((text: string, select: OpalSelect) => Promise<Record<string, string>>)
 		| null;
-	@Param({ default: false })
+	@Param(Boolean)
 	clearLoadedListOnOpen: boolean;
 	@Param(String)
 	declare text: string | null;
@@ -115,13 +115,13 @@ export class OpalSelect extends BaseComponent {
 	declare maxTextLength: number;
 	@Param({ default: pt('OpalSelect#placeholder', 'Не выбрано') })
 	declare placeholder: string;
-	@Param({ default: false, readonly: true })
+	@Param({ type: Boolean, readonly: true })
 	declare openOnClick: boolean;
 	@Param({ default: 0 })
 	declare tabIndex: number;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare focused: boolean;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare disabled: boolean;
 
 	dataListCell: Cell<TDataList | null> | null = null;

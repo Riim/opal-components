@@ -57,7 +57,7 @@ export class OpalTextInput extends BaseComponent {
 	declare inputType: 'text' | 'password' | (string & { _?: never });
 	@Param({ default: 'm' })
 	declare size: 'm' | (string & { _?: never });
-	@Param({ default: false })
+	@Param(Boolean)
 	declare multiline: boolean;
 	@Param({ default: 5 })
 	declare rows: number;
@@ -75,15 +75,15 @@ export class OpalTextInput extends BaseComponent {
 	declare startIcon: string | null;
 	@Param(String)
 	declare endIcon: string | null;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare clearable: boolean;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare loading: boolean;
 	@Param({ default: 0 })
 	declare tabIndex: number;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare focused: boolean;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare disabled: boolean;
 
 	_inputTypeCell: Cell<string>;

@@ -134,9 +134,9 @@ export class OpalTagSelect extends BaseComponent {
 	declare popoverPosition: typeof OpalPopover.prototype.position;
 	@Param({ default: 0 })
 	declare tabIndex: number;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare focused: boolean;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare disabled: boolean;
 
 	dataList: TDataList | null;

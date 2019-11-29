@@ -8,7 +8,7 @@ import template from './template.rnt';
 	template
 })
 export class OpalInputValidatorRule extends BaseComponent {
-	@Param({ default: false })
+	@Param(Boolean)
 	declare required: boolean;
 	@Param
 	declare test: ((this: BaseComponent, value: any) => boolean) | null;

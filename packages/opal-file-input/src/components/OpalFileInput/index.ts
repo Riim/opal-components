@@ -69,7 +69,7 @@ export class OpalFileInput extends BaseComponent {
 	static EVENT_CHANGE = Symbol('change');
 	static EVENT_CLEAR = Symbol('clear');
 
-	@Param({ default: false, readonly: true })
+	@Param({ type: Boolean, readonly: true })
 	declare multiple: boolean;
 	@Param({ default: new ObservableList() })
 	declare dataList: TDataList;
@@ -83,7 +83,7 @@ export class OpalFileInput extends BaseComponent {
 	declare buttonText: string;
 	@Param({ default: pt('OpalFileInput#placeholder', 'Не выбрано') })
 	declare placeholder: string;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare disabled: boolean;
 
 	_reFileType: RegExp;

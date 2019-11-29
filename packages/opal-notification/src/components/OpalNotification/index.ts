@@ -50,7 +50,7 @@ export class OpalNotification extends BaseComponent {
 	declare buttonHide: boolean;
 	@Param({ default: 0 })
 	declare timeout: number;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare shown: boolean;
 
 	bar: HTMLElement;

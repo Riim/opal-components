@@ -44,7 +44,7 @@ function onDocumentKeyUp(evt: KeyboardEvent) {
 export class OpalModal extends BaseComponent {
 	static EVENT_CLOSE = Symbol('close');
 
-	@Param({ default: false })
+	@Param(Boolean)
 	declare opened: boolean;
 
 	@Observable

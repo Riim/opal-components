@@ -76,7 +76,7 @@ export class OpalAutosuggest extends BaseComponent {
 	declare minQueryLength: number;
 	@Param({ default: 5 })
 	declare limit: number;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare openMenuOnNothingFound: boolean;
 
 	static defaultDataListItemSchema = defaultDataListItemSchema;

@@ -42,7 +42,7 @@ export class OpalTreeListItem extends BaseComponent {
 	declare indexpath: Array<number>;
 	@Param(String)
 	declare query: string | null;
-	@Param({ default: false })
+	@Param(Boolean)
 	declare opened: boolean;
 
 	dataTreeListItem: IFilteredDataTreeListItem;

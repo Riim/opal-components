@@ -30,7 +30,7 @@ const reTabLabel = /(?:#|&)tab=([^&]+)/;
 export class OpalTabs extends BaseComponent {
 	static EVENT_CHANGE = Symbol('change');
 
-	@Param({ default: false })
+	@Param(Boolean)
 	declare useLocationHash: boolean;
 
 	tabElements: HTMLCollectionOf<IComponentElement>;
