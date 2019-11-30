@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-components",
-  "version": "0.40.6",
+  "version": "0.40.7",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     "@riim/opal-calendar": "^0.40.6",
     "@riim/opal-checkbox": "^0.40.6",
     "@riim/opal-components-common": "^0.40.6",
-    "@riim/opal-date-input": "^0.40.6",
+    "@riim/opal-date-input": "^0.40.7",
     "@riim/opal-dropdown": "^0.40.6",
     "@riim/opal-editable-text": "^0.40.6",
     "@riim/opal-file-input": "^0.40.6",
@@ -48,7 +48,7 @@
     "@riim/opal-tabs": "^0.40.6",
     "@riim/opal-tag-select": "^0.40.6",
     "@riim/opal-text-input": "^0.40.6",
-    "@riim/opal-text-input-validator": "^0.40.6",
+    "@riim/opal-text-input-validator": "^0.40.7",
     "@riim/opal-tree-list": "^0.40.6",
     "@riim/opal-tree-select": "^0.40.6",
     "@riim/opal-tree-tag-select": "^0.40.6"

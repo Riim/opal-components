@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-date-input",
-  "version": "0.40.6",
+  "version": "0.40.7",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
     "@riim/opal-input-mask": "^0.40.6",
     "@riim/opal-popover": "^0.40.6",
     "@riim/opal-text-input": "^0.40.6",
-    "@riim/opal-text-input-validator": "^0.40.6",
+    "@riim/opal-text-input-validator": "^0.40.7",
     "cellx": "^1.9.20",
     "date-exists": "^1.0.1",
     "rionite": "^0.38.7"
