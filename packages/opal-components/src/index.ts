@@ -26,6 +26,7 @@ import '@riim/opal-radio-group';
 import '@riim/opal-router';
 import '@riim/opal-select';
 import '@riim/opal-select-validator';
+import '@riim/opal-share-button';
 import '@riim/opal-sign-button';
 import '@riim/opal-slider';
 import '@riim/opal-switch';

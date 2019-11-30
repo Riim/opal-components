@@ -1,0 +1,111 @@
+@component OpalShareButton : OpalButton {
+	@mod viewType=default {
+		@mod service=facebook {
+			background: #4172B8;
+
+			&:hover {
+				background-color: lighten(#4172B8, 12%);
+			}
+
+			&:active {
+				background-color: darken(#4172B8, 12%);
+			}
+		}
+
+		@mod service=linkedin {
+			background: #0077B5;
+
+			&:hover {
+				background-color: lighten(#0077B5, 12%);
+			}
+
+			&:active {
+				background-color: darken(#0077B5, 12%);
+			}
+		}
+
+		@mod service=odnoklassniki {
+			background: #F4731C;
+
+			&:hover {
+				background-color: lighten(#F4731C, 12%);
+			}
+
+			&:active {
+				background-color: darken(#F4731C, 12%);
+			}
+		}
+
+		@mod service=pinterest {
+			background: #BD081C;
+
+			&:hover {
+				background-color: lighten(#BD081C, 12%);
+			}
+
+			&:active {
+				background-color: darken(#BD081C, 12%);
+			}
+		}
+
+		@mod service=telegram {
+			background: #2CA5E0;
+
+			&:hover {
+				background-color: lighten(#2CA5E0, 12%);
+			}
+
+			&:active {
+				background-color: darken(#2CA5E0, 12%);
+			}
+		}
+
+		@mod service=twitter {
+			background: #1DA1F2;
+
+			&:hover {
+				background-color: lighten(#1DA1F2, 12%);
+			}
+
+			&:active {
+				background-color: darken(#1DA1F2, 12%);
+			}
+		}
+
+		@mod service=viber {
+			background: #665CAC;
+
+			&:hover {
+				background-color: lighten(#665CAC, 12%);
+			}
+
+			&:active {
+				background-color: darken(#665CAC, 12%);
+			}
+		}
+
+		@mod service=vkontakte {
+			background: #4680C2;
+
+			&:hover {
+				background-color: lighten(#4680C2, 12%);
+			}
+
+			&:active {
+				background-color: darken(#4680C2, 12%);
+			}
+		}
+
+		@mod service=whatsapp {
+			background: #25D366;
+
+			&:hover {
+				background-color: lighten(#25D366, 12%);
+			}
+
+			&:active {
+				background-color: darken(#25D366, 12%);
+			}
+		}
+	}
+}
