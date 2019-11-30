@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-components",
-  "version": "0.40.9",
+  "version": "0.40.10",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -41,7 +41,7 @@
     "@riim/opal-router": "^0.40.6",
     "@riim/opal-select": "^0.40.6",
     "@riim/opal-select-validator": "^0.40.9",
-    "@riim/opal-share-button": "^0.40.6",
+    "@riim/opal-share-button": "^0.40.10",
     "@riim/opal-sign-button": "^0.40.6",
     "@riim/opal-slider": "^0.40.6",
     "@riim/opal-switch": "^0.40.6",
