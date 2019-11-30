@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("cellx"), require("@riim/opal-button"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "rionite", "cellx-decorators"], factory);
+		define(["cellx", "@riim/opal-button", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-popover"] = factory(require("cellx"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-popover"] = factory(require("cellx"), require("@riim/opal-button"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-popover"] = factory(root["cellx"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-popover"] = factory(root["cellx"], root["@riim/opal-button"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -106,6 +106,7 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__("WwGH"));
+__export(__webpack_require__("ttez"));
 
 
 /***/ }),
@@ -319,6 +320,13 @@ exports.OpalPopover = OpalPopover;
 
 /***/ }),
 
+/***/ "X6DG":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_X6DG__;
+
+/***/ }),
+
 /***/ "fDbg":
 /***/ (function(module, exports) {
 
@@ -333,6 +341,132 @@ module.exports = (function(d) {
         }
         return null;
     })(document);
+
+
+/***/ }),
+
+/***/ "gFQJ":
+/***/ (function(module, exports) {
+
+module.exports = (function(d) {
+        var head = d.head || d.getElementsByTagName('head')[0];
+        if (head) {
+            var style = d.createElement('style');
+            style.type = 'text/css';
+            style.textContent = ".OpalPopoverSource{position:relative;display:inline-block}";
+            head.appendChild(style);
+            return style;
+        }
+        return null;
+    })(document);
+
+
+/***/ }),
+
+/***/ "ttez":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const opal_button_1 = __webpack_require__("X6DG");
+const rionite_1 = __webpack_require__("u4yd");
+const OpalPopover_1 = __webpack_require__("WwGH");
+__webpack_require__("gFQJ");
+let OpalPopoverSource = class OpalPopoverSource extends rionite_1.BaseComponent {
+    constructor() {
+        super(...arguments);
+        this.mouseLeaveTimeout = null;
+    }
+    ready() {
+        let popoverTarget = this.$('popoverTarget');
+        if (popoverTarget instanceof rionite_1.BaseComponent && !(popoverTarget instanceof opal_button_1.OpalButton)) {
+            popoverTarget = popoverTarget.element;
+        }
+        this.popoverTarget = popoverTarget;
+        this.popover = this.$('popover');
+    }
+    elementAttached() {
+        let popoverTarget = this.popoverTarget;
+        if (popoverTarget instanceof opal_button_1.OpalButton) {
+            if (popoverTarget.checkable) {
+                this.listenTo(popoverTarget, {
+                    [opal_button_1.OpalButton.EVENT_CHECK]: this._onPopoverTargetCheck,
+                    [opal_button_1.OpalButton.EVENT_UNCHECK]: this._onPopoverTargetUncheck
+                });
+                this.listenTo(this.popover, OpalPopover_1.OpalPopover.EVENT_CLOSE, this._onPopoverClose);
+            }
+            else {
+                this.listenTo(popoverTarget, opal_button_1.OpalButton.EVENT_CLICK, this._onPopoverTargetClick);
+            }
+        }
+        else {
+            this.listenTo(popoverTarget, {
+                mouseenter: this._onPopoverTargetMouseEnter,
+                mouseleave: this._onPopoverTargetMouseLeave
+            });
+            this.listenTo(this.popover.element, {
+                mouseenter: this._onPopoverElementMouseEnter,
+                mouseleave: this._onPopoverElementMouseLeave
+            });
+        }
+    }
+    _onPopoverTargetCheck() {
+        this.popover.open();
+    }
+    _onPopoverTargetUncheck() {
+        this.popover.close();
+    }
+    _onPopoverTargetClick() {
+        if (!this.popover.opened) {
+            this.popover.open();
+        }
+    }
+    _onPopoverTargetMouseEnter() {
+        if (this.mouseLeaveTimeout) {
+            this.mouseLeaveTimeout.clear();
+            this.mouseLeaveTimeout = null;
+        }
+        this.popover.open();
+    }
+    _onPopoverTargetMouseLeave() {
+        this.mouseLeaveTimeout = this.setTimeout(() => {
+            this._onPopoverTargetMouseLeaveTimeout();
+        }, 100);
+    }
+    _onPopoverTargetMouseLeaveTimeout() {
+        this.popover.close();
+    }
+    _onPopoverElementMouseEnter() {
+        if (this.mouseLeaveTimeout) {
+            this.mouseLeaveTimeout.clear();
+            this.mouseLeaveTimeout = null;
+        }
+    }
+    _onPopoverElementMouseLeave() {
+        this.mouseLeaveTimeout = this.setTimeout(() => {
+            this._onPopoverElementMouseLeaveTimeout();
+        }, 100);
+    }
+    _onPopoverElementMouseLeaveTimeout() {
+        this.popover.close();
+    }
+    _onPopoverClose() {
+        this.popoverTarget.checked = false;
+    }
+};
+OpalPopoverSource = __decorate([
+    rionite_1.Component({
+        elementIs: 'OpalPopoverSource'
+    })
+], OpalPopoverSource);
+exports.OpalPopoverSource = OpalPopoverSource;
 
 
 /***/ }),
