@@ -114,15 +114,6 @@ const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("st0Y");
 const template_rnt_1 = __webpack_require__("IjPK");
 let OpalSignButton = OpalSignButton_1 = class OpalSignButton extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "_documentKeyDownListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
     get _tabIndex() {
         return this.disabled ? -1 : this.tabIndex;
     }
@@ -192,42 +183,12 @@ let OpalSignButton = OpalSignButton_1 = class OpalSignButton extends rionite_1.B
         return this;
     }
 };
-Object.defineProperty(OpalSignButton, "EVENT_BLUR", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('blur')
-});
-Object.defineProperty(OpalSignButton, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
-Object.defineProperty(OpalSignButton, "EVENT_CHECK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('check')
-});
-Object.defineProperty(OpalSignButton, "EVENT_CLICK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('click')
-});
-Object.defineProperty(OpalSignButton, "EVENT_FOCUS", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('focus')
-});
-Object.defineProperty(OpalSignButton, "EVENT_UNCHECK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('uncheck')
-});
+OpalSignButton.EVENT_BLUR = Symbol('blur');
+OpalSignButton.EVENT_CHANGE = Symbol('change');
+OpalSignButton.EVENT_CHECK = Symbol('check');
+OpalSignButton.EVENT_CLICK = Symbol('click');
+OpalSignButton.EVENT_FOCUS = Symbol('focus');
+OpalSignButton.EVENT_UNCHECK = Symbol('uncheck');
 __decorate([
     rionite_1.Param({ type: String, required: true })
 ], OpalSignButton.prototype, "sign", void 0);
@@ -235,19 +196,19 @@ __decorate([
     rionite_1.Param({ default: 'default' })
 ], OpalSignButton.prototype, "viewType", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSignButton.prototype, "checkable", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSignButton.prototype, "checked", void 0);
 __decorate([
     rionite_1.Param({ default: 0 })
 ], OpalSignButton.prototype, "tabIndex", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSignButton.prototype, "focused", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSignButton.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed

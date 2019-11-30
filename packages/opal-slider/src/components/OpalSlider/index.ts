@@ -11,15 +11,15 @@ export class OpalSlider extends BaseComponent {
 	static EVENT_CHANGE = Symbol('change');
 
 	@Param({ default: 0 })
-	declare min: number;
+	min: number;
 	@Param({ default: 100 })
-	declare max: number;
+	max: number;
 	@Param({ default: 1 })
-	declare step: number;
+	step: number;
 	@Param({ default: 0 })
-	declare value: number;
+	value: number;
 	@Param(eval)
-	declare range: [number, number] | null;
+	range: [number, number] | null;
 
 	@Computed
 	get _firstInputWidth(): number {

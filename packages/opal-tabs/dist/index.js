@@ -180,12 +180,7 @@ const template_rnt_1 = __webpack_require__("DBEQ");
 let OpalTabPanel = class OpalTabPanel extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "contentRendered", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
+        this.contentRendered = false;
     }
     initialize() {
         this.listenTo(this, 'change:shown', this._onShownChange);
@@ -203,7 +198,7 @@ let OpalTabPanel = class OpalTabPanel extends rionite_1.BaseComponent {
     }
 };
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalTabPanel.prototype, "shown", void 0);
 __decorate([
     cellx_decorators_1.Observable
@@ -283,30 +278,8 @@ const reTabLabel = /(?:#|&)tab=([^&]+)/;
 let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "tabElements", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "tabPanelElements", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_startSelectedTab", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: null
-        });
-        Object.defineProperty(this, "_selectedTab", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: null
-        });
+        this._startSelectedTab = null;
+        this._selectedTab = null;
     }
     ready() {
         let tabElements = (this.tabElements = this.element.getElementsByClassName('OpalTab'));
@@ -406,14 +379,9 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
         }
     }
 };
-Object.defineProperty(OpalTabs, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
+OpalTabs.EVENT_CHANGE = Symbol('change');
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalTabs.prototype, "useLocationHash", void 0);
 __decorate([
     rionite_1.Listen(OpalTabList_1.OpalTab.EVENT_SELECT, self => self.element.getElementsByClassName('OpalTabList')[0].$component)
@@ -575,35 +543,25 @@ let OpalTab = OpalTab_1 = class OpalTab extends rionite_1.BaseComponent {
         return this;
     }
 };
-Object.defineProperty(OpalTab, "EVENT_SELECT", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('select')
-});
-Object.defineProperty(OpalTab, "EVENT_DESELECT", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('deselect')
-});
+OpalTab.EVENT_SELECT = Symbol('select');
+OpalTab.EVENT_DESELECT = Symbol('deselect');
 __decorate([
     rionite_1.Param(String)
 ], OpalTab.prototype, "label", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalTab.prototype, "selected", void 0);
 __decorate([
     rionite_1.Param({ default: 0 })
 ], OpalTab.prototype, "tabIndex", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalTab.prototype, "focused", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalTab.prototype, "hidden", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalTab.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed

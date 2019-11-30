@@ -157,30 +157,7 @@ const template_rnt_1 = __webpack_require__("idvu");
 let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "_inputTypeCell", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "textField", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_prevValue", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "validator", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: null
-        });
+        this.validator = null;
     }
     get _inputType() {
         return this.inputType;
@@ -304,60 +281,15 @@ let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.Base
         return !this.validator || this.validator.validate();
     }
 };
-Object.defineProperty(OpalTextInput, "EVENT_BLUR", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('blur')
-});
-Object.defineProperty(OpalTextInput, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
-Object.defineProperty(OpalTextInput, "EVENT_CLEAR", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('clear')
-});
-Object.defineProperty(OpalTextInput, "EVENT_CONFIRM", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('confirm')
-});
-Object.defineProperty(OpalTextInput, "EVENT_FOCUS", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('focus')
-});
-Object.defineProperty(OpalTextInput, "EVENT_INPUT", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('input')
-});
-Object.defineProperty(OpalTextInput, "EVENT_KEYDOWN", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('keydown')
-});
-Object.defineProperty(OpalTextInput, "EVENT_KEYPRESS", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('keypress')
-});
-Object.defineProperty(OpalTextInput, "EVENT_KEYUP", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('keyup')
-});
+OpalTextInput.EVENT_BLUR = Symbol('blur');
+OpalTextInput.EVENT_CHANGE = Symbol('change');
+OpalTextInput.EVENT_CLEAR = Symbol('clear');
+OpalTextInput.EVENT_CONFIRM = Symbol('confirm');
+OpalTextInput.EVENT_FOCUS = Symbol('focus');
+OpalTextInput.EVENT_INPUT = Symbol('input');
+OpalTextInput.EVENT_KEYDOWN = Symbol('keydown');
+OpalTextInput.EVENT_KEYPRESS = Symbol('keypress');
+OpalTextInput.EVENT_KEYUP = Symbol('keyup');
 __decorate([
     rionite_1.Param({ default: 'text' })
 ], OpalTextInput.prototype, "inputType", void 0);
@@ -365,7 +297,7 @@ __decorate([
     rionite_1.Param({ default: 'm' })
 ], OpalTextInput.prototype, "size", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalTextInput.prototype, "multiline", void 0);
 __decorate([
     rionite_1.Param({ default: 5 })
@@ -392,19 +324,19 @@ __decorate([
     rionite_1.Param(String)
 ], OpalTextInput.prototype, "endIcon", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalTextInput.prototype, "clearable", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalTextInput.prototype, "loading", void 0);
 __decorate([
     rionite_1.Param({ default: 0 })
 ], OpalTextInput.prototype, "tabIndex", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalTextInput.prototype, "focused", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalTextInput.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed

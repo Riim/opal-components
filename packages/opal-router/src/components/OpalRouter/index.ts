@@ -53,11 +53,11 @@ export class OpalRouter extends BaseComponent {
 	static history = history;
 
 	@Param({ type: Boolean, readonly: true })
-	declare useLocationHash: boolean;
+	useLocationHash: boolean;
 	@Param({ default: true })
-	declare scrollTopOnChange: boolean;
+	scrollTopOnChange: boolean;
 	@Param({ default: true })
-	declare scrollTopOnChangeComponent: boolean;
+	scrollTopOnChangeComponent: boolean;
 
 	_routes: Array<IRoute>;
 	_route: IRoute | null = null;

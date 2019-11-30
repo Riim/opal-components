@@ -125,21 +125,6 @@ function initContainer(notification) {
     return container;
 }
 let OpalNotification = OpalNotification_1 = class OpalNotification extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "bar", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_closingTimeoutId", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
     $(name, container = this.bar) {
         return super.$(name, container);
     }
@@ -240,18 +225,8 @@ let OpalNotification = OpalNotification_1 = class OpalNotification extends rioni
         return this;
     }
 };
-Object.defineProperty(OpalNotification, "EVENT_CLOSE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('close')
-});
-Object.defineProperty(OpalNotification, "EVENT_HIDE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('hide')
-});
+OpalNotification.EVENT_CLOSE = Symbol('close');
+OpalNotification.EVENT_HIDE = Symbol('hide');
 __decorate([
     rionite_1.Param({ default: 'default' })
 ], OpalNotification.prototype, "viewType", void 0);
@@ -268,7 +243,7 @@ __decorate([
     rionite_1.Param({ default: 0 })
 ], OpalNotification.prototype, "timeout", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalNotification.prototype, "shown", void 0);
 __decorate([
     rionite_1.Listen('change:shown')

@@ -116,21 +116,6 @@ const template_rnt_1 = __webpack_require__("HNRH");
 const forEach = Array.prototype.forEach;
 const find = Array.prototype.find;
 let OpalSwitchMenu = OpalSwitchMenu_1 = class OpalSwitchMenu extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "buttonElements", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_checkedButton", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
     get checkedButton() {
         if (this._checkedButton !== undefined) {
             return this._checkedButton;
@@ -178,12 +163,7 @@ let OpalSwitchMenu = OpalSwitchMenu_1 = class OpalSwitchMenu extends rionite_1.B
         }
     }
 };
-Object.defineProperty(OpalSwitchMenu, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
+OpalSwitchMenu.EVENT_CHANGE = Symbol('change');
 __decorate([
     rionite_1.Listen(opal_button_1.OpalButton.EVENT_CHECK)
 ], OpalSwitchMenu.prototype, "_onButtonCheck", null);

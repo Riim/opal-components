@@ -177,36 +177,10 @@ function valueToAttributeValue(value) {
 let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "_routes", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_route", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: null
-        });
-        Object.defineProperty(this, "_state", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: null
-        });
-        Object.defineProperty(this, "_componentElement", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: null
-        });
-        Object.defineProperty(this, "isLoaderShown", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
+        this._route = null;
+        this._state = null;
+        this._componentElement = null;
+        this.isLoaderShown = false;
     }
     initialize() {
         this._routes = [];
@@ -497,26 +471,11 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
         }
     }
 };
-Object.defineProperty(OpalRouter, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
-Object.defineProperty(OpalRouter, "EVENT_REFRESH_ROUTER", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('refresh-router')
-});
-Object.defineProperty(OpalRouter, "history", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: history
-});
+OpalRouter.EVENT_CHANGE = Symbol('change');
+OpalRouter.EVENT_REFRESH_ROUTER = Symbol('refresh-router');
+OpalRouter.history = history;
 __decorate([
-    rionite_1.Param({ default: false, readonly: true })
+    rionite_1.Param({ type: Boolean, readonly: true })
 ], OpalRouter.prototype, "useLocationHash", void 0);
 __decorate([
     rionite_1.Param({ default: true })

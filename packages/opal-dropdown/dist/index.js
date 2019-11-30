@@ -148,18 +148,7 @@ const template_rnt_1 = __webpack_require__("BALO");
 let OpalDropdown = OpalDropdown_1 = class OpalDropdown extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "contentRendered", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "_closingEventListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
+        this.contentRendered = false;
     }
     ready() {
         if (this.opened) {
@@ -277,12 +266,7 @@ let OpalDropdown = OpalDropdown_1 = class OpalDropdown extends rionite_1.BaseCom
         }
     }
 };
-Object.defineProperty(OpalDropdown, "EVENT_CLOSE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('close')
-});
+OpalDropdown.EVENT_CLOSE = Symbol('close');
 __decorate([
     rionite_1.Param({ default: true })
 ], OpalDropdown.prototype, "autoHeight", void 0);
@@ -290,7 +274,7 @@ __decorate([
     rionite_1.Param(String)
 ], OpalDropdown.prototype, "closeOn", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalDropdown.prototype, "opened", void 0);
 __decorate([
     cellx_decorators_1.Observable

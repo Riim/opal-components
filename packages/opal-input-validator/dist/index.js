@@ -188,7 +188,7 @@ let OpalInputValidatorRule = class OpalInputValidatorRule extends rionite_1.Base
     }
 };
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalInputValidatorRule.prototype, "required", void 0);
 __decorate([
     rionite_1.Param
@@ -253,24 +253,7 @@ const template_rnt_1 = __webpack_require__("nQ2J");
 let OpalInputValidator = OpalInputValidator_1 = class OpalInputValidator extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "target", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "rules", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "failedRule", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: null
-        });
+        this.failedRule = null;
     }
     get valid() {
         return !this.failedRule;
@@ -317,18 +300,8 @@ let OpalInputValidator = OpalInputValidator_1 = class OpalInputValidator extends
         return this;
     }
 };
-Object.defineProperty(OpalInputValidator, "EVENT_INPUT_VALIDATION_ERROR", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('input-validation-error')
-});
-Object.defineProperty(OpalInputValidator, "EVENT_INPUT_VALIDATION_VALID", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('input-validation-valid')
-});
+OpalInputValidator.EVENT_INPUT_VALIDATION_ERROR = Symbol('input-validation-error');
+OpalInputValidator.EVENT_INPUT_VALIDATION_VALID = Symbol('input-validation-valid');
 __decorate([
     cellx_decorators_1.Observable
 ], OpalInputValidator.prototype, "failedRule", void 0);

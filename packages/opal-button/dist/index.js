@@ -127,15 +127,6 @@ const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("dccg");
 let OpalButton = OpalButton_1 = class OpalButton extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "_documentKeyDownListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
     get _tabIndex() {
         return this.disabled ? -1 : this.tabIndex;
     }
@@ -226,42 +217,12 @@ let OpalButton = OpalButton_1 = class OpalButton extends rionite_1.BaseComponent
         return this;
     }
 };
-Object.defineProperty(OpalButton, "EVENT_BLUR", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('blur')
-});
-Object.defineProperty(OpalButton, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
-Object.defineProperty(OpalButton, "EVENT_CHECK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('check')
-});
-Object.defineProperty(OpalButton, "EVENT_CLICK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('click')
-});
-Object.defineProperty(OpalButton, "EVENT_FOCUS", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('focus')
-});
-Object.defineProperty(OpalButton, "EVENT_UNCHECK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('uncheck')
-});
+OpalButton.EVENT_BLUR = Symbol('blur');
+OpalButton.EVENT_CHANGE = Symbol('change');
+OpalButton.EVENT_CHECK = Symbol('check');
+OpalButton.EVENT_CLICK = Symbol('click');
+OpalButton.EVENT_FOCUS = Symbol('focus');
+OpalButton.EVENT_UNCHECK = Symbol('uncheck');
 __decorate([
     rionite_1.Param({ default: 'default' })
 ], OpalButton.prototype, "viewType", void 0);
@@ -269,22 +230,22 @@ __decorate([
     rionite_1.Param({ default: 'm' })
 ], OpalButton.prototype, "size", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalButton.prototype, "checkable", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalButton.prototype, "checked", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalButton.prototype, "loading", void 0);
 __decorate([
     rionite_1.Param({ default: 0 })
 ], OpalButton.prototype, "tabIndex", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalButton.prototype, "focused", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalButton.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed

@@ -196,30 +196,7 @@ function pad(num) {
 let OpalDateInput = class OpalDateInput extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "dateExists", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: date_exists_1.dateExists
-        });
-        Object.defineProperty(this, "_documentFocusListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_documentKeyDownListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_documentClickListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
+        this.dateExists = date_exists_1.dateExists;
     }
     _isDateInRange(date) {
         let calendar = this.$('calendar');
@@ -333,7 +310,7 @@ __decorate([
     rionite_1.Param({ default: '99.99.9999' })
 ], OpalDateInput.prototype, "mask", void 0);
 __decorate([
-    rionite_1.Param({ default: false, readonly: true })
+    rionite_1.Param({ type: Boolean, readonly: true })
 ], OpalDateInput.prototype, "required", void 0);
 __decorate([
     rionite_1.Param({ default: 'right' })

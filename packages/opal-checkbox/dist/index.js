@@ -138,15 +138,6 @@ const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("eXb0");
 const template_rnt_1 = __webpack_require__("4Rfg");
 let OpalCheckbox = OpalCheckbox_1 = class OpalCheckbox extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "_documentKeyDownListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
     get _tabIndex() {
         return this.disabled ? -1 : this.tabIndex;
     }
@@ -243,50 +234,25 @@ let OpalCheckbox = OpalCheckbox_1 = class OpalCheckbox extends rionite_1.BaseCom
         return this;
     }
 };
-Object.defineProperty(OpalCheckbox, "EVENT_BLUR", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('blur')
-});
-Object.defineProperty(OpalCheckbox, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
-Object.defineProperty(OpalCheckbox, "EVENT_CHECK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('check')
-});
-Object.defineProperty(OpalCheckbox, "EVENT_FOCUS", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('focus')
-});
-Object.defineProperty(OpalCheckbox, "EVENT_UNCHECK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('uncheck')
-});
+OpalCheckbox.EVENT_BLUR = Symbol('blur');
+OpalCheckbox.EVENT_CHANGE = Symbol('change');
+OpalCheckbox.EVENT_CHECK = Symbol('check');
+OpalCheckbox.EVENT_FOCUS = Symbol('focus');
+OpalCheckbox.EVENT_UNCHECK = Symbol('uncheck');
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalCheckbox.prototype, "checked", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalCheckbox.prototype, "indeterminate", void 0);
 __decorate([
     rionite_1.Param({ default: 0 })
 ], OpalCheckbox.prototype, "tabIndex", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalCheckbox.prototype, "focused", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalCheckbox.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed

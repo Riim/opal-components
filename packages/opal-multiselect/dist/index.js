@@ -117,15 +117,6 @@ const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("bJSy");
 const template_rnt_1 = __webpack_require__("b1cT");
 let OpalMultiselect = class OpalMultiselect extends opal_select_1.OpalSelect {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "_queryInputClass", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
     get nothingSelectedShown() {
         return !this.viewModel.length;
     }

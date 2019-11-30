@@ -145,15 +145,6 @@ const OpalFileInputValidatorRule_1 = __webpack_require__("og5v");
 exports.OpalFileInputValidatorRule = OpalFileInputValidatorRule_1.OpalFileInputValidatorRule;
 __webpack_require__("pZs+");
 let OpalFileInputValidator = class OpalFileInputValidator extends opal_input_validator_1.OpalInputValidator {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "fileInput", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
     ready() {
         super.ready();
         this.target = this.fileInput = this.$('fileInput');
@@ -167,12 +158,7 @@ let OpalFileInputValidator = class OpalFileInputValidator extends opal_input_val
             : rule.required);
     }
 };
-Object.defineProperty(OpalFileInputValidator, "targetChangeEvents", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: [opal_file_input_1.OpalFileInput.EVENT_CHANGE]
-});
+OpalFileInputValidator.targetChangeEvents = [opal_file_input_1.OpalFileInput.EVENT_CHANGE];
 OpalFileInputValidator = __decorate([
     rionite_1.Component({
         elementIs: 'OpalFileInputValidator'

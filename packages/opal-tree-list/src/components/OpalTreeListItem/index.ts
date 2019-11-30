@@ -25,25 +25,25 @@ import template from './template.rnt';
 })
 export class OpalTreeListItem extends BaseComponent {
 	@Param({ required: true, readonly: true })
-	declare dataTreeList: TDataTreeList;
+	dataTreeList: TDataTreeList;
 	@Param({ required: true })
-	declare filteredDataTreeList: TFilteredDataTreeList;
+	filteredDataTreeList: TFilteredDataTreeList;
 	@Param({ type: String, required: true, readonly: true })
-	declare dataTreeListItemValueFieldName: string;
+	dataTreeListItemValueFieldName: string;
 	@Param({ type: String, required: true, readonly: true })
-	declare dataTreeListItemTextFieldName: string;
+	dataTreeListItemTextFieldName: string;
 	@Param({ required: true })
-	declare viewModel: TViewModel;
+	viewModel: TViewModel;
 	@Param({ type: String, required: true, readonly: true })
-	declare viewModelItemValueFieldName: string;
+	viewModelItemValueFieldName: string;
 	@Param({ type: String, required: true, readonly: true })
-	declare viewModelItemTextFieldName: string;
+	viewModelItemTextFieldName: string;
 	@Param({ type: eval, required: true, readonly: true })
-	declare indexpath: Array<number>;
+	indexpath: Array<number>;
 	@Param(String)
-	declare query: string | null;
+	query: string | null;
 	@Param(Boolean)
-	declare opened: boolean;
+	opened: boolean;
 
 	dataTreeListItem: IFilteredDataTreeListItem;
 	_dataTreeListItemValueFieldName: string;

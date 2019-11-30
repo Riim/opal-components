@@ -43,9 +43,9 @@ import template from './template.rnt';
 })
 export class OpalMultiselect extends OpalSelect {
 	@Param({ default: true })
-	declare multiple: boolean;
+	multiple: boolean;
 	@Param({ required: true, readonly: true })
-	declare dataProvider: IDataProvider;
+	dataProvider: IDataProvider;
 
 	@Computed
 	get nothingSelectedShown(): boolean {

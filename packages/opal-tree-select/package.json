@@ -18,7 +18,7 @@
     "@riim/opal-modal": "^0.40.5",
     "@riim/opal-select": "^0.40.5",
     "@riim/opal-tree-list": "^0.40.5",
-    "cellx": "^1.9.19",
-    "rionite": "^0.38.6"
+    "cellx": "^1.9.20",
+    "rionite": "^0.38.7"
   }
 }

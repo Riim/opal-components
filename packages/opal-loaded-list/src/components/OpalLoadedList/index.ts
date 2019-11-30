@@ -44,18 +44,18 @@ export class OpalLoadedList extends BaseComponent {
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 
 	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
-	declare dataListItemSchema: {
+	dataListItemSchema: {
 		value?: string;
 		text?: string;
 	};
 	@Param({ required: true, readonly: true })
-	declare dataProvider: IDataProvider;
+	dataProvider: IDataProvider;
 	@Param({ default: 100 })
-	declare limit: number;
+	limit: number;
 	@Param(String)
-	declare query: string | null;
+	query: string | null;
 	@Param({ type: Boolean, readonly: true })
-	declare preloading: boolean;
+	preloading: boolean;
 
 	@Observable
 	dataList = new ObservableList<IDataListItem>();

@@ -134,15 +134,6 @@ const OpalSelectValidatorRule_1 = __webpack_require__("AiAd");
 exports.OpalSelectValidatorRule = OpalSelectValidatorRule_1.OpalSelectValidatorRule;
 __webpack_require__("1EIP");
 let OpalSelectValidator = class OpalSelectValidator extends opal_input_validator_1.OpalInputValidator {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "select", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
     ready() {
         super.ready();
         this.target = this.select = this.$('select');
@@ -156,12 +147,7 @@ let OpalSelectValidator = class OpalSelectValidator extends opal_input_validator
             : rule.required);
     }
 };
-Object.defineProperty(OpalSelectValidator, "targetChangeEvents", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: [opal_select_1.OpalSelect.EVENT_CHANGE, opal_tag_select_1.OpalTagSelect.EVENT_CHANGE]
-});
+OpalSelectValidator.targetChangeEvents = [opal_select_1.OpalSelect.EVENT_CHANGE, opal_tag_select_1.OpalTagSelect.EVENT_CHANGE];
 OpalSelectValidator = __decorate([
     rionite_1.Component({
         elementIs: 'OpalSelectValidator'

@@ -18,7 +18,7 @@ export class OpalPopover extends BaseComponent {
 	static EVENT_CLOSE = Symbol('close');
 
 	@Param({ default: 'right' })
-	declare position:
+	position:
 		| 'top'
 		| 'top-left'
 		| 'top-right'
@@ -33,13 +33,13 @@ export class OpalPopover extends BaseComponent {
 		| 'left-bottom'
 		| (string & { _?: never });
 	@Param({ default: 0 })
-	declare positionOffset: number;
+	positionOffset: number;
 	@Param({ default: true })
-	declare autoDirection: boolean;
+	autoDirection: boolean;
 	@Param(String)
-	declare closeOn: 'click' | 'mousedown' | (string & { _?: never });
+	closeOn: 'click' | 'mousedown' | (string & { _?: never });
 	@Param(Boolean)
-	declare opened: boolean;
+	opened: boolean;
 
 	@Observable
 	contentRendered = false;

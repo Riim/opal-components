@@ -6,5 +6,5 @@ import { Component, Param } from 'rionite';
 })
 export class OpalFileInputValidatorRule extends OpalInputValidatorRule {
 	@Param(Number)
-	declare minCount: number | null;
+	minCount: number | null;
 }

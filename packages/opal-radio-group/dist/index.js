@@ -145,15 +145,6 @@ const OpalRadioButton_1 = __webpack_require__("thMs");
 exports.OpalRadioButton = OpalRadioButton_1.OpalRadioButton;
 const forEach = Array.prototype.forEach;
 let OpalRadioGroup = class OpalRadioGroup extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "buttonElements", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
     ready() {
         this.buttonElements = this.element.getElementsByClassName('OpalRadioButton');
     }
@@ -213,15 +204,6 @@ const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("Gyxf");
 const template_rnt_1 = __webpack_require__("aUPk");
 let OpalRadioButton = OpalRadioButton_1 = class OpalRadioButton extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "_documentKeyDownListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
     get _tabIndex() {
         return this.disabled ? -1 : this.tabIndex;
     }
@@ -309,47 +291,22 @@ let OpalRadioButton = OpalRadioButton_1 = class OpalRadioButton extends rionite_
         return this;
     }
 };
-Object.defineProperty(OpalRadioButton, "EVENT_BLUR", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('blur')
-});
-Object.defineProperty(OpalRadioButton, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
-Object.defineProperty(OpalRadioButton, "EVENT_CHECK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('check')
-});
-Object.defineProperty(OpalRadioButton, "EVENT_FOCUS", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('focus')
-});
-Object.defineProperty(OpalRadioButton, "EVENT_UNCHECK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('uncheck')
-});
+OpalRadioButton.EVENT_BLUR = Symbol('blur');
+OpalRadioButton.EVENT_CHANGE = Symbol('change');
+OpalRadioButton.EVENT_CHECK = Symbol('check');
+OpalRadioButton.EVENT_FOCUS = Symbol('focus');
+OpalRadioButton.EVENT_UNCHECK = Symbol('uncheck');
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalRadioButton.prototype, "checked", void 0);
 __decorate([
     rionite_1.Param({ default: 0 })
 ], OpalRadioButton.prototype, "tabIndex", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalRadioButton.prototype, "focused", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalRadioButton.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed

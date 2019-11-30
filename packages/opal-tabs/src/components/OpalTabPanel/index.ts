@@ -10,7 +10,7 @@ import template from './template.rnt';
 })
 export class OpalTabPanel extends BaseComponent {
 	@Param(Boolean)
-	declare shown: boolean;
+	shown: boolean;
 
 	@Observable
 	contentRendered = false;

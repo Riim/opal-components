@@ -9,11 +9,11 @@ import template from './template.rnt';
 })
 export class OpalInputValidatorRule extends BaseComponent {
 	@Param(Boolean)
-	declare required: boolean;
+	required: boolean;
 	@Param
-	declare test: ((this: BaseComponent, value: any) => boolean) | null;
+	test: ((this: BaseComponent, value: any) => boolean) | null;
 	@Param({ default: 'right' })
-	declare popoverPosition: typeof OpalPopover.prototype.position;
+	popoverPosition: typeof OpalPopover.prototype.position;
 
 	showMessage() {
 		this.$<OpalPopover>('popover')!.open();

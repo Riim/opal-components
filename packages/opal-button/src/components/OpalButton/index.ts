@@ -20,7 +20,7 @@ export class OpalButton extends BaseComponent {
 	static EVENT_UNCHECK = Symbol('uncheck');
 
 	@Param({ default: 'default' })
-	declare viewType:
+	viewType:
 		| 'default'
 		| 'primary'
 		| 'success'
@@ -29,19 +29,19 @@ export class OpalButton extends BaseComponent {
 		| 'clean'
 		| (string & { _?: never });
 	@Param({ default: 'm' })
-	declare size: 's' | 'm' | (string & { _?: never });
+	size: 's' | 'm' | (string & { _?: never });
 	@Param(Boolean)
-	declare checkable: boolean;
+	checkable: boolean;
 	@Param(Boolean)
-	declare checked: boolean;
+	checked: boolean;
 	@Param(Boolean)
-	declare loading: boolean;
+	loading: boolean;
 	@Param({ default: 0 })
-	declare tabIndex: number;
+	tabIndex: number;
 	@Param(Boolean)
-	declare focused: boolean;
+	focused: boolean;
 	@Param(Boolean)
-	declare disabled: boolean;
+	disabled: boolean;
 
 	@Computed
 	get _tabIndex(): number {

@@ -155,78 +155,10 @@ const defaultDataListItemSchema = Object.freeze({
 let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "dataList", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: new cellx_1.ObservableList()
-        });
-        Object.defineProperty(this, "_dataListItemValueFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataListItemTextFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataListItemSubtextFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_inputNotConfirmed", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "_loadingPlanned", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "_loadingTimeout", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_requestCallback", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "loading", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "_focusedOption", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_documentFocusListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_documentListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
+        this.dataList = new cellx_1.ObservableList();
+        this._inputNotConfirmed = false;
+        this._loadingPlanned = false;
+        this.loading = false;
     }
     get loaderShown() {
         return this._loadingPlanned || this.loading;
@@ -533,18 +465,8 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
         this._focusedOption = null;
     }
 };
-Object.defineProperty(OpalAutosuggest, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
-Object.defineProperty(OpalAutosuggest, "defaultDataListItemSchema", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: defaultDataListItemSchema
-});
+OpalAutosuggest.EVENT_CHANGE = Symbol('change');
+OpalAutosuggest.defaultDataListItemSchema = defaultDataListItemSchema;
 __decorate([
     rionite_1.Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
 ], OpalAutosuggest.prototype, "dataListItemSchema", void 0);
@@ -561,7 +483,7 @@ __decorate([
     rionite_1.Param({ default: 5 })
 ], OpalAutosuggest.prototype, "limit", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalAutosuggest.prototype, "openMenuOnNothingFound", void 0);
 __decorate([
     cellx_decorators_1.Observable

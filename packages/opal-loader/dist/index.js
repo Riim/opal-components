@@ -116,7 +116,7 @@ __decorate([
     rionite_1.Param({ default: 'm' })
 ], OpalLoader.prototype, "size", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalLoader.prototype, "shown", void 0);
 OpalLoader = __decorate([
     rionite_1.Component({

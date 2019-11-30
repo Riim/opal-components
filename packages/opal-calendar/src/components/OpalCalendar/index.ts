@@ -161,13 +161,13 @@ export class OpalCalendar extends BaseComponent {
 	static EVENT_CHANGE = Symbol('change');
 
 	@Param('fromDate')
-	declare paramFromDate: string | null;
+	paramFromDate: string | null;
 	@Param('toDate')
-	declare paramToDate: string | null;
+	paramToDate: string | null;
 	@Param('value')
-	declare paramValue: string | null;
+	paramValue: string | null;
 	@Param({ default: '/' })
-	declare dateDelimiter: string;
+	dateDelimiter: string;
 
 	weekDays: Array<string>;
 	weekDaysShort: Array<string>;

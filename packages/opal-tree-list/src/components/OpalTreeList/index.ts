@@ -74,23 +74,23 @@ export class OpalTreeList extends BaseComponent {
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
 	@Param('dataTreeList')
-	declare paramDataTreeList: TDataTreeList | null;
+	paramDataTreeList: TDataTreeList | null;
 	@Param({ type: String, readonly: true })
-	declare dataTreeListKeypath: string | null;
+	dataTreeListKeypath: string | null;
 	@Param({ type: eval, default: defaultDataTreeListItemSchema, readonly: true })
-	declare dataTreeListItemSchema: {
+	dataTreeListItemSchema: {
 		value?: string;
 		text?: string;
 	};
 	@Param({ default: new ObservableList(), readonly: true })
-	declare viewModel: TViewModel;
+	viewModel: TViewModel;
 	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
-	declare viewModelItemSchema: {
+	viewModelItemSchema: {
 		value?: string;
 		text?: string;
 	};
 	@Param(String)
-	declare query: string | null;
+	query: string | null;
 
 	dataTreeList: TDataTreeList | null;
 	_dataTreeListItemValueFieldName: string;

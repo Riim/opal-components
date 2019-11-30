@@ -146,39 +146,6 @@ const _getListItemContext_1 = __webpack_require__("sNK4");
 __webpack_require__("lKJc");
 const template_rnt_1 = __webpack_require__("qS2D");
 let OpalTreeListItem = class OpalTreeListItem extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "dataTreeListItem", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataTreeListItemValueFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataTreeListItemTextFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_viewModelItemValueFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_viewModelItemTextFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
     initialize() {
         this.dataTreeListItem = this.filteredDataTreeList.get(this.indexpath);
         this._dataTreeListItemValueFieldName = this.dataTreeListItemValueFieldName;
@@ -215,7 +182,7 @@ __decorate([
     rionite_1.Param(String)
 ], OpalTreeListItem.prototype, "query", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalTreeListItem.prototype, "opened", void 0);
 OpalTreeListItem = __decorate([
     rionite_1.Component({
@@ -304,48 +271,7 @@ function toComparable(str) {
 let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "dataTreeList", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataTreeListItemValueFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataTreeListItemTextFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "comparableQuery", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_viewModelItemValueFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_viewModelItemTextFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_queryTimeout", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: null
-        });
+        this._queryTimeout = null;
     }
     get filteredDataTreeList() {
         let dataTreeList = this.dataTreeList;
@@ -476,27 +402,12 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
         }
     }
 };
-Object.defineProperty(OpalTreeList, "selectionControlChangeEvents", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: [
-        opal_checkbox_1.OpalCheckbox.EVENT_CHANGE,
-        opal_select_1.OpalSelectOption.EVENT_CHANGE
-    ]
-});
-Object.defineProperty(OpalTreeList, "defaultDataTreeListItemSchema", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: defaultDataTreeListItemSchema
-});
-Object.defineProperty(OpalTreeList, "defaultViewModelItemSchema", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: defaultVMItemSchema
-});
+OpalTreeList.selectionControlChangeEvents = [
+    opal_checkbox_1.OpalCheckbox.EVENT_CHANGE,
+    opal_select_1.OpalSelectOption.EVENT_CHANGE
+];
+OpalTreeList.defaultDataTreeListItemSchema = defaultDataTreeListItemSchema;
+OpalTreeList.defaultViewModelItemSchema = defaultVMItemSchema;
 __decorate([
     rionite_1.Param('dataTreeList')
 ], OpalTreeList.prototype, "paramDataTreeList", void 0);
@@ -565,12 +476,6 @@ exports.setParent = setParent;
 class ObservableTreeList extends cellx_1.EventEmitter {
     constructor(items) {
         super();
-        Object.defineProperty(this, "_items", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
         this._items = items
             ? setParent(items.map(function _(item) {
                 return object_assign_polyfill_1.assign(object_assign_polyfill_1.assign({}, item), {
@@ -660,12 +565,7 @@ class ObservableTreeList extends cellx_1.EventEmitter {
     }
 }
 exports.ObservableTreeList = ObservableTreeList;
-Object.defineProperty(ObservableTreeList, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: 'change'
-});
+ObservableTreeList.EVENT_CHANGE = 'change';
 ['forEach', 'map', 'filter', 'every', 'some'].forEach(name => {
     ObservableTreeList.prototype[name] = function (callback, context) {
         return this._items[name](function (item, index) {

@@ -156,12 +156,7 @@ function onDocumentKeyUp(evt) {
 let OpalModal = OpalModal_1 = class OpalModal extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "contentRendered", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
+        this.contentRendered = false;
     }
     ready() {
         if (this.opened) {
@@ -271,14 +266,9 @@ let OpalModal = OpalModal_1 = class OpalModal extends rionite_1.BaseComponent {
         return this;
     }
 };
-Object.defineProperty(OpalModal, "EVENT_CLOSE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('close')
-});
+OpalModal.EVENT_CLOSE = Symbol('close');
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalModal.prototype, "opened", void 0);
 __decorate([
     cellx_decorators_1.Observable

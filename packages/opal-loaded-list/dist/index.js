@@ -163,66 +163,12 @@ let defaultDataListItemSchema = Object.freeze({
 let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "dataList", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: new cellx_1.ObservableList()
-        });
-        Object.defineProperty(this, "_dataListItemTextFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "total", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_scrollingInProcessing", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "_loadingCheckPlanned", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "_loadingCheckTimeout", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "loading", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "_requestCallback", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_lastRequestedQuery", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: null
-        });
-        Object.defineProperty(this, "_lastLoadedQuery", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: null
-        });
+        this.dataList = new cellx_1.ObservableList();
+        this._scrollingInProcessing = false;
+        this._loadingCheckPlanned = false;
+        this.loading = false;
+        this._lastRequestedQuery = null;
+        this._lastLoadedQuery = null;
     }
     get loaderShown() {
         return this.total === undefined || this.dataList.length < this.total || this.loading;
@@ -335,18 +281,8 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
         };
     }
 };
-Object.defineProperty(OpalLoadedList, "EVENT_LOADED", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('loaded')
-});
-Object.defineProperty(OpalLoadedList, "defaultDataListItemSchema", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: defaultDataListItemSchema
-});
+OpalLoadedList.EVENT_LOADED = Symbol('loaded');
+OpalLoadedList.defaultDataListItemSchema = defaultDataListItemSchema;
 __decorate([
     rionite_1.Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
 ], OpalLoadedList.prototype, "dataListItemSchema", void 0);
@@ -360,7 +296,7 @@ __decorate([
     rionite_1.Param(String)
 ], OpalLoadedList.prototype, "query", void 0);
 __decorate([
-    rionite_1.Param({ default: false, readonly: true })
+    rionite_1.Param({ type: Boolean, readonly: true })
 ], OpalLoadedList.prototype, "preloading", void 0);
 __decorate([
     cellx_decorators_1.Observable

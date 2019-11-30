@@ -151,12 +151,7 @@ let OpalSlider = OpalSlider_1 = class OpalSlider extends rionite_1.BaseComponent
         this.emit(OpalSlider_1.EVENT_CHANGE);
     }
 };
-Object.defineProperty(OpalSlider, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
+OpalSlider.EVENT_CHANGE = Symbol('change');
 __decorate([
     rionite_1.Param({ default: 0 })
 ], OpalSlider.prototype, "min", void 0);

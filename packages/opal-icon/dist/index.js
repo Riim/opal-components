@@ -539,14 +539,7 @@ __webpack_require__("MqPj");
 let OpalIcon = class OpalIcon extends rionite_1.BaseComponent {
     get xlinkHref() {
         let name = this.name;
-        let id = '#OpalIcon__icon' + name.charAt(0).toUpperCase() + name.slice(1);
-        if (!document.getElementById(id)) {
-            id = '#icon' + name.charAt(0).toUpperCase() + name.slice(1);
-        }
-        if (!document.getElementById(id)) {
-            id = '#' + name.slice(1);
-        }
-        return id;
+        return '#OpalIcon__icon' + name.charAt(0).toUpperCase() + name.slice(1);
     }
 };
 __decorate([
@@ -559,7 +552,7 @@ __decorate([
     rionite_1.Param({ default: 3, readonly: true })
 ], OpalIcon.prototype, "strokeWidth", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalIcon.prototype, "filled", void 0);
 __decorate([
     cellx_decorators_1.Computed

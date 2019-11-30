@@ -22,9 +22,9 @@ export class OpalSignButton extends BaseComponent {
 	static EVENT_UNCHECK = Symbol('uncheck');
 
 	@Param({ type: String, required: true })
-	declare sign: string;
+	sign: string;
 	@Param({ default: 'default' })
-	declare viewType:
+	viewType:
 		| 'default'
 		| 'primary'
 		| 'success'
@@ -32,15 +32,15 @@ export class OpalSignButton extends BaseComponent {
 		| 'danger'
 		| (string & { _?: never });
 	@Param(Boolean)
-	declare checkable: boolean;
+	checkable: boolean;
 	@Param(Boolean)
-	declare checked: boolean;
+	checked: boolean;
 	@Param({ default: 0 })
-	declare tabIndex: number;
+	tabIndex: number;
 	@Param(Boolean)
-	declare focused: boolean;
+	focused: boolean;
 	@Param(Boolean)
-	declare disabled: boolean;
+	disabled: boolean;
 
 	@Computed
 	get _tabIndex(): number {

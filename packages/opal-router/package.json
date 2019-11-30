@@ -18,9 +18,9 @@
   "dependencies": {
     "@riim/kebab-case": "^1.0.0",
     "@riim/next-uid": "^1.1.0",
-    "@riim/rionite-snake-case-attribute-name": "^0.38.4",
+    "@riim/rionite-snake-case-attribute-name": "^0.38.7",
     "cellx-decorators": "^1.5.4",
     "history": "^4.10.1",
-    "rionite": "^0.38.6"
+    "rionite": "^0.38.7"
   }
 }

@@ -183,18 +183,8 @@ __webpack_require__("Nocu");
 const template_rnt_1 = __webpack_require__("q+MW");
 let OpalMultirowRow = OpalMultirowRow_1 = class OpalMultirowRow extends rionite_1.BaseComponent {
 };
-Object.defineProperty(OpalMultirowRow, "EVENT_ADD_ROW_CLICK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('add-row-click')
-});
-Object.defineProperty(OpalMultirowRow, "EVENT_REMOVE_ROW_CLICK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('remove-row-click')
-});
+OpalMultirowRow.EVENT_ADD_ROW_CLICK = Symbol('add-row-click');
+OpalMultirowRow.EVENT_REMOVE_ROW_CLICK = Symbol('remove-row-click');
 OpalMultirowRow = OpalMultirowRow_1 = __decorate([
     rionite_1.Component({
         elementIs: 'OpalMultirowRow',
@@ -256,24 +246,8 @@ const template_rnt_1 = __webpack_require__("81BU");
 let OpalMultirow = OpalMultirow_1 = class OpalMultirow extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "_presetRowClassName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_presetRowCount", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 0
-        });
-        Object.defineProperty(this, "_newRows", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: new cellx_1.ObservableList()
-        });
+        this._presetRowCount = 0;
+        this._newRows = new cellx_1.ObservableList();
     }
     get _notHaveNewRows() {
         return !this._newRows.length;
@@ -316,24 +290,9 @@ let OpalMultirow = OpalMultirow_1 = class OpalMultirow extends rionite_1.BaseCom
         this.emit(OpalMultirow_1.EVENT_CHANGE);
     }
 };
-Object.defineProperty(OpalMultirow, "EVENT_ADD_ROW", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('add-row')
-});
-Object.defineProperty(OpalMultirow, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
-Object.defineProperty(OpalMultirow, "EVENT_REMOVE_ROW", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('remove-row')
-});
+OpalMultirow.EVENT_ADD_ROW = Symbol('add-row');
+OpalMultirow.EVENT_CHANGE = Symbol('change');
+OpalMultirow.EVENT_REMOVE_ROW = Symbol('remove-row');
 __decorate([
     cellx_decorators_1.Observable
 ], OpalMultirow.prototype, "_presetRowCount", void 0);

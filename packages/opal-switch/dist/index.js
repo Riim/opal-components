@@ -156,15 +156,6 @@ const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("jEzz");
 const template_rnt_1 = __webpack_require__("8DG6");
 let OpalSwitch = OpalSwitch_1 = class OpalSwitch extends rionite_1.BaseComponent {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "_documentKeyDownListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
     get _tabIndex() {
         return this.disabled ? -1 : this.tabIndex;
     }
@@ -252,47 +243,22 @@ let OpalSwitch = OpalSwitch_1 = class OpalSwitch extends rionite_1.BaseComponent
         return this;
     }
 };
-Object.defineProperty(OpalSwitch, "EVENT_BLUR", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('blur')
-});
-Object.defineProperty(OpalSwitch, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
-Object.defineProperty(OpalSwitch, "EVENT_CHECK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('check')
-});
-Object.defineProperty(OpalSwitch, "EVENT_FOCUS", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('focus')
-});
-Object.defineProperty(OpalSwitch, "EVENT_UNCHECK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('uncheck')
-});
+OpalSwitch.EVENT_BLUR = Symbol('blur');
+OpalSwitch.EVENT_CHANGE = Symbol('change');
+OpalSwitch.EVENT_CHECK = Symbol('check');
+OpalSwitch.EVENT_FOCUS = Symbol('focus');
+OpalSwitch.EVENT_UNCHECK = Symbol('uncheck');
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSwitch.prototype, "checked", void 0);
 __decorate([
     rionite_1.Param({ default: 0 })
 ], OpalSwitch.prototype, "tabIndex", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSwitch.prototype, "focused", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSwitch.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed

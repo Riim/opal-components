@@ -6,7 +6,7 @@ import './index.css';
 })
 export class OpalLoader extends BaseComponent {
 	@Param({ default: 'm' })
-	declare size: 's' | 'm' | (string & { _?: never });
+	size: 's' | 'm' | (string & { _?: never });
 	@Param(Boolean)
-	declare shown: boolean;
+	shown: boolean;
 }

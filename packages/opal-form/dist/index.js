@@ -151,12 +151,7 @@ let OpalForm = OpalForm_1 = class OpalForm extends rionite_1.BaseComponent {
         return valid;
     }
 };
-Object.defineProperty(OpalForm, "EVENT_SUBMIT", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('submit')
-});
+OpalForm.EVENT_SUBMIT = Symbol('submit');
 OpalForm = OpalForm_1 = __decorate([
     rionite_1.Component({
         template: template_rnt_1.default,

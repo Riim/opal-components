@@ -21,25 +21,25 @@ import template from './template.rnt';
 })
 export class OpalTreeSelect extends OpalSelect {
 	@Param({ default: true })
-	declare multiple: boolean;
+	multiple: boolean;
 	@Param('dataTreeList')
-	declare paramDataTreeList: TDataTreeList | null;
+	paramDataTreeList: TDataTreeList | null;
 	@Param({ type: String, readonly: true })
-	declare dataTreeListKeypath: string | null;
+	dataTreeListKeypath: string | null;
 	@Param({ type: eval, default: OpalTreeList.defaultDataTreeListItemSchema, readonly: true })
-	declare dataTreeListItemSchema: {
+	dataTreeListItemSchema: {
 		value?: string;
 		text?: string;
 	};
 	@Param({ type: eval, default: OpalTreeList.defaultViewModelItemSchema, readonly: true })
-	declare viewModelItemSchema: {
+	viewModelItemSchema: {
 		value?: string;
 		text?: string;
 	};
 	@Param(String)
-	declare query: string | null;
+	query: string | null;
 	@Param({ default: true, readonly: true })
-	declare openOnClick: boolean;
+	openOnClick: boolean;
 
 	dataTreeList: TDataTreeList;
 

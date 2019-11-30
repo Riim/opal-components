@@ -54,37 +54,37 @@ export class OpalTextInput extends BaseComponent {
 	static EVENT_KEYUP = Symbol('keyup');
 
 	@Param({ default: 'text' })
-	declare inputType: 'text' | 'password' | (string & { _?: never });
+	inputType: 'text' | 'password' | (string & { _?: never });
 	@Param({ default: 'm' })
-	declare size: 'm' | (string & { _?: never });
+	size: 'm' | (string & { _?: never });
 	@Param(Boolean)
-	declare multiline: boolean;
+	multiline: boolean;
 	@Param({ default: 5 })
-	declare rows: number;
+	rows: number;
 	@Param({ default: true })
-	declare autoHeight: boolean;
+	autoHeight: boolean;
 	@Param(String)
-	declare inputName: string | null;
+	inputName: string | null;
 	@Param('value', String)
-	declare paramValue: string | null;
+	paramValue: string | null;
 	@Param(String)
-	declare storeKey: string | null;
+	storeKey: string | null;
 	@Param(String)
-	declare placeholder: string | null;
+	placeholder: string | null;
 	@Param(String)
-	declare startIcon: string | null;
+	startIcon: string | null;
 	@Param(String)
-	declare endIcon: string | null;
+	endIcon: string | null;
 	@Param(Boolean)
-	declare clearable: boolean;
+	clearable: boolean;
 	@Param(Boolean)
-	declare loading: boolean;
+	loading: boolean;
 	@Param({ default: 0 })
-	declare tabIndex: number;
+	tabIndex: number;
 	@Param(Boolean)
-	declare focused: boolean;
+	focused: boolean;
 	@Param(Boolean)
-	declare disabled: boolean;
+	disabled: boolean;
 
 	_inputTypeCell: Cell<string>;
 	@Computed

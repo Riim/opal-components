@@ -148,24 +148,7 @@ const template_rnt_1 = __webpack_require__("UFjE");
 let OpalPopover = OpalPopover_1 = class OpalPopover extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "contentRendered", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "_positionAtOpening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_closingEventListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
+        this.contentRendered = false;
     }
     ready() {
         if (this.opened) {
@@ -303,12 +286,7 @@ let OpalPopover = OpalPopover_1 = class OpalPopover extends rionite_1.BaseCompon
         }
     }
 };
-Object.defineProperty(OpalPopover, "EVENT_CLOSE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('close')
-});
+OpalPopover.EVENT_CLOSE = Symbol('close');
 __decorate([
     rionite_1.Param({ default: 'right' })
 ], OpalPopover.prototype, "position", void 0);
@@ -322,7 +300,7 @@ __decorate([
     rionite_1.Param(String)
 ], OpalPopover.prototype, "closeOn", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalPopover.prototype, "opened", void 0);
 __decorate([
     cellx_decorators_1.Observable

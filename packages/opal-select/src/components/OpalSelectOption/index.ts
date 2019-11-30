@@ -19,21 +19,21 @@ export class OpalSelectOption extends BaseComponent {
 	static EVENT_SELECT = Symbol('select');
 
 	@Param('value', String)
-	declare paramValue: string | null;
+	paramValue: string | null;
 	@Param('text', { type: String, required: true })
-	declare paramText: string;
+	paramText: string;
 	@Param('subtext', String)
-	declare paramSubtext: string | null;
+	paramSubtext: string | null;
 	@Param(Boolean)
-	declare selected: boolean;
+	selected: boolean;
 	@Param(Boolean)
-	declare indeterminate: boolean;
+	indeterminate: boolean;
 	@Param({ default: 0 })
-	declare tabIndex: number;
+	tabIndex: number;
 	@Param(Boolean)
-	declare focused: boolean;
+	focused: boolean;
 	@Param(Boolean)
-	declare disabled: boolean;
+	disabled: boolean;
 
 	@Computed
 	get _tabIndex(): number {

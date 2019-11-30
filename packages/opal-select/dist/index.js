@@ -158,12 +158,7 @@ const template_rnt_1 = __webpack_require__("qAT2");
 let OpalSelectOption = OpalSelectOption_1 = class OpalSelectOption extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "_mouseUpEvent", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
+        this._mouseUpEvent = false;
     }
     get _tabIndex() {
         return this.disabled ? -1 : this.tabIndex;
@@ -261,24 +256,9 @@ let OpalSelectOption = OpalSelectOption_1 = class OpalSelectOption extends rioni
         return this;
     }
 };
-Object.defineProperty(OpalSelectOption, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
-Object.defineProperty(OpalSelectOption, "EVENT_DESELECT", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('deselect')
-});
-Object.defineProperty(OpalSelectOption, "EVENT_SELECT", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('select')
-});
+OpalSelectOption.EVENT_CHANGE = Symbol('change');
+OpalSelectOption.EVENT_DESELECT = Symbol('deselect');
+OpalSelectOption.EVENT_SELECT = Symbol('select');
 __decorate([
     rionite_1.Param('value', String)
 ], OpalSelectOption.prototype, "paramValue", void 0);
@@ -289,19 +269,19 @@ __decorate([
     rionite_1.Param('subtext', String)
 ], OpalSelectOption.prototype, "paramSubtext", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSelectOption.prototype, "selected", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSelectOption.prototype, "indeterminate", void 0);
 __decorate([
     rionite_1.Param({ default: 0 })
 ], OpalSelectOption.prototype, "tabIndex", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSelectOption.prototype, "focused", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSelectOption.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed
@@ -413,168 +393,12 @@ const defaultVMItemSchema = Object.freeze({
 let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "clearLoadedListOnOpen", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "dataListCell", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: null
-        });
-        Object.defineProperty(this, "dataList", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataListItemValueFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataListItemTextFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataListItemSubtextFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataListItemDisabledFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "viewModel", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_viewModelItemValueFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_viewModelItemTextFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_viewModelItemSubtextFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_viewModelItemDisabledFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_addNewItem", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "optionElements", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "optionsCell", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_needOptionsUpdating", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "_notUpdateOptions", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "_opened", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "_valueOnOpen", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_onceFocusedAfterLoading", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: false
-        });
-        Object.defineProperty(this, "_paramDataListSpecified", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "validator", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: null
-        });
-        Object.defineProperty(this, "_documentClickListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_documentFocusListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_documentKeyDownListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataListChangeListeneng", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_menuLoadedListeneng", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
+        this.dataListCell = null;
+        this._needOptionsUpdating = false;
+        this._notUpdateOptions = false;
+        this._opened = false;
+        this._onceFocusedAfterLoading = false;
+        this.validator = null;
     }
     get value() {
         return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
@@ -1239,84 +1063,19 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         return !this.validator || this.validator.validate();
     }
 };
-Object.defineProperty(OpalSelect, "EVENT_BLUR", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('blur')
-});
-Object.defineProperty(OpalSelect, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
-Object.defineProperty(OpalSelect, "EVENT_DESELECT", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('deselect')
-});
-Object.defineProperty(OpalSelect, "EVENT_FOCUS", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('focus')
-});
-Object.defineProperty(OpalSelect, "EVENT_INPUT", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('input')
-});
-Object.defineProperty(OpalSelect, "EVENT_SELECT", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('select')
-});
-Object.defineProperty(OpalSelect, "buttonFocusEvents", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: [opal_button_1.OpalButton.EVENT_FOCUS, opal_sign_button_1.OpalSignButton.EVENT_FOCUS]
-});
-Object.defineProperty(OpalSelect, "buttonBlurEvents", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: [opal_button_1.OpalButton.EVENT_BLUR, opal_sign_button_1.OpalSignButton.EVENT_BLUR]
-});
-Object.defineProperty(OpalSelect, "buttonClickEvents", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: [opal_button_1.OpalButton.EVENT_CLICK, opal_sign_button_1.OpalSignButton.EVENT_CLICK]
-});
-Object.defineProperty(OpalSelect, "menuChangeEvents", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: [rionite_1.RnIfThen.EVENT_CHANGE, rionite_1.RnRepeat.EVENT_CHANGE]
-});
-Object.defineProperty(OpalSelect, "menuLoadedEvents", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: [opal_loaded_list_1.OpalLoadedList.EVENT_LOADED]
-});
-Object.defineProperty(OpalSelect, "defaultDataListItemSchema", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: defaultDataListItemSchema
-});
-Object.defineProperty(OpalSelect, "defaultViewModelItemSchema", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: defaultVMItemSchema
-});
+OpalSelect.EVENT_BLUR = Symbol('blur');
+OpalSelect.EVENT_CHANGE = Symbol('change');
+OpalSelect.EVENT_DESELECT = Symbol('deselect');
+OpalSelect.EVENT_FOCUS = Symbol('focus');
+OpalSelect.EVENT_INPUT = Symbol('input');
+OpalSelect.EVENT_SELECT = Symbol('select');
+OpalSelect.buttonFocusEvents = [opal_button_1.OpalButton.EVENT_FOCUS, opal_sign_button_1.OpalSignButton.EVENT_FOCUS];
+OpalSelect.buttonBlurEvents = [opal_button_1.OpalButton.EVENT_BLUR, opal_sign_button_1.OpalSignButton.EVENT_BLUR];
+OpalSelect.buttonClickEvents = [opal_button_1.OpalButton.EVENT_CLICK, opal_sign_button_1.OpalSignButton.EVENT_CLICK];
+OpalSelect.menuChangeEvents = [rionite_1.RnIfThen.EVENT_CHANGE, rionite_1.RnRepeat.EVENT_CHANGE];
+OpalSelect.menuLoadedEvents = [opal_loaded_list_1.OpalLoadedList.EVENT_LOADED];
+OpalSelect.defaultDataListItemSchema = defaultDataListItemSchema;
+OpalSelect.defaultViewModelItemSchema = defaultVMItemSchema;
 __decorate([
     rionite_1.Param({ default: 'default' })
 ], OpalSelect.prototype, "viewType", void 0);
@@ -1324,10 +1083,10 @@ __decorate([
     rionite_1.Param({ default: 'm' })
 ], OpalSelect.prototype, "size", void 0);
 __decorate([
-    rionite_1.Param({ default: false, readonly: true })
+    rionite_1.Param({ type: Boolean, readonly: true })
 ], OpalSelect.prototype, "multiple", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSelect.prototype, "clearOnDeselect", void 0);
 __decorate([
     rionite_1.Param('dataList')
@@ -1351,7 +1110,7 @@ __decorate([
     rionite_1.Param({ readonly: true })
 ], OpalSelect.prototype, "addNewItem", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSelect.prototype, "clearLoadedListOnOpen", void 0);
 __decorate([
     rionite_1.Param(String)
@@ -1363,16 +1122,16 @@ __decorate([
     rionite_1.Param({ default: gettext_1.pt('OpalSelect#placeholder', 'Не выбрано') })
 ], OpalSelect.prototype, "placeholder", void 0);
 __decorate([
-    rionite_1.Param({ default: false, readonly: true })
+    rionite_1.Param({ type: Boolean, readonly: true })
 ], OpalSelect.prototype, "openOnClick", void 0);
 __decorate([
     rionite_1.Param({ default: 0 })
 ], OpalSelect.prototype, "tabIndex", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSelect.prototype, "focused", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalSelect.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Observable

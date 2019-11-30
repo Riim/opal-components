@@ -31,7 +31,7 @@ export class OpalTabs extends BaseComponent {
 	static EVENT_CHANGE = Symbol('change');
 
 	@Param(Boolean)
-	declare useLocationHash: boolean;
+	useLocationHash: boolean;
 
 	tabElements: HTMLCollectionOf<IComponentElement>;
 	tabPanelElements: HTMLCollectionOf<IComponentElement<OpalTabPanel>>;

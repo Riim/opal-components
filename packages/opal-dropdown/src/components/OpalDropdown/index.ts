@@ -18,11 +18,11 @@ export class OpalDropdown extends BaseComponent {
 	static EVENT_CLOSE = Symbol('close');
 
 	@Param({ default: true })
-	declare autoHeight: boolean;
+	autoHeight: boolean;
 	@Param(String)
-	declare closeOn: 'click' | 'mousedown' | (string & { _?: never }) | null;
+	closeOn: 'click' | 'mousedown' | (string & { _?: never }) | null;
 	@Param(Boolean)
-	declare opened: boolean;
+	opened: boolean;
 
 	@Observable
 	contentRendered = false;

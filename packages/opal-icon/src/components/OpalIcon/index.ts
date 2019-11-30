@@ -76,26 +76,17 @@ import './icons/user.svg?id=OpalIcon__iconUser';
 })
 export class OpalIcon extends BaseComponent {
 	@Param({ type: String, required: true, readonly: true })
-	declare name: string;
+	name: string;
 	@Param({ default: 'm' })
-	declare size: 's' | 'xs' | 'xxs' | 'm' | 's' | 'xs' | 'xxs' | (string & { _?: never });
+	size: 's' | 'xs' | 'xxs' | 'm' | 's' | 'xs' | 'xxs' | (string & { _?: never });
 	@Param({ default: 3, readonly: true })
-	declare strokeWidth: number;
+	strokeWidth: number;
 	@Param(Boolean)
-	declare filled: boolean;
+	filled: boolean;
 
 	@Computed
 	get xlinkHref() {
 		let name = this.name;
-		let id = '#OpalIcon__icon' + name.charAt(0).toUpperCase() + name.slice(1);
-
-		if (!document.getElementById(id)) {
-			id = '#icon' + name.charAt(0).toUpperCase() + name.slice(1);
-		}
-		if (!document.getElementById(id)) {
-			id = '#' + name.slice(1);
-		}
-
-		return id;
+		return '#OpalIcon__icon' + name.charAt(0).toUpperCase() + name.slice(1);
 	}
 }

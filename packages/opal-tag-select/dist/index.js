@@ -158,72 +158,7 @@ const defaultVMItemSchema = Object.freeze({
 let OpalTagSelect = OpalTagSelect_1 = class OpalTagSelect extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "dataList", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataListItemValueFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataListItemTextFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataListItemSubtextFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_dataListItemDisabledFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_viewModelItemValueFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_viewModelItemTextFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_viewModelItemDisabledFieldName", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_selectDataListKeypath", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "select", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "validator", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: null
-        });
+        this.validator = null;
     }
     get value() {
         return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
@@ -318,36 +253,11 @@ let OpalTagSelect = OpalTagSelect_1 = class OpalTagSelect extends rionite_1.Base
         return !this.validator || this.validator.validate();
     }
 };
-Object.defineProperty(OpalTagSelect, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
-Object.defineProperty(OpalTagSelect, "EVENT_INPUT", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('input')
-});
-Object.defineProperty(OpalTagSelect, "EVENT_TAG_CLICK", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('tag-click')
-});
-Object.defineProperty(OpalTagSelect, "defaultDataListItemSchema", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: defaultDataListItemSchema
-});
-Object.defineProperty(OpalTagSelect, "defaultViewModelItemSchema", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: defaultVMItemSchema
-});
+OpalTagSelect.EVENT_CHANGE = Symbol('change');
+OpalTagSelect.EVENT_INPUT = Symbol('input');
+OpalTagSelect.EVENT_TAG_CLICK = Symbol('tag-click');
+OpalTagSelect.defaultDataListItemSchema = defaultDataListItemSchema;
+OpalTagSelect.defaultViewModelItemSchema = defaultVMItemSchema;
 __decorate([
     rionite_1.Param({ default: 'default' })
 ], OpalTagSelect.prototype, "viewType", void 0);
@@ -385,10 +295,10 @@ __decorate([
     rionite_1.Param({ default: 0 })
 ], OpalTagSelect.prototype, "tabIndex", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalTagSelect.prototype, "focused", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalTagSelect.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed

@@ -74,55 +74,55 @@ export class OpalSelect extends BaseComponent {
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
 	@Param({ default: 'default' })
-	declare viewType: typeof OpalButton.prototype.viewType;
+	viewType: typeof OpalButton.prototype.viewType;
 	@Param({ default: 'm' })
-	declare size: typeof OpalButton.prototype.size;
+	size: typeof OpalButton.prototype.size;
 	@Param({ type: Boolean, readonly: true })
-	declare multiple: boolean;
+	multiple: boolean;
 	@Param(Boolean)
-	declare clearOnDeselect: boolean;
+	clearOnDeselect: boolean;
 	@Param('dataList')
-	declare paramDataList: TDataList | null;
+	paramDataList: TDataList | null;
 	@Param({ type: String, readonly: true })
-	declare dataListKeypath: string | null;
+	dataListKeypath: string | null;
 	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
-	declare dataListItemSchema: {
+	dataListItemSchema: {
 		value?: string;
 		text?: string;
 		subtext?: string;
 		disabled?: string;
 	};
 	@Param('value', eval)
-	declare paramValue: Array<string> | null;
+	paramValue: Array<string> | null;
 	@Param('viewModel', { readonly: true })
-	declare paramViewModel: TViewModel | null;
+	paramViewModel: TViewModel | null;
 	@Param({ type: eval, default: defaultVMItemSchema, readonly: true })
-	declare viewModelItemSchema: {
+	viewModelItemSchema: {
 		value?: string;
 		text?: string;
 		subtext?: string;
 		disabled?: string;
 	};
 	@Param({ readonly: true })
-	declare addNewItem:
+	addNewItem:
 		| ((text: string, select: OpalSelect) => Promise<Record<string, string>>)
 		| null;
 	@Param(Boolean)
 	clearLoadedListOnOpen: boolean;
 	@Param(String)
-	declare text: string | null;
+	text: string | null;
 	@Param({ default: 20 })
-	declare maxTextLength: number;
+	maxTextLength: number;
 	@Param({ default: pt('OpalSelect#placeholder', 'Не выбрано') })
-	declare placeholder: string;
+	placeholder: string;
 	@Param({ type: Boolean, readonly: true })
-	declare openOnClick: boolean;
+	openOnClick: boolean;
 	@Param({ default: 0 })
-	declare tabIndex: number;
+	tabIndex: number;
 	@Param(Boolean)
-	declare focused: boolean;
+	focused: boolean;
 	@Param(Boolean)
-	declare disabled: boolean;
+	disabled: boolean;
 
 	dataListCell: Cell<TDataList | null> | null = null;
 	dataList: TDataList | null;

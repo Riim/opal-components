@@ -45,7 +45,7 @@ export class OpalModal extends BaseComponent {
 	static EVENT_CLOSE = Symbol('close');
 
 	@Param(Boolean)
-	declare opened: boolean;
+	opened: boolean;
 
 	@Observable
 	contentRendered = false;

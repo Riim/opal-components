@@ -166,15 +166,6 @@ const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("q8hm");
 const template_rnt_1 = __webpack_require__("L9Xs");
 let OpalTreeSelect = class OpalTreeSelect extends opal_select_1.OpalSelect {
-    constructor() {
-        super(...arguments);
-        Object.defineProperty(this, "dataTreeList", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-    }
     initialize() {
         super.initialize();
         if (this.dataTreeListKeypath) {

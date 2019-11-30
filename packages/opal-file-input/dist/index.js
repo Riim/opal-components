@@ -141,48 +141,7 @@ let dragEl = null;
 let OpalFileInput = OpalFileInput_1 = class OpalFileInput extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "_reFileType", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "errorMessage", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "fileListEl", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "dropZoneEl", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "btnSelectFile", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_fileListListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "validator", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: null
-        });
+        this.validator = null;
     }
     get files() {
         return this.dataList.map(fileData => fileData.file).filter(file => file);
@@ -370,20 +329,10 @@ let OpalFileInput = OpalFileInput_1 = class OpalFileInput extends rionite_1.Base
         return !this.validator || this.validator.validate();
     }
 };
-Object.defineProperty(OpalFileInput, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
-Object.defineProperty(OpalFileInput, "EVENT_CLEAR", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('clear')
-});
+OpalFileInput.EVENT_CHANGE = Symbol('change');
+OpalFileInput.EVENT_CLEAR = Symbol('clear');
 __decorate([
-    rionite_1.Param({ default: false, readonly: true })
+    rionite_1.Param({ type: Boolean, readonly: true })
 ], OpalFileInput.prototype, "multiple", void 0);
 __decorate([
     rionite_1.Param({ default: new cellx_1.ObservableList() })
@@ -404,7 +353,7 @@ __decorate([
     rionite_1.Param({ default: gettext_1.pt('OpalFileInput#placeholder', 'Не выбрано') })
 ], OpalFileInput.prototype, "placeholder", void 0);
 __decorate([
-    rionite_1.Param({ default: false })
+    rionite_1.Param(Boolean)
 ], OpalFileInput.prototype, "disabled", void 0);
 __decorate([
     cellx_decorators_1.Computed

@@ -33,7 +33,7 @@ export class OpalInputMask extends BaseComponent {
 	};
 
 	@Param({ type: String, required: true })
-	declare mask: string;
+	mask: string;
 
 	_definitions: Record<string, RegExp>;
 

@@ -230,132 +230,75 @@ exports.toDate = toDate;
 let OpalCalendar = OpalCalendar_1 = class OpalCalendar extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        Object.defineProperty(this, "weekDays", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "weekDaysShort", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "fromDate", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: fromDate
-        });
-        Object.defineProperty(this, "toDate", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: toDate
-        });
-        Object.defineProperty(this, "stringValueCell", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "shownYear", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "shownMonth", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "days", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: function (_cell, next) {
-                let dateDelimiter = this.dateDelimiter;
-                let fromDate = this.fromDate;
-                let toDate = this.toDate;
-                let value = this.value;
-                let shownYear = this.shownYear;
-                let shownMonth = this.shownMonth;
-                if (this._currentlyDateSelection) {
-                    this._currentlyDateSelection = false;
-                    return next;
-                }
-                let now = new Date();
-                let nowYear = now.getFullYear();
-                let nowMonth = now.getMonth();
-                let nowDay = now.getDate();
-                let selectedYear;
-                let selectedMonth;
-                let selectedDay;
-                if (value) {
-                    selectedYear = value.getFullYear();
-                    selectedMonth = value.getMonth();
-                    selectedDay = value.getDate();
-                }
-                let lastPrevMonthDay = new Date(shownYear, shownMonth, 0).getDate();
-                let lastMonthDay = new Date(shownYear, shownMonth + 1, 0).getDate();
-                let firstMonthDayWeekDayIndex = new Date(shownYear, shownMonth, 1).getDay();
-                if (!this.constructor.i18n.sundayFirst) {
-                    firstMonthDayWeekDayIndex = (firstMonthDayWeekDayIndex || 7) - 1;
-                }
-                let weekDays = [];
-                let days = [weekDays];
-                function pushDay(year, month, day, notInCurrentMonth) {
-                    let date = new Date(year, month, day);
-                    let disabled = date < fromDate || date > toDate;
-                    weekDays.push({
-                        date: formatDate_1.formatDate(year, month, day, dateDelimiter),
-                        value: day,
-                        weekDay: [
-                            'sunday',
-                            'monday',
-                            'tuesday',
-                            'wednesday',
-                            'thursday',
-                            'friday',
-                            'saturday'
-                        ][date.getDay()],
-                        today: year == nowYear && month == nowMonth && day == nowDay,
-                        selected: !!value && year == selectedYear && month == selectedMonth && day == selectedDay,
-                        notInCurrentMonth,
-                        disabled,
-                        tabIndex: disabled ? null : 0
-                    });
-                }
-                for (let i = firstMonthDayWeekDayIndex; i;) {
-                    pushDay(shownYear - +!shownMonth, shownMonth ? shownMonth - 1 : 11, lastPrevMonthDay - --i, true);
-                }
-                for (let i = 0; i < lastMonthDay;) {
-                    pushDay(shownYear, shownMonth, ++i, false);
-                    if (!((i + firstMonthDayWeekDayIndex) % 7) && i < lastMonthDay) {
-                        days.push((weekDays = []));
-                    }
-                }
-                for (let i = 0, l = 7 - weekDays.length; i < l;) {
-                    pushDay(shownYear + +(shownMonth == 11), (shownMonth + 1) % 12, ++i, true);
-                }
-                return days;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.days = function (_cell, next) {
+            let dateDelimiter = this.dateDelimiter;
+            let fromDate = this.fromDate;
+            let toDate = this.toDate;
+            let value = this.value;
+            let shownYear = this.shownYear;
+            let shownMonth = this.shownMonth;
+            if (this._currentlyDateSelection) {
+                this._currentlyDateSelection = false;
+                return next;
             }
-        });
-        Object.defineProperty(this, "_currentlyDateSelection", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "_documentKeyDownListening", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
+            let now = new Date();
+            let nowYear = now.getFullYear();
+            let nowMonth = now.getMonth();
+            let nowDay = now.getDate();
+            let selectedYear;
+            let selectedMonth;
+            let selectedDay;
+            if (value) {
+                selectedYear = value.getFullYear();
+                selectedMonth = value.getMonth();
+                selectedDay = value.getDate();
+            }
+            let lastPrevMonthDay = new Date(shownYear, shownMonth, 0).getDate();
+            let lastMonthDay = new Date(shownYear, shownMonth + 1, 0).getDate();
+            let firstMonthDayWeekDayIndex = new Date(shownYear, shownMonth, 1).getDay();
+            if (!this.constructor.i18n.sundayFirst) {
+                firstMonthDayWeekDayIndex = (firstMonthDayWeekDayIndex || 7) - 1;
+            }
+            let weekDays = [];
+            let days = [weekDays];
+            function pushDay(year, month, day, notInCurrentMonth) {
+                let date = new Date(year, month, day);
+                let disabled = date < fromDate || date > toDate;
+                weekDays.push({
+                    date: formatDate_1.formatDate(year, month, day, dateDelimiter),
+                    value: day,
+                    weekDay: [
+                        'sunday',
+                        'monday',
+                        'tuesday',
+                        'wednesday',
+                        'thursday',
+                        'friday',
+                        'saturday'
+                    ][date.getDay()],
+                    today: year == nowYear && month == nowMonth && day == nowDay,
+                    selected: !!value && year == selectedYear && month == selectedMonth && day == selectedDay,
+                    notInCurrentMonth,
+                    disabled,
+                    tabIndex: disabled ? null : 0
+                });
+            }
+            for (let i = firstMonthDayWeekDayIndex; i;) {
+                pushDay(shownYear - +!shownMonth, shownMonth ? shownMonth - 1 : 11, lastPrevMonthDay - --i, true);
+            }
+            for (let i = 0; i < lastMonthDay;) {
+                pushDay(shownYear, shownMonth, ++i, false);
+                if (!((i + firstMonthDayWeekDayIndex) % 7) && i < lastMonthDay) {
+                    days.push((weekDays = []));
+                }
+            }
+            for (let i = 0, l = 7 - weekDays.length; i < l;) {
+                pushDay(shownYear + +(shownMonth == 11), (shownMonth + 1) % 12, ++i, true);
+            }
+            return days;
+        };
     }
     get fromYear() {
         return this.fromDate.getFullYear();
@@ -446,12 +389,7 @@ let OpalCalendar = OpalCalendar_1 = class OpalCalendar extends rionite_1.BaseCom
         this.emit(OpalCalendar_1.EVENT_CHANGE);
     }
 };
-Object.defineProperty(OpalCalendar, "EVENT_CHANGE", {
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value: Symbol('change')
-});
+OpalCalendar.EVENT_CHANGE = Symbol('change');
 __decorate([
     rionite_1.Param('fromDate')
 ], OpalCalendar.prototype, "paramFromDate", void 0);

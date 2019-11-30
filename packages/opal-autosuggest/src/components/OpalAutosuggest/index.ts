@@ -63,21 +63,21 @@ export class OpalAutosuggest extends BaseComponent {
 	static EVENT_CHANGE = Symbol('change');
 
 	@Param({ type: eval, default: defaultDataListItemSchema, readonly: true })
-	declare dataListItemSchema: {
+	dataListItemSchema: {
 		value?: string;
 		text?: string;
 		subtext?: string;
 	};
 	@Param({ required: true, readonly: true })
-	declare dataProvider: IDataProvider;
+	dataProvider: IDataProvider;
 	@Param(eval)
-	declare value: IDataListItem | null;
+	value: IDataListItem | null;
 	@Param({ default: 3 })
-	declare minQueryLength: number;
+	minQueryLength: number;
 	@Param({ default: 5 })
-	declare limit: number;
+	limit: number;
 	@Param(Boolean)
-	declare openMenuOnNothingFound: boolean;
+	openMenuOnNothingFound: boolean;
 
 	static defaultDataListItemSchema = defaultDataListItemSchema;
 
