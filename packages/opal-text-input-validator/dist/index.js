@@ -190,7 +190,7 @@ const rionite_1 = __webpack_require__("u4yd");
 let OpalTextInputValidatorRule = class OpalTextInputValidatorRule extends opal_input_validator_1.OpalInputValidatorRule {
 };
 __decorate([
-    rionite_1.Param
+    rionite_1.Param(Number)
 ], OpalTextInputValidatorRule.prototype, "minLength", void 0);
 __decorate([
     rionite_1.Param(eval)
