@@ -160,11 +160,11 @@ export function toDate(this: OpalCalendar) {
 export class OpalCalendar extends BaseComponent {
 	static EVENT_CHANGE = Symbol('change');
 
-	@Param('fromDate')
+	@Param('fromDate', String)
 	paramFromDate: string | null;
-	@Param('toDate')
+	@Param('toDate', String)
 	paramToDate: string | null;
-	@Param('value')
+	@Param('value', String)
 	paramValue: string | null;
 	@Param({ default: '/' })
 	dateDelimiter: string;

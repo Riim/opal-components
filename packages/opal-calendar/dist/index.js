@@ -391,13 +391,13 @@ let OpalCalendar = OpalCalendar_1 = class OpalCalendar extends rionite_1.BaseCom
 };
 OpalCalendar.EVENT_CHANGE = Symbol('change');
 __decorate([
-    rionite_1.Param('fromDate')
+    rionite_1.Param('fromDate', String)
 ], OpalCalendar.prototype, "paramFromDate", void 0);
 __decorate([
-    rionite_1.Param('toDate')
+    rionite_1.Param('toDate', String)
 ], OpalCalendar.prototype, "paramToDate", void 0);
 __decorate([
-    rionite_1.Param('value')
+    rionite_1.Param('value', String)
 ], OpalCalendar.prototype, "paramValue", void 0);
 __decorate([
     rionite_1.Param({ default: '/' })
