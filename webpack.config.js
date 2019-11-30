@@ -53,6 +53,7 @@ const externals = [
 	'@riim/opal-router',
 	'@riim/opal-select-validator',
 	'@riim/opal-select',
+	'@riim/opal-share-button',
 	'@riim/opal-sign-button',
 	'@riim/opal-slider',
 	'@riim/opal-switch-menu',
