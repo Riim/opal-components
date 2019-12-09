@@ -249,8 +249,8 @@ let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.Base
         this.$('textareaHeight').style.minHeight =
             parseInt(style.paddingTop, 10) +
                 parseInt(style.paddingBottom, 10) +
-                parseInt(style.borderTop, 10) +
-                parseInt(style.borderBottom, 10) +
+                parseInt(style.borderTopWidth, 10) +
+                parseInt(style.borderBottomWidth, 10) +
                 parseInt(style.lineHeight, 10) * this.rows +
                 'px';
     }

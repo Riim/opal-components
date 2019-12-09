@@ -215,11 +215,11 @@ export class OpalTextInput extends BaseComponent {
 		let style = getComputedStyle(this.textField);
 
 		this.$<HTMLElement>('textareaHeight')!.style.minHeight =
-			parseInt(style.paddingTop!, 10) +
-			parseInt(style.paddingBottom!, 10) +
-			parseInt(style.borderTop!, 10) +
-			parseInt(style.borderBottom!, 10) +
-			parseInt(style.lineHeight!, 10) * this.rows +
+			parseInt(style.paddingTop, 10) +
+			parseInt(style.paddingBottom, 10) +
+			parseInt(style.borderTopWidth, 10) +
+			parseInt(style.borderBottomWidth, 10) +
+			parseInt(style.lineHeight, 10) * this.rows +
 			'px';
 	}
 
