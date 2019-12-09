@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-text-input",
-  "version": "0.40.12",
+  "version": "0.40.14",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

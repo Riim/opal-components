@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-date-input",
-  "version": "0.40.12",
+  "version": "0.40.14",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,13 +13,13 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-calendar": "^0.40.12",
+    "@riim/opal-calendar": "^0.40.14",
     "@riim/opal-dropdown": "^0.40.6",
     "@riim/opal-icon": "^0.40.12",
-    "@riim/opal-input-mask": "^0.40.12",
+    "@riim/opal-input-mask": "^0.40.14",
     "@riim/opal-popover": "^0.40.9",
-    "@riim/opal-text-input": "^0.40.12",
-    "@riim/opal-text-input-validator": "^0.40.12",
+    "@riim/opal-text-input": "^0.40.14",
+    "@riim/opal-text-input-validator": "^0.40.14",
     "cellx": "^1.9.20",
     "date-exists": "^1.0.1",
     "rionite": "^0.38.7"
