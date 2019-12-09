@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Riim/opal-components#readme",
   "devDependencies": {
-    "autoprefixer": "^9.7.2",
+    "autoprefixer": "^9.7.3",
     "awesome-typescript-loader": "^5.2.1",
     "collapse-line-breaks-loader": "^0.2.1",
     "color": "^3.1.2",
@@ -41,7 +41,7 @@
     "trim-lines-loader": "^0.2.1",
     "tslint": "^5.20.1",
     "tslint-loader": "^3.6.0",
-    "typescript": "^3.7.2",
+    "typescript": "^3.7.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "yargs": "^15.0.2"

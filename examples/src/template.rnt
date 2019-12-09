@@ -41,6 +41,7 @@ p (class=_opalIcons) {
 	OpalIcon (name=compose)
 	OpalIcon (name=creditcard)
 	OpalIcon (name=cross)
+	OpalIcon (name=crossedOutEye)
 	OpalIcon (name=desktop)
 	OpalIcon (name=download)
 	OpalIcon (name=edit)

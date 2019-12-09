@@ -35,5 +35,10 @@ button:btnClear (
 OpalLoader:loader (@if=loading, size=s, shown)
 
 button:btnShowPassword (@if='inputType |eq("password")', type=button) {
-	OpalIcon:btnShowPasswordIcon (name=eye, strokeWidth=2)
+	@IfThen (if='_inputType |eq("password")') {
+		OpalIcon::btnShowPasswordIcon (name=eye, strokeWidth=2)
+	}
+	@IfElse (if='_inputType |eq("password")') {
+		OpalIcon::btnShowPasswordIcon (name=crossedOutEye, strokeWidth=2)
+	}
 }

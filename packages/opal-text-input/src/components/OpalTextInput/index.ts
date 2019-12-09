@@ -27,17 +27,14 @@ import template from './template.rnt';
 		},
 
 		btnShowPassword: {
-			mousedown() {
-				let listening = this.listenTo(document, 'mouseup', () => {
-					listening.stop();
-					this._inputTypeCell.pull();
-				});
-
-				this._inputTypeCell.set('text');
-			},
-
 			click(evt) {
 				evt.preventDefault();
+
+				if (this._inputTypeCell) {
+					this._inputTypeCell.set(
+						this._inputTypeCell.get() == 'password' ? 'text' : 'password'
+					);
+				}
 			}
 		}
 	}
