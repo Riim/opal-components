@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("@riim/opal-button"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-components-common"), require("cellx"), require("@riim/opal-button"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "@riim/opal-button", "rionite", "cellx-decorators"], factory);
+		define(["@riim/opal-components-common", "cellx", "@riim/opal-button", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-share-button"] = factory(require("cellx"), require("@riim/opal-button"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-share-button"] = factory(require("@riim/opal-components-common"), require("cellx"), require("@riim/opal-button"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-share-button"] = factory(root["cellx"], root["@riim/opal-button"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-share-button"] = factory(root["@riim/opal-components-common"], root["cellx"], root["@riim/opal-button"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_MYNt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -252,11 +252,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const opal_button_1 = __webpack_require__("X6DG");
+const opal_components_common_1 = __webpack_require__("MYNt");
 const cellx_1 = __webpack_require__("P7z7");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("BNuO");
-const clickLink_1 = __webpack_require__("l1Ey");
 const jsonp_1 = __webpack_require__("eRDw");
 const makeUrl_1 = __webpack_require__("5LC3");
 const openPopup_1 = __webpack_require__("zSer");
@@ -298,7 +298,7 @@ let OpalShareButton = class OpalShareButton extends opal_button_1.OpalButton {
             openPopup_1.openPopup(url, this.service, service.popupWidth, service.popupHeight);
         }
         else {
-            clickLink_1.clickLink(url);
+            opal_components_common_1.clickLink(url);
         }
         return this;
     }
@@ -327,6 +327,13 @@ OpalShareButton = __decorate([
 ], OpalShareButton);
 exports.OpalShareButton = OpalShareButton;
 
+
+/***/ }),
+
+/***/ "MYNt":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_MYNt__;
 
 /***/ }),
 
@@ -409,27 +416,6 @@ function getScript(url) {
     document.head.removeChild(script);
 }
 exports.getScript = getScript;
-
-
-/***/ }),
-
-/***/ "l1Ey":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-function clickLink(url) {
-    let anchor = document.createElement('a');
-    anchor.href = url;
-    anchor.style.display = 'none';
-    document.body.appendChild(anchor);
-    setTimeout(() => {
-        anchor.click();
-        document.body.removeChild(anchor);
-    }, 1);
-}
-exports.clickLink = clickLink;
 
 
 /***/ }),

@@ -1,9 +1,9 @@
 import { OpalButton } from '@riim/opal-button';
+import { clickLink } from '@riim/opal-components-common';
 import { Cell, define } from 'cellx';
 import { Observable } from 'cellx-decorators';
 import { Component, Param } from 'rionite';
 import './index.css';
-import { clickLink } from './lib/clickLink';
 import { jsonp } from './lib/jsonp';
 import { makeUrl } from './lib/makeUrl';
 import { openPopup } from './lib/openPopup';

@@ -13,6 +13,7 @@ export declare class OpalButton extends BaseComponent {
     size: 's' | 'm' | (string & {
         _?: never;
     });
+    href: string | null;
     checkable: boolean;
     checked: boolean;
     loading: boolean;

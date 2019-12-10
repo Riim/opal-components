@@ -6,7 +6,7 @@ const postcssRioniteComponent = require('postcss-rionite-component');
 const postcssSassColorFunctions = require('postcss-sass-color-functions');
 const autoprefixer = require('autoprefixer');
 const csso = require('postcss-csso');
-const cssVariables = require('./packages/opal-components-common/src/config/cssVariables');
+const cssVariables = require('./build/cssVariables');
 
 const externals = [
 	'@riim/debounce-throttle',

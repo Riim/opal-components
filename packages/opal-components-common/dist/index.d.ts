@@ -1,2 +1,3 @@
-export * from './utils/closestComponent';
-export * from './utils/nodeContains';
+export * from './lib/clickLink';
+export * from './lib/closestComponent';
+export * from './lib/nodeContains';

@@ -96,7 +96,28 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ({
 
-/***/ "S9kL":
+/***/ "5g1l":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function clickLink(url) {
+    let anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.style.display = 'none';
+    document.body.appendChild(anchor);
+    setTimeout(() => {
+        anchor.click();
+        document.body.removeChild(anchor);
+    }, 1);
+}
+exports.clickLink = clickLink;
+
+
+/***/ }),
+
+/***/ "7XhX":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116,7 +137,7 @@ exports.closestComponent = closestComponent;
 
 /***/ }),
 
-/***/ "THfa":
+/***/ "Nc/M":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -147,8 +168,9 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__("S9kL"));
-__export(__webpack_require__("THfa"));
+__export(__webpack_require__("5g1l"));
+__export(__webpack_require__("7XhX"));
+__export(__webpack_require__("Nc/M"));
 
 
 /***/ })

@@ -1,3 +1,4 @@
+import { clickLink } from '@riim/opal-components-common';
 import { Computed } from 'cellx-decorators';
 import {
 	BaseComponent,
@@ -30,6 +31,8 @@ export class OpalButton extends BaseComponent {
 		| (string & { _?: never });
 	@Param({ default: 'm' })
 	size: 's' | 'm' | (string & { _?: never });
+	@Param(String)
+	href: string | null;
 	@Param(Boolean)
 	checkable: boolean;
 	@Param(Boolean)
@@ -112,6 +115,10 @@ export class OpalButton extends BaseComponent {
 		if (!this.emit(OpalButton.EVENT_CLICK).defaultPrevented && this.checkable) {
 			this.emit(this.toggle() ? OpalButton.EVENT_CHECK : OpalButton.EVENT_UNCHECK);
 			this.emit(OpalButton.EVENT_CHANGE);
+		}
+
+		if (this.href) {
+			clickLink(this.href);
 		}
 
 		return this;

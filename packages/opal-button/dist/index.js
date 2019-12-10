@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-components-common"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["rionite", "cellx-decorators"], factory);
+		define(["@riim/opal-components-common", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-button"] = factory(require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-button"] = factory(require("@riim/opal-components-common"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-button"] = factory(root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-button"] = factory(root["@riim/opal-components-common"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_MYNt__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -106,6 +106,34 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__("KT7f"));
+__export(__webpack_require__("FLFa"));
+
+
+/***/ }),
+
+/***/ "FLFa":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const rionite_1 = __webpack_require__("u4yd");
+const OpalButton_1 = __webpack_require__("KT7f");
+let OpalFormButton = class OpalFormButton extends OpalButton_1.OpalButton {
+};
+OpalFormButton = __decorate([
+    rionite_1.Component({
+        elementIs: 'opal-form-button',
+        elementExtends: 'button'
+    })
+], OpalFormButton);
+exports.OpalFormButton = OpalFormButton;
 
 
 /***/ }),
@@ -123,6 +151,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var OpalButton_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+const opal_components_common_1 = __webpack_require__("MYNt");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("dccg");
@@ -174,6 +203,9 @@ let OpalButton = OpalButton_1 = class OpalButton extends rionite_1.BaseComponent
         if (!this.emit(OpalButton_1.EVENT_CLICK).defaultPrevented && this.checkable) {
             this.emit(this.toggle() ? OpalButton_1.EVENT_CHECK : OpalButton_1.EVENT_UNCHECK);
             this.emit(OpalButton_1.EVENT_CHANGE);
+        }
+        if (this.href) {
+            opal_components_common_1.clickLink(this.href);
         }
         return this;
     }
@@ -230,6 +262,9 @@ __decorate([
     rionite_1.Param({ default: 'm' })
 ], OpalButton.prototype, "size", void 0);
 __decorate([
+    rionite_1.Param(String)
+], OpalButton.prototype, "href", void 0);
+__decorate([
     rionite_1.Param(Boolean)
 ], OpalButton.prototype, "checkable", void 0);
 __decorate([
@@ -269,6 +304,13 @@ OpalButton = OpalButton_1 = __decorate([
 ], OpalButton);
 exports.OpalButton = OpalButton;
 
+
+/***/ }),
+
+/***/ "MYNt":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_MYNt__;
 
 /***/ }),
 
