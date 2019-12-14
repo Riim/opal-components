@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-file-input",
-  "version": "0.40.15",
+  "version": "0.40.16",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,7 +16,7 @@
     "@riim/escape-regexp": "^1.0.0",
     "@riim/gettext": "^2.0.0",
     "@riim/next-uid": "^1.1.0",
-    "@riim/opal-button": "^0.40.15",
+    "@riim/opal-button": "^0.40.16",
     "@riim/opal-components-common": "^0.40.15",
     "@riim/opal-icon": "^0.40.12",
     "@riim/opal-loader": "^0.40.6",
