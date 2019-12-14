@@ -115,7 +115,7 @@
 						height: 16px;
 					}
 
-			@el nothingSelectedMessageSlot {
+			@el nothingSelectedSlot {
 				display: flex;
 				box-sizing: border-box;
 				padding: 12px;
@@ -139,6 +139,7 @@
 			{
 				box-sizing: border-box;
 				padding: 0 10px;
+				width: 299px;
 			}
 
 			@el menuFooterLeftPart {

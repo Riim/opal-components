@@ -23,7 +23,7 @@ export class OpalSignButton extends BaseComponent {
 
 	@Param({ type: String, required: true })
 	sign: string;
-	@Param({ default: 'default' })
+	@Param(String)
 	viewType:
 		| 'default'
 		| 'primary'

@@ -193,7 +193,7 @@ __decorate([
     rionite_1.Param({ type: String, required: true })
 ], OpalSignButton.prototype, "sign", void 0);
 __decorate([
-    rionite_1.Param({ default: 'default' })
+    rionite_1.Param(String)
 ], OpalSignButton.prototype, "viewType", void 0);
 __decorate([
     rionite_1.Param(Boolean)
