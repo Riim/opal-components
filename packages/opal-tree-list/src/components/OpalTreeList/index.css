@@ -3,30 +3,16 @@
 	display: block;
 
 	@el nothingFoundSlot {
-		display: block;
+		display: flex;
 		box-sizing: border-box;
 		padding: 12px;
 		height: 100%;
-		text-align: center;
-		white-space: nowrap;
-
-		&::before {
-			display: inline-block;
-			width: 0;
-			height: 100%;
-			content: '';
-			vertical-align: middle;
-		}
+		justify-content: center;
+		align-items: center;
 	}
-		@el nothingFound {
-			display: inline-block;
-			vertical-align: middle;
-			white-space: normal;
+		@el nothingFoundMessage {
+			opacity: .6;
 		}
-			@el nothingFoundMessage {
-				white-space: nowrap;
-				opacity: .6;
-			}
 
 	@el loader {
 		position: absolute;

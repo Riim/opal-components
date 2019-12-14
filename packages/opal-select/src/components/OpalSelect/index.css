@@ -1,7 +1,6 @@
 @component OpalSelect {
 	position: relative;
 	display: inline-block;
-	vertical-align: middle;
 
 	@el button {
 		display: block;

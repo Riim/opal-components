@@ -23,16 +23,14 @@
 		padding: 28px;
 		text-align: center;
 	}
-		@el nothingFound {
-		}
-			@el nothingFoundMessage {
-				white-space: nowrap;
-				opacity: .6;
+		@el nothingFoundMessage {
+			white-space: nowrap;
+			opacity: .6;
 
-				& + .OpalSelect__btnAddNewItem {
-					margin-top: 18px;
-				}
+			& + .OpalSelect__btnAddNewItem {
+				margin-top: 18px;
 			}
+		}
 
 	/* Combinations */
 

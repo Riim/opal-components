@@ -1,7 +1,6 @@
 @component OpalInputValidator {
 	position: relative;
 	display: inline-block;
-	vertical-align: middle;
 
 	@el contentSlot {
 	}

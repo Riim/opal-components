@@ -95,7 +95,7 @@ export class OpalTextInput extends BaseComponent {
 		return (this.paramValue && this.paramValue.trim()) || null;
 	}
 	set value(value: string | null) {
-		this.paramValue = value || (null as any);
+		this.paramValue = value || null;
 		this.textField.value = value || '';
 	}
 
@@ -120,7 +120,7 @@ export class OpalTextInput extends BaseComponent {
 			this.textField.value = this.paramValue || '';
 		} else if (this.storeKey) {
 			let value = localStorage.getItem(this.storeKey);
-			this.paramValue = value || (null as any);
+			this.paramValue = value || null;
 			this.textField.value = value || '';
 		}
 
@@ -168,7 +168,7 @@ export class OpalTextInput extends BaseComponent {
 
 	@Listen('input', '@textField')
 	_onTextFieldInput(evt: Event) {
-		this.paramValue = this.textField.value || (null as any);
+		this.paramValue = this.textField.value || null;
 
 		if (this.multiline && this.autoHeight) {
 			this._fixHeight();

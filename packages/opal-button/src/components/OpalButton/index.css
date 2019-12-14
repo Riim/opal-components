@@ -15,7 +15,6 @@
 		border-radius: 3px;
 		background: var(--defaultColor500, $defaultColor);
 		color: #fff;
-		vertical-align: middle;
 		text-align: center;
 		text-decoration: none;
 		text-shadow: none;

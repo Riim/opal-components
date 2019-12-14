@@ -2,7 +2,6 @@
 	position: relative;
 	display: inline-block;
 	width: 400px;
-	vertical-align: middle;
 
 	@el textField,
 		textareaHeight

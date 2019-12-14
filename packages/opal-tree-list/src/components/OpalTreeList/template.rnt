@@ -21,10 +21,8 @@
 		}
 	}
 	RnSlot:nothingFoundSlot (@unless=filteredDataTreeList.length, for=nothingFound) {
-		span:nothingFound {
-			span:nothingFoundMessage {
-				'{"Ничего не найдено" |t }'
-			}
+		div:nothingFoundMessage {
+			'{"Ничего не найдено" |t }'
 		}
 	}
 }

@@ -1,7 +1,6 @@
 @component OpalFileInput {
 	position: relative;
 	width: 400px;
-	vertical-align: middle;
 
 	@mod not multiple {
 		display: inline-block;
@@ -135,21 +134,11 @@
 			display: none;
 			border-radius: inherit;
 			background: inherit;
-			white-space: nowrap;
-			font-size: 0;
-
-			&::after {
-				display: inline-block;
-				width: 0;
-				height: 100%;
-				content: '';
-				vertical-align: middle;
-			}
+			justify-content: center;
+			align-items: center;
 		}
 			@el dropZoneErrorMessage {
 				color: var(--dangerColor400, $dangerColor400);
-				vertical-align: middle;
-				font-size: 1rem;
 			}
 
 		@el dropZoneContent {
@@ -166,13 +155,11 @@
 
 			@el btnSelectFile {
 				margin-right: 10px;
-				vertical-align: middle;
 			}
 
 		@el file2 {
 			display: inline-block;
 			overflow: hidden;
-			vertical-align: middle;
 			text-overflow: ellipsis;
 
 			a {
@@ -183,7 +170,6 @@
 		@el placeholder {
 			display: inline-block;
 			color: var(--textColor650, $textColor650);
-			vertical-align: middle;
 			transition: color .1s linear;
 			user-select: none;
 		}
@@ -207,7 +193,7 @@
 			font: 16px/24px Verdana, Geneva, sans-serif;
 			font-weight: normal;
 			justify-content: flex-start;
-			align-items: center;
+			align-items: baseline;
 			-webkit-font-smoothing: antialiased;
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-text-size-adjust: 100%;
@@ -228,7 +214,7 @@
 
 			@mod error {
 				@el dropZoneErrorMessageWrapper {
-					display: block;
+					display: flex;
 				}
 			}
 		}

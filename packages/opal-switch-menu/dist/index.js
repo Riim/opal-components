@@ -221,7 +221,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalSwitchMenu{position:relative;display:inline-block;vertical-align:middle;white-space:nowrap;font-size:0}";
+            style.textContent = ".OpalSwitchMenu{position:relative;display:inline-block;white-space:nowrap;font-size:0}";
             head.appendChild(style);
             return style;
         }

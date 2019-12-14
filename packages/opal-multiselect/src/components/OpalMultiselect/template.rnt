@@ -43,10 +43,8 @@
 		}
 
 		RnSlot:nothingSelectedSlot (@if=nothingSelectedShown, for=nothingSelected) {
-			span:nothingSelected {
-				span:nothingSelectedMessage {
-					'{"Ничего не выбрано" |t }'
-				}
+			div:nothingSelectedMessage {
+				'{"Ничего не выбрано" |t }'
 			}
 		}
 	}

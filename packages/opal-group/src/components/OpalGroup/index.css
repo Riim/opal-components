@@ -1,7 +1,6 @@
 @component OpalGroup {
 	position: relative;
 	display: inline-block;
-	vertical-align: middle;
 	white-space: nowrap;
 	font-size: 0;
 }

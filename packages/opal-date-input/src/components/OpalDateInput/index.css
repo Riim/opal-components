@@ -1,7 +1,6 @@
 @component OpalDateInput {
 	position: relative;
 	display: inline-block;
-	vertical-align: middle;
 
 	@el textInput {
 		display: block;

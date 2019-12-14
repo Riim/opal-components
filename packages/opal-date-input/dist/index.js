@@ -155,7 +155,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalDateInput{position:relative;display:inline-block;vertical-align:middle}.OpalDateInput .OpalDateInput__textInput{display:block}.OpalDateInput .OpalDateInput__calendarMenu{overflow:visible;padding:0;min-width:auto}.OpalDateInput .OpalDateInput__calendar{border:0}";
+            style.textContent = ".OpalDateInput{position:relative;display:inline-block}.OpalDateInput .OpalDateInput__textInput{display:block}.OpalDateInput .OpalDateInput__calendarMenu{overflow:visible;padding:0;min-width:auto}.OpalDateInput .OpalDateInput__calendar{border:0}";
             head.appendChild(style);
             return style;
         }

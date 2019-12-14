@@ -14,9 +14,7 @@ div:list {
 OpalLoader:loader (shown={loaderShown}, inCenter={dataList.length |not })
 
 RnSlot:nothingFoundSlot (@if=nothingFoundShown, for=nothingFound) {
-	span:nothingFound {
-		span:nothingFoundMessage {
-			'{"Ничего не найдено" |t }'
-		}
+	div:nothingFoundMessage {
+		'{"Ничего не найдено" |t }'
 	}
 }

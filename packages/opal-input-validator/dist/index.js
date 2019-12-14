@@ -154,7 +154,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalInputValidator{position:relative;display:inline-block;vertical-align:middle}";
+            style.textContent = ".OpalInputValidator{position:relative;display:inline-block}";
             head.appendChild(style);
             return style;
         }
