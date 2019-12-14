@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-calendar",
-  "version": "0.40.16",
+  "version": "0.40.17",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,7 @@
   "dependencies": {
     "@riim/next-tick": "^1.2.4",
     "@riim/opal-icon": "^0.40.12",
-    "@riim/opal-select": "^0.40.16",
+    "@riim/opal-select": "^0.40.17",
     "cellx": "^1.9.20",
     "cellx-decorators": "^1.5.4",
     "rionite": "^0.38.7"
