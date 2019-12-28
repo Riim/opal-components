@@ -225,40 +225,42 @@
 
 	/* States */
 
-	& .OpalSlider__firstInput:hover::-webkit-slider-thumb {
+	.OpalSlider__firstInput:hover::-webkit-slider-thumb {
 		background: var(--defaultColor650, $defaultColor650);
 	}
-	& .OpalSlider__firstInput:hover::-moz-range-thumb {
+	.OpalSlider__firstInput:hover::-moz-range-thumb {
 		background: var(--defaultColor650, $defaultColor650);
 	}
-	& .OpalSlider__firstInput:hover::-ms-thumb {
-		background: var(--defaultColor650, $defaultColor650);
-	}
-
-	& .OpalSlider__secondInput:hover::-webkit-slider-thumb {
-		background: var(--primaryColor650, $primaryColor650);
-	}
-	& .OpalSlider__secondInput:hover::-moz-range-thumb {
-		background: var(--primaryColor650, $primaryColor650);
-	}
-	& .OpalSlider__secondInput:hover::-ms-thumb {
-		background: var(--primaryColor650, $primaryColor650);
-	}
-
-	& .OpalSlider__input:hover::-webkit-slider-thumb {
-		background: var(--defaultColor650, $defaultColor650);
-	}
-	& .OpalSlider__input:hover::-moz-range-thumb {
-		background: var(--defaultColor650, $defaultColor650);
-	}
-	& .OpalSlider__input:hover::-ms-thumb {
+	.OpalSlider__firstInput:hover::-ms-thumb {
 		background: var(--defaultColor650, $defaultColor650);
 	}
 
-	& .OpalSlider__firstInput:focus,
-	& .OpalSlider__secondInput:focus,
-	& .OpalSlider__input:focus {
-		outline: none;
+	.OpalSlider__secondInput:hover::-webkit-slider-thumb {
+		background: var(--primaryColor650, $primaryColor650);
+	}
+	.OpalSlider__secondInput:hover::-moz-range-thumb {
+		background: var(--primaryColor650, $primaryColor650);
+	}
+	.OpalSlider__secondInput:hover::-ms-thumb {
+		background: var(--primaryColor650, $primaryColor650);
+	}
+
+	.OpalSlider__input:hover::-webkit-slider-thumb {
+		background: var(--defaultColor650, $defaultColor650);
+	}
+	.OpalSlider__input:hover::-moz-range-thumb {
+		background: var(--defaultColor650, $defaultColor650);
+	}
+	.OpalSlider__input:hover::-ms-thumb {
+		background: var(--defaultColor650, $defaultColor650);
+	}
+
+	.OpalSlider__firstInput,
+	.OpalSlider__secondInput,
+	.OpalSlider__input {
+		&:focus {
+			outline: none;
+		}
 	}
 		body:not(._noFocusHighlight) & .OpalSlider__firstInput:focus::-webkit-slider-thumb {
 			box-shadow:

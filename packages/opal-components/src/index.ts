@@ -33,6 +33,7 @@ import '@riim/opal-switch';
 import '@riim/opal-switch-menu';
 import '@riim/opal-tabs';
 import '@riim/opal-tag-select';
+import '@riim/opal-text-editor';
 import '@riim/opal-text-input';
 import '@riim/opal-text-input-validator';
 import '@riim/opal-tree-list';

@@ -1,0 +1,9 @@
+div:textFieldContainer (
+	// tabindex={tabIndex},
+	disabled={disabled},
+	hidePlaceholder={btnToolbarOnEmptyLineShown}
+)
+
+div:btnToolbarOnEmptyLine (shown={btnToolbarOnEmptyLineShown})
+
+PrexLoader:loader (@if=loading, size=s, shown)
