@@ -414,7 +414,12 @@ export class OpalTextEditor extends BaseComponent {
 	}
 
 	_onQuillEditorChange(evtType: string, range: RangeStatic) {
-		if (evtType != (Quill_ as any).events.SELECTION_CHANGE || !range) {
+		if (evtType == (Quill_ as any).events.TEXT_CHANGE) {
+			this._value = this.textField.innerHTML || null;
+			return;
+		}
+
+		if (!range) {
 			return;
 		}
 

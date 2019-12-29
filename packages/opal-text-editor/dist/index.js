@@ -11992,7 +11992,11 @@ let OpalTextEditor = OpalTextEditor_1 = class OpalTextEditor extends rionite_1.B
         }
     }
     _onQuillEditorChange(evtType, range) {
-        if (evtType != Quill_.events.SELECTION_CHANGE || !range) {
+        if (evtType == Quill_.events.TEXT_CHANGE) {
+            this._value = this.textField.innerHTML || null;
+            return;
+        }
+        if (!range) {
             return;
         }
         next_tick_1.nextTick(() => {
