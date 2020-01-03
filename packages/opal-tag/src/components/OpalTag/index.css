@@ -1,0 +1,31 @@
+@component OpalTag {
+	position: relative;
+	top: -1px;
+	display: inline-block;
+	margin: 2px 4px 2px 0;
+	padding: 0 18px;
+	border-radius: 16px;
+	background: var(--defaultColor500, $defaultColor);
+	color: #fff;
+	text-decoration: none;
+	text-shadow: none;
+	font: 16px/32px Verdana, Geneva, sans-serif;
+	font-weight: normal;
+	cursor: default;
+
+	@mod viewType=primary {
+		background: var(--primaryColor500, $primaryColor);
+	}
+
+	@mod viewType=success {
+		background: var(--successColor500, $successColor);
+	}
+
+	@mod viewType=warning {
+		background: var(--warningColor500, $warningColor);
+	}
+
+	@mod viewType=danger {
+		background: var(--dangerColor500, $dangerColor);
+	}
+}

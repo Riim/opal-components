@@ -60,6 +60,7 @@ const externals = [
 	'@riim/opal-switch',
 	'@riim/opal-tabs',
 	'@riim/opal-tag-select',
+	'@riim/opal-tag',
 	'@riim/opal-text-editor',
 	'@riim/opal-text-input-validator',
 	'@riim/opal-text-input',
