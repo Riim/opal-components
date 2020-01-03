@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-file-input",
-  "version": "0.40.16",
+  "version": "0.40.23",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
