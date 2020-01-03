@@ -24,19 +24,27 @@
 	}
 		@el file {
 			position: relative;
+			display: flex;
+			box-sizing: border-box;
 			margin-bottom: 10px;
-			padding: 12px 52px 12px 20px;
+			padding: 12px 52px 12px 78px;
+			min-height: 72px;
 			border-radius: 3px;
 			background: var(--grayColor950, $grayColor950);
 			cursor: move;
+			align-items: center;
 
 			@mod ghost {
 				opacity: .4;
 			}
 		}
 			@el filePreviewWrapper {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 20px;
 				display: inline-flex;
-				margin-right: 10px;
+				margin: auto;
 				width: 48px;
 				height: 48px;
 				vertical-align: middle;
@@ -64,7 +72,8 @@
 				}
 
 			@el fileName {
-				vertical-align: middle;
+				overflow: hidden;
+				text-overflow: ellipsis;
 				font-weight: bold;
 			}
 
