@@ -1,16 +1,12 @@
 @component OpalMultirowRow {
-	display: block;
+	display: flex;
+	margin-bottom: 20px;
 	white-space: nowrap;
-
-	&::after {
-		display: table;
-		clear: both;
-		content: '';
-	}
+	align-items: baseline;
 
 	@el contentSlot {
 		display: inline-block;
-		margin: 0 12px 20px 0;
+		margin-right: 14px;
 	}
 
 	@el btnRemoveRow,
@@ -19,17 +15,18 @@
 		position: relative;
 		top: 1px;
 		display: none;
+		align-self: center;
 	}
 
 	@el btnRemoveRow {
-		margin-right: 9px;
+		margin-right: 8px;
 	}
 
 	@el btnAddRow {
 	}
 
-	.OpalMultirow__presetRowsSlot[not_have_new_rows] &:last-child .OpalMultirowRow__contentSlot,
-	.OpalMultirow__newRows rn-slot:last-child & .OpalMultirowRow__contentSlot {
+	.OpalMultirow__presetRowsSlot[not_have_new_rows] &:last-child,
+	.OpalMultirow__newRows rn-slot:last-child & {
 		margin-bottom: 0;
 	}
 
