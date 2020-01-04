@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-multirow",
-  "version": "0.40.17",
+  "version": "0.40.24",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
