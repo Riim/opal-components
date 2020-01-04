@@ -104,7 +104,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalGroup{position:relative;display:inline-block;white-space:nowrap;font-size:0}";
+            style.textContent = ".OpalGroup{display:inline-block;white-space:nowrap}";
             head.appendChild(style);
             return style;
         }
