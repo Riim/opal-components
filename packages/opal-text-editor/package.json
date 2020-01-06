@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-text-editor",
-  "version": "0.40.21",
+  "version": "0.40.26",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
