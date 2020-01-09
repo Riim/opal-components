@@ -1,5 +1,7 @@
 button:control (type=button, tabindex={_tabIndex}) {
-	span:sign
+	span:sign {
+		'\xa0'
+	}
 	' '
 
 	RnSlot:contentSlot
