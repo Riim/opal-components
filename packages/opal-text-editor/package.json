@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-text-editor",
-  "version": "0.40.28",
+  "version": "0.40.29",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
   "dependencies": {
     "@riim/next-tick": "^1.2.4",
     "@riim/opal-loader": "^0.40.6",
-    "@riim/opal-text-input-validator": "^0.40.28",
+    "@riim/opal-text-input-validator": "^0.40.29",
     "cellx": "^1.9.20",
     "cellx-decorators": "^1.5.4",
     "quill": "^1.3.7",

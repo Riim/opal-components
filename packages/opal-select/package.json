@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-select",
-  "version": "0.40.28",
+  "version": "0.40.29",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,7 @@
   "dependencies": {
     "@riim/gettext": "^2.0.0",
     "@riim/next-tick": "^1.2.4",
-    "@riim/opal-button": "^0.40.28",
+    "@riim/opal-button": "^0.40.29",
     "@riim/opal-dropdown": "^0.40.6",
     "@riim/opal-filtered-list": "^0.40.19",
     "@riim/opal-icon": "^0.40.12",
