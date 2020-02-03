@@ -18,10 +18,10 @@
 
 			body:not(._noFocusHighlight) &::after {
 				position: absolute;
-				top: -2px;
+				top: -1px;
 				right: 0;
 				bottom: 1px;
-				left: -2px;
+				left: -3px;
 				border: 1px solid var(--primaryColor500, $primaryColor);
 				border-radius: 3px;
 				content: '';

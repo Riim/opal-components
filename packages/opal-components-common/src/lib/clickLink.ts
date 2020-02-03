@@ -1,12 +1,13 @@
-export function clickLink(url: string) {
+export function clickLink(url: string, target?: string | null) {
 	let anchor = document.createElement('a');
 
 	anchor.href = url;
+	if (target) {
+		anchor.target = target;
+	}
 	anchor.style.display = 'none';
 	document.body.appendChild(anchor);
 
-	setTimeout(() => {
-		anchor.click();
-		document.body.removeChild(anchor);
-	}, 1);
+	anchor.click();
+	document.body.removeChild(anchor);
 }

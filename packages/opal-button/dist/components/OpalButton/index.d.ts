@@ -14,6 +14,7 @@ export declare class OpalButton extends BaseComponent {
         _?: never;
     });
     href: string | null;
+    target: string | null;
     checkable: boolean;
     checked: boolean;
     loading: boolean;

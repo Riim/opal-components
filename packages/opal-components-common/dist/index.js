@@ -102,15 +102,16 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-function clickLink(url) {
+function clickLink(url, target) {
     let anchor = document.createElement('a');
     anchor.href = url;
+    if (target) {
+        anchor.target = target;
+    }
     anchor.style.display = 'none';
     document.body.appendChild(anchor);
-    setTimeout(() => {
-        anchor.click();
-        document.body.removeChild(anchor);
-    }, 1);
+    anchor.click();
+    document.body.removeChild(anchor);
 }
 exports.clickLink = clickLink;
 

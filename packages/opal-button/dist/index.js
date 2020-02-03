@@ -205,7 +205,7 @@ let OpalButton = OpalButton_1 = class OpalButton extends rionite_1.BaseComponent
             this.emit(OpalButton_1.EVENT_CHANGE);
         }
         if (this.href) {
-            opal_components_common_1.clickLink(this.href);
+            opal_components_common_1.clickLink(this.href, this.target);
         }
         return this;
     }
@@ -264,6 +264,9 @@ __decorate([
 __decorate([
     rionite_1.Param(String)
 ], OpalButton.prototype, "href", void 0);
+__decorate([
+    rionite_1.Param(String)
+], OpalButton.prototype, "target", void 0);
 __decorate([
     rionite_1.Param(Boolean)
 ], OpalButton.prototype, "checkable", void 0);

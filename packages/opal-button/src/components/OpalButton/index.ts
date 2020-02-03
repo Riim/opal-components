@@ -33,6 +33,8 @@ export class OpalButton extends BaseComponent {
 	size: 's' | 'm' | (string & { _?: never });
 	@Param(String)
 	href: string | null;
+	@Param(String)
+	target: string | null;
 	@Param(Boolean)
 	checkable: boolean;
 	@Param(Boolean)
@@ -118,7 +120,7 @@ export class OpalButton extends BaseComponent {
 		}
 
 		if (this.href) {
-			clickLink(this.href);
+			clickLink(this.href, this.target);
 		}
 
 		return this;

@@ -15,6 +15,6 @@
   "dependencies": {
     "@riim/opal-components-common": "^0.40.15",
     "cellx-decorators": "^1.5.4",
-    "rionite": "^0.38.7"
+    "rionite": "^0.38.11"
   }
 }

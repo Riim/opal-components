@@ -1,1 +1,1 @@
-export declare function clickLink(url: string): void;
+export declare function clickLink(url: string, target?: string | null): void;
