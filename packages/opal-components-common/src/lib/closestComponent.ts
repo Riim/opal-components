@@ -1,16 +1,14 @@
 import { BaseComponent } from 'rionite';
 
-export function closestComponent(
-	component: BaseComponent,
+export function closestComponent<T extends BaseComponent>(
+	fromComponent: BaseComponent,
 	componentClass: Function
-): BaseComponent | null {
-	let c: BaseComponent | null = component;
+): T | null {
+	let component = fromComponent.parentComponent;
 
-	for (;;) {
-		if (c instanceof componentClass || !(c = c.parentComponent)) {
-			break;
-		}
+	while (component && !(component instanceof componentClass)) {
+		component = component.parentComponent;
 	}
 
-	return c;
+	return component as T;
 }

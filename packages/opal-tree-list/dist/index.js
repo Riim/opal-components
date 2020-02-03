@@ -352,7 +352,7 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
         let vm = this.viewModel;
         let viewModelItemValueFieldName = this._viewModelItemValueFieldName;
         let viewModelItemTextFieldName = this._viewModelItemTextFieldName;
-        let item = opal_components_common_1.closestComponent(evt.target.parentComponent, OpalTreeListItem_1.OpalTreeListItem).$context.$item;
+        let item = opal_components_common_1.closestComponent(evt.target, OpalTreeListItem_1.OpalTreeListItem).$context.$item;
         if (item.$original) {
             item = item.$original;
         }

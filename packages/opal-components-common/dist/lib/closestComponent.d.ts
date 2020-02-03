@@ -1,2 +1,2 @@
 import { BaseComponent } from 'rionite';
-export declare function closestComponent(component: BaseComponent, componentClass: Function): BaseComponent | null;
+export declare function closestComponent<T extends BaseComponent>(fromComponent: BaseComponent, componentClass: Function): T | null;

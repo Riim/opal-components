@@ -124,14 +124,12 @@ exports.clickLink = clickLink;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-function closestComponent(component, componentClass) {
-    let c = component;
-    for (;;) {
-        if (c instanceof componentClass || !(c = c.parentComponent)) {
-            break;
-        }
+function closestComponent(fromComponent, componentClass) {
+    let component = fromComponent.parentComponent;
+    while (component && !(component instanceof componentClass)) {
+        component = component.parentComponent;
     }
-    return c;
+    return component;
 }
 exports.closestComponent = closestComponent;
 

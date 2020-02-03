@@ -217,7 +217,7 @@ export class OpalTreeList extends BaseComponent {
 		let viewModelItemValueFieldName = this._viewModelItemValueFieldName;
 		let viewModelItemTextFieldName = this._viewModelItemTextFieldName;
 		let item: IDataTreeListItem | IFilteredDataTreeListItem = closestComponent(
-			evt.target.parentComponent!,
+			evt.target,
 			OpalTreeListItem
 		)!.$context!.$item;
 
