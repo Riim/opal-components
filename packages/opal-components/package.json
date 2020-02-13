@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-components",
-  "version": "0.40.29",
+  "version": "0.40.30",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -49,7 +49,7 @@
     "@riim/opal-tabs": "^0.40.6",
     "@riim/opal-tag": "^0.40.22",
     "@riim/opal-tag-select": "^0.40.29",
-    "@riim/opal-text-editor": "^0.40.29",
+    "@riim/opal-text-editor": "^0.40.30",
     "@riim/opal-text-input": "^0.40.19",
     "@riim/opal-text-input-validator": "^0.40.29",
     "@riim/opal-tree-list": "^0.40.29",
