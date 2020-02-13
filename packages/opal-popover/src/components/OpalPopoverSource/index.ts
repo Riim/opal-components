@@ -1,5 +1,10 @@
 import { OpalButton } from '@riim/opal-button';
-import { BaseComponent, Component, IDisposableTimeout } from 'rionite';
+import {
+	BaseComponent,
+	Component,
+	IDisposableTimeout,
+	Param
+	} from 'rionite';
 import { OpalPopover } from '../OpalPopover';
 import './index.css';
 
@@ -7,6 +12,9 @@ import './index.css';
 	elementIs: 'OpalPopoverSource'
 })
 export class OpalPopoverSource extends BaseComponent {
+	@Param({ default: true })
+	active: boolean;
+
 	popoverTarget: BaseComponent | Element;
 	popover: OpalPopover;
 
@@ -49,7 +57,9 @@ export class OpalPopoverSource extends BaseComponent {
 	}
 
 	_onPopoverTargetCheck() {
-		this.popover.open();
+		if (this.active) {
+			this.popover.open();
+		}
 	}
 
 	_onPopoverTargetUncheck() {
@@ -57,7 +67,7 @@ export class OpalPopoverSource extends BaseComponent {
 	}
 
 	_onPopoverTargetClick() {
-		if (!this.popover.opened) {
+		if (this.active) {
 			this.popover.open();
 		}
 	}
@@ -68,7 +78,9 @@ export class OpalPopoverSource extends BaseComponent {
 			this.mouseLeaveTimeout = null;
 		}
 
-		this.popover.open();
+		if (this.active) {
+			this.popover.open();
+		}
 	}
 
 	_onPopoverTargetMouseLeave() {
@@ -99,6 +111,6 @@ export class OpalPopoverSource extends BaseComponent {
 	}
 
 	_onPopoverClose() {
-		(this.popoverTarget as OpalButton).checked = false;
+		((this.popoverTarget as any) as OpalButton).checked = false;
 	}
 }

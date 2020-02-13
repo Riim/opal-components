@@ -418,13 +418,15 @@ let OpalPopoverSource = class OpalPopoverSource extends rionite_1.BaseComponent 
         }
     }
     _onPopoverTargetCheck() {
-        this.popover.open();
+        if (this.active) {
+            this.popover.open();
+        }
     }
     _onPopoverTargetUncheck() {
         this.popover.close();
     }
     _onPopoverTargetClick() {
-        if (!this.popover.opened) {
+        if (this.active) {
             this.popover.open();
         }
     }
@@ -433,7 +435,9 @@ let OpalPopoverSource = class OpalPopoverSource extends rionite_1.BaseComponent 
             this.mouseLeaveTimeout.clear();
             this.mouseLeaveTimeout = null;
         }
-        this.popover.open();
+        if (this.active) {
+            this.popover.open();
+        }
     }
     _onPopoverTargetMouseLeave() {
         this.mouseLeaveTimeout = this.setTimeout(() => {
@@ -461,6 +465,9 @@ let OpalPopoverSource = class OpalPopoverSource extends rionite_1.BaseComponent 
         this.popoverTarget.checked = false;
     }
 };
+__decorate([
+    rionite_1.Param({ default: true })
+], OpalPopoverSource.prototype, "active", void 0);
 OpalPopoverSource = __decorate([
     rionite_1.Component({
         elementIs: 'OpalPopoverSource'

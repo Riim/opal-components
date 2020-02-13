@@ -2,6 +2,7 @@ import { BaseComponent, IDisposableTimeout } from 'rionite';
 import { OpalPopover } from '../OpalPopover';
 import './index.css';
 export declare class OpalPopoverSource extends BaseComponent {
+    active: boolean;
     popoverTarget: BaseComponent | Element;
     popover: OpalPopover;
     mouseLeaveTimeout: IDisposableTimeout | null;

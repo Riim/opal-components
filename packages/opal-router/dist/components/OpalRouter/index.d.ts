@@ -20,7 +20,7 @@ export interface IComponentState {
 export declare class OpalRouter extends BaseComponent {
     static EVENT_CHANGE: symbol;
     static EVENT_REFRESH_ROUTER: symbol;
-    static history: History<any>;
+    static history: History<History.PoorMansUnknown>;
     useLocationHash: boolean;
     scrollTopOnChange: boolean;
     scrollTopOnChangeComponent: boolean;
