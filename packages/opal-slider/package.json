@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-slider",
-  "version": "0.40.33",
+  "version": "0.40.34",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
