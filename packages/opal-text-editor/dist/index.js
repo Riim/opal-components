@@ -11842,7 +11842,7 @@ let OpalTextEditor = OpalTextEditor_1 = class OpalTextEditor extends rionite_1.B
                 .replace(/<div[^>]*><\/div>/g, '')
                 .replace(/<span[^>]*><\/span>/g, '')
                 .replace(/<span[^>]*?\sclass="ql-cursor"[^>]*>\s*<\/span>/g, '');
-        return value && /<(\w+)[^>]*><br><\/\1>/.test(value) ? null : value;
+        return value && /<(\w+)[^>]*><br><\/\1>/.test(value) ? null : value || null;
     }
     set value(value) {
         if (this.textField) {
