@@ -36,6 +36,8 @@ export class OpalSlider extends BaseComponent {
 		if (this.range) {
 			this.listenTo('firstInput', 'input', this._onFirstInputInput);
 			this.listenTo('secondInput', 'input', this._onSecondInputInput);
+		} else {
+			this.listenTo('input', 'input', this._onInputInput);
 		}
 	}
 
@@ -64,6 +66,12 @@ export class OpalSlider extends BaseComponent {
 			this.range = [this.range![0], secondInputValue];
 		}
 
+		this.emit(OpalSlider.EVENT_CHANGE);
+	}
+
+	_onInputInput(evt: Event) {
+		let inputValue = +(evt.target as HTMLInputElement).value;
+		this.value = inputValue;
 		this.emit(OpalSlider.EVENT_CHANGE);
 	}
 }

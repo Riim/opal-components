@@ -11,4 +11,5 @@ export declare class OpalSlider extends BaseComponent {
     elementAttached(): void;
     _onFirstInputInput(evt: Event): void;
     _onSecondInputInput(evt: Event): void;
+    _onInputInput(evt: Event): void;
 }

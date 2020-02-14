@@ -125,6 +125,9 @@ let OpalSlider = OpalSlider_1 = class OpalSlider extends rionite_1.BaseComponent
             this.listenTo('firstInput', 'input', this._onFirstInputInput);
             this.listenTo('secondInput', 'input', this._onSecondInputInput);
         }
+        else {
+            this.listenTo('input', 'input', this._onInputInput);
+        }
     }
     _onFirstInputInput(evt) {
         let secondInput = this.$('secondInput');
@@ -148,6 +151,11 @@ let OpalSlider = OpalSlider_1 = class OpalSlider extends rionite_1.BaseComponent
         else {
             this.range = [this.range[0], secondInputValue];
         }
+        this.emit(OpalSlider_1.EVENT_CHANGE);
+    }
+    _onInputInput(evt) {
+        let inputValue = +evt.target.value;
+        this.value = inputValue;
         this.emit(OpalSlider_1.EVENT_CHANGE);
     }
 };
