@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tree-tag-select",
-  "version": "0.40.31",
+  "version": "0.40.35",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@riim/opal-sign-button": "^0.40.28",
-    "@riim/opal-tag-select": "^0.40.31",
-    "@riim/opal-tree-select": "^0.40.29",
+    "@riim/opal-tag-select": "^0.40.35",
+    "@riim/opal-tree-select": "^0.40.35",
     "rionite": "^0.38.7"
   }
 }
