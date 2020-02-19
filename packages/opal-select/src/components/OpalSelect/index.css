@@ -66,15 +66,14 @@
 
 	/* Combinations */
 
-	& .OpalPopover {
+	& .OpalPopover.OpalSelect__menu {
 		padding: 6px 0;
 		min-width: 140px;
 	}
-
-	& .OpalPopover .OpalPopover__contentSlot {
-		overflow-x: auto;
-		max-height: 400px;
-	}
+		& .OpalPopover.OpalSelect__menu .OpalPopover__contentSlot {
+			overflow-x: auto;
+			max-height: 400px;
+		}
 
 	& .OpalFilteredList .OpalFilteredList__queryInput {
 		margin: 4px 10px 6px;
