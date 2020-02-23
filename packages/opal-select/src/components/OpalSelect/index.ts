@@ -978,6 +978,8 @@ export class OpalSelect extends BaseComponent {
 
 	focus(): this {
 		if (this._opened) {
+			this._focusOptions();
+
 			let focusTarget =
 				this.$<HTMLElement | OpalTextInput>('focus') ||
 				this.$<OpalFilteredList>('filteredList');

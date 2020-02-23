@@ -1019,6 +1019,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
     }
     focus() {
         if (this._opened) {
+            this._focusOptions();
             let focusTarget = this.$('focus') ||
                 this.$('filteredList');
             if (focusTarget && focusTarget.focus() !== false) {
