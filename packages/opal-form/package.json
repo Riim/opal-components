@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-text-input": "^0.40.38",
+    "@riim/opal-text-input": "^0.40.39",
     "rionite": "^0.39.0"
   }
 }

@@ -13,9 +13,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-input-validator": "^0.40.38",
-    "@riim/opal-select": "^0.40.38",
-    "@riim/opal-tag-select": "^0.40.38",
+    "@riim/opal-input-validator": "^0.40.39",
+    "@riim/opal-select": "^0.40.39",
+    "@riim/opal-tag-select": "^0.40.39",
     "rionite": "^0.39.0"
   }
 }

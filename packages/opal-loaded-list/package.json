@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@riim/next-tick": "^1.2.4",
-    "@riim/opal-loader": "^0.40.38",
+    "@riim/opal-loader": "^0.40.39",
     "cellx": "^1.10.2",
     "cellx-decorators": "^1.6.0",
     "rionite": "^0.39.0"

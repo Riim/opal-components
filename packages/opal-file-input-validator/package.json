@@ -13,8 +13,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-file-input": "^0.40.38",
-    "@riim/opal-input-validator": "^0.40.38",
+    "@riim/opal-file-input": "^0.40.39",
+    "@riim/opal-input-validator": "^0.40.39",
     "rionite": "^0.39.0"
   }
 }

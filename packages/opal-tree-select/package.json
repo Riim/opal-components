@@ -13,11 +13,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-button": "^0.40.38",
-    "@riim/opal-filtered-list": "^0.40.38",
-    "@riim/opal-modal": "^0.40.38",
-    "@riim/opal-select": "^0.40.38",
-    "@riim/opal-tree-list": "^0.40.38",
+    "@riim/opal-button": "^0.40.39",
+    "@riim/opal-filtered-list": "^0.40.39",
+    "@riim/opal-modal": "^0.40.39",
+    "@riim/opal-select": "^0.40.39",
+    "@riim/opal-tree-list": "^0.40.39",
     "cellx": "^1.10.2",
     "rionite": "^0.39.0"
   }

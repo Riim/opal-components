@@ -13,13 +13,13 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-calendar": "^0.40.38",
-    "@riim/opal-dropdown": "^0.40.38",
-    "@riim/opal-icon": "^0.40.38",
-    "@riim/opal-input-mask": "^0.40.38",
-    "@riim/opal-popover": "^0.40.38",
-    "@riim/opal-text-input": "^0.40.38",
-    "@riim/opal-text-input-validator": "^0.40.38",
+    "@riim/opal-calendar": "^0.40.39",
+    "@riim/opal-dropdown": "^0.40.39",
+    "@riim/opal-icon": "^0.40.39",
+    "@riim/opal-input-mask": "^0.40.39",
+    "@riim/opal-popover": "^0.40.39",
+    "@riim/opal-text-input": "^0.40.39",
+    "@riim/opal-text-input-validator": "^0.40.39",
     "cellx": "^1.10.2",
     "date-exists": "^1.0.1",
     "rionite": "^0.39.0"

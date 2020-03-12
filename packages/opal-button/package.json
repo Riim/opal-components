@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-components-common": "^0.40.38",
+    "@riim/opal-components-common": "^0.40.39",
     "cellx-decorators": "^1.6.0",
     "rionite": "^0.39.0"
   }
