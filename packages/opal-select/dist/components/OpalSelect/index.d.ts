@@ -79,7 +79,6 @@ export declare class OpalSelect extends BaseComponent {
     _addNewItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
     get _buttonText(): string;
     optionElements: HTMLCollectionOf<IComponentElement>;
-    optionsCell: Cell<Array<OpalSelectOption>>;
     get options(): Array<OpalSelectOption>;
     _needOptionsUpdating: boolean;
     _notUpdateOptions: boolean;

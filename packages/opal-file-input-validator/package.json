@@ -15,6 +15,6 @@
   "dependencies": {
     "@riim/opal-file-input": "^0.40.29",
     "@riim/opal-input-validator": "^0.40.31",
-    "rionite": "^0.38.7"
+    "rionite": "^0.39.0"
   }
 }

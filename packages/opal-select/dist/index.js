@@ -787,7 +787,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
     }
     _onMenuChange() {
         if (!this._notUpdateOptions) {
-            this.optionsCell.pull();
+            this[cellx_1.KEY_VALUE_CELLS].get('options').pull();
             this._updateOptions();
         }
     }

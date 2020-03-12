@@ -10,6 +10,7 @@ import {
 	Cell,
 	define,
 	IEvent,
+	KEY_VALUE_CELLS,
 	ObservableList
 	} from 'cellx';
 import { Computed, Observable } from 'cellx-decorators';
@@ -104,9 +105,7 @@ export class OpalSelect extends BaseComponent {
 		disabled?: string;
 	};
 	@Param({ readonly: true })
-	addNewItem:
-		| ((text: string, select: OpalSelect) => Promise<Record<string, string>>)
-		| null;
+	addNewItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
 	@Param(Boolean)
 	clearLoadedListOnOpen: boolean;
 	@Param(String)
@@ -167,7 +166,6 @@ export class OpalSelect extends BaseComponent {
 
 	optionElements: HTMLCollectionOf<IComponentElement>;
 
-	optionsCell: Cell<Array<OpalSelectOption>>;
 	@Computed
 	get options(): Array<OpalSelectOption> {
 		return map.call(this.optionElements, (option: IComponentElement) => option.$component);
@@ -667,7 +665,7 @@ export class OpalSelect extends BaseComponent {
 	@Listen((ctor: typeof OpalSelect) => ctor.menuChangeEvents, 'menu')
 	_onMenuChange() {
 		if (!this._notUpdateOptions) {
-			this.optionsCell.pull();
+			this[KEY_VALUE_CELLS]!.get('options')!.pull();
 			this._updateOptions();
 		}
 	}

@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@riim/opal-popover": "^0.40.31",
-    "cellx-decorators": "^1.5.4",
-    "rionite": "^0.38.7"
+    "cellx-decorators": "^1.6.0",
+    "rionite": "^0.39.0"
   }
 }
