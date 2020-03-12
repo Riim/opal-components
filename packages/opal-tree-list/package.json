@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tree-list",
-  "version": "0.40.38",
+  "version": "0.40.39",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
