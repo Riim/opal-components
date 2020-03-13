@@ -394,6 +394,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
     constructor() {
         super(...arguments);
         this.dataListCell = null;
+        this.optionsCell = null;
         this._needOptionsUpdating = false;
         this._notUpdateOptions = false;
         this._opened = false;
@@ -787,7 +788,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
     }
     _onMenuChange() {
         if (!this._notUpdateOptions) {
-            this[cellx_1.KEY_VALUE_CELLS].get('options').pull();
+            this.optionsCell.pull();
             this._updateOptions();
         }
     }

@@ -83,7 +83,7 @@ export class OpalTextInput extends BaseComponent {
 	@Param(Boolean)
 	disabled: boolean;
 
-	_inputTypeCell: Cell<string>;
+	_inputTypeCell: Cell<string> | null = null;
 	@Computed
 	get _inputType(): string {
 		return this.inputType;

@@ -24,7 +24,7 @@
     "@riim/opal-sign-button": "^0.40.39",
     "@riim/opal-text-input": "^0.40.39",
     "cellx": "^1.10.2",
-    "cellx-decorators": "^1.6.0",
+    "cellx-decorators": "^1.6.1",
     "rionite": "^0.39.0"
   }
 }

@@ -33,7 +33,7 @@ export declare class OpalCalendar extends BaseComponent {
     get fromYear(): number;
     get toYear(): number;
     get years(): Array<number>;
-    stringValueCell: Cell<string | null>;
+    stringValueCell: Cell<string | null> | null;
     get stringValue(): string | null;
     set stringValue(value: string | null);
     get value(): Date | null;

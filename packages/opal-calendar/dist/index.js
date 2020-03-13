@@ -232,6 +232,7 @@ let OpalCalendar = OpalCalendar_1 = class OpalCalendar extends rionite_1.BaseCom
         super(...arguments);
         this.fromDate = fromDate;
         this.toDate = toDate;
+        this.stringValueCell = null;
         this.days = function (_cell, next) {
             let dateDelimiter = this.dateDelimiter;
             let fromDate = this.fromDate;

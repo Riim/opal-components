@@ -198,13 +198,13 @@ export class OpalCalendar extends BaseComponent {
 		return years;
 	}
 
-	stringValueCell: Cell<string | null>;
+	stringValueCell: Cell<string | null> | null = null;
 	@Computed
 	get stringValue(): string | null {
 		return this.paramValue;
 	}
 	set stringValue(value: string | null) {
-		this.stringValueCell.set(value);
+		this.stringValueCell!.set(value);
 	}
 
 	@Computed

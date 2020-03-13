@@ -157,6 +157,7 @@ const template_rnt_1 = __webpack_require__("idvu");
 let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
+        this._inputTypeCell = null;
         this.validator = null;
     }
     get _inputType() {
