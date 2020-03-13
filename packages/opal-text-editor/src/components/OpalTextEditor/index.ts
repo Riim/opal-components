@@ -199,7 +199,7 @@ export class OpalTextEditor extends BaseComponent {
 				.replace(/<span[^>]*><\/span>/g, '')
 				.replace(/<span[^>]*?\sclass="ql-cursor"[^>]*>\s*<\/span>/g, '');
 
-		return value && /<(\w+)[^>]*><br><\/\1>/.test(value) ? null : value || null;
+		return value && /^<(\w+)[^>]*><br><\/\1>$/.test(value) ? null : value || null;
 	}
 	set value(value: string | null) {
 		if (this.textField) {
