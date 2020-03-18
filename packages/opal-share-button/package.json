@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-share-button",
-  "version": "0.40.42",
+  "version": "0.40.43",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,8 +13,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-button": "^0.40.42",
-    "@riim/opal-components-common": "^0.40.39",
+    "@riim/opal-button": "^0.40.43",
+    "@riim/opal-components-common": "^0.40.43",
     "cellx": "^1.10.2",
     "cellx-decorators": "^1.6.1",
     "rionite": "^0.39.2"
