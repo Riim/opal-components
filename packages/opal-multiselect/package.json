@@ -21,6 +21,6 @@
     "@riim/platform": "^1.0.0",
     "cellx": "^1.10.2",
     "cellx-decorators": "^1.6.1",
-    "rionite": "^0.39.0"
+    "rionite": "^0.39.2"
   }
 }
