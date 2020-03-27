@@ -23,6 +23,7 @@ export declare class OpalTextInput extends BaseComponent {
     inputName: string | null;
     paramValue: string | null;
     storeKey: string | null;
+    autocomplete: string | null;
     placeholder: string | null;
     startIcon: string | null;
     endIcon: string | null;

@@ -67,6 +67,8 @@ export class OpalTextInput extends BaseComponent {
 	@Param(String)
 	storeKey: string | null;
 	@Param(String)
+	autocomplete: string | null;
+	@Param(String)
 	placeholder: string | null;
 	@Param(String)
 	startIcon: string | null;

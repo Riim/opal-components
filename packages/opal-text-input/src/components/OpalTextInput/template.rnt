@@ -12,6 +12,7 @@ input:input:textField (
 	@unless=multiline,
 	type={_inputType},
 	name={inputName},
+	autocomplete={autocomplete},
 	placeholder={placeholder},
 	tabindex={tabIndex},
 	disabled={disabled}
