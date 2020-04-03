@@ -37,7 +37,7 @@
 			position: relative;
 			display: inline-block;
 			box-sizing: border-box;
-			margin: 3px 3px 3px 0;
+			margin: 3px 0;
 			width: 28px;
 			border: 2px solid;
 			border-radius: 50%;
@@ -63,6 +63,8 @@
 		}
 
 		@el contentSlot {
+			display: inline-block;
+			text-indent: 7px;
 		}
 
 	@mod sign=plus {
