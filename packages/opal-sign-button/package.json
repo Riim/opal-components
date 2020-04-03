@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-sign-button",
-  "version": "0.40.44",
+  "version": "0.40.45",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
