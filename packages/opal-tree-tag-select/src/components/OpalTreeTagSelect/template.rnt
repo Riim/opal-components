@@ -5,7 +5,7 @@ OpalTreeSelect:select (
 	value={paramValue},
 	viewModel={viewModel},
 	viewModelItemSchema={viewModelItemSchema |dump },
-	addNewItem={addNewItem},
+	addItem={addItem},
 	focused={focused}
 ) {
 	RnSlot (class=OpalSelect__menuHeaderSlot, for=OpalSelect__menuHeader)

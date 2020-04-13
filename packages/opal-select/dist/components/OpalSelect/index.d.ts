@@ -54,7 +54,7 @@ export declare class OpalSelect extends BaseComponent {
         subtext?: string;
         disabled?: string;
     };
-    addNewItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
+    addItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
     clearLoadedListOnOpen: boolean;
     text: string | null;
     maxTextLength: number;
@@ -76,7 +76,7 @@ export declare class OpalSelect extends BaseComponent {
     _viewModelItemDisabledFieldName: string;
     get value(): Array<string>;
     set value(value: Array<string>);
-    _addNewItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
+    _addItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
     get _buttonText(): string;
     optionElements: HTMLCollectionOf<IComponentElement>;
     optionsCell: Cell<Array<OpalSelectOption>> | null;
@@ -113,7 +113,7 @@ export declare class OpalSelect extends BaseComponent {
     _onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>): false;
     _onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void;
     _onMenuButtonClick(evt: IEvent<OpalButton>): false | void;
-    _addNewItem$(newItem: Record<string, string>): void;
+    _addItem$(item: Record<string, string>): void;
     _onMenuChange(): void;
     open(): boolean;
     close(): boolean;

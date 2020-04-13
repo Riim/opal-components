@@ -104,7 +104,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalSelect{position:relative;display:inline-block}.OpalSelect .OpalSelect__button{display:block;min-width:100%;text-align:left}.OpalSelect .OpalSelect__button[size=s] .OpalSelect__buttonIcon{margin-left:8px;width:12px;height:12px}.OpalSelect .OpalSelect__button[checked] .OpalSelect__buttonIcon{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}.OpalSelect .OpalSelect__buttonIcon{position:relative;top:-1px;margin-left:10px;width:14px;height:14px;-webkit-transition:-webkit-transform .1s linear;transition:-webkit-transform .1s linear;-o-transition:transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear}.OpalSelect:not([view_type=clean]) .OpalSelect__button{padding-right:47px}.OpalSelect:not([view_type=clean]) .OpalSelect__button[size=s]{padding-right:34px}.OpalSelect:not([view_type=clean]) .OpalSelect__button[size=s] .OpalSelect__buttonIcon{right:14px;margin-left:0}.OpalSelect:not([view_type=clean]) .OpalSelect__buttonIcon{position:absolute;top:0;right:23px;bottom:0;margin:auto}.OpalSelect .OpalSelect__newItemInput{display:block;margin:6px 10px 4px;width:auto}.OpalSelect .OpalPopover.OpalSelect__menu{padding:6px 0;min-width:140px}.OpalSelect .OpalPopover.OpalSelect__menu .OpalPopover__contentSlot{overflow-x:auto;max-height:400px}.OpalSelect .OpalFilteredList .OpalFilteredList__queryInput{margin:4px 10px 6px}.OpalSelect .OpalModal__contentSlot>.OpalFilteredList .OpalFilteredList__queryInput{margin:0 0 10px}.OpalSelect .OpalLoadedList{max-height:342px}";
+            style.textContent = ".OpalSelect{position:relative;display:inline-block}.OpalSelect .OpalSelect__button{display:block;min-width:100%;text-align:left}.OpalSelect .OpalSelect__button[size=s] .OpalSelect__buttonIcon{margin-left:8px;width:12px;height:12px}.OpalSelect .OpalSelect__button[checked] .OpalSelect__buttonIcon{-webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1)}.OpalSelect .OpalSelect__buttonIcon{position:relative;top:-1px;margin-left:10px;width:14px;height:14px;-webkit-transition:-webkit-transform .1s linear;transition:-webkit-transform .1s linear;-o-transition:transform .1s linear;transition:transform .1s linear;transition:transform .1s linear,-webkit-transform .1s linear}.OpalSelect:not([view_type=clean]) .OpalSelect__button{padding-right:47px}.OpalSelect:not([view_type=clean]) .OpalSelect__button[size=s]{padding-right:34px}.OpalSelect:not([view_type=clean]) .OpalSelect__button[size=s] .OpalSelect__buttonIcon{right:14px;margin-left:0}.OpalSelect:not([view_type=clean]) .OpalSelect__buttonIcon{position:absolute;top:0;right:23px;bottom:0;margin:auto}.OpalSelect .OpalSelect__itemInput{display:block;margin:6px 10px 4px;width:auto}.OpalSelect .OpalPopover.OpalSelect__menu{padding:6px 0;min-width:140px}.OpalSelect .OpalPopover.OpalSelect__menu .OpalPopover__contentSlot{overflow-x:auto;max-height:400px}.OpalSelect .OpalFilteredList .OpalFilteredList__queryInput{margin:4px 10px 6px}.OpalSelect .OpalModal__contentSlot>.OpalFilteredList .OpalFilteredList__queryInput{margin:0 0 10px}.OpalSelect .OpalLoadedList{max-height:342px}";
             head.appendChild(style);
             return style;
         }
@@ -133,7 +133,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_BLMt__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"RnSlot",,[,[[,"for","button"]]],[[1,,"OpalButton",["button"],[,[[,"viewType","{viewType}"],[,"size","{size}"],[,"checkable",""],[,"tabIndex","{tabIndex}"],[,"disabled","{disabled}"]]],[[1,1,"IfThen",,[,[[,"if","text"]]],[[3,"{text}"]]],[1,1,"IfElse",,[,[[,"if","text"]]],[[3,"{_buttonText}"]]],[1,,"OpalIcon",["buttonIcon"],[,[[,"name","chevronDown"]]],]]]]],[1,,"RnSlot",,[,[[,"for","menuSlot"]]],[[1,,"RnSlot",["menuSlot"],[,[[,"for","menu"]]],[[1,,"OpalDropdown",["menu"],[,[[,"closeOn","mousedown"]]],[[1,,"RnSlot",,[,[[,"for","menuHeader"]]],],[1,,"RnSlot",,[,[[,"for","menuContent"]]],[[1,,"div",[,"menuContent"],[,[[1,"if","_paramDataListSpecified"]]],[[1,1,"IfThen",,[,[[,"if","dataList"]]],[[1,1,"Repeat",,[,[[,"for","item in dataList"],[,"trackBy","{=_dataListItemValueFieldName}"]]],[[1,,"OpalSelectOption",["option"],[,[[,"value","{item |key(_dataListItemValueFieldName) }"],[,"text","{item |key(_dataListItemTextFieldName) }"],[,"subtext","{item |key(_dataListItemSubtextFieldName) }"],[,"disabled","{item |key(_dataListItemDisabledFieldName) }"]]],]]],[1,,"RnSlot",["newItemInputSlot"],,]]],[1,,"OpalLoader",["menuLoader"],[,[[1,"unless","dataList"],[,"shown",""]]],]]],[1,,"div",[,"menuContent"],[,[[1,"unless","_paramDataListSpecified"]]],[[1,,"RnSlot",["options"],[,[[,"forTag","opal-select-option"]]],],[1,,"RnSlot",,[,[[,"for","newItemInputSlot"]]],[[1,,"RnSlot",["newItemInputSlot"],[,[[,"for","newItemInput"]]],]]]]]]],[1,,"RnSlot",,[,[[,"for","menuFooter"]]],]]]]]]]];
+const template = [[1,,"RnSlot",,[,[[,"for","button"]]],[[1,,"OpalButton",["button"],[,[[,"viewType","{viewType}"],[,"size","{size}"],[,"checkable",""],[,"tabIndex","{tabIndex}"],[,"disabled","{disabled}"]]],[[1,1,"IfThen",,[,[[,"if","text"]]],[[3,"{text}"]]],[1,1,"IfElse",,[,[[,"if","text"]]],[[3,"{_buttonText}"]]],[1,,"OpalIcon",["buttonIcon"],[,[[,"name","chevronDown"]]],]]]]],[1,,"RnSlot",,[,[[,"for","menuSlot"]]],[[1,,"RnSlot",["menuSlot"],[,[[,"for","menu"]]],[[1,,"OpalDropdown",["menu"],[,[[,"closeOn","mousedown"]]],[[1,,"RnSlot",,[,[[,"for","menuHeader"]]],],[1,,"RnSlot",,[,[[,"for","menuContent"]]],[[1,,"div",[,"menuContent"],[,[[1,"if","_paramDataListSpecified"]]],[[1,1,"IfThen",,[,[[,"if","dataList"]]],[[1,1,"Repeat",,[,[[,"for","item in dataList"],[,"trackBy","{=_dataListItemValueFieldName}"]]],[[1,,"OpalSelectOption",["option"],[,[[,"value","{item |key(_dataListItemValueFieldName) }"],[,"text","{item |key(_dataListItemTextFieldName) }"],[,"subtext","{item |key(_dataListItemSubtextFieldName) }"],[,"disabled","{item |key(_dataListItemDisabledFieldName) }"]]],]]],[1,,"RnSlot",["itemInputSlot"],,]]],[1,,"OpalLoader",["menuLoader"],[,[[1,"unless","dataList"],[,"shown",""]]],]]],[1,,"div",[,"menuContent"],[,[[1,"unless","_paramDataListSpecified"]]],[[1,,"RnSlot",["options"],[,[[,"forTag","opal-select-option"]]],],[1,,"RnSlot",,[,[[,"for","itemInputSlot"]]],[[1,,"RnSlot",["itemInputSlot"],[,[[,"for","itemInput"]]],]]]]]]],[1,,"RnSlot",,[,[[,"for","menuFooter"]]],]]]]]]]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
@@ -402,7 +402,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         this.validator = null;
     }
     get value() {
-        return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
+        return this.viewModel.map((item) => item[this._viewModelItemValueFieldName]);
     }
     set value(value) {
         this.paramValue = value;
@@ -455,7 +455,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         this._viewModelItemSubtextFieldName = vmItemSchema.subtext || defaultVMItemSchema.subtext;
         this._viewModelItemDisabledFieldName =
             vmItemSchema.disabled || defaultVMItemSchema.disabled;
-        this._addNewItem = this.addNewItem;
+        this._addItem = this.addItem;
     }
     ready() {
         this.optionElements = this.element.getElementsByClassName('OpalSelectOption');
@@ -480,11 +480,11 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             this.viewModel.clear();
             if (value.length) {
                 if (this.multiple) {
-                    selectedOptions = this.options.filter(option => value.includes(option.value));
+                    selectedOptions = this.options.filter((option) => value.includes(option.value));
                 }
                 else {
                     value = value[0];
-                    let selectedOption = this.options.find(option => option.value == value);
+                    let selectedOption = this.options.find((option) => option.value == value);
                     if (selectedOption) {
                         selectedOptions = [selectedOption];
                     }
@@ -492,17 +492,17 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             }
         }
         else if (this.multiple) {
-            selectedOptions = this.options.filter(option => option.selected);
+            selectedOptions = this.options.filter((option) => option.selected);
         }
         else {
-            let selectedOption = this.options.find(option => option.selected);
+            let selectedOption = this.options.find((option) => option.selected);
             if (selectedOption) {
                 selectedOptions = [selectedOption];
             }
         }
         if (selectedOptions && selectedOptions.length) {
             this._notUpdateOptions = true;
-            this.viewModel.addRange(selectedOptions.map(option => ({
+            this.viewModel.addRange(selectedOptions.map((option) => ({
                 [this._viewModelItemValueFieldName]: option.value,
                 [this._viewModelItemTextFieldName]: option.text,
                 [this._viewModelItemSubtextFieldName]: option.subtext
@@ -556,9 +556,9 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         let vmItemTextFieldName = this._viewModelItemTextFieldName;
         let vmItemSubtextFieldName = this._viewModelItemSubtextFieldName;
         if (multiple) {
-            this.options.forEach(option => {
+            this.options.forEach((option) => {
                 let optionValue = option.value;
-                let itemIndex = vm.findIndex(item => item[vmItemValueFieldName] == optionValue);
+                let itemIndex = vm.findIndex((item) => item[vmItemValueFieldName] == optionValue);
                 if (!value.includes(optionValue)) {
                     if (itemIndex != -1) {
                         vm.removeAt(itemIndex);
@@ -575,7 +575,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         }
         else {
             value = value[0];
-            if (!this.options.some(option => {
+            if (!this.options.some((option) => {
                 if (option.value != value) {
                     return false;
                 }
@@ -689,7 +689,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             let vmItemValueFieldName = this._viewModelItemValueFieldName;
             let value = evt.target.value;
             this._notUpdateOptions = true;
-            this.viewModel.removeAt(this.viewModel.findIndex(item => item[vmItemValueFieldName] == value));
+            this.viewModel.removeAt(this.viewModel.findIndex((item) => item[vmItemValueFieldName] == value));
             this._notUpdateOptions = false;
         }
         else {
@@ -702,22 +702,22 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
     }
     _onMenuTextInputConfirm(evt) {
         let textInput = evt.target;
-        if (textInput !== this.$('newItemInput')) {
+        if (textInput !== this.$('itemInput')) {
             return;
         }
-        if (!this._addNewItem) {
-            throw new TypeError('Parameter "addNewItem" is required');
+        if (!this._addItem) {
+            throw new TypeError('Parameter "addItem" is required');
         }
         evt.data.initialEvent.preventDefault();
         let text = textInput.value;
         textInput.clear();
         textInput.loading = true;
         textInput.disable();
-        this._addNewItem(text, this).then((newItem) => {
+        this._addItem(text, this).then((item) => {
             textInput.loading = false;
             textInput.enable();
-            if (newItem) {
-                this._addNewItem$(newItem);
+            if (item) {
+                this._addItem$(item);
             }
         }, () => {
             textInput.loading = false;
@@ -727,20 +727,20 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
     }
     _onMenuButtonClick(evt) {
         let button = evt.target;
-        if (button !== this.$('btnAddNewItem')) {
+        if (button !== this.$('btnAddItem')) {
             return;
         }
-        if (!this._addNewItem) {
-            throw new TypeError('Parameter "addNewItem" is required');
+        if (!this._addItem) {
+            throw new TypeError('Parameter "addItem" is required');
         }
-        let text = button.element.dataset.newItemText;
+        let text = button.element.dataset.itemText;
         button.loading = true;
         button.disable();
-        this._addNewItem(text, this).then((newItem) => {
+        this._addItem(text, this).then((item) => {
             button.loading = false;
             button.enable();
-            if (newItem) {
-                this._addNewItem$(newItem);
+            if (item) {
+                this._addItem$(item);
             }
         }, () => {
             button.loading = false;
@@ -748,10 +748,10 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         });
         return false;
     }
-    _addNewItem$(newItem) {
-        let value = newItem[this._viewModelItemValueFieldName];
-        let text = newItem[this._viewModelItemTextFieldName];
-        let subtext = newItem[this._viewModelItemDisabledFieldName];
+    _addItem$(item) {
+        let value = item[this._viewModelItemValueFieldName];
+        let text = item[this._viewModelItemTextFieldName];
+        let subtext = item[this._dataListItemSubtextFieldName];
         if (this.dataList) {
             this.dataList.add({
                 [this._dataListItemValueFieldName]: value,
@@ -1004,9 +1004,9 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         let vm = this.viewModel;
         let vmItemValueFieldName = this._viewModelItemValueFieldName;
         let vmItemDisabledFieldName = this._viewModelItemDisabledFieldName;
-        this.options.forEach(option => {
+        this.options.forEach((option) => {
             let value = option.value;
-            let item = vm.find(item => item[vmItemValueFieldName] == value);
+            let item = vm.find((item) => item[vmItemValueFieldName] == value);
             if (item) {
                 option.selected = true;
                 if (item[vmItemDisabledFieldName] !== undefined) {
@@ -1110,7 +1110,7 @@ __decorate([
 ], OpalSelect.prototype, "viewModelItemSchema", void 0);
 __decorate([
     rionite_1.Param({ readonly: true })
-], OpalSelect.prototype, "addNewItem", void 0);
+], OpalSelect.prototype, "addItem", void 0);
 __decorate([
     rionite_1.Param(Boolean)
 ], OpalSelect.prototype, "clearLoadedListOnOpen", void 0);

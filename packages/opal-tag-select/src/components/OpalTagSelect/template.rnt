@@ -20,7 +20,7 @@ span:control {
 		value={paramValue},
 		viewModel={viewModel},
 		viewModelItemSchema={viewModelItemSchema |dump },
-		addNewItem={addNewItem},
+		addItem={addItem},
 		focused={focused}
 	) {
 		OpalSignButton:button (
@@ -51,10 +51,7 @@ span:control {
 								)
 							}
 
-							RnSlot (
-								class=OpalSelect__newItemInputSlot,
-								for=OpalSelect__newItemInput
-							)
+							RnSlot (class=OpalSelect__itemInputSlot, for=OpalSelect__itemInput)
 						}
 						@IfElse (if=dataList, withUndefined) {
 							OpalLoader:menuLoader (shown)

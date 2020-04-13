@@ -56,9 +56,9 @@
 	}
 		@el menuContent {
 		}
-			@el newItemInputSlot {
+			@el itemInputSlot {
 			}
-				@el newItemInput {
+				@el itemInput {
 					display: block;
 					margin: 6px 10px 4px;
 					width: auto;

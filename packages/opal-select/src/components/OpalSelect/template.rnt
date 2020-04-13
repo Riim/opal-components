@@ -33,15 +33,15 @@ RnSlot (for=menuSlot) {
 							)
 						}
 
-						RnSlot:newItemInputSlot // ...
+						RnSlot:itemInputSlot // ...
 					}
 					OpalLoader:menuLoader (@unless=dataList, shown)
 				}
 				div::menuContent (@unless=_paramDataListSpecified) {
 					RnSlot:options (forTag=opal-select-option)
 
-					RnSlot (for=newItemInputSlot) {
-						RnSlot:newItemInputSlot (for=newItemInput)
+					RnSlot (for=itemInputSlot) {
+						RnSlot:itemInputSlot (for=itemInput)
 					}
 				}
 			}

@@ -455,10 +455,10 @@ p {
 		dataList={dataList1},
 		dataListItemSchema='{ value: "id", text: "name" }',
 		viewModelItemSchema='{ value: "id", text: "name" }',
-		addNewItem={addNewItem1},
+		addItem={addItem1},
 		placeholder=Select
 	) {
-		OpalTextInput (class=OpalSelect__newItemInput, placeholder=Добавить)
+		OpalTextInput (class=OpalSelect__itemInput, placeholder=Добавить)
 	}
 }
 p {
@@ -539,7 +539,7 @@ p {
 	}
 	' '
 
-	OpalSelect (multiple, addNewItem={addNewItem1}) {
+	OpalSelect (multiple, addItem={addItem1}) {
 		OpalPopover (class=OpalSelect__menu, position=bottom, closeOn=mousedown) {
 			OpalFilteredList (class=OpalSelect__filteredList) {
 				OpalLoadedList (
@@ -553,7 +553,7 @@ p {
 							'Ничего не найдено'
 						}
 
-						OpalButton (class=OpalSelect__btnAddNewItem, dataItemText={query}) {
+						OpalButton (class=OpalSelect__btnAddItem, dataItemText={query}) {
 							'Добавить "{query}"'
 						}
 					}
@@ -602,10 +602,10 @@ p {
 	OpalTagSelect (
 		viewType=danger,
 		dataProvider={dataProvider1},
-		addNewItem={addNewItem1},
+		addItem={addItem1},
 		viewModel={viewModel1}
 	) {
-		OpalTextInput (class=OpalSelect__newItemInput OpalFilteredList__queryInput)
+		OpalTextInput (class=OpalSelect__itemInput OpalFilteredList__queryInput)
 	}
 }
 

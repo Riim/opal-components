@@ -104,7 +104,7 @@ export class OpalSelect extends BaseComponent {
 		disabled?: string;
 	};
 	@Param({ readonly: true })
-	addNewItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
+	addItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
 	@Param(Boolean)
 	clearLoadedListOnOpen: boolean;
 	@Param(String)
@@ -138,13 +138,13 @@ export class OpalSelect extends BaseComponent {
 
 	@Computed
 	get value(): Array<string> {
-		return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
+		return this.viewModel.map((item) => item[this._viewModelItemValueFieldName]);
 	}
 	set value(value: Array<string>) {
 		this.paramValue = value;
 	}
 
-	_addNewItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
+	_addItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
 
 	@Computed
 	get _buttonText(): string {
@@ -230,7 +230,7 @@ export class OpalSelect extends BaseComponent {
 		this._viewModelItemDisabledFieldName =
 			vmItemSchema.disabled || defaultVMItemSchema.disabled;
 
-		this._addNewItem = this.addNewItem;
+		this._addItem = this.addItem;
 	}
 
 	ready() {
@@ -260,13 +260,13 @@ export class OpalSelect extends BaseComponent {
 
 			if (value.length) {
 				if (this.multiple) {
-					selectedOptions = this.options.filter(option =>
+					selectedOptions = this.options.filter((option) =>
 						(value as Array<string>).includes(option.value)
 					);
 				} else {
 					value = value[0];
 
-					let selectedOption = this.options.find(option => option.value == value);
+					let selectedOption = this.options.find((option) => option.value == value);
 
 					if (selectedOption) {
 						selectedOptions = [selectedOption];
@@ -274,9 +274,9 @@ export class OpalSelect extends BaseComponent {
 				}
 			}
 		} else if (this.multiple) {
-			selectedOptions = this.options.filter(option => option.selected);
+			selectedOptions = this.options.filter((option) => option.selected);
 		} else {
-			let selectedOption = this.options.find(option => option.selected);
+			let selectedOption = this.options.find((option) => option.selected);
 
 			if (selectedOption) {
 				selectedOptions = [selectedOption];
@@ -286,7 +286,7 @@ export class OpalSelect extends BaseComponent {
 		if (selectedOptions && selectedOptions.length) {
 			this._notUpdateOptions = true;
 			this.viewModel.addRange(
-				selectedOptions.map(option => ({
+				selectedOptions.map((option) => ({
 					[this._viewModelItemValueFieldName]: option.value,
 					[this._viewModelItemTextFieldName]: option.text,
 					[this._viewModelItemSubtextFieldName]: option.subtext
@@ -364,9 +364,9 @@ export class OpalSelect extends BaseComponent {
 		let vmItemSubtextFieldName = this._viewModelItemSubtextFieldName;
 
 		if (multiple) {
-			this.options.forEach(option => {
+			this.options.forEach((option) => {
 				let optionValue = option.value;
-				let itemIndex = vm.findIndex(item => item[vmItemValueFieldName] == optionValue);
+				let itemIndex = vm.findIndex((item) => item[vmItemValueFieldName] == optionValue);
 
 				if (!(value as Array<string>).includes(optionValue)) {
 					if (itemIndex != -1) {
@@ -384,7 +384,7 @@ export class OpalSelect extends BaseComponent {
 			value = value[0];
 
 			if (
-				!this.options.some(option => {
+				!this.options.some((option) => {
 					if (option.value != value) {
 						return false;
 					}
@@ -530,7 +530,7 @@ export class OpalSelect extends BaseComponent {
 
 			this._notUpdateOptions = true;
 			this.viewModel.removeAt(
-				this.viewModel.findIndex(item => item[vmItemValueFieldName] == value)
+				this.viewModel.findIndex((item) => item[vmItemValueFieldName] == value)
 			);
 			this._notUpdateOptions = false;
 		} else {
@@ -549,12 +549,12 @@ export class OpalSelect extends BaseComponent {
 	_onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void {
 		let textInput = evt.target;
 
-		if (textInput !== this.$<OpalTextInput>('newItemInput')) {
+		if (textInput !== this.$<OpalTextInput>('itemInput')) {
 			return;
 		}
 
-		if (!this._addNewItem) {
-			throw new TypeError('Parameter "addNewItem" is required');
+		if (!this._addItem) {
+			throw new TypeError('Parameter "addItem" is required');
 		}
 
 		evt.data.initialEvent.preventDefault();
@@ -565,13 +565,13 @@ export class OpalSelect extends BaseComponent {
 		textInput.loading = true;
 		textInput.disable();
 
-		this._addNewItem(text, this).then(
-			(newItem: Record<string, string> | false | null | undefined) => {
+		this._addItem(text, this).then(
+			(item: Record<string, string> | false | null | undefined) => {
 				textInput.loading = false;
 				textInput.enable();
 
-				if (newItem) {
-					this._addNewItem$(newItem);
+				if (item) {
+					this._addItem$(item);
 				}
 			},
 			() => {
@@ -587,26 +587,26 @@ export class OpalSelect extends BaseComponent {
 	_onMenuButtonClick(evt: IEvent<OpalButton>): false | void {
 		let button = evt.target;
 
-		if (button !== this.$<OpalButton>('btnAddNewItem')) {
+		if (button !== this.$<OpalButton>('btnAddItem')) {
 			return;
 		}
 
-		if (!this._addNewItem) {
-			throw new TypeError('Parameter "addNewItem" is required');
+		if (!this._addItem) {
+			throw new TypeError('Parameter "addItem" is required');
 		}
 
-		let text = button.element.dataset.newItemText!;
+		let text = button.element.dataset.itemText!;
 
 		button.loading = true;
 		button.disable();
 
-		this._addNewItem(text, this).then(
-			(newItem: Record<string, string> | false | null | undefined) => {
+		this._addItem(text, this).then(
+			(item: Record<string, string> | false | null | undefined) => {
 				button.loading = false;
 				button.enable();
 
-				if (newItem) {
-					this._addNewItem$(newItem);
+				if (item) {
+					this._addItem$(item);
 				}
 			},
 			() => {
@@ -618,10 +618,10 @@ export class OpalSelect extends BaseComponent {
 		return false;
 	}
 
-	_addNewItem$(newItem: Record<string, string>) {
-		let value = newItem[this._viewModelItemValueFieldName];
-		let text = newItem[this._viewModelItemTextFieldName];
-		let subtext = newItem[this._viewModelItemDisabledFieldName];
+	_addItem$(item: Record<string, string>) {
+		let value = item[this._viewModelItemValueFieldName];
+		let text = item[this._viewModelItemTextFieldName];
+		let subtext = item[this._dataListItemSubtextFieldName];
 
 		if (this.dataList) {
 			this.dataList.add({
@@ -958,9 +958,9 @@ export class OpalSelect extends BaseComponent {
 		let vmItemValueFieldName = this._viewModelItemValueFieldName;
 		let vmItemDisabledFieldName = this._viewModelItemDisabledFieldName;
 
-		this.options.forEach(option => {
+		this.options.forEach((option) => {
 			let value = option.value;
-			let item = vm.find(item => item[vmItemValueFieldName] == value);
+			let item = vm.find((item) => item[vmItemValueFieldName] == value);
 
 			if (item) {
 				option.selected = true;
