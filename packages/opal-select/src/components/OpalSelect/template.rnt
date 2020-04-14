@@ -33,7 +33,7 @@ RnSlot (for=menuSlot) {
 							)
 						}
 
-						RnSlot:itemInputSlot // ...
+						RnSlot:itemInputValidatorSlot // ...
 					}
 					OpalLoader:menuLoader (@unless=dataList, shown)
 				}
@@ -41,7 +41,9 @@ RnSlot (for=menuSlot) {
 					RnSlot:options (forTag=opal-select-option)
 
 					RnSlot (for=itemInputSlot) {
-						RnSlot:itemInputSlot (for=itemInput)
+						RnSlot:itemInputValidatorSlot (for=itemInputValidator) {
+							RnSlot:itemInputSlot (for=itemInput)
+						}
 					}
 				}
 			}

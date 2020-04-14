@@ -133,7 +133,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_BLMt__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"RnSlot",,[,[[,"for","button"]]],[[1,,"OpalButton",["button"],[,[[,"viewType","{viewType}"],[,"size","{size}"],[,"checkable",""],[,"tabIndex","{tabIndex}"],[,"disabled","{disabled}"]]],[[1,1,"IfThen",,[,[[,"if","text"]]],[[3,"{text}"]]],[1,1,"IfElse",,[,[[,"if","text"]]],[[3,"{_buttonText}"]]],[1,,"OpalIcon",["buttonIcon"],[,[[,"name","chevronDown"]]],]]]]],[1,,"RnSlot",,[,[[,"for","menuSlot"]]],[[1,,"RnSlot",["menuSlot"],[,[[,"for","menu"]]],[[1,,"OpalDropdown",["menu"],[,[[,"closeOn","mousedown"]]],[[1,,"RnSlot",,[,[[,"for","menuHeader"]]],],[1,,"RnSlot",,[,[[,"for","menuContent"]]],[[1,,"div",[,"menuContent"],[,[[1,"if","_paramDataListSpecified"]]],[[1,1,"IfThen",,[,[[,"if","dataList"]]],[[1,1,"Repeat",,[,[[,"for","item in dataList"],[,"trackBy","{=_dataListItemValueFieldName}"]]],[[1,,"OpalSelectOption",["option"],[,[[,"value","{item |key(_dataListItemValueFieldName) }"],[,"text","{item |key(_dataListItemTextFieldName) }"],[,"subtext","{item |key(_dataListItemSubtextFieldName) }"],[,"disabled","{item |key(_dataListItemDisabledFieldName) }"]]],]]],[1,,"RnSlot",["itemInputSlot"],,]]],[1,,"OpalLoader",["menuLoader"],[,[[1,"unless","dataList"],[,"shown",""]]],]]],[1,,"div",[,"menuContent"],[,[[1,"unless","_paramDataListSpecified"]]],[[1,,"RnSlot",["options"],[,[[,"forTag","opal-select-option"]]],],[1,,"RnSlot",,[,[[,"for","itemInputSlot"]]],[[1,,"RnSlot",["itemInputSlot"],[,[[,"for","itemInput"]]],]]]]]]],[1,,"RnSlot",,[,[[,"for","menuFooter"]]],]]]]]]]];
+const template = [[1,,"RnSlot",,[,[[,"for","button"]]],[[1,,"OpalButton",["button"],[,[[,"viewType","{viewType}"],[,"size","{size}"],[,"checkable",""],[,"tabIndex","{tabIndex}"],[,"disabled","{disabled}"]]],[[1,1,"IfThen",,[,[[,"if","text"]]],[[3,"{text}"]]],[1,1,"IfElse",,[,[[,"if","text"]]],[[3,"{_buttonText}"]]],[1,,"OpalIcon",["buttonIcon"],[,[[,"name","chevronDown"]]],]]]]],[1,,"RnSlot",,[,[[,"for","menuSlot"]]],[[1,,"RnSlot",["menuSlot"],[,[[,"for","menu"]]],[[1,,"OpalDropdown",["menu"],[,[[,"closeOn","mousedown"]]],[[1,,"RnSlot",,[,[[,"for","menuHeader"]]],],[1,,"RnSlot",,[,[[,"for","menuContent"]]],[[1,,"div",[,"menuContent"],[,[[1,"if","_paramDataListSpecified"]]],[[1,1,"IfThen",,[,[[,"if","dataList"]]],[[1,1,"Repeat",,[,[[,"for","item in dataList"],[,"trackBy","{=_dataListItemValueFieldName}"]]],[[1,,"OpalSelectOption",["option"],[,[[,"value","{item |key(_dataListItemValueFieldName) }"],[,"text","{item |key(_dataListItemTextFieldName) }"],[,"subtext","{item |key(_dataListItemSubtextFieldName) }"],[,"disabled","{item |key(_dataListItemDisabledFieldName) }"]]],]]],[1,,"RnSlot",["itemInputValidatorSlot"],,]]],[1,,"OpalLoader",["menuLoader"],[,[[1,"unless","dataList"],[,"shown",""]]],]]],[1,,"div",[,"menuContent"],[,[[1,"unless","_paramDataListSpecified"]]],[[1,,"RnSlot",["options"],[,[[,"forTag","opal-select-option"]]],],[1,,"RnSlot",,[,[[,"for","itemInputSlot"]]],[[1,,"RnSlot",["itemInputValidatorSlot"],[,[[,"for","itemInputValidator"]]],[[1,,"RnSlot",["itemInputSlot"],[,[[,"for","itemInput"]]],]]]]]]]]],[1,,"RnSlot",,[,[[,"for","menuFooter"]]],]]]]]]]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
@@ -709,10 +709,13 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             throw new TypeError('Parameter "addItem" is required');
         }
         evt.data.initialEvent.preventDefault();
-        let text = textInput.value;
-        textInput.clear();
         textInput.loading = true;
         textInput.disable();
+        if (textInput.validator && !textInput.validator.validate()) {
+            return false;
+        }
+        let text = textInput.value;
+        textInput.clear();
         this._addItem(text, this).then((item) => {
             textInput.loading = false;
             textInput.enable();

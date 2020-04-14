@@ -51,7 +51,12 @@ span:control {
 								)
 							}
 
-							RnSlot (class=OpalSelect__itemInputSlot, for=OpalSelect__itemInput)
+							RnSlot:itemInputValidatorSlot (
+								class=OpalSelect__itemInputValidatorSlot,
+								for=OpalSelect__itemInputValidator
+							) {
+								RnSlot (class=OpalSelect__itemInputSlot, for=OpalSelect__itemInput)
+							}
 						}
 						@IfElse (if=dataList, withUndefined) {
 							OpalLoader:menuLoader (shown)

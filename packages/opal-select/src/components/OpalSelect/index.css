@@ -56,13 +56,15 @@
 	}
 		@el menuContent {
 		}
-			@el itemInputSlot {
+			@el itemInputValidatorSlot {
 			}
-				@el itemInput {
-					display: block;
-					margin: 6px 10px 4px;
-					width: auto;
+				@el itemInputSlot {
 				}
+					@el itemInput {
+						display: block;
+						margin: 6px 10px 4px;
+						width: auto;
+					}
 
 	/* Combinations */
 

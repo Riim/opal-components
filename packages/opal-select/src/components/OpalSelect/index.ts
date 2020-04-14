@@ -559,11 +559,16 @@ export class OpalSelect extends BaseComponent {
 
 		evt.data.initialEvent.preventDefault();
 
+		textInput.loading = true;
+		textInput.disable();
+
+		if (textInput.validator && !textInput.validator.validate()) {
+			return false;
+		}
+
 		let text = textInput.value!;
 
 		textInput.clear();
-		textInput.loading = true;
-		textInput.disable();
 
 		this._addItem(text, this).then(
 			(item: Record<string, string> | false | null | undefined) => {
