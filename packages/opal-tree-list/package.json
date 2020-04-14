@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tree-list",
-  "version": "0.40.46",
+  "version": "0.40.47",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
     "@riim/opal-components-common": "^0.40.44",
     "@riim/opal-icon": "^0.40.44",
     "@riim/opal-loader": "^0.40.44",
-    "@riim/opal-select": "^0.40.46",
+    "@riim/opal-select": "^0.40.47",
     "cellx": "^1.10.2",
     "cellx-decorators": "^1.6.2",
     "rionite": "^0.39.3"
