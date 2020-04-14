@@ -752,10 +752,11 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         return false;
     }
     _addItem$(item) {
-        let value = item[this._viewModelItemValueFieldName];
-        let text = item[this._viewModelItemTextFieldName];
+        let value = item[this._dataListItemValueFieldName];
+        let text = item[this._dataListItemTextFieldName];
         let subtext = item[this._dataListItemSubtextFieldName];
-        if (this.dataList) {
+        if (this.dataList &&
+            !this.dataList.find((item) => item[this._dataListItemValueFieldName] == value)) {
             this.dataList.add({
                 [this._dataListItemValueFieldName]: value,
                 [this._dataListItemTextFieldName]: text,

@@ -623,11 +623,14 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	_addItem$(item: Record<string, string>) {
-		let value = item[this._viewModelItemValueFieldName];
-		let text = item[this._viewModelItemTextFieldName];
+		let value = item[this._dataListItemValueFieldName];
+		let text = item[this._dataListItemTextFieldName];
 		let subtext = item[this._dataListItemSubtextFieldName];
 
-		if (this.dataList) {
+		if (
+			this.dataList &&
+			!this.dataList.find((item) => item[this._dataListItemValueFieldName] == value)
+		) {
 			this.dataList.add({
 				[this._dataListItemValueFieldName]: value,
 				[this._dataListItemTextFieldName]: text,
