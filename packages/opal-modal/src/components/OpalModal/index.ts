@@ -156,21 +156,30 @@ export class OpalModal extends BaseComponent {
 	}
 
 	_close() {
-		openedModals.splice(openedModals.indexOf(this), 1);
+		let index = openedModals.indexOf(this);
 
-		if (openedModals.length) {
-			openedModals[0].element.classList.remove('_overlapped');
-			openedModals[0].focus();
+		if (index) {
+			openedModals[index].element.classList.remove('_overlapped');
+			openedModals[index].focus();
+
+			openedModals.splice(index, 1);
 		} else {
-			documentFocusListening.stop();
-			documentKeyUpListening.stop();
+			openedModals.shift();
 
-			let body = document.body;
+			if (openedModals.length) {
+				openedModals[0].element.classList.remove('_overlapped');
+				openedModals[0].focus();
+			} else {
+				documentFocusListening.stop();
+				documentKeyUpListening.stop();
 
-			body.style.overflow = '';
-			body.style.marginRight = '';
+				let body = document.body;
 
-			body.classList.add('_noFocusHighlight');
+				body.style.overflow = '';
+				body.style.marginRight = '';
+
+				body.classList.add('_noFocusHighlight');
+			}
 		}
 	}
 

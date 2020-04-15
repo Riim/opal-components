@@ -237,18 +237,26 @@ let OpalModal = OpalModal_1 = class OpalModal extends rionite_1.BaseComponent {
         this.focus();
     }
     _close() {
-        openedModals.splice(openedModals.indexOf(this), 1);
-        if (openedModals.length) {
-            openedModals[0].element.classList.remove('_overlapped');
-            openedModals[0].focus();
+        let index = openedModals.indexOf(this);
+        if (index) {
+            openedModals[index].element.classList.remove('_overlapped');
+            openedModals[index].focus();
+            openedModals.splice(index, 1);
         }
         else {
-            documentFocusListening.stop();
-            documentKeyUpListening.stop();
-            let body = document.body;
-            body.style.overflow = '';
-            body.style.marginRight = '';
-            body.classList.add('_noFocusHighlight');
+            openedModals.shift();
+            if (openedModals.length) {
+                openedModals[0].element.classList.remove('_overlapped');
+                openedModals[0].focus();
+            }
+            else {
+                documentFocusListening.stop();
+                documentKeyUpListening.stop();
+                let body = document.body;
+                body.style.overflow = '';
+                body.style.marginRight = '';
+                body.classList.add('_noFocusHighlight');
+            }
         }
     }
     focus() {
