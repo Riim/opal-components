@@ -156,13 +156,7 @@ export class OpalModal extends BaseComponent {
 	}
 
 	_close() {
-		let index = openedModals.indexOf(this);
-
-		if (index) {
-			openedModals[index - 1].close();
-		}
-
-		openedModals.shift();
+		openedModals.splice(openedModals.indexOf(this), 1);
 
 		if (openedModals.length) {
 			openedModals[0].element.classList.remove('_overlapped');
