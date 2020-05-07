@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-modal",
-  "version": "0.40.52",
+  "version": "0.40.53",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

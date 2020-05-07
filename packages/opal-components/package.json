@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-components",
-  "version": "0.40.52",
+  "version": "0.40.53",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -32,7 +32,7 @@
     "@riim/opal-input-validator": "^0.40.44",
     "@riim/opal-loaded-list": "^0.40.44",
     "@riim/opal-loader": "^0.40.44",
-    "@riim/opal-modal": "^0.40.52",
+    "@riim/opal-modal": "^0.40.53",
     "@riim/opal-multirow": "^0.40.45",
     "@riim/opal-multiselect": "^0.40.50",
     "@riim/opal-notification": "^0.40.44",
@@ -53,7 +53,7 @@
     "@riim/opal-text-input": "^0.40.44",
     "@riim/opal-text-input-validator": "^0.40.44",
     "@riim/opal-tree-list": "^0.40.50",
-    "@riim/opal-tree-select": "^0.40.52",
-    "@riim/opal-tree-tag-select": "^0.40.52"
+    "@riim/opal-tree-select": "^0.40.53",
+    "@riim/opal-tree-tag-select": "^0.40.53"
   }
 }
