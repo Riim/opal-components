@@ -30,6 +30,7 @@ opal-modal {
 	@el window {
 		position: relative;
 		display: inline-block;
+		box-sizing: border-box;
 		padding: 30px;
 		border-radius: 3px;
 		background: #fff;
