@@ -38,7 +38,7 @@ export declare class OpalTagSelect extends BaseComponent {
         text?: string;
         disabled?: string;
     };
-    addNewItem: ((text: string) => Promise<Record<string, string>>) | null;
+    addItem: ((text: string) => Promise<Record<string, string>>) | null;
     placeholder: string;
     popoverPosition: typeof OpalPopover.prototype.position;
     tabIndex: number;

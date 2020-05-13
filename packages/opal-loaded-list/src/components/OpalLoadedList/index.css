@@ -27,14 +27,14 @@
 			white-space: nowrap;
 			opacity: .6;
 
-			& + .OpalSelect__btnAddNewItem {
+			& + .OpalSelect__btnAddItem {
 				margin-top: 18px;
 			}
 		}
 
 	/* Combinations */
 
-	.OpalSelect & .OpalSelect__btnAddNewItem {
+	.OpalSelect & .OpalSelect__btnAddItem {
 		display: block;
 	}
 }

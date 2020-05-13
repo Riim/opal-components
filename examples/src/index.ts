@@ -129,7 +129,7 @@ export class OpalComponentsExamples extends BaseComponent {
 		{ id: '5', name: 'item_5' }
 	]);
 
-	addNewItem1(name: string): Promise<{ id: string; name: string }> {
+	addItem1(name: string): Promise<{ id: string; name: string }> {
 		return Promise.resolve({ id: '__' + Math.random(), name });
 	}
 }

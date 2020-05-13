@@ -284,7 +284,7 @@ __decorate([
 ], OpalTagSelect.prototype, "viewModelItemSchema", void 0);
 __decorate([
     rionite_1.Param({ readonly: true })
-], OpalTagSelect.prototype, "addNewItem", void 0);
+], OpalTagSelect.prototype, "addItem", void 0);
 __decorate([
     rionite_1.Param({ default: gettext_1.pt('OpalTagSelect#placeholder', 'Не выбрано') })
 ], OpalTagSelect.prototype, "placeholder", void 0);

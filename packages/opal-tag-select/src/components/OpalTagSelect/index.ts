@@ -125,7 +125,7 @@ export class OpalTagSelect extends BaseComponent {
 		disabled?: string;
 	};
 	@Param({ readonly: true })
-	addNewItem: ((text: string) => Promise<Record<string, string>>) | null;
+	addItem: ((text: string) => Promise<Record<string, string>>) | null;
 	// ;;; Плейсхолдер тегселекта.
 	// ;;; Можно перевести как призыв к выбору -- Select (англ.).
 	@Param({ default: pt('OpalTagSelect#placeholder', 'Не выбрано') })

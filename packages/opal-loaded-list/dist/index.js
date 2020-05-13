@@ -121,7 +121,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalLoadedList{position:relative;display:block;overflow-x:hidden;overflow-y:auto;max-height:460px}.OpalLoadedList .OpalLoadedList__listItem{display:block}.OpalLoadedList .OpalLoadedList__loader[in_center]{border-top-width:70px;border-bottom-width:70px}.OpalLoadedList .OpalLoadedList__nothingFoundSlot{display:block;padding:28px;text-align:center}.OpalLoadedList .OpalLoadedList__nothingFoundMessage{white-space:nowrap;opacity:.6}.OpalLoadedList .OpalLoadedList__nothingFoundMessage+.OpalSelect__btnAddNewItem{margin-top:18px}.OpalSelect .OpalLoadedList .OpalSelect__btnAddNewItem{display:block}";
+            style.textContent = ".OpalLoadedList{position:relative;display:block;overflow-x:hidden;overflow-y:auto;max-height:460px}.OpalLoadedList .OpalLoadedList__listItem{display:block}.OpalLoadedList .OpalLoadedList__loader[in_center]{border-top-width:70px;border-bottom-width:70px}.OpalLoadedList .OpalLoadedList__nothingFoundSlot{display:block;padding:28px;text-align:center}.OpalLoadedList .OpalLoadedList__nothingFoundMessage{white-space:nowrap;opacity:.6}.OpalLoadedList .OpalLoadedList__nothingFoundMessage+.OpalSelect__btnAddItem{margin-top:18px}.OpalSelect .OpalLoadedList .OpalSelect__btnAddItem{display:block}";
             head.appendChild(style);
             return style;
         }
