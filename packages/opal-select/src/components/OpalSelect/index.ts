@@ -357,42 +357,57 @@ export class OpalSelect extends BaseComponent {
 		vm.clear();
 	}
 
-	_updateViewModel(value: any, multiple: boolean) {
+	_updateViewModel(value: Array<string>, multiple: boolean) {
+		let dataList = this.dataList;
 		let vm = this.viewModel;
 		let vmItemValueFieldName = this._viewModelItemValueFieldName;
 		let vmItemTextFieldName = this._viewModelItemTextFieldName;
 		let vmItemSubtextFieldName = this._viewModelItemSubtextFieldName;
 
 		if (multiple) {
-			this.options.forEach((option) => {
-				let optionValue = option.value;
-				let itemIndex = vm.findIndex((item) => item[vmItemValueFieldName] == optionValue);
+			(dataList || this.options).forEach((item: IDataListItem | OpalSelectOption) => {
+				let itemValue = dataList
+					? item[vmItemValueFieldName]
+					: (item as OpalSelectOption).value;
+				let index = vm.findIndex((item) => item[vmItemValueFieldName] == itemValue);
 
-				if (!(value as Array<string>).includes(optionValue)) {
-					if (itemIndex != -1) {
-						vm.removeAt(itemIndex);
+				if (!value.includes(itemValue)) {
+					if (index != -1) {
+						vm.removeAt(index);
 					}
-				} else if (itemIndex == -1) {
+				} else if (index == -1) {
 					vm.add({
-						[vmItemValueFieldName]: optionValue,
-						[vmItemTextFieldName]: option.text,
-						[vmItemSubtextFieldName]: option.subtext
+						[vmItemValueFieldName]: itemValue,
+						[vmItemTextFieldName]: dataList
+							? item[vmItemTextFieldName]
+							: (item as OpalSelectOption).text,
+						[vmItemSubtextFieldName]: dataList
+							? item[vmItemSubtextFieldName]
+							: (item as OpalSelectOption).subtext
 					});
 				}
 			});
 		} else {
-			value = value[0];
+			let itemValue = value[0];
 
 			if (
-				!this.options.some((option) => {
-					if (option.value != value) {
+				!(dataList || this.options).some((item: IDataListItem | OpalSelectOption) => {
+					if (
+						(dataList
+							? item[vmItemValueFieldName]
+							: (item as OpalSelectOption).value) != itemValue
+					) {
 						return false;
 					}
 
 					vm.set(0, {
-						[vmItemValueFieldName]: value,
-						[vmItemTextFieldName]: option.text,
-						[vmItemSubtextFieldName]: option.subtext
+						[vmItemValueFieldName]: itemValue,
+						[vmItemTextFieldName]: dataList
+							? item[vmItemTextFieldName]
+							: (item as OpalSelectOption).text,
+						[vmItemSubtextFieldName]: dataList
+							? item[vmItemSubtextFieldName]
+							: (item as OpalSelectOption).subtext
 					});
 
 					return true;

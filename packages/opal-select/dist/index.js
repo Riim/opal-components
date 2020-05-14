@@ -551,38 +551,51 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         vm.clear();
     }
     _updateViewModel(value, multiple) {
+        let dataList = this.dataList;
         let vm = this.viewModel;
         let vmItemValueFieldName = this._viewModelItemValueFieldName;
         let vmItemTextFieldName = this._viewModelItemTextFieldName;
         let vmItemSubtextFieldName = this._viewModelItemSubtextFieldName;
         if (multiple) {
-            this.options.forEach((option) => {
-                let optionValue = option.value;
-                let itemIndex = vm.findIndex((item) => item[vmItemValueFieldName] == optionValue);
-                if (!value.includes(optionValue)) {
-                    if (itemIndex != -1) {
-                        vm.removeAt(itemIndex);
+            (dataList || this.options).forEach((item) => {
+                let itemValue = dataList
+                    ? item[vmItemValueFieldName]
+                    : item.value;
+                let index = vm.findIndex((item) => item[vmItemValueFieldName] == itemValue);
+                if (!value.includes(itemValue)) {
+                    if (index != -1) {
+                        vm.removeAt(index);
                     }
                 }
-                else if (itemIndex == -1) {
+                else if (index == -1) {
                     vm.add({
-                        [vmItemValueFieldName]: optionValue,
-                        [vmItemTextFieldName]: option.text,
-                        [vmItemSubtextFieldName]: option.subtext
+                        [vmItemValueFieldName]: itemValue,
+                        [vmItemTextFieldName]: dataList
+                            ? item[vmItemTextFieldName]
+                            : item.text,
+                        [vmItemSubtextFieldName]: dataList
+                            ? item[vmItemSubtextFieldName]
+                            : item.subtext
                     });
                 }
             });
         }
         else {
-            value = value[0];
-            if (!this.options.some((option) => {
-                if (option.value != value) {
+            let itemValue = value[0];
+            if (!(dataList || this.options).some((item) => {
+                if ((dataList
+                    ? item[vmItemValueFieldName]
+                    : item.value) != itemValue) {
                     return false;
                 }
                 vm.set(0, {
-                    [vmItemValueFieldName]: value,
-                    [vmItemTextFieldName]: option.text,
-                    [vmItemSubtextFieldName]: option.subtext
+                    [vmItemValueFieldName]: itemValue,
+                    [vmItemTextFieldName]: dataList
+                        ? item[vmItemTextFieldName]
+                        : item.text,
+                    [vmItemSubtextFieldName]: dataList
+                        ? item[vmItemSubtextFieldName]
+                        : item.subtext
                 });
                 return true;
             })) {

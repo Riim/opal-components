@@ -100,7 +100,7 @@ export declare class OpalSelect extends BaseComponent {
     _initViewModel(): void;
     elementAttached(): void;
     _onParamValueChange(evt: IEvent): void;
-    _updateViewModel(value: any, multiple: boolean): void;
+    _updateViewModel(value: Array<string>, multiple: boolean): void;
     _onFocusedChange(evt: IEvent): void;
     _onViewModelChange(): void;
     _onButtonFocus(): void;
