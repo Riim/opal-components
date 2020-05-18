@@ -345,6 +345,13 @@ __export(__webpack_require__("jT9T"));
 
 /***/ }),
 
+/***/ "YxRV":
+/***/ (function(module, exports) {
+
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" id=\"OpalIcon__iconCircleCross\"><circle cx=\"16\" cy=\"16\" r=\"14\"/><path d=\"M11 11l10 10m0-10L11 21\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+
+/***/ }),
+
 /***/ "alWY":
 /***/ (function(module, exports) {
 
@@ -500,6 +507,7 @@ __webpack_require__("AfrY");
 __webpack_require__("lDSZ");
 __webpack_require__("I/Rf");
 __webpack_require__("alWY");
+__webpack_require__("YxRV");
 __webpack_require__("LUVA");
 __webpack_require__("REaa");
 __webpack_require__("Psur");

@@ -62,7 +62,7 @@ export declare class OpalComponentsExamples extends BaseComponent {
         name: string;
         disabled?: undefined;
     }>;
-    addNewItem1(name: string): Promise<{
+    addItem1(name: string): Promise<{
         id: string;
         name: string;
     }>;

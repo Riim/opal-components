@@ -19,6 +19,7 @@ import './icons/chevronLeft.svg?id=OpalIcon__iconChevronLeft';
 import './icons/chevronRight.svg?id=OpalIcon__iconChevronRight';
 import './icons/chevronUp.svg?id=OpalIcon__iconChevronUp';
 import './icons/circleCheckmark.svg?id=OpalIcon__iconCircleCheckmark';
+import './icons/circleCross.svg?id=OpalIcon__iconCircleCross';
 import './icons/clipboard.svg?id=OpalIcon__iconClipboard';
 import './icons/clock.svg?id=OpalIcon__iconClock';
 import './icons/code.svg?id=OpalIcon__iconCode';
