@@ -250,7 +250,7 @@ module.exports = (function(d) {
 /***/ "REaa":
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" id=\"OpalIcon__iconClock\"><circle cx=\"16\" cy=\"16\" r=\"14\"/><path d=\"M16 8v8l4 4\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" id=\"OpalIcon__iconClock\"><circle cx=\"16\" cy=\"16\" r=\"13\"/><path d=\"M16 8v8l4 4\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 
@@ -348,14 +348,14 @@ __export(__webpack_require__("jT9T"));
 /***/ "YxRV":
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" id=\"OpalIcon__iconCircleCross\"><circle cx=\"16\" cy=\"16\" r=\"14\"/><path d=\"M11 11l10 10m0-10L11 21\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" id=\"OpalIcon__iconCircleCross\"><circle cx=\"16\" cy=\"16\" r=\"13\"/><path d=\"M11 11l10 10m0-10L11 21\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 
 /***/ "alWY":
 /***/ (function(module, exports) {
 
-(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" id=\"OpalIcon__iconCircleCheckmark\"><circle cx=\"16\" cy=\"16\" r=\"14\"/><path d=\"M11 16l4 4 7-7\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
+(function _() { if (document.body) { document.body.insertAdjacentHTML('beforeend', "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\"><symbol xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" id=\"OpalIcon__iconCircleCheckmark\"><circle cx=\"16\" cy=\"16\" r=\"13\"/><path d=\"M11 16l4 4 7-7\"/></symbol></svg>"); } else { setTimeout(_, 100); } })();
 
 /***/ }),
 
