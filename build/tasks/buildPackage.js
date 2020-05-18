@@ -9,11 +9,9 @@ const autoprefixer = require('autoprefixer');
 const csso = require('postcss-csso');
 
 const externals = [
-	'@riim/debounce-throttle',
 	'@riim/escape-regexp',
 	'@riim/gettext',
 	'@riim/kebab-case',
-	'@riim/map-set-polyfill',
 	'@riim/next-tick',
 	'@riim/object-assign-polyfill',
 	'@riim/platform',

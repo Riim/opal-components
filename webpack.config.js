@@ -9,11 +9,9 @@ const csso = require('postcss-csso');
 const cssVariables = require('./build/cssVariables');
 
 const externals = [
-	'@riim/debounce-throttle',
 	'@riim/escape-regexp',
 	'@riim/gettext',
 	'@riim/kebab-case',
-	'@riim/map-set-polyfill',
 	'@riim/next-tick',
 	'@riim/object-assign-polyfill',
 	'@riim/platform',

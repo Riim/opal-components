@@ -5,7 +5,7 @@ const gulp = require('gulp');
 const useCPUCount = Math.min(1, Math.floor(require('os').cpus().length / 2));
 
 gulp.task('build', done => {
-	let packages = glob.sync(`packages/*/src/index.ts`);
+	let packages = glob.sync('packages/*/src/index.ts');
 	let index = 0;
 	let inProcessCount = 0;
 
