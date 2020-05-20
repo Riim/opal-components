@@ -12,7 +12,7 @@ import './index.css';
 	elementIs: 'OpalPopoverSource'
 })
 export class OpalPopoverSource extends BaseComponent {
-	@Param({ default: true })
+	@Param(Boolean)
 	active: boolean;
 
 	popoverTarget: BaseComponent | Element;

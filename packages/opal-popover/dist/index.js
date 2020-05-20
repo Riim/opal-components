@@ -466,7 +466,7 @@ let OpalPopoverSource = class OpalPopoverSource extends rionite_1.BaseComponent 
     }
 };
 __decorate([
-    rionite_1.Param({ default: true })
+    rionite_1.Param(Boolean)
 ], OpalPopoverSource.prototype, "active", void 0);
 OpalPopoverSource = __decorate([
     rionite_1.Component({
