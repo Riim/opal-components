@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-file-input-validator",
-  "version": "0.40.58",
+  "version": "0.40.59",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@riim/opal-file-input": "^0.40.58",
-    "@riim/opal-input-validator": "^0.40.44",
+    "@riim/opal-input-validator": "^0.40.59",
     "rionite": "^0.39.3"
   }
 }
