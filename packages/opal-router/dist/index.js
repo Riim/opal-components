@@ -155,6 +155,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 var OpalRouter_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const kebab_case_1 = __webpack_require__("vRer");
@@ -170,6 +173,7 @@ const escapeRegExp_1 = __webpack_require__("xb8m");
 const parsePath_1 = __webpack_require__("w1X0");
 const PathNodeType_1 = __webpack_require__("+FrP");
 const template_rnt_1 = __webpack_require__("nuuU");
+__export(__webpack_require__("ZFcg"));
 const history = history_1.createBrowserHistory();
 function valueToAttributeValue(value) {
     return value === false ? 'no' : value === true ? 'yes' : value;
@@ -235,8 +239,8 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
     }
     elementAttached() {
         this._disposables[next_uid_1.nextUID()] = {
-            dispose: history.listen(location => {
-                this._onHistoryChange(location);
+            dispose: history.listen((update) => {
+                this._onHistoryChange(update);
             })
         };
         if (!this.useLocationHash) {
@@ -253,12 +257,12 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
     elementDetached() {
         this._clear();
     }
-    _onHistoryChange(location) {
+    _onHistoryChange(update) {
         if (this.useLocationHash) {
-            this._update(location.hash.slice(1), '');
+            this._update(update.location.hash.slice(1), '');
         }
         else {
-            this._update(location.pathname, location.hash);
+            this._update(update.location.pathname, update.location.hash);
         }
     }
     _onBodyClick(evt) {
@@ -315,7 +319,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
                 let prevState = this._state;
                 let stateKeys = Object.keys(state);
                 if (stateKeys.length == Object.keys(prevState).length &&
-                    stateKeys.every(name => state[name] === prevState[name])) {
+                    stateKeys.every((name) => state[name] === prevState[name])) {
                     return true;
                 }
                 let componentEl = this._componentElement;
@@ -402,9 +406,8 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
             }
             else {
                 this.isLoaderShown = true;
-                route.component
-                    .lazyLoadComponent()
-                    .then(componentConstr => componentConstr.elementIs)
+                route.component.lazyLoadComponent()
+                    .then((componentConstr) => componentConstr.elementIs)
                     .then(onComponentLoaded);
             }
             return true;
@@ -464,9 +467,8 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
         }
         else {
             this.isLoaderShown = true;
-            route.component
-                .lazyLoadComponent()
-                .then(componentConstr => componentConstr.elementIs)
+            route.component.lazyLoadComponent()
+                .then((componentConstr) => componentConstr.elementIs)
                 .then(onComponentLoaded);
         }
     }

@@ -2,7 +2,12 @@ import { kebabCase } from '@riim/kebab-case';
 import { nextUID } from '@riim/next-uid';
 import { snakeCaseAttributeName } from '@riim/rionite-snake-case-attribute-name';
 import { Observable } from 'cellx-decorators';
-import { createBrowserHistory, History, Location } from 'history';
+import {
+	BrowserHistory,
+	createBrowserHistory,
+	State,
+	Update
+	} from 'history';
 import {
 	BaseComponent,
 	Component,
@@ -17,7 +22,7 @@ import { parsePath } from './lib/parsePath';
 import { PathNodeType } from './lib/PathNodeType';
 import template from './template.rnt';
 
-export { History, Location };
+export * from 'history';
 export { OpalRoute };
 
 export interface IRouteProperty {
@@ -50,7 +55,7 @@ export class OpalRouter extends BaseComponent {
 	static EVENT_CHANGE = Symbol('change');
 	static EVENT_REFRESH_ROUTER = Symbol('refresh-router');
 
-	static history = history;
+	static history: BrowserHistory<State> = history;
 
 	@Param({ type: Boolean, readonly: true })
 	useLocationHash: boolean;
@@ -134,8 +139,8 @@ export class OpalRouter extends BaseComponent {
 
 	elementAttached() {
 		this._disposables[nextUID()] = {
-			dispose: history.listen(location => {
-				this._onHistoryChange(location);
+			dispose: history.listen((update) => {
+				this._onHistoryChange(update);
 			})
 		};
 
@@ -156,11 +161,11 @@ export class OpalRouter extends BaseComponent {
 		this._clear();
 	}
 
-	_onHistoryChange(location: Location) {
+	_onHistoryChange(update: Update) {
 		if (this.useLocationHash) {
-			this._update(location.hash.slice(1), '');
+			this._update(update.location.hash.slice(1), '');
 		} else {
-			this._update(location.pathname, location.hash);
+			this._update(update.location.pathname, update.location.hash);
 		}
 	}
 
@@ -236,7 +241,7 @@ export class OpalRouter extends BaseComponent {
 
 				if (
 					stateKeys.length == Object.keys(prevState).length &&
-					stateKeys.every(name => state[name] === prevState[name])
+					stateKeys.every((name) => state[name] === prevState[name])
 				) {
 					return true;
 				}
@@ -355,9 +360,8 @@ export class OpalRouter extends BaseComponent {
 			} else {
 				this.isLoaderShown = true;
 
-				route.component
-					.lazyLoadComponent!()
-					.then(componentConstr => componentConstr.elementIs)
+				route.component.lazyLoadComponent!()
+					.then((componentConstr) => componentConstr.elementIs)
 					.then(onComponentLoaded);
 			}
 
@@ -438,9 +442,8 @@ export class OpalRouter extends BaseComponent {
 		} else {
 			this.isLoaderShown = true;
 
-			route.component
-				.lazyLoadComponent!()
-				.then(componentConstr => componentConstr.elementIs)
+			route.component.lazyLoadComponent!()
+				.then((componentConstr) => componentConstr.elementIs)
 				.then(onComponentLoaded);
 		}
 	}

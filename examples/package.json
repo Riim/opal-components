@@ -12,8 +12,8 @@
     "@types/history": "^4.7.5"
   },
   "dependencies": {
-    "@riim/opal-components": "^0.40.56",
-    "cellx": "^1.10.5",
+    "@riim/opal-components": "^0.40.60",
+    "cellx": "^1.10.9",
     "rionite": "^0.39.5"
   }
 }

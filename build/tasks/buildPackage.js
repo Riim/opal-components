@@ -3,10 +3,12 @@ const path = require('path');
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const webpack = require('webpack');
+const postcssVariables = require('postcss-simple-vars');
 const postcssRioniteComponent = require('postcss-rionite-component');
 const postcssSassColorFunctions = require('postcss-sass-color-functions');
 const autoprefixer = require('autoprefixer');
 const csso = require('postcss-csso');
+const cssVariables = require('../../build/cssVariables');
 
 const externals = [
 	'@riim/escape-regexp',
@@ -16,7 +18,7 @@ const externals = [
 	'@riim/object-assign-polyfill',
 	'@riim/platform',
 	'@riim/rionite-snake-case-attribute-name',
-	'@riim/uid',
+	'@riim/next-uid',
 	'cellx-decorators',
 	'cellx',
 	'date-exists',
@@ -27,12 +29,15 @@ const externals = [
 	'@riim/opal-button',
 	'@riim/opal-calendar',
 	'@riim/opal-checkbox',
+	'@riim/opal-components-common',
 	'@riim/opal-date-input',
 	'@riim/opal-dropdown',
 	'@riim/opal-editable-text',
-	'@riim/opal-file-upload',
+	'@riim/opal-file-input-validator',
+	'@riim/opal-file-input',
 	'@riim/opal-filtered-list',
 	'@riim/opal-focus-highlight-controller',
+	'@riim/opal-form',
 	'@riim/opal-group',
 	'@riim/opal-icon',
 	'@riim/opal-input-mask',
@@ -48,6 +53,7 @@ const externals = [
 	'@riim/opal-router',
 	'@riim/opal-select-validator',
 	'@riim/opal-select',
+	'@riim/opal-share-button',
 	'@riim/opal-sign-button',
 	'@riim/opal-slider',
 	'@riim/opal-switch-menu',
@@ -60,8 +66,7 @@ const externals = [
 	'@riim/opal-text-input',
 	'@riim/opal-tree-list',
 	'@riim/opal-tree-select',
-	'@riim/opal-tree-tag-select',
-	'@riim/opal-utils'
+	'@riim/opal-tree-tag-select'
 ];
 
 gulp.task('buildPackage', done => {
@@ -88,17 +93,11 @@ gulp.task('buildPackage', done => {
 				{
 					test: /\.ts$/,
 					exclude: /(?:node_modules|bower_components)/,
-					enforce: 'pre',
-					loader: 'tslint-loader'
-				},
-				{
-					test: /\.ts$/,
-					exclude: /(?:node_modules|bower_components)/,
 					loader: 'awesome-typescript-loader'
 				},
 				{
 					test: /\.rnt$/,
-					loader: ['raw-loader', 'trim-lines-loader', 'collapse-line-breaks-loader']
+					loader: 'rionite-template-loader'
 				},
 				{
 					test: /\.css$/,
@@ -108,9 +107,10 @@ gulp.task('buildPackage', done => {
 							loader: 'postcss-loader',
 							options: {
 								plugins: [
+									postcssVariables({ variables: cssVariables }),
 									postcssRioniteComponent(),
-									postcssColorFunction(),
-									autoprefixer({ browsers: ['last 3 versions'] }),
+									postcssSassColorFunctions(),
+									autoprefixer({ overrideBrowserslist: ['last 3 versions'] }),
 									csso({ restructure: false })
 								]
 							}

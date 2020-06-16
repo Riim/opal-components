@@ -1,5 +1,5 @@
 import { nextUID } from '@riim/next-uid';
-import { Location, OpalRouter } from '@riim/opal-router';
+import { OpalRouter, Update } from '@riim/opal-router';
 import { Cell, IEvent } from 'cellx';
 import {
 	BaseComponent,
@@ -83,8 +83,8 @@ export class OpalTabs extends BaseComponent {
 			}
 
 			this._disposables[nextUID()] = {
-				dispose: OpalRouter.history.listen(location => {
-					this._onHistoryChange(location);
+				dispose: OpalRouter.history.listen((update) => {
+					this._onHistoryChange(update);
 				})
 			};
 		}
@@ -92,7 +92,7 @@ export class OpalTabs extends BaseComponent {
 
 	@Listen(
 		OpalTab.EVENT_SELECT,
-		self =>
+		(self) =>
 			(self.element.getElementsByClassName('OpalTabList')[0] as IComponentElement).$component!
 	)
 	_onTabListSelect(evt: IEvent<OpalTab>) {
@@ -101,15 +101,15 @@ export class OpalTabs extends BaseComponent {
 
 	@Listen(
 		OpalTab.EVENT_DESELECT,
-		self =>
+		(self) =>
 			(self.element.getElementsByClassName('OpalTabList')[0] as IComponentElement).$component!
 	)
 	_onTabListDeselect(evt: IEvent<OpalTab>) {
 		evt.target.select();
 	}
 
-	_onHistoryChange(location: Location) {
-		reTabLabel.test(location.hash);
+	_onHistoryChange(update: Update) {
+		reTabLabel.test(update.location.hash);
 
 		if (RegExp.$1) {
 			if (this._selectedTab && RegExp.$1 !== this._selectedTab.label) {

@@ -1,8 +1,8 @@
-import { History, Location } from 'history';
+import { BrowserHistory, State, Update } from 'history';
 import { BaseComponent, IComponentElement } from 'rionite';
 import { OpalRoute } from '../OpalRoute';
 import './index.css';
-export { History, Location };
+export * from 'history';
 export { OpalRoute };
 export interface IRouteProperty {
     name: string;
@@ -20,7 +20,7 @@ export interface IComponentState {
 export declare class OpalRouter extends BaseComponent {
     static EVENT_CHANGE: symbol;
     static EVENT_REFRESH_ROUTER: symbol;
-    static history: History<History.PoorMansUnknown>;
+    static history: BrowserHistory<State>;
     useLocationHash: boolean;
     scrollTopOnChange: boolean;
     scrollTopOnChangeComponent: boolean;
@@ -33,7 +33,7 @@ export declare class OpalRouter extends BaseComponent {
     ready(): void;
     elementAttached(): void;
     elementDetached(): void;
-    _onHistoryChange(location: Location): void;
+    _onHistoryChange(update: Update): void;
     _onBodyClick(evt: Event): void;
     _onRefreshRouter(): boolean;
     _update(path: string, _hash: string): boolean;

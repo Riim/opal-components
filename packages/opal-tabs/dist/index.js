@@ -313,8 +313,8 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
                 this.goToTab(RegExp.$1);
             }
             this._disposables[next_uid_1.nextUID()] = {
-                dispose: opal_router_1.OpalRouter.history.listen(location => {
-                    this._onHistoryChange(location);
+                dispose: opal_router_1.OpalRouter.history.listen((update) => {
+                    this._onHistoryChange(update);
                 })
             };
         }
@@ -325,8 +325,8 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
     _onTabListDeselect(evt) {
         evt.target.select();
     }
-    _onHistoryChange(location) {
-        reTabLabel.test(location.hash);
+    _onHistoryChange(update) {
+        reTabLabel.test(update.location.hash);
         if (RegExp.$1) {
             if (this._selectedTab && RegExp.$1 !== this._selectedTab.label) {
                 this.goToTab(RegExp.$1);
@@ -384,10 +384,10 @@ __decorate([
     rionite_1.Param(Boolean)
 ], OpalTabs.prototype, "useLocationHash", void 0);
 __decorate([
-    rionite_1.Listen(OpalTabList_1.OpalTab.EVENT_SELECT, self => self.element.getElementsByClassName('OpalTabList')[0].$component)
+    rionite_1.Listen(OpalTabList_1.OpalTab.EVENT_SELECT, (self) => self.element.getElementsByClassName('OpalTabList')[0].$component)
 ], OpalTabs.prototype, "_onTabListSelect", null);
 __decorate([
-    rionite_1.Listen(OpalTabList_1.OpalTab.EVENT_DESELECT, self => self.element.getElementsByClassName('OpalTabList')[0].$component)
+    rionite_1.Listen(OpalTabList_1.OpalTab.EVENT_DESELECT, (self) => self.element.getElementsByClassName('OpalTabList')[0].$component)
 ], OpalTabs.prototype, "_onTabListDeselect", null);
 OpalTabs = OpalTabs_1 = __decorate([
     rionite_1.Component({
