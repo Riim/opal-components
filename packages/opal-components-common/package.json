@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-components-common",
-  "version": "0.40.44",
+  "version": "0.40.61",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
