@@ -38,24 +38,24 @@ export class OpalInputMask extends BaseComponent {
 	_definitions: Record<string, RegExp>;
 
 	@Computed
-	get _mask(): Array<string> {
-		return this.mask.split('').filter(chr => chr != '?');
+	get _mask() {
+		return this.mask.split('').filter((chr) => chr != '?');
 	}
 
 	@Computed
-	get _partialIndex(): number {
+	get _partialIndex() {
 		let index = this.mask.indexOf('?');
 		return index == -1 ? this.mask.length : index;
 	}
 
 	@Computed
-	get _tests(): Array<RegExp | null> {
-		return this._mask.map(chr => this._definitions[chr] || null);
+	get _tests() {
+		return this._mask.map<RegExp | null>((chr) => this._definitions[chr] || null);
 	}
 
 	@Computed
-	get _firstTestIndex(): number {
-		return this._tests.findIndex(test => !!test);
+	get _firstTestIndex() {
+		return this._tests.findIndex((test) => !!test);
 	}
 
 	_buffer: Array<string | null>;
@@ -222,7 +222,7 @@ export class OpalInputMask extends BaseComponent {
 		this._buffer = this._mask.map((chr: string) => (definitions[chr] ? null : chr));
 	}
 
-	_checkValue(allowNotCompleted: boolean, maskChanged: boolean): number {
+	_checkValue(allowNotCompleted: boolean, maskChanged: boolean) {
 		let partialIndex = this._partialIndex;
 		let tests = this._tests;
 		let buffer = this._buffer;
@@ -327,13 +327,13 @@ export class OpalInputMask extends BaseComponent {
 		}
 	}
 
-	_nextTestIndex(index: number): number {
+	_nextTestIndex(index: number) {
 		let tests = this._tests;
 		for (let l = tests.length; ++index < l && !tests[index]; ) {}
 		return index;
 	}
 
-	_prevTestIndex(index: number): number {
+	_prevTestIndex(index: number) {
 		let tests = this._tests;
 		while (--index >= 0 && !tests[index]) {}
 		return index;

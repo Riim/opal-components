@@ -137,6 +137,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var OpalTagSelect_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalTagSelect = void 0;
 const gettext_1 = __webpack_require__("eaeG");
 const opal_select_1 = __webpack_require__("jL6t");
 const cellx_1 = __webpack_require__("P7z7");
@@ -161,7 +162,7 @@ let OpalTagSelect = OpalTagSelect_1 = class OpalTagSelect extends rionite_1.Base
         this.validator = null;
     }
     get value() {
-        return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
+        return this.viewModel.map((item) => item[this._viewModelItemValueFieldName]);
     }
     get placeholderShown() {
         return !!this.placeholder && !this.viewModel.length;
@@ -420,9 +421,16 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_jL6t__;
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("Y1+I");
 __webpack_require__("ioIi");
@@ -430,7 +438,7 @@ __webpack_require__("BLMt");
 __webpack_require__("2L3N");
 __webpack_require__("jL6t");
 __webpack_require__("ej3F");
-__export(__webpack_require__("aUKo"));
+__exportStar(__webpack_require__("aUKo"), exports);
 
 
 /***/ }),

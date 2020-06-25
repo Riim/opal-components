@@ -33,7 +33,7 @@ export class OpalCheckbox extends BaseComponent {
 	disabled: boolean;
 
 	@Computed
-	get _tabIndex(): number {
+	get _tabIndex() {
 		return this.disabled ? -1 : this.tabIndex;
 	}
 
@@ -116,14 +116,14 @@ export class OpalCheckbox extends BaseComponent {
 		this.emit(OpalCheckbox.EVENT_BLUR);
 	}
 
-	get selected(): boolean {
+	get selected() {
 		return this.checked;
 	}
 	set selected(selected: boolean) {
 		this.checked = selected;
 	}
 
-	check(): boolean {
+	check() {
 		if (!this.checked) {
 			this.checked = true;
 			return true;
@@ -132,7 +132,7 @@ export class OpalCheckbox extends BaseComponent {
 		return false;
 	}
 
-	uncheck(): boolean {
+	uncheck() {
 		if (this.checked) {
 			this.checked = false;
 			return true;
@@ -141,26 +141,26 @@ export class OpalCheckbox extends BaseComponent {
 		return false;
 	}
 
-	toggle(value?: boolean): boolean {
+	toggle(value?: boolean) {
 		return (this.checked = value === undefined ? !this.checked : value);
 	}
 
-	focus(): this {
+	focus() {
 		this.$<HTMLElement>('control')!.focus();
 		return this;
 	}
 
-	blur(): this {
+	blur() {
 		this.$<HTMLElement>('control')!.blur();
 		return this;
 	}
 
-	enable(): this {
+	enable() {
 		this.disabled = false;
 		return this;
 	}
 
-	disable(): this {
+	disable() {
 		this.disabled = true;
 		return this;
 	}

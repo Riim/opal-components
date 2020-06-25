@@ -20,7 +20,7 @@ import {
 import './index.css';
 import template from './template.rnt';
 
-function pad(num: number): string {
+function pad(num: number) {
 	return (num < 10 ? '0' : '') + num;
 }
 
@@ -61,7 +61,7 @@ export class OpalDateInput extends BaseComponent {
 
 	dateExists = dateExists;
 
-	_isDateInRange(date: string): boolean {
+	_isDateInRange(date: string) {
 		let calendar = this.$<OpalCalendar>('calendar');
 		let match = date.match(/\d+/g)!;
 		let day = +match[0];
@@ -78,7 +78,10 @@ export class OpalDateInput extends BaseComponent {
 			return d >= calendar.fromDate && d <= calendar.toDate;
 		}
 
-		return d >= fromDate.call(this) && d <= toDate.call(this);
+		return (
+			d >= fromDate.call({ paramFromDate: this.fromDate, paramToDate: this.toDate }) &&
+			d <= toDate.call({ paramFromDate: this.fromDate, paramToDate: this.toDate })
+		);
 	}
 
 	_documentFocusListening: IDisposableListening;
@@ -92,7 +95,7 @@ export class OpalDateInput extends BaseComponent {
 		}
 	}
 
-	@Listen('click', self => self.$<BaseComponent>('textInput')!.element)
+	@Listen('click', (self) => self.$<BaseComponent>('textInput')!.element)
 	_onTextInputElementClick() {
 		this.$<OpalDropdown>('calendarMenu')!.open();
 	}
@@ -139,7 +142,7 @@ export class OpalDateInput extends BaseComponent {
 		}
 	}
 
-	get value(): Date | null {
+	get value() {
 		let calendar = this.$<OpalCalendar>('calendar');
 
 		if (calendar) {
@@ -149,7 +152,7 @@ export class OpalDateInput extends BaseComponent {
 		return this.paramValue ? parseDate(this.paramValue) : null;
 	}
 
-	getISOValue(h?: number, m?: number, s?: number, ms?: number): string | null {
+	getISOValue(h?: number, m?: number, s?: number, ms?: number) {
 		let date = this.value;
 
 		if (!date) {
@@ -191,7 +194,7 @@ export class OpalDateInput extends BaseComponent {
 		);
 	}
 
-	validate(): boolean {
+	validate() {
 		return this.$<OpalTextInputValidator>('textInputValidator')!.validate();
 	}
 }

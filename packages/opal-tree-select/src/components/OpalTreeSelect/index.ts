@@ -60,15 +60,15 @@ export class OpalTreeSelect extends OpalSelect {
 		}
 	}
 
-	_onMenuSelectOptionSelect(): false {
+	_onMenuSelectOptionSelect() {
 		return false;
 	}
 
-	_onMenuSelectOptionDeselect(): false {
+	_onMenuSelectOptionDeselect() {
 		return false;
 	}
 
-	_onMenuChange(): false {
+	_onMenuChange() {
 		return false;
 	}
 

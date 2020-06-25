@@ -126,6 +126,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var OpalFileInput_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalFileInput = void 0;
 const escape_regexp_1 = __webpack_require__("xFbw");
 const gettext_1 = __webpack_require__("eaeG");
 const next_tick_1 = __webpack_require__("WTz/");
@@ -144,13 +145,13 @@ let OpalFileInput = OpalFileInput_1 = class OpalFileInput extends rionite_1.Base
         this.validator = null;
     }
     get files() {
-        return this.dataList.map(fileData => fileData.file).filter(file => file);
+        return this.dataList.map((fileData) => fileData.file).filter((file) => file);
     }
     initialize() {
         if (this.allowType) {
             this._reFileType = RegExp(`^(?:${this.allowType
                 .split(',')
-                .map(type => escape_regexp_1.escapeRegExp(type.trim()))
+                .map((type) => escape_regexp_1.escapeRegExp(type.trim()))
                 .join('|')
                 .split('\\*')
                 .join('.*')})$`);
@@ -221,8 +222,8 @@ let OpalFileInput = OpalFileInput_1 = class OpalFileInput extends rionite_1.Base
         }
         let targetFileDataUID = target.dataset.fileDataUid;
         let dragElFileDataUID = dragEl.dataset.fileDataUid;
-        let targetFileDataIndex = this.dataList.findIndex(fileData => next_uid_1.getUID(fileData) == targetFileDataUID);
-        let dragElFileDataIndex = this.dataList.findIndex(fileData => next_uid_1.getUID(fileData) == dragElFileDataUID);
+        let targetFileDataIndex = this.dataList.findIndex((fileData) => next_uid_1.getUID(fileData) == targetFileDataUID);
+        let dragElFileDataIndex = this.dataList.findIndex((fileData) => next_uid_1.getUID(fileData) == dragElFileDataUID);
         let targetFileData = this.dataList.get(targetFileDataIndex);
         cellx_1.EventEmitter.transact(() => {
             this.dataList.set(targetFileDataIndex, this.dataList.get(dragElFileDataIndex));
@@ -279,7 +280,7 @@ let OpalFileInput = OpalFileInput_1 = class OpalFileInput extends rionite_1.Base
             }
             this.dataList.add(fileData);
             let reader = new FileReader();
-            reader.addEventListener('load', evt => {
+            reader.addEventListener('load', (evt) => {
                 this.dataList.replace(fileData, Object.assign(Object.assign({}, fileData), { dataURI: `data:${file.type};base64,${btoa(evt.target.result)}` }));
             });
             reader.readAsBinaryString(file);
@@ -508,13 +509,20 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_yOaX__;
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("Y0hN");
 __webpack_require__("BLMt");
-__export(__webpack_require__("JRKk"));
+__exportStar(__webpack_require__("JRKk"), exports);
 
 
 /***/ })

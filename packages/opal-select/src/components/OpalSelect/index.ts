@@ -30,8 +30,6 @@ import template from './template.rnt';
 
 export { OpalSelectOption };
 
-const map = Array.prototype.map;
-
 export interface IDataListItem {
 	[name: string]: any;
 }
@@ -137,7 +135,7 @@ export class OpalSelect extends BaseComponent {
 	_viewModelItemDisabledFieldName: string;
 
 	@Computed
-	get value(): Array<string> {
+	get value() {
 		return this.viewModel.map((item) => item[this._viewModelItemValueFieldName]);
 	}
 	set value(value: Array<string>) {
@@ -147,7 +145,7 @@ export class OpalSelect extends BaseComponent {
 	_addItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
 
 	@Computed
-	get _buttonText(): string {
+	get _buttonText() {
 		let text = this.viewModel
 			.map((item): string => item[this._viewModelItemTextFieldName])
 			.join(', ');
@@ -163,12 +161,12 @@ export class OpalSelect extends BaseComponent {
 		return text;
 	}
 
-	optionElements: HTMLCollectionOf<IComponentElement>;
+	optionElements: HTMLCollectionOf<IComponentElement<OpalSelectOption>>;
 
 	optionsCell: Cell<Array<OpalSelectOption>> | null = null;
 	@Computed
-	get options(): Array<OpalSelectOption> {
-		return map.call(this.optionElements, (option: IComponentElement) => option.$component);
+	get options() {
+		return Array.from(this.optionElements).map((optionEl) => optionEl.$component!);
 	}
 
 	_needOptionsUpdating = false;
@@ -365,7 +363,7 @@ export class OpalSelect extends BaseComponent {
 		let vmItemSubtextFieldName = this._viewModelItemSubtextFieldName;
 
 		if (multiple) {
-			(dataList || this.options).forEach((item: IDataListItem | OpalSelectOption) => {
+			for (let item of dataList || this.options) {
 				let itemValue = dataList
 					? item[vmItemValueFieldName]
 					: (item as OpalSelectOption).value;
@@ -386,7 +384,7 @@ export class OpalSelect extends BaseComponent {
 							: (item as OpalSelectOption).subtext
 					});
 				}
-			});
+			}
 		} else {
 			let itemValue = value[0];
 
@@ -497,7 +495,7 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	@Listen('change:opened', 'menu')
-	_onMenuOpenedChange(evt: IEvent): false {
+	_onMenuOpenedChange(evt: IEvent) {
 		if (!evt.data.value) {
 			this.close();
 		}
@@ -506,7 +504,7 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	@Listen(OpalSelectOption.EVENT_SELECT, 'menu')
-	_onMenuSelectOptionSelect(evt: IEvent<OpalSelectOption>): false {
+	_onMenuSelectOptionSelect(evt: IEvent<OpalSelectOption>) {
 		let vm = this.viewModel;
 		let vmItem = {
 			[this._viewModelItemValueFieldName]: evt.target.value,
@@ -538,7 +536,7 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	@Listen(OpalSelectOption.EVENT_DESELECT, 'menu')
-	_onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>): false {
+	_onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>) {
 		if (this.multiple || this.clearOnDeselect) {
 			let vmItemValueFieldName = this._viewModelItemValueFieldName;
 			let value = evt.target.value;
@@ -561,7 +559,7 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	@Listen(OpalTextInput.EVENT_CONFIRM, 'menu')
-	_onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void {
+	_onMenuTextInputConfirm(evt: IEvent<OpalTextInput>) {
 		let textInput = evt.target;
 
 		if (textInput !== this.$<OpalTextInput>('itemInput')) {
@@ -603,7 +601,7 @@ export class OpalSelect extends BaseComponent {
 	}
 
 	@Listen(OpalButton.EVENT_CLICK, 'menu')
-	_onMenuButtonClick(evt: IEvent<OpalButton>): false | void {
+	_onMenuButtonClick(evt: IEvent<OpalButton>) {
 		let button = evt.target;
 
 		if (button !== this.$<OpalButton>('btnAddItem')) {
@@ -692,7 +690,7 @@ export class OpalSelect extends BaseComponent {
 		}
 	}
 
-	open(): boolean {
+	open() {
 		if (this._opened) {
 			return false;
 		}
@@ -757,7 +755,7 @@ export class OpalSelect extends BaseComponent {
 		return true;
 	}
 
-	close(): boolean {
+	close() {
 		if (!this._opened) {
 			return false;
 		}
@@ -794,7 +792,7 @@ export class OpalSelect extends BaseComponent {
 		return true;
 	}
 
-	toggle(value?: boolean): boolean {
+	toggle(value?: boolean) {
 		if (value !== undefined) {
 			return value ? this.open() : !this.close();
 		}
@@ -980,7 +978,7 @@ export class OpalSelect extends BaseComponent {
 		let vmItemValueFieldName = this._viewModelItemValueFieldName;
 		let vmItemDisabledFieldName = this._viewModelItemDisabledFieldName;
 
-		this.options.forEach((option) => {
+		for (let option of this.options) {
 			let value = option.value;
 			let item = vm.find((item) => item[vmItemValueFieldName] == value);
 
@@ -993,10 +991,10 @@ export class OpalSelect extends BaseComponent {
 			} else {
 				option.selected = false;
 			}
-		});
+		}
 	}
 
-	focus(): this {
+	focus() {
 		if (this._opened) {
 			this._focusOptions();
 
@@ -1014,12 +1012,12 @@ export class OpalSelect extends BaseComponent {
 		return this;
 	}
 
-	blur(): this {
+	blur() {
 		this.$<OpalButton>('button')!.blur();
 		return this;
 	}
 
-	_focusOptions(): boolean {
+	_focusOptions() {
 		let focusTarget;
 
 		for (let option of this.options) {
@@ -1043,17 +1041,17 @@ export class OpalSelect extends BaseComponent {
 		return false;
 	}
 
-	enable(): this {
+	enable() {
 		this.disabled = false;
 		return this;
 	}
 
-	disable(): this {
+	disable() {
 		this.disabled = true;
 		return this;
 	}
 
-	validate(): boolean {
+	validate() {
 		return !this.validator || this.validator.validate();
 	}
 }

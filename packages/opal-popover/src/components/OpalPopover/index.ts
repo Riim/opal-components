@@ -70,7 +70,7 @@ export class OpalPopover extends BaseComponent {
 		}
 	}
 
-	open(): boolean {
+	open() {
 		if (this.opened) {
 			return false;
 		}
@@ -81,7 +81,7 @@ export class OpalPopover extends BaseComponent {
 		return true;
 	}
 
-	close(): boolean {
+	close() {
 		if (!this.opened) {
 			return false;
 		}
@@ -92,7 +92,7 @@ export class OpalPopover extends BaseComponent {
 		return true;
 	}
 
-	toggle(value?: boolean): boolean {
+	toggle(value?: boolean) {
 		if (value !== undefined) {
 			return value ? this.open() : !this.close();
 		}

@@ -13,11 +13,11 @@ function isItemSelected(
 	vm: TViewModel,
 	dataTreeListItemValueFieldName: string,
 	viewModelItemValueFieldName: string
-): boolean {
+) {
 	do {
 		if (
 			vm.find(
-				vmItem =>
+				(vmItem) =>
 					vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]
 			)
 		) {
@@ -38,9 +38,9 @@ function isItemIndeterminate(
 		!!item.children.length &&
 		!isItemSelected(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
 		item.children.some(
-			child =>
+			(child) =>
 				!!vm.find(
-					vmItem =>
+					(vmItem) =>
 						vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]
 				) ||
 				isItemIndeterminate(
@@ -53,7 +53,7 @@ function isItemIndeterminate(
 	);
 }
 
-export default function _getListItemContext(context: Object, slot: RnSlot) {
+export default function _getListItemContext(this: any, context: Object, slot: RnSlot) {
 	let $item: IFilteredDataTreeListItem = slot.$context.$item;
 
 	return define({
@@ -61,7 +61,7 @@ export default function _getListItemContext(context: Object, slot: RnSlot) {
 		$item
 	}, {
 		$selected: new Cell(
-			function(this: OpalTreeList) {
+			function (this: OpalTreeList) {
 				this.dataTreeList;
 
 				return isItemSelected(
@@ -75,7 +75,7 @@ export default function _getListItemContext(context: Object, slot: RnSlot) {
 		),
 
 		$indeterminate: new Cell(
-			function(this: OpalTreeList | OpalTreeListItem) {
+			function (this: OpalTreeList | OpalTreeListItem) {
 				this.dataTreeList;
 
 				return isItemIndeterminate(

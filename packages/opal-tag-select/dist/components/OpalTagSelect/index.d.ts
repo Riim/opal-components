@@ -52,7 +52,7 @@ export declare class OpalTagSelect extends BaseComponent {
     _viewModelItemValueFieldName: string;
     _viewModelItemTextFieldName: string;
     _viewModelItemDisabledFieldName: string;
-    get value(): Array<string>;
+    get value(): string[];
     get placeholderShown(): boolean;
     _selectDataListKeypath: string | null;
     select: OpalSelect;
@@ -63,10 +63,10 @@ export declare class OpalTagSelect extends BaseComponent {
     initialize(): void;
     ready(): void;
     _onDisabledChange(evt: IEvent): void;
-    _onSelectInput(): false;
-    _onSelectChange(): false;
-    _onSelectSelect(): false;
-    _onSelectDeselect(): false;
+    _onSelectInput(): boolean;
+    _onSelectChange(): boolean;
+    _onSelectSelect(): boolean;
+    _onSelectDeselect(): boolean;
     open(): boolean;
     close(): boolean;
     toggle(): boolean;

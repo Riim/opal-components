@@ -24,7 +24,7 @@ export declare class OpalFileInput extends BaseComponent {
     placeholder: string;
     disabled: boolean;
     _reFileType: RegExp;
-    get files(): Array<File>;
+    get files(): File[];
     errorMessage: string | null;
     fileListEl: HTMLElement | null;
     dropZoneEl: HTMLElement;

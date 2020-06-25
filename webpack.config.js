@@ -13,7 +13,6 @@ const externals = [
 	'@riim/gettext',
 	'@riim/kebab-case',
 	'@riim/next-tick',
-	'@riim/object-assign-polyfill',
 	'@riim/platform',
 	'@riim/rionite-snake-case-attribute-name',
 	'@riim/next-uid',

@@ -151,6 +151,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var OpalSelectOption_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalSelectOption = void 0;
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("hhhP");
@@ -363,6 +364,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var OpalSelect_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalSelect = exports.OpalSelectOption = void 0;
 const gettext_1 = __webpack_require__("eaeG");
 const next_tick_1 = __webpack_require__("WTz/");
 const opal_button_1 = __webpack_require__("X6DG");
@@ -373,11 +375,10 @@ const cellx_1 = __webpack_require__("P7z7");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
 const OpalSelectOption_1 = __webpack_require__("M5PH");
-exports.OpalSelectOption = OpalSelectOption_1.OpalSelectOption;
+Object.defineProperty(exports, "OpalSelectOption", { enumerable: true, get: function () { return OpalSelectOption_1.OpalSelectOption; } });
 __webpack_require__("9gpB");
 const isArraysEqual_1 = __webpack_require__("nJvV");
 const template_rnt_1 = __webpack_require__("IvWP");
-const map = Array.prototype.map;
 const defaultDataListItemSchema = Object.freeze({
     value: 'value',
     text: 'text',
@@ -420,7 +421,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         return text;
     }
     get options() {
-        return map.call(this.optionElements, (option) => option.$component);
+        return Array.from(this.optionElements).map((optionEl) => optionEl.$component);
     }
     initialize() {
         let dataListKeypath = this.dataListKeypath;
@@ -557,7 +558,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         let vmItemTextFieldName = this._viewModelItemTextFieldName;
         let vmItemSubtextFieldName = this._viewModelItemSubtextFieldName;
         if (multiple) {
-            (dataList || this.options).forEach((item) => {
+            for (let item of dataList || this.options) {
                 let itemValue = dataList
                     ? item[vmItemValueFieldName]
                     : item.value;
@@ -578,7 +579,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
                             : item.subtext
                     });
                 }
-            });
+            }
         }
         else {
             let itemValue = value[0];
@@ -1021,7 +1022,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         let vm = this.viewModel;
         let vmItemValueFieldName = this._viewModelItemValueFieldName;
         let vmItemDisabledFieldName = this._viewModelItemDisabledFieldName;
-        this.options.forEach((option) => {
+        for (let option of this.options) {
             let value = option.value;
             let item = vm.find((item) => item[vmItemValueFieldName] == value);
             if (item) {
@@ -1033,7 +1034,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             else {
                 option.selected = false;
             }
-        });
+        }
     }
     focus() {
         if (this._opened) {
@@ -1263,6 +1264,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_ioIi__;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.isArraysEqual = void 0;
 function isArraysEqual(arr1, arr2) {
     let len = arr1.length;
     if (len != arr2.length) {
@@ -1295,9 +1297,16 @@ const template = [[1,,"button",["control"],[,[[,"type","button"],[,"tabindex","{
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("X6DG");
 __webpack_require__("A7KY");
@@ -1306,7 +1315,7 @@ __webpack_require__("Y0hN");
 __webpack_require__("ioIi");
 __webpack_require__("BLMt");
 __webpack_require__("hl6F");
-__export(__webpack_require__("ZuAa"));
+__exportStar(__webpack_require__("ZuAa"), exports);
 
 
 /***/ }),

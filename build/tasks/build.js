@@ -4,17 +4,24 @@ const gulp = require('gulp');
 
 const useCPUCount = Math.min(1, Math.floor(require('os').cpus().length / 2));
 
-gulp.task('build', done => {
-	let packages = glob.sync('packages/*/src/index.ts');
+gulp.task('build', (done) => {
+	let packages = glob
+		.sync('packages/*/src/index.ts')
+		.map((p) => p.split('/')[1])
+		.filter((package) => package != 'opal-components');
 	let index = 0;
 	let inProcessCount = 0;
+	let stat = [];
 
-	function buildPackage(p) {
+	function buildPackage(package) {
 		inProcessCount++;
 
+		let startTime = Date.now();
 		let process = childProcess.exec(
-			'gulp buildPackage --package=' + p.split('/')[1],
+			'gulp buildPackage --package=' + package,
 			(err, stdout, stderr) => {
+				stat.push([package, Date.now() - startTime, err && err.code]);
+
 				if (err) {
 					console.log(err.stack);
 					console.log('Error code:', err.code);
@@ -26,7 +33,7 @@ gulp.task('build', done => {
 			}
 		);
 
-		process.on('exit', code => {
+		process.on('exit', (code) => {
 			console.log('Child process exited with exit code', code);
 
 			if (index < packages.length) {
@@ -35,6 +42,7 @@ gulp.task('build', done => {
 
 			if (!--inProcessCount) {
 				done();
+				console.log(stat.length, stat);
 			}
 		});
 	}

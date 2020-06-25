@@ -21,7 +21,7 @@ export class OpalSelectValidator extends OpalInputValidator {
 		this.select.validator = this;
 	}
 
-	_checkValue(rule: OpalSelectValidatorRule): boolean {
+	_checkValue(rule: OpalSelectValidatorRule) {
 		let vm = this.select.viewModel;
 
 		return !(vm.length

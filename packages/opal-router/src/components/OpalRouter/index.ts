@@ -79,62 +79,61 @@ export class OpalRouter extends BaseComponent {
 	ready() {
 		let routes = this._routes;
 
-		Array.prototype.forEach.call(
-			this.element.getElementsByTagName('opal-route'),
-			(routeEl: IComponentElement<OpalRoute>) => {
-				let path = routeEl.$component!.path;
-				let rePath: Array<string> | string = [];
-				let props: Array<IRouteProperty> = [];
+		for (let routeEl of this.element.getElementsByTagName('opal-route') as Iterable<
+			IComponentElement<OpalRoute>
+		>) {
+			let path = routeEl.$component!.path;
+			let rePath: Array<string> | string = [];
+			let props: Array<IRouteProperty> = [];
 
-				(function processPath(path) {
-					for (let node of path) {
-						switch (node.type) {
-							case PathNodeType.STATIC: {
-								rePath.push(escapeRegExp(node.value).replace('\\*', '.*?'));
-								break;
-							}
-							case PathNodeType.OPTIONAL: {
-								if (node.name) {
-									rePath.push('(');
-									props.push({
-										name: node.name,
-										optional: true
-									});
-								} else {
-									rePath.push('(?:');
-								}
-
-								processPath(node.children);
-
-								rePath.push(')?');
-
-								break;
-							}
-							case PathNodeType.INSERT: {
-								rePath.push('([^\\/]+)');
+			(function processPath(path) {
+				for (let node of path) {
+					switch (node.type) {
+						case PathNodeType.STATIC: {
+							rePath.push(escapeRegExp(node.value).replace('\\*', '.*?'));
+							break;
+						}
+						case PathNodeType.OPTIONAL: {
+							if (node.name) {
+								rePath.push('(');
 								props.push({
 									name: node.name,
-									optional: false
+									optional: true
 								});
-
-								break;
+							} else {
+								rePath.push('(?:');
 							}
+
+							processPath(node.children);
+
+							rePath.push(')?');
+
+							break;
+						}
+						case PathNodeType.INSERT: {
+							rePath.push('([^\\/]+)');
+							props.push({
+								name: node.name,
+								optional: false
+							});
+
+							break;
 						}
 					}
-				})(parsePath(path));
+				}
+			})(parsePath(path));
 
-				rePath = rePath.join('');
+			rePath = rePath.join('');
 
-				routes.push({
-					path,
-					rePath: RegExp(
-						`^${rePath}${rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?'}$`
-					),
-					properties: props,
-					component: routeEl.$component!
-				});
-			}
-		);
+			routes.push({
+				path,
+				rePath: RegExp(
+					`^${rePath}${rePath.charAt(rePath.length - 1) == '/' ? '?' : '/?'}$`
+				),
+				properties: props,
+				component: routeEl.$component!
+			});
+		}
 	}
 
 	elementAttached() {
@@ -208,7 +207,7 @@ export class OpalRouter extends BaseComponent {
 		return false;
 	}
 
-	_update(path: string, _hash: string): boolean {
+	_update(path: string, _hash: string) {
 		if (!path) {
 			path = '/';
 		}

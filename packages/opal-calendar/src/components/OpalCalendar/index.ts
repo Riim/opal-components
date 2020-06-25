@@ -37,7 +37,7 @@ export function getTodayDate() {
 	return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 }
 
-export function fromDate(this: OpalCalendar) {
+export function fromDate(this: { paramFromDate: string | null; paramToDate: string | null }) {
 	let fromDate = this.paramFromDate;
 
 	if (fromDate) {
@@ -50,7 +50,7 @@ export function fromDate(this: OpalCalendar) {
 	return new Date(date.getFullYear() - 100, date.getMonth(), date.getDate());
 }
 
-export function toDate(this: OpalCalendar) {
+export function toDate(this: { paramFromDate: string | null; paramToDate: string | null }) {
 	let toDate = this.paramToDate;
 
 	if (toDate) {
@@ -178,17 +178,17 @@ export class OpalCalendar extends BaseComponent {
 	toDate: Date = toDate as any;
 
 	@Computed
-	get fromYear(): number {
+	get fromYear() {
 		return this.fromDate.getFullYear();
 	}
 
 	@Computed
-	get toYear(): number {
+	get toYear() {
 		return this.toDate.getFullYear();
 	}
 
 	@Computed
-	get years(): Array<number> {
+	get years() {
 		let years: Array<number> = [];
 
 		for (let year = this.fromYear, toYear = this.toYear; year <= toYear; year++) {
@@ -200,7 +200,7 @@ export class OpalCalendar extends BaseComponent {
 
 	stringValueCell: Cell<string | null> | null = null;
 	@Computed
-	get stringValue(): string | null {
+	get stringValue() {
 		return this.paramValue;
 	}
 	set stringValue(value: string | null) {
@@ -208,7 +208,7 @@ export class OpalCalendar extends BaseComponent {
 	}
 
 	@Computed
-	get value(): Date | null {
+	get value() {
 		let value = this.stringValue;
 		return value ? parseDate(value) : null;
 	}
@@ -219,17 +219,17 @@ export class OpalCalendar extends BaseComponent {
 	shownMonth: number;
 
 	@Computed
-	get btnPrevMonthDisabled(): boolean {
+	get btnPrevMonthDisabled() {
 		return this.shownYear == this.fromYear && !this.shownMonth;
 	}
 
 	@Computed
-	get btnNextMonthDisabled(): boolean {
+	get btnNextMonthDisabled() {
 		return this.shownYear == this.toYear && this.shownMonth == 11;
 	}
 
 	@Computed
-	days: TDays = function(this: OpalCalendar, _cell: any, next: TDays | undefined): TDays {
+	days: TDays = function (this: OpalCalendar, _cell: any, next: TDays | undefined) {
 		let dateDelimiter = this.dateDelimiter;
 
 		let fromDate = this.fromDate;

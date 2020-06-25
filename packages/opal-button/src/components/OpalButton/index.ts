@@ -49,7 +49,7 @@ export class OpalButton extends BaseComponent {
 	disabled: boolean;
 
 	@Computed
-	get _tabIndex(): number {
+	get _tabIndex() {
 		return this.disabled ? -1 : this.tabIndex;
 	}
 
@@ -113,7 +113,7 @@ export class OpalButton extends BaseComponent {
 		}
 	}
 
-	click(): this {
+	click() {
 		if (!this.emit(OpalButton.EVENT_CLICK).defaultPrevented && this.checkable) {
 			this.emit(this.toggle() ? OpalButton.EVENT_CHECK : OpalButton.EVENT_UNCHECK);
 			this.emit(OpalButton.EVENT_CHANGE);
@@ -126,14 +126,14 @@ export class OpalButton extends BaseComponent {
 		return this;
 	}
 
-	get selected(): boolean {
+	get selected() {
 		return this.checked;
 	}
 	set selected(selected: boolean) {
 		this.checked = selected;
 	}
 
-	check(): boolean {
+	check() {
 		if (!this.checked) {
 			this.checked = true;
 			return true;
@@ -142,7 +142,7 @@ export class OpalButton extends BaseComponent {
 		return false;
 	}
 
-	uncheck(): boolean {
+	uncheck() {
 		if (this.checked) {
 			this.checked = false;
 			return true;
@@ -151,26 +151,26 @@ export class OpalButton extends BaseComponent {
 		return false;
 	}
 
-	toggle(value?: boolean): boolean {
+	toggle(value?: boolean) {
 		return (this.checked = value === undefined ? !this.checked : value);
 	}
 
-	focus(): this {
+	focus() {
 		this.element.focus();
 		return this;
 	}
 
-	blur(): this {
+	blur() {
 		this.element.blur();
 		return this;
 	}
 
-	enable(): this {
+	enable() {
 		this.disabled = false;
 		return this;
 	}
 
-	disable(): this {
+	disable() {
 		this.disabled = true;
 		return this;
 	}

@@ -29,14 +29,13 @@ export class OpalInputValidator extends BaseComponent {
 	failedRule: OpalInputValidatorRule | null = null;
 
 	@Computed
-	get valid(): boolean {
+	get valid() {
 		return !this.failedRule;
 	}
 
 	ready() {
-		this.rules = Array.prototype.map.call(
-			this.element.getElementsByClassName('OpalInputValidatorRule'),
-			(ruleEl: IComponentElement) => ruleEl.$component
+		this.rules = Array.from(this.element.getElementsByClassName('OpalInputValidatorRule')).map(
+			(ruleEl: IComponentElement) => ruleEl.$component as OpalInputValidatorRule
 		);
 	}
 
@@ -45,21 +44,21 @@ export class OpalInputValidator extends BaseComponent {
 		this.validate();
 	}
 
-	validate(): boolean {
+	validate() {
 		return this._validate(this.rules);
 	}
 
-	_validate(rules: Array<OpalInputValidatorRule>): boolean {
+	_validate(rules: Array<OpalInputValidatorRule>) {
 		let failedRule: OpalInputValidatorRule | undefined;
 
-		rules.forEach(rule => {
+		for (let rule of rules) {
 			if (failedRule || this._checkValue(rule)) {
 				rule.hideMessage();
 			} else {
 				failedRule = rule;
 				rule.showMessage();
 			}
-		});
+		}
 
 		let prevFailedRule = this.failedRule;
 
@@ -78,11 +77,11 @@ export class OpalInputValidator extends BaseComponent {
 		return !failedRule;
 	}
 
-	_checkValue(_rule: OpalInputValidatorRule): boolean {
+	_checkValue(_rule: OpalInputValidatorRule) {
 		return false;
 	}
 
-	focusTarget(): this {
+	focusTarget() {
 		(this.target as any).focus();
 		return this;
 	}

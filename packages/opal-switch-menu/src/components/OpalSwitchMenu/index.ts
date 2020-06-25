@@ -23,7 +23,7 @@ export class OpalSwitchMenu extends BaseComponent {
 
 	_checkedButton: OpalButton | null;
 
-	get checkedButton(): OpalButton | null {
+	get checkedButton() {
 		if (this._checkedButton !== undefined) {
 			return this._checkedButton;
 		}

@@ -102,6 +102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.makeUrl = void 0;
 const hasOwn = Object.prototype.hasOwnProperty;
 function makeUrl(url, data) {
     let data_ = {};
@@ -151,6 +152,7 @@ module.exports = (function(d) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.services = void 0;
 const getScript_1 = __webpack_require__("k1s5");
 const makeUrl_1 = __webpack_require__("5LC3");
 const vkontakteCallbacks = [];
@@ -251,6 +253,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalShareButton = void 0;
 const opal_button_1 = __webpack_require__("X6DG");
 const opal_components_common_1 = __webpack_require__("MYNt");
 const cellx_1 = __webpack_require__("P7z7");
@@ -276,7 +279,7 @@ let OpalShareButton = class OpalShareButton extends opal_button_1.OpalButton {
             this.counter = await service.getCounter(makeUrl_1.makeUrl(service.counterUrl, { url: this._url }));
         }
         else if (service.counterUrl) {
-            jsonp_1.jsonp(makeUrl_1.makeUrl(service.counterUrl, { url: this._url }), data => {
+            jsonp_1.jsonp(makeUrl_1.makeUrl(service.counterUrl, { url: this._url }), (data) => {
                 this.counter = service.extractCounter(data);
             });
         }
@@ -356,11 +359,18 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_X6DG__;
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__("IsyP"));
+__exportStar(__webpack_require__("IsyP"), exports);
 
 
 /***/ }),
@@ -371,6 +381,7 @@ __export(__webpack_require__("IsyP"));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.jsonp = void 0;
 if (!window.__ShareButtonCallbacks) {
     window.__ShareButtonCallbacks = {};
 }
@@ -409,6 +420,7 @@ exports.jsonp = jsonp;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getScript = void 0;
 function getScript(url) {
     let script = document.createElement('script');
     script.src = url;
@@ -440,6 +452,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_yOaX__;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.openPopup = void 0;
 function openPopup(url, winId, width = 600, height = 400) {
     let left = Math.round(screen.width / 2 - width / 2);
     let top = 0;

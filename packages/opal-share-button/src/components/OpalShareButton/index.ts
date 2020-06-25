@@ -57,13 +57,13 @@ export class OpalShareButton extends OpalButton {
 				makeUrl(service.counterUrl!, { url: this._url })
 			);
 		} else if (service.counterUrl) {
-			jsonp(makeUrl(service.counterUrl, { url: this._url }), data => {
+			jsonp(makeUrl(service.counterUrl, { url: this._url }), (data) => {
 				this.counter = service.extractCounter!(data);
 			});
 		}
 	}
 
-	click(): this {
+	click() {
 		let service = this._service;
 		let urlData = {
 			title: document.title,
@@ -91,7 +91,7 @@ export class OpalShareButton extends OpalButton {
 	_getContentContext(context: Object) {
 		return define({ __proto__: context }, {
 			$counter: new Cell(
-				function(this: OpalShareButton) {
+				function (this: OpalShareButton) {
 					return this.counter;
 				},
 				{ context: this }

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-checkbox"), require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-select"), require("@riim/object-assign-polyfill"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-checkbox"), require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-select"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-checkbox", "@riim/opal-loader", "@riim/opal-components-common", "cellx", "@riim/opal-button", "@riim/opal-icon", "@riim/opal-select", "@riim/object-assign-polyfill", "rionite", "cellx-decorators"], factory);
+		define(["@riim/opal-checkbox", "@riim/opal-loader", "@riim/opal-components-common", "cellx", "@riim/opal-button", "@riim/opal-icon", "@riim/opal-select", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tree-list"] = factory(require("@riim/opal-checkbox"), require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-select"), require("@riim/object-assign-polyfill"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-tree-list"] = factory(require("@riim/opal-checkbox"), require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-select"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-tree-list"] = factory(root["@riim/opal-checkbox"], root["@riim/opal-loader"], root["@riim/opal-components-common"], root["cellx"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/opal-select"], root["@riim/object-assign-polyfill"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__7ATV__, __WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_MYNt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u2fl__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-tree-list"] = factory(root["@riim/opal-checkbox"], root["@riim/opal-loader"], root["@riim/opal-components-common"], root["cellx"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/opal-select"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__7ATV__, __WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_MYNt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -140,6 +140,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalTreeListItem = void 0;
 const opal_button_1 = __webpack_require__("X6DG");
 const rionite_1 = __webpack_require__("u4yd");
 const _getListItemContext_1 = __webpack_require__("sNK4");
@@ -240,6 +241,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var OpalTreeList_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalTreeList = exports.OpalTreeListItem = void 0;
 const opal_checkbox_1 = __webpack_require__("7ATV");
 const opal_components_common_1 = __webpack_require__("MYNt");
 const opal_select_1 = __webpack_require__("jL6t");
@@ -248,7 +250,7 @@ const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
 const ObservableTreeList_1 = __webpack_require__("V5Ua");
 const OpalTreeListItem_1 = __webpack_require__("IOKc");
-exports.OpalTreeListItem = OpalTreeListItem_1.OpalTreeListItem;
+Object.defineProperty(exports, "OpalTreeListItem", { enumerable: true, get: function () { return OpalTreeListItem_1.OpalTreeListItem; } });
 __webpack_require__("IOKc");
 const _getListItemContext_1 = __webpack_require__("sNK4");
 __webpack_require__("HL40");
@@ -262,11 +264,7 @@ const defaultVMItemSchema = Object.freeze({
     text: 'name'
 });
 function toComparable(str) {
-    return (str &&
-        str
-            .trim()
-            .replace(/\s+/g, ' ')
-            .toLowerCase());
+    return str && str.trim().replace(/\s+/g, ' ').toLowerCase();
 }
 let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseComponent {
     constructor() {
@@ -358,13 +356,13 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
         }
         if (evt.target.selected) {
             for (let parent; (parent = item.parent) &&
-                parent.children.every(child => child == item ||
-                    !!vm.find(vmItem => vmItem[viewModelItemValueFieldName] ==
+                parent.children.every((child) => child == item ||
+                    !!vm.find((vmItem) => vmItem[viewModelItemValueFieldName] ==
                         child[dataTreeListItemValueFieldName]));) {
                 item = parent;
             }
             item.children.forEach(function _(child) {
-                let childIndex = vm.findIndex(vmItem => vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]);
+                let childIndex = vm.findIndex((vmItem) => vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]);
                 if (childIndex != -1) {
                     vm.removeAt(childIndex);
                 }
@@ -376,18 +374,18 @@ let OpalTreeList = OpalTreeList_1 = class OpalTreeList extends rionite_1.BaseCom
             });
         }
         else {
-            let itemIndex = vm.findIndex(vmItem => vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]);
+            let itemIndex = vm.findIndex((vmItem) => vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]);
             if (itemIndex != -1) {
                 vm.removeAt(itemIndex);
             }
             else {
                 let parent = item.parent;
                 for (;;) {
-                    let parentIndex = vm.findIndex(vmItem => vmItem[viewModelItemValueFieldName] ==
+                    let parentIndex = vm.findIndex((vmItem) => vmItem[viewModelItemValueFieldName] ==
                         parent[dataTreeListItemValueFieldName]);
                     vm.addRange((parent.$original || parent).children
-                        .filter(child => child != item)
-                        .map(child => ({
+                        .filter((child) => child != item)
+                        .map((child) => ({
                         [viewModelItemValueFieldName]: child[dataTreeListItemValueFieldName],
                         [viewModelItemTextFieldName]: child[dataTreeListItemTextFieldName]
                     })));
@@ -462,7 +460,7 @@ OpalTreeList.prototype._getListItemContext = _getListItemContext_1.default;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const object_assign_polyfill_1 = __webpack_require__("u2fl");
+exports.ObservableTreeList = exports.setParent = void 0;
 const cellx_1 = __webpack_require__("P7z7");
 const ERROR_INDEXPATH_EMPTY = 'Indexpath cannot be empty';
 function setParent(items, parent = null) {
@@ -478,9 +476,7 @@ class ObservableTreeList extends cellx_1.EventEmitter {
         super();
         this._items = items
             ? setParent(items.map(function _(item) {
-                return object_assign_polyfill_1.assign(object_assign_polyfill_1.assign({}, item), {
-                    children: item.children ? item.children.map(_) : []
-                });
+                return Object.assign(Object.assign({}, item), { children: item.children ? item.children.map(_) : [] });
             }))
             : [];
     }
@@ -566,14 +562,14 @@ class ObservableTreeList extends cellx_1.EventEmitter {
 }
 exports.ObservableTreeList = ObservableTreeList;
 ObservableTreeList.EVENT_CHANGE = 'change';
-['forEach', 'map', 'filter', 'every', 'some'].forEach(name => {
+for (let name of ['forEach', 'map', 'filter', 'every', 'some']) {
     ObservableTreeList.prototype[name] = function (callback, context) {
         return this._items[name](function (item, index) {
             return callback.call(context, item, index, this);
         }, this);
     };
-});
-['reduce', 'reduceRight'].forEach(name => {
+}
+for (let name of ['reduce', 'reduceRight']) {
     ObservableTreeList.prototype[name] = function (callback, initialValue) {
         let items = this._items;
         let list = this;
@@ -582,7 +578,7 @@ ObservableTreeList.EVENT_CHANGE = 'change';
         }
         return arguments.length >= 2 ? items[name](wrapper, initialValue) : items[name](wrapper);
     };
-});
+}
 
 
 /***/ }),
@@ -631,16 +627,23 @@ module.exports = (function(d) {
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("X6DG");
 __webpack_require__("7ATV");
 __webpack_require__("Y0hN");
 __webpack_require__("BLMt");
-__export(__webpack_require__("V5Ua"));
-__export(__webpack_require__("QdML"));
+__exportStar(__webpack_require__("V5Ua"), exports);
+__exportStar(__webpack_require__("QdML"), exports);
 
 
 /***/ }),
@@ -664,7 +667,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cellx_1 = __webpack_require__("P7z7");
 function isItemSelected(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
     do {
-        if (vm.find(vmItem => vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName])) {
+        if (vm.find((vmItem) => vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName])) {
             return true;
         }
     } while ((item = item.parent));
@@ -673,7 +676,7 @@ function isItemSelected(item, vm, dataTreeListItemValueFieldName, viewModelItemV
 function isItemIndeterminate(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) {
     return (!!item.children.length &&
         !isItemSelected(item, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName) &&
-        item.children.some(child => !!vm.find(vmItem => vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]) ||
+        item.children.some((child) => !!vm.find((vmItem) => vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]) ||
             isItemIndeterminate(child, vm, dataTreeListItemValueFieldName, viewModelItemValueFieldName)));
 }
 function _getListItemContext(context, slot) {
@@ -694,13 +697,6 @@ function _getListItemContext(context, slot) {
 }
 exports.default = _getListItemContext;
 
-
-/***/ }),
-
-/***/ "u2fl":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_u2fl__;
 
 /***/ }),
 

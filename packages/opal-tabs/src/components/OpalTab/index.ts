@@ -30,7 +30,7 @@ export class OpalTab extends BaseComponent {
 	disabled: boolean;
 
 	@Computed
-	get _tabIndex(): number {
+	get _tabIndex() {
 		return this.disabled ? -1 : this.tabIndex;
 	}
 
@@ -59,12 +59,12 @@ export class OpalTab extends BaseComponent {
 		}
 	}
 
-	click(): this {
+	click() {
 		this.emit(this.toggle() ? OpalTab.EVENT_SELECT : OpalTab.EVENT_DESELECT);
 		return this;
 	}
 
-	select(): boolean {
+	select() {
 		if (!this.selected) {
 			this.selected = true;
 			return true;

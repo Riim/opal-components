@@ -48,7 +48,7 @@ export class OpalMultiselect extends OpalSelect {
 	dataProvider: IDataProvider;
 
 	@Computed
-	get nothingSelectedShown(): boolean {
+	get nothingSelectedShown() {
 		return !this.viewModel.length;
 	}
 

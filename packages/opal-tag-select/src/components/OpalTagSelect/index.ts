@@ -93,13 +93,7 @@ export class OpalTagSelect extends BaseComponent {
 	static defaultViewModelItemSchema = defaultVMItemSchema;
 
 	@Param({ default: 'default' })
-	viewType:
-		| 'default'
-		| 'primary'
-		| 'success'
-		| 'warning'
-		| 'danger'
-		| (string & { _?: never });
+	viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | (string & { _?: never });
 	@Param('dataList')
 	paramDataList: TDataList | null;
 	@Param({ type: String, readonly: true })
@@ -150,12 +144,12 @@ export class OpalTagSelect extends BaseComponent {
 	_viewModelItemDisabledFieldName: string;
 
 	@Computed
-	get value(): Array<string> {
-		return this.viewModel.map(item => item[this._viewModelItemValueFieldName]);
+	get value() {
+		return this.viewModel.map<string>((item) => item[this._viewModelItemValueFieldName]);
 	}
 
 	@Computed
-	get placeholderShown(): boolean {
+	get placeholderShown() {
 		return !!this.placeholder && !this.viewModel.length;
 	}
 
@@ -217,63 +211,63 @@ export class OpalTagSelect extends BaseComponent {
 	}
 
 	@Listen(OpalSelect.EVENT_INPUT, '@select')
-	_onSelectInput(): false {
+	_onSelectInput() {
 		this.select.close();
 		this.emit(OpalTagSelect.EVENT_INPUT);
 		return false;
 	}
 
 	@Listen(OpalSelect.EVENT_CHANGE, '@select')
-	_onSelectChange(): false {
+	_onSelectChange() {
 		this.emit(OpalTagSelect.EVENT_CHANGE);
 		return false;
 	}
 
 	@Listen(OpalSelect.EVENT_SELECT, '@select')
-	_onSelectSelect(): false {
+	_onSelectSelect() {
 		this.select.close();
 		return false;
 	}
 
 	@Listen(OpalSelect.EVENT_DESELECT, '@select')
-	_onSelectDeselect(): false {
+	_onSelectDeselect() {
 		this.select.close();
 		return false;
 	}
 
-	open(): boolean {
+	open() {
 		return this.select.open();
 	}
 
-	close(): boolean {
+	close() {
 		return this.select.close();
 	}
 
-	toggle(): boolean {
+	toggle() {
 		return this.select.toggle();
 	}
 
-	focus(): this {
+	focus() {
 		this.select.focus();
 		return this;
 	}
 
-	blur(): this {
+	blur() {
 		this.select.blur();
 		return this;
 	}
 
-	enable(): this {
+	enable() {
 		this.disabled = false;
 		return this;
 	}
 
-	disable(): this {
+	disable() {
 		this.disabled = true;
 		return this;
 	}
 
-	validate(): boolean {
+	validate() {
 		return !this.validator || this.validator.validate();
 	}
 }

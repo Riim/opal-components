@@ -26,7 +26,7 @@ export class OpalEditableText extends BaseComponent {
 	_textNode: Text;
 
 	_value: string | null;
-	get value(): string | null {
+	get value() {
 		return this._value;
 	}
 	set value(value: string | null) {
@@ -57,7 +57,7 @@ export class OpalEditableText extends BaseComponent {
 		}
 	}
 
-	@Listen('focus', self => self.$<BaseComponent>('contentSlot')!.element)
+	@Listen('focus', (self) => self.$<BaseComponent>('contentSlot')!.element)
 	_onContentSlotElementFocus() {
 		this._documentKeyDownListening = this.listenTo(
 			document,
@@ -66,7 +66,7 @@ export class OpalEditableText extends BaseComponent {
 		);
 	}
 
-	@Listen('blur', self => self.$<BaseComponent>('contentSlot')!.element)
+	@Listen('blur', (self) => self.$<BaseComponent>('contentSlot')!.element)
 	_onContentSlotElementBlur() {
 		this._documentKeyDownListening.stop();
 
@@ -76,7 +76,7 @@ export class OpalEditableText extends BaseComponent {
 		}
 	}
 
-	@Listen('input', self => self.$<BaseComponent>('contentSlot')!.element)
+	@Listen('input', (self) => self.$<BaseComponent>('contentSlot')!.element)
 	_onContentSlotElementInput() {
 		let contentSlotEl = this.$<BaseComponent>('contentSlot')!.element;
 		let text = contentSlotEl.textContent!;

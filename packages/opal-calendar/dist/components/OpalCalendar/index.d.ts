@@ -18,8 +18,14 @@ export interface IDay {
 export declare type TWeekDays = Array<IDay>;
 export declare type TDays = Array<TWeekDays>;
 export declare function getTodayDate(): Date;
-export declare function fromDate(this: OpalCalendar): Date;
-export declare function toDate(this: OpalCalendar): Date;
+export declare function fromDate(this: {
+    paramFromDate: string | null;
+    paramToDate: string | null;
+}): Date;
+export declare function toDate(this: {
+    paramFromDate: string | null;
+    paramToDate: string | null;
+}): Date;
 export declare class OpalCalendar extends BaseComponent {
     static EVENT_CHANGE: symbol;
     paramFromDate: string | null;
@@ -32,7 +38,7 @@ export declare class OpalCalendar extends BaseComponent {
     toDate: Date;
     get fromYear(): number;
     get toYear(): number;
-    get years(): Array<number>;
+    get years(): number[];
     stringValueCell: Cell<string | null> | null;
     get stringValue(): string | null;
     set stringValue(value: string | null);

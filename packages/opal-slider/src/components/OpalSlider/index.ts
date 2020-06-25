@@ -22,7 +22,7 @@ export class OpalSlider extends BaseComponent {
 	range: [number, number] | null;
 
 	@Computed
-	get _firstInputWidth(): number {
+	get _firstInputWidth() {
 		let min = this.min;
 		let all = this.max - min;
 

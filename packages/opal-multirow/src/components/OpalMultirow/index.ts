@@ -25,12 +25,12 @@ export class OpalMultirow extends BaseComponent {
 	_newRows = new ObservableList<{ key: string }>();
 
 	@Computed
-	get _notHaveNewRows(): boolean {
+	get _notHaveNewRows() {
 		return !this._newRows.length;
 	}
 
 	@Computed
-	get _notSingleRow(): boolean {
+	get _notSingleRow() {
 		return this._presetRowCount + this._newRows.length != 1;
 	}
 
@@ -56,7 +56,7 @@ export class OpalMultirow extends BaseComponent {
 			this._presetRowCount--;
 		} else {
 			let key = evt.target.parentComponent!.element.dataset.key;
-			this._newRows.removeAt(this._newRows.findIndex(row => row.key == key));
+			this._newRows.removeAt(this._newRows.findIndex((row) => row.key == key));
 		}
 
 		Cell.release();

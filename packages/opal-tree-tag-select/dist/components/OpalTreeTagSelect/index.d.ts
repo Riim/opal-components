@@ -1,5 +1,5 @@
 import { OpalTagSelect } from '@riim/opal-tag-select';
 export declare class OpalTreeTagSelect extends OpalTagSelect {
-    _onSelectSelect(): false;
-    _onSelectDeselect(): false;
+    _onSelectSelect(): boolean;
+    _onSelectDeselect(): boolean;
 }

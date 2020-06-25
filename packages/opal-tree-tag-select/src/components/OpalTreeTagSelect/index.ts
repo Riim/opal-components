@@ -7,11 +7,11 @@ import template from './template.rnt';
 	template
 })
 export class OpalTreeTagSelect extends OpalTagSelect {
-	_onSelectSelect(): false {
+	_onSelectSelect() {
 		return false;
 	}
 
-	_onSelectDeselect(): false {
+	_onSelectDeselect() {
 		return false;
 	}
 }

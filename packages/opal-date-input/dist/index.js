@@ -108,9 +108,16 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__tCi__;
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("iMF9");
 __webpack_require__("A7KY");
@@ -118,7 +125,7 @@ __webpack_require__("Y0hN");
 __webpack_require__("JK3/");
 __webpack_require__("hl6F");
 __webpack_require__("/tCi");
-__export(__webpack_require__("ZX14"));
+__exportStar(__webpack_require__("ZX14"), exports);
 
 
 /***/ }),
@@ -184,6 +191,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalDateInput = void 0;
 const opal_calendar_1 = __webpack_require__("iMF9");
 const opal_text_input_1 = __webpack_require__("hl6F");
 const date_exists_1 = __webpack_require__("aB20");
@@ -211,7 +219,8 @@ let OpalDateInput = class OpalDateInput extends rionite_1.BaseComponent {
         if (calendar) {
             return d >= calendar.fromDate && d <= calendar.toDate;
         }
-        return d >= opal_calendar_1.fromDate.call(this) && d <= opal_calendar_1.toDate.call(this);
+        return (d >= opal_calendar_1.fromDate.call({ paramFromDate: this.fromDate, paramToDate: this.toDate }) &&
+            d <= opal_calendar_1.toDate.call({ paramFromDate: this.fromDate, paramToDate: this.toDate }));
     }
     _onTextInputChange(evt) {
         if (this.$('textInputValidator').valid) {
@@ -319,7 +328,7 @@ __decorate([
     rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_CHANGE, 'textInput')
 ], OpalDateInput.prototype, "_onTextInputChange", null);
 __decorate([
-    rionite_1.Listen('click', self => self.$('textInput').element)
+    rionite_1.Listen('click', (self) => self.$('textInput').element)
 ], OpalDateInput.prototype, "_onTextInputElementClick", null);
 __decorate([
     rionite_1.Listen('change:opened', 'calendarMenu')

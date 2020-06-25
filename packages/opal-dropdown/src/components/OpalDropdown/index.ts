@@ -51,7 +51,7 @@ export class OpalDropdown extends BaseComponent {
 		}
 	}
 
-	open(): boolean {
+	open() {
 		if (this.opened) {
 			return false;
 		}
@@ -62,7 +62,7 @@ export class OpalDropdown extends BaseComponent {
 		return true;
 	}
 
-	close(): boolean {
+	close() {
 		if (!this.opened) {
 			return false;
 		}
@@ -73,7 +73,7 @@ export class OpalDropdown extends BaseComponent {
 		return true;
 	}
 
-	toggle(value?: boolean): boolean {
+	toggle(value?: boolean) {
 		if (value !== undefined) {
 			return value ? this.open() : !this.close();
 		}

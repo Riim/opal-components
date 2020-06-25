@@ -6,11 +6,5 @@ import './index.css';
 })
 export class OpalTag extends BaseComponent {
 	@Param({ default: 'default' })
-	viewType:
-		| 'default'
-		| 'primary'
-		| 'success'
-		| 'warning'
-		| 'danger'
-		| (string & { _?: never });
+	viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | (string & { _?: never });
 }

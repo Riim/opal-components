@@ -96,7 +96,7 @@ export class OpalModal extends BaseComponent {
 		}
 	}
 
-	open(): boolean {
+	open() {
 		if (this.opened) {
 			return false;
 		}
@@ -107,7 +107,7 @@ export class OpalModal extends BaseComponent {
 		return true;
 	}
 
-	close(): boolean {
+	close() {
 		if (!this.opened) {
 			return false;
 		}
@@ -118,7 +118,7 @@ export class OpalModal extends BaseComponent {
 		return true;
 	}
 
-	toggle(value?: boolean): boolean {
+	toggle(value?: boolean) {
 		if (value !== undefined) {
 			return value ? this.open() : !this.close();
 		}
@@ -183,7 +183,7 @@ export class OpalModal extends BaseComponent {
 		}
 	}
 
-	focus(): this {
+	focus() {
 		if (this == openedModals[0]) {
 			let focusTarget = this.$<HTMLElement>('focus');
 

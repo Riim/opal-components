@@ -1,18 +1,30 @@
 {
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
+		"alwaysStrict": true,
 		"declaration": true,
 		"experimentalDecorators": true,
-		"lib": ["es2017", "dom"],
+		"lib": ["ES2017", "DOM", "DOM.Iterable"],
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"newLine": "lf",
 		"noImplicitAny": true,
 		"noImplicitReturns": true,
+		"noImplicitThis": true,
 		"noUnusedLocals": true,
 		"preserveConstEnums": true,
+		"strictBindCallApply": true,
+		"strictFunctionTypes": false,
 		"strictNullChecks": true,
+		"strictPropertyInitialization": false,
 		"suppressImplicitAnyIndexErrors": true,
 		"target": "es2017"
-	}
+	},
+	"include": [
+		"typings.d.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"dist"
+	]
 }

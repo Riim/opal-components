@@ -36,7 +36,7 @@ export class OpalSelectOption extends BaseComponent {
 	disabled: boolean;
 
 	@Computed
-	get _tabIndex(): number {
+	get _tabIndex() {
 		return this.disabled ? -1 : this.tabIndex;
 	}
 
@@ -92,34 +92,34 @@ export class OpalSelectOption extends BaseComponent {
 		}
 	}
 
-	click(): this {
+	click() {
 		this.emit(this.toggle() ? OpalSelectOption.EVENT_SELECT : OpalSelectOption.EVENT_DESELECT);
 		this.emit(OpalSelectOption.EVENT_CHANGE);
 		return this;
 	}
 
-	get value(): string {
+	get value() {
 		return this.paramValue === null ? this.paramText : this.paramValue;
 	}
 	set value(value: string) {
 		this.paramValue = value;
 	}
 
-	get text(): string {
+	get text() {
 		return this.paramText.trim() || '—';
 	}
 	set text(text: string) {
 		this.paramText = text;
 	}
 
-	get subtext(): string | null {
+	get subtext() {
 		return this.paramSubtext && this.paramSubtext.trim();
 	}
 	set subtext(subtext: string | null) {
 		this.paramSubtext = subtext as any;
 	}
 
-	select(): boolean {
+	select() {
 		if (!this.selected) {
 			this.selected = true;
 			return true;
@@ -128,7 +128,7 @@ export class OpalSelectOption extends BaseComponent {
 		return false;
 	}
 
-	deselect(): boolean {
+	deselect() {
 		if (this.selected) {
 			this.selected = false;
 			return true;
@@ -137,26 +137,26 @@ export class OpalSelectOption extends BaseComponent {
 		return false;
 	}
 
-	toggle(value?: boolean): boolean {
+	toggle(value?: boolean) {
 		return (this.selected = value === undefined ? !this.selected : value);
 	}
 
-	focus(): this {
+	focus() {
 		this.$<HTMLElement>('control')!.focus();
 		return this;
 	}
 
-	blur(): this {
+	blur() {
 		this.$<HTMLElement>('control')!.blur();
 		return this;
 	}
 
-	enable(): this {
+	enable() {
 		this.disabled = false;
 		return this;
 	}
 
-	disable(): this {
+	disable() {
 		this.disabled = true;
 		return this;
 	}

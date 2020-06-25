@@ -35,13 +35,7 @@ export class OpalNotification extends BaseComponent {
 	static EVENT_HIDE = Symbol('hide');
 
 	@Param({ default: 'default' })
-	viewType:
-		| 'default'
-		| 'primary'
-		| 'success'
-		| 'warning'
-		| 'danger'
-		| (string & { _?: never });
+	viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | (string & { _?: never });
 	@Param(String)
 	icon: string | null;
 	@Param({ default: 'xs' })
@@ -57,8 +51,8 @@ export class OpalNotification extends BaseComponent {
 
 	_closingTimeoutId?: number | null;
 
-	$<R>(name: string, container: BaseComponent | Element = this.bar): R | null {
-		return super.$(name, container);
+	$<R>(name: string, container: BaseComponent | Element = this.bar) {
+		return super.$<R>(name, container);
 	}
 
 	ready() {
@@ -116,7 +110,7 @@ export class OpalNotification extends BaseComponent {
 		this.emit(OpalNotification.EVENT_CLOSE);
 	}
 
-	show(): boolean {
+	show() {
 		if (this.shown) {
 			return false;
 		}
@@ -127,7 +121,7 @@ export class OpalNotification extends BaseComponent {
 		return true;
 	}
 
-	hide(): boolean {
+	hide() {
 		if (!this.shown) {
 			return false;
 		}
@@ -138,15 +132,15 @@ export class OpalNotification extends BaseComponent {
 		return true;
 	}
 
-	open(): boolean {
+	open() {
 		return this.show();
 	}
 
-	close(): boolean {
+	close() {
 		return this.hide();
 	}
 
-	toggle(value?: boolean): boolean {
+	toggle(value?: boolean) {
 		if (value !== undefined) {
 			return value ? this.show() : !this.hide();
 		}
@@ -181,7 +175,7 @@ export class OpalNotification extends BaseComponent {
 		this.bar.removeAttribute('shown');
 	}
 
-	focus(): this {
+	focus() {
 		let focusTarget = this.$<HTMLElement>('focus');
 
 		if (focusTarget) {

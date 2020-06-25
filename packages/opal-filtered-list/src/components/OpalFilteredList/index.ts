@@ -33,7 +33,7 @@ export class OpalFilteredList extends BaseComponent {
 		this.$<OpalLoadedList>('list')!.query = query!;
 	}
 
-	focus(): boolean {
+	focus() {
 		let queryInput = this.$<OpalTextInput>('queryInput');
 
 		if (queryInput) {

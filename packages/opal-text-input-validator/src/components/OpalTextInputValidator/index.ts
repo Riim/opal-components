@@ -28,7 +28,7 @@ export class OpalTextInputValidator extends OpalInputValidator {
 		}
 	}
 
-	_checkValue(rule: OpalTextInputValidatorRule): boolean {
+	_checkValue(rule: OpalTextInputValidatorRule) {
 		let value = this.textInput.value;
 
 		return !(value

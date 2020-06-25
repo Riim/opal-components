@@ -76,12 +76,12 @@ export class OpalLoadedList extends BaseComponent {
 	_lastLoadedQuery: string | null = null;
 
 	@Computed
-	get loaderShown(): boolean {
+	get loaderShown() {
 		return this.total === undefined || this.dataList.length < this.total || this.loading;
 	}
 
 	@Computed
-	get nothingFoundShown(): boolean {
+	get nothingFoundShown() {
 		return this.total === 0 && !this._loadingCheckPlanned && !this.loading;
 	}
 
@@ -185,7 +185,7 @@ export class OpalLoadedList extends BaseComponent {
 		this.loading = true;
 
 		this.dataProvider!.getItems.apply(this.dataProvider, args).then(
-			(this._requestCallback = this.registerCallback(function(
+			(this._requestCallback = this.registerCallback(function (
 				this: OpalLoadedList,
 				data: {
 					items: Array<IDataListItem>;

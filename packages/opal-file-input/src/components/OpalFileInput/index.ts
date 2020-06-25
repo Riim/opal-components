@@ -89,8 +89,8 @@ export class OpalFileInput extends BaseComponent {
 	_reFileType: RegExp;
 
 	@Computed
-	get files(): Array<File> {
-		return this.dataList.map(fileData => fileData.file!).filter(file => file);
+	get files() {
+		return this.dataList.map((fileData) => fileData.file!).filter((file) => file);
 	}
 
 	@Observable
@@ -109,7 +109,7 @@ export class OpalFileInput extends BaseComponent {
 			this._reFileType = RegExp(
 				`^(?:${this.allowType
 					.split(',')
-					.map(type => escapeRegExp(type.trim()))
+					.map((type) => escapeRegExp(type.trim()))
 					.join('|')
 					.split('\\*')
 					.join('.*')})$`
@@ -205,10 +205,10 @@ export class OpalFileInput extends BaseComponent {
 		let targetFileDataUID = target.dataset.fileDataUid!;
 		let dragElFileDataUID = dragEl!.dataset.fileDataUid!;
 		let targetFileDataIndex = this.dataList.findIndex(
-			fileData => getUID(fileData) == targetFileDataUID
+			(fileData) => getUID(fileData) == targetFileDataUID
 		);
 		let dragElFileDataIndex = this.dataList.findIndex(
-			fileData => getUID(fileData) == dragElFileDataUID
+			(fileData) => getUID(fileData) == dragElFileDataUID
 		);
 		let targetFileData = this.dataList.get(targetFileDataIndex)!;
 
@@ -236,7 +236,7 @@ export class OpalFileInput extends BaseComponent {
 		dragEl = null;
 	}
 
-	_addFiles(files: FileList): boolean {
+	_addFiles(files: FileList) {
 		let sizeLimit = this.sizeLimit;
 		let totalSizeLimit = this.totalSizeLimit;
 		let reFileType = this._reFileType;
@@ -280,7 +280,7 @@ export class OpalFileInput extends BaseComponent {
 
 			let reader = new FileReader();
 
-			reader.addEventListener('load', evt => {
+			reader.addEventListener('load', (evt) => {
 				this.dataList.replace(fileData, {
 					...fileData,
 					dataURI: `data:${file.type};base64,${btoa(evt.target!.result as string)}`
@@ -295,7 +295,7 @@ export class OpalFileInput extends BaseComponent {
 		return true;
 	}
 
-	_getFileElement(node: Node, stopEl = this.fileListEl): HTMLElement | null {
+	_getFileElement(node: Node, stopEl = this.fileListEl) {
 		let el = node.nodeType == Node.ELEMENT_NODE ? (node as HTMLElement) : node.parentElement!;
 
 		for (; el != stopEl; el = el.parentElement!) {
@@ -307,7 +307,7 @@ export class OpalFileInput extends BaseComponent {
 		return null;
 	}
 
-	_isImage(fileData: IFileData): boolean {
+	_isImage(fileData: IFileData) {
 		if (fileData.file && fileData.file.type.startsWith('image/')) {
 			return true;
 		}
@@ -318,32 +318,32 @@ export class OpalFileInput extends BaseComponent {
 		return false;
 	}
 
-	clear(): this {
+	clear() {
 		this.dataList.clear();
 		return this;
 	}
 
-	focus(): this {
+	focus() {
 		(this.btnSelectFile || this.$<HTMLElement>('btnSelectFiles'))!.focus();
 		return this;
 	}
 
-	blur(): this {
+	blur() {
 		(this.btnSelectFile || this.$<HTMLElement>('btnSelectFiles'))!.blur();
 		return this;
 	}
 
-	enable(): this {
+	enable() {
 		this.disabled = false;
 		return this;
 	}
 
-	disable(): this {
+	disable() {
 		this.disabled = true;
 		return this;
 	}
 
-	validate(): boolean {
+	validate() {
 		return !this.validator || this.validator.validate();
 	}
 }

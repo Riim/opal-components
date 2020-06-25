@@ -120,7 +120,7 @@ export class OpalTabs extends BaseComponent {
 		}
 	}
 
-	goToTab(label: string): boolean {
+	goToTab(label: string) {
 		if (this._selectedTab && this._selectedTab!.label === label) {
 			return true;
 		}

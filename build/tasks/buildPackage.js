@@ -15,7 +15,6 @@ const externals = [
 	'@riim/gettext',
 	'@riim/kebab-case',
 	'@riim/next-tick',
-	'@riim/object-assign-polyfill',
 	'@riim/platform',
 	'@riim/rionite-snake-case-attribute-name',
 	'@riim/next-uid',
@@ -69,10 +68,12 @@ const externals = [
 	'@riim/opal-tree-tag-select'
 ];
 
-gulp.task('buildPackage', done => {
-	console.log('[buildPackage]', argv.package);
+gulp.task('buildPackage', (done) => {
+	let package = argv.package;
 
-	let p = `packages/${argv.package}/src/index.ts`;
+	console.log('[buildPackage]', package);
+
+	let p = `packages/${package}/src/index.ts`;
 	let plugins = [];
 	let config = {
 		mode: 'none',
@@ -93,7 +94,10 @@ gulp.task('buildPackage', done => {
 				{
 					test: /\.ts$/,
 					exclude: /(?:node_modules|bower_components)/,
-					loader: 'awesome-typescript-loader'
+					loader: 'awesome-typescript-loader',
+					options: {
+						configFileName: `packages/${package}/tsconfig.json`
+					}
 				},
 				{
 					test: /\.rnt$/,

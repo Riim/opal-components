@@ -78,9 +78,9 @@ export declare class OpalSelect extends BaseComponent {
     set value(value: Array<string>);
     _addItem: ((text: string, select: OpalSelect) => Promise<Record<string, string>>) | null;
     get _buttonText(): string;
-    optionElements: HTMLCollectionOf<IComponentElement>;
+    optionElements: HTMLCollectionOf<IComponentElement<OpalSelectOption>>;
     optionsCell: Cell<Array<OpalSelectOption>> | null;
-    get options(): Array<OpalSelectOption>;
+    get options(): OpalSelectOption[];
     _needOptionsUpdating: boolean;
     _notUpdateOptions: boolean;
     _opened: boolean;
@@ -108,11 +108,11 @@ export declare class OpalSelect extends BaseComponent {
     _onButtonClick(evt: IEvent<OpalButton>): void;
     _onButtonElementMouseDown(): void;
     _onDocumentClick(): void;
-    _onMenuOpenedChange(evt: IEvent): false;
-    _onMenuSelectOptionSelect(evt: IEvent<OpalSelectOption>): false;
-    _onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>): false;
-    _onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | void;
-    _onMenuButtonClick(evt: IEvent<OpalButton>): false | void;
+    _onMenuOpenedChange(evt: IEvent): boolean;
+    _onMenuSelectOptionSelect(evt: IEvent<OpalSelectOption>): boolean;
+    _onMenuSelectOptionDeselect(evt: IEvent<OpalSelectOption>): boolean;
+    _onMenuTextInputConfirm(evt: IEvent<OpalTextInput>): false | undefined;
+    _onMenuButtonClick(evt: IEvent<OpalButton>): false | undefined;
     _addItem$(item: Record<string, string>): void;
     _onMenuChange(): void;
     open(): boolean;

@@ -172,6 +172,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalTabPanel = void 0;
 const cellx_1 = __webpack_require__("P7z7");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
@@ -259,18 +260,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var OpalTabs_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalTabs = exports.OpalTabPanel = exports.OpalTab = void 0;
 const next_uid_1 = __webpack_require__("cIp5");
 const opal_router_1 = __webpack_require__("Oufu");
 const cellx_1 = __webpack_require__("P7z7");
 const rionite_1 = __webpack_require__("u4yd");
 const OpalTabList_1 = __webpack_require__("tlR1");
-exports.OpalTab = OpalTabList_1.OpalTab;
+Object.defineProperty(exports, "OpalTab", { enumerable: true, get: function () { return OpalTabList_1.OpalTab; } });
 const OpalTabPanel_1 = __webpack_require__("E+E0");
-exports.OpalTabPanel = OpalTabPanel_1.OpalTabPanel;
+Object.defineProperty(exports, "OpalTabPanel", { enumerable: true, get: function () { return OpalTabPanel_1.OpalTabPanel; } });
 __webpack_require__("3mf0");
 const template_rnt_1 = __webpack_require__("nJc3");
 var OpalTabList_2 = __webpack_require__("tlR1");
-exports.OpalTabList = OpalTabList_2.OpalTabList;
+Object.defineProperty(exports, "OpalTabList", { enumerable: true, get: function () { return OpalTabList_2.OpalTabList; } });
 const indexOf = Array.prototype.indexOf;
 const forEach = Array.prototype.forEach;
 const find = Array.prototype.find;
@@ -449,9 +451,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalTabList = exports.OpalTab = void 0;
 const rionite_1 = __webpack_require__("u4yd");
 const OpalTab_1 = __webpack_require__("tpnT");
-exports.OpalTab = OpalTab_1.OpalTab;
+Object.defineProperty(exports, "OpalTab", { enumerable: true, get: function () { return OpalTab_1.OpalTab; } });
 __webpack_require__("QGS3");
 const template_rnt_1 = __webpack_require__("WQPC");
 let OpalTabList = class OpalTabList extends rionite_1.BaseComponent {
@@ -480,6 +483,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var OpalTab_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalTab = void 0;
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("/G9H");
@@ -598,11 +602,18 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__("Rwo/"));
+__exportStar(__webpack_require__("Rwo/"), exports);
 
 
 /***/ }),

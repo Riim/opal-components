@@ -1,4 +1,3 @@
-import { assign } from '@riim/object-assign-polyfill';
 import { EventEmitter } from 'cellx';
 
 const ERROR_INDEXPATH_EMPTY = 'Indexpath cannot be empty';
@@ -23,7 +22,7 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 
 	_items: Array<T>;
 
-	get length(): number {
+	get length() {
 		return this._items.length;
 	}
 
@@ -33,15 +32,16 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 		this._items = items
 			? setParent(
 					items.map(function _(item): T {
-						return assign(assign({}, item), {
+						return {
+							...item,
 							children: item.children ? item.children.map(_) : []
-						});
+						};
 					})
 			  )
 			: [];
 	}
 
-	get(indexpath: Array<number> | number): T | undefined {
+	get(indexpath: Array<number> | number) {
 		if (typeof indexpath == 'number') {
 			return this._items[indexpath];
 		}
@@ -59,7 +59,7 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 		return item as T | undefined;
 	}
 
-	set(indexpath: Array<number> | number, item: T): this {
+	set(indexpath: Array<number> | number, item: T) {
 		let items: Array<IItem> | undefined;
 		let parent: IItem | undefined;
 		let index: number;
@@ -164,16 +164,16 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 	}
 }
 
-['forEach', 'map', 'filter', 'every', 'some'].forEach(name => {
-	ObservableTreeList.prototype[name] = function(callback: any, context: any) {
-		return this._items[name](function(item: any, index: any) {
+for (let name of ['forEach', 'map', 'filter', 'every', 'some']) {
+	ObservableTreeList.prototype[name] = function (callback: any, context: any) {
+		return this._items[name](function (this: any, item: any, index: any) {
 			return callback.call(context, item, index, this);
 		}, this);
 	};
-});
+}
 
-['reduce', 'reduceRight'].forEach(name => {
-	ObservableTreeList.prototype[name] = function(callback: any, initialValue: any) {
+for (let name of ['reduce', 'reduceRight']) {
+	ObservableTreeList.prototype[name] = function (callback: any, initialValue: any) {
 		let items = this._items;
 		let list = this;
 
@@ -183,4 +183,4 @@ export class ObservableTreeList<T extends IItem = IItem> extends EventEmitter {
 
 		return arguments.length >= 2 ? items[name](wrapper, initialValue) : items[name](wrapper);
 	};
-});
+}

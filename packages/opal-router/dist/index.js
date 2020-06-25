@@ -102,6 +102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PathNodeType = void 0;
 var PathNodeType;
 (function (PathNodeType) {
     PathNodeType[PathNodeType["STATIC"] = 0] = "STATIC";
@@ -135,11 +136,18 @@ module.exports = (function(d) {
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__("SN5g"));
+__exportStar(__webpack_require__("SN5g"), exports);
 
 
 /***/ }),
@@ -149,17 +157,25 @@ __export(__webpack_require__("SN5g"));
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 var OpalRouter_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalRouter = exports.OpalRoute = void 0;
 const kebab_case_1 = __webpack_require__("vRer");
 const next_uid_1 = __webpack_require__("cIp5");
 const rionite_snake_case_attribute_name_1 = __webpack_require__("wLwu");
@@ -167,13 +183,13 @@ const cellx_decorators_1 = __webpack_require__("yOaX");
 const history_1 = __webpack_require__("ZFcg");
 const rionite_1 = __webpack_require__("u4yd");
 const OpalRoute_1 = __webpack_require__("ZqFQ");
-exports.OpalRoute = OpalRoute_1.OpalRoute;
+Object.defineProperty(exports, "OpalRoute", { enumerable: true, get: function () { return OpalRoute_1.OpalRoute; } });
 __webpack_require__("3C5J");
 const escapeRegExp_1 = __webpack_require__("xb8m");
 const parsePath_1 = __webpack_require__("w1X0");
 const PathNodeType_1 = __webpack_require__("+FrP");
 const template_rnt_1 = __webpack_require__("nuuU");
-__export(__webpack_require__("ZFcg"));
+__exportStar(__webpack_require__("ZFcg"), exports);
 const history = history_1.createBrowserHistory();
 function valueToAttributeValue(value) {
     return value === false ? 'no' : value === true ? 'yes' : value;
@@ -191,7 +207,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
     }
     ready() {
         let routes = this._routes;
-        Array.prototype.forEach.call(this.element.getElementsByTagName('opal-route'), (routeEl) => {
+        for (let routeEl of this.element.getElementsByTagName('opal-route')) {
             let path = routeEl.$component.path;
             let rePath = [];
             let props = [];
@@ -235,7 +251,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
                 properties: props,
                 component: routeEl.$component
             });
-        });
+        }
     }
     elementAttached() {
         this._disposables[next_uid_1.nextUID()] = {
@@ -518,6 +534,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalRoute = void 0;
 const rionite_1 = __webpack_require__("u4yd");
 let OpalRoute = class OpalRoute extends rionite_1.BaseComponent {
 };
@@ -577,6 +594,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vRer__;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.parsePath = void 0;
 const PathNodeType_1 = __webpack_require__("+FrP");
 const reName = /[a-z][0-9a-z]*/i;
 function parsePath(path) {
@@ -744,6 +762,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_wLwu__;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.escapeRegExp = void 0;
 const reEscapableChars = /([?+|$(){}[^.\-\]\/\\*])/g;
 function escapeRegExp(str) {
     return str.replace(reEscapableChars, '\\$1');

@@ -102,7 +102,7 @@ const reEmailOrUrl3 = RegExp(
 	'g'
 );
 
-function handleLink(quill: Quill, range: RangeStatic, context: any): true {
+function handleLink(quill: Quill, range: RangeStatic, context: any) {
 	let match = context.prefix.match(reEmailOrUrl2);
 
 	if (match) {
@@ -189,7 +189,7 @@ export class OpalTextEditor extends BaseComponent {
 	@Observable
 	_value: string | null = null;
 
-	get value(): string | null {
+	get value() {
 		let value =
 			this._value &&
 			this._value
@@ -284,11 +284,11 @@ export class OpalTextEditor extends BaseComponent {
 			if (matches) {
 				let ops = [];
 
-				matches.forEach(match => {
+				for (let match of matches) {
 					let s = str.split(match);
 					ops.push({ insert: s.shift() }, { insert: match, attributes: { link: match } });
 					str = s.join(match);
-				});
+				}
 
 				if (str) {
 					ops.push({ insert: str });
@@ -472,32 +472,32 @@ export class OpalTextEditor extends BaseComponent {
 			'px';
 	}
 
-	clear(): this {
+	clear() {
 		this.value = null;
 		return this;
 	}
 
-	focus(): this {
+	focus() {
 		this.textField.focus();
 		return this;
 	}
 
-	blur(): this {
+	blur() {
 		this.textField.blur();
 		return this;
 	}
 
-	enable(): this {
+	enable() {
 		this.disabled = false;
 		return this;
 	}
 
-	disable(): this {
+	disable() {
 		this.disabled = true;
 		return this;
 	}
 
-	validate(): boolean {
+	validate() {
 		return !this.validator || this.validator.validate();
 	}
 }

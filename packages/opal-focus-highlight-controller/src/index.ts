@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function onDOMContentLoaded() {
 
 	body.classList.add('_noFocusHighlight');
 
-	document.addEventListener('keydown', evt => {
+	document.addEventListener('keydown', (evt) => {
 		if (evt.which == 9 /* Tab */) {
 			body.classList.remove('_noFocusHighlight');
 		}

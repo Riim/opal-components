@@ -50,14 +50,8 @@ const defaultVMItemSchema = Object.freeze({
 	text: 'name'
 });
 
-function toComparable(str: string | null): string | null {
-	return (
-		str &&
-		str
-			.trim()
-			.replace(/\s+/g, ' ')
-			.toLowerCase()
-	);
+function toComparable(str: string | null) {
+	return str && str.trim().replace(/\s+/g, ' ').toLowerCase();
 }
 
 @Component({
@@ -100,7 +94,7 @@ export class OpalTreeList extends BaseComponent {
 	comparableQuery: string | null;
 
 	@Computed
-	get filteredDataTreeList(): TDataTreeList | null {
+	get filteredDataTreeList() {
 		let dataTreeList = this.dataTreeList;
 
 		if (!dataTreeList) {
@@ -158,7 +152,7 @@ export class OpalTreeList extends BaseComponent {
 	_queryTimeout: IDisposableTimeout | null = null;
 
 	@Computed
-	get listShown(): boolean {
+	get listShown() {
 		return !!this.dataTreeList && !this._queryTimeout;
 	}
 
@@ -230,10 +224,10 @@ export class OpalTreeList extends BaseComponent {
 				let parent;
 				(parent = item.parent) &&
 				parent.children.every(
-					child =>
+					(child) =>
 						child == item ||
 						!!vm.find(
-							vmItem =>
+							(vmItem) =>
 								vmItem[viewModelItemValueFieldName] ==
 								child[dataTreeListItemValueFieldName]
 						)
@@ -245,7 +239,7 @@ export class OpalTreeList extends BaseComponent {
 
 			item.children.forEach(function _(child) {
 				let childIndex = vm.findIndex(
-					vmItem =>
+					(vmItem) =>
 						vmItem[viewModelItemValueFieldName] == child[dataTreeListItemValueFieldName]
 				);
 
@@ -262,7 +256,7 @@ export class OpalTreeList extends BaseComponent {
 			});
 		} else {
 			let itemIndex = vm.findIndex(
-				vmItem =>
+				(vmItem) =>
 					vmItem[viewModelItemValueFieldName] == item[dataTreeListItemValueFieldName]
 			);
 
@@ -273,15 +267,15 @@ export class OpalTreeList extends BaseComponent {
 
 				for (;;) {
 					let parentIndex = vm.findIndex(
-						vmItem =>
+						(vmItem) =>
 							vmItem[viewModelItemValueFieldName] ==
 							parent[dataTreeListItemValueFieldName]
 					);
 
 					vm.addRange(
 						((parent as IFilteredDataTreeListItem).$original || parent).children
-							.filter(child => child != item)
-							.map(child => ({
+							.filter((child) => child != item)
+							.map((child) => ({
 								[viewModelItemValueFieldName]:
 									child[dataTreeListItemValueFieldName],
 								[viewModelItemTextFieldName]: child[dataTreeListItemTextFieldName]

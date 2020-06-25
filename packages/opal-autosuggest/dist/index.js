@@ -137,6 +137,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var OpalAutosuggest_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalAutosuggest = void 0;
 const next_tick_1 = __webpack_require__("WTz/");
 const opal_text_input_1 = __webpack_require__("hl6F");
 const cellx_1 = __webpack_require__("P7z7");
@@ -369,9 +370,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
         if (this.dataProvider.getItems.length >= 2) {
             args.unshift(this.limit);
         }
-        this.dataProvider.getItems
-            .apply(this.dataProvider, args)
-            .then((this._requestCallback = this.registerCallback(this._itemsRequestCallback)));
+        this.dataProvider.getItems.apply(this.dataProvider, args).then((this._requestCallback = this.registerCallback(this._itemsRequestCallback)));
     }
     _itemsRequestCallback(data) {
         this.loading = false;
@@ -426,7 +425,7 @@ let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_
                 let query = this.$('textInput').value;
                 if (query) {
                     query = toComparable(query);
-                    item = this.dataList.find(item => toComparable(item[this._dataListItemTextFieldName]) == query);
+                    item = this.dataList.find((item) => toComparable(item[this._dataListItemTextFieldName]) == query);
                     if (item && this.dataList.length > 1) {
                         this._clearDataList();
                     }
@@ -519,13 +518,13 @@ __decorate([
     rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_CHANGE, 'textInput')
 ], OpalAutosuggest.prototype, "_onTextInputChange", null);
 __decorate([
-    rionite_1.Listen('click', self => self.$('textInput').textField)
+    rionite_1.Listen('click', (self) => self.$('textInput').textField)
 ], OpalAutosuggest.prototype, "_onTextFieldClick", null);
 __decorate([
     rionite_1.Listen('change:opened', 'menu')
 ], OpalAutosuggest.prototype, "_onMenuOpenedChange", null);
 __decorate([
-    rionite_1.Listen('mouseover', self => self.$('menu').element)
+    rionite_1.Listen('mouseover', (self) => self.$('menu').element)
 ], OpalAutosuggest.prototype, "_onMenuElementMouseOver", null);
 OpalAutosuggest = OpalAutosuggest_1 = __decorate([
     rionite_1.Component({
@@ -587,14 +586,21 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_Y0hN__;
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("A7KY");
 __webpack_require__("Y0hN");
 __webpack_require__("hl6F");
-__export(__webpack_require__("9cQR"));
+__exportStar(__webpack_require__("9cQR"), exports);
 
 
 /***/ }),

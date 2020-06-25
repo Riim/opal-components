@@ -11732,6 +11732,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var OpalTextEditor_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalTextEditor = void 0;
 const next_tick_1 = __webpack_require__("WTz/");
 const opal_text_input_validator_1 = __webpack_require__("/tCi");
 const cellx_decorators_1 = __webpack_require__("yOaX");
@@ -11902,11 +11903,11 @@ let OpalTextEditor = OpalTextEditor_1 = class OpalTextEditor extends rionite_1.B
             let matches = str.match(reEmailOrUrl3);
             if (matches) {
                 let ops = [];
-                matches.forEach(match => {
+                for (let match of matches) {
                     let s = str.split(match);
                     ops.push({ insert: s.shift() }, { insert: match, attributes: { link: match } });
                     str = s.join(match);
-                });
+                }
                 if (str) {
                     ops.push({ insert: str });
                 }
@@ -12175,13 +12176,20 @@ opal_text_input_validator_1.OpalTextInputValidator.targetInputEvents.push(OpalTe
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("BLMt");
 __webpack_require__("/tCi");
-__export(__webpack_require__("JDHJ"));
+__exportStar(__webpack_require__("JDHJ"), exports);
 
 
 /***/ }),

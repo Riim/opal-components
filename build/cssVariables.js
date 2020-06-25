@@ -17,12 +17,7 @@ function gradientColors(color, count = 10) {
 	}
 
 	return lightnesses.map(
-		step =>
-			color
-				.lightness(step)
-				.hsl()
-				.string()
-				.replace(/ /g, '')
+		(step) => color.lightness(step).hsl().string().replace(/ /g, '')
 		// .replace(/(\d+)\.(\d+)/g, (match, num1, num2) =>
 		// 	+('0.' + num2) < 0.5 ? num1 : +num1 + 1
 		// )

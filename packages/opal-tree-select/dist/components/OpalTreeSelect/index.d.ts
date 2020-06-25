@@ -17,8 +17,8 @@ export declare class OpalTreeSelect extends OpalSelect {
     openOnClick: boolean;
     dataTreeList: TDataTreeList;
     initialize(): void;
-    _onMenuSelectOptionSelect(): false;
-    _onMenuSelectOptionDeselect(): false;
-    _onMenuChange(): false;
+    _onMenuSelectOptionSelect(): boolean;
+    _onMenuSelectOptionDeselect(): boolean;
+    _onMenuChange(): boolean;
     _updateOptions(): void;
 }

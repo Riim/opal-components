@@ -101,12 +101,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("hl6F");
-__export(__webpack_require__("X+JO"));
+__exportStar(__webpack_require__("X+JO"), exports);
 
 
 /***/ }),
@@ -133,6 +140,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalInputMaskDefinition = void 0;
 const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("lXXY");
 let OpalInputMaskDefinition = class OpalInputMaskDefinition extends rionite_1.BaseComponent {
@@ -166,28 +174,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var OpalInputMask_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpalInputMask = exports.OpalInputMaskDefinition = void 0;
 const opal_text_input_1 = __webpack_require__("hl6F");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
 const OpalInputMaskDefinition_1 = __webpack_require__("Vtn7");
-exports.OpalInputMaskDefinition = OpalInputMaskDefinition_1.OpalInputMaskDefinition;
+Object.defineProperty(exports, "OpalInputMaskDefinition", { enumerable: true, get: function () { return OpalInputMaskDefinition_1.OpalInputMaskDefinition; } });
 const template_rnt_1 = __webpack_require__("DWkP");
 const forEach = Array.prototype.forEach;
 const iPhone = /iphone/i.test(navigator.userAgent);
 const ie11 = !window.ActiveXObject && 'ActiveXObject' in window;
 let OpalInputMask = OpalInputMask_1 = class OpalInputMask extends rionite_1.BaseComponent {
     get _mask() {
-        return this.mask.split('').filter(chr => chr != '?');
+        return this.mask.split('').filter((chr) => chr != '?');
     }
     get _partialIndex() {
         let index = this.mask.indexOf('?');
         return index == -1 ? this.mask.length : index;
     }
     get _tests() {
-        return this._mask.map(chr => this._definitions[chr] || null);
+        return this._mask.map((chr) => this._definitions[chr] || null);
     }
     get _firstTestIndex() {
-        return this._tests.findIndex(test => !!test);
+        return this._tests.findIndex((test) => !!test);
     }
     initialize() {
         this._definitions = Object.create(this.constructor.defaultDefinitions);

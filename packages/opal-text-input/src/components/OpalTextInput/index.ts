@@ -87,13 +87,13 @@ export class OpalTextInput extends BaseComponent {
 
 	_inputTypeCell: Cell<string> | null = null;
 	@Computed
-	get _inputType(): string {
+	get _inputType() {
 		return this.inputType;
 	}
 
 	textField: HTMLInputElement;
 
-	get value(): string | null {
+	get value() {
 		return (this.paramValue && this.paramValue.trim()) || null;
 	}
 	set value(value: string | null) {
@@ -104,12 +104,12 @@ export class OpalTextInput extends BaseComponent {
 	_prevValue: string | null;
 
 	@Computed
-	get btnClearShown(): boolean {
+	get btnClearShown() {
 		return this.clearable && !this.loading && !!this.paramValue;
 	}
 
 	@Computed
-	get endIconShown(): boolean {
+	get endIconShown() {
 		return !this.loading && !this.btnClearShown;
 	}
 
@@ -229,32 +229,32 @@ export class OpalTextInput extends BaseComponent {
 		this.$<Element>('textareaHeight')!.innerHTML = this.textField.value + '\n';
 	}
 
-	clear(): this {
+	clear() {
 		this.value = null;
 		return this;
 	}
 
-	focus(): this {
+	focus() {
 		this.textField.focus();
 		return this;
 	}
 
-	blur(): this {
+	blur() {
 		this.textField.blur();
 		return this;
 	}
 
-	enable(): this {
+	enable() {
 		this.disabled = false;
 		return this;
 	}
 
-	disable(): this {
+	disable() {
 		this.disabled = true;
 		return this;
 	}
 
-	validate(): boolean {
+	validate() {
 		return !this.validator || this.validator.validate();
 	}
 }

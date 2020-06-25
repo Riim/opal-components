@@ -33,7 +33,9 @@ export declare class OpalTextInput extends BaseComponent {
     focused: boolean;
     disabled: boolean;
     _inputTypeCell: Cell<string> | null;
-    get _inputType(): string;
+    get _inputType(): "text" | "password" | (string & {
+        _?: undefined;
+    });
     textField: HTMLInputElement;
     get value(): string | null;
     set value(value: string | null);

@@ -1,4 +1,4 @@
-export function formatDate(year: number, month: number, day: number, delimiter = '/'): string {
+export function formatDate(year: number, month: number, day: number, delimiter = '/') {
 	return (
 		('0' + day).slice(-2) +
 		delimiter +

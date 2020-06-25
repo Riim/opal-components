@@ -195,7 +195,7 @@ export class OpalAutosuggest extends BaseComponent {
 		}
 	}
 
-	@Listen('click', self => self.$<OpalTextInput>('textInput')!.textField)
+	@Listen('click', (self) => self.$<OpalTextInput>('textInput')!.textField)
 	_onTextFieldClick() {
 		this.openMenu();
 	}
@@ -220,7 +220,7 @@ export class OpalAutosuggest extends BaseComponent {
 		}
 	}
 
-	@Listen('mouseover', self => self.$<BaseComponent>('menu')!.element)
+	@Listen('mouseover', (self) => self.$<BaseComponent>('menu')!.element)
 	_onMenuElementMouseOver(evt: Event) {
 		let menu = this.$<BaseComponent>('menu')!.element;
 		let el: Element | null = evt.target as Element;
@@ -381,9 +381,9 @@ export class OpalAutosuggest extends BaseComponent {
 			args.unshift(this.limit);
 		}
 
-		this.dataProvider!.getItems
-			.apply(this.dataProvider, args)
-			.then((this._requestCallback = this.registerCallback(this._itemsRequestCallback)));
+		this.dataProvider!.getItems.apply(this.dataProvider, args).then(
+			(this._requestCallback = this.registerCallback(this._itemsRequestCallback))
+		);
 	}
 
 	_itemsRequestCallback(data: { items: Array<IDataListItem> }) {
@@ -448,7 +448,7 @@ export class OpalAutosuggest extends BaseComponent {
 				if (query) {
 					query = toComparable(query);
 					item = this.dataList.find(
-						item => toComparable(item[this._dataListItemTextFieldName]) == query
+						(item) => toComparable(item[this._dataListItemTextFieldName]) == query
 					);
 
 					if (item && this.dataList.length > 1) {
