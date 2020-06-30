@@ -1,6 +1,7 @@
 import { kebabCase } from '@riim/kebab-case';
 import { nextUID } from '@riim/next-uid';
 import { snakeCaseAttributeName } from '@riim/rionite-snake-case-attribute-name';
+import { IEvent } from 'cellx';
 import { Observable } from 'cellx-decorators';
 import {
 	BrowserHistory,
@@ -54,6 +55,8 @@ function valueToAttributeValue(value: boolean | string): string {
 export class OpalRouter extends BaseComponent {
 	static EVENT_CHANGE = Symbol('change');
 	static EVENT_REFRESH_ROUTER = Symbol('refresh-router');
+	static EVENT_BLOCK_ROUTER = Symbol('block-router');
+	static EVENT_UNBLOCK_ROUTER = Symbol('unblock-router');
 
 	static history: BrowserHistory<State> = history;
 
@@ -65,8 +68,13 @@ export class OpalRouter extends BaseComponent {
 	scrollTopOnChangeComponent: boolean;
 
 	_routes: Array<IRoute>;
+
 	_route: IRoute | null = null;
 	_state: IComponentState | null = null;
+
+	_historyBlockingMessage: string;
+	_historyUnblock: (() => void) | null = null;
+
 	_componentElement: IComponentElement | null = null;
 
 	@Observable
@@ -144,10 +152,14 @@ export class OpalRouter extends BaseComponent {
 		};
 
 		if (!this.useLocationHash) {
-			this.listenTo(document.body, 'click', this._onBodyClick);
+			this.listenTo(document.body, 'click', this._onBodyClick, this, true);
 		}
 
-		this.listenTo(this, OpalRouter.EVENT_REFRESH_ROUTER, this._onRefreshRouter);
+		this.listenTo(this, {
+			[OpalRouter.EVENT_REFRESH_ROUTER]: this._onRefreshRouter,
+			[OpalRouter.EVENT_BLOCK_ROUTER]: this._onBlockRouter,
+			[OpalRouter.EVENT_UNBLOCK_ROUTER]: this._onUnblockRouter
+		});
 
 		if (this.useLocationHash) {
 			this._update(history.location.hash.slice(1), '');
@@ -195,6 +207,7 @@ export class OpalRouter extends BaseComponent {
 			this._update(path, hashIndex == -1 ? '' : href.slice(hashIndex + 1))
 		) {
 			evt.preventDefault();
+			evt.stopImmediatePropagation();
 
 			if (path != history.location.pathname) {
 				history.push(href);
@@ -205,6 +218,28 @@ export class OpalRouter extends BaseComponent {
 	_onRefreshRouter() {
 		this.refresh();
 		return false;
+	}
+
+	_onBlockRouter(evt: IEvent) {
+		this._historyBlockingMessage = evt.data.message;
+
+		if (!this._historyUnblock) {
+			this._historyUnblock = history.block((transition) => {
+				if (window.confirm(this._historyBlockingMessage)) {
+					this._historyUnblock!();
+					this._historyUnblock = null;
+					transition.retry();
+				}
+			});
+		}
+
+		return false;
+	}
+
+	_onUnblockRouter() {
+		if (this._historyUnblock) {
+			this._historyUnblock();
+		}
 	}
 
 	_update(path: string, _hash: string) {

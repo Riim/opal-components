@@ -199,6 +199,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
         super(...arguments);
         this._route = null;
         this._state = null;
+        this._historyUnblock = null;
         this._componentElement = null;
         this.isLoaderShown = false;
     }
@@ -260,9 +261,13 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
             })
         };
         if (!this.useLocationHash) {
-            this.listenTo(document.body, 'click', this._onBodyClick);
+            this.listenTo(document.body, 'click', this._onBodyClick, this, true);
         }
-        this.listenTo(this, OpalRouter_1.EVENT_REFRESH_ROUTER, this._onRefreshRouter);
+        this.listenTo(this, {
+            [OpalRouter_1.EVENT_REFRESH_ROUTER]: this._onRefreshRouter,
+            [OpalRouter_1.EVENT_BLOCK_ROUTER]: this._onBlockRouter,
+            [OpalRouter_1.EVENT_UNBLOCK_ROUTER]: this._onUnblockRouter
+        });
         if (this.useLocationHash) {
             this._update(history.location.hash.slice(1), '');
         }
@@ -300,6 +305,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
             el.getAttribute('target') != '_blank' &&
             this._update(path, hashIndex == -1 ? '' : href.slice(hashIndex + 1))) {
             evt.preventDefault();
+            evt.stopImmediatePropagation();
             if (path != history.location.pathname) {
                 history.push(href);
             }
@@ -308,6 +314,24 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
     _onRefreshRouter() {
         this.refresh();
         return false;
+    }
+    _onBlockRouter(evt) {
+        this._historyBlockingMessage = evt.data.message;
+        if (!this._historyUnblock) {
+            this._historyUnblock = history.block((transition) => {
+                if (window.confirm(this._historyBlockingMessage)) {
+                    this._historyUnblock();
+                    this._historyUnblock = null;
+                    transition.retry();
+                }
+            });
+        }
+        return false;
+    }
+    _onUnblockRouter() {
+        if (this._historyUnblock) {
+            this._historyUnblock();
+        }
     }
     _update(path, _hash) {
         if (!path) {
@@ -491,6 +515,8 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
 };
 OpalRouter.EVENT_CHANGE = Symbol('change');
 OpalRouter.EVENT_REFRESH_ROUTER = Symbol('refresh-router');
+OpalRouter.EVENT_BLOCK_ROUTER = Symbol('block-router');
+OpalRouter.EVENT_UNBLOCK_ROUTER = Symbol('unblock-router');
 OpalRouter.history = history;
 __decorate([
     rionite_1.Param({ type: Boolean, readonly: true })
