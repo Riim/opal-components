@@ -239,6 +239,7 @@ export class OpalRouter extends BaseComponent {
 	_onUnblockRouter() {
 		if (this._historyUnblock) {
 			this._historyUnblock();
+			this._historyUnblock = null;
 		}
 	}
 

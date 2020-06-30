@@ -331,6 +331,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
     _onUnblockRouter() {
         if (this._historyUnblock) {
             this._historyUnblock();
+            this._historyUnblock = null;
         }
     }
     _update(path, _hash) {
