@@ -121,7 +121,7 @@ let OpalSlider = OpalSlider_1 = class OpalSlider extends rionite_1.BaseComponent
         return (Math.round((((this.range[0] - min) / all + (this.range[1] - min) / all) / 2) * 1e5) /
             1e3);
     }
-    elementAttached() {
+    connected() {
         if (this.range) {
             this.listenTo('firstInput', 'input', this._onFirstInputInput);
             this.listenTo('secondInput', 'input', this._onSecondInputInput);

@@ -66,7 +66,7 @@ export class OpalNotification extends BaseComponent {
 		}
 	}
 
-	elementDetached() {
+	disconnected() {
 		this.hide();
 	}
 

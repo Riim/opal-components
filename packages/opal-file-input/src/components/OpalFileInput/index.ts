@@ -123,7 +123,7 @@ export class OpalFileInput extends BaseComponent {
 		this.btnSelectFile = this.$<OpalButton>('btnSelectFile');
 	}
 
-	elementAttached() {
+	connected() {
 		if (this.fileListEl) {
 			this.listenTo(this.fileListEl, 'dragstart', this._onFileListDragStart);
 		}

@@ -62,7 +62,7 @@ export class OpalButton extends BaseComponent {
 		}
 	}
 
-	elementAttached() {
+	connected() {
 		this.element.tabIndex = this._tabIndex;
 	}
 

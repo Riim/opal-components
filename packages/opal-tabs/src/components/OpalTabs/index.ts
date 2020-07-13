@@ -74,7 +74,7 @@ export class OpalTabs extends BaseComponent {
 		tabPanelElements[selectedTabIndex!].$component!.shown = true;
 	}
 
-	elementAttached() {
+	connected() {
 		if (this.useLocationHash) {
 			reTabLabel.test(OpalRouter.history.location.hash);
 

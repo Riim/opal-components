@@ -162,7 +162,7 @@ let OpalFileInput = OpalFileInput_1 = class OpalFileInput extends rionite_1.Base
         this.dropZoneEl = this.$('dropZone');
         this.btnSelectFile = this.$('btnSelectFile');
     }
-    elementAttached() {
+    connected() {
         if (this.fileListEl) {
             this.listenTo(this.fileListEl, 'dragstart', this._onFileListDragStart);
         }

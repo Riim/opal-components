@@ -35,7 +35,7 @@ export declare class OpalFileInput extends BaseComponent {
     } | null;
     initialize(): void;
     ready(): void;
-    elementAttached(): void;
+    connected(): void;
     _onFilesInputChange(evt: Event): void;
     _onDropZoneDragEnter(): void;
     _onDropZoneDragOver(evt: Event): void;

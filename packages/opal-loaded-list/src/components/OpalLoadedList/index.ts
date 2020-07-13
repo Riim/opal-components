@@ -91,7 +91,7 @@ export class OpalLoadedList extends BaseComponent {
 			(this.constructor as typeof OpalLoadedList).defaultDataListItemSchema.text;
 	}
 
-	elementAttached() {
+	connected() {
 		if (this.preloading) {
 			this._load();
 		} else {

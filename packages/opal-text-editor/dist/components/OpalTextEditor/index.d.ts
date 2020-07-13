@@ -36,8 +36,8 @@ export declare class OpalTextEditor extends BaseComponent {
     } | null;
     initialize(): void;
     ready(): void;
-    elementAttached(): void;
-    elementDetached(): void;
+    connected(): void;
+    disconnected(): void;
     _onRowsChange(): void;
     _onParamValueChange(evt: IEvent): void;
     _onPlaceholderChange(): void;

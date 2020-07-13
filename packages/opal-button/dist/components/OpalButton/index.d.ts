@@ -24,7 +24,7 @@ export declare class OpalButton extends BaseComponent {
     get _tabIndex(): number;
     _documentKeyDownListening: IDisposableListening | null | undefined;
     ready(): void;
-    elementAttached(): void;
+    connected(): void;
     _onTabIndexChange(): void;
     _onElementFocus(): void;
     _onElementBlur(): void;

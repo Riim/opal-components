@@ -41,7 +41,7 @@ export declare class OpalLoadedList extends BaseComponent {
     get loaderShown(): boolean;
     get nothingFoundShown(): boolean;
     initialize(): void;
-    elementAttached(): void;
+    connected(): void;
     _onQueryChange(): void;
     _onElementScroll(): void;
     checkLoading(): void;

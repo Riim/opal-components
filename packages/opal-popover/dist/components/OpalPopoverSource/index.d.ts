@@ -7,7 +7,7 @@ export declare class OpalPopoverSource extends BaseComponent {
     popover: OpalPopover;
     mouseLeaveTimeout: IDisposableTimeout | null;
     ready(): void;
-    elementAttached(): void;
+    connected(): void;
     _onPopoverTargetCheck(): void;
     _onPopoverTargetUncheck(): void;
     _onPopoverTargetClick(): void;

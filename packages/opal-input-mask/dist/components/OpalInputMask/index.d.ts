@@ -17,7 +17,7 @@ export declare class OpalInputMask extends BaseComponent {
     _textOnFocus: string;
     initialize(): void;
     ready(): void;
-    elementAttached(): void;
+    connected(): void;
     _onMaskChange(): void;
     _onTextFieldFocus(): void;
     _onTextFieldBlur(): void;

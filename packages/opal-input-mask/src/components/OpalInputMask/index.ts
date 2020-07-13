@@ -89,7 +89,7 @@ export class OpalInputMask extends BaseComponent {
 		this._initBuffer();
 	}
 
-	elementAttached() {
+	connected() {
 		if (!ie11) {
 			this._checkValue(false, false);
 		}

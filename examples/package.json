@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@riim/opal-components": "^0.40.61",
-    "cellx": "^1.10.9",
-    "rionite": "^0.39.5"
+    "cellx": "^1.10.12",
+    "rionite": "^0.40.0"
   }
 }

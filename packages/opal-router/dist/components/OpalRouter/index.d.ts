@@ -36,8 +36,8 @@ export declare class OpalRouter extends BaseComponent {
     isLoaderShown: boolean;
     initialize(): void;
     ready(): void;
-    elementAttached(): void;
-    elementDetached(): void;
+    connected(): void;
+    disconnected(): void;
     _onHistoryChange(update: Update): void;
     _onBodyClick(evt: Event): void;
     _onRefreshRouter(): boolean;

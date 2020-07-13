@@ -254,7 +254,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
             });
         }
     }
-    elementAttached() {
+    connected() {
         this._disposables[next_uid_1.nextUID()] = {
             dispose: history.listen((update) => {
                 this._onHistoryChange(update);
@@ -275,7 +275,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
             this._update(history.location.pathname, history.location.hash);
         }
     }
-    elementDetached() {
+    disconnected() {
         this._clear();
     }
     _onHistoryChange(update) {
@@ -433,7 +433,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
                 let componentEl = (this._componentElement = document.createElement(kebab_case_1.kebabCase(elementName, true)));
                 this._applyState();
                 this.element.appendChild(componentEl);
-                let initializationWait = componentEl.rioniteComponent.attach(this);
+                let initializationWait = componentEl.rioniteComponent.connect(this);
                 if (initializationWait) {
                     this.isLoaderShown = true;
                     initializationWait.then(f);
@@ -494,7 +494,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
             let componentEl = (this._componentElement = document.createElement(kebab_case_1.kebabCase(elementName, true)));
             this._applyState();
             this.element.appendChild(componentEl);
-            let initializationWait = componentEl.rioniteComponent.attach(this);
+            let initializationWait = componentEl.rioniteComponent.connect(this);
             if (initializationWait) {
                 this.isLoaderShown = true;
                 initializationWait.then(f);

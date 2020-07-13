@@ -32,7 +32,7 @@ export class OpalSlider extends BaseComponent {
 		);
 	}
 
-	elementAttached() {
+	connected() {
 		if (this.range) {
 			this.listenTo('firstInput', 'input', this._onFirstInputInput);
 			this.listenTo('secondInput', 'input', this._onSecondInputInput);

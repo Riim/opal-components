@@ -164,7 +164,7 @@ let OpalModal = OpalModal_1 = class OpalModal extends rionite_1.BaseComponent {
             this._open();
         }
     }
-    elementDetached() {
+    disconnected() {
         this.close();
     }
     _onOpenedChange(evt) {

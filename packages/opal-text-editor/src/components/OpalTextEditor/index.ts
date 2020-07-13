@@ -315,11 +315,11 @@ export class OpalTextEditor extends BaseComponent {
 		}
 	}
 
-	elementAttached() {
+	connected() {
 		this.quill.on((Quill_ as any).events.EDITOR_CHANGE, this._onQuillEditorChange);
 	}
 
-	elementDetached() {
+	disconnected() {
 		this.quill.off((Quill_ as any).events.EDITOR_CHANGE, this._onQuillEditorChange);
 	}
 

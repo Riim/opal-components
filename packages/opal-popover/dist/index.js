@@ -401,7 +401,7 @@ let OpalPopoverSource = class OpalPopoverSource extends rionite_1.BaseComponent 
         this.popoverTarget = popoverTarget;
         this.popover = this.$('popover');
     }
-    elementAttached() {
+    connected() {
         let popoverTarget = this.popoverTarget;
         if (popoverTarget instanceof opal_button_1.OpalButton) {
             if (popoverTarget.checkable) {

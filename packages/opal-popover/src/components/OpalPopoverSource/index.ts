@@ -31,7 +31,7 @@ export class OpalPopoverSource extends BaseComponent {
 		this.popover = this.$<OpalPopover>('popover')!;
 	}
 
-	elementAttached() {
+	connected() {
 		let popoverTarget = this.popoverTarget;
 
 		if (popoverTarget instanceof OpalButton) {

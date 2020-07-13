@@ -11926,10 +11926,10 @@ let OpalTextEditor = OpalTextEditor_1 = class OpalTextEditor extends rionite_1.B
             this.focus();
         }
     }
-    elementAttached() {
+    connected() {
         this.quill.on(Quill_.events.EDITOR_CHANGE, this._onQuillEditorChange);
     }
-    elementDetached() {
+    disconnected() {
         this.quill.off(Quill_.events.EDITOR_CHANGE, this._onQuillEditorChange);
     }
     _onRowsChange() {

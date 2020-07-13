@@ -10,7 +10,7 @@ import template from './template.rnt';
 	template
 })
 export class OpalFilteredList extends BaseComponent {
-	elementAttached() {
+	connected() {
 		let queryInput = this.$('queryInput');
 
 		if (queryInput) {

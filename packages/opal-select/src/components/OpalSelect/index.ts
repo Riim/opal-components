@@ -299,7 +299,7 @@ export class OpalSelect extends BaseComponent {
 		}
 	}
 
-	elementAttached() {
+	connected() {
 		if (this.focused) {
 			this._documentKeyDownListening = this.listenTo(
 				document,

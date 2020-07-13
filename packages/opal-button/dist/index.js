@@ -174,7 +174,7 @@ let OpalButton = OpalButton_1 = class OpalButton extends rionite_1.BaseComponent
             this.focus();
         }
     }
-    elementAttached() {
+    connected() {
         this.element.tabIndex = this._tabIndex;
     }
     _onTabIndexChange() {

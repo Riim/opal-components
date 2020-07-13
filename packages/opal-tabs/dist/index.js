@@ -308,7 +308,7 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
         }
         tabPanelElements[selectedTabIndex].$component.shown = true;
     }
-    elementAttached() {
+    connected() {
         if (this.useLocationHash) {
             reTabLabel.test(opal_router_1.OpalRouter.history.location.hash);
             if (RegExp.$1) {

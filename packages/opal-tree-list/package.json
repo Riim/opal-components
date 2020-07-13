@@ -19,8 +19,8 @@
     "@riim/opal-icon": "^0.40.61",
     "@riim/opal-loader": "^0.40.61",
     "@riim/opal-select": "^0.40.61",
-    "cellx": "^1.10.9",
+    "cellx": "^1.10.12",
     "cellx-decorators": "^1.6.2",
-    "rionite": "^0.39.5"
+    "rionite": "^0.40.0"
   }
 }

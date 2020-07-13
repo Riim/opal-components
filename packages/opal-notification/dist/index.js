@@ -137,7 +137,7 @@ let OpalNotification = OpalNotification_1 = class OpalNotification extends rioni
             this._show();
         }
     }
-    elementDetached() {
+    disconnected() {
         this.hide();
     }
     _onShownChange(evt) {

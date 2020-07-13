@@ -19,8 +19,8 @@
     "@riim/opal-select": "^0.40.61",
     "@riim/opal-text-input": "^0.40.61",
     "@riim/platform": "^1.0.0",
-    "cellx": "^1.10.9",
+    "cellx": "^1.10.12",
     "cellx-decorators": "^1.6.2",
-    "rionite": "^0.39.5"
+    "rionite": "^0.40.0"
   }
 }

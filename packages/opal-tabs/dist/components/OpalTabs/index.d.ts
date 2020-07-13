@@ -15,7 +15,7 @@ export declare class OpalTabs extends BaseComponent {
     _startSelectedTab: OpalTab | null;
     _selectedTab: OpalTab | null;
     ready(): void;
-    elementAttached(): void;
+    connected(): void;
     _onTabListSelect(evt: IEvent<OpalTab>): void;
     _onTabListDeselect(evt: IEvent<OpalTab>): void;
     _onHistoryChange(update: Update): void;

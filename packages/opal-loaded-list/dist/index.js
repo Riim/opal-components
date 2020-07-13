@@ -182,7 +182,7 @@ let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.B
             this.dataListItemSchema.text ||
                 this.constructor.defaultDataListItemSchema.text;
     }
-    elementAttached() {
+    connected() {
         if (this.preloading) {
             this._load();
         }

@@ -194,7 +194,7 @@ const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("LeY+");
 const template_rnt_1 = __webpack_require__("qQ7q");
 let OpalFilteredList = class OpalFilteredList extends rionite_1.BaseComponent {
-    elementAttached() {
+    connected() {
         let queryInput = this.$('queryInput');
         if (queryInput) {
             this.listenTo(queryInput, {

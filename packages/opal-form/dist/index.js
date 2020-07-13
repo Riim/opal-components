@@ -134,7 +134,7 @@ exports.OpalForm = void 0;
 const rionite_1 = __webpack_require__("u4yd");
 const template_rnt_1 = __webpack_require__("c9Lq");
 let OpalForm = OpalForm_1 = class OpalForm extends rionite_1.BaseComponent {
-    elementAttached() {
+    connected() {
         let focusTarget = this.$('focus') || this.$('input');
         if (focusTarget) {
             focusTarget.focus();

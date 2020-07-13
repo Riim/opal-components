@@ -24,7 +24,7 @@ import template from './template.rnt';
 export class OpalForm extends BaseComponent {
 	static EVENT_SUBMIT = Symbol('submit');
 
-	elementAttached() {
+	connected() {
 		let focusTarget = this.$<HTMLElement>('focus') || this.$<HTMLElement>('input');
 
 		if (focusTarget) {

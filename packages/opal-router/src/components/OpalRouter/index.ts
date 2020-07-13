@@ -144,7 +144,7 @@ export class OpalRouter extends BaseComponent {
 		}
 	}
 
-	elementAttached() {
+	connected() {
 		this._disposables[nextUID()] = {
 			dispose: history.listen((update) => {
 				this._onHistoryChange(update);
@@ -168,7 +168,7 @@ export class OpalRouter extends BaseComponent {
 		}
 	}
 
-	elementDetached() {
+	disconnected() {
 		this._clear();
 	}
 
@@ -380,7 +380,7 @@ export class OpalRouter extends BaseComponent {
 				) as IComponentElement);
 				this._applyState();
 				this.element.appendChild(componentEl);
-				let initializationWait = componentEl.rioniteComponent.attach(this);
+				let initializationWait = componentEl.rioniteComponent.connect(this);
 
 				if (initializationWait) {
 					this.isLoaderShown = true;
@@ -462,7 +462,7 @@ export class OpalRouter extends BaseComponent {
 			) as IComponentElement);
 			this._applyState();
 			this.element.appendChild(componentEl);
-			let initializationWait = componentEl.rioniteComponent.attach(this);
+			let initializationWait = componentEl.rioniteComponent.connect(this);
 
 			if (initializationWait) {
 				this.isLoaderShown = true;

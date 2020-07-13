@@ -210,7 +210,7 @@ let OpalInputMask = OpalInputMask_1 = class OpalInputMask extends rionite_1.Base
         });
         this._initBuffer();
     }
-    elementAttached() {
+    connected() {
         if (!ie11) {
             this._checkValue(false, false);
         }
