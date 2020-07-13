@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-notification",
-  "version": "0.40.61",
+  "version": "0.41.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/opal-icon": "^0.40.61",
+    "@riim/opal-icon": "^0.41.0",
     "cellx": "^1.10.12",
     "rionite": "^0.40.0"
   }
