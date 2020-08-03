@@ -6,10 +6,10 @@ RnSlot (for=button) {
 		tabIndex={tabIndex},
 		disabled={disabled}
 	) {
-		@IfThen (if=text) {
+		@cond (if=text) {
 			'{text}'
 		}
-		@IfElse (if=text) {
+		@cond (unless=text) {
 			'{_buttonText}'
 		}
 
@@ -23,8 +23,8 @@ RnSlot (for=menuSlot) {
 			RnSlot (for=menuHeader)
 			RnSlot (for=menuContent) {
 				div::menuContent (@if=_paramDataListSpecified) {
-					@IfThen (if=dataList) {
-						@Repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {
+					@cond (if=dataList) {
+						@repeat (for=item in dataList, trackBy={=_dataListItemValueFieldName}) {
 							OpalSelectOption:option (
 								value='{item |key(_dataListItemValueFieldName) }',
 								text='{item |key(_dataListItemTextFieldName) }',

@@ -1,4 +1,4 @@
-@IfThen (if=listShown) {
+@cond (if=listShown) {
 	OpalTreeListItem:item (
 		@for=$item in filteredDataTreeList,
 		dataTreeList={dataTreeList},

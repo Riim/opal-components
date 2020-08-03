@@ -241,7 +241,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,1,"IfThen",,[,[[,"if","range"]]],[[1,,"div",["firstInputWrapper3"],,[[1,,"div",["firstInputWrapper2"],[,[[,"style","width: {_firstInputWidth}%"]]],[[1,,"div",["firstInputWrapper"],,[[1,,"input",["firstInput"],[,[[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{range.0}"]]],]]]]]]],[1,,"div",["secondInputWrapper"],,[[1,,"input",["secondInput"],[,[[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{range.1}"]]],]]]]],[1,,"input",["input"],[,[[1,"unless","range"],[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{value}"]]],]];
+const template = [[1,1,"cond",,[,[[,"if","range"]]],[[1,,"div",["firstInputWrapper3"],,[[1,,"div",["firstInputWrapper2"],[,[[,"style","width: {_firstInputWidth}%"]]],[[1,,"div",["firstInputWrapper"],,[[1,,"input",["firstInput"],[,[[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{range.0}"]]],]]]]]]],[1,,"div",["secondInputWrapper"],,[[1,,"input",["secondInput"],[,[[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{range.1}"]]],]]]]],[1,,"input",["input"],[,[[1,"unless","range"],[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{value}"]]],]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),

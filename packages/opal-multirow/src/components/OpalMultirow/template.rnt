@@ -7,7 +7,7 @@ RnSlot:presetRowsSlot (
 }
 
 div:newRows (notSingleRow={_notSingleRow}) {
-	@Repeat (for=row in _newRows, trackBy=key) {
+	@repeat (for=row in _newRows, trackBy=key) {
 		RnSlot:newRowSlot (cloneContent, data-key={row.key})
 	}
 }

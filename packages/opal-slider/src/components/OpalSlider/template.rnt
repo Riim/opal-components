@@ -1,4 +1,4 @@
-@IfThen (if=range) {
+@cond (if=range) {
 	div:firstInputWrapper3 {
 		div:firstInputWrapper2 (style=width: {_firstInputWidth}%) {
 			div:firstInputWrapper {

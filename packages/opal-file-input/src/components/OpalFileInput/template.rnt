@@ -1,7 +1,7 @@
 ul:fileList (@if=multiple) {
 	li:file (@for=fileData in dataList, draggable=true, data-file-data-uid={fileData |uid }) {
 		div:filePreviewWrapper {
-			@IfThen (if='fileData |_isImage') {
+			@cond (if='fileData |_isImage') {
 				OpalLoader:fileLoader (
 					@unless='fileData.url |or(fileData.dataURI)',
 					size=s,
@@ -38,7 +38,7 @@ div:dropZone (error={errorMessage |bool }) {
 	}
 
 	span:dropZoneContent {
-		@IfThen (if=multiple) {
+		@cond (if=multiple) {
 			'{"Перетащите файлы в эту область или" |t }'
 			br
 
@@ -51,7 +51,7 @@ div:dropZone (error={errorMessage |bool }) {
 		}
 	}
 
-	@IfElse (if=multiple) {
+	@cond (unless=multiple) {
 		div:file2 (@if=dataList.length) {
 			a (
 				@if='dataList |get(0) |key("url")',
@@ -61,7 +61,7 @@ div:dropZone (error={errorMessage |bool }) {
 			) {
 				'{dataList |get(0) |key("name") }'
 			}
-			@IfElse (if='dataList |get(0) |key("url")') {
+			@cond (unless='dataList |get(0) |key("url")') {
 				'{dataList |get(0) |key("name") }'
 			}
 		}
