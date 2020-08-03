@@ -20,7 +20,7 @@ import {
 	IDisposableListening,
 	Listen,
 	Param,
-	RnIfThen,
+	RnCondition,
 	RnRepeat
 	} from 'rionite';
 import { OpalSelectOption } from '../OpalSelectOption';
@@ -65,7 +65,7 @@ export class OpalSelect extends BaseComponent {
 	static buttonFocusEvents = [OpalButton.EVENT_FOCUS, OpalSignButton.EVENT_FOCUS];
 	static buttonBlurEvents = [OpalButton.EVENT_BLUR, OpalSignButton.EVENT_BLUR];
 	static buttonClickEvents = [OpalButton.EVENT_CLICK, OpalSignButton.EVENT_CLICK];
-	static menuChangeEvents = [RnIfThen.EVENT_CHANGE, RnRepeat.EVENT_CHANGE];
+	static menuChangeEvents = [RnCondition.EVENT_CHANGE, RnRepeat.EVENT_CHANGE];
 	static menuLoadedEvents = [OpalLoadedList.EVENT_LOADED];
 
 	static defaultDataListItemSchema = defaultDataListItemSchema;
