@@ -433,10 +433,10 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
                 let componentEl = (this._componentElement = document.createElement(kebab_case_1.kebabCase(elementName, true)));
                 this._applyState();
                 this.element.appendChild(componentEl);
-                let initializationWait = componentEl.rioniteComponent.connect(this);
-                if (initializationWait) {
+                let initializationPromise = componentEl.rioniteComponent.connect(this);
+                if (initializationPromise) {
                     this.isLoaderShown = true;
-                    initializationWait.then(f);
+                    initializationPromise.then(f);
                 }
                 else {
                     f();

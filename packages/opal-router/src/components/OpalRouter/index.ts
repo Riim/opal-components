@@ -380,11 +380,11 @@ export class OpalRouter extends BaseComponent {
 				) as IComponentElement);
 				this._applyState();
 				this.element.appendChild(componentEl);
-				let initializationWait = componentEl.rioniteComponent.connect(this);
+				let initializationPromise = componentEl.rioniteComponent.connect(this);
 
-				if (initializationWait) {
+				if (initializationPromise) {
 					this.isLoaderShown = true;
-					initializationWait.then(f);
+					initializationPromise.then(f);
 				} else {
 					f();
 				}
