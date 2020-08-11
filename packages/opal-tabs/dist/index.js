@@ -237,7 +237,7 @@ module.exports = (function(d) {
         if (head) {
             var style = d.createElement('style');
             style.type = 'text/css';
-            style.textContent = ".OpalTabList{display:block;padding:0 30px;border-bottom:1px solid var(--grayColor850, hsl(0,0%,85%));white-space:nowrap;font-size:0;line-height:0}";
+            style.textContent = ".OpalTabList{display:block;padding:0 30px;border-bottom:1px solid var(--grayColor850, hsl(0,0%,85%));font-size:0;line-height:0}";
             head.appendChild(style);
             return style;
         }
