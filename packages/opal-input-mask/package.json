@@ -15,6 +15,6 @@
   "dependencies": {
     "@riim/opal-text-input": "^0.43.0",
     "cellx-decorators": "^1.6.2",
-    "rionite": "^0.42.0"
+    "rionite": "^0.42.5"
   }
 }

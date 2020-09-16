@@ -1,6 +1,6 @@
 import '@riim/opal-components';
 import { ObservableTreeList } from '@riim/opal-tree-list';
-import { ObservableList } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { BaseComponent, Component } from 'rionite';
 import template from './template.rnt';
 

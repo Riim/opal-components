@@ -7,12 +7,8 @@ import {
 	TDataList,
 	TViewModel
 	} from '@riim/opal-select';
-import {
-	Cell,
-	define,
-	IEvent,
-	ObservableList
-	} from 'cellx';
+import { Cell, define, IEvent } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { Computed } from 'cellx-decorators';
 import {
 	BaseComponent,

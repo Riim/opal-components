@@ -1,5 +1,6 @@
 import { nextUID } from '@riim/next-uid';
-import { Cell, IEvent, ObservableList } from 'cellx';
+import { Cell, IEvent } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { Computed, Observable } from 'cellx-decorators';
 import { BaseComponent, Component, Listen } from 'rionite';
 import { OpalMultirowRow } from '../OpalMultirowRow';

@@ -1,12 +1,8 @@
 import { OpalCheckbox } from '@riim/opal-checkbox';
 import { closestComponent } from '@riim/opal-components-common';
 import { OpalSelectOption } from '@riim/opal-select';
-import {
-	Cell,
-	define,
-	IEvent,
-	ObservableList
-	} from 'cellx';
+import { Cell, define, IEvent } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { Computed, Observable } from 'cellx-decorators';
 import {
 	BaseComponent,

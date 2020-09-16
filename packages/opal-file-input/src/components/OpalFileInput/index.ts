@@ -4,7 +4,8 @@ import { nextTick } from '@riim/next-tick';
 import { getUID } from '@riim/next-uid';
 import { OpalButton } from '@riim/opal-button';
 import { nodeContains } from '@riim/opal-components-common';
-import { EventEmitter, ObservableList } from 'cellx';
+import { EventEmitter } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { Computed, Observable } from 'cellx-decorators';
 import {
 	BaseComponent,

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-loader"), require("cellx"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-loader"), require("cellx"), require("cellx-collections"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-loader", "cellx", "rionite", "cellx-decorators"], factory);
+		define(["@riim/opal-loader", "cellx", "cellx-collections", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-loaded-list"] = factory(require("@riim/opal-loader"), require("cellx"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-loaded-list"] = factory(require("@riim/opal-loader"), require("cellx"), require("cellx-collections"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-loaded-list"] = factory(root["@riim/opal-loader"], root["cellx"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-loaded-list"] = factory(root["@riim/opal-loader"], root["cellx"], root["cellx-collections"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_oHAe__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -153,6 +153,7 @@ var OpalLoadedList_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OpalLoadedList = void 0;
 const cellx_1 = __webpack_require__("P7z7");
+const cellx_collections_1 = __webpack_require__("oHAe");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("Ee58");
@@ -164,7 +165,7 @@ let defaultDataListItemSchema = Object.freeze({
 let OpalLoadedList = OpalLoadedList_1 = class OpalLoadedList extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.dataList = new cellx_1.ObservableList();
+        this.dataList = new cellx_collections_1.ObservableList();
         this._scrollingInProcessing = false;
         this._loadingCheckPlanned = false;
         this.loading = false;
@@ -331,6 +332,13 @@ OpalLoadedList = OpalLoadedList_1 = __decorate([
 ], OpalLoadedList);
 exports.OpalLoadedList = OpalLoadedList;
 
+
+/***/ }),
+
+/***/ "oHAe":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_oHAe__;
 
 /***/ }),
 

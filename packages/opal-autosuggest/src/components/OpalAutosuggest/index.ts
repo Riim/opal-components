@@ -1,7 +1,8 @@
 import { nextTick } from '@riim/next-tick';
 import { OpalDropdown } from '@riim/opal-dropdown';
 import { OpalTextInput } from '@riim/opal-text-input';
-import { IEvent, ObservableList } from 'cellx';
+import { IEvent } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { Computed, Observable } from 'cellx-decorators';
 import {
 	BaseComponent,

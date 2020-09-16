@@ -20,8 +20,8 @@
     "@riim/opal-popover": "^0.43.0",
     "@riim/opal-text-input": "^0.43.0",
     "@riim/opal-text-input-validator": "^0.43.0",
-    "cellx": "^1.10.12",
+    "cellx": "^1.10.17",
     "date-exists": "^1.0.1",
-    "rionite": "^0.42.0"
+    "rionite": "^0.42.5"
   }
 }

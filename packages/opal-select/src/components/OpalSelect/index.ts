@@ -6,12 +6,8 @@ import { OpalFilteredList } from '@riim/opal-filtered-list';
 import { OpalLoadedList } from '@riim/opal-loaded-list';
 import { OpalSignButton } from '@riim/opal-sign-button';
 import { OpalTextInput } from '@riim/opal-text-input';
-import {
-	Cell,
-	define,
-	IEvent,
-	ObservableList
-	} from 'cellx';
+import { Cell, define, IEvent } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { Computed, Observable } from 'cellx-decorators';
 import {
 	BaseComponent,

@@ -1,5 +1,6 @@
 import { OpalTextInput } from '@riim/opal-text-input';
-import { IEvent, ObservableList } from 'cellx';
+import { IEvent } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { BaseComponent, IDisposableCallback, IDisposableListening, IDisposableTimeout } from 'rionite';
 import './index.css';
 export interface IDataListItem {

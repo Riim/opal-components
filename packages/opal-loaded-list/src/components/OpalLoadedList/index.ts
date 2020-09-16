@@ -1,4 +1,5 @@
-import { Cell, ObservableList } from 'cellx';
+import { Cell } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { Computed, Observable } from 'cellx-decorators';
 import {
 	BaseComponent,

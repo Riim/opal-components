@@ -21,6 +21,6 @@
     "@riim/rionite-snake-case-attribute-name": "^0.39.2",
     "cellx-decorators": "^1.6.2",
     "history": "^5.0.0",
-    "rionite": "^0.42.0"
+    "rionite": "^0.42.5"
   }
 }

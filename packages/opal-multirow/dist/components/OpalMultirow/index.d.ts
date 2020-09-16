@@ -1,4 +1,5 @@
-import { IEvent, ObservableList } from 'cellx';
+import { IEvent } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { BaseComponent } from 'rionite';
 import { OpalMultirowRow } from '../OpalMultirowRow';
 import './index.css';

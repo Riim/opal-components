@@ -1,4 +1,4 @@
-import { ObservableList } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { BaseComponent, IDisposableCallback, IDisposableTimeout, RnSlot } from 'rionite';
 import './index.css';
 export interface IDataListItem {

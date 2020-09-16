@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-dropdown"), require("@riim/opal-loader"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-filtered-list"), require("@riim/gettext"), require("@riim/opal-sign-button"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-dropdown"), require("@riim/opal-loader"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-filtered-list"), require("@riim/gettext"), require("@riim/opal-sign-button"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("cellx-collections"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-dropdown", "@riim/opal-loader", "cellx", "@riim/next-tick", "@riim/opal-button", "@riim/opal-icon", "@riim/opal-filtered-list", "@riim/gettext", "@riim/opal-sign-button", "@riim/opal-text-input", "@riim/opal-loaded-list", "rionite", "cellx-decorators"], factory);
+		define(["@riim/opal-dropdown", "@riim/opal-loader", "cellx", "@riim/next-tick", "@riim/opal-button", "@riim/opal-icon", "@riim/opal-filtered-list", "@riim/gettext", "@riim/opal-sign-button", "@riim/opal-text-input", "@riim/opal-loaded-list", "cellx-collections", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-select"] = factory(require("@riim/opal-dropdown"), require("@riim/opal-loader"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-filtered-list"), require("@riim/gettext"), require("@riim/opal-sign-button"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-select"] = factory(require("@riim/opal-dropdown"), require("@riim/opal-loader"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-filtered-list"), require("@riim/gettext"), require("@riim/opal-sign-button"), require("@riim/opal-text-input"), require("@riim/opal-loaded-list"), require("cellx-collections"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-select"] = factory(root["@riim/opal-dropdown"], root["@riim/opal-loader"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/opal-filtered-list"], root["@riim/gettext"], root["@riim/opal-sign-button"], root["@riim/opal-text-input"], root["@riim/opal-loaded-list"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_A7KY__, __WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_Y1_I__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_ioIi__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-select"] = factory(root["@riim/opal-dropdown"], root["@riim/opal-loader"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/opal-filtered-list"], root["@riim/gettext"], root["@riim/opal-sign-button"], root["@riim/opal-text-input"], root["@riim/opal-loaded-list"], root["cellx-collections"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_A7KY__, __WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_Y1_I__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_ioIi__, __WEBPACK_EXTERNAL_MODULE_oHAe__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -372,6 +372,7 @@ const opal_loaded_list_1 = __webpack_require__("ioIi");
 const opal_sign_button_1 = __webpack_require__("ej3F");
 const opal_text_input_1 = __webpack_require__("hl6F");
 const cellx_1 = __webpack_require__("P7z7");
+const cellx_collections_1 = __webpack_require__("oHAe");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
 const OpalSelectOption_1 = __webpack_require__("M5PH");
@@ -447,7 +448,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             dataListItemSchema.subtext || defaultDataListItemSchema.subtext;
         this._dataListItemDisabledFieldName =
             dataListItemSchema.disabled || defaultDataListItemSchema.disabled;
-        this.viewModel = this.paramViewModel || new cellx_1.ObservableList();
+        this.viewModel = this.paramViewModel || new cellx_collections_1.ObservableList();
         let vmItemSchema = this.viewModelItemSchema;
         let defaultVMItemSchema = this.constructor
             .defaultViewModelItemSchema;
@@ -1172,7 +1173,7 @@ __decorate([
     rionite_1.Listen('change:focused')
 ], OpalSelect.prototype, "_onFocusedChange", null);
 __decorate([
-    rionite_1.Listen(cellx_1.ObservableList.EVENT_CHANGE, '@viewModel')
+    rionite_1.Listen(cellx_collections_1.ObservableList.EVENT_CHANGE, '@viewModel')
 ], OpalSelect.prototype, "_onViewModelChange", null);
 __decorate([
     rionite_1.Listen((ctor) => ctor.buttonFocusEvents, 'button')
@@ -1279,6 +1280,13 @@ function isArraysEqual(arr1, arr2) {
 }
 exports.isArraysEqual = isArraysEqual;
 
+
+/***/ }),
+
+/***/ "oHAe":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_oHAe__;
 
 /***/ }),
 

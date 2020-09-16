@@ -9,11 +9,12 @@
   "author": "Dmitry Vibe",
   "license": "MIT",
   "devDependencies": {
-    "@types/history": "^4.7.5"
+    "@types/history": "^4.7.7"
   },
   "dependencies": {
-    "@riim/opal-components": "^0.40.61",
-    "cellx": "^1.10.12",
-    "rionite": "^0.42.0"
+    "@riim/opal-components": "^0.43.3",
+    "cellx": "^1.10.17",
+    "cellx-collections": "^1.0.1",
+    "rionite": "^0.42.5"
   }
 }

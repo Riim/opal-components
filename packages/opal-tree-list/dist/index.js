@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-checkbox"), require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-select"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-checkbox"), require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-select"), require("cellx-collections"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-checkbox", "@riim/opal-loader", "@riim/opal-components-common", "cellx", "@riim/opal-button", "@riim/opal-icon", "@riim/opal-select", "rionite", "cellx-decorators"], factory);
+		define(["@riim/opal-checkbox", "@riim/opal-loader", "@riim/opal-components-common", "cellx", "@riim/opal-button", "@riim/opal-icon", "@riim/opal-select", "cellx-collections", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-tree-list"] = factory(require("@riim/opal-checkbox"), require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-select"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-tree-list"] = factory(require("@riim/opal-checkbox"), require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/opal-select"), require("cellx-collections"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-tree-list"] = factory(root["@riim/opal-checkbox"], root["@riim/opal-loader"], root["@riim/opal-components-common"], root["cellx"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/opal-select"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__7ATV__, __WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_MYNt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-tree-list"] = factory(root["@riim/opal-checkbox"], root["@riim/opal-loader"], root["@riim/opal-components-common"], root["cellx"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/opal-select"], root["cellx-collections"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__7ATV__, __WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_MYNt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_jL6t__, __WEBPACK_EXTERNAL_MODULE_oHAe__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -246,6 +246,7 @@ const opal_checkbox_1 = __webpack_require__("7ATV");
 const opal_components_common_1 = __webpack_require__("MYNt");
 const opal_select_1 = __webpack_require__("jL6t");
 const cellx_1 = __webpack_require__("P7z7");
+const cellx_collections_1 = __webpack_require__("oHAe");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
 const ObservableTreeList_1 = __webpack_require__("V5Ua");
@@ -416,7 +417,7 @@ __decorate([
     rionite_1.Param({ type: eval, default: defaultDataTreeListItemSchema, readonly: true })
 ], OpalTreeList.prototype, "dataTreeListItemSchema", void 0);
 __decorate([
-    rionite_1.Param({ default: new cellx_1.ObservableList(), readonly: true })
+    rionite_1.Param({ default: new cellx_collections_1.ObservableList(), readonly: true })
 ], OpalTreeList.prototype, "viewModel", void 0);
 __decorate([
     rionite_1.Param({ type: eval, default: defaultVMItemSchema, readonly: true })
@@ -619,6 +620,13 @@ module.exports = (function(d) {
         return null;
     })(document);
 
+
+/***/ }),
+
+/***/ "oHAe":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_oHAe__;
 
 /***/ }),
 

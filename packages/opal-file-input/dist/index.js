@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/next-uid"), require("@riim/gettext"), require("rionite"), require("@riim/escape-regexp"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/next-uid"), require("@riim/gettext"), require("cellx-collections"), require("rionite"), require("@riim/escape-regexp"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-loader", "@riim/opal-components-common", "cellx", "@riim/next-tick", "@riim/opal-button", "@riim/opal-icon", "@riim/next-uid", "@riim/gettext", "rionite", "@riim/escape-regexp", "cellx-decorators"], factory);
+		define(["@riim/opal-loader", "@riim/opal-components-common", "cellx", "@riim/next-tick", "@riim/opal-button", "@riim/opal-icon", "@riim/next-uid", "@riim/gettext", "cellx-collections", "rionite", "@riim/escape-regexp", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-file-input"] = factory(require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/next-uid"), require("@riim/gettext"), require("rionite"), require("@riim/escape-regexp"), require("cellx-decorators"));
+		exports["@riim/opal-file-input"] = factory(require("@riim/opal-loader"), require("@riim/opal-components-common"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-button"), require("@riim/opal-icon"), require("@riim/next-uid"), require("@riim/gettext"), require("cellx-collections"), require("rionite"), require("@riim/escape-regexp"), require("cellx-decorators"));
 	else
-		root["@riim/opal-file-input"] = factory(root["@riim/opal-loader"], root["@riim/opal-components-common"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/next-uid"], root["@riim/gettext"], root["rionite"], root["@riim/escape-regexp"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_MYNt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_cIp5__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_xFbw__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-file-input"] = factory(root["@riim/opal-loader"], root["@riim/opal-components-common"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-button"], root["@riim/opal-icon"], root["@riim/next-uid"], root["@riim/gettext"], root["cellx-collections"], root["rionite"], root["@riim/escape-regexp"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_BLMt__, __WEBPACK_EXTERNAL_MODULE_MYNt__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_X6DG__, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_cIp5__, __WEBPACK_EXTERNAL_MODULE_eaeG__, __WEBPACK_EXTERNAL_MODULE_oHAe__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_xFbw__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -134,6 +134,7 @@ const next_uid_1 = __webpack_require__("cIp5");
 const opal_button_1 = __webpack_require__("X6DG");
 const opal_components_common_1 = __webpack_require__("MYNt");
 const cellx_1 = __webpack_require__("P7z7");
+const cellx_collections_1 = __webpack_require__("oHAe");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("M9cn");
@@ -336,7 +337,7 @@ __decorate([
     rionite_1.Param({ type: Boolean, readonly: true })
 ], OpalFileInput.prototype, "multiple", void 0);
 __decorate([
-    rionite_1.Param({ default: new cellx_1.ObservableList() })
+    rionite_1.Param({ default: new cellx_collections_1.ObservableList() })
 ], OpalFileInput.prototype, "dataList", void 0);
 __decorate([
     rionite_1.Param({ type: String, readonly: true })
@@ -480,6 +481,13 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_cIp5__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_eaeG__;
+
+/***/ }),
+
+/***/ "oHAe":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_oHAe__;
 
 /***/ }),
 

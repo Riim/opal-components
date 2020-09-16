@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@riim/opal-dropdown"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("@riim/opal-dropdown"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("cellx-collections"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@riim/opal-dropdown", "cellx", "@riim/next-tick", "@riim/opal-icon", "@riim/opal-text-input", "rionite", "cellx-decorators"], factory);
+		define(["@riim/opal-dropdown", "@riim/next-tick", "@riim/opal-icon", "@riim/opal-text-input", "cellx-collections", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-autosuggest"] = factory(require("@riim/opal-dropdown"), require("cellx"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-autosuggest"] = factory(require("@riim/opal-dropdown"), require("@riim/next-tick"), require("@riim/opal-icon"), require("@riim/opal-text-input"), require("cellx-collections"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-autosuggest"] = factory(root["@riim/opal-dropdown"], root["cellx"], root["@riim/next-tick"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_A7KY__, __WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-autosuggest"] = factory(root["@riim/opal-dropdown"], root["@riim/next-tick"], root["@riim/opal-icon"], root["@riim/opal-text-input"], root["cellx-collections"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_A7KY__, __WEBPACK_EXTERNAL_MODULE_WTz___, __WEBPACK_EXTERNAL_MODULE_Y0hN__, __WEBPACK_EXTERNAL_MODULE_hl6F__, __WEBPACK_EXTERNAL_MODULE_oHAe__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -140,7 +140,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OpalAutosuggest = void 0;
 const next_tick_1 = __webpack_require__("WTz/");
 const opal_text_input_1 = __webpack_require__("hl6F");
-const cellx_1 = __webpack_require__("P7z7");
+const cellx_collections_1 = __webpack_require__("oHAe");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
 __webpack_require__("0Lqk");
@@ -156,7 +156,7 @@ const defaultDataListItemSchema = Object.freeze({
 let OpalAutosuggest = OpalAutosuggest_1 = class OpalAutosuggest extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
-        this.dataList = new cellx_1.ObservableList();
+        this.dataList = new cellx_collections_1.ObservableList();
         this._inputNotConfirmed = false;
         this._loadingPlanned = false;
         this.loading = false;
@@ -503,7 +503,7 @@ __decorate([
     rionite_1.Listen('change:loaderShown')
 ], OpalAutosuggest.prototype, "_onLoaderShownChange", null);
 __decorate([
-    rionite_1.Listen(cellx_1.ObservableList.EVENT_CHANGE, '@dataList')
+    rionite_1.Listen(cellx_collections_1.ObservableList.EVENT_CHANGE, '@dataList')
 ], OpalAutosuggest.prototype, "_onDataListChange", null);
 __decorate([
     rionite_1.Listen(opal_text_input_1.OpalTextInput.EVENT_FOCUS, 'textInput')
@@ -560,13 +560,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_A7KY__;
 
 /***/ }),
 
-/***/ "P7z7":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_P7z7__;
-
-/***/ }),
-
 /***/ "WTz/":
 /***/ (function(module, exports) {
 
@@ -609,6 +602,13 @@ __exportStar(__webpack_require__("9cQR"), exports);
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_hl6F__;
+
+/***/ }),
+
+/***/ "oHAe":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_oHAe__;
 
 /***/ }),
 

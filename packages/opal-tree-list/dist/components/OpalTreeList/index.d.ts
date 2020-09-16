@@ -1,5 +1,6 @@
 import { OpalCheckbox } from '@riim/opal-checkbox';
-import { IEvent, ObservableList } from 'cellx';
+import { IEvent } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { BaseComponent, IDisposableTimeout } from 'rionite';
 import { ObservableTreeList } from '../../ObservableTreeList';
 import { OpalTreeListItem } from '../OpalTreeListItem';

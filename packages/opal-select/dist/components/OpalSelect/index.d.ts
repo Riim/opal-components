@@ -1,6 +1,7 @@
 import { OpalButton } from '@riim/opal-button';
 import { OpalTextInput } from '@riim/opal-text-input';
-import { Cell, IEvent, ObservableList } from 'cellx';
+import { Cell, IEvent } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { BaseComponent, IComponentElement, IDisposableListening } from 'rionite';
 import { OpalSelectOption } from '../OpalSelectOption';
 import './index.css';

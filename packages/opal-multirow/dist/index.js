@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("cellx"), require("@riim/next-uid"), require("@riim/opal-sign-button"), require("rionite"), require("cellx-decorators"));
+		module.exports = factory(require("cellx"), require("@riim/next-uid"), require("@riim/opal-sign-button"), require("cellx-collections"), require("rionite"), require("cellx-decorators"));
 	else if(typeof define === 'function' && define.amd)
-		define(["cellx", "@riim/next-uid", "@riim/opal-sign-button", "rionite", "cellx-decorators"], factory);
+		define(["cellx", "@riim/next-uid", "@riim/opal-sign-button", "cellx-collections", "rionite", "cellx-decorators"], factory);
 	else if(typeof exports === 'object')
-		exports["@riim/opal-multirow"] = factory(require("cellx"), require("@riim/next-uid"), require("@riim/opal-sign-button"), require("rionite"), require("cellx-decorators"));
+		exports["@riim/opal-multirow"] = factory(require("cellx"), require("@riim/next-uid"), require("@riim/opal-sign-button"), require("cellx-collections"), require("rionite"), require("cellx-decorators"));
 	else
-		root["@riim/opal-multirow"] = factory(root["cellx"], root["@riim/next-uid"], root["@riim/opal-sign-button"], root["rionite"], root["cellx-decorators"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_cIp5__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
+		root["@riim/opal-multirow"] = factory(root["cellx"], root["@riim/next-uid"], root["@riim/opal-sign-button"], root["cellx-collections"], root["rionite"], root["cellx-decorators"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE_P7z7__, __WEBPACK_EXTERNAL_MODULE_cIp5__, __WEBPACK_EXTERNAL_MODULE_ej3F__, __WEBPACK_EXTERNAL_MODULE_oHAe__, __WEBPACK_EXTERNAL_MODULE_u4yd__, __WEBPACK_EXTERNAL_MODULE_yOaX__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -246,6 +246,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OpalMultirow = exports.OpalMultirowRow = void 0;
 const next_uid_1 = __webpack_require__("cIp5");
 const cellx_1 = __webpack_require__("P7z7");
+const cellx_collections_1 = __webpack_require__("oHAe");
 const cellx_decorators_1 = __webpack_require__("yOaX");
 const rionite_1 = __webpack_require__("u4yd");
 const OpalMultirowRow_1 = __webpack_require__("c/Q9");
@@ -256,7 +257,7 @@ let OpalMultirow = OpalMultirow_1 = class OpalMultirow extends rionite_1.BaseCom
     constructor() {
         super(...arguments);
         this._presetRowCount = 0;
-        this._newRows = new cellx_1.ObservableList();
+        this._newRows = new cellx_collections_1.ObservableList();
     }
     get _notHaveNewRows() {
         return !this._newRows.length;
@@ -328,6 +329,13 @@ OpalMultirow = OpalMultirow_1 = __decorate([
 ], OpalMultirow);
 exports.OpalMultirow = OpalMultirow;
 
+
+/***/ }),
+
+/***/ "oHAe":
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_oHAe__;
 
 /***/ }),
 

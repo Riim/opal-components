@@ -1,5 +1,5 @@
 import { OpalButton } from '@riim/opal-button';
-import { ObservableList } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export interface IFileData {
