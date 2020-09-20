@@ -22,6 +22,6 @@
     "@riim/opal-text-input-validator": "^0.43.4",
     "cellx": "^1.10.17",
     "date-exists": "^1.0.1",
-    "rionite": "^0.42.5"
+    "rionite": "^0.42.6"
   }
 }

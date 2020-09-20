@@ -23,6 +23,6 @@
     "cellx": "^1.10.17",
     "cellx-collections": "^1.0.1",
     "cellx-decorators": "^1.6.2",
-    "rionite": "^0.42.5"
+    "rionite": "^0.42.6"
   }
 }

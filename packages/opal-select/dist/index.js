@@ -133,7 +133,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_BLMt__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"RnSlot",,[,[[,"for","button"]]],[[1,,"OpalButton",["button"],[,[[,"viewType","{viewType}"],[,"size","{size}"],[,"checkable",""],[,"tabIndex","{tabIndex}"],[,"disabled","{disabled}"]]],[[1,1,"cond",,[,[[,"if","text"]]],[[3,"{text}"]]],[1,1,"cond",,[,[[,"unless","text"]]],[[3,"{_buttonText}"]]],[1,,"OpalIcon",["buttonIcon"],[,[[,"name","chevronDown"]]],]]]]],[1,,"RnSlot",,[,[[,"for","menuSlot"]]],[[1,,"RnSlot",["menuSlot"],[,[[,"for","menu"]]],[[1,,"OpalDropdown",["menu"],[,[[,"closeOn","mousedown"]]],[[1,,"RnSlot",,[,[[,"for","menuHeader"]]],],[1,,"RnSlot",,[,[[,"for","menuContent"]]],[[1,,"div",[,"menuContent"],[,[[1,"if","_paramDataListSpecified"]]],[[1,1,"cond",,[,[[,"if","dataList"]]],[[1,1,"repeat",,[,[[,"for","item in dataList"],[,"trackBy","{=_dataListItemValueFieldName}"]]],[[1,,"OpalSelectOption",["option"],[,[[,"value","{item |key(_dataListItemValueFieldName) }"],[,"text","{item |key(_dataListItemTextFieldName) }"],[,"subtext","{item |key(_dataListItemSubtextFieldName) }"],[,"disabled","{item |key(_dataListItemDisabledFieldName) }"]]],]]],[1,,"RnSlot",["itemInputValidatorSlot"],,]]],[1,,"OpalLoader",["menuLoader"],[,[[1,"unless","dataList"],[,"shown",""]]],]]],[1,,"div",[,"menuContent"],[,[[1,"unless","_paramDataListSpecified"]]],[[1,,"RnSlot",["options"],[,[[,"forTag","opal-select-option"]]],],[1,,"RnSlot",,[,[[,"for","itemInputSlot"]]],[[1,,"RnSlot",["itemInputValidatorSlot"],[,[[,"for","itemInputValidator"]]],[[1,,"RnSlot",["itemInputSlot"],[,[[,"for","itemInput"]]],]]]]]]]]],[1,,"RnSlot",,[,[[,"for","menuFooter"]]],]]]]]]]];
+const template = [[1,,,,"RnSlot",[,[[,"for","button"]]],[[1,["button"],,,"OpalButton",[,[[,"viewType","{viewType}"],[,"size","{size}"],[,"checkable",""],[,"tabIndex","{tabIndex}"],[,"disabled","{disabled}"]]],[[1,,,1,"cond",[,[[,"if","text"]]],[[3,"{text}"]]],[1,,,1,"cond",[,[[,"unless","text"]]],[[3,"{_buttonText}"]]],[1,["buttonIcon"],,,"OpalIcon",[,[[,"name","chevronDown"]]],]]]]],[1,,,,"RnSlot",[,[[,"for","menuSlot"]]],[[1,["menuSlot"],,,"RnSlot",[,[[,"for","menu"]]],[[1,["menu"],,,"OpalDropdown",[,[[,"closeOn","mousedown"]]],[[1,,,,"RnSlot",[,[[,"for","menuHeader"]]],],[1,,,,"RnSlot",[,[[,"for","menuContent"]]],[[1,[,"menuContent"],,,"div",[,[[1,"if","_paramDataListSpecified"]]],[[1,,,1,"cond",[,[[,"if","dataList"]]],[[1,,,1,"repeat",[,[[,"for","item in dataList"],[,"trackBy","{=_dataListItemValueFieldName}"]]],[[1,["option"],,,"OpalSelectOption",[,[[,"value","{item |key(_dataListItemValueFieldName) }"],[,"text","{item |key(_dataListItemTextFieldName) }"],[,"subtext","{item |key(_dataListItemSubtextFieldName) }"],[,"disabled","{item |key(_dataListItemDisabledFieldName) }"]]],]]],[1,["itemInputValidatorSlot"],,,"RnSlot",,]]],[1,["menuLoader"],,,"OpalLoader",[,[[1,"unless","dataList"],[,"shown",""]]],]]],[1,[,"menuContent"],,,"div",[,[[1,"unless","_paramDataListSpecified"]]],[[1,["options"],,,"RnSlot",[,[[,"forTag","opal-select-option"]]],],[1,,,,"RnSlot",[,[[,"for","itemInputSlot"]]],[[1,["itemInputValidatorSlot"],,,"RnSlot",[,[[,"for","itemInputValidator"]]],[[1,["itemInputSlot"],,,"RnSlot",[,[[,"for","itemInput"]]],]]]]]]]]],[1,,,,"RnSlot",[,[[,"for","menuFooter"]]],]]]]]]]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
@@ -1295,7 +1295,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_oHAe__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"button",["control"],[,[[,"type","button"],[,"tabindex","{_tabIndex}"]]],[[1,,"RnSlot",["contentSlot"],,[[3,"{paramText}"],[1,,"sub",,[,[[1,"if","paramSubtext"]]],[[3,"{paramSubtext}"]]]]],[1,,"OpalIcon",["iconSelected"],[,[[1,"if","selected"],[,"name","checkmark"]]],],[1,,"OpalIcon",["iconIndeterminate"],[,[[1,"if","indeterminate"],[,"name","minus"]]],]]]];
+const template = [[1,["control"],,,"button",[,[[,"type","button"],[,"tabindex","{_tabIndex}"]]],[[1,["contentSlot"],,,"RnSlot",,[[3,"{paramText}"],[1,,,,"sub",[,[[1,"if","paramSubtext"]]],[[3,"{paramSubtext}"]]]]],[1,["iconSelected"],,,"OpalIcon",[,[[1,"if","selected"],[,"name","checkmark"]]],],[1,["iconIndeterminate"],,,"OpalIcon",[,[[1,"if","indeterminate"],[,"name","minus"]]],]]]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
@@ -1313,7 +1313,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("X6DG");

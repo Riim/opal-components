@@ -109,7 +109,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("Y0hN");
@@ -164,7 +164,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_ioIi__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"RnSlot",,[,[[,"for","queryInputSlot"]]],[[1,,"RnSlot",["queryInputSlot"],[,[[,"for","queryInput"]]],[[1,,"OpalTextInput",["queryInput"],[,[[,"placeholder","{'Поиск' |t }"],[,"clearable",""]]],[[1,,"OpalIcon",["queryInputEndIcon"],[,[[,"class","OpalTextInput__endIcon"],[,"name","search"]]],]]]]]]],[1,,"RnSlot",["listSlot"],[,[[,"for","list"]]],]];
+const template = [[1,,,,"RnSlot",[,[[,"for","queryInputSlot"]]],[[1,["queryInputSlot"],,,"RnSlot",[,[[,"for","queryInput"]]],[[1,["queryInput"],,,"OpalTextInput",[,[[,"placeholder","{'Поиск' |t }"],[,"clearable",""]]],[[1,["queryInputEndIcon"],,,"OpalIcon",[,[[,"class","OpalTextInput__endIcon"],[,"name","search"]]],]]]]]]],[1,["listSlot"],,,"RnSlot",[,[[,"for","list"]]],]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),

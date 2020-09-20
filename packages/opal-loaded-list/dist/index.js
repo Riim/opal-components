@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"div",["list"],,[[1,,"RnSlot",["listItemSlot"],[,[[1,"for","$item in dataList"],[,"for","listItem"],[,"cloneContent",""],[,"getContext","{_getListItemContext}"]]],[[1,,"span",["listItem"],,[[3,"{$item |key(_dataListItemTextFieldName) }"]]]]]]],[1,,"OpalLoader",["loader"],[,[[,"shown","{loaderShown}"],[,"inCenter","{dataList.length |not }"]]],],[1,,"RnSlot",["nothingFoundSlot"],[,[[1,"if","nothingFoundShown"],[,"for","nothingFound"]]],[[1,,"div",["nothingFoundMessage"],,[[3,"{\"Ничего не найдено\" |t }"]]]]]];
+const template = [[1,["list"],,,"div",,[[1,["listItemSlot"],,,"RnSlot",[,[[1,"for","$item in dataList"],[,"for","listItem"],[,"cloneContent",""],[,"getContext","{_getListItemContext}"]]],[[1,["listItem"],,,"span",,[[3,"{$item |key(_dataListItemTextFieldName) }"]]]]]]],[1,["loader"],,,"OpalLoader",[,[[,"shown","{loaderShown}"],[,"inCenter","{dataList.length |not }"]]],],[1,["nothingFoundSlot"],,,"RnSlot",[,[[1,"if","nothingFoundShown"],[,"for","nothingFound"]]],[[1,["nothingFoundMessage"],,,"div",,[[3,"{\"Ничего не найдено\" |t }"]]]]]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
@@ -355,7 +355,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("BLMt");

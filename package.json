@@ -30,19 +30,19 @@
     "mkdirp": "^1.0.4",
     "postcss-csso": "^4.0.0",
     "postcss-loader": "^3.0.0",
-    "postcss-rionite-component": "^0.39.2",
+    "postcss-rionite-component": "^0.42.6",
     "postcss-sass-color-functions": "^1.1.0",
     "postcss-simple-vars": "^5.0.2",
     "raw-loader": "^4.0.1",
     "require-dir": "^1.2.0",
     "rimraf": "^3.0.2",
-    "rionite-template-loader": "^0.39.2",
+    "rionite-template-loader": "^0.42.6",
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.2.4",
     "trim-lines-loader": "^0.2.1",
-    "typescript": "^3.9.5",
-    "webpack": "^4.43.0",
+    "typescript": "^4.0.3",
+    "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
-    "yargs": "^15.3.1"
+    "yargs": "^16.0.3"
   }
 }

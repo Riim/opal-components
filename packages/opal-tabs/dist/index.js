@@ -155,7 +155,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"RnSlot",["contentSlot"],[,[[1,"if","contentRendered"]]],]];
+const template = [[1,["contentSlot"],,,"RnSlot",[,[[1,"if","contentRendered"]]],]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
@@ -260,7 +260,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var OpalTabs_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OpalTabs = exports.OpalTabPanel = exports.OpalTab = void 0;
+exports.OpalTabs = exports.OpalTabPanel = exports.OpalTabList = exports.OpalTab = void 0;
 const next_uid_1 = __webpack_require__("cIp5");
 const opal_router_1 = __webpack_require__("Oufu");
 const cellx_1 = __webpack_require__("P7z7");
@@ -407,7 +407,7 @@ exports.OpalTabs = OpalTabs;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"button",["control"],[,[[,"type","button"],[,"tabindex","{_tabIndex}"]]],[[1,,"RnSlot",["contentSlot"],,]]]];
+const template = [[1,["control"],,,"button",[,[[,"type","button"],[,"tabindex","{_tabIndex}"]]],[[1,["contentSlot"],,,"RnSlot",,]]]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
@@ -417,7 +417,7 @@ const template = [[1,,"button",["control"],[,[[,"type","button"],[,"tabindex","{
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"RnSlot",["contentSlot"],,]];
+const template = [[1,["contentSlot"],,,"RnSlot",,]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
@@ -434,7 +434,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_cIp5__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"RnSlot",["tabListSlot"],[,[[,"forTag","opal-tab-list"]]],[[1,,"OpalTabList",["tabList"],,[[1,,"RnSlot",["tabs"],[,[[,"forTag","opal-tab"]]],]]]]],[1,,"RnSlot",["tabPanels"],[,[[,"forTag","opal-tab-panel"]]],]];
+const template = [[1,["tabListSlot"],,,"RnSlot",[,[[,"forTag","opal-tab-list"]]],[[1,["tabList"],,,"OpalTabList",,[[1,["tabs"],,,"RnSlot",[,[[,"forTag","opal-tab"]]],]]]]],[1,["tabPanels"],,,"RnSlot",[,[[,"forTag","opal-tab-panel"]]],]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
@@ -610,7 +610,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__("Rwo/"), exports);

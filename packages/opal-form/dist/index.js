@@ -109,7 +109,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__("aAdN"), exports);
@@ -188,7 +188,7 @@ exports.OpalForm = OpalForm;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"form",["form"],,[[1,,"RnSlot",["content"],,],[1,,"input",,[,[[,"type","submit"],[,"style","display: none;"]]],]]]];
+const template = [[1,["form"],,,"form",,[[1,["content"],,,"RnSlot",,],[1,,,,"input",[,[[,"type","submit"],[,"style","display: none;"]]],]]]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),

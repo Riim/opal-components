@@ -109,7 +109,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("Y0hN");
@@ -278,7 +278,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"span",["contentWrapper"],,[[1,,"RnSlot",["contentSlot"],[,[[,"contenteditable",""],[,"spellcheck","false"]]],],[1,,"OpalIcon",["iconEdit"],[,[[,"name","compose"],[,"strokeWidth","3"]]],]]]];
+const template = [[1,["contentWrapper"],,,"span",,[[1,["contentSlot"],,,"RnSlot",[,[[,"contenteditable",""],[,"spellcheck","false"]]],],[1,["iconEdit"],,,"OpalIcon",[,[[,"name","compose"],[,"strokeWidth","3"]]],]]]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ })

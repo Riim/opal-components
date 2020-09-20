@@ -109,7 +109,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("hl6F");
@@ -123,7 +123,7 @@ __exportStar(__webpack_require__("X+JO"), exports);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"RnSlot",["contentSlot"],,]];
+const template = [[1,["contentSlot"],,,"RnSlot",,]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),

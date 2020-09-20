@@ -116,7 +116,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("iMF9");
@@ -149,7 +149,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_JK3___;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"OpalTextInputValidator",["textInputValidator"],,[[1,,"OpalInputMask",["inputMask"],[,[[,"mask","{mask}"]]],[[1,,"OpalTextInput",["textInput"],[,[[,"class","OpalInputValidator__textInput OpalInputMask__textInput"],[,"value","{paramValue}"],[,"placeholder","{placeholder}"],[,"clearable",""]]],[[1,,"OpalIcon",["textInputEndIcon"],[,[[,"class","OpalTextInput__endIcon"],[,"name","calendar"]]],]]]]],[1,,"OpalTextInputValidatorRule",["textInputValidatorRuleRequired"],[,[[1,"if","required"],[,"required",""],[,"popoverPosition","{popoverPosition}"]]],[[3,"{\"Поле обязательно для заполнения\" |t }"]]],[1,,"OpalTextInputValidatorRule",["textInputValidatorRuleDateExists"],[,[[,"test","{dateExists}"],[,"popoverPosition","{popoverPosition}"]]],[[3,"{\"Несуществующая дата\" |t }"]]],[1,,"OpalTextInputValidatorRule",["textInputValidatorRuleDateInRange"],[,[[,"test","{_isDateInRange}"],[,"popoverPosition","{popoverPosition}"]]],[[3,"{\"Дата вне допустимого диапазона\" |t }"]]]]],[1,,"OpalDropdown",["calendarMenu"],[,[[,"autoHeight","no"]]],[[1,,"OpalCalendar",["calendar"],[,[[,"fromDate","{fromDate}"],[,"toDate","{toDate}"],[,"value","{paramValue}"],[,"dateDelimiter","."]]],]]]];
+const template = [[1,["textInputValidator"],,,"OpalTextInputValidator",,[[1,["inputMask"],,,"OpalInputMask",[,[[,"mask","{mask}"]]],[[1,["textInput"],,,"OpalTextInput",[,[[,"class","OpalInputValidator__textInput OpalInputMask__textInput"],[,"value","{paramValue}"],[,"placeholder","{placeholder}"],[,"clearable",""]]],[[1,["textInputEndIcon"],,,"OpalIcon",[,[[,"class","OpalTextInput__endIcon"],[,"name","calendar"]]],]]]]],[1,["textInputValidatorRuleRequired"],,,"OpalTextInputValidatorRule",[,[[1,"if","required"],[,"required",""],[,"popoverPosition","{popoverPosition}"]]],[[3,"{\"Поле обязательно для заполнения\" |t }"]]],[1,["textInputValidatorRuleDateExists"],,,"OpalTextInputValidatorRule",[,[[,"test","{dateExists}"],[,"popoverPosition","{popoverPosition}"]]],[[3,"{\"Несуществующая дата\" |t }"]]],[1,["textInputValidatorRuleDateInRange"],,,"OpalTextInputValidatorRule",[,[[,"test","{_isDateInRange}"],[,"popoverPosition","{popoverPosition}"]]],[[3,"{\"Дата вне допустимого диапазона\" |t }"]]]]],[1,["calendarMenu"],,,"OpalDropdown",[,[[,"autoHeight","no"]]],[[1,["calendar"],,,"OpalCalendar",[,[[,"fromDate","{fromDate}"],[,"toDate","{toDate}"],[,"value","{paramValue}"],[,"dateDelimiter","."]]],]]]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),

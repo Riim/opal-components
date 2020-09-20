@@ -144,7 +144,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__("SN5g"), exports);
@@ -171,7 +171,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 var OpalRouter_1;
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -596,7 +596,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_cIp5__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"RnSlot",["contentSlot"],,],[1,,"OpalLoader",["loader"],[,[[,"shown","{isLoaderShown}"]]],]];
+const template = [[1,["contentSlot"],,,"RnSlot",,],[1,["loader"],,,"OpalLoader",[,[[,"shown","{isLoaderShown}"]]],]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),

@@ -221,7 +221,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__("0Nex"), exports);
@@ -241,7 +241,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_u4yd__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,1,"cond",,[,[[,"if","range"]]],[[1,,"div",["firstInputWrapper3"],,[[1,,"div",["firstInputWrapper2"],[,[[,"style","width: {_firstInputWidth}%"]]],[[1,,"div",["firstInputWrapper"],,[[1,,"input",["firstInput"],[,[[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{range.0}"]]],]]]]]]],[1,,"div",["secondInputWrapper"],,[[1,,"input",["secondInput"],[,[[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{range.1}"]]],]]]]],[1,,"input",["input"],[,[[1,"unless","range"],[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{value}"]]],]];
+const template = [[1,,,1,"cond",[,[[,"if","range"]]],[[1,["firstInputWrapper3"],,,"div",,[[1,["firstInputWrapper2"],,,"div",[,[[,"style","width: {_firstInputWidth}%"]]],[[1,["firstInputWrapper"],,,"div",,[[1,["firstInput"],,,"input",[,[[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{range.0}"]]],]]]]]]],[1,["secondInputWrapper"],,,"div",,[[1,["secondInput"],,,"input",[,[[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{range.1}"]]],]]]]],[1,["input"],,,"input",[,[[1,"unless","range"],[,"type","range"],[,"min","{min}"],[,"max","{max}"],[,"step","{step}"],[,"value","{value}"]]],]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),

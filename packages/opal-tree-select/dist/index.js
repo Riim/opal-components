@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"OpalModal",["menu"],,[[1,,"RnSlot",,[,[[,"for","menuHeaderSlot"]]],[[1,,"RnSlot",["menuHeaderSlot"],[,[[,"for","menuHeader"]]],]]],[1,,"OpalFilteredList",["filteredList"],,[[1,,"OpalTreeList",["treeList"],[,[[,"class","OpalFilteredList__list"],[,"dataTreeList","{dataTreeList}"],[,"dataTreeListItemSchema","{dataTreeListItemSchema |dump }"],[,"viewModel","{viewModel}"],[,"viewModelItemSchema","{viewModelItemSchema |dump }"],[,"query","{query}"]]],[[1,,"OpalSelectOption",["option"],[,[[,"class","OpalTreeList__selectionControl"],[,"text","{$item.name}"],[,"selected","{$selected}"],[,"indeterminate","{$indeterminate}"]]],]]]]],[1,,"div",["footer"],,[[1,,"OpalButton",["btnClose"],,[[3,"{\"Готово\" |pt(\"OpalTreeSelect__btnClose\") }"]]]]]]]];
+const template = [[1,["menu"],,,"OpalModal",,[[1,,,,"RnSlot",[,[[,"for","menuHeaderSlot"]]],[[1,["menuHeaderSlot"],,,"RnSlot",[,[[,"for","menuHeader"]]],]]],[1,["filteredList"],,,"OpalFilteredList",,[[1,["treeList"],,,"OpalTreeList",[,[[,"class","OpalFilteredList__list"],[,"dataTreeList","{dataTreeList}"],[,"dataTreeListItemSchema","{dataTreeListItemSchema |dump }"],[,"viewModel","{viewModel}"],[,"viewModelItemSchema","{viewModelItemSchema |dump }"],[,"query","{query}"]]],[[1,["option"],,,"OpalSelectOption",[,[[,"class","OpalTreeList__selectionControl"],[,"text","{$item.name}"],[,"selected","{$selected}"],[,"indeterminate","{$indeterminate}"]]],]]]]],[1,["footer"],,,"div",,[[1,["btnClose"],,,"OpalButton",,[[3,"{\"Готово\" |pt(\"OpalTreeSelect__btnClose\") }"]]]]]]]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
@@ -140,7 +140,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("X6DG");

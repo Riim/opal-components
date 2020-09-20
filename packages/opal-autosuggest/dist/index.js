@@ -119,7 +119,7 @@ module.exports = (function(d) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,,"RnSlot",,[,[[,"for","textInput"]]],[[1,,"OpalTextInput",["textInput"],[,[[,"value","{value |key(_dataListItemTextFieldName) }"],[,"placeholder","{'Начните вводить для поиска' |t }"],[,"clearable",""]]],[[1,,"OpalIcon",["textInputEndIcon"],[,[[,"class","OpalTextInput__endIcon"],[,"name","search"]]],]]]]],[1,,"OpalDropdown",["menu"],,[[1,,"RnSlot",,[,[[,"for","menuHeader"]]],],[1,,"div",["optionList"],,[[1,,"div",["option"],[,[[1,"for","item in dataList"],[,"data-value","{item |key(_dataListItemValueFieldName) }"],[,"data-text","{item |key(_dataListItemTextFieldName) }"],[,"data-subtext","{item |key(_dataListItemSubtextFieldName) }"]]],[[3,"{item |key(_dataListItemTextFieldName) }"],[1,,"sub",,,[[3,"{item |key(_dataListItemSubtextFieldName) }"]]]]]]],[1,,"RnSlot",["nothingFoundSlot"],[,[[1,"unless","dataList.length"],[,"for","nothingFound"]]],[[1,,"span",["nothingFound"],,[[1,,"span",["nothingFoundMessage"],,[[3,"{\"Ничего не найдено\" |t }"]]]]]]],[1,,"RnSlot",["menuFooterSlot"],[,[[,"for","menuFooter"]]],]]]];
+const template = [[1,,,,"RnSlot",[,[[,"for","textInput"]]],[[1,["textInput"],,,"OpalTextInput",[,[[,"value","{value |key(_dataListItemTextFieldName) }"],[,"placeholder","{'Начните вводить для поиска' |t }"],[,"clearable",""]]],[[1,["textInputEndIcon"],,,"OpalIcon",[,[[,"class","OpalTextInput__endIcon"],[,"name","search"]]],]]]]],[1,["menu"],,,"OpalDropdown",,[[1,,,,"RnSlot",[,[[,"for","menuHeader"]]],],[1,["optionList"],,,"div",,[[1,["option"],,,"div",[,[[1,"for","item in dataList"],[,"data-value","{item |key(_dataListItemValueFieldName) }"],[,"data-text","{item |key(_dataListItemTextFieldName) }"],[,"data-subtext","{item |key(_dataListItemSubtextFieldName) }"]]],[[3,"{item |key(_dataListItemTextFieldName) }"],[1,,,,"sub",,[[3,"{item |key(_dataListItemSubtextFieldName) }"]]]]]]],[1,["nothingFoundSlot"],,,"RnSlot",[,[[1,"unless","dataList.length"],[,"for","nothingFound"]]],[[1,["nothingFound"],,,"span",,[[1,["nothingFoundMessage"],,,"span",,[[3,"{\"Ничего не найдено\" |t }"]]]]]]],[1,["menuFooterSlot"],,,"RnSlot",[,[[,"for","menuFooter"]]],]]]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),
@@ -587,7 +587,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__("A7KY");
