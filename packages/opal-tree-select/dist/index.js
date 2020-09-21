@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,["menu"],,,"OpalModal",,[[1,,,,"RnSlot",[,[[,"for","menuHeaderSlot"]]],[[1,["menuHeaderSlot"],,,"RnSlot",[,[[,"for","menuHeader"]]],]]],[1,["filteredList"],,,"OpalFilteredList",,[[1,["treeList"],,,"OpalTreeList",[,[[,"class","OpalFilteredList__list"],[,"dataTreeList","{dataTreeList}"],[,"dataTreeListItemSchema","{dataTreeListItemSchema |dump }"],[,"viewModel","{viewModel}"],[,"viewModelItemSchema","{viewModelItemSchema |dump }"],[,"query","{query}"]]],[[1,["option"],,,"OpalSelectOption",[,[[,"class","OpalTreeList__selectionControl"],[,"text","{$item.name}"],[,"selected","{$selected}"],[,"indeterminate","{$indeterminate}"]]],]]]]],[1,["footer"],,,"div",,[[1,["btnClose"],,,"OpalButton",,[[3,"{\"Готово\" |pt(\"OpalTreeSelect__btnClose\") }"]]]]]]]];
+const template = [[1,["menu"],1,,"OpalModal",,[[1,,,,"RnSlot",[,[[,"for","menuHeaderSlot"]]],[[1,["menuHeaderSlot"],,,"RnSlot",[,[[,"for","menuHeader"]]],]]],[1,["filteredList"],,,"OpalFilteredList",,[[1,["treeList"],,,"OpalTreeList",[,[[,"class","OpalFilteredList__list"],[,"dataTreeList","{dataTreeList}"],[,"dataTreeListItemSchema","{dataTreeListItemSchema |dump }"],[,"viewModel","{viewModel}"],[,"viewModelItemSchema","{viewModelItemSchema |dump }"],[,"query","{query}"]]],[[1,["option"],1,,"OpalSelectOption",[,[[,"class","OpalTreeList__selectionControl"],[,"text","{$item.name}"],[,"selected","{$selected}"],[,"indeterminate","{$indeterminate}"]]],]]]]],[1,["footer"],,,"div",,[[1,["btnClose"],,,"OpalButton",,[[3,"{\"Готово\" |pt(\"OpalTreeSelect__btnClose\") }"]]]]]]]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),

@@ -1,4 +1,4 @@
-:menu (super!, autoHeight=no) {
+:menu! (super!, autoHeight=no) {
 	div:menuHeader {
 		div:menuHeaderLeftPart {
 			OpalTextInput:queryInput (
@@ -24,7 +24,7 @@
 			dataProvider={dataProvider},
 			dataListItemValueName={_dataListItemValueFieldName}
 		) {
-			OpalSelectOption:option (
+			OpalSelectOption:option! (
 				class=OpalLoadedList__listItem,
 				value='{$item |key(_dataListItemValueFieldName) }',
 				text='{$item |key(_dataListItemTextFieldName) }',

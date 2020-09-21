@@ -1,4 +1,4 @@
-OpalModal:menu {
+OpalModal:menu! {
 	RnSlot (for=menuHeaderSlot) {
 		RnSlot:menuHeaderSlot (for=menuHeader)
 	}
@@ -12,7 +12,7 @@ OpalModal:menu {
 			viewModelItemSchema={viewModelItemSchema |dump },
 			query={query}
 		) {
-			OpalSelectOption:option (
+			OpalSelectOption:option! (
 				class=OpalTreeList__selectionControl,
 				text={$item.name},
 				selected={$selected},

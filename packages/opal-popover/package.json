@@ -16,6 +16,6 @@
     "@riim/opal-button": "^0.43.5",
     "cellx": "^1.10.17",
     "cellx-decorators": "^1.6.2",
-    "rionite": "^0.42.6"
+    "rionite": "^0.42.10"
   }
 }

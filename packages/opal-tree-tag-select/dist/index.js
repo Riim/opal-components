@@ -122,7 +122,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_ej3F__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const template = [[1,["select"],,,"OpalTreeSelect",[,[[,"viewType","clean"],[,"dataTreeListKeypath","{_selectDataListKeypath}"],[,"dataTreeListItemSchema","{dataListItemSchema |dump }"],[,"value","{paramValue}"],[,"viewModel","{viewModel}"],[,"viewModelItemSchema","{viewModelItemSchema |dump }"],[,"addItem","{addItem}"],[,"focused","{focused}"]]],[[1,,,,"RnSlot",[,[[,"class","OpalSelect__menuHeaderSlot"],[,"for","OpalSelect__menuHeader"]]],],[1,["button"],,,"OpalSignButton",[,[[,"class","OpalSelect__button"],[,"sign","plus"],[,"checkable",""],[,"tabIndex","{tabIndex}"],[,"disabled","{disabled}"]]],]]]];
+const template = [[1,["select"],1,,"OpalTreeSelect",[,[[,"viewType","clean"],[,"dataTreeListKeypath","{_selectDataListKeypath}"],[,"dataTreeListItemSchema","{dataListItemSchema |dump }"],[,"value","{paramValue}"],[,"viewModel","{viewModel}"],[,"viewModelItemSchema","{viewModelItemSchema |dump }"],[,"addItem","{addItem}"],[,"focused","{focused}"]]],[[1,,,,"RnSlot",[,[[,"class","OpalSelect__menuHeaderSlot"],[,"for","OpalSelect__menuHeader"]]],],[1,["button"],1,,"OpalSignButton",[1,],[[4,]]]]]];
 /* harmony default export */ __webpack_exports__["default"] = (template);
 
 /***/ }),

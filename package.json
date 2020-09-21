@@ -36,7 +36,7 @@
     "raw-loader": "^4.0.1",
     "require-dir": "^1.2.0",
     "rimraf": "^3.0.2",
-    "rionite-template-loader": "^0.42.6",
+    "rionite-template-loader": "^0.42.8",
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.2.4",
     "trim-lines-loader": "^0.2.1",

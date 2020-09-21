@@ -90,6 +90,14 @@ export class OpalTagSelect extends BaseComponent {
 
 	@Param({ default: 'default' })
 	viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | (string & { _?: never });
+	@Param({ default: 'primary' })
+	buttonViewType:
+		| 'default'
+		| 'primary'
+		| 'success'
+		| 'warning'
+		| 'danger'
+		| (string & { _?: never });
 	@Param('dataList')
 	paramDataList: TDataList | null;
 	@Param({ type: String, readonly: true })

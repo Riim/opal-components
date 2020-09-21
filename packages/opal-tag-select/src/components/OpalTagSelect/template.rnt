@@ -26,7 +26,7 @@ span:control {
 		OpalSignButton:button (
 			class=OpalSelect__button,
 			sign=plus,
-			viewType={viewType},
+			viewType={buttonViewType},
 			checkable,
 			tabIndex={tabIndex},
 			disabled={disabled}

@@ -22,6 +22,9 @@ export declare class OpalTagSelect extends BaseComponent {
     viewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | (string & {
         _?: never;
     });
+    buttonViewType: 'default' | 'primary' | 'success' | 'warning' | 'danger' | (string & {
+        _?: never;
+    });
     paramDataList: TDataList | null;
     dataListKeypath: string | null;
     dataListItemSchema: {
