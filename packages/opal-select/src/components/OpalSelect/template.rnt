@@ -41,7 +41,7 @@ RnSlot (for=menuSlot) {
 					RnSlot:options (forTag=opal-select-option)
 
 					RnSlot (for=itemInputSlot) {
-						RnSlot:itemInputValidatorSlot (for=itemInputValidator) {
+						RnSlot:itemInputValidatorSlot! (for=itemInputValidator) {
 							RnSlot:itemInputSlot (for=itemInput)
 						}
 					}
