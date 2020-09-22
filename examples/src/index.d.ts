@@ -1,6 +1,6 @@
 import '@riim/opal-components';
 import { ObservableTreeList } from '@riim/opal-tree-list';
-import { ObservableList } from 'cellx';
+import { ObservableList } from 'cellx-collections';
 import { BaseComponent } from 'rionite';
 export declare class OpalComponentsExamples extends BaseComponent {
     dataList1: ObservableList<{
@@ -37,20 +37,20 @@ export declare class OpalComponentsExamples extends BaseComponent {
     }>;
     dataProvider1: {
         getItems: (count: number, after: string | null, query: string | null) => Promise<{
-            items: {
+            items: Array<{
                 id: string;
                 name: string;
                 parent: string;
-            }[];
+            }>;
             total: number;
         }>;
     };
     dataProvider2: {
         getItems(query: string | null): Promise<{
-            items: {
+            items: Array<{
                 id: string;
                 name: string;
-            }[];
+            }>;
         }>;
     };
     viewModel1: ObservableList<{

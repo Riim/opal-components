@@ -5,11 +5,7 @@ const postcssSassColorFunctions = require('postcss-sass-color-functions');
 const autoprefixer = require('autoprefixer');
 const csso = require('postcss-csso');
 
-module.exports = env => {
-	if (!env) {
-		env = {};
-	}
-
+module.exports = (env = {}) => {
 	let plugins = [];
 
 	return {

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp",
-    "examples": "webpack --config=examples/webpack.config.js --env.dev",
+    "build-examples": "webpack --config=examples/webpack.config.js --env.dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -36,7 +36,7 @@
     "raw-loader": "^4.0.1",
     "require-dir": "^1.2.0",
     "rimraf": "^3.0.2",
-    "rionite-template-loader": "^0.42.8",
+    "rionite-template-loader": "^0.42.11",
     "simple-css-loader": "^0.1.1",
     "simple-svg-loader": "^1.2.4",
     "trim-lines-loader": "^0.2.1",
