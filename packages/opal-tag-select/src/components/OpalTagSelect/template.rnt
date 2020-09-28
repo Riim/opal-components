@@ -58,7 +58,7 @@ span:control {
 								RnSlot (class=OpalSelect__itemInputSlot, for=OpalSelect__itemInput)
 							}
 						}
-						@cond (unless=dataList, acceptPending) {
+						@cond (unless=dataList, trueWhenPending) {
 							OpalLoader:menuLoader (shown)
 						}
 					}
