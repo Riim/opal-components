@@ -45,6 +45,7 @@ export declare class OpalTextInput extends BaseComponent {
     validator: {
         validate(): boolean;
     } | null;
+    ready(): void;
     connected(): void;
     _onRowsChange(): void;
     _onParamValueChange(evt: IEvent): void;

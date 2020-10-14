@@ -115,9 +115,11 @@ export class OpalTextInput extends BaseComponent {
 
 	validator: { validate(): boolean } | null = null;
 
-	connected() {
+	ready() {
 		this.textField = this.$<HTMLInputElement>('textField')!;
+	}
 
+	connected() {
 		if (this.paramValue) {
 			this.textField.value = this.paramValue || '';
 		} else if (this.storeKey) {

@@ -184,8 +184,10 @@ let OpalTextInput = OpalTextInput_1 = class OpalTextInput extends rionite_1.Base
     get endIconShown() {
         return !this.loading && !this.btnClearShown;
     }
-    connected() {
+    ready() {
         this.textField = this.$('textField');
+    }
+    connected() {
         if (this.paramValue) {
             this.textField.value = this.paramValue || '';
         }
