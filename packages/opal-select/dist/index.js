@@ -561,7 +561,7 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         if (multiple) {
             for (let item of dataList || this.options) {
                 let itemValue = dataList
-                    ? item[vmItemValueFieldName]
+                    ? item[this._dataListItemValueFieldName]
                     : item.value;
                 let index = vm.findIndex((item) => item[vmItemValueFieldName] == itemValue);
                 if (!value.includes(itemValue)) {
@@ -573,10 +573,10 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
                     vm.add({
                         [vmItemValueFieldName]: itemValue,
                         [vmItemTextFieldName]: dataList
-                            ? item[vmItemTextFieldName]
+                            ? item[this._dataListItemTextFieldName]
                             : item.text,
                         [vmItemSubtextFieldName]: dataList
-                            ? item[vmItemSubtextFieldName]
+                            ? item[this._dataListItemSubtextFieldName]
                             : item.subtext
                     });
                 }
@@ -586,17 +586,17 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
             let itemValue = value[0];
             if (!(dataList || this.options).some((item) => {
                 if ((dataList
-                    ? item[vmItemValueFieldName]
+                    ? item[this._dataListItemValueFieldName]
                     : item.value) != itemValue) {
                     return false;
                 }
                 vm.set(0, {
                     [vmItemValueFieldName]: itemValue,
                     [vmItemTextFieldName]: dataList
-                        ? item[vmItemTextFieldName]
+                        ? item[this._dataListItemTextFieldName]
                         : item.text,
                     [vmItemSubtextFieldName]: dataList
-                        ? item[vmItemSubtextFieldName]
+                        ? item[this._dataListItemSubtextFieldName]
                         : item.subtext
                 });
                 return true;

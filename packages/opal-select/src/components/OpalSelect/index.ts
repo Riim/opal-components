@@ -361,7 +361,7 @@ export class OpalSelect extends BaseComponent {
 		if (multiple) {
 			for (let item of dataList || this.options) {
 				let itemValue = dataList
-					? item[vmItemValueFieldName]
+					? item[this._dataListItemValueFieldName]
 					: (item as OpalSelectOption).value;
 				let index = vm.findIndex((item) => item[vmItemValueFieldName] == itemValue);
 
@@ -373,10 +373,10 @@ export class OpalSelect extends BaseComponent {
 					vm.add({
 						[vmItemValueFieldName]: itemValue,
 						[vmItemTextFieldName]: dataList
-							? item[vmItemTextFieldName]
+							? item[this._dataListItemTextFieldName]
 							: (item as OpalSelectOption).text,
 						[vmItemSubtextFieldName]: dataList
-							? item[vmItemSubtextFieldName]
+							? item[this._dataListItemSubtextFieldName]
 							: (item as OpalSelectOption).subtext
 					});
 				}
@@ -388,7 +388,7 @@ export class OpalSelect extends BaseComponent {
 				!(dataList || this.options).some((item: IDataListItem | OpalSelectOption) => {
 					if (
 						(dataList
-							? item[vmItemValueFieldName]
+							? item[this._dataListItemValueFieldName]
 							: (item as OpalSelectOption).value) != itemValue
 					) {
 						return false;
@@ -397,10 +397,10 @@ export class OpalSelect extends BaseComponent {
 					vm.set(0, {
 						[vmItemValueFieldName]: itemValue,
 						[vmItemTextFieldName]: dataList
-							? item[vmItemTextFieldName]
+							? item[this._dataListItemTextFieldName]
 							: (item as OpalSelectOption).text,
 						[vmItemSubtextFieldName]: dataList
-							? item[vmItemSubtextFieldName]
+							? item[this._dataListItemSubtextFieldName]
 							: (item as OpalSelectOption).subtext
 					});
 
