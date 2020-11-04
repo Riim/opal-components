@@ -11836,13 +11836,16 @@ let OpalTextEditor = OpalTextEditor_1 = class OpalTextEditor extends rionite_1.B
         this.validator = null;
     }
     get value() {
-        let value = this._value &&
-            this._value
+        var _a;
+        let value = ((_a = this.textField) === null || _a === void 0 ? void 0 : _a.innerHTML) || this._value;
+        if (value) {
+            value = value
                 .replace(/^(?:<(\w+)[^>]*><br><\/\1>)+/, '')
                 .replace(/(?:<(\w+)[^>]*><br><\/\1>)+$/, '')
                 .replace(/<(\w+)([^>]*)>[\x20\t]+<\/\1>/g, '<$1$2>&nbsp;</$1>')
                 .replace(/<(div|span)\b[^>]*><\/\1>/g, '')
                 .replace(/<span[^>]*?\sclass="ql-cursor"[^>]*>\s*<\/span>/g, '');
+        }
         return value && /^(?:<(\w+)[^>]*><br><\/\1>)+$/.test(value) ? null : value || null;
     }
     set value(value) {

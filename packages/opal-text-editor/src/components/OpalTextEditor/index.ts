@@ -190,14 +190,16 @@ export class OpalTextEditor extends BaseComponent {
 	_value: string | null = null;
 
 	get value() {
-		let value =
-			this._value &&
-			this._value
+		let value = this.textField?.innerHTML || this._value;
+
+		if (value) {
+			value = value
 				.replace(/^(?:<(\w+)[^>]*><br><\/\1>)+/, '')
 				.replace(/(?:<(\w+)[^>]*><br><\/\1>)+$/, '')
 				.replace(/<(\w+)([^>]*)>[\x20\t]+<\/\1>/g, '<$1$2>&nbsp;</$1>')
 				.replace(/<(div|span)\b[^>]*><\/\1>/g, '')
 				.replace(/<span[^>]*?\sclass="ql-cursor"[^>]*>\s*<\/span>/g, '');
+		}
 
 		return value && /^(?:<(\w+)[^>]*><br><\/\1>)+$/.test(value) ? null : value || null;
 	}
