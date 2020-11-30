@@ -21,8 +21,6 @@ const indexOf = Array.prototype.indexOf;
 const forEach = Array.prototype.forEach;
 const find = Array.prototype.find;
 
-const reTabLabel = /(?:#|&)tab=([^&]+)/;
-
 @Component({
 	elementIs: 'OpalTabs',
 	template
@@ -30,14 +28,14 @@ const reTabLabel = /(?:#|&)tab=([^&]+)/;
 export class OpalTabs extends BaseComponent {
 	static EVENT_CHANGE = Symbol('change');
 
-	@Param(Boolean)
-	useLocationHash: boolean;
+	@Param(String)
+	name: string | null;
 
 	tabElements: HTMLCollectionOf<IComponentElement>;
 	tabPanelElements: HTMLCollectionOf<IComponentElement<OpalTabPanel>>;
 
 	_startSelectedTab: OpalTab | null = null;
-	_selectedTab: OpalTab | null = null;
+	_selectedTab: OpalTab;
 
 	ready() {
 		let tabElements = (this.tabElements = this.element.getElementsByClassName(
@@ -75,8 +73,8 @@ export class OpalTabs extends BaseComponent {
 	}
 
 	connected() {
-		if (this.useLocationHash) {
-			reTabLabel.test(OpalRouter.history.location.hash);
+		if (this.name) {
+			new RegExp(`[#&]tabs_${this.name}=([^&]+)`).test(OpalRouter.history.location.hash);
 
 			if (RegExp.$1) {
 				this.goToTab(RegExp.$1);
@@ -109,10 +107,10 @@ export class OpalTabs extends BaseComponent {
 	}
 
 	_onHistoryChange(update: Update) {
-		reTabLabel.test(update.location.hash);
+		new RegExp(`[#&]tabs_${this.name}=([^&]+)`).test(update.location.hash);
 
 		if (RegExp.$1) {
-			if (this._selectedTab && RegExp.$1 !== this._selectedTab.label) {
+			if (RegExp.$1 !== this._selectedTab.label) {
 				this.goToTab(RegExp.$1);
 			}
 		} else if (this._startSelectedTab) {
@@ -121,7 +119,7 @@ export class OpalTabs extends BaseComponent {
 	}
 
 	goToTab(label: string) {
-		if (this._selectedTab && this._selectedTab!.label === label) {
+		if (this._selectedTab.label === label) {
 			return true;
 		}
 
@@ -138,39 +136,41 @@ export class OpalTabs extends BaseComponent {
 		return false;
 	}
 
-	_selectTab(tab: OpalTab, changeEvent: boolean, notUseLocationHash?: boolean) {
-		if (tab === this._selectedTab) {
+	_selectTab(tab: OpalTab, changeEvent: boolean, notUseLocationHash = false) {
+		let selectedTab = this._selectedTab;
+
+		if (tab == selectedTab) {
 			return;
 		}
 
-		let selectedTab = this._selectedTab;
-
-		if (selectedTab) {
-			this.tabPanelElements[
-				indexOf.call(this.tabElements, selectedTab.element)
-			].$component!.shown = false;
-			selectedTab.deselect();
-		}
+		this.tabPanelElements[
+			indexOf.call(this.tabElements, selectedTab.element)
+		].$component!.shown = false;
+		selectedTab.deselect();
 
 		this.tabPanelElements[indexOf.call(this.tabElements, tab.element)].$component!.shown = true;
 		tab.select();
 
 		this._selectedTab = tab;
 
-		if (!notUseLocationHash && this.useLocationHash) {
+		if (!notUseLocationHash && this.name) {
 			let label = tab.label;
 			let locationHash = OpalRouter.history.location.hash;
 			let tabInLocationHashFound = false;
-			let newLocationHash = locationHash.replace(/(#|&)tab=[^&]+/, (_match, sep) => {
-				tabInLocationHashFound = true;
-				return sep + (label ? 'tab=' + label : '');
-			});
+			let newLocationHash = locationHash.replace(
+				new RegExp(`(#|&)tabs_${this.name}=[^&]+`),
+				(_match, sep) => {
+					tabInLocationHashFound = true;
+					return sep + (label ? `tabs_${this.name}=${label}` : '');
+				}
+			);
 
 			if (!tabInLocationHashFound || newLocationHash != locationHash) {
 				location.hash = tabInLocationHashFound
 					? newLocationHash
-					: (locationHash && locationHash != '#' ? locationHash + '&tab=' : '#tab=') +
-					  label;
+					: `${locationHash && locationHash != '#' ? locationHash + '&' : '#'}tabs_${
+							this.name
+					  }=${label}`;
 			}
 		}
 

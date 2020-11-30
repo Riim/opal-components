@@ -276,12 +276,10 @@ Object.defineProperty(exports, "OpalTabList", { enumerable: true, get: function 
 const indexOf = Array.prototype.indexOf;
 const forEach = Array.prototype.forEach;
 const find = Array.prototype.find;
-const reTabLabel = /(?:#|&)tab=([^&]+)/;
 let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
     constructor() {
         super(...arguments);
         this._startSelectedTab = null;
-        this._selectedTab = null;
     }
     ready() {
         let tabElements = (this.tabElements = this.element.getElementsByClassName('OpalTab'));
@@ -309,8 +307,8 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
         tabPanelElements[selectedTabIndex].$component.shown = true;
     }
     connected() {
-        if (this.useLocationHash) {
-            reTabLabel.test(opal_router_1.OpalRouter.history.location.hash);
+        if (this.name) {
+            new RegExp(`[#&]tabs_${this.name}=([^&]+)`).test(opal_router_1.OpalRouter.history.location.hash);
             if (RegExp.$1) {
                 this.goToTab(RegExp.$1);
             }
@@ -328,9 +326,9 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
         evt.target.select();
     }
     _onHistoryChange(update) {
-        reTabLabel.test(update.location.hash);
+        new RegExp(`[#&]tabs_${this.name}=([^&]+)`).test(update.location.hash);
         if (RegExp.$1) {
-            if (this._selectedTab && RegExp.$1 !== this._selectedTab.label) {
+            if (RegExp.$1 !== this._selectedTab.label) {
                 this.goToTab(RegExp.$1);
             }
         }
@@ -339,7 +337,7 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
         }
     }
     goToTab(label) {
-        if (this._selectedTab && this._selectedTab.label === label) {
+        if (this._selectedTab.label === label) {
             return true;
         }
         let tab = find.call(this.tabElements, (tab) => tab.$component.label == label);
@@ -349,31 +347,28 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
         }
         return false;
     }
-    _selectTab(tab, changeEvent, notUseLocationHash) {
-        if (tab === this._selectedTab) {
+    _selectTab(tab, changeEvent, notUseLocationHash = false) {
+        let selectedTab = this._selectedTab;
+        if (tab == selectedTab) {
             return;
         }
-        let selectedTab = this._selectedTab;
-        if (selectedTab) {
-            this.tabPanelElements[indexOf.call(this.tabElements, selectedTab.element)].$component.shown = false;
-            selectedTab.deselect();
-        }
+        this.tabPanelElements[indexOf.call(this.tabElements, selectedTab.element)].$component.shown = false;
+        selectedTab.deselect();
         this.tabPanelElements[indexOf.call(this.tabElements, tab.element)].$component.shown = true;
         tab.select();
         this._selectedTab = tab;
-        if (!notUseLocationHash && this.useLocationHash) {
+        if (!notUseLocationHash && this.name) {
             let label = tab.label;
             let locationHash = opal_router_1.OpalRouter.history.location.hash;
             let tabInLocationHashFound = false;
-            let newLocationHash = locationHash.replace(/(#|&)tab=[^&]+/, (_match, sep) => {
+            let newLocationHash = locationHash.replace(new RegExp(`(#|&)tabs_${this.name}=[^&]+`), (_match, sep) => {
                 tabInLocationHashFound = true;
-                return sep + (label ? 'tab=' + label : '');
+                return sep + (label ? `tabs_${this.name}=${label}` : '');
             });
             if (!tabInLocationHashFound || newLocationHash != locationHash) {
                 location.hash = tabInLocationHashFound
                     ? newLocationHash
-                    : (locationHash && locationHash != '#' ? locationHash + '&tab=' : '#tab=') +
-                        label;
+                    : `${locationHash && locationHash != '#' ? locationHash + '&' : '#'}tabs_${this.name}=${label}`;
             }
         }
         cellx_1.Cell.release();
@@ -384,8 +379,8 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
 };
 OpalTabs.EVENT_CHANGE = Symbol('change');
 __decorate([
-    rionite_1.Param(Boolean)
-], OpalTabs.prototype, "useLocationHash", void 0);
+    rionite_1.Param(String)
+], OpalTabs.prototype, "name", void 0);
 __decorate([
     rionite_1.Listen(OpalTabList_1.OpalTab.EVENT_SELECT, (self) => self.element.getElementsByClassName('OpalTabList')[0].$component)
 ], OpalTabs.prototype, "_onTabListSelect", null);
