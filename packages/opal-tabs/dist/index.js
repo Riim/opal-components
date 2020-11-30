@@ -319,6 +319,13 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
             };
         }
     }
+    disconnected() {
+        let locationHash = opal_router_1.OpalRouter.history.location.hash;
+        let newLocationHash = locationHash.replace(new RegExp(`(#|&)tabs_${this.name}=[^&]+`), (_match, sep) => (sep == '#' ? sep : ''));
+        if (newLocationHash != locationHash) {
+            location.hash = newLocationHash;
+        }
+    }
     _onTabListSelect(evt) {
         this._selectTab(evt.target, true);
     }
@@ -359,13 +366,13 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
         this._selectedTab = tab;
         if (!notUseLocationHash && this.name) {
             let label = tab.label;
-            let locationHash = opal_router_1.OpalRouter.history.location.hash;
             let tabInLocationHashFound = false;
+            let locationHash = opal_router_1.OpalRouter.history.location.hash;
             let newLocationHash = locationHash.replace(new RegExp(`(#|&)tabs_${this.name}=[^&]+`), (_match, sep) => {
                 tabInLocationHashFound = true;
-                return sep + (label ? `tabs_${this.name}=${label}` : '');
+                return label ? sep + `tabs_${this.name}=${label}` : sep == '#' ? sep : '';
             });
-            if (!tabInLocationHashFound || newLocationHash != locationHash) {
+            if (newLocationHash != locationHash || (!tabInLocationHashFound && label)) {
                 location.hash = tabInLocationHashFound
                     ? newLocationHash
                     : `${locationHash && locationHash != '#' ? locationHash + '&' : '#'}tabs_${this.name}=${label}`;
