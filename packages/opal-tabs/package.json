@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tabs",
-  "version": "0.43.6",
+  "version": "0.43.14",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
