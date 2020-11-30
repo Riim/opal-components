@@ -367,12 +367,13 @@ let OpalTabs = OpalTabs_1 = class OpalTabs extends rionite_1.BaseComponent {
             let tabInLocationHashFound = false;
             let newLocationHash = locationHash.replace(/(#|&)tab=[^&]+/, (_match, sep) => {
                 tabInLocationHashFound = true;
-                return (sep == '#' ? '#' : '') + (label ? 'tab=' + label : '');
+                return sep + (label ? 'tab=' + label : '');
             });
             if (!tabInLocationHashFound || newLocationHash != locationHash) {
                 location.hash = tabInLocationHashFound
                     ? newLocationHash
-                    : (locationHash ? locationHash + '&tab=' : '#tab=') + label;
+                    : (locationHash && locationHash != '#' ? locationHash + '&tab=' : '#tab=') +
+                        label;
             }
         }
         cellx_1.Cell.release();
