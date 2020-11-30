@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-components",
-  "version": "0.43.15",
+  "version": "0.43.16",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -46,7 +46,7 @@
     "@riim/opal-slider": "^0.43.6",
     "@riim/opal-switch": "^0.43.6",
     "@riim/opal-switch-menu": "^0.43.6",
-    "@riim/opal-tabs": "^0.43.15",
+    "@riim/opal-tabs": "^0.43.16",
     "@riim/opal-tag": "^0.43.6",
     "@riim/opal-tag-select": "^0.43.12",
     "@riim/opal-text-editor": "^0.43.12",
