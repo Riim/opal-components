@@ -370,15 +370,21 @@ export class OpalSelect extends BaseComponent {
 						vm.removeAt(index);
 					}
 				} else if (index == -1) {
-					vm.add({
+					let subtext = dataList
+						? item[this._dataListItemSubtextFieldName]
+						: (item as OpalSelectOption).subtext;
+					let vmItem = {
 						[vmItemValueFieldName]: itemValue,
 						[vmItemTextFieldName]: dataList
 							? item[this._dataListItemTextFieldName]
-							: (item as OpalSelectOption).text,
-						[vmItemSubtextFieldName]: dataList
-							? item[this._dataListItemSubtextFieldName]
-							: (item as OpalSelectOption).subtext
-					});
+							: (item as OpalSelectOption).text
+					};
+
+					if (subtext) {
+						vmItem[vmItemSubtextFieldName] = subtext;
+					}
+
+					vm.add(vmItem);
 				}
 			}
 		} else {
@@ -394,15 +400,21 @@ export class OpalSelect extends BaseComponent {
 						return false;
 					}
 
-					vm.set(0, {
+					let subtext = dataList
+						? item[this._dataListItemSubtextFieldName]
+						: (item as OpalSelectOption).subtext;
+					let vmItem = {
 						[vmItemValueFieldName]: itemValue,
 						[vmItemTextFieldName]: dataList
 							? item[this._dataListItemTextFieldName]
-							: (item as OpalSelectOption).text,
-						[vmItemSubtextFieldName]: dataList
-							? item[this._dataListItemSubtextFieldName]
-							: (item as OpalSelectOption).subtext
-					});
+							: (item as OpalSelectOption).text
+					};
+
+					if (subtext) {
+						vmItem[vmItemSubtextFieldName] = subtext;
+					}
+
+					vm.set(0, vmItem);
 
 					return true;
 				})
@@ -640,11 +652,16 @@ export class OpalSelect extends BaseComponent {
 			this.dataList &&
 			!this.dataList.find((item) => item[this._dataListItemValueFieldName] == value)
 		) {
-			this.dataList.add({
+			let dataListItem = {
 				[this._dataListItemValueFieldName]: value,
-				[this._dataListItemTextFieldName]: text,
-				[this._dataListItemSubtextFieldName]: subtext
-			});
+				[this._dataListItemTextFieldName]: text
+			};
+
+			if (subtext) {
+				dataListItem[this._dataListItemSubtextFieldName] = subtext;
+			}
+
+			this.dataList.add(dataListItem);
 		}
 
 		let loadedList = this.$<OpalLoadedList>('loadedList');
@@ -656,9 +673,12 @@ export class OpalSelect extends BaseComponent {
 		let vm = this.viewModel;
 		let vmItem = {
 			[this._viewModelItemValueFieldName]: value,
-			[this._viewModelItemTextFieldName]: text,
-			[this._dataListItemSubtextFieldName]: subtext
+			[this._viewModelItemTextFieldName]: text
 		};
+
+		if (subtext) {
+			vmItem[this._viewModelItemSubtextFieldName] = subtext;
+		}
 
 		if (this.multiple) {
 			vm.add(vmItem);

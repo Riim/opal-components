@@ -570,15 +570,19 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
                     }
                 }
                 else if (index == -1) {
-                    vm.add({
+                    let subtext = dataList
+                        ? item[this._dataListItemSubtextFieldName]
+                        : item.subtext;
+                    let vmItem = {
                         [vmItemValueFieldName]: itemValue,
                         [vmItemTextFieldName]: dataList
                             ? item[this._dataListItemTextFieldName]
-                            : item.text,
-                        [vmItemSubtextFieldName]: dataList
-                            ? item[this._dataListItemSubtextFieldName]
-                            : item.subtext
-                    });
+                            : item.text
+                    };
+                    if (subtext) {
+                        vmItem[vmItemSubtextFieldName] = subtext;
+                    }
+                    vm.add(vmItem);
                 }
             }
         }
@@ -590,15 +594,19 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
                     : item.value) != itemValue) {
                     return false;
                 }
-                vm.set(0, {
+                let subtext = dataList
+                    ? item[this._dataListItemSubtextFieldName]
+                    : item.subtext;
+                let vmItem = {
                     [vmItemValueFieldName]: itemValue,
                     [vmItemTextFieldName]: dataList
                         ? item[this._dataListItemTextFieldName]
-                        : item.text,
-                    [vmItemSubtextFieldName]: dataList
-                        ? item[this._dataListItemSubtextFieldName]
-                        : item.subtext
-                });
+                        : item.text
+                };
+                if (subtext) {
+                    vmItem[vmItemSubtextFieldName] = subtext;
+                }
+                vm.set(0, vmItem);
                 return true;
             })) {
                 vm.clear();
@@ -772,11 +780,14 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         let subtext = item[this._dataListItemSubtextFieldName];
         if (this.dataList &&
             !this.dataList.find((item) => item[this._dataListItemValueFieldName] == value)) {
-            this.dataList.add({
+            let dataListItem = {
                 [this._dataListItemValueFieldName]: value,
-                [this._dataListItemTextFieldName]: text,
-                [this._dataListItemSubtextFieldName]: subtext
-            });
+                [this._dataListItemTextFieldName]: text
+            };
+            if (subtext) {
+                dataListItem[this._dataListItemSubtextFieldName] = subtext;
+            }
+            this.dataList.add(dataListItem);
         }
         let loadedList = this.$('loadedList');
         if (loadedList) {
@@ -785,9 +796,11 @@ let OpalSelect = OpalSelect_1 = class OpalSelect extends rionite_1.BaseComponent
         let vm = this.viewModel;
         let vmItem = {
             [this._viewModelItemValueFieldName]: value,
-            [this._viewModelItemTextFieldName]: text,
-            [this._dataListItemSubtextFieldName]: subtext
+            [this._viewModelItemTextFieldName]: text
         };
+        if (subtext) {
+            vmItem[this._viewModelItemSubtextFieldName] = subtext;
+        }
         if (this.multiple) {
             vm.add(vmItem);
             this.emit(OpalSelect_1.EVENT_INPUT);
