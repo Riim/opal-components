@@ -13,24 +13,15 @@
 
 	@el loader {
 		@mod inCenter {
-			position: absolute;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
+			border-top-width: 70px;
+			border-bottom-width: 70px;
 		}
 	}
 
 	@el nothingFoundSlot {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		display: flex;
+		display: block;
 		padding: 28px;
-		justify-content: center;
-		align-items: center;
+		text-align: center;
 	}
 		@el nothingFoundMessage {
 			white-space: nowrap;

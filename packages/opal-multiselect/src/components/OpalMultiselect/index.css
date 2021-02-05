@@ -40,6 +40,25 @@
 		}
 			@el loadedList {
 				height: 100%;
+
+				.OpalLoadedList__loader {
+					position: absolute;
+					top: 0;
+					right: 0;
+					bottom: 0;
+					left: 0;
+				}
+
+				.OpalLoadedList__nothingFoundSlot {
+					position: absolute;
+					top: 0;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
 			}
 
 		@el menuSelected {
