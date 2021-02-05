@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-tree-select",
-  "version": "0.43.18",
+  "version": "0.43.19",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@riim/opal-button": "^0.43.6",
-    "@riim/opal-filtered-list": "^0.43.18",
+    "@riim/opal-filtered-list": "^0.43.19",
     "@riim/opal-modal": "^0.43.6",
-    "@riim/opal-select": "^0.43.18",
-    "@riim/opal-tree-list": "^0.43.18",
+    "@riim/opal-select": "^0.43.19",
+    "@riim/opal-tree-list": "^0.43.19",
     "cellx": "^1.10.17",
     "rionite": "^0.42.10"
   }

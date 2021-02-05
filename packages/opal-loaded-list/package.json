@@ -1,6 +1,6 @@
 {
   "name": "@riim/opal-loaded-list",
-  "version": "0.43.18",
+  "version": "0.43.19",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
