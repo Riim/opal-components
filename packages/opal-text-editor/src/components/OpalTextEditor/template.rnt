@@ -4,6 +4,8 @@ div:textFieldContainer (
 	hidePlaceholder={btnToolbarOnEmptyLineShown}
 )
 
-div:btnToolbarOnEmptyLine (shown={btnToolbarOnEmptyLineShown})
+div:btnToolbarOnEmptyLine (shown={btnToolbarOnEmptyLineShown}) {
+	div:btnToolbarOnEmptyLineInner
+}
 
 PrexLoader:loader (@if=loading, size=s, shown)

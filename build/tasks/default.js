@@ -1,5 +1,5 @@
 const gulp = require('gulp');
 
-require('./movePackagesDTS');
+require('./movePackagesDTs_');
 
-gulp.task('default', gulp.series('build', 'movePackagesDTS'));
+gulp.task('default', gulp.series('build', 'movePackagesDTs'));

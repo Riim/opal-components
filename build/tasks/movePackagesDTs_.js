@@ -4,7 +4,7 @@ const glob = require('glob');
 const mkdirp = require('mkdirp');
 const gulp = require('gulp');
 
-gulp.task('movePackagesDTS', (done) => {
+gulp.task('movePackagesDTs', (done) => {
 	glob.sync('packages/*/src/**/*.d.ts').forEach((dtsFilePath) => {
 		let targetPath = dtsFilePath.replace('/src/', '/dist/');
 		mkdirp.sync(path.dirname(targetPath));

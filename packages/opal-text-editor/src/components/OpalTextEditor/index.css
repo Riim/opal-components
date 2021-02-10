@@ -122,6 +122,14 @@
 			pointer-events: auto;
 		}
 	}
+		@el btnToolbarOnEmptyLineInner {
+			position: absolute;
+			top: -7px;
+			right: -7px;
+			bottom: -7px;
+			left: -7px;
+			background: transparent;
+		}
 
 	@el loader {
 		position: absolute;
