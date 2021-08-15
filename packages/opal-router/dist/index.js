@@ -144,7 +144,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__("SN5g"), exports);
@@ -171,7 +171,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
 };
 var OpalRouter_1;
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -202,6 +202,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
         this._historyUnblock = null;
         this._componentElement = null;
         this.isLoaderShown = false;
+        this._updateCounter = 0;
     }
     initialize() {
         this._routes = [];
@@ -319,7 +320,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
         this._historyBlockingMessage = evt.data.message;
         if (!this._historyUnblock) {
             this._historyUnblock = history.block((transition) => {
-                if (window.confirm(this._historyBlockingMessage)) {
+                if (confirm(this._historyBlockingMessage)) {
                     this._historyUnblock();
                     this._historyUnblock = null;
                     transition.retry();
@@ -345,22 +346,21 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
             }
             let state = route.properties.reduce((state, prop, index) => {
                 if (prop.optional) {
-                    state[prop.name] = !!match[index + 1];
+                    state.set(prop.name, !!match[index + 1]);
                 }
                 else {
                     let value = match[index + 1];
                     // `/password-recovery(/[email])`
                     if (value) {
-                        state[prop.name] = decodeURIComponent(value);
+                        state.set(prop.name, decodeURIComponent(value));
                     }
                 }
                 return state;
-            }, Object.create(null));
+            }, new Map());
             if (route === this._route) {
                 let prevState = this._state;
-                let stateKeys = Object.keys(state);
-                if (stateKeys.length == Object.keys(prevState).length &&
-                    stateKeys.every((name) => state[name] === prevState[name])) {
+                if (state.size == prevState.size &&
+                    [...state.keys()].every((name) => state.get(name) === prevState.get(name))) {
                     return true;
                 }
                 let componentEl = this._componentElement;
@@ -376,16 +376,16 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
                         let $paramConfig = $paramsConfig.get(name);
                         if ($paramConfig &&
                             $paramConfig.readonly &&
-                            !($paramConfig.name in state)) {
+                            !state.has($paramConfig.name)) {
                             canWrite = false;
                             break;
                         }
                     }
                     if (canWrite) {
-                        for (let name in state) {
+                        for (let [name, value] of state) {
                             if ($paramsConfig.get(name).readonly &&
                                 componentEl.getAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name, true)) !==
-                                    valueToAttributeValue(state[name])) {
+                                    valueToAttributeValue(value)) {
                                 canWrite = false;
                                 break;
                             }
@@ -400,7 +400,7 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
                                 continue;
                             }
                             let $paramConfig = $paramsConfig.get(name);
-                            if ($paramConfig && !($paramConfig.name in state)) {
+                            if ($paramConfig && !state.has($paramConfig.name)) {
                                 componentEl.removeAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name, true));
                             }
                         }
@@ -419,13 +419,18 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
             }
             this._route = route;
             this._state = state;
+            let updateCounter = ++this._updateCounter;
             let onComponentLoaded = (elementName) => {
-                if (route !== this._route) {
+                // if (route !== this._route) {
+                if (updateCounter !== this._updateCounter) {
                     return;
                 }
                 let f = () => {
+                    if (updateCounter !== this._updateCounter) {
+                        return;
+                    }
                     this.isLoaderShown = false;
-                    if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
+                    if (this.scrollTopOnChange || this.scrollTopOnComponentChange) {
                         window.scrollTo(window.pageXOffset, 0);
                     }
                     this.emit(OpalRouter_1.EVENT_CHANGE);
@@ -439,10 +444,12 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
                     initializationPromise.then(f);
                 }
                 else {
+                    this.isLoaderShown = false;
                     f();
                 }
             };
             if (route.component.component) {
+                this.isLoaderShown = false;
                 onComponentLoaded(route.component.component);
             }
             else {
@@ -460,10 +467,9 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
         return false;
     }
     _applyState() {
-        let state = this._state;
         let componentEl = this._componentElement;
-        for (let name in state) {
-            componentEl.setAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name, true), valueToAttributeValue(state[name]));
+        for (let [name, value] of this._state) {
+            componentEl.setAttribute(rionite_snake_case_attribute_name_1.snakeCaseAttributeName(name, true), valueToAttributeValue(value));
         }
     }
     _clear() {
@@ -481,13 +487,18 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
             return;
         }
         this.element.removeChild(this._componentElement);
+        let updateCounter = ++this._updateCounter;
         let onComponentLoaded = (elementName) => {
-            if (route !== this._route) {
+            // if (route !== this._route) {
+            if (updateCounter !== this._updateCounter) {
                 return;
             }
             let f = () => {
+                if (updateCounter !== this._updateCounter) {
+                    return;
+                }
                 this.isLoaderShown = false;
-                if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
+                if (this.scrollTopOnChange || this.scrollTopOnComponentChange) {
                     window.scrollTo(window.pageXOffset, 0);
                 }
             };
@@ -500,10 +511,12 @@ let OpalRouter = OpalRouter_1 = class OpalRouter extends rionite_1.BaseComponent
                 initializationWait.then(f);
             }
             else {
+                this.isLoaderShown = false;
                 f();
             }
         };
         if (route.component.component) {
+            this.isLoaderShown = false;
             onComponentLoaded(route.component.component);
         }
         else {
@@ -527,7 +540,7 @@ __decorate([
 ], OpalRouter.prototype, "scrollTopOnChange", void 0);
 __decorate([
     rionite_1.Param({ default: true })
-], OpalRouter.prototype, "scrollTopOnChangeComponent", void 0);
+], OpalRouter.prototype, "scrollTopOnComponentChange", void 0);
 __decorate([
     cellx_decorators_1.Observable
 ], OpalRouter.prototype, "isLoaderShown", void 0);

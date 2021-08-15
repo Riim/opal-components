@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@riim/opal-button": "^0.43.6",
-    "cellx": "^1.10.17",
-    "rionite": "^0.42.10"
+    "cellx": "^1.10.20",
+    "rionite": "^0.42.22"
   }
 }

@@ -5,8 +5,8 @@
 		"declaration": true,
 		"experimentalDecorators": true,
 		"lib": ["ES2017", "DOM", "DOM.Iterable"],
-		"module": "commonjs",
-		"moduleResolution": "node",
+		"module": "CommonJS",
+		"moduleResolution": "Node",
 		"newLine": "lf",
 		"noImplicitAny": true,
 		"noImplicitReturns": true,
@@ -18,7 +18,7 @@
 		"strictNullChecks": true,
 		"strictPropertyInitialization": false,
 		"suppressImplicitAnyIndexErrors": true,
-		"target": "es2017"
+		"target": "ES2017"
 	},
 	"include": [
 		"typings.d.ts"

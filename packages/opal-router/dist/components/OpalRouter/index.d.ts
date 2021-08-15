@@ -15,9 +15,7 @@ export interface IRoute {
     properties: Array<IRouteProperty>;
     component: OpalRoute;
 }
-export interface IComponentState {
-    [name: string]: boolean | string;
-}
+declare const history: BrowserHistory<State>;
 export declare class OpalRouter extends BaseComponent {
     static EVENT_CHANGE: symbol;
     static EVENT_REFRESH_ROUTER: symbol;
@@ -26,14 +24,15 @@ export declare class OpalRouter extends BaseComponent {
     static history: BrowserHistory<State>;
     useLocationHash: boolean;
     scrollTopOnChange: boolean;
-    scrollTopOnChangeComponent: boolean;
+    scrollTopOnComponentChange: boolean;
     _routes: Array<IRoute>;
     _route: IRoute | null;
-    _state: IComponentState | null;
+    _state: Map<string, boolean | string> | null;
     _historyBlockingMessage: string;
-    _historyUnblock: (() => void) | null;
+    _historyUnblock: ReturnType<typeof history.block> | null;
     _componentElement: IComponentElement | null;
     isLoaderShown: boolean;
+    _updateCounter: number;
     initialize(): void;
     ready(): void;
     connected(): void;

@@ -13,14 +13,14 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/history": "^4.7.2"
+    "@types/history": "^4.7.9"
   },
   "dependencies": {
     "@riim/kebab-case": "^1.0.0",
-    "@riim/next-uid": "^1.1.0",
-    "@riim/rionite-snake-case-attribute-name": "^0.39.2",
-    "cellx-decorators": "^1.6.2",
-    "history": "^5.0.0",
-    "rionite": "^0.42.10"
+    "@riim/next-uid": "^1.1.1",
+    "@riim/rionite-snake-case-attribute-name": "^0.42.21",
+    "cellx-decorators": "^1.6.3",
+    "history": "^5.0.1",
+    "rionite": "^0.42.22"
   }
 }

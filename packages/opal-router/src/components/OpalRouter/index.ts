@@ -38,10 +38,6 @@ export interface IRoute {
 	component: OpalRoute;
 }
 
-export interface IComponentState {
-	[name: string]: boolean | string;
-}
-
 const history = createBrowserHistory();
 
 function valueToAttributeValue(value: boolean | string): string {
@@ -65,20 +61,22 @@ export class OpalRouter extends BaseComponent {
 	@Param({ default: true })
 	scrollTopOnChange: boolean;
 	@Param({ default: true })
-	scrollTopOnChangeComponent: boolean;
+	scrollTopOnComponentChange: boolean;
 
 	_routes: Array<IRoute>;
 
 	_route: IRoute | null = null;
-	_state: IComponentState | null = null;
+	_state: Map<string /* name */, boolean | string> | null = null;
 
 	_historyBlockingMessage: string;
-	_historyUnblock: (() => void) | null = null;
+	_historyUnblock: ReturnType<typeof history.block> | null = null;
 
 	_componentElement: IComponentElement | null = null;
 
 	@Observable
 	isLoaderShown = false;
+
+	_updateCounter = 0;
 
 	initialize() {
 		this._routes = [];
@@ -225,7 +223,7 @@ export class OpalRouter extends BaseComponent {
 
 		if (!this._historyUnblock) {
 			this._historyUnblock = history.block((transition) => {
-				if (window.confirm(this._historyBlockingMessage)) {
+				if (confirm(this._historyBlockingMessage)) {
 					this._historyUnblock!();
 					this._historyUnblock = null;
 					transition.retry();
@@ -255,36 +253,33 @@ export class OpalRouter extends BaseComponent {
 				continue;
 			}
 
-			let state: IComponentState = route.properties.reduce((state, prop, index) => {
+			let state = route.properties.reduce((state, prop, index) => {
 				if (prop.optional) {
-					state[prop.name] = !!match![index + 1];
+					state.set(prop.name, !!match![index + 1]);
 				} else {
 					let value = match![index + 1];
 
 					// `/password-recovery(/[email])`
 					if (value) {
-						state[prop.name] = decodeURIComponent(value);
+						state.set(prop.name, decodeURIComponent(value));
 					}
 				}
 
 				return state;
-			}, Object.create(null));
+			}, new Map() as Exclude<OpalRouter['_state'], null>);
 
 			if (route === this._route) {
 				let prevState = this._state!;
-				let stateKeys = Object.keys(state);
 
 				if (
-					stateKeys.length == Object.keys(prevState).length &&
-					stateKeys.every((name) => state[name] === prevState[name])
+					state.size == prevState.size &&
+					[...state.keys()].every((name) => state.get(name) === prevState.get(name))
 				) {
 					return true;
 				}
 
 				let componentEl = this._componentElement!;
-				let $paramsConfig = (componentEl.$component!.constructor as typeof BaseComponent)[
-					KEY_PARAMS_CONFIG
-				]!;
+				let $paramsConfig = componentEl.$component!.constructor[KEY_PARAMS_CONFIG]!;
 				let attrs = componentEl.attributes;
 				let canWrite = true;
 
@@ -301,7 +296,7 @@ export class OpalRouter extends BaseComponent {
 						if (
 							$paramConfig &&
 							$paramConfig.readonly &&
-							!($paramConfig.name in state)
+							!state.has($paramConfig.name)
 						) {
 							canWrite = false;
 							break;
@@ -309,11 +304,11 @@ export class OpalRouter extends BaseComponent {
 					}
 
 					if (canWrite) {
-						for (let name in state) {
+						for (let [name, value] of state) {
 							if (
 								$paramsConfig.get(name)!.readonly &&
 								componentEl.getAttribute(snakeCaseAttributeName(name, true)) !==
-									valueToAttributeValue(state[name])
+									valueToAttributeValue(value)
 							) {
 								canWrite = false;
 								break;
@@ -333,7 +328,7 @@ export class OpalRouter extends BaseComponent {
 
 							let $paramConfig = $paramsConfig.get(name);
 
-							if ($paramConfig && !($paramConfig.name in state)) {
+							if ($paramConfig && !state.has($paramConfig.name)) {
 								componentEl.removeAttribute(snakeCaseAttributeName(name, true));
 							}
 						}
@@ -360,15 +355,22 @@ export class OpalRouter extends BaseComponent {
 			this._route = route;
 			this._state = state;
 
+			let updateCounter = ++this._updateCounter;
+
 			let onComponentLoaded = (elementName: string) => {
-				if (route !== this._route) {
+				// if (route !== this._route) {
+				if (updateCounter !== this._updateCounter) {
 					return;
 				}
 
 				let f = () => {
+					if (updateCounter !== this._updateCounter) {
+						return;
+					}
+
 					this.isLoaderShown = false;
 
-					if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
+					if (this.scrollTopOnChange || this.scrollTopOnComponentChange) {
 						window.scrollTo(window.pageXOffset, 0);
 					}
 
@@ -386,11 +388,13 @@ export class OpalRouter extends BaseComponent {
 					this.isLoaderShown = true;
 					initializationPromise.then(f);
 				} else {
+					this.isLoaderShown = false;
 					f();
 				}
 			};
 
 			if (route.component.component) {
+				this.isLoaderShown = false;
 				onComponentLoaded(route.component.component);
 			} else {
 				this.isLoaderShown = true;
@@ -412,13 +416,12 @@ export class OpalRouter extends BaseComponent {
 	}
 
 	_applyState() {
-		let state = this._state!;
 		let componentEl = this._componentElement!;
 
-		for (let name in state) {
+		for (let [name, value] of this._state!) {
 			componentEl.setAttribute(
 				snakeCaseAttributeName(name, true),
-				valueToAttributeValue(state[name])
+				valueToAttributeValue(value)
 			);
 		}
 	}
@@ -444,15 +447,22 @@ export class OpalRouter extends BaseComponent {
 
 		this.element.removeChild(this._componentElement!);
 
+		let updateCounter = ++this._updateCounter;
+
 		let onComponentLoaded = (elementName: string) => {
-			if (route !== this._route) {
+			// if (route !== this._route) {
+			if (updateCounter !== this._updateCounter) {
 				return;
 			}
 
 			let f = () => {
+				if (updateCounter !== this._updateCounter) {
+					return;
+				}
+
 				this.isLoaderShown = false;
 
-				if (this.scrollTopOnChange || this.scrollTopOnChangeComponent) {
+				if (this.scrollTopOnChange || this.scrollTopOnComponentChange) {
 					window.scrollTo(window.pageXOffset, 0);
 				}
 			};
@@ -468,11 +478,13 @@ export class OpalRouter extends BaseComponent {
 				this.isLoaderShown = true;
 				initializationWait.then(f);
 			} else {
+				this.isLoaderShown = false;
 				f();
 			}
 		};
 
 		if (route.component.component) {
+			this.isLoaderShown = false;
 			onComponentLoaded(route.component.component);
 		} else {
 			this.isLoaderShown = true;

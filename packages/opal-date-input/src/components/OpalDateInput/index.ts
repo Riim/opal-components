@@ -39,11 +39,15 @@ function pad(num: number) {
 				textInput.focus();
 
 				this.$<OpalTextInputValidator>('textInputValidator')!.validate();
+
+				this.emit(OpalDateInput.EVENT_CHANGE);
 			}
 		}
 	}
 })
 export class OpalDateInput extends BaseComponent {
+	static EVENT_CHANGE = Symbol('change');
+
 	@Param(String)
 	fromDate: string | null;
 	@Param(String)
@@ -92,6 +96,7 @@ export class OpalDateInput extends BaseComponent {
 	_onTextInputChange(evt: IEvent<OpalTextInput>) {
 		if (this.$<OpalTextInputValidator>('textInputValidator')!.valid) {
 			this.$<OpalCalendar>('calendar')!.stringValue = evt.target.value;
+			this.emit(OpalDateInput.EVENT_CHANGE);
 		}
 	}
 

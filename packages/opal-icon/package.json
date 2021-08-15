@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "cellx-decorators": "^1.6.2",
-    "rionite": "^0.42.10"
+    "cellx-decorators": "^1.6.3",
+    "rionite": "^0.42.22"
   }
 }

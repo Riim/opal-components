@@ -5,6 +5,7 @@ import { dateExists } from 'date-exists';
 import { BaseComponent, IDisposableListening } from 'rionite';
 import './index.css';
 export declare class OpalDateInput extends BaseComponent {
+    static EVENT_CHANGE: symbol;
     fromDate: string | null;
     toDate: string | null;
     paramValue: string | null;

@@ -16,6 +16,6 @@
     "@riim/opal-sign-button": "^0.43.9",
     "@riim/opal-tag-select": "^0.43.19",
     "@riim/opal-tree-select": "^0.43.19",
-    "rionite": "^0.42.10"
+    "rionite": "^0.42.22"
   }
 }
