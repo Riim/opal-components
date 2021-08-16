@@ -1,4 +1,3 @@
-import { nextUID } from '@riim/next-uid';
 import { OpalRouter, Update } from '@riim/opal-router';
 import { Cell, IEvent } from 'cellx';
 import {
@@ -80,11 +79,11 @@ export class OpalTabs extends BaseComponent {
 				this.goToTab(RegExp.$1);
 			}
 
-			this._disposables[nextUID()] = {
+			this._disposables.add({
 				dispose: OpalRouter.history.listen((update) => {
 					this._onHistoryChange(update);
 				})
-			};
+			});
 		}
 	}
 

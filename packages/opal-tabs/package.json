@@ -13,7 +13,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@riim/next-uid": "^1.1.1",
     "@riim/opal-router": "^0.43.21",
     "cellx": "^1.10.20",
     "cellx-decorators": "^1.6.3",

@@ -1,5 +1,4 @@
 import { kebabCase } from '@riim/kebab-case';
-import { nextUID } from '@riim/next-uid';
 import { snakeCaseAttributeName } from '@riim/rionite-snake-case-attribute-name';
 import { IEvent } from 'cellx';
 import { Observable } from 'cellx-decorators';
@@ -143,11 +142,11 @@ export class OpalRouter extends BaseComponent {
 	}
 
 	connected() {
-		this._disposables[nextUID()] = {
+		this._disposables.add({
 			dispose: history.listen((update) => {
 				this._onHistoryChange(update);
 			})
-		};
+		});
 
 		if (!this.useLocationHash) {
 			this.listenTo(document.body, 'click', this._onBodyClick, this, true);
